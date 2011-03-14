@@ -26,6 +26,7 @@ use CGI;
 use C4::Context;
 use C4::Auth;
 use C4::Output;
+use C4::Indicators;
 
 sub StringSearch  {
     my $sth = C4::Context->dbh->prepare("SELECT * FROM auth_types WHERE (authtypecode like ?) ORDER BY authtypecode");
@@ -56,6 +57,15 @@ $template->param(
 
 my $dbh = C4::Context->dbh;
 
+# get authtype list for cloning indicators
+if ($authtypecode && HasFieldMarcInd($authtypecode, 'auth')) {
+    my $authtypes = GetAuthtypeInd($authtypecode);
+    $template->param(
+        authtypesloop => $authtypes
+    );
+}
+
+
 # called by default. Used to create form to add or  modify a record
 if ($op eq 'add_form') {
     #---- if primkey exists, it's a modify action, so read values to modify...
@@ -74,10 +84,18 @@ if ($op eq 'add_form') {
 ################## ADD_VALIDATE ##################################
 # called by add_form, used to insert/modify data in DB
 } elsif ($op eq 'add_validate') {
-    my $sth = $input->param('modif') ? 
-            $dbh->prepare("UPDATE auth_types SET authtypetext=? ,auth_tag_to_report=?, summary=? WHERE authtypecode=?") :
-            $dbh->prepare("INSERT INTO auth_types SET authtypetext=?, auth_tag_to_report=?, summary=?, authtypecode=?") ;
-    $sth->execute($input->param('authtypetext'),$input->param('auth_tag_to_report'),$input->param('summary'),$input->param('authtypecode'));
+    if ($input->param('modif')) {
+        my $sth = $dbh->prepare("UPDATE auth_types SET authtypetext=? ,auth_tag_to_report=?, summary=? WHERE authtypecode=?");
+        $sth->execute($input->param('authtypetext'),$input->param('auth_tag_to_report'),$input->param('summary'),$input->param('authtypecode'));
+        #Clone indicators from a framework
+        if($input->param('indicators') && DelIndicatorsFrameworkAuth($input->param('authtypecode'), 'auth')) {
+            my $frameworkBase = ($input->param('indicators') eq 'Default')?'':$input->param('indicators');
+            CloneIndicatorsFrameworkAuth($frameworkBase, $input->param('authtypecode'), 'auth');
+        }
+    } else {
+        my $sth = $dbh->prepare("INSERT INTO auth_types SET authtypetext=?, auth_tag_to_report=?, summary=?, authtypecode=?");
+        $sth->execute($input->param('authtypetext'),$input->param('auth_tag_to_report'),$input->param('summary'),$input->param('authtypecode'));
+    }
     print $input->redirect($script_name);    # FIXME: unnecessary redirect
     exit;
                                                     # END $OP eq ADD_VALIDATE

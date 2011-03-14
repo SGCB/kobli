@@ -198,6 +198,7 @@ return false;
         [% END %]
         </select>
         <input type="submit" value="OK" class="submit" />
+        <br /><label for="clone_indicators" title="Clone indicators from the authority framework used as template">Clone indicators:&nbsp;</label><input type="checkbox" name="clone_indicators" id="clone_indicators" value ="1" checked="checked" />
     </form>
 [% END %]
 
@@ -234,6 +235,7 @@ return false;
         <th>Mandatory</th>
         <th>Authorized<br />value</th>
         <th>Subfields</th>
+        <th>Indicators</th>
         <th>Edit</th>
         <th>Delete</th>
     </thead>
@@ -249,6 +251,7 @@ return false;
         <td>[% IF ( loo.mandatory ) %]Yes[% ELSE %]No[% END %]</td>
         <td>[% loo.authorised_value %]</td>
         <td><a href="[% loo.subfield_link %]" class="button">subfields</a></td>
+        <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">indicators</a>[% END %]</td>
         <td><a href="[% loo.edit %]">Edit</a></td>
         <td><a href="[% loo.delete %]">Delete</a></td>
     </tr>

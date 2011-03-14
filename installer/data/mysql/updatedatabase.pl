@@ -4220,6 +4220,7 @@ if (C4::Context->preference("Version") < TransformToNum($DBversion)) {
     SetVersion ($DBversion);
 }
 
+
 $DBversion = '3.03.00.042';
 if (C4::Context->preference("Version") < TransformToNum($DBversion)) {
     stocknumber_checker();
@@ -4436,6 +4437,61 @@ if (C4::Context->preference("Version") < TransformToNum($DBversion)) {
     print "Upgrade to $DBversion done (issues referential integrity)\n";
     SetVersion ($DBversion);
 }
+$DBversion = '3.05.00.XXX'; #FIXME
+if (C4::Context->preference("Version") < TransformToNum($DBversion)) {
+    my %info;
+    $info{'dbname'} = C4::Context->config("database");
+    $info{'dbms'} = (   C4::Context->config("db_scheme") ? C4::Context->config("db_scheme") : "mysql" );
+    $info{'hostname'} = C4::Context->config("hostname");
+    $info{'port'}     = C4::Context->config("port");
+    $info{'user'}     = C4::Context->config("user");
+    $info{'password'} = C4::Context->config("pass");
+
+    my $intranetdir = C4::Context->intranetdir;
+    my $path = ($intranetdir =~ /^(.+?)\/intranet\/cgi-bin/)?$1:$intranetdir;
+    $path .= "/installer/data/$info{dbms}/en/marcflavour/marc21/";
+    my $filename;
+    my $error;
+    my $strcmd;
+    if ( $info{'dbms'} eq 'mysql' ) {
+        my $cmd = qx(which mysql 2>/dev/null || whereis mysql 2>/dev/null);
+        chomp($cmd);
+        $cmd = $1 if ($cmd && $cmd =~ /^(.+)[\r\n]+$/);
+        $cmd = 'mysql' if (!$cmd || !-x $cmd);
+        $strcmd = "$cmd "
+            . ( $info{'hostname'} ? " -h $info{hostname} " : "" )
+            . ( $info{'port'}     ? " -P $info{port} "     : "" )
+            . ( $info{'user'}     ? " -u $info{user} "     : "" )
+            . ( $info{'password'} ? " -p'$info{password}'"   : "" )
+            . ' ' . $info{dbname} . ' ';
+        $filename = $path . 'mandatory/marc21_indicators.sql';
+        $error = qx($strcmd --default-character-set=utf8 <$filename 2>&1 1>/dev/null) if (-r $filename);
+    } elsif ( $info{'dbms'} eq 'Pg' ) {
+        my $cmd = qx(which psql 2>/dev/null || whereis psql 2>/dev/null);
+        chomp($cmd);
+        $cmd = $1 if ($cmd && $cmd =~ /^(.+)[\r\n]+$/);
+        $cmd = 'psql' if (!$cmd || !-x $cmd);
+        $strcmd = "$cmd "
+            . ( $info{'hostname'} ? " -h $info{hostname} " : "" )
+            . ( $info{'port'}     ? " -p $info{port} "     : "" )
+            . ( $info{'user'}     ? " -U $info{user} "     : "" )
+            . ' ' . $info{dbname} . ' ';
+        $filename = $path . 'mandatory/marc21_indicators.sql';
+        $error = qx($strcmd -f $filename 2>&1 1>/dev/null);
+    }
+    unless ($error) {
+        print "Upgrade to $DBversion done (New tables and data from $path for indicators functionality)\n";
+        $dbh->do("INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('CheckValueIndicators','0','Check the values of the indicators in cataloguing','','YesNo');");
+        print "Upgrade to $DBversion done (Add syspref to check the values of the indicators)\n";
+        $dbh->do("INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('DisplayPluginValueIndicators','0','Display a plugin with the correct values of indicators for fields in cataloguing','','YesNo');");
+        print "Upgrade to $DBversion done (Add syspref to display a plugin with the allowed values of indicators)\n";
+        SetVersion ($DBversion);
+    } else {
+        print "Error executing: $strcmd upon $filename $error";
+    }
+}
+
+
 
 $DBversion = "3.05.00.010";
 if (C4::Context->preference("Version") < TransformToNum($DBversion)) {

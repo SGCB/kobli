@@ -131,6 +131,8 @@ $(document).ready(function() {
         [% END %]
         </select>
         <input type="submit" value="OK" />
+        <br /><label for="clone_indicators" title="Clone indicators from the framework used as template">Clone indicators:&nbsp;</label><input type="checkbox" name="clone_indicators" id="clone_indicators" value ="1" checked="checked" />
+        
     </form>
 [% END %]
 
@@ -171,6 +173,7 @@ $(document).ready(function() {
         <th>Mandatory</th>
         <th>Auth value</th>
         <th>Subfields</th>
+        <th>Indicators</th>
         <th>Edit</th>
         <th>Delete</th>
         </tr>
@@ -185,12 +188,13 @@ $(document).ready(function() {
             <td>[% IF ( loo.mandatory ) %]Yes[% ELSE %]No[% END %]</td>
             <td>[% loo.authorised_value %]</td>
             <td><a href="[% loo.subfield_link %]">subfields</a></td>
+            <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">indicators</a>[% END %]</td>
             <td><a href="[% loo.edit %]">Edit</a></td>
             <td><a href="[% loo.delete %]">Delete</a></td>
         </tr>
       [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %]
             <td>&nbsp;</td>
-            <td colspan="7">
+            <td colspan="8">
                 [% FOREACH subfield IN loo.subfields %]
                     <p>	Tab:[% subfield.tab %] | $[% subfield.tagsubfield %]
                             [% subfield.liblibrarian %] [% IF ( subfield.kohafield ) %][% subfield.kohafield %][% END %][% IF ( subfield.repeatable ) %], repeatable[% END %][% IF ( subfield.mandatory ) %], Mandatory[% END %][% IF ( subfield.seealso ) %], See [% subfield.seealso %][% END %][% IF ( subfield.authorised_value ) %], [% subfield.authorised_value %][% END %][% IF ( subfield.authtypecode ) %], [% subfield.authtypecode %][% END %][% IF ( subfield.value_builder ) %], [% subfield.value_builder %][% END %]
@@ -208,6 +212,7 @@ $(document).ready(function() {
         <td>[% IF ( loo.mandatory ) %]Yes[% ELSE %]No[% END %]</td>
         <td>[% loo.authorised_value %]</td>
         <td><a href="[% loo.subfield_link %]">Subfields</a></td>
+        <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">Indicators</a>[% END %]</td>
         <td><a href="[% loo.edit %]">Edit</a></td>
         <td><a href="[% loo.delete %]">Delete</a></td>
     </tr>

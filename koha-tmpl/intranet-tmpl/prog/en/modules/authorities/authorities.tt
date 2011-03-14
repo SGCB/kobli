@@ -3,6 +3,9 @@
 [% INCLUDE 'doc-head-close.inc' %]
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.fixFloat.js"></script>
 <script type="text/javascript" src="[% themelang %]/js/cataloging.js"></script>
+[% IF ( CheckValueIndicators ) %]
+<script type="text/javascript" src='[% themelang %]/js/indicators.js'></script>
+[% END %]
 
 <script type="text/javascript">
 //<![CDATA[
@@ -91,8 +94,109 @@ function AreMandatoriesNotOk(){
     return false;
 }
 
+// Get XML Document with values of indicators.
+// Check if we come from an authorities operation with wrong values
+// Check if the XML is ready
+[% IF ( CheckValueIndicators ) %]
+    // Get XML Document with values of indicators
+    send_ajax_indicators('[% authtypecode %]', 'auth');
+    // check if we come from an authorities operation with wrong values
+    [% IF ( wrongInd ) %]
+        $(document).ready(function() {
+            var form = document.f;
+            var tagfield;
+            var arrInd;
+            var strIndError = "";
+        [% FOREACH wrongIn IN wrongInd %]
+            tagfield = '[% wrongIn.tagfield %]';
+            arrInd = search_koha_field(tagfield);
+            if (arrInd != undefined && arrInd.length > 0) {
+                for (var i=0; i < arrInd.length; i++) {
+                    var ind1 = '[% wrongIn.ind1 %]';
+                    var ind2 = '[% wrongIn.ind2 %]';
+                    if (ind1 != '' && ind1 != ' ' && arrInd[i].ind1.val() == ind1) {
+                        arrInd[i].ind1.css("backgroundColor", "yellow");
+                        strIndError += "Field " + tagfield + " has wrong value \"" + ind1 + "\" on indicator 1.\n";
+                    }
+                    if (ind2 != '' && ind2 != ' ' && arrInd[i].ind2.val() == ind2) {
+                        arrInd[i].ind2.css("backgroundColor", "yellow");
+                        strIndError += "Field " + tagfield + " has wrong value \"" + ind2 + "\" on indicator 2.\n";
+                    }
+                }
+            }
+        [% END %]
+        if (strIndError != "") alert("Record not saved due to errors on indicators:\n\n" + strIndError);
+        });
+
+    [% END %]
+
+    // Receiving messages from the marc21_indicators window
+    // for HTML5 browsers that don't allow accessing/changing variables to the opener
+    function receiveMessageInd(event)
+    {
+        var origin = location.protocol + '//' + location.hostname + ((location.port)?':' + location.port:'');
+        if (event.origin !== origin || event.source != windowIndicators) return;
+        var data = event.data;
+        if (data.indexOf('indicators: ' == 0)) {
+            data = data.substring(12);
+            if (data.indexOf('send_ajax_indicators = ') == 0) {
+                send_ajax_indicators('[% authtypecode %]', 'auth');
+            } else if (data.indexOf('xmlDocInd = ') == 0) {
+                data = data.substring(12);
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(data,"text/xml"); 
+                xmlDocInd = doc.documentElement;
+            } else if (data.indexOf('tagFieldsRemote = ') == 0) {
+                getTagFields();
+            } else if (data.indexOf('useValue = ') == 0) {
+                data = data.substring(11);
+                var arrUseValue = data.split(';');
+                if (arrUseValue.length == 2) useValueLocal(arrUseValue[0], arrUseValue[1]);
+            } else if (data.indexOf('changeValueInd = ') == 0) {
+                data = data.substring(16);
+                var arrUseValue = data.split(';');
+                if (arrUseValue.length == 2) changeValueIndLocal(arrUseValue[0], arrUseValue[1]);
+            } else {
+                eval(data);
+            }
+        }
+    }
+    if (window.addEventListener) {
+        window.addEventListener("message", receiveMessageInd, false);
+    } else if (window.attachEvent) {
+        window.attachEvent('onmessage', receiveMessageInd);
+    }
+    var triesReadXmlDocInd = 1;
+
+/**
+ * this function waits a maximun ot 6s for xmlDocInd to be populated before giving up.
+ */
+    function CheckAgain()
+    {
+        Check();
+    }
+[% END %]
+
+
+/**
+ * 
+ * 
+ */
 function Check(){
     var StrAlert = AreMandatoriesNotOk();
+    [% IF ( CheckValueIndicators ) %]
+    if (xmlDocInd != undefined) {
+        var strInd = checkValidIndFramework();
+        if (strInd != "") {
+            if (StrAlert == 0) StrAlert = "";
+            else StrAlert += "\n";
+            StrAlert += strInd;
+        }
+    } else if (triesReadXmlDocInd <= 3 && !StrAlert) {
+        triesReadXmlDocInd++;
+        setTimeout(function(){CheckAgain()}, 2000);
+    }
+    [% END %]
     if( ! StrAlert ){
         document.f.submit();
         return true;
@@ -199,58 +303,74 @@ function confirmnotdup(redirect){
             [% ELSE %]
                 <span title="[% innerloo.tag_lib %]">[% innerloo.tag %]</span>
             [% END %]
-                [% IF ( innerloo.fixedfield ) %]
-                    <input type="text"
-                        tabindex="1"
-                        class="indicator flat"
-                        style="display:none;"
-                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
-                        size="1"
-                        maxlength="1"
-                        value="[% innerloo.indicator1 %]" />
-                    <input type="text"
-                        tabindex="1"
-                        class="indicator flat"
-                        style="display:none;"
-                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
-                        size="1"
-                        maxlength="1"
-                        value="[% innerloo.indicator2 %]" />
+        
+        [% FOREACH innerloo IN BIG_LOO.innerloop %]
+            [% IF ( innerloo.tag ) %]
+                <div class="tag" id="tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
+                <div class="tag_title" name="div_indicator">
+                [% UNLESS ( innerloo.hide_marc ) %]
+		    [% IF ( innerloo.advancedMARCEditor ) %]
+                    <a class="tagnum" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">[% innerloo.tag %]</a>
+		    [% ELSE %]
+                    <span title="[% innerloo.tag_lib %]">[% innerloo.tag %]</span>
+		    [% END %]
+                    [% IF ( innerloo.fixedfield ) %]
+                    <input class="indicator flat"
+                                type="text"
+                                style="display:none;"
+                                name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
+                                size="1"
+                                maxlength="1"
+                                value="[% innerloo.indicator1 %]" />
+                    <input class="indicator flat"
+                                type="text"
+                                style="display:none;"
+                                name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
+                                size="1"
+                                maxlength="1"
+                                value="[% innerloo.indicator2 %]" />
+                    [% ELSE %]
+                    <input class="indicator flat"
+                                type="text"
+                                name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
+                                size="1"
+                                maxlength="1"
+                                value="[% innerloo.indicator1 %]" />
+                    [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1"
+onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 1 on field [% innerloo.tag %]">...</a>[% END %]
+                    <input class="indicator flat"
+                                type="text"
+                                name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
+                                size="1"
+                                maxlength="1"
+                                value="[% innerloo.indicator2 %]" />
+                    [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
+onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %]
+                    [% END %] -
                 [% ELSE %]
-                    <input type="text"
-                        tabindex="1"
-                        class="indicator flat"
-                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
-                        size="1"
-                        maxlength="1"
-                        value="[% innerloo.indicator1 %]" />
-                    <input type="text"
-                        tabindex="1"
-                        class="indicator flat"
-                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
-                        size="1"
-                        maxlength="1"
-                        value="[% innerloo.indicator2 %]" />
-                [% END %] -
-        [% ELSE %]
-                [% IF ( innerloo.fixedfield ) %]
-                    <input type="hidden"
-                        tabindex="1"
-                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
-                        value="[% innerloo.indicator1 %]" />
-                    <input type="hidden"
-                        tabindex="1"
-                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
-                        value="[% innerloo.indicator2 %]" />
-                [% ELSE %]
-                    <input type="hidden"
-                        tabindex="1"
-                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
-                        value="[% innerloo.indicator1 %]" />
-                    <input type="hidden"
-                        tabindex="1"
-                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
-                        value="[% innerloo.indicator2 %]" />
+                    [% IF ( innerloo.fixedfield ) %]
+                        <input type="hidden"
+                            name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %]"
+                            value="[% innerloo.indicator1 %][% innerloo.random %]" />
+                        <input type="hidden"
+                            name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %]"
+                            value="[% innerloo.indicator2 %][% innerloo.random %]" />
+                    [% ELSE %]
+                        <input type="hidden"
+                            name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %]"
+                            value="[% innerloo.indicator1 %][% innerloo.random %]" />
+                        [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1"
+onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 1 on field [% innerloo.tag %]">...</a>[% END %]
+                        <input type="hidden"
+                            name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %]"
+                            value="[% innerloo.indicator2 %][% innerloo.random %]" />
+                        [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
+onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %]
+                    [% END %]
+                [% END %]
+    
+                [% UNLESS ( innerloo.advancedMARCEditor ) %]
+                    <a onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">[% innerloo.tag_lib %]</a>
                 [% END %]
         [% END %]
 

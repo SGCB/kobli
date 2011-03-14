@@ -30,6 +30,8 @@ use Date::Calc qw(Today);
 use MARC::File::USMARC;
 use MARC::File::XML;
 use C4::Biblio;
+use C4::Indicators;
+
 use vars qw( $tagslib);
 use vars qw( $authorised_values_sth);
 use vars qw( $is_a_modif );
@@ -585,7 +587,22 @@ if ($op eq "add") {
     my $record = TransformHtmlToMarc($input);
 
     my ($duplicateauthid,$duplicateauthvalue);
-     ($duplicateauthid,$duplicateauthvalue) = FindDuplicateAuthority($record,$authtypecode) if ($op eq "add") && (!$is_a_modif);
+    my $retWrongInd; # variable to store the indicators with incorrect values
+    # Check whether the value of the indicators are correct or do not add/modify the auth and show the form again
+    # Do not check if the record comes from a Z3959 Search
+    if ((C4::Context->preference("CheckValueIndicators") || C4::Context->preference("DisplayPluginValueIndicators")) && !$z3950) {
+        $retWrongInd = CheckValueIndicatorsSub($input, $authtypecode, 'auth', $template->param('lang'));
+        if ($retWrongInd) {
+            $duplicateauthid = 1; # modify the variable (even it's not a duplicate) to not enter the next if block
+            $is_a_modif = 1; # do not want FindDuplicateAuthority
+            $input->param('confirm_not_duplicate', '0'); # modify to not enter the next if clause
+            my @wrongInd = ();
+            map { push @wrongInd, {tagfield => $_, ind1 => $retWrongInd->{$_}->{1}, ind2 => $retWrongInd->{$_}->{2}}; } keys %$retWrongInd;
+            $template->param(wrongInd => \@wrongInd);
+        }
+    }
+
+    ($duplicateauthid,$duplicateauthvalue) = FindDuplicateAuthority($record,$authtypecode) if ($op eq "add") && (!$is_a_modif);
     my $confirm_not_duplicate = $input->param('confirm_not_duplicate');
     # it is not a duplicate (determined either by Koha itself or by user checking it's not a duplicate)
     if (!$duplicateauthid or $confirm_not_duplicate) {
@@ -649,4 +666,10 @@ $template->param(authtypesloop => \@authtypesloop,
                 authtypetext => $authtypes->{$authtypecode}{'authtypetext'},
                 hide_marc => C4::Context->preference('hide_marc'),
                 );
+
+$template->param(
+    DisplayPluginValueIndicators => C4::Context->preference("DisplayPluginValueIndicators"),
+    CheckValueIndicators => (!$z3950)?(C4::Context->preference("CheckValueIndicators") | C4::Context->preference("DisplayPluginValueIndicators")):0
+);
+
 output_html_with_http_headers $input, $cookie, $template->output;

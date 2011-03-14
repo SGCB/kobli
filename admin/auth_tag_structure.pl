@@ -26,6 +26,7 @@ use C4::Koha;
 use C4::Context;
 use C4::Output;
 use C4::Context;
+use C4::Indicators;
 
 
 # retrieve parameters
@@ -191,6 +192,10 @@ if ($op eq 'add_form') {
 		$sth->execute($searchfield,$authtypecode);
 		my $sth = $dbh->prepare("delete from auth_subfield_structure where tagfield=? and authtypecode=?");
 		$sth->execute($searchfield,$authtypecode);
+        # Manage Indicators, delete indicators from authtype
+        if (int($searchfield) >= 10) {
+            DelIndicator(undef, $searchfield, $authtypecode, 'auth');
+        }
 	}
     print "Content-Type: text/html\n\n<META HTTP-EQUIV=Refresh CONTENT=\"0; URL=auth_tag_structure.pl?searchfield=".$input->param('tagfield')."&authtypecode=$authtypecode\">";
     exit;
@@ -229,6 +234,8 @@ if ($op eq 'add_form') {
         $row_data{mandatory}        = $results->[$i]{'mandatory'};
         $row_data{authorised_value} = $results->[$i]{'authorised_value'};
         $row_data{subfield_link}    = "auth_subfields_structure.pl?tagfield=" . $results->[$i]{'tagfield'} . "&amp;authtypecode=" . $authtypecode;
+        # Show link to manage indicators for a field
+        $row_data{indicator_link} = (int($results->[$i]{'tagfield'}) >= 10)?'marc_indicators_structure.pl?op=mod&amp;tagfield='.$results->[$i]{'tagfield'}.'&amp;authtypecode='.$authtypecode:'';
         $row_data{edit}             = "$script_name?op=add_form&amp;searchfield=" . $results->[$i]{'tagfield'} . "&amp;authtypecode=" . $authtypecode;
         $row_data{delete}           = "$script_name?op=delete_confirm&amp;searchfield=" . $results->[$i]{'tagfield'} . "&amp;authtypecode=" . $authtypecode;
 		push(@loop_data, \%row_data);
@@ -286,5 +293,9 @@ sub duplicate_auth_framework {
 	while ( my ( $tagfield, $tagsubfield, $liblibrarian, $libopac, $repeatable, $mandatory, $kohafield,$tab, $authorised_value, $thesaurus_category, $seealso,$hidden) = $sth->fetchrow) {
 		$sth_insert->execute($newauthtype, $tagfield, $tagsubfield, $liblibrarian, $libopac, $repeatable, $mandatory,$kohafield, $tab, $authorised_value, $thesaurus_category, $seealso,$hidden);
 	}
+    # Manage Indicators, clone the indicators from the parent of the new framework
+    if ($input->param("clone_indicators") eq "1") {
+        CloneIndicatorsFrameworkAuth($oldauthtype, $newauthtype, 'auth');
+    }
 }
 

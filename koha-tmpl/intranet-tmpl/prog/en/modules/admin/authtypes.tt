@@ -91,6 +91,22 @@ function Check(f) {
 		<li><label for="authtypetext">Description: </label><input type="text" id="authtypetext" name="authtypetext" size="40" maxlength="80" value="[% authtypetext |html %]" /></li>
 		<li><label for="summary">Summary: </label><textarea id="summary" name="summary" cols="55" rows="7">[% summary %]</textarea></li>
 		<li>
+      [% IF ( authtypesloop ) %]
+      [% IF ( authtypecode ) %]
+        <li><label for="indicators">Clone indicators using</label>
+        <select name="indicators" id="indicators">
+            <option value="">Don't clone</option>
+        [% FOREACH loo IN authtypesloop %]
+            [% IF ( loo.authtypecode == "" ) %]
+            <option value="Default">[% loo.authtypetext %]</option>
+            [% ELSE %]
+            <option value="[% loo.authtypecode %]">[% loo.authtypetext %]</option>
+            [% END %]
+        [% END %]
+        </select>
+        </li>
+      [% END %]
+      [% END %]
 		<p class="tip">Note: for 'Authority field to copy', enter the authority field that should be copied from the authority record to the bibliographic record. E.g., in MARC21, field 100 in the authority record should be copied to field 100 in the bibliographic record</p>
 		<label for="auth_tag_to_report">Authority field to copy: </label><input type="text" id="auth_tag_to_report" name="auth_tag_to_report" size="5" maxlength="3" value="[% auth_tag_to_report %]" />
 		<input type="hidden" name="op" value="add_validate" />

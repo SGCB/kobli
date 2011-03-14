@@ -156,8 +156,21 @@ function Check(f) {
 	[% ELSE %]
         <li><label for="frameworkcode">Framework code: </label><input type="text" id="frameworkcode" name="frameworkcode" size="4" maxlength="4" onblur="toUC(this)" /></li>
 	[% END %]
-        <li><label for="description">Description: </label>
+        <li><label for="description">Description</label>
         <input type="text" name="frameworktext" id="description" size="40" maxlength="80" value="[% frameworktext |html %]" /></li></ol></fieldset>
+    [% IF ( frameworkloop ) %]
+    [% IF ( frameworkcode ) %]
+        <li><label for="indicators">Clone indicators using</label>
+        <select name="indicators" id="indicators">
+            <option value="">Don't clone</option>
+        [% FOREACH loo IN frameworkloop %]
+            <option value="[% loo.frameworkcode %]">[% loo.frameworktext %]</option>
+        [% END %]
+        </select>
+        </li>
+    [% END %]
+    [% END %]
+    </ol></fieldset>
         <fieldset class="action">	<input type="submit" value="Submit" class="submit" /></fieldset>
     </form>
 [% END %]

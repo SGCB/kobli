@@ -1670,4 +1670,63 @@ PRIMARY KEY  (limitId)
 );
 
 
+--
+-- Table structure for table marc_indicators
+--
+
+
+DROP TABLE IF EXISTS marc_indicators CASCADE;
+CREATE TABLE marc_indicators (
+  id_indicator SERIAL PRIMARY KEY,
+  frameworkcode varchar(4) default NULL REFERENCES biblio_framework (frameworkcode) ON DELETE CASCADE,
+  tagfield varchar(3) NOT NULL default '',
+  authtypecode varchar(10) default NULL REFERENCES auth_types (authtypecode) ON DELETE CASCADE
+);
+CREATE UNIQUE INDEX marc_indicators_framework_auth_code ON marc_indicators (frameworkcode,authtypecode,tagfield);
+
+
+--
+-- Table structure for table marc_indicators_values
+--
+
+DROP TABLE IF EXISTS marc_indicators_values CASCADE;
+CREATE TABLE marc_indicators_values (
+  ind_value char(1) NOT NULL default '' PRIMARY KEY
+);
+
+INSERT INTO marc_indicators_values VALUES (''),('0'),('1'),('2'),('3'),('4'),('5'),('6'),('7'),('8'),('9'),('a'),('b'),('c'),('d'),('e'),('f'),('g'),('h'),('i'),('j'),('k'),('l'),('m'),('n'),('o'),('p'),('q'),('r'),('s'),('t'),('u'),('v'),('w'),('x'),('y'),('z');
+
+
+--
+-- Table structure for table marc_indicators_value
+--
+
+DROP TABLE IF EXISTS marc_indicators_value CASCADE;
+CREATE TABLE marc_indicators_value (
+  id_indicator_value SERIAL PRIMARY KEY,
+  id_indicator integer NOT NULL REFERENCES marc_indicators (id_indicator) ON DELETE CASCADE,
+  ind varchar(1) NOT NULL,
+  ind_value char(1) NOT NULL REFERENCES marc_indicators_values (ind_value) ON DELETE CASCADE,
+  CHECK ( ind IN ('1', '2'))
+);
+CREATE INDEX marc_indicators_value_id_indicator ON marc_indicators_value (id_indicator);
+CREATE INDEX marc_indicators_value_ind_value ON marc_indicators_value (ind_value);
+
+
+--
+-- Table structure for table marc_indicators_desc
+--
+
+DROP TABLE IF EXISTS marc_indicators_desc CASCADE;
+CREATE TABLE marc_indicators_desc (
+  id_indicator_value integer NOT NULL REFERENCES marc_indicators_value (id_indicator_value) ON DELETE CASCADE,
+  lang varchar(25) NOT NULL default 'en',
+  ind_desc text,
+  PRIMARY KEY  (id_indicator_value,lang)
+);
+CREATE INDEX marc_indicators_desc_lang ON marc_indicators_desc (lang);
+
+
+
+
 --commit;

@@ -3214,6 +3214,79 @@ CREATE TABLE IF NOT EXISTS plugin_data (
   PRIMARY KEY (plugin_class,plugin_key)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- Table structure for table `marc_indicators`
+--
+
+DROP TABLE IF EXISTS `marc_indicators`;
+CREATE TABLE `marc_indicators` (
+  `id_indicator` int(11) unsigned NOT NULL auto_increment,
+  `frameworkcode` varchar(4) default NULL,
+  `tagfield` varchar(3) NOT NULL default '',
+  `authtypecode` varchar(10) default NULL,
+  PRIMARY KEY  (`id_indicator`),
+  UNIQUE KEY `framework_auth_code` (`frameworkcode`,`authtypecode`,`tagfield`),
+  CONSTRAINT `marc_indicators_ibfk_1` FOREIGN KEY (`frameworkcode`) REFERENCES `biblio_framework` (`frameworkcode`) ON DELETE CASCADE,
+  CONSTRAINT `marc_indicators_ibfk_2` FOREIGN KEY (`authtypecode`) REFERENCES `auth_types` (`authtypecode`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `marc_indicators_values`
+--
+
+DROP TABLE IF EXISTS `marc_indicators_values`;
+CREATE TABLE `marc_indicators_values` (
+  `ind_value` char(1) NOT NULL default '',
+  PRIMARY KEY  (`ind_value`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
+-- Dumping data for table `marc_indicators_values`
+--
+
+LOCK TABLES `marc_indicators_values` WRITE;
+/*!40000 ALTER TABLE `marc_indicators_values` DISABLE KEYS */;
+INSERT INTO `marc_indicators_values` VALUES (''),('0'),('1'),('2'),('3'),('4'),('5'),('6'),('7'),('8'),('9'),('a'),('b'),('c'),('d'),('e'),('f'),('g'),('h'),('i'),('j'),('k'),('l'),('m'),('n'),('o'),('p'),('q'),('r'),('s'),('t'),('u'),('v'),('w'),('x'),('y'),('z');
+/*!40000 ALTER TABLE `marc_indicators_values` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
+-- Table structure for table `marc_indicators_value`
+--
+
+DROP TABLE IF EXISTS `marc_indicators_value`;
+CREATE TABLE `marc_indicators_value` (
+  `id_indicator_value` int(11) unsigned NOT NULL auto_increment,
+  `id_indicator` int(11) unsigned NOT NULL,
+  `ind` enum('1','2') NOT NULL,
+  `ind_value` char(1) NOT NULL,
+  PRIMARY KEY  (`id_indicator_value`),
+  KEY `id_indicator` (`id_indicator`),
+  KEY `ind_value` (`ind_value`),
+  CONSTRAINT `marc_indicators_value_ibfk_2` FOREIGN KEY (`ind_value`) REFERENCES `marc_indicators_values` (`ind_value`) ON DELETE CASCADE,
+  CONSTRAINT `marc_indicators_value_ibfk_1` FOREIGN KEY (`id_indicator`) REFERENCES `marc_indicators` (`id_indicator`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `marc_indicators_desc`
+--
+
+DROP TABLE IF EXISTS `marc_indicators_desc`;
+CREATE TABLE `marc_indicators_desc` (
+  `id_indicator_value` int(11) unsigned NOT NULL,
+  `lang` varchar(25) NOT NULL default 'en',
+  `ind_desc` mediumtext,
+  PRIMARY KEY  (`id_indicator_value`,`lang`),
+  KEY `lang` (`lang`),
+  CONSTRAINT `marc_indicators_desc_ibfk_2` FOREIGN KEY (`lang`) REFERENCES `language_descriptions` (`lang`) ON DELETE CASCADE,
+  CONSTRAINT `marc_indicators_desc_ibfk_1` FOREIGN KEY (`id_indicator_value`) REFERENCES `marc_indicators_value` (`id_indicator_value`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

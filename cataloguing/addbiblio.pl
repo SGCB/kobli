@@ -35,6 +35,7 @@ use C4::Branch;    # XXX subfield_is_koha_internal_p
 use C4::ClassSource;
 use C4::ImportBatch;
 use C4::Charset;
+use C4::Indicators;
 
 use Date::Calc qw(Today);
 use MARC::File::USMARC;
@@ -851,14 +852,27 @@ if ( $op eq "addbiblio" ) {
     $template->param(
         biblionumberdata => $biblionumber,
     );
+    my ($duplicatebiblionumber,$duplicatetitle);
+    my $retWrongInd; # variable to store the indicators with incorrect values
+    # Check whether the value of the indicators are correct or do not add/modify the biblio and show the form again
+    # Do not check if the record comes from a Z3959 Search or from an Import
+    if ((C4::Context->preference("CheckValueIndicators") || C4::Context->preference("DisplayPluginValueIndicators")) && !$z3950 && !$breedingid) {
+        $retWrongInd = CheckValueIndicatorsSub($input, $frameworkcode, 'biblio', $template->param('lang'));
+        if ($retWrongInd) {
+            $duplicatebiblionumber = 1; # modify the variable (even it's not a duplicate) to not enter the next if block
+            $is_a_modif = 1; # do not want FindDuplicate
+            $input->param('confirm_not_duplicate', '0'); # modify to not enter the next if clause
+            my @wrongInd = ();
+            map { push @wrongInd, {tagfield => $_, ind1 => $retWrongInd->{$_}->{1}, ind2 => $retWrongInd->{$_}->{2}}; } keys %$retWrongInd;
+            $template->param(wrongInd => \@wrongInd);
+        }
+    }
+    
     # getting html input
     my @params = $input->param();
     $record = TransformHtmlToMarc( $input );
     # check for a duplicate
-    my ( $duplicatebiblionumber, $duplicatetitle );
-    if ( !$is_a_modif ) {
-        ( $duplicatebiblionumber, $duplicatetitle ) = FindDuplicate($record);
-    }
+    ($duplicatebiblionumber,$duplicatetitle) = FindDuplicate($record) if (!$is_a_modif);
     my $confirm_not_duplicate = $input->param('confirm_not_duplicate');
     # it is not a duplicate (determined either by Koha itself or by user checking it's not a duplicate)
     if ( !$duplicatebiblionumber or $confirm_not_duplicate ) {
@@ -931,6 +945,7 @@ if ( $op eq "addbiblio" ) {
         }
     } else {
     # it may be a duplicate, warn the user and do nothing
+        $duplicatebiblionumber = 0 if ($retWrongInd); # reset duplicatebiblionumber to the original value
         build_tabs ($template, $record, $dbh,$encoding,$input);
         $template->param(
             biblionumber             => $biblionumber,
@@ -1000,5 +1015,10 @@ $template->param(
     tab => $input->param('tab')
 );
 $template->{'VARS'}->{'searchid'} = $searchid;
+
+$template->param(
+    DisplayPluginValueIndicators => C4::Context->preference("DisplayPluginValueIndicators"),
+    CheckValueIndicators => (!$z3950 && !$breedingid)?(C4::Context->preference("CheckValueIndicators") | C4::Context->preference("DisplayPluginValueIndicators")):0
+);
 
 output_html_with_http_headers $input, $cookie, $template->output;

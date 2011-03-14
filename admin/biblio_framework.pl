@@ -27,6 +27,7 @@ use CGI;
 use C4::Context;
 use C4::Auth;
 use C4::Output;
+use C4::Indicators;
 
 sub StringSearch  {
 	my $dbh = C4::Context->dbh;
@@ -43,7 +44,7 @@ my $op            = $input->param('op') || '';
 my $pagesize      = 20;
 
 my ($template, $borrowernumber, $cookie)
-    = get_template_and_user({template_name => "admin/biblio_framework.tmpl",
+    = get_template_and_user({template_name => "admin/biblio_framework.tt",
 			     query => $input,
 			     type => "intranet",
 			     authnotrequired => 0,
@@ -55,6 +56,18 @@ $template->param( script_name  => $script_name);
 $template->param(($op||'else') => 1);
 
 my $dbh = C4::Context->dbh;
+
+
+# get framework list for cloning indicators
+if ($frameworkcode && HasFieldMarcInd($frameworkcode, 'biblio')) {
+    my $frameworks = GetFrameworksInd($frameworkcode);
+    unshift @$frameworks, {frameworkcode => 'Default', frameworktext => 'Default'};
+    $template->param(
+        frameworkloop => $frameworks
+    );
+}
+
+
 ################## ADD_FORM ##################################
 # called by default. Used to create form to add or  modify a record
 if ($op eq 'add_form') {
@@ -79,6 +92,11 @@ if ($op eq 'add_form') {
         if ($input->param('modif')) {
             my $sth=$dbh->prepare("UPDATE biblio_framework SET frameworktext=? WHERE frameworkcode=?");
             $sth->execute($input->param('frameworktext'),$input->param('frameworkcode'));
+            #Clone indicators from a framework
+            if($input->param('indicators') && DelIndicatorsFrameworkAuth($input->param('frameworkcode'), 'biblio')) {
+                my $frameworkBase = ($input->param('indicators') eq 'Default')?'':$input->param('indicators');
+                CloneIndicatorsFrameworkAuth($frameworkBase, $input->param('frameworkcode'), 'biblio');
+            }
         } else {
             my $sth=$dbh->prepare("INSERT into biblio_framework (frameworkcode,frameworktext) values (?,?)");
             $sth->execute($input->param('frameworkcode'),$input->param('frameworktext'));

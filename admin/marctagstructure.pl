@@ -26,6 +26,7 @@ use C4::Koha;
 use C4::Context;
 use C4::Output;
 use C4::Context;
+use C4::Indicators;
 
 
 # retrieve parameters
@@ -48,7 +49,7 @@ my $dbh = C4::Context->dbh;
 
 # open template
 my ($template, $loggedinuser, $cookie)
-    = get_template_and_user({template_name => "admin/marctagstructure.tmpl",
+    = get_template_and_user({template_name => "admin/marctagstructure.tt",
 			     query => $input,
 			     type => "intranet",
 			     authnotrequired => 0,
@@ -199,6 +200,10 @@ if ($op eq 'add_form') {
         my $sth2 = $dbh->prepare("DELETE FROM marc_subfield_structure WHERE tagfield=? AND frameworkcode=?");
         $sth1->execute($searchfield, $frameworkcode);
         $sth2->execute($searchfield, $frameworkcode);
+        # Manage Indicators, delete indicators from framework
+        if (int($searchfield) >= 10) {
+            DelIndicator(undef, $searchfield, $frameworkcode, 'biblio');
+        }
 	}
 	$template->param(
           searchfield => $searchfield,
@@ -263,6 +268,8 @@ if ($op eq 'add_form') {
 			$row_data{mandatory}        = $results[$i]->{'mts_mandatory'};
 			$row_data{authorised_value} = $results[$i]->{'mts_authorised_value'};
 			$row_data{subfield_link} = "marc_subfields_structure.pl?op=add_form&amp;tagfield=".$results[$i]->{'mts_tagfield'}."&amp;frameworkcode=".$frameworkcode;
+			# Show link to manage indicators for a field
+			$row_data{indicator_link} = (int($results[$i]->{'mts_tagfield'}) >= 10)?"marc_indicators_structure.pl?op=mod&amp;tagfield=".$results[$i]->{'mts_tagfield'}."&amp;frameworkcode=".$frameworkcode:'';
 			$row_data{edit}          = "$script_name?op=add_form&amp;searchfield="            .$results[$i]->{'mts_tagfield'}."&amp;frameworkcode=".$frameworkcode;
 			$row_data{delete}        = "$script_name?op=delete_confirm&amp;searchfield="      .$results[$i]->{'mts_tagfield'}."&amp;frameworkcode=".$frameworkcode;
 			$j=$i;
@@ -302,6 +309,8 @@ if ($op eq 'add_form') {
 			$row_data{mandatory}        = $results->[$i]{'mandatory'};
 			$row_data{authorised_value} = $results->[$i]{'authorised_value'};
 			$row_data{subfield_link}    = "marc_subfields_structure.pl?tagfield="          .$results->[$i]{'tagfield'}."&amp;frameworkcode=".$frameworkcode;
+			# Show link to manage indicators for a field
+			$row_data{indicator_link} = (int($results->[$i]{'tagfield'}) >= 10)?'marc_indicators_structure.pl?op=mod&amp;tagfield='.$results->[$i]{'tagfield'}.'&amp;frameworkcode='.$frameworkcode:'';
 			$row_data{edit}             = "$script_name?op=add_form&amp;searchfield="      .$results->[$i]{'tagfield'}."&amp;frameworkcode=".$frameworkcode;
 			$row_data{delete}           = "$script_name?op=delete_confirm&amp;searchfield=".$results->[$i]{'tagfield'}."&amp;frameworkcode=".$frameworkcode;
 			push(@loop_data, \%row_data);
@@ -324,6 +333,7 @@ if ($op eq 'add_form') {
 		);
 	}
 } #---- END $OP eq DEFAULT
+
 
 output_html_with_http_headers $input, $cookie, $template->output;
 
@@ -362,5 +372,9 @@ sub duplicate_framework {
 	while ( my ($frameworkcode, $tagfield, $tagsubfield, $liblibrarian, $libopac, $repeatable, $mandatory, $kohafield, $tab, $authorised_value, $thesaurus_category, $value_builder, $seealso,$hidden) = $sth->fetchrow) {
 	    $sth_insert->execute($newframeworkcode, $tagfield, $tagsubfield, $liblibrarian, $libopac, $repeatable, $mandatory, $kohafield, $tab, $authorised_value, $thesaurus_category, $value_builder, $seealso, $hidden);
 	}
+    # Manage Indicators, clone the indicators from the parent of the new framework
+    if ($input->param("clone_indicators") eq "1") {
+        CloneIndicatorsFrameworkAuth($oldframeworkcode, $newframeworkcode, 'biblio');
+    }
 }
 
