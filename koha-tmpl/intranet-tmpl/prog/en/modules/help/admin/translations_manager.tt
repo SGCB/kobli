@@ -1,0 +1,21 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Translations Manager</h1>
+
+    <p>"Translations Manager" at the Admin section will be able to perform the following actions:</p>
+    
+    <ul>
+        <li><p>Create PO files for a new languages</p>
+            <p>To create a new language, the first step is to create his translation PO files. You must enter the new language code that can not match the code of some existing PO file. This procedure will create three PO files (opac, staff and preferences).</p></li>
+        <li><p>Edit PO files</p>
+            <p>To edit translations, the first step is to select a language from a language combobox and after selecting a language, you will see a PO files combobox to select one (if you select the Opac or Staff PO file, it will show a templates combobox, whereas if you select the preferences PO file, it will show a combobox with sections of preferences).</p></li>
+            <p>After selecting a template or a preference section, it will display the different labels and their translations that can be modified and saved to the PO files.</p>
+        <li><p>Delete PO files</p>
+            <p>Select a language from a language combobox to delete his PO files.</p></li>
+        <li><p>Install new languages from PO files</p>
+            <p>To install a new language must exist their corresponding PO files, in that case select a language from the language combobox to install it.</p></li>
+        <li><p>Update installed languages</p>
+            <p>After editing PO files from a installed language, to translate the changes to the Opac, the Staff and preferences, you must update your installation language. To update the language installation you must select the language from the language combobox and it will be updated.</p></li>       
+    </ul>
+
+[% INCLUDE 'help-bottom.inc' %]

@@ -1,0 +1,19 @@
+[% INCLUDE 'help-top.inc' %] <h1>Gestor de Traducción</h1>
+
+ <p>"Gestor de Traducción" se encuentra en en la sección de Administración en la que podrá realizar las siguientes acciones:</p>
+ 
+ <ul>
+ <li><p>Crear los archivos de traducción PO para el nuevo idioma</p>
+ <p>Para crear un nuevo lenguaje, el primer paso es crear su archivos de traducción PO. Debe introducir el código nuevo lenguaje en el campo de texto. Este proceso creará tres ficheros PP (opac, intranet y preferencias).</p></li>
+ <li><p>Editar archivos PO</p>
+ <p>Para editar traducciones, el primer paso es  seleccionar un lenguage del menú desplegable,  posteriormente se mostrará un menú despleglable para seleccionar un fichero PO, (si seleccionas el archivo PO de intranet u OPAC, se mostrará un desplegable de plantillas con secciones de las preferencias, mientras si seleccionas el archivo Po de preferencias, mostrará un desplegable con las secciones de las preferencias).</p></li>
+ <p>Después de seleccionar una plantilla o una preferencia, ésta aplicará las diferentes etiquetas y sus traducciones que puedan ser modificadas y guardadas a los ficheros PO.</p>
+ <li><p>Eliminar archivos PO</p>
+ <p>Seleccione un idioma en el desplegable para eliminar sus archivos PO.</p></li>
+ <li><p>Instalación de nuevos lenguajes desde ficheros traducidos PO</p>
+ <p>Para instalar un nuevo idioma deben existir sus correspondientes archivos PO. Seleccione un idioma en el desplegable para instalarlo.</p></li>
+ <li><p>Actualizar idioma instalado</p>
+ <p>Después de editar los archivos del PO desde un idioma instalado, si desea traducir los cambios del Opac, la intranet y las preferencias del sistemas, debe actualizar su instalación de idioma. Para actualizar la instalación del idioma deberá seleccionar el idioma desde del desplegable.</p></li> 
+ </ul>
+
+[% INCLUDE 'help-bottom.inc' %] 
