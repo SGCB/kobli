@@ -23,4 +23,13 @@ sub kohaversion {
     return $VERSION;
 }
 
+sub kobliversion {
+    our $VERSIONKOBLI = '1.08.00.000';
+    # version needs to be set this way
+    # so that it can be picked up by Makefile.PL
+    # during install
+    return $VERSIONKOBLI;
+}
+
+
 1;
