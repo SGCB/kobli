@@ -48,6 +48,7 @@ my ( $template, $loggedinuser, $cookie ) = get_template_and_user(
 );
 
 my $kohaVersion   = C4::Context::KOHAVERSION;
+my $kobliVersion   = C4::Context::KOBLIVERSION;
 my $osVersion     = `uname -a`;
 my $perl_path = $^X;
 if ($^O ne 'VMS') {
@@ -79,6 +80,7 @@ my $warnIsRootUser   = (! $loggedinuser);
 
 $template->param(
     kohaVersion   => $kohaVersion,
+    kobliVersion   => $kobliVersion,
     osVersion     => $osVersion,
     perlPath      => $perl_path,
     perlVersion   => $perlVersion,

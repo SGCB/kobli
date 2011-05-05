@@ -231,6 +231,24 @@ This number is equal to the version in kohaversion.pl
 
 sub final_linear_version {
     return KOHAVERSION;
+
+=head2 KOBLIVERSION
+
+returns the kohaversion stored in kohaversion.pl file
+
+=cut
+
+sub KOBLIVERSION {
+    my $cgidir = C4::Context->intranetdir;
+
+    # Apparently the GIT code does not run out of a CGI-BIN subdirectory
+    # but distribution code does?  (Stan, 1jan08)
+    if(-d $cgidir . "/cgi-bin"){
+        my $cgidir .= "/cgi-bin";
+    }
+
+    do $cgidir."/kohaversion.pl" || die "NO $cgidir/kohaversion.pl";
+    return kobliversion();
 }
 
 =head2 read_config_file
