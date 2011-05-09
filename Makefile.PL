@@ -416,9 +416,9 @@ System group that will own Koha's files.
 my %config_defaults = (
   'DB_TYPE'           => 'mysql',
   'DB_HOST'           => 'localhost',
-  'DB_NAME'           => 'koha',
-  'DB_USER'           => 'kohaadmin',
-  'DB_PASS'           => 'katikoan',
+  'DB_NAME'           => 'kobli',
+  'DB_USER'           => 'kobli_usu',
+  'DB_PASS'           => 'kobli_pass',
   'INSTALL_ZEBRA'     => 'yes',
   'INSTALL_SRU'       => 'yes',
   'INSTALL_PAZPAR2'   => 'no',
@@ -432,8 +432,8 @@ my %config_defaults = (
   'ZEBRA_SRU_HOST'    => 'localhost',
   'ZEBRA_SRU_BIBLIOS_PORT'    => '9998',
   'ZEBRA_SRU_AUTHORITIES_PORT'    => '9999',
-  'KOHA_USER'         => 'koha',
-  'KOHA_GROUP'        => 'koha',
+  'KOHA_USER'         => 'kobli',
+  'KOHA_GROUP'        => 'kobli',
   'MERGE_SERVER_HOST' => 'localhost',
   'MERGE_SERVER_PORT' => '11001',
   'PAZPAR2_HOST' => 'localhost',
@@ -465,7 +465,7 @@ elsif ( $^O eq 'cygwin' ) {
 	$config_defaults{'INSTALL_BASE'} = 'c:/progra~1/koha';	# Use 8.3 names to be safe...
 }
 else {
-	$config_defaults{'INSTALL_MODE'} = 'standard';
+	$config_defaults{'INSTALL_MODE'} = 'single';
 	$config_defaults{'INSTALL_BASE'} = '/usr/share/koha';
 }
 
@@ -755,11 +755,10 @@ sub get_install_log_values {
     close LOG;
 
     print <<_EXPLAIN_INSTALL_LOG_;
-Reading values from install log $install_log.  You
-will be prompted only for settings that have been
-added since the last time you installed Koha.  To
-be prompted for all settings, run 'perl Makefile.PL'
-without the --prev-install-log option.
+Leyendo valores de $install_log. Se preguntarán
+los parámetros añadidos desde la última instalación de Koha.
+Para que pregunte por todos los parámetros, ejecutar 'perl Makefile.PL'
+sin la opción --prev-install-log.
 _EXPLAIN_INSTALL_LOG_
 }
 
@@ -776,26 +775,26 @@ sub get_configuration {
   my %config = ();
 
   my $msg = q(
-By default, Koha can be installed in one of three ways:
+Por defecto, Koha-Kobli puede instalarse de tres formas:
 
-standard: Install files in conformance with the Filesystem
-          Hierarchy Standard (FHS).  This is the default mode
-          and should be used when installing a production
-          Koha system.  On Unix systems, root access is
-          needed to complete a standard installation.
+standard: Instalar archivos conforme con es estándar de jerarquía
+          de sistema de ficheros (FHS). Es el modo por defecto y debe
+          se usado en la instalación de Koha-Kobli en un sistema de producción.
+          En sistemas Unix, acceso a la cuenta root es necesario para 
+          completar la instalación.
 
-single:   Install files under a single directory.  This option
-          is useful for installing Koha without root access, e.g.,
-          on a web host that allows CGI scripts and MySQL databases
-          but requires the user to keep all files under the user's
-          HOME directory.
+single:   Instalar todos los archivos en un mismo directorio. Esta opción
+          es útil para instalar Koha-Kobli sin tener acceso a la cuenta de root,
+          por ejemplo, en un sistema web donde se permite bases de datos MySQL
+          y scripts CGI, pero se obliga a tener todos los archivos en el directorio
+          del usuario.
 
-dev:      Create a set of symbolic links and configuration files to
-          allow Koha to run directly from the source distribution.
-          This mode is useful for developers who want to run
-          Koha from a git clone.
+dev:      Crear un conjunto de enlace simbólicos y ficheros de configuración
+          para que Koha-Kobli funcione desde el directorio de instalación, i.e, donde
+          están los fuentes. Es útil para desarrolladores que quieren hacer funcionar
+          Koha-Kobli desde un repositorio git.
 
-Installation mode);
+Modo de instalación);
     $msg .= _add_valid_values_disp('INSTALL_MODE', $valid_values);
     $config{'INSTALL_MODE'} = _get_value('INSTALL_MODE', $msg, $defaults->{'INSTALL_MODE'}, $valid_values, $install_log_values);
 
@@ -804,19 +803,19 @@ Installation mode);
     my $install_base_default = $defaults->{'INSTALL_BASE'};
     if ($config{'INSTALL_MODE'} eq 'dev') {
         $msg = q(
-Please specify the directory in which to install Koha's
-active configuration files and (if applicable) the
-Zebra database.  Koha's CGI scripts and templates will
-be run from the current directory.
+Especificar el directorio en el que instalar los archivos de 
+configuración de Koha-Kobli y (si se puede) la base de datos Zebra.
+Los scripts CGI y las plantillas se ejecutarán desde el directorio
+actual.
 
-Configuration directory:);
+Directorio de configuración:);
         # FIXME - home directory portability consideration apply
         $install_base_default =
 	    $ENV{DESTDIR}
 	    || ( exists $ENV{HOME} ? "$ENV{HOME}/koha-dev" : "$defaults->{'INSTALL_BASE'}-dev" )
 	;
     } elsif ($config{'INSTALL_MODE'} eq 'single') {
-        $msg = "\nPlease specify the directory in which to install Koha";
+        $msg = "\nEspecificar el directorio en el que instalar Koha-Kobli";
         # FIXME -- we're assuming under a 'single' mode install
         # that user will likely want to install under the home
         # directory.  This is OK in and of itself, but we should
@@ -824,19 +823,22 @@ Configuration directory:);
         # This is deferred for now because File::HomeDir is not yet
         # core.
 		# --we must also keep this portable to the major OS's -fbcit
-        $install_base_default = (exists $ENV{'HOME'}) ? "$ENV{'HOME'}/koha" : $defaults->{'INSTALL_BASE'};
+	if (-f '/home/www/kobli') {
+		$install_base_default = '/home/www/kobli';
+	} else {
+        	$install_base_default = (exists $ENV{'HOME'}) ? "$ENV{'HOME'}/koha" : $defaults->{'INSTALL_BASE'};
+	}
     } else {
         # must be standard
         $msg = q(
-Please specify the directory under which most Koha files
-will be installed.
+Especificar el directorio en el que la mayoría de los 
+archivos de Koha-Kobli se instalarán.
 
-Note that if you are planning in installing more than
-one instance of Koha, you may want to modify the last
-component of the directory path, which will be used
-as the package name in the FHS layout.
+Si está planeando en instalar más de una instancia de Koha-Kobli,
+debería modificar el último elemento de la ruta, que será usado 
+como el nombre del paquete en el entorno del sistema de ficheros FHS.
 
-Base installation directory);
+Directorio de instalación base);
     }
     $config{'INSTALL_BASE'} = _get_value('INSTALL_BASE', $msg, $install_base_default, $valid_values, $install_log_values);
 
@@ -844,87 +846,75 @@ Base installation directory);
 	print "INSTALL_BASE=$config{'INSTALL_BASE'}\r\n" if $DEBUG;
     if ($config{'INSTALL_MODE'} eq "standard") {
         $msg = q(
-Since you are using the 'standard' install
-mode, you should run 'make install' as root.
-However, it is recommended that a non-root
-user (on Unix and Linux platforms) have
-ownership of Koha's files, including the
-Zebra indexes if applicable.
+Como está usando la instalación 'standard', debe ejecutar
+'make install' como el usuario root. Sin embargo, se recomienda
+que un usuario diferente a root sea el propietario de los archivos
+instalados de Koha-Kobli, incluyendo los índices de Zebra si se puede.
 
-Please specify a user account.  This
-user account does not need to exist
-right now, but it needs to exist
-before you run 'make install'.  Please
-note that for security reasons, this
-user should not be the same as the user
-account Apache runs under.
+Especificar una cuenta de usuario. No es necesario que exista
+ahora pero en el momento de ejecutar 'make install' sí.
+Por motivos de seguridad no debería ser la misma cuenta que la
+que usa el servidor web Apache.
 
-User account);
+Cuenta de usuario);
         $config{'KOHA_USER'} = _get_value('KOHA_USER', $msg, $defaults->{'KOHA_USER'}, $valid_values, $install_log_values);
 
         $msg = q(
-Please specify the group that should own
-Koha's files.  As above, this group need
-not exist right now, but should be created
-before you run 'make install'.
+Especificar el grupo que es propietario de los archivos de
+Koha-Kobli. Como antes, el grupo puede no existir ahora,
+pero sí en el momento de ejecutar 'make install'.
 
-Group);
+Grupo);
         $config{'KOHA_GROUP'} = _get_value('KOHA_GROUP', $msg, $defaults->{'KOHA_GROUP'}, $valid_values, $install_log_values);
     }
 
     $msg = q(
-Please specify which database engine you will use
-to store data in Koha.  The choices are MySQL and
-PostgreSQL; please note that at the moment
-PostgreSQL support is highly experimental.
+Especificar que motor de base de datos relacional usar
+para guardar datos en Koha-Kobli. Las opciones son MySQL
+y PostgreSQL; advertir que la integración de Koha-Kobli con
+PostgreSQL es experimental en estos momentos.
 
-DBMS to use);
+DBMS a usar);
     $msg .= _add_valid_values_disp('DB_TYPE', $valid_values);
     $config{'DB_TYPE'} = _get_value('DB_TYPE', $msg, $defaults->{'DB_TYPE'}, $valid_values, $install_log_values);
 
     $msg = q(
-Please specify the name or address of your
-database server.  Note that the database
-does not have to exist at this point, it
-can be created after running 'make install'
-and before you try using Koha for the first time.
+Especificar el nombre o dirección del servidor de base
+de datos. La base de datos no es necesario que exista ahora,
+puede ser creada después de ejecutar 'make install' y antes
+de usar Koha-Kobli por primera vez.
 
-Database server);
+Servidor de base de datos);
     $config{'DB_HOST'} = _get_value('DB_HOST', $msg, $defaults->{'DB_HOST'}, $valid_values, $install_log_values);
 
     $msg = q(
-Please specify the port used to connect to the
-DMBS);
+Especificar el puerto con el que conectarse a la
+base de datos);
     my $db_port_default = $config{'DB_TYPE'} eq 'mysql' ? '3306' : '5432';
     $config{'DB_PORT'} = _get_value('DB_PORT', $msg, $db_port_default, $valid_values, $install_log_values);
 
     $msg = q(
-Please specify the name of the database to be
-used by Koha);
+Especificar el nombre de la base de datos para Koha-Kobli);
     $config{'DB_NAME'} = _get_value('DB_NAME', $msg, $defaults->{'DB_NAME'}, $valid_values, $install_log_values);
 
     $msg = q(
-Please specify the user that owns the database to be
-used by Koha);
+Especificar el usuario de la conexión a la base de datos);
     $config{'DB_USER'} = _get_value('DB_USER', $msg, $defaults->{'DB_USER'}, $valid_values, $install_log_values);
 
     $msg = q(
-Please specify the password of the user that owns the
-database to be used by Koha);
+Especificar la clave del usuario de la base de datos);
     $config{'DB_PASS'} = _get_value('DB_PASS', $msg, $defaults->{'DB_PASS'}, $valid_values, $install_log_values);
 
     $msg = q(
-Koha can use the Zebra search engine for high-performance
-searching of bibliographic and authority records.  If you
-have installed the Zebra software and would like to use it,
-please answer 'yes' to the following question.  Otherwise,
-Koha will default to using its internal search engine.
+Koha-Kobli puede usar el motor de búsqueda Zebra para un
+rendimiento óptimo de búsquedas de registros bibliográficos
+y de autoridades. Si ha instalado Zebra, responda 'yes', si no
+Koha-Kobli usará su motor de búsqueda.
 
-Please note that if you choose *NOT* to install Zebra,
-koha-conf.xml will still contain some references to Zebra
-settings.  Those references will be ignored by Koha.
+Advierta que si escoge no usar Zebra, el fichero de configuración
+de Koha-Kobli todavía contendrá referencias a Zebra, pero se obviarán.
 
-Install the Zebra configuration files?);
+¿Instalar los ficheros de configuración de Zebra?);
     $msg .= _add_valid_values_disp('INSTALL_ZEBRA', $valid_values);
     $config{'INSTALL_ZEBRA'} = _get_value('INSTALL_ZEBRA', $msg, $defaults->{'INSTALL_ZEBRA'}, $valid_values, $install_log_values);
 
@@ -933,172 +923,152 @@ Install the Zebra configuration files?);
         if (defined(my $zebra_path = find_zebra())) {
             $config{'PATH_TO_ZEBRA'} = $zebra_path;
             print qq(
-Found 'zebrasrv' and 'zebraidx' in $zebra_path.
+'zebrasrv' y 'zebraidx' encontrados en $zebra_path.
 );
         } else {
             print q(
-Unable to find the Zebra programs 'zebrasrv' and 'zebraidx'
-in your PATH or in some of the usual places.  If you haven't
-installed Zebra yet, please do so and run Makefile.PL again.
-
+No se puedo encontrar los programas 'zebrasrv' y 'zebraidx'
+en su PATH o los sitios habituales. Compruebe que ha instalado
+Zebra y ejecute de nuevo Makefile.PL.
 );
         }
 
         $msg = q(
-Since you've chosen to use Zebra with Koha,
-you must specify the primary MARC format of the
-records to be indexed by Zebra.
+Como ha elegido usar Zebra, debe especificar el formato
+MARC de los registros a indizar con Zebra.
 
-Koha provides Zebra configuration files for MARC21,
-NORMARC and UNIMARC.
+Se suministran dos formatos MARC 21,
+NORMARC y UNIMARC.
 
-MARC format for Zebra indexing);
+Formato MARC para Zebra);
         $msg .= _add_valid_values_disp('ZEBRA_MARC_FORMAT', $valid_values);
         $config{'ZEBRA_MARC_FORMAT'} = _get_value('ZEBRA_MARC_FORMAT', $msg, $defaults->{'ZEBRA_MARC_FORMAT'}, $valid_values, $install_log_values);
         $msg = q(
-Koha supplies Zebra configuration files tuned for
-searching either English (en) or French (fr) MARC
-records.
+Koha provee archivos de configuración ideales para
+búsquedas en Inglés (en) o Francés (fr) en los registros
+MARC.
 
-Primary language for Zebra indexing);
+Idioma principal para la indexación de Zebra);
         $msg .= _add_valid_values_disp('ZEBRA_LANGUAGE', $valid_values);
         $config{'ZEBRA_LANGUAGE'} = _get_value('ZEBRA_LANGUAGE', $msg, $defaults->{'ZEBRA_LANGUAGE'}, $valid_values, $install_log_values);
 
         $msg = q(
-Koha can use one of  two different indexing modes
-for the MARC bibliographic records:
+Koha-Kobli puede usar dos formas para indexar los 
+registros de autoridades:
 
-grs1 - uses the Zebra GRS-1 filter, available
-       for legacy support
-dom  - uses the DOM XML filter; offers improved
-       functionality.
+grs1 - usa el filtro GRS-1 de Zebra, para mantener compatiblidad
+       anterior.
+dom  - usa el filtro DOM XML; ofrece funcionalidad mejorada.
 
-Bibliographic indexing mode);
-        $msg .= _add_valid_values_disp('BIB_INDEX_MODE', $valid_values);
-        $config{'BIB_INDEX_MODE'} = _get_value('BIB_INDEX_MODE', $msg, $defaults->{'BIB_INDEX_MODE'}, $valid_values, $install_log_values);
-
-
-        $msg = q(
-Koha can use one of  two different indexing modes
-for the MARC authorities records:
-
-grs1 - uses the Zebra GRS-1 filter, available
-       for legacy support
-dom  - uses the DOM XML filter; offers improved
-       functionality.
-
-Authorities indexing mode);
+Modo de indexación de autoridades);
         $msg .= _add_valid_values_disp('AUTH_INDEX_MODE', $valid_values);
         $config{'AUTH_INDEX_MODE'} = _get_value('AUTH_INDEX_MODE', $msg, $defaults->{'AUTH_INDEX_MODE'}, $valid_values, $install_log_values);
 
         $msg = q(
-Zebra has two methods to perform records tokenization
-and characters normalization: CHR and ICU. ICU is
-recommended for catalogs containing non-Latin
-characters.);
+Zebra tiene dos métodos de procesar palabras
+y normalizar caracteres: CHR y ICU. ICU está
+recomendado para catálogos con caracteres
+no Latinos.);
 
         $msg .= _add_valid_values_disp('ZEBRA_TOKENIZER', $valid_values);
         $config{'ZEBRA_TOKENIZER'} = _get_value('ZEBRA_TOKENIZER', $msg, $defaults->{'ZEBRA_TOKENIZER'}, $valid_values, $install_log_values);
 
         $msg = q(
-Please specify Zebra database user);
+Especificar usuario para la base de datos Zebra);
         $config{'ZEBRA_USER'} = _get_value('ZEBRA_USER', $msg, $defaults->{'ZEBRA_USER'}, $valid_values, $install_log_values);
 
         $msg = q(
-Please specify the Zebra database password);
+Especificar clave para la base de datos Zebra);
         $config{'ZEBRA_PASS'} = _get_value('ZEBRA_PASS', $msg, $defaults->{'ZEBRA_PASS'}, $valid_values, $install_log_values);
 
         $msg = q(
-Since you've chosen to use Zebra, you can enable the SRU/
-Z39.50 Server if you so choose, but you must specify a
-few configuration options for it.
+Como va a usar Zebra, puede habilitar el servidor SRU/Z39.50,
+pero ha de especificar unos parámetros antes.
 
-Please note that if you choose *NOT* to configure SRU,
-koha-conf.xml will still contain some references to SRU
-settings.  Those references will be ignored by Koha.
+Advierta que si escoge no usar SRU, el fichero de configuración
+de Koha-Kobli todavía contendrá referencias a SRU, pero se obviarán.
 
-Install the SRU configuration files?);
+¿Instalar los archivos de configuración para SRU?);
         $msg .= _add_valid_values_disp('INSTALL_SRU', $valid_values);
         $config{'INSTALL_SRU'} = _get_value('INSTALL_SRU', $msg, $defaults->{'INSTALL_SRU'}, $valid_values, $install_log_values);
 
         if ($config{'INSTALL_SRU'} eq 'yes') {
             $msg = q(
-Since you've chosen to configure SRU, you must
-specify the host and port(s) that the SRU
-Servers (bibliographic and authority) should run on.
+Como ha elegido configurar SRU, ha de especificar
+la máquina y el puerto en el que los servidores 
+(bibliográfico y de autoridades) funcionará.
 );
             $msg = q(
-SRU Database host?);
+¿Máquina para SRU?);
             $config{'ZEBRA_SRU_HOST'} = _get_value('ZEBRA_SRU_HOST', $msg, $defaults->{'ZEBRA_SRU_HOST'}, $valid_values, $install_log_values);
 
             $msg = q(
-SRU port for bibliographic data?);
+¿Puerto para SRU bibliográfico?);
             $config{'ZEBRA_SRU_BIBLIOS_PORT'} = _get_value('ZEBRA_SRU_BIBLIOS_PORT', $msg, $defaults->{'ZEBRA_SRU_BIBLIOS_PORT'}, $valid_values, $install_log_values);
 
             $msg = q(
-SRU port for authority data?);
+¿Puerto para SRU autoridades?);
             $config{'ZEBRA_SRU_AUTHORITIES_PORT'} = _get_value('ZEBRA_SRU_AUTHORITIES_PORT', $msg, $defaults->{'ZEBRA_SRU_AUTHORITIES_PORT'}, $valid_values, $install_log_values);
 
         }
 
         $msg = q(
-Since you've chosen to use Zebra, you can also choose to
-install PazPar2, which is a metasearch tool.  With PazPar2,
-Koha can perform on-the-fly merging of bibliographic
-records during searching, allowing for FRBRization of
-the results list.
+Como ha elegido usar Zebra, puede escoger también instalar
+PazPar2, que es una herramienta de búsqueda de metadatos.
+Con PazPar2 se puede realizar la unión de los registros
+bibliográficos durante la búsqueda, permitiendo FRBRization
+de la lista de resultados.
 
-Install the PazPar2 configuration files?);
+¿Instalar los archivos de configuración de PazPar2?);
         $msg .= _add_valid_values_disp('INSTALL_PAZPAR2', $valid_values);
         $config{'INSTALL_PAZPAR2'} = _get_value('INSTALL_PAZPAR2', $msg, $defaults->{'INSTALL_PAZPAR2'}, $valid_values, $install_log_values);
 
         if ($config{'INSTALL_PAZPAR2'} eq 'yes') {
             $msg = q(
-Since you've chosen to configure PazPar2, you must
-specify the host and port(s) that PazPar2
-uses:
+Como ha elegido configurar PazPar2, debe especificar
+la máquina y el puerto para PazPar2:
 );
             $msg = q(
-Zebra bibliographic server host?);
+¿Máquina del servidor de Zebra para bibliográficos?);
             $config{'MERGE_SERVER_HOST'} = _get_value('MERGE_SERVER_HOST', $msg, $defaults->{'MERGE_SERVER_HOST'}, $valid_values, $install_log_values);
 
             $msg = q(
-Zebra bibliographic port for PazPar2 to use?);
+¿Puerto de Zebra para bibliográficos que PazPar2 usará?);
             $config{'MERGE_SERVER_PORT'} = _get_value('MERGE_SERVER_PORT', $msg, $defaults->{'MERGE_SERVER_PORT'}, $valid_values, $install_log_values);
 
             $msg = q(
-PazPar2 host?);
+¿Máquina para PazPar2?);
             $config{'PAZPAR2_HOST'} = _get_value('PAZPAR2_HOST', $msg, $defaults->{'PAZPAR2_HOST'}, $valid_values, $install_log_values);
 
             $msg = q(
-PazPar2 port?);
+¿Puerto para PazPar2?);
             $config{'PAZPAR2_PORT'} = _get_value('PAZPAR2_PORT', $msg, $defaults->{'PAZPAR2_PORT'}, $valid_values, $install_log_values);
 
         }
     }
   $msg = q(
-Use memcached and memoize to cache the results of some function calls?
-This provides a signficant performance improvement.
-You will need a Memcached server running.);
+¿Usar memcached y memoize para cachear los resultados de algunas funciones?
+Se mejorará el rendimiento.
+Necesitará un servidor de Memcached en funcionamiento.);
   $msg .= _add_valid_values_disp('USE_MEMCACHED', $valid_values);
   $config{'USE_MEMCACHED'} = _get_value('USE_MEMCACHED', $msg, $defaults->{'USE_MEMCACHED'}, $valid_values, $install_log_values);
   if ($config{'USE_MEMCACHED'} eq 'yes'){
       $msg = q(
-Since you've chosen to use caching, you must specify the memcached servers and the namespace to use:
+Como ha elegido usar caché, debe especificar los servidores memcached y el espacio de nombres a usar:
 );
       $msg = q(
-Memcached server address?);
+¿Dirección del servidor Memcached?);
       $config{'MEMCACHED_SERVERS'} = _get_value('MEMCACHED_SERVERS', $msg, $defaults->{'MEMCACHED_SERVERS'}, $valid_values, $install_log_values);
 
       $msg = q(
-Memcached namespace?);
+¿Espacio de nombres de Memcached?);
       $config{'MEMCACHED_NAMESPACE'} = _get_value('MEMCACHED_NAMESPACE', $msg, $defaults->{'MEMCACHED_NAMESPACE'}, $valid_values, $install_log_values);
   }
 
 
 
   $msg = q(
-Would you like to run the database-dependent test suite?);
+¿Quiere lanzar el testeo de dependencias de la base de datos?);
   $msg .= _add_valid_values_disp( 'RUN_DATABASE_TESTS', $valid_values );
     $config{'RUN_DATABASE_TESTS'} = _get_value( 'RUN_DATABASE_TESTS', $msg, $defaults->{'RUN_DATABASE_TESTS'}, $valid_values, $install_log_values );
 
@@ -1106,17 +1076,14 @@ Would you like to run the database-dependent test suite?);
       $config{'TEST_DB_TYPE'} = $config{'DB_TYPE'};
       $config{'TEST_DB_HOST'} = $config{'DB_HOST'};
       $msg = q(TEST DATABASE
+LOS DATOS EN ESTA BASE DE DATOS SE ELIMINARÁN durante el proceso
+de testeo. No realice está acción en una base de datosde producción.
+El proceso no es reversible.
 
-THE DATA IN THIS DATABASE WILL BE DESTROYED during the process of
-testing. Please don't do this on your production database. It is not
-reversable.
+Es mejor no lanzar este proceso si lo va a hacer en una base de datos 
+en el que no quiera perder datos.
 
-YOU WILL SUFFER DATA LOSS if you run this test suite on your test
-database. You are better off not running this optional test suite than
-doing it in a database that you don't want to lose.
-
-Please specify the name of the test database to be
-used by Koha);
+Especificar el nombre de la base de datos de testeos);
 
       $config{'TEST_DB_NAME'} = _get_value('TEST_DB_NAME', $msg, $defaults->{'TEST_DB_NAME'}, $valid_values, $install_log_values);
       while ( $config{'TEST_DB_NAME'} eq $config{'DB_NAME'} ) {
@@ -1125,13 +1092,11 @@ used by Koha);
       }
 
       $msg = q(
-Please specify the user that owns the database to be
-used by Koha);
+Especificar el usuario de la base de datos);
     $config{'TEST_DB_USER'} = _get_value('TEST_DB_USER', $msg, $defaults->{'TEST_DB_USER'}, $valid_values, $install_log_values);
 
       $msg = q(
-Please specify the password of the user that owns the
-database to be used by Koha);
+Especificar la clave de la base de datos);
       $config{'TEST_DB_PASS'} = _get_value('TEST_DB_PASS', $msg, $defaults->{'TEST_DB_PASS'}, $valid_values, $install_log_values);
   }
 
@@ -1372,27 +1337,27 @@ sub display_configuration {
     my $dirmap = shift;
     my @version = grep /\/usr\/share\/perl\//, @INC;
     push @version, ('/usr/share/perl/5.10') if !$version[0];
-    print "\n\nKoha will be installed with the following configuration parameters:\n\n";
+    print "\n\nKoha-Kobli se instalará con los siguientes parámetros de configuración:\n\n";
     foreach my $key (sort keys %$config) {
         print sprintf("%-25.25s%s\n", $key, $config->{$key});
     }
 
-    print "\nand in the following directories:\n\n";
+    print "\ny en los siguientes directorios:\n\n";
     foreach my $key (sort keys %$dirmap) {
         print sprintf("%-25.25s%s\n", $key, $dirmap->{$key});
     }
-    print "\n\nTo change any configuration setting, please run\n";
-    print "perl Makefile.PL again.  To override one of the target\n";
-    print "directories, you can do so on the command line like this:\n";
+    print "\n\nPara cambiar la configuración, ejecute\n";
+    print "perl Makefile.PL de nuevo.  Para reconfigurar uno de los\n";
+    print "directorios, puede hacer en la línea de comandos algo como:\n";
     print "\nperl Makefile.PL PERL_MODULE_DIR=$version[0]\n\n";
-    print "You can also set different default values for parameters\n";
-    print "or override directory locations by using environment variables.\n";
-    print "\nFor example:\n\n";
+    print "Puede poner diferentes valores por defecto para parámetros\n";
+    print "para reconfigurar directorios usando variables de entorno.\n";
+    print "\nPor ejemplo:\n\n";
     print "export DB_USER=my_koha\n";
     print "perl Makefile.PL\n";
-    print "\nor\n\n";
+    print "\no\n\n";
     print "DB_USER=my_koha DOC_DIR=/usr/local/info perl Makefile.PL\n\n";
-    print "If installing on a Win32 platform, be sure to use:\n";
+    print "Si instala en plataforma Win32, use:\n";
     print "'dmake -x MAXLINELENGTH=300000'\n\n";
 }
 
@@ -1510,15 +1475,15 @@ install :: all install_koha warn_koha_env_vars
 
     $install .= "warn_koha_env_vars ::\n";
     $install .= "\t\$(NOECHO) \$(ECHO)\n";
-    $install .= "\t\$(NOECHO) \$(ECHO) Koha\\'s files have now been installed. \n";
+    $install .= "\t\$(NOECHO) \$(ECHO) Los archivos de Koha-Kobli se han instalado. \n";
     $install .= "\t\$(NOECHO) \$(ECHO)\n";
-    $install .= "\t\$(NOECHO) \$(ECHO) In order to use Koha\\'s command-line batch jobs,\n";
-    $install .= "\t\$(NOECHO) \$(ECHO) you should set the following environment variables:\n";
+    $install .= "\t\$(NOECHO) \$(ECHO) Para usar scripts por línea de comando,\n";
+    $install .= "\t\$(NOECHO) \$(ECHO) debe dar valor a las siguientes variables de entorno:\n";
     $install .= "\t\$(NOECHO) \$(ECHO)\n";
     $install .= "\t\$(NOECHO) \$(ECHO) export KOHA_CONF=\$(KOHA_DEST_KOHA_CONF_DIR)/koha-conf.xml\n";
     $install .= "\t\$(NOECHO) \$(ECHO) export PERL5LIB=$target_directories->{'PERL_MODULE_DIR'}\n";
     $install .= "\t\$(NOECHO) \$(ECHO)\n";
-    $install .= "\t\$(NOECHO) \$(ECHO) For other post-installation tasks, please consult the README.\n";
+    $install .= "\t\$(NOECHO) \$(ECHO) Para otras tareas posteriores a la instalación, consulte el archivo README.\n";
     $install .= "\t\$(NOECHO) \$(ECHO)\n";
 
     if ($config{'INSTALL_ZEBRA'} eq "yes") {
