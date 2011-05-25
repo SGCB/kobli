@@ -7234,4 +7234,21 @@ sub CheckVersion {
     }
 }
 
+
+=head2 SetVersionKobli
+
+set the DBversion in the systempreferences
+
+=cut
+
+sub SetVersionKobli {
+    my $kobliversion = TransformToNum(shift);
+    if (C4::Context->preference('VersionKobli')) {
+      my $finish=$dbh->prepare("UPDATE systempreferences SET value=? WHERE variable='VersionKobli'");
+      $finish->execute($kobliversion);
+    } else {
+      my $finish=$dbh->prepare("INSERT into systempreferences (variable,value,explanation) values ('VersionKobli',?,'The Koha database version. WARNING: Do not change this value manually, it is maintained by the webinstaller')");
+      $finish->execute($kobliversion);
+    }
+}
 exit;
