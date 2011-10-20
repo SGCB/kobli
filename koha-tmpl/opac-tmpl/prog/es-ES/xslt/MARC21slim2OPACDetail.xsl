@@ -150,11 +150,72 @@
 
  <xsl:if test="$DisplayOPACiconsXSLT!='0'">
  <xsl:if test="$materialTypeCode!=''">
- <span class="results_summary type"><span class="label">Type: </span>
+ <span class="results_summary type"><span class="label">Tipo: </span>
  <xsl:element name="img"><xsl:attribute name="src">/opac-tmpl/prog/famfamfam/<xsl:value-of select="$materialTypeCode"/>.png</xsl:attribute><xsl:attribute name="alt">materialTypeLabel</xsl:attribute><xsl:attribute name="class">materialtype</xsl:attribute></xsl:element>
  <xsl:value-of select="$materialTypeLabel"/>
  </span>
  </xsl:if>
+ </xsl:if>
+ 
+ <!-- 024 -->
+ <xsl:if test="$display880">
+ <span class="results_summary">
+ <xsl:call-template name="m880Select">
+ <xsl:with-param name="basetags">024</xsl:with-param>
+ <xsl:with-param name="codes">abhfgknps</xsl:with-param>
+ </xsl:call-template>
+ </span>
+ </xsl:if>
+ <xsl:if test="marc:datafield[@tag=024]">
+ <span class="results_summary">
+ <xsl:for-each select="marc:datafield[@tag=024]">
+ <span class="label">
+ <xsl:if test="marc:subfield[@code='2']">
+ <xsl:text> </xsl:text>
+ <xsl:call-template name="subfieldSelect">
+ <xsl:with-param name="codes">2</xsl:with-param>
+ </xsl:call-template>
+ <xsl:text>:</xsl:text>
+ </xsl:if>
+ </span>
+ <xsl:if test="marc:subfield[@code='a']">
+ <xsl:text> </xsl:text>
+ <xsl:call-template name="subfieldSelect">
+ <xsl:with-param name="codes">a</xsl:with-param>
+ </xsl:call-template>
+ </xsl:if>
+ <xsl:text> </xsl:text>
+ <xsl:call-template name="subfieldSelect">
+ <xsl:with-param name="codes">fgknps</xsl:with-param>
+ </xsl:call-template>
+ </xsl:for-each>
+  </span>
+ </xsl:if>
+
+  <!-- 590 -->
+ <xsl:if test="$display880">
+ <span class="results_summary">
+ <xsl:call-template name="m880Select">
+ <xsl:with-param name="basetags">590</xsl:with-param>
+ <xsl:with-param name="codes">abhfgknps</xsl:with-param>
+ </xsl:call-template>
+ </span>
+ </xsl:if>
+ <xsl:if test="marc:datafield[@tag=590]">
+ <span class="results_summary"><span class="label">Fecha: </span>
+ <xsl:for-each select="marc:datafield[@tag=590]">
+ <xsl:if test="marc:subfield[@code='a']">
+ <xsl:text> </xsl:text>
+ <xsl:call-template name="subfieldSelect">
+ <xsl:with-param name="codes">a</xsl:with-param>
+ </xsl:call-template>
+ </xsl:if>
+ <xsl:text> </xsl:text>
+ <xsl:call-template name="subfieldSelect">
+ <xsl:with-param name="codes">fgknps</xsl:with-param>
+ </xsl:call-template>
+ </xsl:for-each>
+  </span>
  </xsl:if>
 
  <!--Series: Alternate Graphic Representation (MARC 880) -->
@@ -237,7 +298,7 @@
  </xsl:if>
  
  <!-- Analytics -->
- <xsl:if test="$leader7='s'">
+ <xsl:if test="$leader7='s' or $leader7='m'">
  <span class="results_summary analytics"><span class="label">Analíticas: </span>
  <a>
  <xsl:choose>
@@ -248,7 +309,7 @@
  <xsl:attribute name="href">/cgi-bin/koha/opac-search.pl?q=Host-item:<xsl:value-of select="translate(marc:datafield[@tag=245]/marc:subfield[@code='a'], '/', '')"/></xsl:attribute>
  </xsl:otherwise>
  </xsl:choose>
- <xsl:text>Show analytics</xsl:text>
+ <xsl:text>Mostrar analíticas</xsl:text>
  </a>
  </span>
  </xsl:if>
@@ -652,11 +713,32 @@
  </xsl:variable>
  <xsl:choose>
  <xsl:when test="$UseControlNumber = '1' and marc:subfield[@code='w']">
+ <xsl:if test="marc:subfield[@code='t']">
  <a><xsl:attribute name="href">/cgi-bin/koha/opac-search.pl?q=Control-number:<xsl:call-template name="extractControlNumber"><xsl:with-param name="subfieldW" select="marc:subfield[@code='w']"/></xsl:call-template></xsl:attribute>
- <xsl:value-of select="translate($f773, '()', '')"/>
+ <xsl:value-of select="marc:subfield[@code='t']"/>
  </a>
- <xsl:if test="marc:subfield[@code='g']"><xsl:text> </xsl:text><xsl:value-of select="marc:subfield[@code='g']"/></xsl:if>
+  <xsl:if test="marc:subfield[@code='d']">
+ <span class="label"><xsl:text> - </xsl:text><xsl:value-of select="marc:subfield[@code='d']"/></span>
+ </xsl:if>
+ <xsl:if test="marc:subfield[@code='g']"><xsl:text> - </xsl:text><xsl:value-of select="marc:subfield[@code='g']"/></xsl:if>
+ </xsl:if>
  </xsl:when>
+ <xsl:when test="$UseControlNumber = '0'">
+  <a><xsl:attribute name="href">/cgi-bin/koha/opac-search.pl?q=Title:<xsl:value-of select="marc:subfield[@code='t']"/></xsl:attribute>
+ <xsl:value-of select="marc:subfield[@code='t']"/>
+ </a>
+ <xsl:if test="marc:subfield[@code='d']">
+ <span class="label"><xsl:text> - </xsl:text><xsl:value-of select="marc:subfield[@code='d']"/></span>
+ </xsl:if>
+ <xsl:if test="marc:subfield[@code='g']"><xsl:text> - </xsl:text><xsl:value-of select="marc:subfield[@code='g']"/></xsl:if>
+ </xsl:when>
+<xsl:otherwise>
+<a><xsl:if test="marc:subfield[@code='t']"><xsl:text></xsl:text><xsl:value-of select="marc:subfield[@code='t']"/></xsl:if></a>
+<xsl:if test="marc:subfield[@code='d']">
+<span class="label"><xsl:text> - </xsl:text><xsl:value-of select="marc:subfield[@code='d']"/></span>
+</xsl:if>
+<xsl:if test="marc:subfield[@code='g']"><xsl:text> - </xsl:text><xsl:value-of select="marc:subfield[@code='g']"/></xsl:if>
+</xsl:otherwise>
  <xsl:when test="marc:subfield[@code='0']">
  <a><xsl:attribute name="href">/cgi-bin/koha/opac-detail.pl?biblionumber=<xsl:value-of select="marc:subfield[@code='0']"/></xsl:attribute>
  <xsl:value-of select="$f773"/>
@@ -670,7 +752,7 @@
  </xsl:otherwise>
  </xsl:choose>
  </span>
-
+ 
  <xsl:if test="marc:subfield[@code='n']">
  <span class="results_summary"><xsl:value-of select="marc:subfield[@code='n']"/></span>
  </xsl:if>
@@ -778,13 +860,13 @@
  <xsl:choose>
  <xsl:when test="$UseControlNumber = '1' and marc:subfield[@code='w']">
  <a><xsl:attribute name="href">/cgi-bin/koha/opac-search.pl?q=Control-number:<xsl:call-template name="extractControlNumber"><xsl:with-param name="subfieldW" select="marc:subfield[@code='w']"/></xsl:call-template></xsl:attribute>
- <xsl:value-of select="translate($f780, '()', '')"/>
+ <xsl:value-of select="marc:subfield[@code='t']"/>
  </a>
  </xsl:when>
  <xsl:otherwise>
- <a><xsl:attribute name="href">/cgi-bin/koha/opac-search.pl?q=<xsl:value-of select="translate($f780, '()', '')"/></xsl:attribute>
- <xsl:value-of select="translate($f780, '()', '')"/>
- </a>
+ <xsl:if test="marc:subfield[@code='t']">
+ <xsl:value-of select="marc:subfield[@code='t']"/>
+ </xsl:if>
  </xsl:otherwise>
  </xsl:choose>
  </span>
@@ -841,13 +923,13 @@
  <xsl:choose>
  <xsl:when test="$UseControlNumber = '1' and marc:subfield[@code='w']">
  <a><xsl:attribute name="href">/cgi-bin/koha/opac-search.pl?q=Control-number:<xsl:call-template name="extractControlNumber"><xsl:with-param name="subfieldW" select="marc:subfield[@code='w']"/></xsl:call-template></xsl:attribute>
- <xsl:value-of select="translate($f785, '()', '')"/>
+ <xsl:value-of select="marc:subfield[@code='t']"/>
  </a>
  </xsl:when>
  <xsl:otherwise>
- <a><xsl:attribute name="href">/cgi-bin/koha/opac-search.pl?q=<xsl:value-of select="translate($f785, '()', '')"/></xsl:attribute>
- <xsl:value-of select="translate($f785, '()', '')"/>
- </a>
+ <xsl:if test="marc:subfield[@code='t']">
+ <xsl:value-of select="marc:subfield[@code='t']"/>
+ </xsl:if>
  </xsl:otherwise>
  </xsl:choose>
 
