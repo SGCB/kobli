@@ -206,6 +206,8 @@ use strict;
 use warnings;
 use HTTP::OAI;
 use HTTP::OAI::Metadata::OAI_DC;
+use C4::Items qw/GetItemsInfo Item2Marc/;
+use C4::Biblio qw/GetMarcFromKohaField/;
 
 use base ("HTTP::OAI::Record");
 
@@ -213,6 +215,22 @@ sub new {
     my ($class, $repository, $marcxml, $timestamp, $setSpecs, %args) = @_;
 
     my $self = $class->SUPER::new(%args);
+
+    my $recordMarc = MARC::Record->new_from_xml($marcxml, "utf8", C4::Context->preference('marcflavour'));
+    my @fields952 = $recordMarc->field('952');
+    if (@fields952) {
+        eval {
+            $recordMarc->delete_fields(@fields952);
+        };
+        if ($@) {
+            for my $field952 (@fields952) {
+                $recordMarc->delete_field($field952);
+            }
+        }
+        $marcxml = $recordMarc->as_xml_record(C4::Context->preference('marcflavour'));
+    }
+
+    $marcxml = $self->addItems($repository->{koha_identifier} . ':', $marcxml, %args);
 
     $timestamp =~ s/ /T/, $timestamp .= 'Z';
     $self->header( new HTTP::OAI::Header(
@@ -237,6 +255,114 @@ sub new {
 
     return $self;
 }
+
+sub addItems
+{
+    my ($self, $prefix, $marcxml, %args) = @_;
+
+
+    my ( $itemtag, $itemsubfield ) = GetMarcFromKohaField("items.itemnumber",'');
+    my ($biblionumber) = $args{identifier} =~ /^$prefix(.*)/;
+    my @items = GetItemsInfo($biblionumber);
+    if (@items){
+        my @subcampoIN = ("w","t","p","a","b","o","o","o","o","c","2","3","f","j","u","x","z","4","z","v","7","5","d","g","7","1","0","4","5","c");
+        my @campoOUT = ("365","852","852","852","852","852","852","852","852","852","852","852","852","852","852","852","852","852","852","876","876","876","876","876","876","876","876","876","876","876");
+        my @subcampoOUT = ("f","t","p","a","b","k","h","i","m","c","2","3","f","j","u","x","z","u","q","b","a","a","d","h","h","j","j","j","j","l");
+        my $record = MARC::Record->new;
+        my @itemsrecord;
+        foreach my $item (@items){
+            my $record = Item2Marc($item, $biblionumber);
+            push @itemsrecord, $record->field($itemtag);
+        }
+        $record->insert_fields_ordered(@itemsrecord);
+        foreach my $fieldIN ($record->field($itemtag)) {
+            my $i = 0;
+            my $campo;
+            for my $subcampoIN (@subcampoIN){
+                if ($fieldIN->subfield($subcampoIN)){
+                    my $data = $fieldIN->subfield($subcampoIN);
+                    $self->_addHolding($record, $fieldIN, $subcampoIN, $data, $campoOUT[$i], $subcampoOUT[$i], \$campo, $itemtag, $itemsubfield);
+                }
+                $i++;
+            }
+        }
+        my $itemsxml = $record->as_xml_record();
+        $itemsxml =~ s/^.+?<record.+?<datafield/<datafield/s;
+        my $searchstring = '</record>';
+        $marcxml = substr($marcxml, 0, index($marcxml, $searchstring));
+        $marcxml .= $itemsxml;
+    }
+    return $marcxml;
+}#addItems
+
+
+sub _addHolding
+{
+    my ($self, $record, $fieldIN, $subcampoIN, $data, $campoOUT, $subcampoOUT, $campo, $itemtag, $itemsubfield) = @_;
+
+    if ($subcampoIN eq "7") {    #Paso a texto los valores de Koha
+        if (!$data || $data==0) {
+            $data = 0;
+        } else {
+            if ($data == 1) {
+                $data = "NotForLoan";
+            } elsif ($data == 2) {
+                $data = "StaffCollection";
+            } elsif ($data == -1) {
+                $data = "Ordered";
+            }
+        }
+    } elsif ($subcampoIN eq "0") {    #Paso a texto los valores de Koha
+        if ($data == 1) {
+            $data = "Withdrawn";
+        } else {
+            $data = 0;
+        }
+    } elsif ($subcampoIN eq "1") {    #Paso a texto los valores de Koha
+        if (!$data || $data == 0) {
+            $data = 0;
+        } else {
+            if ($data == 1) {
+                $data = "Lost";
+            } elsif ($data == 2) {
+                $data = "LongOverdue(Lost)";
+            } elsif ($data == 3) {
+                $data = "LostAndPaidFor";
+            } elsif ($data == 4) {
+                $data = "Missing";
+            }
+        }
+    } elsif ($subcampoIN eq "4") {    #Paso a texto los valores de Koha
+        if ($data == 1) {
+            $data = "Damaged";
+        } else {
+            $data = 0;
+        }
+    } elsif ($subcampoIN eq "5") {    #Paso a texto los valores de Koha
+        if ($data == 1) {
+            $data = "RestrictedAccess";
+        } else {
+            $data = 0;
+        }
+    } elsif ($subcampoIN eq "o") {    #desesctructuro el item.callnumber
+        $data =~ /^\s*(\d+) (\d+) (\d+) (\d+)\s*$/; 
+        if ($subcampoOUT eq "k") {    #Call number prefix
+            $data = $1;
+        } elsif ($subcampoOUT eq "h") {    #Classification part
+            $data = $2;
+        } elsif ($subcampoOUT eq "i") {    #Item part
+            $data = $3;
+        } elsif($subcampoOUT eq "m") {    #Call number suffix
+            $data = $4;
+        }
+    }
+    if(!$$campo || $$campo->tag() ne $campoOUT){ #si no se ha creado el campo o es un campo nuevo
+        $$campo =  MARC::Field->new($campoOUT,'','', "8" => $fieldIN->subfield($itemsubfield));    #creo el nuevo campo con el itemnumber como secuencia de vínculo del holding
+        $record->insert_grouped_field( $$campo );    #inserto el campo en el registro
+    }    
+    $$campo->add_subfields( $subcampoOUT => $data );    #inserto el subcampo en el campo
+    return $$campo;
+}#_addHolding
 
 # __END__ C4::OAI::Record
 
