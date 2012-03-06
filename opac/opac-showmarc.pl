@@ -81,8 +81,8 @@ if ($view eq 'card' || $view eq 'html') {
     my $stylesheet = $xslt->parse_stylesheet($style_doc);
     my $results = $stylesheet->transform($source);
     my $newxmlrecord = $stylesheet->output_string($results);
-    print $input->header(-charset => 'UTF-8'), Encode::encode_utf8($newxmlrecord);
-}
+    $newxmlrecord = Encode::decode_utf8($newxmlrecord) unless utf8::is_utf8($newxmlrecord);
+    print $input->header(-charset => 'UTF-8'), $newxmlrecord;
 else { #view eq marc
     my ( $template, $loggedinuser, $cookie ) = get_template_and_user({
         template_name   => "opac-showmarc.tmpl",
