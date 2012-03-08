@@ -181,6 +181,11 @@ $(document).ready(function() {
                 [% END %]</td>
             <td>[% Branches.GetName( subscription.branchcode ) %]</td>
             <td> [% subscription.callnumber %]</td>
+        <td><a href="subscription-detail.pl?subscriptionid=[% subscription.subscriptionid %]"># [% subscription.subscriptionid %]</a> </td>
+        <td>[% subscription.frequency.description %]</td>
+        <td>[% subscription.numberpattern.label %]</td>
+        <td> [% subscription.branchcode %]</td>
+        <td> [% subscription.callnumber %]</td>
         <td> [% subscription.notes %]
             [% UNLESS subscription.closed %]
                 [% IF ( subscription.subscriptionexpired ) %]
