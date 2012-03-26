@@ -1,23 +1,4 @@
-INSERT INTO `categories` (`categorycode`, `description`, `enrolmentperiod`, `upperagelimit`, `dateofbirthrequired`, `finetype`, `bulk`, `enrolmentfee`, `overduenoticerequired`, `issuelimit`, `reservefee`, `category_type`) VALUES 
 
--- Adult Patrons
-('PT','Patron',99,999,18,NULL,NULL,'0.000000',1,NULL,'0.000000','A'),
-('ST','Student',99,999,18,NULL,NULL,'0.000000',1,NULL,'0.000000','A'),
-('HB','Home Bound',99,999,18,NULL,NULL,'0.000000',1,NULL,'0.000000','A'),
+/*Data for the table `categories` */
 
--- Children
-('K','Kid',99,17,5,NULL,NULL,'0.000000',1,NULL,'0.000000','C'),
-('J','Juvenile',99,17,5,NULL,NULL,'0.000000',1,NULL,'0.000000','C'),
-('YA','Young Adult',99,17,5,NULL,NULL,'0.000000',1,NULL,'0.000000','C'),
-
--- Professionals
-('T','Teacher',99,999,18,NULL,NULL,'0.000000',0,NULL,'0.000000','P'),
-('B','Board',99,17,5,NULL,NULL,'0.000000',1,NULL,'0.000000','P'),
-
--- Institutional
-('IL','Inter-Library Loan',99,999,18,NULL,NULL,'0.000000',1,NULL,'0.000000','I'),
-('SC','School',99,999,18,NULL,NULL,'0.000000',1,NULL,'0.000000','I'),
-('L','Library',99,999,18,NULL,NULL,'0.000000',1,NULL,'0.000000','I'),
-
--- Staff
-('S','Staff',99,999,18,NULL,NULL,'0.000000',0,NULL,'0.000000','S');
+insert  into `categories`(`categorycode`,`description`,`enrolmentperiod`,`enrolmentperioddate`,`upperagelimit`,`dateofbirthrequired`,`finetype`,`bulk`,`enrolmentfee`,`overduenoticerequired`,`issuelimit`,`reservefee`,`category_type`) values ('B','Supervisor',99,'0000-00-00',17,5,NULL,0,'0.000000',1,0,'0.000000','P'),('HB','Préstamo a domicilio',99,'0000-00-00',999,18,NULL,0,'0.000000',1,0,'0.000000','A'),('IL','Préstamo interbibliotecario',99,'0000-00-00',999,18,NULL,0,'0.000000',1,0,'0.000000','I'),('J','Juvenil',99,'0000-00-00',17,5,NULL,0,'0.000000',1,0,'0.000000','C'),('K','Niño',99,'0000-00-00',17,5,NULL,0,'0.000000',1,0,'0.000000','C'),('L','Biblioteca',99,'0000-00-00',999,18,NULL,0,'0.000000',1,0,'0.000000','I'),('PT','Usuario',99,'0000-00-00',999,18,NULL,0,'0.000000',1,0,'0.000000','A'),('S','Personal / Staff',99,'0000-00-00',999,18,NULL,0,'0.000000',0,0,'0.000000','S'),('SC','Colegio',99,'0000-00-00',999,18,NULL,0,'0.000000',1,0,'0.000000','I'),('ST','Estudiante',99,'0000-00-00',999,18,NULL,0,'0.000000',1,0,'0.000000','A'),('T','Profesor',99,'0000-00-00',999,18,NULL,0,'0.000000',0,0,'0.000000','P'),('YA','Adulto',99,'0000-00-00',17,5,NULL,0,'0.000000',1,0,'0.000000','C');

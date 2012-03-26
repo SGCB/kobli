@@ -1,8 +1,4 @@
-INSERT INTO `itemtypes` VALUES ('BK', 'Books',5,0,'bridge/book.gif','');
-INSERT INTO `itemtypes` VALUES ('MX', 'Mixed Materials',5,0,'bridge/kit.gif','');
-INSERT INTO `itemtypes` VALUES ('CF', 'Computer Files',5,0,'bridge/computer_file.gif','');
-INSERT INTO `itemtypes` VALUES ('MP', 'Maps',5,0,'bridge/map.gif','');
-INSERT INTO `itemtypes` VALUES ('VM', 'Visual Materials',5,1,'bridge/dvd.gif','');
-INSERT INTO `itemtypes` VALUES ('MU', 'Music',5,0,'bridge/sound.gif','');
-INSERT INTO `itemtypes` VALUES ('CR', 'Continuing Resources',5,0,'bridge/periodical.gif','');
-INSERT INTO `itemtypes` VALUES ('REF', 'Reference',0,1,'','');
+
+/*Data for the table `itemtypes` */
+
+insert  into `itemtypes`(`itemtype`,`description`,`rentalcharge`,`notforloan`,`imageurl`,`summary`) values ('BK','Libros',5.0000,0,'kobli/book.gif',''),('CF','Ficheros de ordenador',5.0000,0,'kobli/computer_file.gif',''),('CR','Publicaciones peri&oacute;dicas',5.0000,0,'kobli/periodical.gif',''),('MP','Mapas ',5.0000,0,'kobli/map.gif',''),('MU','M&uacute;sica',5.0000,0,'kobli/icon_musica.gif',''),('MX','Materiales variados',5.0000,0,'kobli/kit.gif',''),('REF','Obra de referencia',0.0000,1,'0','kobli/reference.gif'),('VM','Materiales visuales',5.0000,1,'kobli/icon_microficha.gif','');

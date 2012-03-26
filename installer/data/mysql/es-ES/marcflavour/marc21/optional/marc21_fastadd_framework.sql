@@ -1,4 +1,4 @@
-INSERT IGNORE INTO biblio_framework VALUES ( 'FA','Fast Add Framework' );
+INSERT IGNORE INTO biblio_framework VALUES ( 'FA','Plantilla de catalogación rápida' );
 INSERT IGNORE INTO `marc_tag_structure` (`tagfield`, `liblibrarian`, `libopac`, `repeatable`, `mandatory`, `authorised_value`, `frameworkcode`) VALUES
                 ('000', 'LEADER', 'LEADER', 0, 1, '', 'FA'),
                 ('008', 'FIXED-LENGTH DATA ELEMENTS--GENERAL INFORMATION', 'FIXED-LENGTH DATA ELEMENTS--GENERAL INFORMATION', 0, 1, '', 'FA'),

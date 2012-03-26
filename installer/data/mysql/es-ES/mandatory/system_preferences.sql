@@ -16,5 +16,5 @@
 -- with Koha; if not, write to the Free Software Foundation, Inc.,
 -- 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-UPDATE systempreferences SET value = 'father|mother' where variable = 'borrowerRelationship';
-UPDATE systempreferences SET value = 'Mr|Mrs|Miss|Ms' where variable = 'BorrowersTitles';
+UPDATE systempreferences SET value = 'padre|madre' where variable = 'borrowerRelationship';
+UPDATE systempreferences SET value = 'Sr|Sra|Srta|Srta' where variable = 'BorrowersTitles';

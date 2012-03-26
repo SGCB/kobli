@@ -1,4 +1,5 @@
-INSERT INTO `repeatable_holidays` VALUES 
-(2,'',0,NULL,NULL,'','Sundays'),
-(3,'',NULL,1,1,'','New Year\'s Day'),
-(4,'',NULL,25,12,'','Christmas');
+
+/*Data for the table `repeatable_holidays` */
+
+insert  into `repeatable_holidays`(`id`,`branchcode`,`weekday`,`day`,`month`,`title`,`description`) values (2,'',0,0,0,'','Domingos'),(3,'',0,1,1,'','D&iacute;a de A&ntilde;o Nuevo'),(4,'',0,25,12,'','Navidad');
+

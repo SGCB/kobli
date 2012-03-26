@@ -1,52 +1,40 @@
--- Reasons for acceptance or rejection of suggestions in acquisitions
-INSERT INTO authorised_values (category, authorised_value, lib) VALUES ('SUGGEST','BSELL','Bestseller');
-INSERT INTO authorised_values (category, authorised_value, lib) VALUES ('SUGGEST','SCD','Shelf Copy Damaged');
-INSERT INTO authorised_values (category, authorised_value, lib) VALUES ('SUGGEST','LCL','Library Copy Lost');
-INSERT INTO authorised_values (category, authorised_value, lib) VALUES ('SUGGEST','AVILL','Available via ILL');
 
--- availability statuses
-INSERT INTO `authorised_values`  (category, authorised_value, lib) VALUES ('LOST','2','Long Overdue (Lost)');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOST','1','Lost');
-INSERT INTO `authorised_values`  (category, authorised_value, lib ) VALUES ('LOST','3','Lost and Paid For');
-INSERT INTO `authorised_values`  (category, authorised_value, lib )VALUES ('LOST','4','Missing');
+/*Data for the table `authorised_values` */
 
--- damaged status of an item
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('DAMAGED','1','Damaged');
-
--- location qualification for an item, departments are linked by default to items.location
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOC','FIC','Fiction');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOC','CHILD','Children\'s Area');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOC','DISPLAY','On Display');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOC','NEW','New Materials Shelf');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOC','STAFF','Staff Office');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOC','GEN','General Stacks');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOC','AV','Audio Visual');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOC','REF','Reference');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOC','CART','Book Cart');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('LOC','PROC','Processing Center');
-
--- collection codes for an item
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('CCODE','FIC','Fiction');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('CCODE','REF','Reference');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('CCODE','NFIC','Non Fiction');
-
--- withdrawn status of an item, linked to items.wthdrawn
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('WITHDRAWN','1','Withdrawn');
-
--- loanability status of an item, linked to items.notforloan
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('NOT_LOAN','-1','Ordered');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('NOT_LOAN','1','Not For Loan');
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('NOT_LOAN','2','Staff Collection');
-
--- restricted status of an item, linked to items.restricted
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('RESTRICTED','1','Restricted Access');
-
--- manual invoice types
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('MANUAL_INV','Copier Fees','.25');
-
--- custom borrower notes
-INSERT INTO `authorised_values` (category, authorised_value, lib) VALUES ('BOR_NOTES','ADDR','Address Notes');
-
--- OPAC Suggestions reasons
-INSERT INTO authorised_values (category,authorised_value,lib,lib_opac) VALUES ('OPAC_SUG','damaged','The copy on the shelf is damaged','The copy on the shelf is damaged');
-INSERT INTO authorised_values (category,authorised_value,lib,lib_opac) VALUES ('OPAC_SUG','bestseller','Upcoming title by popular author','Upcoming title by popular author');
+insert  into `authorised_values`(`category`,`authorised_value`,`lib`,`lib_opac`,`imageurl`) values 
+('SUGGEST','BSELL','Bestseller','NULL','NULL'),
+('SUGGEST','SCD','Copia dañada','NULL','NULL'),
+('SUGGEST','LCL','Copia perdida','NULL','NULL'),
+('SUGGEST','AVILL','Disponible mediante préstamo interbibliotecario','NULL','NULL'),
+('LOST','0','','NULL','NULL'),
+('LOST','2','Préstamo vencido desde hace tiempo (Perdido)','NULL','NULL'),
+('LOST','1','Perdido','NULL','NULL'),
+('LOST','3','Perdido y pagado por','NULL','NULL'),
+('LOST','4','Extraviado','NULL','NULL'),
+('DAMAGED','0','','NULL','NULL'),
+('DAMAGED','1','Dañado','NULL','NULL'),
+('LOC','FIC','Ficción','NULL','NULL'),
+('LOC','CHILD','Área infatil','NULL','NULL'),
+('LOC','DISPLAY','Se muestra','NULL','NULL'),
+('LOC','NEW','Nuevos materiales','NULL','NULL'),
+('LOC','STAFF','Oficina de personal','NULL','NULL'),
+('LOC','GEN','Fondo general','NULL','NULL'),
+('LOC','AV','Audiovisual','NULL','NULL'),
+('LOC','REF','Referencia','NULL','NULL'),
+('LOC','CART','Carro de libros','NULL','NULL'),
+('LOC','PROC','Centro de procesado','NULL','NULL'),
+('CCODE','FIC','Ficción','NULL','NULL'),
+('CCODE','REF','Referencia','NULL','NULL'),
+('CCODE','NFIC','No ficción','NULL','NULL'),
+('WITHDRAWN','0','','NULL','NULL'),
+('WITHDRAWN','1','Expurgado','NULL','NULL'),
+('NOT_LOAN','-1','Pedido','NULL','NULL'),
+('NOT_LOAN','0','','NULL','NULL'),
+('NOT_LOAN','1','No prestable','NULL','NULL'),
+('NOT_LOAN','2','Colección técnica del personal','NULL','NULL'),
+('RESTRICTED','0','','NULL','NULL'),
+('RESTRICTED','1','Acceso restringido','NULL','NULL'),
+('MANUAL_INV','Copier Fees','.25','NULL','NULL'),
+('BOR_NOTES','ADDR','Notas de dirección','NULL','NULL'),
+('OPAC_SUG','damaged','La copia está dañada','NULL','NULL'),
+('OPAC_SUG','bestseller','Próximo título de autor conocido','NULL','NULL');

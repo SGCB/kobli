@@ -1,19 +1,3 @@
-INSERT INTO `userflags` VALUES(0,'superlibrarian','Access to all librarian functions',0);
-INSERT INTO `userflags` VALUES(1,'circulate','Circulate books',0);
-INSERT INTO `userflags` VALUES(2,'catalogue','View Catalog (Librarian Interface)',0);
-INSERT INTO `userflags` VALUES(3,'parameters','Set Koha system parameters',0);
-INSERT INTO `userflags` VALUES(4,'borrowers','Add or modify borrowers',0);
-INSERT INTO `userflags` VALUES(5,'permissions','Set user permissions',0);
-INSERT INTO `userflags` VALUES(6,'reserveforothers','Place and modify holds for patrons',0);
-INSERT INTO `userflags` VALUES(7,'borrow','Borrow books',1);
-INSERT INTO `userflags` VALUES(9,'editcatalogue','Edit Catalog (Modify bibliographic/holdings data)',0);
-INSERT INTO `userflags` VALUES(10,'updatecharges','Update borrower charges',0);
-INSERT INTO `userflags` VALUES(11,'acquisition','Acquisition and/or suggestion management',0);
-INSERT INTO `userflags` VALUES(12,'management','Set library management parameters',0);
-INSERT INTO `userflags` VALUES(13,'tools','Use tools (export, import, barcodes)',0);
-INSERT INTO `userflags` VALUES(14,'editauthorities','Allow to edit authorities',0);
-INSERT INTO `userflags` VALUES(15,'serials','Allow to manage serials subscriptions',0);
-INSERT INTO `userflags` VALUES(16,'reports','Allow to access to the reports module',0);
-INSERT INTO `userflags` VALUES(17,'staffaccess','Modify login / permissions for staff users',0);
-INSERT INTO `userflags` VALUES(18,'coursereserves','Course Reserves',0);
-INSERT INTO `userflags` VALUES(19, 'plugins', 'Koha plugins', '0');
+/*Data for the table `userflags` */
+
+insert  into `userflags`(`bit`,`flag`,`flagdesc`,`defaulton`) values (0,'superlibrarian','Acceso a todas las funciones del bibliotecario',0),(1,'circulate','Circulación de libros',0),(2,'catalogue','Ver Catálogo (interfaz de bibliotecario)',0),(3,'parameters','Configurar parámetros del sistema Koha',0),(4,'borrowers','Añadir o modificar usuarios',0),(5,'permissions','Configurar permisos de usuarios',0),(6,'reserveforothers','Reservar y modificar ejemplares de los usuarios',0),(7,'borrow','Prestar libros',1),(9,'editcatalogue','Editar Catálogo (Modificar los datos bibliográficos/ejemplares)',0),(10,'updatecharges','Actualizar multas de los usuarios',0),(11,'acquisition','Gestión de las adquisiciones y sugerencias',0),(12,'management','Configurar parámetros de gestión de la biblioteca',0),(13,'tools','Usar herramientas (exportar, importar, códigos de barras)',0),(14,'editauthorities','Permitir editar autoridades',0),(15,'serials','Permitir la gestión de suscripciones a seriadas',0),(16,'reports','Permitir el acceso al módulo de informes',0),(17,'staffaccess','Modificar login/permisos de los usuarios pertenecientes al personal',0),(18,'coursereserves','Reservas en curso',0),(19, 'plugins', 'Plugins de Koha', 0);
