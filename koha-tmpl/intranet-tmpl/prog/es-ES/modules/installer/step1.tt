@@ -25,13 +25,13 @@
 </select>
 </p>
 
-<p> Click 'Next' to continue <input value="Siguiente >>" type="submit" /></p>
+<p> Haga clic en Siguiente para continuar <input value="Siguiente >>" type="submit" /></p>
 </form>
 [% END %]
 [% IF ( language ) %]
  [% UNLESS ( checkmodule ) %]
  [% IF ( missing_modules ) %]
- <p>Some Perl modules are missing. Modules in red <b>debe</b> deben ser instalados antes de continuar.<br />
+ <p>Algunos módulos de Perl faltan. Los marcados en rojo <b>deben</b> ser instalados antes de continuar.<br />
  <ul>
  [% FOREACH missing_module IN missing_modules %]
  [% IF ( missing_module.require ) %]
@@ -46,8 +46,8 @@
  <p>He encontrado varios problemas.</p>
  <ul>
  [% IF ( perlversion ) %]
- <li>Your Perl version seems to be obsolete.
- Please upgrade to a newer version of Perl (at least Version 5.10).</li>
+ <li>Su versión de Perl es obsoleta.
+ Actualice a una nueva versión (al menos 5.10).</li>
  [% END %]
  </ul>
  [% END %]
@@ -56,7 +56,7 @@
 [% IF ( checkmodule ) %]
 <input type="hidden" name="step" value="2" />
 <p> Todas las dependencias instaladas.</p>
-<p>Please click 'Next' to continue <input value="Siguiente >>" type="submit" /></p>
+<p>Haga clic en Siguiente para continuar <input value="Siguiente >>" type="submit" /></p>
 [% ELSE %]
 <input type="hidden" name="step" value="1" />
 <p>Haga clic para volver a comprobar las dependencias <input value="Verificar" type="submit" /></p>
