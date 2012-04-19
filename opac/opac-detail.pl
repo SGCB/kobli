@@ -968,24 +968,6 @@ if (C4::Context->preference("BakerTaylorEnabled")) {
 	}
 }
 
-my $tag_quantity;
-if (C4::Context->preference('TagsEnabled') and $tag_quantity = C4::Context->preference('TagsShowOnDetail')) {
-	$template->param(
-		TagsEnabled => 1,
-		TagsShowOnDetail => $tag_quantity,
-		TagsInputOnDetail => C4::Context->preference('TagsInputOnDetail')
-	);
-	$template->param(TagLoop => get_tags({biblionumber=>$biblionumber, approved=>1,
-								'sort'=>'-weight', limit=>$tag_quantity}));
-}
-
-if (C4::Context->preference("OPACURLOpenInNewWindow")) {
-    # These values are going to be read by Javascript, at least in the case
-    # of the google covers
-    $template->param(covernewwindow => 'true');
-} else {
-    $template->param(covernewwindow => 'false');
-}
 
 #Export options
 my $OpacExportOptions=C4::Context->preference("OpacExportOptions");
@@ -1014,6 +996,26 @@ if (C4::Context->preference("LocalRepositoryCoverImages")) {
         }
     }
 }
+
+my $tag_quantity;
+if (C4::Context->preference('TagsEnabled') and $tag_quantity = C4::Context->preference('TagsShowOnDetail')) {
+	$template->param(
+		TagsEnabled => 1,
+		TagsShowOnDetail => $tag_quantity,
+		TagsInputOnDetail => C4::Context->preference('TagsInputOnDetail')
+	);
+	$template->param(TagLoop => get_tags({biblionumber=>$biblionumber, approved=>1,
+								'sort'=>'-weight', limit=>$tag_quantity}));
+}
+
+if (C4::Context->preference("OPACURLOpenInNewWindow")) {
+    # These values are going to be read by Javascript, at least in the case
+    # of the google covers
+    $template->param(covernewwindow => 'true');
+} else {
+    $template->param(covernewwindow => 'false');
+}
+
 
 if ( C4::Context->preference('OpacStarRatings') !~ /disable/ ) {
     my $rating = GetRating( $biblionumber, $borrowernumber );
