@@ -77,11 +77,11 @@
     </script>
 [% END %]
 [% IF ( finish ) %]
- <h1>Congratulations, installation complete</h1>
+ <h1>Felicidades, instalación completada</h1>
  <p>Si esta página no lo redirige en 5 segundos, haga clic <a href="/">aquí</a>.</p> 
 [% END %]
 [% IF ( choosemarc ) %]
- <h2 align="center">Select your MARC flavor</h2>
+ <h2 align="center">Selecciones su familia MARC</h2>
  <form name="frameworkselection" method="post" action="install.pl"> 
  <input type="hidden" name="step" value="3" />
  <input type="hidden" name="op" value="selectframeworks" />
@@ -96,7 +96,7 @@
  </div>
  [% END %]
  </p>
- <p> Click 'Next' to continue <input value="Siguiente >>" type="submit" /></p>
+ <p> Haga clic en Siguiente para continuar <input value="Siguiente >>" type="submit" /></p>
  </form>
 [% END %]
 
@@ -170,7 +170,7 @@
 
 [% IF ( addframeworks ) %]
  [% FOREACH lis IN list %]
- <h3>datos [% lis.level %] agregados</h3>
+ <h3>datos &quot;[% lis.level %]&quot; agregados</h3>
  <ul>
  [% FOREACH fwklis IN lis.fwklist %]
  <li>[% fwklis.fwkname %][% IF ( fwklis.error ) %]<br /><span class="error">[% fwklis.error %]</span>[% END %] </li>
@@ -179,7 +179,7 @@
  [% END %]
  <h3>¡Todo realizado!</h3>
  <p>Instalación completa.<br />
- <p>Click on 'Finish' to complete and load the Koha Staff Interface.
+ <p>Haga clic en Finalizar para completar y carga la intranaet de Koha.
  <form name="finish">
  <input type="hidden" name="step" value="3" />
  <input type="hidden" name="op" value="finish" />
@@ -201,7 +201,7 @@
  </ul>
  <form action="install.pl">
  <input type="hidden" name="step" value="3" />
- <p> Click 'Next' to continue <input value="Siguiente >>" type="submit" /></p>
+ <p> Haga clic en Siguiente para continuar <input value="Siguiente >>" type="submit" /></p>
  </form>
  [% END %]
 [% END %]
@@ -212,7 +212,7 @@
  <form action="install.pl">
  <input type="hidden" name="step" value="3" />
  <input type="hidden" name="op" value="importdatastructure" />
- <p> Click 'Next' to continue <input value="Siguiente >>" type="submit" /></p>
+ <p> Haga clic en Siguiente para continuar <input value="Siguiente >>" type="submit" /></p>
  </form>
 [% END %]
 
@@ -223,7 +223,7 @@
  Estamos actualizando desde Koha [% dbversion %] a [% kohaversion %], usted debe <a href="install.pl?step=3&amp;op=updatestructure" class="button">actualizar su base de datos</a>
  </p>
  [% ELSE %]
- <p>Estamos preparados para hacer una configuración básica. Por favor <a href="install.pl?step=3&amp;op=choosemarc" class="button">instalar parámetros de configuración básica</a>
+ <p>Estamos preparados para hacer una configuración básica. Por favor <a href="install.pl?step=3&amp;op=choosemarc" class="button">instalar parámetros de configuración básica </a>
  para continuar con la instalación. </p>
  [% END %]
 [% END %]
