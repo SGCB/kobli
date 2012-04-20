@@ -1,1298 +1,1030 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tagfield tag="008" xmlns="http://koha-community.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "./marc21_field_CF.xsd">
-  <Material id="BKS" name="Books" description="">
-    <Position pos="00-05" name="Date entered on file" description=""/>
-    <Position pos="06" name="Type of date/ Publication status" description="">
-      <Value description="No dates given; B.C. date involved">b</Value>
-      <Value description="Continuing resource currently published">c</Value>
-      <Value description="Continuing resource ceased publication">d</Value>
-      <Value description="Detailed date">e</Value>
-      <Value description="Inclusive dates of colletion">i</Value>
-      <Value description="Range of years of bulk of collection">k</Value>
-      <Value description="Multiple dates">m</Value>
-      <Value description="Dates unknown">n</Value>
-      <Value description="Date of distribution/ release/ issue and production/ recording session when different">p</Value>
-      <Value description="Questionable date">q</Value>
-      <Value description="Reprint / reissue date and original date">r</Value>
-      <Value description="Single know date / probable date">s</Value>
-      <Value description="Publication date and copyright date">t</Value>
-      <Value description="Continuings resource status unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+  <Material id="BKS" name="Libros" description="">
+    <Position pos="00-05" name="Fecha de ingreso del registro" description="Cadena numérica de seis caracteres generada automáticamente por computador que indica la fecha en que fue creado el registro MARC. La fecha se registra siguiendo el patroón aammdd"/>
+    <Position pos="06" name="Tipo de fecha/ Estado de la publicación" description="">
+      <Value description="Sin fechas o implica fechas a.C. Cada posición en 008/07-10 y en 008/11-14 contienen espacios en blanco (#)">b</Value>
+      <Value description="Recurso continuo publicado actualmente 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene 9999">c</Value>
+      <Value description="Recurso continuo que terminó en publicación 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene la fecha de terminación de la publicación">d</Value>
+      <Value description="Fecha detallada. 008/07-10 contiene el año y 008/11-14 contiene el mes y día, registrado en el patrón mmdd">e</Value>
+      <Value description="Fechas inclusivas de la colección">i</Value>
+      <Value description="Rango de años de la mayor parte de la colección">k</Value>
+      <Value description="Fechas múltiples. 008/07-10 normalmente contiene la fecha de inicio y 008/11-14 la fecha de terminación">m</Value>
+      <Value description="Fechas desconocidas. Indica que las fechas apropiadas para 008/07-10 y para 008/11-14 son desconocidas (e.j., cuando no hay fechas en el campo 260)">n</Value>
+      <Value description="Fechas de distribución, puesta en circulación, emisión y produción; cuando difieren">p</Value>
+      <Value description="Fecha cuestionable. 008/07-10 contiene la fecha más antigua posible; 008/11-14 contiene la fecha más reciente posible">q</Value>
+      <Value description="Fecha de reimpresión o reedicion y fecha original. 008/07-10 contiene la fecha de reproducción o reedición; 008/11-14 contiene la fecha del original, si es conocida; si se desconoce contiene el código u (&quot;uuuu&quot;).">r</Value>
+      <Value description="Fecha individual conocida o probable.008/07-10 contiene la fecha; 008/11-14 contiene espacios en blanco.(####)">s</Value>
+      <Value description="Fecha de publicación y de derechos de autor (&quot;copyright&quot;)">t</Value>
+      <Value description="Estado desconocido del recurso continuo. 008/07-10 contiene la fecha de inicio de publicación; 008/11-14 contiene el código u (&quot;uuuu&quot;).">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="07-10" name="Date 1" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="07-10" name="Fecha1" description="">
+      <Value description="No aplica elemento de fecha">#</Value>
+      <Value description="Dígitos de la fecha">1-9</Value>
+      <Value description="Elemento de fecha total o parcialmente desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="11-14" name="Date 2" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="15-17" name="Lugar de publicación, distribución o ejecución" description="Un código MARC de dos o tres caracteres que indica el lugar de publicación, producción o ejecución. El código de lugar es un elemento de información autorizado por una agencia; la fuente del código es la lista MARC Code List for Countries. La selección de un código MARC está generalmente relacionada con la información en el campo 260 (Publicación, distribución, etc. (Pie de imprenta)). Cuando es apropiado utilizar más de un código para un ítem, el registrado en 008/15-17se usa en conjunto con el campo 044 (Código del país del productor); el primer código de subcampo $a del campo 044 se registra en 008/15-17. Pueden usarse tres caracteres de relleno(||||) en lugar de un código válido, pero no se recomienda porque los datos en estas posiciones se usan para la recuperación y detección de duplicados en muchos sistemas; cuando se rellenan las en 008/15-17, todas las posiciones deben contener el caracter de relleno."/>
+    <Position pos="18-21" name="Ilustraciones" description="hasta cuatro códigos de un carácter (registrados en orden alfabético) que indican la presencia de tipos de ilustraciones existentes en el ítem. Si se asignan menos de cuatro códigos, se justifican a la izquierda y las posiciones no utilizadas contienen un espacio en blanco (#)">
+      <Value description="Sin Ilustraciones">#</Value>
+      <Value description="Ilustraciones">a</Value>
+      <Value description="Mapas">b</Value>
+      <Value description="Retratos">c</Value>
+      <Value description="Diagramas">d</Value>
+      <Value description="Planos">e</Value>
+      <Value description="Láminas">f</Value>
+      <Value description="Música">g</Value>
+      <Value description="Facsímiles">h</Value>
+      <Value description="Escudos de Armas">i</Value>
+      <Value description="Tablas genealógicas">j</Value>
+      <Value description="Formularios">k</Value>
+      <Value description="Muestras">l</Value>
+      <Value description="Fonodiscos, fonocintas, etc">m</Value>
+      <Value description="Fotografias">o</Value>
+      <Value description="Iluminaciones">p</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="15-17" url="http://www.loc.gov/marc/countries/countries_code.html" urltext="MARC Code List for Countries" name="Place of publication, production, or execution" description="">
-      <Value description="Various places">vp# </Value>
-      <Value description="No place, unknown, or undetermined">xx#</Value>
-      <Value description="Two-character alphabetic code">[aa#]</Value>
-      <Value description="Three-character alphabetic code">[aaa]</Value>
-    </Position>
-    <Position pos="18-21" name="Illustrations" description="Up to four (4) one-character alphabetic codes (recorded in alphabetical order) that indicate the presence of types of illustrations in the item. If fewer than four alphabetic codes are assigned, the codes are left justified and unused positions contain blanks (#)">
-      <Value description="No illustrations">#</Value>
-      <Value description="Illustrations">a</Value>
-      <Value description="Maps">b</Value>
-      <Value description="Portraits">c</Value>
-      <Value description="Charts">d</Value>
-      <Value description="Plans">e</Value>
-      <Value description="Plates">f</Value>
-      <Value description="Music">g</Value>
-      <Value description="Facsimiles">h</Value>
-      <Value description="Coats of arms">i</Value>
-      <Value description="Genealogical tables">j</Value>
-      <Value description="Forms">k</Value>
-      <Value description="Samples">l</Value>
-      <Value description="Phonodisc, phonowire, etc">m</Value>
-      <Value description="Photographs">o</Value>
-      <Value description="Illuminations">p</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="22" name="Target audience" description="One- character alphabetic code that describes the intellectual level of the target audience for which the material is intended">
-      <Value description="Unknown or not specified">#</Value>
-      <Value description="Preschool">a</Value>
-      <Value description="Primary">b</Value>
-      <Value description="Pre-adolescent">c</Value>
-      <Value description="Adolescent">d</Value>
-      <Value description="Adult">e</Value>
-      <Value description="Specialized">f</Value>
+    <Position pos="22" name="Audiencia" description="Un código de un carácter que indica la audiencia a la que se dirige el ítem.">
+      <Value description="Desconocida o no especificada">#</Value>
+      <Value description="Preescolar">a</Value>
+      <Value description="Primaria">b</Value>
+      <Value description="Preadolescente">c</Value>
+      <Value description="Adolescente">d</Value>
+      <Value description="Adulto">e</Value>
+      <Value description="Especializada">f</Value>
       <Value description="General">g</Value>
-      <Value description="Juvenile">j</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Juvenil ">j</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="23" name="Form of item" description="One character alphabetic code that specifies the form of material for the item">
-      <Value description="None of the following">#</Value>
-      <Value description="Microfilm">a</Value>
-      <Value description="Microfiche">b</Value>
-      <Value description="Microopaque">c</Value>
-      <Value description="Large print">d</Value>
+    <Position pos="23" name="Forma de material" description="Un código de un carácter que indica la forma de material para el ítem.">
+      <Value description="Ninguno de los siguientes">#</Value>
+      <Value description="Micropelícula">a</Value>
+      <Value description="Microficha">b</Value>
+      <Value description="Microopaco">c</Value>
+      <Value description="Caracteres en tipografia mayor">d</Value>
       <Value description="Braille">f</Value>
-      <Value description="Online">o</Value>
-      <Value description="Direct electronic">q</Value>
-      <Value description="Regular print reproduction">r</Value>
-      <Value description="Electronic">s</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Impresión regular. Impresión legible a simple vista">r</Value>
+      <Value description="Electrónica">s</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="24-27" name="Nature of contents" description="Up to four one-character codes that indicate whether a significant part of the item is or contains certain types of material. If fewer than four codes are assigned, the codes are left justified and unused positions contain blanks (#)">
-      <Value description="No specified nature of contents">#</Value>
-      <Value description="Offprints.Publication that originally was published as an article in a monograph or a serial and that is also issued separately and independently. Includes prepints and postprints">2</Value>
-      <Value description="Calendars">5</Value>
-      <Value description="Comics/graphic novels">6</Value>
-      <Value description="Abstracts/summaries. Abstracts or summaries of other publications. Not used when a publication includes an abstract or summary of its own content.">a</Value>
-      <Value description="Bibliographies">b</Value>
-      <Value description="Catalogs">c</Value>
-      <Value description="Dictionaries. Also used for a glossary or a gazetteer.">d</Value>
-      <Value description="Encyclopedias">e</Value>
-      <Value description="Handbooks">f</Value>
-      <Value description="Legal articles">g</Value>
-      <Value description="Indexes. Index to bibliographical material other than itself. Not used when a publication contains an index to its own content.">i</Value>
-      <Value description="Patent document">j</Value>
-      <Value description="Discographies">k</Value>
-      <Value description="Legislation. Full or partial text of enactments of legislative bodies, published either in statute or in code form, or text of rules and regulations issued by executive or adminitrative agencies.">l</Value>
-      <Value description="Theses. Thesis, dissertation, or work identified as having been created to satisfy the requirements for an academic certification or degree.">m</Value>
-      <Value description="Surveys of literature in a subject area. Composed entirely of authored surveys that summarize what has been published about a subject.">n</Value>
-      <Value description="Reviews. Devoted entirely to critical reviews of published or performed works (e.g., books, films, sound recordings, theater)">o</Value>
-      <Value description="Programmed texts">p</Value>
-      <Value description="Filmographies. Entire item, or a significant part of it, is a filmography or other  bibliografy of moving images.">q</Value>
-      <Value description="Directories">r</Value>
-      <Value description="Statistics">s</Value>
-      <Value description="Technical reports">t</Value>
-      <Value description="Standars/specifications">u</Value>
-      <Value description="Legal cases and case notes">v</Value>
-      <Value description="Law reports and digests">w</Value>
-      <Value description="Yearbooks">y</Value>
-      <Value description="Treaties. Treaty or accord negotiated between two or more parties to settle a disagreement, establish a relationship, gran rights,etc.">z</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="24-27" name="Naturaleza de contenido" description="hasta cuatro códigos de un carácter (registrados en orden alfabético) que indican cuando una parte significativa del ítem constituye o contiene ciertos tipos de material. Si se asignan menos de cuatro códigos, se justifican a la izquierda y las posiciones no utilizadas contienen un espacio en blanco (#).">
+      <Value description="Naturaleza de contenido no especificada">#</Value>
+      <Value description="Separata. Publicación que originalmente fue publicada como un articulo dentro de una monografía o una publicación seriada; y que también fue emitida en forma separada e independiente. Incluye pre-impresos y post-impresos">2</Value>
+      <Value description="Resúmenes / sumarios. El ítem es o contiene resúmenes o sumarios de otras publicaciones">a</Value>
+      <Value description="Bibliografías">b</Value>
+      <Value description="Catálogos">c</Value>
+      <Value description="Diccionarios. Este código también se usa para un glosario o una nomenclatura geográfica">d</Value>
+      <Value description="Enciclopedias">e</Value>
+      <Value description="Manuales">f</Value>
+      <Value description="Artículos Jurídicos">g</Value>
+      <Value description="Índices. El ítem es o contiene un índice para material bibliográfico distinto al ítem en si mismo">i</Value>
+      <Value description="Documento de patente">j</Value>
+      <Value description="Discografías">k</Value>
+      <Value description="Legislación. El ítem es o contiene textos completos o parciales de promulgaciones de cuerpos legislativos o textos de normas y regulaciones emitidas por cuerpos ejecutivos o administrativos.">l</Value>
+      <Value description="Tesis.  Indica que el ítem es una tesis, disertación o una obra identificada como una obra creada para satisfacer los requerimientos de una certificación de grado académico.">m</Value>
+      <Value description="Estado de la literatura. El ítem es o contiene estudios que resumen que ha sido publicado sobre un tema.">n</Value>
+      <Value description="Revisiones. El ítem es o contiene revisiones críticas de obras publicadas sobre un tema">o</Value>
+      <Value description="Textos programados">p</Value>
+      <Value description="Filmografías">q</Value>
+      <Value description="Directorios">r</Value>
+      <Value description="Estadísticas">s</Value>
+      <Value description="Reportes técnicos">t</Value>
+      <Value description="Normas/ Especificaciones">u</Value>
+      <Value description="Casos legales y Notas de casos">v</Value>
+      <Value description="Reportes y compendio de leyes">w</Value>
+      <Value description="Tratados. Indica que el ítem es un tratado o un acuerdo negociado entre dos o mas partes para arreglar un desacuerdo, establecer una relación, garantizar sus derechos, etc.">z</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="28" name="Government publication" description="One-character code that indicates whether or not the item is published or produced by or for an international, national, state, provincial, or local government agency, or by any subdivision of such a body">
-      <Value description="Not a government publication">#</Value>
-      <Value description="Autonomous or semi-autonomous component">a</Value>
+    <Position pos="28" name="Publicación gubernamental" description="Un código de un carácter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia.">
+      <Value description="No es publicación gubernamental">#</Value>
+      <Value description="Componente autonomo o semiautonomo">a</Value>
       <Value description="Multilocal">c</Value>
-      <Value description="Federal / National">f</Value>
-      <Value description="International intergovernmental">i</Value>
+      <Value description="Federal / Nacional">f</Value>
+      <Value description="Intergubernamental / Internacional">i</Value>
       <Value description="Local">l</Value>
-      <Value description="Multistate">m</Value>
-      <Value description="Government publication-level undetermined">o</Value>
-      <Value description="State, provincial, territorial, dependent, etc.">s</Value>
-      <Value description="Unknown if item is government publication">u</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Multiestatal">m</Value>
+      <Value description="Publicación gubernamental- nivel indeterminado">o</Value>
+      <Value description="Estado, provincia, territorio, jurisdicción dependiente, etc">s</Value>
+      <Value description="Se desconoce si el item es una publicación gubernamental">u</Value>
+      <Value description="Otro">z</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="29" name="Conference publication" description="One-character code that indicates whether the item consists of the proceedings, reports, or summaries of a conference.">
-      <Value description="Not a conference publication">0</Value>
-      <Value description="Conference">1</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="29" name="Conferencia" description="Un código de un carácter que indica que el ítem consiste en las memorias, reportes o sumarios de una conferencia">
+      <Value description="No es una conferencia">0</Value>
+      <Value description="Conferencia">1</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="30" name="Festschrift" description="One-character code that indicates whether the item is a festschrift">
-      <Value description="Not a festschrift">0</Value>
-      <Value description="Festschrift">1</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="30" name="Homenaje" description="Un código de un carácter que indica que el ítem es una publicación tipo (“festschrift”) homenaje.">
+      <Value description="No es un homenaje">0</Value>
+      <Value description="Homenaje">1</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="31" name="Index" description="One-character numeric code that indicates whether the item includes an index to its own contents">
-      <Value description="No index">0</Value>
-      <Value description="Index present">1</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="31" name="Índice" description="Un código de un carecer que indica que el ítem incluye un índice para su propio contenido">
+      <Value description="No es un índice">0</Value>
+      <Value description="Tiene índice">1</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="32" name="Undefined" description="Contains a blank (#) or a fill character (|)."/>
-    <Position pos="33" name="Literary form" description="One-character code used to indicate the literary form of an item. Numeric codes 0 and 1 provide a generic identification of whether or not the item is a work of fiction. Alphabetic codes may be used to identify specific literary forms.">
-      <Value description="Not fiction (not further specified)">0</Value>
-      <Value description="Fiction (not further specified)">1</Value>
-      <Value description="Dramas">d</Value>
-      <Value description="Essays">e</Value>
-      <Value description="Novels">f</Value>
-      <Value description="Humor, satires, etc.">h</Value>
-      <Value description="Letters. Single letter or collection of correspondence">i</Value>
-      <Value description="Short stories. Short story or collection of short stories.">j</Value>
-      <Value description="Mixed forms. Represents a variety of literary forms (e.g., poetry and short stories)">m</Value>
-      <Value description="Poetry">p</Value>
-      <Value description="Speeches">s</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="32" name="No definido" description="Contiene un espacio en blanco (#) o un carácter de relleno (|)"/>
+    <Position pos="33" name="Forma literaria" description="Indica la forma literaria de un ítem. Los códigos numéricos 0 y 1 proporcionan una identificación genérica para indicar que el ítem es o no es una obra de ficción literaria. Los códigos alfabéticos pueden usarse para identificar una forma literaria específica.">
+      <Value description="No es ficción (sin especificación adicional)">0</Value>
+      <Value description="Ficción (sin especificación adicional)">1</Value>
+      <Value description="Tiras cómicas">c</Value>
+      <Value description="Obras dramáticas">d</Value>
+      <Value description="Ensayos">e</Value>
+      <Value description="Novelas">f</Value>
+      <Value description="Humor, sátiras, etc. Indica que el ítem es una obra humorística, satírica o una forma literaria similar">h</Value>
+      <Value description="Correspondencia. Indica que el ítem es una carta o una colección de correspondencia.">i</Value>
+      <Value description="Cuentos. Indica que el ítem es un cuento o una colección de cuentos">j</Value>
+      <Value description="Formas mixtas. Indica que el ítem representa una variedad de formas literarias (e.g., poesía y cuentos)">m</Value>
+      <Value description="Poesía">p</Value>
+      <Value description="Discursos">s</Value>
+      <Value description="Desconocida">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="34" name="Biography" description="One-character alphabetic code that indicates whether or not an item contains biographical material, and if so, what the biographical characteristics are.">
-      <Value description="No biographical material">#</Value>
-      <Value description="Autobiography">a</Value>
-      <Value description="Individual biography">b</Value>
-      <Value description="Collective biography">c</Value>
-      <Value description="Contains biographical information">d</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="34" name="Biografía" description="Un código de un carácter que indica que el ítem contiene material biográfico y, si es el caso, sus características">
+      <Value description="No es material biográfico">#</Value>
+      <Value description="Autobiográfico">a</Value>
+      <Value description="Biografia individual">b</Value>
+      <Value description="Biografia colectiva">c</Value>
+      <Value description="Contiene información biográfica">d</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="35-37" url="http://www.loc.gov/marc/languages/language_code.html" urltext="MARC Code List for Languages" name="Language" description="">
-      <Value description="No information provided">###</Value>
+    <Position pos="35-37" name="Idioma" url="http://www.loc.gov/marc/languages/language_code.html" urltext="MARC Code List for Languages" description="Un código MARC de tres caracteres que indica el idioma del ítem. La fuente del código es la lista MARC Code List for Languages. La elección de un código MARC se basa en el idioma predominante del ítem. Pueden usarse tres caracteres de relleno si no se intenta codificar 008/35-37">
+	  <Value description="No information provided">###</Value>
       <Value description="Multiple languages">mul</Value>
       <Value description="Sign languages">sgn</Value>
       <Value description="Undetermined">und</Value>
       <Value description="No linguistic content">zxx</Value>
       <Value description="Tree-character alphabetic code">[aaa]</Value>
+	</Position>
+    <Position pos="38" name="Registro modificado" description="">
+      <Value description="No modificado">#</Value>
+      <Value description="Información omitida con guiones">d</Value>
+      <Value description="Completamente en alfabeto latino/fichas latinizadas impresas">o</Value>
+      <Value description="Completamente en alfabeto latino/fichas impresas en manuscrito">r</Value>
+      <Value description="Recortado. Algundos datos han sido omitidos porque el registro podría exceder la longitud máxima permitida por el sistema en particular">s</Value>
+      <Value description="Caracteres faltantes. Faltan en el registro los caracteres que o pudieron convertirse a un formato legible por máquina debido a limitaciones del juego de caracteres.">x</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="38" name="Modified record" description="One-character code that indicates whether any data in a bibliographic record is a modification of information that appeared on the item being cataloged or that was intended to be included in the MARC record.">
-      <Value description="No modified">#</Value>
-      <Value description="Dashed-on information omitted">d</Value>
-      <Value description="Completely romanized/printed cards romanized">o</Value>
-      <Value description="Completely romanized/printed cards in script">r</Value>
-      <Value description="Shortened">s</Value>
-      <Value description="Missing characters">x</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="39" name="Cataloging source" description="">
-      <Value description="National bibliographic agency">#</Value>
-      <Value description="Cooperative cataloging program">c</Value>
-      <Value description="Other">d</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="39" name="Fuente de catalogación" description="">
+      <Value description="Agencia bibliografia nacional">#</Value>
+      <Value description="Programa de catalogación cooperativa. El creador de los datos bibliográficos participa en un programa de catalogación cooperativa (diferente a una agencia bibliográfica nacional)">c</Value>
+      <Value description="Otro">d</Value>
+      <Value description="Desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
   </Material>
-  <Material id="CF" name="Computer Files" description="">
-    <Position pos="00-05" name="Date entered on file" description=""/>
-    <Position pos="06" name="Type of date/ Publication status" description="">
-      <Value description="No dates given; B.C. date involved">b</Value>
-      <Value description="Continuing resource currently published">c</Value>
-      <Value description="Continuing resource ceased publication">d</Value>
-      <Value description="Detailed date">e</Value>
-      <Value description="Inclusive dates of colletion">i</Value>
-      <Value description="Range of years of bulk of collection">k</Value>
-      <Value description="Multiple dates">m</Value>
-      <Value description="Dates unknown">n</Value>
-      <Value description="Date of distribution/ release/ issue and production/ recording session when different">p</Value>
-      <Value description="Questionable date">q</Value>
-      <Value description="Reprint / reissue date and original date">r</Value>
-      <Value description="Single know date / probable date">s</Value>
-      <Value description="Publication date and copyright date">t</Value>
-      <Value description="Continuings resource status unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+  <Material id="CF" name="Archivos de computador" description="">
+    <Position pos="00-05" name="Fecha de ingreso del registro" description="Cadena numérica de seis caracteres generada automáticamente por computador que indica la fecha en que fue creado el registro MARC. La fecha se registra siguiendo el patroón aammdd"/>
+    <Position pos="06" name="Tipo de fecha/ Estado de la publicación" description="">
+      <Value description="Sin fechas o implica fechas a.C. Cada posición en 008/07-10 y en 008/11-14 contienen espacios en blanco (#)">b</Value>
+      <Value description="Recurso continuo publicado actualmente 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene 9999">c</Value>
+      <Value description="Recurso continuo que terminó en publicación 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene la fecha de terminación de la publicación">d</Value>
+      <Value description="Fecha detallada. 008/07-10 contiene el año y 008/11-14 contiene el mes y día, registrado en el patrón mmdd">e</Value>
+      <Value description="Fechas inclusivas de la colección">i</Value>
+      <Value description="Rango de años de la mayor parte de la colección">k</Value>
+      <Value description="Fechas múltiples. 008/07-10 normalmente contiene la fecha de inicio y 008/11-14 la fecha de terminación">m</Value>
+      <Value description="Fechas desconocidas. Indica que las fechas apropiadas para 008/07-10 y para 008/11-14 son desconocidas (e.j., cuando no hay fechas en el campo 260)">n</Value>
+      <Value description="Fechas de distribución, puesta en circulación, emisión y produción; cuando difieren">p</Value>
+      <Value description="Fecha cuestionable. 008/07-10 contiene la fecha más antigua posible; 008/11-14 contiene la fecha más reciente posible">q</Value>
+      <Value description="Fecha de reimpresión o reedicion y fecha original. 008/07-10 contiene la fecha de reproducción o reedición; 008/11-14 contiene la fecha del original, si es conocida; si se desconoce contiene el código u (&quot;uuuu&quot;).">r</Value>
+      <Value description="Fecha individual conocida o probable.008/07-10 contiene la fecha; 008/11-14 contiene espacios en blanco.(####)">s</Value>
+      <Value description="Fecha de publicación y de derechos de autor (&quot;copyright&quot;)">t</Value>
+      <Value description="Estado desconocido del recurso continuo. 008/07-10 contiene la fecha de inicio de publicación; 008/11-14 contiene el código u (&quot;uuuu&quot;).">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="07-10" name="Date 1" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="07-10" name="Fecha1" description="">
+      <Value description="No aplica elemento de fecha">#</Value>
+      <Value description="Dígitos de la fecha">1-9</Value>
+      <Value description="Elemento de fecha total o parcialmente desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="11-14" name="Date 2" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
-    </Position>
-    <Position pos="15-17" url="http://www.loc.gov/marc/countries/countries_code.html" urltext="MARC Code List for Countries" name="Place of publication, production, or execution" description="">
-      <Value description="Various places">vp# </Value>
-      <Value description="No place, unknown, or undetermined">xx#</Value>
-      <Value description="Two-character alphabetic code">[aa#]</Value>
-      <Value description="Three-character alphabetic code">[aaa]</Value>
-    </Position>
-    <Position pos="18-21" name="Undefined" description="Each one contains a blank (#) or a fill character (|)"/>
-    <Position pos="22" name="Target audience" description="One- character alphabetic code that describes the intellectual level of the target audience for which the material is intended">
-      <Value description="Unknown or not specified">#</Value>
-      <Value description="Preschool">a</Value>
-      <Value description="Primary">b</Value>
-      <Value description="Pre-adolescent">c</Value>
-      <Value description="Adolescent">d</Value>
-      <Value description="Adult">e</Value>
-      <Value description="Specialized">f</Value>
+    <Position pos="15-17" name="Lugar de publicación, distribución o ejecución" description="Un código MARC de dos o tres caracteres que indica el lugar de publicación, producción o ejecución. El código de lugar es un elemento de información autorizado por una agencia; la fuente del código es la lista MARC Code List for Countries. La selección de un código MARC está generalmente relacionada con la información en el campo 260 (Publicación, distribución, etc. (Pie de imprenta)). Cuando es apropiado utilizar más de un código para un ítem, el registrado en 008/15-17se usa en conjunto con el campo 044 (Código del país del productor); el primer código de subcampo $a del campo 044 se registra en 008/15-17. Pueden usarse tres caracteres de relleno(||||) en lugar de un código válido, pero no se recomienda porque los datos en estas posiciones se usan para la recuperación y detección de duplicados en muchos sistemas; cuando se rellenan las en 008/15-17, todas las posiciones deben contener el caracter de relleno."/>
+    <Position pos="18-21" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un carácter de relleno (|)"/>
+    <Position pos="22" name="Audiencia" description="Un código de un carácter que indica la audiencia a la que se dirige el ítem">
+      <Value description="Desconocida o no especificada">#</Value>
+      <Value description="Preescolar">a</Value>
+      <Value description="Primaria">b</Value>
+      <Value description="Preadolescente">c</Value>
+      <Value description="Adolescente">d</Value>
+      <Value description="Adulto">e</Value>
+      <Value description="Especializada">f</Value>
       <Value description="General">g</Value>
-      <Value description="Juvenile">j</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Juvenil ">j</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="23" name="Form of item" description="One-character alphabetic code that specifies the form of material for the item">
-      <Value description="Unknown or not specified">#</Value>
-      <Value description="Online">o</Value>
-      <Value description="Direct electronic">q</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="23-25" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un carácter de relleno (|)"/>
+    <Position pos="26" name="Tipo de archivos de computador" description="Un código de un carácter que indica el tipo de archivo de computador descrito en el registro bibliográfico.">
+      <Value description="Datos numéricos">a</Value>
+      <Value description="Programa de computador">b</Value>
+      <Value description="Figurativo. Información pictórica o gráfica que puede ser manipulada en conjunto con otros tipos de archivos para producir patrones gráficos que pueden usarse para interpretar y dar significado a la información">c</Value>
+      <Value description="Documento">d</Value>
+      <Value description="Datos bibliográficos">e</Value>
+      <Value description="Fuente de tipos (&quot;Font&quot;)">f</Value>
+      <Value description="Juego">g</Value>
+      <Value description="Sonido">h</Value>
+      <Value description="Multimedia interactiva">i</Value>
+      <Value description="Sistema o servicio en línea">j</Value>
+      <Value description="Combinación">m</Value>
+      <Value description="Desconocido">u</Value>
+      <Value description="Otro">z</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="24-25" name="Undefined" description="Two undefined character positions; each contains a blank (#) or a fill character (|)."/>
-    <Position pos="26" name="Type of computer file " description="One-character alphabetic code that indicates the type of computer file described in the bibliographic record">
-      <Value description="Numeric data">a</Value>
-      <Value description="Computer program">b</Value>
-      <Value description="Representational. Pictorial or graphic information that can be manipulated in conjunction with other types of files to produce graphic patterns that can be used to interpret and give meaning to the information. Does not include a document in image format.">c</Value>
-      <Value description="Document">d</Value>
-      <Value description="Bibliographic data">e</Value>
-      <Value description="Font">f</Value>
-      <Value description="Game">g</Value>
-      <Value description="Sound">h</Value>
-      <Value description="Interactive multimedia">i</Value>
-      <Value description="Online system or service">j</Value>
-      <Value description="Combination">m</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="27" name="Undefined" description="One-character code that contains a blank (#) or a fill character (|)"/>
-    <Position pos="28" name="Government publication" description="One-character code that indicates whether or not the item is published or produced by or for an international, national, state, provincial, or local government agency, or by any subdivision of such a body">
-      <Value description="Not a government publication">#</Value>
-      <Value description="Autonomous or semi-autonomous component">a</Value>
+    <Position pos="27" name="No definido" description="Contiene un espacio en blanco (#) o un carácter de relleno(|)"/>
+    <Position pos="28" name="Publicación gubernamental" description="Un código de un carácter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia">
+      <Value description="No es publicación gubernamental">#</Value>
+      <Value description="Componente autonomo o semiautonomo">a</Value>
       <Value description="Multilocal">c</Value>
-      <Value description="Federal / National">f</Value>
-      <Value description="International intergovernmental">i</Value>
+      <Value description="Federal / Nacional">f</Value>
+      <Value description="Intergubernamental / Internacional">i</Value>
       <Value description="Local">l</Value>
-      <Value description="Multistate">m</Value>
-      <Value description="Government publication-level undetermined">o</Value>
-      <Value description="State, provincial, territorial, dependent, etc.">s</Value>
-      <Value description="Unknown if item is government publication">u</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Multiestatal">m</Value>
+      <Value description="Publicación gubernamental- nivel indeterminado">o</Value>
+      <Value description="Estado, provincia, territorio, jurisdicción dependiente, etc">s</Value>
+      <Value description="Se desconoce si el item es una publicación gubernamental">u</Value>
+      <Value description="Otro">z</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="29-34" name="Undefined" description="Six undefined character positions; each contains a blank (#) or a fill character (|)."/>
-    <Position pos="35-37" url="http://www.loc.gov/marc/languages/language_code.html" urltext="MARC Code List for Languages" name="Language" description="">
-      <Value description="No information provided">###</Value>
-      <Value description="Multiple languages">mul</Value>
-      <Value description="Sign languages">sgn</Value>
-      <Value description="Undetermined">und</Value>
-      <Value description="No linguistic content">zxx</Value>
-      <Value description="Tree-character alphabetic code">[aaa]</Value>
+    <Position pos="29-34" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un carácter de relleno (|)"/>
+    <Position pos="35-37" name="Idioma" description="Un código MARC de tres caracteres que indica el idioma del ítem. La fuente del código es la lista MARC Code List for Languages. La elección de un código MARC se basa en el idioma predominante del ítem. Pueden usarse tres caracteres de relleno si no se intenta codificar 008/35-37"/>
+    <Position pos="38" name="Registro modificado" description="">
+      <Value description="No modificado">#</Value>
+      <Value description="Información omitida con guiones">d</Value>
+      <Value description="Completamente en alfabeto latino/fichas latinizadas impresas">o</Value>
+      <Value description="Completamente en alfabeto latino/fichas impresas en manuscrito">r</Value>
+      <Value description="Recortado. Algundos datos han sido omitidos porque el registro podría exceder la longitud máxima permitida por el sistema en particular">s</Value>
+      <Value description="Caracteres faltantes. Faltan en el registro los caracteres que o pudieron convertirse a un formato legible por máquina debido a limitaciones del juego de caracteres.">x</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="38" name="Modified record" description="One-character code that indicates whether any data in a bibliographic record is a modification of information that appeared on the item being cataloged or that was intended to be included in the MARC record.">
-      <Value description="No modified">#</Value>
-      <Value description="Dashed-on information omitted">d</Value>
-      <Value description="Completely romanized/printed cards romanized">o</Value>
-      <Value description="Completely romanized/printed cards in script">r</Value>
-      <Value description="Shortened">s</Value>
-      <Value description="Missing characters">x</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="39" name="Cataloging source" description="">
-      <Value description="National bibliographic agency">#</Value>
-      <Value description="Cooperative cataloging program">c</Value>
-      <Value description="Other">d</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="39" name="Fuente de catalogación" description="">
+      <Value description="Agencia bibliografia nacional">#</Value>
+      <Value description="Programa de catalogación cooperativa. El creador de los datos bibliográficos participa en un programa de catalogación cooperativa (diferente a una agencia bibliográfica nacional)">c</Value>
+      <Value description="Otro">d</Value>
+      <Value description="Desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
   </Material>
-  <Material id="MP" name="Maps" description="">
-    <Position pos="00-05" name="Date entered on file" description=""/>
-    <Position pos="06" name="Type of date/ Publication status" description="">
-      <Value description="No dates given; B.C. date involved">b</Value>
-      <Value description="Continuing resource currently published">c</Value>
-      <Value description="Continuing resource ceased publication">d</Value>
-      <Value description="Detailed date">e</Value>
-      <Value description="Inclusive dates of colletion">i</Value>
-      <Value description="Range of years of bulk of collection">k</Value>
-      <Value description="Multiple dates">m</Value>
-      <Value description="Dates unknown">n</Value>
-      <Value description="Date of distribution/ release/ issue and production/ recording session when different">p</Value>
-      <Value description="Questionable date">q</Value>
-      <Value description="Reprint / reissue date and original date">r</Value>
-      <Value description="Single know date / probable date">s</Value>
-      <Value description="Publication date and copyright date">t</Value>
-      <Value description="Continuings resource status unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+  <Material id="MP" name="Mapas" description="">
+    <Position pos="00-05" name="Fecha de ingreso del registro" description="Cadena numérica de seis caracteres generada automáticamente por computador que indica la fecha en que fue creado el registro MARC. La fecha se registra siguiendo el patroón aammdd"/>
+    <Position pos="06" name="Tipo de fecha/ Estado de la publicación" description="">
+      <Value description="Sin fechas o implica fechas a.C. Cada posición en 008/07-10 y en 008/11-14 contienen espacios en blanco (#)">b</Value>
+      <Value description="Recurso continuo publicado actualmente 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene 9999">c</Value>
+      <Value description="Recurso continuo que terminó en publicación 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene la fecha de terminación de la publicación">d</Value>
+      <Value description="Fecha detallada. 008/07-10 contiene el año y 008/11-14 contiene el mes y día, registrado en el patrón mmdd">e</Value>
+      <Value description="Fechas inclusivas de la colección">i</Value>
+      <Value description="Rango de años de la mayor parte de la colección">k</Value>
+      <Value description="Fechas múltiples. 008/07-10 normalmente contiene la fecha de inicio y 008/11-14 la fecha de terminación">m</Value>
+      <Value description="Fechas desconocidas. Indica que las fechas apropiadas para 008/07-10 y para 008/11-14 son desconocidas (e.j., cuando no hay fechas en el campo 260)">n</Value>
+      <Value description="Fechas de distribución, puesta en circulación, emisión y produción; cuando difieren">p</Value>
+      <Value description="Fecha cuestionable. 008/07-10 contiene la fecha más antigua posible; 008/11-14 contiene la fecha más reciente posible">q</Value>
+      <Value description="Fecha de reimpresión o reedicion y fecha original. 008/07-10 contiene la fecha de reproducción o reedición; 008/11-14 contiene la fecha del original, si es conocida; si se desconoce contiene el código u (&quot;uuuu&quot;).">r</Value>
+      <Value description="Fecha individual conocida o probable.008/07-10 contiene la fecha; 008/11-14 contiene espacios en blanco.(####)">s</Value>
+      <Value description="Fecha de publicación y de derechos de autor (&quot;copyright&quot;)">t</Value>
+      <Value description="Estado desconocido del recurso continuo. 008/07-10 contiene la fecha de inicio de publicación; 008/11-14 contiene el código u (&quot;uuuu&quot;).">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="07-10" name="Date 1" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="07-10" name="Fecha1" description="">
+      <Value description="No aplica elemento de fecha">#</Value>
+      <Value description="Dígitos de la fecha">1-9</Value>
+      <Value description="Elemento de fecha total o parcialmente desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="11-14" name="Date 2" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="15-17" name="Lugar de publicación, distribución o ejecución" description="Un código MARC de dos o tres caracteres que indica el lugar de publicación, producción o ejecución. El código de lugar es un elemento de información autorizado por una agencia; la fuente del código es la lista MARC Code List for Countries. La selección de un código MARC está generalmente relacionada con la información en el campo 260 (Publicación, distribución, etc. (Pie de imprenta)). Cuando es apropiado utilizar más de un código para un ítem, el registrado en 008/15-17se usa en conjunto con el campo 044 (Código del país del productor); el primer código de subcampo $a del campo 044 se registra en 008/15-17. Pueden usarse tres caracteres de relleno(||||) en lugar de un código válido, pero no se recomienda porque los datos en estas posiciones se usan para la recuperación y detección de duplicados en muchos sistemas; cuando se rellenan las en 008/15-17, todas las posiciones deben contener el caracter de relleno."/>
+    <Position pos="18-21" name="Relieve" description="Hasta cuatro códigos de un carácter que indica el tipo de relieve especificado en el ítem. Los códigos se registran en orden de su importancia para describir el ítem. Si se asignan menos de cuatro códigos, se justifican a la izquierda y las posiciones no utilizadas contienen un espacio en blanco (#).">
+      <Value description="Sin relieve"># </Value>
+      <Value description="Contornos">a</Value>
+      <Value description=" Sombreado">b</Value>
+      <Value description="Matices descendiente y batimétrico">c</Value>
+      <Value description="Sombreado con líneas">d</Value>
+      <Value description="Batimetría / sondeo">e</Value>
+      <Value description="Líneas de forma">f</Value>
+      <Value description="Alturas de punto">g</Value>
+      <Value description="Con gráficas">i</Value>
+      <Value description="Formaciones terrestres">j</Value>
+      <Value description="Barimetría / isogramas">k</Value>
+      <Value description="Dibujos de rocas">m</Value>
+      <Value description="Otro tipo de relieve">z</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="15-17" url="http://www.loc.gov/marc/countries/countries_code.html" urltext="MARC Code List for Countries" name="Place of publication, production, or execution" description="">
-      <Value description="Various places">vp# </Value>
-      <Value description="No place, unknown, or undetermined">xx#</Value>
-      <Value description="Two-character alphabetic code">[aa#]</Value>
-      <Value description="Three-character alphabetic code">[aaa]</Value>
-    </Position>
-    <Position pos="18-21" name="Relief" description="Up to four one-character alphabetic codes that indicate the relief type specified on the item. Codes are recorded in order of their importance to the described item. If fewer than four codes are assigned, the codes are left justified and each unused position contains a blank (#).">
-      <Value description="No relief shown"># </Value>
-      <Value description="Contours">a</Value>
-      <Value description="Shading">b</Value>
-      <Value description="Gradient and bathymetric tints">c</Value>
-      <Value description="Hachures">d</Value>
-      <Value description="Bathymetry/soundings">e</Value>
-      <Value description="Form lines">f</Value>
-      <Value description="Spot heights">g</Value>
-      <Value description="Pictorially">i</Value>
-      <Value description="Land forms">j</Value>
-      <Value description="Bathymetry/ isolines">k</Value>
-      <Value description="Rock drawings">m</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">||||</Value>
-    </Position>
-    <Position pos="22-23" name="Projection" description="Two-character alphabetic code that indicates the projection used in producing the item.">
-      <Value description="Projection not specified">##</Value>
+    <Position pos="22-23" name="Proyección" description="Un código de dos caracteres que indican la proyección utilizada al producir el ítem.">
+      <Value description=" Proyección no especificada ">##</Value>
       <Value description="Aitoff ">aa</Value>
-      <Value description="Gnomic">ab</Value>
-      <Value description="Lambert's azimuthal equal area">ac</Value>
-      <Value description="Orthographic">ad</Value>
-      <Value description="Azimuthal equidistant">ae</Value>
-      <Value description="Stereographic">af</Value>
-      <Value description="General vertical near-sided">ag</Value>
-      <Value description="Modified stereographic for Alaska">am</Value>
-      <Value description="Chamberlin trimetric">an</Value>
-      <Value description="Polar stereographic">ap</Value>
-      <Value description="Azimuthal, specific type unknown">au</Value>
-      <Value description="Azimutal, other">az</Value>
+      <Value description="Nómica ">ab</Value>
+      <Value description="Area azimutal nivelada de Lambert ">ac</Value>
+      <Value description="Ortográfica ">ad</Value>
+      <Value description="Azimutal equidistante ">ae</Value>
+      <Value description="Estereográfica ">af</Value>
+      <Value description=" Vertical general cercana ">ag</Value>
+      <Value description="Estereográfica modificada para Alaska ">am</Value>
+      <Value description="Trimétrico de Chamberlin ">an</Value>
+      <Value description="Estereográfica polar ">ap</Value>
+      <Value description="Azimutal, tipo específico desconocido ">au</Value>
+      <Value description="Azimutal, otro ">az</Value>
       <Value description="Gall ">ba</Value>
-      <Value description="Goode's homolographic">bb</Value>
-      <Value description="Lambert's cylindrical equal area">bc</Value>
-      <Value description="Mercator">bd</Value>
+      <Value description="Homolográfica de Goode ">bb</Value>
+      <Value description="Area cilíndrica nivelada de Lambert ">bc</Value>
+      <Value description="Mercator ">bd</Value>
       <Value description="Miller ">be</Value>
       <Value description="Mollweide ">bf</Value>
       <Value description="Sinusoidal ">bg</Value>
-      <Value description="Transverse Mercator">bh</Value>
+      <Value description="Mercator transversal ">bh</Value>
       <Value description="Gauss-Kruger ">bi</Value>
-      <Value description="Equirectangular ">bj</Value>
-      <Value description="Krovak">bk</Value>
-      <Value description="Cassini-Soldner">bl</Value>
-      <Value description="Oblique Mercator">bo</Value>
+      <Value description="Equirrectangular ">bj</Value>
+      <Value description="Mercator oblicuo ">bo</Value>
       <Value description="Robinson ">br</Value>
-      <Value description="Space oblique Mercator">bs</Value>
-      <Value description="Cylindrical, specific type unknown">bu</Value>
-      <Value description="Cylindrical, other">bz</Value>
-      <Value description="Albers equal area">ca</Value>
+      <Value description="Mercator oblicuo espacial ">bs</Value>
+      <Value description="Cilíndrica, tipo específico desconocido ">bu</Value>
+      <Value description="Cilíndrica, otra ">bz</Value>
+      <Value description="Area nivelada de Alber ">ca</Value>
       <Value description="Bonne ">cb</Value>
-      <Value description="Lambert's conformal conic">cc</Value>
-      <Value description="Equidistant conic">ce</Value>
-      <Value description="Polyconic">cp</Value>
-      <Value description="Conic, specific type unknown">cu</Value>
-      <Value description="Conic, other">cz</Value>
+      <Value description="Cónica conforme de Lambert ">cc</Value>
+      <Value description="Cónica equidistante ">ce</Value>
+      <Value description="Policónica ">cp</Value>
+      <Value description="Cónica, tipo específico desconocido ">cu</Value>
+      <Value description="Cónica , otra ">cz</Value>
       <Value description="Armadillo ">da</Value>
       <Value description="Butterfly ">db</Value>
       <Value description="Eckert ">dc</Value>
-      <Value description="Goode's homolosine">dd</Value>
-      <Value description="Miller's bipolar oblique conformal conic">de</Value>
+      <Value description="Homolosenoidal de Goode ">dd</Value>
+      <Value description="Cónica conforme oblicua bipolar de Miller ">de</Value>
       <Value description="Van Der Grinten ">df</Value>
       <Value description="Dimaxión ">dg</Value>
-      <Value description="Cordiform">dh</Value>
-      <Value description="Lambert conformal ">dl</Value>
-      <Value description="Other">zz</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Cordiforme ">dh</Value>
+      <Value description="Conforme de Lambert ">dl</Value>
+      <Value description="Otro ">zz</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="24" name="Undefined" description="Undefined; contains a blank (#) or a fill character (|)."/>
-    <Position pos="25" name="Type of cartographic material" description="One-character alphabetic code that indicates the type of cartographic item described.">
-      <Value description="Single map">a</Value>
-      <Value description="Map Series. Number of related but physically separate and bibliographically distinct cartographic units intended by the producer(s) or issuing body(s) to form a single group.">b</Value>
-      <Value description="Map serial. Issued in successive parts bearing numerical or chronological designations and intended to be continued indefinitely">c</Value>
-      <Value description="Globe">d</Value>
+    <Position pos="24" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="25" name="Tipo de material cartográfico" description="Un código de un caracter que indica el tipo de ítem cartográfico descrito en el registro bibliográfico. ">
+      <Value description="Mapa individual ">a</Value>
+      <Value description="Serie de mapas. Un número de unidades cartográficas relacionadas pero físicamente separadas y bibliográficamente distintas que el productor o editor emite como grupo. ">b</Value>
+      <Value description="Mapa seriado Una publicación cartográfica publicada en partes sucesivas que tiene designaciones numéricas o cronológicas y tiene la intencion de continuarse indefinidamente. ">c</Value>
+      <Value description="Globo ">d</Value>
       <Value description="Atlas ">e</Value>
-      <Value description="Separate supplement to another work">f</Value>
-      <Value description="Bound as part of another work">g</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Mapa separado, suplemento de otra obra ">f</Value>
+      <Value description="Mapa encuadernado como parte de otra obra ">g</Value>
+      <Value description="Desconocido ">u</Value>
+      <Value description="Otro ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="26-27" name="Undefined" description="Each contains a blank (#) or a fill character (|)"/>
-    <Position pos="28" name="Government publication" description="One-character code that indicates whether or not the item is published or produced by or for an international, national, state, provincial, or local government agency, or by any subdivision of such a body">
-      <Value description="Not a government publication">#</Value>
-      <Value description="Autonomous or semi-autonomous component">a</Value>
+    <Position pos="26-27" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="28" name="Publicacion gubernamental" description="Un código de un caracter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia. ">
+      <Value description="No es publicación gubernamental">#</Value>
+      <Value description="Componente autonomo o semiautonomo">a</Value>
       <Value description="Multilocal">c</Value>
-      <Value description="Federal / National">f</Value>
-      <Value description="International intergovernmental">i</Value>
+      <Value description="Federal / Nacional">f</Value>
+      <Value description="Intergubernamental / Internacional">i</Value>
       <Value description="Local">l</Value>
-      <Value description="Multistate">m</Value>
-      <Value description="Government publication-level undetermined">o</Value>
-      <Value description="State, provincial, territorial, dependent, etc.">s</Value>
-      <Value description="Unknown if item is government publication">u</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Multiestatal">m</Value>
+      <Value description="Publicación gubernamental- nivel indeterminado">o</Value>
+      <Value description="Estado, provincia, territorio, jurisdicción dependiente, etc">s</Value>
+      <Value description="Se desconoce si el item es una publicación gubernamental">u</Value>
+      <Value description="Otro">z</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="29" name="Form of item" description="One-character alphabetic code that indicates the form of material for the item.">
-      <Value description="None of the following">#</Value>
-      <Value description="Microfilm">a</Value>
-      <Value description="Microfiche">b</Value>
-      <Value description="Microopaque">c</Value>
-      <Value description="Large print">d</Value>
+    <Position pos="29" name="Forma de material" description="Un código de un caracter que indica la forma del material para el ítem. ">
+      <Value description="Ninguno de los siguientes ">#</Value>
+      <Value description="Micropelícula ">a</Value>
+      <Value description="Microficha ">b</Value>
+      <Value description="Microopaco ">c</Value>
+      <Value description="En tipografía mayor ">d</Value>
       <Value description="Braille ">f</Value>
-      <Value description="Online.  The resource is accessed by means of hardware and software connections to a communications network. If a distinction between types of electronic resources is not necessary, code s can be used as a generic code for any form of electronic resource.">o</Value>
-      <Value description="Direct electronic. Storage on a directly accessible tangible recording medium, e.g. disc, tape, playaway device, flashdrive, portable hard drive, etc. If a distinction between types of electronic resources is not necessary, code s can be used as a generic code for any form of electronic resource.">q</Value>
-      <Value description="Regular print reproduction">r</Value>
-      <Value description="Electronic. Intended for manipulation by a computer. May reside in a carrier accessed either directly or remotely, in some cases requiring the use of peripheral devices attached to the computer (e.g., a CD-ROM player). Not used for items that do not require the use of a computer (e.g., music compact discs, videodiscs). This code can be used as a generic code for any form of electronic resource. Codes o and q may be used if there is a need to separately identify online and direct electronic resources.">s</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Impresión regular Impresión legible a simple vista. ">r</Value>
+      <Value description="Electrónica ">s</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="30" name="Undefined" description="Contains a blank (#) or a fill character (|)."/>
-    <Position pos="31" name="Index" description="One-character numeric code that indicates whether the item or accompanying material includes a location index or gazetteer.">
-      <Value description="No index">0</Value>
-      <Value description="Index present">1</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="30" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="31" name="Índice" description="Un código de un caracter que indica que el ítem o su material complementario incluye un índice o una nomenclatura. ">
+      <Value description="No es un índice ">0</Value>
+      <Value description="Tiene índice ">1</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="32" name="Undefined" description="Contains a blank (#) or a fill character (|)."/>
-    <Position pos="33-34" name="Special format characteristics" description="Up to two one-character alphabetic codes that indicate the special format characteristics of the map. Codes are recorded in order of their importance to the described item. If only one code is assigned, it is left justified and the unused position contains a blank (#).">
-      <Value description="No specified special format characteristics">#</Value>
-      <Value description="Manuscript">e</Value>
-      <Value description="Picture card, post card">j</Value>
-      <Value description="Calendar">k</Value>
-      <Value description="Puzzle">l</Value>
-      <Value description="Game">n</Value>
-      <Value description="Wall map">o</Value>
-      <Value description="Playing cards">p</Value>
-      <Value description="Loose-leaf">r</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="32" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="33-34" name="Características de formato especial" description="Hasta dos códigos de un caracter que indican las características del formato especial del mapa. Los códigos se registran en orden de su importancia para la descripción del mapa. Si se asigna unicamente un código, se justifica a la izquierda y la posición no utilizada contiene un espacio en blanco (#). ">
+      <Value description="Características del formato especial no especificada ">#</Value>
+      <Value description="Manuscrito ">e</Value>
+      <Value description="Tarjeta postal ">j</Value>
+      <Value description="Calendario ">k</Value>
+      <Value description="Rompecabezas ">l</Value>
+      <Value description="Conjunto (“Kit”) ">n</Value>
+      <Value description="Mapa de pared ">o</Value>
+      <Value description="Tarjetas de juego ">p</Value>
+      <Value description="En hojas sueltas ">r</Value>
+      <Value description="Otro ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="35-37" url="http://www.loc.gov/marc/languages/language_code.html" urltext="MARC Code List for Languages" name="Language" description="">
-      <Value description="No information provided">###</Value>
-      <Value description="Multiple languages">mul</Value>
-      <Value description="Sign languages">sgn</Value>
-      <Value description="Undetermined">und</Value>
-      <Value description="No linguistic content">zxx</Value>
-      <Value description="Tree-character alphabetic code">[aaa]</Value>
+    <Position pos="35-37" name="Idioma" description="Un código MARC de tres caracteres que indica el idioma del ítem. La fuente del código es la lista MARC Code List for Languages. La elección de un código MARC se basa en el idioma predominante del ítem. Pueden usarse tres caracteres de relleno si no se intenta codificar 008/35-37"/>
+    <Position pos="38" name="Registro modificado" description="">
+      <Value description="No modificado">#</Value>
+      <Value description="Información omitida con guiones">d</Value>
+      <Value description="Completamente en alfabeto latino/fichas latinizadas impresas">o</Value>
+      <Value description="Completamente en alfabeto latino/fichas impresas en manuscrito">r</Value>
+      <Value description="Recortado. Algundos datos han sido omitidos porque el registro podría exceder la longitud máxima permitida por el sistema en particular">s</Value>
+      <Value description="Caracteres faltantes. Faltan en el registro los caracteres que o pudieron convertirse a un formato legible por máquina debido a limitaciones del juego de caracteres.">x</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="38" name="Modified record" description="One-character code that indicates whether any data in a bibliographic record is a modification of information that appeared on the item being cataloged or that was intended to be included in the MARC record.">
-      <Value description="No modified">#</Value>
-      <Value description="Dashed-on information omitted">d</Value>
-      <Value description="Completely romanized/printed cards romanized">o</Value>
-      <Value description="Completely romanized/printed cards in script">r</Value>
-      <Value description="Shortened">s</Value>
-      <Value description="Missing characters">x</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="39" name="Cataloging source" description="">
-      <Value description="National bibliographic agency">#</Value>
-      <Value description="Cooperative cataloging program">c</Value>
-      <Value description="Other">d</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="39" name="Fuente de catalogación" description="">
+      <Value description="Agencia bibliografia nacional">#</Value>
+      <Value description="Programa de catalogación cooperativa. El creador de los datos bibliográficos participa en un programa de catalogación cooperativa (diferente a una agencia bibliográfica nacional)">c</Value>
+      <Value description="Otro">d</Value>
+      <Value description="Desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
   </Material>
-  <Material id="MU" name="Music" description="">
-    <Position pos="00-05" name="Date entered on file" description=""/>
-    <Position pos="06" name="Type of date/ Publication status" description="">
-      <Value description="No dates given; B.C. date involved">b</Value>
-      <Value description="Continuing resource currently published">c</Value>
-      <Value description="Continuing resource ceased publication">d</Value>
-      <Value description="Detailed date">e</Value>
-      <Value description="Inclusive dates of colletion">i</Value>
-      <Value description="Range of years of bulk of collection">k</Value>
-      <Value description="Multiple dates">m</Value>
-      <Value description="Dates unknown">n</Value>
-      <Value description="Date of distribution/ release/ issue and production/ recording session when different">p</Value>
-      <Value description="Questionable date">q</Value>
-      <Value description="Reprint / reissue date and original date">r</Value>
-      <Value description="Single know date / probable date">s</Value>
-      <Value description="Publication date and copyright date">t</Value>
-      <Value description="Continuings resource status unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+  <Material id="MU" name="Música" description="">
+    <Position pos="00-05" name="Fecha de ingreso del registro" description="Cadena numérica de seis caracteres generada automáticamente por computador que indica la fecha en que fue creado el registro MARC. La fecha se registra siguiendo el patroón aammdd"/>
+    <Position pos="06" name="Tipo de fecha/ Estado de la publicación" description="">
+      <Value description="Sin fechas o implica fechas a.C. Cada posición en 008/07-10 y en 008/11-14 contienen espacios en blanco (#)">b</Value>
+      <Value description="Recurso continuo publicado actualmente 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene 9999">c</Value>
+      <Value description="Recurso continuo que terminó en publicación 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene la fecha de terminación de la publicación">d</Value>
+      <Value description="Fecha detallada. 008/07-10 contiene el año y 008/11-14 contiene el mes y día, registrado en el patrón mmdd">e</Value>
+      <Value description="Fechas inclusivas de la colección">i</Value>
+      <Value description="Rango de años de la mayor parte de la colección">k</Value>
+      <Value description="Fechas múltiples. 008/07-10 normalmente contiene la fecha de inicio y 008/11-14 la fecha de terminación">m</Value>
+      <Value description="Fechas desconocidas. Indica que las fechas apropiadas para 008/07-10 y para 008/11-14 son desconocidas (e.j., cuando no hay fechas en el campo 260)">n</Value>
+      <Value description="Fechas de distribución, puesta en circulación, emisión y produción; cuando difieren">p</Value>
+      <Value description="Fecha cuestionable. 008/07-10 contiene la fecha más antigua posible; 008/11-14 contiene la fecha más reciente posible">q</Value>
+      <Value description="Fecha de reimpresión o reedicion y fecha original. 008/07-10 contiene la fecha de reproducción o reedición; 008/11-14 contiene la fecha del original, si es conocida; si se desconoce contiene el código u (&quot;uuuu&quot;).">r</Value>
+      <Value description="Fecha individual conocida o probable.008/07-10 contiene la fecha; 008/11-14 contiene espacios en blanco.(####)">s</Value>
+      <Value description="Fecha de publicación y de derechos de autor (&quot;copyright&quot;)">t</Value>
+      <Value description="Estado desconocido del recurso continuo. 008/07-10 contiene la fecha de inicio de publicación; 008/11-14 contiene el código u (&quot;uuuu&quot;).">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="07-10" name="Date 1" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="07-10" name="Fecha1" description="">
+      <Value description="No aplica elemento de fecha">#</Value>
+      <Value description="Dígitos de la fecha">1-9</Value>
+      <Value description="Elemento de fecha total o parcialmente desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="11-14" name="Date 2" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
-    </Position>
-    <Position pos="15-17" url="http://www.loc.gov/marc/countries/countries_code.html" urltext="MARC Code List for Countries" name="Place of publication, production, or execution" description="">
-      <Value description="Various places">vp# </Value>
-      <Value description="No place, unknown, or undetermined">xx#</Value>
-      <Value description="Two-character alphabetic code">[aa#]</Value>
-      <Value description="Three-character alphabetic code">[aaa]</Value>
-    </Position>
-    <Position pos="18-19" name="Form of composition" description="">
-      <Value description="Anthems">an</Value>
-      <Value description="Ballads">bd</Value>
-      <Value description="Bluegrass music">bg</Value>
+    <Position pos="15-17" name="Lugar de publicación, distribución o ejecución" description="Un código MARC de dos o tres caracteres que indica el lugar de publicación, producción o ejecución. El código de lugar es un elemento de información autorizado por una agencia; la fuente del código es la lista MARC Code List for Countries. La selección de un código MARC está generalmente relacionada con la información en el campo 260 (Publicación, distribución, etc. (Pie de imprenta)). Cuando es apropiado utilizar más de un código para un ítem, el registrado en 008/15-17se usa en conjunto con el campo 044 (Código del país del productor); el primer código de subcampo $a del campo 044 se registra en 008/15-17. Pueden usarse tres caracteres de relleno(||||) en lugar de un código válido, pero no se recomienda porque los datos en estas posiciones se usan para la recuperación y detección de duplicados en muchos sistemas; cuando se rellenan las en 008/15-17, todas las posiciones deben contener el caracter de relleno."/>
+    <Position pos="18-19" name="Forma de la composición" description="">
+      <Value description="Himnos ">an</Value>
+      <Value description="Baladas ">bd</Value>
+      <Value description="Música Bluegrass ">bg</Value>
       <Value description="Blues ">bl</Value>
       <Value description="Ballets ">bt</Value>
-      <Value description="Chaconnes">ca</Value>
-      <Value description="Chants, Other religions">cb</Value>
-      <Value description="Chants, Christian">cc</Value>
+      <Value description="Chaconas ">ca</Value>
+      <Value description="Cantos de otras religiones ">cb</Value>
+      <Value description="Cantos cristianos ">cc</Value>
       <Value description="Concerti grossi ">cg</Value>
-      <Value description="Chorales">ch</Value>
-      <Value description="Chorale preludes">cl</Value>
-      <Value description="Canons and rounds">cn</Value>
-      <Value description="Concertos">co</Value>
-      <Value description="Chansons, polyphonic">cp</Value>
-      <Value description="Carols">cr</Value>
-      <Value description="Chance compositions">cs</Value>
-      <Value description="Cantatas">ct</Value>
-      <Value description="Country music">cy</Value>
-      <Value description="Canzonas">cz</Value>
-      <Value description="Dance forms">df</Value>
-      <Value description="Divertimentos, serenades, cassations, divertissements, and notturni">dv</Value>
-      <Value description="Fugues">fg</Value>
-      <Value description="Flamenco">fl</Value>
-      <Value description="Folk music">fm</Value>
+      <Value description="Corales ">ch</Value>
+      <Value description="Preludios corales ">cl</Value>
+      <Value description="Cánones y rondas ">cn</Value>
+      <Value description="Conciertos ">co</Value>
+      <Value description="Cantos polifónicos ">cp</Value>
+      <Value description="Villancicos ">cr</Value>
+      <Value description="Composiciones casuales ">cs</Value>
+      <Value description="Cantatas ">ct</Value>
+      <Value description="Música Country ">cy</Value>
+      <Value description="Canciones graciosas (“Canzonas”) ">cz</Value>
+      <Value description="Formas dancísticas Están definidos códigos separados para mazurkas, minuets, pavanas, polonesas y valses. ">df</Value>
+      <Value description="Divertimentos, serenatas, intermedios (“cassations”), notturni ">dv</Value>
+      <Value description="Fugas ">fg</Value>
+      <Value description="Música folklórica ">fm</Value>
       <Value description="Fantasias ">ft</Value>
-      <Value description="Gospel music">gm</Value>
-      <Value description="Hymns">hy</Value>
-      <Value description="Jazz">jz</Value>
-      <Value description="Musical revues and comedies">mc</Value>
-      <Value description="Madrigals">md</Value>
+      <Value description="Música Gospel ">gm</Value>
+      <Value description="Himnos ">hy</Value>
+      <Value description="Jazz ">jz</Value>
+      <Value description="Revistas y comedias musicales ">mc</Value>
+      <Value description="Madrigales ">md</Value>
       <Value description="Minuets ">mi</Value>
-      <Value description="Motets">mo</Value>
-      <Value description="Motion picture music">mp</Value>
-      <Value description="Marches">mr</Value>
-      <Value description="Masses">ms</Value>
-      <Value description="Multiple forms">mu</Value>
-      <Value description="Mazurkas">mz</Value>
-      <Value description="Nocturnes">nc</Value>
-      <Value description="Not applicable">nn</Value>
-      <Value description="Operas">op</Value>
+      <Value description="Motetes ">mo</Value>
+      <Value description="Música de películas ">mp</Value>
+      <Value description="Marchas ">mr</Value>
+      <Value description="Misas ">ms</Value>
+      <Value description="Formas múltiples ">mu</Value>
+      <Value description=" Mazurcas ">mz</Value>
+      <Value description="Nocturnos ">nc</Value>
+      <Value description="No se aplica al caso ">nn</Value>
+      <Value description="Operas ">op</Value>
       <Value description="Oratorios ">or</Value>
-      <Value description="Overtures">ov</Value>
-      <Value description="Program music">pg</Value>
-      <Value description="Passion music">pm</Value>
-      <Value description="Polonaises">po</Value>
-      <Value description="Popular music">pp</Value>
-      <Value description="Preludes">pr</Value>
-      <Value description="Passacaglias">ps</Value>
-      <Value description="Part-songs">pt</Value>
-      <Value description="Pavans">pv</Value>
-      <Value description=" Rock music">rc</Value>
-      <Value description="Rondos">rd</Value>
-      <Value description="Ragtime music">rg</Value>
+      <Value description="Oberturas ">ov</Value>
+      <Value description="Música programada ">pg</Value>
+      <Value description="Música de la Pasión ">pm</Value>
+      <Value description="Polonesas ">po</Value>
+      <Value description="Música popular ">pp</Value>
+      <Value description="Preludios ">pr</Value>
+      <Value description="Pasacalles ">ps</Value>
+      <Value description="“Part-songs” ">pt</Value>
+      <Value description="Pavanas ">pv</Value>
+      <Value description=" Rock ">rc</Value>
+      <Value description="Rondós ">rd</Value>
+      <Value description="Ragtime ">rg</Value>
       <Value description="Ricercars ">ri</Value>
-      <Value description="Rhapsodies">rp</Value>
+      <Value description="Rapsodias ">rp</Value>
       <Value description="Requiems ">rq</Value>
-      <Value description="Square dance music">sd</Value>
-      <Value description="Songs">sg</Value>
+      <Value description="Musica de cuadrillas (“Square dance music”) ">sd</Value>
+      <Value description="Canciones ">sg</Value>
       <Value description="Sonatas ">sn</Value>
-      <Value description="Symphonic poems">sp</Value>
-      <Value description="Studies and exercises">st</Value>
+      <Value description="Poemas sinfónicos ">sp</Value>
+      <Value description="Estudios y ejercicios ">st</Value>
       <Value description="Suites ">su</Value>
-      <Value description="Symphonies">sy</Value>
-      <Value description="Toccatas">tc</Value>
-      <Value description="Teatro lirico">tl</Value>
-      <Value description="Trio-sonatas">ts</Value>
-      <Value description="Unknown">uu</Value>
-      <Value description="Villacincos">vi</Value>
-      <Value description="Variations">vr</Value>
-      <Value description="Waltzers">wz</Value>
-      <Value description="Zarzuelas">za</Value>
-      <Value description="Other">zz</Value>
-      <Value description="No attempt to code">||</Value>
+      <Value description="Sinfonías ">sy</Value>
+      <Value description="Tocatas ">tc</Value>
+      <Value description="Sonatas para trío ">ts</Value>
+      <Value description="Desconocido ">uu</Value>
+      <Value description="Variaciones ">vr</Value>
+      <Value description=" Valses ">wz</Value>
+      <Value description="Otro ">zz</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="20" name="Format of music" description="One-character code that indicates the format of a musical composition (e.g., piano-conductor score).">
-      <Value description="Full score">a</Value>
-      <Value description="Full score, miniature or study size">b</Value>
-      <Value description="Accompaniment reduced for keyboard">c</Value>
-      <Value description="Voice score">d</Value>
-      <Value description="Condensed score or piano-conductor score">e</Value>
-      <Value description="Close score">g</Value>
-      <Value description="Chorus score">h</Value>
-      <Value description="Condensed score">i</Value>
-      <Value description="Performer-conductor part">j</Value>
-      <Value description="Multiple score formats">m</Value>
-      <Value description="Not applicable">n</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="20" name="Formato de la música" description="Un código de un caracter que indica el formato de una composición musical. ">
+      <Value description="Partitura completa ">a</Value>
+      <Value description="Partitura completa, miniatura o tamaño estudio ">b</Value>
+      <Value description="Acompañamiento para teclado ">c</Value>
+      <Value description="Partitura vocal ">d</Value>
+      <Value description="Partitura condensada o partitura para piano-conductor ">e</Value>
+      <Value description="Partitura vocal en dos pentagramas (“Close score”) ">g</Value>
+      <Value description="Formatos de partitura múltiple ">m</Value>
+      <Value description="No se aplica al caso ">n</Value>
+      <Value description="Desconocido ">u</Value>
+      <Value description="Otro ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="21" name="Music Parts" description="">
-      <Value description="No parts in hand or not specified">#</Value>
-      <Value description="Instrumental and vocal parts">d</Value>
-      <Value description="Instrumental parts">e</Value>
-      <Value description="Vocal parts">f</Value>
-      <Value description="Not applicable">n</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="21" name="Partes musicales" description="">
+      <Value description="No se tienen las partes o no se especifican ">#</Value>
+      <Value description="Partes vocales e instrumentales ">d</Value>
+      <Value description="Partes instrumentales ">e</Value>
+      <Value description="Partes vocales ">f</Value>
+      <Value description="No se aplica al caso ">n</Value>
+      <Value description="Desconocido ">u</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="22" name="Target audience" description="One- character alphabetic code that describes the intellectual level of the target audience for which the material is intended">
-      <Value description="Unknown or not specified">#</Value>
-      <Value description="Preschool">a</Value>
-      <Value description="Primary">b</Value>
-      <Value description="Pre-adolescent">c</Value>
-      <Value description="Adolescent">d</Value>
-      <Value description="Adult">e</Value>
-      <Value description="Specialized">f</Value>
+    <Position pos="22" name="Audiencia" description="Un código de un caracter que indica la audiencia a la que se dirige el ítem. ">
+      <Value description="Desconocida o no especificada">#</Value>
+      <Value description="Preescolar">a</Value>
+      <Value description="Primaria">b</Value>
+      <Value description="Preadolescente">c</Value>
+      <Value description="Adolescente">d</Value>
+      <Value description="Adulto">e</Value>
+      <Value description="Especializada">f</Value>
       <Value description="General">g</Value>
-      <Value description="Juvenile">j</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Juvenil ">j</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="23" name="Form of item" description="One-character alphabetic code that indicates the form of material for the item.">
-      <Value description="None of the following">#</Value>
-      <Value description="Microfilm">a</Value>
-      <Value description="Microfiche">b</Value>
-      <Value description="Microopaque">c</Value>
-      <Value description="Large print">d</Value>
+    <Position pos="23" name="Forma del material" description="Un código de un caracter que indica el tipo de material del ítem que se describe. ">
+      <Value description="Ninguno de los siguientes ">#</Value>
+      <Value description="Micropelícula ">a</Value>
+      <Value description="Microficha ">b</Value>
+      <Value description="Microopaco ">c</Value>
+      <Value description="Tipografía mayor ">d</Value>
       <Value description="Braille ">f</Value>
-      <Value description="Online.  The resource is accessed by means of hardware and software connections to a communications network. If a distinction between types of electronic resources is not necessary, code s can be used as a generic code for any form of electronic resource.">o</Value>
-      <Value description="Direct electronic. Storage on a directly accessible tangible recording medium, e.g. disc, tape, playaway device, flashdrive, portable hard drive, etc. If a distinction between types of electronic resources is not necessary, code s can be used as a generic code for any form of electronic resource.">q</Value>
-      <Value description="Regular print reproduction">r</Value>
-      <Value description="Electronic. Intended for manipulation by a computer. May reside in a carrier accessed either directly or remotely, in some cases requiring the use of peripheral devices attached to the computer (e.g., a CD-ROM player). Not used for items that do not require the use of a computer (e.g., music compact discs, videodiscs). This code can be used as a generic code for any form of electronic resource. Codes o and q may be used if there is a need to separately identify online and direct electronic resources.">s</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Impresión regular Impresión legible a simple vista. ">r</Value>
+      <Value description="Electrónica ">s</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="24-29" name="Accompanying matter" description="Up to six one-character alphabetic codes (recorded in alphabetical order) that indicate the contents of program notes and other accompanying material for sound recording, music manuscripts, or notated music. If fewer than six codes are assigned, the codes are left justified and each unused position contains a blank (#).">
-      <Value description="No accompanying matter">#</Value>
-      <Value description="Discography">a</Value>
-      <Value description="Bibliography">b</Value>
-      <Value description="Thematic indez">c</Value>
-      <Value description="Libretto or text">d</Value>
-      <Value description="Bibliography of composer or autor">e</Value>
-      <Value description="Biography of performer or history of ensemble">f</Value>
-      <Value description="Technical and/or historical information on instruments">g</Value>
-      <Value description="Technical information on music">h</Value>
-      <Value description="Historical information">i</Value>
-      <Value description="Ethnological information">k</Value>
-      <Value description="Instrutional materials">r</Value>
-      <Value description="Music">s</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="24-29" name="Materiales complementarios" description="Hasta seis códigos de un caracter (registrados en orden alfabético) que indican el contenido de un programa y otros materiales acompañantes de la grabación sonora o música con notación (manuscrita o no). Si se asignan menos de seis códigos, se justifican a la izquierda y se coloca un espacio en blanco (#) en las posiciones no utilizadas. ">
+      <Value description="Sin material acompañante ">#</Value>
+      <Value description="Discografía ">a</Value>
+      <Value description="Bibliografía ">b</Value>
+      <Value description="Indice temático ">c</Value>
+      <Value description="Libreto o texto ">d</Value>
+      <Value description="Biografía de un compositor o autor ">e</Value>
+      <Value description="Biografía de un ejecutante o historia del conjunto musical ">f</Value>
+      <Value description="Información técnica y/o histórica de los instrumentos ">g</Value>
+      <Value description="Información técnica sobre la música ">h</Value>
+      <Value description="Información histórica ">i</Value>
+      <Value description="Información etnológica ">k</Value>
+      <Value description="Materiales educativos ">r</Value>
+      <Value description="Música ">s</Value>
+      <Value description="Otro ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="30-31" name="Literary text for sound recordings " description="Up to two one-character codes (recorded in the order of the following list) that indicate the type of literary text contained in a nonmusical sound recording. If only one code is assigned, it is left justified and the unused position contains a blank (#).">
-      <Value description="Item is a music sound recording">#</Value>
-      <Value description="Autobiography">a</Value>
-      <Value description="Biography">b</Value>
-      <Value description="Conference proceedings">c</Value>
+    <Position pos="30-31" name="Texto literario de grabaciones sonoras" description="Hasta dos códigos de un caracter (registrados en el orden de la lista siguiente) que indican el tipo de texto literario contenido en una grabación sonora no musical. Si se asigna un solo código, se justifica a la izquierda y la posición no utilizada contiene un espacio en blanco (#). ">
+      <Value description="El ítem es una grabación sonora musical ">#</Value>
+      <Value description="Autobiografía ">a</Value>
+      <Value description="Biografía ">b</Value>
+      <Value description="Documentos de una conferencia ">c</Value>
       <Value description="Drama ">d</Value>
-      <Value description="Essays">e</Value>
-      <Value description="Fiction">f</Value>
-      <Value description="Reporting">g</Value>
-      <Value description="History">h</Value>
-      <Value description="Instruction">i</Value>
-      <Value description="Language instruction">j</Value>
-      <Value description="Comedy">k</Value>
-      <Value description="Lectures, speeches">l</Value>
-      <Value description="Memoirs">m</Value>
-      <Value description="Not applicable">n</Value>
-      <Value description="Folktales">o</Value>
-      <Value description="Poetry">p</Value>
-      <Value description="Rehearsals">r</Value>
-      <Value description="Sounds">s</Value>
-      <Value description="Interviews">t</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Ensayos ">e</Value>
+      <Value description="Ficción ">f</Value>
+      <Value description="Reportaje ">g</Value>
+      <Value description="Historia ">h</Value>
+      <Value description="Instrucciones ">i</Value>
+      <Value description="Enseñanza de idiomas ">j</Value>
+      <Value description="Comedia ">k</Value>
+      <Value description="Lecturas, discursos ">l</Value>
+      <Value description="Memorias ">m</Value>
+      <Value description="No se aplica al caso ">n</Value>
+      <Value description="Cuentos folclóricos ">o</Value>
+      <Value description="Poesía ">p</Value>
+      <Value description="Ensayos ">r</Value>
+      <Value description="Sonidos ">s</Value>
+      <Value description="Entrevistas ">t</Value>
+      <Value description="Otro ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="32" name="Undefined" description="Undefined; contains a blank (#) or a fill character (|)."/>
-    <Position pos="33" name="Transposition and arrangement" description="Whether all or part of the item being cataloged is a transposition and/or arrangement of another work.">
-      <Value description="Not arrangement or transposition or not specified">#</Value>
-      <Value description="Transposition">a</Value>
-      <Value description="Arragement">b</Value>
-      <Value description="Both transposed and arranged">c</Value>
-      <Value description="Not applicable">n</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="32" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="33" name="Arreglo y transportación" description="">
+      <Value description="Sin arreglos o transportaciones o no especificadas ">#</Value>
+      <Value description="Transportación ">a</Value>
+      <Value description="Arreglo ">b</Value>
+      <Value description="Arreglada y transportada ">c</Value>
+      <Value description="No se aplica al caso ">n</Value>
+      <Value description="Desconocido ">u</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="34" name="Undefined" description="Undefined; contains a blank (#) or a fill character (|)."/>
-    <Position pos="35-37" url="http://www.loc.gov/marc/languages/language_code.html" urltext="MARC Code List for Languages" name="Language" description="">
-      <Value description="No information provided">###</Value>
-      <Value description="Multiple languages">mul</Value>
-      <Value description="Sign languages">sgn</Value>
-      <Value description="Undetermined">und</Value>
-      <Value description="No linguistic content">zxx</Value>
-      <Value description="Tree-character alphabetic code">[aaa]</Value>
+    <Position pos="34" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="35-37" name="Idioma" description="Un código MARC de tres caracteres que indica el idioma del ítem. La fuente del código es la lista MARC Code List for Languages. La elección de un código MARC se basa en el idioma predominante del ítem. Pueden usarse tres caracteres de relleno si no se intenta codificar 008/35-37"/>
+    <Position pos="38" name="Registro modificado" description="">
+      <Value description="No modificado">#</Value>
+      <Value description="Información omitida con guiones">d</Value>
+      <Value description="Completamente en alfabeto latino/fichas latinizadas impresas">o</Value>
+      <Value description="Completamente en alfabeto latino/fichas impresas en manuscrito">r</Value>
+      <Value description="Recortado. Algundos datos han sido omitidos porque el registro podría exceder la longitud máxima permitida por el sistema en particular">s</Value>
+      <Value description="Caracteres faltantes. Faltan en el registro los caracteres que o pudieron convertirse a un formato legible por máquina debido a limitaciones del juego de caracteres.">x</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="38" name="Modified record" description="One-character code that indicates whether any data in a bibliographic record is a modification of information that appeared on the item being cataloged or that was intended to be included in the MARC record.">
-      <Value description="No modified">#</Value>
-      <Value description="Dashed-on information omitted">d</Value>
-      <Value description="Completely romanized/printed cards romanized">o</Value>
-      <Value description="Completely romanized/printed cards in script">r</Value>
-      <Value description="Shortened">s</Value>
-      <Value description="Missing characters">x</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="39" name="Cataloging source" description="">
-      <Value description="National bibliographic agency">#</Value>
-      <Value description="Cooperative cataloging program">c</Value>
-      <Value description="Other">d</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="39" name="Fuente de catalogación" description="">
+      <Value description="Agencia bibliografia nacional">#</Value>
+      <Value description="Programa de catalogación cooperativa. El creador de los datos bibliográficos participa en un programa de catalogación cooperativa (diferente a una agencia bibliográfica nacional)">c</Value>
+      <Value description="Otro">d</Value>
+      <Value description="Desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
   </Material>
-  <Material id="CR" name="Continuing Resources" description="">
-    <Position pos="00-05" name="Date entered on file" description=""/>
-    <Position pos="06" name="Type of date/ Publication status" description="">
-      <Value description="No dates given; B.C. date involved">b</Value>
-      <Value description="Continuing resource currently published">c</Value>
-      <Value description="Continuing resource ceased publication">d</Value>
-      <Value description="Detailed date">e</Value>
-      <Value description="Inclusive dates of colletion">i</Value>
-      <Value description="Range of years of bulk of collection">k</Value>
-      <Value description="Multiple dates">m</Value>
-      <Value description="Dates unknown">n</Value>
-      <Value description="Date of distribution/ release/ issue and production/ recording session when different">p</Value>
-      <Value description="Questionable date">q</Value>
-      <Value description="Reprint / reissue date and original date">r</Value>
-      <Value description="Single know date / probable date">s</Value>
-      <Value description="Publication date and copyright date">t</Value>
-      <Value description="Continuings resource status unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+  <Material id="CR" name="Recursos continuos" description="">
+    <Position pos="00-05" name="Fecha de ingreso del registro" description="Cadena numérica de seis caracteres generada automáticamente por computador que indica la fecha en que fue creado el registro MARC. La fecha se registra siguiendo el patroón aammdd"/>
+    <Position pos="06" name="Tipo de fecha/ Estado de la publicación" description="">
+      <Value description="Sin fechas o implica fechas a.C. Cada posición en 008/07-10 y en 008/11-14 contienen espacios en blanco (#)">b</Value>
+      <Value description="Recurso continuo publicado actualmente 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene 9999">c</Value>
+      <Value description="Recurso continuo que terminó en publicación 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene la fecha de terminación de la publicación">d</Value>
+      <Value description="Fecha detallada. 008/07-10 contiene el año y 008/11-14 contiene el mes y día, registrado en el patrón mmdd">e</Value>
+      <Value description="Fechas inclusivas de la colección">i</Value>
+      <Value description="Rango de años de la mayor parte de la colección">k</Value>
+      <Value description="Fechas múltiples. 008/07-10 normalmente contiene la fecha de inicio y 008/11-14 la fecha de terminación">m</Value>
+      <Value description="Fechas desconocidas. Indica que las fechas apropiadas para 008/07-10 y para 008/11-14 son desconocidas (e.j., cuando no hay fechas en el campo 260)">n</Value>
+      <Value description="Fechas de distribución, puesta en circulación, emisión y produción; cuando difieren">p</Value>
+      <Value description="Fecha cuestionable. 008/07-10 contiene la fecha más antigua posible; 008/11-14 contiene la fecha más reciente posible">q</Value>
+      <Value description="Fecha de reimpresión o reedicion y fecha original. 008/07-10 contiene la fecha de reproducción o reedición; 008/11-14 contiene la fecha del original, si es conocida; si se desconoce contiene el código u (&quot;uuuu&quot;).">r</Value>
+      <Value description="Fecha individual conocida o probable.008/07-10 contiene la fecha; 008/11-14 contiene espacios en blanco.(####)">s</Value>
+      <Value description="Fecha de publicación y de derechos de autor (&quot;copyright&quot;)">t</Value>
+      <Value description="Estado desconocido del recurso continuo. 008/07-10 contiene la fecha de inicio de publicación; 008/11-14 contiene el código u (&quot;uuuu&quot;).">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="07-10" name="Date 1" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="07-10" name="Fecha1" description="">
+      <Value description="No aplica elemento de fecha">#</Value>
+      <Value description="Dígitos de la fecha">1-9</Value>
+      <Value description="Elemento de fecha total o parcialmente desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="11-14" name="Date 2" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="15-17" name="Lugar de publicación, distribución o ejecución" description="Un código MARC de dos o tres caracteres que indica el lugar de publicación, producción o ejecución. El código de lugar es un elemento de información autorizado por una agencia; la fuente del código es la lista MARC Code List for Countries. La selección de un código MARC está generalmente relacionada con la información en el campo 260 (Publicación, distribución, etc. (Pie de imprenta)). Cuando es apropiado utilizar más de un código para un ítem, el registrado en 008/15-17se usa en conjunto con el campo 044 (Código del país del productor); el primer código de subcampo $a del campo 044 se registra en 008/15-17. Pueden usarse tres caracteres de relleno(||||) en lugar de un código válido, pero no se recomienda porque los datos en estas posiciones se usan para la recuperación y detección de duplicados en muchos sistemas; cuando se rellenan las en 008/15-17, todas las posiciones deben contener el caracter de relleno."/>
+    <Position pos="18" name="Frecuencia" description="Un código de un caracter que indica la frecuencia de un ítem; se usa en conjunto con 008/19 (Regularidad). ">
+      <Value description="No puede determinarse la frecuencia La frecuencia es intencionalmente irregular. ">#</Value>
+      <Value description="Anual ">a</Value>
+      <Value description="Bimestral Incluye 6, 7 ú 8 números al año. ">b</Value>
+      <Value description="Semisemanal ">c</Value>
+      <Value description="Diaria ">d</Value>
+      <Value description="Catorcenal ">e</Value>
+      <Value description="Semestral Inclueye 2 números al año. ">f</Value>
+      <Value description="Bienal ">g</Value>
+      <Value description="Trienal ">h</Value>
+      <Value description="Tres veces a la semana ">i</Value>
+      <Value description="Tres veces al mes ">j</Value>
+      <Value description="Actualización continua ">k</Value>
+      <Value description="Mensual Incluye 9, 10, 11 ó 12 números al año. ">m</Value>
+      <Value description="Trimestral Incluye 4 números al año. ">q</Value>
+      <Value description="Quincenal ">s</Value>
+      <Value description="Tres veces al año ">t</Value>
+      <Value description="Desconocida ">u</Value>
+      <Value description="Semanal ">w</Value>
+      <Value description="Otra ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="15-17" url="http://www.loc.gov/marc/countries/countries_code.html" urltext="MARC Code List for Countries" name="Place of publication, production, or execution" description="">
-      <Value description="Various places">vp# </Value>
-      <Value description="No place, unknown, or undetermined">xx#</Value>
-      <Value description="Two-character alphabetic code">[aa#]</Value>
-      <Value description="Three-character alphabetic code">[aaa]</Value>
-    </Position>
-    <Position pos="18" name="Frequency" description="One-character alphabetic code that indicates the frequency of an item; used in conjunction with 008/19 (Regularity).">
-      <Value description="No determinable frequency">#</Value>
-      <Value description="Annual">a</Value>
-      <Value description="Bimonthly">b</Value>
-      <Value description="Semiweekly">c</Value>
-      <Value description="Daily">d</Value>
-      <Value description="Biweekly">e</Value>
-      <Value description="Semiannual">f</Value>
-      <Value description="Biennial">g</Value>
-      <Value description="Triennial">h</Value>
-      <Value description="Three times a week">i</Value>
-      <Value description="Three times a month">j</Value>
-      <Value description="Continuously updated">k</Value>
-      <Value description="Monthly">m</Value>
-      <Value description="Quarterly">q</Value>
-      <Value description="Semimonthly">s</Value>
-      <Value description="Three times a year">t</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="Weekly">w</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="19" name="Regularity" description="One-character alphabetic code that indicates the intended regularity of an item; used in conjunction with 008/18 (Frequency).">
-      <Value description="Normalized irregular">n</Value>
+    <Position pos="19" name="Regularidad" description="Un código de un caracter que indica la regularidad de un ítem; se usa en conjunto con 008/18 (Frecuencia). ">
+      <Value description="Irregularidad normalizada Patrón irregular predecible. ">n</Value>
       <Value description="Regular ">r</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="Completely irregular">x</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Desconocida ">u</Value>
+      <Value description="">x</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="20" name="Undefined" description="Undefined; contains a blank (#) or a fill character (|)."/>
-    <Position pos="21" name="Type of continuing resource" description="One-character alphabetic code that indicates the type of continuing resource.">
-      <Value description="None of the following">#</Value>
-      <Value description="Updating database">d</Value>
-      <Value description="Updating loose-leaf">l</Value>
-      <Value description="Monographic series">m</Value>
-      <Value description="Newspaper">n</Value>
-      <Value description="Periodical">p</Value>
-      <Value description="Updating web site">w</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="20" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="21" name="Tipo de recurso continuo" description="Un código de un caracter que indica el tipo de recurso continuo. ">
+      <Value description="Ninguno de los siguientes Este código se usa también para anuarios y reportes anuales. ">#</Value>
+      <Value description="Actualización en base de datos ">d</Value>
+      <Value description="Actualización en hojas sueltas ">l</Value>
+      <Value description="Serie monográfica ">m</Value>
+      <Value description="Diario ">n</Value>
+      <Value description="Publicación periódica ">p</Value>
+      <Value description="Actualización en sitio Web ">w</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="22" name="Form of original item" description="One-character alphabetic code that indicates the form of material in which an item was originally published.">
-      <Value description="None of the following">#</Value>
-      <Value description="Microfilm">a</Value>
-      <Value description="Microfiche">b</Value>
-      <Value description="Microopaque">c</Value>
-      <Value description="Large print">d</Value>
-      <Value description="Newspaper format">e</Value>
+    <Position pos="22" name="Forma de ítem original" description="Un código de un caracter que indica la forma en que el material fue originalmente publicado. ">
+      <Value description="Ninguno de los siguientes ">#</Value>
+      <Value description="Micropelícula ">a</Value>
+      <Value description="Microficha ">b</Value>
+      <Value description="Microopaco ">c</Value>
+      <Value description="Tipografía mayor ">d</Value>
+      <Value description="Formato de periódico ">e</Value>
       <Value description="Braille ">f</Value>
-      <Value description="Online.  The resource is accessed by means of hardware and software connections to a communications network. If a distinction between types of electronic resources is not necessary, code s can be used as a generic code for any form of electronic resource.">o</Value>
-      <Value description="Direct electronic">q</Value>
-      <Value description="Electronic. Intended for manipulation by a computer. May reside in a carrier accessed either directly or remotely, in some cases requiring the use of peripheral devices attached to the computer (e.g., a CD-ROM player). Not used for items that do not requi">s</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Electrónico ">s</Value>
     </Position>
-    <Position pos="23" name="Form of item" description="One-character alphabetic code that specifies the form of material for the item being described">
-      <Value description="None of the following">#</Value>
-      <Value description="Microfilm">a</Value>
-      <Value description="Microfiche">b</Value>
-      <Value description="Microopaque">c</Value>
-      <Value description="Large print">d</Value>
+    <Position pos="23" name="Forma del material" description="Un código de un caracter que indica la forma del material para el ítem. ">
+      <Value description="Ninguno de los siguientes ">#</Value>
+      <Value description="Micropelícula ">a</Value>
+      <Value description="Microficha ">b</Value>
+      <Value description="Microopaca ">c</Value>
+      <Value description="Tipografía mayor ">d</Value>
       <Value description="Braille ">f</Value>
-      <Value description="Online.  The resource is accessed by means of hardware and software connections to a communications network. If a distinction between types of electronic resources is not necessary, code s can be used as a generic code for any form of electronic resource.">o</Value>
-      <Value description="Direct electronic">q</Value>
-      <Value description="Regular print reproduction">r</Value>
-      <Value description="Electronic. Intended for manipulation by a computer. May reside in a carrier accessed either directly or remotely, in some cases requiring the use of peripheral devices attached to the computer (e.g., a CD-ROM player). Not used for items that do not requi">s</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Impresión regular Impresión legible a simple vista. ">r</Value>
+      <Value description="Electrónica ">s</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="24" name="Nature of entire work" description="">
-      <Value description="Not specified">#</Value>
-      <Value description="Calendars">5</Value>
-      <Value description="Comics/graphic novels">6</Value>
-      <Value description="Abstracts/ summaries">a</Value>
-      <Value description="Bibliographies">b</Value>
-      <Value description="Catalogs">c</Value>
-      <Value description="Dictionaries. Also used for a glossary or a gazetteer.">d</Value>
-      <Value description="Encyclopedias">e</Value>
-      <Value description="Handbooks">f</Value>
-      <Value description="Legal articles">g</Value>
-      <Value description="Biography">h</Value>
-      <Value description="Indexes. Index to bibliographical material other than itself. Not used when a publication contains an index to its own content.">i</Value>
-      <Value description="Discographies">k</Value>
-      <Value description="Legislation. Full or partial text of enactments of legislative bodies, published either in statute or in code form, or text of rules and regulations issued by executive or adminitrative agencies.">l</Value>
-      <Value description="Theses">m</Value>
-      <Value description="Survey of literature in a subject area">n</Value>
-      <Value description="Reviews">o</Value>
-      <Value description="Programmed texts">p</Value>
-      <Value description="Filmographies">q</Value>
-      <Value description="Directories">r</Value>
-      <Value description="Statistics">s</Value>
-      <Value description="Technical reports">t</Value>
-      <Value description="Standards/ specifications">u</Value>
-      <Value description="Legal cases and case notes">v</Value>
-      <Value description="Law reorts and digests">w</Value>
-      <Value description="Yearbooks">y</Value>
-      <Value description="Teatries">z</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="24" name="Naturaleza de la obra completa" description="Un código de un caracter que indica cuando la naturaleza de un ítem consiste completamente de un cierto tipo de material. Si aplica más de un código, 008/24 contiene un espacio en blanco (#) y pueden registrarse hasta tres códigos en 008/25-27 (Naturaleza del contenido). ">
+      <Value description="Naturaleza del contenido no especificada ">#</Value>
+      <Value description="Resúmenes/sumarios El ítem consiste de resúmenes o sumarios de otras publicaciones. ">a</Value>
+      <Value description="Bibliografías ">b</Value>
+      <Value description="Catálogos ">c</Value>
+      <Value description="Diccionarios Este código también se usa para un glosario o una nomenclatura geográfica. ">d</Value>
+      <Value description="Enciclopedias ">e</Value>
+      <Value description="Manuales ">f</Value>
+      <Value description="Artículos jurídicos ">g</Value>
+      <Value description="Biografías ">h</Value>
+      <Value description="Indices El ítem consiste de un índice para material bibliográfico distinto al íten en mismo. ">i</Value>
+      <Value description="Discografías ">k</Value>
+      <Value description="Legislación El ítem consiste de textos completos o parciales de leyes de cuerpos legislativos o textos de reglas y regulaciones producidas por cuerpos ejecutivos o administrativos. ">l</Value>
+      <Value description="Tésis Indica que el ítem es una tesis, disertación u obra identificada como creada para satisfacer los requerimientos de una certificación o grado académico. ">m</Value>
+      <Value description="Estado de la literatura El ítem es o contiene estudios que resumen qué ha sido publicado sobre un tema. ">n</Value>
+      <Value description="Reseñas críticas El ítem consiste de revisiones críticas de obras publicadas o representadas. ">o</Value>
+      <Value description="Textos programados ">p</Value>
+      <Value description="Filmografías ">q</Value>
+      <Value description="Directorios ">r</Value>
+      <Value description="Estadísticas ">s</Value>
+      <Value description="Reportes técnicos ">t</Value>
+      <Value description="Normas/Especificaciones ">u</Value>
+      <Value description="Casos legales y notas de casos ">v</Value>
+      <Value description="Reportes y compendios de leyes ">w</Value>
+      <Value description="Tratados Indica que el ítem es un tratado o acuerdo negociado entre dos o más partes para arreglar un desacuerdo, establecer una relación, garantizar sus derechos, etc. ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="25-27" name="Nature of contents" description="">
-      <Value description="Not specified">#</Value>
-      <Value description="Calendars">5</Value>
-      <Value description="Comics/graphic novels">6</Value>
-      <Value description="Abstracts/ summaries">a</Value>
-      <Value description="Bibliographies">b</Value>
-      <Value description="Catalogs">c</Value>
-      <Value description="Dictionaries. Also used for a glossary or a gazetteer.">d</Value>
-      <Value description="Encyclopedias">e</Value>
-      <Value description="Handbooks">f</Value>
-      <Value description="Legal articles">g</Value>
-      <Value description="Biography">h</Value>
-      <Value description="Indexes. Index to bibliographical material other than itself. Not used when a publication contains an index to its own content.">i</Value>
-      <Value description="Discographies">k</Value>
-      <Value description="Legislation. Full or partial text of enactments of legislative bodies, published either in statute or in code form, or text of rules and regulations issued by executive or adminitrative agencies.">l</Value>
-      <Value description="Theses">m</Value>
-      <Value description="Survey of literature in a subject area">n</Value>
-      <Value description="Reviews">o</Value>
-      <Value description="Programmed texts">p</Value>
-      <Value description="Filmographies">q</Value>
-      <Value description="Directories">r</Value>
-      <Value description="Statistics">s</Value>
-      <Value description="Technical reports">t</Value>
-      <Value description="Standars/specifications">u</Value>
-      <Value description="Legal cases and case notes">v</Value>
-      <Value description="Law reports and digests">w</Value>
-      <Value description="Treaties">z</Value>
-      <Value description="No attempt to code">|||</Value>
+    <Position pos="25-27" name="Naturaleza del contenido" description="Hasta tres códigos de un caracter (registrados en orden alfabético) que indican que una obra contiene ciertos tipos de material. Si se asignan menos de tres códigos, se justifican a la izquierda y las posiciones no usadas contienen un espacio en blanco (#). ">
+      <Value description="Naturaleza del contenido no especificada ">#</Value>
+      <Value description="Resúmenes/sumarios El ítem es o contiene resúmenes o sumarios de otras publicaciones. ">a</Value>
+      <Value description="Bibliografías ">b</Value>
+      <Value description="Catálogos ">c</Value>
+      <Value description="Diccionarios Este código también se usa para un glosario o una nomenclatura geográfica. ">d</Value>
+      <Value description="Enciclopedias ">e</Value>
+      <Value description="Manuales ">f</Value>
+      <Value description="Artículos jurídicos ">g</Value>
+      <Value description="Biografías ">h</Value>
+      <Value description="Indices El ítem consiste de un índice para material bibliográfico distinto al ítem en sí mismo. ">i</Value>
+      <Value description="Discografías ">k</Value>
+      <Value description="Legislación El ítem es o contiene textos completos o parciales de leyes de cuerpos legislativos o textos de reglas y regulaciones producidas por cuerpos ejecutivos o administrativos. ">l</Value>
+      <Value description="Tésis Indica que el ítem es una tesis, disertación u obra identificada como creada para satisfacer los requerimientos de una certificación o grado académico. ">m</Value>
+      <Value description="Estado de la literatura El ítem es o contiene estudios que resumen qué ha sido publicado sobre un tema. ">n</Value>
+      <Value description="Reseñas críticas El ítem es o contiene revisiones críticas de obras publicadas o representadas. ">o</Value>
+      <Value description="Textos programados ">p</Value>
+      <Value description="Filmografías ">q</Value>
+      <Value description="Directorios ">r</Value>
+      <Value description="Estadísticas ">s</Value>
+      <Value description="Reportes técnicos ">t</Value>
+      <Value description="Normas/Especificaciones ">u</Value>
+      <Value description="Casos legales y notas de casos ">v</Value>
+      <Value description="Reportes y compendios de leyes ">w</Value>
+      <Value description="Tratados Indica que el ítem es un tratado o acuerdo negociado entre dos o más partes para arreglar un desacuerdo, establecer una relación, garantizar sus derechos, etc. ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="28" name="Government publication" description="One-character code that indicates whether or not the item is published or produced by or for an international, national, state, provincial, or local government agency, or by any subdivision of such a body">
-      <Value description="Not a government publication">#</Value>
-      <Value description="Autonomous or semi-autonomous component">a</Value>
+    <Position pos="28" name="Publicación gubernamental" description="Un código de un caracter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia. ">
+      <Value description="No es publicación gubernamental">#</Value>
+      <Value description="Componente autonomo o semiautonomo">a</Value>
       <Value description="Multilocal">c</Value>
-      <Value description="Federal / National">f</Value>
-      <Value description="International intergovernmental">i</Value>
+      <Value description="Federal / Nacional">f</Value>
+      <Value description="Intergubernamental / Internacional">i</Value>
       <Value description="Local">l</Value>
-      <Value description="Multistate">m</Value>
-      <Value description="Government publication-level undetermined">o</Value>
-      <Value description="State, provincial, territorial, dependent, etc.">s</Value>
-      <Value description="Unknown if item is government publication">u</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Multiestatal">m</Value>
+      <Value description="Publicación gubernamental- nivel indeterminado">o</Value>
+      <Value description="Estado, provincia, territorio, jurisdicción dependiente, etc">s</Value>
+      <Value description="Se desconoce si el item es una publicación gubernamental">u</Value>
+      <Value description="Otro">z</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="29" name="Conference publication" description="One-character numeric code that indicates whether an item consists of the proceedings, reports, or summaries of a conference.">
-      <Value description="Not a conference publication">0</Value>
-      <Value description="Conference publication">1</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="29" name="Conferencia" description="Un código de un caracter que indica que el ítem consiste de las memorias, reportes o sumarios de una conferencia. ">
+      <Value description="No es una conferencia ">0</Value>
+      <Value description="Conferencia ">1</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="30-32" name="Undefined" description="Undefined; each contains a blank (#) or a fill character (|)."/>
-    <Position pos="33" name="Original alphabet or script of title" description="One-character alphabetic code that indicates the original alphabet or script of the language of the title on the source item upon which the key title (field 222) is based.">
-      <Value description="No alphabet or script given / No key title">#</Value>
-      <Value description="Basic Roman">a</Value>
-      <Value description="Extended Roman">b</Value>
-      <Value description="Cyrillic">c</Value>
-      <Value description="Japanese">d</Value>
-      <Value description="Chinese">e</Value>
-      <Value description="Arabic">f</Value>
-      <Value description="Greek">g</Value>
-      <Value description="Hebrew">h</Value>
+    <Position pos="30-32" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="33" name="Alfabeto o escritura original del título" description="Un código de un caracter que indica el alfabeto o escritura original del título en el ítem utilizado como fuente para el título clave (campo 222). ">
+      <Value description="Sin alfabeto o escritura determinada/sin título clave Este código se relaciona con el título propiamente dicho del campo 245 cuando no existe título clave. ">#</Value>
+      <Value description="Latino básico No incluye diacríticos o caracteres especiales. ">a</Value>
+      <Value description="Latino extendido Incluye diacríticos y caracteres especiales. ">b</Value>
+      <Value description="Cirílico ">c</Value>
+      <Value description="Japonés ">d</Value>
+      <Value description="Chino ">e</Value>
+      <Value description="Arábigo ">f</Value>
+      <Value description="Griego ">g</Value>
+      <Value description="Hebreo ">h</Value>
       <Value description="Thai ">i</Value>
       <Value description="Devanagari ">j</Value>
-      <Value description="Korean">k</Value>
+      <Value description="Coreano ">k</Value>
       <Value description="Tamil ">l</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Desconocido ">u</Value>
+      <Value description="Otro Incluye casos en los que el título incluye palabras en más de un alfabeto o escritura. ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="34" name="Entry convention" description="One-character numeric code that indicates whether the item was cataloged according to successive entry, latest entry, or integrated entry cataloging conventions.">
-      <Value description="Succesive entry.New bibliographic record is created each time 1) a title changes, or 2) a corporate body used as main entry or uniform title qualifier, changes. The earlier or later title or author/title is recorded in a linking field (field 780/785) on each record.">0</Value>
-      <Value description="Latest entry. Cataloged under its latest (most recent) title or issuing body (pre-AACR cataloging rules). All former titles and/or issuing bodies are given in notes (fields 247, 547, and 550).">1</Value>
-      <Value description="Integrated entry. Cataloged under its latest (most recent) title and/or responsible person or corporate body. Used for integrating resources and electronic serials that do not retain their earlier titles.">2</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="34" name="Convención del asiento" description="Un código de un caracter que indica cuando un ítem fue catalogado de acuerdo a las convenciones de catalogación para asiento sucesivo, asiento ulterior o asiento integrado. ">
+      <Value description="Asiento sucesivo Se crea un nuevo registro bibliográfico cada vez que cambia el título o la entidad corporativa usada como asiento princial. El título anterior o posterior, o el autor/título, se registran en un campo de relación 780/785 en cada registro. ">0</Value>
+      <Value description="Asiento ulterior El ítem se cataloga bajo el título o entidad emisora más reciente (reglas pre-RCA2). Todos los títulos y/o entidades emisors anteriores se registran en notas (campos 247, 547 y 550). ">1</Value>
+      <Value description="Asiento integrado El registro se cataloga bajo su último (más reciente) título y/o bajo la persona o entidad corporativa responsable. Se usa para recursos integrados y publicaciones seriadas electrónicas que no retienen sus títulos anteriores. ">2</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="35-37" url="http://www.loc.gov/marc/languages/language_code.html" urltext="MARC Code List for Languages" name="Language" description="">
-      <Value description="No information provided">###</Value>
-      <Value description="Multiple languages">mul</Value>
-      <Value description="Sign languages">sgn</Value>
-      <Value description="Undetermined">und</Value>
-      <Value description="No linguistic content">zxx</Value>
-      <Value description="Tree-character alphabetic code">[aaa]</Value>
+    <Position pos="35-37" name="Idioma" description="Un código MARC de tres caracteres que indica el idioma del ítem. La fuente del código es la lista MARC Code List for Languages. La elección de un código MARC se basa en el idioma predominante del ítem. Pueden usarse tres caracteres de relleno si no se intenta codificar 008/35-37"/>
+    <Position pos="38" name="Registro modificado" description="">
+      <Value description="No modificado">#</Value>
+      <Value description="Información omitida con guiones">d</Value>
+      <Value description="Completamente en alfabeto latino/fichas latinizadas impresas">o</Value>
+      <Value description="Completamente en alfabeto latino/fichas impresas en manuscrito">r</Value>
+      <Value description="Recortado. Algundos datos han sido omitidos porque el registro podría exceder la longitud máxima permitida por el sistema en particular">s</Value>
+      <Value description="Caracteres faltantes. Faltan en el registro los caracteres que o pudieron convertirse a un formato legible por máquina debido a limitaciones del juego de caracteres.">x</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="38" name="Modified record" description="One-character code that indicates whether any data in a bibliographic record is a modification of information that appeared on the item being cataloged or that was intended to be included in the MARC record.">
-      <Value description="No modified">#</Value>
-      <Value description="Dashed-on information omitted">d</Value>
-      <Value description="Completely romanized/printed cards romanized">o</Value>
-      <Value description="Completely romanized/printed cards in script">r</Value>
-      <Value description="Shortened">s</Value>
-      <Value description="Missing characters">x</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="39" name="Cataloging source" description="">
-      <Value description="National bibliographic agency">#</Value>
-      <Value description="Cooperative cataloging program">c</Value>
-      <Value description="Other">d</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="39" name="Fuente de catalogación" description="">
+      <Value description="Agencia bibliografia nacional">#</Value>
+      <Value description="Programa de catalogación cooperativa. El creador de los datos bibliográficos participa en un programa de catalogación cooperativa (diferente a una agencia bibliográfica nacional)">c</Value>
+      <Value description="Otro">d</Value>
+      <Value description="Desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
   </Material>
-  <Material id="VM" name="Visual Materials" description="">
-    <Position pos="00-05" name="Date entered on file" description=""/>
-    <Position pos="06" name="Type of date/ Publication status" description="">
-      <Value description="No dates given; B.C. date involved">b</Value>
-      <Value description="Continuing resource currently published">c</Value>
-      <Value description="Continuing resource ceased publication">d</Value>
-      <Value description="Detailed date">e</Value>
-      <Value description="Inclusive dates of colletion">i</Value>
-      <Value description="Range of years of bulk of collection">k</Value>
-      <Value description="Multiple dates">m</Value>
-      <Value description="Dates unknown">n</Value>
-      <Value description="Date of distribution/ release/ issue and production/ recording session when different">p</Value>
-      <Value description="Questionable date">q</Value>
-      <Value description="Reprint / reissue date and original date">r</Value>
-      <Value description="Single know date / probable date">s</Value>
-      <Value description="Publication date and copyright date">t</Value>
-      <Value description="Continuings resource status unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+  <Material id="VM" name="Materiales Visuales" description="">
+    <Position pos="00-05" name="Fecha de ingreso del registro" description="Cadena numérica de seis caracteres generada automáticamente por computador que indica la fecha en que fue creado el registro MARC. La fecha se registra siguiendo el patroón aammdd"/>
+    <Position pos="06" name="Tipo de fecha/ Estado de la publicación" description="">
+      <Value description="Sin fechas o implica fechas a.C. Cada posición en 008/07-10 y en 008/11-14 contienen espacios en blanco (#)">b</Value>
+      <Value description="Recurso continuo publicado actualmente 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene 9999">c</Value>
+      <Value description="Recurso continuo que terminó en publicación 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene la fecha de terminación de la publicación">d</Value>
+      <Value description="Fecha detallada. 008/07-10 contiene el año y 008/11-14 contiene el mes y día, registrado en el patrón mmdd">e</Value>
+      <Value description="Fechas inclusivas de la colección">i</Value>
+      <Value description="Rango de años de la mayor parte de la colección">k</Value>
+      <Value description="Fechas múltiples. 008/07-10 normalmente contiene la fecha de inicio y 008/11-14 la fecha de terminación">m</Value>
+      <Value description="Fechas desconocidas. Indica que las fechas apropiadas para 008/07-10 y para 008/11-14 son desconocidas (e.j., cuando no hay fechas en el campo 260)">n</Value>
+      <Value description="Fechas de distribución, puesta en circulación, emisión y produción; cuando difieren">p</Value>
+      <Value description="Fecha cuestionable. 008/07-10 contiene la fecha más antigua posible; 008/11-14 contiene la fecha más reciente posible">q</Value>
+      <Value description="Fecha de reimpresión o reedicion y fecha original. 008/07-10 contiene la fecha de reproducción o reedición; 008/11-14 contiene la fecha del original, si es conocida; si se desconoce contiene el código u (&quot;uuuu&quot;).">r</Value>
+      <Value description="Fecha individual conocida o probable.008/07-10 contiene la fecha; 008/11-14 contiene espacios en blanco.(####)">s</Value>
+      <Value description="Fecha de publicación y de derechos de autor (&quot;copyright&quot;)">t</Value>
+      <Value description="Estado desconocido del recurso continuo. 008/07-10 contiene la fecha de inicio de publicación; 008/11-14 contiene el código u (&quot;uuuu&quot;).">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="07-10" name="Date 1" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="07-10" name="Fecha1" description="">
+      <Value description="No aplica elemento de fecha">#</Value>
+      <Value description="Dígitos de la fecha">1-9</Value>
+      <Value description="Elemento de fecha total o parcialmente desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="11-14" name="Date 2" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="15-17" name="Lugar de publicación, distribución o ejecución" description="Un código MARC de dos o tres caracteres que indica el lugar de publicación, producción o ejecución. El código de lugar es un elemento de información autorizado por una agencia; la fuente del código es la lista MARC Code List for Countries. La selección de un código MARC está generalmente relacionada con la información en el campo 260 (Publicación, distribución, etc. (Pie de imprenta)). Cuando es apropiado utilizar más de un código para un ítem, el registrado en 008/15-17se usa en conjunto con el campo 044 (Código del país del productor); el primer código de subcampo $a del campo 044 se registra en 008/15-17. Pueden usarse tres caracteres de relleno(||||) en lugar de un código válido, pero no se recomienda porque los datos en estas posiciones se usan para la recuperación y detección de duplicados en muchos sistemas; cuando se rellenan las en 008/15-17, todas las posiciones deben contener el caracter de relleno."/>
+    <Position pos="18-20" name="Tiempo de duración de películas y videograbaciones" description="Un número de tres dígitos que indica el tiempo de duración total de la película o de la videograbación. El número se justifica a la derecha y cada posición no utilizada contiene un cero. ">
+      <Value description="El tiempo de duración excede tres caracteres ">000</Value>
+      <Value description="Tiempo de duración ">001-999</Value>
+      <Value description="No se aplica al caso ">nnn</Value>
+      <Value description="No hay intención de codificar ">|||</Value>
+      <Value description="Tiempo de duración desconocido ">                         --- </Value>
     </Position>
-    <Position pos="15-17" url="http://www.loc.gov/marc/countries/countries_code.html" urltext="MARC Code List for Countries" name="Place of publication, production, or execution" description="">
-      <Value description="Various places">vp# </Value>
-      <Value description="No place, unknown, or undetermined">xx#</Value>
-      <Value description="Two-character alphabetic code">[aa#]</Value>
-      <Value description="Three-character alphabetic code">[aaa]</Value>
-    </Position>
-    <Position pos="18-20" name="Running time for motion pictures and videorecordings " description="Three-digit number that indicates the total running time of the motion picture or videorecording. The number is right justified and each unused position contains a zero.">
-      <Value description="Running time exceeds three characters">000</Value>
-      <Value description="Running time">001-999</Value>
-      <Value description="Not applicable">nnn</Value>
-      <Value description="No attempt to code">|||</Value>
-      <Value description="Unknown">                         --- </Value>
-    </Position>
-    <Position pos="21" name="Undefined" description="Undefined; contains a blank (#) or a fill character (|)."/>
-    <Position pos="22" name="Target audience" description="One- character alphabetic code that describes the intellectual level of the target audience for which the material is intended">
-      <Value description="Unknown or not specified">#</Value>
-      <Value description="Preschool">a</Value>
-      <Value description="Primary">b</Value>
-      <Value description="Pre-adolescent">c</Value>
-      <Value description="Adolescent">d</Value>
-      <Value description="Adult">e</Value>
-      <Value description="Specialized">f</Value>
+    <Position pos="21" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="22" name="Audiencia" description="Un código de un carácter que indica la audiencia a la que se dirige el ítem.">
+      <Value description="Desconocida o no especificada">#</Value>
+      <Value description="Preescolar">a</Value>
+      <Value description="Primaria">b</Value>
+      <Value description="Preadolescente">c</Value>
+      <Value description="Adolescente">d</Value>
+      <Value description="Adulto">e</Value>
+      <Value description="Especializada">f</Value>
       <Value description="General">g</Value>
-      <Value description="Juvenile">j</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Juvenil ">j</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="23-27" name="Undefined" description="Undefined; each contains a blank (#) or a fill character (|)."/>
-    <Position pos="28" name="Government publication" description="One-character code that indicates whether or not the item is published or produced by or for an international, national, state, provincial, or local government agency, or by any subdivision of such a body">
-      <Value description="Not a government publication">#</Value>
-      <Value description="Autonomous or semi-autonomous component">a</Value>
+    <Position pos="23-27" name="No definidos" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="28" name="Publicación gubernamental" description="Un código de un carácter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia.">
+      <Value description="No es publicación gubernamental">#</Value>
+      <Value description="Componente autonomo o semiautonomo">a</Value>
       <Value description="Multilocal">c</Value>
-      <Value description="Federal / National">f</Value>
-      <Value description="International intergovernmental">i</Value>
+      <Value description="Federal / Nacional">f</Value>
+      <Value description="Intergubernamental / Internacional">i</Value>
       <Value description="Local">l</Value>
-      <Value description="Multistate">m</Value>
-      <Value description="Government publication-level undetermined">o</Value>
-      <Value description="State, provincial, territorial, dependent, etc.">s</Value>
-      <Value description="Unknown if item is government publication">u</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Multiestatal">m</Value>
+      <Value description="Publicación gubernamental- nivel indeterminado">o</Value>
+      <Value description="Estado, provincia, territorio, jurisdicción dependiente, etc">s</Value>
+      <Value description="Se desconoce si el item es una publicación gubernamental">u</Value>
+      <Value description="Otro">z</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="29" name="Form of item" description="One-character alphabetic code that indicates the form of material for the item.">
-      <Value description="None of the following">#</Value>
-      <Value description="Microfilm">a</Value>
-      <Value description="Microfiche">b</Value>
-      <Value description="Microopaque">c</Value>
-      <Value description="Large print">d</Value>
-      <Value description="Braille ">f</Value>
-      <Value description="Online.  The resource is accessed by means of hardware and software connections to a communications network. If a distinction between types of electronic resources is not necessary, code s can be used as a generic code for any form of electronic resource.">o</Value>
-      <Value description="Direct electronic. Storage on a directly accessible tangible recording medium, e.g. disc, tape, playaway device, flashdrive, portable hard drive, etc. If a distinction between types of electronic resources is not necessary, code s can be used as a generic code for any form of electronic resource.">q</Value>
-      <Value description="Regular print reproduction">r</Value>
-      <Value description="Electronic. Intended for manipulation by a computer. May reside in a carrier accessed either directly or remotely, in some cases requiring the use of peripheral devices attached to the computer (e.g., a CD-ROM player). Not used for items that do not require the use of a computer (e.g., music compact discs, videodiscs). This code can be used as a generic code for any form of electronic resource. Codes o and q may be used if there is a need to separately identify online and direct electronic resources.">s</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="29" name="Forma de material" description="Un código de un carácter que indica la forma de material para el ítem.">
+      <Value description="Ninguno de los siguientes">#</Value>
+      <Value description="Micropelícula">a</Value>
+      <Value description="Microficha">b</Value>
+      <Value description="Microopaco">c</Value>
+      <Value description="Tipografía mayor">d</Value>
+      <Value description="Braille">f</Value>
+      <Value description="Impresión regular. Impresión legible a simple vista">r</Value>
+      <Value description="Electrónica">s</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="30-32" name="Undefined" description="Undefined; each contains a blank (#) or a fill character (|)."/>
-    <Position pos="33" name="Type of visual material" description="One-character alphabetic code that indicates the type of visual material being described.">
-      <Value description="Art original ">a</Value>
-      <Value description="Kit.Mixture of components from two or more categories, that is, sound recording, maps, filmstrips, etc., no one of which is the predominant constituent of the item.">b</Value>
-      <Value description="Art reproduction">c</Value>
+    <Position pos="30-32" name="No definidos" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="33" name="Tipo de material visual" description="Un código de un caracter que indica el tipo de material visual. ">
+      <Value description="Arte original ">a</Value>
+      <Value description="Conjunto Un ítem que contiene una mezcla de componentes de dos o más categorías, ninguna de las cuales es la parte predominante del ítem. ">b</Value>
+      <Value description="Reproducción de arte ">c</Value>
       <Value description="Diorama ">d</Value>
-      <Value description="Filmstrip">f</Value>
-      <Value description="Game">g</Value>
-      <Value description="Picture">i</Value>
-      <Value description="Graphic">k</Value>
-      <Value description="Technical drawing">l</Value>
-      <Value description="Motion picture">m</Value>
-      <Value description="Chart">n</Value>
-      <Value description="Flash card">o</Value>
-      <Value description="Microscope slide">p</Value>
-      <Value description="Model">q</Value>
+      <Value description="Filmina ">f</Value>
+      <Value description="Juego ">g</Value>
+      <Value description="Pintura (Lámina) ">i</Value>
+      <Value description="Gráfico ">k</Value>
+      <Value description="Dibujo técnico ">l</Value>
+      <Value description="Película ">m</Value>
+      <Value description="Tabla ">n</Value>
+      <Value description="Tarjeta de identificación rápida ">o</Value>
+      <Value description="Portaobjeto ">p</Value>
+      <Value description="Modelo ">q</Value>
       <Value description="Realia ">r</Value>
-      <Value description="Slide">s</Value>
-      <Value description="Transparency">t</Value>
-      <Value description="Videorecording">v</Value>
-      <Value description="Toy">w</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+      <Value description="Diapositiva ">s</Value>
+      <Value description="Transparencia ">t</Value>
+      <Value description="Videograbación ">v</Value>
+      <Value description="Juguete ">w</Value>
+      <Value description="Otro ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="34" name="Technique" description="One-character alphabetic code that indicates the technique used in creating motion in motion pictures or videorecordings.">
-      <Value description="Animation">a</Value>
-      <Value description="Animation and live action">c</Value>
-      <Value description="Live action">l</Value>
-      <Value description="Not applicable">n</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="Other">z</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="34" name="Técnica" description="Un código de un caracter que indica la técnica usada en la creación del movimiento en una película o videograbación">
+      <Value description="Animación ">a</Value>
+      <Value description="Animación y acción en vivo ">c</Value>
+      <Value description="Acción en vivo ">l</Value>
+      <Value description="No se aplica al caso. El ítem no es una película o videograbación. ">n</Value>
+      <Value description="Desconocida ">u</Value>
+      <Value description="Otra técnica ">z</Value>
+      <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="35-37" url="http://www.loc.gov/marc/languages/language_code.html" urltext="MARC Code List for Languages" name="Language" description="">
-      <Value description="No information provided">###</Value>
-      <Value description="Multiple languages">mul</Value>
-      <Value description="Sign languages">sgn</Value>
-      <Value description="Undetermined">und</Value>
-      <Value description="No linguistic content">zxx</Value>
-      <Value description="Tree-character alphabetic code">[aaa]</Value>
+    <Position pos="35-37" name="Idioma" description="Un código MARC de tres caracteres que indica el idioma del ítem. La fuente del código es la lista MARC Code List for Languages. La elección de un código MARC se basa en el idioma predominante del ítem. Pueden usarse tres caracteres de relleno si no se intenta codificar 008/35-37"/>
+    <Position pos="38" name="Registro modificado" description="">
+      <Value description="No modificado">#</Value>
+      <Value description="Información omitida con guiones">d</Value>
+      <Value description="Completamente en alfabeto latino/fichas latinizadas impresas">o</Value>
+      <Value description="Completamente en alfabeto latino/fichas impresas en manuscrito">r</Value>
+      <Value description="Recortado. Algundos datos han sido omitidos porque el registro podría exceder la longitud máxima permitida por el sistema en particular">s</Value>
+      <Value description="Caracteres faltantes. Faltan en el registro los caracteres que o pudieron convertirse a un formato legible por máquina debido a limitaciones del juego de caracteres.">x</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="38" name="Modified record" description="One-character code that indicates whether any data in a bibliographic record is a modification of information that appeared on the item being cataloged or that was intended to be included in the MARC record.">
-      <Value description="No modified">#</Value>
-      <Value description="Dashed-on information omitted">d</Value>
-      <Value description="Completely romanized/printed cards romanized">o</Value>
-      <Value description="Completely romanized/printed cards in script">r</Value>
-      <Value description="Shortened">s</Value>
-      <Value description="Missing characters">x</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="39" name="Cataloging source" description="">
-      <Value description="National bibliographic agency">#</Value>
-      <Value description="Cooperative cataloging program">c</Value>
-      <Value description="Other">d</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="39" name="Fuente de catalogación" description="">
+      <Value description="Agencia bibliografia nacional">#</Value>
+      <Value description="Programa de catalogación cooperativa. El creador de los datos bibliográficos participa en un programa de catalogación cooperativa (diferente a una agencia bibliográfica nacional)">c</Value>
+      <Value description="Otro">d</Value>
+      <Value description="Desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
   </Material>
-  <Material id="MX" name="Mixed Materials" description="">
-    <Position pos="00-05" name="Date entered on file" description=""/>
-    <Position pos="06" name="Type of date/ Publication status" description="">
-      <Value description="No dates given; B.C. date involved">b</Value>
-      <Value description="Continuing resource currently published">c</Value>
-      <Value description="Continuing resource ceased publication">d</Value>
-      <Value description="Detailed date">e</Value>
-      <Value description="Inclusive dates of colletion">i</Value>
-      <Value description="Range of years of bulk of collection">k</Value>
-      <Value description="Multiple dates">m</Value>
-      <Value description="Dates unknown">n</Value>
-      <Value description="Date of distribution/ release/ issue and production/ recording session when different">p</Value>
-      <Value description="Questionable date">q</Value>
-      <Value description="Reprint / reissue date and original date">r</Value>
-      <Value description="Single know date / probable date">s</Value>
-      <Value description="Publication date and copyright date">t</Value>
-      <Value description="Continuings resource status unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+  <Material id="MX" name="Materiales Mixtos" description="">
+    <Position pos="00-05" name="Fecha de ingreso del registro" description="Cadena numérica de seis caracteres generada automáticamente por computador que indica la fecha en que fue creado el registro MARC. La fecha se registra siguiendo el patroón aammdd"/>
+    <Position pos="06" name="Tipo de fecha/ Estado de la publicación" description="">
+      <Value description="Sin fechas o implica fechas a.C. Cada posición en 008/07-10 y en 008/11-14 contienen espacios en blanco (#)">b</Value>
+      <Value description="Recurso continuo publicado actualmente 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene 9999">c</Value>
+      <Value description="Recurso continuo que terminó en publicación 008/07-10 contiene la fecha de inicio de la publicación; 008/11-14 contiene la fecha de terminación de la publicación">d</Value>
+      <Value description="Fecha detallada. 008/07-10 contiene el año y 008/11-14 contiene el mes y día, registrado en el patrón mmdd">e</Value>
+      <Value description="Fechas inclusivas de la colección">i</Value>
+      <Value description="Rango de años de la mayor parte de la colección">k</Value>
+      <Value description="Fechas múltiples. 008/07-10 normalmente contiene la fecha de inicio y 008/11-14 la fecha de terminación">m</Value>
+      <Value description="Fechas desconocidas. Indica que las fechas apropiadas para 008/07-10 y para 008/11-14 son desconocidas (e.j., cuando no hay fechas en el campo 260)">n</Value>
+      <Value description="Fechas de distribución, puesta en circulación, emisión y produción; cuando difieren">p</Value>
+      <Value description="Fecha cuestionable. 008/07-10 contiene la fecha más antigua posible; 008/11-14 contiene la fecha más reciente posible">q</Value>
+      <Value description="Fecha de reimpresión o reedicion y fecha original. 008/07-10 contiene la fecha de reproducción o reedición; 008/11-14 contiene la fecha del original, si es conocida; si se desconoce contiene el código u (&quot;uuuu&quot;).">r</Value>
+      <Value description="Fecha individual conocida o probable.008/07-10 contiene la fecha; 008/11-14 contiene espacios en blanco.(####)">s</Value>
+      <Value description="Fecha de publicación y de derechos de autor (&quot;copyright&quot;)">t</Value>
+      <Value description="Estado desconocido del recurso continuo. 008/07-10 contiene la fecha de inicio de publicación; 008/11-14 contiene el código u (&quot;uuuu&quot;).">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="07-10" name="Date 1" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="07-10" name="Fecha1" description="">
+      <Value description="No aplica elemento de fecha">#</Value>
+      <Value description="Dígitos de la fecha">1-9</Value>
+      <Value description="Elemento de fecha total o parcialmente desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="11-14" name="Date 2" description="A date specified by the code in 008/06 (Type of date/ Publication status)">
-      <Value description="Date element is not applicable">#</Value>
-      <Value description="Date digit">1</Value>
-      <Value description="Date digit">2</Value>
-      <Value description="Date digit">3</Value>
-      <Value description="Date digit">4</Value>
-      <Value description="Date digit">5</Value>
-      <Value description="Date digit">6</Value>
-      <Value description="Date digit">7</Value>
-      <Value description="Date digit">8</Value>
-      <Value description="Date digit">9</Value>
-      <Value description="Date element is totally or partially unknown">u</Value>
-      <Value description="No attempt to code">||||</Value>
+    <Position pos="15-17" name="Lugar de publicación, distribución o ejecución" description="Un código MARC de dos o tres caracteres que indica el lugar de publicación, producción o ejecución. El código de lugar es un elemento de información autorizado por una agencia; la fuente del código es la lista MARC Code List for Countries. La selección de un código MARC está generalmente relacionada con la información en el campo 260 (Publicación, distribución, etc. (Pie de imprenta)). Cuando es apropiado utilizar más de un código para un ítem, el registrado en 008/15-17se usa en conjunto con el campo 044 (Código del país del productor); el primer código de subcampo $a del campo 044 se registra en 008/15-17. Pueden usarse tres caracteres de relleno(||||) en lugar de un código válido, pero no se recomienda porque los datos en estas posiciones se usan para la recuperación y detección de duplicados en muchos sistemas; cuando se rellenan las en 008/15-17, todas las posiciones deben contener el caracter de relleno."/>
+    <Position pos="18-22" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="23" name="Forma de material" description="Un código de un carácter que indica la forma de material para el ítem.">
+      <Value description="Ninguno de los siguientes">#</Value>
+      <Value description="Micropelícula">a</Value>
+      <Value description="Microficha">b</Value>
+      <Value description="Microopaco">c</Value>
+      <Value description="Tipografía mayor">d</Value>
+      <Value description="Braille">f</Value>
+      <Value description="Impresión regular. Impresión legible a simple vista">r</Value>
+      <Value description="Electrónica">s</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="15-17" url="http://www.loc.gov/marc/countries/countries_code.html" urltext="MARC Code List for Countries" name="Place of publication, production, or execution" description="">
-      <Value description="Various places">vp# </Value>
-      <Value description="No place, unknown, or undetermined">xx#</Value>
-      <Value description="Two-character alphabetic code">[aa#]</Value>
-      <Value description="Three-character alphabetic code">[aaa]</Value>
+    <Position pos="24-34" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="35-37" name="Idioma" description="Un código MARC de tres caracteres que indica el idioma del ítem. La fuente del código es la lista MARC Code List for Languages. La elección de un código MARC se basa en el idioma predominante del ítem. Pueden usarse tres caracteres de relleno si no se intenta codificar 008/35-37"/>
+    <Position pos="38" name="Registro modificado" description="">
+      <Value description="No modificado">#</Value>
+      <Value description="Información omitida con guiones">d</Value>
+      <Value description="Completamente en alfabeto latino/fichas latinizadas impresas">o</Value>
+      <Value description="Completamente en alfabeto latino/fichas impresas en manuscrito">r</Value>
+      <Value description="Recortado. Algundos datos han sido omitidos porque el registro podría exceder la longitud máxima permitida por el sistema en particular">s</Value>
+      <Value description="Caracteres faltantes. Faltan en el registro los caracteres que o pudieron convertirse a un formato legible por máquina debido a limitaciones del juego de caracteres.">x</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="18-22" name="Undefined" description="Undefined; each contains a blank (#) or a fill character (|)."/>
-    <Position pos="23" name="Form of item" description="One-character alphabetic code that specifies the form of material for the item being described">
-      <Value description="None of the following">#</Value>
-      <Value description="Microfilm">a</Value>
-      <Value description="Microfiche">b</Value>
-      <Value description="Microopaque">c</Value>
-      <Value description="Large print">d</Value>
-      <Value description="Braille ">f</Value>
-      <Value description="Online.  The resource is accessed by means of hardware and software connections to a communications network. If a distinction between types of electronic resources is not necessary, code s can be used as a generic code for any form of electronic resource.">o</Value>
-      <Value description="Direct electronic">q</Value>
-      <Value description="Regular print reproduction">r</Value>
-      <Value description="Electronic. Intended for manipulation by a computer. May reside in a carrier accessed either directly or remotely, in some cases requiring the use of peripheral devices attached to the computer (e.g., a CD-ROM player). Not used for items that do not requi">s</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="24-34" name="Undefined" description="Undefined; each contains a blank (#) or a fill character (|)."/>
-    <Position pos="35-37" url="http://www.loc.gov/marc/languages/language_code.html" urltext="MARC Code List for Languages" name="Language" description="">
-      <Value description="No information provided">###</Value>
-      <Value description="Multiple languages">mul</Value>
-      <Value description="Sign languages">sgn</Value>
-      <Value description="Undetermined">und</Value>
-      <Value description="No linguistic content">zxx</Value>
-      <Value description="Tree-character alphabetic code">[aaa]</Value>
-    </Position>
-    <Position pos="38" name="Modified record" description="One-character code that indicates whether any data in a bibliographic record is a modification of information that appeared on the item being cataloged or that was intended to be included in the MARC record.">
-      <Value description="No modified">#</Value>
-      <Value description="Dashed-on information omitted">d</Value>
-      <Value description="Completely romanized/printed cards romanized">o</Value>
-      <Value description="Completely romanized/printed cards in script">r</Value>
-      <Value description="Shortened">s</Value>
-      <Value description="Missing characters">x</Value>
-      <Value description="No attempt to code">|</Value>
-    </Position>
-    <Position pos="39" name="Cataloging source" description="">
-      <Value description="National bibliographic agency">#</Value>
-      <Value description="Cooperative cataloging program">c</Value>
-      <Value description="Other">d</Value>
-      <Value description="Unknown">u</Value>
-      <Value description="No attempt to code">|</Value>
+    <Position pos="39" name="Fuente de catalogación" description="">
+      <Value description="Agencia bibliografia nacional">#</Value>
+      <Value description="Programa de catalogación cooperativa. El creador de los datos bibliográficos participa en un programa de catalogación cooperativa (diferente a una agencia bibliográfica nacional)">c</Value>
+      <Value description="Otro">d</Value>
+      <Value description="Desconocido">u</Value>
+      <Value description="No hay intención de codificar">|</Value>
     </Position>
   </Material>
 </Tagfield>

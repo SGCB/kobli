@@ -211,7 +211,7 @@ function changeH4Result(form, h4_result, tr_result, pos, value)
             }).responseXML;
             if (this.xmlDoc) this.renderTemplate();
             $("*").ajaxError(function(evt, request, settings){
-                alert(_("AJAX error: receiving data from ") + settings.url);
+                alert(_("Error de AJAX: recibiendo datos desde ") + settings.url);
             });
         },//loadXmlValues
 
