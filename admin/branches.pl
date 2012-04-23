@@ -405,7 +405,8 @@ sub _branch_to_template {
          branchurl      => $data->{'branchurl'},
          opac_info      => $data->{'opac_info'},
          branchip       => $data->{'branchip'},
-         branchnotes    => $data->{'branchnotes'}, 
+         branchnotes    => $data->{'branchnotes'},
+         notforopac  => $data->{'notforopac'},
     );
 }
 

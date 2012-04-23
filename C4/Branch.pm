@@ -33,6 +33,7 @@ BEGIN {
 		&GetBranch
 		&GetBranches
 		&GetBranchesLoop
+        &GetBranchesLoopOpac
 		&GetBranchDetail
 		&get_branchinfos_of
 		&ModBranch
@@ -175,6 +176,23 @@ sub GetBranchesLoop {  # since this is what most pages want anyway
     return \@loop;
 }
 
+sub GetBranchesLoopOpac (;$$) {  # since this is what most pages want anyway
+    my $branch   = @_ ? shift : mybranch();     # optional first argument is branchcode of "my branch", if preselection is wanted.
+    my $onlymine = @_ ? shift : onlymine();
+    my $branches = GetBranches($onlymine);
+    my @loop;
+    foreach ( sort { uc($branches->{$a}->{branchname}) cmp uc($branches->{$b}->{branchname}) } keys %$branches ) {
+        unless($branches->{$_}->{notforopac}){
+            push @loop, {
+                value => $_,
+                selected => ($_ eq $branch) ? 1 : 0, 
+                branchname => $branches->{$_}->{branchname},
+            };
+        }
+    }
+    return \@loop;
+}
+
 =head2 GetBranchName
 
 =cut
@@ -209,8 +227,8 @@ sub ModBranch {
             (branchcode,branchname,branchaddress1,
             branchaddress2,branchaddress3,branchzip,branchcity,branchstate,
             branchcountry,branchphone,branchfax,branchemail,
-            branchurl,branchip,branchprinter,branchnotes,opac_info)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            branchurl,branchip,branchprinter,branchnotes,opac_info,notforopac)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         ";
         my $sth    = $dbh->prepare($query);
         $sth->execute(
@@ -222,7 +240,7 @@ sub ModBranch {
             $data->{'branchphone'},      $data->{'branchfax'},
             $data->{'branchemail'},      $data->{'branchurl'},
             $data->{'branchip'},         $data->{'branchprinter'},
-            $data->{'branchnotes'},      $data->{opac_info},
+            $data->{'branchnotes'},      $data->{opac_info},      $data->{'notforopac'},
         );
         return 1 if $dbh->err;
     } else {
@@ -232,7 +250,7 @@ sub ModBranch {
                 branchaddress2=?,branchaddress3=?,branchzip=?,
                 branchcity=?,branchstate=?,branchcountry=?,branchphone=?,
                 branchfax=?,branchemail=?,branchurl=?,branchip=?,
-                branchprinter=?,branchnotes=?,opac_info=?
+                branchprinter=?,branchnotes=?,opac_info=?,notforopac=?
             WHERE branchcode=?
         ";
         my $sth    = $dbh->prepare($query);
@@ -245,7 +263,7 @@ sub ModBranch {
             $data->{'branchphone'},      $data->{'branchfax'},
             $data->{'branchemail'},      $data->{'branchurl'},
             $data->{'branchip'},         $data->{'branchprinter'},
-            $data->{'branchnotes'},      $data->{opac_info},
+            $data->{'branchnotes'},      $data->{opac_info},      $data->{'notforopac'},
             $data->{'branchcode'},
         );
     }
