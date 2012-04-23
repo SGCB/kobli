@@ -158,7 +158,7 @@ $(document).ready(function(){
  </select>
  </fieldset>
  </form>
- <div id="jobpanel"><div id="jobstatus">Avance del trabajo:<div id="jobprogress"></div> <span id="jobprogresspercent"></span>%</div>
+ <div id="jobpanel"><div id="jobstatus">Avance del trabajo:<div id="jobprogress"></div> <span id="jobprogresspercent">0</span>%</div>
  <div id="jobfailed"></div></div>
  [% END %]
  [% IF ( can_revert ) %]
@@ -169,7 +169,7 @@ $(document).ready(function(){
  <input type="hidden" name="import_batch_id" value="[% import_batch_id %]" />
  <fieldset class="action"><input value="Deshacer importación en el catálogo" name="mainformsubmit" type="submit" class="button" onclick="return submitBackgroundJob(this.form);" /></fieldset>
  </form>
- <div id="jobpanel"><div id="jobstatus">Avance del trabajo:<div id="jobprogress"></div> <span id="jobprogresspercent"></span>%</div>
+ <div id="jobpanel"><div id="jobstatus">Avance del trabajo:<div id="jobprogress"></div> <span id="jobprogresspercent">0</span>%</div>
  <div id="jobfailed"></div></div>
  [% END %]
 </div>
