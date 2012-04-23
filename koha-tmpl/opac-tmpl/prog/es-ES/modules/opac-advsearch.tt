@@ -208,7 +208,7 @@
  
  <select name="limit" id="branchloop">
  <option value="">Todas las bibliotecas</option>
- [% FOREACH BranchesLoo IN BranchesLoop %] [% IF ( BranchesLoo.selected ) %] <option value="branch:[% BranchesLoo.value %]" selected="selected">[% BranchesLoo.branchname %]</option>
+ [% FOREACH BranchesLoo IN BranchesLoopOpac %] [% IF ( BranchesLoo.selected ) %] <option value="branch:[% BranchesLoo.value %]" selected="selected">[% BranchesLoo.branchname %]</option>
  [% ELSE %] <option value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>
  [% END %] [% END %] </select>
  [% IF ( searchdomainloop ) %] <p>O</p> <!-- should addjs to grey out group pulldown if a library is selected. -->

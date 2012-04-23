@@ -385,6 +385,7 @@ sub get_template_and_user {
             BranchesLoop              => GetBranchesLoop($opac_name),
             BranchCategoriesLoop      => GetBranchCategories( 'searchdomain', 1, $opac_name ),
             CalendarFirstDayOfWeek    => (C4::Context->preference("CalendarFirstDayOfWeek") eq "Sunday")?0:1,
+            BranchesLoopOpac          => GetBranchesLoopOpac($opac_name),
             LibraryName               => "" . C4::Context->preference("LibraryName"),
             LibraryNameTitle          => "" . $LibraryNameTitle,
             LoginBranchname           => C4::Context->userenv?C4::Context->userenv->{"branchname"}:"",

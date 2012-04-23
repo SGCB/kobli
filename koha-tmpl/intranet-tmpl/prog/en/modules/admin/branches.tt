@@ -146,6 +146,14 @@ tinyMCE.init({
             </select></li>
 			-->
         <li><label for="branchnotes">Notes: </label><input type="text" name="branchnotes" id="branchnotes" size="80" value="[% branchnotes |html %]" /></li>
+        <li>
+         <label for="notforloan">Don't show in OPAC</label> [% IF ( notforopac ) %]
+         <input type="checkbox" id="notforopac" name="notforopac" checked="checked" value="1" />
+         [% ELSE %]
+         <input type="checkbox" id="notforopac" name="notforopac" value="1" />
+         [% END %]
+         (The library doesn't show in the OPAC)
+         </li>
         </ol>
         </fieldset>
         <fieldset class="action"><input type="submit" value="Submit" /> <a class="cancel" href="/cgi-bin/koha/admin/branches.pl">Cancel</a></fieldset>
