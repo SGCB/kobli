@@ -462,7 +462,7 @@ YAHOO.util.Event.onContentReady("searchheader", function () {
  <b>[% IF ( SEARCH_RESULT.title ) %][% SEARCH_RESULT.title |html %][% ELSE %]Ningún título[% END %]</b>
  </a>
  [% FOREACH subtitl IN SEARCH_RESULT.subtitle %], [% subtitl.subfield %][% END %]
- [% IF ( SEARCH_RESULT.volume ) %],[% SEARCH_RESULT.volume %][% END %] [% IF ( SEARCH_RESULT.volumeddesc ) %], [% SEARCH_RESULT.volumeddesc %][% END %]
+ [% IF ( SEARCH_RESULT.volumeddesc ) %], [% SEARCH_RESULT.volumeddesc %][% END %]
  </p>
  [% IF ( SEARCH_RESULT.summary ) %]
  [% IF ( SEARCH_RESULT.author ) %]
@@ -488,7 +488,7 @@ YAHOO.util.Event.onContentReady("searchheader", function () {
  [% ELSE %] &nbsp; [% END %] Descripción:<span class="results_imprint">[% IF ( SEARCH_RESULT.place ) %][% SEARCH_RESULT.place %] [% END %]
  [% IF ( SEARCH_RESULT.publishercode ) %][% SEARCH_RESULT.publishercode %][% END %] [% IF ( SEARCH_RESULT.publicationyear ) %] [% SEARCH_RESULT.publicationyear %] [% ELSIF ( SEARCH_RESULT.copyrightdate ) %] [% SEARCH_RESULT.copyrightdate %][% END %]</span>
  [% IF ( SEARCH_RESULT.edition ) %]<span class="results_edition">Edición: [% SEARCH_RESULT.edition %]</span>[% END %]
- <span class="results_physicaldesc">[% IF ( SEARCH_RESULT.pages ) %]: [% SEARCH_RESULT.pages %][% END %] [% IF ( SEARCH_RESULT.size ) %] ; [% SEARCH_RESULT.size %][% END %]</span> [% IF ( SEARCH_RESULT.isbn ) %]<span class="results_isbn">ISBN: [% SEARCH_RESULT.isbn | replace('\s\|', ', ')%]</span>[% END %]
+ <span class="results_physicaldesc">[% IF ( SEARCH_RESULT.pages ) %]: [% SEARCH_RESULT.pages %][% END %] </span> [% IF ( SEARCH_RESULT.isbn ) %]<span class="results_isbn">ISBN: [% SEARCH_RESULT.isbn | replace('\s\|', ', ')%]</span>[% END %]
  <span class="results_itemtype">[% SEARCH_RESULT.description %]</span>
  [% IF ( SEARCH_RESULT.timestamp ) %] <i>(modificado el [% SEARCH_RESULT.timestamp %])</i>[% END %] [% IF ( SEARCH_RESULT.cn_class ) %][<a href="/cgi-bin/koha/catalogue/search.pl?idx=callnum&amp;q=[% SEARCH_RESULT.cn_class |url %]">[% SEARCH_RESULT.cn_class %]</a>][% END %] </p>
  [% IF ( SEARCH_RESULT.searchhighlightblob ) %]<p class="searchhighlightblob">[% SEARCH_RESULT.searchhighlightblob %]</p>[% END %]
