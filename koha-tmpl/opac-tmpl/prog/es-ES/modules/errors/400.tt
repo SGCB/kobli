@@ -1,0 +1,23 @@
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; An error has occurred
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="error400">
+[% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %] <div id="bd">
+[% INCLUDE 'masthead.inc' %] <div id="yui-main">
+[% INCLUDE 'search.inc' %] <div class="yui-b">
+<div class="yui-g">
+ <h3>An error has occurred</h3>
+ <h4>Error 400</h4>
+ <ul>
+ <li>Este error indica que Koha apunta a un enlace inválido.</li>
+ <li>Para informar de este error, puedes <a href="mailto:[% admin %]">escribir al administrador de Koha</a>.</li>
+ <li>Usar la barra de menú superior para navegar por Koha.</li>
+ </ul>
+</div>
+</div>
+</div>
+[% IF ( OpacNav ) %] <div class="yui-b">
+<div id="leftmenus" class="container">
+[% INCLUDE 'navigation.inc' %] </div>
+</div>[% END %] </div>
+[% INCLUDE 'opac-bottom.inc' %] 

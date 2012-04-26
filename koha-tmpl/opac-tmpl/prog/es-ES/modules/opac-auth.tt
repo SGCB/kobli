@@ -1,0 +1,89 @@
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %]
+[% IF ( opacuserlogin ) %]
+ catalog &rsaquo; Log in to your account
+[% ELSE %]
+ catalog &rsaquo; Catalog login disabled
+[% END %]
+[% INCLUDE 'doc-head-close.inc' %]
+
+<!-- Bug 4288: Hide circular 'Log in to Your Account' link in opac-auth.pl -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        if ( $("#auth" ) ) { $("#members ul li a").hide(); }
+    });
+</script>
+</head>
+<body id="opac-login-page">
+<div id="doc3" class="yui-t7">
+ <div id="bd">
+[% INCLUDE 'masthead.inc' %] <div id="yui-g">
+<div id="userauth" class="container">
+<div id="opac-auth">
+[% INCLUDE 'search.inc' %]
+<!--CONTENT-->
+[% IF ( opacuserlogin ) %]
+[% IF ( nopermission ) %]
+<!-- This is what is displayed if user doesnt have permission -->
+<p>Lo sentimos, el sistema considera que no tienes permiso para acceder a esta página. </p>
+[% END %]
+[% IF ( loginprompt ) %]
+<!-- login prompt time-->
+<h3>Inicia sesión para acceder a tu cuenta</h3>
+[% IF ( timed_out ) %]
+<!-- This is what is displayed if login has timed out -->
+<p>Lo sentimos, tu sesión ha expirado. Por favor, inicia sesión de nuevo.</p>
+[% END %]
+
+[% IF ( different_ip ) %]
+<!-- This is what is displayed if user doesnt have permission -->
+<p>Estás conectado desde una direccion IP diferente. Por favor, inicia sesión de nuevo.</p>
+[% END %]
+
+[% IF ( invalid_username_or_password ) %]
+<!-- This is what is displayed if user doesnt have permission -->
+<p>Has introducido un usuario o contraseña incorrecta. Por favor, inténtalo de nuevo. Y recuerda, el nombre de usuario y la contraseña son sensibles a mayúsculas.</p>
+[% END %] [% IF ( casAuthentication ) %] <h4>Cas login</h4>
+
+[% IF ( invalidCasLogin ) %]
+<!-- This is what is displayed if cas login has failed -->
+<p>Lo sentimos, el loging CAS ha fallado</p>
+[% END %] <p>Si tienes un <acronym title="Servicio de Autenticación Central">CAS</acronym> account, 
+[% IF ( casServerUrl ) %]
+ please <a href="[% casServerUrl %]">click here to login</a>.<p>
+[% END %]
+
+[% IF ( casServersLoop ) %]
+please choose against which one you would like to authenticate: </p>
+<ul>
+ [% FOREACH casServer IN casServersLoop %] <li><a href="[% casServer.value %]">[% casServer.name %]</a></li>
+ [% END %] [% END %] </ul>
+
+<h4>Local login</h4>
+<p>Si no tienes una cuenta CAS, sino una cuenta local, también puedes iniciar sesión: </p>
+
+[% END %] <form action="[% url %]" name="auth" id="auth" method="post">
+ <input type="hidden" name="koha_login_context" value="opac" />
+<fieldset class="brief">[% FOREACH INPUT IN INPUTS %] <input type="hidden" name="[% INPUT.name |html %]" value="[% INPUT.value |html %]" />
+[% END %] <ol>
+<li><label for="userid">Usuario</label>
+<input type="text"  size="25" id="userid"  name="userid" /></li>
+<li><label for="password">Contraseña</label><input type="password"  size="25" id="password"  name="password" /></li>
+</ol></fieldset>
+
+<input value="Iniciar sesión" type="submit" class="submit" />
+<div id="nologininstructions"> <h5>¿Todavía no tienes una contraseña?</h5><p> Si no tienes contraseña, pasa por la administración de la biblioteca la próxima vez que vengas. Se te proporcionará una.</p>
+<h5>¿No tienes carné de la biblioteca?</h5><p> Si no tienes carné de la biblioteca, pasa por la administración de ésta e inscríbete. </p></div>
+</form>
+
+
+[% END %] [% ELSE %] <h4>La biblioteca no ha autorizado el acceso al catálogo.</h4>
+<ul>
+ <li>Para informar de este error, puedes <a href="mailto:[% admin %]">escribir al administrador de Koha</a>.</li>
+ <li>Usar la barra de menú superior para navegar por Koha.</li>
+</ul>
+[% END %]</div>
+</div>
+</div>
+</div>
+
+[% INCLUDE 'opac-bottom.inc' %] 
