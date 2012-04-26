@@ -1,0 +1,27 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Modificar ítems en lote</h1>
+
+<p>This tool will allow you to modify a batch of item records in Koha.</p>
+
+<p>Desde la herramienta que puedes elegir cargar un archivo de códigos de barras o identificadores de ítems, o puedes escanear los ítems uno por uno en la caja abajo de la herramienta de carga. Una vez que hayas subido el archivo o los códigos de barras puedes hacer clic en 'Continuar'.</p>
+
+<p>You will be presented with a summary of the items you want to modify. From here you can uncheck the items you don't want to modify before making changes in the form below. You can also hide columns you don't need to see to prevent having to scroll from left to right to see the entire item form.</p>
+
+<p>Using the edit form you can choose which fields to make edits to. By checking the checkbox to the right of each field you can clear the values in that field for the records you are modifying.</p>
+
+<p>Once you have made you changes you will be presented with the resulting items.</p>
+
+<h1>Eliminar ítems en lote</h1>
+
+<p>Esta herramienta te permitirá eliminar un lote de registros de ítems en Koha.</p>
+
+<p>Desde la herramienta que puedes elegir cargar un archivo de códigos de barras o identificadores de ítems, o puedes escanear los ítems uno por uno en la caja abajo de la herramienta de carga. Una vez que hayas subido el archivo o los códigos de barras puedes hacer clic en 'Continuar'.</p>
+
+<p>You will be presented with a confirmation screen. From here you can uncheck the items you don't want to delete and decide if Koha should delete the bib record if the last item is being deleted before clicking 'Delete selected items.' If the items are checked out you will be presented with an error after clicking 'Delete selected items' and the items will not be deleted.</p>
+
+<p>Si los ítems se pueden eliminar, se intentará hacer y se te mostrará una confirmación de tu eliminación.</p>
+
+<p><strong>See the full documentation for <a href="http://manual.koha-community.org/3.8/en/batchmodifyitems.html">Batch Item Modifications</a> and <a href="http://manual.koha-community.org/3.8/en/batchdeleteitems.html">Batch Item Deletions</a> in the manual (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

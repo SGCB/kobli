@@ -1,0 +1,71 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Calencario de festivos</h1>
+
+<p>Las bibliotecas pueden definir los días que cierran y los festivos para calcular las fechas de devolución. Puedes hacer uso del Calendario de Festivos habilitando las preferencias del sistema correspondientes:</p>
+
+<ul>
+ <li><em>Llegar:</em>More &gt; Administration &gt; Global System Preferences &gt; Circulation &gt; <span class="link"><span class="link">useDaysMode</span></span>
+<ul>
+ <li>Selecciona el método de cálculo para la fecha de vencimiento - incluyendo los días que la biblioteca está cerrada en dicho cálculo, o no.</li>
+</ul>
+</li>
+ <li><em>Llegar:</em> More &gt; Administration &gt; Global System Preferences &gt; Circulation &gt; <span class="link"><span class="link">finescalendar</span></span>
+<ul>
+ <li>Esto comprobará el calendario de festivos antes del cobro de multas</li>
+</ul>
+</li>
+</ul>
+
+<h3>Agregando eventos</h3>
+
+<p>Antes de añadir eventos, selecciona la biblioteca a la que deseas aplicar los festivos. Al añadir eventos se te preguntará si deseas aplicar el evento a una sede o a todas las sedes. Para agregar eventos, simplemente</p>
+
+<ul>
+ <li>Haz clic en la fecha del calendario en que deseas aplicar el cierre de</li>
+ <li>In the form that appears above the calendar, enter the closing information (for more info on each option click the question mark [?] to the right of the option)
+<ul>
+ <li>La biblioteca se asignará automáticamente. Puedes elegir una biblioteca del menú desplegable en la parte superior de la página</li>
+ <li>La información del día se rellenará automáticamente a partir de la fecha en la que hciste clic en el calendario</li>
+ <li>En la descripción ingresar la razón por la cual la biblioteca está cerrada</li>
+ <li>Next you can choose if this event is a one time event or if it is repeatable.
+<ul>
+ <li>If this is a one day holiday choose 'Holiday only on this day'</li>
+ <li>If this is a weekly closing (like a weekend day) then you can choose 'Holiday repeated every same day of the week'</li>
+ <li>If this is an annual holiday closing choose 'Holiday repeated yearly on the same date'</li>
+ <li>If the library is going to be closed for the week or a range of time choose 'Holiday on a range' and enter a 'To Date' at the top</li>
+ <li>If the library is going to be closed for a range of time each year (such as summer holidays for schools) choose 'Holiday repeated yearly on a range' and enter a 'To Date' at the top</li>
+</ul>
+</li>
+ <li>Finally decide if this event should be applied to all libraries or just the one you have originally selected
+<ul>
+ <li>If you'd rather enter all the holidays and then copy them all to another branch all at once you can use the copy menu below the calendar</li>
+</ul>
+</li>
+</ul>
+</li>
+ <li>After saving you will see the event listed in the summary to the right the calendar</li>
+</ul>
+
+<h3>Edición de eventos</h3>
+
+<p>Para editar los eventos</p>
+
+<ul>
+ <li>Haz clic en el evento del calendario que deseas cambiar (haz esto haciendo clic en la fecha en el calendario, no en el evento listado en el resumen)</li>
+ <li>Desde este formulario puedes editar o eliminar completamente el festivo. Ambas acciones requieren que hagas clic en 'Guardar' antes de que se realice el cambio.</li>
+ <li>Clicking on repeatable events will offer slightly different options
+<ul>
+ <li>En el formulario de arriba podrás observar que ahora hay una opción 'Generar una excepción para este festivo repetido,'. Si eliges esta opción podrás abrir la biblioteca en una fecha en la que suele estar cerrada.</li>
+</ul>
+</li>
+</ul>
+
+<h3>Ayuda adicional</h3>
+
+<p>When adding or editing events you can get additional help by clicking on the question mark next to various different options on the form</p>
+
+<p><strong>See the full documentation for the Calendar in the <a href="http://manual.koha-community.org/3.8/en/calholidays.html">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]
+

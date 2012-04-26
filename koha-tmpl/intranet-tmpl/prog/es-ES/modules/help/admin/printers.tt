@@ -1,0 +1,11 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Printer administration</h1>
+
+<p>Si vas a usar una impresora (o varias impresoras) que están conectadas a tu servidor Koha para producir informes estadísticos y de operación, entonces tienes que dar un nombre a cada impresora e indicar a Koha cómo acceder. Esto se hace indicando a Koha qué cola de impresión se va a usar.</p>
+
+<p>(En linux, cada configuración de impresora en tu archivo printcap define una cola de impresión. La cola de impresión por defecto es "lp," pero si usas más de una impresora tendrás otras colas, probablemente con nombres como "texto" o "postscript." Dile a Koha qué cola(s) de impresora quieres usar para la impresión de informes directamente del servidor.)</p>
+
+<p>Observa que siempre puedes imprimir pantallas de Koha directamente desde una impresora conectada a tu estación de trabajo solamente usando la función de impresión de su navegador web.</p>
+
+[% INCLUDE 'help-bottom.inc' %]

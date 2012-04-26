@@ -1,0 +1,34 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Plantillas</h1>
+
+<p>Una plantilla es la etiqueta/carné que estás utilizando. Esto podría ser Avery 5160 para etiquetas de direcciones, Gaylord 47-284 para etiquetas de lomo o Avery 28371 para los carnés de socio, sólo por dar unos ejemplos. Estas etiquetas incluyen toda la información necesaria para la configuración en Koha, esta información puede estar en el envase, y si no se puede encontrar en la página Web del proveedor.</p>
+
+<h2>Agregar una plantilla</h2>
+
+<p>Para agregar una nueva plantilla, haz clic en el botón 'Plantillas' en la parte superior de la página y selecciona 'Nueva plantilla'</p>
+
+<p>Utilizando el formulario que aparece, puedes definir la plantilla para tu hoja de etiquetas o carnés.</p>
+
+<ul>
+ <li>El ID de la plantilla se generará automáticamente una vez guardada la plantilla, es simplemente una identificación única generada por el sistema</li>
+ <li>El código de la plantilla debe ser algo que puedas utilizar para identificar la plantilla en una lista de plantillas</li>
+ <li>Puedes utilizar la descripción de plantillas para agregar información adicional sobre la plantilla</li>
+ <li>El desplegable Unidades se usa para definir qué escala de medición vas a usar para la plantilla. Esto probablemente debe coincidir con la unidad de medida utilizada en la descripción de la plantilla proporcionada por el proveedor del producto.</li>
+ <li>Las medidas se pueden encontrar en el envoltorio del proveedor del producto o página web.<ul>
+ <li style="color: #990000">Importante: Si no dejas un margen de texto a la izquierda en la plantilla, se aplicará por defecto uno de 3/16" (punto 13.5).</li>
+</ul>
+</li>
+ <li>A profile is a set of "adjustments" applied to a given template just prior to printing which compensates for anomalies unique and peculiar to a given printer (to which the profile is assigned).
+<ul>
+ <li>Antes de utilizar un perfil intenta imprimir unos marbetes de ejemplo para que puedas fácilmente definir fácilmente un perfil que sea adecuado para tu combinación impresora/plantilla.</li>
+ <li>Tras encontrar alguna anomalía en el documento impreso, crea un perfil y asígnaselo a la plantilla.</li>
+</ul>
+</li>
+</ul>
+
+<p>Después de guardar, las plantillas aparecerán en la página "Administrar plantillas".</p>
+
+<p><strong>See the full documentation for Label Templates in the <a href="http://manual.koha-community.org/3.8/en/labelcreator.html#labeltemplates">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

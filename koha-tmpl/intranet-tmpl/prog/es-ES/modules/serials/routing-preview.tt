@@ -1,0 +1,57 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Koha &rsaquo; Serials &rsaquo; Preview routing list</title>
+[% INCLUDE 'doc-head-close.inc' %]
+<script type="text/javascript">
+<!--
+
+function print_slip(subscriptionid,issue){
+    var myurl = 'routing-preview.pl?ok=1&subscriptionid='+subscriptionid+'&issue='+issue;
+    window.open(myurl,'PrintSlip','width=500,height=500,toolbar=no,scrollbars=yes');
+    window.location.href='subscription-detail.pl?subscriptionid=' + subscriptionid;
+}
+//-->
+</script>
+</head>
+<body id="ser_routing-preview" class="ser">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'serials-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; <a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptionid %]"><i>[% title |html %]</i></a> &rsaquo; Vista previa de hoja de ruta</div>
+
+<div id="doc3" class="yui-t2">
+ 
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+
+<h2>Preview routing list for <i>[% title |html %]</i></h2>
+
+<form method="post" action="routing-preview.pl">
+<input type="hidden" name="subscriptionid" value="[% subscriptionid %]" />
+<fieldset class="rows">
+ <ol>
+ <li><span class="label">Ejemplar:</span>[% issue %]</li>
+ <li><span class="label">List member:</span><table style="clear:none;margin:0;">
+ <tr><th>Nombre</th></tr>
+[% FOREACH memberloo IN memberloop %]
+ <tr><td>[% memberloo.surname %], [% memberloo.firstname %]</td></tr>
+[% END %]
+ </table></li>
+ <li><span class="label">Notas:</span>[% routingnotes %]</li>
+ </ol>
+</fieldset>
+
+<fieldset class="action">
+<input value="Guardar y ver vista previa de hoja de ruta" name="ok" type="submit" class="button" onclick="print_slip([% subscriptionid %],'[% issue_escaped %]'); return false" />
+<input value="Editar" name="edit" type="submit" class="button" />
+<input value="Eliminar" name="delete" type="submit" class="button" /></fieldset>
+</form>
+
+</div>
+</div>
+
+<div class="yui-b">
+[% INCLUDE 'serials-menu.inc' %]
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

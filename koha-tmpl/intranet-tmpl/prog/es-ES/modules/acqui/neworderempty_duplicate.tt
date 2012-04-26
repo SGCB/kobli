@@ -1,0 +1,73 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Inicio &rsaquo; Adquisiciones &rsaquo; Carrito [% basketno %] &rsaquo; Duplicar advertencia</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="acq_neworderempty_duplicate" class="acq">
+
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'acquisitions-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Cesta [% basketno %]</a> &rsaquo; Duplicar advertencia</div>
+
+<div id="doc3" class="yui-t2">
+
+<div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+
+<div class="dialog alert">
+<h4>Duplicar advertencia</h4>
+<p>Has seleccionado un registro existente desde una fuente externa que coincide con un registro existente en tu catálogo: [% IF ( BiblioDefaultViewmarc ) %]<a target="_blank" href="/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% biblionumber |url %]" class="popup" title="Abrir en una ventana nueva">
+[% ELSIF ( BiblioDefaultViewlabeled_marc ) %]<a target="_blank" href="/cgi-bin/koha/catalogue/labeledMARCdetail.pl?biblionumber=[% biblionumber |url %]" class="popup" title="Abrir en una ventana nueva">
+[% ELSIF ( BiblioDefaultViewisbd ) %]<a target="_blank" href="/cgi-bin/koha/catalogue/ISBDdetail.pl?biblionumber=[% biblionumber |url %]" class="popup" title="Abrir en una ventana nueva">
+[% ELSE %]<a target="_blank" href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblionumber |url %]" class="popup" title="Abrir en una ventana nueva">[% END %][% duplicatetitle %]</a></p>
+</div>
+
+<div class="yui-gb">
+<div class="yui-u first">
+<div style="border: 1px solid #DDD; padding:1em;">
+<form action="/cgi-bin/koha/acqui/neworderempty.pl">
+<h4>Ver un registro existente</h4>
+<p>No crear un registro duplicado. Agregar un pedido desde el registro existente en tu catálogo.</p>
+<input type="hidden" name="booksellerid" value="[% booksellerid %]" />
+<input type="hidden" name="basketno" value="[% basketno %]" />
+<input type="hidden" name="biblionumber" value="[% biblionumber %]" />
+<input value="Usar existentes" type="submit" />
+</form>
+</div>
+</div>
+
+<div class="yui-u">
+<div style="border: 1px solid #DDD; padding:1em;">
+<form action="/cgi-bin/koha/acqui/basket.pl">
+<h4>Cancelar y volver a pedir</h4>
+<p>Volver a la cesta sin hacer un nuevo pedido.</p>
+<input type="hidden" name="basketno" value="[% basketno %]" />
+<input value="Cancelar" type="submit" />
+</form>
+</div>
+</div>
+
+<div class="yui-u">
+<div style="border: 1px solid #DDD; padding:1em;">
+<form action="/cgi-bin/koha/acqui/neworderempty.pl">
+<h4>Crear un nuevo registro</h4>
+<p>Crear un nuevo registro importando el registro (duplicado) externo.</p>
+<input type="hidden" name="booksellerid" value="[% booksellerid %]" />
+<input type="hidden" name="basketno" value="[% basketno %]" />
+<input type="hidden" name="breedingid" value="[% breedingid %]" />
+<input type="hidden" name="use_external_source" value="1" />
+<input value="Crear nuevo" type="submit" />
+</form>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="yui-b">
+[% INCLUDE 'acquisitions-menu.inc' %]
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

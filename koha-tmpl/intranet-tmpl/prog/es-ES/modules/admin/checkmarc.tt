@@ -1,0 +1,245 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Koha &rsaquo; Administration &rsaquo; MARC check
+[% IF ( total ) %] :[% total %] errors found[% ELSE %] : Configuration OK![% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="admin_checkmarc" class="admin">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'cat-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; MARC check
+[% IF ( total ) %]: [% total %] errors found[% ELSE %] : Configuration OK![% END %]</div>
+
+<div id="doc3" class="yui-t2">
+ 
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+
+<h1>MARC bibliographic framework test</h1>
+<table>
+ <tr>
+ <th>Probar</th>
+ <th>Resultado</th>
+ </tr>
+<!-- -->
+[% IF ( itemnum ) %]
+ <tr>
+ <td>número de ítem</td>
+ <td><ul><li>The field itemnum MUST be mapped </li>
+ <li>El subcampo correspondiente DEBE estar con la etiqueta -1 (ignorar)</li></ul></td>
+ </tr>
+[% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>ítems</td>
+ </tr>
+[% END %]
+<!-- -->
+[% IF ( itemfields ) %]
+ <tr>
+ <td>campos del ítem</td>
+ <td>TODOS los campos de ítems DEBEN :<br />
+ <ul><li>tiene que ser mapeado a la misma etiqueta,</li>
+ <li>y deben estar todos en la etiqueta de 10 (ítems)</li></ul></td>
+ </tr>
+[% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>Todos los campos de ítems están en la misma etiqueta y en la pestaña de ítems</td>
+ </tr>
+[% END %]
+<!-- -->
+ [% IF ( itemtags ) %]
+ <tr>
+ <td>Etiqueta del ítem</td>
+ <td>Hay mas de 1 etiqueta MARC relacionada con el campo (10) de los ítems: [% itemtags %]</td>
+ </tr>
+ [% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>Solamente 1 pestaña MARC se ha mapeado a los ítems</td>
+ </tr>
+ [% END %]
+ <!-- -->
+[% IF ( itemtype ) %]
+ <tr>
+ <td>el tipo de ítem no está mapeado</td>
+ <td>el campo biblioitems.itemtype DEBE :<br />
+ <ul><li>be mapped to a MARC subfield, </li>
+ <li>el subcampo correspondiente DEBE tener authorised_value=itemtype</li></ul></td>
+ </tr>
+[% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>biblioitems.itemtype definido</td>
+ </tr>
+[% END %]
+<!-- -->
+[% IF ( branch ) %]
+ <tr>
+ <td>sede central NO mapeada</td>
+ <td>el campo items.homebranch DEBE:<br />
+ <ul><li>tiene que ser mapeado a un subcampo MARC,</li>
+ <li>el subcampo correspondiente DEBE tener authorised_value=branches</li></ul></td>
+ </tr>
+[% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>sede propietaria definida</td>
+ </tr>
+[% END %]
+<!-- -->
+[% IF ( holdingbranch ) %]
+ <tr>
+ <td>la sede NO está mapeada</td>
+ <td>el campo items.holdingbranch DEBE:<br />
+ <ul><li>be mapped to a MARC subfield, </li>
+ <li>el subcampo correspondiente DEBE tener authorised_value=branches</li></ul></td>
+ </tr>
+[% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>sede definida</td>
+ </tr>
+[% END %]
+<!-- -->
+[% IF ( itemtypes_empty ) %]
+ <tr>
+ <td>tipos de ítem no definidos</td>
+ <td>al menos 1 tipo de ítem debe definirse</td>
+ </tr>
+[% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>al menos 1 tipo de ítem definido</td>
+ </tr>
+[% END %]
+<!-- -->
+[% IF ( branches_empty ) %]
+ <tr>
+ <td>library not defined</td>
+ <td>at least 1 library must be defined</td>
+ </tr>
+[% ELSE %] 
+ <tr>
+ <td>OK</td> 
+ <td>at least 1 library defined</td>
+ </tr> 
+[% END %]
+<!-- -->
+[% IF ( biblionumber ) %]
+ <tr>
+ <td>biblio y biblionumber</td>
+ <td>Los campos biblio.biblionumber y biblioitems.biblioitemnumber mapeados a un subcampo MARC,</td>
+ </tr>
+[% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>biblionumber y biblioitemnumber mapeados correctamente</td>
+ </tr>
+[% END %]
+
+ [% IF ( frameworknull ) %]
+ <tr>
+ <td>valores del formato</td>
+ <td>este campo sirve para controlar el número asignado por la organización, creando, usando o distribuyendo el registro<br />
+ <li>select * from marc_subfield_structure where frameworkcode is NULL</li>
+ <li>select * from marc_tag_structure where frameworkcode is NULL</li>
+ </td>
+ </tr>
+ [% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>ningún valor NULO en el código de la hoja de trabajo</td>
+ </tr>
+ [% END %]
+
+ [% IF ( inconsistent_tabs ) %]
+ <tr>
+ <td style="vertical-align:top;">subcampos no en las mismas pestañas</td>
+ <td>Not all subfields for the following tags are in the same tab (or marked 'ignored').
+ <table>
+ <tr>
+ <th>Código</th>
+ <th>Descripción</th>
+ <th>Etiqueta</th>
+ <th>Pestañas en uso</th>
+ </tr>
+ [% FOREACH tab_inf IN tab_info %]
+ <tr>
+ <td>[% tab_inf.frameworkcode %]</td>
+ [% IF ( tab_inf.frameworkcode ) %]
+ <td>[% tab_inf.frameworktext %]</td>
+ [% ELSE %]
+ <td>Hoja de trabajo predeterminada</td>
+ [% END %]
+ <td>[% tab_inf.tagfield %]</td>
+ <td>[% tab_inf.tabs %]</td>
+ </tr>
+ [% END %]
+ </table>
+ </td>
+ </tr>
+ [% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>todos los subcampos de cada etiqueta están en la misma pestaña (o ignorados)</td>
+ </tr>
+ [% END %]
+
+ [% IF ( invalid_authtypecodes ) %]
+ <tr>
+ <td style="vertical-align:top;">tipos de autoridad inválidos</td>
+ <td>Not all authority types referred to by the frameworks are defined.
+ <table>
+ <tr>
+ <th>Código de hoja de trabajo</th>
+ <th>Descripción de la hoja de trabajo</th>
+ <th>Etiqueta</th>
+ <th>Subcampo</th>
+ <th>Tipo de autoridad inválido</th>
+ </tr>
+ [% FOREACH authtypecode_inf IN authtypecode_info %]
+ <tr>
+ <td>[% authtypecode_inf.frameworkcode %]</td>
+ [% IF ( authtypecode_inf.frameworkcode ) %]
+ <td>[% authtypecode_inf.frameworktext %]</td>
+ [% ELSE %]
+ <td>Hoja de trabajo predeterminada</td>
+ [% END %]
+ <td>[% authtypecode_inf.tagfield %]</td>
+ <td>[% authtypecode_inf.tagsubfield %]</td>
+ <td>[% authtypecode_inf.authtypecode %]</td>
+ </tr>
+ [% END %]
+ </table>
+ </td>
+ </tr>
+ [% ELSE %]
+ <tr>
+ <td>OK</td>
+ <td>están definidos todos los tipos de autoridad utilizados en las plantillas</td>
+ </tr>
+ [% END %]
+<!-- -->
+[% IF ( total ) %]
+ <tr>
+ <td>TOTAL</td>
+ <td>Tienes [% total %] error(es) en tu configuración MARC. Por favor, arréglalo(s) antes de usar Koha</td>
+ </tr>
+</table>
+[% ELSE %]
+ </table>
+ <p><b>Configuración correcta, no hay errores en tu tabla de parámetros MARC</b></p>
+[% END %]
+
+
+
+</div>
+</div>
+<div class="yui-b">
+[% INCLUDE 'admin-menu.inc' %]
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

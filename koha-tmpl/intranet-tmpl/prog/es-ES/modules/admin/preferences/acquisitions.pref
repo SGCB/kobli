@@ -1,0 +1,49 @@
+--- 
+Acquisitions: 
+  "Impresi\xC3\xB3n": 
+    - 
+      - Utilice
+      - 
+        pref: OrderPdfFormat
+      - cuando imprima grupos de bolsas.
+  "Pol\xC3\xADtica": 
+    - 
+      - "Crear un \xC3\xADtem al"
+      - 
+        choices: 
+          cataloguing: catalogar un registro.
+          ordering: realizar una compra.
+          receiving: recibir una compra.
+        pref: AcqCreateItem
+    - 
+      - 
+        pref: UniqueItemFields
+      - (space-separated list of fields that should be unique for items, must be valid SQL fields of items table)
+    - 
+      - When closing or reopening a basket,
+      - 
+        choices: 
+          1: always ask for confirmation.
+          2: do not ask for confirmation.
+        default: 1
+        pref: BasketConfirmations
+    - 
+      - Show baskets
+      - 
+        choices: 
+          all: in system, regardless of owner.
+          branch: from staff member's library.
+          user: created by staff member.
+        pref: AcqViewBaskets
+    - 
+      - Mostrar monedas utilizando el siguiente formato
+      - 
+        choices: 
+          FR: 360 000,00 (FR)
+          US: 360,000.00 (US)
+        pref: CurrencyFormat
+    - 
+      - La tasa de impuesto predeterminada es
+      - 
+        pref: gist
+      - "(ingrese en formato num\xC3\xA9rico, 0.12 para 12%)"

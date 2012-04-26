@@ -1,0 +1,25 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Presupuestos</h1>
+
+<p>Los presupuestos son el nivel superior para contabilizar valores asociados con adquisiciones.</p>
+
+<p>An example would be to create a budget for the current year and then breaking that into funds for different areas of the library.</p>
+
+<h2>Agregar presupuesto</h2>
+
+<p>To add a budget click the 'New budget' button.</p>
+
+<ul>
+ <li>Selecciona el período de tiempo al que se aplica este presupuesto, si se trata de un año académico, un año fiscal, trimestre, etc.</li>
+ <li>The description should be something that will help you identify the budget when ordering</li>
+ <li>No utilices símbolos en la casilla de cantidad, simplemnte ingresa la cantidad del presupuesto con números y decimales.</li>
+ <li>Definir un presupuesto como activo hace que pueda utilizarse para generar órdenes en el módulo de adquisiciones, aun si la órden se genera tras la fecha de finalización del presupuesto. Esto te permite registrar órdenes que fueron generadas en el período presupuestario previo.</li>
+ <li>Bloquear un presupuesto significa que el personal no podrá modificar los presupuestos</li>
+</ul>
+
+<p>Once you have made your edits, click the 'Save changes' button. You will be brought to a list of your existing budgets.</p>
+
+<p><strong>See the full documentation for budgets in the <a href="http://manual.koha-community.org/3.6/en/acqadmin.html#budgetplanning">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

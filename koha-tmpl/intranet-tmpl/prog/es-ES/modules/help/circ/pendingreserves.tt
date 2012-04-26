@@ -1,0 +1,26 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Reservas a preparar</h1>
+
+<p>Este informe te mostrará todos los ítems reservados que están disponibles en la biblioteca para poder retirarlos.</p>
+
+<p>Este informe se generará basándose en unas pocas preferencias del sistema:</p>
+
+<ul>
+ <li>StaticHoldsQueueWeight<ul>
+ <li>Permite a la biblioteca especificar una lista de códigos de ubicación de biblioteca -- si se utiliza de manera aislada, se obtendrá un rango estático en el cual se seleccionará la ubicación en primer lugar para ser agregada a la lista de selección.</li>
+</ul>
+</li>
+ <li>RandomizeHoldsQueueWeight<ul>
+ <li>Si se establecen 'RandomizeHoldsQueueWeight' y 'StaticHoldsQueueWeight', la lista de códigos de biblioteca en la preferencia del sistema 'StaticHoldsQueueWeight' se ordenan aleatoriamente en vez de estáticamente. Si sólo se establece 'RandomizeHoldsQueueWeight', la lista de todos los códigos de biblioteca se utilizan para dar un "peso' aleatorio.</li>
+</ul>
+</li>
+</ul>
+
+<p>Si ni 'RandomizeHoldsQueueWeight' ni 'StaticHoldsQueueWeight' están establecidos, la cola de reservas se ordena estáticamente de acuerdo con cómo se extraen de la base de datos.</p>
+
+<p>Puedes limitar los resultados que ves utilizando la casilla de Refinar en la parte izquierda de la página</p>
+
+<p><strong>See the full documentation for Holds to Pull in the <a href="http://manual.koha-community.org/3.8/en/circreports.html#holdspull">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

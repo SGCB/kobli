@@ -1,0 +1,70 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Buscar</h1>
+
+<p>Para ver más opciones de búsqueda haz clic en [Más Opciones] en la parte inferior de la página. Esto permitirá búsquedas booleanas más avanzadas.</p>
+
+<h2>Buscar subtipos en el interfaz administrativo</h2>
+
+<p>Debajo hay un resumen de las diversas opciones para limitar la búsqueda avanzada:</p>
+
+<h3>Audiencia</h3>
+
+<p>El nombre del índice es 'aud' y se deriva de 008/22</p>
+
+<ul><li>aud:a Fácil</li>
+<li>aud:c Juvenil</li>
+<li>aud:d Adulto joven</li>
+<li>aud:e Adulto</li></ul>
+
+<h3>Contenido</h3>
+
+<p>Hay tres índices que comprenden Contenido: 'fic' se deriva de 003/33; 'bio' se deriva de 008/34 y 'mus' se deriva de LEADER/06. Los valores comunes para cada uno de estos son:</p>
+
+<ul><li>fic:1 Ficción</li>
+<li>ic:0 No ficción</li>
+<li>bio:b Bibliografía</li>
+<li>mus:j Grabación musical</li>
+<li>mus:i Grabación no musical</li></ul>
+
+<h3>Formato</h3>
+
+<p>El nombre del índice es 'l-formato' y es un índice de posiciones 007/01 y 007/02. Los valores comunes son los siguientes:</p>
+
+<ul><li>l-format:ta Impresión común</li>
+<li>l-format:tb Impresión grande</li>
+<li>l-format:fk Braille</li>
+<li>l-format:sd CD audio</li>
+<li>l-format:ss Grabación en casete</li>
+<li>l-format:vf VHS/Videocasete</li>
+<li>l-format:vd DVD video/Videodisco</li>
+<li>l-format:co CD Software</li>
+<li>l-format:cr Sitio Web</li></ul>
+
+<h3>Tipos de contenido adicionales</h3>
+
+<p>The index name is 'ctype' is taken from the 008 and it's where we get the 'additional content types'. It's position 008/24-28 field. Common values are: </p>
+
+<ul><li>ctype:a Resumen</li>
+<li>ctype:b Bibliographies
+<li>ctype:c Catálogos</li>
+<li>ctype:d Diccionarios</li>
+<li>ctype:e Enciclopedias</li>
+<li>ctype:f Manuales</li>
+<li>ctype:g Artículos legales</li>
+<li>ctype:i Índices<li>ctype:j Documento de patente</li>
+<li>ctype:k Discografías</li>
+<li>ctype:l Legislación</li>
+<li>ctype:l Tesis</li>
+<li>ctype:n Encuestas</li>
+<li>ctype:o Revisiones<li>ctype:p Textos programados</li>
+<li>ctype:q Filmografías</li>
+<li>ctype:r Directorios</li>
+<li>ctype:s Estadísticas</li>
+<li>ctype:t Informes técnicos</li>
+<li>ctype:v Casos legales y notas de los casos<li>ctype:w Informes y compendios legales</li>
+<li>ctype:z Tratados</li></ul>
+
+<p><strong>See the full documentation for Searching in the <a href="http://manual.koha-community.org/3.8/en/searching.html">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

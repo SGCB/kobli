@@ -1,0 +1,39 @@
+--- 
+I18N/L10N: 
+  - 
+    - Formatear fechas como
+    - 
+      choices: 
+        iso: yyyy-mm-dd
+        metric: dd/mm/aaaa
+        us: mm/dd/aaaa
+      default: us
+      pref: dateformat
+    - .
+  - 
+    - Use
+    - 
+      choices: 
+        Monday: Monday
+        Sunday: Sunday
+      default: Sunday
+      pref: CalendarFirstDayOfWeek
+    - as the first day of week in the calendar.
+  - 
+    - "Habilite los siguientes lenguajes en la interfaz administrativa:"
+    - 
+      pref: language
+      type: staff-languages
+  - 
+    - 
+      choices: 
+        "": No permitir
+        1: Permitir
+      default: '0'
+      pref: opaclanguagesdisplay
+    - a socios cambiar el lenguaje que ven en el OPAC.
+  - 
+    - "Habilite los siguientes lenguajes en el OPAC:"
+    - 
+      pref: opaclanguages
+      type: opac-languages

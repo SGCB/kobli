@@ -1,0 +1,24 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Multas de socio</h1>
+
+<p>La historia completa de contabilidad del socio aparecerá en la pestaña de Multas. Al contrario de lo que indica su nombra, la pestaña de Multas no muestra únicamente la fecha de finalización, también muestra las sumas de socios, sumas de reserva y cualquier otro cargo que puedas tener para los socios.</p>
+
+<h2>Imputando Multas/Tasas</h2>
+
+<p>Muchas de las sumas y multas se cargarán automáticamente si se está ejecutando el cron job de las multas:</p>
+
+<ul>
+ <li>Las multas se cargarán según Reglas de circulación y multas</li>
+ <li>Las sumas a deber se cargarán según las reglas que hayas establecido en el area de administración de Tipos de socios & Categorías</li>
+ <li>Las sumas del préstamo se cargarán según lo establecido en tu área de administración de Tipos de ítems</li>
+ <li>Marking an item 'Lost' via the cataloging module will automatically charge the patron the replacement cost for that item</li>
+</ul>
+
+<h2>Imprimiendo facturas</h2>
+
+<p>A la derecha de cada línea de cuenta hay un enlace para imprimir. Al hacer clic en ese enlace se imprimirá una factura para la línea del ítem que incluye la decha y la descripción de la línea del ítem junto con la cantidad pendiente en la cuenta.</p>
+
+<p><strong>See the full documentation for Patron Fines in the <a href="http://manual.koha-community.org/3.8/en/patroninformation.html#patronfines">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

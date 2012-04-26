@@ -1,0 +1,249 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Koha &rsaquo; Administration &rsaquo; Authority MARC framework [% IF ( add_form ) %][% IF ( use_heading_flags_p ) %]
+ [% IF ( heading_modify_tag_p ) %]&rsaquo; [% IF ( authtypecode ) %][% authtypecode %] Framework[% ELSE %]Default framework[% END %] &rsaquo; Modify tag[% END %]
+ [% IF ( heading_add_tag_p ) %]&rsaquo; [% IF ( authtypecode ) %][% authtypecode %] Framework[% ELSE %]Default framework[% END %] &rsaquo; New tag[% END %]
+ [% ELSE %]&rsaquo; [% action %][% END %][% END %][% IF ( delete_confirm ) %]&rsaquo; [% IF ( authtypecode ) %][% authtypecode %] Framework[% ELSE %]Default framework[% END %] &rsaquo; Confirm deletion[% END %][% IF ( delete_confirmed ) %]&rsaquo; [% IF ( authtypecode ) %][% authtypecode %] Framework[% ELSE %]Default framework[% END %] &rsaquo; Data deleted[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %]
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
+<script type="text/javascript" id="js">$(document).ready(function() {
+	$("#table_authtagstructure").tablesorter({
+		sortList: [[0,0]],
+		headers: { 5: { sorter: false},6: { sorter: false},7: { sorter: false}}
+	}).tablesorterPager({container: $("#pagertable_authtagstructure"),positionFixed: false,size: 20});
+}); </script>
+<script type="text/javascript">
+//<![CDATA[
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function isNotNull(f,noalert) {
+        if (f.value.length ==0) {
+return false;
+        }
+        return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function toUC(f) {
+        var x=f.value.toUpperCase();
+        f.value=x;
+        return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function isNum(v,maybenull) {
+    var n = new Number(v.value);
+    if (isNaN(n)) {
+        return false;
+        }
+    if (maybenull==0 && v.value=='') {
+        return false;
+    }
+    return true;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function isDate(f) {
+        var t = Date.parse(f.value);
+        if (isNaN(t)) {
+            return false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function Check(f) {
+        var ok=1;
+        var _alertString="";
+        var alertString2;
+        if (f.tagfield.value.length==0) {
+            _alertString += "\n- " + _("falta el número de etiqueta");
+        }
+        if (_alertString.length==0) {
+            document.Aform.submit();
+        } else {
+            alertString2  = _("El formulario no fue procesado debido a los siguientes problemas");
+            alertString2 += "\n------------------------------------------------------------------------------------\n";
+            alertString2 += _alertString;
+            alert(alertString2);
+        }
+    }
+    //]]>
+</script>
+</head>
+<body id="admin_auth_tag_structure" class="admin">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'cat-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %][% IF ( use_heading_flags_p ) %]
+ [% IF ( heading_modify_tag_p ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Authority MARC framework</a> &rsaquo; [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] Hoja de trabajo</a>[% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo predeterminada</a>[% END %] &rsaquo; Modify tag[% END %]
+ [% IF ( heading_add_tag_p ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Authority MARC framework</a> &rsaquo; [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] framework</a>[% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo predeterminada</a>[% END %] &rsaquo; New tag[% END %]
+ [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Authority MARC framework</a> &rsaquo; [% action %]
+ [% END %]
+ [% ELSE %]
+ [% IF ( delete_confirm ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Authority MARC framework</a> &rsaquo; [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] framework</a>
+ [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo predeterminada</a>[% END %] &rsaquo; Confirm deletion
+ [% ELSE %]
+ [% IF ( delete_confirmed ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Authority MARC framework</a> &rsaquo; Data deleted
+ [% ELSE %]Authority MARC framework: [% IF ( authtypecode ) %][% authtypecode %] framework
+ [% ELSE %]Default framework[% END %]
+ [% END %]
+ [% END %]
+ [% END %]
+</div>
+
+<div id="doc3" class="yui-t2">
+ 
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+
+<h1>Authority MARC framework for [% IF ( authtypecode ) %][% authtypecode %][% ELSE %]default framework[% END %]</h1>
+
+
+[% IF ( add_form ) %]
+
+ <h2>
+ [% IF ( use_heading_flags_p ) %] [% IF ( heading_modify_tag_p ) %]Modificar etiqueta[% END %] [% IF ( heading_add_tag_p ) %]Nueva etiqueta[% END %] [% ELSE %][% action %][% END %] </h2>
+ <form action="[% script_name %]" name="Aform" method="post">
+ <input type="hidden" name="op" value="add_validate" />
+ [% IF ( heading_modify_tag_p ) %]<input type="hidden" name="modif" value="1" />[% END %]
+ <input type="hidden" name="authtypecode" value="[% authtypecode %]" />
+ <fieldset class="rows"><ol>
+ <li><span class="label">Etiqueta</span>[% searchfield %]</li>
+ <li><label for="liblibrarian">Texto para bibliotecarios</label><input type="text" name="liblibrarian" id="liblibrarian" value="[% liblibrarian |html %]" size="40" maxlength="100" /></li>
+ <li><label for="libopac">Texto para el OPAC</label><input type="text" name="libopac" id="libopac" value="[% libopac |html %]" size="40" maxlength="100" /></li>
+ <li><label for="repeatable">Repetible</label>
+ [% IF ( repeatable ) %]
+ <input type="checkbox" name="repeatable" id="repeatable" value="1" checked="checked" />
+ [% ELSE %]
+ <input type="checkbox" name="repeatable" id="repeatable" value="1" />
+ [% END %]
+ </li>
+ <li><label for="mandatory">Obligatorio</label>
+ [% IF ( mandatory ) %]
+ <input type="checkbox" name="mandatory" id="mandatory" value="1" checked="checked" />
+ [% ELSE %]
+ <input type="checkbox" name="mandatory" id="mandatory" value="1" />
+ [% END %]
+ </li>
+ <li><label for="authorised_value">Valor autorizado</label>[% authorised_value %] (si seleccionas un valor aquí, los indicadores se limitarán a la lista de valores autorizados)</li>
+</ol></fieldset>
+ <p><input value="Enviar" type="button" class="button" onclick="Check(this.form)" /></p>
+ </form>
+[% END %]
+
+
+[% IF ( delete_confirm ) %]
+ <div class="dialog alert">
+ <h3>Confirm deletion</h3>
+ <form action="[% script_name %]" method="post">
+ <table>
+ <tr><th scope="row">Etiqueta:</th><td>[% searchfield %] [% liblibrarian %]</td></tr>
+ </table>
+ <input type="hidden" name="op" value="delete_confirmed" />
+ <input type="hidden" name="authtypecode" value="[% authtypecode %]" />
+ <input type="hidden" name="searchfield" value="[% searchfield %]" />
+ <input type="submit" value="Yes, delete" class="approve"></form>
+ <form action="[% script_name %]" method="get"><input type="submit" class="deny" value="No, do not delete" /></form>
+ </div>
+[% END %]
+
+[% IF ( delete_confirmed ) %]
+
+ <div class="dialog message"> <h3>Datos borrados</h3>
+ <form action="[% script_name %]" method="post">
+ <input type="hidden" name="authtypecode" value="[% authtypecode %]" />
+ <input type="hidden" name="searchfield" value="[% searchfield %]" />
+ <input type="submit" value="OK" class="submit" />
+ </form></div>
+[% END %]
+[% IF ( authtype_create ) %]
+
+ <form action="[% script_name %]" method="post">
+ <input type="hidden" name="op" value="authtype_create_confirm" />
+ <input type="hidden" name="authtypecode" value="[% authtypecode %]" />
+ Create authority framework for [% authtypecode %] using
+ <select name="existingauthtypecode">
+ <option value="">Predeterminado</option>
+ [% FOREACH existingauthtypeloo IN existingauthtypeloop %]
+ <option value="[% existingauthtypeloo.value %]">[% existingauthtypeloo.authtypetext %]</option>
+ [% END %]
+ </select>
+ <input type="submit" value="OK" class="submit" />
+ <br /><label for="clone_indicators" title="Clonar indicadores para la hoja de trabajo de autoridad utilizada como plantilla">Clonar indicadores:&nbsp;</label><input type="checkbox" name="clone_indicators" id="clone_indicators" value ="1" checked="checked" />
+ </form>
+[% END %]
+
+
+[% IF ( else ) %]
+
+<div id="toolbar">
+ <script type="text/javascript">
+	//<![CDATA[
+	// prepare DOM for YUI Toolbar
+	 $(document).ready(function() {
+	    yuiToolbar();
+	 });
+	// YUI Toolbar Functions
+	function yuiToolbar() {
+	    new YAHOO.widget.Button("newtag");
+	}	//]]>
+	</script>
+ <ul class="toolbar">
+ <li><a id="newtag" href="/cgi-bin/koha/admin/auth_tag_structure.pl?op=add_form&amp;authtypecode=[% authtypecode %]">Nueva pestaña</a></li>
+</ul></div>
+
+<h2>Seleccionar una hoja de trabajo de autoridades</h2>
+<form action="[% script_name %]" method="post">
+ <select name="authtypecode">
+ <option value="">Predeterminado</option>
+ [% FOREACH authtypeloo IN authtypeloop %]
+ [% IF ( authtypeloo.selected ) %]
+ <option value="[% authtypeloo.value %]" selected="selected">[% authtypeloo.authtypetext %]</option>
+ [% ELSE %]
+ <option value="[% authtypeloo.value %]">[% authtypeloo.authtypetext %]</option>
+ [% END %]
+ 
+ [% END %]
+ </select>
+ <input type="text" name="searchfield" value="[% searchfield %]" />
+ <input type="submit" value="OK" class="submit" />
+</form><br />
+<div id="pagertable_authtagstructure">
+[% INCLUDE 'table-pager.inc' perpage='20' %]
+</div>
+<table id="table_authtagstructure">
+ <thead>
+ <th>Etiqueta</th>
+ <th>Biblioteca</th>
+ <th>Repetible</th>
+ <th>Obligatorio</th>
+ <th>Autorizado<br />valor</th>
+ <th>Subcampos</th>
+ <th>Indicadores</th>
+ <th>Editar</th>
+ <th>Eliminar</th>
+ </thead>
+ [% FOREACH loo IN loop %]
+ [% UNLESS ( loop.odd ) %]
+ <tr class="highlight">
+ [% ELSE %]
+ <tr>
+ [% END %]
+ <td><b>[% loo.tagfield %]</b></td>
+ <td>[% loo.liblibrarian %]</td>
+ <td> [% IF ( loo.repeatable ) %]Sí[% ELSE %]No[% END %]</td>
+ <td> [% IF ( loo.mandatory ) %]Sí[% ELSE %]No[% END %]</td>
+ <td>[% loo.authorised_value %]</td>
+ <td><a href="[% loo.subfield_link %]" class="button">subcampos</a></td>
+ <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">indicators</a>[% END %]</td>
+ <td><a href="[% loo.edit %]">Editar</a></td>
+ <td><a href="[% loo.delete %]">Eliminar</a></td>
+ </tr>
+ [% END %]
+ </table>
+
+[% END %]
+
+</div>
+</div>
+<div class="yui-b">
+[% INCLUDE 'admin-menu.inc' %]
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

@@ -1,0 +1,72 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Listas</h1>
+ 
+<p>A list can be created by visiting the Lists page and clicking 'New list'</p>
+
+<p>The new list form offers several options for creating your list:</p>
+
+<ul>
+ <li>The name is what will appear on the list of Lists</li>
+ <li>You can also choose how to sort the list</li>
+ <li>Finally there are three types of lists you can choose from
+<ul>
+ <li>A private list is managed by you and can be seen only by you</li>
+ <li>A public list can be seen by everybody, but managed only by you</li>
+ <li>A open list can be seen and managed by everybody</li>
+</ul>
+</li>
+</ul>
+
+<p>A list can also be created from the catalog search results</p>
+
+<ul>
+ <li>Check the box to the left of the titles you want to add to the new list</li>
+ <li>Choose [New list] from the 'Add to:' pull down menu
+<ul>
+ <li>Name the list and choose what type of list this is
+<ul>
+ <li>A private list is managed by you and can be seen only by you</li>
+ <li>A public list can be seen by everybody, but managed only by you</li>
+ <li>A open list can be seen and managed by everybody</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>Once the list is saved it will accessible from the Lists page and from the 'Add to' menu at the top of the search results.</p>
+
+<h2>Agregar a una lista</h2>
+
+<p>To add titles to an existing list click on the list name from the page of lists</p>
+
+<p>From the List page you can add titles by scanning barcodes into the box at the bottom of the page</p>
+
+<p>A title can also be added to a list by selecting titles on the search results page and choosing the list from the 'Add to' menu</p>
+
+<h2>Viewing lists</h2>
+
+<p>To see the contents of a list, visit the Lists page on the staff client</p>
+
+<p>Clicking on the 'List name' will show the contents of the list</p>
+
+<h2>Merging Bibliographic Records Via Lists</h2>
+
+<p>La forma más sencilla de combinar dos registros bibliográficos duplicados es agregarlos a una lista y utilizar la herramienta de combinación desde alli.</p>
+
+<p>From the list, check the two items you want to merge. If you choose more than or fewer than 2, you will be presented with an error</p>
+
+<p>Once you have selected the records you want to merge, click the 'Merge selected items' button. You will be asked which of the two records you would like to keep as your primary record and which will be deleted after the merge. If the records were created using different frameworks, Koha will also ask you what Framework you would like the newly merged record to use.</p>
+
+<p>S la vista MARC de ambos registros (cada uno accesible por pestañas identificadas con el número propio de esos registros). De forma predeterminada el primer registro estará seleccionado, desmarque los campos que no desee en el registro final (destino) y luego muevasé a la segunda pestaña y seleccione cuales campos deben ir en el registro final (destino).</p>
+
+<p>Mostrar calendario</p>
+
+<p>Once you have completed your selections click the 'merge' button. The primary record will now show the data you chose for it as well as all of the items/holdings from both bib records, and the second record will be deleted.</p>
+
+<p style="color: rgb(153, 0, 0);">Importante: Es importante regenerar el índice zebra inmediatamente después de combinar registros. Si una búsqueda se realiza para un registro que ha sido borrado, Koha retornará a los socios un error en el OPAC.</p>
+
+<p><strong>See the full documentation for Lists in the <a href="http://manual.koha-community.org/3.8/en/stafflists.html#lists">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

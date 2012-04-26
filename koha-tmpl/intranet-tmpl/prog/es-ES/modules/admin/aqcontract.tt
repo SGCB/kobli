@@ -1,0 +1,220 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Koha &rsaquo; Acquisitions &rsaquo; Contracts &rsaquo;
+[% IF ( add_form ) %]
+ [% IF ( contractnumber ) %]Modify contract '[% contractname %]'
+[% ELSE %]New contract[% END %]
+[% END %]
+[% IF ( else ) %]Contracts of [% booksellername %][% END %]
+[% IF ( add_validate ) %]Data recorded[% END %]
+[% IF ( delete_confirm ) %]Confirm deletion of contract '[% contractnumber %]'[% END %]
+[% IF ( delete_confirmed ) %]Contract deleted[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %]
+[% INCLUDE 'calendar.inc' %]
+<script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+// to check if the data are correctly entered.
+function Check(ff) {
+    var ok=0;
+    var _alertString=_("El formulario no fue procesado debido a los siguientes problemas");
+    _alertString +="\n-------------------------------------------------------------------\n\n";
+    if (!(isNotNull(ff.contractname,0))){
+        ok=1;
+        _alertString += _("- Falta el nombre") + "\n";
+    }
+    var startDate = Date_from_syspref($("#contractstartdate").val());
+    var endDate   = Date_from_syspref($("#contractenddate").val());
+    if (!parseInt(startDate.getTime())) {
+        ok=1;
+        _alertString += _("- Falta la fecha de inicio o la introducida no es válida.") + "\n";
+    }
+    if (!parseInt(endDate.getTime())) {
+        ok=1;
+        _alertString += _("- Falta fecha de finalización o la introducida no es válida.") + "\n";
+    }
+    
+    if (startDate > endDate) {
+        ok=1;
+        _alertString += _("¡Fecha equivocada! La fecha de inicio no puede ser posterior a la de finalización.") + "\n";
+    }
+    if (endDate < (new Date)) {
+        ok=1;
+        _alertString += _("La fecha de finalización es previa al día de hoy. ¡Fecha de finalización inválida!") + "\n";
+    }
+    if (ok) { // if there is a problem
+        alert(_alertString);
+    return false;
+}
+// if all is good
+    ff.submit();
+}
+//]]>
+</script>
+</head>
+<body id="acq_aqcontract" class="acq">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'contracts-admin-search.inc' %]
+
+<div id="breadcrumbs">
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
+ &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a>
+ &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername %]</a>
+ &rsaquo; [% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/aqcontract.pl?booksellerid=[% booksellerid %]">Contratos</a>
+ &rsaquo; [% IF ( contractnumber ) %]Modificar contrato '[% contractname %]' [% ELSE %]Nuevo contrato [% END %] [% END %] [% IF ( add_validate ) %] <a href="/cgi-bin/koha/admin/aqcontract.pl?booksellerid=[% booksellerid %]">Contratos</a>
+ &rsaquo; Data recorded
+ [% END %]
+ [% IF ( delete_confirm ) %]
+ <a href="/cgi-bin/koha/admin/aqcontract.pl?booksellerid=[% booksellerid %]">Contratos</a>
+ &rsaquo; Confirm deletion of contract [% contractnumber %]
+ [% END %]
+ [% IF ( delete_confirmed ) %]
+ <a href="/cgi-bin/koha/admin/aqcontract.pl?booksellerid=[% booksellerid %]">Contratos</a> &rsaquo; Contract Deleted
+ [% END %]
+ [% IF ( else ) %]Contracts[% END %]
+</div>
+
+<div id="doc" class="yui-t7">
+ <div id="bd">
+ <div id="yui-main">
+ [% IF ( add_form ) %]
+ <form name="Aform" action="[% script_name %]" method="post">
+ <input type="hidden" name="op" value="add_validate" />
+ <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
+ <input type="hidden" name="checked" value="0" />
+ [% IF ( contractnumber ) %]
+ <h1>Modificar contrato [% contractname %] para [% booksellername %]</h1>
+ [% ELSE %]
+ <h1>Nuevo contrato para [% booksellername %]</h1>
+ [% END %]
+ <fieldset class="rows">
+ <ol>
+ [% IF ( contractnumber ) %]
+ <li><span class="label">Contract id </span>[% contractnumber %]
+ <input type="hidden" name="contractnumber" value="[% contractnumber %]" />
+ <input type="hidden" name="is_a_modif" value="1" />
+ </li>
+ [% END %]
+ <li><label for="contractname" class="required">Nombre *</label> &nbsp;
+ <input type="text" name="contractname" id="contractname" size="40" maxlength="80" value="[% contractname %]" />
+ </li>
+ <li><label for="contractdescription">Descripción</label> &nbsp;
+ <input type="text" name="contractdescription" id="contractdescription" size="40" maxlength="80" value="[% contractdescription %]" />
+ </li>
+ <li><label for="contractstartdate" class="required">Fecha de inicio *</label> &nbsp;
+ <input type="text" name="contractstartdate" id="contractstartdate" value="[% contractstartdate %]" maxlength="10"  size="10"/>
+ <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" id="contractstartdate_button" />
+ <script language="JavaScript" type="text/javascript">
+                                            Calendar.setup(
+                                            {
+                                            inputField : "contractstartdate",
+                                            ifFormat : "[% DHTMLcalendar_dateformat %]",
+                                            button : "contractstartdate_button"
+                                            }
+                                            );
+                                        </script>
+ <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
+ </li>
+ <li><label for="contractenddate" class="required">Fecha de finalización *</label> &nbsp;
+ <input type="text" name="contractenddate" id="contractenddate" value="[% contractenddate %]" maxlength="10"  size="10" />
+ <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" id="contractenddate_button" />
+ <script language="JavaScript" type="text/javascript">
+                                            Calendar.setup(
+                                            {
+                                            inputField : "contractenddate",
+                                            ifFormat : "[% DHTMLcalendar_dateformat %]",
+                                            button : "contractenddate_button"
+                                            }
+                                            );
+                                        </script>
+ <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
+ </li>
+ </ol>
+ </fieldset>
+ <fieldset class="action">
+ <input value="Guardar" type="button" onclick="Check(this.form);" /> <a class="cancel" href="/cgi-bin/koha/admin/aqcontract.pl?booksellerid=[% booksellerid %]&amp;contractnumber=[% contractnumber %]">Cancelar</a>
+ </fieldset>
+ </form>
+ [% END %]
+ [% IF ( add_validate ) %]
+ <h3>Datos guardados</h3>
+ <form action="[% script_name %]" method="post">
+ <input type="submit" value="OK" />
+ </form>
+ [% END %]
+ [% IF ( delete_confirm ) %]
+ <form action="[% script_name %]" method="post">
+ <fieldset>
+ <legend>Confirm deletion of contract [% contractnumber %]</legend>
+ <table>
+ <tr><th scope="row">Número del contrato:</th><td>[% contractnumber %]</td></tr>
+ <tr><th scope="row">Nombre del contrato:</th><td>[% contractname %]</td></tr>
+ <tr><th scope="row">Descripción del contrato:</th><td>[% contractdescription %]</td></tr>
+ <tr><th scope="row">Fecha de inicio del contrato:</th><td>[% contractstartdate %]</td></tr>
+ <tr><th scope="row">Fecha de finalización de contrato:</th><td>[% contractenddate %]</td></tr>
+ <tr><th scope="row">Proveedor:</th><td>[% booksellername %]</td></tr>
+ </table>
+ <fieldset class="action">
+ <input type="hidden" name="op" value="delete_confirmed" />
+ <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
+ <input type="hidden" name="contractnumber" value="[% contractnumber %]" />
+ <input value="Eliminar este contrato" type="submit" />
+ <a class="cancel" href="/cgi-bin/koha/admin/aqcontract.pl?booksellerid=[% booksellerid %]&amp;contractnumber=[% contractnumber %]">Cancelar</a>
+ </fieldset>
+ </fieldset>
+ </form>
+ [% END %]
+ [% IF ( delete_confirmed ) %]
+ <h3>Contract deleted</h3>
+ <form action="[% script_name %]" method="post">
+ <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
+ <input type="submit" value="OK" />
+ </form>
+ [% END %]
+ [% IF ( else ) %]
+ <div id="toolbar">
+ <script type="text/javascript">
+                        //<![CDATA[
+                        // prepare DOM for YUI Toolbar
+                        $(document).ready(function() {
+                        yuiToolbar();
+                        });
+                        // YUI Toolbar Functions
+                        function yuiToolbar() {
+                        new YAHOO.widget.Button("newcontract");
+                        }
+                        //]]>
+                    </script>
+ <ul class="toolbar">
+ <li><a id="newcontract" href="/cgi-bin/koha/admin/aqcontract.pl?op=add_form&amp;booksellerid=[% booksellerid %]">Nuevo contrato</a></li>
+ </ul>
+ </div>
+ <h2>Contrato(s) de [% booksellername %]</h2>
+ [% IF ( loop ) %]
+ <table>
+ <tr>
+ <th scope="col">Nombre</th>
+ <th scope="col">Descripción</th>
+ <th scope="col">Fecha de inicio</th>
+ <th scope="col">Fecha de finalización</th>
+ <th scope="col" colspan="2">&nbsp; </th>
+ </tr>
+ [% FOREACH loo IN loop %]
+ [% IF ( loop.even ) %]<tr class="highlight">[% ELSE %]<tr>[% END %]
+ <td>
+ <a href="[% loo.script_name %]?op=add_form&amp;booksellerid=[% loo.booksellerid %]&amp;contractnumber=[% loo.contractnumber %]">[% loo.contractname %]</a>
+ </td>
+ <td>[% loo.contractdescription %]</td>
+ <td>[% loo.contractstartdate %]</td>
+ <td>[% loo.contractenddate %]</td>
+ <td><a href="[% loo.script_name %]?op=add_form&amp;contractnumber=[% loo.contractnumber %]&amp;booksellerid=[% loo.booksellerid %]">Editar</a></td>
+ <td><a href="[% loo.script_name %]?op=delete_confirm&amp;contractnumber=[% loo.contractnumber %]&amp;booksellerid=[% loo.booksellerid %]">Eliminar</a></td>
+ </tr>
+ [% END %]
+ </table>
+ [% ELSE %]
+ <div class="dialog message">No hay contratos con este proveedor.</div>
+ [% END %]
+ [% END %]
+ </div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

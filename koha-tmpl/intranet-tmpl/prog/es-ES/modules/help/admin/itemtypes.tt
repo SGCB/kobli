@@ -1,0 +1,58 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Tipos de ítem</h1>
+
+<p>Koha permite que organices tu colección por tipos de ítem y códigos de colección.</p>
+
+<p>Los tipos de ítem normalmente se refieren al tipo de material (libro, cd, dvd, etc), pero pueden usarse de cualquier modo que funcione en tu biblioteca.</p>
+
+<h2>Adding item types</h2>
+
+<p>To add a new item type, simply click the 'New item type' button at the top of the Item types page.</p>
+
+<ul>
+ <li>In the 'Item type' field, enter a short code for your item type</li>
+ <li>La descripción es la definición del texto plano del tipo de ítem</li>
+ <li>Puedes elegir tener una imagen asociada con tu tipo de ítem<ul>
+ <li>Puedes elegir de una serie de colecciones de imágenes</li>
+ <li>Puedes enlazar a una imagen remota</li>
+ <li>O, simplemente, puedes no tener una imagen asociada con el tipo de ítem</li>
+ <li style="color: #990000;">Importante: Para que las imágenes del tipo de ítem parezcan en el OPAC tienes que establecer noItemTypeImages en "Mostrar"<ul>
+ <li>Get there: More &gt; Administration &gt; Global system preferences &gt; Admin</li>
+</ul>
+</li>
+</ul>
+</li>
+ <li>Para ítems que no e circulan, marca la opción 'No para préstamo'<ul>
+ <li>Los ítems marcados como 'No para préstamo' aparecerán en el catálogo, pero no podrán ser prestados a los socios</li>
+</ul>
+</li>
+ <li>Ingresa el número total de renovaciones permitidas para el tipo de ítem en la casilla 'Renovaciones'</li>
+ <li>Para ítems a los que caobras un cargo, ingresa el total del cargo en el campo 'Cargo por préstamo'<ul>
+ <li style="color: #990000;">Importante: No escribir símbolos en este campo, sólo números y puntos decimales (ej. $5.00 debería escribirse como 5 o 5.00)</li>
+ <li>Esto se cargará al socio en el préstamo</li>
+</ul>
+</li>
+ <li>When finished, click 'Save changes'
+<ul>
+ <li>Tip: All fields, with the exception of the 'Item type' will be editable from the item types list</li>
+</ul>
+</li>
+ <li>Tu nuevo tipo de ítem aparecerá ahora en la lista</li>
+</ul>
+
+<h2>Editing item types</h2>
+
+<p>Cada tipo de ítem tiene un botón Editar a su lado. Para editarlo simplemente haz clic en el enlace 'Editar'.</p>
+
+<p>You will not be able to edit the code you assigned as the 'Item type' but you will be able to edit the description for the item.</p>
+
+<h2>Deleting item types</h2>
+
+<p>Cada ítem tiene un botón Eliminar a su lado. Para eliminar un ítem, simplemente haz clic en el enlace 'Eliminar'.</p>
+
+<p>No podrás eliminar tipos de ítem que estén siendo utilizados por ítems pertenecientes a tu sistema.</p>
+
+<p><strong>See the full documentation for item types in the <a href="http://manual.koha-community.org/3.6/en/basicparams.html#itemtypeadmin">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

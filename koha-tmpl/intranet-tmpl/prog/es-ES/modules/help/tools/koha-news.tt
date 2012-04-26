@@ -1,0 +1,27 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Noticias</h1>
+
+<p>Koha's news module allows librarians to post news to the OPAC, staff interface and circulation receipts.</p>
+
+<p>To add news to either the OPAC, the Staff Client or a Circulation receipt:</p>
+
+<ul>
+ <li>Click 'New Entry'
+<ul>
+ <li>Under 'Display Location' choose whether to put the news on the OPAC, Slip (circulation receipt) or the Librarian (Staff) Interface.</li>
+ <li>Elige un título para tu entrada</li>
+ <li>Con los campos de fecha de publicación y caducidad se puede controlar el tiempo que el ítem aparece</li>
+ <li>'Aparece en posición' te permite decidir en qué orden aparecen tus notícias de ítems</li>
+ <li>The 'News' box allows for the use of HTML for formatting of your news item</li>
+</ul>
+</li>
+ <li>Después de rellenar todos los campos, haz clic en 'Enviar'</li>
+ <li>Las noticias en OPAC aparecerán por encima de OpacMainUserBlock</li>
+ <li>Las noticias en la interfaz del personal aparecerán en el extremo izquierdo de la pantalla</li>
+ <li>News on the circulation receipts will appear below the items that are checked out</li>
+</ul>
+
+<p><strong>See the full documentation for News in the <a href="http://manual.koha-community.org/3.8/en/tools.html#newstool">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %] 

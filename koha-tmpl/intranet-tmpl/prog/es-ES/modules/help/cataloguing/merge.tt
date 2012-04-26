@@ -1,0 +1,23 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Merging items</h1>
+
+<p>La forma más sencilla de combinar dos registros bibliográficos duplicados es agregarlos a una lista y utilizar la herramienta de combinación desde alli.</p>
+
+<p>From the list, check the two items you want to merge. If you choose more than or fewer than 2, you will be presented with an error</p>
+
+<p>Once you have selected the records you want to merge, click the 'Merge selected items' button. You will be asked which of the two records you would like to keep as your primary record and which will be deleted after the merge.</p>
+
+<p>S la vista MARC de ambos registros (cada uno accesible por pestañas identificadas con el número propio de esos registros). De forma predeterminada el primer registro estará seleccionado, desmarque los campos que no desee en el registro final (destino) y luego muevasé a la segunda pestaña y seleccione cuales campos deben ir en el registro final (destino).</p>
+
+<p>Mostrar calendario</p>
+
+<p>Lo más importante es que te asegures de que todos los ítems de ambos registros se unen en el nuevo registro. Para hacer esto verifica que todos los archivos 952 se han seleccionado antes de completar la combinación.</p>
+
+<p>Una vez que hayas completado tu selección, haz clic en el botón 'combinar'. El registro primario mostrará los datos seleccionados, y el segundo registro será eliminado.</p>
+
+<p style="color: rgb(153, 0, 0);">Importante: Es importante regenerar el índice zebra inmediatamente después de combinar registros. Si una búsqueda se realiza para un registro que ha sido borrado, Koha retornará a los socios un error en el OPAC.</p>
+
+<p><strong>See the full documentation for Merging Items in the <a href="http://manual.koha-community.org/3.8/en/stafflists.html#mergebibrecs">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

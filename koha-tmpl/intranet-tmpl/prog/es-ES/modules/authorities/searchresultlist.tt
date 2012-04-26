@@ -1,0 +1,88 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Inicio &rsaquo; Autoridades &rsaquo; Resultados de búsqueda de autoridad</title>
+[% INCLUDE 'doc-head-close.inc' %]
+<script type="text/javascript" >
+//<![CDATA[
+function confirm_deletion(id) {
+    
+    var is_confirmed = confirm('Are you sure you want to delete this authority?');
+    if (is_confirmed) {
+        window.location="authorities-home.pl?op=delete&amp;authid="+id;
+    }
+}
+function Help() {
+    newin=window.open("/cgi-bin/koha/help.pl","KohaHelp",'width=600,height=600,toolbar=false,scrollbars=yes');
+}
+
+function addauthority() {
+    X = document.forms[0].authtype.value;
+    window.location="/cgi-bin/koha/authorities/authorities.pl?authtypecode="+X;
+}
+function searchauthority() {
+    X = document.forms[0].authtype2.value;
+    Y = document.forms[0].value.value;
+    window.location="/cgi-bin/koha/authorities/authorities-home.pl?op=do_search&type=intranet&authtypecode="+X+"&value="+Y+"&marclist=&and_or=and&excluding=&operator=contains";
+}
+//]]>
+</script>
+</head>
+<body id="auth_searchresultlist" class="auth">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'authorities-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/authorities/authorities-home.pl">Autoridades</a>  &rsaquo; Resultados de la búsqueda de autoridad</div>
+
+<div id="doc" class="yui-t7">
+ 
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-g">
+ 
+ [% INCLUDE 'authorities-toolbar.inc' %]
+<h1>Resultados de la búsqueda de autoridad</h1>
+
+[% IF ( total ) %]
+<div class="pages">[% pagination_bar %]</div>
+
+<p id="authorities_searchresultlist_current_page_info">
+ Results [% from %] to [% to %] of [% total %]
+</p>
+
+<div id="authorities_searchresultlist_results">
+ <table>
+ <tr>
+ <th colspan="2">Resumen</th>
+[% UNLESS ( isEDITORS ) %]
+ <th>Usado en</th>
+[% END %]
+ <th>Eliminar</th>
+ </tr>
+[% FOREACH resul IN result %]
+ [% UNLESS ( loop.odd ) %]
+ <tr class="highlight">
+ [% ELSE %]
+ <tr>
+ [% END %]
+ <td>[% resul.summary %]</td>
+ <td><a href="detail.pl?authid=[% resul.authid %]">Detalles</a></td>
+ [% UNLESS ( resul.isEDITORS ) %]
+ <td>
+ <a href="../catalogue/search.pl?type=intranet&amp;op=do_search&amp;idx=an,phr&amp;q=[% resul.authid %]" class="button">[% resul.used %] registro(s)</a>
+ </td>
+ [% END %]
+ <td>
+ [% UNLESS ( resul.used ) %]
+ <a href="javascript:confirm_deletion([% resul.authid %])">Eliminar</a>
+ [% END %]
+ </td>
+ </tr>
+[% END %]
+ </table>
+</div>
+
+<div class="paginationBar">[% pagination_bar %]</div>
+
+ [% ELSE %] No se han encontrado resultados [% END %] </div>
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

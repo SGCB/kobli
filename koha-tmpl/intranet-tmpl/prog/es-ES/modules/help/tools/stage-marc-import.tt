@@ -1,0 +1,30 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Importación MARC</h1>
+
+<p>Importar registros en Koha incluye dos pasos. La primera fase consiste en preparar los registros para importación.</p>
+
+<ul>
+ <li>Primero encuentre el archivo MARC en su equipo</li>
+ <li>Next you will be presented with options for record matching and item imports
+<ul>
+ <li>Escriba 'Comentarios acerca de este archivo' para identificar lo cargado cuando se va a la herramienta 'Administrar los registros MARC preparados'</li>
+ <li>Seleccione la codificación de caracteres</li>
+ <li>Choose whether or not you want to look for matching records
+<ul>
+ <li>Puede configurar reglas de coincidencia de registro a través del área de administración</li>
+</ul>
+</li>
+ <li>A continuación elija qué hacer con los registros coincidentes si se encuentran</li>
+ <li>Por último elegir qué hacer con los registros que son únicos</li>
+ <li>A continuación puede elegir si desea o no importar los datos del ítem encontrado en los registros MARC</li>
+</ul>
+</li>
+ <li>Haga clic en 'Preparar para importación'</li>
+ <li>Se le presentará con una confirmación de la importación MARC</li>
+ <li>Para completar el proceso continúe con la herramienta Gestión de registros MARC preparados</li>
+</ul>
+
+<p><strong>See the full documentation for the MARC Import in the <a href="http://manual.koha-community.org/3.8/en/stagemarc.html">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]
