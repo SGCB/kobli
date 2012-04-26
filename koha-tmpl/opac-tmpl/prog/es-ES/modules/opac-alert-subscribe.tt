@@ -1,0 +1,38 @@
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Serials
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="opac-alert-subscribe">
+[% INCLUDE 'masthead.inc' %] <div id="doc3" class="yui-t1">
+<div id="bd">
+ <div id="yui-main">
+ [% INCLUDE 'search.inc' %] <div class="yui-b">
+<div id="useralertsubscribe" class="container"> [% IF ( typeissue ) %] <h1 class="catalogue">Suscribirse a la alerta de ejemplares recibidos</h1>
+ <form action="opac-alert-subscribe.pl" method="post">
+ <p>¿Quieres recibir un email cuando llegue un nuevo número de esta suscripción?</p>
+ [% bibliotitle %] [% IF ( notes ) %]([% notes %])[% END %] llegó ?</p>
+ <input type="hidden" name="externalid" value="[% externalid %]">
+ <input type="hidden" name="alerttype" value="issue">
+ <input type="hidden" name="biblionumber" value="[% biblionumber %]">
+ <input type="hidden" name="op" value="alert_confirmed">
+ <input value="Sí" type="submit">
+ <a href="opac-serial-issues.pl?biblionumber=[% biblionumber %]" >No</a>
+ </form>
+
+ [% END %] [% IF ( typeissuecancel ) %] <h1 class="catalogue">Cancelar la suscripción</h1>
+ <form action="opac-alert-subscribe.pl" method="post">
+ <p>Por favor, confirma que no deseas recibir un email cuando llegue un nuevo número de esta suscripción</p>
+ [% bibliotitle %] [% IF ( notes ) %]([% notes %])[% END %] ?</p>
+ <input type="hidden" name="externalid" value="[% externalid %]">
+ <input type="hidden" name="alerttype" value="issue">
+ <input type="hidden" name="biblionumber" value="[% biblionumber %]">
+ <input type="hidden" name="op" value="cancel_confirmed">
+ <input value="Sí" type="submit" class="button">
+ <a href="opac-serial-issues.pl?biblionumber=[% biblionumber %]" class="button">No</a>
+ </form>
+
+ [% END %]</div>
+</div>
+</div>
+</div>
+
+[% INCLUDE 'opac-bottom.inc' %] 

@@ -1,0 +1,38 @@
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Sending your list
+[% INCLUDE 'doc-head-close.inc' %]
+<script type="text/javascript">//<![CDATA[
+	$(document).ready(function(){
+		$(".close").html(_("Cerrar esta ventana"));
+	});
+//]]>
+</script>
+</head>
+<body style="padding: 1em;" id="sendshelf">
+<div id="usersendshelfform" class="container">[% IF ( email ) %] [% IF ( SENT ) %] <h3>Message sent</h3>
+ <p>La lista fue enviada a: [% email %]</p>
+ <p><a class="focus close" href="/cgi-bin/koha/opac-shelves.pl">Volver a las listas</a></p>
+ [% END %] [% IF ( error ) %] <p>Problema enviando la lista...</p>
+ [% END %] [% ELSE %] [% IF ( invalidlist ) %] <div class="dialog alert">
+ <p>You do not have permission to send this list.</p>
+ </div>
+ <p><a class="button close" href="/cgi-bin/koha/opac-shelves.pl">Volver a las listas</a></p>
+ [% ELSE %] <form action="[% url %]" method="post" id="sendshelfform">
+
+ <fieldset class="rows">
+ <legend>Enviando su lista</legend>
+ <ol> <li>
+ <label for="email">Email address:</label>
+ <input type="text" id="email" name="email" size="43" class="focus" />
+ </li>
+ <li>
+ <label for="comment">Comentario:</label>
+ <textarea id="comment" name="comment" rows="4" cols="40"></textarea>
+ </li>
+ <li>
+ <input type="hidden" name="shelfid" value="[% shelfid %]" />
+ </li></ol></fieldset>
+ <fieldset class="action"> <input value="Enviar" type="submit" /> <a class="cancel close" href="#">Cancelar</a> </fieldset>
+ </form>
+ [% END %] [% END %]</div>
+</body>
+</html>
