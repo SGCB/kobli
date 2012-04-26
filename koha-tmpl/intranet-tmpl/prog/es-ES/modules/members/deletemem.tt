@@ -1,0 +1,35 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Inicio &rsaquo; No se puede eliminar socio</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="pat_deletemem" class="pat">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'patron-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Cannot delete patron</div>
+<div id="doc3" class="yui-t2">
+ 
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+ [% INCLUDE 'members-toolbar.inc' %]
+ <div class="dialog alert">
+ <h3>Cannot delete patron</h3>
+ <ul>[% IF ( ItemsOnIssues ) %]
+ <li>El socio tiene [% ItemsOnIssues %] ítem(s) prestados.</li>
+ [% END %]
+ [% IF ( charges ) %]
+ <li>El socio tiene [% charges %] en multas.</li>
+ [% END %]
+ [% IF ( guarantees ) %]
+ <li>La cuenta del socio tiene cuentas garantizadas asociadas.</li>
+ [% END %]</ul>
+ </div>
+</div>
+</div>
+
+<div class="yui-b">
+[% INCLUDE 'circ-menu.inc' %]
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

@@ -1,0 +1,53 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Vendors</h1>
+
+<p>Antes de ingresar una orden deberá ingresar primero al menos un vendedor.</p>
+
+<h2>Add a vendor</h2>
+
+<p>To add a vendor click the 'New vendor' button on the Acquisitions page.</p>
+
+<p>The vendor add form is broken into three pieces.</p>
+
+<ul>
+ <li>The first section is for basic information about the vendor
+<ul>
+ <li>Of these fields, only the vendor name is required, the rest of the information should be added to help with generating claim letters and invoices</li>
+</ul>
+</li>
+ <li>The second section is for information regarding your contact at the vendor's office
+<ul>
+ <li>None of these fields are required, they should only be entered if you want to keep track of your contact's information within Koha</li>
+</ul>
+</li>
+ <li>The final section is for billing information
+<ul>
+ <li>To be able to order from a vendor you must make them 'Active'</li>
+ <li>For list prices and invoice prices choose the currency
+<ul>
+ <li>Currencies are assigned in the Currencies &amp; Exchange rates admin area</li>
+</ul>
+</li>
+ <li>If the vendor offers a consistent blank discount, enter that in the 'Discount' field
+<ul>
+ <li>You can enter item specific discounts when placing an order</li>
+</ul>
+</li>
+ <li>Tasa de IVA es por cualquier tasa que el vendedor pueda aplicar</li>
+ <li>Notas:</li>
+</ul>
+</li>
+</ul>
+
+<h2>View/Edit a vendor</h2>
+
+<p>To view a vendor's information page you must search for the vendor from the Acquisitions home page. Your search can be for any part of the vendor's name.</p>
+
+<p>From the results, click on the name of the vendor you want to view or edit.</p>
+
+<p>To make changes to the vendor, simply click the 'Edit' button.</p>
+
+<p><strong>See the full documentation for managing vendors in the <a href="http://manual.koha-community.org/3.6/en/acqvendors.html">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

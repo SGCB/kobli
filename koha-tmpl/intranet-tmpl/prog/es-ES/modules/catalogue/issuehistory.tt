@@ -1,0 +1,86 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Koha &rsaquo; Catalog &rsaquo; Checkout history for [% title |html %]</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="catalog_issuehistory" class="catalog">
+
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'cat-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/catalogue/search.pl">Catálogo</a> &rsaquo; Checkout history for <i>[% title |html %]</i></div>
+
+<div id="doc3" class="yui-t2">
+
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+
+<h1>Historial de préstamos de [% title |html %]</h1>
+[% IF ( author ) %]<h3>por [% author %]</h3>[% END %]
+
+<div class="searchresults">
+ [% IF ( issues ) %]
+ <h4>Ha sido prestado [% total %] veces</h4>
+ <table>
+ <thead><tr>
+ <th>Socio</th>
+ <th>Código de barras</th>
+ <th>Prestado de</th>
+ <th>Renovado</th>
+ <th>Prestado el</th>
+ <th>Fecha de devolución</th>
+ <th>Devuelto</th>
+ </tr></thead>
+ <tbody>
+ [% FOREACH issue IN issues %]
+ [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %]
+ <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% issue.borrowernumber %]">[% IF HidePatronName %][% issue.cardnumber %][% ELSE %][% issue.surname %][% IF ( issue.firstname ) %], [% issue.firstname %][% END %][% END %]</a></td>
+ <td>[% IF ( issue.barcode ) %]
+ <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% issue.biblionumber %]&amp;itemnumber=[% issue.itemnumber %]">[% issue.barcode %]</a>
+ [% ELSE %]
+ &nbsp;
+ [% END %]</td>
+ <td>[% IF ( issue.branchcode ) %]
+ [% issue.branchcode %]
+ [% ELSE %]
+ &nbsp;
+ [% END %]</td>
+ <td>[% IF ( issue.renewals ) %]
+ Yes[% IF ( issue.lastreneweddate ) %], <small>dura hasta: [% issue.lastreneweddate %]</small>
+ [% END %]
+ [% ELSE %]
+ No
+ [% END %]</td>
+ <td>[% IF ( issue.issuedate ) %]
+ [% issue.issuedate %]
+ [% ELSE %]
+ &nbsp;
+ [% END %]</td>
+ <td>[% IF ( issue.date_due ) %]
+ [% issue.date_due %]
+ [% ELSE %]
+ &nbsp;
+ [% END %]</td>
+ <td>[% IF ( issue.returndate ) %]
+ [% issue.returndate %]
+ [% ELSE %]
+ &nbsp;
+ [% END %]</td>
+ </tr>
+ [% END %]
+ </tbody>
+ </table>
+ [% ELSE %]
+ <div class="dialog message"><p>
+ <b>[% title |html %][% IF ( author ) %], by [% author %][% END %]</b> no ha sido prestado nunca.</p></div>
+
+ [% END %]
+</div>
+
+</div>
+</div>
+<div class="yui-b">
+[% INCLUDE 'biblio-view-menu.inc' %]
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

@@ -1,0 +1,150 @@
+[% INCLUDE 'doc-head-open.inc' %] 
+<title>Koha &rsaquo; Reports &rsaquo; Till reconciliation</title>
+[% INCLUDE 'doc-head-close.inc' %]
+[% INCLUDE 'calendar.inc' %] 
+
+</head>
+<body id="rep_stats_screen" class="rep">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'circ-search.inc' %]
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a> &rsaquo; Till reconciliation
+</div>
+
+<div id="doc3" class="yui-t2">
+ 
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+
+<h1>Till reconciliation</h1>
+
+<fieldset><legend>Buscar entre dos fechas</legend>
+<form action="stats.screen.pl" method="post">
+ <label for="from">Start Date: </label>
+ <input type="text" name="time" size="10" value="[% IF ( date ) %][% date %][% ELSE %]today[% END %]" id="from" /> 
+ <img src="[% themelang %]/lib/calendar/cal.gif" id="buttonfrom1" alt="Show calendar" style="cursor: pointer;" />
+ <script type="text/javascript">
+     Calendar.setup({
+     inputField     :    "from",
+     ifFormat       :    "[% DHTMLcalendar_dateformat %]",
+     button         :    "buttonfrom1",
+     align          :    "Tl"
+     });
+     </script>
+ <label for="to">End Date: </label>
+ <input type="text" name="time2" size="10" value="[% IF ( date2 ) %][% date2 %][% ELSE %]tomorrow[% END %]" id="to" />
+ <img src="[% themelang %]/lib/calendar/cal.gif" id="buttonto1" alt="Show calendar" style="cursor: pointer;" />
+ <script type="text/javascript">
+     Calendar.setup({
+     inputField     :    "to",
+     ifFormat       :    "[% DHTMLcalendar_dateformat %]",
+     button         :    "buttonto1",
+     align          :    "Tl"
+     });
+     </script>
+ <input type="submit" value="To screen" name="submit" class="submit" />
+<!-- <input type="submit" value="To Excel" name="submit" class="button"> --></fieldset>
+</form>
+
+<h2>Pagos</h2>
+
+ <table>
+ <tr>
+ <th>Biblioteca</th>
+ <th>Fecha/hora</th>
+ <th>Surname</th>
+ <th>First name</th>
+ <th>Descripción</th>
+ <th>Charge type</th>
+ <th>Invoice amount</th>
+ <th>Payment type</th>
+ <th>Payment amount</th>
+ </tr>
+
+ [% FOREACH loop IN loop1 %]
+ <tr>
+ <td>[% loop.branch %]</td>
+ <td>[% loop.datetime %]</td>
+ <td>[% loop.surname %]</td>
+ <td>[% loop.firstname %]</td>
+ <td>[% loop.description %]</td>
+ <td>[% loop.accounttype %]</td>
+ <td>[% loop.amount %]</td>
+ <td>[% loop.type %]</td>
+ <td>[% loop.value %]</td>
+ </tr>
+ [% END %]
+ </table>
+
+<p>
+ <b>El monto total pagado: [% totalpaid %]</b>
+</p>
+
+
+<h2>Créditos</h2>
+
+ <table>
+ <tr>
+ <th>Biblioteca</th>
+ <th>Fecha/hora</th>
+ <th>Surname</th>
+ <th>First name</th>
+ <th>Descripción</th>
+ <th>Charge type</th>
+ <th>Invoice amount</th>
+ </tr>
+
+ [% FOREACH loop IN loop2 %]
+ <tr>
+ <td>[% loop.creditbranch %]</td>
+ <td>[% loop.creditdate %]</td>
+ <td>[% loop.creditsurname %]</td>
+ <td>[% loop.creditfirstname %]</td>
+ <td>[% loop.creditdescription %]</td>
+ <td>[% loop.creditaccounttype %]</td>
+ <td>[% loop.creditamount %]</td>
+ </tr>
+ [% END %]
+ </table>
+<p>
+ <ul><li> <b>Importe total créditos: [% totalcredits %]</b></li>
+ <li><b>Total dado por perdido: [% totalwritten %] cargas</b></li></ul>
+</p>
+
+
+<h2>Reembolsos</h2>
+
+ <table>
+ <tr>
+ <th>Biblioteca</th>
+ <th>Fecha/hora</th>
+ <th>Surname</th>
+ <th>First name</th>
+ <th>Descripción</th>
+ <th>Charge type</th>
+ <th>Invoice amount</th>
+ </tr>
+
+ [% FOREACH loop IN loop3 %]
+ <tr>
+ <td>[% loop.refundbranch %]</td>
+ <td>[% loop.refunddate %]</td>
+ <td>[% loop.refundsurname %]</td>
+ <td>[% loop.refundfirstname %]</td>
+ <td>[% loop.refunddescription %]</td>
+ <td>[% loop.refundaccounttype %]</td>
+ <td>[% loop.refundamount %]</td>
+ </tr>
+ [% END %]
+ </table>
+<p>
+ <ul><li><b>Importe total restituciones: [% totalrefund %]</b></li>
+ <li><b>Total amount of cash collected: [% totalcash %] </b></li></ul>
+</p>
+</div>
+</div>
+<div class="yui-b">
+[% INCLUDE 'reports-menu.inc' %]
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

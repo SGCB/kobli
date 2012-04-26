@@ -1,0 +1,119 @@
+--- 
+Administration: 
+  "Autenticaci\xC3\xB3n CAS": 
+    - 
+      - 
+        choices: 
+          "": No usar
+          1: Usar
+        default: '0'
+        pref: casAuthentication
+      - "CAS para autenticaci\xC3\xB3n de acceso."
+    - 
+      - 
+        choices: 
+          "": "No cerrar sesi\xC3\xB3n"
+          1: "Cerrar sesi\xC3\xB3n"
+        default: '0'
+        pref: casLogout
+      - de CAS cuando abandone Koha.
+    - 
+      - "El servidor de autenticaci\xC3\xB3n CAS puede encontrase en"
+      - 
+        pref: casServerUrl
+    - 
+      - Use
+      - 
+        choices: 
+          Common Name: the Common Name
+          None: 'no'
+          emailAddress: the emailAddress
+        default: None
+        pref: AllowPkiAuth
+      - field for SSL client certificate authentication
+  Opciones de ingreso: 
+    - 
+      - 
+        choices: 
+          "": No permita
+          1: Permita
+        default: '0'
+        pref: insecure
+      - "al personal acceder la interfaz administrativa sin autenticarse. Habilitar esto es peligroso, y no debe hacerse en un entorno de producci\xC3\xB3n."
+    - 
+      - "Cerrar sesi\xC3\xB3n autom\xC3\xA1ticamente luego de"
+      - 
+        class: integer
+        pref: timeout
+      - seconds of inactivity. Adding d will specify it in days, e.g. 1d is timeout of one day.
+    - 
+      - 
+        choices: 
+          "": No requiere
+          1: Requiere
+        default: '0'
+        pref: AutoLocation
+      - que el personal ingrese desde una computadora en el rango de direcciones IP <a href="/cgi-bin/koha/admin/branches.pl">especificada por su biblioteca</a> (si hubiera).
+    - 
+      - "Almacena informaci\xC3\xB3n de sesiones autenticadas"
+      - 
+        choices: 
+          Pg: en la base de datos PostgreSQL (no soportada).
+          memcached: en un servidor memcached.
+          mysql: en la base de datos MySQL.
+          tmp: como archivos temporarios.
+        default: mysql
+        pref: SessionStorage
+    - 
+      - 
+        choices: 
+          "": No prevenir
+          1: Prevenir
+        default: '0'
+        pref: IndependantBranches
+      - "al personal (pero no superusuarios) de modificar objetos (reserva, \xC3\xADtems, socios, etc.) pertenecientes a otras bibliotecas."
+  Opciones de interfaz: 
+    - 
+      - Use
+      - 
+        class: email
+        pref: KohaAdminEmailAddress
+      - "as the email address for the administrator of Koha. (This is the default From: address for emails unless there is one for the particular library, and is referred to when an internal error occurs.)"
+    - 
+      - Mostrar
+      - 
+        choices: 
+          "0": ninguna
+          1: alguna
+          2: mucha
+        default: '0'
+        pref: DebugLevel
+      - "informaci\xC3\xB3n de depuraci\xC3\xB3n en el navegador cuando ocurre un error interno."
+    - 
+      - 
+        choices: 
+          "": Mostrar
+          1: No mostrar
+        default: '0'
+        pref: noItemTypeImages
+      - "iconos de tipo de \xC3\xADtem en el cat\xC3\xA1logo."
+    - 
+      - Separe columnas en un reporte exportado con
+      - 
+        choices: 
+          "#": "#'s"
+          ",": comas
+          /: barras
+          ;: punto y coma
+          \: barras invertidas
+          tabulation: tabulaciones
+        default: ","
+        pref: delimiter
+      - por defecto.
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: virtualshelves
+      - al personal y socios crear y ver listas almacenadas de libros.

@@ -1,0 +1,26 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Authority record tags</h1>
+
+<p>To add a field to an authority framework click the 'New Tag' button at the top of the authority framework definition</p>
+
+<p>Esto abrirá un espacio en blanco para insertar datos de campo MARC</p>
+
+<p>Ingresa la información correspondiente a tu nueva etiqueta:</p>
+
+<ul>
+ <li>La "Etiqueta" es el número de campo MARC</li>
+ <li>La "Etiqueta para la biblioteca" es el texto que aparecerá en el cliente administrativo en el módulo de catalogación</li>
+ <li>La "Etiqueta para OPAC" es el texto que aparecerá en el OPAC cuando se observe la versión MARC del registro</li>
+ <li>Si se puede repetir este campo, verifica la casilla de 'Repetible'</li>
+ <li>Si este campo es obligatorio, verifica la casilla 'Obligatorio'</li>
+ <li>Si quieres que este campo sea un desplegable con respuestas posibles limitadas, elige qué lista de 'Valor autorizado' quieres utilizar</li>
+</ul>
+
+<p>When you're finished, click 'Save changes' and you will be presented with your new field</p>
+
+<p>A la derecha del nuevo campo hay un enlace a 'Subcampos'. Nacesitarás añadir subcampos antes de que esta etiqueta aparezca en tu editor MARC.</p>
+
+<p><strong>See the full documentation for authorities in the <a href="http://manual.koha-community.org/3.6/en/catadmin.html#authoritiesadmin">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

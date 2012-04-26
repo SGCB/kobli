@@ -1,0 +1,68 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Koha &rsaquo; [% IF ( nopermission ) %]Acceso denegado[% END %] [% IF ( timed_out ) %]La sesión ha expirado[% END %] [% IF ( different_ip ) %]Cambio de dirección IP[% END %] [% IF ( invalid_username_or_password ) %]Nombre de usuario o contraseña inválidos[% END %] [% IF ( loginprompt ) %]Iniciar sesión en Koha[% END %] </title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="main_auth" class="main">
+
+<div id="doc" class="yui-t7">
+ <div id="bd">
+
+<div id="login">
+<h1><a href="http://koha-community.org">Koha</a></h1>
+[% IF ( nopermission ) %]
+<div id="login_error"><strong>Error:</strong> No tienes permiso para acceder a esta página.<a href="/cgi-bin/koha/mainpage.pl?logout.x=1">Haz clic para desconectarte</a></div>
+[% END %]
+
+[% IF ( timed_out ) %]
+<div id="login_error"><strong>Error: </strong>Session timed out.<br /> Please log in again</div>
+[% END %]
+
+[% IF ( different_ip ) %]
+<div id="login_error"><strong>Error: </strong>IP address has changed. Please log in again </div>
+[% END %]
+
+[% IF ( wrongip ) %]
+<div id="login_error"><strong>Error: </strong>IndependentBranches and Autolocation are switched on and you are logging in with an IP address that doesn't match your library. </div>
+[% END %]
+
+[% IF ( invalid_username_or_password ) %]
+<div id="login_error"><strong>Error: </strong>Nombre de usuario o contraseña inválidos</div>
+[% END %]
+
+<!-- login prompt time-->
+<form action="[% url %]" method="post" name="loginform" id="loginform">
+ <input type="hidden" name="koha_login_context" value="intranet" />
+[% FOREACH INPUT IN INPUTS %]
+ <input type="hidden" name="[% INPUT.name |html %]" value="[% INPUT.value |html %]" />
+[% END %]
+<p><label for="userid">Nombre de usuario:</label>
+<input type="text" name="userid" id="userid" class="input focus" value="[% userid %]" size="20" tabindex="1" />
+</p>
+<p><label for="password">Contraseña:</label>
+<input type="password" name="password" id="password" class="input" value="" size="20" tabindex="2" />
+</p>
+
+[% IF ( AutoLocation ) %][% ELSE %]
+[% IF ( IndependantBranches ) %][% ELSE %]
+<p><label for="branch">Biblioteca:</label>
+ <select name="branch" id="branch" class="input" tabindex="3">
+ <option value="">My library</option>
+ [% FOREACH branchloo IN branchloop %]
+ <option value="[% branchloo.branchcode %]">[% branchloo.branchname %]</option>
+ [% END %]
+ </select>
+ </p>[% END %]
+ [% END %]
+
+<!-- <p><label><input name="rememberme" type="checkbox" id="rememberme" value="forever" tabindex="3" />Remember me</label></p> -->
+
+<p class="submit"><input id="submit" type="submit" value="Login" tabindex="4" /></p>
+</form>
+<!--<ul> -->
+<!-- <li><a href="/cgi-bin/koha/lostpassword.pl" title="Password lost and found">Lost your password?</a></li> -->
+<!-- </ul> -->
+
+</div>
+</div>
+
+[% INCLUDE 'intranet-bottom.inc' %]

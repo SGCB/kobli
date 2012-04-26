@@ -1,0 +1,98 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Socio, detalles</h1>
+
+<p>Cuando veas el registro de un socio, tendrás la opción de ver la información desde una de muchas pestañas que se encuentran en la parte izquierda del registro.</p>
+
+<h2>Préstamo</h2>
+
+<p>Para instrucción o préstamo de ítems haz clic en la pestaña de Préstamo y lee el archivo de ayuda.</p>
+
+<h2>Detalles</h2>
+
+<p>Toda la información del socio aparece el la pestaña Detalles. Esto incluye toda la información de contacto, notas, preferencias de mensajes, etc., ingresadas al incorporar al socio. En el caso de socios marcados como 'Niño' o 'Profesional' y sus garantes, se mostrará información adicional en el registro.</p>
+
+<ul>
+<li>Un socio niño listará su garante</li>
+<li>En el registro del garante se listarán todos los niños y/o profesionales</li>
+</ul> 
+
+<p>Below the patron's information on the details screen is a tabbed display of the items they have checked out, overdue, and on hold.</p>
+
+<p>If they have family at the library staff can see what the other family members have checked out.</p>
+
+<h2>Multas</h2>
+
+<p>La historia completa de contabilidad del socio aparecerá en la pestaña de Multas. Al contrario de lo que indica su nombra, la pestaña de Multas no muestra únicamente la fecha de finalización, también muestra las sumas de socios, sumas de reserva y cualquier otro cargo que puedas tener para los socios.</p>
+
+<h2>Historial de circulación</h2>
+
+<p>La pestaña del historial de circulación aparecerá si has establecido la preferencia intranetreadinghistory para que aparezca. Si has establecido en "Permitir" la preferencia del sistema OPACPrivacy y el socio ha decidido que la biblioteca no puede almacenar esta información, la pestaña sólo mostrará los ítems prestados en ese momento.</p>
+
+<h2>Registro de modificaciones</h2>
+
+<p>Si has establecido que tu BorrowersLog siga los cambios en los registros de socios, aparecerá esta pestaña. El Registro de modificación mostrará los cambios realizados en el registro de socios.</p>
+
+<ul>
+<li>El campo Bibliotecario muestra el número de socio para el bibliotecario que hace los cambios</li>
+<li>El campo Objeto lista al socio que está siendo modificado</li>
+</ul>
+
+<h2>Notificaciones</h2>
+
+<p>Las preferencias de mensajería de socios se establecen agregando o editando socios. Esta pestaña mostrará los mensajes que se hayan enviado y aquellos que se hayan puesto en la cola para enviar</p>
+
+<p>Clicking on the message title will expand the view to show you the full text of the message that was sent.</p>
+
+<h2>Editando socios</h2>
+
+<p>Los socios en Koha pueden ser editados usando uno de los muchos botones de edición.</p>
+
+<ul>
+ <li>Para editar todo el registro de un socio, simplemente haz clic en el botón "Editar" en la parte superior del registro del socio.</li>
+ <li>Para cargar sólo la contraseña del socio, haz clic en el botón "Cambiar contraseña"<ul>
+ <li>Koha cannot display existing passwords. Leave the field blank to leave password unchanged.</li>
+ <li>This form can automatically generate a random password if you click the link labeled "Click to fill with a randomly generated suggestion. Passwords will be displayed as text."</li>
+</ul>
+</li>
+ <li>Para editar una sección específica del registro del socio (por ejemplo la sección del Uso de biblioteca) haz clic en el enlace "Editar" bajo la sección</li>
+ <li>Se puede agregar la imagen de un socio buscándola en el ordenador desde la sección 'Administrar Imágenes de Socios'<ul>
+ <li>This form will not appear if you have the patronimages system preference to not allow patron images</li>
+ <li>para agregar imágenes en bloque, usa la herramienta de Cargar imágenes de socios</li>
+</ul>
+</li>
+ <li>Se puede bloquear a los socios para que no puedan tomar ítems prestados utilizando las Marcas de socio<ul>
+ <li>Si quieres que tu personal de circulación confirme la dirección de un socio antes de prestarle ítems, puedes ver la marca "A ninguna dirección"</li>
+ <li>If you would like to bar a patron from the library you can set the 'Restricted' flag
+<ul>
+ <li>This flag can automatically be set with the Overdue/Notice StatusTriggers</li>
+</ul>
+</li>
+ <li>If you enter in a date and/or note related to the restriction you will see that in the restricted message as well</li>
+ <li>Si el socio informa de que ha perdido su carné puedes establecer la marca "Carné perdido" para evitar que otra persona lo use para tomar ítems prestados</li>
+</ul>
+</li>
+ <li>Children patrons do not become adults automatically in Koha. To upgrade a child patron to and adult patron category click on the 'More' menu and choose 'Update Child to Adult Patron'
+<ul>
+ <li>You will then be presented with a pop up window asking which one of your adult patron categories this Child should be updated to</li>
+</ul>
+</li>
+</ul>
+
+<h2>Duplicar un socio</h2>
+
+<p>A veces, cuando estés agregando una nueva familia a tu sistema, no querrás escribir la misma información de contacto una y otra vez. Koha te permite que dupliques al socio y cambies sólo las partes que desees (o que necesites).</p>
+
+<ul>
+ <li>Abre el socio que desees utilizar como tu base (el socio del que quieras duplicar la información)</li>
+ <li>Haz clic en el botón 'Duplicar' al inicio del rgistro</li>
+ <li>Todos los campos a excepción del nombre, número de socio, nombre de usuario de opac y contraseña de opac han sido duplicados. Completa los campos que faltan y haz clic en 'Guardar'<ul>
+ <li><span style="background-color: #ffe599;">CONSEJO: Al hacer clic en un campo que ya ha sido rellenado con los datos, se eliminará toda la información (facilitándote que escribas algo distinto)</span></li>
+</ul>
+</li>
+ <li>Se te conducirá a un nuevo socio</li>
+</ul>
+
+<p><strong>See the full documentation for the Patron Details in the <a href="http://manual.koha-community.org/3.8/en/patroninformation.html">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

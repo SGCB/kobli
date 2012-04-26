@@ -1,0 +1,131 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>MARC record subfields</h1>
+
+<p>Frameworks are made up of MARC fields and subfields. To make edits to most frameworks you must edit the fields and subfields. Clicking 'Edit' to the right of each subfield will allow you to make changes to the text associated with the field</p>
+
+<ul>
+ <li>Cada campo tiene una etiqueta (que es la etiqueta MARC)<ul>
+ <li>La "Etiqueta para biblioteca" es lo que se mostrará en el cliente administrativo si has dispuesto que advancedMARCeditor muestre etiquetas</li>
+ <li>La "Etiqueta para OPAC" es lo que se mostrará en la vista MARC en OPAC</li>
+ <li>Si verificas 'Repetible' el campo tendrá un signo de más extra al lado, que te permitirá agregar muchas de esas etiquetas</li>
+ <li>Si verificas 'Obligatorio' no se le permitirá guardar al registro, a menos que hayas asignado un valor a esta estiqueta</li>
+ <li>'Authorized value' is where you define an authorized value that your catalogers can choose from a pull down to fill this field in
+To edit the subfields associated with the tag, click 'Subfields' to the right of the tag on the 'MARC structure' listing</li>
+</ul>
+</li>
+ <li>Desde la lista de subcampos puedes hacer clic en 'Eliminar' a la derecha de cada uno para eliminarlos.</li>
+ <li>Para editar los subcampos haz clic en 'Editar subcampos'</li>
+ <li>Para cada subcampo puedes determinar los siguientes valores<ul>
+ <li>Texto para bibliotecario<ul>
+ <li>lo que aparece antes del subcampo en el interfaz de bibliotecario</li>
+</ul>
+</li>
+ <li>Texto para OPAC:<ul>
+ <li>lo que aparece antes del campo en el OPAC.</li>
+ <li>Si no rellenas este campo, se utiliza el mismo texto que para bibliotecario</li>
+</ul>
+</li>
+ <li>Repetible<ul>
+ <li>el campo tendrá un signo de más cerca del mismo, permitiéndote añadir muchas de esas etiquetas</li>
+</ul>
+</li>
+ <li>Mandatory
+<ul>
+ <li>el registro no podrá guardar a menos que hayas asignado un valor a esta etiqueta</li>
+</ul>
+</li>
+ <li>Administrado en pestaña:<ul>
+ <li>se refiere a la pestaña donde se muestra el subcampo. Todos los subcampos de un campo en concreto deben estar en la misma etiqueta o ignorarse. Ignorar significa que el subcampo no se muestra.</li>
+</ul>
+</li>
+</ul>
+<ul>
+ <li>Default value
+<ul>
+ <li>define lo que quieres que aparezca en el campo por defecto, lo cual puede editarse, pero ahorrarás tiempo si utilizas la misma nota una y otra vez o el mismo valor en un campo.</li>
+</ul>
+</li>
+</ul>
+<ul>
+ <li>oculto<ul>
+ <li>te permite elegir entre 19 condiciones posibles de visibilidad, 17 de las cuales están implementadas. Son las siguientes:<ul>
+ <li>-9 =&gt; Uso futuro</li>
+ <li>-8 =&gt; Marca</li>
+ <li>-7 =&gt; OPAC !Intranet !Editor Colapsado</li>
+ <li>-6 =&gt; OPAC Intranet !Editor !Colapsado</li>
+ <li>-5 =&gt; OPAC Intranet !Editor Colapsado</li>
+ <li>-4 =&gt; OPAC !Intranet !Editor !Colapsado</li>
+ <li>-3 =&gt; OPAC !Intranet Editor Colapsado</li>
+ <li>-2 =&gt; OPAC !Intranet Editor !Colapsado</li>
+ <li>-1 =&gt; OPAC Intranet Editor Colapsado</li>
+ <li>0 =&gt; OPAC Intranet Editor !Colapsado</li>
+ <li>1 =&gt; !OPAC Intranet Editor Colapsado</li>
+ <li>2 =&gt; !OPAC !Intranet Editor !Colapsado</li>
+ <li>3 =&gt; !OPAC !Intranet Editor Colapsado</li>
+ <li>4 =&gt; !OPAC Intranet Editor !Colapsado</li>
+ <li>5 =&gt; !OPAC !Intranet !Editor Colapsado</li>
+ <li>6 =&gt; !OPAC Intranet !Editor !Colapsado</li>
+ <li>7 =&gt; !OPAC Intranet !Editor Colapsado</li>
+ <li>8 =&gt; !OPAC !Intranet !Editor !Colapsado</li>
+ <li>9 =&gt; Uso futuro</li>
+</ul>
+</li>
+ <li>( ! means 'not visible' or in the case of 'collapsed,' 'not collapsed')</li>
+</ul>
+</li>
+</ul>
+<ul>
+ <li>Is a URL
+<ul>
+ <li>if checked, it means that the subfield is a URL and can be clicked</li>
+</ul>
+</li>
+</ul>
+<ul>
+ <li>Enlace<ul>
+ <li>If you enter a field/subfield here (200b), a link appears after the subfield in the MARC detail view. This view is present only in the staff client, not the OPAC. If the librarian clicks on the link, a search is done on the database for the field/subfield with the same value. This can be used for 2 main topics :
+<ul>
+ <li>en un campo como el de autor (200f en UNIMARC), al poner 200f aquí, podrás ver todos los registros bibliográficos del mismo autor</li>
+ <li>en un campo que es un enlace (4xx) para alcanzar otro registro bibliográfico. Por ejemplo, al poner 011a en 464$x, encontrarás la serie que tiene este ISSN.</li>
+</ul>
+</li>
+ <li style="color: #990000;">Advertencia: Este valor no debe cambiar después de añadir datos a tu catálogo</li>
+</ul>
+</li>
+</ul>
+<ul>
+ <li>Enlace de Koha<ul>
+ <li>Koha soporta múltiples versiones de MARC. No sabe lo que significa el campo 245$a, ni tampoco el 200$f (esos 2 campos son el título en MARC21 y UNIMARC). Por lo tanto en esta lista se puede "conectar" un subcampo de MARC con su significando. Koha mantiene constantemente la consistencia entre un subcampo y su significando. Cuando el socio desea buscar en "título", este enlace se utiliza para encontrar lo que se busca (245 si es MARC21, 200 si es UNIMARC).</li>
+</ul>
+</li>
+</ul>
+<ul>
+ <li>Authorized value
+<ul>
+ <li>significa que el bibliotecario no puede escribir el valor, pero debe elegirlo de un menú desplegable generado por la lista de valores autorizada</li>
+ <li>In the example above, the 504a field will show the MARC504 authorized values when cataloging</li>
+</ul>
+</li>
+</ul>
+<ul>
+ <li>Tesauro<ul>
+ <li>means that the value is not free text, but must be searched in the authority/thesaurus of the selected category</li>
+</ul>
+</li>
+</ul>
+<ul>
+ <li>Plugin:<ul>
+ <li>significa que un plugin calcula o administra el valor. Los plugins pueden hacer casi cualquier cosa.</li>
+ <li>Por ejemplo, en UNIMARC hay plugins para cada 1xx que son campos codificados. El plugin es una gran ayuda para el catalogador. Hay también dos plugins (unimarc_plugin_210c y unimarc_plugin_225a) que pueden de forma "mágica " encontrar el editor desde el ISBN, y la lista de la colección para el editor.</li>
+</ul>
+</li>
+</ul>
+</li>
+ <li>To save your changes simply click the 'Save changes' button at the top of the screen</li>
+</ul>
+
+<p><strong>See the full documentation for authorities in the <a href="http://manual.koha-community.org/3.6/en/catadmin.html#authoritiesadmin">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]
+

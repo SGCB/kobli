@@ -1,0 +1,58 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Inicio &rsaquo; Adquisiciones &rsaquo; Agregar pedido desde una sugerencia</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="acq_newordersuggestion" class="acq">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'suggestions-add-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% name %]</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Cesta [% basketno %]</a> &rsaquo; Agregar pedido desde una sugerencia</div>
+
+<div id="doc3" class="yui-t2">
+ 
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+ 
+<h1>Sugerencias</h1>
+ [% IF ( suggestions_loop ) %]
+ <table>
+ <tr>
+ <th>Sugerencia</th>
+ <th>Sugerido por</th>
+ <th>Aceptado por</th>
+ <th>&nbsp;</th>
+ </tr>
+ 
+ [% FOREACH suggestions_loo IN suggestions_loop %]
+ <tr>
+ <td>
+ <p>[% suggestions_loo.title |html %] - [% suggestions_loo.author %]</p>
+ <p>
+ [% IF ( suggestions_loo.copyrightdate ) %]copia. año:[% suggestions_loo.copyrightdate %] [% END %] [% IF ( suggestions_loo.volumedesc ) %]volumen:<i>[% suggestions_loo.volumedesc %]</i> [% END %] [% IF ( suggestions_loo.isbn ) %]ISBN:<i>[% suggestions_loo.isbn %]</i> [% END %]
+ [% IF ( suggestions_loo.publishercode ) %]<br />publicado por:[% suggestions_loo.publishercode %] [% END %] [% IF ( suggestions_loo.publicationyear ) %] en<i>[% suggestions_loo.publicationyear %]</i> [% END %] [% IF ( suggestions_loo.place ) %] en<i>[% suggestions_loo.place %]</i> [% END %]
+ [% IF ( suggestions_loo.note ) %]<p><i>([% suggestions_loo.note %])</i></p> [% END %]
+ </p>
+ </td>
+ <td>
+ [% suggestions_loo.surnamesuggestedby %][% IF ( suggestions_loo.firstnamesuggestedby ) %],[% END %] [% suggestions_loo.firstnamesuggestedby %]
+ </td>
+ <td>
+ [% suggestions_loo.surnamemanagedby %][% IF ( suggestions_loo.firstnamemanagedby ) %],[% END %] [% suggestions_loo.firstnamemanagedby %]
+ </td>
+ <td>
+ [% IF ( suggestions_loo.biblionumber ) %]
+ <a href="neworderempty.pl?booksellerid=[% booksellerid %]&amp;basketno=[% basketno %]&amp;suggestionid=[% suggestions_loo.suggestionid %]&amp;biblio=[% suggestions_loo.biblionumber %]" class="button">Pedido</a>
+ [% ELSE %]
+ <a href="neworderempty.pl?booksellerid=[% booksellerid %]&amp;basketno=[% basketno %]&amp;suggestionid=[% suggestions_loo.suggestionid %]" class="button">Pedido</a>
+ [% END %]
+ </td>
+ </tr>
+ [% END %]
+ </table>[% ELSE %]No hay sugerencias aceptadas.[% END %]</div>
+</div>
+<div class="yui-b">
+[% INCLUDE 'acquisitions-menu.inc' %]
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

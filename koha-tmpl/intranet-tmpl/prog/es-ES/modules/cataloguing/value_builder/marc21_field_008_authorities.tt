@@ -1,0 +1,750 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Inicio &rsaquo; Autoridades &rsaquo; Constructor de 008</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="cat_marc21_field_008_authorities" class="cat" style="padding:1em;">
+<h3> 008 Elementos de longitud fija</h3>
+<form name="f_pop" onsubmit="report()" action="">
+<input type="hidden" name="plugin_name" value="marc21_field_008_authorities.pl" />
+<input name="f1" value="[% f1 %]" type="hidden" />
+<table>
+ <tr>
+ <td>00-05 Fecha de ingreso en el archivo</td>
+ <td>[% f1 %]</td>
+ </tr>
+ <tr>
+ <td><label for="f6">06- Subdivisión geográfica directa o indirecta</label></td>
+ <td>
+ <select name="f6" id="f6" size="1">
+ [% IF ( f6 ) %]
+ <option value=" " selected="selected">#- No se subdivide geográficamente</option>
+ [% ELSE %]
+ <option value=" ">#- No se subdivide geográficamente</option>
+ [% END %]
+ [% IF ( f6d ) %]
+ <option value="d" selected="selected">d- Subdividido geográficamente&mdash;directo</option>
+ [% ELSE %]
+ <option value="d">d- Subdividido geográficamente&mdash;directo</option>
+ [% END %]
+ [% IF ( f6i ) %]
+ <option value="i" selected="selected">i- Subdivisión geográfica indirecta&mdash;indirect</option>
+ [% ELSE %]
+ <option value="i">i- Subdivisión geográfica indirecta&mdash;indirect</option>
+ [% END %]
+ [% IF ( f6n ) %]
+ <option value="n" selected="selected">n- No aplicable</option>
+ [% ELSE %]
+ <option value="n">n- No aplicable</option>
+ [% END %]
+ [% IF ( f6pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+
+ <tr>
+ <td><label for="f7">07- Sistema de romanización</label></td>
+ <td>
+ <select name="f7" id="f7" size="1">
+ [% IF ( f7a ) %]
+ <option value="a" selected="selected">a- Estándar internacional</option>
+ [% ELSE %]
+ <option value="a">a- Estándar internacional</option>
+ [% END %]
+ [% IF ( f7b ) %]
+ <option value="b" selected="selected">b- Estándard nacional</option>
+ [% ELSE %]
+ <option value="b">b- Estándard nacional</option>
+ [% END %]
+ [% IF ( f7c ) %]
+ <option value="c" selected="selected">c- Estándard de asociación de bibliotecas nacionales</option>
+ [% ELSE %]
+ <option value="c">c- Estándard de asociación de bibliotecas nacionales</option>
+ [% END %]
+ [% IF ( f7d ) %]
+ <option value="d" selected="selected">d- Estándard de la biblioteca nacional o agencia bibliográfica</option>
+ [% ELSE %]
+ <option value="d">d- Estándard de la biblioteca nacional o agencia bibliográfica</option>
+ [% END %]
+ [% IF ( f7e ) %]
+ <option value="e" selected="selected">e- Estándar local</option>
+ [% ELSE %]
+ <option value="e">e- Estándar local</option>
+ [% END %]
+ [% IF ( f7f ) %]
+ <option value="f" selected="selected">f- Estándard de origen desconocido</option>
+ [% ELSE %]
+ <option value="f">f- Estándard de origen desconocido</option>
+ [% END %]
+ [% IF ( f7g ) %]
+ <option value="g" selected="selected">g- Romanización convencional o forma convencional del nombre en el lenguaje de la agencia que cataloga</option>
+ [% ELSE %]
+ <option value="g">g- Romanización convencional o forma convencional del nombre en el lenguaje de la agencia que cataloga</option>
+ [% END %]
+ [% IF ( f7n ) %]
+ <option value="n" selected="selected">n- No aplicable</option>
+ [% ELSE %]
+ <option value="n">n- No aplicable</option>
+ [% END %]
+ [% IF ( f7pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f8">08- Idioma del catálogo</label></td>
+ <td>
+ <select name="f8" id="f8" size="1">
+ [% IF ( f8 ) %]
+ <option value=" " selected="selected">#- No hay información proporcionada</option>
+ [% ELSE %]
+ <option value=" ">#- No hay información proporcionada</option>
+ [% END %]
+ [% IF ( f8b ) %]
+ <option value="b" selected="selected">b- Inglés y francés</option>
+ [% ELSE %]
+ <option value="b">b- Inglés y francés</option>
+ [% END %]
+ [% IF ( f8e ) %]
+ <option value="e" selected="selected">e- Sólo inglés</option>
+ [% ELSE %]
+ <option value="e">e- Sólo inglés</option>
+ [% END %]
+ [% IF ( f8f ) %]
+ <option value="f" selected="selected">f- Sólo Francés</option>
+ [% ELSE %]
+ <option value="f">f- Sólo Francés</option>
+ [% END %]
+ [% IF ( f8pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f9">09- Tipo de registro</label></td>
+ <td>
+ <select name="f9" id="f9" size="1">
+ [% IF ( f9a ) %]
+ <option value="a" selected="selected">a- Cabecera establecida</option>
+ [% ELSE %]
+ <option value="a">a- Cabecera establecida</option>
+ [% END %]
+ [% IF ( f9b ) %]
+ <option value="b" selected="selected">b- Referencia sin rastros</option>
+ [% ELSE %]
+ <option value="b">b- Referencia sin rastros</option>
+ [% END %]
+ [% IF ( f9c ) %]
+ <option value="c" selected="selected">c- Referencia rastreada</option>
+ [% ELSE %]
+ <option value="c">c- Referencia rastreada</option>
+ [% END %]
+ [% IF ( f9d ) %]
+ <option value="d" selected="selected">d-Subdivisión</option>
+ [% ELSE %]
+ <option value="d">d-Subdivisión</option>
+ [% END %]
+ [% IF ( f9e ) %]
+ <option value="e" selected="selected">e- Etiqueta de nodo</option>
+ [% ELSE %]
+ <option value="e">e- Etiqueta de nodo</option>
+ [% END %]
+ [% IF ( f9f ) %]
+ <option value="f" selected="selected">f- Cabecera y subdivisión establecida</option>
+ [% ELSE %]
+ <option value="f">f- Cabecera y subdivisión establecida</option>
+ [% END %]
+ [% IF ( f9g ) %]
+ <option value="g" selected="selected">g- Referencia y subdivisión</option>
+ [% ELSE %]
+ <option value="g">g- Referencia y subdivisión</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f10">10- reglas de catalogación descriptivas</label></td>
+ <td>
+ <select name="f10" id="f10" size="1">
+ [% IF ( f10a ) %]
+ <option value="a" selected="selected">a- Reglas iniciales</option>
+ [% ELSE %]
+ <option value="a">a- Reglas iniciales</option>
+ [% END %]
+ [% IF ( f10b ) %]
+ <option value="b" selected="selected">b- AACR 1</option>
+ [% ELSE %]
+ <option value="b">b- AACR 1</option>
+ [% END %]
+ [% IF ( f10c ) %]
+ <option value="c" selected="selected">c- AACR 2</option>
+ [% ELSE %]
+ <option value="c">c- AACR 2</option>
+ [% END %]
+ [% IF ( f10d ) %]
+ <option value="d" selected="selected">d- Cabecera compatible AACR 2</option>
+ [% ELSE %]
+ <option value="d">d- Cabecera compatible AACR 2</option>
+ [% END %]
+ [% IF ( f10n ) %]
+ <option value="n" selected="selected">n- No aplicable</option>
+ [% ELSE %]
+ <option value="n">n- No aplicable</option>
+ [% END %]
+ [% IF ( f10z ) %]
+ <option value="z" selected="selected">z- Otro</option>
+ [% ELSE %]
+ <option value="z">z- Otro</option>
+ [% END %]
+ [% IF ( f10pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f11">11- Sistema de cabeceras de temas/tesauro</label></td>
+ <td>
+ <select name="f11" id="f11" size="1">
+ [% IF ( f11a ) %]
+ <option value="a" selected="selected">a- Library of Congress subject headings</option>
+ [% ELSE %]
+ <option value="a">a- Cabeceras temáticas de Library of Congress</option>
+ [% END %]
+ [% IF ( f11b ) %]
+ <option value="b" selected="selected">b- LC temas de literatura infantil</option>
+ [% ELSE %]
+ <option value="b">b- LC temas de literatura infantil</option>
+ [% END %]
+ [% IF ( f11c ) %]
+ <option value="c" selected="selected">c- Medical subject headings</option>
+ [% ELSE %]
+ <option value="c">c- Medical subject headings</option>
+ [% END %]
+ [% IF ( f11d ) %]
+ <option value="d" selected="selected">d- Archivo de autoridades de la biblioteca nacional de agricultura</option>
+ [% ELSE %]
+ <option value="d">d- Archivo de autoridades de la biblioteca nacional de agricultura</option>
+ [% END %]
+ [% IF ( f11k ) %]
+ <option value="k" selected="selected">k- Canadian subject headings</option>
+ [% ELSE %]
+ <option value="k">k- Canadian subject headings</option>
+ [% END %]
+ [% IF ( f11n ) %]
+ <option value="n" selected="selected">n- No aplicable</option>
+ [% ELSE %]
+ <option value="n">n- No aplicable</option>
+ [% END %]
+ [% IF ( f11r ) %]
+ <option value="r" selected="selected">r- Art and architecture thesaurus</option>
+ [% ELSE %]
+ <option value="r">r- Art and architecture thesaurus</option>
+ [% END %]
+ [% IF ( f11s ) %]
+ <option value="s" selected="selected">s- Sears list of subject headings</option>
+ [% ELSE %]
+ <option value="s">s- Lista Sears de cabeceras temáticas</option>
+ [% END %]
+ [% IF ( f11v ) %]
+ <option value="v" selected="selected">v- Directorio de estrellas-materia</option>
+ [% ELSE %]
+ <option value="v">v- Directorio de estrellas-materia</option>
+ [% END %]
+ [% IF ( f11z ) %]
+ <option value="z" selected="selected">z- Otro</option>
+ [% ELSE %]
+ <option value="z">z- Otro</option>
+ [% END %]
+ [% IF ( f11pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f12">12- Tipo de serie</label></td>
+ <td>
+ <select name="f12" id="f12" size="1">
+ [% IF ( f12a ) %]
+ <option value="a" selected="selected">a- Series monográficas</option>
+ [% ELSE %]
+ <option value="a">a- Series monográficas</option>
+ [% END %]
+ [% IF ( f12b ) %]
+ <option value="b" selected="selected">b- Ítem multiparte</option>
+ [% ELSE %]
+ <option value="b">b- Ítem multiparte</option>
+ [% END %]
+ [% IF ( f12c ) %]
+ <option value="c" selected="selected">c- Frase tipo periódica</option>
+ [% ELSE %]
+ <option value="c">c- Frase tipo periódica</option>
+ [% END %]
+ [% IF ( f12n ) %]
+ <option value="n" selected="selected">n- No aplicable</option>
+ [% ELSE %]
+ <option value="n">n- No aplicable</option>
+ [% END %]
+ [% IF ( f12z ) %]
+ <option value="z" selected="selected">z- Otro</option>
+ [% ELSE %]
+ <option value="z">z- Otro</option>
+ [% END %]
+ [% IF ( f12pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f13">13- Series numeradas o no numeradas</label></td>
+ <td>
+ <select name="f13" id="f13" size="1">
+ [% IF ( f13a ) %]
+ <option value="a" selected="selected">a- Numerado</option>
+ [% ELSE %]
+ <option value="a">a- Numerado</option>
+ [% END %]
+ [% IF ( f13b ) %]
+ <option value="b" selected="selected">b- No numerado</option>
+ [% ELSE %]
+ <option value="b">b- No numerado</option>
+ [% END %]
+ [% IF ( f13c ) %]
+ <option value="c" selected="selected">c- Numeraciones varias</option>
+ [% ELSE %]
+ <option value="c">c- Numeraciones varias</option>
+ [% END %]
+ [% IF ( f13n ) %]
+ <option value="n" selected="selected">n- No aplicable</option>
+ [% ELSE %]
+ <option value="n">n- No aplicable</option>
+ [% END %]
+ [% IF ( f13pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f14">14- Uso de encabezamiento-- Entrada principal</label></td>
+ <td>
+ <select name="f14" id="f14" size="1">
+ [% IF ( f14a ) %]
+ <option value="a" selected="selected">a- Apropiado</option>
+ [% ELSE %]
+ <option value="a">a- Apropiado</option>
+ [% END %]
+ [% IF ( f14b ) %]
+ <option value="b" selected="selected">b- No apropiado</option>
+ [% ELSE %]
+ <option value="b">b- No apropiado</option>
+ [% END %]
+ [% IF ( f14pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f15">15- Uso de encabezamiento -- Entrada por materia</label></td>
+ <td>
+ <select name="f15" id="f15" size="1">
+ [% IF ( f15a ) %]
+ <option value="a" selected="selected">a- Apropiado</option>
+ [% ELSE %]
+ <option value="a">a- Apropiado</option>
+ [% END %]
+ [% IF ( f15b ) %]
+ <option value="b" selected="selected">b- No apropiado</option>
+ [% ELSE %]
+ <option value="b">b- No apropiado</option>
+ [% END %]
+ [% IF ( f15pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f16">16- Uso de encabezamiento -- Entrada por serie</label></td>
+ <td>
+ <select name="f16" id="f16" size="1">
+ [% IF ( f16a ) %]
+ <option value="a" selected="selected">a- Apropiado</option>
+ [% ELSE %]
+ <option value="a">a- Apropiado</option>
+ [% END %]
+ [% IF ( f16b ) %]
+ <option value="b" selected="selected">b- No apropiado</option>
+ [% ELSE %]
+ <option value="b">b- No apropiado</option>
+ [% END %]
+ [% IF ( f16pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f17">17 - Tipo de subdivisión de materia</label></td>
+ <td>
+ <select name="f17" id="f17" size="1">
+ [% IF ( f17a ) %]
+ <option value="a" selected="selected">a- Tópico</option>
+ [% ELSE %]
+ <option value="a">a- Tópico</option>
+ [% END %]
+ [% IF ( f17b ) %]
+ <option value="b" selected="selected">b- Formulario</option>
+ [% ELSE %]
+ <option value="b">b- Formulario</option>
+ [% END %]
+ [% IF ( f17c ) %]
+ <option value="c" selected="selected">c- Cronológico</option>
+ [% ELSE %]
+ <option value="c">c- Cronológico</option>
+ [% END %]
+ [% IF ( f17d ) %]
+ <option value="d" selected="selected">d- Geográfico</option>
+ [% ELSE %]
+ <option value="d">d- Geográfico</option>
+ [% END %]
+ [% IF ( f17e ) %]
+ <option value="e" selected="selected">e- Idioma</option>
+ [% ELSE %]
+ <option value="e">e- Idioma</option>
+ [% END %]
+ [% IF ( f17n ) %]
+ <option value="n" selected="selected">n- No aplicable</option>
+ [% ELSE %]
+ <option value="n">n- No aplicable</option>
+ [% END %]
+ [% IF ( f17pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+
+ <tr>
+ <td>18-27 Posiciones de carácter indefinidas</td>
+ <td></td>
+ </tr>
+
+ <tr>
+ <td><label for="f28">28- Tipo de agencia gubernamental</label></td>
+ <td>
+ <select name="f28" id="f28" size="1">
+ [% IF ( f28 ) %]
+ <option value=" " selected="selected">#- No es una agencia gubernamental</option>
+ [% ELSE %]
+ <option value=" ">#- No es una agencia gubernamental</option>
+ [% END %]
+ [% IF ( f28a ) %]
+ <option value="a" selected="selected">a- Componente autónomo o semi-autónomo</option>
+ [% ELSE %]
+ <option value="a">a- Componente autónomo o semi-autónomo</option>
+ [% END %]
+ [% IF ( f28c ) %]
+ <option value="c" selected="selected">c- Multilocal</option>
+ [% ELSE %]
+ <option value="c">c- Multilocal</option>
+ [% END %]
+ [% IF ( f28f ) %]
+ <option value="f" selected="selected">f- Federal/nacional</option>
+ [% ELSE %]
+ <option value="f">f- Federal/nacional</option>
+ [% END %]
+ [% IF ( f28i ) %]
+ <option value="i" selected="selected">i- Intergubernamental e internacional</option>
+ [% ELSE %]
+ <option value="i">i- Intergubernamental e internacional</option>
+ [% END %]
+ [% IF ( f28l ) %]
+ <option value="l" selected="selected">l- Local</option>
+ [% ELSE %]
+ <option value="l">l- Local</option>
+ [% END %]
+ [% IF ( f28m ) %]
+ <option value="m" selected="selected">m- Multiestado</option>
+ [% ELSE %]
+ <option value="m">m- Multiestado</option>
+ [% END %]
+ [% IF ( f28o ) %]
+ <option value="o" selected="selected">o- Agencia gubernamental - tipo indeterminado</option>
+ [% ELSE %]
+ <option value="o">o- Agencia gubernamental - tipo indeterminado</option>
+ [% END %]
+ [% IF ( f28s ) %]
+ <option value="s" selected="selected">s-Estado, provincial, territorial, dependiente, etc.</option>
+ [% ELSE %]
+ <option value="s">s-Estado, provincial, territorial, dependiente, etc.</option>
+ [% END %]
+ [% IF ( f28u ) %]
+ <option value="u" selected="selected">u- Desconocido si el encabezamiento es una agencia del gobierno</option>
+ [% ELSE %]
+ <option value="u">u- Desconocido si el encabezamiento es una agencia del gobierno</option>
+ [% END %]
+ [% IF ( f28z ) %]
+ <option value="z" selected="selected">z- Otro</option>
+ [% ELSE %]
+ <option value="z">z- Otro</option>
+ [% END %]
+ [% IF ( f28pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f29">29- Evaluación de referencia</label></td>
+ <td>
+ <select name="f29" id="f29" size="1">
+ [% IF ( f29a ) %]
+ <option value="a" selected="selected">a- Los trazados son coherentes con el título</option>
+ [% ELSE %]
+ <option value="a">a- Los trazados son coherentes con el título</option>
+ [% END %]
+ [% IF ( f29b ) %]
+ <option value="b" selected="selected">b- Trazados no necesariamente coherentes con la cabecera</option>
+ [% ELSE %]
+ <option value="b">b- Trazados no necesariamente coherentes con la cabecera</option>
+ [% END %]
+ [% IF ( f29n ) %]
+ <option value="n" selected="selected">n- No aplicable</option>
+ [% ELSE %]
+ <option value="n">n- No aplicable</option>
+ [% END %]
+ [% IF ( f29pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+
+ <tr>
+ <td>30 Posición de carácter indefinida</td>
+ <td></td>
+ </tr>
+
+ <tr>
+ <td><label for="f31">31 - Actualización de registro en proceso</label></td>
+ <td>
+ <select name="f31" id="f31" size="1">
+ [% IF ( f31a ) %]
+ <option value="a" selected="selected">a- El registro puede ser usado</option>
+ [% ELSE %]
+ <option value="a">a- El registro puede ser usado</option>
+ [% END %]
+ [% IF ( f31b ) %]
+ <option value="b" selected="selected">b- El registro está siendo actualizado</option>
+ [% ELSE %]
+ <option value="b">b- El registro está siendo actualizado</option>
+ [% END %]
+ [% IF ( f31pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f32">32- Nombre personal no diferenciado</label></td>
+ <td>
+ <select name="f32" id="f32" size="1">
+ [% IF ( f32a ) %]
+ <option value="a" selected="selected">a- Nombre personal diferenciado</option>
+ [% ELSE %]
+ <option value="a">a- Nombre personal diferenciado</option>
+ [% END %]
+ [% IF ( f32b ) %]
+ <option value="b" selected="selected">b- Nombre personal indiferenciado</option>
+ [% ELSE %]
+ <option value="b">b- Nombre personal indiferenciado</option>
+ [% END %]
+ [% IF ( f32n ) %]
+ <option value="n" selected="selected">n- No aplicable</option>
+ [% ELSE %]
+ <option value="n">n- No aplicable</option>
+ [% END %]
+ [% IF ( f32pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f33">33 - Nivel de establecimiento</label></td>
+ <td>
+ <select name="f33" id="f33" size="1">
+ [% IF ( f33a ) %]
+ <option value="a" selected="selected">a- Plenamente establecida</option>
+ [% ELSE %]
+ <option value="a">a- Plenamente establecida</option>
+ [% END %]
+ [% IF ( f33b ) %]
+ <option value="b" selected="selected">b- Memorándum</option>
+ [% ELSE %]
+ <option value="b">b- Memorándum</option>
+ [% END %]
+ [% IF ( f33c ) %]
+ <option value="c" selected="selected">c- Provisional</option>
+ [% ELSE %]
+ <option value="c">c- Provisional</option>
+ [% END %]
+ [% IF ( f33d ) %]
+ <option value="d" selected="selected">d- Preliminar</option>
+ [% ELSE %]
+ <option value="d">d- Preliminar</option>
+ [% END %]
+ [% IF ( f33n ) %]
+ <option value="n" selected="selected">n- No aplicable</option>
+ [% ELSE %]
+ <option value="n">n- No aplicable</option>
+ [% END %]
+ [% IF ( f33pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+
+ <tr>
+ <td>34-37 Posiciones de carácter indefinidas</td>
+ <td></td>
+ </tr>
+
+ <tr>
+ <td><label for="f38">38- Registro modificado</label></td>
+ <td>
+ <select name="f38" id="f38" size="1">
+ [% IF ( f38 ) %]
+ <option value=" " selected="selected">#- No modificado</option>
+ [% ELSE %]
+ <option value=" ">#- No modificado</option>
+ [% END %]
+ [% IF ( f38s ) %]
+ <option value="s" selected="selected">s- Abreviado</option>
+ [% ELSE %]
+ <option value="s">s- Abreviado</option>
+ [% END %]
+ [% IF ( f38x ) %]
+ <option value="x" selected="selected">x- Caracteres ausentes</option>
+ [% ELSE %]
+ <option value="x">x- Caracteres ausentes</option>
+ [% END %]
+ [% IF ( f38pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+ <tr>
+ <td><label for="f39">39- Fuente de catalogación</label></td>
+ <td>
+ <select name="f39" id="f39" size="1">
+ [% IF ( f39 ) %]
+ <option value=" " selected="selected">#- Agencia bibliográfica nacional</option>
+ [% ELSE %]
+ <option value=" ">#- Agencia bibliográfica nacional</option>
+ [% END %]
+ [% IF ( f39c ) %]
+ <option value="c" selected="selected">c- Programa de catalogación cooperativo</option>
+ [% ELSE %]
+ <option value="c">c- Programa de catalogación cooperativo</option>
+ [% END %]
+ [% IF ( f39d ) %]
+ <option value="d" selected="selected">d- Otro</option>
+ [% ELSE %]
+ <option value="d">d- Otro</option>
+ [% END %]
+ [% IF ( f39u ) %]
+ <option value="u" selected="selected">u- Desconocido</option>
+ [% ELSE %]
+ <option value="u">u- Desconocido</option>
+ [% END %]
+ [% IF ( f39pipe ) %]
+ <option value="|" selected="selected">|- No se intenta codificar</option>
+ [% ELSE %]
+ <option value="|">|- No se intenta codificar</option>
+ [% END %]
+ </select>
+ </td>
+ </tr>
+</table>
+<fieldset class="action"><input type="submit" value="OK" /> <a href="#" class="cancel close">Cancelar</a></fieldset>
+</form>
+<script type="text/javascript">//<![CDATA[
+function report() {
+            var doc   = opener.document; 
+            var field = doc.getElementById("[% index %]");
+        
+            field.value = 
+			document.f_pop.f1.value+
+			document.f_pop.f6.value+
+			document.f_pop.f7.value+
+			document.f_pop.f8.value+
+			document.f_pop.f9.value+
+			document.f_pop.f10.value+
+			document.f_pop.f11.value+
+			document.f_pop.f12.value+
+			document.f_pop.f13.value+
+			document.f_pop.f14.value+
+			document.f_pop.f15.value+
+			document.f_pop.f16.value+
+			document.f_pop.f17.value+
+            '          '+
+			document.f_pop.f28.value+
+			document.f_pop.f29.value+
+			' '+
+			document.f_pop.f31.value+
+			document.f_pop.f32.value+
+			document.f_pop.f33.value+
+            '    '+
+			document.f_pop.f38.value+
+			document.f_pop.f39.value;
+		self.close();
+		return false;
+	}
+	//]]>
+</script>
+
+[% INCLUDE 'popup-bottom.inc' %]

@@ -1,0 +1,342 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>UNIMARC field 130 builder</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="cat_unimarc_field_130" class="cat" style="padding:1em;">
+<h3>UNIMARC field 130 builder</h3>
+<form name="f_pop" action="">
+<table>
+ <tr>
+ <td><label for="f1">Specific material designation:</label></td>
+ <td>
+ <select name="f1" id="f1" size="1">
+ [% IF ( f1a ) %]
+ <option value="a" selected="selected">aprobado</option>
+ [% ELSE %]
+ <option value="a">aprobado</option>
+ [% END %]
+ [% IF ( f1b ) %]
+ <option value="b" selected="selected">cartucho de microfilm</option>
+ [% ELSE %]
+ <option value="b">cartucho de microfilm</option>
+ [% END %]
+ [% IF ( f1c ) %]
+ <option value="c" selected="selected">microfilm en casete</option>
+ [% ELSE %]
+ <option value="c">microfilm en casete</option>
+ [% END %]
+ [% IF ( f1d ) %]
+ <option value="d" selected="selected">microfilm en bobina</option>
+ [% ELSE %]
+ <option value="d">microfilm en bobina</option>
+ [% END %]
+ [% IF ( f1e ) %]
+ <option value="e" selected="selected">microficha</option>
+ [% ELSE %]
+ <option value="e">microficha</option>
+ [% END %]
+ [% IF ( f1f ) %]
+ <option value="f" selected="selected">microficha en casete</option>
+ [% ELSE %]
+ <option value="f">microficha en casete</option>
+ [% END %]
+ [% IF ( f1g ) %]
+ <option value="g" selected="selected">micro opaco</option>
+ [% ELSE %]
+ <option value="g">micro opaco</option>
+ [% END %]
+ [% IF ( f1h ) %]
+ <option value="h" selected="selected">microfilm en cinta</option>
+ [% ELSE %]
+ <option value="h">microfilm en cinta</option>
+ [% END %]
+ [% IF ( f1z ) %]
+ <option value="z" selected="selected">otro</option>
+ [% ELSE %]
+ <option value="z">otro</option>
+ [% END %]
+ </select>
+ </td></tr>
+ <tr>
+ <td><label for="f2">Polaridad:</label></td>
+ <td>
+ <select name="f2" id="f2" size="1">
+
+ [% IF ( f2a ) %]
+ <option value="a" selected="selected">positivo</option>
+ [% ELSE %]
+ <option value="a">positivo</option>
+ [% END %]
+ [% IF ( f2b ) %]
+ <option value="b" selected="selected">negativo</option>
+ [% ELSE %]
+ <option value="b">negativo</option>
+ [% END %]
+ [% IF ( f2c ) %]
+ <option value="c" selected="selected">desconocido</option>
+ [% ELSE %]
+ <option value="c">desconocido</option>
+ [% END %]
+ [% IF ( f2d ) %]
+ <option value="d" selected="selected">polaridad mixta</option>
+ [% ELSE %]
+ <option value="d">polaridad mixta</option>
+ [% END %]
+ </select>
+ </td></tr>
+ <tr>
+ <td><label for="f3">Dimensiones:</label></td>
+ <td>
+ <select name="f3" id="f3" size="1">
+
+ [% IF ( f3space ) %]
+ <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %]
+ <option value=" ">valor no requerido</option>
+ [% END %]
+ [% IF ( f3a ) %]
+ <option value="a" selected="selected">8 mm (microfilm)</option>
+ [% ELSE %]
+ <option value="a">8 mm (microfilm)</option>
+ [% END %]
+ [% IF ( f3d ) %]
+ <option value="d" selected="selected">16 mm (microfilm)</option>
+ [% ELSE %]
+ <option value="d">16 mm (microfilm)</option>
+ [% END %]
+ [% IF ( f3f ) %]
+ <option value="f" selected="selected">35 mm (microfilm)</option>
+ [% ELSE %]
+ <option value="f">35 mm (microfilm)</option>
+ [% END %]
+ [% IF ( f3g ) %]
+ <option value="g" selected="selected">70 mm (microfilm)</option>
+ [% ELSE %]
+ <option value="g">70 mm (microfilm)</option>
+ [% END %]
+ [% IF ( f3h ) %]
+ <option value="h" selected="selected">105 mm (microfilm)</option>
+ [% ELSE %]
+ <option value="h">105 mm (microfilm)</option>
+ [% END %]
+ [% IF ( f3l ) %]
+ <option value="l" selected="selected">3 x 5 pulgadas.</option>
+ [% ELSE %]
+ <option value="l">3 x 5 pulgadas.</option>
+ [% END %]
+ [% IF ( f3m ) %]
+ <option value="m" selected="selected">4 x 6 pulgadas.</option>
+ [% ELSE %]
+ <option value="m">4 x 6 pulgadas.</option>
+ [% END %]
+ [% IF ( f3o ) %]
+ <option value="o" selected="selected">6 x 9 pulgadas.</option>
+ [% ELSE %]
+ <option value="o">6 x 9 pulgadas.</option>
+ [% END %]
+ [% IF ( f3p ) %]
+ <option value="p" selected="selected">9 x 19 cm</option>
+ [% ELSE %]
+ <option value="p">9 x 19 cm</option>
+ [% END %]
+ [% IF ( f3u ) %]
+ <option value="u" selected="selected">desconocido</option>
+ [% ELSE %]
+ <option value="u">desconocido</option>
+ [% END %]
+ [% IF ( f3z ) %]
+ <option value="z" selected="selected">otro</option>
+ [% ELSE %]
+ <option value="z">otro</option>
+ [% END %]
+ </select>
+ </td></tr>
+ <tr>
+ <td><label for="f4">Tasa de reducción:</label></td>
+ <td>
+ <select name="f4" id="f4" size="1"> 
+ [% IF ( f4a ) %]
+ <option value="a" selected="selected">baja reducción</option>
+ [% ELSE %]
+ <option value="a">baja reducción</option>
+ [% END %]
+ [% IF ( f4b ) %]
+ <option value="b" selected="selected">Normal (16x - 30x)</option>
+ [% ELSE %]
+ <option value="b">Normal (16x - 30x)</option>
+ [% END %]
+ [% IF ( f4c ) %]
+ <option value="c" selected="selected">alto (31x - 60x)</option>
+ [% ELSE %]
+ <option value="c">alto (31x - 60x)</option>
+ [% END %]
+ [% IF ( f4d ) %]
+ <option value="d" selected="selected">muy alta (61x - 90x)</option>
+ [% ELSE %]
+ <option value="d">muy alta (61x - 90x)</option>
+ [% END %]
+ [% IF ( f4e ) %]
+ <option value="e" selected="selected">ultra alta (91x -)</option>
+ [% ELSE %]
+ <option value="e">ultra alta (91x -)</option>
+ [% END %]
+ [% IF ( f4u ) %]
+ <option value="u" selected="selected">desconocido</option>
+ [% ELSE %]
+ <option value="u">desconocido</option>
+ [% END %]
+ [% IF ( f4v ) %]
+ <option value="v" selected="selected">varías</option>
+ [% ELSE %]
+ <option value="v">varías</option>
+ [% END %]
+ </select>
+ </td></tr>
+ <tr>
+ <td><label for="f5">Tasa de reducción específica</label></td>
+ <td><input type="text" name="f5" id="f5" maxlength="3" size="4" 
+value="[% f5 %]" /></td>
+ </tr>
+
+ <tr>
+ <td><label for="f6">Color:</label></td>
+ <td>
+ <select name="f6" id="f6" size="1">
+ [% IF ( f6a ) %]
+ <option value="a" selected="selected">monocromático</option>
+ [% ELSE %]
+ <option value="a">monocromático</option>
+ [% END %]
+ [% IF ( f6b ) %]
+ <option value="b" selected="selected">color</option>
+ [% ELSE %]
+ <option value="b">color</option>
+ [% END %]
+ [% IF ( f6u ) %]
+ <option value="u" selected="selected">desconocido</option>
+ [% ELSE %]
+ <option value="u">desconocido</option>
+ [% END %]
+ [% IF ( f6v ) %]
+ <option value="v" selected="selected">varías</option>
+ [% ELSE %]
+ <option value="v">varías</option>
+ [% END %]
+ </select>
+ </td></tr>
+ <tr>
+ <td><label for="f7">Emulsión en film:</label></td>
+ <td>
+ <select name="f7" id="f7" size="1">
+ [% IF ( f7a ) %]
+ <option value="a" selected="selected">haluro de plata</option>
+ [% ELSE %]
+ <option value="a">haluro de plata</option>
+ [% END %]
+ [% IF ( f7b ) %]
+ <option value="b" selected="selected">diazocompuesto</option>
+ [% ELSE %]
+ <option value="b">diazocompuesto</option>
+ [% END %]
+ [% IF ( f7c ) %]
+ <option value="c" selected="selected">vesicular</option>
+ [% ELSE %]
+ <option value="c">vesicular</option>
+ [% END %]
+ [% IF ( f7d ) %]
+ <option value="d" selected="selected">desconocido</option>
+ [% ELSE %]
+ <option value="d">desconocido</option>
+ [% END %]
+ [% IF ( f7u ) %]
+ <option value="u" selected="selected">emulsión mixta</option>
+ [% ELSE %]
+ <option value="u">emulsión mixta</option>
+ [% END %]
+ [% IF ( f7x ) %]
+ <option value="x" selected="selected">no aplicable</option>
+ [% ELSE %]
+ <option value="x">no aplicable</option>
+ [% END %]
+ [% IF ( f7z ) %]
+ <option value="z" selected="selected">otro</option>
+ [% ELSE %]
+ <option value="z">otro</option>
+ [% END %]
+ </select>
+ </td></tr>
+ <tr>
+ <td><label for="f8">Generación:</label></td>
+ <td>
+ <select name="f8" id="f8" size="1">
+ [% IF ( f8a ) %]
+ <option value="a" selected="selected">primera generación (maestro)</option>
+ [% ELSE %]
+ <option value="a">primera generación (maestro)</option>
+ [% END %]
+ [% IF ( f8b ) %]
+ <option value="b" selected="selected">master de impresión</option>
+ [% ELSE %]
+ <option value="b">master de impresión</option>
+ [% END %]
+ [% IF ( f8c ) %]
+ <option value="c" selected="selected">copia de servicio</option>
+ [% ELSE %]
+ <option value="c">copia de servicio</option>
+ [% END %]
+ [% IF ( f8u ) %]
+ <option value="u" selected="selected">desconocido</option>
+ [% ELSE %]
+ <option value="u">desconocido</option>
+ [% END %]
+ [% IF ( f8v ) %]
+ <option value="v" selected="selected">generaciones mezcladas</option>
+ [% ELSE %]
+ <option value="v">generaciones mezcladas</option>
+ [% END %]
+ </select>
+ </td></tr>
+ <tr>
+ <td><label for="f9">Base de película:</label></td>
+ <td>
+ <select name="f9" id="f9" size="1">
+ [% IF ( f9a ) %]
+ <option value="a" selected="selected">base de seguridad</option>
+ [% ELSE %]
+ <option value="a">base de seguridad</option>
+ [% END %]
+ [% IF ( f9b ) %]
+ <option value="b" selected="selected">no es una base de seguridad</option>
+ [% ELSE %]
+ <option value="b">no es una base de seguridad</option>
+ [% END %]
+ [% IF ( f9u ) %]
+ <option value="u" selected="selected">desconocido</option>
+ [% ELSE %]
+ <option value="u">desconocido</option>
+ [% END %]
+ [% IF ( f9x ) %]
+ <option value="x" selected="selected">no aplicable</option>
+ [% ELSE %]
+ <option value="x">no aplicable</option>
+ [% END %]
+ </select>
+ </td></tr>
+</table>
+<fieldset class="action"><input type="button" value="OK" onclick="report();" /> <a href="#" class="cancel close">Cancelar</a></fieldset>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+	function report() {
+	    document.f_pop.f5.value=document.f_pop.f5.value+'   ';
+	    document.f_pop.f5.value=document.f_pop.f5.value.substring(0,3);
+	    var doc   = opener.document; 
+            var field = doc.getElementById("[% index %]");
+            field.value =  document.f_pop.f1.value+document.f_pop.f2.value+document.f_pop.f3.value+document.f_pop.f4.value+document.f_pop.f5.value+document.f_pop.f6.value+document.f_pop.f7.value+document.f_pop.f8.value+document.f_pop.f9.value ;
+	    window.close();
+	    return false;
+	}
+//]]>
+</script>
+
+[% INCLUDE 'popup-bottom.inc' %]

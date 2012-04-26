@@ -1,0 +1,101 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Agregar un informe personalizado</h1>
+
+<h2>Guided Report Wizard</h2>
+
+<p>Si el informe que necesitas no está disponible, el asistente de 'Informes guiados' te guiará para hacer un informe personalizado.</p>
+
+<ul>
+<li>Ir al módulo de 'Informes' (por lo general en 'Más' en tu navegación global)</li>
+<li>Selecciona 'Informes guiados' bajo 'Asistente de informes guiados'</li>
+</ul>
+
+<p>Responde a las 6 preguntas presentadas para crear el informe.</p>
+
+<p><strong>Paso 1: elegir un módulo para ser informado</strong></p>
+
+<ul>
+<li>Elige un módulo de Koha sobre el que construir un informe (socios, circulación, catalogación, etc.)</li>
+<li>Haz clic en 'Siguiente'</li>
+</ul>
+
+<p><strong>Paso 2: elegir un tipo de informe</strong></p>
+
+<ul><li style="color: #990000">IMPORTANTE: Sólo se puede elegir Tabular con esta opción</li></ul>
+
+<p><strong>Paso 3: elegir columnas para mostrar</strong></p>
+
+<p><strong>Paso 4: elegir un criterio para limitar</strong></p>
+
+<ul><li>Esto es opcional, si no deseas limitar los resultados mediante cualquier campo, deja esta sección en blanco.</li></ul>
+
+<p><strong>Paso 5: elegir en qué columnas realizar funciones matemáticas</strong></p>
+
+<ul><li>Esto es opcional, si no quieres hacer ninguna cuenta con los resultados, deja esta sección en blanco.</li></ul>
+
+<p><strong>Paso 6: elegir como deseas que esté ordenado el informe</strong></p>
+
+<ul><li>Esto es opcional, si deseas que los resultados salgan como están en la tabla, deja esta sección en blanco.</li></ul>
+
+<h1>Editar informes</h1>
+
+<p>Los informes personalizados se pueden editar en su totalidad en la página 'Informes guiados guardados'.</p>
+
+<ul><li><em>Llegar:</em> More > Reports > Guided Reports > Use Saved</li></ul>
+
+<ul>
+<li>Para editar un informe haz clic en 'Editar SQL' al lado del informe</li>
+<li>Una página con campos editables se abrirá para que puedas cambiar el título, notas y SQL relacionados con el informe</li>
+</ul>
+
+<h2>Report from SQL</h2>
+
+<p>In addition to the report wizard, you have the option to write your own queries using SQL. To find reports written by other Koha users, visit the Koha Wiki: <a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library">http://wiki.koha-community.org/wiki/SQL_Reports_Library</a>. You can also find your database structure in /installer/data/mysql/kohastructure.sql or online at: <a href="http://schema.koha-community.org">http://schema.koha-community.org</a>.</p>
+
+<p>To add your query, click the link to 'Create from SQL' on the main reports module or the New button at the top of the Saved Reports page.</p>
+
+<p>Fill in the form presented</p>
+<ul>
+ <li>The name is what will appear on the Saved Reports page to help you identify the report later. It will also be searchable using the filters found the left of the Saved Reports page.</li>
+ <li>Notes will also appear on the Saved Reports page, this can be used to provide more details about the report or tips on how to enter values when it runs</li>
+ <li>The type should always be 'Tabular' at this time since the other formats have not been implemented</li>
+ <li>In the SQL box you will type or paste the SQL for the report</li>
+ <li>If you feel that your report might be too resource intensive you might want to consider using runtime parameters to your query. Runtime parameters basically make a filter appear before the report is run to save your system resources.
+<ul>
+ <li><strong>Note:</strong> There is a limit of 10,000 records put on SQL statements entered in Koha. To get around this you want to add 'LIMIT 100000' to the end of your SQL statement (or any other number above 10,000.</li>
+ <li>There is a specific syntax that Koha will understand as 'ask for values when running the report'. The syntax is &lt;&lt;Question to ask|authorized_value&gt;&gt;.</li>
+ <li>Los &lt;&lt; y &gt;&gt; son sólo delimitadores. Debes poner &lt;&lt; al principio y &gt;&gt; al final de tu parámetro</li>
+ <li>The 'Question to ask' will be displayed on the left of the string to enter.</li>
+ <li>The authorized_value can be omitted if not applicable. If it contains an authorized value category, or branches or itemtype or categorycode, a list with the Koha authorized values will be displayed instead of a free field Note that you can have more than one parameter in a given SQL Note that entering nothing at run time won't probably work as you expect. It will be considered as "value empty" not as "ignore this parameter". For example entering nothing for : "title=&lt;&lt;Enter title&gt;&gt;" will display results with title='' (no title). If you want to have to have something not mandatory, use "title like &lt;&lt;Enter title&gt;&gt;" and enter a % at run time instead of nothing</li>
+</ul>
+
+<p>Examples:</p>
+
+<ul>
+ <li>SELECT surname, firstname<br />
+ FROM borrowers<br />
+ WHERE branchcode=&lt;&lt;Enter patrons library|branches&gt;&gt; AND surname like &lt;&lt;Enter filter for patron surname (% if none)&gt;&gt;</li>
+ <li>SELECT *<br />
+ FROM items<br />
+ WHERE homebranch = &lt;&lt;Pick your branch|branches&gt;&gt; and barcode like &lt;&lt;Partial barcode value here (use % for wildcard)&gt;&gt;</li>
+</ul>
+</li>
+ <li style="background-color: #ffe599;">Tip: To generate a date picker calendar to the right of the field when running a report you can use the 'date' keyword like this: &lt;&lt;Enter Date|date&gt;&gt;</li>
+ <li style="background-color: #ffe599;">Tip: You have to put "%" in a text box to 'leave it blank'. Otherwise, it literally looks for "" (empty string) as the value for the field.</li>
+ <li style="color: #990000;">Important: In addition to using any authorized value code to generate a dropdown, you can use the following values as well: Branches (branches), Item Types (itemtypes) and Patron Categories (categorycode). For example a branch pull down would be generated like this &lt;&lt;Branch|branches&gt;&gt;</li>
+</ul>
+
+<p>Once everything is entered click the 'Save Report' button and you'll be presented with options to run it. Once a report is saved you do not have to recreate it you can simply find it on the Saved Reports page and run or edit it.</p>
+
+<h1>Preguntas</h1>
+
+<p><strong>¿Hay un depósito de informes?</strong></p>
+
+<p>There is a page on the Koha Wiki: <a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library" target="_new">http://wiki.koha-community.org/wiki/SQL_Reports_Library</a> con informes escritos por las bibliotecas Koha de todo el mundo.</p>
+
+<p>NELKS también tiene una gran página (<a href="http://www.nexpresslibrary.org/training/reports-training/" target="_new">http://www.nexpresslibrary.org/training/reports-training/</a>) con una lista de informes escrita por ellos.</p>
+
+<p><strong>See the full documentation for Custom Reports in the <a href="http://manual.koha-community.org/3.8/en/reports.html#customreports">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

@@ -1,0 +1,149 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>UNIMARC field 125a builder</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="cat_unimarc_field_125a" class="cat" style="padding:1em;">
+<h3>UNIMARC field 125a builder</h3>
+<form name="f_pop" action="">
+<table>
+ <tr>
+ <td><label for="f1">Type of score:</label></td>
+ <td>
+ <select name="f1" id="f1" size="1">
+ [% IF ( f1a ) %]
+ <option value="a" selected="selected">partitura completa, partitura gráfica</option>
+ [% ELSE %]
+ <option value="a">partitura completa, partitura gráfica</option>
+ [% END %]
+ [% IF ( f1b ) %]
+ <option value="b" selected="selected">partitura (tamaño de miniatura o estudio)</option>
+ [% ELSE %]
+ <option value="b">partitura (tamaño de miniatura o estudio)</option>
+ [% END %]
+ [% IF ( f1c ) %]
+ <option value="c" selected="selected">pieza vocal, acompañamiento reducido para teclado</option>
+ [% ELSE %]
+ <option value="c">pieza vocal, acompañamiento reducido para teclado</option>
+ [% END %]
+ [% IF ( f1d ) %]
+ <option value="d" selected="selected">partitura vocal, partitura coral, sin acompañamiento</option>
+ [% ELSE %]
+ <option value="d">partitura vocal, partitura coral, sin acompañamiento</option>
+ [% END %]
+ [% IF ( f1e ) %]
+ <option value="e" selected="selected">partitura condensada, partitura para piano</option>
+ [% ELSE %]
+ <option value="e">partitura condensada, partitura para piano</option>
+ [% END %]
+ [% IF ( f1f ) %]
+ <option value="f" selected="selected">partitura gráfica</option>
+ [% ELSE %]
+ <option value="f">partitura gráfica</option>
+ [% END %]
+ [% IF ( f1g ) %]
+ <option value="g" selected="selected">partitura (por ejemplo himnarios)</option>
+ [% ELSE %]
+ <option value="g">partitura (por ejemplo himnarios)</option>
+ [% END %]
+ [% IF ( f1h ) %]
+ <option value="h" selected="selected">tablatura</option>
+ [% ELSE %]
+ <option value="h">tablatura</option>
+ [% END %]
+ [% IF ( f1i ) %]
+ <option value="i" selected="selected">libro del coro</option>
+ [% ELSE %]
+ <option value="i">libro del coro</option>
+ [% END %]
+ [% IF ( f1j ) %]
+ <option value="j" selected="selected">partitura comprimida</option>
+ [% ELSE %]
+ <option value="j">partitura comprimida</option>
+ [% END %]
+ [% IF ( f1k ) %]
+ <option value="k" selected="selected">seudo partitura</option>
+ [% ELSE %]
+ <option value="k">seudo partitura</option>
+ [% END %]
+ [% IF ( f1l ) %]
+ <option value="l" selected="selected">parte solista</option>
+ [% ELSE %]
+ <option value="l">parte solista</option>
+ [% END %]
+ [% IF ( f1m ) %]
+ <option value="m" selected="selected">formatos múltiples</option>
+ [% ELSE %]
+ <option value="m">formatos múltiples</option>
+ [% END %]
+ [% IF ( f1u ) %]
+ <option value="u" selected="selected">desconocido</option>
+ [% ELSE %]
+ <option value="u">desconocido</option>
+ [% END %]
+ [% IF ( f1x ) %]
+ <option value="x" selected="selected">no aplicable, no es una partitura</option>
+ [% ELSE %]
+ <option value="x">no aplicable, no es una partitura</option>
+ [% END %]
+ [% IF ( f1z ) %]
+ <option value="z" selected="selected">otro</option>
+ [% ELSE %]
+ <option value="z">otro</option>
+ [% END %]
+ </select>
+ </td></tr>
+ <tr>
+ <td><label for="f2">Parts indicator:</label></td>
+ <td>
+ <select name="f2" id="f2" size="1">
+
+ [% IF ( f2a ) %]
+ <option value="a" selected="selected">existen partes (vocal e instrumental)</option>
+ [% ELSE %]
+ <option value="a">existen partes (vocal e instrumental)</option>
+ [% END %]
+ [% IF ( f2b ) %]
+ <option value="b" selected="selected">partes instrumentales</option>
+ [% ELSE %]
+ <option value="b">partes instrumentales</option>
+ [% END %]
+ [% IF ( f2c ) %]
+ <option value="c" selected="selected">partes vocales</option>
+ [% ELSE %]
+ <option value="c">partes vocales</option>
+ [% END %]
+ [% IF ( f2u ) %]
+ <option value="u" selected="selected">desconocido</option>
+ [% ELSE %]
+ <option value="u">desconocido</option>
+ [% END %]
+ [% IF ( f2x ) %]
+ <option value="x" selected="selected">no aplicable</option>
+ [% ELSE %]
+ <option value="x">no aplicable</option>
+ [% END %]
+ [% IF ( f2y ) %]
+ <option value="y" selected="selected">partes no presentes</option>
+ [% ELSE %]
+ <option value="y">partes no presentes</option>
+ [% END %]
+ </select>
+ </td></tr>
+</table>
+<fieldset class="action"><input type="button" value="OK" onclick="report();" /> <a href="#" class="cancel close">Cancelar</a></fieldset>
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+	function report() {
+            var doc   = opener.document; 
+            var field = doc.getElementById("[% index %]");
+            field.value =  document.f_pop.f1.value+document.f_pop.f2.value;
+	    window.close();
+	    return false;
+	}
+//]]>
+</script>
+
+
+[% INCLUDE 'popup-bottom.inc' %]

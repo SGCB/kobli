@@ -1,0 +1,25 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Keyword to MARC mapping</h1>
+
+<p>Esta herramienta te permitirá asignar campos MARC a un conjunto de palabras clave predefinidas.</p>
+
+<p>En este momento la única palabra clave en uso es 'subtítulo.'</p>
+
+<p>Con esta herramienta puedes definir qué campos MARC imprimir en la pantalla de detalles del registro bibliográfico utilizando palabras clave. En el ejemplo siguiente se utiliza el campo de subtítulos.</p>
+
+<p>Utilizando el menú desplegable de hojas de trabajo, selecciona la hoja de trabajo a la que te gustaría aplicar esta regla. Por ejemplo, el subtítulo del libro se puede encontrar en el campo 245$b.</p>
+
+<p>Sin embargo, el subtítulo del DVD aparece en 245$p</p>
+
+<p>Con esta herramienta puedes decir a Koha que imprima el campo correcto como subtítulo al ver el registro bibliográfico en el OPAC.</p>
+
+<p>Esta herramienta también se puede utilizar para unir partes del registro. Si quieres que el número de publicaciones periódicas se muestre en el título de tu búsqueda simplemente tienes que mapear 490 $v con "subtítulo" junto con el campo 245 $b.</p>
+
+<p style="background-color: #ffe599">Consejo: Une los campos que quieras mostrar tras el título del ítem en el orden en que quieras que aparezcan.</p>
+
+<p>Futuros desarrollos incluirán campos asignados a palabras clave adicionales.</p>
+
+<p><strong>See the full documentation for keyword to MARC mapping in the <a href="http://manual.koha-community.org/3.6/en/catadmin.html#keywordmapping">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

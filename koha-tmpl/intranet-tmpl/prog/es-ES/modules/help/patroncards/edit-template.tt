@@ -1,0 +1,29 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Plantillas</h1>
+
+<p>Una plantilla es la etiqueta/carné que estás utilizando. Podría ser Avery 5160 para etiquetas de direcciones, Gaylord 47-284 para etiquetas de lomo o Avery 28371 para los carnés de socio, sólo para dar algunos ejemplos. Estas etiquetas incluyen toda la información necesaria para la configuración en Koha, esta información puede estar en el envoltorio, y si no se puede encontrar en la página Web del proveedor.</p>
+
+<h2>Agregar una plantilla</h2>
+
+<p>Para agregar una nueva plantilla, haz clic en el botón 'Plantillas' en la parte superior de la página y selecciona 'Nueva plantilla'</p>
+
+<p>Utilizando el formulario que aparece, puedes definir la plantilla para tu hoja de etiquetas o carnés.</p>
+
+<ul>
+ <li>El ID de la plantilla se generará automáticamente una vez guardada la plantilla, es simplemente una identificación única generada por el sistema</li>
+ <li>El código de la plantilla debe ser algo que puedas utilizar para identificar la plantilla en una lista de plantillas</li>
+ <li>Puedes utilizar la descripción de plantillas para agregar información adicional sobre la plantilla</li>
+ <li>El desplegable Unidades se usa para definir qué escala de medición vas a usar para la plantilla. Esto debería coincidir con la unidad de medida utilizada en la descripción de la plantilla proporcionada por el proveedor del producto.</li>
+ <li>Las medidas se pueden encontrar en el envoltorio del vendedor del producto o en la página web.</li>
+ <li>A profile is a set of "adjustments" applied to a given template just prior to printing which compensates for anomalies unique and peculiar to a given printer (to which the profile is assigned).
+<ul>
+ <li>Antes de elegir un perfil intenta imprimir algunos carnés de ejemplo para que puedas elegir fácilmente un perfil que sea adecuado para tu combinación impresora/plantilla.</li>
+ <li>Tras encontrar alguna anomalía en el documento impreso, crea un perfil y asócialo a la plantilla. Después de guardar, tu plantilla aparecerá en la página 'Administrar plantillas'.</li>
+</ul>
+</li>
+</ul>
+
+<p><strong>See the full documentation for the Patron Card Templates in the <a href="http://manual.koha-community.org/3.8/en/patroncardcreator.html#patrontemplate">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

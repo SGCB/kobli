@@ -1,0 +1,92 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>UNIMARC field 210c builder</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="cat_unimarc_field_210c" class="cat" style="padding:1em;">
+<h3>UNIMARC field 210c builder</h3>
+ <h4>Buscar tipo de autoridad: EDITORES</h4>
+ <form name="f" method="post" action="plugin_launcher.pl">
+ <fieldset class="rows">
+ <input type="hidden" name="plugin_name" value="unimarc_field_210c.pl" />
+ <input type="hidden" name="op" value="do_search" />
+ <input type="hidden" name="type" value="intranet" />
+ <input type="hidden" name="nbstatements" value="[% nbstatements %]" />
+ <input type="hidden" name="index" value="[% index %]" />
+ <input type="hidden" name="authtypecode" value="EDITORS" />
+ <input type="hidden" name="q" value="[% index %]" />
+ <input type="hidden" name="marclist" value="all" />
+ <input type="hidden" name="and_or" value="and" />
+ <input type="hidden" name="excluding" value="" />
+ <ol>
+ <li>
+ <select name="orderby" id="orderby">
+ <option value="">Ninguno</option>
+ <option value="HeadingAsc" selected="selected">Encabezamiento A-Z</option>
+ <option value="HeadingDsc">Encabezamiento Z-A</option>
+ </select>
+ <select name="operator" id="operator">
+ <option value="contains">contiene</option>
+ <option value="start">comienza con</option>
+ <option value="is">es exactamente</option>
+ </select>
+ <input type="text" id="value" name="value" value="[% resultstring %]" />
+ </li>
+ </ol>
+ </fieldset>
+ <fieldset class="action">
+ <input value="Buscar" type="submit" />
+ </fieldset>
+ </form>
+ [% IF ( total ) %]
+ <h3>Resultados de la búsqueda de autoridad</h3>
+ <div class="pages">
+ [% pagination_bar %] 
+ </div>[% END %]
+ <p>
+ [% IF ( total ) %]
+ &nbsp;<b>Resultados [% from %] a [% to %] de [% total %]</b><br /><br />
+ [% ELSE %]
+ &nbsp; No results found<br />
+ [% END %]
+ </p>
+[% IF ( total ) %]
+ <div id="resultlist">
+ <table>
+ <tr>
+ <th>Resumen</th>
+ <th>Usado</th>
+ <th>Get it!</th>
+ </tr>
+ [% FOREACH resul IN result %]
+ <tr>
+ <td>[% resul.summary %]</td>
+ <td>[% resul.used %] veces</td>
+ <td>
+ [% IF ( resul.to_report ) %]
+ <a href="javascript:report('[% resul.to_report |replace("'", "\'") |replace('"', '\"') |replace('\n', '\\n') |replace('\r', '\\r') %]')"><img width="32" alt="elige" src="[% interface %]/[% theme %]/images/arrow.gif" /></a>
+ [% END %]
+ </td>
+ </tr>
+ [% END %]
+ </table>
+ </div>
+[% END %]
+
+ [% IF ( total ) %]<div class="pages">
+ [% pagination_bar %] 
+ </div>
+ [% END %]
+<script type="text/javascript">
+//<![CDATA[
+function report(summary)
+{    
+    var doc   = opener.document; 
+    var field = doc.getElementById('[% index %]');
+
+    field.value = summary;
+    self.close();
+}
+//]]>
+</script>
+
+[% INCLUDE 'popup-bottom.inc' %]

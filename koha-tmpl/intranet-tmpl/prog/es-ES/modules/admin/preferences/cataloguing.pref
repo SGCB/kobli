@@ -1,0 +1,177 @@
+--- 
+Cataloging: 
+  Estructura de registro: 
+    - 
+      - Interpreta y almacena registros MARC en formato
+      - 
+        choices: 
+          MARC21: MARC21
+          NORMARC: NORMARC
+          UNIMARC: UNIMARC
+        pref: marcflavour
+      - .
+    - 
+      - "Usar el tipo de \xC3\xADtem del"
+      - 
+        choices: 
+          "": "registro bibliogr\xC3\xA1fico"
+          1: "\xC3\xADtem espec\xC3\xADfico"
+        pref: item-level_itypes
+      - "como el tipo de \xC3\xADtem autoritativo (para determinar reglas de circulaci\xC3\xB3n y multas, etc.)."
+    - 
+      - Mapear el subcampo MARC
+      - 
+        pref: itemcallnumber
+      - "a el c\xC3\xB3digo de barras de un \xC3\xADtem. (Esto puede contener m\xC3\xBAltiples subcampos donde buscar; por ejemplo <code>082ab</code> buscar\xC3\xA1 en 082, subcampos a y b.)<br />Ejemplos: <strong>Dewey</strong>: <code>082ab</code> o <code>092ab</code>; <strong>LOC</strong>: <code>050ab</code> o <code>090ab</code>; <strong>del registro del \xC3\xADtem</strong>: <code>852hi</code>"
+    - 
+      - Mostrar el subcampo MARC
+      - 
+        pref: AlternateHoldingsField
+      - "como informaci\xC3\xB3n de existencias para registros que no tienen \xC3\xADtems (puede contener m\xC3\xBAltiples subcampos para buscar; por ejemplo <code>852abhi</code> buscar\xC3\xA1 en 852 subcampos a, b, h, e i.), con los subcampos separados por"
+      - 
+        pref: AlternateHoldingsSeparator
+      - .
+    - 
+      - "Complete con el <a href=\"http://www.loc.gov/marc/organizations/orgshome.html\">c\xC3\xB3digo de organizaci\xC3\xB3n MARC</a>"
+      - 
+        pref: MARCOrgCode
+      - por defecto en nuevos registros MARC (deje en blanco para deshabilitar).
+    - 
+      - "Cuando se crean los \xC3\xADtems, asignarles ubicaci\xC3\xB3n temporaria en"
+      - 
+        class: short
+        pref: NewItemsDefaultLocation
+      - "(debe ser un c\xC3\xB3digo de ubicaci\xC3\xB3n, o blanco para deshabilitar)."
+    - 
+      - 
+        choices: 
+          "": No copiar
+          1: Copiar
+        pref: z3950NormalizeAuthor
+      - autores desde campos UNIMARC
+      - 
+        class: multi
+        pref: z3950AuthorAuthFields
+      - (separados por comas) a los campos de autor correctos cuando importe registros utilizando Z39.50.
+    - 
+      - "Los c\xC3\xB3digos de barras"
+      - 
+        choices: 
+          "OFF": "no son generados autom\xC3\xA1ticamente."
+          annual: son generados con la forma &lt;year&gt;-0001, &lt;year&gt;-0002.
+          hbyymmincr: son generados con la forma &lt;branchcode&gt;yymm0001.
+          incremental: son generados con la forma 1, 2, 3.
+        pref: autoBarcode
+    - 
+      - 
+        choices: 
+          "": No validar
+          1: Validar
+        pref: CheckValueIndicators
+      - los valores de los indicadores definidos en las hojas de trabajo cuando se cataloga un registro.
+  Interfase: 
+    - 
+      - Use
+      - 
+        choices: class-sources
+        pref: DefaultClassificationSource
+      - "como la fuente de clasificaci\xC3\xB3n por defecto."
+    - 
+      - 
+        choices: 
+          "": Mostrar
+          1: No mostrar
+        pref: advancedMARCeditor
+      - descripciones de campos y subcampos en el editor MARC.
+    - 
+      - 
+        choices: 
+          "": Don't Display
+          1: Display
+        pref: EasyAnalyticalRecords
+      - easy ways to create analytical record relationships
+  Marbetes: 
+    - 
+      - "Cuando utilice la impresi\xC3\xB3n r\xC3\xA1pida de marbetes,"
+      - 
+        choices: 
+          "": 'no'
+          1: si
+        pref: SpineLabelAutoPrint
+      - "abra autom\xC3\xA1ticamente el di\xC3\xA1logo de impresi\xC3\xB3n."
+    - 
+      - "Incluya los siguientes campos en un marbete r\xC3\xA1pido:"
+      - (Ingrese en columnas desde las tablas <code>biblio</code>, <code>biblioitems</code> o <code>items</code>, rodeadas por &lt; y &gt;.)
+      - 
+        pref: SpineLabelFormat
+        type: textarea
+    - 
+      - 
+        choices: 
+          "": No muestre
+          1: Muestre
+        pref: SpineLabelShowPrintOnBibDetails
+      - "botones en la p\xC3\xA1gina de detalles de registros para imprimir marbetes."
+    - ~
+  Mostrar: 
+    - 
+      - "Separa m\xC3\xBAltiples autores, series o temas con "
+      - 
+        class: short
+        pref: authoritysep
+      - .
+    - 
+      - Mostrar
+      - 
+        pref: URLLinkText
+      - como los textos de enlaces embebidos en registros MARC.
+    - 
+      - 
+        choices: 
+          "": No utilice
+          1: Utilice
+        pref: UseControlNumber
+      - "el n\xC3\xBAmero de control de registro (subcampo $w) y el n\xC3\xBAmero de control (001) para el enlazado de registros bibliogr\xC3\xA1ficos."
+    - 
+      - 
+        choices: 
+          "": Mostrar
+          1: No mostrar
+        pref: hide_marc
+      - "n\xC3\xBAmeros de campos MARC, c\xC3\xB3digos de subcampos e indicadores en vista MARC."
+    - 
+      - 
+        choices: 
+          economical: Haga
+          standard: No haga
+        pref: LabelMARCView
+      - que colapsen etiquetas repetidas del mismo tipo en una etiqueta en la pantalla.
+    - 
+      - Por defecto, mostrar registros en
+      - 
+        choices: 
+          isbd: formato ISBD (ver abajo).
+          labeled_marc: Formato MARC etiquetado
+          marc: formato MARC.
+          normal: forma normal.
+        pref: IntranetBiblioDefaultView
+    - 
+      - "Utilice lo siguiente como modelo ISBD:"
+      - 
+        class: code
+        pref: ISBD
+        type: textarea
+    - 
+      - 
+        choices: 
+          "": No oculte
+          1: Oculte
+        pref: OpacSuppression
+      - "\xC3\xADtems marcados como suprimidos en el resultado de una b\xC3\xBAsqueda OPAC. Note que debe tener el \xC3\xADndice <code>Suprimido</code> configurado en Zebra y por lo menos un \xC3\xADtem suprimido, o no funcionar\xC3\xA1n sus b\xC3\xBAsquedas."
+    - 
+      - 
+        choices: 
+          "": Ocultar
+          1: No ocultar
+        pref: DisplayPluginValueIndicators
+      - "el enlace junto al campo del indicador para abrir un plugin que muestra los valores correctos del indicador para este campo y hoja de trabajo. Si CheckValueIndicators est\xC3\xA1 deshabilitado y esta variable est\xC3\xA1 habilitada, se validar\xC3\xA1n los valores tambi\xC3\xA9n, i.e., se incluye la funcionalidad de CheckValueIndicators."

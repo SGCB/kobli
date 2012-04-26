@@ -1,0 +1,73 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h1>Devolviendo</h1>
+
+<p>El préstamo de ítems puede hacerse desde diferentes lugares</p>
+
+<ul>
+ <li>The check in box on the top of the main staff client</li>
+ <li>The check in option on the quick search bar on the Circulation page</li>
+ <li>El enlace de devolución en el informe de préstamo del socio (y en la página del informe del préstamo)</li>
+ <li>The Check in page under the Circulation menu</li>
+</ul>
+
+<h3>Devolviendo ítems</h3>
+
+<p>Para devolver un ítem escanea su código de barras en el cuadro correspondiente. Aparecerá un resumen de todos los ítems devueltos debajo del cuadro de devolución</p>
+
+<p>Si estás ingresando ítems que fueron puestos en el buzón de devolución mientras la biblioteca estuvo cerrada puedes marcar el 'Modo buzón' antes de ingresar los ítems. Esto hará retroceder la fecha de devolución a la última fecha en que la biblioteca estaba abierta.</p>
+
+<ul>
+ <li>This requires that you have your closings added to the Holidays & Calendar Tool</li>
+</ul>
+
+<p>También puedes optar por perdonar todos los cargos por retraso de los ítems que estás devolviendo marcando la casilla 'Perdonar cargos por retraso' antes de escanear ítems.</p>
+
+<h3>Mensajes de devolución</h3>
+
+<p>Hay varios mensajes que pueden aparecer cuando devuelvas items:</p>
+
+<ul>
+ <li>If you are checking an item in at a library other than the home branch, a message will appear asking you to transfer the book to the home library
+<ul>
+ <li>After this item is checked in the status of the item will be changed in the catalog to 'in transit'</li>
+ <li>Para mostrar todos los subcampos posibles en la hoja de trabajo, haz clic sobre el texto del campo MARC<ul>
+ <li>Aparecerá un mensaje diciendo que el ítem no está prestado y en el catálogo aparecerá ahora como disponible. Este paso es necesario para marcar los ítems como recibidos por la biblioteca de origen.</li>
+</ul>
+</li>
+</ul>
+</li>
+ <li>If you are checking in an item that should have multiple parts or pieces a message will appear warning you about the number of pieces you should have in your hand</li>
+ <li>Si está ingresando un ítem que está reservado, se le pedirá que confirme la reserva<ul>
+ <li>Clicking the Confirm hold button will mark the item as waiting for pickup from the library</li>
+ <li>Hacer clic en el botón 'Imprimir boleta y confirmar' marcará el ítem como en espera para ser recogido de la biblioteca e imprimirá un recibo con la información del socio para ser colocado en el libro</li>
+ <li>Ignorar la reserva dejará en reserva el ítem, pero permanecerá su condición de disponible (no se cancelará la reserva)</li>
+</ul>
+</li>
+ <li>Si estás ingresando un ítem que está reservado en otra sede, se te pedirá que confirmes la reserva y la transfieras a la otra sede<ul>
+ <li>Clicking the Confirm hold and Transfer button will mark the item as in transit to the library where the hold was placed</li>
+ <li>Hacer clic en el botón 'Imprimir tira, transferir y confirmar' marcará el ítem como en tránsito a la biblioteca donde se hizo la reserva e imprimirá un recibo con la información del socio para ser colocado en el libro</li>
+ <li>Ignorar la reserva dejará en reserva el ítem, pero permanecerá su condición de disponible (no se cancelará la reserva)</li>
+</ul>
+</li>
+</ul>
+
+<h2>Receiving Holds</h2>
+
+<p>When items that are on hold are checked in or out the system will remind the circulation librarian that the item is on hold and offer them options for managing the hold.</p>
+
+<p>When you check in an item that has a hold on it the system will ask you to either confirm and transfer the item or just confirm the hold</p>
+
+<p>Clicking the Confirm button will mark the item as on hold for the patron. If the item needs to be transferred the item will also be marked as in transit to the proper branch. Clicking 'Ignore' will retain the hold, but allow you to check the item out to another patron. Choosing to confirm and print will present you with a printable page that you can slip inside the book with the necessary hold and/or transfer information.</p>
+
+<p>Once confirmed the hold will show on the patron record and on the checkout screen under the 'Hold' tab.</p>
+
+<p>The item record will also show that the item is on hold.</p>
+
+<p>In some cases a patron may come in to pick up a hold for their partner (or someone else in their household). In this case you want to make sure that the hold is cancelled when you check the item out to someone else. When trying to check out an item that is already waiting for someone else you will be presented with a warning message.</p>
+
+<p>From here you can check the item out to the patron at the desk and cancel the hold for the patron.</p>
+
+<p><strong>See the full documentation for Checking In in the <a href="http://manual.koha-community.org/3.8/en/checkingin.html">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

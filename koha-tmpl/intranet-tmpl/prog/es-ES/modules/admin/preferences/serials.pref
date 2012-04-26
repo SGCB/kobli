@@ -1,0 +1,62 @@
+--- 
+Serials: 
+  - 
+    - "Mostrar pesta\xC3\xB1as de"
+    - 
+      choices: 
+        holdings: Existencias
+        serialcollection: Colecciones
+        subscriptions: Suscripciones
+      pref: opacSerialDefaultTab
+    - "como pesta\xC3\xB1a por defecto para publicaciones peri\xC3\xB3dicas en el OPAC. Note que la pesta\xC3\xB1a de Colecciones solo est\xC3\xA1 disponible para UNIMARC."
+  - 
+    - 
+      choices: 
+        "": No agregar
+        1: Agregar
+      pref: RenewSerialAddsSuggestion
+    - "una sugerencia para un registro cuando se renueva su publicaci\xC3\xB3n peri\xC3\xB3dica adjunta."
+  - 
+    - 
+      choices: 
+        "": No agregar
+        1: Agregar
+      pref: RoutingSerials
+    - "publicaciones peri\xC3\xB3dicas recibidas a la lista de enrutamiento."
+  - 
+    - 
+      choices: 
+        "": No poner
+        1: Poner
+      pref: RoutingListAddReserves
+    - "en reserva publicaciones peri\xC3\xB3dicas si est\xC3\xA1n en una lista de enrutamiento."
+  - 
+    - "Include following note on all routing lists:"
+    - 
+      class: code
+      pref: RoutingListNote
+      type: textarea
+  - 
+    - Mostrar los
+    - 
+      class: integer
+      pref: StaffSerialIssueDisplayCount
+    - "ejemplares previos de una publicaci\xC3\xB3n peri\xC3\xB3dica en el cliente administrativo."
+  - 
+    - Mostrar los
+    - 
+      class: integer
+      pref: OPACSerialIssueDisplayCount
+    - "ejemplares previos de una publicaci\xC3\xB3n peri\xC3\xB3dica en el OPAC."
+  - 
+    - When showing the subscription information for a bibliographic record, preselect
+    - 
+      choices: 
+        full: full history
+        simplified: brief history
+      pref: SubscriptionHistory
+    - view of serial issues.
+  - 
+    - List of fields which must not be rewritten when a subscription is duplicated (Separated by pipe |)
+    - 
+      pref: SubscriptionDuplicateDroppedInput

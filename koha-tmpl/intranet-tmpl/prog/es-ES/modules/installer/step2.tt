@@ -1,0 +1,51 @@
+[% INCLUDE 'doc-head-open.inc' %]<title>Koha &rsaquo; Web installer &rsaquo; Step 2</title>
+[% INCLUDE 'installer-doc-head-close.inc' %]
+<div>
+<h1 id="logo"><img alt="Koha" src="/intranet-tmpl/prog/img/koha.org-logo.gif" /> Web installer &rsaquo; Step 2</h1>
+<h2 align="center">Configuración de la base de datos:</h2>
+<ul>
+<li><em>tipo de base de datos: </em>[% dbms %]</li>
+<li><em>nombre de la base de datos: </em>[% dbname %]</li>
+<li><em>host de la base de datos: </em>[% hostname %]</li>
+<li><em>puerto de la base de datos: </em>[% port %] (probablemente no haya problema si está en blanco)</li>
+<li><em>database user : </em>[% user %]</li>
+</ul>
+<div>
+[% IF ( dbconnection ) %]
+<form name="checkdbparameters" type="post" action="install.pl">
+ [% IF ( checkdatabaseaccess ) %]
+ <p>Conexión establecida.</p>
+ [% IF ( checkdatabasecreated ) %]
+ <p>Base de Datos <code>[% dbname %]</code> existe.</p>
+ [% IF ( checkgrantaccess ) %]
+ <p>Usuario <code>[% user %]</code> tiene todos los privilegios en la base de datos <code>[% dbname %]</code>.</p>
+ [% ELSE %]
+ <p class="error">usuario <code>[% user %]</code> no tiene suficientes privilegios sobre la base de datos <code>[% dbname %]</code> </p>
+ <p class="tip"> Solicitar o realizar una modificación en los privilegios del socio. ¿Necesita ayuda? Vea [% IF ( mysql ) %]<a href=http://dev.mysql.com/doc/refman/4.1/en/grant.html>[% ELSE %]http://www.postgresql.org/docs/8.2/interactive/sql-createrole.html[% END %]this page</a>. Usuario <code>[% user %]</code> debe tener USAGE, INSERT, UPDATE, DELETE, DRO y privilegios de CREATE en on<code>[% dbname %]</code></p>
+ [% END %]
+ [% ELSE %]
+ <p class="error">No se ha dado nombre a ninguna base de datos <code>[% dbname %]</code> detectado.</p>
+ <p class="tip">Por favor, cree la base de datos antes de continuar.</p>
+ [% END %]
+ [% ELSE %]
+ <div class="error">[% error %] : [% message %] </div>
+ <div class="tip">
+ <ul>
+ <li>Verificar que la base de datos esté funcionando.</li>
+ <li>Verificar la configuración de la base de datos <code>koha-conf.xml</code>. </li>
+ <li>Verificar la configuración del nombre del servidor (hostname) <code>koha-conf.xml</code>. Algunos servidores de bases de datos requieren <code>127.0.0.1</code> en vez de <code>localhost</code>.</li>
+ </div>
+ <p>Por favor, corrija los errores y <a href="/cgi-bin/koha/installer/install.pl">ejecute el instalador</a> de nuevo [% END %] [% IF ( error ) %][% ELSE %] <input type="hidden" name="step" value="3" />
+<p> Click 'Next' to continue <input value="Siguiente >>" type="submit" /></p>
+[% END %]
+</form>
+[% ELSE %]
+<form name="checkinformation" type="post" action="install.pl">
+<input type="hidden" name="step" value="2" />
+<input type="hidden" name="checkdb" value="1" />
+<p> Please click 'Next' to continue if this information is correct <input value="Siguiente >>" type="submit" /></p>
+</form>
+[% END %]
+</div>
+</body>
+</html>

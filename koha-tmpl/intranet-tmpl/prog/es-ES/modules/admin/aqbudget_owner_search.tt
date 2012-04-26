@@ -1,0 +1,77 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Koha &rsaquo; Budget owner search</title>
+[% INCLUDE 'doc-head-close.inc' %]
+ <style type="text/css">
+    #custom-doc { width:44.46em;*width:43.39em;min-width:578px; margin:auto; text-align:left; }
+    </style>
+
+<script type="text/javascript">
+//<![CDATA[
+
+// modify parent window owner element
+function returnOwner(ownerId, ownerName){
+    var top1 = top.opener;
+    top1.document.getElementById('budget_owner_name').innerHTML = ownerName;
+    top1.document.getElementById('budget_owner_id').value = ownerId;
+    window.close();
+}
+//]]>
+</script>
+
+
+</head>
+<body id="admin_aqbudget_owner_search" class="admin">
+<div id="custom-doc" class="yui-t7">
+ <div id="bd">
+ <div class="yui-g">
+
+
+<h3>Search for budget owner</h3>
+ <form action="/cgi-bin/koha/admin/aqbudget_owner_search.pl" method="post">
+ <fieldset>
+ <input type="text" name="member" id="member" value="[% member %]" class="focus" />
+
+
+<!--
+ Ordered by
+ <select name="orderby">
+ <option value="surname,firstname">Surname</option>
+ <option value="cardnumber">Cardnumber</option>
+ </select>
+-->
+
+<input value="Buscar" type="submit" class="button" /></fieldset>
+<div class="hint">Sólo el personal con permisos de superlibrarian o adquisiciones se muestra en los resultados de la búsqueda</div>
+
+ </form>
+
+
+[% IF ( results ) %]
+ <p>Searched for <span class="ex">[% member %]</span>, [% numresults %] socio(s) encontrados:</p>
+ <table>
+ <tr>
+ <th>Número de carné</th>
+ <th>Nombre</th>
+ <th>Biblioteca</th>
+ <th>Código de categoría</th>
+ <th>¿Seleccionar?</th>
+ </tr>
+
+ [% FOREACH resultsloo IN resultsloop %]
+ [% IF ( resultsloo.toggle ) %]<tr>[% ELSE %]<tr class="highlight">[% END %]
+ <td>[% resultsloo.cardnumber %]</td>
+ <td>[% resultsloo.surname %], [% resultsloo.firstname %]</td>
+ <td>[% resultsloo.branchcode %]</td>
+ <td>[% resultsloo.categorycode %]</td>
+ <td>
+ <input value="Seleccionar" type="button" onclick="returnOwner('[% resultsloo.budget_owner_id %]', '[% resultsloo.budget_owner_name %]');" />
+ </td>
+ </tr>
+ [% END %]
+ </table>
+[% END %]
+
+<div id="closewindow"><a href="#" class="close">Cancelar</a></div>
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

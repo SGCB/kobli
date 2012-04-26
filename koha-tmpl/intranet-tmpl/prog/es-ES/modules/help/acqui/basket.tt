@@ -1,0 +1,91 @@
+[% INCLUDE 'help-top.inc' %]
+
+<h2>Placing an order</h2>
+
+<p>Una vez que tu cesta ha sido creada, se te mostrarán varias opciones para añadir ítems al pedido.</p>
+
+<ul>
+ <li>If you are ordering another copy of an existing item, you can simply search for the record in your system
+<ul>
+ <li>Desde los resultados, haz clic en 'Pedido' para ir al formulario de compra<ul>
+ <li>Todos los detalles asociados con el ítem se listarán bajo 'Detalles de catalogación'</li>
+</ul>
+</li>
+</ul>
+</li>
+ <li>Si permites a los socios hacer sugerencias de compra (ver más en la sección de Sugerencias de Mantenimiento de este manual) entonces podrás realizar pedidos desde esas sugerencias<ul>
+ <li>
+<ul>
+ <li>From this form you can make changes to the catalog details if necessary</li>
+</ul>
+</li>
+</ul>
+</li>
+ <li>To order from a record that can't be found anywhere else, choose the 'From a new (empty) record'
+<ul>
+ <li>Se te mostrará un formulario en blanco para que lo rellenes con todos los detalles necesarios sobre el ítem que estás pidiendo</li>
+</ul>
+</li>
+ <li>Si quieres buscar un ítem en otras librerías para comprarlo puedes utilizar la opción "Desde una fuente externa" que te permitirá hacer un pedido desde un registro MARC mediante una búsqueda Z39.50<ul>
+ <li>From the results click the 'Order' link next to the item you want to purchase</li>
+ <li>Si el ítem que estás pidiendo desde una búsqueda externa parce ser un dupicado, Koha te avisará y te dará opciones de cómo proceder<ul>
+ <li>Desde la advertencia puedes elegir ordenar otra copia de un registro existente, crear uno nuevo, o cancelar su orden de este ítem.</li>
+</ul>
+</li>
+ <li>In the order form that pops up you will not be able to edit the catalog details</li>
+</ul>
+</li>
+ <li>La opción final para realizar un pedido es hacerlo desde un registro procesado (ver más sobre registros procesados)<ul>
+ <li>From the list of files you are presented with, choose the 'Add orders' link
+<ul>
+ <li>From the list of records, click 'Add order' next to the item you want to add to your order
+<ul>
+ <li>Desde el formulario de pedido no podrás editar los detalles de catálogo.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>Once you have entered the info about the item you need to enter the Accounting information.</p>
+
+<ul>
+ <li>La cantidad se puebla por el número de ítems que has añadido al pedido anterior</li>
+ <li>La lista de fondos está poblada por los fondos que has asignado en el área de Administración de adquisiciones.</li>
+ <li>El precio del proveedor se utilizará para calcular el resto de los campos de cantidades siguientes</li>
+ <li>Si el precio es incierto, comprueba la casilla de precio incierto.<ul>
+ <li>Una cesta con al menos un precio no fijado no puede cerrarse.</li>
+</ul>
+</li>
+ <li>If you added planning values when creating the fund those values will appear in the two planning value fields</li>
+</ul>
+
+<p>Una vez que se añada un ítem a la cesta se te mostrará un resumen de la cesta.</p>
+
+<p>Desde aquí puedes editar o eliminar el ítem que has agregado.</p>
+
+<p>También en la página de resumen encontrarás la opción de editar la información que ingresaste sobre la cesta haciendo clic en 'Editar información de cabecera', eliminar la cesta haciendo clic en 'Eliminar esta cesta', o exportar tu cesta como un archivo CSV haciendo clic en 'Exportar la cesta como CSV'.</p>
+
+<p>Una vez que te asegures de que la cesta está completa, puedes hacer clic en "Cerrar esta cesta" para indicar que la cesta está completa y que ha sido enviada al proveedor.</p>
+
+<p style="color: #ff0000">Importante: Una cesta con al menos un ítem marcado como "precio incierto" no se podrá cerrrar</p>
+
+<p>Clicking the 'Uncertain prices' button will up a list of items with uncertain prices to quick editing.</p>
+
+<p style="color: #ff0000">Importante: La página de Precios Inciertos es independiente de la cesta, está conectada al proveedor, así que verás todos los ítems en orden para un vendedor en concreto con precios inciertos.</p>
+
+<h2>Printing baskets</h2>
+
+<p>When you are finished adding items to your basket you want to click 'Close this basket'</p>
+
+<p>You will be asked if you want to create a purchase order at this time.</p>
+
+<p>Tu pedido completo se listará en la página del Grupo de cestas para imprimierlo o para posteriores modificaciones.</p>
+
+<p>Haciendo clic en 'Imprimir' tu pedido generará un PDF para imprimir. El PDF tendrá toda la información sobre tu biblioteca seguida de los ítems de tu pedido.</p>
+
+<p><strong>See the full documentation for ordering in the <a href="http://manual.koha-community.org/3.6/en/placingacqorder.html#createacqbasket">manual</a> (online).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %]

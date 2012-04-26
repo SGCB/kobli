@@ -1,0 +1,145 @@
+--- 
+Patrons: 
+  - 
+    - Listar
+    - 
+      choices: 
+        category_type: tipos de socios generales
+        categorycode: "categor\xC3\xADas espec\xC3\xADficas"
+      pref: AddPatronLists
+    - "en el men\xC3\xBA nuevo socio."
+  - 
+    - 
+      choices: 
+        "": No enviar
+        1: Enviar
+      pref: AutoEmailOpacUser
+    - an email to newly created patrons with their account details.
+  - 
+    - Use
+    - 
+      choices: 
+        B_email: alternate
+        "OFF": first valid
+        cardnumber: cardnumber as
+        email: home
+        emailpro: work
+      default: 'OFF'
+      pref: AutoEmailPrimaryAddress
+    - patron email address for sending out emails.
+  - 
+    - 
+      choices: 
+        "": 'No'
+        1: "S\xC3\xAD"
+      pref: autoMemberNum
+    - "configurar por defecto el siguiente n\xC3\xBAmero de socio disponible (por ejemplo, si el mayor n\xC3\xBAmero de socio utilizado actualmente es 26345000012941, este campo valdr\xC3\xA1 de forma predeterminada 26345000012942)."
+  - 
+    - "The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> must be filled in on the patron entry screen:"
+    - 
+      class: multi
+      pref: BorrowerMandatoryField
+    - (columnas separadas con |)
+  - 
+    - "The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> will not appear on the patron entry screen:"
+    - 
+      class: multi
+      pref: BorrowerUnwantedField
+    - (separate columns with |)
+  - 
+    - "Garantes pueden ser los siguientes de los que garantizan:"
+    - 
+      class: multi
+      pref: borrowerRelationship
+    - (input multiple choices separated by |). Leave empty to deactivate
+  - 
+    - "Los socios pueden tener los siguientes t\xC3\xADtulos:"
+    - 
+      class: multi
+      pref: BorrowersTitles
+    - (separar las opciones con |)
+  - 
+    - 
+      choices: 
+        katipo: "S\xC3\xAD"
+        none: 'No'
+      pref: checkdigit
+    - "controlar y construir un n\xC3\xBAmero de carnet de socio en el estilo Katipo. Si est\xC3\xA1 habilitado anula <code>autoMemberNum</code>"
+  - 
+    - 
+      choices: 
+        "": No permitir
+        1: Permitir
+      pref: EnhancedMessagingPreferences
+    - "a socios elegir cuales avisos recibir\xC3\xA1n y cuando los recibir\xC3\xA1n. Note que esto solo se aplica a ciertos tipos de avisos."
+  - 
+    - 
+      choices: 
+        "": No habilitar
+        1: Habilitar
+      pref: ExtendedPatronAttributes
+    - "b\xC3\xBAsqueda, edici\xC3\xB3n y visualizaci\xC3\xB3n de los atributos personalizados de los socios."
+  - 
+    - 
+      choices: 
+        "": No permitir
+        1: Permitir
+      pref: intranetreadinghistory
+    - "personal para acceder a la historial de pr\xC3\xA9stamos de un socio (se almacena independientemente)."
+  - 
+    - "La multa tard\xC3\xADa para una devoluci\xC3\xB3n espec\xC3\xADfica s\xC3\xB3lo podr\xC3\xA1 ser hasta"
+    - 
+      class: currency
+      pref: MaxFine
+    - "[% local_currency %]."
+  - 
+    - 
+      choices: 
+        "": 'No'
+        1: "S\xC3\xAD"
+      pref: memberofinstitution
+    - permitir a los socios estar vinculados a instituciones (que deben crearse como socios institucionales).
+  - 
+    - "La contrase\xC3\xB1a para el personal y los socios deben tener al menos"
+    - 
+      class: integer
+      pref: minPasswordLength
+    - caracteres de largo.
+  - 
+    - "Mostrar un aviso cuando la afiliaci\xC3\xB3n de un socio est\xC3\xA9 a punto de caducar"
+    - 
+      class: integer
+      pref: NotifyBorrowerDeparture
+    - "d\xC3\xADas de antemano."
+  - 
+    - 
+      choices: 
+        "": No permitir
+        1: Permitir
+      pref: patronimages
+    - "im\xC3\xA1genes para ser cargadas y mostradas a los socios en la interfaz administrativa."
+  - 
+    - De forma predeterminada, mostrar
+    - 
+      class: integer
+      pref: PatronsPerPage
+    - "resultados por p\xC3\xA1gina en la interfaz del personal."
+  - 
+    - "Utilice el controlador SMS::Send::"
+    - 
+      pref: SMSSendDriver
+    - para enviar mensajes SMS.
+  - 
+    - 
+      choices: 
+        "": 'No'
+        1: "S\xC3\xAD"
+      pref: uppercasesurnames
+    - "almacenar y mostrar los apellidos en may\xC3\xBAsculas."
+  - 
+    - When renewing borrowers, base the new expiry date on
+    - 
+      choices: 
+        dateexpiry: current membership expiry date.
+        now: current date.
+      pref: BorrowerRenewalPeriodBase

@@ -1,0 +1,47 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Koha &rsaquo; Tools &rsaquo; Rotating collections</title>
+[% INCLUDE 'doc-head-close.inc' %]
+</head>
+<body id="rcoll_rotatingCollections" class="tools rcoll">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'cat-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; Rotating collections</div>
+
+<div id="doc3">
+<div id="bd">
+ <div class="yui-gb">
+
+ <h1>Colecciones rotativas</h1>
+ <div>
+ [% IF ( collectionsLoop ) %]
+ <table>
+ <tr>
+ <th><strong>Título</strong></th>
+ <th>Descripción</strong></th>
+ <th>Current location</th>
+ <th>Add/Remove items</th>
+ <th>Transfer collection</th>
+ </tr>
+ [% FOREACH collectionsLoo IN collectionsLoop %]
+ <tr>
+ <td>[% collectionsLoo.colTitle %]</td>
+ <td>[% collectionsLoo.colDesc %]</td>
+ <td>[% collectionsLoo.colBranchcode %]</td>
+ <td><a href="addItems.pl?colId=[% collectionsLoo.colId %]">Agregar/Eliminar ítems</a></td>
+ <td><a href="transferCollection.pl?colId=[% collectionsLoo.colId %]">Transferencia de Colección</a></td>
+ </tr>
+ [% END %]
+ </table>
+ [% ELSE %]
+ There are no collections currently defined.
+ [% END %]
+ </div>
+
+ <div>
+ <br/>
+ <input type="button" value="Edit collections" onclick="window.location.href='editCollections.pl'">
+ </div> 
+</div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %]

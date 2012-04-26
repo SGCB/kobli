@@ -1,0 +1,483 @@
+--- 
+Circulation: 
+  "Auto pr\xC3\xA9stamo": 
+    - 
+      - 
+        choices: 
+          "": No mostrar
+          1: Mostrar
+        pref: ShowPatronImageInWebBasedSelfCheck
+      - "la imagen del socio (si hay una) cuando utiliza el sistema Web de auto-pr\xC3\xA9stamo."
+    - 
+      - 
+        choices: 
+          "": No habilitar
+          1: Habilitar
+        pref: WebBasedSelfCheck
+      - "el sistema de auto pr\xC3\xA9stamo basado en Web. (Disponible en: /cgi-bin/koha/sco/sco-main.pl)"
+    - 
+      - "Haga que los socios ingresen al sistema Web de auto-pr\xC3\xA9stamo con su"
+      - 
+        choices: 
+          "": "c\xC3\xB3digo de barras"
+          1: "nombre de usuario y contrase\xC3\xB1a"
+        pref: SelfCheckoutByLogin
+    - 
+      - "Expire la sesi\xC3\xB3n del sistema Web de auto-pr\xC3\xA9stamo luego de"
+      - 
+        class: integer
+        pref: SelfCheckTimeout
+      - segundos.
+    - 
+      - 
+        choices: 
+          "": No permita
+          1: Permita
+        pref: AllowSelfCheckReturns
+      - "a los socios devolver \xC3\xADtems a utilizando el sistema web de auto pr\xC3\xA9stamo."
+    - 
+      - "Incluya el siguiente HTML en la p\xC3\xA1gina de ayuda del sistema Web de auto-pr\xC3\xA9stamo:"
+      - 
+        class: code
+        pref: SelfCheckHelpMessage
+        type: textarea
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: AutoSelfCheckAllowed
+      - "al sistema Web de auto pr\xC3\xA9stamo ingresar autom\xC3\xA1ticamente con esta cuenta administrativa"
+      - 
+        pref: AutoSelfCheckID
+      - "y esta contrase\xC3\xB1a"
+      - 
+        pref: AutoSelfCheckPass
+      - .
+  Interfase: 
+    - 
+      - 
+        choices: 
+          "": No intentar
+          1: Intentar
+        pref: CircAutocompl
+      - "adivinar el socio siendo ingresado mientras se escribe el socio en la vista de circulaci\xC3\xB3n."
+      - Only returns the first 10 results at a time.
+    - 
+      - 
+        choices: 
+          "": No filtrar
+          T-prefix: "Quitar el primer n\xC3\xBAmero del estilo prefijo T"
+          cuecat: Convertir de la forma CueCat
+          libsuite8: Convierta desde la forma Libsuite8
+          whitespace: Eliminar los espacios de
+        pref: itemBarcodeInputFilter
+      - "los c\xC3\xB3digos de barra de \xC3\xADtems escaneados."
+    - 
+      - "Ordenar pr\xC3\xA9stamos anteriores en la p\xC3\xA1gina de la circulaci\xC3\xB3n por"
+      - 
+        choices: 
+          asc: "antiguo al m\xC3\xA1s reciente"
+          desc: "reciente al m\xC3\xA1s antiguo"
+        pref: previousIssuesDefaultSortOrder
+      - fecha de vencimiento.
+    - 
+      - "Ordenar los pr\xC3\xA9stamos del d\xC3\xADa de hoy en la p\xC3\xA1gina de la circulaci\xC3\xB3n por"
+      - 
+        choices: 
+          asc: "antiguo al m\xC3\xA1s reciente"
+          desc: "reciente al m\xC3\xA1s antiguo"
+        pref: todaysIssuesDefaultSortOrder
+        type: choice
+      - fecha de vencimiento.
+    - 
+      - 
+        choices: 
+          "": No habilitar
+          1: Habilitar
+        pref: UseTablesortForCirc
+      - "el ordenamiento de los pr\xC3\xA9stamos del socio actual en la pantalla de circulaci\xC3\xB3n. <br/>NOTA: Habilitar esta funci\xC3\xB3n puede hacer m\xC3\xA1s lento el proceso para socios con muchos \xC3\xADtems prestados."
+    - 
+      - 
+        choices: 
+          "": No habilitar
+          1: Habilitar
+        pref: soundon
+      - "sonidos de circulaci\xC3\xB3n en la devoluci\xC3\xB3n y pr\xC3\xA9stamo en la interfaz de personal.  No es compatible con todos los navegadores Web todav\xC3\xADa."
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: SpecifyDueDate
+      - "al personal especificar la fecha de devoluci\xC3\xB3n de un pr\xC3\xA9stamo."
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: AllowAllMessageDeletion
+      - al personal borrar mensajes agregados desde otras bibliotecas.
+    - 
+      - Mostrar los
+      - 
+        class: integer
+        pref: numReturnedItemsToShow
+      - "\xC3\xBAltimos \xC3\xADtems devueltos en la pantalla de comprobaci\xC3\xB3n."
+    - 
+      - 
+        choices: 
+          "": No notifique
+          1: Notifique
+        pref: FineNotifyAtCheckin
+      - "al personal de multas por retrasos en los \xC3\xADtems que est\xC3\xA1n devolviendo."
+    - 
+      - 
+        choices: 
+          "": Ne pas avertir
+          1: Avertir
+        pref: WaitingNotifyAtCheckin
+      - "les biblioth\xC3\xA9caires qu'il y a des r\xC3\xA9servations en attente pour l'adh\xC3\xA9rent au moment ou celui-ci fait un retour."
+    - 
+      - 
+        choices: 
+          "": No requerir
+          1: Requerir
+        pref: FilterBeforeOverdueReport
+      - "al personal elegir cuales pr\xC3\xA9stamos mostrar antes de ejecutar el reporte de retrasos."
+    - 
+      - 
+        choices: 
+          "": No mostrar
+          1: Mostrar
+        pref: DisplayClearScreenButton
+      - "un bot\xC3\xB3n para limpiar el socio actual en la pantalla de circulaci\xC3\xB3n."
+    - 
+      - 
+        choices: 
+          "": Don't record
+          1: Record
+        pref: RecordLocalUseOnReturn
+      - local use when an unissued item is checked in.
+    - 
+      - When an empty barcode field is submitted in circulation
+      - 
+        choices: 
+          "": clear the screen
+          1: open a print quick slip window
+        pref: CircAutoPrintQuickSlip
+      - .
+    - 
+      - Include the stylesheet at
+      - 
+        class: url
+        pref: NoticeCSS
+      - on Notices. (This should be a complete URL, starting with <code>http://</code>)
+  "Pol\xC3\xADtica de multas": 
+    - 
+      - "Calcular las multas sobre la base de d\xC3\xADas de atraso"
+      - 
+        choices: 
+          ignoreCalendar: directamente.
+          noFinesWhenClosed: "no incluyendo los d\xC3\xADas en que la biblioteca est\xC3\xA1 cerrada."
+        pref: finesCalendar
+        type: choice
+      - ~
+    - 
+      - 
+        choices: 
+          "": No calcular
+          production: Calcular y cargar
+          test: "Calcular (pero s\xC3\xB3lo para enviar por correo al administrador)"
+        pref: finesMode
+        type: choice
+      - "multas (cuando <code>misc/cronjobs/fines.pl</code> se est\xC3\xA1 ejecutando)."
+  "Pol\xC3\xADtica de pr\xC3\xA9stamo": 
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: AllowNotForLoanOverride
+      - "al personal ignorar y prestar \xC3\xADtems marcados como no para pr\xC3\xA9stamo."
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: AllowRenewalLimitOverride
+      - "al personal ignorar el l\xC3\xADmite de renovaciones y renovar un pr\xC3\xA9stamo cuando supera el mismo."
+    - 
+      - 
+        choices: 
+          "": Don't allow
+          1: Allow
+        pref: AllowItemsOnHoldCheckout
+      - checkouts of items items reserved to someone else. If allowed do not generate RESERVE_WAITING and RESERVED warning. This allows self checkouts for those items.
+    - 
+      - 
+        choices: 
+          "": No requiera
+          1: Requiera
+        pref: AllFinesNeedOverride
+      - que el personal anule manualmente todas las multas, aun multas inferiores a  noissuescharge.
+    - 
+      - 
+        choices: 
+          "": No permita
+          1: Permita
+        pref: AllowFineOverride
+      - "al personal anular manualmente y prestar \xC3\xADtems a socios que tienen mas que  noissuescharge en multas."
+    - 
+      - 
+        choices: 
+          "": No mueva
+          1: Mueva
+        pref: InProcessingToShelvingCart
+      - "\xC3\xADtems que tienen la ubicaci\xC3\xB3n PROC a la ubicaci\xC3\xB3n CART cuando son devueltos."
+    - 
+      - 
+        choices: 
+          "": No mover
+          1: Mover
+        pref: ReturnToShelvingCart
+      - "todos los \xC3\xADtems en la CART de ubicaci\xC3\xB3n cuando se han devuelto."
+    - 
+      - 
+        choices: 
+          "": No hacer
+          1: Hacer
+        pref: AutomaticItemReturn
+      - automatically transfer items to their home library when they are returned.
+    - 
+      - 
+        choices: 
+          "": No forzar
+          1: Forzar
+        pref: UseBranchTransferLimits
+      - library transfer limits based on
+      - 
+        choices: 
+          ccode: "c\xC3\xB3digo de colecci\xC3\xB3n"
+          itemtype: "tipo de \xC3\xADtem"
+        pref: BranchTransferLimitsType
+      - .
+    - 
+      - "Utilice las reglas de pr\xC3\xA9stamo y multas de"
+      - 
+        choices: 
+          ItemHomeLibrary: la biblioteca de origen del libro.
+          PatronLibrary: la biblioteca de origen del socio.
+          PickupLibrary: la biblioteca donde se ha registrado.
+        pref: CircControl
+        type: choice
+    - 
+      - "Use las reglas de circulaci\xC3\xB3n y multas de"
+      - 
+        choices: 
+          holdingbranch: "la biblioteca donde fue prestado el \xC3\xADtem."
+          homebranch: "la biblioteca de origen del \xC3\xADtem."
+        pref: HomeOrHoldingBranch
+        type: choice
+    - 
+      - "Calcular la fecha de devoluci\xC3\xB3n utilizando"
+      - 
+        choices: 
+          Calendar: "el calendario para saltear todos los d\xC3\xADas en los que la biblioteca est\xC3\xA1 cerrada."
+          Datedue: "el calendario para llevar la fecha al siguiente d\xC3\xADa abierto"
+          Days: "solo las reglas de circulaci\xC3\xB3n."
+        pref: useDaysMode
+    - 
+      - "Cuando se renueven pr\xC3\xA9stamos, basar la fecha de devoluci\xC3\xB3n en"
+      - 
+        choices: 
+          date_due: "la vieja fecha de devoluci\xC3\xB3n."
+          now: la fecha actual.
+        pref: RenewalPeriodBase
+    - 
+      - "Limita a los socios hacer reservas en el OPAC si deben m\xC3\xA1s de"
+      - 
+        class: currency
+        pref: maxoutstanding
+      - "[% local_currency %] in fines."
+    - 
+      - Mostrar una advertencia en la pantalla "Transferencias a recibir" si la transferencia no se ha recibido
+      - 
+        class: integer
+        pref: TransfersMaxDaysWarning
+      - "d\xC3\xADas despu\xC3\xA9s de su env\xC3\xADo."
+    - 
+      - 
+        choices: 
+          "": No impida
+          1: Impida
+        pref: IssuingInProcess
+      - "a socios pedir prestado un \xC3\xADtem cuyo valor de alquiler los lleve sobre el l\xC3\xADmite."
+    - 
+      - "Evitar a los usuarios sacar libros si tienen m\xC3\xA1s de"
+      - 
+        class: integer
+        pref: noissuescharge
+      - "[% local_currency %] in fines."
+    - 
+      - 
+        choices: 
+          "": No requerir
+          1: Requerir
+        pref: ReturnBeforeExpiry
+      - "a los socios la devoluci\xC3\xB3n de \xC3\xADtems antes del vencimiento de su carnet (asegurando que las fechas de devoluci\xC3\xB3n sean previas a la fecha de expiraci\xC3\xB3n de la membres\xC3\xADa)."
+    - 
+      - "Enviar todos los avisos como BCC a esta direcci\xC3\xB3n de email"
+      - 
+        pref: OverdueNoticeBcc
+    - 
+      - Incluir hasta
+      - 
+        class: integer
+        pref: PrintNoticesMaxLines
+      - "l\xC3\xADneas de \xC3\xADtems en un aviso de retraso impreso. Si el n\xC3\xBAmero de \xC3\xADtems es mayor que este n\xC3\xBAmero, el aviso finalizar\xC3\xA1 con una advertencia pidiendo al socio consultar su cuenta en l\xC3\xADnea por la lista completa de \xC3\xADtems retrasados. Poner en 0 para incluir todos los \xC3\xADtems retrasados en el aviso, independientemente de cuantos sean."
+    - 
+      - 
+        choices: 
+          block: Bloquear
+          confirmation: "Pida confirmaci\xC3\xB3n"
+          noblock: No bloquear
+        pref: OverduesBlockCirc
+      - cuando intente prestar a un socio con retrasos pendientes
+    - 
+      - On checkin route the returned item to
+      - 
+        choices: 
+          holdingbranch: the library the item was checked out from.
+          homebranch: the library the item is from.
+        pref: HomeOrHoldingBranchReturn
+        type: choice
+  "Pol\xC3\xADtica de reservas": 
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: AllowHoldPolicyOverride
+      - "al personal ignorar las pol\xC3\xADticas de reserva cuando realicen reservas."
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: AllowHoldsOnDamagedItems
+      - "hacer reservas sobre \xC3\xADtems da\xC3\xB1ados."
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: AllowOnShelfHolds
+      - "hacer reservas en \xC3\xADtems que no est\xC3\xA1n prestados."
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: AllowHoldDateInFuture
+      - que se realicen reservas que no ingresan en la lista de espera hasta una fecha futura.
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: OPACAllowHoldDateInFuture
+      - "a socios hacer reservas que no entran en lista de espera hasta una fecha futura. (AllowHoldDateInFuture tambi\xC3\xA9n debe ser habilitado)."
+    - 
+      - Verificar la
+      - 
+        choices: 
+          ItemHomeLibrary: "biblioteca de origen del \xC3\xADtem"
+          PatronLibrary: biblioteca de origen del socio
+        pref: ReservesControlBranch
+      - "para ver si el socio puede hacer una reserva del \xC3\xADtem."
+    - 
+      - "Marcar una reserva como problem\xC3\xA1tica si ha estado en espera mas de"
+      - 
+        class: integer
+        pref: ReservesMaxPickUpDelay
+      - "d\xC3\xADas."
+    - 
+      - 
+        choices: 
+          "": Don't allow
+          1: Allow
+        pref: ExpireReservesMaxPickUpDelay
+      - holds to expire automatically if they have not been picked by within the time period specified in ReservesMaxPickUpDelay
+    - 
+      - If using ExpireReservesMaxPickUpDelay, charge a borrower who allows his or her waiting hold to expire a fee of
+      - 
+        class: currency
+        pref: ExpireReservesMaxPickUpDelayCharge
+    - 
+      - Satisfacer reservas desde las bibliotecas
+      - 
+        class: multi
+        pref: StaticHoldsQueueWeight
+      - "(como c\xC3\xB3digos de sede, separados por comas; si est\xC3\xA1 vac\xC3\xADo, utiliza todas las bibliotecas)"
+      - 
+        choices: 
+          "": en ese orden.
+          1: en orden aleatorio.
+        pref: RandomizeHoldsQueueWeight
+      - ~
+    - 
+      - 
+        choices: 
+          "": No permitir (con sedes independientes)
+          1: Permitir
+        pref: canreservefromotherbranches
+      - "que un usuario de una biblioteca haga la reserva de un \xC3\xADtem de otra biblioteca"
+    - 
+      - 
+        choices: 
+          "": No permita
+          1: Permita
+        pref: OPACAllowUserToChooseBranch
+      - a user to choose the library to pick up a hold from.
+    - 
+      - 
+        choices: 
+          "": "Autom\xC3\xA1ticamente"
+          1: Manualmente
+        pref: ReservesNeedReturns
+      - marcar reservas como encontradas y en espera cuando se pone una reserva en ellos y se han devuelto.
+    - 
+      - "Los socios s\xC3\xB3lo pueden tener"
+      - 
+        class: integer
+        pref: maxreserves
+      - reservas a la vez.
+    - 
+      - 
+        choices: 
+          "": No habilitar
+          1: Habilitar
+        pref: emailLibrarianWhenHoldIsPlaced
+      - "enviar un correo electr\xC3\xB3nico a la direcci\xC3\xB3n de correo electr\xC3\xB3nico del administrador Koha cada vez que hay una solicitud de reserva."
+    - 
+      - 
+        choices: 
+          "": No habilitar
+          1: Habilitar
+        pref: DisplayMultiPlaceHold
+      - "la habilidad de hacer reservas en m\xC3\xBAltiples registros a partir de los resultados de b\xC3\xBAsqueda"
+    - 
+      - 
+        choices: 
+          "": Don't transfer
+          1: Transfer
+        pref: TransferWhenCancelAllWaitingHolds
+      - items when cancelling all waiting holds.
+    - 
+      - 
+        choices: 
+          "": Don't allow
+          1: Allow
+        pref: AutoResumeSuspendedHolds
+      - suspended holds to be automatically resumed by a set date.
