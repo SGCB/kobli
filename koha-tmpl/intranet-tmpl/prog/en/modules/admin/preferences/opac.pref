@@ -165,13 +165,22 @@ OPAC:
         -
             - Include the additional CSS stylesheet
             - pref: opaccolorstylesheet
-              class: file
-            - to override specified settings from the default stylesheet (leave blank to disable). Enter just a filename, a full local path or a complete URL starting with <code>http://</code> (if the file lives on a remote server). Please note that if you just enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory. A full local path is expected to start from your HTTP document root.
+              default: color1.css
+              choices:
+                  color1.css: color1
+                  color2.css: color2
+                  color3.css: color3
+            - on all pages in the OPAC (leave blank to disable).
         -
-            - Use the CSS stylesheet
+            - Use the CSS stylesheet <!-- TMPL_VAR NAME="opacthemelang" -->/css/
             - pref: opaclayoutstylesheet
               class: file
-            - on all pages in the OPAC, instead of the default css (used when leaving this field blank). Enter just a filename, a full local path or a complete URL starting with <code>http://</code> (if the file lives on a remote server). Please note that if you just enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory. A full local path is expected to start from your HTTP document root.
+            - on all pages in the OPAC, instead of the default (leave blank to disable).
+        -
+            - Use the remote CSS stylesheet
+            - pref: opacstylesheet
+              class: file
+            - on all pages in the OPAC, instead of the default. (This should be a complete URL, starting with <code>http://</code>.)
         -
             - "Include the following CSS on all pages in the OPAC:"
             - pref: OPACUserCSS
