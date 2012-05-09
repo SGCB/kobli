@@ -147,7 +147,13 @@
                                 <option value="">Choose an option to change the value</option>
                                 [% FOREACH dat IN INDICATORS_LOO.data %]
                                     [% IF ( dat.ind == 2 ) %]
+                                    [% IF ( dat.ind_value == "#son#" ) %]
+                                    <option value="[% dat.ind_value %]">&nbsp;&nbsp;&nbsp;[% dat.desc_partial %]</option>
+                                    [% ELSIF ( dat.desc_partial ) %]
+                                    <option value="[% dat.ind_value %]">&quot;[% dat.ind_value %]&quot;: [% dat.desc_partial %]</option>
+                                    [% ELSE %]
                                     <option value="[% dat.ind_value %]">&quot;[% dat.ind_value %]&quot;: [% dat.ind_desc %]</option>
+                                    [% END %]
                                     [% END %]
                                 [% END %]
                             </select>
