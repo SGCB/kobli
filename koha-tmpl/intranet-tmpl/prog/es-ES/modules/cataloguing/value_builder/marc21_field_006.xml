@@ -5,7 +5,7 @@
       <Value description="Material impreso">a</Value>
       <Value description="Material manuscrito">t</Value>
     </Position>
-    <Position pos="01-04" name="Ilustraciones" description="hasta cuatro códigos de un carácter (registrados en orden alfabético) que indican la presencia de tipos de ilustraciones existentes en el ítem. Si se asignan menos de cuatro códigos, se justifican a la izquierda y las posiciones no utilizadas contienen un espacio en blanco (#)">
+    <Position pos="01-04" name="Ilustraciones" description="Hasta cuatro códigos de un carácter (registrados en orden alfabético) que indican la presencia de tipos de ilustraciones existentes en el ítem. Si se asignan menos de cuatro códigos, se justifican a la izquierda y las posiciones no utilizadas contienen un espacio en blanco (#)">
       <Value description="Formularios">k</Value>
       <Value description="Muestras">l</Value>
       <Value description="Fonodiscos, fonocintas, etc">m</Value>
@@ -32,13 +32,17 @@
       <Value description="Microopaco">c</Value>
       <Value description="Caracteres en tipografia mayor">d</Value>
       <Value description="Braille">f</Value>
+      <Value description="Online">o</Value>
+      <Value description="Electrónico de acceso local. Almacenado en un medio de grabación tangible accesible localmente, ej, disco, cinta, dispositivo playaway, flashdrive, disco duro portátil, etc. ">q</Value>
       <Value description="Impresión regular. Impresión legible a simple vista">r</Value>
       <Value description="Electrónica">s</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="07-10" name="Naturaleza de contenido" description="hasta cuatro códigos de un carácter (registrados en orden alfabético) que indican cuando una parte significativa del ítem constituye o contiene ciertos tipos de material. Si se asignan menos de cuatro códigos, se justifican a la izquierda y las posiciones no utilizadas contienen un espacio en blanco (#).">
+    <Position pos="07-10" name="Naturaleza de contenido" description="Hasta cuatro códigos de un carácter (registrados en orden alfabético) que indican cuando una parte significativa del ítem constituye o contiene ciertos tipos de material. Si se asignan menos de cuatro códigos, se justifican a la izquierda y las posiciones no utilizadas contienen un espacio en blanco (#).">
       <Value description="Naturaleza de contenido no especificada">#</Value>
-      <Value description="Separata. Publicación que originalmente fue publicada como un articulo dentro de una monografía o una publicación seriada; y que también fue emitida en forma separada e independiente. Incluye pre-impresos y post-impresos">2</Value>
+      <Value description="Separata. Publicación que originalmente fue publicada como un artículo dentro de una monografía o una publicación seriada; y que también fue emitida en forma separada e independiente. Incluye pre-impresos y post-impresos">2</Value>
+      <Value description="Calendarios">5</Value>
+      <Value description="Novelas gráficas / cómics">6</Value>
       <Value description="Resúmenes / sumarios. El ítem es o contiene resúmenes o sumarios de otras publicaciones">a</Value>
       <Value description="Bibliografías">b</Value>
       <Value description="Catálogos">c</Value>
@@ -51,22 +55,22 @@
       <Value description="Discografías">k</Value>
       <Value description="Legislación. El ítem es o contiene textos completos o parciales de promulgaciones de cuerpos legislativos o textos de normas y regulaciones emitidas por cuerpos ejecutivos o administrativos.">l</Value>
       <Value description="Tesis.  Indica que el ítem es una tesis, disertación o una obra identificada como una obra creada para satisfacer los requerimientos de una certificación de grado académico.">m</Value>
-      <Value description="Estado de la literatura. El ítem es o contiene estudios que resumen que ha sido publicado sobre un tema.">n</Value>
+      <Value description="Estado de la literatura. El ítem es o contiene estudios que resumen qué ha sido publicado sobre un tema.">n</Value>
       <Value description="Revisiones. El ítem es o contiene revisiones críticas de obras publicadas sobre un tema">o</Value>
       <Value description="Textos programados">p</Value>
       <Value description="Filmografías">q</Value>
       <Value description="Directorios">r</Value>
       <Value description="Estadísticas">s</Value>
-      <Value description="Reportes técnicos">t</Value>
+      <Value description="Informes técnicos">t</Value>
       <Value description="Normas/ Especificaciones">u</Value>
       <Value description="Casos legales y Notas de casos">v</Value>
-      <Value description="Reportes y compendio de leyes">w</Value>
+      <Value description="Informes legales y compendio de leyes">w</Value>
       <Value description="Tratados. Indica que el ítem es un tratado o un acuerdo negociado entre dos o mas partes para arreglar un desacuerdo, establecer una relación, garantizar sus derechos, etc.">z</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
     <Position pos="11" name="Publicación gubernamental" description="Un código de un carácter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia.">
       <Value description="No es publicación gubernamental">#</Value>
-      <Value description="Componente autonomo o semiautonomo">a</Value>
+      <Value description="Componente autónomo o semiautónomo">a</Value>
       <Value description="Multilocal">c</Value>
       <Value description="Federal / Nacional">f</Value>
       <Value description="Intergubernamental / Internacional">i</Value>
@@ -88,7 +92,7 @@
       <Value description="Homenaje">1</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="14" name="Índice" description="Un código de un carecer que indica que el ítem incluye un índice para su propio contenido">
+    <Position pos="14" name="Índice" description="Un código de un carácter que indica que el ítem incluye un índice para su propio contenido">
       <Value description="No es un índice">0</Value>
       <Value description="Tiene índice">1</Value>
       <Value description="No hay intención de codificar">|</Value>
@@ -97,7 +101,6 @@
     <Position pos="16" name="Forma literaria" description="Indica la forma literaria de un ítem. Los códigos numéricos 0 y 1 proporcionan una identificación genérica para indicar que el ítem es o no es una obra de ficción literaria. Los códigos alfabéticos pueden usarse para identificar una forma literaria específica.">
       <Value description="No es ficción (sin especificación adicional)">0</Value>
       <Value description="Ficción (sin especificación adicional)">1</Value>
-      <Value description="Tiras cómicas">c</Value>
       <Value description="Obras dramáticas">d</Value>
       <Value description="Ensayos">e</Value>
       <Value description="Novelas">f</Value>
@@ -118,7 +121,7 @@
       <Value description="Contiene información biográfica">d</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="18-21" name="Ilustraciones" description="hasta cuatro códigos de un carácter (registrados en orden alfabético) que indican la presencia de tipos de ilustraciones existentes en el ítem. Si se asignan menos de cuatro códigos, se justifican a la izquierda y las posiciones no utilizadas contienen un espacio en blanco (#)">
+    <Position pos="18-21" name="Ilustraciones" description="Hasta cuatro códigos de un carácter (registrados en orden alfabético) que indican la presencia de tipos de ilustraciones existentes en el ítem. Si se asignan menos de cuatro códigos, se justifican a la izquierda y las posiciones no utilizadas contienen un espacio en blanco (#)">
       <Value description="Sin Ilustraciones">#</Value>
       <Value description="Ilustraciones">a</Value>
       <Value description="Mapas">b</Value>
@@ -136,7 +139,10 @@
     <Position pos="00" name="Forma del material" description="">
       <Value description="Archivos de computador / recursos electrónicos">m</Value>
     </Position>
-    <Position pos="01-04" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un carácter de relleno (|)"/>
+    <Position pos="01-04" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un carácter de relleno (|)">
+      <Value description="No definido">#</Value>
+      <Value description="No hay intención de codificar">|</Value>
+    </Position>
     <Position pos="05" name="Audiencia" description="Un código de un carácter que indica la audiencia a la que se dirige el ítem">
       <Value description="Desconocida o no especificada">#</Value>
       <Value description="Preescolar">a</Value>
@@ -149,7 +155,14 @@
       <Value description="Juvenil ">j</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="06-08" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un carácter de relleno (|)"/>
+    <Position pos="06" name="Forma del material" description="Un código de un carácter que especifica la forma del material">
+      <Value description="Desconocida o no especificada">#</Value>
+      <Value description="Online">o</Value>
+      <Value description="Electrónico de acceso local. Almacenado en un medio de grabación tangible accesible localmente, ej, disco, cinta, dispositivo playaway, flashdrive, disco duro portátil, etc. ">q</Value>
+    </Position>
+    <Position pos="07-08" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un carácter de relleno (|)">
+      <Value description="No hay intención de codificar">|</Value>
+    </Position>
     <Position pos="09" name="Tipo de archivos de computador" description="Un código de un carácter que indica el tipo de archivo de computador descrito en el registro bibliográfico.">
       <Value description="Datos numéricos">a</Value>
       <Value description="Programa de computador">b</Value>
@@ -169,7 +182,7 @@
     <Position pos="10" name="No definido" description="Contiene un espacio en blanco (#) o un carácter de relleno(|)"/>
     <Position pos="11" name="Publicación gubernamental" description="Un código de un carácter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia">
       <Value description="No es publicación gubernamental">#</Value>
-      <Value description="Componente autonomo o semiautonomo">a</Value>
+      <Value description="Componente autónomo o semiautónomo">a</Value>
       <Value description="Multilocal">c</Value>
       <Value description="Federal / Nacional">f</Value>
       <Value description="Intergubernamental / Internacional">i</Value>
@@ -177,7 +190,7 @@
       <Value description="Multiestatal">m</Value>
       <Value description="Publicación gubernamental- nivel indeterminado">o</Value>
       <Value description="Estado, provincia, territorio, jurisdicción dependiente, etc">s</Value>
-      <Value description="Se desconoce si el item es una publicación gubernamental">u</Value>
+      <Value description="Se desconoce si el ítem es una publicación gubernamental">u</Value>
       <Value description="Otro">z</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
@@ -228,6 +241,8 @@
       <Value description="Mercator transversal ">bh</Value>
       <Value description="Gauss-Kruger ">bi</Value>
       <Value description="Equirrectangular ">bj</Value>
+      <Value description="Krovak">bk</Value>
+      <Value description="Cassini-Soldner">bl</Value>
       <Value description="Mercator oblicuo ">bo</Value>
       <Value description="Robinson ">br</Value>
       <Value description="Mercator oblicuo espacial ">bs</Value>
@@ -250,10 +265,10 @@
       <Value description="Cordiforme ">dh</Value>
       <Value description="Conforme de Lambert ">dl</Value>
       <Value description="Otro ">zz</Value>
-      <Value description="No hay intención de codificar ">|</Value>
+      <Value description="No hay intención de codificar ">||</Value>
     </Position>
     <Position pos="07" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
-    <Position pos="08" name="Tipo de material cartográfico" description="Un código de un caracter que indica el tipo de ítem cartográfico descrito en el registro bibliográfico. ">
+    <Position pos="08" name="Tipo de material cartográfico" description="Un código de un carácter que indica el tipo de ítem cartográfico descrito en el registro bibliográfico. ">
       <Value description="Mapa individual ">a</Value>
       <Value description="Serie de mapas. Un número de unidades cartográficas relacionadas pero físicamente separadas y bibliográficamente distintas que el productor o editor emite como grupo. ">b</Value>
       <Value description="Mapa seriado Una publicación cartográfica publicada en partes sucesivas que tiene designaciones numéricas o cronológicas y tiene la intencion de continuarse indefinidamente. ">c</Value>
@@ -265,10 +280,10 @@
       <Value description="Otro ">z</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="09-10" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
-    <Position pos="11" name="Publicacion gubernamental" description="Un código de un caracter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia. ">
+    <Position pos="09-10" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un carácter de relleno (|). "/>
+    <Position pos="11" name="Publicación gubernamental" description="Un código de un carácter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia. ">
       <Value description="No es publicación gubernamental">#</Value>
-      <Value description="Componente autonomo o semiautonomo">a</Value>
+      <Value description="Componente autónomo o semiautónomo">a</Value>
       <Value description="Multilocal">c</Value>
       <Value description="Federal / Nacional">f</Value>
       <Value description="Intergubernamental / Internacional">i</Value>
@@ -276,35 +291,37 @@
       <Value description="Multiestatal">m</Value>
       <Value description="Publicación gubernamental- nivel indeterminado">o</Value>
       <Value description="Estado, provincia, territorio, jurisdicción dependiente, etc">s</Value>
-      <Value description="Se desconoce si el item es una publicación gubernamental">u</Value>
+      <Value description="Se desconoce si el ítem es una publicación gubernamental">u</Value>
       <Value description="Otro">z</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="12" name="Forma de material" description="Un código de un caracter que indica la forma del material para el ítem. ">
+    <Position pos="12" name="Forma de material" description="Un código de un carácter que indica la forma del material para el ítem. ">
       <Value description="Ninguno de los siguientes ">#</Value>
       <Value description="Micropelícula ">a</Value>
       <Value description="Microficha ">b</Value>
       <Value description="Microopaco ">c</Value>
       <Value description="En tipografía mayor ">d</Value>
       <Value description="Braille ">f</Value>
+      <Value description="Online">o</Value>
+      <Value description="&#10;Electrónico de acceso local. Almacenado en un medio de grabación tangible accesible localmente, ej, disco, cinta, dispositivo playaway, flashdrive, disco duro portátil, etc. ">q</Value>
       <Value description="Impresión regular Impresión legible a simple vista. ">r</Value>
       <Value description="Electrónica ">s</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
     <Position pos="13" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
-    <Position pos="14" name="Índice" description="Un código de un caracter que indica que el ítem o su material complementario incluye un índice o una nomenclatura. ">
+    <Position pos="14" name="Índice" description="Un código de un carácter que indica que el ítem o su material complementario incluye un índice o una nomenclatura. ">
       <Value description="No es un índice ">0</Value>
       <Value description="Tiene índice ">1</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="15" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
-    <Position pos="16-17" name="Características de formato especial" description="Hasta dos códigos de un caracter que indican las características del formato especial del mapa. Los códigos se registran en orden de su importancia para la descripción del mapa. Si se asigna unicamente un código, se justifica a la izquierda y la posición no utilizada contiene un espacio en blanco (#). ">
+    <Position pos="15" name="No definido" description="Contiene un espacio en blanco (#) o un carácter de relleno (|). "/>
+    <Position pos="16-17" name="Características de formato especial" description="Hasta dos códigos de un carácter que indican las características del formato especial del mapa. Los códigos se registran en orden de su importancia para la descripción del mapa. Si se asigna unicamente un código, se justifica a la izquierda y la posición no utilizada contiene un espacio en blanco (#). ">
       <Value description="Características del formato especial no especificada ">#</Value>
       <Value description="Manuscrito ">e</Value>
       <Value description="Tarjeta postal ">j</Value>
       <Value description="Calendario ">k</Value>
       <Value description="Rompecabezas ">l</Value>
-      <Value description="Conjunto (“Kit”) ">n</Value>
+      <Value description="Juego">n</Value>
       <Value description="Mapa de pared ">o</Value>
       <Value description="Tarjetas de juego ">p</Value>
       <Value description="En hojas sueltas ">r</Value>
@@ -319,7 +336,7 @@
       <Value description="Grabación sonora no musical">i</Value>
       <Value description="Grabación sonora musical">j</Value>
     </Position>
-    <Position pos="01-02" name="Forma de la composición" description="">
+    <Position pos="01-02" name="Forma de la composición" description="Un código de dos caracteres que indican la forma de la composición. Los códigos están basados en los encabezamientos de materia de la Biblioteca del Congreso de Estados Unidos (LC). Si es apropiado más de un código, se usa el código mu (Formas múltiples) en 008/18-19 y todos los códigos específicos se dan en el campo 047 (Forma de la composición). El código mu (Formas múltiples) también puede significar que el campo 047 (Forma de la composición) contiene códigos de composición que no son del Formato MARC. ">
       <Value description="Himnos ">an</Value>
       <Value description="Baladas ">bd</Value>
       <Value description="Música Bluegrass ">bg</Value>
@@ -339,11 +356,12 @@
       <Value description="Cantatas ">ct</Value>
       <Value description="Música Country ">cy</Value>
       <Value description="Canciones graciosas (“Canzonas”) ">cz</Value>
-      <Value description="Formas dancísticas Están definidos códigos separados para mazurkas, minuets, pavanas, polonesas y valses. ">df</Value>
+      <Value description="Formas dancísticas. Están definidos códigos separados para mazurkas, minuets, pavanas, polonesas y valses. ">df</Value>
       <Value description="Divertimentos, serenatas, intermedios (“cassations”), notturni ">dv</Value>
       <Value description="Fugas ">fg</Value>
+      <Value description="Flamenco">fl</Value>
       <Value description="Música folklórica ">fm</Value>
-      <Value description="Fantasias ">ft</Value>
+      <Value description="Fantasías ">ft</Value>
       <Value description="Música Gospel ">gm</Value>
       <Value description="Himnos ">hy</Value>
       <Value description="Jazz ">jz</Value>
@@ -358,7 +376,7 @@
       <Value description=" Mazurcas ">mz</Value>
       <Value description="Nocturnos ">nc</Value>
       <Value description="No se aplica al caso ">nn</Value>
-      <Value description="Operas ">op</Value>
+      <Value description="Óperas ">op</Value>
       <Value description="Oratorios ">or</Value>
       <Value description="Oberturas ">ov</Value>
       <Value description="Música programada ">pg</Value>
@@ -374,7 +392,7 @@
       <Value description="Ragtime ">rg</Value>
       <Value description="Ricercars ">ri</Value>
       <Value description="Rapsodias ">rp</Value>
-      <Value description="Requiems ">rq</Value>
+      <Value description="Réquiems ">rq</Value>
       <Value description="Musica de cuadrillas (“Square dance music”) ">sd</Value>
       <Value description="Canciones ">sg</Value>
       <Value description="Sonatas ">sn</Value>
@@ -383,27 +401,33 @@
       <Value description="Suites ">su</Value>
       <Value description="Sinfonías ">sy</Value>
       <Value description="Tocatas ">tc</Value>
+      <Value description="Teatro lírico">tl</Value>
       <Value description="Sonatas para trío ">ts</Value>
       <Value description="Desconocido ">uu</Value>
+      <Value description="Villancicos. Forma característica de la polifonía española, religiosa o secular, de los siglos XVI  al XVIII. Los villancicos religiosos son cantados normalmente en ceremonias importantes (incluyendo Navidad, donde estas canciones también son llamadas &quot;pastoradas&quot;)">vi</Value>
       <Value description="Variaciones ">vr</Value>
       <Value description=" Valses ">wz</Value>
+      <Value description="Zarzuelas">za</Value>
       <Value description="Otro ">zz</Value>
-      <Value description="No hay intención de codificar ">|</Value>
+      <Value description="No hay intención de codificar ">||</Value>
     </Position>
-    <Position pos="03" name="Formato de la música" description="Un código de un caracter que indica el formato de una composición musical. ">
+    <Position pos="03" name="Formato de la música" description="Un código de un carácter que indica el formato de una composición musical. ">
       <Value description="Partitura completa ">a</Value>
       <Value description="Partitura completa, miniatura o tamaño estudio ">b</Value>
       <Value description="Acompañamiento para teclado ">c</Value>
       <Value description="Partitura vocal ">d</Value>
       <Value description="Partitura condensada o partitura para piano-conductor ">e</Value>
       <Value description="Partitura vocal en dos pentagramas (“Close score”) ">g</Value>
+      <Value description="Partitura para coro">h</Value>
+      <Value description="Partitura condensada">i</Value>
+      <Value description="Partitura para piano-director">j</Value>
       <Value description="Formatos de partitura múltiple ">m</Value>
       <Value description="No se aplica al caso ">n</Value>
       <Value description="Desconocido ">u</Value>
       <Value description="Otro ">z</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="04" name="Partes musicales" description="">
+    <Position pos="04" name="Partes musicales" description="Un código de un carácter que indica que el ítem ha sido catalogado por partes.">
       <Value description="No se tienen las partes o no se especifican ">#</Value>
       <Value description="Partes vocales e instrumentales ">d</Value>
       <Value description="Partes instrumentales ">e</Value>
@@ -412,7 +436,7 @@
       <Value description="Desconocido ">u</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="05" name="Audiencia" description="Un código de un caracter que indica la audiencia a la que se dirige el ítem. ">
+    <Position pos="05" name="Audiencia" description="Un código de un carácter que indica la audiencia a la que se dirige el ítem. ">
       <Value description="Desconocida o no especificada">#</Value>
       <Value description="Preescolar">a</Value>
       <Value description="Primaria">b</Value>
@@ -424,25 +448,27 @@
       <Value description="Juvenil ">j</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="06" name="Forma del material" description="Un código de un caracter que indica el tipo de material del ítem que se describe. ">
+    <Position pos="06" name="Forma del material" description="Un código de un carácter que indica el tipo de material del ítem que se describe. ">
       <Value description="Ninguno de los siguientes ">#</Value>
       <Value description="Micropelícula ">a</Value>
       <Value description="Microficha ">b</Value>
       <Value description="Microopaco ">c</Value>
       <Value description="Tipografía mayor ">d</Value>
       <Value description="Braille ">f</Value>
+      <Value description="Online">o</Value>
+      <Value description="&#10;Electrónico de acceso local. Almacenado en un medio de grabación tangible accesible localmente, ej, disco, cinta, dispositivo playaway, flashdrive, disco duro portátil, etc. ">q</Value>
       <Value description="Impresión regular Impresión legible a simple vista. ">r</Value>
       <Value description="Electrónica ">s</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="07-12" name="Materiales complementarios" description="Hasta seis códigos de un caracter (registrados en orden alfabético) que indican el contenido de un programa y otros materiales acompañantes de la grabación sonora o música con notación (manuscrita o no). Si se asignan menos de seis códigos, se justifican a la izquierda y se coloca un espacio en blanco (#) en las posiciones no utilizadas. ">
+    <Position pos="07-12" name="Materiales complementarios" description="Hasta seis códigos de un carácter (registrados en orden alfabético) que indican el contenido de un programa y otros materiales acompañantes de la grabación sonora o música con notación (manuscrita o no). Si se asignan menos de seis códigos, se justifican a la izquierda y se coloca un espacio en blanco (#) en las posiciones no utilizadas. ">
       <Value description="Sin material acompañante ">#</Value>
       <Value description="Discografía ">a</Value>
       <Value description="Bibliografía ">b</Value>
       <Value description="Indice temático ">c</Value>
       <Value description="Libreto o texto ">d</Value>
       <Value description="Biografía de un compositor o autor ">e</Value>
-      <Value description="Biografía de un ejecutante o historia del conjunto musical ">f</Value>
+      <Value description="Biografía de un intérprete o historia del conjunto musical ">f</Value>
       <Value description="Información técnica y/o histórica de los instrumentos ">g</Value>
       <Value description="Información técnica sobre la música ">h</Value>
       <Value description="Información histórica ">i</Value>
@@ -452,7 +478,7 @@
       <Value description="Otro ">z</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="13-14" name="Texto literario de grabaciones sonoras" description="Hasta dos códigos de un caracter (registrados en el orden de la lista siguiente) que indican el tipo de texto literario contenido en una grabación sonora no musical. Si se asigna un solo código, se justifica a la izquierda y la posición no utilizada contiene un espacio en blanco (#). ">
+    <Position pos="13-14" name="Texto literario de grabaciones sonoras" description="Hasta dos códigos de un carácter (registrados en el orden de la lista siguiente) que indican el tipo de texto literario contenido en una grabación sonora no musical. Si se asigna un solo código, se justifica a la izquierda y la posición no utilizada contiene un espacio en blanco (#). ">
       <Value description="El ítem es una grabación sonora musical ">#</Value>
       <Value description="Autobiografía ">a</Value>
       <Value description="Biografía ">b</Value>
@@ -476,8 +502,8 @@
       <Value description="Otro ">z</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="15" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
-    <Position pos="16" name="Arreglo y transportación" description="">
+    <Position pos="15" name="No definido" description="Contiene un espacio en blanco (#) o un carácter de relleno (|). "/>
+    <Position pos="16" name="Arreglo y transportación" description="Si la totalidad o parte del ítem que se cataloga es una transposición y / o disposición de otra obra">
       <Value description="Sin arreglos o transportaciones o no especificadas ">#</Value>
       <Value description="Transportación ">a</Value>
       <Value description="Arreglo ">b</Value>
@@ -486,13 +512,13 @@
       <Value description="Desconocido ">u</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="17" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="17" name="No definido" description="Contiene un espacio en blanco (#) o un carácter de relleno (|). "/>
   </Material>
   <Material id="CR" name="Recursos continuos" description="">
     <Position pos="00" name="Forma del material" description="">
       <Value description="Recurso seriado / integrado">s</Value>
     </Position>
-    <Position pos="01" name="Frecuencia" description="Un código de un caracter que indica la frecuencia de un ítem; se usa en conjunto con 008/19 (Regularidad). ">
+    <Position pos="01" name="Frecuencia" description="Un código de un carácter que indica la frecuencia de un ítem; se usa en conjunto con 008/19 (Regularidad). ">
       <Value description="No puede determinarse la frecuencia La frecuencia es intencionalmente irregular. ">#</Value>
       <Value description="Anual ">a</Value>
       <Value description="Bimestral Incluye 6, 7 ú 8 números al año. ">b</Value>
@@ -514,15 +540,15 @@
       <Value description="Otra ">z</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="02" name="Regularidad" description="Un código de un caracter que indica la regularidad de un ítem; se usa en conjunto con 008/18 (Frecuencia). ">
-      <Value description="Irregularidad normalizada Patrón irregular predecible. ">n</Value>
+    <Position pos="02" name="Regularidad" description="Un código de un carácter que indica la regularidad de un ítem; se usa en conjunto con 008/18 (Frecuencia). ">
+      <Value description="Irregularidad normalizada.Patrón irregular predecible. ">n</Value>
       <Value description="Regular ">r</Value>
       <Value description="Desconocida ">u</Value>
-      <Value description="">x</Value>
+      <Value description="Completamente irregular Se sabe que la frecuencia es intencionalmente irregular (008/18, código #) o la frecuencia se expresa en el ítem como números por año. ">x</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="03" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
-    <Position pos="04" name="Tipo de recurso continuo" description="Un código de un caracter que indica el tipo de recurso continuo. ">
+    <Position pos="03" name="No definido" description="Contiene un espacio en blanco (#) o un carácter de relleno (|). "/>
+    <Position pos="04" name="Tipo de recurso continuo" description="Un código de un carácter que indica el tipo de recurso continuo. ">
       <Value description="Ninguno de los siguientes Este código se usa también para anuarios y reportes anuales. ">#</Value>
       <Value description="Actualización en base de datos ">d</Value>
       <Value description="Actualización en hojas sueltas ">l</Value>
@@ -532,7 +558,7 @@
       <Value description="Actualización en sitio Web ">w</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="05" name="Forma de ítem original" description="Un código de un caracter que indica la forma en que el material fue originalmente publicado. ">
+    <Position pos="05" name="Forma de ítem original" description="Un código de un carácter que indica la forma en que el material fue originalmente publicado. ">
       <Value description="Ninguno de los siguientes ">#</Value>
       <Value description="Micropelícula ">a</Value>
       <Value description="Microficha ">b</Value>
@@ -540,21 +566,27 @@
       <Value description="Tipografía mayor ">d</Value>
       <Value description="Formato de periódico ">e</Value>
       <Value description="Braille ">f</Value>
+      <Value description="Online">o</Value>
+      <Value description="&#10;Electrónico de acceso local. Almacenado en un medio de grabación tangible accesible localmente, ej, disco, cinta, dispositivo playaway, flashdrive, disco duro portátil, etc. ">q</Value>
       <Value description="Electrónico ">s</Value>
     </Position>
-    <Position pos="06" name="Forma del material" description="Un código de un caracter que indica la forma del material para el ítem. ">
+    <Position pos="06" name="Forma del material" description="Un código de un carácter que indica la forma del material para el ítem. ">
       <Value description="Ninguno de los siguientes ">#</Value>
       <Value description="Micropelícula ">a</Value>
       <Value description="Microficha ">b</Value>
       <Value description="Microopaca ">c</Value>
       <Value description="Tipografía mayor ">d</Value>
       <Value description="Braille ">f</Value>
+      <Value description="Online">o</Value>
+      <Value description="&#10;Electrónico de acceso local. Almacenado en un medio de grabación tangible accesible localmente, ej, disco, cinta, dispositivo playaway, flashdrive, disco duro portátil, etc. ">q</Value>
       <Value description="Impresión regular Impresión legible a simple vista. ">r</Value>
       <Value description="Electrónica ">s</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="07" name="Naturaleza de la obra completa" description="Un código de un caracter que indica cuando la naturaleza de un ítem consiste completamente de un cierto tipo de material. Si aplica más de un código, 008/24 contiene un espacio en blanco (#) y pueden registrarse hasta tres códigos en 008/25-27 (Naturaleza del contenido). ">
+    <Position pos="07" name="Naturaleza de la obra completa" description="Un código de un carácter que indica cuando la naturaleza de un ítem consiste completamente de un cierto tipo de material. Si aplica más de un código, 008/24 contiene un espacio en blanco (#) y pueden registrarse hasta tres códigos en 008/25-27 (Naturaleza del contenido). ">
       <Value description="Naturaleza del contenido no especificada ">#</Value>
+      <Value description="Calendarios">5</Value>
+      <Value description="Novelas gráficas / cómics">6</Value>
       <Value description="Resúmenes/sumarios El ítem consiste de resúmenes o sumarios de otras publicaciones. ">a</Value>
       <Value description="Bibliografías ">b</Value>
       <Value description="Catálogos ">c</Value>
@@ -580,8 +612,10 @@
       <Value description="Tratados Indica que el ítem es un tratado o acuerdo negociado entre dos o más partes para arreglar un desacuerdo, establecer una relación, garantizar sus derechos, etc. ">z</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="08-10" name="Naturaleza del contenido" description="Hasta tres códigos de un caracter (registrados en orden alfabético) que indican que una obra contiene ciertos tipos de material. Si se asignan menos de tres códigos, se justifican a la izquierda y las posiciones no usadas contienen un espacio en blanco (#). ">
+    <Position pos="08-10" name="Naturaleza del contenido" description="Hasta tres códigos de un carácter (registrados en orden alfabético) que indican que una obra contiene ciertos tipos de material. Si se asignan menos de tres códigos, se justifican a la izquierda y las posiciones no usadas contienen un espacio en blanco (#). ">
       <Value description="Naturaleza del contenido no especificada ">#</Value>
+      <Value description="Calendarios">5</Value>
+      <Value description="Novelas gráficas / cómics">6</Value>
       <Value description="Resúmenes/sumarios El ítem es o contiene resúmenes o sumarios de otras publicaciones. ">a</Value>
       <Value description="Bibliografías ">b</Value>
       <Value description="Catálogos ">c</Value>
@@ -590,26 +624,26 @@
       <Value description="Manuales ">f</Value>
       <Value description="Artículos jurídicos ">g</Value>
       <Value description="Biografías ">h</Value>
-      <Value description="Indices El ítem consiste de un índice para material bibliográfico distinto al ítem en sí mismo. ">i</Value>
+      <Value description="Indices. El ítem consiste de un índice para material bibliográfico distinto al ítem en sí mismo. ">i</Value>
       <Value description="Discografías ">k</Value>
-      <Value description="Legislación El ítem es o contiene textos completos o parciales de leyes de cuerpos legislativos o textos de reglas y regulaciones producidas por cuerpos ejecutivos o administrativos. ">l</Value>
-      <Value description="Tésis Indica que el ítem es una tesis, disertación u obra identificada como creada para satisfacer los requerimientos de una certificación o grado académico. ">m</Value>
+      <Value description="Legislación. El ítem es o contiene textos completos o parciales de leyes de cuerpos legislativos o textos de reglas y regulaciones producidas por cuerpos ejecutivos o administrativos. ">l</Value>
+      <Value description="Tesis. Indica que el ítem es una tesis, disertación u obra identificada como creada para satisfacer los requerimientos de una certificación o grado académico. ">m</Value>
       <Value description="Estado de la literatura El ítem es o contiene estudios que resumen qué ha sido publicado sobre un tema. ">n</Value>
       <Value description="Reseñas críticas El ítem es o contiene revisiones críticas de obras publicadas o representadas. ">o</Value>
       <Value description="Textos programados ">p</Value>
       <Value description="Filmografías ">q</Value>
       <Value description="Directorios ">r</Value>
       <Value description="Estadísticas ">s</Value>
-      <Value description="Reportes técnicos ">t</Value>
+      <Value description="Informes técnicos ">t</Value>
       <Value description="Normas/Especificaciones ">u</Value>
       <Value description="Casos legales y notas de casos ">v</Value>
-      <Value description="Reportes y compendios de leyes ">w</Value>
+      <Value description="Informes y compendios de leyes ">w</Value>
       <Value description="Tratados Indica que el ítem es un tratado o acuerdo negociado entre dos o más partes para arreglar un desacuerdo, establecer una relación, garantizar sus derechos, etc. ">z</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="11" name="Publicación gubernamental" description="Un código de un caracter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia. ">
+    <Position pos="11" name="Publicación gubernamental" description="Un código de un carácter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia. ">
       <Value description="No es publicación gubernamental">#</Value>
-      <Value description="Componente autonomo o semiautonomo">a</Value>
+      <Value description="Componente autonómo o semiautónomo">a</Value>
       <Value description="Multilocal">c</Value>
       <Value description="Federal / Nacional">f</Value>
       <Value description="Intergubernamental / Internacional">i</Value>
@@ -621,16 +655,16 @@
       <Value description="Otro">z</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="12" name="Conferencia" description="Un código de un caracter que indica que el ítem consiste de las memorias, reportes o sumarios de una conferencia. ">
+    <Position pos="12" name="Conferencia" description="Un código de un carácter que indica que el ítem consiste de las memorias, reportes o sumarios de una conferencia. ">
       <Value description="No es una conferencia ">0</Value>
       <Value description="Conferencia ">1</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="13-15" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
-    <Position pos="16" name="Alfabeto o escritura original del título" description="Un código de un caracter que indica el alfabeto o escritura original del título en el ítem utilizado como fuente para el título clave (campo 222). ">
-      <Value description="Sin alfabeto o escritura determinada/sin título clave Este código se relaciona con el título propiamente dicho del campo 245 cuando no existe título clave. ">#</Value>
-      <Value description="Latino básico No incluye diacríticos o caracteres especiales. ">a</Value>
-      <Value description="Latino extendido Incluye diacríticos y caracteres especiales. ">b</Value>
+    <Position pos="13-15" name="No definidos" description="Cada uno contiene un espacio en blanco (#) o un carácter de relleno (|). "/>
+    <Position pos="16" name="Alfabeto o escritura original del título" description="Un código de un carácter que indica el alfabeto o escritura original del título en el ítem utilizado como fuente para el título clave (campo 222). ">
+      <Value description="Sin alfabeto o escritura determinada/sin título clave. Este código se relaciona con el título propiamente dicho del campo 245 cuando no existe título clave. ">#</Value>
+      <Value description="Latino básico. No incluye diacríticos o caracteres especiales. ">a</Value>
+      <Value description="Latino extendido. Incluye diacríticos y caracteres especiales. ">b</Value>
       <Value description="Cirílico ">c</Value>
       <Value description="Japonés ">d</Value>
       <Value description="Chino ">e</Value>
@@ -642,12 +676,12 @@
       <Value description="Coreano ">k</Value>
       <Value description="Tamil ">l</Value>
       <Value description="Desconocido ">u</Value>
-      <Value description="Otro Incluye casos en los que el título incluye palabras en más de un alfabeto o escritura. ">z</Value>
+      <Value description="Otro. Incluye casos en los que el título incluye palabras en más de un alfabeto o escritura. ">z</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="17" name="Convención del asiento" description="Un código de un caracter que indica cuando un ítem fue catalogado de acuerdo a las convenciones de catalogación para asiento sucesivo, asiento ulterior o asiento integrado. ">
-      <Value description="Asiento sucesivo Se crea un nuevo registro bibliográfico cada vez que cambia el título o la entidad corporativa usada como asiento princial. El título anterior o posterior, o el autor/título, se registran en un campo de relación 780/785 en cada registro. ">0</Value>
-      <Value description="Asiento ulterior El ítem se cataloga bajo el título o entidad emisora más reciente (reglas pre-RCA2). Todos los títulos y/o entidades emisors anteriores se registran en notas (campos 247, 547 y 550). ">1</Value>
+    <Position pos="17" name="Convención del asiento" description="Un código de un carácter que indica cuando un ítem fue catalogado de acuerdo a las convenciones de catalogación para asiento sucesivo, asiento ulterior o asiento integrado. ">
+      <Value description="Asiento sucesivo. Se crea un nuevo registro bibliográfico cada vez que cambia el título o la entidad corporativa usada como asiento princial. El título anterior o posterior, o el autor/título, se registran en un campo de relación 780/785 en cada registro. ">0</Value>
+      <Value description="Asiento ulterior. El ítem se cataloga bajo el título o entidad emisora más reciente (reglas pre-RCA2). Todos los títulos y/o entidades emisores anteriores se registran en notas (campos 247, 547 y 550). ">1</Value>
       <Value description="Asiento integrado El registro se cataloga bajo su último (más reciente) título y/o bajo la persona o entidad corporativa responsable. Se usa para recursos integrados y publicaciones seriadas electrónicas que no retienen sus títulos anteriores. ">2</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
@@ -666,7 +700,7 @@
       <Value description="No hay intención de codificar ">|||</Value>
       <Value description="Tiempo de duración desconocido ">                         --- </Value>
     </Position>
-    <Position pos="04" name="No definido" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="04" name="No definido" description="Contiene un espacio en blanco (#) o un carácter de relleno (|). "/>
     <Position pos="05" name="Audiencia" description="Un código de un carácter que indica la audiencia a la que se dirige el ítem.">
       <Value description="Desconocida o no especificada">#</Value>
       <Value description="Preescolar">a</Value>
@@ -679,10 +713,10 @@
       <Value description="Juvenil ">j</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="06-10" name="No definidos" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
+    <Position pos="06-10" name="No definidos" description="Contiene un espacio en blanco (#) o un carácter de relleno (|). "/>
     <Position pos="11" name="Publicación gubernamental" description="Un código de un carácter que indica si el ítem es publicado o producido por o para una agencia gubernamental y, si es el caso, la jurisdicción de la agencia.">
       <Value description="No es publicación gubernamental">#</Value>
-      <Value description="Componente autonomo o semiautonomo">a</Value>
+      <Value description="Componente autónomo o semiautónomo">a</Value>
       <Value description="Multilocal">c</Value>
       <Value description="Federal / Nacional">f</Value>
       <Value description="Intergubernamental / Internacional">i</Value>
@@ -701,14 +735,16 @@
       <Value description="Microopaco">c</Value>
       <Value description="Tipografía mayor">d</Value>
       <Value description="Braille">f</Value>
+      <Value description="Online">o</Value>
+      <Value description="Electrónico de acceso local. Almacenado en un medio de grabación tangible accesible localmente, ej, disco, cinta, dispositivo playaway, flashdrive, disco duro portátil, etc. ">q</Value>
       <Value description="Impresión regular. Impresión legible a simple vista">r</Value>
       <Value description="Electrónica">s</Value>
       <Value description="No hay intención de codificar">|</Value>
     </Position>
-    <Position pos="13-15" name="No definidos" description="Contiene un espacio en blanco (#) o un caracter de relleno (|). "/>
-    <Position pos="16" name="Tipo de material visual" description="Un código de un caracter que indica el tipo de material visual. ">
+    <Position pos="13-15" name="No definidos" description="Contiene un espacio en blanco (#) o un carácter de relleno (|). "/>
+    <Position pos="16" name="Tipo de material visual" description="Un código de un carácter que indica el tipo de material visual. ">
       <Value description="Arte original ">a</Value>
-      <Value description="Conjunto Un ítem que contiene una mezcla de componentes de dos o más categorías, ninguna de las cuales es la parte predominante del ítem. ">b</Value>
+      <Value description="Conjunto. Un ítem que contiene una mezcla de componentes de dos o más categorías, ninguna de las cuales es la parte predominante del ítem. ">b</Value>
       <Value description="Reproducción de arte ">c</Value>
       <Value description="Diorama ">d</Value>
       <Value description="Filmina ">f</Value>
@@ -729,7 +765,7 @@
       <Value description="Otro ">z</Value>
       <Value description="No hay intención de codificar ">|</Value>
     </Position>
-    <Position pos="17" name="Técnica" description="Un código de un caracter que indica la técnica usada en la creación del movimiento en una película o videograbación">
+    <Position pos="17" name="Técnica" description="Un código de un carácter que indica la técnica usada en la creación del movimiento en una película o videograbación">
       <Value description="Animación ">a</Value>
       <Value description="Animación y acción en vivo ">c</Value>
       <Value description="Acción en vivo ">l</Value>
@@ -751,6 +787,8 @@
       <Value description="Microopaco">c</Value>
       <Value description="Tipografía mayor">d</Value>
       <Value description="Braille">f</Value>
+      <Value description="Online">o</Value>
+      <Value description="Electrónico de acceso local. Almacenado en un medio de grabación tangible accesible localmente, ej, disco, cinta, dispositivo playaway, flashdrive, disco duro portátil, etc. ">q</Value>
       <Value description="Impresión regular. Impresión legible a simple vista">r</Value>
       <Value description="Electrónica">s</Value>
       <Value description="No hay intención de codificar">|</Value>
