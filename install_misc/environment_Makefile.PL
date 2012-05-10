@@ -9,11 +9,12 @@
 # TODO: add explainations from the installer ? 
 
 export PERL_MM_USE_DEFAULT=1 # makes the environment variables work
-export KOHA_USER='koha'      # unix account used by zebra  
-export KOHA_GROUP='koha'     # unix group used by zebra
+export KOHA_USER='kobli'      # unix account used by zebra  
+export KOHA_GROUP='kobli'     # unix group used by zebra
 
 # default root to install config files
-export DESTDIR=$HOME         # here would be koha configuration, logs and zebra base 
+DESTDIRAUX=$(test -d "/home/www/kobli" && echo "/home/www/kobli")
+export DESTDIR=${DESTDIRAUX:=$HOME}         # here would be koha configuration, logs and zebra base 
 
 # The installer tries to guess what's your ip address and your hostname
 # if you plan to use koha with vhosts strategy or run koha on a recent linux
@@ -27,11 +28,11 @@ export WEBSERVER_IP=EDITME
 # uncomment one of them to choose it
 
 #export INSTALL_MODE=dev
-#export INSTALL_MODE=single
-export INSTALL_MODE=standard
+export INSTALL_MODE=single
+#export INSTALL_MODE=standard
 
-export INSTALL_SRU=no
-#export INSTALL_SRU=yes
+#export INSTALL_SRU=no
+export INSTALL_SRU=yes
 
 export INSTALL_ZEBRA=yes
 #export INSTALL_ZEBRA=no
@@ -48,17 +49,17 @@ export DB_TYPE=mysql
 #export DB_TYPE=Pg
 
 export DB_HOST='localhost'
-export DB_NAME='koha'
+export DB_NAME='kobli'
 
 # /!\ concider changing password if you don't want 
 # some script kiddies to crack you koha server
-export DB_USER='kohaadmin'
-export DB_PASS='katikoan'
+export DB_USER='kobli_usu'
+export DB_PASS='kobli_pass'
 
-export AUTH_INDEX_MODE=grs1
-#export AUTH_INDEX_MODE=dom
-export BIB_INDEX_MODE=grs1
-#export BIB_INDEX_MODE=dom
+#export AUTH_INDEX_MODE=grs1
+export AUTH_INDEX_MODE=dom
+#export BIB_INDEX_MODE=grs1
+export BIB_INDEX_MODE=dom
 
 #export ZEBRA_MARC_FORMAT=unimarc
 export ZEBRA_MARC_FORMAT=marc21
