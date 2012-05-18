@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<actions xmlns="http://koha-community.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation= "./postupgrade_koha.xsd">
+    <action version="1.8.1">
+        <question lang="es-ES">Debido a la actualización del marc21 a las revisiones 13 y 14 en Kobli, ¿Quiere sobreescribir la plantilla DEFAULT para marc21 con la nueva de INGLÉS (sobreescribirá la existente, haga copia de seguridad de la bbdd)?</question>
+        <question lang="en">With the upgrade of marc21 to versions 13 and 14 in Kobli. Do you want to overwrite the DEFAULT framework with the new one in ENGLISH (please make a backup of the database before)?</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Actualizada plantilla DEFAULT en inglés</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al actualizar la plantilla DEFAULT en inglés</response_comment>
+        <response_comment op="ok" lang="en">English DEFAULT framework updated</response_comment>
+        <response_comment op="nok" lang="en">Error updating english DEFAULT framework</response_comment>
+        <cmd base64="true" md5="5e14b85a4a66bc3ed46f748b86925bc1">ZWNobyAiREVMRVRFIEZST00gbWFyY190YWdfc3RydWN0dXJlIFdIRVJFIGZyYW1l
+d29ya2NvZGU9Jyc7IERFTEVURSBGUk9NIG1hcmNfc3ViZmllbGRfc3RydWN0dXJl
+IFdIRVJFIGZyYW1ld29ya2NvZGU9Jyc7IiB8ICRiYmRkY29uZXggJiYgJGJiZGRj
+b25leCA8ICRQV0QvaW5zdGFsbGVyL2RhdGEvJG5vZGVfY29uZmlnX2RiX3NjaGVt
+ZS9lbi9tYXJjZmxhdm91ci9tYXJjMjEvbWFuZGF0b3J5L21hcmMyMV9mcmFtZXdv
+cmtfREVGQVVMVC5zcWwK</cmd>
+    </action>
+    <action version="1.8.1">
+        <question lang="es-ES">Debido a la actualización del marc21 a las revisiones 13 y 14 en Kobli, ¿Quiere sobreescribir la plantilla FastAdd para marc21 con la nueva de INGLÉS (sobreescribirá la existente, haga copia de seguridad de la bbdd)?</question>
+        <question lang="en">With the upgrade of marc21 to versions 13 and 14 in Kobli. Do you want to overwrite the FastAdd framework with the new one in ENGLISH (please make a backup of the database before)?</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Actualizada plantilla FastAdd en inglés</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al actualizar la plantilla FastAdd en inglés</response_comment>
+        <response_comment op="ok" lang="en">English FastAdd framework updated</response_comment>
+        <response_comment op="nok" lang="en">Error updating english FastAdd framework</response_comment>
+        <cmd base64="true" md5="ddb09c62f578feeb81e4cb448023a2e9">IGVjaG8gIkRFTEVURSBGUk9NIG1hcmNfdGFnX3N0cnVjdHVyZSBXSEVSRSBmcmFt
+ZXdvcmtjb2RlPSdGQSc7IERFTEVURSBGUk9NIG1hcmNfc3ViZmllbGRfc3RydWN0
+dXJlIFdIRVJFIGZyYW1ld29ya2NvZGU9J0ZBJzsiIHwgJGJiZGRjb25leCAmJiAk
+YmJkZGNvbmV4IDwgJFBXRC9pbnN0YWxsZXIvZGF0YS8kbm9kZV9jb25maWdfZGJf
+c2NoZW1lL2VuL21hcmNmbGF2b3VyL21hcmMyMS9vcHRpb25hbC9tYXJjMjFfZmFz
+dGFkZF9mcmFtZXdvcmsuc3Fs</cmd>
+    </action>
+    <action version="1.8.1">
+        <question lang="es-ES">Debido a la actualización del marc21 a las revisiones 13 y 14 en Kobli, ¿Quiere sobreescribir el resto de plantillas para marc21 con la nueva de INGLÉS (sobreescribirá la existente, haga copia de seguridad de la bbdd)?</question>
+        <question lang="en">With the upgrade of marc21 to versions 13 and 14 in Kobli. Do you want to overwrite the remaining frameworks with the new ones in ENGLISH (please make a backup of the database before)?</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Actualizadas resto de plantillas en inglés</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al actualizar el resto de plantillas en inglés</response_comment>
+        <response_comment op="ok" lang="en">Remaining english frameworks updated</response_comment>
+        <response_comment op="nok" lang="en">Error updating remaining english frameworks</response_comment>
+        <cmd base64="true" md5="ba2cf529cab4ec87361ea56a700c4347">ZWNobyAiREVMRVRFIEZST00gYmlibGlvX2ZyYW1ld29yayBXSEVSRSBmcmFtZXdv
+cmtjb2RlIE5PVCBJTiAoJycsJ0ZBJyk7IERFTEVURSBGUk9NIG1hcmNfdGFnX3N0
+cnVjdHVyZSBXSEVSRSBmcmFtZXdvcmtjb2RlIE5PVCBJTiAoJycsJ0ZBJyk7IERF
+TEVURSBGUk9NIG1hcmNfc3ViZmllbGRfc3RydWN0dXJlIFdIRVJFIGZyYW1ld29y
+a2NvZGUgTk9UIElOICgnJywnRkEnKTsiIHwgJGJiZGRjb25leCAmJiAkYmJkZGNv
+bmV4IDwgJFBXRC9pbnN0YWxsZXIvZGF0YS8kbm9kZV9jb25maWdfZGJfc2NoZW1l
+L2VuL21hcmNmbGF2b3VyL21hcmMyMS9vcHRpb25hbC9tYXJjMjFfc2ltcGxlX2Jp
+Yl9mcmFtZXdvcmtzLnNxbA==</cmd>
+    </action>
+    <action version="1.8.1">
+        <question lang="es-ES">Debido a la actualización del marc21 a las revisiones 13 y 14 en Kobli, ¿Quiere sobreescribir los indicadores para marc21 con la nueva de INGLÉS (sobreescribirá los existentes, haga copia de seguridad de la bbdd)?</question>
+        <question lang="en">With the upgrade of marc21 to versions 13 and 14 in Kobli. Do you want to overwrite the indicators with the new ones in ENGLISH (please make a backup of the database before)?</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Actualizados indicadores en inglés</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al actualizar los indicadores en inglés</response_comment>
+        <response_comment op="ok" lang="en">English indicators updated</response_comment>
+        <response_comment op="nok" lang="en">Error updating english indicators</response_comment>
+        <cmd base64="true" md5="9b9a5d142c723d5612c3c7d5d1a0b58b">JGJiZGRjb25leCA8ICRQV0QvaW5zdGFsbGVyL2RhdGEvJG5vZGVfY29uZmlnX2Ri
+X3NjaGVtZS9lbi9tYXJjZmxhdm91ci9tYXJjMjEvbWFuZGF0b3J5L21hcmMyMV9p
+bmRpY2F0b3JzLnNxbA==</cmd>
+    </action>
+    <action version="1.8.1">
+        <question lang="es-ES">Debido a la actualización del marc21 a las revisiones 13 y 14 en Kobli, ¿Quiere sobreescribir la plantilla DEFAULT para marc21 con la nueva de ESPAÑOL (sobreescribirá la existente, haga copia de seguridad de la bbdd)?</question>
+        <question lang="en">With the upgrade of marc21 to versions 13 and 14 in Kobli. Do you want to overwrite the DEFAULT framework with the new one in SPANISH (please make a backup of the database before)?</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Actualizada plantilla DEFAULT en español</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al actualizar la plantilla DEFAULT en español</response_comment>
+        <response_comment op="ok" lang="en">Spanish DEFAULT framework updated</response_comment>
+        <response_comment op="nok" lang="en">Error updating spanish DEFAULT framework</response_comment>
+        <cmd base64="true" md5="bb22fab0caa5c939fe000ec2d1a31339">ZWNobyAiREVMRVRFIEZST00gbWFyY190YWdfc3RydWN0dXJlIFdIRVJFIGZyYW1l
+d29ya2NvZGU9Jyc7IERFTEVURSBGUk9NIG1hcmNfc3ViZmllbGRfc3RydWN0dXJl
+IFdIRVJFIGZyYW1ld29ya2NvZGU9Jyc7IiB8ICRiYmRkY29uZXggJiYgJGJiZGRj
+b25leCA8ICRQV0QvaW5zdGFsbGVyL2RhdGEvJG5vZGVfY29uZmlnX2RiX3NjaGVt
+ZS9lcy1FUy9tYXJjZmxhdm91ci9tYXJjMjEvb2JsaWdhdG9yaW8vbWFyYzIxX2Zy
+YW1ld29ya19ERUZBVUxULnNxbA==</cmd>
+    </action>
+    <action version="1.8.1">
+        <question lang="es-ES">Debido a la actualización del marc21 a las revisiones 13 y 14 en Kobli, ¿Quiere sobreescribir la plantilla FastAdd para marc21 con la nueva de ESPAÑOL (sobreescribirá la existente, haga copia de seguridad de la bbdd)?</question>
+        <question lang="en">With the upgrade of marc21 to versions 13 and 14 in Kobli. Do you want to overwrite the FastAdd framework with the new one in SPANISH (please make a backup of the database before)?</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Actualizada plantilla FastAdd en español</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al actualizar la plantilla FastAdd en español</response_comment>
+        <response_comment op="ok" lang="en">Spanish FastAdd framework updated</response_comment>
+        <response_comment op="nok" lang="en">Error updating spanish FastAdd framework</response_comment>
+        <cmd base64="true" md5="0e6813fb73e6145c68dc14331c629f18">I2VjaG8gIkRFTEVURSBGUk9NIG1hcmNfdGFnX3N0cnVjdHVyZSBXSEVSRSBmcmFt
+ZXdvcmtjb2RlPSdGQSc7IERFTEVURSBGUk9NIG1hcmNfc3ViZmllbGRfc3RydWN0
+dXJlIFdIRVJFIGZyYW1ld29ya2NvZGU9J0ZBJzsiIHwgJGJiZGRjb25leCAmJiAk
+YmJkZGNvbmV4IDwgJFBXRC9pbnN0YWxsZXIvZGF0YS8kbm9kZV9jb25maWdfZGJf
+c2NoZW1lL2VzLUVTL21hcmNmbGF2b3VyL21hcmMyMS9vcGNpb25hbC9tYXJjMjFf
+ZmFzdGFkZF9mcmFtZXdvcmsuc3Fs</cmd>
+    </action>
+    <action version="1.8.1">
+        <question lang="es-ES">Debido a la actualización del marc21 a las revisiones 13 y 14 en Kobli, ¿Quiere sobreescribir el resto de plantillas para marc21 con la nueva de ESPAÑOL (sobreescribirá la existente, haga copia de seguridad de la bbdd)?</question>
+        <question lang="en">With the upgrade of marc21 to versions 13 and 14 in Kobli. Do you want to overwrite the remaining frameworks with the new ones in SPANISH (please make a backup of the database before)?</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Actualizada plantilla el resto de plantillas en español</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al actualizar el resto de plantillas en español</response_comment>
+        <response_comment op="ok" lang="en">Remaining spanish frameworks updated</response_comment>
+        <response_comment op="nok" lang="en">Error updating remaining spanish frameworks</response_comment>
+        <cmd base64="true" md5="27616f3b3b7a5d1c7c1c3835e3fba746">ZWNobyAiREVMRVRFIEZST00gYmlibGlvX2ZyYW1ld29yayBXSEVSRSBmcmFtZXdv
+cmtjb2RlIE5PVCBJTiAoJycsJ0ZBJyk7IERFTEVURSBGUk9NIG1hcmNfdGFnX3N0
+cnVjdHVyZSBXSEVSRSBmcmFtZXdvcmtjb2RlIE5PVCBJTiAoJycsJ0ZBJyk7IERF
+TEVURSBGUk9NIG1hcmNfc3ViZmllbGRfc3RydWN0dXJlIFdIRVJFIGZyYW1ld29y
+a2NvZGUgTk9UIElOICgnJywnRkEnKTsiIHwgJGJiZGRjb25leCAmJiAkYmJkZGNv
+bmV4IDwgJFBXRC9pbnN0YWxsZXIvZGF0YS8kbm9kZV9jb25maWdfZGJfc2NoZW1l
+L2VzLUVTL21hcmNmbGF2b3VyL21hcmMyMS9vcGNpb25hbC9tYXJjMjFfc2ltcGxl
+X2JpYl9mcmFtZXdvcmtzLnNxbA==</cmd>
+    </action>
+    <action version="1.8.1">
+        <question lang="es-ES">Debido a la actualización del marc21 a las revisiones 13 y 14 en Kobli, ¿Quiere sobreescribir los indicadores para marc21 con la nueva de ESPAÑOL (sobreescribirá los existentes, haga copia de seguridad de la bbdd)?</question>
+        <question lang="en">With the upgrade of marc21 to versions 13 and 14 in Kobli. Do you want to overwrite the indicators with the new ones in SPANISH (please make a backup of the database before)?</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Actualizados indicadores en español</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al actualizar los indicadores en español</response_comment>
+        <response_comment op="ok" lang="en">Spanish indicators updated</response_comment>
+        <response_comment op="nok" lang="en">Error updating spanish indicators</response_comment>
+        <cmd base64="true" md5="38e91efd833fbc1db0f4fbc007e49ee8">JGJiZGRjb25leCA8ICRQV0QvaW5zdGFsbGVyL2RhdGEvJG5vZGVfY29uZmlnX2Ri
+X3NjaGVtZS9lcy1FUy9tYXJjZmxhdm91ci9tYXJjMjEvb2JsaWdhdG9yaW8vbWFy
+YzIxX2luZGljYXRvcnMuc3Fs</cmd>
+    </action>
+    <action version="1.8.1">
+        <question lang="es-ES">Con Koha 1.8 las imágenes de portada se guardan en base de datos. Si ha usado la funcionalidad de Kobli del repositorio local, estas imágenes se guardaban como archivos en el directorio indicado con la preferencia de sistema dirFileLocalRepository. Se ha eliminado la funcionalidad de las portadas de Kobli y añadido la de Koha para adaptarse. ¿Quiere guardar las imágenes de portada existentes a la base de datos (los archivos de imágenes no se borrarán por seguridad)?</question>
+        <question lang="en">With Koha 1.8 cover images are stored in database. If you have used the local repository functionality of Kobli, cover images were stored as files in the directory indicated by the dirFileLocalRepository system preference. It has been removed to adapt to Koha. Do you want to store the file cover images to the database (files won't be deleted)?</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Imágenes guardadas en bbdd</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al guardar las imágenes</response_comment>
+        <response_comment op="ok" lang="en">Images stored in database</response_comment>
+        <response_comment op="nok" lang="en">Error storing images in database</response_comment>
+        <cmd base64="true" md5="c1f75765f0acc7ec962cf4f9aef59c9c">JGRpcl9zb3VyY2VfcG9zdHVwZ3JhZGUvY29udmVyc2lvbl9jb3ZlcmltZ19rb2Js
+aTJrb2hhLnBsIC12Cg==</cmd>
+    </action>
+    <action version="1.8.1">
+        <question lang="es-ES">Si ha realizado una actualización y se han encontrado archivos distintos, el proceso de actualización crea una copia del archivo anterior con un sufijo de la versión de Koha anterior. ¿Quiere que se busquen y se borren estos archivos (haga copia de seguridad antes)?</question>
+        <question lang="en">If you come from an upgrade or you've made one before, the distinct files are backed up with a new one named after the former version of Koha as suffix. Do you want to find and delete them (please make a backup before)</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Proceso de búsqueda y borrado terminado correctamente</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al buscar los ficheros</response_comment>
+        <response_comment op="ok" lang="en">Finished ok the process of searching and removing of files</response_comment>
+        <response_comment op="nok" lang="en">Error in the process of searching and removing of files</response_comment>
+        <cmd lang="es-ES" base64="true" md5="5287169ea71208ed17d97cde107c96fc">ZWNobyAiQnVzY2FuZG8gZW4gJGluc3RhbGxfYmFzZSI7IGZvciBpIGluICQoZmlu
+ZCAkaW5zdGFsbF9iYXNlIC10eXBlIGYgLW5hbWUgIipfa29oYV8qIik7IGRvIGJh
+c2VuYW1lICRpIHwgZWdyZXAgLXEgImtvaGFfW1s6ZGlnaXQ6XV0rX1tbOmRpZ2l0
+Ol1dK19bWzpkaWdpdDpdXSsiIHx8IGNvbnRpbnVlOyB0ZXN0IC13ICIkaSIgJiYg
+ZWNobyAiQm9ycmFuZG8gJGkiICYmIHJtIC1mICRpIDI+L2Rldi9udWxsIHx8IGVj
+aG8gIk5vIHNlIHB1ZG8gYm9ycmFyICRpIjsgZG9uZQ==</cmd>
+        <cmd lang="en" base64="true" md5="109105b40d3874192e886ad1e0950fa7">ZWNobyAiU2VhcmNoaW5nIGluICRpbnN0YWxsX2Jhc2UiOyBmb3IgaSBpbiAkKGZp
+bmQgJGluc3RhbGxfYmFzZSAtdHlwZSBmIC1uYW1lICIqX2tvaGFfKiIpOyBkbyBi
+YXNlbmFtZSAkaSB8IGVncmVwIC1xICJrb2hhX1tbOmRpZ2l0Ol1dK19bWzpkaWdp
+dDpdXStfW1s6ZGlnaXQ6XV0rIiB8fCBjb250aW51ZTsgdGVzdCAtdyAiJGkiICYm
+IGVjaG8gIkRlbGV0aW5nICRpIiAmJiBybSAtZiAkaSAyPi9kZXYvbnVsbCB8fCBl
+Y2hvICJDb3VsZCBub3QgZGVsZXRlICRpIjsgZG9uZQ==</cmd>
+    </action>
+    <action version="1.8.1">
+        <question lang="es-ES">¿Quiere hacer uso del repositorio local para documentos (no imágenes de portada) de Kobli? Se le pedirá a continuación el directorio físico donde se guardarán y la url desde la que se accederá desde Kobli.</question>
+        <question lang="en">Do you want to use the local repository from Kobli to store documents (not cover images)? You'll be asked for a local directory to store them and the url they can be accessed from.</question>
+        <answers>
+            <answer lang="es-ES" value="true">Sí</answer>
+            <answer lang="en" value="true">Yes</answer>
+            <answer value="false">No</answer>
+        </answers>
+        <response_comment op="ok" lang="es-ES">Actualizadas variables de sistema de preferencia dirFileLocalRepository y dirUrlLocalRepository</response_comment>
+        <response_comment op="nok" lang="es-ES">Error al actualizar variables de sistema de preferencia dirFileLocalRepository y dirUrlLocalRepository</response_comment>
+        <response_comment op="ok" lang="en">Updated system preferences dirFileLocalRepository and dirUrlLocalRepository</response_comment>
+        <response_comment op="nok" lang="en">Error updating system preferences dirFileLocalRepository and dirUrlLocalRepository</response_comment>
+        <cmd lang="es-ES" compress="gzip" md5="afcfefc851f366c35be5561b650f2eb0">H4sIACFhuk8AA41Uy27bMBC89ysWhGAnByGS4VMNpygQFS1QFEUe6KHogSZXFgGG
+dCjSaQr/TD+gX5Efy9KV5FSWjN5EcnY4O7OUVO6D0vjZCq6vcWNr5a17WjK2ABSV
+hdQAu1IOBW0rC+Xzn1oJC9IaiVAjrAN3krvn3+YtUE0wXmn4vi9L5CA3gx8LqgeH
+XMIwJJ4bXIAqI5U8TeUrNH+1sk/GOyuDUGjogpEiIPjGYYkOjVAcYh+q9njPR9S0
+VrC7r1fvbwuonyK6o8Aabopb2HIdcDkdlTqFbx+L64JwTvGVJugwcMpgB8lqJaUg
+D342JiTvIMUHyLqGqfjO6ZOx0Tk1V1N/XVpcCJQ4mtYxYz+sY0SblQhOi3u5TM4e
+KyWq/RpmlxcStxcmaH2+gMc1+teQuO5BuPCBa/WLOypf5u0IRH3NBYfM2x1I63H5
++YEedrsef0ZuabIlaZRBekN3bcfZZpeTnOKpohvprPuKeyJ4GlUGDNJyTmtcO9xA
++gDsbJZlu3k2P2eDCkrVZvzP0T7vvDfg/z2BA+IHB/AYdzR/Hmvfzl8Ok0kjpXDO
+OuD6VUOg+YmXNSCpsb9HGO8VnuhixmOF0bVu0tv1geyLBXIl7N9J++8ae5mx+M0L
+irDDOQgFAAA=</cmd>
+        <cmd lang="en" compress="gzip" md5="041bc9148f35035566894ee51d008702">H4sIAANjuk8AA41TsW7bMBDd+xUPhGAngxDJ8FTDKQpURYYMQZygQ9GBJk8WAZpy
+SEquC398KUeyE1sKsvHId+/e3TtKZX8qTfel4PqRNqVTvrS7OWMzkChKxAbsgfsC
+24IsIQ9Yh63SGkuC4zXJrwjYynil8fsAj2QvJ8OfGWQJS1yiH9K8G5pB5Q2V/JjK
+F2ReNbIFr5VZYQANZeB2ztMaG0t5aMMIGlDQtc2eH358f8ravFOawyJ7Qs11RfPx
+oLwxft1lj1nAWcWXOkD7gWOGPaLlUkoR+v7bNh59Q0wvSI5NhuRnqz+0KLw32N3R
+Gi6CWEcSuS3XvRZdUp47dInoDBKV1WIt59HVtlCiOMSY3N5Iqm9MpfX1DNsV+beQ
+Jj6DcOErrtU/bkP6PO18b/S1BU5GdzeI3bD89ESP/f6MPwnj0o4QtcoQL0Ktepht
+cjtKgz9FM414cjw1d6LyYT8ZGOJ8GmJaWdogfgG7miTJfppMr1mvglx1Jr97Ohie
+nm31p1ewR3zvBl7iLhbQk/PdAqYYjVopmbWlRbWR3Dcfrfc39ahoJ/6WI9QxJA4s
+vsSA+tc5HZe7i09cgz/dwZQevNETqnRcX/4Da/PUV+YEAAA=</cmd>
+    </action>
+</actions>
