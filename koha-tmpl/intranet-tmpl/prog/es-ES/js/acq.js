@@ -4,7 +4,7 @@
 function uncheckbox(form, field) {
     var price = new Number(form.elements['price' + field].value);
     var tmpprice = "";
-    var errmsg = _("ERROR: Price is not a valid number, please check the price and try again!")
+    var errmsg = _("ERROR: El precio no es un número válido, por favor revísalo e inténtalo otra vez!")
     if (isNaN(price)) {
         alert(errmsg);
         for(var i=0; i<form.elements['price' + field].value.length; ++i) {
@@ -335,7 +335,7 @@ function enterpressed(event){
 
 //Closes a basketgroup
 function closebasketgroup(bgid) {
-    var answer=confirm(_("Are you sure you want to close this basketgroup?"));
+    var answer=confirm(_("¿Estás seguro de cerrar este conjunto de cesta?"));
     if(! answer){
         return;
     }
@@ -353,7 +353,7 @@ function closebasketgroup(bgid) {
     var ul = document.getElementById(ulid);
     var lis = ul.getElementsByTagName('li');
     if (lis.length == 0 ) {
-        alert(_("Why close an empty basket?"));
+        alert(_("¿Cerrar una cesta vacía?"));
         return;
     }
     var cantprint = document.createElement('p');
@@ -369,7 +369,7 @@ function closebasketgroup(bgid) {
     ddtarget.unreg();
     div.removeChild(stufftoremove);
 // the print button is disabled because the page's content might (or is probably) not in sync with what the database contains
-    cantprint.innerHTML=_("You need to save the page before printing");
+    cantprint.innerHTML=_("¿Necesitas guardar la página antes de imprimir?");
     cantprint.id = 'cantprint-' + bgid;
     var unclosegroup = document.createElement('a');
     unclosegroup.href='javascript:unclosegroup('+bgid+');';
@@ -384,7 +384,7 @@ function closeandprint(bg){
 	if(document.location = '/cgi-bin/koha/acqui/basketgroup.pl?op=closeandprint&amp;basketgroupid=' + bg ){
 		setTimeout("window.location.reload();",3000);
 	}else{
-		alert(_('Error downloading the file'));
+		alert(_('Error descargando el fichero'));
 	}
 }
 
@@ -837,9 +837,9 @@ if ( newBudgetParent  ) { url +=  '&parent_id=' + newBudgetParent};
     var result = eval ( xmlhttp.responseText );
 
     if (result == '1') {
-            return _("- Budget total exceeds parent allocation\n");
+            return _("- El total de este presupuesto excede el del presupuesto padre\n");
     } else if (result == '2') {
-            return _("- Budget total exceeds period allocation\n");
+            return _("- El total del presupuesto excede la cantidad asignada\n");
     } else  {
             return false;
     }
@@ -871,7 +871,7 @@ function checkBudgetParent(budgetId, newBudgetParent) {
     var result = eval ( xmlhttp.responseText );
 
     if (result == '1') {
-            return _("- New budget-parent is beneath budget\n");
+            return _("- El nuevo presupuesto padre es un presupuesto inferior\n");
 //     } else if (result == '2') {
 //            return "- New budget-parent has insufficent funds\n";
 //     } else  {
