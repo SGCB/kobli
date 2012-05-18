@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://koha-community.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://koha-community.org" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+  <xs:annotation>
+    <xs:documentation>Postupgrade actions xml schema</xs:documentation>
+  </xs:annotation>
+
+
+  <xs:element name="actions" type="ActionsType" nillable="false">
+    <xs:annotation>
+      <xs:documentation>Element indicating the set of actions</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ActionsType">
+    <xs:sequence minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="action" type="ActionType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ActionType">
+    <xs:sequence>
+      <xs:element name="question" type="StrLangType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="answers" type="AnswersType" minOccurs="1"/>
+      <xs:element name="response_comment" type="ResponseCommentType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="cmd" type="CmdType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="version" type="VersionType" use="required"/>
+    <xs:attribute name="user" type="UserType" use="optional"/>
+  </xs:complexType>
+
+  <xs:simpleType name="VersionType">
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="[1-9]+\.[0-9]+(\.[0-9]+){1,2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="UserType">
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="[a-zA-Z0-9\.\-_!\?]"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="AnswersType">
+    <xs:sequence minOccurs="2" maxOccurs="unbounded">
+      <xs:element name="answer" type="AnswerType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StrLangType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="lang" type="xs:string" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  
+  <xs:complexType name="AnswerType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="lang" type="xs:string" use="optional" />
+        <xs:attribute name="value" type="xs:boolean" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  
+  <xs:complexType name="CmdType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="lang" type="xs:string" use="optional" />
+        <xs:attribute name="md5" type="xs:string" use="optional"/>
+        <xs:attribute name="crypt" type="CryptType" use="optional"/>
+        <xs:attribute name="compress" type="CompressType" use="optional"/>
+        <xs:attribute name="base64" type="xs:boolean" use="optional"/>
+        <xs:attribute name="file" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ResponseCommentType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="lang" type="xs:string" use="optional" />
+        <xs:attribute name="op" type="OpType" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="OpType">
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:enumeration value="ok"/>
+      <xs:enumeration value="nok"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="CryptType">
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:pattern value="crypt:.+(:.+)?"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+    <xs:simpleType name="CompressType">
+    <xs:restriction base="xs:string">
+      <xs:whiteSpace value="collapse"/>
+      <xs:enumeration value="gzip"/>
+      <xs:enumeration value="bzip2"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+</xs:schema>
