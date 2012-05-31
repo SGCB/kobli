@@ -216,7 +216,16 @@ sub new {
 
     my $self = $class->SUPER::new(%args);
 
-    my $recordMarc = MARC::Record->new_from_xml($marcxml, "utf8", C4::Context->preference('marcflavour'));
+    my $recordMarc;
+    eval {
+        $recordMarc = MARC::Record->new_from_xml($marcxml, "utf8", C4::Context->preference('marcflavour'));
+        $recordMarc->encoding('UTF-8');
+    };
+    return undef if ($@);
+    if (C4::Context->preference('MARCOrgCode') && (!defined($recordMarc->field('003')) || $recordMarc->field('003')->data() eq '')) {
+        my $newField003 =  MARC::Field->new('003', C4::Context->preference('MARCOrgCode'));
+        $recordMarc->insert_fields_ordered( ($newField003) );
+    }
     my @fields952 = $recordMarc->field('952');
     if (@fields952) {
         eval {
@@ -227,6 +236,8 @@ sub new {
                 $recordMarc->delete_field($field952);
             }
         }
+        $marcxml = $recordMarc->as_xml_record(C4::Context->preference('marcflavour'));
+    } elsif (defined($recordMarc->field('003'))) {
         $marcxml = $recordMarc->as_xml_record(C4::Context->preference('marcflavour'));
     }
 
@@ -269,6 +280,7 @@ sub addItems
         my @campoOUT = ("365","852","852","852","852","852","852","852","852","852","852","852","852","852","852","852","852","852","852","876","876","876","876","876","876","876","876","876","876","876");
         my @subcampoOUT = ("f","t","p","a","b","k","h","i","m","c","2","3","f","j","u","x","z","u","q","b","a","a","d","h","h","j","j","j","j","l");
         my $record = MARC::Record->new;
+        $record->encoding('UTF-8');
         my @itemsrecord;
         foreach my $item (@items){
             my $record = Item2Marc($item, $biblionumber);
@@ -617,11 +629,12 @@ sub new {
         foreach (@$oai_sets) {
             push @setSpecs, $_->{spec};
         }
-        $self->record( C4::OAI::Record->new(
+        my $record = C4::OAI::Record->new(
             $repository, $marcxml, $timestamp, \@setSpecs,
             identifier      => $repository->{ koha_identifier } . ':' . $biblionumber,
             metadataPrefix  => $token->{metadata_prefix}
-        ) );
+        );
+        $self->record( $record ) if ($record);
         $pos++;
     }
     $self->resumptionToken(
