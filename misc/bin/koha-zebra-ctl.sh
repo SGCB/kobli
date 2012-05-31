@@ -16,13 +16,17 @@
 # Suite 330, Boston, MA  02111-1307 USA
 
 ### BEGIN INIT INFO
-# Provides:          koha-zebra-daemon
+# Provides:          koha-zebra-daemon-kobli
 # Required-Start:    $syslog $remote_fs
 # Required-Stop:     $syslog $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Zebra server daemon for Koha indexing
 ### END INIT INFO
+
+# Author: Koha
+
+# Do NOT "set -e"
 
 USER=__KOHA_USER__
 GROUP=__KOHA_GROUP__

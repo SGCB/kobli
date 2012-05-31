@@ -466,7 +466,7 @@ elsif ( $^O eq 'cygwin' ) {
 }
 else {
 	$config_defaults{'INSTALL_MODE'} = 'single';
-	$config_defaults{'INSTALL_BASE'} = '/usr/share/koha';
+	$config_defaults{'INSTALL_BASE'} = '/usr/share/kobli';
 }
 
 # valid values for certain configuration options
@@ -826,7 +826,7 @@ Directorio de configuración:);
 	if (-f '/home/www/kobli') {
 		$install_base_default = '/home/www/kobli';
 	} else {
-        	$install_base_default = (exists $ENV{'HOME'}) ? "$ENV{'HOME'}/koha" : $defaults->{'INSTALL_BASE'};
+        	$install_base_default = (exists $ENV{'HOME'}) ? "/home/www/kobli" : $defaults->{'INSTALL_BASE'};
 	}
     } else {
         # must be standard
