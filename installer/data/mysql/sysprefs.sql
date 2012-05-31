@@ -86,8 +86,8 @@ INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OpacPrivacy', '0', 'Si ON, permite a los socios definir sus reglas privadadas (leyendo historia)',NULL,'YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opacreadinghistory',1,'If ON, enables display of Patron Circulation History in OPAC','','YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OPACResultsSidebar','','Define HTML to be included on the search results page, underneath the facets sidebar','70|10','Textarea');
-INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opacsmallimage','/opac-tmpl/prog/images/logo_kobli.gif','Enter a complete URL to an image to replace the default Koha logo','','free');
-INSERT INTO `systempreferences`(variable,value,options,explanation,type) VALUES ('opacsmallimageright','/opac-tmpl/prog/images/logo_bag.jpg','','Enter a complete URL to an image to replace the default Koha logo','free');
+INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opacsmallimage','/opac-tmpl/prog/imgs/opacsmallimage.gif','Enter a complete URL to an image to replace the default Koha logo','','free');
+INSERT INTO `systempreferences`(variable,value,options,explanation,type) VALUES ('opacsmallimageright','/opac-tmpl/prog/imgs/opacsmallimageright.jpg','','Enter a complete URL to an image to replace the default Koha logo','free');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opacstylesheet','','Enter a complete URL to use an alternate layout stylesheet in OPAC','','free');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opacthemes','prog','Define the current theme for the OPAC interface.','','Themes');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OpacTopissue',1,'If ON, enables the \'most popular items\' link on OPAC. Warning, this is an EXPERIMENTAL feature, turning ON may overload your server',NULL,'YesNo');
