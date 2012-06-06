@@ -465,10 +465,12 @@ compare_version()
 {
     local current_version="$1"
     local version_action="$2"
+    current_version=$(echo "$current_version" | sed -r 's/([123456789])0+/\1/g')
+    version_action=$(echo "$version_action" | sed -r 's/([123456789])0+/\1/g')
     local ret=$(echo "$current_version;$version_action" | awk '{
         split($0, a, ";")
-        bl=split(a[1], b, "\.")
-        cl=split(a[2], c, "\.")
+        bl=split(a[1], b, ".")
+        cl=split(a[2], c, ".")
         min=bl < cl?bl:cl
         ret=0
         for (i = 1; i <= min; i++) {
@@ -484,8 +486,8 @@ compare_version()
         }
         }
         END { print ret;}
-    ')
-    echo $ret
+    ') &>/dev/null
+    echo "$ret"
 }
 
 
@@ -617,7 +619,7 @@ process_action()
     local response_nok="$6"
     local action_file="$7"
     local ret=$(compare_version "$kobliversion" "$version")
-    if [ $ret -eq -1  ]; then
+    if [ -n "$ret" -a "$ret" = "-1"  ]; then
         return
     fi
     echo -n $actions": "
