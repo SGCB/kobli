@@ -27,7 +27,7 @@
 --                          2013-02-11
 -- *************************************************************
 
-INSERT INTO marc_tag_structure (tagfield,liblibrarian,libopac,repeatable,mandatory,authorised_value,frameworkcode) VALUES
+INSERT IGNORE INTO marc_tag_structure (tagfield,liblibrarian,libopac,repeatable,mandatory,authorised_value,frameworkcode) VALUES
 		('000','CABECERA','CABECERA','0','1','',''),
 		('001','N&Uacute;MERO DE CONTROL','N&Uacute;MERO DE CONTROL','0','0','',''),
 		('003','IDENTIFICADOR DELl N&Uacute;MERO DE CONTROL','IDENTIFICADOR DELl N&Uacute;MERO DE CONTROL','0','1','',''),
@@ -314,7 +314,7 @@ INSERT INTO marc_tag_structure (tagfield,liblibrarian,libopac,repeatable,mandato
 		('999','SYSTEM CONTROL NUMBERS (KOHA)','SYSTEM CONTROL NUMBERS (KOHA)','1','0','','');
 
 
-INSERT INTO marc_subfield_structure (tagfield,tagsubfield,liblibrarian,libopac,repeatable,mandatory,kohafield,tab,authorised_value,authtypecode,value_builder,isurl,hidden,frameworkcode,seealso,link,defaultvalue) VALUES 
+INSERT IGNORE INTO marc_subfield_structure (tagfield,tagsubfield,liblibrarian,libopac,repeatable,mandatory,kohafield,tab,authorised_value,authtypecode,value_builder,isurl,hidden,frameworkcode,seealso,link,defaultvalue) VALUES 
 		('562','5','Instituci&oacute;n que aplica el campo','Instituci&oacute;n que aplica el campo','0','0','','-1','','','','0','-6','','','',''),
 		('563','5','Instituci&oacute;n que aplica el campo','Instituci&oacute;n que aplica el campo','0','0','','-1','','','','0','-6','','','',''),
 		('698','b','N&uacute;mero (BK CF MP MU SE VM MX)  [OBSOLETE]','N&uacute;mero (BK CF MP MU SE VM MX)  [OBSOLETE]','1','0','','-1','','','','0','-6','','','',''),

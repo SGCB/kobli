@@ -7,11 +7,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-insert  into `biblio_framework`(`frameworkcode`,`frameworktext`) values ('FA','Plantilla de catalogación rápida');
+INSERT IGNORE INTO biblio_framework VALUES ( 'FA','Fast Add Framework' );
 
 /*Data for the table `marc_tag_structure` */
 
-insert  into `marc_tag_structure`(`tagfield`,`liblibrarian`,`libopac`,`repeatable`,`mandatory`,`authorised_value`,`frameworkcode`) values ('000','CABECERA','CABECERA',0,1,'','FA'),
+INSERT IGNORE INTO `marc_tag_structure`(`tagfield`,`liblibrarian`,`libopac`,`repeatable`,`mandatory`,`authorised_value`,`frameworkcode`) values ('000','CABECERA','CABECERA',0,1,'','FA'),
 		('008','CAMPO FIJO DE DESCRIPCIÓN FIJA--INFORMACIÓN GENERAL','CAMPO FIJO DE DESCRIPCIÓN FIJA--INFORMACIÓN GENERAL',0,1,'','FA'),
 		('010','NÚMERO DE CONTROL DE LA LIBRARY OF CONGRESS','NÚMERO DE CONTROL DE LA LIBRARY OF CONGRESS',0,0,'','FA'),
 		('020','INTERNATIONAL STANDARD BOOK NUMBER','INTERNATIONAL STANDARD BOOK NUMBER',1,0,NULL,'FA'),
@@ -32,7 +32,7 @@ insert  into `marc_tag_structure`(`tagfield`,`liblibrarian`,`libopac`,`repeatabl
 
 /*Data for the table `marc_subfield_structure` */
 
-insert  into `marc_subfield_structure`(`tagfield`,`tagsubfield`,`liblibrarian`,`libopac`,`repeatable`,`mandatory`,`kohafield`,`tab`,`authorised_value`,`authtypecode`,`value_builder`,`isurl`,`hidden`,`frameworkcode`,`seealso`,`link`,`defaultvalue`) values
+INSERT IGNORE INTO `marc_subfield_structure`(`tagfield`,`tagsubfield`,`liblibrarian`,`libopac`,`repeatable`,`mandatory`,`kohafield`,`tab`,`authorised_value`,`authtypecode`,`value_builder`,`isurl`,`hidden`,`frameworkcode`,`seealso`,`link`,`defaultvalue`) values
         ('000','@','Campo de control de longitud fija','Campo de control de longitud fija',0,1,'',0,'','','marc21_leader.pl',NULL,0,'FA','',NULL,NULL),
 		('008','@','Campo de control de longitud fija','Campo de control de longitud fija',0,1,'',0,'','','marc21_field_008.pl',NULL,0,'FA','',NULL,NULL),
 		('010','8','Vínculo de campo y número de secuencia','Vínculo de campo y número de secuencia',1,0,'',0,'','','',0,0,'FA',NULL,'',''),

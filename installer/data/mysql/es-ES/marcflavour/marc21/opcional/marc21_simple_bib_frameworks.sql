@@ -12,11 +12,19 @@
 -- ********************************
 
 
-insert  into `biblio_framework`(`frameworkcode`,`frameworktext`) values ('AR','Modelo'),('BKS','Libros'),('CF','CD-ROMs, DVD-ROMs, Recursos Generales Online'),('IR','Carpetas'),('KT','Kits'),('SER','Publicaciones periódicas'),('SR','Audio Cassettes, CDs'),('VR','DVDs, VHS');
+INSERT IGNORE INTO `biblio_framework` (`frameworkcode`,`frameworktext`) VALUES
+		('BKS', 'Books, Booklets, Workbooks'),
+		('CF', 'CD-ROMs, DVD-ROMs, General Online Resources'),
+		('SR', 'Audio Cassettes, CDs'),
+		('VR', 'DVDs, VHS'),
+		('AR', 'Models'),
+		('KT', 'Kits'),
+		('IR', 'Binders'),
+		('SER', 'Serials');
         
 /*Data for the table `marc_subfield_structure` */
 
-insert  into `marc_subfield_structure`(`tagfield`,`tagsubfield`,`liblibrarian`,`libopac`,`repeatable`,`mandatory`,`kohafield`,`tab`,`authorised_value`,`authtypecode`,`value_builder`,`isurl`,`hidden`,`frameworkcode`,`seealso`,`link`,`defaultvalue`) values
+INSERT IGNORE INTO `marc_subfield_structure`(`tagfield`,`tagsubfield`,`liblibrarian`,`libopac`,`repeatable`,`mandatory`,`kohafield`,`tab`,`authorised_value`,`authtypecode`,`value_builder`,`isurl`,`hidden`,`frameworkcode`,`seealso`,`link`,`defaultvalue`) values
         ('000','@','Campo de control de longitud fija','Campo de control de longitud fija',0,1,'',0,'','','marc21_leader.pl',0,0,'AR','','',''),
 		('001','@','Campo de control','Campo de control',0,0,'',0,'','','',0,-6,'AR','','',''),
 		('003','@','Campo de control','Campo de control',0,0,'',0,'','','marc21_field_003.pl',0,-6,'AR','','',''),
@@ -25173,7 +25181,7 @@ insert  into `marc_subfield_structure`(`tagfield`,`tagsubfield`,`liblibrarian`,`
 
 /*Data for the table `marc_tag_structure` */
 
-insert  into `marc_tag_structure`(`tagfield`,`liblibrarian`,`libopac`,`repeatable`,`mandatory`,`authorised_value`,`frameworkcode`) values
+INSERT IGNORE INTO `marc_tag_structure`(`tagfield`,`liblibrarian`,`libopac`,`repeatable`,`mandatory`,`authorised_value`,`frameworkcode`) values
         ('000','CABECERA','CABECERA',0,1,'','AR'),
 		('001','NÚMERO DE CONTROL','NÚMERO DE CONTROL',0,0,'','AR'),
 		('003','IDENTIFICADOR DE NÚMERO DE CONTROL','IDENTIFICADOR DE NÚMERO DE CONTROL',0,0,'','AR'),
