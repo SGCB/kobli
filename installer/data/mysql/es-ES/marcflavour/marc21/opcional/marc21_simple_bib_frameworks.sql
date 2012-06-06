@@ -12,15 +12,7 @@
 -- ********************************
 
 
-INSERT INTO `biblio_framework` (`frameworkcode`,`frameworktext`) VALUES
-		('BKS', 'Books, Booklets, Workbooks'),
-		('CF', 'CD-ROMs, DVD-ROMs, General Online Resources'),
-		('SR', 'Audio Cassettes, CDs'),
-		('VR', 'DVDs, VHS'),
-		('AR', 'Models'),
-		('KT', 'Kits'),
-		('IR', 'Binders'),
-		('SER', 'Serials');
+insert  into `biblio_framework`(`frameworkcode`,`frameworktext`) values ('AR','Modelo'),('BKS','Libros'),('CF','CD-ROMs, DVD-ROMs, Recursos Generales Online'),('IR','Carpetas'),('KT','Kits'),('SER','Publicaciones periódicas'),('SR','Audio Cassettes, CDs'),('VR','DVDs, VHS');
         
 /*Data for the table `marc_subfield_structure` */
 
