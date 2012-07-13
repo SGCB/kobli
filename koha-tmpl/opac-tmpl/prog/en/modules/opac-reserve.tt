@@ -182,6 +182,7 @@
     <div id="bd">
     [% INCLUDE 'masthead.inc' %]
 	  <div id="yui-g">
+        [% INCLUDE 'search.inc' %]
         <div id="holds" class="container">
         [% IF ( message ) %]
             [% IF ( GNA ) %]
@@ -549,6 +550,12 @@
 
         </div><!-- holds -->
       </div><!-- yui-g -->
+      [% IF ( OpacNav ) %]
+      <div class="yui-b">
+      <div id="leftmenus" class="container">
+      [% INCLUDE 'navigation.inc' %]
+      </div>
+      </div>[% END %]
     </div><!-- bd    -->
   </div><!-- doc3  -->
 

@@ -98,7 +98,36 @@ function highlightOn() {
    <div id="bd">
 
 	<div id="yui-main">
+    [% UNLESS ( total ) %]
+      [% INCLUDE 'search.inc' %]
+    [% END %]
+    <div id="breadcrumbs" class="yui-g">
+    [% IF ( searchdesc ) %]<p>[% IF ( total ) %]<strong>&ldquo;[% query_desc |html %] [% limit_desc |html %]&rdquo; </strong>returned [% total |html %] results. [% IF ( related ) %] (related searches: [% FOREACH relate IN related %][% relate.related_search %][% END %]). [% END %]
+    <a href="[% OPACBaseurl %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %][% IF ( sort_by ) %]&amp;sort_by=[% sort_by |html %][% END %]&amp;format=rss2"><img src="/opac-tmpl/prog/images/feed-icon-16x16.png" alt="Subscribe to this search" title="Subscribe to this search" border="0" /></a>
+    [% ELSE %]
+    <strong>No Results Found!</strong>
+    <p>
+        [% IF ( searchdesc ) %]
+        No results match your search for <span style="font-weight: bold;">&ldquo;[% query_desc |html %] [% limit_desc |html %]&rdquo;</span> in [% LibraryName %] Catalog. <a href="[% OPACBaseurl %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&amp;format=rss2"><img src="/opac-tmpl/prog/images/feed-icon-16x16.png" alt="Subscribe to this search" title="Subscribe to this search" border="0" /></a>
+        [% ELSE %]
+        You did not specify any search criteria.
+        [% END %]
+    </p>
+    [% IF ( OPACNoResultsFound ) %]
+    <div id="noresultsfound">
+    [% OPACNoResultsFound %]
+    </div>
+    [% END %]
+    [% END %]</p>
+    [% END %]
+  </div>
+  [% IF ( total ) %]
+  <div id="list_detail">
+    [% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %]
 
+    [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink" class=""><i></i><span><i></i><span></span>Lists </span></a>[% END %]
+    </div>
+  [% END %]  
 	<div class="yui-b">
   [% IF ( koha_spsuggest ) %]
 	Did you mean:
@@ -315,6 +344,12 @@ function highlightOn() {
         [% END %]
         <!-- FACETS END -->
 </div>
+[% IF ( OpacNav ) %]
+<div class="yui-b">
+<div id="leftmenus" class="container">
+[% INCLUDE 'navigation.inc' %]
+</div>
+</div>[% END %]
 </div>
 </div>
 

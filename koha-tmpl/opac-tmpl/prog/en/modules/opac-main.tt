@@ -20,9 +20,14 @@
      [% ELSE %]
         <div id="notloggedin" class="yui-ge">
     [% END %]
-        <div class="yui-u first">
-	[% IF ( koha_news_count ) %]
-<div id="news" class="container">
+    <div id="main-search">
+  [% INCLUDE 'search.inc' %]
+  </div>
+
+    [% IF ( OpacMainUserBlock ) %]<div id="opacmainuserblock" class="container">[% OpacMainUserBlock %]</div>[% END %]
+
+  [% IF ( koha_news_count ) %]
+    <div id="news" class="container">
     <table>
     [% FOREACH koha_new IN koha_news %]
     <tr><th>[% koha_new.title %]</th></tr>

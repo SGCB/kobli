@@ -58,6 +58,7 @@ var MSG_CONFIRM_RESUME_HOLDS  = _("Are you sure you want to resume all suspended
 [% INCLUDE 'masthead.inc' %]
 
     <div id="yui-main">
+    [% INCLUDE 'search.inc' %]
     <div class="yui-b"><div class="yui-g">
 	<div id="userdetails" class="container">
 	[% IF ( bor_messages ) %]

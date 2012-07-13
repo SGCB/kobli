@@ -144,4 +144,9 @@ var NO_LOCAL_JACKET = _("No cover image available");
         <script type="text/javascript" src="http://www.google.com/jsapi"></script>
         <script type="text/javascript" src="[% themelang %]/js/googleindictransliteration.js"></script>
 [% END %]
-
+<!--[if IE]>
+<link rel="stylesheet" href="[% themelang %]/css/ie_only.css" type="text/css" />
+<![endif]--> 
+<!--[if IE 7]>
+<link rel="stylesheet" href="[% themelang %]/css/ie7.css" type="text/css" />
+<![endif]-->

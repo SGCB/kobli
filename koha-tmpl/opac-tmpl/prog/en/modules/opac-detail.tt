@@ -43,7 +43,7 @@
         var pag_index_ini = [% indexPag %];
         [% IF ( listResults ) %]
             [% FOREACH listResult IN listResults %]
-                arrPagination[[% listResult.index %]] = {url:"[% listResult.url %]", title:"[% listResult.title|remove('\n')|html %]", author:"[% listResult.author|html %]", biblionumber:[% listResult.biblionumber %]};
+                arrPagination[[% listResult.index %]] = {url:"[% listResult.url %]", title:"[% listResult.title|html %]", author:"[% listResult.author|html %]", biblionumber:[% listResult.biblionumber %]};
            [% END %]
         [% END %]
     [% END %]
@@ -522,6 +522,134 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 <div id="doc3" class="yui-t7">
    <div id="bd">
 [% INCLUDE 'masthead.inc' %]
+<div id="left-detail">
+<div id="left_search">
+  [% IF ( OpacPublic ) %]
+  <form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform">
+    <h4 class="new_search">New search</h4>
+    <label for="masthead_search" class="left"> Search 
+	[% UNLESS ( OpacAddMastheadLibraryPulldown ) %]
+            [% IF ( mylibraryfirst ) %] (in [% mylibraryfirst %] only)[% END %]
+	[% END %]
+    </label>
+
+	<select name="idx" id="masthead_search" class="left">
+	[% IF ( ms_kw ) %]
+        <option selected="selected" value="">Library Catalog</option>
+		[% ELSE %]
+        <option value="">Library Catalog</option>
+		[% END %]
+		[% IF ( ms_ti ) %]
+        <option selected="selected" value="ti">Title</option>
+		[% ELSE %]
+        <option value="ti">Title</option>
+		[% END %]
+		[% IF ( ms_au ) %]
+        <option selected="selected" value="au">Author</option>
+		[% ELSE %]
+        <option value="au">Author</option>
+		[% END %]
+		[% IF ( ms_su ) %]
+        <option selected="selected" value="su">Subject</option>
+		[% ELSE %]
+        <option value="su">Subject</option>
+		[% END %]
+		[% IF ( ms_nb ) %]
+		<option selected="selected" value="nb">ISBN</option>
+		[% ELSE %]
+		<option value="nb">ISBN</option>
+		[% END %]
+		[% IF ( ms_se ) %]
+        <option selected="selected" value="se">Series</option>
+		[% ELSE %]
+        <option value="se">Series</option>
+		[% END %]
+		[% IF ( ms_callnum ) %]
+        <option selected="selected" value="callnum">Call Number</option>
+		[% ELSE %]
+        <option value="callnum">Call Number</option>
+		[% END %]</select>
+[% IF ( ms_value ) %]
+        <input type="text" id = "transl1" name="q" value="[% ms_value |html %]" class="left"/><div id="translControl"></div>
+[% ELSE %]
+        <input type="text" id = "transl1" name="q" class="left"/><div id="translControl"></div>
+[% END %]
+   [% IF ( OpacAddMastheadLibraryPulldown ) %]
+      <select name="limit" id="masthead_search" class="left">
+         <option value="">All Libraries</option>
+         [% FOREACH BranchesLoo IN BranchesLoopOpac %]
+            <option [% IF ( BranchesLoo.selected ) %]SELECTED[% END %] value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>
+         [% END %]
+      </select>
+   [% ELSE %]
+      [% IF ( opac_limit_override ) %]
+          [% IF ( opac_search_limit ) %]
+            <input name="limit" value="[% opac_search_limit %]" type="hidden" />
+          [% END %]
+      [% ELSE %]
+          [% IF ( mylibraryfirst ) %] 
+               <input name="limit" value="branch:[% mylibraryfirst %]" type="hidden" />
+          [% END %]
+      [% END %]
+   [% END %]
+    <input type="submit" value="Go" id="searchsubmit" class="left" />
+    </form>
+    [% END %]
+  </div>
+<div class="yui-u">
+<div id="ulactioncontainer" class="container">
+[% IF ( busc ) %]
+    <div class="nav_results">
+        <div class="l_Results">[% IF ( listResults ) %]<a href="#" id="a_listResults" title="Show pagination list ([% indexPag %]-[% indexPagEnd %] / [% totalPag %])">Browse results</a>[% ELSE %]<span>Browse results</span>[% END %]</div>
+        <ul class="pg_menu clearfix">
+            <li class="left_results">[% IF ( previous ) %]<a href="[% previous %]" title="See: [% IF ( previousTitle ) %][% previousTitle |html %][% ELSE %]previous biblio[% END %]">&laquo; Previous</a>[% ELSE %]<span>Previous</span>[% END %]</li>
+            <li class="back_results"><a href="opac-search.pl?[% busc %]" title="Back to the results search list">Back to results</a></li>
+            <li class="right_results">[% IF ( next ) %]<a href="[% next %]" title="See: [% IF ( nextTitle ) %][% nextTitle |html %][% ELSE %]next biblio[% END %]">Next &raquo;</a>[% ELSE %]<span>Next</span>[% END %]</li>
+        </ul>
+        [% IF ( listResults ) %]
+        <div class="pagination">
+            <div class="nav">
+                <span class="close_pagination"><a href="#" id="close_pagination">Close</a></span>
+                <ul id="listResults"></ul>
+            </div>
+            <div class="pagination_list">
+                <ul id="ul_pagination_list"></ul>
+            </div>
+        </div>
+        [% END %]
+    </div>
+[% END %]
+
+[% INCLUDE 'opac-detail-sidebar.inc' %]
+        [% IF ( NovelistSelectProfile ) %] [% IF ( NovelistSelectView == 'right') %]
+         <div id="NovelistSelect">
+            <h4>Novelist Select</h4>
+            <div data-novelist-novelistselect=[% normalized_isbn %]></div>
+         </div>
+        [% END %] [% END %]
+
+[% IF ( Babeltheque ) %]
+    <div class="babeltheque_adds">
+        <div id="BW_critiques_aj"></div>
+        <div id="BW_citations_aj"></div>
+    </div>
+[% END %]
+
+[% IF ( SocialNetworks ) %]
+    <div class="social_networks">
+        <span>Share</span>
+        <a href="http://www.facebook.com/sharer.php?u=[% current_url |url %]&t=[% title |url %]" title="Share on Facebook"><img alt="Share on Facebook" src="/opac-tmpl/prog/images/socnet/facebook16.png" /></a>
+        <a href="http://twitter.com/share" title="Share on Twitter"><img alt="Share on Twitter" src="/opac-tmpl/prog/images/socnet/twitter16.png" /></a>
+        <a href="http://www.linkedin.com/shareArticle?mini=true&url=[% current_url |url %]&title=[% title |url %]" title="Share on LinkedIn"><img alt="Share on LinkedIn" src="/opac-tmpl/prog/images/socnet/linkedin16.png" /></a>
+        <a href="http://www.delicious.com/save?url=[% current_url |url %]&title=[% title |url %]" title="Share on Delicious"><img alt="Share on Delicious" src="/opac-tmpl/prog/images/socnet/delicious16.gif" /></a>
+        <g:plusone size="small"></g:plusone>
+        <a href="mailto:ADRESSE?subject=TO READ : [% title %]>&body=[% title %]> [% current_url |url %]" title="Share by email"><img alt="Share by email" src="/opac-tmpl/prog/images/socnet/mailto16.png" /></a>
+    </div>
+[% END %]
+
+</div>
+</div>
+</div>
 
 
     <div id="yui-main">

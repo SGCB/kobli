@@ -1,0 +1,37 @@
+#thumbBox { /*Outermost DIV for thumbnail viewer*/
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: auto;
+	padding: 0;
+	padding-bottom: 0;
+	background: #fff;
+	border: 1px solid #999;
+	visibility: hidden;
+	z-index: 1000;
+	cursor: hand;
+	cursor: pointer;
+}
+
+#thumbBox .headerbar { /*Header DIV of thumbbox that contains "close" link */
+	font: bold 13px Arial;
+	font-style: italic;
+	color: #000;
+	padding: 0;
+	text-align: right;
+	z-index: 1001;
+}
+
+
+#thumbBox #thumbImage { /*DIV within thumbbox that holds the enlarged image */
+	background-color: #fff;
+}
+
+#thumbLoading { /*DIV for showing "loading" status while thumbbox is being generated*/
+	position: absolute;
+	visibility: hidden;
+	border: 1px solid #000;
+	background-color: #fff;
+	padding: 5px;
+	z-index: 500;
+}

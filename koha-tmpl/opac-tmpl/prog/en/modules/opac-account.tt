@@ -10,6 +10,7 @@
 [% INCLUDE 'masthead.inc' %]
 
 	<div id="yui-main">
+  [% INCLUDE 'search.inc' %]
 	<div class="yui-b"><div class="yui-g">
 		<div id="useraccount" class="container">
 <!--CONTENT-->
@@ -58,6 +59,7 @@
 <div class="yui-b">
 <div id="leftmenus" class="container">
 [% INCLUDE 'navigation.inc' IsPatronPage=1 %]
+[% INCLUDE 'usermenu.inc' %]
 </div>
 </div>
 </div>
