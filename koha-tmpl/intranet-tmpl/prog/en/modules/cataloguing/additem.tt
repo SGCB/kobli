@@ -164,7 +164,7 @@ $(document).ready(function() {
 </div>
 <div class="yui-u">
 <div id="cataloguing_additem_newitem">
-    <form method="post" action="/cgi-bin/koha/cataloguing/additem.pl" name="f">
+    <form method="post" action="/cgi-bin/koha/cataloguing/additem.pl" name="f" enctype="multipart/form-data">
     <input type="hidden" name="op" value="[% op %]" />
     [% IF (popup) %]
         <input type="hidden" name="popup" value="1" />
@@ -201,7 +201,9 @@ $(document).ready(function() {
     <input type="hidden" name="indicator" value=" " />
     <input type="hidden" name="indicator" value=" " />
     <input type="hidden" name="itemnumber" value="[% itemnumber %]" />
-
+    [% IF ( showFilesLocalRepository ) %]
+        [% INCLUDE 'cataloguing-attach-files.inc' %]
+    [% END %]
 <fieldset class="action">    [% IF ( opisadd ) %]
     <input type="submit" name="phony_submit" value="phony_submit" id="phony_submit" style="display:none;" onclick="return false;" />
     <!-- Note : We use here a false submit button because we have several submit buttons and we don't want the user to believe he validated the adding of multiple items

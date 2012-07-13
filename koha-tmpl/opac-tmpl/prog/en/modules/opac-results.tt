@@ -681,6 +681,9 @@ $(document).ready(function(){
                 [% END %]
                 </span>
                 </td><td>
+                    <!--[% IF ( SEARCH_RESULT.coverThumbLR ) %]<img alt="" src="[% SEARCH_RESULT.coverThumbLR |html %]" class="thumbnail" />
+                    [% ELSE %][% IF ( SEARCH_RESULT.coverLR ) %]<img alt="" src="[% SEARCH_RESULT.coverLR |html %]" width="90" height="124" class="thumbnail" border="0" />[% END %]
+                    [% END %]-->
                     <a class="p1" href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% SEARCH_RESULT.biblionumber %]">
             [% IF ( OPACLocalCoverImages ) %]<span title="[% SEARCH_RESULT.biblionumber |url %]" class="[% SEARCH_RESULT.biblionumber %]" id="local-thumbnail[% loop.count %]"></span>[% END %]
                     [% IF ( OPACAmazonCoverImages ) %][% IF ( SEARCH_RESULT.normalized_isbn ) %]<span title="[% SEARCH_RESULT.biblionumber %]" id="amazon-thumbnail[% loop.count %]"><img src="http://images.amazon.com/images/P/[% SEARCH_RESULT.normalized_isbn %].01.TZZZZZZZ.jpg" alt="" class="thumbnail" /></span>[% ELSE %]<span class="no-image">No cover image available</span>[% END %][% END %]

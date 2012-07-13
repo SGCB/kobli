@@ -36,6 +36,7 @@ use C4::Search;
 use Storable qw(thaw freeze);
 use URI::Escape;
 
+use C4::FileLocalRepository;
 
 use MARC::File::XML;
 use URI::Escape;
@@ -344,6 +345,10 @@ my ($template, $loggedinuser, $cookie)
                  debug => 1,
                  });
 
+# Show files from the local repository
+my $showFilesLocalRepository = (C4::Context->preference("dirUrlLocalRepository") && C4::Context->preference("dirFileLocalRepository") && -d C4::Context->preference("dirFileLocalRepository"))?1:0;
+$template->param(showFilesLocalRepository => $showFilesLocalRepository);
+
 
 my $today_iso = C4::Dates->today('iso');
 my $tagslib = &GetMarcStructure(1,$frameworkcode);
@@ -419,7 +424,11 @@ if ($op eq "additem") {
         unless ($exist_itemnumber) {
             my ( $oldbiblionumber, $oldbibnum, $oldbibitemnum ) = AddItemFromMarc( $record, $biblionumber );
             set_item_default_location($oldbibitemnum);
-
+            ## Additional document
+            if ($showFilesLocalRepository && $input->param('documentbibliofile')) {
+                uploadDocumentLR($input, $biblionumber . '_' . $oldbibitemnum, undef, $frameworkcode, 1);
+            }
+            ##
             # Pushing the last created item cookie back
             if ($prefillitem && defined $record) {
                 my $itemcookie = $input->cookie(
@@ -480,6 +489,8 @@ if ($op eq "additem") {
 	    my $barcodevalue = $oldbarcode;
 	    my $exist_itemnumber;
 
+            my $firstItem; # To know what file to copy from
+            my $urldocumentitemfile;
 
 	    for (my $i = 0; $i < $number_of_copies;) {
 
@@ -502,6 +513,16 @@ if ($op eq "additem") {
         if (!$exist_itemnumber) {
             my ($oldbiblionumber,$oldbibnum,$oldbibitemnum) = AddItemFromMarc($record,$biblionumber);
             set_item_default_location($oldbibitemnum);
+            ## Additional document
+            if ($showFilesLocalRepository && $oldbibitemnum) {
+                if (!$firstItem && $input->param('documentbibliofile')) {
+                    $firstItem = $oldbibitemnum;
+                    $urldocumentitemfile = uploadDocumentLR($input, $biblionumber . '_' . $firstItem, undef, $frameworkcode, 1);
+                } elsif ($firstItem) {
+                    copyDocumentLR($biblionumber . '_' . $firstItem, $biblionumber . '_' . $oldbibitemnum, $urldocumentitemfile, $frameworkcode, $i == ($number_of_copies - 1)?1:0);
+                }
+            }
+            ##
 
             # We count the item only if it was really added
             # That way, all items are added, even if there was some already existing barcodes
@@ -536,6 +557,12 @@ if ($op eq "additem") {
 #-------------------------------------------------------------------------------
 } elsif ($op eq "delitem") {
 #-------------------------------------------------------------------------------
+    # Delete files from local repository related to this item
+    if ($showFilesLocalRepository) {
+        my $dirFLR = C4::Context->preference("dirFileLocalRepository");
+        $dirFLR .= '/' unless ($dirFLR =~ /\/$/);
+        deleteFileLR($dirFLR . 'documents/', $biblionumber . '_' . $itemnumber);
+    }
     # check that there is no issue on this item before deletion.
     $error = &DelItemCheck($dbh,$biblionumber,$itemnumber);
     if($error == 1){
@@ -547,6 +574,13 @@ if ($op eq "additem") {
 #-------------------------------------------------------------------------------
 } elsif ($op eq "delallitems") {
 #-------------------------------------------------------------------------------
+    # Directory for local repository files
+    my $dirFLR;
+    if ($showFilesLocalRepository) {
+        $dirFLR = C4::Context->preference("dirFileLocalRepository");
+        $dirFLR .= '/' unless ($dirFLR =~ /\/$/);
+        $dirFLR .= 'documents/';
+    }
     my @biblioitems = &GetBiblioItemByBiblioNumber($biblionumber);
     my $errortest=0;
     my $itemfail;
@@ -556,6 +590,8 @@ if ($op eq "additem") {
         foreach my $item (@$items) {
             $error =&DelItemCheck( $dbh, $biblionumber, $item->{itemnumber} );
             $itemfail =$item;
+            # Delete additional document from local repository for this item
+            deleteFileLR($dirFLR, $biblionumber . '_' . $item->{itemnumber}) if ($showFilesLocalRepository);
         if($error == 1){
             next
             }
@@ -603,7 +639,11 @@ if ($op eq "additem") {
     if ($exist_itemnumber && $exist_itemnumber != $itemnumber) {
         push @errors,"barcode_not_unique";
     } else {
-        ModItemFromMarc($itemtosave,$biblionumber,$itemnumber);
+        my ($oldbiblionumber,$oldbibnum,$oldbibitemnum) = ModItemFromMarc($itemtosave,$biblionumber,$itemnumber);
+        # Save the additional document in the local repository
+        if ($showFilesLocalRepository && $input->param('documentbibliofile')) {
+            uploadDocumentLR($input, $biblionumber . '_' . $itemnumber, undef, $frameworkcode, 1);
+        }
         $itemnumber="";
     }
     $nextop="additem";
@@ -622,6 +662,14 @@ if ($op eq "additem") {
     }
 	my $modbibresult = ModBiblio($record, $biblionumber,'');
 }
+
+
+
+# Show additional document from local repository when appropriate
+if ($biblionumber && $itemnumber && $showFilesLocalRepository) {
+    showDocLR($biblionumber . '_' . $itemnumber, $input, $template, C4::Context->preference("dirFileLocalRepository"), C4::Context->preference("dirUrlLocalRepository"));
+}
+
 
 #
 #-------------------------------------------------------------------------------
@@ -795,7 +843,11 @@ foreach my $tag ( keys %{$tagslib}){
         next if any { /^$tag$subtag$/ }  @fields;
 
         my @values = (undef);
+<<<<<<< HEAD:cataloguing/additem.pl
         @values = $itemrecord->field($tag)->subfield($subtag) if ($itemrecord && defined($itemrecord->field($tag)) && defined($itemrecord->field($tag)->subfield($subtag)));
+=======
+        @values = $itemrecord->field($tag)->subfield($subtag) if ($itemrecord && defined($itemrecord->field($tag) && $itemrecord->field($tag)->subfield($subtag)));
+>>>>>>> Local repository:cataloguing/additem.pl
         for my $value (@values){
             my $subfield_data = generate_subfield_form($tag, $subtag, $value, $tagslib, $tagslib->{$tag}->{$subtag}, $branches, $today_iso, $biblionumber, $temp, \@loop_data, $i); 
             push (@loop_data, $subfield_data);

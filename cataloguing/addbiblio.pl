@@ -36,6 +36,8 @@ use C4::ClassSource;
 use C4::ImportBatch;
 use C4::Charset;
 use C4::Indicators;
+use C4::FileLocalRepository;
+
 
 use Date::Calc qw(Today);
 use MARC::File::USMARC;
@@ -829,8 +831,22 @@ if ($parentbiblio) {
 }
 
 $is_a_modif = 0;
-    
+
+# Show files from the local repository
+my $showFilesLocalRepository = (C4::Context->preference("dirUrlLocalRepository") && C4::Context->preference("dirFileLocalRepository") && -d C4::Context->preference("dirFileLocalRepository"))?1:0;
+$template->param(showFilesLocalRepository => $showFilesLocalRepository,
+    #showCoverImageLR => 1
+);
+
 if ($biblionumber) {
+
+    if ($showFilesLocalRepository) {
+        ## Show cover image
+        # showCoverImageLR($biblionumber, $input, $template, C4::Context->preference("dirFileLocalRepository"), C4::Context->preference("dirUrlLocalRepository"));
+        ## Show additional document
+        showDocLR($biblionumber, $input, $template, C4::Context->preference("dirFileLocalRepository"), C4::Context->preference("dirUrlLocalRepository"));
+    }
+
     $is_a_modif = 1;
 	$template->param( title => $record->title(), );
 
@@ -889,6 +905,20 @@ if ( $op eq "addbiblio" ) {
             ( $biblionumber, $oldbibitemnum ) = AddBiblio( $record, $frameworkcode );
         }
         if ($redirect eq "items" || ($mode ne "popup" && !$is_a_modif && $redirect ne "view" && $redirect ne "just_save")){
+        if ($biblionumber && $showFilesLocalRepository) {
+            ## Add cover image
+            # if ($input->param('coverimagefile')) {
+                # uploadFilesLR($input, '', 'modify', ['coverimagefile'], [$biblionumber], 0);
+            # }
+            ## Additional document
+            if ($input->param('documentbibliofile')) {
+                uploadDocumentLR($input, $biblionumber, $record, $frameworkcode);
+            }
+            ##
+        }
+
+        #exit;
+        if ($redirect eq "items" || ($mode ne "popup" && !$is_a_modif && $redirect ne "view")){
 	    if ($frameworkcode eq 'FA'){
 		print $input->redirect(
             '/cgi-bin/koha/cataloguing/additem.pl?'
@@ -964,6 +994,16 @@ elsif ( $op eq "delete" ) {
         print "Content-Type: text/html\n\n<html><body><h1>ERROR when DELETING BIBLIO $biblionumber : $error</h1></body></html>";
 	exit;
     }
+    
+    # Delete files from local repository related to this biblio
+    if ($showFilesLocalRepository) {
+        my $dirFLR = C4::Context->preference("dirFileLocalRepository");
+        $dirFLR .= '/' unless ($dirFLR =~ /\/$/);
+        deleteFileLR($dirFLR . 'covers/', $biblionumber);
+        deleteFileLR($dirFLR . 'covers/', 'Thumb_' . $biblionumber);
+        deleteFileLR($dirFLR . 'documents/', $biblionumber);
+    }
+    
     
     print $input->redirect('/cgi-bin/koha/catalogue/search.pl');
     exit;

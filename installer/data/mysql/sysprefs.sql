@@ -409,7 +409,6 @@ INSERT INTO systempreferences ( `variable`, `value`, `options`, `explanation`, `
 ('XISBN','0','','Use with FRBRizeEditions. If ON, Koha will use the OCLC xISBN web service in the Editions tab on the detail pages. See: http://www.worldcat.org/affiliate/webservices/xisbn/app.jsp','YesNo'),
 ('XISBNDailyLimit','999','','The xISBN Web service is free for non-commercial use when usage does not exceed 1000 requests per day','Integer'),
 ('XSLTDetailsDisplay','default','','Enable XSL stylesheet control over details page display on intranet','Free'),
-<<<<<<< HEAD:installer/data/mysql/sysprefs.sql
 ('XSLTResultsDisplay','default','','Enable XSL stylesheet control over results page display on intranet','Free'),
 ('yuipath','local','local|http://yui.yahooapis.com/2.5.1/build','Insert the path to YUI libraries, choose local if you use koha offline','Choice'),
 ('z3950AuthorAuthFields','701,702,700',NULL,'Define the MARC biblio fields for Personal Name Authorities to fill biblio.author','free'),
@@ -417,3 +416,7 @@ INSERT INTO systempreferences ( `variable`, `value`, `options`, `explanation`, `
 ;
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('CheckValueIndicators','0','Check the values of the indicators in cataloguing','','YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('DisplayPluginValueIndicators','0','Display a plugin with the correct values of indicators for fields in cataloguing','','YesNo');
+INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('dirFileLocalRepository','','Enter the path in the server to store the files for the local repository','','free');
+INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('dirUrlLocalRepository','','Enter the url to show the files for the local repository','','free');
+INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('LocalRepositoryCoverImages', '0', 'Display cover images on OPAC from Local Repository','','YesNo');
+INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('MaxSizeFileLocalRepository', '10', 'Max. size in MB to upload file in the Local Repository','','Integer');

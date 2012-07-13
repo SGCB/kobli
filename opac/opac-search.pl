@@ -602,6 +602,30 @@ for (my $i=0;$i<@servers;$i++) {
                     });
                 }
             }
+        }
+        # Covers from local repository
+        if (C4::Context->preference("LocalRepositoryCoverImages")) {
+            my $dirFLR = C4::Context->preference("dirFileLocalRepository");
+            my $urlFLR = C4::Context->preference("dirUrlLocalRepository");
+            if ($dirFLR && $urlFLR && -d $dirFLR) {
+                $dirFLR .= '/' unless ($dirFLR =~ /\/$/);
+                $dirFLR .= 'covers/';
+                $urlFLR .= '/' unless ($urlFLR =~ /\/$/);
+                $urlFLR .= 'covers/';
+                foreach (@newresults) {
+                    if (-f $dirFLR . $_->{'biblionumber'} . '.jpg') {
+                        $_->{coverLR} = $urlFLR . $_->{'biblionumber'} . '.jpg';
+                        $_->{coverThumbLR} = $urlFLR . 'Thumb_' . $_->{'biblionumber'} . '.jpg' if (-f $dirFLR . 'Thumb_' . $_->{'biblionumber'} . '.jpg');
+                    } elsif (-f $dirFLR . $_->{'biblionumber'} . '.png') {
+                        $_->{coverLR} = $urlFLR . $_->{'biblionumber'} . '.png';
+                        $_->{coverThumbLR} = $urlFLR . 'Thumb_' . $_->{'biblionumber'} . '.png' if (-f $dirFLR . 'Thumb_' . $_->{'biblionumber'} . '.png');
+                    } elsif (-f $dirFLR . $_->{'biblionumber'} . '.gif') {
+                        $_->{coverLR} = $urlFLR . $_->{'biblionumber'} . '.gif';
+                        $_->{coverThumbLR} = $urlFLR . 'Thumb_' . $_->{'biblionumber'} . '.gif' if (-f $dirFLR . 'Thumb_' . $_->{'biblionumber'} . '.gif');
+                    }
+                }
+            }
+        }
 
             if ( C4::Context->preference('OpacStarRatings') eq 'all' ) {
                 my $rating = GetRating( $res->{'biblionumber'}, $borrowernumber );
