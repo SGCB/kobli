@@ -180,7 +180,9 @@ $(document).ready(function(){
  <tr><td>Número de registros actualizados</td><td>[% num_updated %]</td></tr>
  <tr><td>Número de registros ignorados</td><td>[% num_ignored %]</td></tr>
  <tr><td>Número de ítems agregados</td><td>[% num_items_added %]</td></tr>
- <tr><td>Número de ítems ignorados debido a duplicaciones del código de barras</td><td>[% num_items_errored %]</td></tr>
+ <tr><td>Número de ítems ignorados debido a duplicaciones del código de barras</td><td>[% num_items_errored_barcode %]</td></tr>
+ <tr><td>Número de ítems ignorados debido a una biblioteca propietaria inválida</td><td>[% num_items_errored_homebranch %]</td></tr>
+ <tr><td>Número de ítems ignorados debido a una biblioteca posesora inválida</td><td>[% num_items_errored_holdingbranch %]</td></tr>
  </table>
  [% END %]
  [% IF ( did_revert ) %]

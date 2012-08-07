@@ -26,6 +26,8 @@ use C4::Biblio;
 use C4::Items;
 use C4::Charset;
 use C4::AuthoritiesMarc;
+use C4::Holdings_to_Koha; #Holdings
+use C4::Holdings_to_Serial; #Serials
 
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
 
@@ -386,6 +388,13 @@ sub  BatchStageMarcRecords {
             # Normalize the record so it doesn't have separated diacritics
             SetUTF8Flag($marc_record);
 
+            if(C4::Context->preference("UseImportMarcHoldings")){
+                C4::Holdings_to_Koha->map($marc_record); #MAPEO DE HOLDINGS
+                if($marc_record->field("853")){
+                   my $dbh = C4::Context->dbh;
+                   $marc_record = C4::Holdings_to_Serial->map($dbh, $marc_record, $marc_records, $encoding); #MAPEO DE SERIALS
+                }
+            }
             $num_valid++;
             if ($record_type eq 'biblio') {
                 $import_record_id = AddBiblioToBatch($batch_id, $rec_num, $marc_record, $encoding, int(rand(99999)), 0);
@@ -514,9 +523,9 @@ sub BatchFindDuplicates {
 
 =head2 BatchCommitRecords
 
-  my ($num_added, $num_updated, $num_items_added, $num_items_errored, $num_ignored) =
-        BatchCommitRecords($batch_id, $framework,
-        $progress_interval, $progress_callback);
+  my ($num_added, $num_updated, $num_items_added, $num_items_errored_barcode, 
+      $num_ignored) = BatchCommitBibRecords($batch_id, $framework,
+                      $progress_interval, $progress_callback);
 
 =cut
 
@@ -539,7 +548,9 @@ sub BatchCommitRecords {
     my $num_added = 0;
     my $num_updated = 0;
     my $num_items_added = 0;
-    my $num_items_errored = 0;
+    my $num_items_errored_barcode = 0;
+	my $num_items_errored_homebranch = 0;
+	my $num_items_errored_holdingbranch = 0;
     my $num_ignored = 0;
     # commit (i.e., save, all records in the batch)
     SetImportBatchStatus('importing');
@@ -594,6 +605,7 @@ sub BatchCommitRecords {
         my $query;
         if ($record_result eq 'create_new') {
             $num_added++;
+<<<<<<< HEAD:C4/ImportBatch.pm
             if ($record_type eq 'biblio') {
                 my $biblioitemnumber;
                 ($recordid, $biblioitemnumber) = AddBiblio($marc_record, $framework);
@@ -606,6 +618,18 @@ sub BatchCommitRecords {
             } else {
                 $recordid = AddAuthority($marc_record, undef, GuessAuthTypeCode($marc_record));
                 $query = "UPDATE import_auths SET matched_authid = ? WHERE import_record_id = ?";
+=======
+            my ($biblionumber, $biblioitemnumber) = AddBiblio($marc_record, $framework);
+            my $sth = $dbh->prepare_cached("UPDATE import_biblios SET matched_biblionumber = ? WHERE import_record_id = ?");
+            $sth->execute($biblionumber, $rowref->{'import_record_id'});
+            $sth->finish();
+            if ($item_result eq 'create_new') {
+                my ($bib_items_added, $bib_items_errored_barcode, $bib_items_errored_homebranch, $bib_items_errored_holdingbranch) = BatchCommitItems($rowref->{'import_record_id'}, $biblionumber);
+                $num_items_added += $bib_items_added;
+                $num_items_errored_barcode += $bib_items_errored_barcode;
+				$num_items_errored_homebranch += $bib_items_errored_homebranch;
+				$num_items_errored_holdingbranch += $bib_items_errored_holdingbranch;
+>>>>>>> Herramienta para importar Holdings como items a Kobli y para exportar items como holdings.:C4/ImportBatch.pm
             }
             my $sth = $dbh->prepare_cached($query);
             $sth->execute($recordid, $rowref->{'import_record_id'});
@@ -648,15 +672,36 @@ sub BatchCommitRecords {
             my $sth2 = $dbh->prepare_cached($query);
             $sth2->execute($recordid, $rowref->{'import_record_id'});
             $sth2->finish();
+<<<<<<< HEAD:C4/ImportBatch.pm
+=======
+            if ($item_result eq 'create_new') {
+                my ($bib_items_added, $bib_items_errored_barcode, $bib_items_errored_homebranch, $bib_items_errored_holdingbranch) = BatchCommitItems($rowref->{'import_record_id'}, $biblionumber);
+                $num_items_added += $bib_items_added;
+                $num_items_errored_barcode += $bib_items_errored_barcode;
+				$num_items_errored_homebranch += $bib_items_errored_homebranch;
+				$num_items_errored_holdingbranch += $bib_items_errored_holdingbranch;
+            }
+>>>>>>> Herramienta para importar Holdings como items a Kobli y para exportar items como holdings.:C4/ImportBatch.pm
             SetImportRecordOverlayStatus($rowref->{'import_record_id'}, 'match_applied');
             SetImportRecordStatus($rowref->{'import_record_id'}, 'imported');
         } elsif ($record_result eq 'ignore') {
             $num_ignored++;
+<<<<<<< HEAD:C4/ImportBatch.pm
             $recordid = $record_match;
+=======
+<<<<<<< HEAD:C4/ImportBatch.pm
+>>>>>>> Herramienta para importar Holdings como items a Kobli y para exportar items como holdings.:C4/ImportBatch.pm
             if ($record_type eq 'biblio' and defined $recordid and $item_result eq 'create_new') {
                 my ($bib_items_added, $bib_items_errored) = BatchCommitItems($rowref->{'import_record_id'}, $recordid);
+=======
+            my $biblionumber = $bib_match;
+            if (defined $biblionumber and $item_result eq 'create_new') {
+                my ($bib_items_added, $bib_items_errored_barcode, $bib_items_errored_homebranch, $bib_items_errored_holdingbranch) = BatchCommitItems($rowref->{'import_record_id'}, $biblionumber);
+>>>>>>> Herramienta para importar Holdings como items a Kobli y para exportar items como holdings.:C4/ImportBatch.pm
                 $num_items_added += $bib_items_added;
-                $num_items_errored += $bib_items_errored;
+                $num_items_errored_barcode += $bib_items_errored_barcode;
+				$num_items_errored_homebranch += $bib_items_errored_homebranch;
+				$num_items_errored_holdingbranch += $bib_items_errored_holdingbranch;
                 # still need to record the matched biblionumber so that the
                 # items can be reverted
                 my $sth2 = $dbh->prepare_cached("UPDATE import_biblios SET matched_biblionumber = ? WHERE import_record_id = ?");
@@ -668,12 +713,12 @@ sub BatchCommitRecords {
     }
     $sth->finish();
     SetImportBatchStatus($batch_id, 'imported');
-    return ($num_added, $num_updated, $num_items_added, $num_items_errored, $num_ignored);
+    return ($num_added, $num_updated, $num_items_added, $num_items_errored_barcode, $num_items_errored_homebranch, $num_items_errored_holdingbranch, $num_ignored);
 }
 
 =head2 BatchCommitItems
 
-  ($num_items_added, $num_items_errored) = 
+  ($num_items_added, $num_items_errored_barcode) = 
          BatchCommitItems($import_record_id, $biblionumber);
 
 =cut
@@ -684,7 +729,9 @@ sub BatchCommitItems {
     my $dbh = C4::Context->dbh;
 
     my $num_items_added = 0;
-    my $num_items_errored = 0;
+    my $num_items_errored_barcode = 0;
+	my $num_items_errored_homebranch = 0;
+	my $num_items_errored_holdingbranch = 0;
     my $sth = $dbh->prepare("SELECT import_items_id, import_items.marcxml, encoding
                              FROM import_items
                              JOIN import_records USING (import_record_id)
@@ -696,15 +743,30 @@ sub BatchCommitItems {
         my $item_marc = MARC::Record->new_from_xml(StripNonXmlChars($row->{'marcxml'}), 'UTF-8', $row->{'encoding'});
         # FIXME - duplicate barcode check needs to become part of AddItemFromMarc()
         my $item = TransformMarcToKoha($dbh, $item_marc);
-        my $duplicate_barcode = exists($item->{'barcode'}) && GetItemnumberFromBarcode($item->{'barcode'});
-        if ($duplicate_barcode) {
+        # my $duplicate_barcode = exists($item->{'barcode'}) && GetItemnumberFromBarcode($item->{'barcode'});
+		my %item_errors = CheckItemPreSave($item);
+		if ($item_errors{'duplicate_barcode'}) {
             my $updsth = $dbh->prepare("UPDATE import_items SET status = ?, import_error = ? WHERE import_items_id = ?");
             $updsth->bind_param(1, 'error');
             $updsth->bind_param(2, 'duplicate item barcode');
             $updsth->bind_param(3, $row->{'import_items_id'});
             $updsth->execute();
-            $num_items_errored++;
-        } else {
+            $num_items_errored_barcode++;
+  		}elsif ($item_errors{'invalid_homebranch'}) {
+            my $updsth = $dbh->prepare("UPDATE import_items SET status = ?, import_error = ? WHERE import_items_id = ?");
+            $updsth->bind_param(1, 'error');
+            $updsth->bind_param(2, 'invalid_homebranch');
+            $updsth->bind_param(3, $row->{'import_items_id'});
+            $updsth->execute();
+            $num_items_errored_homebranch++;
+  		}elsif ($item_errors{'invalid_holdingbranch'}) {
+            my $updsth = $dbh->prepare("UPDATE import_items SET status = ?, import_error = ? WHERE import_items_id = ?");
+            $updsth->bind_param(1, 'error');
+            $updsth->bind_param(2, 'invalid_holdingbranch');
+            $updsth->bind_param(3, $row->{'import_items_id'});
+            $updsth->execute();
+            $num_items_errored_holdingbranch++;
+  		}else {
             my ($item_biblionumber, $biblioitemnumber, $itemnumber) = AddItemFromMarc($item_marc, $biblionumber);
             my $updsth = $dbh->prepare("UPDATE import_items SET status = ?, itemnumber = ? WHERE import_items_id = ?");
             $updsth->bind_param(1, 'imported');
@@ -716,7 +778,7 @@ sub BatchCommitItems {
         }
     }
     $sth->finish();
-    return ($num_items_added, $num_items_errored);
+    return ($num_items_added, $num_items_errored_barcode, $num_items_errored_homebranch, $num_items_errored_holdingbranch);
 }
 
 =head2 BatchRevertRecords

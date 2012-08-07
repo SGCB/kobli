@@ -420,3 +420,5 @@ INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('dirUrlLocalRepository','','Enter the url to show the files for the local repository','','free');
 INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('LocalRepositoryCoverImages', '0', 'Display cover images on OPAC from Local Repository','','YesNo');
 INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('MaxSizeFileLocalRepository', '10', 'Max. size in MB to upload file in the Local Repository','','Integer');
+INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('UseExportMarcHoldings', '0', 'Marc Holdings into tools to export records','','YesNo');
+INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('UseImportMarcHoldings', '0', 'Marc Holdings into tools to import records','','YesNo');
