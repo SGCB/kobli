@@ -96,6 +96,9 @@
 	<li><a href="/cgi-bin/koha/tools/scheduler.pl">Task scheduler</a></li>
     [% END %]
     [% IF ( CAN_user_tools_edit_quotes ) %]
-       <li><a href="/cgi-bin/koha/tools/quotes.pl">Quote editor</a></li>
+    <li><a href="/cgi-bin/koha/tools/quotes.pl">Quote editor</a></li>
+    [% END %]
+    [% IF ( CAN_user_tools_upload_prefs_images ) %]
+    <li><a href="/cgi-bin/koha/tools/prefs-images-upload.pl">Upload OPAC images</a></li>
     [% END %]
 </ul></div></div>

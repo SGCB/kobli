@@ -96,6 +96,11 @@
     <dt><a href="/cgi-bin/koha/tools/quotes.pl">Edit quotes for QOTD feature</a></dt>
     <dd>Quote editor for Quote-of-the-day feature in OPAC</dd>
     [% END %]
+    
+    [% IF ( CAN_user_tools_upload_prefs_images ) %]
+    <dt><a href="/cgi-bin/koha/tools/prefs-images-upload.pl">Upload OPAC images</a></dt>
+    <dd>Upload optional images to OPAC</dd>
+    [% END %]
 
     [% IF ( UseKohaPlugins && CAN_user_plugins_tool ) %]
     <dt><a href="/cgi-bin/koha/plugins/plugins-home.pl?method=tool">Tool Plugins</a></dt>

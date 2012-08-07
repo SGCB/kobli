@@ -43,6 +43,7 @@ INSERT INTO permissions (module_bit, code, description) VALUES
 (13,'stage_marc_import','Organizar los registros MARC en el repositorio'),
 (13,'view_system_logs','Navegar por los logs del sistema'),
 (13,'upload_local_cover_images', 'Subir imágenes de portada locales'),
+(13, 'upload_prefs_images', 'Subir imágenes opcionales de las preferencias del sistema'),
 (15,'check_expiration','Comprobar la expiraci&oacute;n de una publicaci&oacute;n peri&oacute;dica'),
 (15,'claim_serials','Reclamar las publicaciones peri&oacute;dicas perdidas'),
 (15,'create_subscription','Crear una nueva suscripci&oacute;n'),
