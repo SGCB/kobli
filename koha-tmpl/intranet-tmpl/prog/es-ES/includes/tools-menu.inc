@@ -91,4 +91,7 @@
  [% IF ( CAN_user_tools_schedule_tasks ) %]
  <li><a href="/cgi-bin/koha/tools/scheduler.pl">Planificador de tareas</a></li>
  [% END %]
+ [% IF ( CAN_user_tools_upload_prefs_images ) %]
+ <li><a href="/cgi-bin/koha/tools/prefs-images-upload.pl">Subir Imágenes del OPAC</a></li>
+ [% END %]
 </ul></div></div>

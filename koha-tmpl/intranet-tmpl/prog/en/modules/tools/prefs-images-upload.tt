@@ -1,0 +1,152 @@
+    [% INCLUDE 'doc-head-open.inc' %]
+    <title>Koha &rsaquo; Upload preferences images</title>
+    [% INCLUDE 'doc-head-close.inc' %]
+	 <script type="text/javascript">
+        //<![CDATA[
+            function DeleteConfirm(fn) {
+                    var msg = "Are you sure you want to delete image?";
+                    var answer = confirm(msg);
+                    if (answer) {
+                        window.location = "/cgi-bin/koha/tools/prefs-images-upload.pl?op=delete&pref="+fn;
+                    }
+                    else {
+                        return; // abort delete
+                    }
+            };
+            function opacsmallimage() {
+              return 'opacsmallimage';
+            };
+            function opacsmallimageright() {
+              return 'opacsmallimageright';
+            };
+            function OpacFavicon() {
+              return 'OpacFavicon';
+            };
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(function() {
+            $("#upload_cancel").empty();
+            $("#upload").empty();
+            $("#delete").empty();
+            buildButtons();
+         });
+
+        function buildButtons() {
+            new YAHOO.widget.Button({
+                type: "link",
+                label: _("Cancel"),
+                id: "cancelul",
+                href: "/cgi-bin/koha/tools/tools-home.pl",
+                container: "upload_cancel"
+            });
+			
+            new YAHOO.widget.Button({
+                type: "submit",
+                label: _("Upload"),
+                id: "uploadsb",
+                value: "upload",
+                container: "upload"
+            });
+			
+            new YAHOO.widget.Button({
+                type: "link",
+                onclick: {fn: DeleteConfirm(fn: opacsmallimage)},
+                onclick: {fn: DeleteConfirm(fn: opacsmallimageright)},
+                onclick: {fn: DeleteConfirm(fn: OpacFavicon)},
+                label: _("Delete"),
+                id: "deletesb",
+                value: "delete",
+                container: "delete"
+            });
+        }
+    </script>
+</head>
+<body>
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'cat-search.inc' %]
+<div id="breadcrumbs">
+    <a href="/cgi-bin/koha/mainpage.pl">Home</a> &rsaquo;
+    <a href="/cgi-bin/koha/tools/tools-home.pl">Tools</a> &rsaquo;
+    Upload OPAC images
+</div>
+<div id="doc3" class="yui-t2">
+  <div id="bd">
+      <div id="yui-main">
+        <div class="yui-b">
+          [% INCLUDE 'error-upload.inc' %]
+          <div class="yui-g">
+            <div class="yui-u first">
+              <h1>Upload Images</h1>
+              [% IF ( IMPORT_SUCCESSFUL ) %]
+                <div id="dialog" class="dialog message">
+                  <li><h3>Image successfully uploaded.</h3></li>
+                  <li>File: [% SOURCE_FILE %]</li>
+                </div>
+              [% END %]
+              <form name="upload_images" method="post" action="/cgi-bin/koha/tools/prefs-images-upload.pl" enctype="multipart/form-data">
+                <fieldset class="brief">
+                  <div class="hint">
+                    <b>NOTE:</b> Only image formats are supported.
+                  </div>
+                  <div class="uploadfile"><li>
+                    <h1>opacsmallimage</h1>
+                    [% IF ( opacsmallimage ) %]
+                      [% IF ( SMALLIMAGE ) %]<img src="[% SMALLIMAGE %]" />[% END %]
+                      <fieldset class="action">
+                        <span id="delete"><input id="deletesu" type="button" id="delete" onclick="DeleteConfirm(opacsmallimage())" value="Delete Image(s)" /></span>									
+                      </fieldset>
+                    [% END %]
+                    <label for="uploadfile_1">Select the file to upload in opacsmallimage: </label>
+                    <input type="file" id="uploadfile_1" name="uploadfile_1" />
+                    <input type="hidden" id="image" name="filetype" value="image" />
+                  </li></div>
+                  <div class="uploadfile"><li>
+                    <h1>opacsmallimageright</h1>
+                    [% IF ( opacsmallimageright ) %]
+                      [% IF ( IMAGERIGHT ) %]<img src="[% IMAGERIGHT %]" />[% END %]
+                        <fieldset class="action">
+                        <span id="delete"><input id="deletesu" type="button" id="delete" onclick="DeleteConfirm(opacsmallimageright())" value="Delete Image(s)" /></span>									
+                      </fieldset>
+                    [% END %]
+                    <label for="uploadfile_2">Select the file to upload in opacsmallimageright: </label>
+                    <input type="file" id="uploadfile_2" name="uploadfile_2" />
+                    <input type="hidden" id="image" name="filetype" value="image" />
+                  </li></div>
+                  <div class="uploadfile"><li>
+                    <h1 for="uploadfile_3">OpacFavicon</h1>
+                    [% IF ( OpacFavicon ) %]
+                      [% IF ( FAVICON ) %]<img src="[% FAVICON %]" />[% END %]
+                      <fieldset class="action">
+                        <span id="delete"><input id="deletesu" type="button" id="delete" onclick="DeleteConfirm(OpacFavicon())" value="Delete Image(s)" /></span>									
+                      </fieldset>
+                    [% ELSE %]
+                      <img src="/intranet-tmpl/prog/en/includes/favicon.ico" />
+                    [% END %]
+                    <label for="uploadfile_3">Select the file to upload in OpacFavicon: </label>
+                    <input type="file" id="uploadfile_3" name="uploadfile_3" />
+                    <input type="hidden" id="image" name="filetype" value="image" />
+                  </li></div>
+                  <fieldset class="action">
+                    <div class="upload_action">
+                      <input type="hidden" name="op" value="upload" />
+                      <span id="upload"><input id="uploadsb" type="submit" value="Upload" class="submit" /></span>
+                      <span id="upload_cancel"><a href="/cgi-bin/koha/tools/tools-home.pl"><input id="cancelul" type="submit" value="Cancel" class="submit" /></a></span>
+                    </div>
+                  </fieldset>
+                  [% IF ( DELETE_SUCCESSFULL ) %]
+                    <div id="dialog" class="dialog message">
+                      <li><h3>Image(s) successfully deleted.</h3></li>
+                    </div>
+                  [% END %]
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="yui-b noprint">
+        [% INCLUDE 'tools-menu.inc' %]
+      </div>
+    </div>
+    [% INCLUDE 'intranet-bottom.inc' %]

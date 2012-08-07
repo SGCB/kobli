@@ -113,6 +113,10 @@ sub output {
     $vars->{opaclayoutstylesheet} =
         C4::Context->preference('opaclayoutstylesheet');
 
+    $vars->{opacsmallimageright} = C4::Context->preference('opacsmallimageright');
+    $vars->{OpacFavicon} = C4::Context->preference('OpacFavicon');
+    $vars->{opacstylesheet} = C4::Context->preference('opacstylesheet');
+    
     # add variables set via param to $vars for processing
     # and clean any utf8 mess
     for my $k ( keys %{ $self->{VARS} } ) {

@@ -138,17 +138,23 @@ OPAC:
         pref: AuthorisedValueImages
       - "im\xC3\xA1genes para <a href=\"/cgi-bin/koha/admin/authorised_values.pl\">valores autorizados</a> (tales como perdido y ubicaciones) en resultados de b\xC3\xBAsqueda y detalles de \xC3\xADtem en el OPAC."
     - 
-      - Usar la imagen en
+      - Usar la imagen
       - 
         class: url
         pref: opacsmallimage
-      - in the OPAC header, instead of the Koha logo. If this image is a different size than the Koha logo, you will need to customize the CSS. (This should be a complete URL, starting with <code>http://</code>.)
+      - "en la cabecera del OPAC, en vez del logo de Koha. (Debe ser una URL completa, comenzando con <code>http://</code>.) Si deseas subir tu propia imagen ve a -> Herramientas->Subir Im\xC3\xA1genes del OPAC"
     - 
-      - Usar la imagen en
+      - Usar la imagen
+      - 
+        class: url
+        pref: opacsmallimageright
+      - "en la zona derecha de la cabecera del OPAC. (Debe ser una URL completa, comenzando con <code>http://</code>.) Si deseas subir tu propia imagen ve a -> Herramientas->Subir Im\xC3\xA1genes del OPAC"
+    - 
+      - Usar la imagen
       - 
         class: url
         pref: OpacFavicon
-      - for the OPAC's favicon. (This should be a complete URL, starting with <code>http://</code>.)
+      - "para el favicon del OPAC. (Debe ser una URL completa, comenzando con <code>http://</code>.) Si deseas subir tu propia imagen ve a -> Herramientas->Subir Im\xC3\xA1genes del OPAC"
     - 
       - "Incluya el c\xC3\xB3digo JavaScript siguiente en todas las p\xC3\xA1ginas en el OPAC:"
       - 
@@ -186,7 +192,7 @@ OPAC:
         pref: OpacMainUserBlock
         type: textarea
     - 
-      - "Show the following HTML on the left hand column of the main page and patron account on the OPAC (generally navigation links):"
+      - "Mostrar el c\xC3\xB3digo HTML siguiente en la columna de la izquierda de todas las p\xC3\xA1ginas del OPAC (en general, enlaces de navegaci\xC3\xB3n):"
       - 
         class: code
         pref: OpacNav

@@ -146,12 +146,17 @@ OPAC:
             - Use the image at
             - pref: opacsmallimage
               class: url
-            - in the OPAC header, instead of the Koha logo. If this image is a different size than the Koha logo, you will need to customize the CSS. (This should be a complete URL, starting with <code>http://</code>.)
+            - in the OPAC header, instead of the Koha logo. (This should be a complete URL, starting with <code>http://</code>.) If you wish upload your image go to -> Tools->Upload OPAC images
+        -
+            - Use the image at
+            - pref: opacsmallimageright
+              class: url
+            - "in the right OPAC header area. (This should be a complete URL, starting with <code>http://</code>.) If you wish upload your image go to -> Tools->Upload OPAC images"
         -
             - Use the image at
             - pref: OpacFavicon
               class: url
-            - for the OPAC's favicon. (This should be a complete URL, starting with <code>http://</code>.)
+            - for the OPAC's favicon. (This should be a complete URL, starting with <code>http://</code>.) If you wish upload your image go to -> Tools->Upload OPAC images
         -
             - "Include the following JavaScript on all pages in the OPAC:"
             - pref: opacuserjs

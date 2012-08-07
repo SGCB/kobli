@@ -633,6 +633,11 @@ our $PERL_DEPS = {
         'usage'    => 'OpacSelfRegistration',
         'required' => '1',
         'min_ver'  => '0.22',
+      },
+    'Image::Magick' => {
+        'usage'    => 'Core',
+        'required' => '1',
+        'min_ver'  => '6.3',
     },
     'File::Temp' => {
         'usage'    => 'Plugins',

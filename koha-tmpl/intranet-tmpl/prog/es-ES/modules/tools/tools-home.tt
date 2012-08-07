@@ -87,6 +87,11 @@
  <dd>Tareas programadas para ser ejecutadas</dd>
  [% END %]
  
+ [% IF ( CAN_user_tools_upload_prefs_images ) %]
+ <dt><a href="/cgi-bin/koha/tools/prefs-images-upload.pl">Subir ImÃ¡genes del OPAC</a></dt>
+ <dd>Subir imágenes opcionales al OPAC</dd>
+ [% END %]
+ 
 
 </dl>
 </div>
