@@ -95,16 +95,25 @@ OPAC:
     - 
       - 
         choices: 
-          "": No mostrar
-          1: Mostrar
-        pref: OPACDisplayRequestPriority
-      - a socios el nivel de prioridad de sus reservas en el OPAC.
+          "": Do not show
+          1: Show
+        pref: OPACShowUnusedAuthorities
+      - unused authorities in the OPAC authority browser.
+    - 
+      - 
+        choices: 
+          holds: Show holds
+          holds_priority: Show holds and their priority level
+          none: Don't show any hold details
+          priority: Show priority level
+        pref: OPACShowHoldQueueDetails
+      - to patrons in the OPAC.
     - 
       - 
         choices: 
           "": No mostrar
           1: Mostrar
-        default: '0'
+        default: 0
         pref: OPACShowCheckoutName
       - "el nombre del socio que tiene un \xC3\xADtem prestado en las p\xC3\xA1ginas de detalles del \xC3\xADtem en el OPAC."
     - 
@@ -112,7 +121,7 @@ OPAC:
         choices: 
           "": Don't show
           1: Show
-        default: '0'
+        default: 0
         pref: OpacKohaUrl
       - "'Powered by Koha' text on OPAC footer."
     - 
@@ -120,9 +129,17 @@ OPAC:
         choices: 
           "": Don't show
           1: Show
-        default: '0'
+        default: 0
         pref: OpacShowRecentComments
       - a link to recent comments in the OPAC masthead.
+    - 
+      - 
+        choices: 
+          "": Don't show
+          1: Show
+        default: 0
+        pref: OPACShowBarcode
+      - the item's barcode on the holdings tab.
     - 
       - 
         choices: 
@@ -138,23 +155,23 @@ OPAC:
         pref: AuthorisedValueImages
       - "im\xC3\xA1genes para <a href=\"/cgi-bin/koha/admin/authorised_values.pl\">valores autorizados</a> (tales como perdido y ubicaciones) en resultados de b\xC3\xBAsqueda y detalles de \xC3\xADtem en el OPAC."
     - 
-      - Usar la imagen
+      - Usar la imagen en
       - 
         class: url
         pref: opacsmallimage
-      - "en la cabecera del OPAC, en vez del logo de Koha. (Debe ser una URL completa, comenzando con <code>http://</code>.) Si deseas subir tu propia imagen ve a -> Herramientas->Subir Im\xC3\xA1genes del OPAC"
+      - in the OPAC header, instead of the Koha logo. (This should be a complete URL, starting with <code>http://</code>.) If you wish upload your image go to -> Tools->Upload OPAC images
     - 
-      - Usar la imagen
+      - Usar la imagen en
       - 
         class: url
         pref: opacsmallimageright
-      - "en la zona derecha de la cabecera del OPAC. (Debe ser una URL completa, comenzando con <code>http://</code>.) Si deseas subir tu propia imagen ve a -> Herramientas->Subir Im\xC3\xA1genes del OPAC"
+      - in the right OPAC header area. (This should be a complete URL, starting with <code>http://</code>.) If you wish upload your image go to -> Tools->Upload OPAC images
     - 
-      - Usar la imagen
+      - Usar la imagen en
       - 
         class: url
         pref: OpacFavicon
-      - "para el favicon del OPAC. (Debe ser una URL completa, comenzando con <code>http://</code>.) Si deseas subir tu propia imagen ve a -> Herramientas->Subir Im\xC3\xA1genes del OPAC"
+      - for the OPAC's favicon. (This should be a complete URL, starting with <code>http://</code>.) If you wish upload your image go to -> Tools->Upload OPAC images
     - 
       - "Incluya el c\xC3\xB3digo JavaScript siguiente en todas las p\xC3\xA1ginas en el OPAC:"
       - 
@@ -164,15 +181,19 @@ OPAC:
     - 
       - Incluya la hoja de estilo CSS adicional
       - 
-        class: file
+        choices: 
+          color1.css: color1
+          color2.css: color2
+          color3.css: color3
+        default: color1.css
         pref: opaccolorstylesheet
-      - to override specified settings from the default stylesheet (leave blank to disable). Enter a filename or a complete URL beginning with <code>http://</code> (if the file lives on a remote server). Please note that if you enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory.
+      - on all pages in the OPAC (leave blank to disable).
     - 
-      - Use the CSS stylesheet
+      - Utilizar la hoja de estilo CSS <!-- TMPL_VAR NAME="opacthemelang" -->/css/
       - 
         class: file
         pref: opaclayoutstylesheet
-      - on all pages in the OPAC, instead of the default (leave blank to disable). Please enter filename only. The file should be in the css subdirectory for each active theme and language within the Koha templates directory.
+      - "en todas las p\xC3\xA1ginas en el OPAC, en lugar del predeterminado (deje en blanco para desactivar)."
     - 
       - Utilice la hoja de estilo CSS remota
       - 
@@ -192,10 +213,16 @@ OPAC:
         pref: OpacMainUserBlock
         type: textarea
     - 
-      - "Mostrar el c\xC3\xB3digo HTML siguiente en la columna de la izquierda de todas las p\xC3\xA1ginas del OPAC (en general, enlaces de navegaci\xC3\xB3n):"
+      - "Show the following HTML on the left hand column of the main page and patron account on the OPAC (generally navigation links):"
       - 
         class: code
         pref: OpacNav
+        type: textarea
+    - 
+      - "Show the following HTML in the right hand column of the main page under the main login form:"
+      - 
+        class: code
+        pref: OpacNavRight
         type: textarea
     - 
       - "Show the following HTML on the left hand column of the main page and patron account on the OPAC, after OpacNav, and before patron account links if available:"
@@ -381,7 +408,7 @@ OPAC:
         choices: 
           "": Disable
           1: Enable
-        default: '0'
+        default: 0
         pref: SocialNetworks
       - social network links in opac detail pages
     - 
@@ -392,6 +419,14 @@ OPAC:
         default: 1
         pref: OpacBrowseResults
       - browsing and paging search results from the OPAC detail page.
+    - 
+      - 
+        choices: 
+          "": Disable
+          1: Enable
+        default: 0
+        pref: QuoteOfTheDay
+      - Quote of the Day display on OPAC home page
   "Navegador de estanter\xC3\xADa": 
     - 
       - 
@@ -421,7 +456,7 @@ OPAC:
         choices: 
           "": No utilizar
           1: Utilizar
-        default: '0'
+        default: 0
         pref: ShelfBrowserUsesCcode
       - "el c\xC3\xB3digo de colecci\xC3\xB3n del \xC3\xADtem cuando encuentre \xC3\xADtems para el navegador de estanter\xC3\xADa."
   "Pol\xC3\xADtica": 
@@ -430,7 +465,7 @@ OPAC:
         choices: 
           "": Permitir
           1: No permitir
-        default: '0'
+        default: 0
         pref: singleBranchMode
       - patrons to select their library on the OPAC.
     - 
@@ -483,7 +518,7 @@ OPAC:
         choices: 
           "": No permitir
           1: Permitir
-        default: '0'
+        default: 0
         pref: AllowPurchaseSuggestionBranchChoice
       - patrons to select library when making a purchase suggestion
     - 
@@ -505,7 +540,7 @@ OPAC:
         choices: 
           "": Don't allow
           1: Allow
-        default: '0'
+        default: 0
         pref: OpacAllowSharingPrivateLists
       - opac users to share private lists with other patrons. This feature is not active yet but will be released soon
   Privacidad: 
@@ -528,7 +563,7 @@ OPAC:
         choices: 
           "": No mantener
           1: Mantener
-        default: '0'
+        default: 0
         pref: EnableOpacSearchHistory
       - "historial de b\xC3\xBAsquedas del socio en el OPAC."
     - 
@@ -536,7 +571,7 @@ OPAC:
         choices: 
           "": No permitir
           1: Permitir
-        default: '0'
+        default: 0
         pref: OPACPrivacy
       - "a socios elegir su configuraci\xC3\xB3n de privacidad para su historial de lectura. Esto requiere opacreadinghistory y AnonymousPatron"
     - 

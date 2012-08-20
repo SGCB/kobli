@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Gestión del índice MACLES</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 
     $(document).ready(function() {
@@ -21,53 +20,38 @@
 
 <div id="macles" class="toptabs numbered">
  [% IF ( BIGLOOP ) %]<ul>
- [% FOREACH BIGLOO IN BIGLOOP %]
- <li><a href="#tab[% BIGLOO.number %]XX">[% BIGLOO.number %]</a></li>
- [% END %]
- </ul>[% END %]
+ [% FOREACH BIGLOO IN BIGLOOP %] <li><a href="#tab[% BIGLOO.number %]XX">[% BIGLOO.number %]</a></li>
+ [% END %] </ul>[% END %]
  <!-- RESET PAGINATION -->
  [% FOREACH BIGLOO IN BIGLOOP %]
  [% IF ( BIGLOO.number ) %]
  <div id="tab[% BIGLOO.number %]XX">
- [% ELSE %]
- <div id="tab[% BIGLOO.number %]XX">
- [% END %]
- <h2> [% BIGLOO.hdr_tab %]</h2>
+ [% ELSE %] <div id="tab[% BIGLOO.number %]XX">
+ [% END %] <h2> [% BIGLOO.hdr_tab %]</h2>
  <a href="#" class="button" onclick="add_macles('630');">Enviar</a>
  <!-- <input type="submit" class="button" value="Envoyer" /> -->
- <a class="button" href="" onclick="load_macles(630);">R&eacute;initialiser</a>
- <a class="button" href="javascript:uncheck_tab([% BIGLOO.number %])">d&eacute;selectionner onglet</a>
- <input type="reset" class="button" value="déselectionner tout" />
- [% IF ( BIGLOO.Table ) %]
- <table>
+ <a class="button" href="" onclick="load_macles(630);">Reinicializar</a>
+ <a class="button" href="javascript:uncheck_tab([% BIGLOO.number %])">deseleccionar todo</a>
+ <input value="deseleccionar todo" type="reset" class="button" />
+ [% IF ( BIGLOO.Table ) %] <table>
  <tr>
  <th>Espacio\\Tiempo</th>
- [% FOREACH col_hd IN BIGLOO.col_hdr %]
- <th scope="col" id="[% col_hd.colvalue %]"> [% col_hd.collib |html %] <br /><input type="checkbox" name="[% col_hd.colvalue %]" onclick="check_col('[% col_hd.colvalue %]')" />
+ [% FOREACH col_hd IN BIGLOO.col_hdr %] <th scope="col" id="[% col_hd.colvalue %]"> [% col_hd.collib |html %] <br /><input type="checkbox" name="[% col_hd.colvalue %]" onclick="check_col('[% col_hd.colvalue %]')" />
  </th>
- [% END %]
- </tr>
- [% FOREACH line IN BIGLOO.lines %]
- <tr>
+ [% END %] </tr>
+ [% FOREACH line IN BIGLOO.lines %] <tr>
  <th scope="row" id="[% line.rowvalue %]"> [% line.rowlib |html %] <br /><input type="checkbox" name="[% line.rowvalue %]" onclick="check_row('[% line.rowvalue %]')" />
  </th>
- [% FOREACH cell IN line.cells %]
- <td headers="[% cell.rowvalue %] [% cell.colvalue %]">
+ [% FOREACH cell IN line.cells %] <td headers="[% cell.rowvalue %] [% cell.colvalue %]">
  <span title="[% FOREACH lib IN cell.libs %][% lib.lib |html %] - [% END %]">
  [% cell.celvalue %] <br /><input type="checkbox" name="[% cell.celvalue %]" value="[% cell.celvalue %]" />
  </span>
  </td>
- [% END %]
- </tr>
- [% END %]
- </table>
- [% END %]
- [% IF ( BIGLOO.Lists ) %]
- <h2>selección por medio de una lista de descriptores</h2>
- [% FOREACH List IN BIGLOO.Lists %]
- <h3>[% List.lib %]</h3>
- [% FOREACH liblis IN List.liblist %]
- <a href="#[% liblis.listvalue %]" onclick="check_multiple([% liblis.listvalue %])"> [% liblis.listlib |html %]</a><br />
+ [% END %] </tr>
+ [% END %] </table>
+ [% END %] [% IF ( BIGLOO.Lists ) %] <h2>selección por medio de una lista de descriptores</h2>
+ [% FOREACH List IN BIGLOO.Lists %] <h3>[% List.lib %]</h3>
+ [% FOREACH liblis IN List.liblist %] <a href="#[% liblis.listvalue %]" onclick="check_multiple([% liblis.listvalue %])"> [% liblis.listlib |html %]</a><br />
  [% END %]
  [% END %]
  [% END %]
@@ -75,18 +59,10 @@
  <!-- Listes simples :Onglets 0 et 9-->
  [% FOREACH line IN BIGLOO.lines %]
  <h3>[% line.rowvalue |html %]&nbsp;-&nbsp;[% line.rowlib |html %]&nbsp;<input type="checkbox" name="[% line.rowvalue %]" onclick="check_row('[% line.rowvalue %]')" /></h3>
- [% FOREACH cell IN line.cells %]
- <p>[% cell.celvalue |html %]&nbsp;-&nbsp;[% FOREACH lib IN cell.libs %]
- [% lib.lib |html %] &nbsp;
- [% END %]
- <input type="checkbox" name="[% cell.celvalue %]" value="[% cell.celvalue %]" />
+ [% FOREACH cell IN line.cells %] <p>[% cell.celvalue |html %]&nbsp;-&nbsp;[% FOREACH lib IN cell.libs %] [% lib.lib |html %] &nbsp; [% END %] <input type="checkbox" name="[% cell.celvalue %]" value="[% cell.celvalue %]" />
  </p>
- [% END %]
- [% END %]
- [% END %]
- </div>
- [% END %]
-</div>
+ [% END %] [% END %] [% END %] </div>
+ [% END %] </div>
 </form>
 <script type="text/javascript">
 //<![CDATA[
@@ -157,7 +133,7 @@ function add_macles(myvalue)
     //for (i=0;i< (mycountMACLESgen - mycountMACLESinit);i++){
     //  PluginAddField(myvalue);
     //}
-      alert(_("por favor, primero debes crear el número necesario de campos"));
+      alert(_("por favor, primero debe crear el número necesario de campos "));
     } else {
     // Pour chaque valeur cochee, ajouter la valeur dans un noeud MACLES.
       for (i=0;i<tab.length;i++){

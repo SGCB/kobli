@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Reports &rsaquo; Catalog by item types</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes &rsaquo; Catálogo por tipo de ítems</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function() {
@@ -11,10 +9,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body id="rep_itemtypes" class="rep">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a>[% IF ( do_it ) %] &rsaquo; <a href="/cgi-bin/koha/reports/manager.pl?report_name=itemtypes">Catálogo por tipo de ítem</a> &rsaquo; Results[% ELSE %] &rsaquo; Catalog by item type[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a>[% IF ( do_it ) %] &rsaquo; <a href="/cgi-bin/koha/reports/manager.pl?report_name=itemtypes">Catálogo por tipo de ítem</a> &rsaquo; Resultados[% ELSE %] &rsaquo; Catálogo por tipo de ítem[% END %]</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -22,9 +17,7 @@ $(document).ready(function() {
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( do_it ) %]
-[% FOREACH mainloo IN mainloop %]
- <h1>Reports on item types [% IF ( mainloo.branchname ) %] held at [% mainloo.branchname %][% END %]</h1>
+[% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Informe sobre tipo de ítems [% IF ( mainloo.branchname ) %] en sede [% mainloo.branchname %][% END %]</h1>
  <table id="itemtypest">
  <thead>
  <tr>
@@ -39,30 +32,22 @@ $(document).ready(function() {
  </tr>
  </tfoot>
  <tbody>
- [% FOREACH loopitemtyp IN mainloo.loopitemtype %]
- <tr>
+ [% FOREACH loopitemtyp IN mainloo.loopitemtype %] <tr>
  <td>[% loopitemtyp.itemtype %]</td>
  <td>[% loopitemtyp.count %]</td>
  </tr>
- [% END %]
- </tbody>
+ [% END %] </tbody>
  </table>
-[% END %]
-[% ELSE %]
- <h3>View a count of items held at your library grouped by item type</h3>
+[% END %] [% ELSE %] <h3>Vea un recuento de los ítems que se encuentran en su biblioteca agrupados por tipo de ítem</h3>
  <form method="post" action="/cgi-bin/koha/reports/manager.pl?report_name=itemtypes">
- <fieldset class="rows"><ol><li><label for="value">Select a library</label> [% CGIbranch %]
- <span class="tip">Select none to see all libraries</span></li></ol></fieldset>
+ <fieldset class="rows"><ol><li><label for="value">Seleccione una biblioteca</label> [% CGIbranch %] <span class="tip">Seleccione nada para ver todas las sedes</span></li></ol></fieldset>
  <fieldset class="action"><input value="Enviar" type="submit" />
  <input type="hidden" name="report_name" value="[% report_name %]" />
  <input type="hidden" name="do_it" value="1" /></fieldset>
  </form>
-[% END %]
-
-</div>
+[% END %] </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'reports-menu.inc' %]
+[% INCLUDE 'reports-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

@@ -1,8 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Tools &rsaquo; Stage MARC records for import</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'file-upload.inc' %]
-[% INCLUDE 'background-job.inc' %]
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Preparar registros MARC para importación</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'file-upload.inc' %] <script type="text/javascript" src="[% themelang %]/js/background-job-progressbar.js"></script>
 <style type="text/css">
 	#uploadpanel,#fileuploadstatus,#fileuploadfailed,#jobpanel,#jobstatus,#jobfailed { display : none; }
 	#fileuploadstatus,#jobstatus { margin:.4em; }
@@ -30,7 +27,7 @@ function CheckForm(f) {
 <input value="Comenzar" type="button" id="mainformsubmit" onclick="return CheckForm(this.form);" />
  
  <div id="jobpanel">
- <div id="jobstatus">Avance del trabajo:<div id="jobprogress"></div> <span id="jobprogresspercent"></span>%</div>
+ <div id="jobstatus">Avance del trabajo: <div id="jobprogress"></div> <span id="jobprogresspercent"></span>%</div>
  <div id="jobfailed"></div>
  </div>
  
@@ -38,6 +35,6 @@ function CheckForm(f) {
 </div>
 
 <div>
-Completed: <span id="completed">[% completedJobID %] </span>
+Completado: <span id="completed">[% completedJobID %] </span>
 </div>
 </body>

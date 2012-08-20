@@ -1,50 +1,48 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Record Matching Rules</h1>
 
-<h1>Regla de coincidencia de registro</h1>
+<p>Las reglas de registros coincidentes se utilizan en la importación de registros MARC en Koha.</p>
 
-<p>Las reglas de coincidencia del registro se utilizan al importar registros MARC a Koha.</p>
-
-<p>Se hará referencia a las reglas que establezcas aquí al importar tus Registros preparados MARC.</p>
+<p>Las reglas que se configuran aquí serán referenciadas en Preparar registros MARC para la importación.</p>
 
 <p>Para crear una nueva regla de coincidencia:</p>
 
 <ul>
- <li>Click 'New record matching rule'
+ <li>Click 'New Record Matching Rule'
 <ul>
- <li>Selecciona un nombre único e ingrésalo en el campo 'Código de regla de coincidencia'</li>
- <li>'Descripción' puede ser cualquier cosa que aclare qué regla estás eligiendo.</li>
+ <li>Seleccione un nombre único e ingréselo en el campo 'Código de regla de coincidencia'</li>
+ <li>'Descripción' puede ser cualquier cosa que deje en claro qué regla está eligiendo</li>
  <li>'Límite de coincidencia' - El total de 'puntos' que debe sumar un registro para considerarse una 'coincidencia'</li>
- <li>Los puntos de coincidencia se establecen para determinar qué campos deben coincidir</li>
- <li>'Índice de búsqueda' puede encontrarse buscando en el archivo de tu sistema ccl.properties, que dice al indexador zebra qué datos buscar en los datos MARC". </li>
- <li>'Puntaje' - La cantidad de 'puntos' que requiere la coincidencia en este campo. Si la suma de cada puntación es superior al límite de coincidencia, el registro entrante se considera una coincidencia de un registro existente</li>
- <li>Ingresa la etiqueta MARC que desees hacer coincidir con el campo 'Etiqueta'</li>
- <li>Ingresa el subcampo de etiqueta MARC que desees hacer coincidir con el campo 'Subcampo'</li>
+ <li>Los puntos de coincidencia se establecen para determinar cuales campos deben coincidir</li>
+ <li>'Índice de búsqueda' puede ser encontrado buscando en el archivo de su sistema ccl.properties el cual dice al indexador de Zebra que datos buscar en los datos MARC".</li>
+ <li>'Puntaje' - La cantidad de 'puntos' que vale la coincidencia en este campo. Si la suma de cada puntaje es superior al límite de coincidencia, el registro entrante se considera una coincidencia de un registro existente</li>
+ <li>Ingrese la etiqueta MARC que desee coincidir en el campo 'Etiqueta'</li>
+ <li>Ingrese el subcampo de etiqueta MARC que desee coincidir en el campo 'Subcampo'</li>
  <li>'Offset' - Para usar en campos de control, 001-009</li>
  <li>'Longitud' - Para usar en campos de control, 001-009</li>
- <li>Koha sólo tiene una "Regla de normalización" que elimina caracteres extra tales como la coma o el punto y coma. El valor que ingreses en este campo es irrelevante en el proceso de normalización.</li>
+ <li>Koha sólo tiene una "regla de normalización" que elimina los caracteres adicionales, tales como comas y puntos y comas. El valor que introduzca en este campo es irrelevante para el proceso de normalización.</li>
  <li>'Chequeos de coincidencia requeridos' - ??</li>
 </ul>
 </li>
 </ul>
 
-<h2>Sample record matching rule: Control number</h2>
+<h2>Sample Record Matching Rule: Control Number</h2>
 
 <ul>
  <li>Umbral de coincidencia: 100</li>
- <li>Puntos de coincidencia (sólo uno):</li>
- <li>Buscar en el índice: Número de control</li>
- <li>Puntación: 101</li>
- <li>Etiqueta: 001<ul>
- <li>este campo sirve para controlar el número asignado por la organización, creando, usando o distribuyendo el registro</li>
+ <li>Puntos de coincidencia (solo uno):</li>
+ <li>Buscar en el índice: número de control</li>
+ <li>Puntaje: 101</li>
+ <li>Campo: 001 <ul>
+ <li>este campo es para el número de control asignado por la organización a crear, usar o distribuir el registro</li>
 </ul>
 </li>
- <li>Subfields: a</li>
+ <li>Subcampos: un</li>
  <li>Offset: 0</li>
- <li>Longitud:</li>
- <li>Regla de normalización: Número de control</li>
- <li>Required match checks: none (remove the blank one)</li>
+ <li>Longitud: 0</li>
+ <li>Regla de normalización: número de control</li>
+ <li>Required Match checks: none (remove the blank one)</li>
 </ul>
 
-<p><strong>See the full documentation for Record matching Rules in the <a href="http://manual.koha-community.org/3.6/en/catadmin.html#recordmatchingrules">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Record Matching Rules in the <a href="http://manual.koha-community.org/3.8/en/catadmin.html#recordmatchingrules">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

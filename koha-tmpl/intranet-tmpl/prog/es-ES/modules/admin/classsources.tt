@@ -1,24 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo; Classification sources
-[% IF ( class_source_form ) %]
-&rsaquo; 
- [% IF ( edit_class_source ) %]Modify classification source[% ELSE %]Add classification source[% END %]
-[% END %]
-[% IF ( sort_rule_form ) %]
-&rsaquo;
- [% IF ( edit_sort_rule ) %]Modify filing rule[% ELSE %]Add filing rule[% END %]
-[% END %]
-[% IF ( delete_class_source_form ) %]
- &rsaquo; Confirm deletion of classification source [% class_source %]
-[% ELSIF ( delete_sort_rule_form ) %]
- &rsaquo; Confirm deletion of filing rule [% sort_rule %]
-[% ELSIF ( delete_sort_rule_impossible ) %]
- &rsaquo; Cannot delete filing rule [% sort_rule %]
-[% END %]
-</title>
-[% INCLUDE 'doc-head-close.inc' %]
-
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Fuentes de clasificación [% IF ( class_source_form ) %] &rsaquo; [% IF ( edit_class_source ) %]Modificar fuente de clasificación[% ELSE %]Agregar fuente de clasificación[% END %] [% END %] [% IF ( sort_rule_form ) %] &rsaquo; [% IF ( edit_sort_rule ) %]Modificar regla de alfabetización[% ELSE %]Agregar regla de alfabetización[% END %] [% END %] [% IF ( delete_class_source_form ) %] &rsaquo; Confirmar eliminación de fuente de clasificación [% class_source %] [% ELSIF ( delete_sort_rule_form ) %] &rsaquo; Confirmar eliminación de regla de alfabetización [% sort_rule %] [% ELSIF ( delete_sort_rule_impossible ) %] &rsaquo; No se puede eliminar la regla de alfabetización [% sort_rule %] [% END %] </title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 
 function CheckSourceForm(f) {
@@ -74,64 +55,43 @@ $(document).ready(function() {
 </script>
 </head>
 <body id="admin_classsources" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs">
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
  <a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
 &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a>
 &rsaquo; <a href="/cgi-bin/koha/admin/classsources.pl">Fuentes de clasificación</a>
-[% IF ( class_source_form ) %] &rsaquo; [% IF ( edit_class_source ) %]Modificar fuente de clasificación[% ELSE %]Agregar fuente de clasificación[% END %] [% END %] [% IF ( sort_rule_form ) %] &rsaquo; [% IF ( edit_sort_rule ) %]Modify filing rule[% ELSE %]Agregar regla de alfabetización[% END %] [% END %] [% IF ( delete_class_source_form ) %] &rsaquo; Confirmar eliminación de fuente de clasificación<span class="ex">'[% class_source %]'</span>
-[% ELSIF ( delete_sort_rule_form ) %]
-&rsaquo; Confirm deletion of filing rule <span class="ex">'[% sort_rule %]'</span>
-[% ELSIF ( delete_sort_rule_impossible ) %]
-&rsaquo; Cannot delete filing rule <span class="ex">'[% sort_rule %]'</span>
-[% END %]
-</div>
+[% IF ( class_source_form ) %] &rsaquo; [% IF ( edit_class_source ) %]Modificar fuente de clasificación[% ELSE %]Agregar fuente de clasificación[% END %] [% END %] [% IF ( sort_rule_form ) %] &rsaquo; [% IF ( edit_sort_rule ) %]Modificar regla de alfabetización[% ELSE %]Agregar regla de alfabetización[% END %] [% END %] [% IF ( delete_class_source_form ) %] &rsaquo; Confirmar eliminación de la fuente de clasificación <span class="ex">'[% class_source %]'</span>
+[% ELSIF ( delete_sort_rule_form ) %] &rsaquo; Confirmar eliminación de la regla de alfabetización <span class="ex">'[% sort_rule %]'</span>
+[% ELSIF ( delete_sort_rule_impossible ) %] &rsaquo; No se puede borrar la regla de alfabetización <span class="ex">'[% sort_rule %]'</span>
+[% END %] </div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( class_source_form ) %]
- [% IF ( edit_class_source ) %]
-<h2>Modificar fuente de clasificación</h2>
- [% ELSE %]
-<h2>Agregar fuente de clasificación</h2>
- [% END %]
-<form action="[% script_name %]" name="Aform" method="post">
+[% IF ( class_source_form ) %] [% IF ( edit_class_source ) %] <h2>Modificar fuente de clasificación</h2>
+ [% ELSE %] <h2>Agregar fuente de clasificación</h2>
+ [% END %] <form action="[% script_name %]" name="Aform" method="post">
  <input type="hidden" name="op" value="[% confirm_op %]" />
  <fieldset class="rows">
  <ol>
  <li>
- [% IF ( edit_class_source ) %]
- <span class="label">Classification source code: </span>
+ [% IF ( edit_class_source ) %] <span class="label">Código de la fuente de clasificación </span>
  <input type="hidden" name="class_source" value="[% class_source %]" />
- [% class_source %]
- [% ELSE %]
- <label for="class_source">Classification source code: </label>
+ [% class_source %] [% ELSE %] <label for="class_source">Código de la fuente de clasificación </label>
  <input type="text" id="class_source" name="class_source"  size="10" maxlength="10" />
- [% END %]
- </li>
- <li><label for="description">Descripción:</label>
+ [% END %] </li>
+ <li><label for="description">Descripción: </label>
  <input type="text" id="description" name="description" size="50" maxlength="250" 
                   value="[% description |html %]" />
  </li>
  <li><label for="used">¿Fuente en uso?</label>
- [% IF ( used ) %]<input type="checkbox" id="used" name="used" value="used" checked="checked" />[% ELSE %]
- <input type="checkbox" id="used" name="used" value="used" />[% END %]
- </li>
- <li><label for="sort_rule">Filing rule: </label>
+ [% IF ( used ) %]<input type="checkbox" id="used" name="used" value="used" checked="checked" />[% ELSE %] <input type="checkbox" id="used" name="used" value="used" />[% END %] </li>
+ <li><label for="sort_rule">Regla de alfabetización: </label>
  <select id="sort_rule" name="sort_rule">
- [% FOREACH rules_dropdow IN rules_dropdown %]
- [% IF ( rules_dropdow.selected ) %]
- <option value="[% rules_dropdow.rule %]" selected="selected">[% rules_dropdow.description %] ([% rules_dropdow.rule %])</option>
- [% ELSE %]
- <option value="[% rules_dropdow.rule %]">[% rules_dropdow.description %] ([% rules_dropdow.rule %])</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH rules_dropdow IN rules_dropdown %] [% IF ( rules_dropdow.selected ) %] <option value="[% rules_dropdow.rule %]" selected="selected">[% rules_dropdow.description %] ([% rules_dropdow.rule %])</option>
+ [% ELSE %] <option value="[% rules_dropdow.rule %]">[% rules_dropdow.description %] ([% rules_dropdow.rule %])</option>
+ [% END %] [% END %] </select>
  </li> 
  </ol>
  </fieldset>
@@ -140,42 +100,27 @@ $(document).ready(function() {
  <a class="cancel" href="/cgi-bin/koha/admin/classsources.pl">Cancelar</a>
  </fieldset>
 </form>
-[% END %]
-
-[% IF ( sort_rule_form ) %]
- [% IF ( edit_sort_rule ) %]
-<h2>Modificar regla de alfabetización</h2>
- [% ELSE %]
-<h2>Agregar regla de alfabetización</h2>
- [% END %]
-<form action="[% script_name %]" name="Aform" method="post">
+[% END %] [% IF ( sort_rule_form ) %] [% IF ( edit_sort_rule ) %] <h2>Modificar regla de alfabetización</h2>
+ [% ELSE %] <h2>Agregar regla de clasificación</h2>
+ [% END %] <form action="[% script_name %]" name="Aform" method="post">
  <input type="hidden" name="op" value="[% confirm_op %]" />
  <fieldset class="rows">
  <ol>
  <li>
- [% IF ( edit_sort_rule ) %]
- <span class="label">Filing rule code: </span>
+ [% IF ( edit_sort_rule ) %] <span class="label">Código de regla de alfabetización: </span>
  <input type="hidden" name="sort_rule" value="[% sort_rule %]" />
- [% sort_rule %]
- [% ELSE %]
- <label for="sort_rule">Filing rule code: </label>
+ [% sort_rule %] [% ELSE %] <label for="sort_rule">Código de regla de alfabetización: </label>
  <input type="text" id="sort_rule" name="sort_rule"  size="10" maxlength="10" />
- [% END %]
- </li>
- <li><label for="description">Descripción:</label>
+ [% END %] </li>
+ <li><label for="description">Descripción: </label>
  <input type="text" id="description" name="description" size="50" maxlength="250" 
                   value="[% description |html %]" />
  </li>
- <li><label for="sort_routine">Filing routine: </label>
+ <li><label for="sort_routine">Rutina se alfabetización: </label>
  <select id="sort_routine" name="sort_routine">
- [% FOREACH routines_dropdow IN routines_dropdown %]
- [% IF ( routines_dropdow.selected ) %]
- <option value="[% routines_dropdow.routine %]" selected="selected">[% routines_dropdow.routine %]</option>
- [% ELSE %]
- <option value="[% routines_dropdow.routine %]">[% routines_dropdow.routine %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH routines_dropdow IN routines_dropdown %] [% IF ( routines_dropdow.selected ) %] <option value="[% routines_dropdow.routine %]" selected="selected">[% routines_dropdow.routine %]</option>
+ [% ELSE %] <option value="[% routines_dropdow.routine %]">[% routines_dropdow.routine %]</option>
+ [% END %] [% END %] </select>
  </li>
  </ol>
  </fieldset>
@@ -184,10 +129,7 @@ $(document).ready(function() {
  <a class="cancel" href="/cgi-bin/koha/admin/classsources.pl">Cancelar</a>
  </fieldset>
 </form>
-[% END %]
-
-[% IF ( delete_class_source_form ) %]
-<div class="dialog alert"><h3>Confirm deletion of classification source <span class="ex">'[% class_source %]'</span>?</h3>
+[% END %] [% IF ( delete_class_source_form ) %] <div class="dialog alert"><h3>Confirmar eliminación de origen de la clasificación <span class="ex">'[% class_source %]'</span>?</h3>
  <form action="[% script_name %]" name="Aform" method="post">
  <input type="hidden" name="op" value="[% confirm_op %]" />
  <input type="hidden" name="class_source" value="[% class_source %]" />
@@ -197,10 +139,7 @@ $(document).ready(function() {
  <input value="No, no eliminar" type="submit" class="deny" />
  </form>
 </div>
-[% END %]
-
-[% IF ( delete_sort_rule_form ) %]
-<div class="dialog alert"><h3>Confirm deletion of filing rule <span class="ex">'[% sort_rule %]'</span>?</h3>
+[% END %] [% IF ( delete_sort_rule_form ) %] <div class="dialog alert"><h3>Confirmar eliminación de regla de alfabetización <span class="ex">'[% sort_rule %]'</span>?</h3>
  <form action="[% script_name %]" name="Aform" method="post">
  <input type="hidden" name="op" value="[% confirm_op %]" />
  <input type="hidden" name="sort_rule" value="[% sort_rule %]" />
@@ -210,36 +149,23 @@ $(document).ready(function() {
  <input value="No, no eliminar" type="submit" class="deny" />
  </form>
 </div>
-[% END %]
-
-[% IF ( delete_sort_rule_impossible ) %]
-<div class="dialog message"><h3>No se puede borrar la regla d alfabetización<span class="ex">'[% sort_rule %]'</span></h3>
- <p>La regla de alfabetización [% sort_rule %] utiliza al menos una fuente de clasificación. Por favor, elimínala de todas las definiciones de la fuente de clasificación antes de intentarlo de nuevo.</p>
+[% END %] [% IF ( delete_sort_rule_impossible ) %] <div class="dialog message"><h3>No se puede borrar regla de alfabetización <span class="ex">'[% sort_rule %]'</span></h3>
+ <p>La regla de alfabetización [% sort_rule %] se usa en por lo menos una fuente de clasificación. Por favor, elimine de todas las definiciones de fuentes de clasificación antes de volver a intentarlo. </p>
  <form action="[% script_name %]" method="get">
  <input type="submit" value="OK" class="approve" />
  </form>
 </div>
-[% END %]
-
-[% IF ( display_lists ) %]
-
-<div id="toolbar">
+[% END %] [% IF ( display_lists ) %] <div id="toolbar">
  <ul class="toolbar">
- <li><a id="newsource" href="[% script_name %]?op=add_source">New classification source</a></li>
- <li><a id="newrule" href="[% script_name %]?op=add_sort_rule">New filing rules</a></li>
+ <li><a id="newsource" href="[% script_name %]?op=add_source">Nueva fuente de clasificación</a></li>
+ <li><a id="newrule" href="[% script_name %]?op=add_sort_rule">Nueva regla de alfabetización</a></li>
 </ul></div>
 
 <h2>Fuentes de clasificación</h2>
-[% IF ( added_source ) %]
-<div class="dialog message">Origen de clasificación [% added_source %] agregado</div>
-[% END %]
-[% IF ( edited_source ) %]
-<div class="dialog message">Fuente de clasificación[% edited_source %] modificada</div>
-[% END %]
-[% IF ( deleted_source ) %]
-<div class="dialog message">Eliminar origen de la clasificación [% deleted_source %]</div>
-[% END %]
-<table>
+[% IF ( added_source ) %] <div class="dialog message">Origen de clasificación [% added_source %] agregado</div>
+[% END %] [% IF ( edited_source ) %] <div class="dialog message">Fuente de clasificación[% edited_source %] modificada</div>
+[% END %] [% IF ( deleted_source ) %] <div class="dialog message">Eliminar Origen de la clasificación [% deleted_source %]</div>
+[% END %] <table>
  <tr>
  <th>Código</th>
  <th>Descripción</th>
@@ -247,67 +173,48 @@ $(document).ready(function() {
  <th>Regla de alfabetización</th>
  <th>Acciones</th>
  </tr>
- [% FOREACH class_source IN class_sources %]
- [% IF ( loop.odd ) %]
- <tr>
- [% ELSE %]
- <tr class="highlight">
- [% END %]
- <td>[% class_source.code %]</td>
+ [% FOREACH class_source IN class_sources %] [% IF ( loop.odd ) %] <tr>
+ [% ELSE %] <tr class="highlight">
+ [% END %] <td>[% class_source.code %]</td>
  <td>[% class_source.description %]</td>
- <td> [% IF ( class_source.used ) %]Sí[% ELSE %]No[% END %]</td>
+ <td>[% IF ( class_source.used ) %]Si[% ELSE %]No[% END %]</td>
  <td>[% class_source.sortrule %]</td>
  <td>
  <a href="[% class_source.script_name %]?op=edit_source&amp;class_source=[% class_source.code |html %]">Editar</a>
- <a href="[% class_source.script_name %]?op=delete_source&amp;class_source=[% class_source.code |html %]">Eliminar</a>
+ <a href="[% class_source.script_name %]?op=delete_source&amp;class_source=[% class_source.code |html %]">Borrar</a>
  </td>
  </tr>
- [% END %]
-</table>
+ [% END %] </table>
 
 <div class="pages">[% pagination_bar %]</div>
 
-<h2>Classification filing rules</h2>
-[% IF ( added_rule ) %]
-<div class="dialog message">Regla de alfabetización [% added_rule %] agregada</div>
-[% END %]
-[% IF ( edited_rule ) %]
-<div class="dialog message">Regla de alfabetización [% edited_rule %] modificada</div>
-[% END %]
-[% IF ( deleted_rule ) %]
-<div class="dialog message">Eliminar regla de alfabetización [% deleted_rule %]</div>
-[% END %]
-<table>
+<h2>Clasificación de reglas de alfabetización</h2>
+[% IF ( added_rule ) %] <div class="dialog message">Regla de alfabetización [% added_rule %] agregada</div>
+[% END %] [% IF ( edited_rule ) %] <div class="dialog message">Regla de alfabetización [% edited_rule %] modificada</div>
+[% END %] [% IF ( deleted_rule ) %] <div class="dialog message">Eliminar Regla de alfabetización [% deleted_rule %]</div>
+[% END %] <table>
  <tr>
  <th>Código</th>
  <th>Descripción</th>
- <th>Sorting routine</th>
+ <th>Rutina de ordenación</th>
  <th>Acciones</th>
  </tr>
- [% FOREACH class_sort_rule IN class_sort_rules %]
- [% IF ( loop.odd ) %]
- <tr>
- [% ELSE %]
- <tr class="highlight">
- [% END %]
- <td>[% class_sort_rule.rule %]</td>
+ [% FOREACH class_sort_rule IN class_sort_rules %] [% IF ( loop.odd ) %] <tr>
+ [% ELSE %] <tr class="highlight">
+ [% END %] <td>[% class_sort_rule.rule %]</td>
  <td>[% class_sort_rule.description %]</td>
  <td>[% class_sort_rule.sort_routine %]</td>
  <td>
  <a href="[% class_sort_rule.script_name %]?op=edit_sort_rule&amp;sort_rule=[% class_sort_rule.rule |html %]">Editar</a>
- <a href="[% class_sort_rule.script_name %]?op=delete_sort_rule&amp;sort_rule=[% class_sort_rule.rule |html %]">Eliminar</a>
+ <a href="[% class_sort_rule.script_name %]?op=delete_sort_rule&amp;sort_rule=[% class_sort_rule.rule |html %]">Borrar</a>
  </td>
  </tr>
- [% END %]
-</table>
+ [% END %] </table>
 <div class="paginationBar">[% pagination_bar %]</div>
 
-[% END %]
-
- </div>
+[% END %] </div>
  </div>
 <div class="yui-b">
-[% INCLUDE 'admin-menu.inc' %]
- </div>
+[% INCLUDE 'admin-menu.inc' %] </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

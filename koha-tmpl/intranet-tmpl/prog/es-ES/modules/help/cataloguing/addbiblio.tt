@@ -1,90 +1,83 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Catalogación</h1>
 
-<h1>Catalogación</h1>
-
-<p>Los registros pueden ser añadidos a Koha mediante original o copia de catálogo. Si quieres catalogar un registro utilizando una plantilla en blanco</p>
+<p>Los registros se pueden agregar ingresándolos en Koha o copiando la catalogación. Si desea un catalogar usando una plantilla en blanco</p>
 
 <ul>
- <li>Click 'New record'
-<ul>
- <li>Selecciona la hoja de trabajo en la que deseas basar tu registro</li>
+ <li>Haga clic en 'Nuevo registro' <ul>
+ <li>Seleccione la hoja de trabajo en que desea basar su registro</li>
 </ul>
 </li>
 </ul>
 
-<p>Si quieres catalogar un registro basado en otro que ya existe en otra biblioteca</p>
-
-<ul>
- <li>Click 'Z39.50 search'
-<ul>
- <li>Busca el ítem que quieres catalogar<ul>
- <li>Tip: If no results are found, try searching for fewer fields, not all Z39.50 targets can search all of the fields above.</li>
-</ul>
-</li>
- <li>Search targets can be altered by using the Z39.50 admin area.</li>
- <li>From the results you can view the MARC or Card view for the records or choose to import them into Koha
-<ul>
- <li>In addition to the 'Import' link to the right of each title, you can click on the title you're interested in and a menu will pop up with links to preview the record and import it</li>
- <li>If you don't find the title you need in your Z39.50 search results you can click the 'Try another search' button at the bottom left of your results</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-<p>Una vez que hayas abierto una hoja de trabajo en blanco o importado un registro mediante Z39.50, se te mostrará la forma de continuar catalogando</p>
+<p>Si usted desea catalogar un registro basado en un registro existente en otra biblioteca</p>
 
 <ul>
- <li>To expand a collapsed tag click on the tag description</li>
- <li>Para obteber ayuda de la Biblioteca del Congreso en una etiqueta MARC haz clic en el signo de interrogación (?) a la derecha de cada número de campo<ul>
- <li>If you feel that this clutters the screen you can hide the question marks by unchecking the box next to the 'Show MARC tag documentation links' note at the top right of the editor</li>
+ <li>Haga clic en 'Búsqueda Z39.50' <ul>
+ <li>Buscar el ítem que desea catalogar <ul>
+ <li>Sugerencia: Si no se encuentran resultados, trate de buscar menos campos, no todos los servidores Z39.50 puede buscar en todos los campos.</li>
 </ul>
 </li>
- <li>Puede que a veces no sea posible editar algunos campos debido al valor de tus preferencias del sistema de BiblioAddsAuthorities. Si has establecido esta preferencia para no permitir a los catalogadores que escriban en los campos controlados por las autoridades, podrás ver el símbolo de un candado a la derecha del campo.<ul>
- <li>If this icon appears you must click the icon to the right of the field to search for an existing authority.</li>
- <li>Para importar la lista de resultados a tu registro haz clic en 'Elegir autoridad' </li>
+ <li>Los servidores Z39.50 se pueden cambiar en el área administrativa.</li>
+ <li>Desde los resultados puede ver la vista MARC o vista de tarjeta de los registros o decidir importarlos dentro de Koha <ul>
+ <li>Además del enlace de 'Importar' a la derecha de cada título, puede hacer clic en el título que le interesa y aparecerá un menú con enlaces para ver el registro e importarlo</li>
+ <li>Si no encuentra el título que necesita en sus resultados de búsqueda Z39.50 puede hacer clic en el botón 'Intentar otra búsqueda' abajo a la izquierda de sus resultados</li>
 </ul>
 </li>
- <li>To duplicate a field click on the 'repeat this tag' icon to the right of the tag
+</ul>
+</li>
+</ul>
+
+<p>Una vez que haya abierto una hoja de trabajo en blanco o importado un registro a través de Z39.50 se le presentará una forma para continuar la catalogación</p>
+
 <ul>
- <li>Para desplazar todos los subcampos en el orden correcto, haz clic en la flecha hacia arriba que está a la izquiera del campo</li>
- <li>Para duplicar un subcampo haz clic en el icono de clonar (para eliminar un campo copiado, haz clic en el icono de borrar clonado) a la derecha del campo</li>
- <li>Para eliminar un subcampo (si hay más de uno del mismo tipo), haz clic en - (signo de menos) a la derecha del campo</li>
+ <li>Para expandir una etiqueta colapsada haga clic en la descripción de la misma</li>
+ <li>Para conseguir ayuda de la Library of Congress de una etiqueta MARC haga clic en el signo de interrogación (?) a la derecha de cada número de campo <ul>
+ <li>Si piensa que esto desordena la pantalla puede ocultar los signos de interrogación desmarcando la casilla de verificación a lado de la nota 'Mostrar enlaces de documentación MARC' en la parte superior derecha del editor</li>
 </ul>
 </li>
- <li>To use a plugin click on the icon to the right of the filed
-<ul>
- <li>Algunos campos establedidos tienen editores que cambiarán basándose en el tipo de material que estés catalogando (por ejemplo los campos 006 y 008)</li>
+ <li>A veces los campos no son editables por el valor de BiblioAddsAuthorities en las preferencias del sistema. Si usted tiene esta preferencia configurada para no permitir que los catalogadores escriban los campos controlados por autoridades es posible que aparezca un símbolo de bloqueo a la izquierda del campo. <ul>
+ <li>Si aparece este icono debe hacer clic en el icono a la derecha del campo para buscar una autoridad existente.</li>
+ <li>Desde los resultados haga clic en 'Elegir autoridad' para traerla dentro de su registro</li>
 </ul>
 </li>
- <li>Una vez que hayas terminado, haz clic en el botón 'Guardar' que hay arriba y elige si quieres guardar y ver el registro bibliográfico que has creado o si quieres continuar agregando o editando ítems en el registro.<ul>
- <li>Si vas a añadir un registro duplicado al sistema, se te avisará antes de guardarlo</li>
+ <li>Para duplicar un campo haga clic en el icono 'repetir este campo' a la derecha del campo <ul>
+ <li>Para mostrar los subcampos en el orden correcto, haga clic en la flecha hacia arriba a la izquierda del campo</li>
+ <li>Para duplicar un campo, haga clic en el signo + (más) a la derecha del el campo</li>
+ <li>Para borrar un subcampo (si hay mas de uno del mismo tipo), haga clic en el signo de menos (-) a la derecha del campo</li>
+</ul>
+</li>
+ <li>Para usar un plugin haga clic en el icono a la derecha del campo <ul>
+ <li>Algunos campos fijos tienen editores que cambiarán según el tipo de material que está catalogando (por ejemplo, los campos 006 y el 008)</li>
+</ul>
+</li>
+ <li>Una vez que haya terminado, haga clic en el botón "Guardar" en la parte superior y elija si desea guardar y ver el registro bibliográfico que haya creado o continuar para agregar o editar los ítems correspondientes al registro <ul>
+ <li>Si está por agregar un registro duplicado el sistema le avisará antes de guardar</li>
 </ul>
 </li>
 </ul>
 
-<h2>Editing records</h2>
+<h2>Editando registros</h2>
 
-<p>To edit a record you can click 'Edit Biblio' from the search results on the cataloging page or by clicking the Edit button on the Bibliographic Record and choosing 'Edit record'</p>
+<p>Para editar un registro puede hacer clic en 'Editar registro' desde los resultados en la página de catalogación o haciendo clic en el botón Editar en el registro bibliográfico y eligiendo 'Editar registro'</p>
 
-<p>El nuevo registro se abrirá en el editor MARC</p>
+<p>El registro se abrirá en editor de MARC</p>
 
-<p>The alternative is to search via Z39.50 to overlay your record with a fuller record found at another library. You can do this by choosing 'Replace record via Z39.50' from the 'Edit' menu.</p>
+<p>La alterativa es buscar por Z39.50 para rellenar su registro con un registro completo encontrado en otra biblioteca. Puede hacer esto seleccionando 'Reemplazar registro vía Z39.50' desde el menú 'Editar'.</p>
 
-<p>Once you choose that you will be brought to a Z39.50 search window to search other libraries for the record in question.</p>
+<p>Una vez seleccionada será llevado a una ventana de búsqueda Z39.50 para buscar en otras bibliotecas por el registro en cuestión.</p>
 
-<p>Once you have made your edits (via either method) you can click 'Save' at the top left of the editor.</p>
+<p>Una vez haya editado (por cualquier método) puede hacer clic en 'Guardar' arriba a la izquierda del editor.</p>
 
-<h2>Duplicating records</h2>
+<h2>Duplicando registros</h2>
 
-<p>Sometimes a copy of the record you need to catalog can't be found via Z39.50. In these cases you can create a duplicate of similar record and edit the necessary pieces to create a new record. To duplicate an existing record click 'Edit as new (duplicate)' from the 'Edit' menu on the bibliographic record</p>
+<p>A veces no es posible encontrar a través de Z39.50 una copia del registro que se desea ingresar al catálogo. En estos casos se puede crear un duplicado de un registro similar y editar las partes necesarias para crear un nuevo registro. Para duplicar un registro existente, haga clic en 'Editar como nuevo (duplicado)' desde el menú 'Editar' en el registro bibliográfico</p>
 
-<p>This will open a new MARC record with the fields filled in with the values from the original bibliographic record.</p>
+<p>Esto abrirá un nuevo registro MARC con la campos rellenados con los valores del registro bibliográfico original.</p>
 
 <h2>Combinando registros</h2>
 
-<p>Si quieres combinar múltiples registros puedes hacerlo utilizando la herramienta de Listas.</p>
+<p>Si usted quiere fusionar varios registros, puede hacerlo a través de la Herramienta de listas.</p>
 
-<p><strong>See the full documentation for Cataloging in the <a href="http://manual.koha-community.org/3.8/en/cataloging.html#catbibs">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Cataloging in the <a href="http://manual.koha-community.org/3.8/en/cataloging.html#catbibs">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

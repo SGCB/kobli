@@ -1,8 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Catalogación &rsaquo; Agregado 4XX</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% IF ( fillinput ) %]
- <script language="javascript" type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; Agregado 4XX</title>
+[% INCLUDE 'doc-head-close.inc' %] [% IF ( fillinput ) %] <script language="javascript" type="text/javascript">
 
             function go() {
 
@@ -79,9 +76,8 @@
 
 </head>
 <body id="cat_unimarc_field_4XX" class="cat" style="padding:1em;">
-<h3>UNIMARC field 4XX builder</h3>
-[% ELSE %]
- <script type="text/javascript">
+<h3>Constructor Campo UNIMARC 4XX</h3>
+[% ELSE %] <script type="text/javascript">
 //<![CDATA[			
 // 			document.getElementById('searchbox').focus();
 		
@@ -103,10 +99,9 @@
 
 </head>
 <body style="padding:1em;">
-<h3>UNIMARC field 4XX builder</h3>
- [% IF ( Search ) %]
- <div id="UNIMARC_Field_4XX_search">
- <h2> Search on </h2>
+<h3>Constructor Campo UNIMARC 4XX</h3>
+ [% IF ( Search ) %] <div id="UNIMARC_Field_4XX_search">
+ <h2> Buscar en</h2>
  <form name="f" method="post" action="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl">
  
  <p>
@@ -118,15 +113,10 @@
  <input type="text" name="search" id="searchbox" size="35" /><br />
  <label for="itypeloop">Tipo de ítem:</label>
  <select name="itype" id="itypeloop">
- <option value="">All item types</option>
- [% FOREACH itypeloo IN itypeloop %]
- [% IF ( itypeloo.selected ) %]
- <option value="[% itypeloo.itemtype %]" selected="selected">[% itypeloo.description %]</option>
- [% ELSE %]
- <option value="[% itypeloo.itemtype %]">[% itypeloo.description %]</option>
- [% END %]
- [% END %]
- </select>
+ <option value="">Todos los tipos de ítem</option>
+ [% FOREACH itypeloo IN itypeloop %] [% IF ( itypeloo.selected ) %] <option value="[% itypeloo.itemtype %]" selected="selected">[% itypeloo.description %]</option>
+ [% ELSE %] <option value="[% itypeloo.itemtype %]">[% itypeloo.description %]</option>
+ [% END %] [% END %] </select>
  </p>
  <p>
  <input value="Comenzar búsqueda" type="submit" />
@@ -135,95 +125,49 @@
  </div>
  </form>
  
- [% ELSE %]
- 
-
- <h2>Resultados de la búsqueda</h2>
+ [% ELSE %] <h2>Resultados de la búsqueda</h2>
  <div id="UNIMARC_Field_4XX_resultnumber">
- <p>[% IF ( displayprev ) %] <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;startfrom=[% startfromprev %]&amp;search=[% search %]&amp;resultsperpage=[% resultsperpage %]&amp;type=intranet&amp;op=do_search">&lt;&lt; Anterior</a>[% END %]
- [% FOREACH number IN numbers %]
- [% IF ( number.highlight ) %] <span class="highlight">[% number.number %]</span>
+ <p>[% IF ( displayprev ) %] <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;startfrom=[% startfromprev %]&amp;search=[% search %]&amp;resultsperpage=[% resultsperpage %]&amp;type=intranet&amp;op=do_search">&lt;&lt; Anterior</a>[% END %] [% FOREACH number IN numbers %] [% IF ( number.highlight ) %] <span class="highlight">[% number.number %]</span>
  [% ELSE %] <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;startfrom=[% number.startfrom %]&amp;search=[% number.search |url %]&amp;resultsperpage=[% number.resultsperpage %]&amp;type=intranet&amp;op=do_search">[% number.number %]</a>
- [% END %]
- [% END %]
- [% IF ( displaynext ) %]
- <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;startfrom=[% startfromnext %]&amp;search=[% search %]&amp;resultsperpage=[% resultsperpage %]&amp;type=intranet&amp;op=do_search">Siguiente &gt;&gt;</a>
+ [% END %] [% END %] [% IF ( displaynext ) %] <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;startfrom=[% startfromnext %]&amp;search=[% search %]&amp;resultsperpage=[% resultsperpage %]&amp;type=intranet&amp;op=do_search">Siguiente &gt;&gt;</a>
  [% END %]</p>
  <p class="resultcount">
- [% IF ( total ) %]Results [% from %] to [% to %] of [% total %]
- [% ELSE %]No results found
- [% END %]</p></div>
+ [% IF ( total ) %]Resultados [% from %] a [% to %] de [% total %] [% ELSE %]No se encontraron resultados [% END %]</p></div>
  <div id="resultlist">
  <table>
  <tr>
  <th>Resumen</th>
- <th>Item count</th>
+ <th>Conteo de ítems</th>
  <th>Ubicación</th>
  <th>&nbsp;</th>
  </tr>
- [% FOREACH resul IN result %]
- [% IF ( resul.title ) %]
- <tr>
+ [% FOREACH resul IN result %] [% IF ( resul.title ) %] <tr>
  [% IF ( resul.even ) %]<td class="hilighted">
- [% ELSE %]<td>[% END %]
- [% IF ( resul.MARC_ON ) %]
- <a_class="transparent resultlist" href="/cgi-bin/koha/MARCdetail.pl?biblionumber=[% resul.biblionumber |url %]">[% resul.title |html %]</a>
- [% ELSE %]
- <a_class="transparent resultlist" href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% resul.biblionumber |url %]">[% resul.title |html %]</a> [% END %]
- <p>[% resul.author %]
- [% IF ( resul.publishercode ) %]- [% resul.publishercode %][% END %]
- [% IF ( resul.place ) %] ; [% resul.place %][% END %]
- [% IF ( resul.pages ) %] - [% resul.pages %][% END %]
- [% IF ( resul.notes ) %] : [% resul.notes %][% END %]
- [% IF ( resul.size ) %] ; [% resul.size %][% END %]
- </p>
+ [% ELSE %]<td>[% END %] [% IF ( resul.MARC_ON ) %] <a_class="transparent resultlist" href="/cgi-bin/koha/MARCdetail.pl?biblionumber=[% resul.biblionumber |url %]">[% resul.title |html %]</a>
+ [% ELSE %] <a_class="transparent resultlist" href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% resul.biblionumber |url %]">[% resul.title |html %]</a> [% END %] <p>[% resul.author %] [% IF ( resul.publishercode ) %]- [% resul.publishercode %][% END %] [% IF ( resul.place ) %] ; [% resul.place %][% END %] [% IF ( resul.pages ) %] - [% resul.pages %][% END %] [% IF ( resul.notes ) %] : [% resul.notes %][% END %] [% IF ( resul.size ) %] ; [% resul.size %][% END %] </p>
  </td>
  [% IF ( resul.even ) %]<td align="center" class="hilighted">
- [% ELSE %]<td align="center">[% END %]
- [% resul.totitem %]
- </td>
+ [% ELSE %]<td align="center">[% END %] [% resul.totitem %] </td>
  [% IF ( resul.even ) %]<td class="hilighted">
- [% ELSE %]<td>[% END %]
- [% resul.CN %]
- </td>
+ [% ELSE %]<td>[% END %] [% resul.CN %] </td>
  <td>
- [% IF ( resul.biblionumber ) %]
- <a href="javascript:jumpfull('/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;biblionumber=[% resul.biblionumber %]&amp;type=intranet&amp;op=fillinput')">Elegir</a>
- [% ELSE %]
- <a href="javascript:jumpfull('/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;type=intranet&amp;op=fillinput')">Clear field</a>
- [% END %]
- </td>
+ [% IF ( resul.biblionumber ) %] <a href="javascript:jumpfull('/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;biblionumber=[% resul.biblionumber %]&amp;type=intranet&amp;op=fillinput')">Elegir</a>
+ [% ELSE %] <a href="javascript:jumpfull('/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;type=intranet&amp;op=fillinput')">Limpiar campo</a>
+ [% END %] </td>
  </tr>
- [% END %]
- [% END %]
- </table>
+ [% END %] [% END %] </table>
  </div>
  <div id="resultnumber">
  <p>
- [% IF ( displayprev ) %]
- <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;amp;index=[% index %]&amp;amp;startfrom=[% startfromprev %]&amp;amp;search=[% search |url %]&amp;amp;resultsperpage=[% resultsperpage %]&amp;amp;type=intranet&amp;amp;op=do_search">
- &lt;&lt; Previous
- </a>
- [% END %]
-
- [% FOREACH number IN numbers %]
- [% IF ( number.highlight ) %]
- <span class="highlight">
- [% number.number %]
- </span>
- [% ELSE %]
- <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;startfrom=[% number.startfrom %]&amp;search=[% number.search %]&amp;resultsperpage=[% number.resultsperpage %]&amp;type=intranet&amp;op=do_search">
- [% number.number %]
- </a>
- [% END %]
- [% END %]
-
- [% IF ( displaynext ) %]
- <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;startfrom=[% startfromnext %]&amp;search=[% search %]&amp;resultsperpage=[% resultsperpage %]&amp;type=intranet&amp;op=do_search">
- Next&gt;&gt;
- </a>
- [% END %]
- </p>
+ [% IF ( displayprev ) %] <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;amp;index=[% index %]&amp;amp;startfrom=[% startfromprev %]&amp;amp;search=[% search |url %]&amp;amp;resultsperpage=[% resultsperpage %]&amp;amp;type=intranet&amp;amp;op=do_search">
+ &lt;&lt; Anterior </a>
+ [% END %] [% FOREACH number IN numbers %] [% IF ( number.highlight ) %] <span class="highlight">
+ [% number.number %] </span>
+ [% ELSE %] <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;startfrom=[% number.startfrom %]&amp;search=[% number.search %]&amp;resultsperpage=[% number.resultsperpage %]&amp;type=intranet&amp;op=do_search">
+ [% number.number %] </a>
+ [% END %] [% END %] [% IF ( displaynext ) %] <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=unimarc_field_4XX.pl&amp;index=[% index %]&amp;startfrom=[% startfromnext %]&amp;search=[% search %]&amp;resultsperpage=[% resultsperpage %]&amp;type=intranet&amp;op=do_search">
+ Siguiente &gt;&gt; </a>
+ [% END %] </p>
  </div>
  
 <script type="text/javascript">
@@ -235,7 +179,4 @@
 </script>
 
  
- [% END %]
-
-[% END %]
-[% INCLUDE 'popup-bottom.inc' %]
+ [% END %] [% END %] [% INCLUDE 'popup-bottom.inc' %] 

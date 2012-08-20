@@ -1,17 +1,12 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Authorities &rsaquo; [% IF ( authid ) %]Modify authority #[% authid %] ([% authtypetext %])[% ELSE %]Adding authority ([% authtypetext %])[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/yui/plugins/bubbling-min.js"></script>
-[% IF ( CheckValueIndicators ) %]
-<script type="text/javascript" src='[% themelang %]/js/indicators.js'></script>
-[% END %]
-
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Autoridades &rsaquo; [% IF ( authid ) %]Modificar autoridad #[% authid %] ([% authtypetext %])[% ELSE %]Agregar autoridad ([% authtypetext %])[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/yui/plugins/bubbling-min.js"></script>
+[% IF ( CheckValueIndicators ) %] <script type="text/javascript" src='[% themelang %]/js/indicators.js'></script>
+[% END %] <script type="text/javascript">
 //<![CDATA[
 
      var fields_in_use = {};
 	 $(document).ready(function() {
- 		$('#authoritytabs > ul').tabs();
+        $('#authoritytabs').tabs();
         $('.tag').each(function() {
             var field_id = this.getAttribute('id').substring(0, 7);
             if (field_id in fields_in_use) {
@@ -60,7 +55,7 @@ function AreMandatoriesNotOk(){
         // alert (id_string);
         if( ! $("#" + id_string).val() ){
             $("#" + id_string).attr('class','subfield_not_filled').focus();
-            StrAlert += "\t* "+label[i]+_(" in tab ")+tab[i]+"\n";
+            StrAlert += "\t* "+label[i]+_(" en la pestaña ")+tab[i]+"\n";
         }
     }
     
@@ -94,14 +89,14 @@ function AreMandatoriesNotOk(){
     	
     	if(isempty){
     		flag = 1;
-			StrAlert += "\t* Field " + arr[0] + _(" is mandatory, at least one of its subfields must be filled") + "\n";
+			StrAlert += "\t* Field " + arr[0] + _(" es obligatorio, se debe llenar al menos uno de los subcampos") + "\n";
     	}
     	
     }
     
     
     if(StrAlert){
-        return _("No se puede guardar este registro porque los siguientes campos no han sido llenados :") + "\n\n" + StrAlert;
+        return _("No se puede guardar este registro porque el o los siguientes campos no han sido llenados :") + "\n\n" + StrAlert;
     }
     return false;
 }
@@ -609,7 +604,7 @@ function searchauthority() {
 <body id="auth_authorities" class="auth">
 <div id="yui-cms-loading">
  <div id="yui-cms-float">
- Cargando, por favor espere ...</div>
+ Cargando, por favor espere ... </div>
  </div>
 <script type="text/javascript" src="[% themelang %]/lib/yui/plugins/loading-min.js"></script>
 <script type="text/javascript">
@@ -620,11 +615,34 @@ function searchauthority() {
 		opacity: 0.8
 	});
 })();
+     $(document).ready(function() {
+        yuiToolbar();
+        $("#addauthc,#action").empty();
+     });
+    // YUI Toolbar Functions
+    function yuiToolbar() {
+    var addauthButton = new YAHOO.widget.Button({
+                                            id: "addauth",
+                                            type: "button",
+                                            label: _("Guardar"),
+                                            container: "addauthc",
+                                            onclick: {fn: Check }
+                                        });
+    var addauthButton2 = new YAHOO.widget.Button({
+                                            id: "addauth2",
+                                            type: "button",
+                                            label: _("Guardar"),
+                                            container: "action",
+                                            onclick: {fn: Check }
+                                        });
+    }
+    function confirmnotdup(redirect){
+        $("#confirm_not_duplicate").attr("value","1");
+        Check();
+    }
 //]]>
 </script>
-[% INCLUDE 'header.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/authorities/authorities-home.pl">Autoridades</a> &rsaquo; [% IF ( authid ) %]Modificar autoridad #[% authid %] ([% authtypetext %])[% ELSE %]Agregar autoridad [% authtypetext %][% END %] </div>
+[% INCLUDE 'header.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/authorities/authorities-home.pl">Autoridades</a> &rsaquo; [% IF ( authid ) %]Modificar autoridad #[% authid %] ([% authtypetext %])[% ELSE %]Agregar autoridad [% authtypetext %][% END %] </div>
 
 <div id="doc" class="yui-t7">
 
@@ -632,63 +650,34 @@ function searchauthority() {
  <div id="yui-main">
  <div class="yui-g">
 
-[% IF ( authid ) %]
-<h1>Modificar autoridad #[% authid %] [% authtypetext %]</h1>
-[% ELSE %]
-<h1>Agregar Autoridad [% authtypetext %]</h1>
-[% END %] 
-<form method="post" name="f" action="/cgi-bin/koha/authorities/authorities.pl">
+[% IF ( authid ) %] <h1>Modificar autoridad #[% authid %] [% authtypetext %]</h1>
+[% ELSE %] <h1>Agregar Autoridad [% authtypetext %]</h1>
+[% END %] [% IF ( duplicateauthid ) %] <div class="dialog alert">
+ <h4>Posible registro duplicado</h4>
+ <p>¿Es este un duplicado de <a href="/cgi-bin/koha/authorities/detail.pl?authid=[% duplicateauthid %]" onclick="openWindow('/cgi-bin/koha/authorities/detail.pl?authid=[% duplicateauthid %]&amp;popup=1', 'Duplicate authority','800','600'); return false;" class="button">[% duplicateauthvalue %]</a>?</p>
+
+ <form action="authorities.pl" method="get">
+ <input type="hidden" name="authid" value="[% duplicateauthid %]" />
+ <input type="submit" class="edit" value="Yes: Edit exisiting authority" />
+ </form>
+ <form action="authorities.pl" method="get">
+ <input type="button" value="No: Save as new authority" class="save" accesskey="w" onclick="confirmnotdup('items'); return false;" />
+ </form>
+ </div>
+[% END %] <form method="post" name="f" action="/cgi-bin/koha/authorities/authorities.pl">
  <input type="hidden" name="op" value="add" />
  <input type="hidden" name="addfield_field" value="" />
  <input type="hidden" name="repeat_field" value="" />
  <input type="hidden" name="authtypecode" value="[% authtypecode %]" />
  <input type="hidden" name="authid" value="[% authid %]" />
+ <input type="hidden" value="0" id="confirm_not_duplicate" name="confirm_not_duplicate" />
 
  <div id="toolbar">
- <script type="text/javascript">
-	//<![CDATA[
-	// prepare DOM for YUI Toolbar
-	 $(document).ready(function() {
-	    yuiToolbar();
-	    $("#addauthc,#action").empty();
-	 });
-	// YUI Toolbar Functions
-	function yuiToolbar() {
-	var addauthButton = new YAHOO.widget.Button({
-                                            id: "addauth", 
-                                            type: "button", 
-                                            label: "Save", 
-                                            container: "addauthc",
-											onclick: {fn: Check }
-                                        });
-	var addauthButton2 = new YAHOO.widget.Button({
-                                            id: "addauth2", 
-                                            type: "button", 
-                                            label: "Save", 
-                                            container: "action",
-											onclick: {fn: Check }
-                                        });
-	} //]]>
-	</script>
  <ul class="toolbar"><li id="addauthc"><input accesskey="w" value="Guardar" id="addauth" type="submit" /></li></ul></div>
 
-[% IF ( duplicateauthid ) %]
- <div class="problem">
- <p>Duplicate suspected with <a href="javascript:openWindow('detail.pl?authid=[% duplicateauthid %]&amp;popup=1', 'Duplicate authority')" class="button">[% duplicateauthvalue %]</a></p>
- <p>Debes:</p>
- <ul>
- <p><input type="checkbox" value="1" name="confirm_not_duplicate" />confirm it's not a duplicate (and click on <input accesskey="w" value="Agregar autoridad" type="button" onclick="Check(this.form)" class="button" /> nuevamente)</p>
- <p>Go to <a href="authorities.pl?authid=[% duplicateauthid %]" >original authority</a></p>
- </ul>
- </div>
-[% END %]
-
 <div id="authoritytabs" class="toptabs numbered">
- <ul> [% FOREACH BIG_LOO IN BIG_LOOP %]
- <li>[% IF ( BIG_LOO.number ) %]
- <a href="/cgi-bin/authorities/authorties.pl#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a>
- [% ELSE %]
- <a href="/cgi-bin/authorities/authorties.pl#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a>
+ <ul> [% FOREACH BIG_LOO IN BIG_LOOP %] <li>[% IF ( BIG_LOO.number ) %] <a href="#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a>
+ [% ELSE %] <a href="#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a>
  [% END %]</li>
  [% END %]</ul>
 
@@ -696,22 +685,12 @@ function searchauthority() {
  <!-- hide every tab except the 1st -->
  [% IF ( BIG_LOO.number ) %]
  <div id="tab[% BIG_LOO.number %]XX">
- [% ELSE %]
- <div id="tab[% BIG_LOO.number %]XX">
- [% END %]
- 
- [% FOREACH innerloo IN BIG_LOO.innerloop %]
- [% IF ( innerloo.tag ) %]
- <div class="tag" id="tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
+ [% ELSE %] <div id="tab[% BIG_LOO.number %]XX">
+ [% END %] [% FOREACH innerloo IN BIG_LOO.innerloop %] [% IF ( innerloo.tag ) %] <div class="tag" id="tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
  <div class="tag_title" name="div_indicator">
- [% UNLESS ( innerloo.hide_marc ) %]
- [% IF ( innerloo.advancedMARCEditor ) %]
- <a class="tagnum" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">[% innerloo.tag %]</a>
- [% ELSE %]
- <span title="[% innerloo.tag_lib %]">[% innerloo.tag %]</span>
- [% END %]
- [% IF ( innerloo.fixedfield ) %]
- <input class="indicator flat"
+ [% UNLESS ( innerloo.hide_marc ) %] [% IF ( innerloo.advancedMARCEditor ) %] <a class="tagnum" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">[% innerloo.tag %]</a>
+ [% ELSE %] <span title="[% innerloo.tag_lib %]">[% innerloo.tag %]</span>
+ [% END %] [% IF ( innerloo.fixedfield ) %] <input class="indicator flat"
                                 type="text"
                                 style="display:none;"
                                 name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
@@ -725,21 +704,21 @@ function searchauthority() {
                                 size="1"
                                 maxlength="1"
                                 value="[% innerloo.indicator2 %]" />
- [% ELSE %]
- <input class="indicator flat"
+ [% ELSE %] <input class="indicator flat"
                                 type="text"
                                 name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
                                 size="1"
                                 maxlength="1"
                                 value="[% innerloo.indicator1 %]" />
- [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1" onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Mostrar plugin con valores permitidos para el indicador 1 en el campo [% innerloo.tag %]">...</a>[% END %]
- <input class="indicator flat"
+ [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1"
+onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 1 on field [% innerloo.tag %]">...</a>[% END %] <input class="indicator flat"
                                 type="text"
                                 name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
                                 size="1"
                                 maxlength="1"
                                 value="[% innerloo.indicator2 %]" />
- [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2" onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Mostrar plugin con valores permitidos para el indicador 2 en el campo [% innerloo.tag %]">...</a>[% END %]
+ [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
+onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %]
  [% END %] -
  [% ELSE %]
  [% IF ( innerloo.fixedfield ) %]
@@ -749,46 +728,27 @@ function searchauthority() {
  <input type="hidden"
                             name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %]"
                             value="[% innerloo.indicator2 %][% innerloo.random %]" />
- [% ELSE %]
- <input type="hidden"
+ [% ELSE %] <input type="hidden"
                             name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %]"
                             value="[% innerloo.indicator1 %][% innerloo.random %]" />
- [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1" onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Mostrar plugin con valores permitidos para el indicador 1 en el campo [% innerloo.tag %]">...</a>[% END %]
- <input type="hidden"
+ [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1"
+onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 1 on field [% innerloo.tag %]">...</a>[% END %] <input type="hidden"
                             name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %]"
                             value="[% innerloo.indicator2 %][% innerloo.random %]" />
- [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2" onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Mostrar plugin con valores permitidos para el indicador 2 en el campo [% innerloo.tag %]">...</a>[% END %]
- [% END %]
- [% END %]
- 
- [% UNLESS ( innerloo.advancedMARCEditor ) %]
- <a onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">[% innerloo.tag_lib %]</a>
- [% END %]
- [% IF ( innerloo.repeatable ) %]
- <span class="buttonPlus" onclick="CloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">+</span>
- [% END %]
- [% UNLESS ( innerloo.mandatory ) %]
- <span class="buttonMinus" onclick="UnCloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">&#8722;</span>
- [% END %]
- 
- </div>
+ [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
+onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %] [% END %] [% END %] [% UNLESS ( innerloo.advancedMARCEditor ) %] <a onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">[% innerloo.tag_lib %]</a>
+ [% END %] [% IF ( innerloo.repeatable ) %] <span class="buttonPlus" onclick="CloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">+</span>
+ [% END %] [% UNLESS ( innerloo.mandatory ) %] <span class="buttonMinus" onclick="UnCloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">&#8722;</span>
+ [% END %] </div>
  
  [% FOREACH subfield_loo IN innerloo.subfield_loop %]
  <!-- One line on the marc editor -->
  <div name="line" class="subfield_line" style="[% subfield_loo.visibility %];" id="subfield[% subfield_loo.tag %][% subfield_loo.subfield %]">
  
- [% UNLESS ( subfield_loo.advancedMARCEditor ) %]
- [% IF ( subfield_loo.fixedfield ) %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" style="display:none;" class="labelsubfield" >
- [% ELSE %] <label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" class="labelsubfield" >[% END %]
- [% END %] 
- 
- [% UNLESS ( subfield_loo.hide_marc ) %]
- [% IF ( subfield_loo.fixedfield ) %]
- <img alt="Mover arriba" src="[% themelang %]/../img/up.png" style="display:none;" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %]')" title="Mover arriba" />
- [% ELSE %]
- <img alt="Mover arriba" src="[% themelang %]/../img/up.png" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %]')" title="Mover arriba" />
- [% END %]
- <input title="[% subfield_loo.marc_lib_plain %]"
+ [% UNLESS ( subfield_loo.advancedMARCEditor ) %] [% IF ( subfield_loo.fixedfield ) %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" style="display:none;" class="labelsubfield" >
+ [% ELSE %] <label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" class="labelsubfield" >[% END %] [% END %] [% UNLESS ( subfield_loo.hide_marc ) %] [% IF ( subfield_loo.fixedfield ) %] <img alt="Mover arriba" src="[% themelang %]/../img/up.png" style="display:none;" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %]')" title="Mover arriba" />
+ [% ELSE %] <img alt="Mover arriba" src="[% themelang %]/../img/up.png" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %]')" title="Mover arriba" />
+ [% END %] <input title="[% subfield_loo.marc_lib_plain %]"
                                 style=" [% IF ( subfield_loo.fixedfield ) %]display:none; [% END %]border:0;" type="text"
                                 name="tag_[% subfield_loo.tag %]_code_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]"
                                 value="[% subfield_loo.subfield %]"
@@ -796,29 +756,13 @@ function searchauthority() {
                                 maxlength="1"
                                 class="flat"
                                 tabindex="0" />
- [% ELSE %]
- <input type="hidden"
+ [% ELSE %] <input type="hidden"
                             name="tag_[% subfield_loo.tag %]_code_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]"
                             value="[% subfield_loo.subfield %]"/>
- [% END %]
- 
- [% UNLESS ( subfield_loo.advancedMARCEditor ) %]
- [% IF ( subfield_loo.mandatory ) %]<span class="subfield_mandatory">[% END %]
- [% subfield_loo.marc_lib %]
- [% IF ( subfield_loo.mandatory ) %]</span>[% END %]
- </label>
- [% END %]
- 
- [% subfield_loo.marc_value %]
- 
- [% IF ( subfield_loo.repeatable ) %]
- <a href="#" onclick="CloneSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %]'); return false;"><img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" /></a>
- [% END %]
- [% UNLESS ( subfield_loo.mandatory ) %]
- <a href="#" onclick="UnCloneField('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]'); return false;"><img alt="Eliminar" src="/intranet-tmpl/prog/img/delete-subfield.png" title="Eliminar este subcampo" /></a>
- [% END %]
- 
- </div>
+ [% END %] [% UNLESS ( subfield_loo.advancedMARCEditor ) %] [% IF ( subfield_loo.mandatory ) %]<span class="subfield_mandatory">[% END %] [% subfield_loo.marc_lib %] [% IF ( subfield_loo.mandatory ) %]</span>[% END %] </label>
+ [% END %] [% subfield_loo.marc_value %] [% IF ( subfield_loo.repeatable ) %] <a href="#" onclick="CloneSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %]'); return false;"><img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" /></a>
+ [% END %] [% UNLESS ( subfield_loo.mandatory ) %] <a href="#" onclick="UnCloneField('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]'); return false;"><img alt="Borrar" src="/intranet-tmpl/prog/img/delete-subfield.png" title="Eliminar este subcampo" /></a>
+ [% END %] </div>
  <!-- End of the line -->
  
  [% END %]
@@ -826,24 +770,17 @@ function searchauthority() {
  [% END %]<!-- tag -->
  [% END %]
  </div>
-[% END %]
-
-[% UNLESS ( singletab ) %]
- </div> 
-[% END %]
-</div>
+[% END %] [% UNLESS ( singletab ) %] </div> 
+[% END %] </div>
 
 <div name="hidden" id="hidden" class="tab">
-[% FOREACH hidden_loo IN hidden_loop %]
- <input type="hidden" name="tag" value="[% hidden_loo.tag %]" />
+[% FOREACH hidden_loo IN hidden_loop %] <input type="hidden" name="tag" value="[% hidden_loo.tag %]" />
  <input type="hidden" name="subfield" value="[% hidden_loo.subfield %]" />
  <input type="hidden" name="mandatory" value="[% hidden_loo.mandatory %]" />
  <input type="hidden" name="kohafield" value="[% hidden_loo.kohafield %]" />
  <input type="hidden" name="tag_mandatory" value="[% hidden_loo.tag_mandatory %]" />
-[% END %]
-</div>
-[% IF ( oldauthnumtagfield ) %]
- <input type="hidden" name="tag" value="[% oldauthnumtagfield %]" />
+[% END %] </div>
+[% IF ( oldauthnumtagfield ) %] <input type="hidden" name="tag" value="[% oldauthnumtagfield %]" />
  <input type="hidden" name="subfield" value="[% oldauthnumtagsubfield %]" />
  <input type="hidden" name="field_value" value="[% authid %]" />
  <input type="hidden" name="mandatory" value="0" />
@@ -852,12 +789,11 @@ function searchauthority() {
  <input type="hidden" name="tag" value="[% oldauthtypetagfield %]" />
  <input type="hidden" name="subfield" value="[% oldauthtypetagsubfield %]" />
  <input type="hidden" name="field_value" value="[% authtypecode %]" />
-[% END %]
-<fieldset class="action">
+[% END %] <fieldset class="action">
  <input accesskey="w" value="Guardar" type="button" id="addauth2" onclick="Check(this.form)" />
 </fieldset>
 </form>
 </div>
 </div>
 
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

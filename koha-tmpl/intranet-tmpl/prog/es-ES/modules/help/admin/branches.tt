@@ -1,52 +1,49 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Libraries &amp; Groups</h1>
 
-<h1>Libraries &amp; groups</h1>
+<p>Al configurar su sistema Koha tendrá que completar la información para cada biblioteca que va a compartir su sistema. Estos datos son utilizados en diversas áreas de Koha.</p>
 
-<p>When setting up your Koha system you will want to add information for every library that will be sharing your system. This data is used in several areas of Koha.</p>
+<p>Al visitar esta página se le presentará una lista de las bibliotecas y grupos que ya se han agregado al sistema.</p>
 
-<p>When visiting this page you are presented with a list of the libraries and groups that have already been added to the system.</p>
+<h2>Adding a Library</h2>
 
-<h2>Adding a library</h2>
-
-<p>To add a new library:</p>
+<p>Agregar una nueva biblioteca</p>
 
 <ul>
- <li>Click 'New library'</li>
- <li>Fill in the data requested on the form that follows
-<ul>
- <li>En los campos listados, sólo se requiere "Código de biblioteca" y "Nombre"</li>
- <li>Asegúrate de ingresar la dirección de email de la biblioteca para confirmar que los avisos se envían hacia y desde la dirección correcta</li>
- <li>Se requiere una dirección IP si has deshabilitado AutoLocation</li>
+ <li>Click 'New Library'</li>
+ <li>Complete los datos requeridos en el formulario siguiente <ul>
+ <li>De los campos de la lista, sólo 'Código de biblioteca' y 'Nombre' son obligatorios</li>
+ <li>Asegúrese de ingresar la dirección de email de la biblioteca para asegurarse que los avisos se envían hacia y desde la dirección correcta</li>
+ <li>Se requiere una dirección IP si habilitó AutoLocation</li>
 </ul>
 </li>
 </ul>
 
-<h2>Editing/Deleting a library</h2>
+<h2>Editing/Deleting a Library</h2>
 
-<p>You will be unable to delete any library that has patrons or items attached to it.</p>
+<p>Usted no podrá borrar bibliotecas que tengan usuarios o ítems asociados a ellas.</p>
 
-<p>Cada biblioteca tiene un botón 'Editar' a su derecha. Haz clic en este enlace para editar/alterar los detalles asociados con esa biblioteca.</p>
+<p>Cada biblioteca tiene un botón 'Editar' a su derecha. Haga clic en este enlace para editar/alterar los detalles asociados con esa biblioteca.</p>
 
-<p>You will be unable to edit the 'Library code'</p>
+<p>Usted no podrá editar el 'Código de Biblioteca'</p>
 
-<h2>Agregando una categoría de socio</h2>
+<h2>Agregando un grupo</h2>
 
-<p>To add a search domain or library property group click the 'New group' button at the top of the screen.</p>
+<p>To add a Search Domain or Library Property Group click the 'New Group' button at the top of the screen.</p>
 
-<p>En los campos listados en el formulario de grupo, sólo se requiere "Código de categoría" y "Nombre"</p>
+<p>De los campos en el formulario de grupo, 'El código de categoría' y 'Nombre' son los únicos campos obligatorios</p>
 
-<h2>Search domain groups</h2>
+<h2>Search Domain Groups</h2>
 
-<p>Search domain groups allow you to search a group of libraries at the same time instead of searching just one library or all libraries.</p>
+<p>Search Domain Groups allow you to search a group of libraries at the same time instead of searching just one library or all libraries.</p>
 
-<p>To see Search domain groups in action visit the staff client advanced search page in your Koha system</p>
+<p>To see Search Domain Groups in action visit the staff client advanced search page in your Koha system</p>
 
-<h2>Library property groups</h2>
+<h2>Library Property Groups</h2>
 
-<p>You can assign specific categories to your libraries by adding groups for them.</p>
+<p>Usted puede asignar categorías específicas para sus bibliotecas agregando grupos para ellas.</p>
 
-<p>Las propiedades se aplican a las bibliotecas agregando o editando el formulario de biblioteca.</p>
+<p>Propiedades se aplican luego a las bibliotecas a través del formulario agregar o editar biblioteca.</p>
 
-<p><strong>See the full documentation for libraries &amp; groups in the <a href="http://manual.koha-community.org/3.6/en/basicparams.html#libsgroups">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Libraries &amp; Groups in the <a href="http://manual.koha-community.org/3.8/en/basicparams.html#libsgroups">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

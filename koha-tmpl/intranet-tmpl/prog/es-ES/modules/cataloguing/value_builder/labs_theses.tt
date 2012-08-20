@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Labs thesis selection plugin</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Plugin de selección de tesis de laboratorios</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 function openWindow(targeturl, windowname) {
 	newwin =
@@ -31,7 +29,7 @@ a.catalogue:hover {
 
 <body id="cat_labs_theses" class="cat" style="padding:1em;">
 <div id="mainbloc">
- <h1>Laboratory search</h1>
+ <h1>Búsqueda de laboratorio</h1>
  
  <form name="f" method="post" action="/cgi-bin/koha/cataloguing/plugin_launcher.pl">
  <div class="bloc25">
@@ -49,12 +47,11 @@ a.catalogue:hover {
  </div>
  </form>
 
-[% IF ( resultlist ) %]
- <div class="bloc25">
- <h2>Laboratory search results</h2>
+[% IF ( resultlist ) %] <div class="bloc25">
+ <h2>Resultados de búsqueda de laboratorio</h2>
  <div id="resultnumber">
  <p class="resultcount">
-  [% IF ( total ) %] Resultados [% from %] para [% to %] de [% total %][% ELSE %]No se encontraron resultados [% END %]</p>
+ [% IF ( total ) %] Resultados [% from %] a [% to %] de [% total %][% ELSE %] No se encontraron resultados [% END %] </p>
  </div>
  <div id="resultlist">
  <table>
@@ -62,40 +59,25 @@ a.catalogue:hover {
  <th>Laboratorio</th>
  <th>Seleccionar</th>
  </tr>
- [% FOREACH catresul IN catresult %]
- [% IF ( catresul.even ) %]
- <tr class="hilighted">
- [% ELSE %]
- <tr>
- [% END %]
- <td>
- [% catresul.lib %]
- </td>
+ [% FOREACH catresul IN catresult %] [% IF ( catresul.even ) %] <tr class="hilighted">
+ [% ELSE %] <tr>
+ [% END %] <td>
+ [% catresul.lib %] </td>
  <td>
  <a  href="javascript:SelectEntry('[% catresul.libjs |url %]','[% catresul.authjs |url %]',[% catresul.index |url %],0)" class="button">Seleccionar</a>
- <a  href="javascript:SelectEntry('[% catresul.libjs |url %]','[% catresul.authjs |url %]',[% catresul.index |url %],1)" class="button">Sel&amp;cerrar</a>
+ <a  href="javascript:SelectEntry('[% catresul.libjs |url %]','[% catresul.authjs |url %]',[% catresul.index |url %],1)" class="button">Seleccionar y cerrar</a>
  </td>
  </tr>
- [% END %]
- </table>
+ [% END %] </table>
  </div>
  <div id="resultnumber">
- <p>[% IF ( displayprev ) %] 
- <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=labs_theses.pl&amp;startfrom=[% startfromprev %]&amp;cat_auth=[% cat_auth |url %]&amp;search=[% search |url %]&amp;resultsperpage=[% resultsperpage %]&amp;type=intranet&amp;op=do_search&amp;index=[% anindex %]">&lt;&lt; Anterior</a>
- [% END %]
- [% FOREACH number IN numbers %]
- [% IF ( number.highlight ) %]
- <span class="highlight">[% number.number %]</span>
- [% ELSE %] 
- <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=labs_theses.pl&amp;startfrom=[% number.startfrom %]&amp;cat_auth=[% number.cat_auth |url %]&amp;search=[% number.search |url %]&amp;resultsperpage=[% number.resultsperpage %]&amp;type=intranet&amp;op=do_search&amp;index=[% number.anindex %]">[% number.number %]</a>
- [% END %]
- [% END %] 
- [% IF ( displaynext ) %]
- <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=labs_theses.pl&amp;startfrom=[% startfromnext %]&amp;cat_auth=[% cat_auth |url %]&amp;search=[% search %]&amp;resultsperpage=[% resultsperpage %]&amp;type=intranet&amp;op=do_search&amp;index=[% anindex %]">Siguiente &gt;&gt;</a>
- [% END %]
- </p>
+ <p>[% IF ( displayprev ) %] <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=labs_theses.pl&amp;startfrom=[% startfromprev %]&amp;cat_auth=[% cat_auth |url %]&amp;search=[% search |url %]&amp;resultsperpage=[% resultsperpage %]&amp;type=intranet&amp;op=do_search&amp;index=[% anindex %]">&lt;&lt; Anterior</a>
+ [% END %] [% FOREACH number IN numbers %] [% IF ( number.highlight ) %] <span class="highlight">[% number.number %]</span>
+ [% ELSE %] <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=labs_theses.pl&amp;startfrom=[% number.startfrom %]&amp;cat_auth=[% number.cat_auth |url %]&amp;search=[% number.search |url %]&amp;resultsperpage=[% number.resultsperpage %]&amp;type=intranet&amp;op=do_search&amp;index=[% number.anindex %]">[% number.number %]</a>
+ [% END %] [% END %] [% IF ( displaynext ) %] <a class="resultnumber" href="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=labs_theses.pl&amp;startfrom=[% startfromnext %]&amp;cat_auth=[% cat_auth |url %]&amp;search=[% search %]&amp;resultsperpage=[% resultsperpage %]&amp;type=intranet&amp;op=do_search&amp;index=[% anindex %]">Siguiente &gt;&gt;</a>
+ [% END %] </p>
  <p class="resultcount">
-  [% IF ( total ) %] Resultados [% from %] para [% to %] de [% total %][% ELSE %]No se encontraron resultados [% END %]</p>
+ [% IF ( total ) %] Resultados [% from %] a [% to %] de [% total %][% ELSE %] No se encontraron resultados [% END %] </p>
  </div>
  <script language="JavaScript" type="text/javascript">
 	function SelectEntry(myentry, mycode, myindex, wclose){
@@ -111,6 +93,5 @@ a.catalogue:hover {
 	}
 	</script>
  </div>
-[% END %]
-</div>
-[% INCLUDE 'popup-bottom.inc' %]
+[% END %] </div>
+[% INCLUDE 'popup-bottom.inc' %] 

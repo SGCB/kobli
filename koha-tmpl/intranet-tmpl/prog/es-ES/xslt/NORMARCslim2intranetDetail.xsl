@@ -57,7 +57,7 @@
  </xsl:variable>
  <xsl:variable name="materialTypeLabel">
  <xsl:choose>
- <xsl:when test="$field019b='b' or $field019b='k' or $field019b='l' or $leader6='b'">Bok</xsl:when>
+ <xsl:when test="$field019b='b' or $field019b='k' or $field019b='l' or $leader6='b'">Libro</xsl:when>
  <xsl:when test="$field019b='e' or contains($field019b,'ec') or contains($field019b,'ed') or contains($field019b,'ee') or contains($field019b,'ef') or $leader6='g'">Film og video</xsl:when>
  <xsl:when test="$field019b='c' or $field019b='d' or contains($field019b,'da') or contains($field019b,'db') or contains($field019b,'dc') or contains($field019b,'dd') or contains($field019b,'dg') or contains($field019b,'dh') or contains($field019b,'di') or contains($field019b,'dj') or contains($field019b,'dk') or $leader6='c' or $leader6='d' or $leader6='i' or $leader6='j'">Musikalier</xsl:when>
  <xsl:when test="$field019b='a' or contains($field019b,'ab') or contains($field019b,'aj') or $leader6='e' or $leader6='f'">Kart</xsl:when>
@@ -67,7 +67,7 @@
  <xsl:when test="$field019b='h' or $leader6='r'">Tredimensjonal gjenstand</xsl:when>
  <xsl:when test="$field019b='j' or $leader6='a'">
  <xsl:choose>
- <xsl:when test="$leader7='a' or $leader7='c' or $leader7='m' or $leader7='p'">Bok</xsl:when>
+ <xsl:when test="$leader7='a' or $leader7='c' or $leader7='m' or $leader7='p'">Libro</xsl:when>
  <xsl:when test="$field019b='j' or $leader7='b' or $leader7='s'">Periodikum</xsl:when>
  </xsl:choose>
  </xsl:when>
@@ -92,8 +92,7 @@
  <xsl:text> </xsl:text>
  (<xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">h</xsl:with-param>
- </xsl:call-template>) 
- </xsl:if>
+ </xsl:call-template>) </xsl:if>
  <xsl:text> </xsl:text>
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">np</xsl:with-param>
@@ -106,8 +105,7 @@
  <!-- 245$9 is Koha authority number --> 
  <xsl:choose>
  <xsl:when test="marc:datafield[@tag=100] or marc:datafield[@tag=110] or marc:datafield[@tag=111] or marc:datafield[@tag=700] or marc:datafield[@tag=710] or marc:datafield[@tag=711]">
- <h5 class="author">av
- <xsl:for-each select="marc:datafield[@tag=100 or @tag=700]">
+ <h5 class="author">av <xsl:for-each select="marc:datafield[@tag=100 or @tag=700]">
  <a>
  <xsl:choose>
  <xsl:when test="marc:subfield[@code=9]">
@@ -156,7 +154,7 @@
 
 
  <xsl:if test="$materialTypeCode!=''">
- <span class="results_summary"><span class="label">Materialtype: </span>
+ <span class="results_summary"><span class="label">Tipo de material: </span>
  <xsl:element name="img"><xsl:attribute name="src">/opac-tmpl/prog/famfamfam/<xsl:value-of select="$materialTypeCode"/>.png</xsl:attribute><xsl:attribute name="alt"></xsl:attribute></xsl:element>
  <xsl:value-of select="$materialTypeLabel"/>
  </span>
@@ -164,7 +162,7 @@
 
  <!--Series -->
  <xsl:if test="marc:datafield[@tag=440 or @tag=490]">
- <span class="results_summary"><span class="label">Publicaciones periódicas:</span>
+ <span class="results_summary"><span class="label">Series </span>
  <xsl:for-each select="marc:datafield[@tag=440]">
  <a href="/cgi-bin/koha/catalogue/search.pl?q=se:{marc:subfield[@code='a']}">
  <xsl:call-template name="chopPunctuation">
@@ -249,7 +247,7 @@
  <abbr class="unapi-id" title="koha:biblionumber:{marc:datafield[@tag=999]/marc:subfield[@code='c']}" ><!-- unAPI --></abbr>
 
  <xsl:if test="marc:datafield[@tag=020]">
- <span class="results_summary"><span class="label">ISBN:</span>
+ <span class="results_summary"><span class="label">ISBN: </span>
  <xsl:for-each select="marc:datafield[@tag=020]">
  <xsl:variable name="isbn" select="marc:subfield[@code='a']"/>
  <xsl:value-of select="marc:subfield[@code='a']"/>
@@ -259,7 +257,7 @@
  </xsl:if>
 
  <xsl:if test="marc:datafield[@tag=022]">
- <span class="results_summary"><span class="label">ISSN:</span>
+ <span class="results_summary"><span class="label">ISSN: </span>
  <xsl:for-each select="marc:datafield[@tag=022]">
  <xsl:value-of select="marc:subfield[@code='a']"/>
  <xsl:choose><xsl:when test="position()=last()"><xsl:text>.</xsl:text></xsl:when><xsl:otherwise><xsl:text>; </xsl:text></xsl:otherwise></xsl:choose>
@@ -363,8 +361,7 @@
  </xsl:call-template>
  </xsl:when>
  <xsl:when test="not(marc:subfield[@code='y']) and not(marc:subfield[@code='3']) and not(marc:subfield[@code='z'])">
- Klikk her for tilgang
- </xsl:when>
+ Klikk her for tilgang </xsl:when>
  </xsl:choose>
  </a>
  <xsl:choose>
@@ -419,29 +416,21 @@
  <span class="results_summary"><span class="label">
  <xsl:choose>
  <xsl:when test="@ind2=0">
- Fortsettelse av:
- </xsl:when>
+ Fortsettelse av: </xsl:when>
  <xsl:when test="@ind2=1">
- Delvis fortsettelse av:
- </xsl:when>
+ Delvis fortsettelse av: </xsl:when>
  <xsl:when test="@ind2=2">
- Avløser:
- </xsl:when>
+ Avløser: </xsl:when>
  <xsl:when test="@ind2=3">
- Avløser delvis:
- </xsl:when>
+ Avløser delvis: </xsl:when>
  <xsl:when test="@ind2=4">
- Sammenslåing av: ... ; og ...
- </xsl:when>
+ Sammenslåing av: ... ; og ... </xsl:when>
  <xsl:when test="@ind2=5">
- Har tatt opp:
- </xsl:when>
+ Har tatt opp: </xsl:when>
  <xsl:when test="@ind2=6">
- Har delvis tatt opp:
- </xsl:when>
+ Har delvis tatt opp: </xsl:when>
  <xsl:when test="@ind2=7">
- Utskilt fra:
- </xsl:when>
+ Utskilt fra: </xsl:when>
  </xsl:choose>
  </span>
  <xsl:variable name="f780">
@@ -469,29 +458,21 @@
  <span class="results_summary"><span class="label">
  <xsl:choose>
  <xsl:when test="@ind2=0">
- Fortsettelse i:
- </xsl:when>
+ Fortsettelse i: </xsl:when>
  <xsl:when test="@ind2=1">
- Fortsettes delvis i:
- </xsl:when>
+ Ordenar esta lista por: </xsl:when>
  <xsl:when test="@ind2=2">
- Avløst av:
- </xsl:when>
+ Avløst av: </xsl:when>
  <xsl:when test="@ind2=3">
- Delvis avløst av:
- </xsl:when>
+ Delvis avløst av: </xsl:when>
  <xsl:when test="@ind2=4">
- Gått inn i:
- </xsl:when>
+ Gått inn i: </xsl:when>
  <xsl:when test="@ind2=5">
- Delvis gått inn i:
- </xsl:when>
+ Delvis gått inn i: </xsl:when>
  <xsl:when test="@ind2=6">
- Fortsettes av: ...; og ...
- </xsl:when>
+ Fortsettes av: ...; og ... </xsl:when>
  <xsl:when test="@ind2=7">
- Slått sammen med: .., til: ...
- </xsl:when>
+ Slått sammen med: .., til: ... </xsl:when>
  </xsl:choose>
  </span>
  <xsl:variable name="f785">
@@ -510,11 +491,10 @@
 
  <!-- This will only work if the OPACBaseURL syspref is set. -->
  <xsl:if test="string-length($OPACBaseURL) > 0">
- <p>OPAC View: <a>
+ <p>Vista OPAC: <a>
  <xsl:attribute name="href">http://<xsl:value-of select="$OPACBaseURL"/>/cgi-bin/koha/opac-detail.pl?biblionumber=<xsl:value-of select="$biblionumber"/></xsl:attribute>
  <xsl:attribute name="target">_blank</xsl:attribute>
- Open in new window
- </a></p>
+ Abrir en una nueva ventana </a></p>
  </xsl:if>
 
  </xsl:template>

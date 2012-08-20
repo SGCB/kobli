@@ -1,8 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Catalogación &rsaquo; constructor del 008</title>
-[% INCLUDE 'doc-head-close.inc' %]
-
-<script type="text/javascript" src='[% themelang %]/js/xmlControlfield.js'></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; constructor del 008</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src='[% themelang %]/js/xmlControlfield.js'></script>
 <script type="text/javascript">
     var objXmlControlField;
     var tr_result;
@@ -48,10 +45,10 @@
 <input type="hidden" name="result" id="result" value="[% result %]" />
 <table id="table_material_types">
  <tr id="tr_material_types">
- <td><label for="material_type" title="Selecciona un tipo de material para especificar los calores variables">Tipo de material</label></td>
+ <td><label for="material_type" title="Seleccionar un tipo de material para especificar el valor de las variables">Tipo de material</label></td>
  <td>
- <select onchange="changeTypeofMaterial(this.form)" name="material_type" id="material_type" title="Selecciona un tipo de material para especificar los calores variables">
- <option value="">Selecciona tipo de material</option>
+ <select onchange="changeTypeofMaterial(this.form)" name="material_type" id="material_type" title="Seleccionar un tipo de material para especificar el valor de las variables">
+ <option value="">Seleccionar un tipo de material</option>
  </select>
  </td>
  </tr>
@@ -71,4 +68,4 @@ function report() {
     //]]>
 </script>
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

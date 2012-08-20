@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Circulación &rsaquo; Reservas a retirar</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación &rsaquo; Reservas a retirar</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" language="JavaScript">
 //<![CDATA[
 $.tablesorter.addParser({
@@ -11,7 +9,7 @@ $.tablesorter.addParser({
     type: 'text'
 });
      $(document).ready(function() {
-         $('#resultlist > ul').tabs();
+         $('#resultlist').tabs();
          $("th a").hide();
          $.tablesorter.defaults.widgets = ['zebra'];
          $("#holdst,#holdso").tablesorter({[% IF ( dateformat == 'metric' ) %]
@@ -24,12 +22,9 @@ $.tablesorter.addParser({
 </script>
 </head>
 <body id="circ_waitingreserves" class="circ">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'circ-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
 &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a>
-&rsaquo; <a href="/cgi-bin/koha/circ/waitingreserves.pl">Reservas esperando a ser recogidas</a>
+&rsaquo; <a href="/cgi-bin/koha/circ/waitingreserves.pl">Reservas a retirar</a>
 </div>
 
 <div id="doc" class="yui-t7">
@@ -38,65 +33,46 @@ $.tablesorter.addParser({
  <div id="yui-main">
  <div class="yui-g">
 
- <h2>Holds awaiting pickup for your library on: [% show_date %]
- [% IF ( all_branches_link ) %]
- <span style="margin-left:20px"><a href="[% all_branches_link %]">
- View all libraries</a></span>
- [% END %]
- </h2>
- [% IF ( cancel_result ) %]
- [% IF ( cancel_result.messagetransfert ) %]
- <div>
+ <h2>Reservas a retirar para su biblioteca en: [% show_date %] [% IF ( all_branches_link ) %] <span style="margin-left:20px"><a href="[% all_branches_link %]">
+ Ver todas las bibliotecas</a></span>
+ [% END %] </h2>
+ [% IF ( cancel_result ) %] [% IF ( cancel_result.messagetransfert ) %] <div>
  <h2>Reserva encontrada para ([% nextreservtitle %]), debe transferirse</h2>
- <p>This hold placed by : <b> [% nextreservsurname %] [% nextreservfirstname %]</b> at the library : <b> [% branchname %] </b>, Please transfer this hold.
- </p>
+ <p>Esta reserva hecha por: <b> [% nextreservsurname %] [% nextreservfirstname %]</b> en la biblioteca: <b> [% branchname %] </b>, Por favor transfiera esta reserva. </p>
  <form name="cancelReservewithtransfert" action="waitingreserves.pl" method="post">
  <input type="submit" class="button" />
  </form>
  </div>
- [% END %]
- [% IF ( cancel_result.waiting ) %]
- <div id="bloc25">
+ [% END %] [% IF ( cancel_result.waiting ) %] <div id="bloc25">
  <h2>Esta reserva está en espera</h2>
- <p>This hold ([% nextreservtitle %]) was placed by <b> : [% nextreservsurname %] [% nextreservfirstname %]</b>,
- Please retain this hold.
- </p>
+ <p>Esta reserva ([% nextreservtitle %]) fue hecha por <b> :[% nextreservsurname %] [% nextreservfirstname %]</b>, Por favor retenga este ítem. </p>
  <form name="cancelReservewithwaiting" action="waitingreserves.pl" method="post">
  <input type="submit" />
  </form>
  </div>
- [% END %]
- [% ELSE %]
- <div id="resultlist" class="toptabs">
+ [% END %] [% ELSE %] <div id="resultlist" class="toptabs">
  <ul>
- <li><a href="/cgi-bin/koha/circ/waitingreserves.pl#holdswaiting">[% reservecount %] Reserva(s) en espera</a></li>
- <li><a href="/cgi-bin/koha/circ/waitingreserves.pl#holdsover">[% overcount %] Reserva(s) pospuesta</a></li>
+ <li><a href="#holdswaiting">[% reservecount %] Reserva(s) en espera</a></li>
+ <li><a href="#holdsover">[% overcount %] Reserva(s) pospuesta</a></li>
  </ul>
  <div id="holdswaiting">
- [% IF ( reserveloop ) %]
- <table id="holdst">
+ [% IF ( reserveloop ) %] <table id="holdst">
  <thead><tr>
  <th>Disponible desde</th>
  <th>Título</th>
  <th>Socio</th>
  <th>Ubicación</th>
- <th>Copy number</th>
- <th>Enumeration</th>
+ <th>Copia número </th>
+ <th>Enumeración</th>
  <th>Acción</th>
  </tr></thead>
- <tbody>[% FOREACH reserveloo IN reserveloop %]
- <tr>
+ <tbody>[% FOREACH reserveloo IN reserveloop %] <tr>
  <td><p>[% reserveloo.waitingdate %]</p></td>
- <td>[% INCLUDE 'biblio-default-view.inc' biblionumber = reserveloo.biblionumber %]
- [% reserveloo.title |html %] [% reserveloo.subtitle |html %]
- </a>
- &nbsp; (<b>[% reserveloo.itemtype %]</b>)
- <br />Barcode: [% reserveloo.barcode %]
- </td>
+ <td>[% INCLUDE 'biblio-default-view.inc' biblionumber = reserveloo.biblionumber %] [% reserveloo.title |html %] [% reserveloo.subtitle |html %] </a>
+ &nbsp; (<b>[% reserveloo.itemtype %]</b>) <br />Código de barras: [% reserveloo.barcode %] </td>
  <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% reserveloo.borrowernum %]">[% reserveloo.borrowername %], [% reserveloo.borrowerfirstname %]</a><br />[% reserveloo.borrowerphone %]<br />
  [% IF ( reserveloo.borrowermail ) %]<a href="mailto:[% reserveloo.email %]?subject=Reservation: [% reserveloo.title %]">
- [% reserveloo.borrowermail %]</a>[% END %]
- </td>
+ [% reserveloo.borrowermail %]</a>[% END %] </td>
  <td>[% reserveloo.homebranch %]<br />[% reserveloo.itemcallnumber %]</td>
  <td>[% reserveloo.copynumber %]</td>
  <td>[% reserveloo.enumchron %]</td>
@@ -106,33 +82,24 @@ $.tablesorter.addParser({
  <input type="hidden" name="itemnumber" value="[% reserveloo.itemnumber %]" />
  <input type="hidden" name="fbr" value="[% reserveloo.holdingbranch %]" />
  <input type="hidden" name="tbr" value="[% reserveloo.homebranch %]" />
- [% IF ( reserveloo.dotransfer ) %]
- <input type="submit" value="Cancel hold and return to : [% reserveloo.branchname %]" /> 
- [% ELSE %]
- <input value="Cancelar reserva" type="submit" />
- [% END %]
- </form>
+ [% IF ( reserveloo.dotransfer ) %] <input value="Cancelar reserva y devolver a: [% reserveloo.homebranch %]" type="submit" /> 
+ [% ELSE %] <input value="Cancelar reserva" type="submit" />
+ [% END %] </form>
  </td>
  </tr>
  [% END %]</tbody>
  </table>
- [% ELSE %]
- <div class="dialog message">No se encontraron reservas</div>
- [% END %]
- </div>
+ [% ELSE %] <div class="dialog message">No se encontraron reservas</div>
+ [% END %] </div>
  <div id="holdsover">
- <p>Holds listed here have been awaiting pickup for more than [% ReservesMaxPickUpDelay %] days.</p>
- [% IF ( overloop ) %]
- <p>
+ <p>Reservas que han estado esperando más de [% ReservesMaxPickUpDelay %] días para ser retiradas</p>
+ [% IF ( overloop ) %] <p>
  <form name="cancelAllReserve" action="waitingreserves.pl" method="post">
  <input type="hidden" name="cancelall" value="1" />
  <input type="hidden" name="allbranches" value="[% allbranches %]" />
- <input type="submit" value="Cancel [% IF TransferWhenCancelAllWaitingHolds %]and Transfer [% END %]All" />
+ <input value="Cancelar [% IF TransferWhenCancelAllWaitingHolds %]y Transferir [% END %]Todo" type="submit" />
  </form>
- [% UNLESS TransferWhenCancelAllWaitingHolds %]
- Only items that need not be transferred will be cancelled (TransferWhenCancelAllWaitingHolds sypref)
- [% END %]
- </p>
+ [% UNLESS TransferWhenCancelAllWaitingHolds %] Solo ítems que no requieren transferencia pueden cancelarse (preferencia TransferWhenCancelAllWaitingHolds) [% END %] </p>
  <br/>
  <table id="holdso">
  <thead><tr>
@@ -140,22 +107,17 @@ $.tablesorter.addParser({
  <th>Título</th>
  <th>Socio</th>
  <th>Ubicación</th>
- <th>Copy number</th>
- <th>Enumeration</th>
+ <th>Copia número </th>
+ <th>Enumeración</th>
  <th>Acción</th>
  </tr></thead>
- <tbody>[% FOREACH overloo IN overloop %]
- <tr>
+ <tbody>[% FOREACH overloo IN overloop %] <tr>
  <td><p>[% overloo.waitingdate %]</p></td>
- <td>[% INCLUDE 'biblio-default-view.inc' biblionumber = overloo.biblionumber %][% overloo.title |html %] [% overloo.subtitle |html %]
- </a>
- [% UNLESS ( item_level_itypes ) %][% IF ( overloo.itemtype ) %]&nbsp; (<b>[% overloo.itemtype %]</b>)[% END %][% END %]
- <br />Barcode: [% overloo.barcode %]
- </td>
+ <td>[% INCLUDE 'biblio-default-view.inc' biblionumber = overloo.biblionumber %][% overloo.title |html %] [% overloo.subtitle |html %] </a>
+ [% UNLESS ( item_level_itypes ) %][% IF ( overloo.itemtype ) %]&nbsp; (<b>[% overloo.itemtype %]</b>)[% END %][% END %] <br />Código de barras: [% overloo.barcode %] </td>
  <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% overloo.borrowernum %]">[% overloo.borrowername %], [% overloo.borrowerfirstname %]</a><br />[% overloo.borrowerphone %]<br />
  [% IF ( overloo.borrowermail ) %]<a href="mailto:[% overloo.email %]?subject=Reservation: [% overloo.title |url %]">
- [% overloo.borrowermail %]</a>[% END %]
- </td>
+ [% overloo.borrowermail %]</a>[% END %] </td>
  <td>[% overloo.homebranch %] [% overloo.itemcallnumber %]</td>
  <td>[% overloo.copynumber %]</td>
  <td>[% overloo.enumchron %]</td>
@@ -164,24 +126,17 @@ $.tablesorter.addParser({
  <input type="hidden" name="itemnumber" value="[% overloo.itemnumber %]" />
  <input type="hidden" name="fbr" value="[% overloo.holdingbranch %]" />
  <input type="hidden" name="tbr" value="[% overloo.homebranch %]" />
- [% IF ( overloo.dotransfer ) %]
- <input type="submit" value="Cancel hold and return to : [% overloo.branchname %]" />
- [% ELSE %]
- <input value="Cancelar reserva" type="submit" />
- [% END %]
- </form>
+ [% IF ( overloo.dotransfer ) %] <input value="Cancelar la reserva y devolver a : [% overloo.homebranch %]" type="submit" />
+ [% ELSE %] <input value="Cancelar reserva" type="submit" />
+ [% END %] </form>
  </td>
  </tr>
  [% END %]</tbody>
  </table>
- [% ELSE %]
- <div class="dialog message">No se encontraron reservas</div>
- [% END %]
+ [% ELSE %] <div class="dialog message">No se encontraron reservas</div>
+ [% END %] </div>
  </div>
- </div>
- [% END %]
-
+ [% END %] </div>
 </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

@@ -1,28 +1,26 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Planificador de tareas</h1>
 
-<h1>Planificador de tareas</h1>
+<p>El programador de tareas es una manera de programar informes para ejecutarse cada vez que desee.</p>
 
-<p>El programador de tareas es una manera de programar informes para ejecutarse cada vez que desees.</p>
-
-<p>Para programar una tarea, visita el Programador de tareas y rellena el formulario</p>
+<p>Para programar una tarea, visite el Programador de tareas y rellene el formulario</p>
 
 <ul>
- <li>El servidor de tiempo muestra que el tiempo en tu servidor (tus informes se ejecutarán con un cronograma basado en este servidor - no en tu hora local)</li>
+ <li>El servidor de tiempo muestra que el tiempo en su servidor (sus informes se ejecutarán con un cronograma basado en este servidor - no en su hora local)</li>
  <li>El tiempo se debe ingresar como hh:mm (2 dígitos de hora, 2 dígitos de minutos)</li>
- <li>La fecha debe ser ingresada utilizando el calendario pop-up</li>
- <li>Desde Informe elige el informe que deseas programar</li>
- <li>Selecciona si deseas recibir el texto o un enlace a los resultados</li>
- <li>En el campo de correo electrónico, ingresa el correo electrónico de la persona que deseas que reciba el informe</li>
+ <li>La fecha debe ser ingresada utilizando el calendario emergente</li>
+ <li>Desde Informe elija el informe que desea programar</li>
+ <li>Seleccione si desea recibir el texto o un enlace a los resultados</li>
+ <li>En el campo de correo electrónico ingresar el correo electrónico de la persona que desea recibir el informe</li>
 </ul>
 
 <p>A continuación del formulario del programador de tareas, hay una lista de los informes programados</p>
 
-<p>También puedes programar informes directamente desde la lista de informes almacenados, haciendo clic en el enlace 'Planificar'</p>
+<p>También puede programar informes directamente desde la lista de informes almacenados, haciendo clic en el enlace 'Planificar'</p>
 
 <h2>Solución de problemas</h2>
 
-<p>Task scheduler will not work if the user the web server runs as doesn't have the permission to use it. To find out if the right user has the permissions necessary, check /etc/at.allow to see what users are in it. If you don't have that file, check etc/at.deny. If at.deny exists but is blank, then every user can use it. Talk to your system admin about adding the user to the right place to make the task scheduler work.</p>
+<p>El programador de tareas no funcionará si el usuario bajo el cual se ejecuta su servidor Web no tiene permiso para usarlo. Para saber si el usuario tiene los permisos necesarios, consulte /etc/at.allow para ver qué usuarios están en ella. Si no tiene ese archivo, consulte /etc/at.deny. Si at.deny existe, pero está en blanco, cualquier usuario puede utilizarlo. Hable con su administrador de sistema acerca de agregar el usuario al lugar correcto para hacer que el programador de tareas funcione.</p>
 
-<p><strong>See the full documentation for the Task Scheduler in the <a href="http://manual.koha-community.org/3.8/en/taskscheduler.html">manual</a> (online).</strong></p>
+<p><strong>Vea la documentación completa del Planificador de tareas en la <a href="http://manual.koha-community.org/3.8/en/taskscheduler.html">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

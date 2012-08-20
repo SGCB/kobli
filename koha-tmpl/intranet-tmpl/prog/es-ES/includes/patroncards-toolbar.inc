@@ -12,23 +12,23 @@
     // YUI Toolbar Functions
     function yuiToolbar() {
         var layouts = [
-                {text: _("Manage layouts"), url: "/cgi-bin/koha/patroncards/manage.pl?card_element=layout" },
-                {text: _("New layout"), url: "/cgi-bin/koha/patroncards/edit-layout.pl?op=new" }
+                {text: _("Administrar diseños"), url: "/cgi-bin/koha/patroncards/manage.pl?card_element=layout" },
+                {text: _("Nuevo diseño"), url: "/cgi-bin/koha/patroncards/edit-layout.pl?op=new" }
         ];
 
         var templates = [
-                {text: _("Manage templates"), url: "/cgi-bin/koha/patroncards/manage.pl?card_element=template" },
-                {text: _("New template"), url: "/cgi-bin/koha/patroncards/edit-template.pl?op=new" }
+                {text: _("Administrar plantillas"), url: "/cgi-bin/koha/patroncards/manage.pl?card_element=template" },
+                {text: _("Nueva plantilla"), url: "/cgi-bin/koha/patroncards/edit-template.pl?op=new" }
         ];
 
         var profiles = [
-                {text: _("Manage profiles"), url: "/cgi-bin/koha/patroncards/manage.pl?card_element=profile" },
+                {text: _("Administrar perfiles"), url: "/cgi-bin/koha/patroncards/manage.pl?card_element=profile" },
                 {text: _("Nuevo perfil"), url: "/cgi-bin/koha/patroncards/edit-profile.pl?op=new" }
         ];
 
         var batches = [
-                {text: _("Manage batches"), url: "/cgi-bin/koha/patroncards/manage.pl?card_element=batch" },
-                {text: _("New batch"), url: "/cgi-bin/koha/patroncards/edit-batch.pl?op=new" }
+                {text: _("Administrar lotes"), url: "/cgi-bin/koha/patroncards/manage.pl?card_element=batch" },
+                {text: _("Nuevo lote"), url: "/cgi-bin/koha/patroncards/edit-batch.pl?op=new" }
         ];
 
         new YAHOO.widget.Button({

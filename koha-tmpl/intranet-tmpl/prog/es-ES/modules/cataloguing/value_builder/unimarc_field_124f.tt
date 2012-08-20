@@ -1,106 +1,50 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>UNIMARC field 124f builder</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Constructor Campo UNIMARC 124f</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="cat_unimarc_field_124f" class="cat" style="padding:1em;">
-<h3>UNIMARC field 124f builder</h3>
+<h3>Constructor Campo UNIMARC 124f</h3>
 <form name="f_pop" action="">
 <table>
  <tr>
- <td><label for="f1">Name of satellite for remote sensing image:</label></td>
+ <td><label for="f1">Nombre del satélite para sensado remoto de imágenes:</label></td>
  <td>
  <select name="f1" id="f1" size="1">
- [% IF ( f1aa ) %]
- <option value="aa" selected="selected">Tiros</option>
- [% ELSE %]
- <option value="aa">Tiros</option>
- [% END %]
- [% IF ( f1ab ) %]
- <option value="ab" selected="selected">ATS</option>
- [% ELSE %]
- <option value="ab">ATS</option>
- [% END %]
- [% IF ( f1ac ) %]
- <option value="ac" selected="selected">NOAA</option>
- [% ELSE %]
- <option value="ac">NOAA</option>
- [% END %]
- [% IF ( f1ad ) %]
- <option value="ad" selected="selected">No</option>
- [% ELSE %]
- <option value="ad">No</option>
- [% END %]
- [% IF ( f1ae ) %]
- <option value="ae" selected="selected">METEOSAT</option>
- [% ELSE %]
- <option value="ae">METEOSAT</option>
- [% END %]
- [% IF ( f1ma ) %]
- <option value="ma" selected="selected">Explorador I</option>
- [% ELSE %]
- <option value="ma">Explorador I</option>
- [% END %]
- [% IF ( f1mb ) %]
- <option value="mb" selected="selected">Explorador II</option>
- [% ELSE %]
- <option value="mb">Explorador II</option>
- [% END %]
- [% IF ( f1ga ) %]
- <option value="ga" selected="selected">ERTS</option>
- [% ELSE %]
- <option value="ga">ERTS</option>
- [% END %]
- [% IF ( f1gb ) %]
- <option value="gb" selected="selected">Landsat I</option>
- [% ELSE %]
- <option value="gb">Landsat I</option>
- [% END %]
- [% IF ( f1gc ) %]
- <option value="gc" selected="selected">Landsat II</option>
- [% ELSE %]
- <option value="gc">Landsat II</option>
- [% END %]
- [% IF ( f1gd ) %]
- <option value="gd" selected="selected">Landsat III</option>
- [% ELSE %]
- <option value="gd">Landsat III</option>
- [% END %]
- [% IF ( f1ge ) %]
- <option value="ge" selected="selected">Seasat</option>
- [% ELSE %]
- <option value="ge">Seasat</option>
- [% END %]
- [% IF ( f1gf ) %]
- <option value="gf" selected="selected">Skylab</option>
- [% ELSE %]
- <option value="gf">Skylab</option>
- [% END %]
- [% IF ( f1gg ) %]
- <option value="gg" selected="selected">Laboratorio espacial</option>
- [% ELSE %]
- <option value="gg">Laboratorio espacial</option>
- [% END %]
- [% IF ( f1gk ) %]
- <option value="gk" selected="selected">Control 1</option>
- [% ELSE %]
- <option value="gk">Control 1</option>
- [% END %]
- [% IF ( f1gl ) %]
- <option value="gl" selected="selected">Control 2</option>
- [% ELSE %]
- <option value="gl">Control 2</option>
- [% END %]
- [% IF ( f1gm ) %]
- <option value="gm" selected="selected">Control 3</option>
- [% ELSE %]
- <option value="gm">Control 3</option>
- [% END %]
- [% IF ( f1gz ) %]
- <option value="gz" selected="selected">otro</option>
- [% ELSE %]
- <option value="gz">otro</option>
- [% END %]
- </select>
+ [% IF ( f1aa ) %] <option value="aa" selected="selected">Tiros</option>
+ [% ELSE %] <option value="aa">Tiros</option>
+ [% END %] [% IF ( f1ab ) %] <option value="ab" selected="selected">ATS</option>
+ [% ELSE %] <option value="ab">ATS</option>
+ [% END %] [% IF ( f1ac ) %] <option value="ac" selected="selected">NOAA</option>
+ [% ELSE %] <option value="ac">NOAA</option>
+ [% END %] [% IF ( f1ad ) %] <option value="ad" selected="selected">Nimbo</option>
+ [% ELSE %] <option value="ad">Nimbo</option>
+ [% END %] [% IF ( f1ae ) %] <option value="ae" selected="selected">METEOSAT</option>
+ [% ELSE %] <option value="ae">METEOSAT</option>
+ [% END %] [% IF ( f1ma ) %] <option value="ma" selected="selected">Explorador I</option>
+ [% ELSE %] <option value="ma">Explorador I</option>
+ [% END %] [% IF ( f1mb ) %] <option value="mb" selected="selected">Explorador II</option>
+ [% ELSE %] <option value="mb">Explorador II</option>
+ [% END %] [% IF ( f1ga ) %] <option value="ga" selected="selected">ERTS</option>
+ [% ELSE %] <option value="ga">ERTS</option>
+ [% END %] [% IF ( f1gb ) %] <option value="gb" selected="selected">Landsat I</option>
+ [% ELSE %] <option value="gb">Landsat I</option>
+ [% END %] [% IF ( f1gc ) %] <option value="gc" selected="selected">Landsat II</option>
+ [% ELSE %] <option value="gc">Landsat II</option>
+ [% END %] [% IF ( f1gd ) %] <option value="gd" selected="selected">Landsat III</option>
+ [% ELSE %] <option value="gd">Landsat III</option>
+ [% END %] [% IF ( f1ge ) %] <option value="ge" selected="selected">Seasat</option>
+ [% ELSE %] <option value="ge">Seasat</option>
+ [% END %] [% IF ( f1gf ) %] <option value="gf" selected="selected">Skylab</option>
+ [% ELSE %] <option value="gf">Skylab</option>
+ [% END %] [% IF ( f1gg ) %] <option value="gg" selected="selected">Laboratorio espacial</option>
+ [% ELSE %] <option value="gg">Laboratorio espacial</option>
+ [% END %] [% IF ( f1gk ) %] <option value="gk" selected="selected">Control 1</option>
+ [% ELSE %] <option value="gk">Control 1</option>
+ [% END %] [% IF ( f1gl ) %] <option value="gl" selected="selected">Control 2</option>
+ [% ELSE %] <option value="gl">Control 2</option>
+ [% END %] [% IF ( f1gm ) %] <option value="gm" selected="selected">Control 3</option>
+ [% ELSE %] <option value="gm">Control 3</option>
+ [% END %] [% IF ( f1gz ) %] <option value="gz" selected="selected">otro</option>
+ [% ELSE %] <option value="gz">otro</option>
+ [% END %] </select>
  </td></tr>
 </table>
 <fieldset class="action"><input type="button" value="OK" onclick="report();" /> <a href="#" class="cancel close">Cancelar</a></fieldset>
@@ -117,4 +61,4 @@
 //]]>
 </script>
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

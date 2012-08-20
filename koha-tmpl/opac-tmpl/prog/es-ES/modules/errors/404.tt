@@ -1,16 +1,14 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; An error has occurred
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Ha ocurrido un error [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="error404">
 [% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %] <div id="bd">
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
 [% INCLUDE 'search.inc' %] <div class="yui-b">
 <div class="yui-g">
- <h3>An error has occurred</h3>
+ <h3>Ha ocurrido un error</h3>
  <h4>Error 404</h4>
  <ul>
  <li>Este error indica que el enlace está roto y que la página no existe.</li>
- <li>Para informar de este error, puedes <a href="mailto:[% admin %]">escribir al administrador de Koha</a>.</li>
+ <li>Para reportar este error, puede <a href="mailto:[% admin %]">escriba al administrador Koha</a>.</li>
  <li>Usar la barra de menú superior para navegar por Koha.</li>
  </ul>
 </div>

@@ -1,149 +1,63 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Authorized Values</h1>
 
-<h1>Valores autorizados</h1>
+<p>Authorized Values can be used in several areas of Koha. One reason you would add an authorized value category would be to control the values that can be entered into MARC fields by catalogers.</p>
 
-<p>Los valores autorizados pueden ser utilizados en varias áreas de Koha. Una razón para agregar categorías de valores autorizados sería controlar los valores que pueden ser ingresados en campos MARC por los catalogadores.</p>
+<h2>Existing Values</h2>
 
-<h2>Existing values</h2>
-
-<p>Koha installs with pre-defined values that your library is likely to use, for instance 'Lost'.</p>
-
+<p>Koha installs with pre-defined values that your library is likely to use, for instance, 'Lost.'</p> By default, this includes:
 <ul>
- <li>Asort1
-<ul>
- <li>Used for acquisitions statistical purposes</li>
-</ul>
-</li>
- <li>Asort2
-<ul>
- <li>Used for acquisitions statistical purposes</li>
-</ul>
-</li>
- <li>BOR_NOTES
-<ul>
- <li>Valores para las notas de socios personalizadas que aparecen en la pantalla de circulación y en el OPAC</li>
-</ul>
-</li>
- <li>Bsort1
-<ul>
- <li>Used for patron statistical purposes</li>
-</ul>
-</li>
- <li>Bsort2
-<ul>
- <li>Used for patron statistical purposes</li>
-</ul>
-</li>
- <li>CART
-<ul>
- <li>Es la ubicación del carro de estanterías, utilizado por InProcessingToShelvingCart y ReturnToShelvingCart</li>
-</ul>
-</li>
- <li>CCODE
-<ul>
- <li>Códigos de colección (aparece al catalogar y trabajar con ítems)</li>
-</ul>
-</li>
- <li>DAMAGED
-<ul>
- <li>Descripciones para ítems marcados como dañados (aparece cuando cataloga y trabaja con ítems)</li>
-</ul>
-</li>
- <li>HINGS_AS
-<ul>
- <li>General holdings: Acquisition status designator :: This data element specifies acquisition status for the unit at the time of the holdings report.a</li>
-</ul>
-</li>
- <li>HINGS_C
-<ul>
- <li>General holdings: Completeness designator</li>
-</ul>
-</li>
- <li>HINGS_PF
-<ul>
- <li>Physical form designators</li>
-</ul>
-</li>
- <li>HINGS_RD
-<ul>
- <li>General holdings: Retention designator :: This data element specifies the retention policy for the unit at the time of the holdings report.</li>
-</ul>
-</li>
- <li>HINGS_UT
-<ul>
- <li>General holdings: Type of unit designator</li>
-</ul>
-</li>
- <li>LOC
-<ul>
- <li>Shelving location (usually appears when adding or editing an item)</li>
-</ul>
-</li>
- <li>LOST
-<ul>
- <li>Descripciones para ítems marcados como perdidos (aparece cuando agrega o edita un ítem)</li>
- <li>Los valores otorgados a las situaciones de artículo perdido seben ser numéricos y no alfabéticos para que los estados aparezcan correctamente</li>
-</ul>
-</li>
- <li>MANUAL_INV<ul>
- <li>Values for manual invoicing types</li>
-</ul>
-</li>
- <li>NOT_LOAN
-<ul>
- <li>Recibir</li>
-</ul>
-</li>
- <li>PROC
-<ul>
- <li>La unbicación que ha de usarse para NewItemsDefaultLocation (cambiar la descripción como se desee), también la ubicación esperada por InProcessingToShelvingCart.</li>
-</ul>
-</li>
- <li>RESTRICTED
-<ul>
- <li>Estado restringido de un ítem</li>
-</ul>
-</li>
- <li>SUGGEST
-<ul>
- <li>List of patron suggestion reject or accept reasons (appears when managing suggestions)</li>
-</ul>
-</li>
- <li>WITHDRAWN
-<ul>
- <li>Descripción de un ítem retirado (aparece cuando se agrega o edita un ítem)</li>
-</ul>
-</li>
+ <li>'Asort1,' for acquisitions statistical purposes.</li>
+ <li>'Asort2,' used for acquisitions statistical purposes.</li>
+ <li>'BOR_NOTES' is for values for custom patron notes that appear on the circulation screen and the OPAC.</li>
+ <li>'Bsort1' is for patron statistical purposes.</li>
+ <li>'Bsort2' is used for patron statistical purposes.</li>
+ <li>'CART' is the shelving cart location, used by InProcessingToShelvingCart and ReturnToShelvingCart</li>
+ <li>'CCODE' is for collection codes (appears when cataloging and working with items).</li>
+ <li>'DAMAGED' is for descriptions of damaged items, and appears when cataloging and working with items.</li>
+ <li>'HINGS_AS' is for General Holdings: Acquisition Status Designator, a data element that specifies the acquisition status for the unit at the time of the holdings report.</li>
+ <li>'HINGS_C' is for General Holdings: Completeness Designator.</li>
+ <li>'HINGS_PF' is for Physical Form Designators</li>
+ <li>'HINGS_RD' is for General Holdings: Retention Designator, a data element that specifies the retention policy for the unit at the time of the holdings report.</li>
+ <li>'HINGS_UT' is for General Holdings: Type of Unit Designator.</li>
+ <li>'LOC' is for the shelving location and usually appears when adding or editing an item.</li>
+ <li>'LOST' is for descriptions for items marked as lost. It appears when adding or editing an item. Values given to lost statuses should be numeric (not alphabetical) in order for statuses to appear properly.</li>
+ <li>'MANUAL_INV' includes values for manual invoicing.</li>
+ <li>'NOT_LOAN' is used to list reasons why a title is not for loan.</li>
+ <li>'PROC' is for the location to be used for NewItemsDefaultLocation (change description as desired), also the location expected by InProcessingToShelvingCart.</li>
+ <li>'RESTRICTED' is used for the restricted status of an item</li>
+ <li>'SUGGEST' is for a list of reasons to accept or reject patron suggestions. It appears when managing suggestions.</li>
+ <li>'WITHDRAWN' is for a description of a withdrawn item. It appears when adding or editing an item.</li>
 </ul>
 
-<h2>Add new authorized value category</h2>
+<h2>Add New Authorized Value Category</h2>
 
-<p>Además de las categorías existentes predeterminadas de Koha, los bibliotecarios pueden añadir sus propias categorías de valores autorizados para controlar los datos que se ingresan en el sistema. Para añadir una nueva categoría:</p>
+<p>Además de las categorías existentes que vienen por defecto con Koha, los bibliotecarios pueden agregar sus propias categorías de valores autorizados para controlar los datos que se introducen en el sistema. Para añadir una nueva categoría:</p>
 
 <ul>
- <li>Click 'New category'</li>
- <li>Limit your category to 11 characters (something short to make it clear what the category is for)</li>
- <li>Cuando se añada una nueva categoría se te pedirá que crees al menos un valor autorizado<ul>
- <li>Enter a code for your authorized value into the 'Authorized value' field</li>
- <li>Use the description field for the actual value that will be entered</li>
+ <li>Click 'New Category.'</li>
+ <li>Limit your Category to eleven characters (something short to make it clear what the category is for).</li>
+ <li>When adding a new category, you're asked to create at least one authorized value:
+<ul>
+ <li>Enter a code for your Authorized Value into the 'Authorized value' field.</li>
+ <li>Use the Description field for the actual value that will be entered.</li>
 </ul>
 </li>
- <li>Haz clic en 'Guardar'</li>
- <li>Your new category and value will appear on the list of authorized values</li>
+ <li>Click 'Save.'</li>
+ <li>Your new category and value will appear on the list of Authorized Values.</li>
 </ul>
 
-<h2>Add new authorized value</h2>
+<h2>Add New Authorized Value</h2>
 
-<p>Se puede añadir nuevos valores autorizados a cualquier categoría existente o a una nueva. Para añadir un valor:</p>
+<p>Se puede agregar nuevos valores autorizados a cualquiera de las categorías ya existentes o nuevas. Para agregar un valor:</p>
 
 <ul>
- <li>Haz clic en 'Nuevos valores autorizados para ...'</li>
- <li>Enter a code for your authorized value into the 'Authorized value' field</li>
- <li>Use the description field for the actual value that will be entered</li>
- <li>Haz clic en 'Guardar'</li>
- <li>The new value will appear in the list along with existing values</li>
+ <li>Haga clic en 'Nuevos valores autorizados para ...'</li>
+ <li>Enter a code for your Authorized Value into the 'Authorized value' field.</li>
+ <li>Use the Description field for the actual value that will be entered.</li>
+ <li>Click 'Save.'</li>
+ <li>The new value will appear in the list along with existing values.</li>
 </ul>
 
-<p><strong>See the full documentation for authorized values in the <a href="http://manual.koha-community.org/3.6/en/basicparams.html#authorizedvalues">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Authorized Values in the <a href="http://manual.koha-community.org/3.8/en/basicparams.html#authorizedvalues">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

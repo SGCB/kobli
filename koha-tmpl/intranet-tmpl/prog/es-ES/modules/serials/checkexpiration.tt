@@ -1,8 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Serials &rsaquo; Check expiration</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'calendar.inc' %]
-<script type="text/javascript" language="JavaScript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Verificar caducidad</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" language="JavaScript">
 // <![CDATA[
     /**
      *  Function CheckForm
@@ -13,7 +10,7 @@
             return true;
         }
         else {
-            alert(_("You must enter a date !"));
+            alert(_("Usted debe ingresar una fecha"));
             document.f.date.focus();
             return false;
         }
@@ -28,10 +25,7 @@
 <!-- End of additions -->
 </head>
 <body id="ser_checkexpiration" class="ser">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'serials-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Check expiration </div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Controlar vencimiento </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -39,7 +33,7 @@
  <div id="yui-main">
  <div class="yui-b">
 
-<h1>Comprobar vencimiento</h1>
+<h1>Controlar vencimiento</h1>
 
  <form name="f" action="/cgi-bin/koha/serials/checkexpiration.pl" method="post" onsubmit="return CheckForm(this);">
 <fieldset class="rows">
@@ -53,17 +47,8 @@
  <input id="issn" type="text" name="issn" size="15" value="[% issn %]" /></li>
 
  <li><label for="date" class="required" title="Campo requerido">Vence antes de:</label>
- <input id="date" type="text" name="date" size="10" value="[% date %]" class="focus" />
- <img src="[% themelang %]/lib/calendar/cal.gif" alt="Show calendar" border="0" id="openCalendar" style="cursor: pointer;" />
- <script type="text/javascript">
-                Calendar.setup(
-                 {
-					button : "openCalendar",
-                     inputField : "date",
-                     ifFormat : "[% DHTMLcalendar_dateformat %]"
-                 }
-                );
-            </script> <span class="required">Requerido</span>
+ <input id="date" type="text" name="date" size="10" value="[% date %]" class="focus datepicker" />
+ <span class="required">Requerido</span>
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div></li>
  </ol>
  
@@ -71,17 +56,10 @@
 <fieldset class="action"><input value="Buscar" type="submit" /></fieldset>
 </form>
 
-[% IF ( subscriptions_loop ) %]
-<p>
- <b>[% numsubscription %]</b> subscription(s)
- [% IF ( title ) %]
- with title matching <span class="title">[% title %]</class>
- [% IF ( issn ) %]and [% END %]
- [% END %]
- [% IF ( issn ) %]
- with ISSN matching <b>[% issn %]</b>
- [% END %]
- will expire before <b>[% date %]</b>
+[% IF ( subscriptions_loop ) %] <p>
+ <b>[% numsubscription %]</b> suscripción(es) [% IF ( title ) %] con título que coincide <span class="title">[% title %]</class>
+ [% IF ( issn ) %]y [% END %] [% END %] [% IF ( issn ) %] con ISSN coincidente <b>[% issn %]</b>
+ [% END %] expirará antes de <b>[% date %]</b>
 </p>
 <table>
  <tr>
@@ -91,42 +69,25 @@
  <th>Fecha de vencimiento</th>
  <th colspan="2">&nbsp;</th>
  </tr>
- [% FOREACH subscriptions_loo IN subscriptions_loop %]
- [% IF ( subscriptions_loo.toogle ) %]
- <tr class="highlight">
- [% ELSE %]
- <tr>
- [% END %]
- <td>
- [% subscriptions_loo.issn %]
- </td>
- <td><a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptions_loo.subscriptionid |url %]">[% IF ( subscriptions_loo.title ) %]
- [% subscriptions_loo.title |html %]
- [% ELSE %]
- |
- [% END %]
- </a>
+ [% FOREACH subscriptions_loo IN subscriptions_loop %] [% IF ( subscriptions_loo.toogle ) %] <tr class="highlight">
+ [% ELSE %] <tr>
+ [% END %] <td>
+ [% subscriptions_loo.issn %] </td>
+ <td><a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptions_loo.subscriptionid |url %]">[% IF ( subscriptions_loo.title ) %] [% subscriptions_loo.title |html %] [% ELSE %] | [% END %] </a>
  </td>
  <td>
- [% subscriptions_loo.notes %]
- </td>
+ [% subscriptions_loo.notes %] </td>
  <td>
- [% subscriptions_loo.expirationdate %]
- </td>
+ [% subscriptions_loo.expirationdate %] </td>
  <td><a href="/cgi-bin/koha/serials/subscription-add.pl?op=mod&amp;subscriptionid=[% subscriptions_loo.subscriptionid %]">Editar</a></td>
  <td><a href="/cgi-bin/koha/serials/subscription-renew.pl?subscriptionid=[% subscriptions_loo.subscriptionid %]" onclick="popup([% subscriptions_loo.subscriptionid %]); return false;">Renovar</a></td>
  </tr>
- [% END %]
- </table>
-[% ELSE %]
- <p>No hubo resultados para la consulta</p>
-[% END %]
-
-</div>
+ [% END %] </table>
+[% ELSE %] <p>No hubo resultados para la consulta</p>
+[% END %] </div>
 </div>
 
 <div class="yui-b">
-[% INCLUDE 'serials-menu.inc' %]
+[% INCLUDE 'serials-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

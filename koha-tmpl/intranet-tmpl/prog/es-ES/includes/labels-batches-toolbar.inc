@@ -22,7 +22,7 @@
                         }
                     }
                     if (items.length < 1) {
-                        alert(_("Por favor, selecciona al menos un ítem que eliminar."));
+                        alert(_("Por favor, seleccione al menos un ítem para borrar."));
                         return;     // no item selected
                     }
                     getstr = items.join("&");
@@ -34,7 +34,7 @@
 //                    var msg = "Are you sure you want to remove selected item from this batch?"
 //                }
                 else {
-                    alert(_("Por favor, selecciona al menos una etiqueta que eliminar."));
+                    alert(_("Por favor, seleccione al menos una etiqueta para borrar."));
                     return;     // no item selected
                 }
                 var answer = confirm(msg);
@@ -67,7 +67,7 @@
                             }
                         }
                         if (labels.length < 1) {
-                            alert(_("Por favor, selecciona al menos una etiqueta que exportar."));
+                            alert(_("Por favor, seleccione al menos una etiqueta para exportar."));
                             return;     // no batch selected
                         }
                         getstr = labels.join("&");
@@ -76,7 +76,7 @@
                         getstr = document.items.action.value;
                     }
                     else {
-                        alert(_("Por favor, selecciona al menos una etiqueta que exportar."));
+                        alert(_("Por favor, seleccione al menos una etiqueta para exportar."));
                         return;     // no batch selected
                     }
                     return GB_showCenter('Export labels', "/cgi-bin/koha/labels/label-print.pl?batch_id=[% batch_id %]&" + getstr, 700, 800);
@@ -101,7 +101,7 @@
                         return(document.items.action.value);
                     }
                 };
-                alert(_("Por favor, selecciona al menos un ítem."));
+                alert(_("Por favor, seleccione al menos un ítem."));
                 return (-1);
             };
 
@@ -121,7 +121,7 @@
                 id: "additems", 
                 type: "link", 
                 href: "#",
-                label: _("Add item(s)"),
+                label: _("Agregar ítem(s)"),
                 container: "additemsc",
                 onclick: {fn:function(){Add()}}
             });
@@ -130,7 +130,7 @@
                 id: "removeitems", 
                 type: "link", 
                 href: "#",
-                label: _("Remove item(s)"),
+                label: _("Eliminar ítem(s)"),
                 container: "removeitemsc",
                 onclick: {fn:function(){Remove()}}
             });
@@ -139,7 +139,7 @@
                 id: "deletebatch", 
                 type: "link", 
                 href: "#",
-                label: _("Delete batch"),
+                label: _("Eliminar lote"),
                 container: "deletebatchc",
                 onclick: {fn:function(){DeleteConfirm()}}
             });
@@ -148,7 +148,7 @@
                 id: "deduplicate", 
                 type: "link", 
                 href: "#",
-                label: _("Remove duplicates"),
+                label: _("Eliminar duplicados"),
                 container: "deduplicatec",
                 onclick: {fn:function(){DeDuplicate()}}
             });
@@ -157,7 +157,7 @@
                 id: "exportitems", 
                 type: "link", 
                 href: "#",
-                label: _("Export item(s)"),
+                label: _("Exportar ítem(s)"),
                 container: "exportitemsc",
                 onclick: {fn:function(){Xport('label')}}
             });
@@ -166,7 +166,7 @@
                 id: "exportbatch", 
                 type: "link", 
                 href: "#",
-                label: _("Export batch"),
+                label: _("Exportar lote"),
                 container: "exportbatchc",
                 onclick: {fn:function(){Xport('batch')}}
             });
@@ -175,11 +175,9 @@
         //]]>
     </script>
  <ul class="toolbar">
- <li id="additemsc"><a id="additems" href="#">Add item(s)</a></li>[% IF ( table_loop ) %]
- <li id="removeitemsc"><a id="removeitems" href="#">Remove item(s)</a></li>
- <li id="deletebatchc"><a id="deletebatch" href="#">Delete batch</a></li>
- <li id="deduplicatec"><a id="deduplicate" href="#">Remove duplicates</a></li>
- <li id="exportitemsc"><a id="exportitems" href="#">Export item(s)</a></li>
- <li id="exportbatchc"><a id="exportbatch" href="#">Export batch</a></li>[% END %]
- </ul>
+ <li id="additemsc"><a id="additems" href="#">Agregar ítem(s)</a></li>[% IF ( table_loop ) %] <li id="removeitemsc"><a id="removeitems" href="#">Eliminar ítem(s)</a></li>
+ <li id="deletebatchc"><a id="deletebatch" href="#">Eliminar lote</a></li>
+ <li id="deduplicatec"><a id="deduplicate" href="#">Eliminar duplicados</a></li>
+ <li id="exportitemsc"><a id="exportitems" href="#">Exportar ítem(s)</a></li>
+ <li id="exportbatchc"><a id="exportbatch" href="#">Exportar lote</a></li>[% END %] </ul>
 </div>

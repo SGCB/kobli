@@ -1,22 +1,20 @@
-[% INCLUDE 'doc-head-open.inc' %][% LibraryNameTitle or "Koha online" %] catalog &rsaquo; ISBD
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %][% LibraryNameTitle or "Koha online" %] catálogo &rsaquo; ISBD [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-tags-subject">
 <div id="doc3" class="yui-t[% IF ( OpacNav ) %]1[% ELSE %]7[% END %]">
  <div id="bd">
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
  [% INCLUDE 'search.inc' %] <div class="yui-b"><div class="yui-g">
  <div id="subjectcloud" class="container"> <h1>Nube de temas</h1>
- [% IF ( OpacCloud ) %] [% IF ( LOOP ) %] <p>Esta &quot;nube&quot; muestra los temas más consultados en nuestro catálogo. Haz clic en cualquier tema para ver los artículos en nuestra colección.</p>
+ [% IF ( OpacCloud ) %] [% IF ( LOOP ) %] <p>Esta &quot;nube&quot; muestra los temas más consultados en nuestro catálogo. Haga clic en cualquier tema para ver los ítems en nuestra colección.</p>
  <fieldset>
  <legend>Mostrar</legend>
  <form action="/cgi-bin/koha/opac-tags_subject.pl" method="post">
- <p>hasta <input type="text" name="number" value="[% number %]" size="4" maxlength="4" /> subjects <input value="Aceptar" type="submit" /></p>
+ <p>hasta <input type="text" name="number" value="[% number %]" size="4" maxlength="4" /> temas <input value="Aceptar" type="submit" /></p>
  </form>
  </fieldset>
 
  [% FOREACH LOO IN LOOP %] <a href="/cgi-bin/koha/opac-search.pl?idx=su&amp;q=&quot;[% LOO.entry |html %]&quot;" style="font-size:[% LOO.weight %]px;">[% LOO.entry %]</a>
- [% END %] [% ELSE %] <p>Nota: esta característica sólo está disponible para catálogos franceses donde han sido rellenados los temas ISBD y se ha generado un índice mediante un script.</p>
+ [% END %] [% ELSE %] <p>Nota: esta característica está sólo disponible para catálogos franceses donde han sido rellenados los temas ISBD y se generó un índice.</p>
  [% END %] [% ELSE %] <p>La nube ISBD no está habilitada.</p>
  [% END %] </div>
  </div></div>

@@ -1,11 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo; Authorized values [% IF ( add_form ) %] &rsaquo; [% IF ( action_modify ) %]Modify authorized value[% END %]
- [% IF ( action_add_value ) %] &rsaquo; New authorized value[% END %]
- [% IF ( action_add_category ) %] &rsaquo; New category[% END %][% END %]
-[% IF ( delete_confirm ) %] &rsaquo; Confirm deletion[% END %]
-[% IF ( else ) %]Authorized values[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Valores autorizados [% IF ( add_form ) %] &rsaquo; [% IF ( action_modify ) %]Modificar valor autorizado[% END %] [% IF ( action_add_value ) %] &rsaquo; Nuevo valor autorizado[% END %] [% IF ( action_add_category ) %] &rsaquo; Nueva categoría[% END %][% END %] [% IF ( delete_confirm ) %] &rsaquo; Confirmar eliminación[% END %] [% IF ( else ) %]Valores autorizados[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
 <script type="text/javascript" id="js">$(document).ready(function() {
 	// call the tablesorter plugin
@@ -19,21 +13,19 @@
 <script type="text/JavaScript" language="JavaScript">
 //<![CDATA[
      $(document).ready(function() {
-        $('#icons > ul').tabs();
+        $('#icons').tabs();
      });
 //]]>
 </script>
 <style type="text/css">
 	fieldset.rows div.toptabs li { clear:none;margin-right:.5em;padding-bottom:0;width:auto; }
-	fieldset.rows div.toptabs .ui-tabs-nav li.ui-tabs-selected {background-color : transparent; }
+    fieldset.rows div.toptabs .ui-tabs-nav li.ui-tabs-selected {background-color : #F4F8F9; }
 	fieldset.rows .ui-tabs-panel { margin-right : 10px; margin-left : 10px;margin-bottom:10px;}
+    fieldset.rows .ui-tabs-nav { margin-left : 10px; }
 </style>
 </head>
 <body id="admin_authorised_values" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/authorised_values.pl">Valores autorizados</a> &rsaquo; [% IF ( action_modify ) %]Modificar valor autorizado[% END %] [% IF ( action_add_value ) %]Nuevo valor autorizado[% END %] [% IF ( action_add_category ) %]Nueva categoría[% END %][% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/authorised_values.pl">Valores autorizados</a> &rsaquo; Confirm deletion[% END %]
-[% IF ( else ) %]Authorized values[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/authorised_values.pl">Valores autorizados</a> &rsaquo; [% IF ( action_modify ) %]Modificar valor autorizado[% END %] [% IF ( action_add_value ) %]Nuevo valor autorizado[% END %] [% IF ( action_add_category ) %]Nueva categoría[% END %][% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/authorised_values.pl">Valores autorizados</a> &rsaquo; Confirmar eliminación[% END %] [% IF ( else ) %]Valores autorizados[% END %] </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -41,13 +33,10 @@
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( add_form ) %]
- <h1>
- [% IF ( action_modify ) %]Modificar valor autorizado[% END %] [% IF ( action_add_value ) %]Nuevo valor autorizado[% END %] [% IF ( action_add_category ) %]Nueva categoría[% END %]</h1>
+[% IF ( add_form ) %] <h1>
+ [% IF ( action_modify ) %]Modificar valor autorizado[% END %] [% IF ( action_add_value ) %]Nuevo valor autorizado[% END %] [% IF ( action_add_category ) %]Nueva categoría[% END %] </h1>
 
- [% IF ( action_modify ) %]<div class="note"><strong>NOTA:</strong> If you change an authorized value, existing records using it won't be updated.</div>[% END %]
-
- <form action="[% script_name %]" name="Aform" method="post">
+ [% IF ( action_modify ) %]<div class="note"><strong>NOTA:</strong> Si cambia un valor autorizado, los registros existentes que lo utilicen no se actualizarán.</div>[% END %] <form action="[% script_name %]" name="Aform" method="post">
  <input type="hidden" name="op" value="add_validate" />
  <input type="hidden" name="offset" value="[% offset %]" />
  <fieldset class="rows"><ol>
@@ -55,13 +44,10 @@
  [% IF ( action_add_category ) %]<label for="category">Categoría</label>
  <input type="text" name="category"  id="category" size="10" maxlength="10" />
  [% ELSE %]<span class="label">Categoría</span>
- <input type="hidden" name="category" value="[% category %]" /> [% category %]
- [% END %]
- </li>
+ <input type="hidden" name="category" value="[% category %]" /> [% category %] [% END %] </li>
  <li>
  <label for="authorised_value">Valor autorizado</label>
- [% IF ( action_modify ) %]<input type="hidden" id="id" name="id" value="[% id %]" />[% END %]
- <input type="text" id="authorised_value" name="authorised_value" value="[% authorised_value %]" maxlength="80" />
+ [% IF ( action_modify ) %]<input type="hidden" id="id" name="id" value="[% id %]" />[% END %] <input type="text" id="authorised_value" name="authorised_value" value="[% authorised_value %]" maxlength="80" />
  </li>
  <li>
  <label for="lib">Descripción</label>
@@ -72,51 +58,35 @@
  <input type="text" name="lib_opac" id="lib_opac" value="[% lib_opac %]" maxlength="80" />
  </li>
  </ol>
- <div id="icons" class="toptabs">
- <h5 style="margin-left:10px;">Choose an icon:</h5>
+ <div id="icons" class="toptabs" style="clear:both">
+ <h5 style="margin-left:10px;">Seleccione un ícono:</h5>
  <ul>
- <li><a href="/cgi-bin/koha/admin/authorised_values.pl?op=add_form&amp;category=[% category %]#none">Ninguno</a></li>
- [% FOREACH imageset IN imagesets %]
- [% IF ( imageset.imagesetactive ) %]<li class="ui-tabs-selected">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/admin/authorised_values.pl?op=add_form&amp;category=[% imageset.category %]#[% imageset.imagesetname %]">[% imageset.imagesetname %]</a></li>
- [% END %]
- </ul>
- </div>
+ <li><a href="#none">Ninguno</a></li>
+ [% FOREACH imageset IN imagesets %] [% IF ( imageset.imagesetactive ) %]<li class="ui-tabs-selected">[% ELSE %]<li>[% END %]<a href="#[% imageset.imagesetname %]">[% imageset.imagesetname %]</a></li>
+ [% END %] </ul>
  <div id="none"><ul>
- <li><label for="noimage">No image: </label><input type="radio" name="imageurl" id="noimage" value="removeImage" /></li>
+ <li><label for="noimage">No hay imagen: </label><input type="radio" name="imageurl" id="noimage" value="removeImage" /></li>
  </ul>
  <br class="clear" /></div>
- [% FOREACH imageset IN imagesets %]
- <div id="[% imageset.imagesetname %]"><ul>
- [% FOREACH image IN imageset.images %]
- <li style="float: none; display: inline; clear : none; width: auto;">
- <label> [% IF ( image.StaffImageUrl ) %]
- <img src="[% image.StaffImageUrl %]" alt="[% image.StaffImageUrl %]" title="[% image.StaffImageUrl %]" />
- [% ELSE %]
- [% END %]
- [% IF ( image.checked ) %]
- <input type="radio" name="imageurl" value="[% image.KohaImage %]" checked="checked" />
+ [% FOREACH imageset IN imagesets %] <div id="[% imageset.imagesetname %]"><ul>
+ [% FOREACH image IN imageset.images %] <li style="float: none; display: inline; clear : none; width: auto;">
+ <label> [% IF ( image.StaffImageUrl ) %] <img src="[% image.StaffImageUrl %]" alt="[% image.StaffImageUrl %]" title="[% image.StaffImageUrl %]" />
+ [% ELSE %] [% END %] [% IF ( image.checked ) %] <input type="radio" name="imageurl" value="[% image.KohaImage %]" checked="checked" />
  [% ELSE %]
  [% IF ( image.KohaImage ) %] <!-- to delete the radio button if there is no image after -->
  <input type="radio" name="imageurl" value="[% image.KohaImage %]" />
- [% END %]
- [% END %]
- </label>
+ [% END %] [% END %] </label>
  </li>
  [% END %]</ul>
  <br class="clear" />
  </div>
- [% END %]
- 
+ [% END %] </div>
  </fieldset>
  <fieldset class="action"> <input type="hidden" name="id" value="[% id %]" />
  <input value="Guardar" type="submit" /> <a class="cancel" href="/cgi-bin/koha/admin/authorised_values.pl?searchfield=[% category %]">Cancelar</a></fieldset>
  </form>
-[% END %]
-
-
-[% IF ( delete_confirm ) %]
- <div class="dialog alert">
-<h3>Confirm deletion</h3>
+[% END %] [% IF ( delete_confirm ) %] <div class="dialog alert">
+<h3>Confirma eliminación</h3>
 <table>
  <tr>
  <th>Categoría</th>
@@ -134,14 +104,10 @@
  <form action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="delete_confirmed" />
  <input type="hidden" name="id" value="[% id %]" />
- <input type="hidden" name="searchfield" value="[% searchfield %]" /><fieldset class="action"><input type="submit" value="Yes, delete" class="approve" /></form>
-<form action="[% script_name %]" method="get"><input type="hidden" name="searchfield" value="[% searchfield %]" /><input type="submit" value="No, do not delete" class="deny" /></form>
+ <input type="hidden" name="searchfield" value="[% searchfield %]" /><fieldset class="action"><input value="Sí, eliminar" type="submit" class="approve" /></form>
+<form action="[% script_name %]" method="get"><input type="hidden" name="searchfield" value="[% searchfield %]" /><input value="No, no eliminar" type="submit" class="deny" /></form>
 </div>
-[% END %]
-
-[% IF ( else ) %]
-
-<div id="toolbar">
+[% END %] [% IF ( else ) %] <div id="toolbar">
  <script type="text/javascript">
 	//<![CDATA[
 
@@ -165,100 +131,56 @@
 	//]]>
 	</script>
  <ul class="toolbar">
- <li><a id="addauth" href= "/cgi-bin/koha/admin/authorised_values.pl?op=add_form&amp;category=[% category %]">New authorized value for [% category %]</a></li>
+ <li><a id="addauth" href= "/cgi-bin/koha/admin/authorised_values.pl?op=add_form&amp;category=[% category %]">Nuevo valor autorizado para [% category %]</a></li>
  <li><a id="addcat" href= "/cgi-bin/koha/admin/authorised_values.pl?op=add_form">Nueva categoría</a></li>
 </ul></div>
 
 <h1>Valores autorizados</h1>
-<div class="note"><strong>NOTA:</strong> If you change an authorized value, existing records using it won't be updated.</div>
+<div class="note"><strong>NOTA:</strong> Si cambia un valor autorizado, los registros existentes que lo utilicen no se actualizarán.</div>
 
-[% IF ( duplicate_category ) %]
-<div class="dialog alert">Could not add value &quot;[% duplicate_value %]&quot; for category &quot;[% duplicate_category %]&quot; &mdash; value already present.
-</div>
-[% END %]
-<form action="/cgi-bin/koha/admin/authorised_values.pl" method="post" id="category"><label for="searchfield">Show category: </label>[% tab_list %] <input value="Enviar" type="submit" /></form>
-[% IF ( category == 'Bsort1' ) %]
- <p>Un valor autorizado adjunto a los socios, que puede ser utilizado con fines estadísticos</p>
-[% END %]
-[% IF ( category == 'Bsort2' ) %]
- <p>Un valor autorizado adjunto a los socios, que puede ser utilizado con fines estadísticos</p>
-[% END %]
-[% IF ( category == 'Asort1' ) %]
- <p>Un valor autorizado adjunto a las adquisiciones, que puede ser utilizado con fines estadísticos</p>
-[% END %]
-[% IF ( category == 'Asort2' ) %]
- <p>Un valor autorizado adjunto a las adquisiciones, que puede ser utilizado con fines estadísticos</p>
-[% END %]
-[% IF ( category == 'SUGGEST' ) %]
- <p>Razones para rechazar o aceptar sugerencias de socios</p>
-[% END %]
-[% IF ( category == 'DAMAGED' ) %]
- <p>Lista de estados para describir a un ítem dañado</p>
-[% END %]
-[% IF ( category == 'LOST' ) %]
- <p>Lista de estados para describir un ítem perdido</p>
-[% END %]
-[% IF ( category == 'MANUAL_INV' ) %]
- <p>Valores adicionales para los tipos de factura manual</p>
-[% END %]
-[% IF ( category == 'BOR_NOTES' ) %]
- <p>Valores para las notas socios personalizadas</p>
-[% END %]
-[% IF ( category == 'LOC' ) %]
- <p>Valores para ubicaciones de estanterías</p>
-[% END %]
-[% IF ( category == 'CCODE' ) %]
- <p>Valores de los códigos de colección</p>
- [% END %]
- [% IF ( category == 'NOT_LOAN' ) %]
- <p>Razones por las que un ítem no está disponible para préstamo</p>
- [% END %]
-<h3>Valores autorizados para la categoría [% category %]:</h3>
+[% IF ( duplicate_category ) %] <div class="dialog alert">No se pudo agregar dato &quot;[% duplicate_value %]&quot; en Categoría &quot;[% duplicate_category %]&quot; &mdash;, el dato ya esta cargado. </div>
+[% END %] <form action="/cgi-bin/koha/admin/authorised_values.pl" method="post" id="category"><label for="searchfield">Mostrar categoría: </label>[% tab_list %] <input value="Enviar" type="submit" /></form>
+[% IF ( category == 'Bsort1' ) %] <p>Un valor autorizado adjunto a los socios, que puede ser utilizado con fines estadísticos</p>
+[% END %] [% IF ( category == 'Bsort2' ) %] <p>Un valor autorizado adjunto a los socios, que puede ser utilizado con fines estadísticos</p>
+[% END %] [% IF ( category == 'Asort1' ) %] <p>Un valor autorizado adjunto a las adquisiciones, que puede ser utilizado con fines estadísticos</p>
+[% END %] [% IF ( category == 'Asort2' ) %] <p>Un valor autorizado adjunto a las adquisiciones, que puede ser utilizado con fines estadísticos</p>
+[% END %] [% IF ( category == 'SUGGEST' ) %] <p>Razones para rechazar o aceptar sugerencias de socios</p>
+[% END %] [% IF ( category == 'DAMAGED' ) %] <p>La lista de estados para describir a un ítem dañado</p>
+[% END %] [% IF ( category == 'LOST' ) %] <p>La lista de estados para describir un ítem perdido</p>
+[% END %] [% IF ( category == 'MANUAL_INV' ) %] <p>Valores adicionales para los tipos de factura manual</p>
+[% END %] [% IF ( category == 'BOR_NOTES' ) %] <p>Valores para las notas socios personalizadas</p>
+[% END %] [% IF ( category == 'LOC' ) %] <p>Valores para ubicaciones de estanterías</p>
+[% END %] [% IF ( category == 'CCODE' ) %] <p>Valores de los códigos de colección</p>
+ [% END %] [% IF ( category == 'NOT_LOAN' ) %] <p>Razones por las que un ítem no es para préstamo</p>
+ [% END %] <h3>Valores autorizados para la categoría [% category %]:</h3>
 
 [% IF ( loop ) %]<div id="pagertable_authorized_values">
-[% INCLUDE 'table-pager.inc' perpage='50' %]
-</div>[% END %]
-
-[% IF ( loop ) %]<table id="table_authorized_values" class="tablesorter">
+[% INCLUDE 'table-pager.inc' perpage='50' %] </div>[% END %] [% IF ( loop ) %]<table id="table_authorized_values" class="tablesorter">
 <thead><tr>
  <th>Valor autorizado</th>
  <th>Descripción</th>
  <th>Descripción (OPAC)</th>
  <th>Icono</th>
  <th>Editar</th>
- <th>Eliminar</th>
+ <th>Borrar</th>
  </tr>
 </thead><tbody>
-[% FOREACH loo IN loop %]
-[% UNLESS ( loop.odd ) %]
-<tr>
-[% ELSE %]
-<tr>
-[% END %]
- <td>[% loo.authorised_value %]</td>
+[% FOREACH loo IN loop %] [% UNLESS ( loop.odd ) %] <tr>
+[% ELSE %] <tr>
+[% END %] <td>[% loo.authorised_value %]</td>
  <td>[% loo.lib %]</td>
  <td>[% loo.lib_opac %]</td>
  <td>[% IF ( loo.imageurl ) %]<img src="[% loo.imageurl %]" alt=""/>[% ELSE %]&nbsp;[% END %]</td>
  <td><a href="[% loo.edit %]">Editar</a></td>
- <td><a href="[% loo.delete %]">Eliminar</a></td>
+ <td><a href="[% loo.delete %]">Borrar</a></td>
 </tr>
-[% END %]
-</tbody></table>[% ELSE %]
-<div class="dialog message">There are no authorized values defined for [% category %]</div>
-[% END %]
-
-[% IF ( isprevpage ) %]
-<form class="inline" action="[% script_name %]" method="post">
+[% END %] </tbody></table>[% ELSE %] <div class="dialog message">No hay valores autorizados definidos para [% category %]</div>
+[% END %] [% IF ( isprevpage ) %] <form class="inline" action="[% script_name %]" method="post">
 <input type="hidden" name="offset" value="[% prevpage %]" /><input type="hidden" name="searchfield" value="[% searchfield %]" />
- <input type="submit" value="&lt;&lt; Previous" /></form>
-[% END %] 
-
-[% END %]
-
-</div>
+ <input value="<< Anterior" type="submit" /></form>
+[% END %] [% END %] </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'admin-menu.inc' %]
+[% INCLUDE 'admin-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

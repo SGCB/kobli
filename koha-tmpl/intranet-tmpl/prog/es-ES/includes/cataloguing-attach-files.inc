@@ -81,34 +81,23 @@ function receive_ok_delete(data, textStatus)
 
 </script>
 <ul class="doc-biblio">
- [% IF ( showCoverImageLR ) %]
- <li id="imagecoverbiblio"><br /><label for="coverimagefile">Imagen de portada:</label>
+ [% IF ( showCoverImageLR ) %] <li id="imagecoverbiblio"><br /><label for="coverimagefile">Cover Image: </label>
  <input type="file" name="coverimagefile" id="coverimagefile" />
  </li>
- [% IF ( existingcoverimage ) %]
- <li id="existingcoverimage">
- [% IF ( urlcoverimagemin ) %]
- <a href="javascript://" id="a_coverimage" title="Ver imagen de portada"><img src="[% urlcoverimagemin %]" border="0" id="coverimage" name="coverimage" />Ver imagen de portada</a>
- [% ELSE %]
- <a href="javascript://" id="a_coverimage" title="Ver imagen de portada">Ver imagen de portada</a>
+ [% IF ( existingcoverimage ) %] <li id="existingcoverimage">
+ [% IF ( urlcoverimagemin ) %] <a href="javascript://" id="a_coverimage" title="See cover image"><img src="[% urlcoverimagemin %]" border="0" id="coverimage" name="coverimage" />See cover image</a>
+ [% ELSE %] <a href="javascript://" id="a_coverimage" title="See cover image">See cover image</a>
  [% END %]&nbsp;&nbsp;
- <a href="javascript://" onclick="send_ajax_delete('[% biblionumber %]', '', 'cover')" title="Eliminar imagen de portada">Eliminar imagen de portada</a>
+ <a href="javascript://" onclick="send_ajax_delete('[% biblionumber %]', '', 'cover')"  title="Delete cover image">Delete cover image</a>
  </li>
- [% END %]
- [% END %]
- <li id="documentbiblio"><label for="documentbibliofile">Documento adicional<i>(max. 10MB)</i>: </label>
- <input name="documentbibliofile" type="file" id="documentbibliofile" title="Documento adicional (max. 10MB)" />
+ [% END %] [% END %] <li id="documentbiblio"><label for="documentbibliofile">Additional document <i>(max. 10MB)</i>: </label>
+ <input type="file" name="documentbibliofile" id="documentbibliofile" title="Additional document (max 10MB)" />
  </li>
- [% IF ( existingdocument ) %]
- <li id="existingdocument">
- [% IF ( urldocument ) %]<a href="[% urldocument %]" target="_blank">Ver documento adicional</a>
+ [% IF ( existingdocument ) %] <li id="existingdocument">
+ [% IF ( urldocument ) %]<a href="[% urldocument %]" target="_blank">See Additional document</a>
  &nbsp;&nbsp;
- <a href="javascript://" onclick="send_ajax_delete('[% biblionumber %]', '[% itemnumber %]', 'document')" title="Eliminar documento adicional">Eliminar documento adicional</a>
- [% END %]
- </li>
- [% END %]
- <li>&nbsp;</li>
- [% IF ( errorUploadFile ) %]
- <li><h3>[% errorUploadFile %]</h3></li>
- [% END %]
-</ul>
+ <a href="javascript://" onclick="send_ajax_delete('[% biblionumber %]', '[% itemnumber %]', 'document')"  title="Delete Additional document">Delete Additional document</a>
+ [% END %] </li>
+ [% END %] <li>&nbsp;</li>
+ [% IF ( errorUploadFile ) %] <li><h3>[% errorUploadFile %]</h3></li>
+ [% END %] </ul>

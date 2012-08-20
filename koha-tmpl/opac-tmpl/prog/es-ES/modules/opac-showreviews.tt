@@ -1,8 +1,4 @@
-[% USE KohaDates %]
-
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Recent comments
-[% INCLUDE 'doc-head-close.inc' %]
-<link rel="alternate" type="application/rss+xml" title="[% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog recent comments" href="[% OPACBaseURL %]/cgi-bin/koha/opac-showreviews.pl?format=rss" />
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] catálogo &rsaquo; Comentarios recientes [% INCLUDE 'doc-head-close.inc' %] <link rel="alternate" href="[% OPACBaseURL %]/cgi-bin/koha/opac-showreviews.pl?format=rss" type="application/rss+xml" title="Comentarios recientes del catálogo [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] " />
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
@@ -34,29 +30,15 @@ $(document).ready(function(){
 
  <p class="commentline[% IF ( review.your_comment ) %] yours[% END %]">
  [% IF ( review.avatarurl ) %] <img class="avatar" src="[% review.avatarurl %]" height="40" width="40" alt="" />
- [% END %] [% FILTER html_break %] [% review.review |html %] [% END %] <span style="font-size:87%;font-color:#CCC;">Agregado [% review.datereviewed | $KohaDates %] [% IF ( review.your_comment ) %] por <strong>tu</strong>[% ELSE %]
- [% IF ( review.borrowernumber && ShowReviewer != "none" ) %] by
- [% SWITCH ShowReviewer %]
- [% CASE 'full' %]
- [% review.borrtitle %] [% review.firstname %] [% review.surname %]
- [% CASE 'first' %]
- [% review.firstname %]
- [% CASE 'surname' %]
- [% review.surname %]
- [% CASE 'firstandinitial' %]
- [% review.firstname %] [% review.surname|truncate(2,'.') %]
- [% CASE 'username' %]
- [% review.userid %]
- [% END %]
- [% END %][% END %]</span></p>
+ [% END %] [% FILTER html_break %] [% review.review |html %] [% END %] <span style="font-size:87%;font-color:#CCC;">Agregado [% review.datereviewed | $KohaDates %] [% IF ( review.your_comment ) %] por <strong>usted</strong>[% ELSE %] [% IF ( review.borrowernumber && ShowReviewer != "none" ) %] by [% SWITCH ShowReviewer %] [% CASE 'full' %] [% review.borrtitle %] [% review.firstname %] [% review.surname %] [% CASE 'first' %] [% review.firstname %] [% CASE 'surname' %] [% review.surname %] [% CASE 'firstandinitial' %] [% review.firstname %] [% review.surname|truncate(2,'.') %] [% CASE 'username' %] [% review.userid %] [% END %] [% END %][% END %]</span></p>
  </td>
  <td>
 [% IF ( review.BiblioDefaultViewmarc ) %]<a href="/cgi-bin/koha/opac-MARCdetail.pl?biblionumber=[% review.biblionumber |url %]" class="title" title="Ver detalles para este título">
  [% ELSE %] [% IF ( review.BiblioDefaultViewisbd ) %]<a href="/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber=[% review.biblionumber |url %]" class="title" title="Ver detalles para este título">
  [% ELSE %]<a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% review.biblionumber |url %]#comments" class="title" title="Ver detalles para este título">
- [% END %] [% END %] [% IF ( OPACAmazonEnabled ) %][% IF ( OPACAmazonCoverImages ) %][% IF ( review.normalized_isbn ) %]<img src="http://images.amazon.com/images/P/[% review.normalized_isbn %].01.TZZZZZZZ.jpg" alt="" class="thumbnail" />[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %][% END %] [% IF ( SyndeticsEnabled ) %][% IF ( SyndeticsCoverImages ) %][% IF ( using_https ) %] <img src="https://secure.syndetics.com/index.aspx?isbn=[% review.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% review.normalized_upc %]&amp;oclc=[% review.normalized_oclc %]" alt="" class="thumbnail" />
- [% ELSE %] <img src="http://www.syndetics.com/index.aspx?isbn=[% review.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% review.normalized_upc %]&amp;oclc=[% review.normalized_oclc %]" alt="" class="thumbnail" />[% END %][% END %][% END %] [% IF ( GoogleJackets ) %][% IF ( review.normalized_isbn ) %]<div style="block" title="[% review.biblionumber |url %]" class="[% review.normalized_isbn %]" id="gbs-thumbnail[% loop.count %]"></div>[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %] </a>
- [% IF ( BakerTaylorEnabled ) %][% IF ( review.normalized_isbn ) %]<a href="https://[% review.BakerTaylorBookstoreURL |html %][% review.normalized_isbn %]"><img alt="Ver Baker & Taylor" src="[% review.BakerTaylorImageURL |html %][% review.normalized_isbn %]" /></a>[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %] </td>
+ [% END %] [% END %] [% IF ( OPACAmazonEnabled ) %][% IF ( OPACAmazonCoverImages ) %][% IF ( review.normalized_isbn ) %]<img src="http://images.amazon.com/images/P/[% review.normalized_isbn %].01.TZZZZZZZ.jpg" alt="" class="thumbnail" />[% ELSE %]<span class="no-image">No hay imagen de cubierta disponible</span>[% END %][% END %][% END %] [% IF ( SyndeticsEnabled ) %][% IF ( SyndeticsCoverImages ) %][% IF ( using_https ) %] <img src="https://secure.syndetics.com/index.aspx?isbn=[% review.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% review.normalized_upc %]&amp;oclc=[% review.normalized_oclc %]" alt="" class="thumbnail" />
+ [% ELSE %] <img src="http://www.syndetics.com/index.aspx?isbn=[% review.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% review.normalized_upc %]&amp;oclc=[% review.normalized_oclc %]" alt="" class="thumbnail" />[% END %][% END %][% END %] [% IF ( GoogleJackets ) %][% IF ( review.normalized_isbn ) %]<div style="block" title="[% review.biblionumber |url %]" class="[% review.normalized_isbn %]" id="gbs-thumbnail[% loop.count %]"></div>[% ELSE %]<span class="no-image">No hay imagen de cubierta disponible</span>[% END %][% END %] </a>
+ [% IF ( BakerTaylorEnabled ) %][% IF ( review.normalized_isbn ) %]<a href="https://[% review.BakerTaylorBookstoreURL |html %][% review.normalized_isbn %]"><img alt="Ver Baker & Taylor" src="[% review.BakerTaylorImageURL |html %][% review.normalized_isbn %]" /></a>[% ELSE %]<span class="no-image">No hay imagen de cubierta disponible</span>[% END %][% END %] </td>
  </tr>
  [% END %] </table>
 [% IF ( PAGE_NUMBERS ) %]<div class="pages">

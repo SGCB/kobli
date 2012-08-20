@@ -1,1653 +1,729 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>UNIMARC field 140 builder</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Constructor Campo UNIMARC 140</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="cat_unimarc_field_140" class="cat" style="padding:1em;">
-<h3>UNIMARC field 140 builder</h3>
+<h3>Constructor Campo UNIMARC 140</h3>
 <form name="f_pop" action="">
 <table>
  <tr>
  <td><label for="f1">Ilustración - Libro 1:</label></td>
  <td>
  <select name="f1" id="f1" size="1">
- [% IF ( f1space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f1a ) %]
- <option value="a" selected="selected">ilustraciones</option>
- [% ELSE %]
- <option value="a">ilustraciones</option>
- [% END %]
- [% IF ( f1b ) %]
- <option value="b" selected="selected">iluminaciones</option>
- [% ELSE %]
- <option value="b">iluminaciones</option>
- [% END %]
- [% IF ( f1c ) %]
- <option value="c" selected="selected">letra decorativa</option>
- [% ELSE %]
- <option value="c">letra decorativa</option>
- [% END %]
- [% IF ( f1d ) %]
- <option value="d" selected="selected">miniatura</option>
- [% ELSE %]
- <option value="d">miniatura</option>
- [% END %]
- [% IF ( f1e ) %]
- <option value="e" selected="selected">firma (es decir encabezamiento con letras especiales)</option>
- [% ELSE %]
- <option value="e">firma (es decir encabezamiento con letras especiales)</option>
- [% END %]
- [% IF ( f1f ) %]
- <option value="f" selected="selected">viñeta</option>
- [% ELSE %]
- <option value="f">viñeta</option>
- [% END %]
- [% IF ( f1g ) %]
- <option value="g" selected="selected">frontispicio</option>
- [% ELSE %]
- <option value="g">frontispicio</option>
- [% END %]
- [% IF ( f1h ) %]
- <option value="h" selected="selected">retrato</option>
- [% ELSE %]
- <option value="h">retrato</option>
- [% END %]
- [% IF ( f1i ) %]
- <option value="i" selected="selected">veduta</option>
- [% ELSE %]
- <option value="i">veduta</option>
- [% END %]
- [% IF ( f1j ) %]
- <option value="j" selected="selected">mapas</option>
- [% ELSE %]
- <option value="j">mapas</option>
- [% END %]
- [% IF ( f1k ) %]
- <option value="k" selected="selected">mapas</option>
- [% ELSE %]
- <option value="k">mapas</option>
- [% END %]
- [% IF ( f1l ) %]
- <option value="l" selected="selected">planos</option>
- [% ELSE %]
- <option value="l">planos</option>
- [% END %]
- [% IF ( f1m ) %]
- <option value="m" selected="selected">música</option>
- [% ELSE %]
- <option value="m">música</option>
- [% END %]
- [% IF ( f1n ) %]
- <option value="n" selected="selected">escudo de armas</option>
- [% ELSE %]
- <option value="n">escudo de armas</option>
- [% END %]
- [% IF ( f1o ) %]
- <option value="o" selected="selected">tablas genealógicas</option>
- [% ELSE %]
- <option value="o">tablas genealógicas</option>
- [% END %]
- [% IF ( f1y ) %]
- <option value="y" selected="selected">sin ilustraciones</option>
- [% ELSE %]
- <option value="y">sin ilustraciones</option>
- [% END %]
- [% IF ( f1z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f1space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f1a ) %] <option value="a" selected="selected">ilustraciones</option>
+ [% ELSE %] <option value="a">ilustraciones</option>
+ [% END %] [% IF ( f1b ) %] <option value="b" selected="selected">iluminaciones</option>
+ [% ELSE %] <option value="b">iluminaciones</option>
+ [% END %] [% IF ( f1c ) %] <option value="c" selected="selected">letra decorativa</option>
+ [% ELSE %] <option value="c">letra decorativa</option>
+ [% END %] [% IF ( f1d ) %] <option value="d" selected="selected">miniatura</option>
+ [% ELSE %] <option value="d">miniatura</option>
+ [% END %] [% IF ( f1e ) %] <option value="e" selected="selected">firma (es decir encabezamiento con letras especiales)</option>
+ [% ELSE %] <option value="e">firma (es decir encabezamiento con letras especiales)</option>
+ [% END %] [% IF ( f1f ) %] <option value="f" selected="selected">viñeta</option>
+ [% ELSE %] <option value="f">viñeta</option>
+ [% END %] [% IF ( f1g ) %] <option value="g" selected="selected">frontispicio</option>
+ [% ELSE %] <option value="g">frontispicio</option>
+ [% END %] [% IF ( f1h ) %] <option value="h" selected="selected">retrato</option>
+ [% ELSE %] <option value="h">retrato</option>
+ [% END %] [% IF ( f1i ) %] <option value="i" selected="selected">veduta</option>
+ [% ELSE %] <option value="i">veduta</option>
+ [% END %] [% IF ( f1j ) %] <option value="j" selected="selected">mapas</option>
+ [% ELSE %] <option value="j">mapas</option>
+ [% END %] [% IF ( f1k ) %] <option value="k" selected="selected">mapas</option>
+ [% ELSE %] <option value="k">mapas</option>
+ [% END %] [% IF ( f1l ) %] <option value="l" selected="selected">planos</option>
+ [% ELSE %] <option value="l">planos</option>
+ [% END %] [% IF ( f1m ) %] <option value="m" selected="selected">música</option>
+ [% ELSE %] <option value="m">música</option>
+ [% END %] [% IF ( f1n ) %] <option value="n" selected="selected">escudo de armas</option>
+ [% ELSE %] <option value="n">escudo de armas</option>
+ [% END %] [% IF ( f1o ) %] <option value="o" selected="selected">tablas genealógicas</option>
+ [% ELSE %] <option value="o">tablas genealógicas</option>
+ [% END %] [% IF ( f1y ) %] <option value="y" selected="selected">sin ilustraciones</option>
+ [% ELSE %] <option value="y">sin ilustraciones</option>
+ [% END %] [% IF ( f1z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td>
  <td><label for="f2">Ilustración - Libro 2:</label></td>
  <td>
  <select name="f2" id="f2" size="1">
- [% IF ( f2space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f2a ) %]
- <option value="a" selected="selected">ilustraciones</option>
- [% ELSE %]
- <option value="a">ilustraciones</option>
- [% END %]
- [% IF ( f2b ) %]
- <option value="b" selected="selected">iluminaciones</option>
- [% ELSE %]
- <option value="b">iluminaciones</option>
- [% END %]
- [% IF ( f2c ) %]
- <option value="c" selected="selected">letra decorativa</option>
- [% ELSE %]
- <option value="c">letra decorativa</option>
- [% END %]
- [% IF ( f2d ) %]
- <option value="d" selected="selected">miniatura</option>
- [% ELSE %]
- <option value="d">miniatura</option>
- [% END %]
- [% IF ( f2e ) %]
- <option value="e" selected="selected">firma (es decir encabezamiento con letras especiales)</option>
- [% ELSE %]
- <option value="e">firma (es decir encabezamiento con letras especiales)</option>
- [% END %]
- [% IF ( f2f ) %]
- <option value="f" selected="selected">viñeta</option>
- [% ELSE %]
- <option value="f">viñeta</option>
- [% END %]
- [% IF ( f2g ) %]
- <option value="g" selected="selected">frontispicio</option>
- [% ELSE %]
- <option value="g">frontispicio</option>
- [% END %]
- [% IF ( f2h ) %]
- <option value="h" selected="selected">retrato</option>
- [% ELSE %]
- <option value="h">retrato</option>
- [% END %]
- [% IF ( f2i ) %]
- <option value="i" selected="selected">veduta</option>
- [% ELSE %]
- <option value="i">veduta</option>
- [% END %]
- [% IF ( f2j ) %]
- <option value="j" selected="selected">mapas</option>
- [% ELSE %]
- <option value="j">mapas</option>
- [% END %]
- [% IF ( f2k ) %]
- <option value="k" selected="selected">mapas</option>
- [% ELSE %]
- <option value="k">mapas</option>
- [% END %]
- [% IF ( f2l ) %]
- <option value="l" selected="selected">planos</option>
- [% ELSE %]
- <option value="l">planos</option>
- [% END %]
- [% IF ( f2m ) %]
- <option value="m" selected="selected">música</option>
- [% ELSE %]
- <option value="m">música</option>
- [% END %]
- [% IF ( f2n ) %]
- <option value="n" selected="selected">escudo de armas</option>
- [% ELSE %]
- <option value="n">escudo de armas</option>
- [% END %]
- [% IF ( f2o ) %]
- <option value="o" selected="selected">tablas genealógicas</option>
- [% ELSE %]
- <option value="o">tablas genealógicas</option>
- [% END %]
- [% IF ( f2y ) %]
- <option value="y" selected="selected">sin ilustraciones</option>
- [% ELSE %]
- <option value="y">sin ilustraciones</option>
- [% END %]
- [% IF ( f2z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f2space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f2a ) %] <option value="a" selected="selected">ilustraciones</option>
+ [% ELSE %] <option value="a">ilustraciones</option>
+ [% END %] [% IF ( f2b ) %] <option value="b" selected="selected">iluminaciones</option>
+ [% ELSE %] <option value="b">iluminaciones</option>
+ [% END %] [% IF ( f2c ) %] <option value="c" selected="selected">letra decorativa</option>
+ [% ELSE %] <option value="c">letra decorativa</option>
+ [% END %] [% IF ( f2d ) %] <option value="d" selected="selected">miniatura</option>
+ [% ELSE %] <option value="d">miniatura</option>
+ [% END %] [% IF ( f2e ) %] <option value="e" selected="selected">firma (es decir encabezamiento con letras especiales)</option>
+ [% ELSE %] <option value="e">firma (es decir encabezamiento con letras especiales)</option>
+ [% END %] [% IF ( f2f ) %] <option value="f" selected="selected">viñeta</option>
+ [% ELSE %] <option value="f">viñeta</option>
+ [% END %] [% IF ( f2g ) %] <option value="g" selected="selected">frontispicio</option>
+ [% ELSE %] <option value="g">frontispicio</option>
+ [% END %] [% IF ( f2h ) %] <option value="h" selected="selected">retrato</option>
+ [% ELSE %] <option value="h">retrato</option>
+ [% END %] [% IF ( f2i ) %] <option value="i" selected="selected">veduta</option>
+ [% ELSE %] <option value="i">veduta</option>
+ [% END %] [% IF ( f2j ) %] <option value="j" selected="selected">mapas</option>
+ [% ELSE %] <option value="j">mapas</option>
+ [% END %] [% IF ( f2k ) %] <option value="k" selected="selected">mapas</option>
+ [% ELSE %] <option value="k">mapas</option>
+ [% END %] [% IF ( f2l ) %] <option value="l" selected="selected">planos</option>
+ [% ELSE %] <option value="l">planos</option>
+ [% END %] [% IF ( f2m ) %] <option value="m" selected="selected">música</option>
+ [% ELSE %] <option value="m">música</option>
+ [% END %] [% IF ( f2n ) %] <option value="n" selected="selected">escudo de armas</option>
+ [% ELSE %] <option value="n">escudo de armas</option>
+ [% END %] [% IF ( f2o ) %] <option value="o" selected="selected">tablas genealógicas</option>
+ [% ELSE %] <option value="o">tablas genealógicas</option>
+ [% END %] [% IF ( f2y ) %] <option value="y" selected="selected">sin ilustraciones</option>
+ [% ELSE %] <option value="y">sin ilustraciones</option>
+ [% END %] [% IF ( f2z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f3">Ilustración - Libro 3:</label></td>
  <td>
  <select name="f3" id="f3" size="1">
- [% IF ( f3space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f3a ) %]
- <option value="a" selected="selected">ilustraciones</option>
- [% ELSE %]
- <option value="a">ilustraciones</option>
- [% END %]
- [% IF ( f3b ) %]
- <option value="b" selected="selected">iluminaciones</option>
- [% ELSE %]
- <option value="b">iluminaciones</option>
- [% END %]
- [% IF ( f3c ) %]
- <option value="c" selected="selected">letra decorativa</option>
- [% ELSE %]
- <option value="c">letra decorativa</option>
- [% END %]
- [% IF ( f3d ) %]
- <option value="d" selected="selected">miniatura</option>
- [% ELSE %]
- <option value="d">miniatura</option>
- [% END %]
- [% IF ( f3e ) %]
- <option value="e" selected="selected">firma (es decir encabezamiento con letras especiales)</option>
- [% ELSE %]
- <option value="e">firma (es decir encabezamiento con letras especiales)</option>
- [% END %]
- [% IF ( f3f ) %]
- <option value="f" selected="selected">viñeta</option>
- [% ELSE %]
- <option value="f">viñeta</option>
- [% END %]
- [% IF ( f3g ) %]
- <option value="g" selected="selected">frontispicio</option>
- [% ELSE %]
- <option value="g">frontispicio</option>
- [% END %]
- [% IF ( f3h ) %]
- <option value="h" selected="selected">retrato</option>
- [% ELSE %]
- <option value="h">retrato</option>
- [% END %]
- [% IF ( f3i ) %]
- <option value="i" selected="selected">veduta</option>
- [% ELSE %]
- <option value="i">veduta</option>
- [% END %]
- [% IF ( f3j ) %]
- <option value="j" selected="selected">mapas</option>
- [% ELSE %]
- <option value="j">mapas</option>
- [% END %]
- [% IF ( f3k ) %]
- <option value="k" selected="selected">mapas</option>
- [% ELSE %]
- <option value="k">mapas</option>
- [% END %]
- [% IF ( f3l ) %]
- <option value="l" selected="selected">planos</option>
- [% ELSE %]
- <option value="l">planos</option>
- [% END %]
- [% IF ( f3m ) %]
- <option value="m" selected="selected">música</option>
- [% ELSE %]
- <option value="m">música</option>
- [% END %]
- [% IF ( f3n ) %]
- <option value="n" selected="selected">escudo de armas</option>
- [% ELSE %]
- <option value="n">escudo de armas</option>
- [% END %]
- [% IF ( f3o ) %]
- <option value="o" selected="selected">tablas genealógicas</option>
- [% ELSE %]
- <option value="o">tablas genealógicas</option>
- [% END %]
- [% IF ( f3y ) %]
- <option value="y" selected="selected">sin ilustraciones</option>
- [% ELSE %]
- <option value="y">sin ilustraciones</option>
- [% END %]
- [% IF ( f3z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f3space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f3a ) %] <option value="a" selected="selected">ilustraciones</option>
+ [% ELSE %] <option value="a">ilustraciones</option>
+ [% END %] [% IF ( f3b ) %] <option value="b" selected="selected">iluminaciones</option>
+ [% ELSE %] <option value="b">iluminaciones</option>
+ [% END %] [% IF ( f3c ) %] <option value="c" selected="selected">letra decorativa</option>
+ [% ELSE %] <option value="c">letra decorativa</option>
+ [% END %] [% IF ( f3d ) %] <option value="d" selected="selected">miniatura</option>
+ [% ELSE %] <option value="d">miniatura</option>
+ [% END %] [% IF ( f3e ) %] <option value="e" selected="selected">firma (es decir encabezamiento con letras especiales)</option>
+ [% ELSE %] <option value="e">firma (es decir encabezamiento con letras especiales)</option>
+ [% END %] [% IF ( f3f ) %] <option value="f" selected="selected">viñeta</option>
+ [% ELSE %] <option value="f">viñeta</option>
+ [% END %] [% IF ( f3g ) %] <option value="g" selected="selected">frontispicio</option>
+ [% ELSE %] <option value="g">frontispicio</option>
+ [% END %] [% IF ( f3h ) %] <option value="h" selected="selected">retrato</option>
+ [% ELSE %] <option value="h">retrato</option>
+ [% END %] [% IF ( f3i ) %] <option value="i" selected="selected">veduta</option>
+ [% ELSE %] <option value="i">veduta</option>
+ [% END %] [% IF ( f3j ) %] <option value="j" selected="selected">mapas</option>
+ [% ELSE %] <option value="j">mapas</option>
+ [% END %] [% IF ( f3k ) %] <option value="k" selected="selected">mapas</option>
+ [% ELSE %] <option value="k">mapas</option>
+ [% END %] [% IF ( f3l ) %] <option value="l" selected="selected">planos</option>
+ [% ELSE %] <option value="l">planos</option>
+ [% END %] [% IF ( f3m ) %] <option value="m" selected="selected">música</option>
+ [% ELSE %] <option value="m">música</option>
+ [% END %] [% IF ( f3n ) %] <option value="n" selected="selected">escudo de armas</option>
+ [% ELSE %] <option value="n">escudo de armas</option>
+ [% END %] [% IF ( f3o ) %] <option value="o" selected="selected">tablas genealógicas</option>
+ [% ELSE %] <option value="o">tablas genealógicas</option>
+ [% END %] [% IF ( f3y ) %] <option value="y" selected="selected">sin ilustraciones</option>
+ [% ELSE %] <option value="y">sin ilustraciones</option>
+ [% END %] [% IF ( f3z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td>
  <td><label for="f4">Ilustración - Libro 4:</label></td>
  <td>
  <select name="f4" id="f4" size="1">
  
- [% IF ( f4space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f4a ) %]
- <option value="a" selected="selected">ilustraciones</option>
- [% ELSE %]
- <option value="a">ilustraciones</option>
- [% END %]
- [% IF ( f4b ) %]
- <option value="b" selected="selected">iluminaciones</option>
- [% ELSE %]
- <option value="b">iluminaciones</option>
- [% END %]
- [% IF ( f4c ) %]
- <option value="c" selected="selected">letra decorativa</option>
- [% ELSE %]
- <option value="c">letra decorativa</option>
- [% END %]
- [% IF ( f4d ) %]
- <option value="d" selected="selected">miniatura</option>
- [% ELSE %]
- <option value="d">miniatura</option>
- [% END %]
- [% IF ( f4e ) %]
- <option value="e" selected="selected">firma (es decir encabezamiento con letras especiales)</option>
- [% ELSE %]
- <option value="e">firma (es decir encabezamiento con letras especiales)</option>
- [% END %]
- [% IF ( f4f ) %]
- <option value="f" selected="selected">viñeta</option>
- [% ELSE %]
- <option value="f">viñeta</option>
- [% END %]
- [% IF ( f4g ) %]
- <option value="g" selected="selected">frontispicio</option>
- [% ELSE %]
- <option value="g">frontispicio</option>
- [% END %]
- [% IF ( f4h ) %]
- <option value="h" selected="selected">Retrato</option>
- [% ELSE %]
- <option value="h">Retrato</option>
- [% END %]
- [% IF ( f4i ) %]
- <option value="i" selected="selected">veduta</option>
- [% ELSE %]
- <option value="i">veduta</option>
- [% END %]
- [% IF ( f4j ) %]
- <option value="j" selected="selected">mapas</option>
- [% ELSE %]
- <option value="j">mapas</option>
- [% END %]
- [% IF ( f4k ) %]
- <option value="k" selected="selected">mapas</option>
- [% ELSE %]
- <option value="k">mapas</option>
- [% END %]
- [% IF ( f4l ) %]
- <option value="l" selected="selected">planos</option>
- [% ELSE %]
- <option value="l">planos</option>
- [% END %]
- [% IF ( f4m ) %]
- <option value="m" selected="selected">música</option>
- [% ELSE %]
- <option value="m">música</option>
- [% END %]
- [% IF ( f4n ) %]
- <option value="n" selected="selected">escudo de armas</option>
- [% ELSE %]
- <option value="n">escudo de armas</option>
- [% END %]
- [% IF ( f4o ) %]
- <option value="o" selected="selected">tablas genealógicas</option>
- [% ELSE %]
- <option value="o">tablas genealógicas</option>
- [% END %]
- [% IF ( f4y ) %]
- <option value="y" selected="selected">sin ilustraciones</option>
- [% ELSE %]
- <option value="y">sin ilustraciones</option>
- [% END %]
- [% IF ( f4z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f4space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f4a ) %] <option value="a" selected="selected">ilustraciones</option>
+ [% ELSE %] <option value="a">ilustraciones</option>
+ [% END %] [% IF ( f4b ) %] <option value="b" selected="selected">iluminaciones</option>
+ [% ELSE %] <option value="b">iluminaciones</option>
+ [% END %] [% IF ( f4c ) %] <option value="c" selected="selected">letra decorativa</option>
+ [% ELSE %] <option value="c">letra decorativa</option>
+ [% END %] [% IF ( f4d ) %] <option value="d" selected="selected">miniatura</option>
+ [% ELSE %] <option value="d">miniatura</option>
+ [% END %] [% IF ( f4e ) %] <option value="e" selected="selected">firma (es decir encabezamiento con letras especiales)</option>
+ [% ELSE %] <option value="e">firma (es decir encabezamiento con letras especiales)</option>
+ [% END %] [% IF ( f4f ) %] <option value="f" selected="selected">viñeta</option>
+ [% ELSE %] <option value="f">viñeta</option>
+ [% END %] [% IF ( f4g ) %] <option value="g" selected="selected">frontispicio</option>
+ [% ELSE %] <option value="g">frontispicio</option>
+ [% END %] [% IF ( f4h ) %] <option value="h" selected="selected">Retrato</option>
+ [% ELSE %] <option value="h">Retrato</option>
+ [% END %] [% IF ( f4i ) %] <option value="i" selected="selected">veduta</option>
+ [% ELSE %] <option value="i">veduta</option>
+ [% END %] [% IF ( f4j ) %] <option value="j" selected="selected">mapas</option>
+ [% ELSE %] <option value="j">mapas</option>
+ [% END %] [% IF ( f4k ) %] <option value="k" selected="selected">mapas</option>
+ [% ELSE %] <option value="k">mapas</option>
+ [% END %] [% IF ( f4l ) %] <option value="l" selected="selected">planos</option>
+ [% ELSE %] <option value="l">planos</option>
+ [% END %] [% IF ( f4m ) %] <option value="m" selected="selected">música</option>
+ [% ELSE %] <option value="m">música</option>
+ [% END %] [% IF ( f4n ) %] <option value="n" selected="selected">escudo de armas</option>
+ [% ELSE %] <option value="n">escudo de armas</option>
+ [% END %] [% IF ( f4o ) %] <option value="o" selected="selected">tablas genealógicas</option>
+ [% ELSE %] <option value="o">tablas genealógicas</option>
+ [% END %] [% IF ( f4y ) %] <option value="y" selected="selected">sin ilustraciones</option>
+ [% ELSE %] <option value="y">sin ilustraciones</option>
+ [% END %] [% IF ( f4z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
  <tr>
- <td><label for="f5">Illustration - Full page plates 1:</label></td>
+ <td><label for="f5">Ilustración - Placas de página completa 1:</label></td>
  <td>
  <select name="f5" id="f5" size="1">
  
- [% IF ( f5space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f5a ) %]
- <option value="a" selected="selected">ilustraciones</option>
- [% ELSE %]
- <option value="a">ilustraciones</option>
- [% END %]
- [% IF ( f5g ) %]
- <option value="g" selected="selected">frontispicio</option>
- [% ELSE %]
- <option value="g">frontispicio</option>
- [% END %]
- [% IF ( f5h ) %]
- <option value="h" selected="selected">retrato</option>
- [% ELSE %]
- <option value="h">retrato</option>
- [% END %]
- [% IF ( f5i ) %]
- <option value="i" selected="selected">veduta</option>
- [% ELSE %]
- <option value="i">veduta</option>
- [% END %]
- [% IF ( f5j ) %]
- <option value="j" selected="selected">mapas</option>
- [% ELSE %]
- <option value="j">mapas</option>
- [% END %]
- [% IF ( f5k ) %]
- <option value="k" selected="selected">mapas</option>
- [% ELSE %]
- <option value="k">mapas</option>
- [% END %]
- [% IF ( f5l ) %]
- <option value="l" selected="selected">planos</option>
- [% ELSE %]
- <option value="l">planos</option>
- [% END %]
- [% IF ( f5m ) %]
- <option value="m" selected="selected">música</option>
- [% ELSE %]
- <option value="m">música</option>
- [% END %]
- [% IF ( f5n ) %]
- <option value="n" selected="selected">escudo de armas</option>
- [% ELSE %]
- <option value="n">escudo de armas</option>
- [% END %]
- [% IF ( f5o ) %]
- <option value="o" selected="selected">tablas genealógicas</option>
- [% ELSE %]
- <option value="o">tablas genealógicas</option>
- [% END %]
- [% IF ( f5y ) %]
- <option value="y" selected="selected">sin ilustraciones</option>
- [% ELSE %]
- <option value="y">sin ilustraciones</option>
- [% END %]
- [% IF ( f5z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f5space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f5a ) %] <option value="a" selected="selected">ilustraciones</option>
+ [% ELSE %] <option value="a">ilustraciones</option>
+ [% END %] [% IF ( f5g ) %] <option value="g" selected="selected">frontispicio</option>
+ [% ELSE %] <option value="g">frontispicio</option>
+ [% END %] [% IF ( f5h ) %] <option value="h" selected="selected">retrato</option>
+ [% ELSE %] <option value="h">retrato</option>
+ [% END %] [% IF ( f5i ) %] <option value="i" selected="selected">veduta</option>
+ [% ELSE %] <option value="i">veduta</option>
+ [% END %] [% IF ( f5j ) %] <option value="j" selected="selected">mapas</option>
+ [% ELSE %] <option value="j">mapas</option>
+ [% END %] [% IF ( f5k ) %] <option value="k" selected="selected">mapas</option>
+ [% ELSE %] <option value="k">mapas</option>
+ [% END %] [% IF ( f5l ) %] <option value="l" selected="selected">planos</option>
+ [% ELSE %] <option value="l">planos</option>
+ [% END %] [% IF ( f5m ) %] <option value="m" selected="selected">música</option>
+ [% ELSE %] <option value="m">música</option>
+ [% END %] [% IF ( f5n ) %] <option value="n" selected="selected">escudo de armas</option>
+ [% ELSE %] <option value="n">escudo de armas</option>
+ [% END %] [% IF ( f5o ) %] <option value="o" selected="selected">tablas genealógicas</option>
+ [% ELSE %] <option value="o">tablas genealógicas</option>
+ [% END %] [% IF ( f5y ) %] <option value="y" selected="selected">sin ilustraciones</option>
+ [% ELSE %] <option value="y">sin ilustraciones</option>
+ [% END %] [% IF ( f5z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td>
- <td><label for="f6">Illustration - Full page plates 2:</label></td>
+ <td><label for="f6">Ilustración - Placas de página completa 2:</label></td>
  <td>
  <select name="f6" id="f6" size="1">
  
- [% IF ( f6space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f6a ) %]
- <option value="a" selected="selected">ilustraciones</option>
- [% ELSE %]
- <option value="a">ilustraciones</option>
- [% END %]
- [% IF ( f6g ) %]
- <option value="g" selected="selected">frontispicio</option>
- [% ELSE %]
- <option value="g">frontispicio</option>
- [% END %]
- [% IF ( f6h ) %]
- <option value="h" selected="selected">retrato</option>
- [% ELSE %]
- <option value="h">retrato</option>
- [% END %]
- [% IF ( f6i ) %]
- <option value="i" selected="selected">veduta</option>
- [% ELSE %]
- <option value="i">veduta</option>
- [% END %]
- [% IF ( f6j ) %]
- <option value="j" selected="selected">mapas</option>
- [% ELSE %]
- <option value="j">mapas</option>
- [% END %]
- [% IF ( f6k ) %]
- <option value="k" selected="selected">mapas</option>
- [% ELSE %]
- <option value="k">mapas</option>
- [% END %]
- [% IF ( f6l ) %]
- <option value="l" selected="selected">planos</option>
- [% ELSE %]
- <option value="l">planos</option>
- [% END %]
- [% IF ( f6m ) %]
- <option value="m" selected="selected">música</option>
- [% ELSE %]
- <option value="m">música</option>
- [% END %]
- [% IF ( f6n ) %]
- <option value="n" selected="selected">escudo de armas</option>
- [% ELSE %]
- <option value="n">escudo de armas</option>
- [% END %]
- [% IF ( f6o ) %]
- <option value="o" selected="selected">tablas genealógicas</option>
- [% ELSE %]
- <option value="o">tablas genealógicas</option>
- [% END %]
- [% IF ( f6y ) %]
- <option value="y" selected="selected">sin ilustraciones</option>
- [% ELSE %]
- <option value="y">sin ilustraciones</option>
- [% END %]
- [% IF ( f6z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f6space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f6a ) %] <option value="a" selected="selected">ilustraciones</option>
+ [% ELSE %] <option value="a">ilustraciones</option>
+ [% END %] [% IF ( f6g ) %] <option value="g" selected="selected">frontispicio</option>
+ [% ELSE %] <option value="g">frontispicio</option>
+ [% END %] [% IF ( f6h ) %] <option value="h" selected="selected">retrato</option>
+ [% ELSE %] <option value="h">retrato</option>
+ [% END %] [% IF ( f6i ) %] <option value="i" selected="selected">veduta</option>
+ [% ELSE %] <option value="i">veduta</option>
+ [% END %] [% IF ( f6j ) %] <option value="j" selected="selected">mapas</option>
+ [% ELSE %] <option value="j">mapas</option>
+ [% END %] [% IF ( f6k ) %] <option value="k" selected="selected">mapas</option>
+ [% ELSE %] <option value="k">mapas</option>
+ [% END %] [% IF ( f6l ) %] <option value="l" selected="selected">planos</option>
+ [% ELSE %] <option value="l">planos</option>
+ [% END %] [% IF ( f6m ) %] <option value="m" selected="selected">música</option>
+ [% ELSE %] <option value="m">música</option>
+ [% END %] [% IF ( f6n ) %] <option value="n" selected="selected">escudo de armas</option>
+ [% ELSE %] <option value="n">escudo de armas</option>
+ [% END %] [% IF ( f6o ) %] <option value="o" selected="selected">tablas genealógicas</option>
+ [% ELSE %] <option value="o">tablas genealógicas</option>
+ [% END %] [% IF ( f6y ) %] <option value="y" selected="selected">sin ilustraciones</option>
+ [% ELSE %] <option value="y">sin ilustraciones</option>
+ [% END %] [% IF ( f6z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
  <tr>
- <td><label for="f7">Illustration - Full page plates 3:</label></td>
+ <td><label for="f7">Ilustración - Placas de página completa 3:</label></td>
  <td>
  <select name="f7" id="f7" size="1">
  
- [% IF ( f7space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f7a ) %]
- <option value="a" selected="selected">ilustraciones</option>
- [% ELSE %]
- <option value="a">ilustraciones</option>
- [% END %]
- [% IF ( f7g ) %]
- <option value="g" selected="selected">frontispicio</option>
- [% ELSE %]
- <option value="g">frontispicio</option>
- [% END %]
- [% IF ( f7h ) %]
- <option value="h" selected="selected">retrato</option>
- [% ELSE %]
- <option value="h">retrato</option>
- [% END %]
- [% IF ( f7i ) %]
- <option value="i" selected="selected">veduta</option>
- [% ELSE %]
- <option value="i">veduta</option>
- [% END %]
- [% IF ( f7j ) %]
- <option value="j" selected="selected">mapas</option>
- [% ELSE %]
- <option value="j">mapas</option>
- [% END %]
- [% IF ( f7k ) %]
- <option value="k" selected="selected">mapas</option>
- [% ELSE %]
- <option value="k">mapas</option>
- [% END %]
- [% IF ( f7l ) %]
- <option value="l" selected="selected">planos</option>
- [% ELSE %]
- <option value="l">planos</option>
- [% END %]
- [% IF ( f7m ) %]
- <option value="m" selected="selected">música</option>
- [% ELSE %]
- <option value="m">música</option>
- [% END %]
- [% IF ( f7n ) %]
- <option value="n" selected="selected">escudo de armas</option>
- [% ELSE %]
- <option value="n">escudo de armas</option>
- [% END %]
- [% IF ( f7o ) %]
- <option value="o" selected="selected">tablas genealógicas</option>
- [% ELSE %]
- <option value="o">tablas genealógicas</option>
- [% END %]
- [% IF ( f7y ) %]
- <option value="y" selected="selected">sin ilustraciones</option>
- [% ELSE %]
- <option value="y">sin ilustraciones</option>
- [% END %]
- [% IF ( f7z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f7space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f7a ) %] <option value="a" selected="selected">ilustraciones</option>
+ [% ELSE %] <option value="a">ilustraciones</option>
+ [% END %] [% IF ( f7g ) %] <option value="g" selected="selected">frontispicio</option>
+ [% ELSE %] <option value="g">frontispicio</option>
+ [% END %] [% IF ( f7h ) %] <option value="h" selected="selected">retrato</option>
+ [% ELSE %] <option value="h">retrato</option>
+ [% END %] [% IF ( f7i ) %] <option value="i" selected="selected">veduta</option>
+ [% ELSE %] <option value="i">veduta</option>
+ [% END %] [% IF ( f7j ) %] <option value="j" selected="selected">mapas</option>
+ [% ELSE %] <option value="j">mapas</option>
+ [% END %] [% IF ( f7k ) %] <option value="k" selected="selected">mapas</option>
+ [% ELSE %] <option value="k">mapas</option>
+ [% END %] [% IF ( f7l ) %] <option value="l" selected="selected">planos</option>
+ [% ELSE %] <option value="l">planos</option>
+ [% END %] [% IF ( f7m ) %] <option value="m" selected="selected">música</option>
+ [% ELSE %] <option value="m">música</option>
+ [% END %] [% IF ( f7n ) %] <option value="n" selected="selected">escudo de armas</option>
+ [% ELSE %] <option value="n">escudo de armas</option>
+ [% END %] [% IF ( f7o ) %] <option value="o" selected="selected">tablas genealógicas</option>
+ [% ELSE %] <option value="o">tablas genealógicas</option>
+ [% END %] [% IF ( f7y ) %] <option value="y" selected="selected">sin ilustraciones</option>
+ [% ELSE %] <option value="y">sin ilustraciones</option>
+ [% END %] [% IF ( f7z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td>
- <td><label for="f8">Illustration - Full page plates 4:</label></td>
+ <td><label for="f8">Ilustración - Placas de página completa 4:</label></td>
  <td>
  <select name="f8" id="f8" size="1">
  
- [% IF ( f8space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f8a ) %]
- <option value="a" selected="selected">ilustraciones</option>
- [% ELSE %]
- <option value="a">ilustraciones</option>
- [% END %]
- [% IF ( f8g ) %]
- <option value="g" selected="selected">frontispicio</option>
- [% ELSE %]
- <option value="g">frontispicio</option>
- [% END %]
- [% IF ( f8h ) %]
- <option value="h" selected="selected">retrato</option>
- [% ELSE %]
- <option value="h">retrato</option>
- [% END %]
- [% IF ( f8i ) %]
- <option value="i" selected="selected">veduta</option>
- [% ELSE %]
- <option value="i">veduta</option>
- [% END %]
- [% IF ( f8j ) %]
- <option value="j" selected="selected">mapas</option>
- [% ELSE %]
- <option value="j">mapas</option>
- [% END %]
- [% IF ( f8k ) %]
- <option value="k" selected="selected">mapas</option>
- [% ELSE %]
- <option value="k">mapas</option>
- [% END %]
- [% IF ( f8l ) %]
- <option value="l" selected="selected">planos</option>
- [% ELSE %]
- <option value="l">planos</option>
- [% END %]
- [% IF ( f8m ) %]
- <option value="m" selected="selected">música</option>
- [% ELSE %]
- <option value="m">música</option>
- [% END %]
- [% IF ( f8n ) %]
- <option value="n" selected="selected">escudo de armas</option>
- [% ELSE %]
- <option value="n">escudo de armas</option>
- [% END %]
- [% IF ( f8o ) %]
- <option value="o" selected="selected">tablas genealógicas</option>
- [% ELSE %]
- <option value="o">tablas genealógicas</option>
- [% END %]
- [% IF ( f8y ) %]
- <option value="y" selected="selected">sin ilustraciones</option>
- [% ELSE %]
- <option value="y">sin ilustraciones</option>
- [% END %]
- [% IF ( f8z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f8space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f8a ) %] <option value="a" selected="selected">ilustraciones</option>
+ [% ELSE %] <option value="a">ilustraciones</option>
+ [% END %] [% IF ( f8g ) %] <option value="g" selected="selected">frontispicio</option>
+ [% ELSE %] <option value="g">frontispicio</option>
+ [% END %] [% IF ( f8h ) %] <option value="h" selected="selected">retrato</option>
+ [% ELSE %] <option value="h">retrato</option>
+ [% END %] [% IF ( f8i ) %] <option value="i" selected="selected">veduta</option>
+ [% ELSE %] <option value="i">veduta</option>
+ [% END %] [% IF ( f8j ) %] <option value="j" selected="selected">mapas</option>
+ [% ELSE %] <option value="j">mapas</option>
+ [% END %] [% IF ( f8k ) %] <option value="k" selected="selected">mapas</option>
+ [% ELSE %] <option value="k">mapas</option>
+ [% END %] [% IF ( f8l ) %] <option value="l" selected="selected">planos</option>
+ [% ELSE %] <option value="l">planos</option>
+ [% END %] [% IF ( f8m ) %] <option value="m" selected="selected">música</option>
+ [% ELSE %] <option value="m">música</option>
+ [% END %] [% IF ( f8n ) %] <option value="n" selected="selected">escudo de armas</option>
+ [% ELSE %] <option value="n">escudo de armas</option>
+ [% END %] [% IF ( f8o ) %] <option value="o" selected="selected">tablas genealógicas</option>
+ [% ELSE %] <option value="o">tablas genealógicas</option>
+ [% END %] [% IF ( f8y ) %] <option value="y" selected="selected">sin ilustraciones</option>
+ [% ELSE %] <option value="y">sin ilustraciones</option>
+ [% END %] [% IF ( f8z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
 <tr> <td><label for="f9">Ilustración - Técnica:</label></td>
  <td>
  <select name="f9" id="f9" size="1">
  
- [% IF ( f9space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f9a ) %]
- <option value="a" selected="selected">xilografía</option>
- [% ELSE %]
- <option value="a">xilografía</option>
- [% END %]
- [% IF ( f9b ) %]
- <option value="b" selected="selected">litografía</option>
- [% ELSE %]
- <option value="b">litografía</option>
- [% END %]
- [% IF ( f9c ) %]
- <option value="c" selected="selected">grabado</option>
- [% ELSE %]
- <option value="c">grabado</option>
- [% END %]
- [% IF ( f9d ) %]
- <option value="d" selected="selected">aguatinta</option>
- [% ELSE %]
- <option value="d">aguatinta</option>
- [% END %]
- [% IF ( f9e ) %]
- <option value="e" selected="selected">grabado</option>
- [% ELSE %]
- <option value="e">grabado</option>
- [% END %]
- [% IF ( f9u ) %]
- <option value="u" selected="selected">desconocido</option>
- [% ELSE %]
- <option value="u">desconocido</option>
- [% END %]
- [% IF ( f9v ) %]
- <option value="v" selected="selected">mixto</option>
- [% ELSE %]
- <option value="v">mixto</option>
- [% END %]
- [% IF ( f9z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f9space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f9a ) %] <option value="a" selected="selected">xilografía</option>
+ [% ELSE %] <option value="a">xilografía</option>
+ [% END %] [% IF ( f9b ) %] <option value="b" selected="selected">litografía</option>
+ [% ELSE %] <option value="b">litografía</option>
+ [% END %] [% IF ( f9c ) %] <option value="c" selected="selected">grabado</option>
+ [% ELSE %] <option value="c">grabado</option>
+ [% END %] [% IF ( f9d ) %] <option value="d" selected="selected">aguatinta</option>
+ [% ELSE %] <option value="d">aguatinta</option>
+ [% END %] [% IF ( f9e ) %] <option value="e" selected="selected">grabado</option>
+ [% ELSE %] <option value="e">grabado</option>
+ [% END %] [% IF ( f9u ) %] <option value="u" selected="selected">desconocido</option>
+ [% ELSE %] <option value="u">desconocido</option>
+ [% END %] [% IF ( f9v ) %] <option value="v" selected="selected">mixto</option>
+ [% ELSE %] <option value="v">mixto</option>
+ [% END %] [% IF ( f9z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td><td>&nbsp;</td>
  </tr>
  <tr>
- <td><label for="f10">Form of contents 1:</label></td>
+ <td><label for="f10">Formulario de contenidos 1:</label></td>
  <td>
  <select name="f10" id="f10" size="1">
  
- [% IF ( f10dblspace ) %]
- <option value="  " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value="  ">valor no requerido</option>
- [% END %]
- [% IF ( f10aa ) %]
- <option value="aa" selected="selected">trabajo religioso</option>
- [% ELSE %]
- <option value="aa">trabajo religioso</option>
- [% END %]
- [% IF ( f10ab ) %]
- <option value="ab" selected="selected">catequismo</option>
- [% ELSE %]
- <option value="ab">catequismo</option>
- [% END %]
- [% IF ( f10ac ) %]
- <option value="ac" selected="selected">literatura devocional</option>
- [% ELSE %]
- <option value="ac">literatura devocional</option>
- [% END %]
- [% IF ( f10ad ) %]
- <option value="ad" selected="selected">sermón</option>
- [% ELSE %]
- <option value="ad">sermón</option>
- [% END %]
- [% IF ( f10ae ) %]
- <option value="ae" selected="selected">libros de servicio</option>
- [% ELSE %]
- <option value="ae">libros de servicio</option>
- [% END %]
- [% IF ( f10ba ) %]
- <option value="ba" selected="selected">trabajo científico</option>
- [% ELSE %]
- <option value="ba">trabajo científico</option>
- [% END %]
- [% IF ( f10bb ) %]
- <option value="bb" selected="selected">discusión, disertación, tesis</option>
- [% ELSE %]
- <option value="bb">discusión, disertación, tesis</option>
- [% END %]
- [% IF ( f10ca ) %]
- <option value="ca" selected="selected">costumbres sociales</option>
- [% ELSE %]
- <option value="ca">costumbres sociales</option>
- [% END %]
- [% IF ( f10da ) %]
- <option value="da" selected="selected">trabajo legal</option>
- [% ELSE %]
- <option value="da">trabajo legal</option>
- [% END %]
- [% IF ( f10db ) %]
- <option value="db" selected="selected">trabajo político</option>
- [% ELSE %]
- <option value="db">trabajo político</option>
- [% END %]
- [% IF ( f10ea ) %]
- <option value="ea" selected="selected">efímera</option>
- [% ELSE %]
- <option value="ea">efímera</option>
- [% END %]
- [% IF ( f10fa ) %]
- <option value="fa" selected="selected">trabajo de referencia</option>
- [% ELSE %]
- <option value="fa">trabajo de referencia</option>
- [% END %]
- [% IF ( f10fb ) %]
- <option value="fb" selected="selected">catalogo de biblioteca</option>
- [% ELSE %]
- <option value="fb">catalogo de biblioteca</option>
- [% END %]
- [% IF ( f10fc ) %]
- <option value="fc" selected="selected">bibliografía</option>
- [% ELSE %]
- <option value="fc">bibliografía</option>
- [% END %]
- [% IF ( f10fd ) %]
- <option value="fd" selected="selected">calendario</option>
- [% ELSE %]
- <option value="fd">calendario</option>
- [% END %]
- [% IF ( f10fe ) %]
- <option value="fe" selected="selected">índice</option>
- [% ELSE %]
- <option value="fe">índice</option>
- [% END %]
- [% IF ( f10ff ) %]
- <option value="ff" selected="selected">diccionario</option>
- [% ELSE %]
- <option value="ff">diccionario</option>
- [% END %]
- [% IF ( f10fg ) %]
- <option value="fg" selected="selected">enciclopedia</option>
- [% ELSE %]
- <option value="fg">enciclopedia</option>
- [% END %]
- [% IF ( f10ga ) %]
- <option value="ga" selected="selected">trabajo histórico</option>
- [% ELSE %]
- <option value="ga">trabajo histórico</option>
- [% END %]
- [% IF ( f10ha ) %]
- <option value="ha" selected="selected">tratado polémico</option>
- [% ELSE %]
- <option value="ha">tratado polémico</option>
- [% END %]
- [% IF ( f10ia ) %]
- <option value="ia" selected="selected">trabajo discursivo</option>
- [% ELSE %]
- <option value="ia">trabajo discursivo</option>
- [% END %]
- [% IF ( f10ja ) %]
- <option value="ja" selected="selected">trabajo conmemorativo</option>
- [% ELSE %]
- <option value="ja">trabajo conmemorativo</option>
- [% END %]
- [% IF ( f10ka ) %]
- <option value="ka" selected="selected">trabajo instructivo</option>
- [% ELSE %]
- <option value="ka">trabajo instructivo</option>
- [% END %]
- [% IF ( f10kb ) %]
- <option value="kb" selected="selected">manual</option>
- [% ELSE %]
- <option value="kb">manual</option>
- [% END %]
- [% IF ( f10kc ) %]
- <option value="kc" selected="selected">libro de texto</option>
- [% ELSE %]
- <option value="kc">libro de texto</option>
- [% END %]
- [% IF ( f10la ) %]
- <option value="la" selected="selected">mantenimiento de registros de trabajo</option>
- [% ELSE %]
- <option value="la">mantenimiento de registros de trabajo</option>
- [% END %]
- [% IF ( f10ma ) %]
- <option value="ma" selected="selected">recreaciones</option>
- [% ELSE %]
- <option value="ma">recreaciones</option>
- [% END %]
- [% IF ( f10na ) %]
- <option value="na" selected="selected">versión de un trabajo</option>
- [% ELSE %]
- <option value="na">versión de un trabajo</option>
- [% END %]
- [% IF ( f10zz ) %]
- <option value="zz" selected="selected">otro</option>
- [% ELSE %]
- <option value="zz">otro</option>
- [% END %]
- </select>
+ [% IF ( f10dblspace ) %] <option value="  " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value="  ">valor no requerido</option>
+ [% END %] [% IF ( f10aa ) %] <option value="aa" selected="selected">trabajo religioso</option>
+ [% ELSE %] <option value="aa">trabajo religioso</option>
+ [% END %] [% IF ( f10ab ) %] <option value="ab" selected="selected">catequismo</option>
+ [% ELSE %] <option value="ab">catequismo</option>
+ [% END %] [% IF ( f10ac ) %] <option value="ac" selected="selected">literatura devocional</option>
+ [% ELSE %] <option value="ac">literatura devocional</option>
+ [% END %] [% IF ( f10ad ) %] <option value="ad" selected="selected">sermón</option>
+ [% ELSE %] <option value="ad">sermón</option>
+ [% END %] [% IF ( f10ae ) %] <option value="ae" selected="selected">libros de servicio</option>
+ [% ELSE %] <option value="ae">libros de servicio</option>
+ [% END %] [% IF ( f10ba ) %] <option value="ba" selected="selected">trabajo científico</option>
+ [% ELSE %] <option value="ba">trabajo científico</option>
+ [% END %] [% IF ( f10bb ) %] <option value="bb" selected="selected">discusión, disertación, tesis</option>
+ [% ELSE %] <option value="bb">discusión, disertación, tesis</option>
+ [% END %] [% IF ( f10ca ) %] <option value="ca" selected="selected">costumbres sociales</option>
+ [% ELSE %] <option value="ca">costumbres sociales</option>
+ [% END %] [% IF ( f10da ) %] <option value="da" selected="selected">trabajo legal</option>
+ [% ELSE %] <option value="da">trabajo legal</option>
+ [% END %] [% IF ( f10db ) %] <option value="db" selected="selected">trabajo político</option>
+ [% ELSE %] <option value="db">trabajo político</option>
+ [% END %] [% IF ( f10ea ) %] <option value="ea" selected="selected">efímera</option>
+ [% ELSE %] <option value="ea">efímera</option>
+ [% END %] [% IF ( f10fa ) %] <option value="fa" selected="selected">trabajo de referencia</option>
+ [% ELSE %] <option value="fa">trabajo de referencia</option>
+ [% END %] [% IF ( f10fb ) %] <option value="fb" selected="selected">catalogo de biblioteca</option>
+ [% ELSE %] <option value="fb">catalogo de biblioteca</option>
+ [% END %] [% IF ( f10fc ) %] <option value="fc" selected="selected">bibliografía</option>
+ [% ELSE %] <option value="fc">bibliografía</option>
+ [% END %] [% IF ( f10fd ) %] <option value="fd" selected="selected">calendario</option>
+ [% ELSE %] <option value="fd">calendario</option>
+ [% END %] [% IF ( f10fe ) %] <option value="fe" selected="selected">índice</option>
+ [% ELSE %] <option value="fe">índice</option>
+ [% END %] [% IF ( f10ff ) %] <option value="ff" selected="selected">diccionario</option>
+ [% ELSE %] <option value="ff">diccionario</option>
+ [% END %] [% IF ( f10fg ) %] <option value="fg" selected="selected">enciclopedia</option>
+ [% ELSE %] <option value="fg">enciclopedia</option>
+ [% END %] [% IF ( f10ga ) %] <option value="ga" selected="selected">trabajo histórico</option>
+ [% ELSE %] <option value="ga">trabajo histórico</option>
+ [% END %] [% IF ( f10ha ) %] <option value="ha" selected="selected">tratado polémico</option>
+ [% ELSE %] <option value="ha">tratado polémico</option>
+ [% END %] [% IF ( f10ia ) %] <option value="ia" selected="selected">trabajo discursivo</option>
+ [% ELSE %] <option value="ia">trabajo discursivo</option>
+ [% END %] [% IF ( f10ja ) %] <option value="ja" selected="selected">trabajo conmemorativo</option>
+ [% ELSE %] <option value="ja">trabajo conmemorativo</option>
+ [% END %] [% IF ( f10ka ) %] <option value="ka" selected="selected">trabajo instructivo</option>
+ [% ELSE %] <option value="ka">trabajo instructivo</option>
+ [% END %] [% IF ( f10kb ) %] <option value="kb" selected="selected">manual</option>
+ [% ELSE %] <option value="kb">manual</option>
+ [% END %] [% IF ( f10kc ) %] <option value="kc" selected="selected">libro de texto</option>
+ [% ELSE %] <option value="kc">libro de texto</option>
+ [% END %] [% IF ( f10la ) %] <option value="la" selected="selected">mantenimiento de registros de trabajo</option>
+ [% ELSE %] <option value="la">mantenimiento de registros de trabajo</option>
+ [% END %] [% IF ( f10ma ) %] <option value="ma" selected="selected">recreaciones</option>
+ [% ELSE %] <option value="ma">recreaciones</option>
+ [% END %] [% IF ( f10na ) %] <option value="na" selected="selected">versión de un trabajo</option>
+ [% ELSE %] <option value="na">versión de un trabajo</option>
+ [% END %] [% IF ( f10zz ) %] <option value="zz" selected="selected">otro</option>
+ [% ELSE %] <option value="zz">otro</option>
+ [% END %] </select>
  </td>
- <td><label for="f11">Form of contents 2:</label></td>
+ <td><label for="f11">Formulario de contenidos 2:</label></td>
  <td>
  <select name="f11" id="f11" size="1">
  
- [% IF ( f11dblspace ) %]
- <option value="  " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value="  ">valor no requerido</option>
- [% END %]
- [% IF ( f11aa ) %]
- <option value="aa" selected="selected">trabajo religioso</option>
- [% ELSE %]
- <option value="aa">trabajo religioso</option>
- [% END %]
- [% IF ( f11ab ) %]
- <option value="ab" selected="selected">catequismo</option>
- [% ELSE %]
- <option value="ab">catequismo</option>
- [% END %]
- [% IF ( f11ac ) %]
- <option value="ac" selected="selected">literatura devocional</option>
- [% ELSE %]
- <option value="ac">literatura devocional</option>
- [% END %]
- [% IF ( f11ad ) %]
- <option value="ad" selected="selected">sermón</option>
- [% ELSE %]
- <option value="ad">sermón</option>
- [% END %]
- [% IF ( f11ae ) %]
- <option value="ae" selected="selected">libros de servicio</option>
- [% ELSE %]
- <option value="ae">libros de servicio</option>
- [% END %]
- [% IF ( f11ba ) %]
- <option value="ba" selected="selected">trabajo científico</option>
- [% ELSE %]
- <option value="ba">trabajo científico</option>
- [% END %]
- [% IF ( f11bb ) %]
- <option value="bb" selected="selected">discusión, disertación, tesis</option>
- [% ELSE %]
- <option value="bb">discusión, disertación, tesis</option>
- [% END %]
- [% IF ( f11ca ) %]
- <option value="ca" selected="selected">costumbres sociales</option>
- [% ELSE %]
- <option value="ca">costumbres sociales</option>
- [% END %]
- [% IF ( f11da ) %]
- <option value="da" selected="selected">trabajo legal</option>
- [% ELSE %]
- <option value="da">trabajo legal</option>
- [% END %]
- [% IF ( f11db ) %]
- <option value="db" selected="selected">trabajo político</option>
- [% ELSE %]
- <option value="db">trabajo político</option>
- [% END %]
- [% IF ( f11ea ) %]
- <option value="ea" selected="selected">efímera</option>
- [% ELSE %]
- <option value="ea">efímera</option>
- [% END %]
- [% IF ( f11fa ) %]
- <option value="fa" selected="selected">trabajo de referencia</option>
- [% ELSE %]
- <option value="fa">trabajo de referencia</option>
- [% END %]
- [% IF ( f11fb ) %]
- <option value="fb" selected="selected">catalogo de biblioteca</option>
- [% ELSE %]
- <option value="fb">catalogo de biblioteca</option>
- [% END %]
- [% IF ( f11fc ) %]
- <option value="fc" selected="selected">bibliografía</option>
- [% ELSE %]
- <option value="fc">bibliografía</option>
- [% END %]
- [% IF ( f11fd ) %]
- <option value="fd" selected="selected">calendario</option>
- [% ELSE %]
- <option value="fd">calendario</option>
- [% END %]
- [% IF ( f11fe ) %]
- <option value="fe" selected="selected">índice</option>
- [% ELSE %]
- <option value="fe">índice</option>
- [% END %]
- [% IF ( f11ff ) %]
- <option value="ff" selected="selected">diccionario</option>
- [% ELSE %]
- <option value="ff">diccionario</option>
- [% END %]
- [% IF ( f11fg ) %]
- <option value="fg" selected="selected">enciclopedia</option>
- [% ELSE %]
- <option value="fg">enciclopedia</option>
- [% END %]
- [% IF ( f11ga ) %]
- <option value="ga" selected="selected">trabajo histórico</option>
- [% ELSE %]
- <option value="ga">trabajo histórico</option>
- [% END %]
- [% IF ( f11ha ) %]
- <option value="ha" selected="selected">tratado polémico</option>
- [% ELSE %]
- <option value="ha">tratado polémico</option>
- [% END %]
- [% IF ( f11ia ) %]
- <option value="ia" selected="selected">trabajo discursivo</option>
- [% ELSE %]
- <option value="ia">trabajo discursivo</option>
- [% END %]
- [% IF ( f11ja ) %]
- <option value="ja" selected="selected">trabajo conmemorativo</option>
- [% ELSE %]
- <option value="ja">trabajo conmemorativo</option>
- [% END %]
- [% IF ( f11ka ) %]
- <option value="ka" selected="selected">trabajo instructivo</option>
- [% ELSE %]
- <option value="ka">trabajo instructivo</option>
- [% END %]
- [% IF ( f11kb ) %]
- <option value="kb" selected="selected">manual</option>
- [% ELSE %]
- <option value="kb">manual</option>
- [% END %]
- [% IF ( f11kc ) %]
- <option value="kc" selected="selected">libro de texto</option>
- [% ELSE %]
- <option value="kc">libro de texto</option>
- [% END %]
- [% IF ( f11la ) %]
- <option value="la" selected="selected">mantenimiento de registros de trabajo</option>
- [% ELSE %]
- <option value="la">mantenimiento de registros de trabajo</option>
- [% END %]
- [% IF ( f11ma ) %]
- <option value="ma" selected="selected">recreaciones</option>
- [% ELSE %]
- <option value="ma">recreaciones</option>
- [% END %]
- [% IF ( f11na ) %]
- <option value="na" selected="selected">versión de un trabajo</option>
- [% ELSE %]
- <option value="na">versión de un trabajo</option>
- [% END %]
- [% IF ( f11zz ) %]
- <option value="zz" selected="selected">otro</option>
- [% ELSE %]
- <option value="zz">otro</option>
- [% END %]
- </select>
+ [% IF ( f11dblspace ) %] <option value="  " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value="  ">valor no requerido</option>
+ [% END %] [% IF ( f11aa ) %] <option value="aa" selected="selected">trabajo religioso</option>
+ [% ELSE %] <option value="aa">trabajo religioso</option>
+ [% END %] [% IF ( f11ab ) %] <option value="ab" selected="selected">catequismo</option>
+ [% ELSE %] <option value="ab">catequismo</option>
+ [% END %] [% IF ( f11ac ) %] <option value="ac" selected="selected">literatura devocional</option>
+ [% ELSE %] <option value="ac">literatura devocional</option>
+ [% END %] [% IF ( f11ad ) %] <option value="ad" selected="selected">sermón</option>
+ [% ELSE %] <option value="ad">sermón</option>
+ [% END %] [% IF ( f11ae ) %] <option value="ae" selected="selected">libros de servicio</option>
+ [% ELSE %] <option value="ae">libros de servicio</option>
+ [% END %] [% IF ( f11ba ) %] <option value="ba" selected="selected">trabajo científico</option>
+ [% ELSE %] <option value="ba">trabajo científico</option>
+ [% END %] [% IF ( f11bb ) %] <option value="bb" selected="selected">discusión, disertación, tesis</option>
+ [% ELSE %] <option value="bb">discusión, disertación, tesis</option>
+ [% END %] [% IF ( f11ca ) %] <option value="ca" selected="selected">costumbres sociales</option>
+ [% ELSE %] <option value="ca">costumbres sociales</option>
+ [% END %] [% IF ( f11da ) %] <option value="da" selected="selected">trabajo legal</option>
+ [% ELSE %] <option value="da">trabajo legal</option>
+ [% END %] [% IF ( f11db ) %] <option value="db" selected="selected">trabajo político</option>
+ [% ELSE %] <option value="db">trabajo político</option>
+ [% END %] [% IF ( f11ea ) %] <option value="ea" selected="selected">efímera</option>
+ [% ELSE %] <option value="ea">efímera</option>
+ [% END %] [% IF ( f11fa ) %] <option value="fa" selected="selected">trabajo de referencia</option>
+ [% ELSE %] <option value="fa">trabajo de referencia</option>
+ [% END %] [% IF ( f11fb ) %] <option value="fb" selected="selected">catalogo de biblioteca</option>
+ [% ELSE %] <option value="fb">catalogo de biblioteca</option>
+ [% END %] [% IF ( f11fc ) %] <option value="fc" selected="selected">bibliografía</option>
+ [% ELSE %] <option value="fc">bibliografía</option>
+ [% END %] [% IF ( f11fd ) %] <option value="fd" selected="selected">calendario</option>
+ [% ELSE %] <option value="fd">calendario</option>
+ [% END %] [% IF ( f11fe ) %] <option value="fe" selected="selected">índice</option>
+ [% ELSE %] <option value="fe">índice</option>
+ [% END %] [% IF ( f11ff ) %] <option value="ff" selected="selected">diccionario</option>
+ [% ELSE %] <option value="ff">diccionario</option>
+ [% END %] [% IF ( f11fg ) %] <option value="fg" selected="selected">enciclopedia</option>
+ [% ELSE %] <option value="fg">enciclopedia</option>
+ [% END %] [% IF ( f11ga ) %] <option value="ga" selected="selected">trabajo histórico</option>
+ [% ELSE %] <option value="ga">trabajo histórico</option>
+ [% END %] [% IF ( f11ha ) %] <option value="ha" selected="selected">tratado polémico</option>
+ [% ELSE %] <option value="ha">tratado polémico</option>
+ [% END %] [% IF ( f11ia ) %] <option value="ia" selected="selected">trabajo discursivo</option>
+ [% ELSE %] <option value="ia">trabajo discursivo</option>
+ [% END %] [% IF ( f11ja ) %] <option value="ja" selected="selected">trabajo conmemorativo</option>
+ [% ELSE %] <option value="ja">trabajo conmemorativo</option>
+ [% END %] [% IF ( f11ka ) %] <option value="ka" selected="selected">trabajo instructivo</option>
+ [% ELSE %] <option value="ka">trabajo instructivo</option>
+ [% END %] [% IF ( f11kb ) %] <option value="kb" selected="selected">manual</option>
+ [% ELSE %] <option value="kb">manual</option>
+ [% END %] [% IF ( f11kc ) %] <option value="kc" selected="selected">libro de texto</option>
+ [% ELSE %] <option value="kc">libro de texto</option>
+ [% END %] [% IF ( f11la ) %] <option value="la" selected="selected">mantenimiento de registros de trabajo</option>
+ [% ELSE %] <option value="la">mantenimiento de registros de trabajo</option>
+ [% END %] [% IF ( f11ma ) %] <option value="ma" selected="selected">recreaciones</option>
+ [% ELSE %] <option value="ma">recreaciones</option>
+ [% END %] [% IF ( f11na ) %] <option value="na" selected="selected">versión de un trabajo</option>
+ [% ELSE %] <option value="na">versión de un trabajo</option>
+ [% END %] [% IF ( f11zz ) %] <option value="zz" selected="selected">otro</option>
+ [% ELSE %] <option value="zz">otro</option>
+ [% END %] </select>
  </td>
  </tr>
  <tr>
- <td><label for="f12">Form of contents 3:</label></td>
+ <td><label for="f12">Formulario de contenidos 3:</label></td>
  <td>
  <select name="f12" id="f12" size="1">
  
- [% IF ( f12dblspace ) %]
- <option value="  " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value="  ">valor no requerido</option>
- [% END %]
- [% IF ( f12aa ) %]
- <option value="aa" selected="selected">trabajo religioso</option>
- [% ELSE %]
- <option value="aa">trabajo religioso</option>
- [% END %]
- [% IF ( f12ab ) %]
- <option value="ab" selected="selected">catequismo</option>
- [% ELSE %]
- <option value="ab">catequismo</option>
- [% END %]
- [% IF ( f12ac ) %]
- <option value="ac" selected="selected">literatura devocional</option>
- [% ELSE %]
- <option value="ac">literatura devocional</option>
- [% END %]
- [% IF ( f12ad ) %]
- <option value="ad" selected="selected">sermón</option>
- [% ELSE %]
- <option value="ad">sermón</option>
- [% END %]
- [% IF ( f12ae ) %]
- <option value="ae" selected="selected">libros de servicio</option>
- [% ELSE %]
- <option value="ae">libros de servicio</option>
- [% END %]
- [% IF ( f12ba ) %]
- <option value="ba" selected="selected">trabajo científico</option>
- [% ELSE %]
- <option value="ba">trabajo científico</option>
- [% END %]
- [% IF ( f12bb ) %]
- <option value="bb" selected="selected">discusión, disertación, tesis</option>
- [% ELSE %]
- <option value="bb">discusión, disertación, tesis</option>
- [% END %]
- [% IF ( f12ca ) %]
- <option value="ca" selected="selected">costumbres sociales</option>
- [% ELSE %]
- <option value="ca">costumbres sociales</option>
- [% END %]
- [% IF ( f12da ) %]
- <option value="da" selected="selected">trabajo legal</option>
- [% ELSE %]
- <option value="da">trabajo legal</option>
- [% END %]
- [% IF ( f12db ) %]
- <option value="db" selected="selected">trabajo político</option>
- [% ELSE %]
- <option value="db">trabajo político</option>
- [% END %]
- [% IF ( f12ea ) %]
- <option value="ea" selected="selected">efímera</option>
- [% ELSE %]
- <option value="ea">efímera</option>
- [% END %]
- [% IF ( f12fa ) %]
- <option value="fa" selected="selected">trabajo de referencia</option>
- [% ELSE %]
- <option value="fa">trabajo de referencia</option>
- [% END %]
- [% IF ( f12fb ) %]
- <option value="fb" selected="selected">catalogo de biblioteca</option>
- [% ELSE %]
- <option value="fb">catalogo de biblioteca</option>
- [% END %]
- [% IF ( f12fc ) %]
- <option value="fc" selected="selected">bibliografía</option>
- [% ELSE %]
- <option value="fc">bibliografía</option>
- [% END %]
- [% IF ( f12fd ) %]
- <option value="fd" selected="selected">calendario</option>
- [% ELSE %]
- <option value="fd">calendario</option>
- [% END %]
- [% IF ( f12fe ) %]
- <option value="fe" selected="selected">índice</option>
- [% ELSE %]
- <option value="fe">índice</option>
- [% END %]
- [% IF ( f12ff ) %]
- <option value="ff" selected="selected">diccionario</option>
- [% ELSE %]
- <option value="ff">diccionario</option>
- [% END %]
- [% IF ( f12fg ) %]
- <option value="fg" selected="selected">enciclopedia</option>
- [% ELSE %]
- <option value="fg">enciclopedia</option>
- [% END %]
- [% IF ( f12ga ) %]
- <option value="ga" selected="selected">trabajo histórico</option>
- [% ELSE %]
- <option value="ga">trabajo histórico</option>
- [% END %]
- [% IF ( f12ha ) %]
- <option value="ha" selected="selected">tratado polémico</option>
- [% ELSE %]
- <option value="ha">tratado polémico</option>
- [% END %]
- [% IF ( f12ia ) %]
- <option value="ia" selected="selected">trabajo discursivo</option>
- [% ELSE %]
- <option value="ia">trabajo discursivo</option>
- [% END %]
- [% IF ( f12ja ) %]
- <option value="ja" selected="selected">trabajo conmemorativo</option>
- [% ELSE %]
- <option value="ja">trabajo conmemorativo</option>
- [% END %]
- [% IF ( f12ka ) %]
- <option value="ka" selected="selected">trabajo instructivo</option>
- [% ELSE %]
- <option value="ka">trabajo instructivo</option>
- [% END %]
- [% IF ( f12kb ) %]
- <option value="kb" selected="selected">manual</option>
- [% ELSE %]
- <option value="kb">manual</option>
- [% END %]
- [% IF ( f12kc ) %]
- <option value="kc" selected="selected">libro de texto</option>
- [% ELSE %]
- <option value="kc">libro de texto</option>
- [% END %]
- [% IF ( f12la ) %]
- <option value="la" selected="selected">mantenimiento de registros de trabajo</option>
- [% ELSE %]
- <option value="la">mantenimiento de registros de trabajo</option>
- [% END %]
- [% IF ( f12ma ) %]
- <option value="ma" selected="selected">recreaciones</option>
- [% ELSE %]
- <option value="ma">recreaciones</option>
- [% END %]
- [% IF ( f12na ) %]
- <option value="na" selected="selected">versión de un trabajo</option>
- [% ELSE %]
- <option value="na">versión de un trabajo</option>
- [% END %]
- [% IF ( f12zz ) %]
- <option value="zz" selected="selected">otro</option>
- [% ELSE %]
- <option value="zz">otro</option>
- [% END %]
- </select>
+ [% IF ( f12dblspace ) %] <option value="  " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value="  ">valor no requerido</option>
+ [% END %] [% IF ( f12aa ) %] <option value="aa" selected="selected">trabajo religioso</option>
+ [% ELSE %] <option value="aa">trabajo religioso</option>
+ [% END %] [% IF ( f12ab ) %] <option value="ab" selected="selected">catequismo</option>
+ [% ELSE %] <option value="ab">catequismo</option>
+ [% END %] [% IF ( f12ac ) %] <option value="ac" selected="selected">literatura devocional</option>
+ [% ELSE %] <option value="ac">literatura devocional</option>
+ [% END %] [% IF ( f12ad ) %] <option value="ad" selected="selected">sermón</option>
+ [% ELSE %] <option value="ad">sermón</option>
+ [% END %] [% IF ( f12ae ) %] <option value="ae" selected="selected">libros de servicio</option>
+ [% ELSE %] <option value="ae">libros de servicio</option>
+ [% END %] [% IF ( f12ba ) %] <option value="ba" selected="selected">trabajo científico</option>
+ [% ELSE %] <option value="ba">trabajo científico</option>
+ [% END %] [% IF ( f12bb ) %] <option value="bb" selected="selected">discusión, disertación, tesis</option>
+ [% ELSE %] <option value="bb">discusión, disertación, tesis</option>
+ [% END %] [% IF ( f12ca ) %] <option value="ca" selected="selected">costumbres sociales</option>
+ [% ELSE %] <option value="ca">costumbres sociales</option>
+ [% END %] [% IF ( f12da ) %] <option value="da" selected="selected">trabajo legal</option>
+ [% ELSE %] <option value="da">trabajo legal</option>
+ [% END %] [% IF ( f12db ) %] <option value="db" selected="selected">trabajo político</option>
+ [% ELSE %] <option value="db">trabajo político</option>
+ [% END %] [% IF ( f12ea ) %] <option value="ea" selected="selected">efímera</option>
+ [% ELSE %] <option value="ea">efímera</option>
+ [% END %] [% IF ( f12fa ) %] <option value="fa" selected="selected">trabajo de referencia</option>
+ [% ELSE %] <option value="fa">trabajo de referencia</option>
+ [% END %] [% IF ( f12fb ) %] <option value="fb" selected="selected">catalogo de biblioteca</option>
+ [% ELSE %] <option value="fb">catalogo de biblioteca</option>
+ [% END %] [% IF ( f12fc ) %] <option value="fc" selected="selected">bibliografía</option>
+ [% ELSE %] <option value="fc">bibliografía</option>
+ [% END %] [% IF ( f12fd ) %] <option value="fd" selected="selected">calendario</option>
+ [% ELSE %] <option value="fd">calendario</option>
+ [% END %] [% IF ( f12fe ) %] <option value="fe" selected="selected">índice</option>
+ [% ELSE %] <option value="fe">índice</option>
+ [% END %] [% IF ( f12ff ) %] <option value="ff" selected="selected">diccionario</option>
+ [% ELSE %] <option value="ff">diccionario</option>
+ [% END %] [% IF ( f12fg ) %] <option value="fg" selected="selected">enciclopedia</option>
+ [% ELSE %] <option value="fg">enciclopedia</option>
+ [% END %] [% IF ( f12ga ) %] <option value="ga" selected="selected">trabajo histórico</option>
+ [% ELSE %] <option value="ga">trabajo histórico</option>
+ [% END %] [% IF ( f12ha ) %] <option value="ha" selected="selected">tratado polémico</option>
+ [% ELSE %] <option value="ha">tratado polémico</option>
+ [% END %] [% IF ( f12ia ) %] <option value="ia" selected="selected">trabajo discursivo</option>
+ [% ELSE %] <option value="ia">trabajo discursivo</option>
+ [% END %] [% IF ( f12ja ) %] <option value="ja" selected="selected">trabajo conmemorativo</option>
+ [% ELSE %] <option value="ja">trabajo conmemorativo</option>
+ [% END %] [% IF ( f12ka ) %] <option value="ka" selected="selected">trabajo instructivo</option>
+ [% ELSE %] <option value="ka">trabajo instructivo</option>
+ [% END %] [% IF ( f12kb ) %] <option value="kb" selected="selected">manual</option>
+ [% ELSE %] <option value="kb">manual</option>
+ [% END %] [% IF ( f12kc ) %] <option value="kc" selected="selected">libro de texto</option>
+ [% ELSE %] <option value="kc">libro de texto</option>
+ [% END %] [% IF ( f12la ) %] <option value="la" selected="selected">mantenimiento de registros de trabajo</option>
+ [% ELSE %] <option value="la">mantenimiento de registros de trabajo</option>
+ [% END %] [% IF ( f12ma ) %] <option value="ma" selected="selected">recreaciones</option>
+ [% ELSE %] <option value="ma">recreaciones</option>
+ [% END %] [% IF ( f12na ) %] <option value="na" selected="selected">versión de un trabajo</option>
+ [% ELSE %] <option value="na">versión de un trabajo</option>
+ [% END %] [% IF ( f12zz ) %] <option value="zz" selected="selected">otro</option>
+ [% ELSE %] <option value="zz">otro</option>
+ [% END %] </select>
  </td>
- <td><label for="f13">Form of contents 4:</label></td>
+ <td><label for="f13">Formulario de contenidos 4:</label></td>
  <td>
  <select name="f13" id="f13" size="1">
  
- [% IF ( f13dblspace ) %]
- <option value="  " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value="  ">valor no requerido</option>
- [% END %]
- [% IF ( f13aa ) %]
- <option value="aa" selected="selected">trabajo religioso</option>
- [% ELSE %]
- <option value="aa">trabajo religioso</option>
- [% END %]
- [% IF ( f13ab ) %]
- <option value="ab" selected="selected">catequismo</option>
- [% ELSE %]
- <option value="ab">catequismo</option>
- [% END %]
- [% IF ( f13ac ) %]
- <option value="ac" selected="selected">literatura devocional</option>
- [% ELSE %]
- <option value="ac">literatura devocional</option>
- [% END %]
- [% IF ( f13ad ) %]
- <option value="ad" selected="selected">sermón</option>
- [% ELSE %]
- <option value="ad">sermón</option>
- [% END %]
- [% IF ( f13ae ) %]
- <option value="ae" selected="selected">libros de servicio</option>
- [% ELSE %]
- <option value="ae">libros de servicio</option>
- [% END %]
- [% IF ( f13ba ) %]
- <option value="ba" selected="selected">trabajo científico</option>
- [% ELSE %]
- <option value="ba">trabajo científico</option>
- [% END %]
- [% IF ( f13bb ) %]
- <option value="bb" selected="selected">discusión, disertación, tesis</option>
- [% ELSE %]
- <option value="bb">discusión, disertación, tesis</option>
- [% END %]
- [% IF ( f13ca ) %]
- <option value="ca" selected="selected">costumbres sociales</option>
- [% ELSE %]
- <option value="ca">costumbres sociales</option>
- [% END %]
- [% IF ( f13da ) %]
- <option value="da" selected="selected">trabajo legal</option>
- [% ELSE %]
- <option value="da">trabajo legal</option>
- [% END %]
- [% IF ( f13db ) %]
- <option value="db" selected="selected">trabajo político</option>
- [% ELSE %]
- <option value="db">trabajo político</option>
- [% END %]
- [% IF ( f13ea ) %]
- <option value="ea" selected="selected">efímera</option>
- [% ELSE %]
- <option value="ea">efímera</option>
- [% END %]
- [% IF ( f13fa ) %]
- <option value="fa" selected="selected">trabajo de referencia</option>
- [% ELSE %]
- <option value="fa">trabajo de referencia</option>
- [% END %]
- [% IF ( f13fb ) %]
- <option value="fb" selected="selected">catalogo de biblioteca</option>
- [% ELSE %]
- <option value="fb">catalogo de biblioteca</option>
- [% END %]
- [% IF ( f13fc ) %]
- <option value="fc" selected="selected">bibliografía</option>
- [% ELSE %]
- <option value="fc">bibliografía</option>
- [% END %]
- [% IF ( f13fd ) %]
- <option value="fd" selected="selected">calendario</option>
- [% ELSE %]
- <option value="fd">calendario</option>
- [% END %]
- [% IF ( f13fe ) %]
- <option value="fe" selected="selected">índice</option>
- [% ELSE %]
- <option value="fe">índice</option>
- [% END %]
- [% IF ( f13ff ) %]
- <option value="ff" selected="selected">diccionario</option>
- [% ELSE %]
- <option value="ff">diccionario</option>
- [% END %]
- [% IF ( f13fg ) %]
- <option value="fg" selected="selected">enciclopedia</option>
- [% ELSE %]
- <option value="fg">enciclopedia</option>
- [% END %]
- [% IF ( f13ga ) %]
- <option value="ga" selected="selected">trabajo histórico</option>
- [% ELSE %]
- <option value="ga">trabajo histórico</option>
- [% END %]
- [% IF ( f13ha ) %]
- <option value="ha" selected="selected">tratado polémico</option>
- [% ELSE %]
- <option value="ha">tratado polémico</option>
- [% END %]
- [% IF ( f13ia ) %]
- <option value="ia" selected="selected">trabajo discursivo</option>
- [% ELSE %]
- <option value="ia">trabajo discursivo</option>
- [% END %]
- [% IF ( f13ja ) %]
- <option value="ja" selected="selected">trabajo conmemorativo</option>
- [% ELSE %]
- <option value="ja">trabajo conmemorativo</option>
- [% END %]
- [% IF ( f13ka ) %]
- <option value="ka" selected="selected">trabajo instructivo</option>
- [% ELSE %]
- <option value="ka">trabajo instructivo</option>
- [% END %]
- [% IF ( f13kb ) %]
- <option value="kb" selected="selected">manual</option>
- [% ELSE %]
- <option value="kb">manual</option>
- [% END %]
- [% IF ( f13kc ) %]
- <option value="kc" selected="selected">libro de texto</option>
- [% ELSE %]
- <option value="kc">libro de texto</option>
- [% END %]
- [% IF ( f13la ) %]
- <option value="la" selected="selected">mantenimiento de registros de trabajo</option>
- [% ELSE %]
- <option value="la">mantenimiento de registros de trabajo</option>
- [% END %]
- [% IF ( f13ma ) %]
- <option value="ma" selected="selected">recreaciones</option>
- [% ELSE %]
- <option value="ma">recreaciones</option>
- [% END %]
- [% IF ( f13na ) %]
- <option value="na" selected="selected">versión de un trabajo</option>
- [% ELSE %]
- <option value="na">versión de un trabajo</option>
- [% END %]
- [% IF ( f13zz ) %]
- <option value="zz" selected="selected">otro</option>
- [% ELSE %]
- <option value="zz">otro</option>
- [% END %]
- </select>
+ [% IF ( f13dblspace ) %] <option value="  " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value="  ">valor no requerido</option>
+ [% END %] [% IF ( f13aa ) %] <option value="aa" selected="selected">trabajo religioso</option>
+ [% ELSE %] <option value="aa">trabajo religioso</option>
+ [% END %] [% IF ( f13ab ) %] <option value="ab" selected="selected">catequismo</option>
+ [% ELSE %] <option value="ab">catequismo</option>
+ [% END %] [% IF ( f13ac ) %] <option value="ac" selected="selected">literatura devocional</option>
+ [% ELSE %] <option value="ac">literatura devocional</option>
+ [% END %] [% IF ( f13ad ) %] <option value="ad" selected="selected">sermón</option>
+ [% ELSE %] <option value="ad">sermón</option>
+ [% END %] [% IF ( f13ae ) %] <option value="ae" selected="selected">libros de servicio</option>
+ [% ELSE %] <option value="ae">libros de servicio</option>
+ [% END %] [% IF ( f13ba ) %] <option value="ba" selected="selected">trabajo científico</option>
+ [% ELSE %] <option value="ba">trabajo científico</option>
+ [% END %] [% IF ( f13bb ) %] <option value="bb" selected="selected">discusión, disertación, tesis</option>
+ [% ELSE %] <option value="bb">discusión, disertación, tesis</option>
+ [% END %] [% IF ( f13ca ) %] <option value="ca" selected="selected">costumbres sociales</option>
+ [% ELSE %] <option value="ca">costumbres sociales</option>
+ [% END %] [% IF ( f13da ) %] <option value="da" selected="selected">trabajo legal</option>
+ [% ELSE %] <option value="da">trabajo legal</option>
+ [% END %] [% IF ( f13db ) %] <option value="db" selected="selected">trabajo político</option>
+ [% ELSE %] <option value="db">trabajo político</option>
+ [% END %] [% IF ( f13ea ) %] <option value="ea" selected="selected">efímera</option>
+ [% ELSE %] <option value="ea">efímera</option>
+ [% END %] [% IF ( f13fa ) %] <option value="fa" selected="selected">trabajo de referencia</option>
+ [% ELSE %] <option value="fa">trabajo de referencia</option>
+ [% END %] [% IF ( f13fb ) %] <option value="fb" selected="selected">catalogo de biblioteca</option>
+ [% ELSE %] <option value="fb">catalogo de biblioteca</option>
+ [% END %] [% IF ( f13fc ) %] <option value="fc" selected="selected">bibliografía</option>
+ [% ELSE %] <option value="fc">bibliografía</option>
+ [% END %] [% IF ( f13fd ) %] <option value="fd" selected="selected">calendario</option>
+ [% ELSE %] <option value="fd">calendario</option>
+ [% END %] [% IF ( f13fe ) %] <option value="fe" selected="selected">índice</option>
+ [% ELSE %] <option value="fe">índice</option>
+ [% END %] [% IF ( f13ff ) %] <option value="ff" selected="selected">diccionario</option>
+ [% ELSE %] <option value="ff">diccionario</option>
+ [% END %] [% IF ( f13fg ) %] <option value="fg" selected="selected">enciclopedia</option>
+ [% ELSE %] <option value="fg">enciclopedia</option>
+ [% END %] [% IF ( f13ga ) %] <option value="ga" selected="selected">trabajo histórico</option>
+ [% ELSE %] <option value="ga">trabajo histórico</option>
+ [% END %] [% IF ( f13ha ) %] <option value="ha" selected="selected">tratado polémico</option>
+ [% ELSE %] <option value="ha">tratado polémico</option>
+ [% END %] [% IF ( f13ia ) %] <option value="ia" selected="selected">trabajo discursivo</option>
+ [% ELSE %] <option value="ia">trabajo discursivo</option>
+ [% END %] [% IF ( f13ja ) %] <option value="ja" selected="selected">trabajo conmemorativo</option>
+ [% ELSE %] <option value="ja">trabajo conmemorativo</option>
+ [% END %] [% IF ( f13ka ) %] <option value="ka" selected="selected">trabajo instructivo</option>
+ [% ELSE %] <option value="ka">trabajo instructivo</option>
+ [% END %] [% IF ( f13kb ) %] <option value="kb" selected="selected">manual</option>
+ [% ELSE %] <option value="kb">manual</option>
+ [% END %] [% IF ( f13kc ) %] <option value="kc" selected="selected">libro de texto</option>
+ [% ELSE %] <option value="kc">libro de texto</option>
+ [% END %] [% IF ( f13la ) %] <option value="la" selected="selected">mantenimiento de registros de trabajo</option>
+ [% ELSE %] <option value="la">mantenimiento de registros de trabajo</option>
+ [% END %] [% IF ( f13ma ) %] <option value="ma" selected="selected">recreaciones</option>
+ [% ELSE %] <option value="ma">recreaciones</option>
+ [% END %] [% IF ( f13na ) %] <option value="na" selected="selected">versión de un trabajo</option>
+ [% ELSE %] <option value="na">versión de un trabajo</option>
+ [% END %] [% IF ( f13zz ) %] <option value="zz" selected="selected">otro</option>
+ [% ELSE %] <option value="zz">otro</option>
+ [% END %] </select>
  </td></tr>
 <tr> <td><label for="f14">Literatura:</label></td>
  <td>
  <select name="f14" id="f14" size="1">
 
- [% IF ( f14dblspace ) %]
- <option value="  " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value="  ">valor no requerido</option>
- [% END %]
- [% IF ( f14aa ) %]
- <option value="aa" selected="selected">poesía</option>
- [% ELSE %]
- <option value="aa">poesía</option>
- [% END %]
- [% IF ( f14ab ) %]
- <option value="ab" selected="selected">romance</option>
- [% ELSE %]
- <option value="ab">romance</option>
- [% END %]
- [% IF ( f14ca ) %]
- <option value="ca" selected="selected">drama</option>
- [% ELSE %]
- <option value="ca">drama</option>
- [% END %]
- [% IF ( f14da ) %]
- <option value="da" selected="selected">libreto</option>
- [% ELSE %]
- <option value="da">libreto</option>
- [% END %]
- [% IF ( f14ea ) %]
- <option value="ea" selected="selected">ficción</option>
- [% ELSE %]
- <option value="ea">ficción</option>
- [% END %]
- [% IF ( f14eb ) %]
- <option value="eb" selected="selected">novela</option>
- [% ELSE %]
- <option value="eb">novela</option>
- [% END %]
- [% IF ( f14ec ) %]
- <option value="ec" selected="selected">novela</option>
- [% ELSE %]
- <option value="ec">novela</option>
- [% END %]
- [% IF ( f14ed ) %]
- <option value="ed" selected="selected">fábula</option>
- [% ELSE %]
- <option value="ed">fábula</option>
- [% END %]
- [% IF ( f14ef ) %]
- <option value="ef" selected="selected">cuento de hadas</option>
- [% ELSE %]
- <option value="ef">cuento de hadas</option>
- [% END %]
- 
- [% IF ( f14eg ) %]
- <option value="eg" selected="selected">alegoría</option>
- [% ELSE %]
- <option value="eg">alegoría</option>
- [% END %]
- 
- [% IF ( f14eh ) %]
- <option value="eh" selected="selected">leyenda</option>
- [% ELSE %]
- <option value="eh">leyenda</option>
- [% END %]
-
- [% IF ( f14ei ) %]
- <option value="ei" selected="selected">parábola</option>
- [% ELSE %]
- <option value="ei">parábola</option>
- [% END %]
- [% IF ( f14ej ) %]
- <option value="ej" selected="selected">historia corta</option>
- [% ELSE %]
- <option value="ej">historia corta</option>
- [% END %]
- [% IF ( f14fa ) %]
- <option value="fa" selected="selected">ensayo, folletín</option>
- [% ELSE %]
- <option value="fa">ensayo, folletín</option>
- [% END %]
- [% IF ( f14ga ) %]
- <option value="ga" selected="selected">humor, sátira</option>
- [% ELSE %]
- <option value="ga">humor, sátira</option>
- [% END %]
- [% IF ( f14ha ) %]
- <option value="ha" selected="selected">cartas</option>
- [% ELSE %]
- <option value="ha">cartas</option>
- [% END %]
- [% IF ( f14ia ) %]
- <option value="ia" selected="selected">miscelánea</option>
- [% ELSE %]
- <option value="ia">miscelánea</option>
- [% END %]
- [% IF ( f14ja ) %]
- <option value="ja" selected="selected">máxima, aforismo, proverbio, anécdota</option>
- [% ELSE %]
- <option value="ja">máxima, aforismo, proverbio, anécdota</option>
- [% END %]
- [% IF ( f14ka ) %]
- <option value="ka" selected="selected">literatura juvenil</option>
- [% ELSE %]
- <option value="ka">literatura juvenil</option>
- [% END %]
- [% IF ( f14la ) %]
- <option value="la" selected="selected">otro</option>
- [% ELSE %]
- <option value="la">otro</option>
- [% END %]
- [% IF ( f14lb ) %]
- <option value="lb" selected="selected">crónica</option>
- [% ELSE %]
- <option value="lb">crónica</option>
- [% END %]
- [% IF ( f14lc ) %]
- <option value="lc" selected="selected">memoria</option>
- [% ELSE %]
- <option value="lc">memoria</option>
- [% END %]
- [% IF ( f14ld ) %]
- <option value="ld" selected="selected">diario</option>
- [% ELSE %]
- <option value="ld">diario</option>
- [% END %]
- [% IF ( f14le ) %]
- <option value="le" selected="selected">biografía</option>
- [% ELSE %]
- <option value="le">biografía</option>
- [% END %]
- [% IF ( f14lf ) %]
- <option value="lf" selected="selected">hagiografía</option>
- [% ELSE %]
- <option value="lf">hagiografía</option>
- [% END %]
- [% IF ( f14lg ) %]
- <option value="lg" selected="selected">película de viaje</option>
- [% ELSE %]
- <option value="lg">película de viaje</option>
- [% END %]
- [% IF ( f14lh ) %]
- <option value="lh" selected="selected">erótica</option>
- [% ELSE %]
- <option value="lh">erótica</option>
- [% END %]
- [% IF ( f14li ) %]
- <option value="li" selected="selected">erótica</option>
- [% ELSE %]
- <option value="li">erótica</option>
- [% END %]
- [% IF ( f14ma ) %]
- <option value="ma" selected="selected">oratoria, discursos</option>
- [% ELSE %]
- <option value="ma">oratoria, discursos</option>
- [% END %]
- [% IF ( f14yy ) %]
- <option value="yy" selected="selected">no es un texto literario</option>
- [% ELSE %]
- <option value="yy">no es un texto literario</option>
- [% END %]
- [% IF ( f14zz ) %]
- <option value="zz" selected="selected">múltiple u otro</option>
- [% ELSE %]
- <option value="zz">múltiple u otro</option>
- [% END %]
- </select>
+ [% IF ( f14dblspace ) %] <option value="  " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value="  ">valor no requerido</option>
+ [% END %] [% IF ( f14aa ) %] <option value="aa" selected="selected">poesía</option>
+ [% ELSE %] <option value="aa">poesía</option>
+ [% END %] [% IF ( f14ab ) %] <option value="ab" selected="selected">romance</option>
+ [% ELSE %] <option value="ab">romance</option>
+ [% END %] [% IF ( f14ca ) %] <option value="ca" selected="selected">drama</option>
+ [% ELSE %] <option value="ca">drama</option>
+ [% END %] [% IF ( f14da ) %] <option value="da" selected="selected">libreto</option>
+ [% ELSE %] <option value="da">libreto</option>
+ [% END %] [% IF ( f14ea ) %] <option value="ea" selected="selected">ficción</option>
+ [% ELSE %] <option value="ea">ficción</option>
+ [% END %] [% IF ( f14eb ) %] <option value="eb" selected="selected">novela</option>
+ [% ELSE %] <option value="eb">novela</option>
+ [% END %] [% IF ( f14ec ) %] <option value="ec" selected="selected">novela</option>
+ [% ELSE %] <option value="ec">novela</option>
+ [% END %] [% IF ( f14ed ) %] <option value="ed" selected="selected">fábula</option>
+ [% ELSE %] <option value="ed">fábula</option>
+ [% END %] [% IF ( f14ef ) %] <option value="ef" selected="selected">cuento de hadas</option>
+ [% ELSE %] <option value="ef">cuento de hadas</option>
+ [% END %] [% IF ( f14eg ) %] <option value="eg" selected="selected">alegoría</option>
+ [% ELSE %] <option value="eg">alegoría</option>
+ [% END %] [% IF ( f14eh ) %] <option value="eh" selected="selected">leyenda</option>
+ [% ELSE %] <option value="eh">leyenda</option>
+ [% END %] [% IF ( f14ei ) %] <option value="ei" selected="selected">parábola</option>
+ [% ELSE %] <option value="ei">parábola</option>
+ [% END %] [% IF ( f14ej ) %] <option value="ej" selected="selected">historia corta</option>
+ [% ELSE %] <option value="ej">historia corta</option>
+ [% END %] [% IF ( f14fa ) %] <option value="fa" selected="selected">ensayo, folletín</option>
+ [% ELSE %] <option value="fa">ensayo, folletín</option>
+ [% END %] [% IF ( f14ga ) %] <option value="ga" selected="selected">humor, sátira</option>
+ [% ELSE %] <option value="ga">humor, sátira</option>
+ [% END %] [% IF ( f14ha ) %] <option value="ha" selected="selected">cartas</option>
+ [% ELSE %] <option value="ha">cartas</option>
+ [% END %] [% IF ( f14ia ) %] <option value="ia" selected="selected">miscelánea</option>
+ [% ELSE %] <option value="ia">miscelánea</option>
+ [% END %] [% IF ( f14ja ) %] <option value="ja" selected="selected">máxima, aforismo, proverbio, anécdota</option>
+ [% ELSE %] <option value="ja">máxima, aforismo, proverbio, anécdota</option>
+ [% END %] [% IF ( f14ka ) %] <option value="ka" selected="selected">literatura juvenil</option>
+ [% ELSE %] <option value="ka">literatura juvenil</option>
+ [% END %] [% IF ( f14la ) %] <option value="la" selected="selected">otro</option>
+ [% ELSE %] <option value="la">otro</option>
+ [% END %] [% IF ( f14lb ) %] <option value="lb" selected="selected">crónica</option>
+ [% ELSE %] <option value="lb">crónica</option>
+ [% END %] [% IF ( f14lc ) %] <option value="lc" selected="selected">memoria</option>
+ [% ELSE %] <option value="lc">memoria</option>
+ [% END %] [% IF ( f14ld ) %] <option value="ld" selected="selected">diario</option>
+ [% ELSE %] <option value="ld">diario</option>
+ [% END %] [% IF ( f14le ) %] <option value="le" selected="selected">biografía</option>
+ [% ELSE %] <option value="le">biografía</option>
+ [% END %] [% IF ( f14lf ) %] <option value="lf" selected="selected">hagiografía</option>
+ [% ELSE %] <option value="lf">hagiografía</option>
+ [% END %] [% IF ( f14lg ) %] <option value="lg" selected="selected">película de viaje</option>
+ [% ELSE %] <option value="lg">película de viaje</option>
+ [% END %] [% IF ( f14lh ) %] <option value="lh" selected="selected">erótica</option>
+ [% ELSE %] <option value="lh">erótica</option>
+ [% END %] [% IF ( f14li ) %] <option value="li" selected="selected">erótica</option>
+ [% ELSE %] <option value="li">erótica</option>
+ [% END %] [% IF ( f14ma ) %] <option value="ma" selected="selected">oratoria, discursos</option>
+ [% ELSE %] <option value="ma">oratoria, discursos</option>
+ [% END %] [% IF ( f14yy ) %] <option value="yy" selected="selected">no es un texto literario</option>
+ [% ELSE %] <option value="yy">no es un texto literario</option>
+ [% END %] [% IF ( f14zz ) %] <option value="zz" selected="selected">múltiple u otro</option>
+ [% ELSE %] <option value="zz">múltiple u otro</option>
+ [% END %] </select>
  </td>
  <td><label for="f15">Biografía:</label></td>
  <td>
  <select name="f15" id="f15" size="1">
 
- [% IF ( f15space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f15a ) %]
- <option value="a" selected="selected">autobiografía</option>
- [% ELSE %]
- <option value="a">autobiografía</option>
- [% END %]
- [% IF ( f15b ) %]
- <option value="b" selected="selected">biografía individual</option>
- [% ELSE %]
- <option value="b">biografía individual</option>
- [% END %]
- [% IF ( f15c ) %]
- <option value="c" selected="selected">biografía colectiva</option>
- [% ELSE %]
- <option value="c">biografía colectiva</option>
- [% END %]
- [% IF ( f15d ) %]
- <option value="d" selected="selected">contiene información biográfica</option>
- [% ELSE %]
- <option value="d">contiene información biográfica</option>
- [% END %]
- [% IF ( f15y ) %]
- <option value="y" selected="selected">no biográfico</option>
- [% ELSE %]
- <option value="y">no biográfico</option>
- [% END %]
- [% IF ( f15z ) %]
- <option value="z" selected="selected">múltiple u otra forma</option>
- [% ELSE %]
- <option value="z">múltiple u otra forma</option>
- [% END %]
- </select>
+ [% IF ( f15space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f15a ) %] <option value="a" selected="selected">autobiografía</option>
+ [% ELSE %] <option value="a">autobiografía</option>
+ [% END %] [% IF ( f15b ) %] <option value="b" selected="selected">biografía individual</option>
+ [% ELSE %] <option value="b">biografía individual</option>
+ [% END %] [% IF ( f15c ) %] <option value="c" selected="selected">biografía colectiva</option>
+ [% ELSE %] <option value="c">biografía colectiva</option>
+ [% END %] [% IF ( f15d ) %] <option value="d" selected="selected">contiene información biográfica</option>
+ [% ELSE %] <option value="d">contiene información biográfica</option>
+ [% END %] [% IF ( f15y ) %] <option value="y" selected="selected">no biográfico</option>
+ [% ELSE %] <option value="y">no biográfico</option>
+ [% END %] [% IF ( f15z ) %] <option value="z" selected="selected">múltiple u otra forma</option>
+ [% ELSE %] <option value="z">múltiple u otra forma</option>
+ [% END %] </select>
  </td>
 </tr>
  <tr>
- <td><label for="f16">Support material - Book:</label></td>
+ <td><label for="f16">Material de apoyo - libro:</label></td>
  <td>
  <select name="f16" id="f16" size="1">
 
- [% IF ( f16space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f16a ) %]
- <option value="a" selected="selected">papel, general</option>
- [% ELSE %]
- <option value="a">papel, general</option>
- [% END %]
- [% IF ( f16b ) %]
- <option value="b" selected="selected">papel hecho a mano</option>
- [% ELSE %]
- <option value="b">papel hecho a mano</option>
- [% END %]
- [% IF ( f16c ) %]
- <option value="c" selected="selected">papel arroz</option>
- [% ELSE %]
- <option value="c">papel arroz</option>
- [% END %]
- [% IF ( f16d ) %]
- <option value="d" selected="selected">papel de pulpa de madera</option>
- [% ELSE %]
- <option value="d">papel de pulpa de madera</option>
- [% END %]
- [% IF ( f16e ) %]
- <option value="e" selected="selected">pergamino, vitela</option>
- [% ELSE %]
- <option value="e">pergamino, vitela</option>
- [% END %]
- [% IF ( f16z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f16space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f16a ) %] <option value="a" selected="selected">papel, general</option>
+ [% ELSE %] <option value="a">papel, general</option>
+ [% END %] [% IF ( f16b ) %] <option value="b" selected="selected">papel hecho a mano</option>
+ [% ELSE %] <option value="b">papel hecho a mano</option>
+ [% END %] [% IF ( f16c ) %] <option value="c" selected="selected">papel arroz</option>
+ [% ELSE %] <option value="c">papel arroz</option>
+ [% END %] [% IF ( f16d ) %] <option value="d" selected="selected">papel de pulpa de madera</option>
+ [% ELSE %] <option value="d">papel de pulpa de madera</option>
+ [% END %] [% IF ( f16e ) %] <option value="e" selected="selected">pergamino, vitela</option>
+ [% ELSE %] <option value="e">pergamino, vitela</option>
+ [% END %] [% IF ( f16z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td>
- <td><label for="f17">Support material - Plates:</label></td>
+ <td><label for="f17">Material de apoyo - placas:</label></td>
  <td>
  <select name="f17" id="f17" size="1">
 
- [% IF ( f17space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- 
- [% IF ( f17a ) %]
- <option value="a" selected="selected">papel, general</option>
- [% ELSE %]
- <option value="a">papel, general</option>
- [% END %]
- [% IF ( f17b ) %]
- <option value="b" selected="selected">papel hecho a mano</option>
- [% ELSE %]
- <option value="b">papel hecho a mano</option>
- [% END %]
- [% IF ( f17c ) %]
- <option value="c" selected="selected">papel arroz</option>
- [% ELSE %]
- <option value="c">papel arroz</option>
- [% END %]
- [% IF ( f17d ) %]
- <option value="d" selected="selected">papel de pulpa de madera</option>
- [% ELSE %]
- <option value="d">papel de pulpa de madera</option>
- [% END %]
- [% IF ( f17e ) %]
- <option value="e" selected="selected">pergamino, vitela</option>
- [% ELSE %]
- <option value="e">pergamino, vitela</option>
- [% END %]
- [% IF ( f17z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f17space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f17a ) %] <option value="a" selected="selected">papel, general</option>
+ [% ELSE %] <option value="a">papel, general</option>
+ [% END %] [% IF ( f17b ) %] <option value="b" selected="selected">papel hecho a mano</option>
+ [% ELSE %] <option value="b">papel hecho a mano</option>
+ [% END %] [% IF ( f17c ) %] <option value="c" selected="selected">papel arroz</option>
+ [% ELSE %] <option value="c">papel arroz</option>
+ [% END %] [% IF ( f17d ) %] <option value="d" selected="selected">papel de pulpa de madera</option>
+ [% ELSE %] <option value="d">papel de pulpa de madera</option>
+ [% END %] [% IF ( f17e ) %] <option value="e" selected="selected">pergamino, vitela</option>
+ [% ELSE %] <option value="e">pergamino, vitela</option>
+ [% END %] [% IF ( f17z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td>
 </tr>
  <tr>
@@ -1655,67 +731,43 @@
  <td>
  <select name="f18" id="f18" size="1">
 
- [% IF ( f180 ) %]
- <option value="0" selected="selected">el papel no contiene marca de agua</option>
- [% ELSE %]
- <option value="0">el papel no contiene marca de agua</option>
- [% END %]
- [% IF ( f181 ) %]
- <option value="1" selected="selected">el papel contiene marca de agua</option>
- [% ELSE %]
- <option value="1">el papel contiene marca de agua</option>
- [% END %]
- </select>
+ [% IF ( f180 ) %] <option value="0" selected="selected">el papel no contiene marca de agua</option>
+ [% ELSE %] <option value="0">el papel no contiene marca de agua</option>
+ [% END %] [% IF ( f181 ) %] <option value="1" selected="selected">el papel contiene marca de agua</option>
+ [% ELSE %] <option value="1">el papel contiene marca de agua</option>
+ [% END %] </select>
  </td>
- <td><label for="f19">Printer's device:</label></td>
+ <td><label for="f19">Dispositivo de impresión:</label></td>
  <td>
  <select name="f19" id="f19" size="1">
 
- [% IF ( f190 ) %]
- <option value="0" selected="selected">dispositivo de impresión no presente</option>
- [% ELSE %]
- <option value="0">dispositivo de impresión no presente</option>
- [% END %]
- [% IF ( f191 ) %]
- <option value="1" selected="selected">dispositivo de impresión presente</option>
- [% ELSE %]
- <option value="1">dispositivo de impresión presente</option>
- [% END %]
- </select>
+ [% IF ( f190 ) %] <option value="0" selected="selected">dispositivo de impresión no presente</option>
+ [% ELSE %] <option value="0">dispositivo de impresión no presente</option>
+ [% END %] [% IF ( f191 ) %] <option value="1" selected="selected">dispositivo de impresión presente</option>
+ [% ELSE %] <option value="1">dispositivo de impresión presente</option>
+ [% END %] </select>
  </td>
 </tr>
  <tr>
- <td><label for="f20">Publisher's device:</label></td>
+ <td><label for="f20">Dispositivo de editorial: </label></td>
  <td>
  <select name="f20" id="f20" size="1">
 
- [% IF ( f200 ) %]
- <option value="0" selected="selected">dispositivo de editor no presente</option>
- [% ELSE %]
- <option value="0">dispositivo de editor no presente</option>
- [% END %]
- [% IF ( f201 ) %]
- <option value="1" selected="selected">dispositivo del editor presente</option>
- [% ELSE %]
- <option value="1">dispositivo del editor presente</option>
- [% END %]
- </select>
+ [% IF ( f200 ) %] <option value="0" selected="selected">dispositivo de editor no presente</option>
+ [% ELSE %] <option value="0">dispositivo de editor no presente</option>
+ [% END %] [% IF ( f201 ) %] <option value="1" selected="selected">dispositivo del editor presente</option>
+ [% ELSE %] <option value="1">dispositivo del editor presente</option>
+ [% END %] </select>
  </td>
- <td><label for="f21">Ornamental device:</label></td>
+ <td><label for="f21">Objeto decorativo:</label></td>
  <td>
  <select name="f21" id="f21" size="1">
 
- [% IF ( f210 ) %]
- <option value="0" selected="selected">dispositivo ornamental no presente</option>
- [% ELSE %]
- <option value="0">dispositivo ornamental no presente</option>
- [% END %]
- [% IF ( f211 ) %]
- <option value="1" selected="selected">dispositivo ornamental presente</option>
- [% ELSE %]
- <option value="1">dispositivo ornamental presente</option>
- [% END %]
- </select>
+ [% IF ( f210 ) %] <option value="0" selected="selected">dispositivo ornamental no presente</option>
+ [% ELSE %] <option value="0">dispositivo ornamental no presente</option>
+ [% END %] [% IF ( f211 ) %] <option value="1" selected="selected">dispositivo ornamental presente</option>
+ [% ELSE %] <option value="1">dispositivo ornamental presente</option>
+ [% END %] </select>
  </td>
 </tr>
 </table>
@@ -1733,4 +785,4 @@
 //]]>
 </script>
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

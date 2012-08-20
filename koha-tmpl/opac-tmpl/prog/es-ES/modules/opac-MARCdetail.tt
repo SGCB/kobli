@@ -1,6 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; MARC details for record no. [% biblionumber %]
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Detalles MARC del registro nro. [% biblionumber %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
     YAHOO.util.Event.onContentReady("furtherm", function () {
         $("#furtherm").css("display","block").css("visibility","hidden");
@@ -23,7 +21,7 @@ $(document).ready(function(){
             switch (x.status) {
                 case 200: break;
                 default:
-                $('#switchview').parent().html("<div class=\"dialog alert\">"+_("Lo sentimos, la vista normal está temporalmente deshabilitada")+".</div>");
+                $('#switchview').parent().html("<div class=\"dialog alert\">"+_("Lo lamentamos, la vista sencilla está temporalmente deshabilitada")+".</div>");
                 $("#plainmarc").hide();
                 $("#labeledmarc").show();
                 break;
@@ -61,12 +59,12 @@ $(document).ready(function(){
 [% INCLUDE 'masthead.inc' %] <div id="left-detail">
  <div id="left_search">
  [% IF ( OpacPublic ) %] <form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform">
- <h4 class="new_search">Nueva búsqueda</h4>
+ <h4 class="new_search">New search</h4>
  <label for="masthead_search" class="left"> Buscar [% UNLESS ( OpacAddMastheadLibraryPulldown ) %] [% IF ( mylibraryfirst ) %] (en [% mylibraryfirst %] solamente)[% END %] [% END %] </label>
 
  <select name="idx" id="masthead_search" class="left">
- [% IF ( ms_kw ) %] <option selected="selected" value="">Catálogo</option>
- [% ELSE %] <option value="">Catálogo</option>
+ [% IF ( ms_kw ) %] <option selected="selected" value="">Library Catalog</option>
+ [% ELSE %] <option value="">Library Catalog</option>
  [% END %] [% IF ( ms_ti ) %] <option selected="selected" value="ti">Título</option>
  [% ELSE %] <option value="ti">Título</option>
  [% END %] [% IF ( ms_au ) %] <option selected="selected" value="au">Autor</option>
@@ -75,15 +73,15 @@ $(document).ready(function(){
  [% ELSE %] <option value="su">Tema</option>
  [% END %] [% IF ( ms_nb ) %] <option selected="selected" value="nb">ISBN</option>
  [% ELSE %] <option value="nb">ISBN</option>
- [% END %] [% IF ( ms_se ) %] <option selected="selected" value="se">Publicación periódica</option>
- [% ELSE %] <option value="se">Publicación periódica</option>
+ [% END %] [% IF ( ms_se ) %] <option selected="selected" value="se">Series</option>
+ [% ELSE %] <option value="se">Series</option>
  [% END %] [% IF ( ms_callnum ) %] <option selected="selected" value="callnum">Signatura topográfica</option>
  [% ELSE %] <option value="callnum">Signatura topográfica</option>
  [% END %]</select>
 [% IF ( ms_value ) %] <input type="text" id = "transl1" name="q" value="[% ms_value |html %]" class="left"/><div id="translControl"></div>
 [% ELSE %] <input type="text" id = "transl1" name="q" class="left"/><div id="translControl"></div>
 [% END %] [% IF ( OpacAddMastheadLibraryPulldown ) %] <select name="limit" id="masthead_search" class="left">
- <option value="">Todas las bibliotecas</option>
+ <option value="">All Libraries</option>
  [% FOREACH BranchesLoo IN BranchesLoopOpac %] <option [% IF ( BranchesLoo.selected ) %]SELECTED[% END %] value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>
  [% END %] </select>
  [% ELSE %] [% IF ( opac_limit_override ) %] [% IF ( opac_search_limit ) %] <input name="limit" value="[% opac_search_limit %]" type="hidden" />
@@ -99,13 +97,14 @@ $(document).ready(function(){
  [% ELSE %] [% IF ( ItemsIssued ) %] <li><a class="reserve" href="/cgi-bin/koha/opac-reserve.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>
  [% END %] [% END %] [% END %] [% END %] [% END %] <li><a class="print" href="javascript:window.print();">Imprimir</a></li>
  [% IF ( virtualshelves ) %] [% IF ( opacuserlogin ) %][% IF ( loggedinusername ) %] <li><a class="addtoshelf" href="/cgi-bin/koha/opac-addbybiblionumber.pl?biblionumber=[% biblionumber %]" onclick="Dopop('opac-addbybiblionumber.pl?biblionumber=[% biblionumber %]'); return false;">
- Guardar en tus listas </a></li>
- [% END %][% END %] [% END %] [% IF ( opacbookbag ) %]<li><a class="addtocart" href="#" onclick="addRecord('[% biblionumber %]'); return false;">Agregar a tu cesta</a></li>[% END %] <li style="display:none;"><a href="#" id="furthersearches">Más búsquedas</a></li>
+ Save to Your Lists
+ </a></li>
+ [% END %][% END %] [% END %] [% IF ( opacbookbag ) %]<li><a class="addtocart" href="#" onclick="addRecord('[% biblionumber %]'); return false;">Add to Your Cart</a></li>[% END %] <li style="display:none;"><a href="#" id="furthersearches">Mas búsquedas</a></li>
  </ul>
 
  [% IF ( OPACSearchForTitleIn ) %] <div id="furtherm" class="yuimenu">
  <div class="bd">
- <h4>Buscar este título en:</h4>
+ <h4>Buscar para este título en:</h4>
  <ul class="first-of-type">
 
  [% OPACSearchForTitleIn %] </ul>
@@ -113,9 +112,9 @@ $(document).ready(function(){
  </div>
  [% END %] <div id="export" class="detailtagcell">
  <form method="get" action="/cgi-bin/koha/opac-export.pl">
- <label for="format">Guardar registro:</label>
+ <label for="format">Save Record:</label>
  <select name="format" id="format">
- <option value="">-- Escoge formato --</option>
+ <option value="">-- Choose Format --</option>
  <option value="bibtex">BIBTEX</option>
  <option value="dc">Dublin Core (XML)</option>
  <option value="marcxml">MARCXML</option>
@@ -132,7 +131,7 @@ $(document).ready(function(){
 </div>
  <div id="yui-main">
  <div id="list_detail">
- [% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %] [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink" class=""><i></i><span><i></i><span></span>Listas </span></a>[% END %] </div>
+ [% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %] [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink" class=""><i></i><span><i></i><span></span>Lists </span></a>[% END %] </div>
  <div class="yui-b"><div id="opac-detail" class="yui-ge">
  <div class="yui-u first">
  <div id="usermarcdetail" class="container">
@@ -141,9 +140,9 @@ $(document).ready(function(){
  <div id="views">
  <span class="view"><a id="Normalview" href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% biblionumber %]">Vista normal</a></span>
 
-<span class="view"><span id="MARCview">MARC view</span></span>
-[% IF ( ISBD ) %]<span class="view"><a id="ISBDview"  href="/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber=[% biblionumber %]">ISBD view</a></span>[% END %] </div>
- <h1 class="title">[% bibliotitle %] (Registro n.º [% biblionumber %])</h1>
+<span class="view"><span id="MARCview">Vista MARC</span></span>
+[% IF ( ISBD ) %]<span class="view"><a id="ISBDview"  href="/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber=[% biblionumber %]">Vista ISBD</a></span>[% END %] </div>
+ <h1 class="title">[% bibliotitle %] (Registro nro. [% biblionumber %])</h1>
  [% IF ( OPACXSLTDetailsDisplay ) %] <div id="switchview_div">[ <a id="switchview" href="/cgi-bin/koha/opac-showmarc.pl?id=[% biblionumber %]&amp;viewas=html">vista simple</a> ]</div>
  <div id="plainmarc"></div>[% END %] <div id="labeledmarc">
  <table id="marc">
@@ -211,6 +210,11 @@ $(document).ready(function(){
  [% END %] </div>
  </div>
  </div>
+ <div class="yui-u">
+ <div id="ulactioncontainer" class="container">
+
+[% INCLUDE 'opac-detail-sidebar.inc' %] </div>
+</div>
 </div>
 
 </div>

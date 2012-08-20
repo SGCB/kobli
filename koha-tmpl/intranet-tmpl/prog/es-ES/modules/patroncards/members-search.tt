@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Patrons [% IF ( searching ) %]&rsaquo; Search results[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
- <style type="text/css">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios [% IF ( searching ) %]&rsaquo; Resultados de búsqueda[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <style type="text/css">
    		#custom-doc { width:47.23em;*width:46.04em;min-width:600px; margin:auto; text-align:left; }
    	</style>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
@@ -45,10 +43,10 @@ function add_item(borrowernum,batch_id,type_id){
 <div id="custom-doc" class="yui-t7">
  <div id="bd">
  <div class="yui-g">
-<h3>Búsqueda de socios</h3>
+<h3>Socios, búsqueda</h3>
 
 <div class="browse">
- Búsqueda por apellido:<a href="/cgi-bin/koha/patroncards/members-search.pl?member=a&amp;batch_id=[% batch_id %]">A</a>
+ Búsqueda por apellido: <a href="/cgi-bin/koha/patroncards/members-search.pl?member=a&amp;batch_id=[% batch_id %]">A</a>
  <a href="/cgi-bin/koha/patroncards/members-search.pl?member=b&amp;batch_id=[% batch_id %]">B</a>
  <a href="/cgi-bin/koha/patroncards/members-search.pl?member=c&amp;batch_id=[% batch_id %]">C</a>
  <a href="/cgi-bin/koha/patroncards/members-search.pl?member=d&amp;batch_id=[% batch_id %]">D</a>
@@ -86,17 +84,15 @@ function add_item(borrowernum,batch_id,type_id){
 <input value="Buscar" type="submit" /></p>
 </form>
 
-[% IF ( resultsloop ) %]
-<div id="searchheader"> <h3>Resultados [% from %] a [% to %] de [% numresults %] encontrados para [% IF ( member ) %]nombre: '<span class="ex">[% member %][% ELSIF ( category_type ) %]código de categoría: '<span class="ex">[% category_type %][% END %]</span>'</h3></div>
-[% IF ( paginationbar ) %]<div id="pagination_top" class="pages">[% paginationbar %]</div>[% END %]
-<form name="resultform" action="/cgi-bin/koha/patroncards/members-search.pl" method="get" class="checkboxed"><div style="float: right; margin-top: .5em;"><input value="Agregar seleccionado" type="submit" class="icon addchecked" onclick="add_item('checked',[% batch_id %]); return false" /> <input value="Hecho" type="button" class="close" /></div>
-<div style="line-height: 2em; margin-left: .7em;"><a id="CheckAll" href="/cgi-bin/koha/patroncards/members-search.pl">Seleccionar todo</a><a id="CheckNone" href="/cgi-bin/koha/patroncards/members-search.pl">Limpiar todo</a></div>
+[% IF ( resultsloop ) %] <div id="searchheader"> <h3>Resultados [% from %] a [% to %] de [% numresults %] encontrados para [% IF ( member ) %]nombre: '<span class="ex">[% member %][% ELSIF ( category_type ) %]código de categoría: '<span class="ex">[% category_type %][% END %]</span>'</h3></div>
+[% IF ( paginationbar ) %]<div id="pagination_top" class="pages">[% paginationbar %]</div>[% END %] <form name="resultform" action="/cgi-bin/koha/patroncards/members-search.pl" method="get" class="checkboxed"><div style="float: right; margin-top: .5em;"><input value="Agregar seleccionado" type="submit" class="icon addchecked" onclick="add_item('checked',[% batch_id %]); return false" /> <input value="Hecho" type="button" class="close" /></div>
+<div style="line-height: 2em; margin-left: .7em;"><a id="CheckAll" href="/cgi-bin/koha/patroncards/members-search.pl">Seleccionar todo</a><a id="CheckNone" href="/cgi-bin/koha/patroncards/members-search.pl">Limpiar todos los campos</a></div>
 <div class="searchresults">
 
  <table style="float: left; margin: .5em 0;">
  <tr>
  <th><label style="font-weight:bold;">Seleccionar</label></th>
- <th><a href="members-search.pl?member=[% member %]&amp;category=[% category_type %]&amp;batch_id=[% batch_id %]&amp;orderby=cardnumber">Carné</a></th>
+ <th><a href="members-search.pl?member=[% member %]&amp;category=[% category_type %]&amp;batch_id=[% batch_id %]&amp;orderby=cardnumber">Carnet</a></th>
  <th><a href="members-search.pl?member=[% member %]&amp;category=[% category_type %]&amp;batch_id=[% batch_id %]&amp;orderby=surname">Nombre</a></th>
  <th><a href="members-search.pl?member=[% member %]&amp;category=[% category_type %]&amp;batch_id=[% batch_id %]&amp;orderby=borrowers.categorycode">Categoría</a></th>
  <th><a href="members-search.pl?member=[% member %]&amp;category=[% category_type %]&amp;batch_id=[% batch_id %]&amp;orderby=branchcode">Biblioteca</a></th>
@@ -104,13 +100,9 @@ function add_item(borrowernum,batch_id,type_id){
  <th>Notas</th>
  <th></th>
  </tr>
- [% FOREACH resultsloo IN resultsloop %]
- [% UNLESS ( loop.odd ) %]
- <tr class="highlight">
- [% ELSE %]
- <tr>
- [% END %]
- <td> <input type="checkbox" name="borrowernumber" id="patron[% resultsloo.borrowernumber %]" value="[% resultsloo.borrowernumber %]" /> </td>
+ [% FOREACH resultsloo IN resultsloop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
+ [% ELSE %] <tr>
+ [% END %] <td> <input type="checkbox" name="borrowernumber" id="patron[% resultsloo.borrowernumber %]" value="[% resultsloo.borrowernumber %]" /> </td>
  <td>[% resultsloo.cardnumber %]</td>
  <td style="white-space: nowrap;"><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% resultsloo.borrowernumber %]">[% resultsloo.surname %], [% resultsloo.firstname %]</a> <br /> [% resultsloo.address %][% IF ( resultsloo.address2 ) %]<br />[% resultsloo.address2 %][% END %][% IF ( resultsloo.city ) %]<br />[% resultsloo.city %][% END %]</td>
  <td>[% resultsloo.category_description %] ([% resultsloo.categorycode %])</td>
@@ -119,11 +111,10 @@ function add_item(borrowernum,batch_id,type_id){
  <td>[% resultsloo.borrowernotes %]</td>
  <td><a onclick="add_item('[% resultsloo.borrowernumber %]',[% batch_id %]); return false" href="/cgi-bin/koha/patroncards/edit-batch.pl?borrower_number=[% resultsloo.borrowernumber %]&amp;batch_id=[% batch_id %]&amp;op=add">Agregar</a></td>
  </tr>
- [% END %]
- </table>
+ [% END %] </table>
  </div>
 </form>
 
 [% ELSE %] [% IF ( searching ) %] No se encontraron resultados [% END %] [% END %] </div>
 </div>
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

@@ -1,25 +1,23 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Keyword to MARC Mapping</h1>
 
-<h1>Keyword to MARC mapping</h1>
-
-<p>Esta herramienta te permitirá asignar campos MARC a un conjunto de palabras clave predefinidas.</p>
+<p>Esta herramienta le permitirá asignar campos MARC a un conjunto de palabras clave predefinidas.</p>
 
 <p>En este momento la única palabra clave en uso es 'subtítulo.'</p>
 
-<p>Con esta herramienta puedes definir qué campos MARC imprimir en la pantalla de detalles del registro bibliográfico utilizando palabras clave. En el ejemplo siguiente se utiliza el campo de subtítulos.</p>
+<p>Con esta herramienta se puede definir qué campos MARC imprime en la pantalla de detalles del registro bibliográfico utilizando palabras clave. En el ejemplo siguiente se utiliza el campo de subtítulos.</p>
 
-<p>Utilizando el menú desplegable de hojas de trabajo, selecciona la hoja de trabajo a la que te gustaría aplicar esta regla. Por ejemplo, el subtítulo del libro se puede encontrar en el campo 245$b.</p>
+<p>Utilizando el menú desplegable de hojas de trabajo, seleccione la hoja de trabajo a la que le gustaría aplicar esta regla. Por ejemplo, el subtítulo del libro se pueden encontrar en el campo 245$b.</p>
 
 <p>Sin embargo, el subtítulo del DVD aparece en 245$p</p>
 
-<p>Con esta herramienta puedes decir a Koha que imprima el campo correcto como subtítulo al ver el registro bibliográfico en el OPAC.</p>
+<p>Con esta herramienta se puede decir a Koha que imprima el campo correcto como subtítulo al ver el registro bibliográfico en el OPAC.</p>
 
-<p>Esta herramienta también se puede utilizar para unir partes del registro. Si quieres que el número de publicaciones periódicas se muestre en el título de tu búsqueda simplemente tienes que mapear 490 $v con "subtítulo" junto con el campo 245 $b.</p>
+<p>Esta herramienta puede ser utilizada para encadenar las piezas del registro, además. Si desea mostrar el número de serie en el título en los resultados de búsqueda simplemente tiene que asignar 490 $v a 'subtítulo' junto a 245 $b.</p>
 
-<p style="background-color: #ffe599">Consejo: Une los campos que quieras mostrar tras el título del ítem en el orden en que quieras que aparezcan.</p>
+<p style="background-color: #ffe599">Sugerencia: después del título del ítem encadene los campos que desea mostrar en el orden en que desea que aparezcan.</p>
 
-<p>Futuros desarrollos incluirán campos asignados a palabras clave adicionales.</p>
+<p>Futuras evoluciones incluirán campos asignados a palabras clave adicionales.</p>
 
-<p><strong>See the full documentation for keyword to MARC mapping in the <a href="http://manual.koha-community.org/3.6/en/catadmin.html#keywordmapping">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Keyword to MARC Mapping in the <a href="http://manual.koha-community.org/3.8/en/catadmin.html#keywordmapping">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

@@ -1,23 +1,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="[% IF ( IntranetFavicon ) %][% IntranetFavicon %][% ELSE %][% themelang %]/includes/favicon.ico[% END %]" type="image/x-icon" />
-<link rel="stylesheet" type="text/css" href="[% themelang %]/lib/jquery/plugins/ui.tabs.css" />
+<link rel="stylesheet" type="text/css" href="[% themelang %]/lib/jquery/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" media="print" href="[% themelang %]/css/print.css" />
-[% IF ( intranetstylesheet ) %]
- <link rel="stylesheet" type="text/css" href="[% intranetstylesheet %]" />
-[% ELSE %]
- <link rel="stylesheet" type="text/css" href="[% themelang %]/css/staff-global.css" />
-[% END %]
-[% IF ( IntranetUserCSS ) %]<style type="text/css">[% IntranetUserCSS %]</style>[% END %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/jquery.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/ui.tabs.js"></script>
+[% IF ( intranetstylesheet ) %] <link rel="stylesheet" type="text/css" href="[% intranetstylesheet %]" />
+[% ELSE %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/staff-global.css" />
+[% END %] [% IF ( IntranetUserCSS ) %]<style type="text/css">[% IntranetUserCSS %]</style>[% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/jquery.js"></script>
+<script type="text/javascript" src="[% themelang %]/lib/jquery/jquery-ui.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.hotkeys.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.highlight-3.js"></script>
-[% IF ( login ) %]
- <link rel="stylesheet" type="text/css" href="[% themelang %]/css/login.css" />
-[% END %]
-[% IF ( wizard ) %]
- <link rel="stylesheet" type="text/css" href="[% themelang %]/css/wizard.css" />
+[% IF ( login ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/login.css" />
+[% END %] [% IF ( wizard ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/wizard.css" />
 [% END %]
 
 <!-- local colors -->
@@ -27,46 +20,38 @@
 
 <!-- yui js --> 
 <script type="text/javascript" src="[% yuipath %]/utilities/utilities.js"></script> 
-<script type="text/javascript" src="[% yuipath %]/datasource/datasource-min.js"></script>
-[% IF ( CircAutocompl ) %]
- <script type="text/javascript" src="[% yuipath %]/autocomplete/autocomplete-min.js"></script>
-[% END %]
 <script type="text/javascript" src="[% yuipath %]/button/button-min.js"></script> 
 <script type="text/javascript" src="[% yuipath %]/container/container_core-min.js"></script> 
 <script type="text/javascript" src="[% yuipath %]/menu/menu-min.js"></script> 
 
 <!-- koha core js -->
 <script type="text/javascript" src="[% themelang %]/js/staff-global.js"></script>
-[% IF ( intranetuserjs ) %]
- <script type="text/javascript">
+[% IF ( intranetuserjs ) %] <script type="text/javascript">
     //<![CDATA[
     [% intranetuserjs %]
     //]]>
     </script>
-[% END %]
-<script type="text/javascript" language="javascript">
+[% END %] <script type="text/javascript" language="javascript">
     //<![CDATA[
-    [% IF ( intranetbookbag ) %]var MSG_BASKET_EMPTY = _("Tu cesta está vacía");
-        var MSG_RECORD_IN_BASKET = _("Este ítem ya está en tu cesta");
-        var MSG_RECORD_ADDED = _("Este ítem ha sido añadido a tu cesta");
-        var MSG_NRECORDS_ADDED = _(" item(s) added to your cart");
-        var MSG_NRECORDS_IN_BASKET = _("ya en tu cesta");
+    [% IF ( intranetbookbag ) %]var MSG_BASKET_EMPTY = _("Su canasta está vacía");
+        var MSG_RECORD_IN_BASKET = _("Este ítem ya está en su carrito");
+        var MSG_RECORD_ADDED = _("Este ítem ha sido añadido a su carrito");
+        var MSG_NRECORDS_ADDED = _(" ítem(s) incluidos en su bolsa");
+        var MSG_NRECORDS_IN_BASKET = _("ya en su carro");
         var MSG_NO_RECORD_SELECTED = _("Ningún ítem fue seleccionado");
-        var MSG_NO_RECORD_ADDED = _("Ningún ítem ha sido agregado a tu cesta");
-        var MSG_CONFIRM_DEL_BASKET = _("¿Estás seguro de que quieres vaciar tu cesta?");
-        var MSG_CONFIRM_DEL_RECORDS = _("¿Estás seguro de que quieres eliminar los ítems seleccionados?");
+        var MSG_NO_RECORD_ADDED = _("Ningún ítem ha sido agregado a su carrito");
+        var MSG_CONFIRM_DEL_BASKET = _("¿Está seguro de querer vaciar su carrito?");
+        var MSG_CONFIRM_DEL_RECORDS = _("¿Está seguro de querer eliminar los ítems seleccionados?");
+        var MSG_IN_YOUR_CART = _("Items in your cart: ");
         var MSG_NON_RESERVES_SELECTED = _("Uno o más ítems seleccionados no se pueden reservar.");
     [% END %]
     //]]>
     </script>
- [% IF ( virtualshelves || intranetbookbag ) %]
- <script type="text/javascript" language="javascript" src="[% themelang %]/js/basket.js"></script>
- [% END %]
-[% IF LocalCoverImages %]
-<script type="text/javascript" language="javascript" src="[% themelang %]/js/localcovers.js"></script>
+ [% IF ( virtualshelves || intranetbookbag ) %] <script type="text/javascript" language="javascript" src="[% themelang %]/js/basket.js"></script>
+ [% END %] [% IF LocalCoverImages %] <script type="text/javascript" language="javascript" src="[% themelang %]/js/localcovers.js"></script>
 <script type="text/javascript" language="javascript">
 //<![CDATA[
-var NO_LOCAL_JACKET = _("No cover image available");
+var NO_LOCAL_JACKET = _("No hay imagen de cubierta disponible ");
 //]]>
 </script>
-[% END %]
+[% END %] 

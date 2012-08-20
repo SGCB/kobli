@@ -64,13 +64,11 @@
 
  <xsl:variable name="physicalDescription">
  <xsl:if test="$typeOf008='CF' and marc:controlfield[@tag=007][substring(.,12,1)='a']">
- reformatted digital
- </xsl:if>
+ digital reformateado </xsl:if>
  <xsl:if test="$typeOf008='CF' and marc:controlfield[@tag=007][substring(.,12,1)='b']">
- microfilme digitalizado </xsl:if>
+ microfilm digitalizado </xsl:if>
  <xsl:if test="$typeOf008='CF' and marc:controlfield[@tag=007][substring(.,12,1)='d']">
- digitized other analog
- </xsl:if>
+ otros analógicos digitalizados </xsl:if>
 
  <xsl:variable name="check008-23">
  <xsl:if test="$typeOf008='BK' or $typeOf008='MU' or $typeOf008='CR' or $typeOf008='MX'">
@@ -92,7 +90,7 @@
  <xsl:when test="($check008-23 and $controlField008-23='b') or ($check008-29 and $controlField008-29='b')">
  microficha </xsl:when>
  <xsl:when test="($check008-23 and $controlField008-23='a') or ($check008-29 and $controlField008-29='a')">
- microfilme </xsl:when>
+ microfilm </xsl:when>
  </xsl:choose>
 <!--
  <xsl:if test="marc:datafield[@tag=130]/marc:subfield[@code='h']">
@@ -155,10 +153,9 @@
  </xsl:for-each>
 -->
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='b']">
- chip cartridge
- </xsl:if>
+ chip del cartucho </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='c']">
- <img alt="cartucho de disco óptico del ordenador" src="/opac-tmpl/prog/famfamfam/silk/cd.png" title="cartucho de disco óptico del ordenador" class="format" />
+ <img alt="cartucho de discos ópticos de computadora" src="/opac-tmpl/prog/famfamfam/silk/cd.png" title="cartucho de discos ópticos de computadora" class="format" />
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='j']">
  disco magnético </xsl:if>
@@ -171,14 +168,11 @@
  disponible en linea <img alt="remoto" src="/opac-tmpl/prog/famfamfam/silk/drive_web.png" title="remoto" class="format" />
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='a']">
- tape cartridge
- </xsl:if>
+ cartucho de cinta </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='f']">
- tape cassette
- </xsl:if>
+ casete de cinta </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='h']">
- tape reel
- </xsl:if>
+ bobina de cinta </xsl:if>
 
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='d'][substring(text(),2,1)='a']">
  <img alt="globo celeste" src="/opac-tmpl/prog/famfamfam/silk/world.png" title="globo celeste" class="format" />
@@ -194,10 +188,10 @@
  </xsl:if>
 
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='o'][substring(text(),2,1)='o']">
- equipo </xsl:if>
+ kit </xsl:if>
 
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='a'][substring(text(),2,1)='d']">
- atlas</xsl:if>
+ atlas </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='a'][substring(text(),2,1)='g']">
  diagrama </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='a'][substring(text(),2,1)='j']">
@@ -214,24 +208,23 @@
  vista </xsl:if>
 
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='h'][substring(text(),2,1)='a']">
- aperture card
- </xsl:if>
+ tarjeta de apertura </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='h'][substring(text(),2,1)='e']">
  microficha </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='h'][substring(text(),2,1)='f']">
- cassette de microficha </xsl:if>
+ casete de microfichas </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='h'][substring(text(),2,1)='b']">
- cartucho de microfilme </xsl:if>
+ cartucho de microfilm </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='h'][substring(text(),2,1)='c']">
- cassette de microfilme </xsl:if>
+ casete de microfilm </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='h'][substring(text(),2,1)='d']">
- rollo de microfilme </xsl:if>
+ rollo de microfilm </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='h'][substring(text(),2,1)='g']">
  microopaco </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='m'][substring(text(),2,1)='c']">
  cartucho de película </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='m'][substring(text(),2,1)='f']">
- cassette de película </xsl:if>
+ casete de película </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='m'][substring(text(),2,1)='r']">
  rollo de película </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='k'][substring(text(),2,1)='n']">
@@ -243,7 +236,7 @@
  <img alt="dibujo" src="/opac-tmpl/prog/famfamfam/silk/pencil.png" title="dibujo" class="format" />
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='k'][substring(text(),2,1)='o']">
- <img src="/opac-tmpl/prog/famfamfam/silk/note.png" alt="flash card" title="flash card" class="format"/>
+ <img alt="tarjeta flash" src="/opac-tmpl/prog/famfamfam/silk/note.png" title="tarjeta flash" class="format" />
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='k'][substring(text(),2,1)='e']">
  <img alt="pintura" src="/opac-tmpl/prog/famfamfam/silk/paintbrush.png" title="pintura" class="format" />
@@ -253,7 +246,7 @@
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='k'][substring(text(),2,1)='g']">
  negativo fotográfico </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='k'][substring(text(),2,1)='h']">
- fotoimpresión </xsl:if>
+ impresión fotográfica </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='k'][substring(text(),2,1)='i']">
  <img alt="imagen" src="/opac-tmpl/prog/famfamfam/silk/picture.png" title="imagen" class="format" />
  </xsl:if>
@@ -262,20 +255,16 @@
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='k'][substring(text(),2,1)='l']">
  dibujo técnico </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='q'][substring(text(),2,1)='q']">
- <img alt="música notada" src="/opac-tmpl/prog/famfamfam/silk/script.png" title="música notada" class="format" />
+ <img alt="música anotada" src="/opac-tmpl/prog/famfamfam/silk/script.png" title="música anotada" class="format" />
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='g'][substring(text(),2,1)='d']">
- filmslip
- </xsl:if>
+ diapositivas </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='g'][substring(text(),2,1)='c']">
- filmstrip cartridge
- </xsl:if>
+ cartucho de diapositivas </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='g'][substring(text(),2,1)='o']">
- filmstrip roll
- </xsl:if>
+ rollo de diapositiva </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='g'][substring(text(),2,1)='f']">
- other filmstrip type
- </xsl:if>
+ otro tipo de película </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='g'][substring(text(),2,1)='s']">
  <img alt="diapositiva" src="/opac-tmpl/prog/famfamfam/silk/pictures.png" title="diapositiva" class="format" />
  </xsl:if>
@@ -288,21 +277,18 @@
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='q']">
  rollo </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='g']">
- sound cartridge
- </xsl:if>
+ cartucho de sonido </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='s']">
- sound cassette
- </xsl:if>
+ casete de sonido </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='d']">
  <img alt="disco de sonido" src="/opac-tmpl/prog/famfamfam/silk/cd.png" title="disco de sonido" class="format" />
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='t']">
- sound-tape reel
- </xsl:if>
+ bobina de cinta de sonido </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='i']">
  banda sonora de película </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='w']">
- grabación magnética</xsl:if>
+ grabación en alambre </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='f'][substring(text(),2,1)='c']">
  braille </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='f'][substring(text(),2,1)='b']">
@@ -317,21 +303,18 @@
  <img alt="impresión grande" src="/opac-tmpl/prog/famfamfam/silk/magnifier.png" title="impresión grande" class="format" />
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='t'][substring(text(),2,1)='a']">
- regular print
- </xsl:if>
+ impresión regular </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='t'][substring(text(),2,1)='d']">
  texto en carpeta anillada </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='v'][substring(text(),2,1)='c']">
- videocartridge
- </xsl:if>
+ cartucho de vídeo </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='v'][substring(text(),2,1)='f']">
- videocassette
- </xsl:if>
+ videocasete </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='v'][substring(text(),2,1)='d']">
  <img alt="videodisco" src="/opac-tmpl/prog/famfamfam/silk/dvd.png" title="videodisco" class="format" />
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='v'][substring(text(),2,1)='r']">
- rollo de video </xsl:if>
+ rollo de vídeo </xsl:if>
 <!--
  <xsl:for-each select="marc:datafield[@tag=856]/marc:subfield[@code='q'][string-length(.)>1]">
  <xsl:value-of select="."></xsl:value-of>
@@ -465,26 +448,37 @@
  </span>
  </xsl:if>
 
+ <xsl:if test="marc:datafield[@tag=773]">
+ <xsl:for-each select="marc:datafield[@tag=773]">
+ <xsl:if test="marc:subfield[@code='t']">
+ <span class="results_summary">
+ <span class="label">Source: </span>
+ <xsl:value-of select="marc:subfield[@code='t']"/>
+ </span>
+ </xsl:if>
+ </xsl:for-each>
+ </xsl:if>
+
 <xsl:if test="$DisplayOPACiconsXSLT!='0'">
  <span class="results_summary">
  <xsl:if test="$typeOf008!=''">
- <span class="label">Type: </span>
+ <span class="label">Tipo: </span>
  <xsl:choose>
  <xsl:when test="$leader19='a'"><img alt="libro" src="/opac-tmpl/prog/famfamfam/silk/book_link.png" title="libro" class="materialtype" /> Conjunto</xsl:when>
  <xsl:when test="$leader6='a'">
  <xsl:choose>
  <xsl:when test="$leader7='c' or $leader7='d' or $leader7='m'"><img alt="libro" src="/opac-tmpl/prog/famfamfam/silk/book.png" title="libro" class="materialtype" /> Libro</xsl:when>
- <xsl:when test="$leader7='i' or $leader7='s'"><img alt="publicación periódica" src="/opac-tmpl/prog/famfamfam/silk/newspaper.png" title="publicación periódica" class="materialtype" /> Recursos continuos</xsl:when>
+ <xsl:when test="$leader7='i' or $leader7='s'"><img alt="publicación periódica" src="/opac-tmpl/prog/famfamfam/silk/newspaper.png" title="publicación periódica" class="materialtype" /> Recursos continuo</xsl:when>
  <xsl:when test="$leader7='a' or $leader7='b'"><img alt="artículo" src="/opac-tmpl/prog/famfamfam/silk/book_open.png" title="artículo" class="materialtype" /> Artículo</xsl:when>
  </xsl:choose>
  </xsl:when>
  <xsl:when test="$leader6='t'"><img alt="libro" src="/opac-tmpl/prog/famfamfam/silk/book.png" title="libro" class="materialtype" /> Libro</xsl:when>
- <xsl:when test="$leader6='o'"><img alt="equipo" src="/opac-tmpl/prog/famfamfam/silk/report_disk.png" title="equipo" class="materialtype" /> Kit</xsl:when>
- <xsl:when test="$leader6='p'"><img alt="Material variado" src="/opac-tmpl/prog/famfamfam/silk/report_disk.png" title="Material variado" class="materialtype" />Materiales variados</xsl:when>
- <xsl:when test="$leader6='m'"><img alt="archivo informático" src="/opac-tmpl/prog/famfamfam/silk/computer_link.png" title="archivo informático" class="materialtype" /> Archivo de ordenador</xsl:when>
+ <xsl:when test="$leader6='o'"><img src="/opac-tmpl/prog/famfamfam/silk/report_disk.png" alt="kit" title="kit" class="materialtype"/> Equipo</xsl:when>
+ <xsl:when test="$leader6='p'"><img alt="material combinado" src="/opac-tmpl/prog/famfamfam/silk/report_disk.png" title="material combinado" class="materialtype" />Materiales combinados</xsl:when>
+ <xsl:when test="$leader6='m'"><img alt="archivo de computadora" src="/opac-tmpl/prog/famfamfam/silk/computer_link.png" title="archivo de computadora" class="materialtype" /> Archivo de computadora</xsl:when>
  <xsl:when test="$leader6='e' or $leader6='f'"><img alt="mapa" src="/opac-tmpl/prog/famfamfam/silk/map.png" title="mapa" class="materialtype" /> Mapa</xsl:when>
- <xsl:when test="$leader6='g' or $leader6='k' or $leader6='r'"><img alt="material visual" src="/opac-tmpl/prog/famfamfam/silk/film.png" title="material visual" class="materialtype" /> Material visual</xsl:when>
- <xsl:when test="$leader6='c' or $leader6='d'"><img alt="puntuación" src="/opac-tmpl/prog/famfamfam/silk/music.png" title="puntuación" class="materialtype" /> Puntuación</xsl:when>
+ <xsl:when test="$leader6='g' or $leader6='k' or $leader6='r'"><img alt="material visual" src="/opac-tmpl/prog/famfamfam/silk/film.png" title="material visual" class="materialtype" /> Material Visual</xsl:when>
+ <xsl:when test="$leader6='c' or $leader6='d'"><img alt="puntuación" src="/opac-tmpl/prog/famfamfam/silk/music.png" title="puntuación" class="materialtype" /> Partitura</xsl:when>
  <xsl:when test="$leader6='i'"><img alt="sonido" src="/opac-tmpl/prog/famfamfam/silk/sound.png" title="sonido" class="materialtype" /> Sonido</xsl:when>
  <xsl:when test="$leader6='j'"><img alt="música" src="/opac-tmpl/prog/famfamfam/silk/sound.png" title="música" class="materialtype" /> Música</xsl:when>
  </xsl:choose>
@@ -497,7 +491,7 @@
 
  <xsl:if test="$typeOf008='CR'">
  <xsl:if test="$controlField008-21 and $controlField008-21 !='|' and $controlField008-21 !=' '">
- <span class="label">; Tipo de recurso contínuo: </span>
+ <span class="label">; Tipo de recurso continuo: </span>
  </xsl:if>
  <xsl:choose>
  <xsl:when test="$controlField008-21='d'">
@@ -512,7 +506,7 @@
  <xsl:when test="$controlField008-21='p'">
  periódico </xsl:when>
  <xsl:when test="$controlField008-21='w'">
- <img alt="sitio web" src="/opac-tmpl/prog/famfamfam/silk/world_link.png" title="sitio web" class="format" />
+ <img alt="sitio Web" src="/opac-tmpl/prog/famfamfam/silk/world_link.png" title="sitio Web" class="format" />
  </xsl:when>
  </xsl:choose>
  </xsl:if>
@@ -522,7 +516,7 @@
  </xsl:if>
  <xsl:choose>
  <xsl:when test="contains($controlField008-24,'a')">
- resumen o sumario </xsl:when>
+ extracto o resumen </xsl:when>
  <xsl:when test="contains($controlField008-24,'b')">
  bibliografía <img alt="bibliografía" src="/opac-tmpl/prog/famfamfam/silk/text_list_bullets.png" title="bibliografía" class="natureofcontents" />
  </xsl:when>
@@ -545,10 +539,9 @@
  <xsl:when test="contains($controlField008-24,'m')">
  tesis </xsl:when>
  <xsl:when test="contains($controlField008-24,'n')">
- estudio de literatura</xsl:when>
+ estudio de literatura </xsl:when>
  <xsl:when test="contains($controlField008-24,'o')">
- review
- </xsl:when>
+ revisión </xsl:when>
  <xsl:when test="contains($controlField008-24,'p')">
  textos programados </xsl:when>
  <xsl:when test="contains($controlField008-24,'q')">
@@ -563,7 +556,7 @@
  <xsl:when test="contains($controlField008-24,'v')">
  casos y notas legales </xsl:when>
  <xsl:when test="contains($controlField008-24,'w')">
- informe legal </xsl:when>
+ reporte legal o digesto </xsl:when>
  <xsl:when test="contains($controlField008-24,'z')">
  tratado </xsl:when>
  </xsl:choose>
@@ -574,11 +567,11 @@
  </xsl:if>
  <xsl:if test="$typeOf008='CF'">
  <xsl:if test="$controlField008-26='a' or $controlField008-26='e' or $controlField008-26='f' or $controlField008-26='g'">
- <span class="label">; Tipo de archivo informático: </span>
+ <span class="label">; Tipo de archivo de computadora: </span>
  </xsl:if>
  <xsl:choose>
  <xsl:when test="$controlField008-26='a'">
- dato numérico </xsl:when>
+ datos numéricos </xsl:when>
  <xsl:when test="$controlField008-26='e'">
  <img alt="base de datos" src="/opac-tmpl/prog/famfamfam/silk/database.png" title="base de datos" class="format" />
  </xsl:when>
@@ -597,7 +590,7 @@
  <xsl:if test="substring($controlField008,25,1)='j'">
  patente </xsl:if>
  <xsl:if test="substring($controlField008,31,1)='1'">
- festschrift </xsl:if>
+ publicación conmemorativa </xsl:if>
  <xsl:if test="$controlField008-34='a' or $controlField008-34='b' or $controlField008-34='c' or $controlField008-34='d'">
  <img alt="biografía" src="/opac-tmpl/prog/famfamfam/silk/user.png" title="biografía" class="natureofcontents" />
  </xsl:if>
@@ -615,7 +608,7 @@
  <xsl:when test="$controlField008-33='d'">
  drama </xsl:when>
  <xsl:when test="$controlField008-33='c'">
- tira cómica</xsl:when>
+ historieta </xsl:when>
  <xsl:when test="$controlField008-33='l'">
  ficción </xsl:when>
  <xsl:when test="$controlField008-33='h'">
@@ -625,7 +618,7 @@
  <xsl:when test="$controlField008-33='f'">
  novela </xsl:when>
  <xsl:when test="$controlField008-33='j'">
- historia corta </xsl:when>
+ cuento </xsl:when>
  <xsl:when test="$controlField008-33='s'">
  discurso </xsl:when>
  </xsl:choose>
@@ -655,7 +648,7 @@
  <xsl:if test="contains($controlField008-30-31,'r')">
  ensayo </xsl:if>
  <xsl:if test="contains($controlField008-30-31,'g')">
- informe </xsl:if>
+ informando </xsl:if>
  <xsl:if test="contains($controlField008-30-31,'s')">
  sonido </xsl:if>
  <xsl:if test="contains($controlField008-30-31,'l')">
@@ -667,14 +660,13 @@
  <xsl:when test="$controlField008-33='a'">
  arte original </xsl:when>
  <xsl:when test="$controlField008-33='b'">
- equipo </xsl:when>
+ kit </xsl:when>
  <xsl:when test="$controlField008-33='c'">
- reproducción artística</xsl:when>
+ reproducción de arte </xsl:when>
  <xsl:when test="$controlField008-33='d'">
  diorama </xsl:when>
  <xsl:when test="$controlField008-33='f'">
- filmstrip
- </xsl:when>
+ diapositivas </xsl:when>
  <xsl:when test="$controlField008-33='g'">
  artículo legal </xsl:when>
  <xsl:when test="$controlField008-33='i'">
@@ -684,21 +676,18 @@
  <xsl:when test="$controlField008-33='l'">
  dibujo técnico </xsl:when>
  <xsl:when test="$controlField008-33='m'">
- película</xsl:when>
+ película </xsl:when>
  <xsl:when test="$controlField008-33='n'">
- chart
- </xsl:when>
+ mapa </xsl:when>
  <xsl:when test="$controlField008-33='o'">
- flash card
- </xsl:when>
+ tarjeta flash </xsl:when>
  <xsl:when test="$controlField008-33='p'">
- platina de microscopio </xsl:when>
+ portaobjetos de microscopio </xsl:when>
  <xsl:when test="$controlField008-33='q' or marc:controlfield[@tag=007][substring(text(),1,1)='a'][substring(text(),2
 ,1)='q']">
  modelo </xsl:when>
  <xsl:when test="$controlField008-33='r'">
- realia
- </xsl:when>
+ realia </xsl:when>
  <xsl:when test="$controlField008-33='s'">
  diapositiva </xsl:when>
  <xsl:when test="$controlField008-33='t'">
@@ -706,20 +695,20 @@
  <xsl:when test="$controlField008-33='v'">
  grabación de vídeo </xsl:when>
  <xsl:when test="$controlField008-33='w'">
- jueguete </xsl:when>
+ juguete </xsl:when>
  </xsl:choose>
  </xsl:if>
  </xsl:if> 
 
  <xsl:if test="($typeOf008='BK' or $typeOf008='CF' or $typeOf008='MU' or $typeOf008='VM') and ($controlField008-22='a' or $controlField008-22='b' or $controlField008-22='c' or $controlField008-22='d' or $controlField008-22='e' or $controlField008-22='g' or $controlField008-22='j' or $controlField008-22='f')">
- <span class="label">; Lectores: </span>
+ <span class="label">; Audiencia: </span>
  <xsl:choose>
  <xsl:when test="$controlField008-22='a'">
- Preescolar; </xsl:when>
+ Pre-escolar; </xsl:when>
  <xsl:when test="$controlField008-22='b'">
- Primaria; </xsl:when>
+ Principal; </xsl:when>
  <xsl:when test="$controlField008-22='c'">
- Preadolescente; </xsl:when>
+ Pre-adolescente; </xsl:when>
  <xsl:when test="$controlField008-22='d'">
  Adolescente; </xsl:when>
  <xsl:when test="$controlField008-22='e'">
@@ -796,7 +785,7 @@
  </xsl:if>
  <xsl:if test="marc:datafield[@tag=242]">
  <span class="results_summary">
- <span class="label">Title translated: </span>
+ <span class="label">Título traducido: </span>
  <xsl:for-each select="marc:datafield[@tag=242]">
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">abh</xsl:with-param>
@@ -807,7 +796,7 @@
  </xsl:if>
  <xsl:if test="marc:datafield[@tag=856]">
  <span class="results_summary">
- <span class="label">Acceso online: </span>
+ <span class="label">Acceso en Línea: </span>
  <xsl:for-each select="marc:datafield[@tag=856]">
  <xsl:variable name="SubqText"><xsl:value-of select="marc:subfield[@code='q']"/></xsl:variable>
  <xsl:if test="$OPACURLOpenInNewWindow='0'">
@@ -827,7 +816,7 @@
  <xsl:value-of select="$URLLinkText"/>
  </xsl:when>
  <xsl:otherwise>
- <xsl:text>Haz clic aquí para acceder en línea</xsl:text>
+ <xsl:text>Haga clic aquí para acceso en linea</xsl:text>
  </xsl:otherwise>
  </xsl:choose>
  </xsl:when>
@@ -851,7 +840,7 @@
  <xsl:value-of select="$URLLinkText"/>
  </xsl:when>
  <xsl:otherwise>
- <xsl:text>Haz clic aquí para acceder en línea</xsl:text>
+ <xsl:text>Haga clic aquí para acceso en linea</xsl:text>
  </xsl:otherwise>
  </xsl:choose>
  </xsl:when>
@@ -865,7 +854,7 @@
  </xsl:for-each>
  </span>
  </xsl:if>
- <span class="results_summary" id="availability">
+ <span class="results_summary availability">
  <span class="label">Disponibilidad: </span>
  <xsl:choose>
  <xsl:when test="count(key('item-by-status', 'available'))=0 and count(key('item-by-status', 'reference'))=0">
@@ -950,13 +939,13 @@
  </xsl:if>
  <xsl:if test="count(key('item-by-status', 'On order'))>0">
  <span class="unavailable">
- <xsl:text>Pedido (</xsl:text>
+ <xsl:text>En orden (</xsl:text>
  <xsl:value-of select="count(key('item-by-status', 'On order'))"/>
  <xsl:text>). </xsl:text> </span>
  </xsl:if>
  <xsl:if test="count(key('item-by-status', 'In transit'))>0">
  <span class="unavailable">
- <xsl:text>En ruta (</xsl:text>
+ <xsl:text>En tránsito (</xsl:text>
  <xsl:value-of select="count(key('item-by-status', 'In transit'))"/>
  <xsl:text>). </xsl:text> </span>
  </xsl:if>

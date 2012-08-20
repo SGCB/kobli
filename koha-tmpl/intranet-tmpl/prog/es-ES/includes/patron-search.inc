@@ -1,135 +1,50 @@
 <div class="gradient">
 <h1 id="logo"><a href="/cgi-bin/koha/mainpage.pl">[% LibraryName %]</a></h1><!-- Begin Patrons Resident Search Box -->
-[% IF ( CAN_user_circulate ) %][% IF ( CircAutocompl ) %]<script type="text/javascript">
-//<![CDATA[
-YAHOO.util.Event.onContentReady("header_search", function() {
-    new function() {
-        // Define a custom formatter function
-        this.fnCustomFormatter = function(oResultItem, sQuery) {
-            var name        = oResultItem[0];
-            var cardnumber  = oResultItem[1];
-            var address     = oResultItem[2];
-            var city        = oResultItem[3];
-            var zip         = oResultItem[4];
-            var aMarkup = [
-                "<div class=\"sample-result\">",
-                name,
-                " (",
-                cardnumber,
-                ")<small> -- ",
-                address,
-                ", ",
-                city,
-                "<\/small>",
-                "<\/div>"];
-            return (aMarkup.join(""));
-        };
-
-        // Instantiate one XHR DataSource and define schema as an array:
-        //     ["Record Delimiter",
-        //     "Field Delimiter"]
-        this.oACDS = new YAHOO.widget.DS_XHR("/cgi-bin/koha/circ/ysearch.pl", ["\n", "\t"]);
-        this.oACDS.responseType = YAHOO.widget.DS_XHR.TYPE_FLAT;
-        this.oACDS.maxCacheEntries = 60;
-        this.oACDS.queryMatchSubset = true;
-
-        // Instantiate first AutoComplete
-        var myInput = document.getElementById('findborrower');
-        var myContainer = document.getElementById('yborrowercontainer');
-        this.oAutoComp = new YAHOO.widget.AutoComplete(myInput,myContainer,this.oACDS);
-        //this.oAutoComp.delimChar = ";";
-        //this.oAutoComp.queryDelay = 1;
-        this.oAutoComp.formatResult = this.fnCustomFormatter;
-}
-});
-//]]>
-</script>[% END %][% END %]
 <div id="header_search">
  <div id="patron_search" class="residentsearch">
- <p class="tip">Inserta el número de carné de socio o parte del nombre:</p>
+ <p class="tip">Inserte el número de carnet del socio o parte de su apellido</p>
  <form action="/cgi-bin/koha/members/member.pl" method="post">
  <input id="searchmember" size="25" class="focus" name="member" type="text" value="[% member %]"/>
- [% IF ( branchloop ) %]
- <span class="filteraction" id="filteraction_off"> <a href="#" onclick="$('#filters').toggle();$('.filteraction').toggle();">[-]</a></span>
+ [% IF ( branchloop ) %] <span class="filteraction" id="filteraction_off"> <a href="#" onclick="$('#filters').toggle();$('.filteraction').toggle();">[-]</a></span>
  <span class="filteraction" id="filteraction_on"> <a href="#" onclick="$('#filters').toggle();$('.filteraction').toggle();">[+]</a></span>
- [% END %]
-
- <label for="searchfields">Search fields:</label>
+ [% END %] <label for="searchfields">Buscar campos:</label>
  <select name="searchfields" id="searchfields">
- <option selected="selected" value=''>Standard</option>
+ <option selected="selected" value=''>Estándar</option>
  <option value='email,emailpro,B_email,'>Correo electrónico</option>
- <option value='borrowernumber'>Borrower number</option>
- <option value='phone,phonepro,B_phone,altcontactphone,mobile'>Phone number</option>
+ <option value='borrowernumber'>Número de socio </option>
+ <option value='phone,phonepro,B_phone,altcontactphone,mobile'>Número de teléfono</option>
  </select>
 
- <label for="orderby">Order by:</label>
+ <label for="orderby">Ordenado por: </label>
  <select name="orderby" id="searchorderby">
- <option value="surname,0">Surname</option>
- <option value="cardnumber,0">Número de carné</option>
+ <option value="surname,0">Apellidos</option>
+ <option value="cardnumber,0">Número de Carnet</option>
  </select>
  <input value="Buscar" class="submit" type="submit" />
- [% IF ( branchloop ) %]
- <p id="filters"> <label for="branchcode">Biblioteca:</label><select name="branchcode" id="branchcode">
- <option value="">Cualquiera</option>[% FOREACH branchloo IN branchloop %]
- [% IF ( branchloo.selected ) %]
- <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %]
- <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %]
- [% END %]</select>
- <label for="categorycode">Categoría:</label><select name="categorycode" id="categorycode">
- <option value="">Cualquiera</option>[% FOREACH categorie IN categories %]
- [% IF ( categorie.selected ) %]
- <option value="[% categorie.categorycode %]" selected="selected">[% categorie.description %]</option>[% ELSE %]
- <option value="[% categorie.categorycode %]">[% categorie.description %]</option>[% END %]
- [% END %]</select>
+ [% IF ( branchloop ) %] <p id="filters"> <label for="branchcode">Biblioteca: </label><select name="branchcode" id="branchcode">
+ <option value="">Cualquiera</option>[% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %] [% END %]</select>
+ <label for="categorycode">Categoría: </label><select name="categorycode" id="categorycode">
+ <option value="">Cualquiera</option>[% FOREACH categorie IN categories %] [% IF ( categorie.selected ) %] <option value="[% categorie.categorycode %]" selected="selected">[% categorie.description %]</option>[% ELSE %] <option value="[% categorie.categorycode %]">[% categorie.description %]</option>[% END %] [% END %]</select>
  </p>
- [% END %]
-</form>
+ [% END %] </form>
  </div>
- [% IF ( CAN_user_circulate ) %]
- <div id="circ_search" class="residentsearch" style="display:none;">
- <p class="tip">Inserta el número de carné de socio o parte del nombre:</p>
- <form action="/cgi-bin/koha/circ/circulation.pl" method="post" autocomplete="off">
- [% IF ( CircAutocompl ) %]
- <div class="autocomplete">
- <div id="borrowerautocomplete" class="autocomplete">
- <input autocomplete="off" id="findborrower" name="findborrower" type="text" />
- <div id="yborrowercontainer"></div>
- <input value="Enviar" id="ysearchsubmit" type="submit" class="submit" />
- <input name="branch" value="[% branch %]" type="hidden" />
- <input name="printer" value="" type="hidden" />
- </div>
- </div>
- [% ELSE %]
- <input id="findborrower" name="findborrower" size="40" type="text" />
- <input name="branch" value="[% branch %]" type="hidden" />
- <input name="printer" value="" type="hidden" />
- <input value="Enviar" class="submit" type="submit" />
- [% END %]
- </form>
- </div>[% END %]
- [% IF ( CAN_user_catalogue ) %]
- <div id="catalog_search" class="residentsearch" style="display:none;">
- <p class="tip">Ingresa palabras clave para la búsqueda:</p>
+
+ [% INCLUDE 'patron-search-box.inc' %] [% IF ( CAN_user_catalogue ) %] <div id="catalog_search" class="residentsearch">
+ <p class="tip">Ingrese palabras clave para la búsqueda:</p>
  <form action="/cgi-bin/koha/catalogue/search.pl"  method="get" id="cat-search-block">
- <input value="" name="q" type="text" id="search-form" title="Ingresa los términos que deseas buscar." class="form-text" size="40" />
+ <input value="" name="q" type="text" id="search-form" title="Ingrese los términos de búsqueda." class="form-text" size="40" />
  <input value="Enviar" name="op" type="submit" id="opac-submit" class="submit" />
  </form>
- </div>[% END %]
- [% IF ( CAN_user_circulate ) %]
- <div id="checkin_search" class="residentsearch" style="display:none;">
- <p class="tip">Ingresa un código de barras para devolución:</p>
+ </div>[% END %] [% IF ( CAN_user_circulate ) %] <div id="checkin_search" class="residentsearch">
+ <p class="tip">Ingrese código de barras para devolución:</p>
  <form method="post" action="/cgi-bin/koha/circ/returns.pl" autocomplete="off">
  <input name="barcode" id="ret_barcode" size="40" accesskey="r" />
  <input value="Enviar" class="submit" type="submit" />
  </form>
  </div>
- [% END %]
- <ul>
- <li><a href="/cgi-bin/koha/members/members-home.pl#patron_search">Search patrons</a></li>
- [% IF ( CAN_user_circulate ) %]<li><a href="/cgi-bin/koha/circ/circulation.pl#circ_search">Check out</a></li>[% END %]
- [% IF ( CAN_user_circulate ) %]<li><a href="/cgi-bin/koha/circ/returns.pl#checkin_search">Devolución</a></li>[% END %]
- [% IF ( CAN_user_catalogue ) %]<li><a href="/cgi-bin/koha/catalogue/search.pl#catalog_search">Search the catalog</a></li>[% END %]
- </ul>
+ [% END %] <ul>
+ <li><a href="#patron_search">Buscar socios</a></li>
+ [% IF ( CAN_user_circulate ) %]<li><a href="#circ_search">Préstamo</a></li>[% END %] [% IF ( CAN_user_circulate ) %]<li><a href="#checkin_search">Devolución</a></li>[% END %] [% IF ( CAN_user_catalogue ) %]<li><a href="#catalog_search">Buscar en el catálogo</a></li>[% END %] </ul>
 </div><!-- /header_search -->
 </div><!-- /gradient -->
 <script type="text/javascript">//<![CDATA[

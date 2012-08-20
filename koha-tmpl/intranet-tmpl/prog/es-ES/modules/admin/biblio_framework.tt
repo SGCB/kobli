@@ -1,13 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo; MARC frameworks
-[% IF ( add_form ) %]
-&rsaquo; [% IF ( frameworkcode ) %]Modify framework text[% ELSE %]Add framework[% END %]
-[% ELSIF ( delete_confirm ) %]
-&rsaquo; Delete framework for [% frameworktext %] ([% frameworkcode %])?
-[% END %]
-</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Hojas de trabajo MARC [% IF ( add_form ) %] &rsaquo; [% IF ( frameworkcode ) %]Modificar texto de la hoja de trabajo [% ELSE %]Agregar hoja de trabajo[% END %] [% ELSIF ( delete_confirm ) %] &rsaquo; Eliminar hoja de trabajo para [% frameworktext %] ([% frameworkcode %])? [% END %] </title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 
 function isNotNull(f,noalert) {
@@ -73,7 +65,7 @@ $(document).ready(function() {
 
         var matches = new RegExp("\\?error_import_export=(.+)$").exec(window.location.search);
         if (matches && matches.length > 1) {
-            alert(_("Error importando la hoja de trabajo") + decodeURIComponent(matches[1]));
+            alert(_("Error importando la hoja de trabajo ") + decodeURIComponent(matches[1]));
         }
     });
     
@@ -82,7 +74,7 @@ $(document).ready(function() {
             var filename = $(this).val();
             if ( ! /(?:\.csv|\.sql|\.ods|\.xml)$/.test(filename)) {
                 $(this).css("background-color","yellow");
-                alert(_('Please select an ods or xml file'));
+                alert(_('Por favor, seleccione un archivo ods o xml'));
                 $(this).val("");
                 $(this).css("background-color","white");
             }
@@ -110,7 +102,7 @@ $(document).ready(function() {
                     return false;
             }
             obj.css("background-color","yellow");
-            alert(_('Por favor, selecciona una planilla de cálculo (csv, ods, xml) o un archivo sql'));
+            alert(_('Por favor, seleccione una hoja de cálculo (csv, ods o xml) o un archivo SQL'));
             obj.val("");
             obj.css("background-color","white");
             return false;
@@ -123,19 +115,11 @@ $(document).ready(function() {
 
 </head>
 <body id="admin_biblio_framework" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs">
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
  <a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
 &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a>
-&rsaquo; <a href="/cgi-bin/koha/admin/biblio_framework.pl">MARC frameworks</a>
-[% IF ( add_form ) %]
-&rsaquo; [% IF ( frameworkcode ) %]Modify framework text[% ELSE %]Add framework[% END %]
-[% ELSIF ( delete_confirm ) %]
-&rsaquo; Delete framework for [% frameworktext %] ([% frameworkcode %])?
-[% END %]
-</div>
+&rsaquo; <a href="/cgi-bin/koha/admin/biblio_framework.pl">Hojas de trabajo MARC</a>
+[% IF ( add_form ) %] &rsaquo; [% IF ( frameworkcode ) %]Modificar texto de la hoja de trabajo[% ELSE %]Agregar hoja de trabajo[% END %] [% ELSIF ( delete_confirm ) %] &rsaquo; Eliminar hoja de trabajo para [% frameworktext %] ([% frameworkcode %])? [% END %] </div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
@@ -144,65 +128,44 @@ $(document).ready(function() {
  
 [% IF ( else ) %]<div id="toolbar">
  <ul class="toolbar">
- <li><a id="newframework" href="/cgi-bin/koha/admin/biblio_framework.pl?op=add_form">New framework</a></li>
-</ul></div>[% END %]
-
-[% IF ( add_form ) %]
- <h1>[% IF ( frameworkcode ) %]Modify framework text[% ELSE %]Add framework[% END %]</h1>
+ <li><a id="newframework" href="/cgi-bin/koha/admin/biblio_framework.pl?op=add_form">Nueva hoja de trabajo</a></li>
+</ul></div>[% END %] [% IF ( add_form ) %] <h1>[% IF ( frameworkcode ) %]Modificar texto de la hoja de trabajo[% ELSE %]Agregar hoja de trabajo[% END %]</h1>
  <form action="[% script_name %]" name="Aform" method="post" onsubmit="return Check(this);">
  <input type="hidden" name="op" value="add_validate" />
  <fieldset class="rows">
  <ol>
- [% IF ( frameworkcode ) %]
- <li><span class="label">Código de hoja de trabajo</span><input type="hidden" id="frameworkcode" name="frameworkcode" value="[% frameworkcode %]" />[% frameworkcode %]
- <input type="hidden" name="modif" value="1" />
+ [% IF ( frameworkcode ) %] <li><span class="label">Código de hoja de trabajo</span><input type="hidden" id="frameworkcode" name="frameworkcode" value="[% frameworkcode %]" />[% frameworkcode %] <input type="hidden" name="modif" value="1" />
  </li>
- [% ELSE %]
- <li><label for="frameworkcode">Código de hoja de trabajo</label><input type="text" id="frameworkcode" name="frameworkcode" size="4" maxlength="4" onblur="toUC(this)" /></li>
- [% END %]
- <li><label for="description">Descripción</label>
+ [% ELSE %] <li><label for="frameworkcode">Código de hoja de trabajo</label><input type="text" id="frameworkcode" name="frameworkcode" size="4" maxlength="4" onblur="toUC(this)" /></li>
+ [% END %] <li><label for="description">Descripción</label>
  <input type="text" name="frameworktext" id="description" size="40" maxlength="80" value="[% frameworktext |html %]" /></li>
- [% IF ( frameworkloop ) %]
- [% IF ( frameworkcode ) %]
- <li><label for="indicators">Clone indicators using</label>
+ [% IF ( frameworkloop ) %] [% IF ( frameworkcode ) %] <li><label for="indicators">Clone indicators using</label>
  <select name="indicators" id="indicators">
  <option value="">Don't clone</option>
- [% FOREACH loo IN frameworkloop %]
- <option value="[% loo.frameworkcode %]">[% loo.frameworktext %]</option>
- [% END %]
- </select>
+ [% FOREACH loo IN frameworkloop %] <option value="[% loo.frameworkcode %]">[% loo.frameworktext %]</option>
+ [% END %] </select>
  </li>
- [% END %]
- [% END %]
- </ol></fieldset>
+ [% END %] [% END %] </ol></fieldset>
  <fieldset class="action"> <input value="Enviar" type="submit" class="submit" /></fieldset>
  </form>
-[% END %]
-
-[% IF ( delete_confirm ) %]
-<div class="dialog alert">
+[% END %] [% IF ( delete_confirm ) %] <div class="dialog alert">
  <h3>¿Eliminar hoja de trabajo para [% frameworktext %] ([% frameworkcode %])?</h3>
- [% IF ( total ) %]
- <p><strong>Esta hoja de trabajo es usada [% total %] veces</strong>.</p>
- [% END %]
- <form class="inline" action="[% script_name %]" method="post"><input type="hidden" name="op" value="delete_confirmed" /><input type="hidden" name="frameworkcode" value="[% frameworkcode %]" /><input type="submit" class="approve" value="Yes, delete this framework!" />
+ [% IF ( total ) %] <p><strong>Esta hoja de trabajo es usada [% total %] veces</strong>.</p>
+ [% END %] <form class="inline" action="[% script_name %]" method="post"><input type="hidden" name="op" value="delete_confirmed" /><input type="hidden" name="frameworkcode" value="[% frameworkcode %]" /><input value="Sí, ¡eliminar esta hoja de trabajo!" type="submit" class="approve" />
  </form>
- <form class="inline" action="[% script_name %]" method="get"><input type="submit" class="deny" value="No, do not delete!" /></form>
+ <form class="inline" action="[% script_name %]" method="get"><input value="No, no eliminar!" type="submit" class="deny" /></form>
 </div>
-[% END %]
-
-[% IF ( else ) %]
-<h1>MARC frameworks</h1>
-<p>Nombre de la hoja de trabajo, luego ve al registro de MARC para establecer los parámetros del editor MARC</p>
+[% END %] [% IF ( else ) %] <h1>Hojas de trabajo MARC</h1>
+<p>Nombre de la hoja de trabajo, luego vaya al registro de MARC para establecer los parámetros del editor MARC</p>
 <table>
  <tr>
  <th>Código</th>
  <th>Descripción</th>
  <th>&nbsp;</th>
  <th>Editar</th>
- <th>Eliminar</th>
- <th title="Exportar estructura de hoja de trabajo (campos, subcampos) a planilla de cálculo (.csv, .xml, .ods) o archivo SQL">Exportar</th>
- <th title="Exportar estructura de hoja de trabajo (campos, subcampos) a planilla de cálculo (.csv, .xml, .ods) o archivo SQL">Importar</th>
+ <th>Borrar</th>
+ <th title="Exportar estructura de hoja de trabajo (campos, subcampos) a hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Exportar</th>
+ <th title="Importar estructura de hoja de trabajo (campos, subcampos) desde una hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Importar</th>
  </tr>
  <tr>
  <td>&nbsp;</td>
@@ -210,31 +173,31 @@ $(document).ready(function() {
  <td><a href="marctagstructure.pl?frameworkcode=[% frameworkcode %]">Estructura MARC</a></td>
  <td>&nbsp;</td>
  <td>&nbsp;</td>
- <td><div class="import_export"><a class="import_export_fw" href="#" title="Export [% frameworkcode %] framework structure (fields, subfields) to a spreadsheet file (.csv, .xml, .ods) or SQL file">Exportar</a>
+ <td><div class="import_export"><a href="#" class="import_export_fw" title="Exportar estructura de hoja de trabajo [% frameworkcode %] (campos, subcampos) a hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Exportar</a>
  <div class="import_export_options">
  <form action="import_export_framework.pl" name="form_[% frameworkcode %]" method="get" target="_blank"  class="form_export">
  <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
  <ul>
  <li class="li_close_import_export"><span class="import_export_close" title="Cerrar ventana emergente">Cerrar</span></li>
- <li><input type="radio" name="type_export_[% frameworkcode %]" value="csv" id="type_export_[% frameworkcode %]" checked="checked" /><label for="type_export_[% frameworkcode %]" title="Export to CSV spreadsheet">Export to CSV spreadsheet</label></li>
- <li><input type="radio" name="type_export_[% frameworkcode %]" value="excel" id="type_export_[% frameworkcode %]" /><label for="type_export_[% frameworkcode %]" title="Export to Excel as XML format, compatible with OpenOffice/LibreOffice as well">Export to Excel with XML format</label></li>
- <li><input type="radio" name="type_export_[% frameworkcode %]" value="ods" id="type_export_[% frameworkcode %]" /><label for="type_export_[% frameworkcode %]">Export to OpenDocument spreadsheet format</label></li>
+ <li><input type="radio" name="type_export_[% frameworkcode %]" value="csv" id="type_export_[% frameworkcode %]" checked="checked" /><label for="type_export_[% frameworkcode %]" title="Exportar a hoja de cálculo CSV">Exportar a hoja de cálculo CSV</label></li>
+ <li><input type="radio" name="type_export_[% frameworkcode %]" value="excel" id="type_export_[% frameworkcode %]" /><label for="type_export_[% frameworkcode %]" title="Exportar a Excel como formato XML, también compatible con OpenOffice/LibreOffice">Exportar a Excel con formato XML </label></li>
+ <li><input type="radio" name="type_export_[% frameworkcode %]" value="ods" id="type_export_[% frameworkcode %]" /><label for="type_export_[% frameworkcode %]">Exportar a formato de hoja de cálculo OpenDocument </label></li>
  <li><input type="radio" name="type_export_[% frameworkcode %]" value="sql" id="type_export_[% frameworkcode %]" /><label for="type_export_[% frameworkcode %]" title="Exportar a SQL">Exportar a SQL</label></li>
- <li><input href="#" value="Exportar" type="submit" class="export_ok" title="Exportar a planilla de cálculo" /></li>
+ <li><input href="#" value="Exportar" type="submit" class="export_ok" title="Exportar a hoja de cálculo" /></li>
  </ul>
  </form>
  </div>
  </div>
  </td>
- <td><div class="import_export"><a href="#" class="import_export_fw" title="Import [% frameworkcode %] framework structure (fields, subfields) from a spreadsheet file (.csv, .xml, .ods) or SQL file">Importar</a>
+ <td><div class="import_export"><a href="#" class="import_export_fw" title="Importar estructura de hoja de trabajo [% frameworkcode %] (campos, subcampos) desde una hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Importar</a>
  <div class="import_export_options">
  <form action="/cgi-bin/koha/admin/import_export_framework.pl" name="form_i_[% frameworkcode %]" id="form_i_[% frameworkcode %]" method="post" enctype="multipart/form-data" class="form_import">
  <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
  <input type="hidden" name="action" value="import" />
  <ul>
  <li class="li_close_import_export"><span class="import_export_close" title="Cerrar ventana emergente">Cerrar</span></li>
- <li><label for="file_import_[% frameworkcode %]" title="Importar a planilla de cálculo, formatos disponibles: ods, xml (formateado desde excel)">Planilla de cálculo</label><input type="file" name="file_import_[% frameworkcode %]" id="file_import_[% frameworkcode %]" class="input_import" value="" autocomplete="off" /></li>
- <li><input value="Importar" type="submit" class="import_ok" title="Importar a planilla de cálculo" /><div id="importing_[% frameworkcode %]" style="display:none" class="importing"><img src="/intranet-tmpl/prog/img/loading.gif" /><span class="importing_msg"></span></div></li>
+ <li><label for="file_import_[% frameworkcode %]" title="Importar desde una hoja de cálculo, formatos disponibles .xml, .ods (formateados con Excel)">Archivo planilla de cálculo</label><input type="file" name="file_import_[% frameworkcode %]" id="file_import_[% frameworkcode %]" class="input_import" value="" autocomplete="off" /></li>
+ <li><input value="Importar" type="submit" class="import_ok" title="Importar desde una hoja de cálculo" /><div id="importing_[% frameworkcode %]" style="display:none" class="importing"><img src="/intranet-tmpl/prog/img/loading.gif" /><span class="importing_msg"></span></div></li>
  </ul>
  </form>
  </div>
@@ -245,54 +208,47 @@ $(document).ready(function() {
  [% FOREACH loo IN loop %]
  [% IF ( loop.odd ) %]<tr class="highlight">
  [% ELSE %]<tr>
- [% END %]
- <td>[% loo.frameworkcode %]</td>
+ [% END %] <td>[% loo.frameworkcode %]</td>
  <td>[% loo.frameworktext %]</td>
  <td><a href="marctagstructure.pl?frameworkcode=[% loo.frameworkcode %]" >Estructura MARC</a></td>
  <td><a href="[% loo.script_name %]?op=add_form&amp;frameworkcode=[% loo.frameworkcode |html %]">Editar</a></td>
- <td><a href="[% loo.script_name %]?op=delete_confirm&amp;frameworkcode=[% loo.frameworkcode |html %]">Eliminar</a></td>
+ <td><a href="[% loo.script_name %]?op=delete_confirm&amp;frameworkcode=[% loo.frameworkcode |html %]">Borrar</a></td>
  <td>
- <div class="import_export"><a class="import_export_fw" href="#" title="Export [% loo.frameworkcode %] framework structure (fields, subfields) to a spreadsheet file (.csv, .xml, .ods) or SQL file">Exportar</a>
+ <div class="import_export"><a href="#" class="import_export_fw" title="Exportar estructura de hoja de trabajo [% loo.frameworkcode %] (campos, subcampos) a hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Exportar</a>
  <div class="import_export_options">
  <form action="import_export_framework.pl" name="form_[% loo.frameworkcode %]" method="get" target="_blank" class="form_export">
  <input type="hidden" name="frameworkcode" value="[% loo.frameworkcode %]" />
  <ul>
  <li class="li_close_import_export"><span class="import_export_close" title="Cerrar ventana emergente">Cerrar</span></li>
- <li><input type="radio" name="type_export_[% loo.frameworkcode %]" value="csv" id="type_export_[% loo.frameworkcode %]" checked="checked" /><label for="type_export_[% loo.frameworkcode %]" title="Export to CSV spreadsheet">Export to CSV spreadsheet</label></li>
- <li><input type="radio" name="type_export_[% loo.frameworkcode %]" value="excel" id="type_export_[% loo.frameworkcode %]" /><label for="type_export_[% loo.frameworkcode %]" title="Export to Excel as XML format, compatible with OpenOffice/LibreOffice as well">Export to Excel as XML format</label></li>
- <li><input type="radio" name="type_export_[% loo.frameworkcode %]" value="ods" id="type_export_[% loo.frameworkcode %]" /><label for="type_export_[% loo.frameworkcode %]">Export to OpenDocument spreadsheet format</label></li>
+ <li><input type="radio" name="type_export_[% loo.frameworkcode %]" value="csv" id="type_export_[% loo.frameworkcode %]" checked="checked" /><label for="type_export_[% loo.frameworkcode %]" title="Exportar a hoja de cálculo CSV">Exportar a hoja de cálculo CSV</label></li>
+ <li><input type="radio" name="type_export_[% loo.frameworkcode %]" value="excel" id="type_export_[% loo.frameworkcode %]" /><label for="type_export_[% loo.frameworkcode %]" title="Exportar a Excel como formato XML, también compatible con OpenOffice/LibreOffice">Exportar a Excel como formato XML</label></li>
+ <li><input type="radio" name="type_export_[% loo.frameworkcode %]" value="ods" id="type_export_[% loo.frameworkcode %]" /><label for="type_export_[% loo.frameworkcode %]">Exportar a formato de hoja de cálculo OpenDocument </label></li>
  <li><input type="radio" name="type_export_[% loo.frameworkcode %]" value="sql" id="type_export_[% loo.frameworkcode %]" /><label for="type_export_[% loo.frameworkcode %]" title="Exportar a SQL">Exportar a SQL</label></li>
- <li><input href="#" value="Exportar" type="submit" class="export_ok" title="Exportar a planilla de cálculo" /></li>
+ <li><input href="#" value="Exportar" type="submit" class="export_ok" title="Exportar a hoja de cálculo" /></li>
  </ul>
  </form>
  </div>
  </div>
  </td>
- <td><div class="import_export"><a class="import_export_fw" href="#" title="Import [% loo.frameworkcode %] framework structure (fields, subfields) from a spreadsheet file (.csv, .xml, .ods) or SQL file">Importar</a>
+ <td><div class="import_export"><a href="#" class="import_export_fw" title="Importar estructura de hoja de trabajo [% loo.frameworkcode %] (campos, subcampos) desde una hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Importar</a>
  <div class="import_export_options">
  <form action="/cgi-bin/koha/admin/import_export_framework.pl" name="form_i_[% loo.frameworkcode %]" id="form_i_[% loo.frameworkcode %]" method="post" enctype="multipart/form-data" class="form_import">
  <input type="hidden" name="frameworkcode" value="[% loo.frameworkcode %]" />
  <input type="hidden" name="action" value="import" />
  <ul>
  <li class="li_close_import_export"><span class="import_export_close" title="Cerrar ventana emergente">Cerrar</span></li>
- <li><label for="file_import_[% loo.frameworkcode %]" title="Importar a planilla de cálculo, formatos disponibles: ods, xml (formateado desde excel)">Planilla de cálculo</label><input type="file" name="file_import_[% loo.frameworkcode %]" id="file_import_[% loo.frameworkcode %]" class="input_import" value="" autocomplete="off" /></li>
- <li><input value="Importar" type="submit" class="import_ok" title="Importar a planilla de cálculo" /><div id="importing_[% loo.frameworkcode %]" style="display:none" class="importing"><img src="/intranet-tmpl/prog/img/loading.gif" /><span class="importing_msg"></span></div></li>
+ <li><label for="file_import_[% loo.frameworkcode %]" title="Importar desde una hoja de cálculo, formatos disponibles .xml, .ods (formateados con Excel)">Archivo planilla de cálculo</label><input type="file" name="file_import_[% loo.frameworkcode %]" id="file_import_[% loo.frameworkcode %]" class="input_import" value="" autocomplete="off" /></li>
+ <li><input value="Importar" type="submit" class="import_ok" title="Importar desde una hoja de cálculo" /><div id="importing_[% loo.frameworkcode %]" style="display:none" class="importing"><img src="/intranet-tmpl/prog/img/loading.gif" /><span class="importing_msg"></span></div></li>
  </ul>
  </form>
  </div>
  </div>
  </td>
  </tr>
- [% END %]
-</table>
- [% IF ( previous ) %]<a href="[% previous %]">&lt;&lt; Anterior</a>[% END %]
- [% IF ( next ) %]<a href="[% next %]">Siguiente &gt;&gt;</a>[% END %]
-
-[% END %]
- </div>
+ [% END %] </table>
+ [% IF ( previous ) %]<a href="[% previous %]">&lt;&lt; Anterior</a>[% END %] [% IF ( next ) %]<a href="[% next %]">Siguiente &gt;&gt;</a>[% END %] [% END %] </div>
  </div>
 <div class="yui-b">
-[% INCLUDE 'admin-menu.inc' %]
- </div>
+[% INCLUDE 'admin-menu.inc' %] </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

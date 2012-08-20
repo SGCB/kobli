@@ -1,12 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Tools &rsaquo; Manage staged MARC records
-[% IF ( import_batch_id ) %]
- &rsaquo; Batch [% import_batch_id %]
-[% END %]
-</title>
-[% INCLUDE 'greybox.inc' %]
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'background-job.inc' %]
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Administrar registros MARC preparados[% IF ( import_batch_id ) %] &rsaquo; Lote [% import_batch_id %] [% END %] </title>
+[% INCLUDE 'greybox.inc' %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/background-job-progressbar.js"></script>
 <script type="text/JavaScript" language="JavaScript">
 //<![CDATA[
 $(document).ready(function(){
@@ -29,16 +22,9 @@ $(document).ready(function(){
 	#jobprogress{ width:200px;height:10px;border:1px solid #666;background:url('/intranet-tmpl/prog/img/progress.png') -300px 0px no-repeat; } span.change-status { font-style:italic; color:#666; display:none; }</style>
 </head>
 <body id="tools_manage-marc-import" class="tools">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> 
-[% IF ( import_batch_id ) %] &rsaquo; <a href="[% script_name %]">Manage staged MARC records</a>
- &rsaquo; Batch [% import_batch_id %]
-[% ELSE %]
- &rsaquo; Manage staged MARC records
-[% END %]
-</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> 
+[% IF ( import_batch_id ) %] &rsaquo; <a href="[% script_name %]">Administrar registros MARC preparados</a>
+ &rsaquo; Lote [% import_batch_id %] [% ELSE %] &rsaquo; Administrar registros MARC preparados [% END %] </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -46,102 +32,53 @@ $(document).ready(function(){
  <div id="yui-main">
  <div class="yui-b">
 
-<h1>Manage staged MARC records
-[% IF ( import_batch_id ) %]
- &rsaquo; Batch [% import_batch_id %]
-[% END %]
-</h1>
-[% IF ( label_batch_msg ) %]
-[% IF ( alert ) %]
-<div class="alert">
-[% ELSE %]
-<div class="dialog">
-[% END %]
-<b><p>[% label_batch_msg %]</p></b>
+<h1>Administrar registros MARC preparados [% IF ( import_batch_id ) %] &rsaquo; Lote [% import_batch_id %] [% END %] </h1>
+[% IF ( label_batch_msg ) %] [% IF ( alert ) %] <div class="alert">
+[% ELSE %] <div class="dialog">
+[% END %] <b><p>[% label_batch_msg %]</p></b>
 </div>
-[% END %]
-
-[% IF ( did_clean ) %]
- <div class="dialog message">Lote de importación vaciado #[% import_batch_id %]</div>
-[% END %]
-
-[% UNLESS ( batch_list ) %]
- [% UNLESS ( batch_info ) %]
- <div class="dialog message">
+[% END %] [% IF ( did_clean ) %] <div class="dialog message">Lote de importación vaciado #[% import_batch_id %]</div>
+[% END %] [% UNLESS ( batch_list ) %] [% UNLESS ( batch_info ) %] <div class="dialog message">
  <p>No se ha preparado ningún registro</p>
  <p><a href="/cgi-bin/koha/tools/stage-marc-import.pl">Registros preparados MARC para importar</a>.</p>
  </div>
- [% END %]
-[% END %]
-
-[% IF ( batch_info ) %]
-
-[% IF ( can_commit ) %]
-<form action="[% script_name %]" method="post">
+ [% END %] [% END %] [% IF ( batch_info ) %] [% IF ( can_commit ) %] <form action="[% script_name %]" method="post">
 <input type="hidden" name="op" value="redo-matching" />
 <input type="hidden" name="import_batch_id" value="[% import_batch_id %]" />
 <input type="hidden" name="current_matcher_id" value="[% current_matcher_id %]" />
-[% END %]
-
- [% IF ( rematch_attempted ) %]
- [% IF ( rematch_failed ) %]
- <div class="dialog alert">Error en la aplicación de una regla para detectar coincidencias</div>
- [% ELSE %]
- <div class="dialog message">Applied different matching rule. Number of records matched now
- [% num_with_matches %]
- </div>
- [% END %]
- [% END %]
- [% IF ( changed_overlay_action ) %]
- <div class="dialog message">Cambiar la acción si se encuentran coincidencias</div>
- [% END %]
- [% IF ( changed_nomatch_action ) %]
- <div class="dialog message">Cambiar la acción si no se encuentran coincidencias</div>
- [% END %]
- [% IF ( changed_item_action ) %]
- <div class="dialog message">Se ha cambiado la opción de procesado de ítem</div>
- [% END %]
-
-<fieldset class="rows" id="staged-record-matching-rules">
+[% END %] [% IF ( rematch_attempted ) %] [% IF ( rematch_failed ) %] <div class="dialog alert">Error en la aplicación de una regla para detectar coincidencias</div>
+ [% ELSE %] <div class="dialog message">Se aplicó una regla de coincidencia distinta. Número de registros encontrados ahora [% num_with_matches %] </div>
+ [% END %] [% END %] [% IF ( changed_overlay_action ) %] <div class="dialog message">Cambiar la acción si se encuentran coincidencias</div>
+ [% END %] [% IF ( changed_nomatch_action ) %] <div class="dialog message">Cambiar la acción si no se encuentran coincidencias</div>
+ [% END %] [% IF ( changed_item_action ) %] <div class="dialog message">Se ha cambiado la opción de procesado de ítem</div>
+ [% END %] <fieldset class="rows" id="staged-record-matching-rules">
  <ol>
  <li><span class="label">Nombre de archivo:</span> [% file_name %]</li>
- <li><span class="label">Comentarios:</span> [% IF ( comments ) %][% comments %](none)[% END %]</li>
+ <li><span class="label">Comentarios:</span> [% IF ( comments ) %][% comments %](ninguno)[% END %]</li>
  <li><span class="label">Preparado:</span> [% upload_timestamp %]</li>
  <li><span class="label">Estado:</span> [% import_status %]</li>
  <li> 
 [% IF ( can_commit ) %]<label for="new_matcher_id">Regla de coincidencia aplicada:</label><select name="new_matcher_id" id="new_matcher_id">
- <option value="">No buscar registros coincidentes</option> 
- [% FOREACH available_matcher IN available_matchers %]
- [% IF ( available_matcher.selected ) %]
- <option value="[% available_matcher.matcher_id %]" selected="selected">
+ <option value="">No busca de registros coincidentes</option> 
+ [% FOREACH available_matcher IN available_matchers %] [% IF ( available_matcher.selected ) %] <option value="[% available_matcher.matcher_id %]" selected="selected">
  [% available_matcher.code %] ([% available_matcher.description %]) </option>
- [% ELSE %]
- <option value="[% available_matcher.matcher_id %]">
+ [% ELSE %] <option value="[% available_matcher.matcher_id %]">
  [% available_matcher.code %] ([% available_matcher.description %]) </option>
- [% END %]
- [% END %]
- </select> <span class="change-status">Changed. <a href="#" class="reset" id="reset_new_matcher_id">Restablecer</a></span>[% ELSE %]<span class="label">Regla de coincidencia aplicada</span>[% IF ( current_matcher_id ) %]
- [% current_matcher_code %] ([% current_matcher_description %])
-[% ELSE %]
- No matching rule in effect
-[% END %][% END %]
- </li>
+ [% END %] [% END %] </select> <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_new_matcher_id">Reiniciar</a></span>[% ELSE %]<span class="label">Regla de coincidencia aplicada</span>[% IF ( current_matcher_id ) %] [% current_matcher_code %] ([% current_matcher_description %]) [% ELSE %] No hay reglas de coincidencia en vigor [% END %][% END %] </li>
  <li>[% IF ( can_commit ) %] <label for="overlay_action">Acción en caso de registro coincidente encontrado:</label>
- [% INCLUDE 'tools-overlay-action.inc' %] <span class="change-status">Changed. <a href="#" class="reset" id="reset_overlay_action">Restablecer</a></span>[% ELSE %]<span class="label">Acción en caso de registro coincidente encontrado:</span>[% overlay_action %][% END %]</li>
+ [% INCLUDE 'tools-overlay-action.inc' %] <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_overlay_action">Reiniciar</a></span>[% ELSE %]<span class="label">Acción en caso de registro coincidente encontrado:</span>[% overlay_action %][% END %]</li>
  
  <li>[% IF ( can_commit ) %]<label for="nomatch_action">Acción si no se encontró coincidencia:</label>
- [% INCLUDE 'tools-nomatch-action.inc' %] <span class="change-status">Changed. <a href="#" class="reset" id="reset_nomatch_action">Restablecer</a></span>[% ELSE %]<span class="label">Acción si no se encontró coincidencia:</span>[% nomatch_action %][% END %]</li>
+ [% INCLUDE 'tools-nomatch-action.inc' %] <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_nomatch_action">Reiniciar</a></span>[% ELSE %]<span class="label">Acción si no se encontró coincidencia:</span>[% nomatch_action %][% END %]</li>
  
  <li>[% IF ( can_commit ) %]<label for="item_action">Procesamiento del ítem:</label>
- [% INCLUDE 'tools-item-action.inc' %] <span class="change-status">Changed. <a href="#" class="reset" id="reset_item_action">Restablecer</a></span>[% ELSE %]<span class="label">Procesamiento del ítem:</span>[% item_action %][% END %]</li>
+ [% INCLUDE 'tools-item-action.inc' %] <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_item_action">Reiniciar</a></span>[% ELSE %]<span class="label">Procesamiento del ítem:</span>[% item_action %][% END %]</li>
  </ol>
-[% IF ( can_commit ) %]<fieldset class="action"><input value="Aplicar una regla de coincidencia diferente" type="submit" class="button" /></fieldset></form>[% END %]
-</fieldset>
+[% IF ( can_commit ) %]<fieldset class="action"><input value="Aplicar una regla de coincidencia diferente" type="submit" class="button" /></fieldset></form>[% END %] </fieldset>
 
 
 <div>
- [% IF ( can_commit ) %]
- <form action="[% script_name %]" method="post">
+ [% IF ( can_commit ) %] <form action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="commit-batch" />
  <input type="hidden" name="runinbackground" value="" />
  <input type="hidden" name="completedJobID" value="" />
@@ -149,44 +86,35 @@ $(document).ready(function(){
  <fieldset class="action">
  <input value="Importar este lote en el catálogo" name="mainformsubmit" type="submit" class="button" onclick="return submitBackgroundJob(this.form);" />
  <br/>
- Add new bibliographic records into this framework:
- <select name="framework" id="frameworks">
+ Agregar un nuevo registro bibliográfico en esta hoja de trabajo: <select name="framework" id="frameworks">
  <option value="">Predeterminado</option>
- [% FOREACH framework IN frameworks %]
- <option value="[% framework.value %]">[% framework.label %]</option>
- [% END %]
- </select>
+ [% FOREACH framework IN frameworks %] <option value="[% framework.value %]">[% framework.label %]</option>
+ [% END %] </select>
  </fieldset>
  </form>
- <div id="jobpanel"><div id="jobstatus">Avance del trabajo:<div id="jobprogress"></div> <span id="jobprogresspercent">0</span>%</div>
+ <div id="jobpanel"><div id="jobstatus">Avance del trabajo: <div id="jobprogress"></div> <span id="jobprogresspercent"></span>%</div>
  <div id="jobfailed"></div></div>
- [% END %]
- [% IF ( can_revert ) %]
- <form action="[% script_name %]" method="post">
+ [% END %] [% IF ( can_revert ) %] <form action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="revert-batch" />
  <input type="hidden" name="runinbackground" value="" />
  <input type="hidden" name="completedJobID" value="" />
  <input type="hidden" name="import_batch_id" value="[% import_batch_id %]" />
  <fieldset class="action"><input value="Deshacer importación en el catálogo" name="mainformsubmit" type="submit" class="button" onclick="return submitBackgroundJob(this.form);" /></fieldset>
  </form>
- <div id="jobpanel"><div id="jobstatus">Avance del trabajo:<div id="jobprogress"></div> <span id="jobprogresspercent">0</span>%</div>
+ <div id="jobpanel"><div id="jobstatus">Avance del trabajo: <div id="jobprogress"></div> <span id="jobprogresspercent"></span>%</div>
  <div id="jobfailed"></div></div>
- [% END %]
-</div>
- [% IF ( did_commit ) %]
- <div class="dialog message">Importación completa de registros</div>
+ [% END %] </div>
+ [% IF ( did_commit ) %] <div class="dialog message">Importación completa de registros</div>
  <table>
  <tr><td>Número de registros agregados</td><td>[% num_added %]</td></tr>
  <tr><td>Número de registros actualizados</td><td>[% num_updated %]</td></tr>
  <tr><td>Número de registros ignorados</td><td>[% num_ignored %]</td></tr>
  <tr><td>Número de ítems agregados</td><td>[% num_items_added %]</td></tr>
  <tr><td>Número de ítems ignorados debido a duplicaciones del código de barras</td><td>[% num_items_errored_barcode %]</td></tr>
- <tr><td>Número de ítems ignorados debido a una biblioteca propietaria inválida</td><td>[% num_items_errored_homebranch %]</td></tr>
- <tr><td>Número de ítems ignorados debido a una biblioteca posesora inválida</td><td>[% num_items_errored_holdingbranch %]</td></tr>
+ <tr><td>Number of items ignored because of invalid homebranch</td><td>[% num_items_errored_homebranch %]</td></tr>
+ <tr><td>Number of items ignored because of invalid holdingbranch</td><td>[% num_items_errored_holdingbranch %]</td></tr>
  </table>
- [% END %]
- [% IF ( did_revert ) %]
- <div class="dialog message">Deshacer importación de registros</div>
+ [% END %] [% IF ( did_revert ) %] <div class="dialog message">Deshacer importación de registros</div>
  <table>
  <tr><td>Número de registros eliminados</td><td>[% num_deleted %]</td></tr>
  <tr><td>Número de ítems eliminados</td><td>[% num_items_deleted %]</td></tr>
@@ -194,121 +122,76 @@ $(document).ready(function(){
  <tr><td>Número de registros modificados</td><td>[% num_reverted %]</td></tr>
  <tr><td>Número de registros ignorados</td><td>[% num_ignored %]</td></tr>
  </table>
- [% END %]
-[% END %]
-<br style="clear:both;" />
+ [% END %] [% END %] <br style="clear:both;" />
 
-[% IF ( batch_list ) %]
- [% IF ( pages ) %]
-<div class="pages">
-Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %]<span class="current">[% page.page_number %]</span>
- [% ELSE %]
- <a class="nav" href="[% page.script_name %]?offset=[% page.offset %]">[% page.page_number %]</a>
- [% END %]
- [% END %]
-</div>
- [% END %]
-<table>
+[% IF ( batch_list ) %] [% IF ( pages ) %] <div class="pages">
+Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %] <span class="current">[% page.page_number %]</span>
+ [% ELSE %] <a class="nav" href="[% page.script_name %]?offset=[% page.offset %]">[% page.page_number %]</a>
+ [% END %] [% END %] </div>
+ [% END %] <table>
  <tr>
  <th>#</th>
  <th>Nombre de archivo</th>
  <th>Comentarios</th>
  <th>Estado</th>
  <th>Preparado</th>
- <th> # Bibs</th>
+ <th># Artículos</th>
  <th># Ítems</th>
  <th>Acción</th>
  </tr>
- [% FOREACH batch_lis IN batch_list %]
- [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %]
- <td>[% batch_lis.import_batch_id %]</td>
+ [% FOREACH batch_lis IN batch_list %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td>[% batch_lis.import_batch_id %]</td>
  <td><a href="[% batch_lis.script_name %]?import_batch_id=[% batch_lis.import_batch_id %]">[% batch_lis.file_name %]</a></td>
  <td>[% batch_lis.comments %]</td>
  <td>[% batch_lis.import_status %]</td>
  <td>[% batch_lis.upload_timestamp %]</td>
  <td>[% batch_lis.num_biblios %]</td>
- <td>[% batch_lis.num_items %][% IF ( batch_lis.num_items ) %] <a href="[% batch_lis.script_name %]?import_batch_id=[% batch_lis.import_batch_id %]&amp;op=create_labels">(Create label batch)</a>[% END %]</td>
- <td>[% IF ( batch_lis.can_clean ) %]
- <form method="post" action="[% batch_lis.script_name %]" name="clean_batch_[% batch_lis.import_batch_id %]" id="clean_batch_[% batch_lis.import_batch_id %]" >
+ <td>[% batch_lis.num_items %][% IF ( batch_lis.num_items ) %] <a href="[% batch_lis.script_name %]?import_batch_id=[% batch_lis.import_batch_id %]&amp;op=create_labels">(Crear lote de etiquetas)</a>[% END %]</td>
+ <td>[% IF ( batch_lis.can_clean ) %] <form method="post" action="[% batch_lis.script_name %]" name="clean_batch_[% batch_lis.import_batch_id %]" id="clean_batch_[% batch_lis.import_batch_id %]" >
  <input type="hidden" name="import_batch_id" value="[% batch_lis.import_batch_id %]" />
  <input type="hidden" name="op" value="clean-batch" />
  <input value="Limpiar" type="submit" class="button" onclick="return confirm(_('Clear all reservoir records staged in this batch?  This cannot be undone.'));" />
  </form>
- [% END %]
- </td>
+ [% END %] </td>
  </tr>
- [% END %]
-</table>
- [% IF ( pages ) %]
-<div class="pages">
-Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %]<span class="current">[% page.page_number %]</span>
- [% ELSE %]
- <a class="nav" href="[% page.script_name %]?offset=[% page.offset %]">[% page.page_number %]</a>
- [% END %]
- [% END %]
-</div>
- [% END %]
-[% END %]
-
-[% IF ( biblio_list ) %]
- [% IF ( pages ) %]
-<div class="pages">
-Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %]<span class="current">[% page.page_number %]</span>
- [% ELSE %]
- <a class="nav" href="[% page.script_name %]?import_batch_id=[% import_batch_id %]&amp;offset=[% page.offset %]">[% page.page_number %]</a>
- [% END %]
- [% END %]
-</div>
- [% END %]
-<table>
+ [% END %] </table>
+ [% IF ( pages ) %] <div class="pages">
+Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %] <span class="current">[% page.page_number %]</span>
+ [% ELSE %] <a class="nav" href="[% page.script_name %]?offset=[% page.offset %]">[% page.page_number %]</a>
+ [% END %] [% END %] </div>
+ [% END %] [% END %] [% IF ( biblio_list ) %] [% IF ( pages ) %] <div class="pages">
+Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %] <span class="current">[% page.page_number %]</span>
+ [% ELSE %] <a class="nav" href="[% page.script_name %]?import_batch_id=[% import_batch_id %]&amp;offset=[% page.offset %]">[% page.page_number %]</a>
+ [% END %] [% END %] </div>
+ [% END %] <table>
  <tr>
  <th>#</th>
- <th>Cita</th>
+ <th>Citación</th>
  <th>Estado</th>
  <th>¿Coincide?</th>
  <th>Registro</th>
 
  </tr>
- [% FOREACH biblio_lis IN biblio_list %]
- [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %]
- <td>[% biblio_lis.record_sequence %]</td>
+ [% FOREACH biblio_lis IN biblio_list %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td>[% biblio_lis.record_sequence %]</td>
  <td><a href="/cgi-bin/koha/catalogue/showmarc.pl?importid=[% biblio_lis.import_record_id %]" rel="gb_page_center[600,500]">[% biblio_lis.citation %]</a></td>
  <td>[% biblio_lis.status %]</td>
  <td>[% biblio_lis.overlay_status %]</td>
- <td>[% IF ( biblio_lis.final_match_biblionumber ) %]
- <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblio_lis.final_match_biblionumber %]">[% biblio_lis.final_match_biblionumber %]</a>
- [% END %]
- </td>
+ <td>[% IF ( biblio_lis.final_match_biblionumber ) %] <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblio_lis.final_match_biblionumber %]">[% biblio_lis.final_match_biblionumber %]</a>
+ [% END %] </td>
  </tr>
- [% IF ( biblio_lis.match_biblionumber ) %]
- <tr>
+ [% IF ( biblio_lis.match_biblionumber ) %] <tr>
  <td />
- <td class="highlight" colspan="4">Matches biblio [% biblio_lis.match_biblionumber %] (score = [% biblio_lis.match_score %]): <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblio_lis.match_biblionumber %]">[% biblio_lis.match_citation %]</a></td>
+ <td class="highlight" colspan="4">Coincide con registro [% biblio_lis.match_biblionumber %] (puntaje= [% biblio_lis.match_score %]): <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblio_lis.match_biblionumber %]">[% biblio_lis.match_citation %]</a></td>
  </tr>
- [% END %]
- [% END %]
-</table>
- [% IF ( pages ) %]
-<div class="pages">
-Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %]<span class="current">[% page.page_number %]</span>
- [% ELSE %]
- <a class="nav" href="[% page.script_name %]?import_batch_id=[% import_batch_id %]&amp;offset=[% page.offset %]">[% page.page_number %]</a>
- [% END %]
- [% END %]
-</div>
- [% END %]
-[% ELSE %]
- [% IF ( batch_info ) %]
- <div class="dialog alert">There are no records in this batch to import.
- <a href="/cgi-bin/koha/tools/manage-marc-import.pl">Manage staged MARC records</a>.</div>
+ [% END %] [% END %] </table>
+ [% IF ( pages ) %] <div class="pages">
+Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %] <span class="current">[% page.page_number %]</span>
+ [% ELSE %] <a class="nav" href="[% page.script_name %]?import_batch_id=[% import_batch_id %]&amp;offset=[% page.offset %]">[% page.page_number %]</a>
+ [% END %] [% END %] </div>
+ [% END %] [% ELSE %] [% IF ( batch_info ) %] <div class="dialog alert">No hay registros en el lote para importar. <a href="/cgi-bin/koha/tools/manage-marc-import.pl">Administrar registros MARC preparados</a>.</div>
 
- [% END %]
-[% END %]
-
-</div>
+ [% END %] [% END %] </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'tools-menu.inc' %]
+[% INCLUDE 'tools-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

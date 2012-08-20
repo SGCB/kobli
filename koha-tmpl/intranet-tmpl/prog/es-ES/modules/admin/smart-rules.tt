@@ -1,8 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo; Circulation and fine rules</title>
-[% INCLUDE 'doc-head-close.inc' %]
-
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Reglas de circulación y multas</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function() {
         $('#selectlibrary').find("input:submit").hide();
@@ -12,18 +9,9 @@ $(document).ready(function() {
 });
 //]]>
 </script>
-<!-- Enable Calendar system -->
-<link rel="stylesheet" type="text/css" href="[% themelang %]/lib/calendar/calendar-system.css" />
-<script type="text/javascript" src="[% themelang %]/lib/calendar/calendar.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/calendar/calendar-en.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/calendar/calendar-setup.js"></script>
-<!-- End Calendar system additions -->
 </head>
 <body id="admin_smart-rules" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; Circulation and fine rules</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; Reglas de circulación y multas </div>
 
 <div id="doc3" class="yui-t1">
 
@@ -31,35 +19,26 @@ $(document).ready(function() {
  <div id="yui-main">
  <div class="yui-b">
  <h1 class="parameters">
- [% IF ( humanbranch ) %]
- Defining circulation and fine rules for "[% humanbranch %]"
- [% ELSE %]
- Defining circulation and fine rules for all libraries
- [% END %]
- </h1>
+ [% IF ( humanbranch ) %] Definiendo reglas circulación y multas para "[% humanbranch %]" [% ELSE %] todas la bibliotecas [% END %] </h1>
  <div class="help">
  <p>Las normas se aplicarán de la más específica a la menos específica, utilizando la primera encontrada en este orden:</p>
  <ul>
- <li>misma biblioteca, mismo tipo de socio, mismo tipo de item</li>
+ <li>misma biblioteca, mismo tipo de socio, mismo tipo de ítem</li>
  <li>misma biblioteca, mismo tipo de socio, todos los tipos de ítem</li>
- <li>misma biblioteca, todos los tipos de socios, mismo tipo de item</li>
+ <li>misma biblioteca, todos los tipos de socios, mismo tipo de ítem</li>
  <li>misma biblioteca, todos los tipos de socio, todos los tipos de ítem</li>
- <li>all libraries, same patron type, same item type</li>
- <li>all libraries, same patron type, all item types</li>
- <li>all libraries, all patron types, same item type</li>
- <li>all libraries, all patron types, all item types</li>
+ <li>todas las bibliotecas, mismo tipo de socio, mismo tipo de ítem</li>
+ <li>todas las bibliotecas, mismo tipo de socio, todos los tipos de ítem</li>
+ <li>todas las bibliotecas, todos los tipos de socio, mismo tipo de ítem</li>
+ <li>todas las bibliotecas, todos los tipos de socio, todos los tipos de ítem</li>
  </ul>
  <p>Para modificar una regla, cree una nueva con el mismo tipo de socio y tipo de ítem.</p>
  </div>
  <div>
  <form method="get" action="/cgi-bin/koha/admin/smart-rules.pl" id="selectlibrary">
- Select a library :
- <select name="branch" id="branch" style="width:20em;">
+ Seleccionar una sede: <select name="branch" id="branch" style="width:20em;">
  <option value="*">Todas las bibliotecas</option>
- [% FOREACH branchloo IN branchloop %]
- [% IF ( branchloo.selected ) %]<option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %]<option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %]
- [% END %]
- </select>
+ [% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %]<option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %]<option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %] [% END %] </select>
  </form>
 [% IF ( definedbranch ) %]<form action="/cgi-bin/koha/admin/clone-rules.pl" method="post"><label 
 for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidden" name="frombranch" value="[% current_branch %]" />
@@ -71,55 +50,32 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <tr>
  <th>Categoría de socio</th>
  <th>Tipo de ítem</th>
- <th>Current checkouts allowed</th>
- <th>Loan period</th>
- <th>Unit</th>
- <th>Hard due date</th>
- <th>Fine amount</th>
- <th>Fine charging interval</th>
- <th>Fine grace period (day)</th>
- <th>Suspension in days (day)</th>
- <th>Renewals allowed (count)</th>
- <th>Holds allowed (count)</th>
- <th>Rental discount (%)</th>
+ <th>Préstamos permitidos actualmente </th>
+ <th>Período de préstamo</th>
+ <th>Unidad</th>
+ <th>Fecha de devolución estricta</th>
+ <th>Monto de la multa</th>
+ <th>Intervalo de costo de multa</th>
+ <th>Período de gracia de la multa (día)</th>
+ <th>Suspensión en días (día)</th>
+ <th>Renovaciones permitidas (conteo)</th>
+ <th>Reservas permitidas (recuento)</th>
+ <th>Descuento en alquiler (%)</th>
  <th>&nbsp;</th>
  </tr>
- [% FOREACH rule IN rules %]
- [% UNLESS ( loop.odd ) %]
- <tr class="highlight">
- [% ELSE %]
- <tr>
- [% END %]
- <td>[% IF ( rule.default_humancategorycode ) %]
- <em>Todo</em>
- [% ELSE %]
- [% rule.humancategorycode %]
- [% END %]
- </td>
- <td>[% IF ( rule.default_humanitemtype ) %]
- <em>Todo</em>
- [% ELSE %]
- [% rule.humanitemtype %]
- [% END %]
- </td>
- <td>[% IF ( rule.unlimited_maxissueqty ) %]
- Unlimited
- [% ELSE %]
- [% rule.maxissueqty %]
- [% END %]
- </td>
+ [% FOREACH rule IN rules %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
+ [% ELSE %] <tr>
+ [% END %] <td>[% IF ( rule.default_humancategorycode ) %] <em>Todo</em>
+ [% ELSE %] [% rule.humancategorycode %] [% END %] </td>
+ <td>[% IF ( rule.default_humanitemtype ) %] <em>Todo</em>
+ [% ELSE %] [% rule.humanitemtype %] [% END %] </td>
+ <td>[% IF ( rule.unlimited_maxissueqty ) %] Ilimitado [% ELSE %] [% rule.maxissueqty %] [% END %] </td>
  <td>[% rule.issuelength %]</td>
  <td>
- [% rule.lengthunit %]
- </td>
- <td>[% IF ( rule.hardduedate ) %]
- [% IF ( rule.hardduedatebefore ) %]before [% rule.hardduedate %]</td>
- [% ELSE %][% IF ( rule.hardduedateexact ) %]on [% rule.hardduedate %]</td>
- [% ELSE %][% IF ( rule.hardduedateafter ) %]after [% rule.hardduedate %]</td>[% END %]
- [% END %]
- [% END %]
- [% ELSE %]None defined[% END %] 
- <td>[% rule.fine %]</td>
+ [% rule.lengthunit %] </td>
+ <td>[% IF ( rule.hardduedate ) %] [% IF ( rule.hardduedatebefore ) %]antes [% rule.hardduedate %]</td>
+ [% ELSE %][% IF ( rule.hardduedateexact ) %]en [% rule.hardduedate %]</td>
+ [% ELSE %][% IF ( rule.hardduedateafter ) %]después [% rule.hardduedate %]</td>[% END %] [% END %] [% END %] [% ELSE %]Sin definición[% END %] <td>[% rule.fine %]</td>
  <td>[% rule.chargeperiod %]</td>
  <td>[% rule.firstremind %]</td>
  <td>[% rule.finedays %]</td>
@@ -127,33 +83,28 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <td>[% rule.reservesallowed %]</td>
  <td>[% rule.rentaldiscount %]</td>
  <td>
- <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete&amp;itemtype=[% rule.itemtype %]&amp;categorycode=[% rule.categorycode %]&amp;branch=[% rule.current_branch %]">Eliminar</a>
+ <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete&amp;itemtype=[% rule.itemtype %]&amp;categorycode=[% rule.categorycode %]&amp;branch=[% rule.current_branch %]">Borrar</a>
  </td>
  </tr>
- [% END %]
- <tr>
+ [% END %] <tr>
  <td>
  <select name="categorycode">
  <option value="*">Todo</option>
- [% FOREACH categoryloo IN categoryloop %]
- <option value="[% categoryloo.categorycode %]">[% categoryloo.description %]</option>
- [% END %]
- </select>
+ [% FOREACH categoryloo IN categoryloop %] <option value="[% categoryloo.categorycode %]">[% categoryloo.description %]</option>
+ [% END %] </select>
  </td>
  <td>
  <select name="itemtype" style="width:13em;">
  <option value="*">Todo</option>
- [% FOREACH itemtypeloo IN itemtypeloop %]
- <option value="[% itemtypeloo.itemtype %]">[% itemtypeloo.description %]</option>
- [% END %]
- </select>
+ [% FOREACH itemtypeloo IN itemtypeloop %] <option value="[% itemtypeloo.itemtype %]">[% itemtypeloo.description %]</option>
+ [% END %] </select>
  </td>
  <td><input name="maxissueqty" size="3" /></td>
  <td><input name="issuelength" size="3" /> </td>
  <td>
  <select name="lengthunit">
- <option value="days" selected>Days</option>
- <option value="hours">Hours</option>
+ <option value="days" selected>Días</option>
+ <option value="hours">Horas</option>
  </select>
  </td>
  <td><select name="hardduedatecompare">
@@ -161,23 +112,8 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <option value="0">Exactamente en</option>
  <option value="1">Después</option>
  </select>
- <input type="text" size="10" id="hardduedate" name="hardduedate" value="[% hardduedate %]" />
- [% INCLUDE 'date-format.inc' %]
- <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" style="cursor: pointer;" id="CalendarDueDate" border="0" />
- <script language="JavaScript" type="text/javascript">
-                             function refocus(calendar) {
-                                 document.getElementById('hardduedate').focus();
-                                 calendar.hide();
-                             };
-                             Calendar.setup(
-                             {
-                             inputField : "hardduedate",
-                             ifFormat : "%m/%d/%Y",
-                             button : "CalendarDueDate",
-                             onClose: refocus
-                             }
-                             );
-                 </script>
+ <input type="text" size="10" id="hardduedate" name="hardduedate" value="[% hardduedate %]" class="datepicker" />
+ <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </td>
  <td><input name="fine" size="4" /></td>
  <td><input name="chargeperiod" size="2" /></td>
@@ -192,71 +128,47 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  </form>
  </div>
  <div id="defaults-for-this-library" class="container">
- <h3>Default checkout, hold and return policy for [% IF ( humanbranch ) %][% humanbranch %][% ELSE %]all libraries[% END %]</h3>
- <p>You can set a default maximum number of checkouts, hold policy and return policy that will be used if none is defined below for a particular item type or category.</p>
+ <h3>Políticas predeterminadas de préstamo, reserva y devolución para [% IF ( humanbranch ) %][% humanbranch %][% ELSE %]todas las bibliotecas[% END %]</h3>
+ <p>Usted puede establecer un número máximo predeterminado de préstamos, política de reservas y devoluciones que se utilizará si no se definen debajo para un tipo de ítem determinado o categoría.</p>
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
  <input type="hidden" name="op" value="set-branch-defaults" />
  <input type="hidden" name="branch" value="[% current_branch %]"/>
  <table>
  <tr>
  <th>&nbsp;</th>
- <th>Total current checkouts allowed</th>
- <th>Hold policy</th>
- <th>Return policy</th>
+ <th>Total de préstamos actuales permitidos</th>
+ <th>Política de reserva</th>
+ <th>Política de devolución</th>
  <th>&nbsp;</th>
  <th>&nbsp;</th>
  </tr>
  <tr>
- <td><em>Defaults[% UNLESS ( default_rules ) %] (not set)[% END %]</em></td>
+ <td><em>Por defecto[% UNLESS ( default_rules ) %] (no configurado)[% END %]</em></td>
  <td><input type="text" name="maxissueqty" size="3" value="[% default_maxissueqty %]"/></td>
  <td>
  <select name="holdallowed">
- [% IF ( default_holdallowed_any ) %]
- <option value="2" selected="selected">
- [% ELSE %]
- <option value="2">
- [% END %]
- From any library
- </option>
- [% IF ( default_holdallowed_same ) %]
- <option value="1" selected="selected">
- [% ELSE %]
- <option value="1">
- [% END %]
- From home library
- </option>
- [% IF ( default_holdallowed_none ) %]
- <option value="0" selected="selected">
- [% ELSE %]
- <option value="0">
- [% END %]
- No holds allowed
- </option>
+ [% IF ( default_holdallowed_any ) %] <option value="2" selected="selected">
+ [% ELSE %] <option value="2">
+ [% END %] Desde cualquier biblioteca </option>
+ [% IF ( default_holdallowed_same ) %] <option value="1" selected="selected">
+ [% ELSE %] <option value="1">
+ [% END %] Desde la biblioteca de origen </option>
+ [% IF ( default_holdallowed_none ) %] <option value="0" selected="selected">
+ [% ELSE %] <option value="0">
+ [% END %] No se permiten reservas </option>
  </select>
  </td>
  <td>
  <select name="returnbranch">
- [% IF ( default_returnbranch == 'homebranch' ) %]
- <option value="homebranch" selected="selected">
- [% ELSE %]
- <option value="homebranch">
- [% END %]
- Item returns home
- </option>
- [% IF ( default_returnbranch == 'holdingbranch' ) %]
- <option value="holdingbranch" selected="selected">
- [% ELSE %]
- <option value="holdingbranch">
- [% END %]
- Item returns to issuing branch
- </option>
- [% IF ( default_returnbranch == 'noreturn' ) %]
- <option value="noreturn" selected="selected">
- [% ELSE %]
- <option value="noreturn">
- [% END %]
- Item floats
- </option>
+ [% IF ( default_returnbranch == 'homebranch' ) %] <option value="homebranch" selected="selected">
+ [% ELSE %] <option value="homebranch">
+ [% END %] Ítem regresa a sede origen </option>
+ [% IF ( default_returnbranch == 'holdingbranch' ) %] <option value="holdingbranch" selected="selected">
+ [% ELSE %] <option value="holdingbranch">
+ [% END %] Ítem regresa a sede de préstamo </option>
+ [% IF ( default_returnbranch == 'noreturn' ) %] <option value="noreturn" selected="selected">
+ [% ELSE %] <option value="noreturn">
+ [% END %] Ítem permanece en sede de retorno </option>
  </select>
  </td>
  <td><input value="Guardar" type="submit" class="submit" /></td>
@@ -267,54 +179,33 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  </table>
  </form>
  </div>
- [% IF ( show_branch_cat_rule_form ) %]
- <div id="holds-policy-by-patron-category" class="container">
- <h3>Checkout limit by patron category for [% IF ( humanbranch ) %][% humanbranch %][% ELSE %]all libraries[% END %]</h3>
- <p>For this library, you can specify the maximum number of loans that
- a patron of a given category can make, regardless of the item type.
- </p>
- <p>If the total amount loanable for a given patron category is left blank,
- no limit applies, except possibly for a limit you define for a specific item type.
- </p>
+ [% IF ( show_branch_cat_rule_form ) %] <div id="holds-policy-by-patron-category" class="container">
+ <h3>Límite de préstamos por categoría de socio para [% IF ( humanbranch ) %][% humanbranch %][% ELSE %]todas las bibliotecas[% END %]</h3>
+ <p>Para esta biblioteca, puede especificar el número máximo de préstamos que un socio de una determinada categoría puede recibir, independientemente del tipo de ítem. </p>
+ <p>Si la cantidad total de préstamos a una dada categoría de socio se deja en blanco, no tendrá límites, a menos que defina un límite específico para un dado tipo de ítem. </p>
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
  <input type="hidden" name="op" value="add-branch-cat" />
  <input type="hidden" name="branch" value="[% current_branch %]"/>
  <table>
  <tr>
  <th>Categoría de socio</th>
- <th>Total current checkouts allowed</th>
+ <th>Total de préstamos actuales permitidos</th>
  <th>&nbsp;</th>
  </tr>
- [% FOREACH branch_cat_rule_loo IN branch_cat_rule_loop %]
- [% UNLESS ( loop.odd ) %]
- <tr class="highlight">
- [% ELSE %]
- <tr>
- [% END %]
- <td>[% IF ( branch_cat_rule_loo.default_humancategorycode ) %]
- <em>Predeterminado</em>
- [% ELSE %]
- [% branch_cat_rule_loo.humancategorycode %]
- [% END %]
- </td>
- <td>[% IF ( branch_cat_rule_loo.unlimited_maxissueqty ) %]
- Unlimited
- [% ELSE %]
- [% branch_cat_rule_loo.maxissueqty %]
- [% END %]
- </td>
+ [% FOREACH branch_cat_rule_loo IN branch_cat_rule_loop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
+ [% ELSE %] <tr>
+ [% END %] <td>[% IF ( branch_cat_rule_loo.default_humancategorycode ) %] <em>Predeterminado</em>
+ [% ELSE %] [% branch_cat_rule_loo.humancategorycode %] [% END %] </td>
+ <td>[% IF ( branch_cat_rule_loo.unlimited_maxissueqty ) %] Ilimitado [% ELSE %] [% branch_cat_rule_loo.maxissueqty %] [% END %] </td>
  <td>
- <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete-branch-cat&amp;categorycode=[% branch_cat_rule_loo.categorycode %]&amp;branch=[% current_branch %]">Eliminar</a>
+ <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete-branch-cat&amp;categorycode=[% branch_cat_rule_loo.categorycode %]&amp;branch=[% current_branch %]">Borrar</a>
  </td>
  </tr>
- [% END %]
- <tr>
+ [% END %] <tr>
  <td>
  <select name="categorycode">
- [% FOREACH categoryloo IN categoryloop %]
- <option value="[% categoryloo.categorycode %]">[% categoryloo.description %]</option>
- [% END %]
- </select>
+ [% FOREACH categoryloo IN categoryloop %] <option value="[% categoryloo.categorycode %]">[% categoryloo.description %]</option>
+ [% END %] </select>
  </td>
  <td><input name="maxissueqty" size="3" /></td>
  <td><input value="Agregar" type="submit" class="submit" /></td>
@@ -322,28 +213,19 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  </table>
  </form>
  </div>
- [% END %]
- <div id="holds-policy-by-item-type" class="container">
- <h3>Holds policy by item type for [% IF ( humanbranch ) %][% humanbranch %][% ELSE %]all libraries[% END %]</h3>
+ [% END %] <div id="holds-policy-by-item-type" class="container">
+ <h3>Política de reservas por tipo de ítem para [% IF ( humanbranch ) %][% humanbranch %][% ELSE %]todas las bibliotecas[% END %]</h3>
  <p>
- For this library, you can edit rules for given itemtypes, regardless
- of the patron's category.
- </p>
+ Para esta biblioteca, podrá editar las reglas para los tipos de ítem, independientemente de las categorías de socios. </p>
  <p>
- Currently, this means hold policies.
- The various policies have the following effects:
- </p>
+ Actualmente, esto significa políticas de reservas. Las diferentes políticas tienen los siguientes efectos: </p>
  <ul>
- <li><strong>From any library:</strong> Patrons from any library may put this item on hold. <cite>(por defecto si no se define ninguno)</cite></li>
- <li><strong>From home library:</strong> Solo socios de la misma sede que el ítem pueden reservar este libro.</li>
- <li><strong>No holds allowed:</strong> Ningún socio puede reservar este libro.</li>
+ <li><strong>De cualquier biblioteca:</strong> Los socios de cualquier biblioteca pueden reservar este ítem. <cite>(por defecto si no se define ninguno)</cite></li>
+ <li><strong>De la biblioteca de origen:</strong> Solo socios de la misma sede que el ítem pueden reservar este libro.</li>
+ <li><strong>No se permiten reservas:</strong> Ningún socio puede reservar este libro.</li>
  </ul>
  <p>
- Note that if the system preference
- <code>AllowHoldPolicyOverride</code> is enabled, these policies can
- be overridden by your circulation staff. Also, these policies are
- based on the patron's home library, <em>no</em> the library where the hold is being placed..
- </p>
+ Note que si la preferencia del sistema <code>AllowHoldPolicyOverride</code> está habilitada, estas políticas pueden ser alteradas por el personal de circulación. Además, estas políticas están basadas en la sede de origen del socio, <em>no</em> la biblioteca donde se hace la reserva. </p>
 
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
  <input type="hidden" name="op" value="add-branch-item" />
@@ -351,65 +233,38 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <table>
  <tr>
  <th>Tipo de ítem</th>
- <th>Hold policy</th>
- <th>Return policy</th>
+ <th>Política de reserva</th>
+ <th>Política de devolución</th>
  <th>&nbsp;</th>
  </tr>
- [% FOREACH branch_item_rule_loo IN branch_item_rule_loop %]
- [% UNLESS ( loop.odd ) %]
- <tr class="highlight">
- [% ELSE %]
- <tr>
- [% END %]
- <td>[% IF ( branch_item_rule_loo.default_humanitemtype ) %]
- <em>Predeterminado</em>
- [% ELSE %]
- [% branch_item_rule_loo.humanitemtype %]
- [% END %]
- </td>
- <td>[% IF ( branch_item_rule_loo.holdallowed_any ) %]
- From any library
- [% ELSIF ( branch_item_rule_loo.holdallowed_same ) %]
- From home library
- [% ELSE %]
- No holds allowed
- [% END %]
- </td>
- <td>[% IF ( branch_item_rule_loo.returnbranch == 'homebranch' ) %]
- Item returns home
- [% ELSIF ( branch_item_rule_loo.returnbranch == 'holdingbranch' ) %]
- Item returns to issuing branch
- [% ELSIF ( branch_item_rule_loo.returnbranch == 'noreturn' ) %]
- Item floats
- [% ELSE %]
- Error - unknown option
- [% END %]
- </td>
+ [% FOREACH branch_item_rule_loo IN branch_item_rule_loop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
+ [% ELSE %] <tr>
+ [% END %] <td>[% IF ( branch_item_rule_loo.default_humanitemtype ) %] <em>Predeterminado</em>
+ [% ELSE %] [% branch_item_rule_loo.humanitemtype %] [% END %] </td>
+ <td>[% IF ( branch_item_rule_loo.holdallowed_any ) %] Desde cualquier biblioteca [% ELSIF ( branch_item_rule_loo.holdallowed_same ) %] Desde la biblioteca de origen [% ELSE %] No se permiten reservas [% END %] </td>
+ <td>[% IF ( branch_item_rule_loo.returnbranch == 'homebranch' ) %] Ítem regresa sede origen [% ELSIF ( branch_item_rule_loo.returnbranch == 'holdingbranch' ) %] Ítem regresa a sede de préstamo [% ELSIF ( branch_item_rule_loo.returnbranch == 'noreturn' ) %] Ítem permanece en sede de retorno [% ELSE %] Error - opción desconocida [% END %] </td>
  <td>
- <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete-branch-item&amp;itemtype=[% branch_item_rule_loo.itemtype %]&amp;branch=[% current_branch %]">Eliminar</a>
+ <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete-branch-item&amp;itemtype=[% branch_item_rule_loo.itemtype %]&amp;branch=[% current_branch %]">Borrar</a>
  </td>
  </tr>
- [% END %]
- <tr>
+ [% END %] <tr>
  <td>
  <select name="itemtype">
- [% FOREACH itemtypeloo IN itemtypeloop %]
- <option value="[% itemtypeloo.itemtype %]">[% itemtypeloo.description %]</option>
- [% END %]
- </select>
+ [% FOREACH itemtypeloo IN itemtypeloop %] <option value="[% itemtypeloo.itemtype %]">[% itemtypeloo.description %]</option>
+ [% END %] </select>
  </td>
  <td>
  <select name="holdallowed">
- <option value="2">From any library</option>
- <option value="1">From home library</option>
+ <option value="2">De cualquier biblioteca</option>
+ <option value="1">De la biblioteca de origen</option>
  <option value="0">No se permiten reservas</option>
  </select>
  </td>
  <td>
  <select name="returnbranch">
- <option value="homebranch">Item returns home</option>
- <option value="holdingbranch">Item returns to issuing branch</option>
- <option value="noreturn">Item floats</option>
+ <option value="homebranch">Sede de devolución de ítem</option>
+ <option value="holdingbranch">Ítem retorna a sede de préstamo</option>
+ <option value="noreturn">Fluctuación de ítem</option>
  </select>
  </td>
  <td><input value="Agregar" type="submit" class="submit" /></td>
@@ -421,7 +276,6 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
 
 </div>
 <div class="yui-b">
-[% INCLUDE 'admin-menu.inc' %]
+[% INCLUDE 'admin-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

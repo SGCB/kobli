@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Patrons &rsaquo; Collect fine payment for [% borrower.firstname %] [% borrower.surname %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type= "text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Recaudar pago de multas para [% borrower.firstname %] [% borrower.surname %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type= "text/javascript">
 //<![CDATA[
 function moneyFormat(textObj) {
     var newValue = textObj.value;
@@ -55,9 +53,7 @@ function moneyFormat(textObj) {
 </script>
 </head>
 <body id="pat_paycollect" class="pat">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'patron-search.inc' %]
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; <a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrower.borrowernumber %]">Pay fines for [% borrower.firstname %] [% borrower.surname %]</a> &rsaquo; [% IF ( pay_individual ) %]Pay an individual fine[% ELSIF ( writeoff_individual ) %]Write off an individual fine[% ELSE %][% IF ( selected_accts ) %]Pay an amount toward selected fines[% ELSE %]Pay an amount toward all fines[% END %][% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; <a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrower.borrowernumber %]">Pagar multas para [% borrower.firstname %] [% borrower.surname %]</a> &rsaquo; [% IF ( pay_individual ) %]Pagar una multa individual[% ELSIF ( writeoff_individual ) %]Elimine una multa individual[% ELSE %][% IF ( selected_accts ) %]Pague una cantidad sobre multas seleccionadas[% ELSE %]Pague una cantidad sobre todas las multas[% END %][% END %]</div>
 
 <div id="doc3" class="yui-t2">
 
@@ -68,12 +64,12 @@ function moneyFormat(textObj) {
 
 
 <!-- The manual invoice and credit buttons -->
-<div class="toptabs">
-<ul class="ui-tabs-nav">
+<div class="statictabs">
+<ul>
  <li>
  <a href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrower.borrowernumber %]">Cuenta</a>
  </li>
- <li class="ui-tabs-selected">
+ <li class="active">
  <a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrower.borrowernumber %]" >Pagar multas</a>
  </li>
  <li>
@@ -84,14 +80,9 @@ function moneyFormat(textObj) {
  </li>
 </ul>
 <div class="tabs-container">
-[% IF ( error ) %]
- <div id="error_message" class="dialog alert">
- [% error %]
- </div>
-[% END %]
-
-[% IF ( pay_individual ) %]
- <form name="payindivfine" onsubmit="return validatePayment(this);" method="post" action="/cgi-bin/koha/members/paycollect.pl">
+[% IF ( error ) %] <div id="error_message" class="dialog alert">
+ [% error %] </div>
+[% END %] [% IF ( pay_individual ) %] <form name="payindivfine" onsubmit="return validatePayment(this);" method="post" action="/cgi-bin/koha/members/paycollect.pl">
  <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrower.borrowernumber %]" />
  <input type="hidden" name="pay_individual" id="pay_individual" value="[% pay_individual %]" />
  <input type="hidden" name="itemnumber" id="itemnumber" value="[% itemnumber %]" />
@@ -105,23 +96,22 @@ function moneyFormat(textObj) {
  <input type="hidden" name="title" id="title" value="[% title %]" />
 
 <fieldset class="rows">
- <legend>Pay an individual fine</legend>
+ <legend>Pagar una multa individual</legend>
  <table>
  <thead><tr>
  <th>Descripción</th>
- <th>Account type</th>
- <th>Notificar Id</th>
+ <th>Tipo de cuenta</th>
+ <th>Id de la notificación</th>
  <th>Nivel</th>
- <th>Cantidad</th>
- <th>Amount outstanding</th>
+ <th>Monto</th>
+ <th>Monto pendiente</th>
  </tr></thead>
  <tfoot>
- <td colspan="5">Total amount payable:</td><td>[% amountoutstanding | format('%.2f') %]</td>
+ <td colspan="5">Monto total pagadero:</td><td>[% amountoutstanding | format('%.2f') %]</td>
  </tfoot>
  <tbody><tr>
  <td>
- [% description %] [% title  %]
- </td>
+ [% description %] [% title  %] </td>
  <td>[% accounttype %]</td>
  <td>[% notify_id %]</td>
  <td>[% notify_level %]</td>
@@ -133,7 +123,7 @@ function moneyFormat(textObj) {
 <ol>
 
  <li>
- <label for="paid">Collect from patron: </label>
+ <label for="paid">Cobrar a socio: </label>
  <!-- default to paying all -->
  <input name="paid" id="paid" value="[% amountoutstanding | format('%.2f') %]" onchange="moneyFormat(document.payindivfine.paid)"/>
  </li>
@@ -143,10 +133,9 @@ function moneyFormat(textObj) {
  <div class="action"><input value="Confirmar" name="submitbutton" type="submit" />
  <a class="cancel" href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrower.borrowernumber %]">Cancelar</a></div>
  </form>
-[% ELSIF ( writeoff_individual ) %]
- <form name="woindivfine" action="/cgi-bin/koha/members/pay.pl" method="post" >
+[% ELSIF ( writeoff_individual ) %] <form name="woindivfine" action="/cgi-bin/koha/members/pay.pl" method="post" >
  <fieldset class="rows">
- <legend>Write off an individual fine</legend>
+ <legend>Cancelar una multa individual</legend>
  <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrower.borrowernumber %]" />
  <input type="hidden" name="pay_individual" id="pay_individual" value="[% pay_individual %]" />
  <input type="hidden" name="itemnumber" id="itemnumber" value="[% itemnumber %]" />
@@ -161,13 +150,13 @@ function moneyFormat(textObj) {
  <table>
  <thead><tr>
  <th>Descripción</th>
- <th>Account type</th>
- <th>Notificar Id</th>
+ <th>Tipo de cuenta</th>
+ <th>Id de la notificación</th>
  <th>Nivel</th>
- <th>Cantidad</th>
- <th>Amount outstanding</th>
+ <th>Monto</th>
+ <th>Monto pendiente</th>
  </tr></thead>
- <tfoot><td colspan="5">Total amount to be written off:</td><td>[% amountoutstanding | format('%.2f') %]</td></tfoot>
+ <tfoot><td colspan="5">Monto total a ser suprimido:</td><td>[% amountoutstanding | format('%.2f') %]</td></tfoot>
  <tbody><tr>
  <td>[% description %] [% title %]</td>
  <td>[% accounttype %]</td>
@@ -178,25 +167,22 @@ function moneyFormat(textObj) {
  </tr></tbody>
  </table>
  </fieldset>
- <div class="action"><input type="submit" name="confirm_writeoff" id="confirm_writeoff" value="Write off this charge" />
+ <div class="action"><input value="Cancelar este cargo" name="confirm_writeoff" type="submit" id="confirm_writeoff" />
  <a class="cancel" href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrower.borrowernumber %]">Cancelar</a></div>
  </form>
-[% ELSE %]
-
- <form name="payfine" onsubmit="return validatePayment(this);" method="post" action="/cgi-bin/koha/members/paycollect.pl">
+[% ELSE %] <form name="payfine" onsubmit="return validatePayment(this);" method="post" action="/cgi-bin/koha/members/paycollect.pl">
  <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrower.borrowernumber %]" />
  <input type="hidden" name="selected_accts" id="selected_accts" value="[% selected_accts %]" />
  <input type="hidden" name="total" id="total" value="[% total %]" />
 
  <fieldset class="rows">
- [% IF ( selected_accts ) %]<legend>Pay an amount toward selected fines</legend>[% ELSE %]<legend>Pay an amount toward all fines</legend>[% END %]
- <ol>
+ [% IF ( selected_accts ) %]<legend>Pagar una cantidad contra multas seleccionadas</legend>[% ELSE %]<legend>Pagar un monto contra el total de multas</legend>[% END %] <ol>
  <li>
- <span class="label">Total amount outstanding: </span>
+ <span class="label">Monto total pendiente: </span>
  <span class="debit">[% total | format('%.2f') %]</span>
  </li>
  <li>
- <label for="paid">Collect from patron: </label>
+ <label for="paid">Cobrar a socio: </label>
  <!-- default to paying all -->
  <input name="paid" id="paid" value="[% total | format('%.2f') %]" onchange="moneyFormat(document.payfine.paid)"/>
  </li>
@@ -205,14 +191,11 @@ function moneyFormat(textObj) {
  <div class="action"><input value="Confirmar" name="submitbutton" type="submit" />
  <a class="cancel" href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrower.borrowernumber %]">Cancelar</a></div>
  </form>
-[% END %]
-</div></div>
+[% END %] </div></div>
 </div>
 </div>
 
 <div class="yui-b">
-[% INCLUDE 'circ-menu.tt' %]
+[% INCLUDE 'circ-menu.tt' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
-
+[% INCLUDE 'intranet-bottom.inc' %] 

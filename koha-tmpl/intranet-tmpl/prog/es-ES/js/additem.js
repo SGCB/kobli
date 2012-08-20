@@ -13,7 +13,7 @@ function addItem( node, unique_item_fields ) {
                 cloneItemBlock(index, unique_item_fields);
             addItemInList(index, unique_item_fields);
             $("#" + index).find("a[name='buttonPlus']").text("Update");
-            $("#quantity").val(current_qty + 1);
+            $("#quantity").val(current_qty + 1).change();
         } else if ( current_qty >= max_qty ) {
             alert(window.MSG_ADDITEM_JS_CANT_RECEIVE_MORE_ITEMS
                 || "You can't receive any more items.");
@@ -65,6 +65,9 @@ function constructTrNode(index, unique_item_fields) {
         } else {
             field_value = $(field_elt).val();
         }
+        if (field_value == undefined) {
+            field_value = '';
+        }
         result += "<td>" + field_value + "</td>";
     }
     result += "</tr>";
@@ -87,7 +90,7 @@ function deleteItemBlock(node_a, index, unique_item_fields) {
     } else {
         max_qty = 99999;
     }
-    $("#quantity").val(current_qty - 1);
+    $("#quantity").val(current_qty - 1).change();
     $(node_a).parents('tr').remove();
     if(current_qty - 1 == 0)
         $("#items_list").hide();
@@ -182,8 +185,11 @@ function check_additem(unique_item_fields) {
     // Check if a value is duplicated in form
     for ( field in array_fields ) {
         var fieldname = array_fields[field];
+        if (fieldname == '') {
+            continue;
+        }
         var values = new Array();
-        $("[name='kohafield'][value=items."+array_fields[field]+"]").each(function(){
+        $("[name='kohafield'][value=items."+ fieldname +"]").each(function(){
             var input = $(this).prevAll("input[name='field_value']")[0];
             if($(input).val()) {
                 values.push($(input).val());

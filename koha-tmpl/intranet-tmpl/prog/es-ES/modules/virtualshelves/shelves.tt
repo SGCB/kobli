@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; [% IF ( viewshelf ) %]Lists &rsaquo; Contents of [% shelfname | html %][% ELSE %]lists[% END %][% IF ( shelves ) %] &rsaquo; Create new list[% END %][% IF ( edit ) %] &rsaquo; Edit list [% shelfname | html %][% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; [% IF ( viewshelf ) %]Lists &rsaquo; Contents of [% shelfname | html %][% ELSE %]Lists[% END %][% IF ( shelves ) %] &rsaquo; Create new list[% END %][% IF ( edit ) %] &rsaquo; Edit list [% shelfname | html %][% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 <script type="text/javascript">
 //<![CDATA[ 
 
@@ -9,8 +7,8 @@ var MSG_NO_ITEM_SELECTED = _("No se ha seleccionado nada");
 
 $(document).ready(function(){
 	$("#addbarcode").focus();
-    $("span.clearall").html("<a id=\"CheckNone\" href=\"/cgi-bin/koha/shelves.pl\">"+_('Clear all')+"<\/a>");
-    $("span.checkall").html("<a id=\"CheckAll\" href=\"/cgi-bin/koha/shelves.pl\">"+_('Select all')+"<\/a>");
+    $("span.clearall").html("<a id=\"CheckNone\" href=\"/cgi-bin/koha/shelves.pl\">"+_('Limpiar todo')+"<\/a>");
+    $("span.checkall").html("<a id=\"CheckAll\" href=\"/cgi-bin/koha/shelves.pl\">"+_('Seleccionar todo')+"<\/a>");
     $("#CheckAll").click(function(){
         $(".checkboxed").checkCheckboxes();
         return false;
@@ -112,128 +110,90 @@ function placeHold () {
 </script>
 </head>
 <body id="lists_shelves" class="lists">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/virtualshelves/shelves.pl">Listas</a> [% IF ( category1 ) %] &rsaquo; [% IF ( viewshelf || edit ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves">Your lists</a> [% ELSE %] Your lists [% END %] [% ELSIF ( category2 ) %] &rsaquo; [% IF ( viewshelf ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=publicshelves">Public lists</a> [% ELSE %] Public lists [% END %] [% ELSIF ( showprivateshelves ) %] &rsaquo; [% IF ( viewshelf || edit ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves">Your lists</a> [% ELSE %] Your lists [% END %] [% ELSIF ( showpublicshelves ) %] &rsaquo; [% IF ( viewshelf || edit ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=publicshelves">Public lists</a> [% ELSE %] Public lists [% END %] [% END %]
-
-[% IF ( viewshelf ) %]&rsaquo; Contents of <i>[% shelfname | html %]</i>[% END %][% IF ( shelves ) %] &rsaquo; Create new list[% END %][% IF ( edit ) %] &rsaquo; Edit list <i>[% shelfname | html %]</i>[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] [% BLOCK list_permissions %] <li>
+ <label for="permissions">Permissions: </label>
+ <select name="allow_add" id="allow_add">
+ [% IF allow_add %]<option value="0">Do not allow</option>[% ELSE %]<option value="0" selected="selected">Do not allow</option>[% END %] [% IF allow_add %]<option value="1" selected="selected">Allow</option>[% ELSE %]<option value="1">Allow</option>[% END %] </select>
+ &nbsp;<span>anyone else to add entries.</span>
+ </li>
+ <li>
+ <label>&nbsp;</label>
+ <select name="allow_delete_own" id="allow_delete_own">
+ [% IF allow_delete_own %]<option value="0">Do not allow</option>[% ELSE %]<option value="0" selected="selected">Do not allow</option>[% END %] [% IF allow_delete_own %]<option value="1" selected="selected">Allow</option>[% ELSE %]<option value="1">Allow</option>[% END %] </select>
+ &nbsp;<span>anyone to remove his own contributed entries.</span>
+ </li>
+ <li>
+ <label>&nbsp;</label>
+ <select name="allow_delete_other" id="allow_delete_other">
+ [% IF allow_delete_other %]<option value="0">Do not allow</option>[% ELSE %]<option value="0" selected="selected">Do not allow</option>[% END %] [% IF allow_delete_other %]<option value="1" selected="selected">Allow</option>[% ELSE %]<option value="1">Allow</option>[% END %] </select>
+ &nbsp;<span>anyone to remove other contributed entries.</span>
+ </li>
+[% END %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/virtualshelves/shelves.pl">Listas</a> [% IF ( category1 ) %] &rsaquo; [% IF ( viewshelf || edit ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves">Sus listas</a> [% ELSE %] Sus listas [% END %] [% ELSIF ( category2 ) %] &rsaquo; [% IF ( viewshelf ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=publicshelves">Listas públicas</a> [% ELSE %] Listas publicas [% END %] [% ELSIF ( showprivateshelves ) %] &rsaquo; [% IF ( viewshelf || edit ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves">Sus listas</a> [% ELSE %] Sus listas [% END %] [% ELSIF ( showpublicshelves ) %] &rsaquo; [% IF ( viewshelf || edit ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=publicshelves">Listas públicas</a> [% ELSE %] Listas públicas [% END %] [% END %] [% IF ( viewshelf ) %]&rsaquo; Índice de <i>[% shelfname | html %]</i>[% END %][% IF ( shelves ) %] &rsaquo; Crear nueva lista[% END %][% IF ( edit ) %] &rsaquo; Editar lista <i>[% shelfname | html %]</i>[% END %]</div>
 
 <div id="doc" class="yui-t7">
  <div id="bd">
  <div id="yui-main">
- <div class="yui-g">[% INCLUDE 'virtualshelves-toolbar.inc' %]
- </div>
-[% IF ( paramsloop ) %]
-[% FOREACH paramsloo IN paramsloop %]
-<div class="yui-ge">
+ <div class="yui-g">[% INCLUDE 'virtualshelves-toolbar.inc' %] </div>
+[% IF ( paramsloop ) %] [% FOREACH paramsloo IN paramsloop %] <div class="yui-ge">
  <div class="yui-u first">
- [% IF ( paramsloo.already ) %]<div class="dialog alert">¡Una Lista llamada [% paramsloo.already %] ya existe!</div>[% END %]
- [% IF ( paramsloo.status ) %]<div class="dialog alert">[% paramsloo.string %]</div>[% END %]
- [% IF ( paramsloo.nobarcode ) %]<div class="dialog alert">ERROR: no se ingresó el numero de código de barras.</div>[% END %] 
- [% IF ( paramsloo.noshelfnumber ) %]<div class="dialog alert">ERROR: no se ha suministrado shelfnumber (número de estantería)r.</div>[% END %] 
- [% IF ( paramsloo.need_confirm ) %]
- <div class="dialog alert">The list <i>[% paramsloo.need_confirm %]</i> is not empty.
- <br />It has <b>[% paramsloo.count %]</b> entries.
- <br />Use the "Confirm" button below to confirm deletion.
- </div>
- [% END %]
- [% IF ( paramsloo.nopermission ) %]
- <div class="dialog alert">ERROR: no tiene permisos para realizar esta acción en la lista [% paramsloo.nopermission %].</div>
- [% END %]
- [% IF ( paramsloo.failgetitem ) %]
- <div class="dialog alert">ERROR: no se encontró un ítem con código de barras [% paramsloo.failgetitem %].</div>
- [% END %] 
- [% IF ( paramsloo.duplicatebiblio ) %]
- <div class="dialog alert">A record matching barcode <b>[% paramsloo.duplicatebiblio %]</b> has already been added.</div>
- [% END %]
- [% IF ( paramsloo.nothingdeleted) %]
- <div class="dialog message">Warning: You could not delete any selected items from this shelf.</div>
- [% END %]
- [% IF ( paramsloo.somedeleted) %]
- <div class="dialog message">Warning: You could not delete all selected items from this shelf.</div>
- [% END %]
- </div>
+ [% IF ( paramsloo.already ) %]<div class="dialog alert">¡Una Lista llamada [% paramsloo.already %] ya existe!</div>[% END %] [% IF ( paramsloo.status ) %]<div class="dialog alert">[% paramsloo.string %]</div>[% END %] [% IF ( paramsloo.nobarcode ) %]<div class="dialog alert">ERROR: no se ingresó el numero de código de barras.</div>[% END %] [% IF ( paramsloo.noshelfnumber ) %]<div class="dialog alert">ERROR: no se ha suministrado shelfnumber (número de estantería)r.</div>[% END %] [% IF ( paramsloo.need_confirm ) %] <div class="dialog alert">La lista <i>[% paramsloo.need_confirm %]</i> no está vacío. <br />Tiene <b>[% paramsloo.count %]</b> entradas. <br />Use el botón "Confirmar" que aparece a continuación para confirmar la eliminación. </div>
+ [% END %] [% IF ( paramsloo.nopermission ) %] <div class="dialog alert">ERROR: no tiene permisos para realizar esta acción en la lista [% paramsloo.nopermission %].</div>
+ [% END %] [% IF ( paramsloo.failgetitem ) %] <div class="dialog alert">ERROR: no se encontró un ítem con código de barras [% paramsloo.failgetitem %].</div>
+ [% END %] [% IF ( paramsloo.duplicatebiblio ) %] <div class="dialog alert">Agregar regla de coincidencia de registro para el código de barras <b>[% paramsloo.duplicatebiblio %]</b> ya ha sido ingresado</div>
+ [% END %] [% IF ( paramsloo.nothingdeleted) %] <div class="dialog message">Atención: No puede eliminar ninguno de los ítems seleccionados desde este estante.</div>
+ [% END %] [% IF ( paramsloo.somedeleted) %] <div class="dialog message">Atención: No puede eliminar todos los ítems seleccionados desde este estante.</div>
+ [% END %] [% IF ( paramsloo.modifyfailure) %] <div class="dialog message">ERROR: List could not be modified.</div>
+ [% END %] </div>
 </div>
-[% END %]
-[% END %] 
-
-[% IF ( viewshelf ) %]
- <div class="yui-g">
- [% IF ( itemsloop ) %]
-
- <form action="/cgi-bin/koha/virtualshelves/shelves.pl" method="post" class="checkboxed">
+[% END %] [% END %] [% IF ( viewshelf ) %] <div class="yui-g">
+ [% IF ( itemsloop ) %] <form action="/cgi-bin/koha/virtualshelves/shelves.pl" method="post" class="checkboxed">
  <input type="hidden" name="viewshelf" value="[% shelfnumber %]" />
  <input type="hidden" name="modifyshelfcontents" value="1" />
  <fieldset>
- <legend>Contents of <i>[% shelfname | html %]</i></legend>
+ <legend>Contenidos de <i>[% shelfname | html %]</i></legend>
  
- [% IF ( itemsloop ) %]
- <p><span class="checkall"></span> |
- <span class="clearall"></span></p>
- [% END %]
- 
- <div class="pages">[% pagination_bar %]</div>
+ [% IF ( itemsloop ) %] <p><span class="checkall"></span> | <span class="clearall"></span></p>
+ [% END %] <div class="pages">[% pagination_bar %]</div>
  <table>
  <tr>
- [% IF ( itemsloop ) %]<th class="checkall">&nbsp;</th>[% END %]
- [% UNLESS ( item_level_itypes ) %]<th>Tipo de ítem</th>[% END %]
- <th>Título</th>
+ [% IF ( itemsloop ) %]<th class="checkall">&nbsp;</th>[% END %] [% UNLESS ( item_level_itypes ) %]<th>Tipo de ítem</th>[% END %] <th>Título</th>
  <th>Autor</th>
- <th>Date added</th>
+ <th>Fecha de agregado</th>
  <th>&nbsp;</th>
  </tr>
- [% FOREACH itemsloo IN itemsloop %]
- [% UNLESS ( loop.odd ) %]
- <tr class="highlight">
- [% ELSE %]
- <tr>
- [% END %]
- [% IF ( itemsloop ) %]
- <td>
- [% IF ( itemsloo.confirm ) %]
- <input type="hidden"   name="CONFIRM-[% itemsloo.confirm %]" />
+ [% FOREACH itemsloo IN itemsloop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
+ [% ELSE %] <tr>
+ [% END %] [% IF ( itemsloop ) %] <td>
+ [% IF ( itemsloo.confirm ) %] <input type="hidden"   name="CONFIRM-[% itemsloo.confirm %]" />
  <input type="checkbox" class="selection" value="[% itemsloo.biblionumber %]" name="REM-[% itemsloo.biblionumber %]" checked />
- [% ELSE %]
- <input type="checkbox" class="selection" value="[% itemsloo.biblionumber %]" name="REM-[% itemsloo.biblionumber %]" />
- [% END %]
- </td>
- [% END %]
- [% UNLESS ( item_level_itypes ) %]<td>
- [% UNLESS ( noItemTypeImages || !itemsloo.imageurl ) %]<img src="[% itemsloo.imageurl %]" alt="[% itemsloo.description %]" title="[% itemsloo.description %]" />[% END %][% itemsloo.description %]
- </td>[% END %]
- <td>
- [% INCLUDE 'biblio-default-view.inc' biblionumber = itemsloo.biblionumber %]
- [% itemsloo.title |html %][% FOREACH subtitl IN itemsloo.subtitle %] [% subtitl.subfield %][% END %]</a>
+ [% ELSE %] <input type="checkbox" class="selection" value="[% itemsloo.biblionumber %]" name="REM-[% itemsloo.biblionumber %]" />
+ [% END %] </td>
+ [% END %] [% UNLESS ( item_level_itypes ) %]<td>
+ [% UNLESS ( noItemTypeImages || !itemsloo.imageurl ) %]<img src="[% itemsloo.imageurl %]" alt="[% itemsloo.description %]" title="[% itemsloo.description %]" />[% END %][% itemsloo.description %] </td>[% END %] <td>
+ [% INCLUDE 'biblio-default-view.inc' biblionumber = itemsloo.biblionumber %] [% itemsloo.title |html %][% FOREACH subtitl IN itemsloo.subtitle %] [% subtitl.subfield %][% END %]</a>
  </td>
  <td>[% itemsloo.author %]</td>
  <td>[% itemsloo.dateadded %]</td>
  <td>
- [% UNLESS ( itemsloo.notforloan ) %]
- <a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% itemsloo.biblionumber %]">Reservas</a>
- [% END %]
- </td>
+ [% UNLESS ( itemsloo.notforloan ) %] <a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% itemsloo.biblionumber %]">Reservas</a>
+ [% END %] </td>
  </tr>
  [% END %]<!-- /itemsloop -->
  </table><fieldset class="action">
- [% IF ( itemsloop ) %]
- <input type="button" id="placehold" style="display:none" onclick="placeHold(); return false;" value="Place holds" />
- [% IF ( allowremovingitems ) %]<input value="Eliminar registros seleccionados" type="submit" onclick="return confirm(_('Are you sure you want to remove these records from the shelf?'));" />[% END %]
- <input value="Combinar registros seleccionados" type="submit" onclick="return MergeItems();" />
- [% END %]
- </fieldset>
+ [% IF ( itemsloop ) %] <input value="Hacer reservas" style="display:none" type="button" id="placehold" onclick="placeHold(); return false;" />
+ [% IF ( allowremovingitems ) %]<input value="Eliminar registros seleccionados" type="submit" onclick="return confirm(_('Are you sure you want to remove these records from the shelf?'));" />[% END %] <input value="Combinar registros seleccionados" type="submit" onclick="return MergeItems();" />
+ [% END %] </fieldset>
  </fieldset>
  
 </form>
- [% END %]
- </div>
+ [% END %] </div>
 [% END %]<!-- /viewshelf -->
 
 [% IF ( allowaddingitem ) %]
 <div class="yui-g">
 <form action="/cgi-bin/koha/virtualshelves/shelves.pl" method="post">
  <fieldset class="brief">
- <legend>Add an item to <i>[% shelfname | html %]</i></legend>
+ <legend>Agregar un ítem a <i>[% shelfname | html %]</i></legend>
  <ol>
  <li>
  <label for="addbarcode">Código de barras:</label>
@@ -249,74 +209,53 @@ function placeHold () {
 [% END %]<!-- /allowaddingitem -->
 
 [% IF ( debug ) %]
- [% IF ( edit ) %]<div>Edición habilitada ([% shelfname | html %])</div>[% END %]
- [% IF ( seflag ) %]<div>seflag está en ([% seflag %])</div>[% END %]
-[% END %]
-
-[% IF ( seflag ) %]
-<div class="yui-ge">
+ [% IF ( edit ) %]<div>Edición habilitada ([% shelfname | html %])</div>[% END %] [% IF ( seflag ) %]<div>seflag está en ([% seflag %])</div>[% END %] [% END %] [% IF ( seflag ) %] <div class="yui-ge">
  <div class="yui-u first">
  <form method="post" action="/cgi-bin/koha/virtualshelves/shelves.pl">
  <fieldset class="rows">
 
- [% IF ( shelves ) %]
- <input type="hidden" name="shelves" value="1" />
- <legend>Create a new list</legend>
+ [% IF ( shelves ) %] <input type="hidden" name="shelves" value="1" />
+ <legend>Crear una nueva lista</legend>
  <ol>
- <li><label class="required" for="addshelf">List name:</label><input id="addshelf" type="text" name="addshelf" size="25" /></li>
- <li><span class="label">Owner: </span><input type="hidden" name="owner" id="owner" value="[% loggedinuser %]" />[% loggedinusername %]</li>
- <li><label for="sortfield" >Sort this list by: </label>
+ <li><label class="required" for="addshelf">Nombre de la lista: </label><input id="addshelf" type="text" name="addshelf" size="25" /></li>
+ <li><span class="label">Propietario: </span><input type="hidden" name="owner" id="owner" value="[% loggedinuser %]" />[% loggedinusername %]</li>
+ <li><label for="sortfield" >Ordenar esta lista por: </label>
  <select name="sortfield" id="sortfield">
- [% IF ( sort_title ) %]<option value="title" selected="selected">Título</option>[% ELSE %]<option value="title">Título</option>[% END %]
- [% IF ( sort_author ) %]<option value="author" selected="selected">Autor</option>[% ELSE %]<option value="author">Autor</option>[% END %]
- [% IF ( sort_copyrightdate ) %]<option value="copyrightdate" selected="selected">Fecha de Copyright</option>[% ELSE %]<option value="copyrightdate">Fecha de Copyright</option>[% END %]
- </select></li>
- <li><label for="category">Categoría:</label>
+ [% IF ( sort_title ) %]<option value="title" selected="selected">Título</option>[% ELSE %]<option value="title">Título</option>[% END %] [% IF ( sort_author ) %]<option value="author" selected="selected">Autor</option>[% ELSE %]<option value="author">Autor</option>[% END %] [% IF ( sort_copyrightdate ) %]<option value="copyrightdate" selected="selected">Fecha de Copyright</option>[% ELSE %]<option value="copyrightdate">Fecha de Copyright</option>[% END %] </select></li>
+ <li><label for="category">Categoría: </label>
  <select name="category" id="category">
  <option value="1">Privado</option>
  <option value="2">Público</option>
- </select></li></ol>
- [% END %]
-
- [% IF ( edit ) %]
- <input type="hidden" name="op" value="modifsave" />
- [% IF ( showprivateshelves ) %]<input type="hidden" name="display" value="privateshelves" />[% END %]
- <input type="hidden" name="shelfnumber" value="[% shelfnumber %]" />
- <legend>Edit list <i>[% shelfname | html %]</i></legend>
- <ol>
- <li><label for="shelfname">Name: </label><input type="text" id="shelfname" name="shelfname" size="25" value="[% shelfname |html %]" /></li>
- <li><label for="owner">Owner: </label><input type="hidden" id="owner" name="owner" value="[% IF ( owner ) %][% ownername %][% ELSE %][% loggedinusername %][% END %]" />[% IF ( owner ) %][% ownername %][% ELSE %][% loggedinusername %][% END %]</li>
- <li><label for="sortfield" >Sort this list by: </label>
- <select name="sortfield">
- [% IF ( sort_title ) %]<option value="title" selected="selected">Título</option>[% ELSE %]<option value="title">Título</option>[% END %]
- [% IF ( sort_author ) %]<option value="author" selected="selected">Autor</option>[% ELSE %]<option value="author">Autor</option>[% END %]
- [% IF ( sort_copyrightdate ) %]<option value="copyrightdate" selected="selected">Fecha de Copyright</option>[% ELSE %]<option value="copyrightdate">Fecha de Copyright</option>[% END %]
  </select></li>
- <li><label for="category">Categoría:</label>
+ [% INCLUDE list_permissions %] </ol>
+ [% END %] [% IF ( edit ) %] <input type="hidden" name="op" value="modifsave" />
+ [% IF ( showprivateshelves ) %]<input type="hidden" name="display" value="privateshelves" />[% END %] <input type="hidden" name="shelfnumber" value="[% shelfnumber %]" />
+ <legend>Editar lista <i>[% shelfname | html %]</i></legend>
+ <ol>
+ <li><label for="shelfname">Nombre: </label><input type="text" id="shelfname" name="shelfname" size="25" value="[% shelfname |html %]" /></li>
+ <li><label for="owner">Propietario: </label><input type="hidden" id="owner" name="owner" value="[% IF ( owner ) %][% ownername %][% ELSE %][% loggedinusername %][% END %]" />[% IF ( owner ) %][% ownername %][% ELSE %][% loggedinusername %][% END %]</li>
+ <li><label for="sortfield" >Ordenar esta lista por: </label>
+ <select name="sortfield">
+ [% IF ( sort_title ) %]<option value="title" selected="selected">Título</option>[% ELSE %]<option value="title">Título</option>[% END %] [% IF ( sort_author ) %]<option value="author" selected="selected">Autor</option>[% ELSE %]<option value="author">Autor</option>[% END %] [% IF ( sort_copyrightdate ) %]<option value="copyrightdate" selected="selected">Fecha de Copyright</option>[% ELSE %]<option value="copyrightdate">Fecha de Copyright</option>[% END %] </select></li>
+ <li><label for="category">Categoría: </label>
  <select id="category" name="category">
- [% IF ( category1 ) %]
- <option value="1" selected="selected">Privado</option>
- [% ELSE %]
- <option value="1">Privado</option>
- [% END %]
- [% IF ( category2 ) %]
- <option value="2" selected="selected">Público</option>
- [% ELSE %]
- <option value="2">Público</option>
- [% END %]
- </select></li></ol>
- [% END %]
-
- </fieldset>
+ [% IF ( category1 ) %] <option value="1" selected="selected">Privado</option>
+ [% ELSE %] <option value="1">Privado</option>
+ [% END %] [% IF ( category2 ) %] <option value="2" selected="selected">Público</option>
+ [% ELSE %] <option value="2">Público</option>
+ [% END %] </select></li>
+ [% INCLUDE list_permissions %] </ol>
+ [% END %] </fieldset>
  <fieldset class="action"><input value="Guardar" type="submit" onclick="Check(this.form); return false;" class="submit" />
- [% IF ( showprivateshelves ) %]<a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves" class="cancel">Cancelar</a>[% ELSE %]<a href="/cgi-bin/koha/virtualshelves/shelves.pl" class="cancel">Cancelar</a>[% END %]
- </fieldset>
+ [% IF ( showprivateshelves ) %]<a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves" class="cancel">Cancelar</a>[% ELSE %]<a href="/cgi-bin/koha/virtualshelves/shelves.pl" class="cancel">Cancelar</a>[% END %] </fieldset>
  </form>
  </div>
  <div class="yui-u">
  <div class="help"><ul>
- <li>A <b>Privado</b> list is managed by you and can be seen only by you.</li>
- <li> A <b>Público</b> list can be seen by everybody, but managed only by you.</li>
+ <li>Un <b>Privado</b> la lista sólo puede ser administrada y vista por usted.</li>
+ <li> Un <b>Público</b> la lista puede ser vista por cualquiera, pero administrada solamente por usted.</li>
+ <br/>
+ <li>The owner of a list is always allowed to add entries, but needs permission to remove.</li>
  </ul>
  </div>
  </div>
@@ -325,39 +264,24 @@ function placeHold () {
 
 [% UNLESS ( vseflag ) %]
  <h2>Listas</h2>
- <div class="toptabs">
- <ul class="ui-tabs-nav">
- [% IF ( showprivateshelves ) %]
- <li id="privateshelves_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves">Your lists</a></li>
- [% ELSE %]
- <li id="privateshelves_tab" class=""><a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves">Your lists</a></li>
- [% END %]
- [% IF ( showpublicshelves ) %]
- <li id="publicshelves_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=publicshelves">Public lists</a></li>
- [% ELSE %]
- <li id="publicshelves_tab" class=""><a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=publicshelves">Public lists</a></li>
- [% END %]
- </ul>
- [% IF ( showprivateshelves ) %]
- <div id="privateshelves" class="ui-tabs-panel" style="display:block;">
- [% ELSE %]
- <div id="privateshelves" class="ui-tabs-panel" style="display:none;">
- [% END %]
- [% IF ( shelveslooppriv ) %]
- <div class="pages">[% pagination_bar %]</div>
+ <div class="statictabs">
+ <ul>
+ [% IF ( showprivateshelves ) %] <li id="privateshelves_tab" class="active"><a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves">Sus listas</a></li>
+ [% ELSE %] <li id="privateshelves_tab" class=""><a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves">Sus listas</a></li>
+ [% END %] [% IF ( showpublicshelves ) %] <li id="publicshelves_tab" class="active"><a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=publicshelves">Listas públicas</a></li>
+ [% ELSE %] <li id="publicshelves_tab" class=""><a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=publicshelves">Listas públicas</a></li>
+ [% END %] </ul>
+ [% IF ( showprivateshelves ) %] <div id="privateshelves" class="tabs-container" style="display:block;">
+ [% ELSE %] <div id="privateshelves" class="tabs-container" style="display:none;">
+ [% END %] [% IF ( shelveslooppriv ) %] <div class="pages">[% pagination_bar %]</div>
  <table>
  <tr><th>Nombre de la lista</th><th>Contenidos</th><th>Ordenar por</th><th>Tipo</th><th>Opciones</th></tr>
- [% FOREACH shelveslooppri IN shelveslooppriv %]
- [% IF ( shelveslooppri.toggle ) %]<tr class="highlight">[% ELSE %]<tr>[% END %]
- <td><a href="shelves.pl?[% IF ( shelveslooppri.showprivateshelves ) %]display=privateshelves&amp;[% END %]viewshelf=[% shelveslooppri.shelf %]&amp;shelfoff=[% shelfoff %]">[% shelveslooppri.shelfname |html %]</a></td>
+ [% FOREACH shelveslooppri IN shelveslooppriv %] [% IF ( shelveslooppri.toggle ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td><a href="shelves.pl?[% IF ( shelveslooppri.showprivateshelves ) %]display=privateshelves&amp;[% END %]viewshelf=[% shelveslooppri.shelf %]&amp;shelfoff=[% shelfoff %]">[% shelveslooppri.shelfname |html %]</a></td>
  <td>[% shelveslooppri.count %] ítem(s)</td>
- <td>[% IF ( shelveslooppri.authorsort ) %]Author[% ELSIF ( shelveslooppri.yearsort ) %]Year[% ELSE %]Title[% END %]</td>
- <td>[% IF ( shelveslooppri.viewcategory1 ) %]Private[% END %]
- [% IF ( shelveslooppri.viewcategory2 ) %]Public[% END %]
- </td>
+ <td>[% IF ( shelveslooppri.authorsort ) %]Autor[% ELSIF ( shelveslooppri.yearsort ) %]Año[% ELSE %]Título[% END %]</td>
+ <td>[% IF ( shelveslooppri.viewcategory1 ) %]Privada[% END %] [% IF ( shelveslooppri.viewcategory2 ) %]Pública [% END %] </td>
  <td>
- [% IF ( shelveslooppri.mine ) %]
- <form action="merge.pl" method="get">
+ [% IF ( shelveslooppri.mine ) %] <form action="merge.pl" method="get">
  <input type="hidden" name="shelf" value="[% shelveslooppri.shelf %]" />
  </form>
  <form action="shelves.pl" method="get">
@@ -371,46 +295,30 @@ function placeHold () {
  <input type="hidden" name="shelves" value="1" />
  <input type="hidden" name="display" value="privateshelves" />
  <input type="hidden" name="DEL-[% shelveslooppri.shelf %]" value="1" />
- [% IF ( shelveslooppri.confirm ) %]
- <input type="hidden" name="CONFIRM-[% shelveslooppri.confirm %]" value="1" />
+ [% IF ( shelveslooppri.confirm ) %] <input type="hidden" name="CONFIRM-[% shelveslooppri.confirm %]" value="1" />
  <input value="Confirmar" type="submit" class="approve" />
- [% ELSE %]
- <input value="Eliminar" type="submit" class="deleteshelf" onclick="return confirmDelete(_('Are you sure you want to remove this list?'));" />
- [% END %]
- </form>
- [% ELSE %]
- None
- [% END %]
- </td>
+ [% ELSE %] <input value="Borrar" type="submit" class="deleteshelf" onclick="return confirmDelete(_('Are you sure you want to remove this list?'));" />
+ [% END %] </form>
+ [% ELSE %] Ninguno [% END %] </td>
  </tr>
- [% END %]
- </table>
- [% ELSE %]
- <p>No private lists.</p>
+ [% END %] </table>
+ [% ELSE %] <p>Ninguna lista privada.</p>
  [% END %]<!-- /shelveslooppriv -->
  </div><!-- /privateshelves -->
 
  [% IF ( showpublicshelves ) %]
- <div id="publicshelves" class="ui-tabs-panel" style="display:block;">
- [% ELSE %]
- <div id="publicshelves" class="ui-tabs-panel" style="display:none;">
- [% END %]
- [% IF ( shelvesloop ) %]
- <div class="pages">[% pagination_bar %]</div>
+ <div id="publicshelves" class="tabs-container" style="display:block;">
+ [% ELSE %] <div id="publicshelves" class="tabs-container" style="display:none;">
+ [% END %] [% IF ( shelvesloop ) %] <div class="pages">[% pagination_bar %]</div>
  <table>
  <tr><th>Nombre de la lista</th><th>Creado por</th><th>Contenidos</th><th>Ordenar por</th><th>Tipo</th><th>Opciones</th></tr>
- [% FOREACH shelvesloo IN shelvesloop %]
- [% IF ( shelvesloo.toggle ) %]<tr class="highlight">[% ELSE %]<tr>[% END %]
- <td><a href="shelves.pl?viewshelf=[% shelvesloo.shelf %]">[% shelvesloo.shelfname |html %]</a></td>
+ [% FOREACH shelvesloo IN shelvesloop %] [% IF ( shelvesloo.toggle ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td><a href="shelves.pl?viewshelf=[% shelvesloo.shelf %]">[% shelvesloo.shelfname |html %]</a></td>
  <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% shelvesloo.owner %]">[% shelvesloo.ownername %]</td>
  <td>[% shelvesloo.count %] ítem(s)</td>
- <td>[% IF ( shelvesloo.authorsort ) %]Author[% ELSIF ( shelvesloo.yearsort ) %]Year[% ELSE %]Title[% END %]</td>
- <td>[% IF ( shelvesloo.viewcategory1 ) %]Private[% END %]
- [% IF ( shelvesloo.viewcategory2 ) %]Public[% END %]
- </td>
+ <td>[% IF ( shelvesloo.authorsort ) %]Autor[% ELSIF ( shelvesloo.yearsort ) %]Año[% ELSE %]Título[% END %]</td>
+ <td>[% IF ( shelvesloo.viewcategory1 ) %]Privada[% END %] [% IF ( shelvesloo.viewcategory2 ) %]Pública [% END %] </td>
  <td>
- [% IF ( shelvesloo.manageshelf ) %]
- <form action="shelves.pl" method="get">
+ [% IF ( shelvesloo.manageshelf ) %] <form action="shelves.pl" method="get">
  <input type="hidden" name="shelfnumber" value="[% shelvesloo.shelf %]" />
  <input type="hidden" name="op" value="modif" />
  <input value="Editar" type="submit" class="editshelf" />
@@ -419,28 +327,18 @@ function placeHold () {
  <input type="hidden" name="shelfoff" value="[% shelfoff %]" />
  <input type="hidden" name="shelves" value="1" />
  <input type="hidden" name="DEL-[% shelvesloo.shelf %]" value="1" />
- [% IF ( shelvesloo.confirm ) %]
- <input type="hidden" name="CONFIRM-[% shelvesloo.confirm %]" value="1" />
+ [% IF ( shelvesloo.confirm ) %] <input type="hidden" name="CONFIRM-[% shelvesloo.confirm %]" value="1" />
  <input value="Confirmar" type="submit" class="approve" />
- [% ELSE %]
- <input value="Eliminar" type="submit" class="deleteshelf" onclick="return confirmDelete(_('Are you sure you want to remove this list?'));" />
- [% END %]
- </form>
- [% ELSE %]
- None
- [% END %]
- </td>
+ [% ELSE %] <input value="Borrar" type="submit" class="deleteshelf" onclick="return confirmDelete(_('Are you sure you want to remove this list?'));" />
+ [% END %] </form>
+ [% ELSE %] Ninguno [% END %] </td>
  </tr>
- [% END %]
- </table>
- [% ELSE %]
- [% IF ( showpublicshelves ) %]<p>No public lists.</p>[% END %]
+ [% END %] </table>
+ [% ELSE %] [% IF ( showpublicshelves ) %]<p>No hay listas públicas</p>[% END %]
  [% END %]<!-- /shelvesloop -->
  </div><!-- /publicshelves -->
  </div>
-[% END %]
-
-<form id="hold_form" method="get" action="/cgi-bin/koha/reserve/request.pl">
+[% END %] <form id="hold_form" method="get" action="/cgi-bin/koha/reserve/request.pl">
  <!-- Value will be set here by placeHold() -->
  <input id="hold_form_biblios" type="hidden" name="biblionumbers" value="" />
  <input type="hidden" name="multi_hold" value="1"/>
@@ -448,4 +346,4 @@ function placeHold () {
 
 </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

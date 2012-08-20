@@ -3,19 +3,14 @@
 <!-- Begin Authorities Resident Search Box -->
 <div id="header_search" class="residentsearch">
  <div id="authority_search" class="residentsearch">
- <p class="tip">Ingresa autoridad ($a):</p>
+ <p class="tip">Ingrese autoridad ($a):</p>
  <form action="/cgi-bin/koha/authorities/authorities-home.pl" method="get">
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="intranet" />
  <select name="authtypecode">
- [% FOREACH authtypesloo IN authtypesloop %]
- [% IF ( authtypesloo.selected ) %]
- <option value="[% authtypesloo.value %]" selected="selected">[% authtypesloo.authtypetext %]</option>
- [% ELSE %]
- <option value="[% authtypesloo.value %]">[% authtypesloo.authtypetext %]</option>
- [% END %]
- [% END %]
- </select>
+ [% IF (marcflavour == 'UNIMARC' ) %]<option value="">All authority types</option>[% END %] [% FOREACH authtypesloo IN authtypesloop %] [% IF ( authtypesloo.selected ) %] <option value="[% authtypesloo.value %]" selected="selected">[% authtypesloo.authtypetext %]</option>
+ [% ELSE %] <option value="[% authtypesloo.value %]">[% authtypesloo.authtypetext %]</option>
+ [% END %] [% END %] </select>
  <input type="hidden" name="marclist" value="mainmainentry" />
  <select name="operator">
  <option value="contains">contiene</option>
@@ -31,20 +26,15 @@
  <input value="Enviar" type="submit" class="submit" />
  </form>
  </div>
- <div id="main_heading" class="residentsearch" style="display:none;">
- <p class="tip">Ingresa autoridad:</p>
+ <div id="main_heading" class="residentsearch">
+ <p class="tip">Ingrese autoridad:</p>
  <form action="/cgi-bin/koha/authorities/authorities-home.pl" method="get">
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="intranet" />
  <select  name="authtypecode">
- [% FOREACH authtypesloo IN authtypesloop %]
- [% IF ( authtypesloo.selected ) %]
- <option value="[% authtypesloo.value %]" selected="selected">[% authtypesloo.authtypetext %]</option>
- [% ELSE %]
- <option value="[% authtypesloo.value %]">[% authtypesloo.authtypetext %]</option>
- [% END %]
- [% END %]
- </select>
+ [% IF (marcflavour == 'UNIMARC' ) %]<option value="">All authority types</option>[% END %] [% FOREACH authtypesloo IN authtypesloop %] [% IF ( authtypesloo.selected ) %] <option value="[% authtypesloo.value %]" selected="selected">[% authtypesloo.authtypetext %]</option>
+ [% ELSE %] <option value="[% authtypesloo.value %]">[% authtypesloo.authtypetext %]</option>
+ [% END %] [% END %] </select>
  <input type="hidden" name="marclist" value="mainentry" />
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
@@ -62,20 +52,15 @@
  <input value="Enviar" type="submit" class="submit" />
  </form>
  </div>
- <div id="all_headings" class="residentsearch" style="display:none;">
- <p class="tip">Ingresa un campo de autoridad:</p>
+ <div id="all_headings" class="residentsearch">
+ <p class="tip">Ingrese campo de autoridad:</p>
  <form action="/cgi-bin/koha/authorities/authorities-home.pl" method="get">
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="intranet" />
  <select name="authtypecode">
- [% FOREACH authtypesloo IN authtypesloop %]
- [% IF ( authtypesloo.selected ) %]
- <option value="[% authtypesloo.value %]" selected="selected">[% authtypesloo.authtypetext %]</option>
- [% ELSE %]
- <option value="[% authtypesloo.value %]">[% authtypesloo.authtypetext %]</option>
- [% END %]
- [% END %]
- </select>
+ [% IF (marcflavour == 'UNIMARC' ) %]<option value="">All authority types</option>[% END %] [% FOREACH authtypesloo IN authtypesloop %] [% IF ( authtypesloo.selected ) %] <option value="[% authtypesloo.value %]" selected="selected">[% authtypesloo.authtypetext %]</option>
+ [% ELSE %] <option value="[% authtypesloo.value %]">[% authtypesloo.authtypetext %]</option>
+ [% END %] [% END %] </select>
  <input type="hidden" name="marclist" value="all" />
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
@@ -94,9 +79,9 @@
  </form>
  </div>
  <ul>
- <li><a href="/cgi-bin/koha/authorities/authorities-home.pl#authority_search">Search authorities</a></li>
- <li><a href="/cgi-bin/koha/authorities/authorities-home.pl#main_heading">Search main heading</a></li>
- <li><a href="/cgi-bin/koha/authorities/authorities-home.pl#all_headings">Search all headings</a></li>
+ <li><a href="#authority_search">Buscar autoridades</a></li>
+ <li><a href="#main_heading">Buscar encabezamiento principal</a></li>
+ <li><a href="#all_headings">Buscar en todos los encabezamientos</a></li>
  </ul>
 </div><!-- /header_search -->
 </div><!-- /gradient -->

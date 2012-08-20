@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Autoridades &rsaquo; Constructor del Leader</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Autoridades &rsaquo; Constructor del Leader</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="cat_marc21_leader_authorities" class="cat" style="padding:1em;">
 <h3>000 - Encabezamiento</h3>
 <form name="f_pop" onsubmit="report()" action="">
@@ -15,51 +13,28 @@
  <td><label for="f5">5- Estado del registro</label></td>
  <td>
  <select name="f5" id="f5" size="1">
- [% IF ( f5a ) %]
- <option value="a" selected="selected">a- Aumento en nivel de codificación</option>
- [% ELSE %]
- <option value="a">a- Aumento en nivel de codificación</option>
- [% END %]
-
- [% IF ( f5c ) %]
- <option value="c" selected="selected">c- Corregido o revisado</option>
- [% ELSE %]
- <option value="c">c- Corregido o revisado</option>
- [% END %]
- [% IF ( f5d ) %]
- <option value="d" selected="selected">d- Eliminado</option>
- [% ELSE %]
- <option value="d">d- Eliminado</option>
- [% END %]
- [% IF ( f5n ) %]
- <option value="n" selected="selected">n- Nuevo</option>
- [% ELSE %]
- <option value="n">n- Nuevo</option>
- [% END %]
- [% IF ( f5o ) %]
- <option value="o" selected="selected">o- Obsoleto</option>
- [% ELSE %]
- <option value="o">o- Obsoleto</option>
- [% END %]
- [% IF ( f5s ) %]
- <option value="s" selected="selected">s-Suprimido; cabecera dividida en dos o mas cabeceras</option>
- [% ELSE %]
- <option value="s">s-Suprimido; cabecera dividida en dos o mas cabeceras</option>
- [% END %]
- [% IF ( f5x ) %]
- <option value="x" selected="selected">x- Suprimido; encabezamiento reemplazado por otro encabezamiento</option>
- [% ELSE %]
- <option value="x">x- Suprimido; encabezamiento reemplazado por otro encabezamiento</option>
- [% END %]
- </select>
+ [% IF ( f5a ) %] <option value="a" selected="selected">a- Aumento en nivel de codificación</option>
+ [% ELSE %] <option value="a">a- Aumento en nivel de codificación</option>
+ [% END %] [% IF ( f5c ) %] <option value="c" selected="selected">c- Corregido o revisado</option>
+ [% ELSE %] <option value="c">c- Corregido o revisado</option>
+ [% END %] [% IF ( f5d ) %] <option value="d" selected="selected">d- Eliminado</option>
+ [% ELSE %] <option value="d">d- Eliminado</option>
+ [% END %] [% IF ( f5n ) %] <option value="n" selected="selected">n- Nuevo</option>
+ [% ELSE %] <option value="n">n- Nuevo</option>
+ [% END %] [% IF ( f5o ) %] <option value="o" selected="selected">o- Obsoleto</option>
+ [% ELSE %] <option value="o">o- Obsoleto</option>
+ [% END %] [% IF ( f5s ) %] <option value="s" selected="selected">s- Suprimido; cabecera dividida en dos o mas cabeceras</option>
+ [% ELSE %] <option value="s">s- Suprimido; cabecera dividida en dos o mas cabeceras</option>
+ [% END %] [% IF ( f5x ) %] <option value="x" selected="selected">x- Suprimido; encabezamiento reemplazado por otro encabezamiento</option>
+ [% ELSE %] <option value="x">x- Suprimido; encabezamiento reemplazado por otro encabezamiento</option>
+ [% END %] </select>
  </td>
  </tr>
  <tr>
  <td><label for="f6">6- Tipo de registro</label></td>
  <td>
  <input name="f6" id="f6" value="z" type="hidden" />
- z- Authority data
- </td>
+ z- Información de autoridad </td>
  </tr>
  <tr>
  <td>7-8 Indefinido</td>
@@ -70,17 +45,11 @@
  <td><label for="f9">9- Codificación</label></td>
  <td>
  <select name="f9" id="f9" size="1">
- [% IF ( f9 ) %]
- <option value=" " selected="selected">MARC-8</option>
- [% ELSE %]
- <option value=" ">MARC-8</option>
- [% END %]
- [% IF ( f9a ) %]
- <option value="a" selected="selected">a- UCS/Unicode</option>
- [% ELSE %]
- <option value="a">a- UCS/Unicode</option>
- [% END %]
- </select>
+ [% IF ( f9 ) %] <option value=" " selected="selected">MARC-8</option>
+ [% ELSE %] <option value=" ">MARC-8</option>
+ [% END %] [% IF ( f9a ) %] <option value="a" selected="selected">a- UCS/Unicode</option>
+ [% ELSE %] <option value="a">a- UCS/Unicode</option>
+ [% END %] </select>
  </td>
  </tr>
  <tr>
@@ -91,17 +60,11 @@
  <td><label for="f17">17- Nivel de codificación</label></td>
  <td>
  <select name="f17" id="f17" size="1">
- [% IF ( f17n ) %]
- <option value="n" selected="selected">n- Registro de autoridad completo</option>
- [% ELSE %]
- <option value="n">n- Registro de autoridad completo</option>
- [% END %]
- [% IF ( f17o ) %]
- <option value="o" selected="selected">o- Registro de autoridad incompleto</option>
- [% ELSE %]
- <option value="o">o- Registro de autoridad incompleto</option>
- [% END %]
- </select>
+ [% IF ( f17n ) %] <option value="n" selected="selected">n- Registro de autoridad completo</option>
+ [% ELSE %] <option value="n">n- Registro de autoridad completo</option>
+ [% END %] [% IF ( f17o ) %] <option value="o" selected="selected">o- Registro de autoridad incompleto</option>
+ [% ELSE %] <option value="o">o- Registro de autoridad incompleto</option>
+ [% END %] </select>
  </td>
  </tr>
 
@@ -139,4 +102,4 @@ function report() {
 	//]]>
 </script>
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

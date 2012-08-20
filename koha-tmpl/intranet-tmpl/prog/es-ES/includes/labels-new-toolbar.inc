@@ -15,9 +15,9 @@
 </script>
 <div id="toolbar">
  <ul class="toolbar">
- <li><a id="newlabel" href="/cgi-bin/koha/labels/label-edit-layout.pl?op=new">New layout</a></li>
- <li><a id="newtemplate" href="/cgi-bin/koha/labels/label-edit-template.pl?op=new">New template</a></li>
+ <li><a id="newlabel" href="/cgi-bin/koha/labels/label-edit-layout.pl?op=new">Nuevo diseño</a></li>
+ <li><a id="newtemplate" href="/cgi-bin/koha/labels/label-edit-template.pl?op=new">Nueva plantilla</a></li>
  <li><a id="newprofile" href="/cgi-bin/koha/labels/label-edit-profile.pl?op=new">Nuevo perfil</a></li>
- <li><a id="newbatch" href="/cgi-bin/koha/labels/label-edit-batch.pl?op=new">New batch</a></li>
+ <li><a id="newbatch" href="/cgi-bin/koha/labels/label-edit-batch.pl?op=new">Nuevo lote</a></li>
  </ul>
 </div>

@@ -1,11 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo;
-[% IF ( add_form ) %]MARC frameworks &rsaquo; [% action %] [% searchfield %][% END %]
-[% IF ( delete_confirm ) %]MARC frameworks &rsaquo; Confirm deletion of tag '[% searchfield %]'[% END %]
-[% IF ( delete_confirmed ) %]MARC frameworks &rsaquo; Data deleted[% END %]
-[% IF ( else ) %]MARC frameworks[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; [% IF ( add_form ) %]Hojas de trabajo MARC &rsaquo; [% action %] [% searchfield %][% END %] [% IF ( delete_confirm ) %]Hojas de trabajo MARC &rsaquo; Confirmar eliminación de campo '[% searchfield %]'[% END %] [% IF ( delete_confirmed ) %]Hojas de trabajo MARC &rsaquo; Datos eliminados[% END %] [% IF ( else ) %]Hojas de trabajo MARC[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
 <script type="text/javascript" id="js">$(document).ready(function() {
 	$("#table_marctagstructure").tablesorter({
@@ -38,62 +32,45 @@ $(document).ready(function() {
 </script>
 </head>
 <body id="admin_marctagstructure" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs">
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
  <a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
 &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a>
-&rsaquo; <a href="/cgi-bin/koha/admin/biblio_framework.pl">MARC frameworks</a>
+&rsaquo; <a href="/cgi-bin/koha/admin/biblio_framework.pl">Hojas de trabajo MARC</a>
 [% IF ( add_form ) %] &rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% frameworkcode %]">[% frameworktext %] ([% frameworkcode %])</a>
 &rsaquo; [% action %] [% searchfield %] [% ELSIF ( else ) %] &rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% frameworkcode %]">[% IF ( frameworkcode ) %][% frameworktext %] ([% frameworkcode %])[% ELSE %]Hoja de trabajo MARC predeterminada[% END %]</a>
 [% ELSIF ( delete_confirm ) %] &rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% frameworkcode %]">[% frameworktext %] ([% frameworkcode %])</a>
-&rsaquo; Confirm deletion of tag '[% searchfield %]'
-[% ELSIF ( delete_confirmed ) %]
-&rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% frameworkcode %]">[% frameworktext %] ([% frameworkcode %])</a>
-&rsaquo; Data deleted
-[% END %]
-</div>
+&rsaquo; Confirmar eliminación de etiqueta '[% searchfield %]' [% ELSIF ( delete_confirmed ) %] &rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% frameworkcode %]">[% frameworktext %] ([% frameworkcode %])</a>
+&rsaquo; Datos eliminados [% END %] </div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( else ) %]
-<div id="toolbar">
+[% IF ( else ) %] <div id="toolbar">
  <ul class="toolbar">
- <li><a id="addtag" href="/cgi-bin/koha/admin/marctagstructure.pl?op=add_form&amp;frameworkcode=[% frameworkcode %]">Nueva pestaña</a></li>
-</ul></div>[% END %]
+ <li><a id="addtag" href="/cgi-bin/koha/admin/marctagstructure.pl?op=add_form&amp;frameworkcode=[% frameworkcode %]">Nueva etiqueta</a></li>
+</ul></div>[% END %] <h1>Hoja de trabajo MARC para [% IF ( frameworkcode ) %][% frameworktext %] ([% frameworkcode %])[% ELSE %]Hoja de trabajo MARC por defecto[% END %]</h1>
 
-<h1>Hoja de trabajo MARC para [% IF ( frameworkcode ) %][% frameworktext %] ([% frameworkcode %])[% ELSE %]hoja de trabajo MARC predeterminada[% END %]</h1>
-
-[% IF ( add_form ) %]
-
- <form action="[% script_name %]" name="Aform" method="post">
+[% IF ( add_form ) %] <form action="[% script_name %]" name="Aform" method="post">
  
- <fieldset class="rows"><legend>[% IF ( use_heading_flags_p ) %][% IF ( heading_modify_tag_p ) %]Modificar etiqueta<input type="hidden" name="modif" value="1" />[% searchfield %][% END %][% IF ( heading_add_tag_p ) %]Agregar etiqueta[% END %][% ELSE %][% action %][% END %]</legend> <input type="hidden" name="op" value="add_validate" />
+ <fieldset class="rows"><legend>[% IF ( use_heading_flags_p ) %][% IF ( heading_modify_tag_p ) %]Modificar pestaña <input type="hidden" name="modif" value="1" />[% searchfield %][% END %][% IF ( heading_add_tag_p ) %]Agregar etiqueta[% END %][% ELSE %][% action %][% END %]</legend> <input type="hidden" name="op" value="add_validate" />
  <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
 
- <ol> <li><label for="tagfield">Etiqueta:</label><input id="tagfield" type="text" name="tagfield" value="[% searchfield %]" maxlength="3" size="3" /></li> 
- <li><label for="liblibrarian">Etiqueta para biblioteca:</label><input type="text" id="liblibrarian" name="liblibrarian" value="[% liblibrarian |html %]" size="40" maxlength="100" /></li>
- <li><label for="libopac">Etiqueta para OPAC:</label><input type="text" id="libopac" name="libopac" value="[% libopac |html %]" size="40" maxlength="100" /></li>
- <li><label for="repeatable">Repetible:</label>[% repeatable %]</li>
- <li><label for="mandatory">Obligatorio:</label>[% mandatory %]</li>
- <li><label for="authorised_value">Valor autorizado:</label>[% authorised_value %] (si seleccionas un valor aquí, los indicadores se limitarán a la lista de valores autorizados)</li>
+ <ol> <li><label for="tagfield">Campo: </label><input id="tagfield" type="text" name="tagfield" value="[% searchfield %]" maxlength="3" size="3" /></li> 
+ <li><label for="liblibrarian">Etiqueta para registro: </label><input type="text" id="liblibrarian" name="liblibrarian" value="[% liblibrarian |html %]" size="40" maxlength="100" /></li>
+ <li><label for="libopac">Etiqueta para el OPAC: </label><input type="text" id="libopac" name="libopac" value="[% libopac |html %]" size="40" maxlength="100" /></li>
+ <li><label for="repeatable">Repetible </label>[% repeatable %]</li>
+ <li><label for="mandatory">Obligatorio: </label>[% mandatory %]</li>
+ <li><label for="authorised_value">Valor autorizado: </label>[% authorised_value %] (si selecciona un valor aquí, los indicadores serán limitados a la lista de valores autorizados)</li>
 </ol></fieldset> 
  <fieldset class="action">
  <input value="Guardar cambios" type="submit" onclick="Check(this.form)" />
  <a class="cancel" href="[% script_name %]?frameworkcode=[% frameworkcode %]">Cancelar</a>
  </fieldset>
  </form>
-[% END %]
-
-
-[% IF ( delete_confirm ) %]
-
-<div class="dialog alert"><h3>Confirm deletion of tag <span class="ex">'[% searchfield %]'</span>?</h3>
- <p>Etiqueta: [% searchfield %]</p>
+[% END %] [% IF ( delete_confirm ) %] <div class="dialog alert"><h3>Confirmar eliminación de la etiqueta <span class="ex">'[% searchfield %]'</span>?</h3>
+ <p>Campo: [% searchfield %]</p>
  <p>Descripción: [% liblibrarian %]</p>
  <form action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="delete_confirmed" />
@@ -101,123 +78,86 @@ $(document).ready(function() {
  <input value="Sí, eliminar esta etiqueta" type="submit" class="approve" /></form>
  
  <form action="[% script_name %]" method="get"><input type="hidden" name="frameworkcode" value="[% frameworkcode %]" /><input value="No, no eliminar" type="submit" class="deny" /></form></div>
-[% END %]
-
-[% IF ( delete_confirmed ) %]
-
- <div class="dialog message"><h3>Tag deleted</h3>
+[% END %] [% IF ( delete_confirmed ) %] <div class="dialog message"><h3>Etiqueta eliminada</h3>
  <form action="[% script_name %]" method="post"><input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
  <input type="submit" value="OK" class="approve" />
  </form></div>
-[% END %]
-[% IF ( framework_create ) %]
-
- <form action="[% script_name %]" method="post">
+[% END %] [% IF ( framework_create ) %] <form action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="framework_create_confirm" />
  <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
- Crear hojas de trabajo para [% frameworkcode %] ([% frameworktext %]) usando<select name="existingframeworkcode">
+ Crear hojas de trabajo para [% frameworkcode %] ([% frameworktext %]) usando <select name="existingframeworkcode">
  <option value="">Predeterminado</option>
- [% FOREACH existingframeworkloo IN existingframeworkloop %]
- <option value="[% existingframeworkloo.value %]">[% existingframeworkloo.frameworktext %]</option>
- [% END %]
- </select>
+ [% FOREACH existingframeworkloo IN existingframeworkloop %] <option value="[% existingframeworkloo.value %]">[% existingframeworkloo.frameworktext %]</option>
+ [% END %] </select>
  <input type="submit" value="OK" />
- <br /><label for="clone_indicators" title="Clonar indicadores de la hoja de trabajo utilizada como plantilla">Clonar indicadores:&nbsp;</label><input type="checkbox" name="clone_indicators" id="clone_indicators" value ="1" checked="checked" />
+ <br /><label for="clone_indicators" title="Clone indicators from the framework used as template">Clone indicators:&nbsp;</label><input type="checkbox" name="clone_indicators" id="clone_indicators" value ="1" checked="checked" />
  
  </form>
-[% END %]
-
-
-[% IF ( else ) %]
-<form name="f" action="[% script_name %]" method="post">
+[% END %] [% IF ( else ) %] <form name="f" action="[% script_name %]" method="post">
 <fieldset style="padding:.5em;">
- <label for="searchfield"><strong>Buscar por etiqueta</strong> </label>
+ <label for="searchfield"><strong>Buscar por campo:</strong> </label>
  <input type="text" name="searchfield" id="searchfield" size="4" value="[% searchfield %]" />
 
-<label for="frameworkcode"><strong>En hoja de trabajo:</strong> </label>
+<label for="frameworkcode"><strong>En la hoja de trabajo:</strong> </label>
  <select id="frameworkcode" name="frameworkcode">
  <option value="">Predeterminado</option>
- [% FOREACH frameworkloo IN frameworkloop %]
- [% IF ( frameworkloo.selected ) %]
- <option value="[% frameworkloo.value %]" selected="selected">[% frameworkloo.frameworktext %]</option>
- [% ELSE %]
- <option value="[% frameworkloo.value %]">[% frameworkloo.frameworktext %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH frameworkloo IN frameworkloop %] [% IF ( frameworkloo.selected ) %] <option value="[% frameworkloo.value %]" selected="selected">[% frameworkloo.frameworktext %]</option>
+ [% ELSE %] <option value="[% frameworkloo.value %]">[% frameworkloo.frameworktext %]</option>
+ [% END %] [% END %] </select>
  <input value="Buscar" type="submit" />
-<p> <label for="select_display">Display only used tags/subfields</label>
- [% IF ( select_display ) %]
- <input type="checkbox" name="select_display" id="select_display" value="True" checked="checked"  onchange="this.form.submit();" />
- [% ELSE %]
- <input type="checkbox" name="select_display" id="select_display" value="True" onchange="this.form.submit();" />
+<p> <label for="select_display">Mostrar únicamente campos/subcampos usados</label>
+ [% IF ( select_display ) %] <input type="checkbox" name="select_display" id="select_display" value="True" checked="checked"  onchange="this.form.submit();" />
+ [% ELSE %] <input type="checkbox" name="select_display" id="select_display" value="True" onchange="this.form.submit();" />
  [% END %]</p>
 </fieldset>
 </form>
 <div id="pagertable_marctagstructure">
-[% INCLUDE 'table-pager.inc' perpage='20' %]
-</div>
+[% INCLUDE 'table-pager.inc' perpage='20' %] </div>
  <table id="table_marctagstructure">
  <thead>
- <th>Etiqueta</th>
- <th>Biblioteca</th>
+ <th>Campo</th>
+ <th>Lib</th>
  <th>Repetible</th>
  <th>Obligatorio</th>
  <th>Valor autorizado</th>
  <th>Subcampos</th>
- <th>Indicadores</th>
+ <th>Indicators</th>
  <th>Editar</th>
- <th>Eliminar</th>
+ <th>Borrar</th>
  </thead>
 
- [% IF ( select_display ) %]
- [% FOREACH loo IN loop %]
- [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %]
- <td>[% loo.tagfield %]</td>
+ [% IF ( select_display ) %] [% FOREACH loo IN loop %] [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %] <td>[% loo.tagfield %]</td>
  <td>[% loo.liblibrarian %]</td>
- <td> [% IF ( loo.repeatable ) %]Sí[% ELSE %]No[% END %]</td>
- <td> [% IF ( loo.mandatory ) %]Sí[% ELSE %]No[% END %]</td>
+ <td>[% IF ( loo.repeatable ) %]Si[% ELSE %]No[% END %]</td>
+ <td>[% IF ( loo.mandatory ) %]Si[% ELSE %]No[% END %]</td>
  <td>[% loo.authorised_value %]</td>
  <td><a href="[% loo.subfield_link %]">subcampos</a></td>
  <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">indicators</a>[% END %]</td>
  <td><a href="[% loo.edit %]">Editar</a></td>
- <td><a href="[% loo.delete %]">Eliminar</a></td>
+ <td><a href="[% loo.delete %]">Borrar</a></td>
  </tr>
- [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %]
- <td>&nbsp;</td>
+ [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %] <td>&nbsp;</td>
  <td colspan="8">
- [% FOREACH subfield IN loo.subfields %]
- <p> Pestaña:[% subfield.tab %] | $[% subfield.tagsubfield %] [% subfield.liblibrarian %] [% IF ( subfield.kohafield ) %][% subfield.kohafield %][% END %][% IF ( subfield.repeatable ) %], repetible[% END %][% IF ( subfield.mandatory ) %], Obligatorio[% END %][% IF ( subfield.seealso ) %], SVer [% subfield.seealso %][% END %][% IF ( subfield.authorised_value ) %], [% subfield.authorised_value %][% END %][% IF ( subfield.authtypecode ) %], [% subfield.authtypecode %][% END %][% IF ( subfield.value_builder ) %], [% subfield.value_builder %][% END %] </p>
- [% END %]
- </td>
+ [% FOREACH subfield IN loo.subfields %] <p> Pestaña:[% subfield.tab %] | $[% subfield.tagsubfield %] [% subfield.liblibrarian %] [% IF ( subfield.kohafield ) %][% subfield.kohafield %][% END %][% IF ( subfield.repeatable ) %], repetible[% END %][% IF ( subfield.mandatory ) %], Obligatorio[% END %][% IF ( subfield.seealso ) %], Ver [% subfield.seealso %][% END %][% IF ( subfield.authorised_value ) %], [% subfield.authorised_value %][% END %][% IF ( subfield.authtypecode ) %], [% subfield.authtypecode %][% END %][% IF ( subfield.value_builder ) %], [% subfield.value_builder %][% END %] </p>
+ [% END %] </td>
  </tr>
- [% END %]
- [% ELSE %]
- [% FOREACH loo IN loop %]
- [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %]
- <td>[% loo.tagfield %]</td>
+ [% END %] [% ELSE %] [% FOREACH loo IN loop %] [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %] <td>[% loo.tagfield %]</td>
  <td>[% loo.liblibrarian %]</td>
- <td> [% IF ( loo.repeatable ) %]Sí[% ELSE %]No[% END %]</td>
- <td> [% IF ( loo.mandatory ) %]Sí[% ELSE %]No[% END %]</td>
+ <td>[% IF ( loo.repeatable ) %]Si[% ELSE %]No[% END %]</td>
+ <td>[% IF ( loo.mandatory ) %]Si[% ELSE %]No[% END %]</td>
  <td>[% loo.authorised_value %]</td>
  <td><a href="[% loo.subfield_link %]">Subcampos</a></td>
- <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">Indicadores</a>[% END %]</td>
+ <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">Indicators</a>[% END %]</td>
  <td><a href="[% loo.edit %]">Editar</a></td>
- <td><a href="[% loo.delete %]">Eliminar</a></td>
+ <td><a href="[% loo.delete %]">Borrar</a></td>
  </tr>
- [% END %]
- [% END %]
- </table>
+ [% END %] [% END %] </table>
 
 
 
-[% END %]
-
-
- </div>
+[% END %] </div>
  </div>
 <div class="yui-b">
-[% INCLUDE 'admin-menu.inc' %]
+[% INCLUDE 'admin-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

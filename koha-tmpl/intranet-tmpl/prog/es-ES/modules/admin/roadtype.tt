@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo; [% IF ( add_form ) %]Road types &rsaquo; [% IF ( roadtypeid ) %] Modify road type[% ELSE %] New road type[% END %][% ELSE %][% IF ( delete_confirm ) %]Road types &rsaquo; Confirm deletion of road type[% ELSE %] Road type[% END %][% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; [% IF ( add_form ) %]Tipos de camino &rsaquo; [% IF ( roadtypeid ) %] Modificar tipo de camino[% ELSE %] Nuevo tipo de camino [% END %][% ELSE %][% IF ( delete_confirm ) %]Tipos de camino &rsaquo; Confirmar eliminación de tipo de camino[% ELSE %] Tipo de camino[% END %][% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         function isNotNull(f,noalert) {
@@ -40,7 +38,7 @@
                 var _alertString="";
                 var alertString2;
                 if (f.road_type.value.length == 0  ) {
-                        _alertString += "\n- " + _("Tipo de vía");
+                        _alertString += "\n- " + _("Tipo de camino");
                         alert(_alertString);	
                 }
                 else{
@@ -51,9 +49,7 @@
 </script>
 </head>
 <body id="admin_roadtype" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'roadtype-admin-search.inc' %]
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %]<a href="/cgi-bin/koha/admin/roadtype.pl">Tipos de camino</a> &rsaquo; [% IF ( roadtypeid ) %] Modify road type[% ELSE %] New road type[% END %][% ELSE %][% IF ( delete_confirm ) %]<a href="/cgi-bin/koha/admin/roadtype.pl">Tipos de camino</a> &rsaquo; Confirm deletion of road type[% ELSE %] Road type[% END %][% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'roadtype-admin-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %]<a href="/cgi-bin/koha/admin/roadtype.pl">Tipos de camino</a> &rsaquo; [% IF ( roadtypeid ) %] Modificar tipo de calle[% ELSE %] Nuevo tipo de calle[% END %][% ELSE %][% IF ( delete_confirm ) %]<a href="/cgi-bin/koha/admin/roadtype.pl">Tipos de camino</a> &rsaquo; Confirmar eliminación de tipo de camino[% ELSE %] Tipo de camino[% END %][% END %] </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -61,26 +57,18 @@
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( add_form ) %]
- [% IF ( roadtypeid ) %]
- <h1>Modificar tipo de vía</h1>
- [% ELSE %]
- <h1>Nuevo tipo de vía</h1>
- [% END %]
-
- <form action="[% script_name %]" name="Aform" method="post">
+[% IF ( add_form ) %] [% IF ( roadtypeid ) %] <h1>Modificar tipo de vía</h1>
+ [% ELSE %] <h1>Nuevo tipo de vía</h1>
+ [% END %] <form action="[% script_name %]" name="Aform" method="post">
  <input type="hidden" name="op" value="add_validate" />
  <input type="hidden" name="checked" value="0" />
  <input type="hidden" name="roadtypeid" value="[% roadtypeid %]" />
 
 <fieldset class="rows"><ol>
-[% IF ( roadtypeid ) %]
-<li>
- <span class="label">Tipo de camino:</span>[% roadtypeid %]
- </li>
-[% END %]
- <li> 
- <label for="road_type">Tipo de camino:</label>
+[% IF ( roadtypeid ) %] <li>
+ <span class="label">Tipo de camino: </span>[% roadtypeid %] </li>
+[% END %] <li> 
+ <label for="road_type">Tipo de camino: </label>
  <input  type="text" name="road_type" id="road_type" size="80" maxlength="100" value="[% road_type |html %]" />
  </li></ol></fieldset>
  
@@ -88,27 +76,19 @@
  <input value="Enviar" class="button" type="button" onclick="Check(this.form)" /> <a class="cancel" href="/cgi-bin/koha/admin/roadtype.pl">Cancelar</a>
  </fieldset>
  </form>
-[% END %]
-
-[% IF ( delete_confirm ) %]
- <div class="dialog alert"><h3>Delete road type "[% road_type %]?"</h3>
+[% END %] [% IF ( delete_confirm ) %] <div class="dialog alert"><h3>Eliminar tipo de calle "[% road_type %]"?</h3>
 <table> <tr>
- <th>Road type id: </th>
+ <th>Tipo de camino id: </th>
  <td>[% roadtypeid %]</td>
  </tr>
- <tr> <th>Tipo de camino:</th>
- <td>[% road_type %]
- </td>
+ <tr> <th>Tipo de camino: </th>
+ <td>[% road_type %] </td>
 
  </tr></table><form action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="delete_confirmed" />
- <input type="hidden" name="roadtypeid" value="[% roadtypeid %]" /><input type="submit" class="approve" value="Yes, delete" /></form> <form action="[% script_name %]" method="post">
- <input type="submit" class="deny" value="No, do not delete" /></form></div>
-[% END %]
-
-[% IF ( else ) %]
-
-<div id="toolbar">
+ <input type="hidden" name="roadtypeid" value="[% roadtypeid %]" /><input value="Sí, eliminar" type="submit" class="approve" /></form> <form action="[% script_name %]" method="post">
+ <input value="No, no eliminar" type="submit" class="deny" /></form></div>
+[% END %] [% IF ( else ) %] <div id="toolbar">
  <script type="text/javascript">
 	//<![CDATA[
 
@@ -130,32 +110,21 @@
  <li><a id="addroad" href="/cgi-bin/koha/admin/roadtype.pl?op=add_form">Nuevo tipo de vía</a></li>
 </ul></div>
 
- <h2>Tipo de vía</h2>
- [% IF ( searchfield ) %] Buscar en [% searchfield %] [% END %] [% IF ( loop ) %]<table>
+ <h2>Tipo de camino</h2>
+ [% IF ( searchfield ) %] Buscar en [% searchfield %] [% END %] [% IF ( loop ) %] <table>
  <tr>
- <th>Tipo de vía</th>
+ <th>Tipo de camino</th>
  <th colspan="2">&nbsp;</th>
  </tr>
- [% FOREACH loo IN loop %]
- [% UNLESS ( loop.odd ) %]
- <tr class="highlight">
- [% ELSE %]
- <tr>
- [% END %]
- <td>[% loo.road_type %]</td>
+ [% FOREACH loo IN loop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
+ [% ELSE %] <tr>
+ [% END %] <td>[% loo.road_type %]</td>
  <td><a href="[% loo.script_name %]?op=add_form&amp;roadtypeid=[% loo.roadtypeid %]">Editar</a></td>
- <td><a href="[% loo.script_name %]?op=delete_confirm&amp;roadtypeid=[% loo.roadtypeid %]">Eliminar</a></td>
+ <td><a href="[% loo.script_name %]?op=delete_confirm&amp;roadtypeid=[% loo.roadtypeid %]">Borrar</a></td>
  </tr>
- [% END %]
- </table>[% END %]
-[% END %]
-
-</div>
+ [% END %] </table>[% END %] [% END %] </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'admin-menu.inc' %]
+[% INCLUDE 'admin-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
-
-
+[% INCLUDE 'intranet-bottom.inc' %] 

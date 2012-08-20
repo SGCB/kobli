@@ -1,8 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Adquisiciones &rsaquo; Resumen de recepción para: [% name %] [% IF ( invoice ) %]factura, [% invoice %][% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'additem.js.inc' %]
-<script type="text/javascript" src="[% themelang %]/js/additem.js"> </script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; Resumen de recepción para: [% name %] [% IF ( invoice ) %]factura, [% invoice %][% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'additem.js.inc' %] <script type="text/javascript" src="[% themelang %]/js/additem.js"> </script>
 <script type="text/javascript">
 //<![CDATA[
     function Check(form) {
@@ -21,7 +18,7 @@
             }
 
             if(check_additem('[% UniqueItemFields %]') == false){
-                alert(_('Duplicate values detected. Please correct the errors and resubmit.') );
+                alert(_('Valores duplicados detectados. Por favor corrija estos errores y reenvíe.') );
                 if(tobedeleted) {
                     $(lastitemblock).appendTo("#outeritemblock");
                 }
@@ -32,19 +29,75 @@
         return true;
     }
 
+    [% IF (AcqCreateItem == 'ordering') %]
+        var items_columns = [null, null, 'barcode', 'homebranchname',
+            'holdingbranchname', 'notforloan', 'restricted', 'location',
+            'itemcallnumber', 'copynumber', 'stocknumber', 'collection',
+            'itemtype', 'materials', 'itemnotes'];
+
+        function PopupEditPage(biblionumber, itemnumber) {
+            var url = "/cgi-bin/koha/cataloguing/additem.pl?op=edititem&biblionumber="
+                + biblionumber + "&itemnumber=" + itemnumber + "&popup=1#edititem";
+            var w = window.open(url);
+            var watchClose = setInterval(function() {
+                if (w.closed) {
+                    clearTimeout(watchClose);
+                    $.getJSON('/cgi-bin/koha/catalogue/getitem-ajax.pl',
+                        {
+                            'itemnumber': itemnumber
+                        },
+                        function(item) {
+                            var tds = $("#item_"+itemnumber+" td");
+                            for(var i=2; i<tds.length; i++) {
+                                var column = items_columns[i];
+                                $(tds[i]).text(item[column]);
+                            }
+                        }
+                    );
+                }
+            }, 500);
+        }
+
+        function CalcQtyToReceive() {
+            var qty = $("input[name='items_to_receive']:checked").length;
+            $("#quantity").val(qty);
+        }
+
+        function CheckNItems(n) {
+            $("input[name='items_to_receive']").each(function() {
+                $(this).attr('checked', false);
+            });
+            $("input[name='items_to_receive']:lt("+n+")").each(function () {
+                $(this).attr('checked', true);
+            });
+        }
+    [% END %]
+
     $(document).ready(function() {
         [% IF (AcqCreateItemReceiving) %]
             cloneItemBlock(0, '[% UniqueItemFields %]');
+        [% ELSIF (AcqCreateItem == 'ordering') %]
+            $("input[name='items_to_receive']").change(function() {
+                CalcQtyToReceive();
+            });
+            CalcQtyToReceive();
+            $("#quantity").keyup(function() {
+                var qty = parseInt($("#quantity").val());
+                var qtyto = parseInt($("#quantity_to_receive").val());
+                if(qty > qtyto) {
+                    $("#qtyrecerror").show();
+                } else {
+                    $("#qtyrecerror").hide();
+                }
+                CheckNItems($(this).val());
+            });
         [% END %]
     });
 //]]>
 </script>
 </head>
 <body id="acq_orderreceive" class="acq">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'acquisitions-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% name %]</a> &rsaquo; Ítems recibidos de : [% name %] [% IF ( invoice ) %][[% invoice %]][% END %] (pedido #[% ordernumber %])</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% name %]</a> &rsaquo; Recibir ítems de : [% name %] [% IF ( invoice ) %][[% invoice %]][% END %] (pedido #[% ordernumber %])</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -52,43 +105,37 @@
  <div id="yui-main">
  <div class="yui-b">
 
-<h1>Recibir ítems de: [% name %] [% IF ( invoice ) %][[% invoice %]] [% END %] (order #[% ordernumber %])</h1>
+<h1>Ítems recibidos de: [% name %] [% IF ( invoice ) %][[% invoice %]] [% END %] (orden nro.[% ordernumber %])</h1>
 
-[% IF ( count ) %]
- <form action="/cgi-bin/koha/acqui/finishreceive.pl" method="post" onsubmit="return Check(this);">
+[% IF ( count ) %] <form action="/cgi-bin/koha/acqui/finishreceive.pl" method="post" onsubmit="return Check(this);">
 <div class="yui-g">
 <div class="yui-u first">
  <div class="error" style="display:none"></div>
 
  <fieldset class="rows">
- <legend>Catalog details</legend>
- <ol><li><span class="label">Título:</span><span class="title">[% title |html %]</span></li>
- <li> <span class="label">Autor:</span>
+ <legend>Detalles de catálogo</legend>
+ <ol><li><span class="label">Título: </span><span class="title">[% title |html %]</span></li>
+ <li> <span class="label">Autor: </span>
  [% author %]</li>
- <li><span class="label">Copyright:</span>
+ <li><span class="label">Copyright: </span>
  [% copyrightdate %]</li>
- <li> <span class="label">ISBN:</span>
+ <li> <span class="label">ISBN: </span>
  [% isbn %]</li>
- <li> <span class="label">Publicaciones periódicas:</span>
+ <li> <span class="label">Series </span>
  [% seriestitle %]</li>
  </ol>
  </fieldset>
 
- [% IF ( suggestionid ) %]
- <fieldset class="rows">
+ [% IF ( suggestionid ) %] <fieldset class="rows">
  <legend>Sugerencia</legend>
  <ol>
  <li>
- <span class="label">Suggested by: </span>
- [% surnamesuggestedby %][% IF ( firstnamesuggestedby ) %], [% firstnamesuggestedby %][% END %] (<a href="/cgi-bin/koha/suggestion/suggestion.pl?suggestionid=[% suggestionid %]&amp;op=show">suggestion #[% suggestionid %]</a>)
- </li>
+ <span class="label">Sugerido por: </span>
+ [% surnamesuggestedby %][% IF ( firstnamesuggestedby ) %], [% firstnamesuggestedby %][% END %] (<a href="/cgi-bin/koha/suggestion/suggestion.pl?suggestionid=[% suggestionid %]&amp;op=show">sugerencia #[% suggestionid %]</a>) </li>
  </ol>
  </fieldset>
- [% END %]
-
- [% IF (AcqCreateItemReceiving) %]
- <div id="items_list" style="display:none">
- <p><b>Items list</b></p>
+ [% END %] [% IF (AcqCreateItemReceiving) %] <div id="items_list" style="display:none">
+ <p><b>Lista de ítems</b></p>
  <div style="width:100%;overflow:auto;">
  <table>
  <thead>
@@ -96,17 +143,17 @@
  <th>&nbsp;</th>
  <th>&nbsp;</th>
  <th>Código de barras</th>
- <th>Home branch</th>
- <th>Holding branch</th>
+ <th>Sede de origen</th>
+ <th>Sede de la reserva</th>
  <th>No para préstamo</th>
- <th>Restringido:</th>
+ <th>Suspendido:</th>
  <th>Ubicación</th>
  <th>Signatura</th>
- <th>Copy number</th>
- <th>Stock number</th>
- <th>Collection code</th>
+ <th>Copia número </th>
+ <th>Número de stock</th>
+ <th>Código de colección </th>
  <th>Tipo de ítem</th>
- <th>Materials</th>
+ <th>Materiales</th>
  <th>Notas</th>
  </tr>
  </thead>
@@ -118,17 +165,54 @@
 
  <fieldset class="rows" id="itemfieldset">
  <legend>Ítem</legend>
- [% IF ( NoACQframework ) %]
- <p class="required">
- No ACQ framework, using default. You should create a
- framework with code ACQ, the items framework would be
- used
- </p>
- [% END %]
- <div id="outeritemblock"></div>
+ [% IF ( NoACQframework ) %] <p class="required">
+ No hay una hoja de trabajo ACQ, usando predeterminada. Usted debe crear una hoja de trabajo con código ACQ, la hoja de ítems será utilizada </p>
+ [% END %] <div id="outeritemblock"></div>
  </fieldset>
- [% END %][%# IF (AcqCreateItemReceiving) %]
- <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
+ [% ELSIF (AcqCreateItem == 'ordering') %] [% IF (items.size) %] <h5>Ítems</h5>
+ <div style="width:100%;overflow:auto">
+ <table>
+ <thead>
+ <tr>
+ <th>Receive?</th>
+ <th>&nbsp;</th>
+ <th>Código de barras</th>
+ <th>Sede de origen</th>
+ <th>Sede de la reserva</th>
+ <th>No para préstamo</th>
+ <th>Suspendido:</th>
+ <th>Ubicación</th>
+ <th>Signatura</th>
+ <th>Copia número </th>
+ <th>Número de stock</th>
+ <th>Código de colección </th>
+ <th>Tipo de ítem</th>
+ <th>Materiales</th>
+ <th>Notas</th>
+ </tr>
+ </thead>
+ <tbody>
+ [% FOREACH item IN items %] <tr id="item_[% item.itemnumber %]">
+ <td style="text-align:center"><input type="checkbox" name="items_to_receive" value="[% item.itemnumber %]" /></td>
+ <td><a style="cursor:pointer" onclick="PopupEditPage([% item.biblionumber %],[% item.itemnumber %]);">Editar</a></td>
+ <td>[% item.barcode %]</td>
+ <td>[% item.homebranchname %]</td>
+ <td>[% item.holdingbranchname %]</td>
+ <td>[% item.notforloan %]</td>
+ <td>[% item.restricted %]</td>
+ <td>[% item.location %]</td>
+ <td>[% item.itemcallnumber %]</td>
+ <td>[% item.copynumber %]</td>
+ <td>[% item.stocknumber %]</td>
+ <td>[% item.collection %]</td>
+ <td>[% item.itemtype %]</td>
+ <td>[% item.materials %]</td>
+ <td>[% item.itemnotes %]</td>
+ </tr>
+ [% END %] </tbody>
+ </table>
+ </div>
+ [% END %] [% END %] <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
  <input type="hidden" name="ordernumber" value="[% ordernumber %]" />
  <input type="hidden" name="biblioitemnumber" value="[% biblioitemnumber %]" />
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
@@ -140,51 +224,35 @@
  <fieldset class="rows">
  <legend>Detalles contables</legend>
  <ol>
- <li><label for="datereceived">Fecha de recepción:</label><span> [% datereceived %] </span></li>
- <li><label for="bookfund">Budget: </label><span> [% bookfund %] </span></li>
- <li><label for="creator">Created by: </label><span> [% IF ( memberfirstname and membersurname ) %][% IF ( memberfirstname ) %][% memberfirstname %][% END %] [% membersurname %][% ELSE %]No name[% END %]</span></li>
- <li><label for="quantityto">Cantidad a recibir:</label><span class="label">
- [% IF ( edit ) %]
- <input type="text" id="quantity_to_receive" name="quantity" value="[% quantity %]" />
- [% ELSE %]
- <input type="text" readonly="readonly" id="quantity_to_receive" name="quantity" value="[% quantity %]" />
- [% END %]
- </span></li>
- <li><label for="quantity">Cantidad Recibida</label>
- [% IF (AcqCreateItemReceiving) %]
- <input readonly="readonly" type="text" size="20" name="quantityrec" id="quantity" value="0" />
- [% ELSE %]
- [% IF ( quantityreceived ) %]
- [% IF ( edit ) %]
- <input type="text" size="20" name="quantityrec" id="quantity" value="[% quantityreceived %]" />
+ <li><label for="datereceived">Fecha de recepción: </label><span> [% datereceived %] </span></li>
+ <li><label for="bookfund">Presupuesto: </label><span> [% bookfund %] </span></li>
+ <li><label for="creator">Creado por: </label><span> [% IF ( memberfirstname and membersurname ) %][% IF ( memberfirstname ) %][% memberfirstname %][% END %] [% membersurname %][% ELSE %]Sin nombre[% END %]</span></li>
+ <li><label for="quantity_to_receive">Cantidad a recibir: </label><span class="label">
+ [% IF ( edit ) %] <input type="text" id="quantity_to_receive" name="quantity" value="[% quantity %]" />
+ [% ELSE %] <input type="text" readonly="readonly" id="quantity_to_receive" name="quantity" value="[% quantity %]" />
+ [% END %] </span></li>
+ <li><label for="quantity">Cantidad recibida: </label>
+ [% IF (AcqCreateItemReceiving) %] <input readonly="readonly" type="text" size="20" name="quantityrec" id="quantity" value="0" />
+ [% ELSE %] [% IF ( quantityreceived ) %] [% IF ( edit ) %] <input type="text" size="20" name="quantityrec" id="quantity" value="[% quantityreceived %]" />
  <input id="origquantityrec" READONLY type="hidden" name="origquantityrec" value="[% quantityreceived %]" />
- [% ELSE %]
- [% IF ( items ) %]
- <input READONLY type="text" size="20" name="quantityrec" id="quantity" value="[% quantityreceivedplus1 %]" />
- [% ELSE %]
- <input type="text" size="20" name="quantityrec" id="quantity" value="[% quantityreceivedplus1 %]" />
- [% END %]
- <input id="origquantityrec" READONLY type="hidden" name="origquantityrec" value="[% quantityreceived %]" />
- [% END %]
- [% ELSE %]
- [% IF ( items ) %]
- <input READONLY type="text" id="quantity" size="20" name="quantityrec" value="1" />
- [% ELSE %]
- <input type="text" size="20" id="quantity" name="quantityrec" value="1" />
- [% END %]
- <input id="origquantityrec" READONLY type="hidden" name="origquantityrec" value="0" />
- [% END %]
- [% END %][%# IF (AcqCreateItemReceiving) %]
- </li>
- <li><label for="rrp">Costo de reposición:</label><input type="text" size="20" name="rrp" id="rrp" value="[% rrp %]" /></li>
- <li><label for="ecost">Costo presupuestado:</label><input type="text" size="20" name="ecost" id="ecost" value="[% ecost %]" /></li>
+ [% ELSE %] [% IF ( items ) %] <input READONLY type="text" size="20" name="quantityrec" id="quantity" value="[% quantityreceivedplus1 %]" />
+ [% ELSE %] <input type="text" size="20" name="quantityrec" id="quantity" value="[% quantityreceivedplus1 %]" />
+ [% END %] <input id="origquantityrec" READONLY type="hidden" name="origquantityrec" value="[% quantityreceived %]" />
+ [% END %] [% ELSE %] [% IF ( items ) %] <input type="text" id="quantity" size="20" name="quantityrec" value="1" />
+ [% ELSE %] <input type="text" size="20" id="quantity" name="quantityrec" value="1" />
+ [% END %] <input id="origquantityrec" READONLY type="hidden" name="origquantityrec" value="0" />
+ [% END %] <div id="qtyrecerror" style="display:none">
+ <p class="error">Warning, you have entered more items than expected.
+ Items will not be created.</p>
+ </div>
+ [% END %][%# IF (AcqCreateItemReceiving) %] </li>
+ <li><label for="rrp">Costo de reposición: </label><input type="text" size="20" name="rrp" id="rrp" value="[% rrp %]" /></li>
+ <li><label for="ecost">Costo presupuestado: </label><input type="text" size="20" name="ecost" id="ecost" value="[% ecost %]" /></li>
  <li><label for="cost">Costo real:</label>
- [% IF ( unitprice ) %]
- <input type="text" size="20" name="cost" id="cost" value="[% unitprice %]" />
- [% ELSE %]
- <input type="text" size="20" name="cost" id="cost" value="[% ecost %]" />
+ [% IF ( unitprice ) %] <input type="text" size="20" name="cost" id="cost" value="[% unitprice %]" />
+ [% ELSE %] <input type="text" size="20" name="cost" id="cost" value="[% ecost %]" />
  [% END %]</li></ol>
- <label for="note">Notas:</label><textarea name="note" width="40" rows="8" >[% notes %]</textarea>
+ <label for="note">Notas: </label><textarea name="note" width="40" rows="8" >[% notes %]</textarea>
  <input type="hidden" name="invoice" value="[% invoice %]" />
  </fieldset>
 
@@ -193,19 +261,17 @@
  <input value="Guardar" type="submit" />
  <a class="cancel" href="/cgi-bin/koha/acqui/parcel.pl?booksellerid=[% supplierid %]&amp;invoice=[% invoice %]&amp;gst=[% gst %]&amp;freight=[% freight %]">Cancelar</a>
 </fieldset></div> </form>
-[% ELSE %]
-<div id="acqui_acquire_orderlist">
+[% ELSE %] <div id="acqui_acquire_orderlist">
  <table>
  <tr>
- <th>Cesta</th>
+ <th>Bolsa</th>
  <th>ISBN</th>
  <th>Título</th>
  <th>Autor</th>
  <th>Cantidad</th>
  <th>Recibido</th>
  </tr>
- [% FOREACH loo IN loop %]
- <tr>
+ [% FOREACH loo IN loop %] <tr>
  <td>[% loo.basketno %]</td>
  <td>[% loo.isbn %]</td>
  <td><a href="orderreceive.pl?datereceived=[% loo.datereceived %]&amp;receive=[% loo.ordernumber %]&amp;biblio=[% loo.biblionumber %]&amp;invoice=[% loo.invoice %]&amp;freight=[% loo.freight %]&amp;gst=[% loo.gst %]&amp;id=[% loo.id %]">[% loo.title |html %]</a></td>
@@ -213,15 +279,11 @@
  <td>[% loo.quantity %]</td>
  <td>[% loo.quantityreceived %]</td>
  </tr>
- [% END %]
- </table>
+ [% END %] </table>
 </div>
-[% END %]
-
-</div>
+[% END %] </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'acquisitions-menu.inc' %]
+[% INCLUDE 'acquisitions-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

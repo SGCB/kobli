@@ -1,13 +1,40 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Informes &rsaquo; Período promedio de préstamo</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'calendar.inc' %]
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes &rsaquo; Tiempo de préstamos promedio</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
+//<![CDATA[
+        $(document).ready(function() {
+        // http://jqueryui.com/demos/datepicker/#date-range
+        var dates = $( "#from, #to" ).datepicker({
+            changeMonth: true,
+            numberOfMonths: 1,
+            onSelect: function( selectedDate ) {
+                var option = this.id == "from" ? "minDate" : "maxDate",
+                    instance = $( this ).data( "datepicker" );
+                    date = $.datepicker.parseDate(
+                        instance.settings.dateFormat ||
+                        $.datepicker._defaults.dateFormat,
+                        selectedDate, instance.settings );
+                dates.not( this ).datepicker( "option", option, date );
+            }
+        });
+        var datesRO = $( "#fromRO, #toRO" ).datepicker({
+            changeMonth: true,
+            numberOfMonths: 1,
+            onSelect: function( selectedDate ) {
+                var option = this.id == "fromRO" ? "minDate" : "maxDate",
+                    instance = $( this ).data( "datepicker" );
+                    date = $.datepicker.parseDate(
+                        instance.settings.dateFormat ||
+                        $.datepicker._defaults.dateFormat,
+                        selectedDate, instance.settings );
+                datesRO.not( this ).datepicker( "option", option, date );
+            }
+        });
+        });
+//]]>
+</script>
 </head>
 <body id="rep_issues_avg_stats" class="rep">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a> [% IF ( do_it ) %]&rsaquo; <a href="/cgi-bin/koha/reports/issues_avg_stats.pl">Average checkout period</a> &rsaquo; Results [% ELSE %]&rsaquo; Average checkout period[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a> [% IF ( do_it ) %]&rsaquo; <a href="/cgi-bin/koha/reports/issues_avg_stats.pl">Período promedio de préstamo</a> &rsaquo; Resultados [% ELSE %]&rsaquo; Período de préstamo promedio[% END %]</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -15,52 +42,28 @@
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( do_it ) %]
- [% FOREACH mainloo IN mainloop %]
- <h1>Average checkout period</h1>
- [% IF ( mainloo.loopfilter ) %]
- <p>Filtrado por</p>
- [% FOREACH loopfilte IN mainloo.loopfilter %]
- <p>[% IF ( loopfilte.err ) %] [% END %] [% loopfilte.crit %] =[% loopfilte.filter %][% IF ( loopfilte.err ) %] [% END %]</p>
- [% END %]
- [% END %]
- 
- <table>
+[% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Período promedio de préstamo</h1>
+ [% IF ( mainloo.loopfilter ) %] <p>Filtrado por</p>
+ [% FOREACH loopfilte IN mainloo.loopfilter %] <p>[% IF ( loopfilte.err ) %] [% END %] [% loopfilte.crit %] =[% loopfilte.filter %][% IF ( loopfilte.err ) %] [% END %]</p>
+ [% END %] [% END %] <table>
  <tr>
  <th>[% mainloo.line %] / [% mainloo.column %]</th>
- [% FOREACH loopco IN mainloo.loopcol %]
- <th>[% loopco.coltitle %]</th>
- [% END %]
- <th>TOTAL</th>
+ [% FOREACH loopco IN mainloo.loopcol %] <th>[% loopco.coltitle %]</th>
+ [% END %] <th>TOTAL</th>
  </tr>
- [% FOREACH loopro IN mainloo.looprow %]
- <tr>
- [% IF ( loopro.hilighted ) %]<td class="hilighted">[% ELSE %]<td>[% END %]
- [% loopro.rowtitle %]</td>
- [% FOREACH loopcel IN loopro.loopcell %]
- [% IF ( loopcel.hilighted ) %]<td class="hilighted">[% ELSE %]<td>[% END %]
- [% IF ( loopcel.value ) %][% loopcel.value %][% END %]
- </td>
- [% END %]
- [% IF ( loopro.hilighted ) %]<td>[% ELSE %]<td>[% END %]
- [% loopro.totalrow %]
- </td>
+ [% FOREACH loopro IN mainloo.looprow %] <tr>
+ [% IF ( loopro.hilighted ) %]<td class="hilighted">[% ELSE %]<td>[% END %] [% loopro.rowtitle %]</td>
+ [% FOREACH loopcel IN loopro.loopcell %] [% IF ( loopcel.hilighted ) %]<td class="hilighted">[% ELSE %]<td>[% END %] [% IF ( loopcel.value ) %][% loopcel.value %][% END %] </td>
+ [% END %] [% IF ( loopro.hilighted ) %]<td>[% ELSE %]<td>[% END %] [% loopro.totalrow %] </td>
  </tr>
- [% END %]
- <tr>
+ [% END %] <tr>
  <th>TOTAL</th>
- [% FOREACH loopfoote IN mainloo.loopfooter %]
- <th>
- [% loopfoote.totalcol %]
- </th>
- [% END %]
- <th>[% mainloo.total %]</th>
+ [% FOREACH loopfoote IN mainloo.loopfooter %] <th>
+ [% loopfoote.totalcol %] </th>
+ [% END %] <th>[% mainloo.total %]</th>
  </tr>
  </table>
- [% END %]
-[% ELSE %]
-
- <form method="post" action="/cgi-bin/koha/reports/issues_avg_stats.pl">
+ [% END %] [% ELSE %] <form method="post" action="/cgi-bin/koha/reports/issues_avg_stats.pl">
  <fieldset class="rows">
  <legend>Estadísticas de Período promedio de préstamo</legend>
  <table>
@@ -78,68 +81,13 @@
  <td><input type="radio" name="Line" value="timestamp" /></td>
  <td><input type="radio" name="Column" value="timestamp" /></td>
  <td > <label for="from">Desde</label> <input type="text" size="10" id="from" name="Filter" />
- <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" style="cursor: pointer;" id="openCalendarFrom" border="0" />
- <script language="JavaScript" type="text/javascript">
-									function validate1(date) {
-										var day = date.getDate();
-										var month = date.getMonth() + 1;
-										var year = date.getFullYear();
-										var weekDay = date.getDay();
-										var dayMonth = month + '-' + day;
-										var dateString = year + '-' + month + '-' + day;
-										var dateTo = document.getElementById('to').value.split("-");
-										var limitDate = new Date(dateTo[0], (dateTo[1] - 1), dateTo[2]);
-										if (date > limitDate) {
-											return true;
-										} else {
-											return false;
-										}
-									}
-					
-									Calendar.setup(
-										{
-											inputField : "from",
-											ifFormat : "[% DHTMLcalendar_dateformat %]",
-											button : "openCalendarFrom",
-											disableFunc : validate1,
-											dateStatusFunc : validate1
-										}
-									);
-								</script>
  <label for="to">A</label> <input size="10" id="to" name="Filter" value="" type="text" />
- <img src="[% themelang %]/lib/calendar/cal.gif" alt="Show calendar" id="openCalendarTo" style="cursor: pointer;" border="0" />
- <script type="text/javascript">
-								function validate2(date) {
-									var day = date.getDate();
-									var month = date.getMonth() + 1;
-									var year = date.getFullYear();
-									var weekDay = date.getDay();
-									var dayMonth = month + '-' + day;
-									var dateString = year + '-' + month + '-' + day;
-									var dateFrom = document.getElementById('from').value.split("-");
-									var limitDate = new Date(dateFrom[0], (dateFrom[1] - 1), dateFrom[2]);
-									if (limitDate > date) {
-										return true;
-									} else {
-										return false;
-									}
-								}
-		
-								Calendar.setup(
-									{
-										inputField : "to",
-										ifFormat : "[% DHTMLcalendar_dateformat %]",
-										button : "openCalendarTo",
-										disableFunc : validate2,
-										dateStatusFunc : validate2
-									}
-								);
-							</script> <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
+ <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
  </td>
  </tr>
  <tr class="hilighted"> 
  <td>&nbsp;</td>
- <td colspan="2">by <select name="IssueDisplay">
+ <td colspan="2">por <select name="IssueDisplay">
  <option value=""> </option>
  <option value ="1">Día</option>
  <option value ="2">Mes</option>
@@ -154,68 +102,13 @@
  <td><input type="radio" name="Line" value="returndate" /></td>
  <td><input type="radio" name="Column" value="returndate" /></td>
  <td > <label for="fromRO">Desde</label> <input type="text" size="10" id="fromRO" name="Filter" />
- <img src="[% themelang %]/lib/calendar/cal.gif" alt="Show calendar" border="0" id="openCalendarFromRO" style="cursor: pointer;" />
- <script language="JavaScript" type="text/javascript">
-									function validate1(date) {
-										var day = date.getDate();
-										var month = date.getMonth() + 1;
-										var year = date.getFullYear();
-										var weekDay = date.getDay();
-										var dayMonth = month + '-' + day;
-										var dateString = year + '-' + month + '-' + day;
-										var dateTo = document.getElementById('toRO').value.split("-");
-										var limitDate = new Date(dateTo[0], (dateTo[1] - 1), dateTo[2]);
-										if (date > limitDate) {
-											return true;
-										} else {
-											return false;
-										}
-									}
-					
-									Calendar.setup(
-										{
-											inputField : "fromRO",
-											ifFormat : "[% DHTMLcalendar_dateformat %]",
-											button : "openCalendarFromRO",
-											disableFunc : validate1,
-											dateStatusFunc : validate1
-										}
-									);
-								</script>
  <label for="toRO">A</label> <input type="text" size="10" id="toRO" name="Filter" value="" />
- <img src="[% themelang %]/lib/calendar/cal.gif" alt="Show calendar" id="openCalendarToRO" style="cursor: pointer;" border="0" />
- <script type="text/javascript">
-								function validate2(date) {
-									var day = date.getDate();
-									var month = date.getMonth() + 1;
-									var year = date.getFullYear();
-									var weekDay = date.getDay();
-									var dayMonth = month + '-' + day;
-									var dateString = year + '-' + month + '-' + day;
-									var dateFrom = document.getElementById('fromRO').value.split("-");
-									var limitDate = new Date(dateFrom[0], (dateFrom[1] - 1), dateFrom[2]);
-									if (limitDate > date) {
-										return true;
-									} else {
-										return false;
-									}
-								}
-		
-								Calendar.setup(
-									{
-										inputField : "toRO",
-										ifFormat : "[% DHTMLcalendar_dateformat %]",
-										button : "openCalendarToRO",
-										disableFunc : validate2,
-										dateStatusFunc : validate2
-									}
-								);
-							</script> <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
+ <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
  </td>
  </tr>
  <tr> 
  <td>&nbsp;</td>
- <td colspan="2">by <select name="ReturnDisplay">
+ <td colspan="2">por <select name="ReturnDisplay">
  <option value=""> </option>
  <option value ="1">Día</option>
  <option value ="2">Mes</option>
@@ -258,25 +151,19 @@
  <td><input type="radio" name="Column" value="borrowers.sort1" /></td>
  <td>[% CGISort1 %] </td>
  </tr>
- [% END %]
- [% IF ( hassort2 ) %]
- [% IF ( HglghtSort2 ) %]<tr class="hilighted"> [% ELSE %]<tr>[% END %] 
- <td>Control2</td>
+ [% END %] [% IF ( hassort2 ) %] [% IF ( HglghtSort2 ) %]<tr class="hilighted"> [% ELSE %]<tr>[% END %] <td>Control2</td>
  <td><input type="radio" name="Line" value="borrowers.sort2" /></td>
  <td><input type="radio" name="Column" value="borrowers.sort2" /></td>
  <td>[% CGISort2 %] </td>
  </tr>
- [% END %]
- </tbody>
+ [% END %] </tbody>
  </table><br /></fieldset>
  
  
  <fieldset class="rows">
  <legend>Salida</legend>
-<ol><li><label for="outputscreen">Mostrar en el navegador:</label><input type="radio" checked="checked" name="output" id="outputscreen" value="screen" /> </li>
-<li><label for="outputfile">A un archivo:</label> <input type="radio" name="output" value="file" id="outputfile" /> <label class="inline" for="basename">Nombrado/a:</label><input type="text" name="basename" id="basename" value="Export" /> <label class="inline" for="MIME">Into an application: 
- </label>[% CGIextChoice %]
- [% CGIsepChoice %]</li></ol>
+<ol><li><label for="outputscreen">Para mostrarlo en el navegador: </label><input type="radio" checked="checked" name="output" id="outputscreen" value="screen" /> </li>
+<li><label for="outputfile">A archivo:</label> <input type="radio" name="output" value="file" id="outputfile" /> <label class="inline" for="basename">Nombrado/a: </label><input type="text" name="basename" id="basename" value="Export" /> <label class="inline" for="MIME">En una aplicación: </label>[% CGIextChoice %] [% CGIsepChoice %]</li></ol>
  </fieldset>
 
  <fieldset class="action">
@@ -286,12 +173,9 @@
  <input value="Enviar" type="submit" />
  </fieldset>
  </form>
-[% END %]
-
-</div>
+[% END %] </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'reports-menu.inc' %]
+[% INCLUDE 'reports-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

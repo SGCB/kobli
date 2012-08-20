@@ -1,12 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Informes</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="rep_reports-home" class="rep">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'circ-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Informes</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Informes</div>
 <div id="doc" class="yui-t7">
 
  <div id="bd">
@@ -14,20 +9,17 @@
 
  <div class="yui-g">
  <h1>Informes</h1>
- <div class="yui-u first"><h2>Guided reports</h2>
+ <div class="yui-u first"><h2>Informes guiados</h2>
  <ul>
- <li><a href="/cgi-bin/koha/reports/guided_reports.pl">Guided reports wizard</a></li>
- [% IF ( CAN_user_reports_create_reports ) %]<li><a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Build%20new">Crear nuevo</a></li>[% END %]
- [% IF ( CAN_user_reports_execute_reports ) %]<li><a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Use%20saved">Utiliza guardados</a></li>[% END %]
- [% IF ( CAN_user_reports_create_reports ) %]<li><a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Create%20report%20from%20SQL">Crear a partir de SQL</a></li>[% END %]
- </ul>
+ <li><a href="/cgi-bin/koha/reports/guided_reports.pl">Asistente de informes guiados</a></li>
+ [% IF ( CAN_user_reports_create_reports ) %]<li><a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Build%20new">Crear nuevo</a></li>[% END %] [% IF ( CAN_user_reports_execute_reports ) %]<li><a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Use%20saved">Use guardados</a></li>[% END %] [% IF ( CAN_user_reports_create_reports ) %]<li><a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Create%20report%20from%20SQL">Crear a partir de SQL</a></li>[% END %] </ul>
  
- <h5>Reports dictionary</h5>
+ <h5>Diccionario de informes</h5>
  <ul>
- <li><a href="/cgi-bin/koha/reports/dictionary.pl?phase=View%20Dictionary">View dictionary</a></li>
+ <li><a href="/cgi-bin/koha/reports/dictionary.pl?phase=View%20Dictionary">Ver diccionario</a></li>
  </ul>
 
- <h2>Estado</h2>
+ <h2>Estadísticas Compuestas</h2>
  <ul>
  <li><a href="/cgi-bin/koha/reports/acquisitions_stats.pl">Adquisiciones</a></li>
  <li><a href="/cgi-bin/koha/reports/borrowers_stats.pl">Socios</a></li>
@@ -37,29 +29,29 @@
  <li><a href="/cgi-bin/koha/reports/reserves_stats.pl">Reservas</a></li>
  </ul></div>
 
- <div class="yui-u"><h2>Top lists</h2>
+ <div class="yui-u"><h2>Listas principales</h2>
  <ul>
  <li><a href="/cgi-bin/koha/reports/bor_issues_top.pl">Socios con más préstamos</a></li>
- <li><a href="/cgi-bin/koha/reports/cat_issues_top.pl">Most-circulated items</a></li>
+ <li><a href="/cgi-bin/koha/reports/cat_issues_top.pl">Ítems más prestados</a></li>
  </ul> 
  
  <h2>Inactivo</h2>
  <ul>
- <li><a href="/cgi-bin/koha/reports/borrowers_out.pl">Socios que no han pedido nada prestado</a></li>
+ <li><a href="/cgi-bin/koha/reports/borrowers_out.pl">Socios que no han pedido prestado</a></li>
  <li><a href="/cgi-bin/koha/reports/catalogue_out.pl">Ítems nunca prestados</a></li>
  </ul>
  
  <h2>Otro</h2>
  <ul>
  <li><a href="/cgi-bin/koha/reports/itemslost.pl">Ítems perdidos</a></li>
- <li><a href="/cgi-bin/koha/reports/manager.pl?report_name=itemtypes">Catalog by item type</a></li>
- <li><a href="/cgi-bin/koha/reports/issues_avg_stats.pl">Período promedio de préstamo</a></li>
- <li><a href="http://schema.koha-community.org/" target="blank">Koha database schema</a></li>
- <li><a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library" target="blank">Koha reports library</a></li>
+ <li><a href="/cgi-bin/koha/reports/manager.pl?report_name=itemtypes">Catálogo por tipo de ítem</a></li>
+ <li><a href="/cgi-bin/koha/reports/issues_avg_stats.pl">Tiempo de préstamo promedio</a></li>
+ <li><a href="http://schema.koha-community.org/" target="blank">Esquema de base de datos de Koha</a></li>
+ <li><a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library" target="blank">Biblioteca de reportes Koha</a></li>
  <!--<li><a href="/cgi-bin/koha/reports/stats.screen.pl">Till reconciliation</a></li> -->
  </ul></div>
 </div>
 
 </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Seleccionar categoría de adulto</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Seleccionar categoría de adulto</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$.tablesorter.defaults.widgets = ['zebra'];
@@ -20,8 +18,7 @@
 <div id="custom-doc" class="yui-t7">
 <div id="bd">
 
-[% IF ( CONFIRM ) %]
-<script language="javascript" type="text/javascript">
+[% IF ( CONFIRM ) %] <script language="javascript" type="text/javascript">
 function confirm_updatechild() {
     var is_confirmed = window.confirm('Are you sure you want to update this child to an Adult category?  This cannot be undone.');
    
@@ -32,24 +29,13 @@ function confirm_updatechild() {
 
 confirm_updatechild([% borrowernumber %]);
 </script>
-[% END %]
-
-[% IF ( SUCCESS ) %]
-<script language="javascript" type="text/javascript">
+[% END %] [% IF ( SUCCESS ) %] <script language="javascript" type="text/javascript">
 self.opener.location.href='/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]';
 window.close();
 </script>
-[% END %]
+[% END %] [% IF ( MULTI ) %] <h3> Elegir categoría Adultos </h3>
 
-
-
-[% IF ( MULTI ) %]
-
-<h3> Choose Adult category </h3>
-
-[% IF ( CAT_LOOP ) %]
-
-<form method="post" action="update-child.pl">
+[% IF ( CAT_LOOP ) %] <form method="post" action="update-child.pl">
 <fieldset>
 <table id="catst">
 <thead>
@@ -60,15 +46,13 @@ window.close();
 </tr>
 </thead>
 <tbody>
-[% FOREACH CAT_LOO IN CAT_LOOP %]
-<tr>
+[% FOREACH CAT_LOO IN CAT_LOOP %] <tr>
 <td>
 <input type="radio" id="catcode[% CAT_LOO.catcode %]" name="catcode" value="[% CAT_LOO.catcode %]" /></td>
 <td>[% CAT_LOO.catcode %]</td>
 <td><label for="catcode[% CAT_LOO.catcode %]"><strong>[% CAT_LOO.catdesc %]</strong></label></td> 
 </tr>
-[% END %]
-</tbody>
+[% END %] </tbody>
 </table>
 <input type="hidden" name="op" value="update" />
 <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
@@ -76,14 +60,7 @@ window.close();
 <input type="hidden" name="cattype" value="[% cattype %]" />
 <input type="hidden" name="catcode_multi" value="[% CATCODE_MULTI %]" />
 <fieldset class="action"><input value="Enviar" class="submit" type="submit" /> <a href="#" class="cancel close">Cancelar</a></fieldset>
-[% END %]
-</fieldset>
+[% END %] </fieldset>
 </form>
-[% END %]
-
-
-
-
-
-</div>
-[% INCLUDE 'popup-bottom.inc' %]
+[% END %] </div>
+[% INCLUDE 'popup-bottom.inc' %] 

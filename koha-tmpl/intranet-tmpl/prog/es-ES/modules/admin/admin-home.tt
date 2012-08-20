@@ -1,12 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Administración</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="admin_admin-home" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Administration</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Administración</div>
 
 <div id="doc" class="yui-t7">
  
@@ -28,67 +23,69 @@
 </form>
 
 
-<div class="hint"><h4>Consejo:</h4><p>Configura estos parámetros en el orden que aparecen.</p></div>
+<div class="hint"><h4>Consejo:</h4><p>Configure estos parámetros en el orden que aparecen.</p></div>
 <h3>Parámetros básicos</h3>
 <dl>
- <dt><a href="/cgi-bin/koha/admin/branches.pl">Libraries and groups</a></dt>
- <dd>Define libraries and groups.</dd>
+ <dt><a href="/cgi-bin/koha/admin/branches.pl">Bibliotecas y grupos</a></dt>
+ <dd>Defina bibliotecas, sedes y grupos.</dd>
  <dt><a href="/cgi-bin/koha/admin/itemtypes.pl">Tipos de ítem</a></dt>
- <dd>Define tipos de ítems utilizados para las reglas de préstamo.</dd>
+ <dd>Defina tipos de ítem utilizados para las reglas de préstamo.</dd>
  <dt><a href="/cgi-bin/koha/admin/authorised_values.pl">Valores autorizados</a></dt>
- <dd>Define categorías y valores autorizados para ellas.</dd>
+ <dd>Defina categorías y valores autorizados para ellas.</dd>
 </dl>
 
 <h3>Socios y circulación</h3>
 <dl>
  <dt><a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a></dt>
- <dd>Define las categorías de socios.</dd>
+ <dd>Defina las categorías de socios.</dd>
  <dt><a href="/cgi-bin/koha/admin/cities.pl">Ciudades y pueblos</a></dt>
- <dd>Define localidades y ciudades de tus socios.</dd>
+ <dd>Defina localidades y ciudades de sus usuarios.</dd>
  <dt><a href="/cgi-bin/koha/admin/roadtype.pl" >Tipos de camino</a>
  </dt>
- <dd>Define tipos de calles (calle, avenida, pasaje, etc.). Los tipos de calles se despliegan como valores autorizados cuando se agregan/modifican datos de usuarios y pueden ser usados en estadísticas geográficas.</dd>
- <dt><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de características de socio</a></dt>
- <dd>Define los atributos extendidos (identificadores y categorías estadísticas) para los registros de socios</dd>
+ <dd>Defina tipos de calles (calle, avenida, pasaje, etc.). Los tipos de calles se despliegan como valores autorizados cuando se agregan/modifican datos de usuarios y pueden ser usados en estadísticas geográficas.</dd>
+ <dt><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a></dt>
+ <dd>Definir los atributos extendidos (identificadores y categorías estadística) para los registros de socios</dd>
  <dt><a href="/cgi-bin/koha/admin/smart-rules.pl">Reglas de circulación y multas</a></dt>
- <dd>Define reglas de circulación y multas para conjuntos de bibliotecas, categorías de socios y tipos de ítems</dd>
+ <dd>Defina reglas de circulación y multas para conjuntos de bibliotecas, categorías de socios y tipos de ítem</dd>
  <dt><a href="/cgi-bin/koha/admin/branch_transfer_limits.pl">Límites de transferencia de la biblioteca</a></dt>
- <dd>Limita la capacidad de transferir ítems entre bibliotecas según la biblioteca de origen, la biblioteca receptora y el tipo de ítem en cuestión. Estas normas sólo entrarán en vigor si la preferencia UseBranchTransferLimits está ON.</dd>
+ <dd>Limitar la capacidad de transferir ítems entre bibliotecas basado en la biblioteca de origen, la biblioteca receptora y el tipo de ítem en cuestión. Estas normas sólo entrarán en vigor si la preferencia UseBranchTransferLimits está ON.</dd>
  <dt><a href="/cgi-bin/koha/admin/item_circulation_alerts.pl">Alertas de circulación de ítems</a></dt>
- <dd>Define reglas para notificaciones de préstamos y devoluciones para combinaciones de bibliotecas, categorías de socio, y los tipos de ítems</dd>
+ <dd>Defina reglas para notificaciones de préstamos y devoluciones para combinaciones de bibliotecas, categorías de socio, y los tipos de ítems</dd>
 </dl>
 </div>
 <div class="yui-u">
 <h3>Catálogo</h3>
 <dl>
- <dt><a href="/cgi-bin/koha/admin/biblio_framework.pl">MARC bibliographic framework</a></dt>
+ <dt><a href="/cgi-bin/koha/admin/biblio_framework.pl">Hoja de trabajo bibliográfico MARC</a></dt>
  <dd>Crear y gestionar hojas de trabajo para registros bibliográficos que definen las características de sus registros MARC (definiciones de campos y subcampos) como también las plantillas usadas en el editor MARC.</dd>
  <dt><a href="/cgi-bin/koha/admin/koha2marclinks.pl">Correspondencia Koha - MARC</a></dt>
- <dd>Define equivalencias entre la base de datos de transacciones de Koha (SQL) y los registros bibliográficos MARC. Observa que estas equivalencias pueden ser definidas en la estructura de hojas de carga MARC. Esta herramienta es sólo un atajo para acelerar el trabajo.</dd>
- <dt><a href="/cgi-bin/koha/admin/fieldmapping.pl">Palabras clave para correspondencia MARC</a></dt>
- <dd>Define la correspondencia entre palabras clave y campos MARC, esas palabras clave se utilizan para encontrar algunos datos independientemente de la hoja de trabajo.</dd>
+ <dd>Definir equivalencias entre la base de datos de transacciones de Koha (SQL) y los registros bibliográficos MARC. Note que estas equivalencias pueden ser definidas en la estructura de hojas de carga MARC. Esta herramienta es sólo un atajo para acelerar el trabajo.</dd>
+ <dt><a href="/cgi-bin/koha/admin/fieldmapping.pl">Palabras claves para correspondencia MARC</a></dt>
+ <dd>Defina la correspondencia entre palabras clave y campos MARC, esas palabras clave son usadas para encontrar algunos datos independientemente de la hoja de carga.</dd>
  <dt><a href="/cgi-bin/koha/admin/checkmarc.pl">Prueba de las hojas de trabajo bibliográficas MARC</a></dt>
- <dd>Niño</dd>
+ <dd>Verifica la estructura MARC. Si modifica su hoja de trabajo, recomendamos que utilice esta herramienta para chequear errores en su definición de formato.</dd>
  <dt><a href="/cgi-bin/koha/admin/authtypes.pl">Tipos de autoridad</a></dt>
  <dd>Crear y gestionar hojas de trabajo para autoridades. Estas definen las características de sus registros MARC (definiciones de campos y subcampos).</dd>
  <dt><a href="/cgi-bin/koha/admin/classsources.pl">Fuentes de clasificación</a></dt>
- <dd>Define fuentes de clasificación (esquemas para signaturas) usados en su colección. Define también reglas de alfabetización para ordenar signaturas.</dd>
+ <dd>Defina fuentes de clasificación (esquemas para signaturas) usados en su colección. Defina también reglas de alfabetización para ordenar signaturas.</dd>
  <dt><a href="/cgi-bin/koha/admin/matching-rules.pl">Regla de coincidencia de registro</a></dt>
  <dd>Administra reglas para buscar coincidencias automáticas en registros MARC durante la importación.</dd>
- <dt><a href="/cgi-bin/koha/admin/oai_sets.pl">OAI sets configuration</a></dt>
- <dd>Manage OAI Sets</dd>
-</dl>
+ <dt><a href="/cgi-bin/koha/admin/oai_sets.pl">Configuración de conjunto OAI</a></dt>
+ <dd>Administrar conjuntos OAI </dd>
+ [% IF ( SearchEngine != 'Zebra' ) %] <dt><a href="/cgi-bin/koha/admin/searchengine/solr/indexes.pl">Search engine configuration</a></dt>
+ <dd>Manage indexes, facets, and their mappings to MARC fields and subfields.</dd>
+ [% END %] </dl>
 
-<h3>Parámetros de adquisición</h3>
+<h3>Parámetros de la adquisición</h3>
 <dl>
- <dt><a href="/cgi-bin/koha/admin/currency.pl">Divisas y tipos de cambio</a></dt>
- <dd>Define divisas y tipos de cambio para adquisiciones.</dd>
+ <dt><a href="/cgi-bin/koha/admin/currency.pl">Monedas y tipo de cambio</a></dt>
+ <dd>Defina monedas y tipos de cambio para adquisiciones.</dd>
 
  <dt><a href="/cgi-bin/koha/admin/aqbudgetperiods.pl">Presupuestos</a></dt>
- <dd>Define tus presupuestos</dd>
+ <dd>Defina sus presupuestos</dd>
  
  <dt><a href="/cgi-bin/koha/admin/aqbudgets.pl">Fondos</a></dt>
- <dd>Define los fondos dentro de sus presupuestos</dd>
+ <dd>Definir los fondos dentro de sus presupuestos</dd>
 
 </dl>
 
@@ -98,12 +95,12 @@
  <dd>Palabras ignoradas durante la búsqueda.</dd>[% END %]
  <!-- <dt><a href="/cgi-bin/koha/admin/printers.pl">Network Printers</a></dt>
  <dd>Printers (UNIX paths).</dd> -->
- <dt><a href="/cgi-bin/koha/admin/z3950servers.pl">Z39.50 client targets</a></dt>
- <dd>Define los servidores para preguntar por datos MARC en el cliente Z39.50 integrado.</dd>
+ <dt><a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a></dt>
+ <dd>Defina los servidores que se usarán en el cliente Z39.50 integrado.</dd>
 </dl>
 </div>
 
 </div>
 </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

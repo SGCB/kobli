@@ -1,40 +1,19 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Catálogo &rsaquo; Detalles para [% title |html %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<link rel="stylesheet" href="[% themelang %]/css/print.css" type="text/css" />
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catálogo &rsaquo; Detalles para [% title |html %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" href="[% themelang %]/css/print.css" type="text/css" />
 </head>
 
 <body id="catalog_detailprint" class="catalog">
 
 <!-- main site -->
 <div id="main">
-[% FOREACH BIBLIO_RESULT IN BIBLIO_RESULTS %]
- <table class="list">
+[% FOREACH BIBLIO_RESULT IN BIBLIO_RESULTS %] <table class="list">
  <caption>[% BIBLIO_RESULT.title |html %] [% BIBLIO_RESULT.subtitle %]</caption>
- <tr><th>Biblio record number: </th><td> [% BIBLIO_RESULT.biblionumber %] </td></tr>
-[% IF ( BIBLIO_RESULT.author ) %]<tr><th>Autor:</th><td>[% BIBLIO_RESULT.author %]</td></tr>[% END %]
-[% IF ( BIBLIO_RESULT.additional ) %]<tr><th>Additional author: </th><td>[% BIBLIO_RESULT.additional %]</td></tr>[% END %]
-[% IF ( BIBLIO_RESULT.publishercode ) %]<tr><th>Editor:</th><td>[% BIBLIO_RESULT.publishercode %]</td></tr>[% END %]
-<tr><th>Publication details: </th><td> [% IF ( BIBLIO_RESULT.publicationyear ) %][% BIBLIO_RESULT.publicationyear %][% END %]
- [% IF ( BIBLIO_RESULT.pages ) %], [% END %][% BIBLIO_RESULT.pages %]
- [% IF ( BIBLIO_RESULT.size ) %], [% END %][% BIBLIO_RESULT.size %]</td></tr>
- [% IF ( BIBLIO_RESULT.collection ) %]<tr><th>Colección:</th><td> [% BIBLIO_RESULT.seriestitle %]</td></tr>[% END %]
- [% IF ( BIBLIO_RESULT.subject ) %]<tr><th>Subject: </th><td>[% BIBLIO_RESULT.subject %]</td></tr>[% END %]
- [% IF ( BIBLIO_RESULT.copyrightdate ) %]<tr><th>Copyright date: </th><td> [% BIBLIO_RESULT.copyrightdate %]</td></tr>[% END %]
- [% IF ( BIBLIO_RESULT.notes ) %]<tr><th>Notas:</th><td>[% BIBLIO_RESULT.notes %]</td></tr>[% END %]
- [% IF ( BIBLIO_RESULT.unititle ) %]<tr><th>Unititle: </th><td>[% BIBLIO_RESULT.unititle %]</td></tr>[% END %]
- [% IF ( BIBLIO_RESULT.dewey ) %]<tr><th>Dewey: </th><td>[% BIBLIO_RESULT.dewey %]</td></tr>[% END %]
- [% IF ( BIBLIO_RESULT.classification ) %]<tr><th>Classification: </th><td> [% BIBLIO_RESULT.classification %]</td></tr>[% END %]
- [% IF ( BIBLIO_RESULT.lccn ) %]<tr><th>LCCN: </th><td>[% BIBLIO_RESULT.lccn %]</td></tr>[% END %]
- [% IF ( BIBLIO_RESULT.url ) %]<tr><th>URL: </th><td><a href="[% BIBLIO_RESULT.url %]">[% BIBLIO_RESULT.url %]</a></td></tr>[% END %]
- [% IF ( BIBLIO_RESULT.ISBN ) %]<tr><th>ISBN:</th><td>[% BIBLIO_RESULT.ISBN %]</td></tr>[% END %]
- </table>
-[% END %]
-
-<table>
+ <tr><th>Número de registro bibliográfico: </th><td> [% BIBLIO_RESULT.biblionumber %] </td></tr>
+[% IF ( BIBLIO_RESULT.author ) %]<tr><th>Autor: </th><td>[% BIBLIO_RESULT.author %]</td></tr>[% END %] [% IF ( BIBLIO_RESULT.additional ) %]<tr><th>Autor adicional: </th><td>[% BIBLIO_RESULT.additional %]</td></tr>[% END %] [% IF ( BIBLIO_RESULT.publishercode ) %]<tr><th>Editor: </th><td>[% BIBLIO_RESULT.publishercode %]</td></tr>[% END %] <tr><th>Detalles de publicación: </th><td> [% IF ( BIBLIO_RESULT.publicationyear ) %][% BIBLIO_RESULT.publicationyear %][% END %] [% IF ( BIBLIO_RESULT.pages ) %], [% END %][% BIBLIO_RESULT.pages %] [% IF ( BIBLIO_RESULT.size ) %], [% END %][% BIBLIO_RESULT.size %]</td></tr>
+ [% IF ( BIBLIO_RESULT.collection ) %]<tr><th>Colección:</th><td> [% BIBLIO_RESULT.seriestitle %]</td></tr>[% END %] [% IF ( BIBLIO_RESULT.subject ) %]<tr><th>Tema: </th><td>[% BIBLIO_RESULT.subject %]</td></tr>[% END %] [% IF ( BIBLIO_RESULT.copyrightdate ) %]<tr><th>Fecha de copyright: </th><td> [% BIBLIO_RESULT.copyrightdate %]</td></tr>[% END %] [% IF ( BIBLIO_RESULT.notes ) %]<tr><th>Notas: </th><td>[% BIBLIO_RESULT.notes %]</td></tr>[% END %] [% IF ( BIBLIO_RESULT.unititle ) %]<tr><th>Sin título </th><td>[% BIBLIO_RESULT.unititle %]</td></tr>[% END %] [% IF ( BIBLIO_RESULT.dewey ) %]<tr><th>Dewey: </th><td>[% BIBLIO_RESULT.dewey %]</td></tr>[% END %] [% IF ( BIBLIO_RESULT.classification ) %]<tr><th>Clasificación: </th><td> [% BIBLIO_RESULT.classification %]</td></tr>[% END %] [% IF ( BIBLIO_RESULT.lccn ) %]<tr><th>LCCN: </th><td>[% BIBLIO_RESULT.lccn %]</td></tr>[% END %] [% IF ( BIBLIO_RESULT.url ) %]<tr><th>URL: </th><td><a href="[% BIBLIO_RESULT.url %]">[% BIBLIO_RESULT.url %]</a></td></tr>[% END %] [% IF ( BIBLIO_RESULT.ISBN ) %]<tr><th>ISBN: </th><td>[% BIBLIO_RESULT.ISBN %]</td></tr>[% END %] </table>
+[% END %] <table>
  <tr><th>Tipo de ítem</th><th>Signatura</th><th>Ubicación</th><th>Fecha de devolución</th><th>Última vez visto</th><th>Código de barras</th></tr>
- [% FOREACH ITEM_RESULT IN ITEM_RESULTS %]
- <tr>
+ [% FOREACH ITEM_RESULT IN ITEM_RESULTS %] <tr>
  <td>[% ITEM_RESULT.description %]</td>
  <td>[% ITEM_RESULT.itemcallnumber %]</td>
  <td>[% ITEM_RESULT.branchname %][% IF ( ITEM_RESULT.bulk ) %], [% ITEM_RESULT.bulk %][% ELSE %]&nbsp;[% END %]</td>
@@ -42,8 +21,7 @@
  <td>[% ITEM_RESULT.datelastseen %]</td>
  <td>[% ITEM_RESULT.barcode %]</td>
  </tr>
- [% END %]
-</table>
+ [% END %] </table>
 <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function() {
@@ -51,4 +29,4 @@
     });
 //]]>
 </script>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Serials &rsaquo; Details for subscription #[% subscriptionid %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Detalles de suscripción #[% subscriptionid %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 // the english words used in display purposes
 var text = new Array(_("Número"),_("Volumen"),_("Ítem"),_("Mes"),_("Semana"),_("Comenzando con:"),_("Reinicia en:"),_("Seleccione hemisferio:"),_("Del norte"),_("Southern",
@@ -24,7 +22,7 @@ var textbox = '';
 }
 
 function confirm_deletion() {
-    var is_confirmed = confirm(_("¿Está seguro de que quiere borrar esta suscripción?"));
+    var is_confirmed = confirm(_("¿Está seguro de querer borrar esta suscripción?"));
     if (is_confirmed) {
         window.location="subscription-detail.pl?subscriptionid=[% subscriptionid %]&op=del";
     }
@@ -33,44 +31,38 @@ function popup(subscriptionid) {
     newin=window.open("subscription-renew.pl?mode=popup&subscriptionid="+subscriptionid,'popup','width=590,height=440,toolbar=false,scrollbars=yes');
 }
 $(document).ready(function() {
-    $("#subscription_description > ul").tabs();
+    $("#subscription_description").tabs();
+    $("#renewsub").click(function(){
+        popup([% subscriptionid %]);
+        return false;
+    })
 });
 //]]>
 </script>
 </head>
 <body id="ser_subscription-detail" class="ser">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'serials-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Details for subscription #[% subscriptionid %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Detalles para suscripción #[% subscriptionid %] </div>
 
 <div id="doc3" class="yui-t2">
  
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% INCLUDE 'serials-toolbar.inc' %]
-
- <h1>Subscription for [% bibliotitle %] </h1>
- [% IF ( abouttoexpire ) %]<div class="problem">La suscripción está por finalizar. Debe ser renovada ahora.</div>[% END %]
- [% IF ( NEEDSCONFIRMATION ) %]
- <div id="circ_needsconfirmation" class="dialog alert">
+ [% INCLUDE 'serials-toolbar.inc' %] <h1>Suscripción para [% bibliotitle %] </h1>
+ [% IF ( abouttoexpire ) %]<div class="dialog message">Subscription will expire [% enddate %]. <a href="#" id="renewsub">Renew this subscription</a>.</div>[% END %] [% IF ( NEEDSCONFIRMATION ) %] <div id="circ_needsconfirmation" class="dialog alert">
  <h3>Por favor confirme eliminación de suscripción</h3>
 
  <ul>
- [% IF ( NOTEXPIRED ) %] <li>La suscripción aún no ha expirado</li> [% END %] 
- [% IF ( LINKEDISSUES ) %] <li>La suscripción tiene números enlazados</li> [% END %]
- [% IF ( LINKEDITEMS ) %] <li>La suscripción tiene números enlazados<br /> Dichos ítems no se eliminarán</li> [% END %]
- </ul>
+ [% IF ( NOTEXPIRED ) %] <li>La suscripción aún no ha expirado</li> [% END %] [% IF ( LINKEDISSUES ) %] <li>La suscripción tiene números enlazados</li> [% END %] [% IF ( LINKEDITEMS ) %] <li>La suscripción tiene números enlazados<br /> Dichos ítems no se eliminarán</li> [% END %] </ul>
  <form method="post" action="/cgi-bin/koha/serials/subscription-detail.pl">
  <input type="hidden" name="subscriptionid" value="[% subscriptionid %]" />
  <input type="hidden" name="issueconfirmed" value="1" />
  <input type="hidden" name="op" value="del" />
- <input type="submit" class="approve" value="Yes, delete (Y)" accesskey="y" />
+ <input accesskey="y" value="Sí, eliminar (S)" type="submit" class="approve" />
  </form>
  <form method="get" action="/cgi-bin/koha/serials/subscription-detail.pl">
  <input type="hidden" name="subscriptionid" value="[% subscriptionid %]" />
- <input type="submit" class="deny" value="No, don't delete (N)" accesskey="n" />
+ <input accesskey="n" value="No, no eliminar (N)" type="submit" class="deny" />
  </form>
 
  </div>
@@ -78,10 +70,10 @@ $(document).ready(function() {
 
 <div id="subscription_description" class="toptabs">
 <ul class="ui-tabs-nav">
- <li><a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptionid %]#subscription_info">Información</a></li>
- <li><a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptionid %]#subscription_planning">Planificación</a></li>
- <li><a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptionid %]#subscription_issues">Issues</a></li>
- <li><a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptionid %]#subscription_summary">Resumen</a></li>
+ <li><a href="#subscription_info">Información</a></li>
+ <li><a href="#subscription_planning">Planificación</a></li>
+ <li><a href="#subscription_issues">Ejemplares</a></li>
+ <li><a href="#subscription_summary">Resumen</a></li>
 </ul>
 
 <div id="subscription_info">
@@ -89,35 +81,22 @@ $(document).ready(function() {
  <div class="yui-u first">
  <div class="rows">
  <ol>
- <li><span class="label">Subscription ID: </span>[% subscriptionid %]</li>
+ <li><span class="label">ID de la suscripción: </span>[% subscriptionid %]</li>
  <li><span class="label">Identidad del bibliotecario :</span> [% librarian %]</li>
  <li><span class="label">Proveedor:</span> <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% aqbooksellerid %]">[% aqbooksellername %]</a></li>
  <li><span class="label">Registro:</span> <a href="/cgi-bin/koha/catalogue/[% default_bib_view %].pl?biblionumber=[% bibnum %]">[% bibliotitle %]</a> <i>([% bibnum %])</i></li>
-[% IF ( branchcode ) %]<li><span class="label">Biblioteca:</span> [% branchcode %]</li>[% END %]
- [% IF ( serialsadditems ) %]
- <li><span class="label">Items:</span> La recepción de una publicaciones periódica crea un registro de ítem.</li>
- [% ELSE %]
- <li><span class="label">Items:</span> La recepción de una publicaciones periódica no crea un registro de ítem.</li>
- [% END %]
- <li><span class="label">Período de gracia:</span> [% graceperiod %]</li>
+[% IF ( branchcode ) %]<li><span class="label">Biblioteca:</span> [% branchcode %]</li>[% END %] [% IF ( serialsadditems ) %] <li><span class="label">Ítems:</span> La recepción de una publicaciones periódica crea un registro de ítem.</li>
+ [% ELSE %] <li><span class="label">Ítems:</span> La recepción de una publicaciones periódica no crea un registro de ítem.</li>
+ [% END %] <li><span class="label">Período de gracia:</span> [% graceperiod %]</li>
  </ol>
  </div>
  </div>
  <div class="yui-u">
  <div class="rows">
  <ol>
- [% IF ( location ) %]<li><span class="label">Ubicación:</span> [% location %]</li>[% END %]
- [% IF ( callnumber ) %]<li><span class="label">Call number:</span> [% callnumber %]</li>[% END %]
- [% IF ( staffdisplaycount ) %]<li><span class="label">Number of issues to display to staff:</span>[% staffdisplaycount %]</li>[% END %]
- [% IF ( opacdisplaycount ) %]<li><span class="label">Number of issues to display in OPAC:</span>[% opacdisplaycount %]</li>[% END %]
- [% IF ( letter ) %]
- <li>
- <span class="label">Patron notification:</span> [% letter %]
- (<a href="/cgi-bin/koha/serials/viewalerts.pl?subscriptionid=[% subscriptionid %]">subscribers</a>)
- </li>
- [% END %]
- [% IF ( hasRouting ) %]<li><span class="label">Ruteo:</span> sí</li>[% END %]
- </ol>
+ [% IF ( location ) %]<li><span class="label">Ubicación:</span> [% location %]</li>[% END %] [% IF ( callnumber ) %]<li><span class="label">Signatura:</span> [% callnumber %]</li>[% END %] [% IF ( staffdisplaycount ) %]<li><span class="label">Número de ejemplares a mostrar en interfaz administrativa:</span>[% staffdisplaycount %]</li>[% END %] [% IF ( opacdisplaycount ) %]<li><span class="label">Número de ejemplares a mostrar en OPAC:</span>[% opacdisplaycount %]</li>[% END %] [% IF ( letter ) %] <li>
+ <span class="label">Notificación a socio: </span> [% letter %] (<a href="/cgi-bin/koha/serials/viewalerts.pl?subscriptionid=[% subscriptionid %]">suscriptores</a>) </li>
+ [% END %] [% IF ( hasRouting ) %]<li><span class="label">Ruteo:</span> si</li>[% END %] </ol>
  </div>
  </div>
 </div>
@@ -126,132 +105,30 @@ $(document).ready(function() {
  <div class="yui-g">
  <div class="rows">
  <ol>
- <li><span class="label">Fecha de comienzo:</span> [% startdate %]
- </li>
+ <li><span class="label">Fecha de comienzo:</span> [% startdate %] </li>
  <li><span class="label">Frecuencia (*)</span>
- [% IF ( periodicity16 ) %]
- Without regularity
- [% END %]
- [% IF ( periodicity32 ) %]
- Irregular
- [% END %]
- [% IF ( periodicity0 ) %]
- Unknown
- [% END %]
- [% IF ( periodicity12 ) %]
- 2/day
- [% END %]
- [% IF ( periodicity1 ) %]
- 1/day
- [% END %]
- [% IF ( periodicity13 ) %]
- 1/4 months (3/year)
- [% END %]
- [% IF ( periodicity2 ) %]
- 1/week
- [% END %]
- [% IF ( periodicity3 ) %]
- 1/2 weeks
- [% END %]
- [% IF ( periodicity4 ) %]
- 1/3 weeks
- [% END %]
- [% IF ( periodicity5 ) %]
- 1/month
- [% END %]
- [% IF ( periodicity6 ) %]
- 1/2 months (6/year)
- [% END %]
- [% IF ( periodicity7 ) %]
- 1/quarter
- [% END %]
- [% IF ( periodicity8 ) %]
- 1/quarter
- [% END %]
- [% IF ( periodicity9 ) %]
- 2/year
- [% END %]
- [% IF ( periodicity10 ) %]
- 1/year
- [% END %]
- [% IF ( periodicity11 ) %]
- 1/2 years
- [% END %]
- </li>
+ [% IF ( periodicity16 ) %] Sin regularidad [% END %] [% IF ( periodicity32 ) %] Irregular [% END %] [% IF ( periodicity0 ) %] Desconocida [% END %] [% IF ( periodicity12 ) %] 2/día [% END %] [% IF ( periodicity1 ) %] 1/día [% END %] [% IF ( periodicity13 ) %] 1/4 meses (3/año) [% END %] [% IF ( periodicity2 ) %] 1/semana [% END %] [% IF ( periodicity3 ) %] 1/2 semanas [% END %] [% IF ( periodicity4 ) %] 1/3 semanas [% END %] [% IF ( periodicity5 ) %] 1/mes [% END %] [% IF ( periodicity6 ) %] 1/2 meses (6/año) [% END %] [% IF ( periodicity7 ) %] 1/trimestre [% END %] [% IF ( periodicity8 ) %] 1/trimestre [% END %] [% IF ( periodicity9 ) %] 2/año [% END %] [% IF ( periodicity10 ) %] 1/año [% END %] [% IF ( periodicity11 ) %] 1/2 años [% END %] </li>
  <li>
- <span class="label">Manual history: </span>
- [% IF ( manualhistory ) %]
- Disabled
- [% ELSE %]
- Enabled
- [% END %]
- </li>
+ <span class="label">Historial manual: </span>
+ [% IF ( manualhistory ) %] inhabilitado [% ELSE %] Habilitado [% END %] </li>
  <li><span class="label">Patrón numérico:</span>
- [% IF ( numberpattern1 ) %]
- Number only
- [% END %]
- [% IF ( numberpattern2 ) %]
- Volume, number, issue
- [% END %]
- [% IF ( numberpattern3 ) %]
- Volume, number
- [% END %]
- [% IF ( numberpattern4 ) %]
- Volume, issue
- [% END %]
- [% IF ( numberpattern5 ) %]
- Number, issue
- [% END %]
- [% IF ( numberpattern8 ) %]
- Year/Number
- [% END %]
- [% IF ( numberpattern6 ) %]
- Seasonal only
- [% END %]
- [% IF ( numberpattern7 ) %]
- None of the above
- [% END %]
- </li>
+ [% IF ( numberpattern1 ) %] Número solamente [% END %] [% IF ( numberpattern2 ) %] Volumen, número, ejemplar [% END %] [% IF ( numberpattern3 ) %] Volumen, número [% END %] [% IF ( numberpattern4 ) %] Volumen, ejemplar [% END %] [% IF ( numberpattern5 ) %] Número, ejemplar [% END %] [% IF ( numberpattern8 ) %] Año/Número [% END %] [% IF ( numberpattern6 ) %] Estacional solamente [% END %] [% IF ( numberpattern7 ) %] Ninguno de los anteriores [% END %] </li>
  <li><table>
  <tr><td>Comenzando con:</td>
  <td align="center">[% lastvalue1 %]</td>
- [% IF ( lastvalue2 ) %]
- <td align="center">&nbsp; 
- [% lastvalue2 %]
- </td>
- [% END %]
- [% IF ( lastvalue3 ) %]
- <td align="center">&nbsp; 
- [% lastvalue3 %]
- </td>
- [% END %]
- </tr>
+ [% IF ( lastvalue2 ) %] <td align="center">&nbsp; [% lastvalue2 %] </td>
+ [% END %] [% IF ( lastvalue3 ) %] <td align="center">&nbsp; [% lastvalue3 %] </td>
+ [% END %] </tr>
  <tr><td>Reinicia:</td>
  <td align="center">
- [% IF ( whenmorethan1 < 9999999 ) %][% whenmorethan1 %][% ELSE %]Never[% END %]
- </td>
- [% IF ( whenmorethan2 ) %]
- <td align="center">&nbsp;
- [% IF ( whenmorethan2 < 9999999 ) %][% whenmorethan2 %][% ELSE %]Never[% END %]
- </td>
- [% END %]
- [% IF ( whenmorethan3 ) %]
- <td align="center">&nbsp;
- [% IF ( whenmorethan3 < 9999999 ) %][% whenmorethan3 %][% ELSE %]Never[% END %]
- </td>
- [% END %]
- </tr>
+ [% IF ( whenmorethan1 < 9999999 ) %][% whenmorethan1 %][% ELSE %]Nunca[% END %] </td>
+ [% IF ( whenmorethan2 ) %] <td align="center">&nbsp; [% IF ( whenmorethan2 < 9999999 ) %][% whenmorethan2 %][% ELSE %]Nunca[% END %] </td>
+ [% END %] [% IF ( whenmorethan3 ) %] <td align="center">&nbsp; [% IF ( whenmorethan3 < 9999999 ) %][% whenmorethan3 %][% ELSE %]Nunca[% END %] </td>
+ [% END %] </tr>
  </table></li>
- [% IF ( irregular_issues ) %]
- <li><span class="label">Irregularidad:</span> [% irregular_issues %] issues
- </li>
- [% END %]
- <li><span class="label">Primera llegada:</span> [% firstacquidate %]
- </li>
- [% IF ( numberlength ) %]<li><span class="label">Número de préstamos:</span> [% numberlength %]</li>[% END %]
- [% IF ( weeklength ) %]<li><span class="label">Número de semanas:</span> [% weeklength %]</li>[% END %]
- [% IF ( monthlength ) %]<li><span class="label">Número de meses:</span> [% monthlength %]</li>[% END %]
- </ol>
+ [% IF ( irregular_issues ) %] <li><span class="label">Irregularidad:</span> [% irregular_issues %] ejemplares </li>
+ [% END %] <li><span class="label">Primera llegada:</span> [% firstacquidate %] </li>
+ [% IF ( numberlength ) %]<li><span class="label">Número de préstamos:</span> [% numberlength %]</li>[% END %] [% IF ( weeklength ) %]<li><span class="label">Número de semanas:</span> [% weeklength %]</li>[% END %] [% IF ( monthlength ) %]<li><span class="label">Número de meses:</span> [% monthlength %]</li>[% END %] </ol>
  </div>
  </div>
  </div>
@@ -268,14 +145,11 @@ $(document).ready(function() {
  <tr>
  <td>Agregar</td>
  <td>
- [% add1 %]
- </td>
+ [% add1 %] </td>
  <td>
- [% add2 %]
- </td>
+ [% add2 %] </td>
  <td>
- [% add3 %]
- </td>
+ [% add3 %] </td>
  </tr>
  <tr>
  <td>una vez cada</td>
@@ -284,7 +158,7 @@ $(document).ready(function() {
  <td>[% every3 %]</td>
  </tr>
  <tr>
- <td>Cuando es más que</td>
+ <td>Cuando más que</td>
  <td>[% whenmorethan1 %] [% IF ( innerloop1 ) %]<br />
  <i>(es [% innerloop1 %])</i>[% END %]</td>
  <td>[% whenmorethan2 %] [% IF ( innerloop2 ) %]<br />
@@ -300,16 +174,14 @@ $(document).ready(function() {
  </tr>
  <tr>
  <td>
- Inner counter
- </td>
+ Contador interno </td>
  <td>[% innerloop1 %]</td>
  <td>[% innerloop2 %]</td>
  <td>[% innerloop3 %]</td>
  </tr>
  <tr>
  <td>
- Last value
- </td>
+ Último valor </td>
  <td>[% lastvalue1 %]</td>
  <td>[% lastvalue2 %]</td>
  <td>[% lastvalue3 %]</td>
@@ -324,58 +196,32 @@ $(document).ready(function() {
  <th>Fecha de publicación</th>
  <th>Estado</th>
  </tr>
- [% FOREACH serialslis IN serialslist %]
- <tr>
+ [% FOREACH serialslis IN serialslist %] <tr>
  <td>
- [% serialslis.serialseq %]
- </td>
+ [% serialslis.serialseq %] </td>
  <td>
- [% serialslis.planneddate %]
- </td>
+ [% serialslis.planneddate %] </td>
  <td>
- [% serialslis.publisheddate %]
- </td>
+ [% serialslis.publisheddate %] </td>
  <td>
- [% IF ( serialslis.status1 ) %]
- Expected
- [% END %]
- [% IF ( serialslis.status2 ) %]
- Arrived
- [% END %]
- [% IF ( serialslis.status3 ) %]
- Late
- [% END %]
- [% IF ( serialslis.status4 ) %]
- Missing
- [% END %]
- [% IF ( serialslis.status5 ) %]
- Not available
- [% END %]
- [% IF ( serialslis.status7 ) %]
- Claimed
- [% IF ( serialslis.claimdate ) %]
- [% serialslis.claimdate %]
- [% END %]
- [% END %]
- </td>
+ [% IF ( serialslis.status1 ) %] Esperado [% END %] [% IF ( serialslis.status2 ) %] Arribado[% END %] [% IF ( serialslis.status3 ) %] Demorado [% END %] [% IF ( serialslis.status4 ) %] Perdido [% END %] [% IF ( serialslis.status5 ) %] No disponible [% END %] [% IF ( serialslis.status7 ) %] Reclamado [% IF ( serialslis.claimdate ) %] [% serialslis.claimdate %] [% END %] [% END %] </td>
  </tr>
- [% END %]
- </table>
+ [% END %] </table>
  </div>
  <div id="subscription_summary">
  <div class="yui-g">
  <div class="rows">
  <ol>
  <li><span class="label">Fecha de Inicio:</span> [% startdate %] </li>
- <li><span class="label">End date:</span> [% enddate %]</li>
- <li><span class="label">History start date:</span> [% histstartdate %] </li>
- <li><span class="label">History end date:</span> [% histenddate %]</li>
- <li><span class="label">Received issues:</span>[% recievedlist %]</li>
- <li><span class="label">Missing issues:</span>[% missinglist %]</li>
- <li><span class="label">Nota no pública</span>[% internalnotes %]</li>
- <li><span class="label">Nota de OPAC:</span>[% notes %]</li>
- <li><span class="label">History staff note</span>[% librariannote %]</li>
- <li><span class="label">History OPAC note</span>[% opacnote %]</li>
+ <li><span class="label">Fecha final:</span> [% enddate %]</li>
+ <li><span class="label">Fecha de inicio del historial:</span> [% histstartdate %] </li>
+ <li><span class="label">Fecha final del historial:</span> [% histenddate %]</li>
+ <li><span class="label">Ejemplares recibidos:</span>[% recievedlist %]</li>
+ <li><span class="label">Ejemplares faltantes:</span>[% missinglist %]</li>
+ <li><span class="label">Nota no pública</span>[% internalnotes FILTER html_line_break %]</li>
+ <li><span class="label">Nota pública:</span>[% notes FILTER html_line_break %]</li>
+ <li><span class="label">Nota administrativa del historial</span>[% librariannote FILTER html_line_break %]</li>
+ <li><span class="label">Historia de nota de OPAC</span>[% opacnote FILTER html_line_break %]</li>
  </ol>
  </div>
  </div>
@@ -385,7 +231,6 @@ $(document).ready(function() {
 </div>
 
 <div class="yui-b">
-[% INCLUDE 'serials-menu.inc' %]
+[% INCLUDE 'serials-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

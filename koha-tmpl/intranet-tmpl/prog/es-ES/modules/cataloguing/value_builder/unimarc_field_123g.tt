@@ -1,9 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>UNIMARC field 123g builder</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Constructor Campo UNIMARC 123g</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="cat_unimarc_field_123g" class="cat" style="padding:1em;">
-<h3>UNIMARC field 123g builder</h3>
+<h3>Constructor Campo UNIMARC 123g</h3>
 <form name="f_pop" action="">
 <table>
  <tr>
@@ -11,27 +9,15 @@
  <td>
  <select name="f1" id="f1" size="1">
  
- [% IF ( f1w ) %]
- <option value="w" selected="selected">oeste</option>
- [% ELSE %]
- <option value="w">oeste</option>
- [% END %]
- [% IF ( f1e ) %]
- <option value="e" selected="selected">este</option>
- [% ELSE %]
- <option value="e">este</option>
- [% END %]
- [% IF ( f1n ) %]
- <option value="n" selected="selected">norte</option>
- [% ELSE %]
- <option value="n">norte</option>
- [% END %]
- [% IF ( f1s ) %]
- <option value="s" selected="selected">sur</option>
- [% ELSE %]
- <option value="s">sur</option>
- [% END %]
- </select>
+ [% IF ( f1w ) %] <option value="w" selected="selected">oeste</option>
+ [% ELSE %] <option value="w">oeste</option>
+ [% END %] [% IF ( f1e ) %] <option value="e" selected="selected">este</option>
+ [% ELSE %] <option value="e">este</option>
+ [% END %] [% IF ( f1n ) %] <option value="n" selected="selected">norte</option>
+ [% ELSE %] <option value="n">norte</option>
+ [% END %] [% IF ( f1s ) %] <option value="s" selected="selected">sur</option>
+ [% ELSE %] <option value="s">sur</option>
+ [% END %] </select>
  </td></tr>
 
 <tr> <td><label for="f2">Grados (completar con 0):</label></td>
@@ -66,4 +52,4 @@
 //]]>
 </script>
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

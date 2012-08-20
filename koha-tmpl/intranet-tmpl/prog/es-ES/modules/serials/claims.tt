@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
- <title>Inicio &rsaquo; Publicaciones periódicas &rsaquo; Reclamaciones</title>
- [% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Reclamaciones</title>
+ [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.uitablefilter.js"></script>
 <script type="text/JavaScript" language="JavaScript">
 //<![CDATA[
@@ -37,7 +35,7 @@
 		var selected = $("input:checked");
 
 		if (selected.length == 0) {
-			alert(_('Por favor, selecciona al menos un ítem para exportar.'));
+			alert(_('Por favor, seleccione al menos un ítem para exportar.'));
 			return false;
 		}
 		
@@ -63,7 +61,7 @@
 	// Checks if the form can be sent (at least one checkbox must be checked)
 	function checkForm() {
 	    if ($("input:checked").length == 0) {
-		alert(_('Por favor, selecciona al menos un ítem.'));
+		alert(_('Por favor, seleccione al menos un ítem.'));
 		return false;
 	    }
 	}
@@ -96,7 +94,7 @@
 	    
 	    // Checks if the beginning date is valid
 	    if (!parseInt(beginDate)) {
-		alert(_('Falta la fecha de inicio o es inválida.'));
+		alert(_('La fecha de inicio falta o es inválida.'));
 		return false;
 	    }
 
@@ -144,19 +142,11 @@
 
 //]]>
 </script>
-[% INCLUDE 'calendar.inc' %]
 </head>
 <body id="ser_claims" class="ser">
- [% INCLUDE 'header.inc' %]
-[% UNLESS ( preview ) %]
- [% INCLUDE 'serials-search.inc' %]
-[% END %]
+ [% INCLUDE 'header.inc' %] [% UNLESS ( preview ) %] [% INCLUDE 'serials-search.inc' %] [% END %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Reclamos</div>
 
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Claims</div>
-
-[% UNLESS ( preview ) %]
-
-<div id="doc3" class="yui-t2">
+[% UNLESS ( preview ) %] <div id="doc3" class="yui-t2">
  
  <div id="bd">
  <div id="yui-main">
@@ -164,99 +154,58 @@
 
  <h1>Reclamos</h1>
 
-[% IF ( letter ) %][% UNLESS ( missingissues ) %][% IF ( supplierid ) %] <div class="dialog alert">No se encontraron ejemplares desaparecidos.</div>[% ELSE %]<div class="dialog message">Por favor, elige un proveedor.</div>[% END %][% END %][% END %]
- 
- [% IF ( SHOWCONFIRMATION ) %]
- <div class="dialog alert">Tu notificación ha sido enviada.</div>
- [% END %]
-[% UNLESS ( letter ) %]<div class="dialog alert">No claims notice defined. <a href="/cgi-bin/koha/tools/letter.pl">Please define one</a>.</div>[% END %]
- <form id="claims" name="claims" action="claims.pl" method="post">
+[% IF ( letter ) %][% UNLESS ( missingissues ) %][% IF ( supplierid ) %] <div class="dialog alert">No se encontraron ejemplares desaparecidos.</div>[% ELSE %]<div class="dialog message">Por favor, elija un proveedor.</div>[% END %][% END %][% END %] [% IF ( SHOWCONFIRMATION ) %] <div class="dialog alert">Su notificación ha sido enviada.</div>
+ [% END %] [% UNLESS ( letter ) %]<div class="dialog alert">No hay aviso de reclamo definido <a href="/cgi-bin/koha/tools/letter.pl">Por favor, defina uno</a>.</div>[% END %] <form id="claims" name="claims" action="claims.pl" method="post">
  <fieldset>
- <label for="supplierid">Vendor: </label>
+ <label for="supplierid">Proveedor: </label>
  <select id="supplierid" name="supplierid">
- [% FOREACH suploo IN suploop %]
- [% IF ( suploo.selected ) %]
- <option value="[% suploo.id %]" selected="selected" >
- [% ELSE %]
- <option value="[% suploo.id %]">
- [% END %]
- [% suploo.name %]
- ([% suploo.count %])
- </option>
- [% END %]
- </select>
+ [% FOREACH suploo IN suploop %] [% IF ( suploo.selected ) %] <option value="[% suploo.id %]" selected="selected" >
+ [% ELSE %] <option value="[% suploo.id %]">
+ [% END %] [% suploo.name %] ([% suploo.count %]) </option>
+ [% END %] </select>
  <input type="submit" value="OK" />
- [% IF ( phone ) %]Phone: [% phone %][% END %]
- [% IF ( booksellerfax ) %]Fax: [% booksellerfax %][% END %]
- [% IF ( bookselleremail ) %]</p><p><a href="mailto:[% bookselleremail %]">[% bookselleremail %]</a>[% END %]
- </fieldset>
+ [% IF ( phone ) %]Teléfono: [% phone %][% END %] [% IF ( booksellerfax ) %]Fax: [% booksellerfax %][% END %] [% IF ( bookselleremail ) %]</p><p><a href="mailto:[% bookselleremail %]">[% bookselleremail %]</a>[% END %] </fieldset>
 </form>
 
- [% IF ( missingissues ) %] 
- <h3>Ejemplares faltantes</h3>
+ [% IF ( missingissues ) %] <h3>Ejemplares faltantes</h3>
  <form action="claims.pl" onsubmit="return false;">
  <fieldset class="rows">
  <legend>Filtros :</legend>
  
  <ol>
  <li>
- <label for="statusfilter">Status : </label>
+ <label for="statusfilter">Estado : </label>
  <select id="statusfilter" onchange="filterByStatus();">
  <option value="all" selected="selected">(Todo)</option>
  <option>Esperado</option>
- <option>Recibido</option>
+ <option>Disponible</option>
  <option>Atrasado</option>
- <option>Falta</option>
+ <option>Faltante</option>
  <option>Reclamado</option>
  </select>
  </li>
  
  <li>
- <label for="titlefilter">Title : </label>
+ <label for="titlefilter">Título: </label>
  <input id="titlefilter" type="text" />
- <label for="branchfilter">Biblioteca:</label>
+ <label for="branchfilter">Biblioteca: </label>
  <select id="branchfilter" onchange="filterByBranch();">
- [% FOREACH branchloo IN branchloop %]
- [% IF ( branchloo.selected ) %]
- <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>
- [% ELSE %]
- <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>
+ [% ELSE %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>
+ [% END %] [% END %] </select>
  </li>
  
  <li>
- <label for="begindate">Desde</label>
- <img alt="Show calendar" src="[% themelang %]/lib/calendar/cal.gif" style="cursor: pointer;" id="begindatebutton" title="Mostrar calendario" />
- <input type="text" name="begindate" id="begindate" value="[% begindate %]" size="10" maxlength="10" />
- <script type="text/javascript">
-		 //<![CDATA[ 
-		Calendar.setup({
-		    inputField	: "begindate", 
-		    button		: "begindatebutton",
-		    ifFormat	: "[% DHTMLcalendar_dateformat %]"
-		});
-		//]]>
-	    </script>
-
- <label for="enddate" style="float:none;">A</label>
- <img alt="Show calendar" src="[% themelang %]/lib/calendar/cal.gif" style="cursor: pointer;" id="enddatebutton" title="Mostrar calendario" />
- <input type="text" name="enddate" id="enddate" value="[% enddate %]" size="10" maxlength="10" />
- <script type="text/javascript">
-		 //<![CDATA[ 
-		 Calendar.setup({
-		    inputField      : "enddate", 
-		    button          : "enddatebutton",
-		    ifFormat        : "[% DHTMLcalendar_dateformat %]"
-		});
-		//]]>
-	    </script> <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
+ <label for="from">Desde</label>
+ <input type="text" name="begindate" id="from" value="[% begindate %]" size="10" maxlength="10" class="datepickerfrom" />
+ <label for="to" style="float:none;">A</label>
+ <input type="text" name="enddate" id="to" value="[% enddate %]" size="10" maxlength="10" class="datepickerto" />
+ <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
  <input type="button" value="OK" onclick="filterByDate();" />
  </li>
  
  <li>
- <input type="reset" value="Clear filters" onclick="clearFilters();" />
+ <input value="Limpiar filtros" type="reset" onclick="clearFilters();" />
  </li>
  </ol>
  </fieldset>
@@ -267,45 +216,35 @@
  <input type="hidden" name="order" value="[% order %]" />
  <table id="claimst">
  <thead><tr>
- [% IF ( letter ) %]
- <th><input type="checkbox" id="CheckAll"></th>
- [% END %]
- <th>Proveedor</th>
+ [% IF ( letter ) %] <th><input type="checkbox" id="CheckAll"></th>
+ [% END %] <th>Proveedor</th>
  <th>Biblioteca</th>
  <th>Título</th>
  <th>Número de ítem</th>
  <th>Estado</th>
  <th>Desde</th>
- <th>Claim date</th>
- <th>Begin claim</th>
+ <th>Fecha de reclamo</th>
+ <th>Iniciar reclamo</th>
  </tr></thead>
- <tbody>[% FOREACH missingissue IN missingissues %]
- <tr>
- [% IF ( letter ) %]
- <td>
+ <tbody>[% FOREACH missingissue IN missingissues %] <tr>
+ [% IF ( letter ) %] <td>
  <input type="checkbox" name="serialid" value="[% missingissue.serialid %]" />
  </td>
- [% END %]
+ [% END %] <td>
+ [% missingissue.name %] </td>
  <td>
- [% missingissue.name %]
- </td>
- <td>
- [% missingissue.branchcode %]
- </td>
+ [% missingissue.branchcode %] </td>
  <td>
  <a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% missingissue.subscriptionid %]">[% missingissue.title |html %]</a>
  </td>
  <td>
- [% missingissue.serialseq %]
- </td>
+ [% missingissue.serialseq %] </td>
  <td>
- [% IF ( missingissue.status1 ) %]Esperado[% END %] [% IF ( missingissue.status2 ) %]Recibido[% END %] [% IF ( missingissue.status3 ) %]Retrasado[% END %] [% IF ( missingissue.status4 ) %]Falta[% END %] [% IF ( missingissue.status7 ) %]Reclamado[% END %]</td>
+ [% IF ( missingissue.status1 ) %]Esperado [% END %] [% IF ( missingissue.status2 ) %]Ya arribado[% END %] [% IF ( missingissue.status3 ) %]Demorado[% END %] [% IF ( missingissue.status4 ) %]Desaparecido[% END %] [% IF ( missingissue.status7 ) %]Reclamado[% END %] </td>
  <td class="planneddate">
- [% missingissue.planneddate %]
- </td>
+ [% missingissue.planneddate %] </td>
  <td>
- [% missingissue.claimdate %]
- </td>
+ [% missingissue.claimdate %] </td>
  <td>
  <a href="/cgi-bin/koha/serials/lateissues-excel.pl?supplierid=[% missingissue.supplieri %]&amp;serialid=[% missingissue.serialid %]&amp;op=claims">Exportar datos de ítem</a>
  </td>
@@ -314,90 +253,49 @@
  </table>
  <p><span class="exportSelected"></span></p>
 
-[% IF ( letter ) %]
- <fieldset class="action"> <label for="letter_code">Seleccionar notificación:</label>
+[% IF ( letter ) %] <fieldset class="action"> <label for="letter_code">Seleccionar aviso:</label>
  <select name="letter_code" id="letter_code">
- [% FOREACH letter IN letters %]
- <option value="[% letter.code %]">[% letter.name %]</option>
- [% END %]
- </select>
+ [% FOREACH letter IN letters %] <option value="[% letter.code %]">[% letter.name %]</option>
+ [% END %] </select>
  <input type="hidden" name="op" value="send_alert" /><input value="Enviar notificación" name="submit" type="submit" class="button" /></fieldset>
- [% END %]
- </form>
+ [% END %] </form>
  </fieldset>
-[% END %]
-
-[% ELSE %]
-
-<div id="doc" class="yui-t7">
+[% END %] [% ELSE %] <div id="doc" class="yui-t7">
  <div id="bd">
  
-[% IF ( supplierloop ) %]
- [% FOREACH supplierloo IN supplierloop %]
- [% IF ( supplierloo.name ) %]
- <p><b>[% supplierloo.name %]</b><br />
- [% END %]
- [% IF ( supplierloo.postal ) %]
- [% supplierloo.postal %]<br />
- [% END %]
- [% IF ( supplierloo.contphone ) %]
- Ph: [% supplierloo.contphone %]<br />
- [% END %]
- [% IF ( supplierloo.contfax ) %]
- Fax: [% supplierloo.contfax %]<br />
- [% END %]
- [% IF ( supplierloo.contemail ) %]
- Email: [% supplierloo.contemail %]<br />
- [% END %]
- [% IF ( supplierloo.accountnumber ) %]
- A/C: [% supplierloo.accountnumber %]</p>
- [% END %]
- [% IF ( supplierloo.contact ) %]
- <p>Estimada/o [% supplierloo.contact %]</p>
- [% ELSE %]
- <p>A quien corresponda</p>
- [% END %]
- <p>Los siguientes ítems no han sido recibidos y ahora se consideran perdidos:</p>
- [% END %]
-[% END %]
- [% IF ( missingissues ) %]
- <h3>Ejemplares faltantes</h3>
+[% IF ( supplierloop ) %] [% FOREACH supplierloo IN supplierloop %] [% IF ( supplierloo.name ) %] <p><b>[% supplierloo.name %]</b><br />
+ [% END %] [% IF ( supplierloo.postal ) %] [% supplierloo.postal %]<br />
+ [% END %] [% IF ( supplierloo.contphone ) %] Ph: [% supplierloo.contphone %]<br />
+ [% END %] [% IF ( supplierloo.contfax ) %] / Fax: [% supplierloo.contfax %]<br />
+ [% END %] [% IF ( supplierloo.contemail ) %] Email: [% supplierloo.contemail %]<br />
+ [% END %] [% IF ( supplierloo.accountnumber ) %] A/C: [% supplierloo.accountnumber %]</p>
+ [% END %] [% IF ( supplierloo.contact ) %] <p>Estimada/o [% supplierloo.contact %]</p>
+ [% ELSE %] <p>A quién corresponda</p>
+ [% END %] <p>Los siguientes ítem no han sido recibidos de usted y ahora se consideran perdidos:</p>
+ [% END %] [% END %] [% IF ( missingissues ) %] <h3>Ejemplares faltantes</h3>
  <table>
  <tr>
  <td><b>Proveedor<b></td>
  <td><b>Título</b></td>
  <td><b>Número de ítem</b></td>
- <td><b>Falta desde</b></td>
+ <td><b>Faltante desde</b></td>
  </tr>
- [% FOREACH missingissue IN missingissues %]
- <tr>
+ [% FOREACH missingissue IN missingissues %] <tr>
  <td>
- [% missingissue.name %]
- </td>
+ [% missingissue.name %] </td>
  <td>
- [% missingissue.Title |html %]
- </td>
+ [% missingissue.Title |html %] </td>
  <td>
- [% missingissue.serialseq %]
- </td>
+ [% missingissue.serialseq %] </td>
  <td>
- [% missingissue.planneddate %]
- </td>
+ [% missingissue.planneddate %] </td>
  </tr>
- [% END %]
- </table>
- [% END %]
-
-<p class="noprint"><a href="#" onclick="window.print(); return false;">Imprimir</a> &nbsp; <a href="#" class="close">Cerrar</a></p>
-[% END %]
-
-</div>
+ [% END %] </table>
+ [% END %] <p class="noprint"><a href="#" onclick="window.print(); return false;">Imprimir</a> &nbsp; <a href="#" class="close">Cerrar</a></p>
+[% END %] </div>
 </div>
 
-[% UNLESS ( preview ) %]
-<div class="yui-b">
-[% INCLUDE 'serials-menu.inc' %]
-</div>
-[% END %]
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% UNLESS ( preview ) %] <div class="yui-b">
+[% INCLUDE 'serials-menu.inc' %] </div>
+[% END %] </div>
+[% INCLUDE 'intranet-bottom.inc' %] 

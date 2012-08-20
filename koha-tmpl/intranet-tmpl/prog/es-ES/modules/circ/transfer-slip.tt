@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Circulación &rsaquo; Transferencias</title>
-[% INCLUDE 'doc-head-close-receipt.inc' %]
-<script language="javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación &rsaquo; Transferencias</title>
+[% INCLUDE 'doc-head-close-receipt.inc' %] <script language="javascript">
 function printandclose()
 {
 window.print();
@@ -13,13 +11,11 @@ window.close();
 <div id="main">
 
 <h5>Fecha: [% pulldate %]</h5>
-<h3>Transfer to [% branchname %]</h3>
+<h3>Transferir a [% branchname %]</h3>
 
-<h3>ITEM</h3>
+<h3>ÍTEM</h3>
  <h4>[% biblio.title |html %]</h4>
  <h5>[% biblio.author %] </h5>
  <ul>
- [% IF ( item.barcode ) %]<li>[% item.barcode %]</li>[% END %]
- [% IF ( item.itemcallnumber ) %]<li>[% item.itemcallnumber %]</li>[% END %]
- </ul>
-[% INCLUDE 'intranet-bottom.inc' %]
+ [% IF ( item.barcode ) %]<li>[% item.barcode %]</li>[% END %] [% IF ( item.itemcallnumber ) %]<li>[% item.itemcallnumber %]</li>[% END %] </ul>
+[% INCLUDE 'intranet-bottom.inc' %] 

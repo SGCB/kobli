@@ -143,3 +143,23 @@ Patrons:
         dateexpiry: current membership expiry date.
         now: current date.
       pref: BorrowerRenewalPeriodBase
+  - 
+    - 
+      choices: 
+        "": Disable
+        1: Enable
+      pref: TalkingTechItivaPhoneNotification
+    - patron phone notifications using Talking Tech i-tiva (overdues, predues and holds notices currently supported).
+  - 
+    - "Show the following fields from the items database table as columns on the statistics tab on the patron record: "
+    - 
+      class: multi
+      pref: StatisticsFields
+    - (separate fields with |)
+  - 
+    - 
+      choices: 
+        "": Don't
+        1: Do
+      pref: EnableBorrowerFiles
+    - enable the ability to upload and attach arbitrary files to a borrower record.

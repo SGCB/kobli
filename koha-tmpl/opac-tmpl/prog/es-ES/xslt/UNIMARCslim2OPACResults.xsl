@@ -77,17 +77,17 @@
 
  <xsl:call-template name="tag_title">
  <xsl:with-param name="tag">454</xsl:with-param>
- <xsl:with-param name="label">Translation of</xsl:with-param>
+ <xsl:with-param name="label">Traducción de</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_title">
  <xsl:with-param name="tag">461</xsl:with-param>
- <xsl:with-param name="label">Set Level</xsl:with-param>
+ <xsl:with-param name="label">Establecer nivel</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_title">
  <xsl:with-param name="tag">464</xsl:with-param>
- <xsl:with-param name="label">Piece-Analytic Level</xsl:with-param>
+ <xsl:with-param name="label">Nivel Fragmento-Analítico</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_210" />
@@ -112,7 +112,7 @@
  </xsl:call-template>
  </xsl:when>
  <xsl:when test="not(marc:subfield[@code='y']) and not(marc:subfield[@code='3']) and not(marc:subfield[@code='z'])">
- Haz clic aquí para acceder en línea</xsl:when>
+ Haga clic aquí para acceso en linea </xsl:when>
  </xsl:choose>
  </a>
  <xsl:choose>
@@ -201,14 +201,14 @@
  </xsl:if>
  <xsl:if test="count(key('item-by-status', 'On Orangemanr'))>0">
  <span class="unavailable">
- <xsl:text>Pedido (</xsl:text>
+ <xsl:text>En orden (</xsl:text>
  <xsl:value-of select="count(key('item-by-status', 'On order'))"/>
  <xsl:text>). </xsl:text>
  </span>
  </xsl:if>
  <xsl:if test="count(key('item-by-status', 'In transit'))>0">
  <span class="unavailable">
- <xsl:text>En ruta (</xsl:text>
+ <xsl:text>En tránsito (</xsl:text>
  <xsl:value-of select="count(key('item-by-status', 'In transit'))"/>
  <xsl:text>). </xsl:text>
  </span>

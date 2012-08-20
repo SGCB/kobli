@@ -1,13 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Informes &rsaquo; Préstamos por categoría de socio</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'calendar.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes &rsaquo; Préstamos por categoría de socio</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="rep_issues_by_borrower_category" class="rep">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a> [% IF ( do_it ) %]&rsaquo; <a href="/cgi-bin/koha/reports/manager.pl?report_name=issues_by_borrower_category">Préstamos por categoría de socio</a> &rsaquo; Results[% ELSE %]&rsaquo; Checkouts by patron category[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a> [% IF ( do_it ) %]&rsaquo; <a href="/cgi-bin/koha/reports/manager.pl?report_name=issues_by_borrower_category">Préstamos por categoría de socio</a> &rsaquo; Resultados[% ELSE %]&rsaquo; Préstamos por categoría de socio[% END %]</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -15,62 +9,39 @@
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( do_it ) %]
-[% FOREACH mainloo IN mainloop %]
- <h1>Checkouts by patron category [% IF ( mainloo.borrower_category ) %] for category = [% mainloo.borrower_category %][% END %]</h1>
+[% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Préstamos por categoría de socio [% IF ( mainloo.borrower_category ) %] para categoría = [% mainloo.borrower_category %][% END %]</h1>
  <table>
  <tr>
  <th>&nbsp;</th>
- [% FOREACH categorycodeloo IN mainloo.categorycodeloop %]
- <th>[% categorycodeloo.categorycode %]</th>
- [% END %]
- <th>TOTAL</th>
+ [% FOREACH categorycodeloo IN mainloo.categorycodeloop %] <th>[% categorycodeloo.categorycode %]</th>
+ [% END %] <th>TOTAL</th>
  </tr>
- [% FOREACH loopborrowertyp IN mainloo.loopborrowertype %]
- <tr>
- [% IF ( loopborrowertyp.hilighted ) %]<td class="hilighted">[% ELSE %]<td>[% END %]
- [% loopborrowertyp.itemtype %]</td>
- [% FOREACH loopitemtyp IN loopborrowertyp.loopitemtype %]
- [% IF ( loopitemtyp.hilighted ) %]<td>[% ELSE %]<td>[% END %]
- [% loopitemtyp.issues %]
- </td>
- [% END %]
- [% IF ( loopborrowertyp.hilighted ) %]<td>[% ELSE %]<td>[% END %]
- [% loopborrowertyp.totalitemtype %]
- </td>
+ [% FOREACH loopborrowertyp IN mainloo.loopborrowertype %] <tr>
+ [% IF ( loopborrowertyp.hilighted ) %]<td class="hilighted">[% ELSE %]<td>[% END %] [% loopborrowertyp.itemtype %]</td>
+ [% FOREACH loopitemtyp IN loopborrowertyp.loopitemtype %] [% IF ( loopitemtyp.hilighted ) %]<td>[% ELSE %]<td>[% END %] [% loopitemtyp.issues %] </td>
+ [% END %] [% IF ( loopborrowertyp.hilighted ) %]<td>[% ELSE %]<td>[% END %] [% loopborrowertyp.totalitemtype %] </td>
  </tr>
- [% END %]
- <tr>
+ [% END %] <tr>
  <th>TOTAL</th>
- [% FOREACH loopborrowertota IN mainloo.loopborrowertotal %]
- <th>
- [% loopborrowertota.issues %]
- </th>
- [% END %]
- <th>[% mainloo.grantotal %]</th>
+ [% FOREACH loopborrowertota IN mainloo.loopborrowertotal %] <th>
+ [% loopborrowertota.issues %] </th>
+ [% END %] <th>[% mainloo.grantotal %]</th>
  </tr>
  </table>
-[% END %]
-[% ELSE %]
- <form method="post" action="/cgi-bin/koha/reports/manager.pl">
+[% END %] [% ELSE %] <form method="post" action="/cgi-bin/koha/reports/manager.pl">
  <fieldset class="rows">
  <legend>Préstamos por categoría de socio</legend>
  <ol><li><label for="borrowercategory">Seleccionar una categoría de socio</label><select name="value" id="borrowercategory"><option value="" > Cualquier código de categoría</option>
- [% FOREACH loopcategorie IN loopcategories %]
- <option value="[% loopcategorie.value %]" >[% loopcategorie.description %] </option> 
- [% END %] 
- </select></li>
- <li><label for="branch">Seleccionar una biblioteca:</label> [% CGIbranch %]</li></ol></fieldset>
+ [% FOREACH loopcategorie IN loopcategories %] <option value="[% loopcategorie.value %]" >[% loopcategorie.description %] </option> 
+ [% END %] </select></li>
+ <li><label for="branch">Seleccionar una sede:</label> [% CGIbranch %]</li></ol></fieldset>
  <fieldset class="action"><input value="Enviar" type="submit" />
  <input type="hidden" name="report_name" value="[% report_name %]" />
  <input type="hidden" name="do_it" value="1" /></fieldset>
  </form>
-[% END %]
-
-</div>
+[% END %] </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'reports-menu.inc' %]
+[% INCLUDE 'reports-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

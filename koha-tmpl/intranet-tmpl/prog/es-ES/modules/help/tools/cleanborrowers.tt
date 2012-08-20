@@ -1,21 +1,19 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Socios (anonimizar, borrar en bloque)</h1>
 
-<h1>Socios (anonimizar, borrar en bloque)</h1>
+<p>Esta herramienta permite anonimizar historiales de circulación en bloque (lo cual significa que puede preservar cuantas veces se prestó un ítem - pero no a cual socio) o eliminar socios en bloque (removerlos completamente del sistema).</p>
 
-<p>This tool allows you to bulk anonymize circulation histories (this means that you keep records of how many times items were checked out - but not the patrons who checked the items out) or bulk delete patrons (remove them from the system completely).</p>
+<p style="color: #990000;">Importante: Socios con multas pendientes o ítems prestados no se guardan. No son removidos completamente del sistema (movidos a la tabla deleted_borrowers), pero esta herramienta no provee tantos chequeos como sería necesario.</p
 
-<p style="color: #990000;">Important: Patrons with outstanding fines or items checked out are not saved. They are not completely removed from the system (moved to the delete_borrowers table), but this tool does not provide as many checks as one may desire.</p
-
-<p>To either delete or anonymize patrons</p>
+<p>Para eliminar o anonimizar socios</p>
 
 <ul>
- <li>Check the task you would like to perform (Delete or Anonymize)</li>
- <li>Enter a date before which you want to alter the data</li>
- <li>Haz clic en 'Siguiente'</li>
- <li>A confirmation will appear asking if you're sure this is what you want to happen</li>
- <li>Clicking 'Finish' will delete or anonymize your data</li>
+ <li>Seleccione el trabajo que le gustaría realizar (Borrar o Anonimizar).</li>
+ <li>Ingrese una fecha antes de la cual desea alterar los datos</li>
+ <li>Haga clic en 'Siguiente'</li>
+ <li>Una confirmación aparecerá preguntándole si está seguro que esto es lo que Usted quiere que suceda</li>
+ <li>Haciendo clic en 'Terminar' borrará o anonimizará sus datos</li>
 </ul>
 
-<p><strong>See the full documentation for Anonymizing Patrons in the <a href="http://manual.koha-community.org/3.8/en/anonpatrons.html">manual</a> (online).</strong></p>
+<p><strong>Vea la documentación completa para Anonimizar socios en la <a href="http://manual.koha-community.org/3.8/en/anonpatrons.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

@@ -1,8 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Herramientas &rsaquo; Noticias</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'calendar.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Novedades</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript">//<![CDATA[
 $(document).ready(function() {
 	$("#newst").tablesorter({[% IF ( dateformat == 'metric' ) %]
@@ -36,18 +33,13 @@ tinyMCE.init({
 </script>
 </head>
 <body id="tools_koha-news" class="tools">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; [% IF ( add_form ) %]<a href="/cgi-bin/koha/tools/koha-news.pl">Noticias</a> &rsaquo; [% IF ( id ) %] Editar nuevo ítem[% ELSE %]Agregar nuevo ítem[% END %][% ELSE %]Noticias[% END %]</div>
 
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; [% IF ( add_form ) %]<a href="/cgi-bin/koha/tools/koha-news.pl">Noticias</a> &rsaquo; [% IF ( id ) %] Editar notícias de ítem[% ELSE %]Agregar notícias de ítem[% END %][% ELSE %]Notícias[% END %]</div>
-
-[% IF ( add_form ) %]<div id="doc" class="yui-t7">[% ELSE %]<div id="doc3" class="yui-t2">[% END %]
- <div id="bd">
+[% IF ( add_form ) %]<div id="doc" class="yui-t7">[% ELSE %]<div id="doc3" class="yui-t2">[% END %] <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
  
-[% UNLESS ( add_form ) %]
-<div id="toolbar">
+[% UNLESS ( add_form ) %] <div id="toolbar">
  <script type="text/javascript">
 	//<![CDATA[
 	// prepare DOM for YUI Toolbar
@@ -63,66 +55,36 @@ tinyMCE.init({
  <ul class="toolbar">
  <li><a id="newentry" href="/cgi-bin/koha/tools/koha-news.pl?op=add_form">Nueva entrada</a></li>
 </ul></div>
-[% END %]
-
-[% IF ( add_form ) %]
- <form name="add_form" method="post" action="/cgi-bin/koha/tools/koha-news.pl" >
+[% END %] [% IF ( add_form ) %] <form name="add_form" method="post" action="/cgi-bin/koha/tools/koha-news.pl" >
  <input type="hidden" name="op" value="[% op %]" />
  <input type="hidden" name="id" value="[% id %]" />
  <fieldset class="rows">
- <legend>OPAC and Koha news</legend>
+ <legend>Noticias del OPAC y Koha</legend>
  <ol> <li>
- <label for="lang">Display location</label>
+ <label for="lang">Mostrar ubicación</label>
  <select id="lang" name="lang">
- <option value="koha">Interfaz de bibliotecarios</option>
- [% IF ( slip ) %]<option value="slip" selected="selected">Deslizar</option>[% ELSE %]<option value="slip">Deslizar</option>[% END %]
- [% FOREACH lang_lis IN lang_list %]
- [% IF ( lang_lis.selected ) %]<option value="[% lang_lis.language %]" selected="selected">OPAC ([% lang_lis.language %])</option>[% ELSE %]<option value="[% lang_lis.language %]">OPAC ([% lang_lis.language %])</option>[% END %]
- [% END %]
- </select>
+ <option value="koha">Interfaz para bibliotecarios</option>
+ [% IF ( slip ) %]<option value="slip" selected="selected">Tira</option>[% ELSE %]<option value="slip">Tira</option>[% END %] [% FOREACH lang_lis IN lang_list %] [% IF ( lang_lis.selected ) %]<option value="[% lang_lis.language %]" selected="selected">OPAC ([% lang_lis.language %])</option>[% ELSE %]<option value="[% lang_lis.language %]">OPAC ([% lang_lis.language %])</option>[% END %] [% END %] </select>
  </li>
  <li>
  <label for="title">Título</label>
  <input id="title" size="30" type="text" name="title" value="[% new_detail.title %]" />
  </li>
  <li>
- <label for="timestamp">Fecha de publicación</label>
- <input id="timestamp" type="text" name="timestamp" size="15" value="[% new_detail.timestamp %]" />
- <img src="[% themelang %]/lib/calendar/cal.gif" alt="Show calendar" border="0" id="timestampButton" style="cursor: pointer;" />
- <script type="text/javascript">
-                    Calendar.setup(
-                    {
-                        button : "timestampButton",
-                        inputField : "timestamp",
-                        ifFormat : "[% DHTMLcalendar_dateformat %]"
-                    }
-                    );
-                </script>
+ <label for="from">Fecha de publicación</label>
+ <input id="from" type="text" name="timestamp" size="15" value="[% new_detail.timestamp %]" class="datepickerfrom" />
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
  <li>
- <label for="expirationdate">Fecha de vencimiento</label>
- <input id="expirationdate" type="text" name="expirationdate" size="15" value="[% new_detail.expirationdate %]" />
- <img src="[% themelang %]/lib/calendar/cal.gif" alt="Show calendar" border="0" id="openCalendar" style="cursor: pointer;" />
- <script type="text/javascript">
-                    Calendar.setup(
-                    {
-                        button : "openCalendar",
-                        inputField : "expirationdate",
-                        ifFormat : "[% DHTMLcalendar_dateformat %]"
-                    }
-                    );
-                </script>
+ <label for="to">Fecha de vencimiento</label>
+ <input id="to" type="text" name="expirationdate" size="15" value="[% new_detail.expirationdate %]" class="datepickerto" />
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
  <li>
- <label for="number">Appear in position </label>
- [% IF ( new_detail.number ) %]
- <input id="number" size="3" name="number" type="text" checked="checked" value="[% new_detail.number %]" />
- [% ELSE %]
- <input id="number" size="3" name="number" type="text" />
- [% END %]
- </li>
+ <label for="number">Aparece en la posición </label>
+ [% IF ( new_detail.number ) %] <input id="number" size="3" name="number" type="text" checked="checked" value="[% new_detail.number %]" />
+ [% ELSE %] <input id="number" size="3" name="number" type="text" />
+ [% END %] </li>
  <li><label for="new">Noticias</label>
  <textarea name="new" id="new"  cols="75" rows="10">[% new_detail.new %]</textarea></li>
  </ol>
@@ -130,58 +92,45 @@ tinyMCE.init({
  
  <fieldset class="action"><input value="Enviar" class="button" type="submit" /> <a class="cancel" href="/cgi-bin/koha/tools/koha-news.pl">Cancelar</a></fieldset>
  </form>
- [% ELSE %]
- <div style="margin-bottom:5px;">
+ [% ELSE %] <div style="margin-bottom:5px;">
  <form name="add_form" method="post" action="/cgi-bin/koha/tools/koha-news.pl" >
- <label for="lang">Display location:</label>
+ <label for="lang">Mostrar ubicación:</label>
  <select name="lang" id="lang">
  <option value="">Todo</option>
- <option value="koha">Interfaz de bibliotecarios</option>
- <option value="slip">Deslizar</option>
- [% FOREACH lang_lis IN lang_list %]
- [% IF ( lang_lis.selected ) %]
- <option value="[% lang_lis.language %]" selected="selected">
- [% ELSE %]
- <option value="[% lang_lis.language %]">
- [% END %]
- OPAC ([% lang_lis.language %])
- </option>
- [% END %]
- </select>
+ <option value="koha">Interfaz para bibliotecarios</option>
+ <option value="slip">Tira</option>
+ [% FOREACH lang_lis IN lang_list %] [% IF ( lang_lis.selected ) %] <option value="[% lang_lis.language %]" selected="selected">
+ [% ELSE %] <option value="[% lang_lis.language %]">
+ [% END %] OPAC ([% lang_lis.language %]) </option>
+ [% END %] </select>
  <input value="Filtro" type="submit" class="button" />
  </form>
  </div>
- [% IF ( opac_news_count ) %]
- <form name="del_form" method="post" action="/cgi-bin/koha/tools/koha-news.pl" onsubmit="return confirm('Are you sure you want to delete the selected news?')">
+ [% IF ( opac_news_count ) %] <form name="del_form" method="post" action="/cgi-bin/koha/tools/koha-news.pl" onsubmit="return confirm('Are you sure you want to delete the selected news?')">
  <table id="newst">
  <thead> <tr>
  <th>&nbsp;</th>
  <th>Ubicación</th>
  <th>Número</th>
- <th>Creation date</th>
+ <th>Fecha de creación</th>
  <th>Fecha de vencimiento</th>
  <th>Título</th>
  <th>Noticias</th>
  <th>&nbsp;</th>
  </tr></thead>
- <tbody>[% FOREACH opac_new IN opac_news %]
- [% IF ( opac_new.expired ) %]
- <tr class="expired">
- [% ELSE %]
- <tr>
- [% END %]
- <td>
+ <tbody>[% FOREACH opac_new IN opac_news %] [% IF ( opac_new.expired ) %] <tr class="expired">
+ [% ELSE %] <tr>
+ [% END %] <td>
  <input type="checkbox" name="ids" value="[% opac_new.idnew %]" />
  </td>
- <td>[% IF ( opac_new.lang == 'koha' ) %] Interfaz de bibliotecario [% ELSE %] [% IF ( opac_new.lang == 'slip' ) %] Ficha [% ELSE %] OPAC [% END %] [% END %] </td>
+ <td>[% IF ( opac_new.lang == 'koha' ) %] Interfaz del bibliotecario [% ELSE %] [% IF ( opac_new.lang == 'slip' ) %] Tira [% ELSE %] OPAC [% END %] [% END %] </td>
 
  <td>[% opac_new.number %]</td>
  <td>[% opac_new.newdate %]</td>
  <td>[% opac_new.expirationdate %] [% IF ( opac_new.expired ) %](<span class="expired">vencido</span>)[% END %]</td>
  <td>[% opac_new.title %]</td>
  <td>
- [% opac_new.new %]
- </td>
+ [% opac_new.new %] </td>
  <td><a href="/cgi-bin/koha/tools/koha-news.pl?op=add_form&amp;id=[% opac_new.idnew %]">Editar</a></td>
  </tr>
  [% END %]</tbody>
@@ -189,16 +138,10 @@ tinyMCE.init({
  <input type="hidden" name="op" value="del" />
  <fieldset class="action"><input value="Eliminar seleccionados" type="submit" class="button" /></fieldset>
  </form>
- [% ELSE %]
- <p>No se cargaron novedades</p>
- [% END %]
- [% END %]
+ [% ELSE %] <p>No se cargaron novedades</p>
+ [% END %] [% END %] </div>
 </div>
-</div>
-[% UNLESS ( add_form ) %]
- <div class="yui-b noprint">
- [% INCLUDE 'tools-menu.inc' %]
- </div>
-[% END %]
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% UNLESS ( add_form ) %] <div class="yui-b noprint">
+ [% INCLUDE 'tools-menu.inc' %] </div>
+[% END %] </div>
+[% INCLUDE 'intranet-bottom.inc' %] 

@@ -1,7 +1,5 @@
- [% INCLUDE 'doc-head-open.inc' %]
- <title>Koha &rsaquo; Tools &rsaquo; Patron Card Creator &rsaquo; Patron card printing/exporting</title>
- [% INCLUDE 'doc-head-close.inc' %]
- <script type="text/JavaScript" language="JavaScript">
+ [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Creador de carnets de socios &rsaquo; Imprimir/exportar carnet de socios</title>
+ [% INCLUDE 'doc-head-close.inc' %] <script type="text/JavaScript" language="JavaScript">
         //<![CDATA[
             function Done() {
                 window.location = "[% referer %]";
@@ -14,21 +12,17 @@
 <body id="pcard_card-print" class="tools pcard">
  <div id="custom-doc" class="yui-t2">
  <div id="bd">
- [% IF ( batches ) %]
- <form>
+ [% IF ( batches ) %] <form>
  <div align="center">
  <div class="message">
- <b>Para descargar el lote exportado haz clic en el siguiente enlace.</b>
+ <b>Para descargar el lote exportado haga clic en el siguiente enlace.</b>
  </div>
  </div>
  <fieldset class="rows">
  <table class="borderless">
- [% FOREACH batche IN batches %]
- <tr>
- [% IF ( batche.label_ids ) %]
- <td class="borderless">
- [% batche.label_count %] Single cards
- </td>
+ [% FOREACH batche IN batches %] <tr>
+ [% IF ( batche.label_ids ) %] <td class="borderless">
+ [% batche.label_count %] Carnets únicos </td>
  <td class="borderless">
  <h1 id="pdf">
  <a href="/cgi-bin/koha/labels/[% batche.create_script %]?batch_id=[% batche.batch_id %]&amp;template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %]&amp;start_label=[% batche.start_label %][% batche.label_ids %]">label_single_ [% batche.label_count %].pdf</a>
@@ -44,10 +38,8 @@
  <a href="/cgi-bin/koha/labels/label-create-xml.pl?batch_id=[% batche.batch_id %]&amp;template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %][% batche.label_ids %]">label_single_ [% batche.label_count %].xml</a>
  </h1>
  </td>
- [% ELSIF ( batche.item_numbers ) %]
- <td class="borderless">
- [% batche.label_count %] Single Cards
- </td>
+ [% ELSIF ( batche.item_numbers ) %] <td class="borderless">
+ [% batche.label_count %] Tarjetas únicas </td>
  <td class="borderless">
  <h1 id="pdf">
  <a href="/cgi-bin/koha/labels/[% batche.create_script %]?template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %]&amp;start_label=[% batche.start_label %][% batche.item_numbers %]">label_single_ [% batche.label_count %].pdf</a>
@@ -63,29 +55,25 @@
  <a href="/cgi-bin/koha/labels/label-create-xml.pl?batch_id=[% batche.batch_id %]&amp;template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %][% batche.item_numbers %]">label_single_ [% batche.label_count %].xml</a>
  </h1>
  </td>
- [% ELSE %]
- <td class="borderless">
- Card batch number [% batche.batch_id %]
- </td>
+ [% ELSE %] <td class="borderless">
+ Lote de carnets número [% batche.batch_id %] </td>
  <td class="borderless">
  <h1 id="pdf">
- <a href="/cgi-bin/koha/labels/label-create-pdf.pl?batch_id=[% batche.batch_id %]&amp;template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %]&amp;start_label=[% batche.start_label %]">label_batch_ [% batche.batch_id %].pdf</a>
+ <a href="/cgi-bin/koha/labels/label-create-pdf.pl?batch_id=[% batche.batch_id %]&amp;template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %]&amp;start_label=[% batche.start_label %]">label_batch_[% batche.batch_id %].pdf</a>
  </h1>
  </td>
  <td class="borderless">
  <h1 id="csv">
- <a href="/cgi-bin/koha/labels/label-create-csv.pl?batch_id=[% batche.batch_id %]&amp;template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %]">label_batch_ [% batche.batch_id %].csv</a>
+ <a href="/cgi-bin/koha/labels/label-create-csv.pl?batch_id=[% batche.batch_id %]&amp;template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %]">label_batch_[% batche.batch_id %].csv</a>
  </h1>
  </td>
  <td class="borderless">
  <h1 id="xml">
- <a href="/cgi-bin/koha/labels/label-create-xml.pl?batch_id=[% batche.batch_id %]&amp;template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %]">label_batch_ [% batche.batch_id %].xml</a>
+ <a href="/cgi-bin/koha/labels/label-create-xml.pl?batch_id=[% batche.batch_id %]&amp;template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %]">label_batch_[% batche.batch_id %].xml</a>
  </h1>
  </td>
- [% END %]
- </tr>
- [% END %]
- </table>
+ [% END %] </tr>
+ [% END %] </table>
  </fieldset>
  <fieldset class="action">
  <div style="margin: 10px 10px 10px 0px;">
@@ -93,62 +81,47 @@
  </div>
  </fieldset>
  </form>
- [% ELSE %]
- <div align="center">
+ [% ELSE %] <div align="center">
  <div class="message">
- [% IF ( label_ids ) %]
- <b>Exportando [% label_count %] carnet(s).</b>
- [% ELSIF ( item_numbers ) %]
- <b>Exportando [% item_count %] carnet(s).</b>
- [% ELSE %]
- <b>[% multi_batch_count %] lote(s) a exportar.</b>
- [% END %]
- </div>
+ [% IF ( label_ids ) %] <b>Exportando [% label_count %] carnet(s).</b>
+ [% ELSIF ( item_numbers ) %] <b>Exportando [% item_count %] carnet(s).</b>
+ [% ELSE %] <b>[% multi_batch_count %] lote(s) a exportar.</b>
+ [% END %] </div>
  </div>
  <form name="exporting" method="post" action="/cgi-bin/koha/labels/label-print.pl">
  <input type="hidden" name="op" value="export" />
  <input type="hidden" name="referer" value="[% referer %]" />
- [% FOREACH batch_id IN batch_ids %]
- <input type="hidden" name="batch_id" value="[% batch_id.batch_id %]" />
- [% END %]
- [% FOREACH label_id IN label_ids %]
- <input type="hidden" name="label_id" value="[% label_id.label_id %]" />
- [% END %]
- [% FOREACH item_number IN item_numbers %]
- <input type="hidden" name="item_number" value="[% item_number.item_number %]" />
- [% END %]
- <fieldset class="rows">
+ [% FOREACH batch_id IN batch_ids %] <input type="hidden" name="batch_id" value="[% batch_id.batch_id %]" />
+ [% END %] [% FOREACH label_id IN label_ids %] <input type="hidden" name="label_id" value="[% label_id.label_id %]" />
+ [% END %] [% FOREACH item_number IN item_numbers %] <input type="hidden" name="item_number" value="[% item_number.item_number %]" />
+ [% END %] <fieldset class="rows">
  <table class="borderless">
  <tr>
  <td class="borderless">
- <label for="template">Selecciona una plantilla a aplicar:</label>
+ <label for="template">Seleccione una plantilla a aplicar: </label>
  </td>
  <td class="borderless">
  <select name="template_id">
- [% FOREACH template IN templates %]
- <option value="[% template.template_id %]">[% template.template_code %]</option>
- [% END %]
- </select>
+ [% FOREACH template IN templates %] <option value="[% template.template_id %]">[% template.template_code %]</option>
+ [% END %] </select>
  </td>
  </tr>
  <tr>
  <td class="borderless">
- <label for="layout">Selecciona el diseño a aplicar:</label>
+ <label for="layout">Seleccione el diseño a aplicar: </label>
  </td>
  <td class="borderless">
  <select name="layout_id">
- [% FOREACH layout IN layouts %]
- <option value="[% layout.layout_id %]">[% layout.layout_name %]</option>
- [% END %]
- </select>
+ [% FOREACH layout IN layouts %] <option value="[% layout.layout_id %]">[% layout.layout_name %]</option>
+ [% END %] </select>
  </td>
  </tr>
  <tr>
  <td class="borderless">
- <label for="start_label">Introduce el número de carné inicial:</label>
+ <label for="start_label">Introduzca el número de carnet inicial: </label>
  </td>
  <td class="borderless">
- <input value="1" name="start_label" type="text" id="start_label" class="focus" title="Número de carné de inicio" size="5" />
+ <input value="1" name="start_label" type="text" id="start_label" class="focus" title="Número de carnet de inicio" size="5" />
  </td>
  </tr>
  </table>
@@ -160,6 +133,5 @@
  </div>
  </fieldset>
  </form>
- [% END %]
- </div>
- [% INCLUDE 'intranet-bottom.inc' %]
+ [% END %] </div>
+ [% INCLUDE 'intranet-bottom.inc' %] 

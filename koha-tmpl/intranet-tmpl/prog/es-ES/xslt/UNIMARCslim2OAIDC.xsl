@@ -173,7 +173,7 @@
  <dc:identifier>
  <xsl:text>LOC:</xsl:text>
  <xsl:choose>
- <xsl:when test="marc:subfield[@code='c']='MAIN'">Main library</xsl:when>
+ <xsl:when test="marc:subfield[@code='c']='MAIN'">Biblioteca principal</xsl:when>
  <xsl:when test="marc:subfield[@code='c']='BIB2'">Biblioteca 2</xsl:when>
  </xsl:choose>
  <xsl:for-each select="marc:subfield[@code='k']">

@@ -51,7 +51,7 @@
  <xsl:value-of select="substring($title,1,@ind2)"/>
  </nonSort>
  <title>
-  <xsl:value-of select="substring($title,@ind2+1)"/> </title>
+ <xsl:value-of select="substring($title,@ind2+1)"/> </title>
  </xsl:when>
  <xsl:otherwise>
  <title>
@@ -181,10 +181,10 @@
 
  <typeOfResource> 
  <xsl:if test="$leader7='c'">
- <xsl:attribute name="collection">sí</xsl:attribute>
+ <xsl:attribute name="collection">si</xsl:attribute>
  </xsl:if>
  <xsl:if test="$leader6='d' or $leader6='f' or $leader6='p' or $leader6='t'">
- <xsl:attribute name="manuscript">sí</xsl:attribute>
+ <xsl:attribute name="manuscript">si</xsl:attribute>
  </xsl:if>
 
  <xsl:choose>
@@ -671,7 +671,7 @@
 
  <xsl:choose>
  <xsl:when test="($check008-23 and $controlField008-23='f') or ($check008-29 and $controlField008-29='f')">
- <form><controlled>braille</controlled></form>
+ <form><controlled>Braille</controlled></form>
  </xsl:when>
  <xsl:when test="$leader6 = 'm' or ($check008-23 and $controlField008-23='s') or ($check008-29 and $controlField008-29='s')">
  <form><controlled>electrónico</controlled></form>
@@ -942,7 +942,7 @@
  <relatedItem type="series">
  <titleInfo>
  <title>
- <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">av</xsl:with-param> </xsl:call-template> <xsl:call-template name="part"/></title>
+ <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">av</xsl:with-param> </xsl:call-template> <xsl:call-template name="part"/> </title>
  </titleInfo>
  </relatedItem> 
  </xsl:for-each>
@@ -951,7 +951,7 @@
  <relatedItem type="series">
  <titleInfo>
  <title>
- <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">av</xsl:with-param> </xsl:call-template> <xsl:call-template name="part"/></title>
+ <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">av</xsl:with-param> </xsl:call-template> <xsl:call-template name="part"/> </title>
  </titleInfo>
  </relatedItem> 
  </xsl:for-each>
@@ -1045,7 +1045,7 @@
  <xsl:call-template name="constituentOrRelatedType"/>
  <titleInfo>
  <title>
-  <xsl:call-template name="specialSubfieldSelect"> <xsl:with-param name="anyCodes">tfklsv</xsl:with-param> <xsl:with-param name="axis">t</xsl:with-param> <xsl:with-param name="afterCodes">g</xsl:with-param> </xsl:call-template> </title>
+ <xsl:call-template name="specialSubfieldSelect"> <xsl:with-param name="anyCodes">tfklsv</xsl:with-param> <xsl:with-param name="axis">t</xsl:with-param> <xsl:with-param name="afterCodes">g</xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="relatedPart"/>
  </titleInfo>
  <name type="conference">
@@ -1067,7 +1067,7 @@
  <xsl:call-template name="constituentOrRelatedType"/>
  <titleInfo>
  <title>
-  <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">adfgklmorsv</xsl:with-param> </xsl:call-template> </title>
+ <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">adfgklmorsv</xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="part"/>
  </titleInfo>
  <xsl:call-template name="relatedForm"/>
@@ -1205,7 +1205,7 @@
  <relatedItem type="series">
  <titleInfo>
  <title>
-  <xsl:call-template name="specialSubfieldSelect"> <xsl:with-param name="anyCodes">tfklsv</xsl:with-param> <xsl:with-param name="axis">t</xsl:with-param> <xsl:with-param name="afterCodes">g</xsl:with-param> </xsl:call-template> </title>
+ <xsl:call-template name="specialSubfieldSelect"> <xsl:with-param name="anyCodes">tfklsv</xsl:with-param> <xsl:with-param name="axis">t</xsl:with-param> <xsl:with-param name="afterCodes">g</xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="relatedPart"/>
  </titleInfo>
  <name type="conference">
@@ -1225,7 +1225,7 @@
  <relatedItem type="series">
  <titleInfo>
  <title>
-  <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">adfgklmorsv</xsl:with-param> </xsl:call-template> </title>
+ <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">adfgklmorsv</xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="part"/>
  </titleInfo>
  <xsl:call-template name="relatedForm"/>
@@ -1274,7 +1274,7 @@
  <identifier>
  <xsl:attribute name="type">
  <xsl:choose>
- <xsl:when test="@ind1=0">no se ha perdido Y,</xsl:when>
+ <xsl:when test="@ind1=0">número de ejemplar</xsl:when>
  <xsl:when test="@ind1=1">número de matriz</xsl:when>
  <xsl:when test="@ind1=2">placa de música</xsl:when>
  <xsl:when test="@ind1=3">editor de música</xsl:when>

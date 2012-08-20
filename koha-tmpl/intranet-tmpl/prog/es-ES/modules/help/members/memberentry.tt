@@ -1,17 +1,15 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Agregar socios</h1>
 
-<h1>Agregar socios</h1>
-
-<p>Las categorías de socio pertenecen a una de las seis categorías generales de Koha.</p>
+<p>Las categorías de socios pertenecen a una de las seis categorías extralimitadas en Koha.</p>
 
 <ul>
- <li>Personal = Un usuario que se puede ser habilitado para realizar funciones con el cliente administrativo</li>
+ <li>Persona o administrativo = un socio que puede ser habilitado para realizar funciones con el la interfaz del personal o administrativa.</li>
  <li>Adulto = Un socio normal (puede tener socios niños asociados)</li>
- <li>Niño = Un socio que puede corresponder a un socio adulto</li>
- <li>Institución = Una organización que puede tener socios profesionales asociados a ella.</li>
- <li>Profesional = un socio que puede pertenecer a una Institución</li>
- <li>Estadístico = Un tipo de socio utilizado solamente para realizar seguimientos<ul>
- <li><span style="background-color: #ffe599;">CONSEJO: esto puede ser utilizado para registrar las estadísticas de los ítems que se utilizan, pero que no se prestan, como ítems de referencia, revistas, etc. Luego, puedes generar un informe para reunir las estadísticas de este carné</span></li>
+ <li>Niño= Un socio que puede corresponder a un socio adulto</li>
+ <li>Institución = Una organización que pueden tener socios profesionales asociados a ella.</li>
+ <li>Profesional = un socio que puede tener una institución como garante.</li>
+ <li>Estadístico = un tipo de socio usado solamente para seguir los préstamos en sala <ul>
+ <li><span style="background-color: #ffe599;">CONSEJO: esto puede ser utilizado para registrar las estadísticas de los ítem que se utilizan, pero que no se prestan, como ser referencias, revistas, etc. A continuación, puede generar un informe para reunir las estadísticas de esta tarjeta</span></li>
 </ul>
 </li>
 </ul>
@@ -21,11 +19,11 @@
 <p>Patrons are added by going to the 'Patrons' module.</p>
 
 <ul>
- <li>Haz clic en 'Nuevo'</li>
+ <li>Haga clic en 'Nuevo'</li>
  <li>First enter the identifying information regarding your patron
 <ul>
- <li>Los campos requeridos se definen en la preferencia del sistema BorrowerMandatoryField</li>
- <li>El saludo se define en la preferencia del sistema BorrowersTitles</li>
+ <li>Los campos obligatorios están definidos en la preferencia del sistema BorrowerMandatoryField</li>
+ <li>El saludo se llena por la preferencia del sistema BorrowersTitles</li>
 </ul>
 </li>
  <li>Next enter the contact information
@@ -33,52 +31,52 @@
  <li>For contact information, note that the primary phone and email addresses are the ones that appear on notices and slips printed during circulation (receipts, transfer slips and hold slips). The primary email is also the one that overdue notices and other messages go to.</li>
 </ul>
 </li>
- <li>Si el socio es un niño, se te pedirá que adjuntes al socio nió un socio adulto<ul>
- <li>Haz clic en 'Asignar a socio' para buscar un socio existente</li>
- <li>Si el garante no está en el sistema, puedes ingresar el nombre y apellidos en las casillas disponivles</li>
- <li>Las relaciones se establecen utilizando la preferencia del sistema borrowerRelationship</li>
+ <li>Si el socio es un niño, se le pedirá que el socio niño dependa de un socio adulto <ul>
+ <li>Haga clic en 'Asignar a socio' para buscar un socio existente</li>
+ <li>Si el Garante no está en el sistema, puede introducir el nombre y apellido en los campos disponibles</li>
+ <li>Las relaciones se fijan utilizando la preferencia del sistema borrowerRelationship</li>
 </ul>
 </li>
- <li>Si el socio es un profesional, se te pedirá que adjuntes al socio un socio institucional<ul>
- <li>Haz clic en 'Permitir a socios buscar socios existentes'</li>
+ <li>Si el socio es un profesional, se le pedirá que el socio dependa de un socio institucional <ul>
+ <li>Haga clic en 'Permitir a socios buscar socios existentes'</li>
 </ul>
 </li>
- <li>Cada socio puede tener un contacto alternativo<ul>
+ <li>Cada socio puede tener un contacto alternativo <ul>
  <li>Un contacto alternativo puede ser un padre o tutor. Esto puede usarse para almacenar la dirección personal del socio.</li>
 </ul>
 </li>
- <li>La sección de administración de la biblioteca incluye valores que se usan dentro de la biblioteca<ul>
- <li>El campo de número de carné se calcula automáticamente si has establecido la preferencia del sistema autoMemberNum</li>
+ <li>El sección de administración de la biblioteca incluye los valores que son utilizados dentro de la biblioteca <ul>
+ <li>El campo de número del carnet de socio se calcula automáticamente si usted tiene la preferencia del sistema autoMemberNum establecida de esa manera</li>
  <li><strong>Note:</strong> For a newly installed system this preference will start at 1 and increment by 1 each time after. To have it start with the starting number of your barcodes, enter the first barcode by hand in the patron record and save the patron. After that the field will increment that number by 1.</li>
- <li>Si, accidentalmente, eliges la categoría de socio equivocada al principio, podrás cambiarla desde aquí</li>
- <li>Sort 1 y 2 se utilizan con propósitos estadísticos en tu biblioteca</li>
+ <li>Si usted accidentalmente elije al comienzo una categoría de socio equivocada puede arreglarla aquí</li>
+ <li>Sort 1 and 2 son utilizados con propósitos estadísticos</li>
 </ul>
 </li>
- <li>A continuación, la sección Configuración de biblioteca incluye ajustes adicionales de la biblioteca<ul>
- <li>La fecha de registro se rellenará de forma automática con la fecha de hoy</li>
- <li>Si tu carné de socio vence (según tu configuración de categoría de socio) la fecha de vencimiento se calculará automáticamente</li>
- <li>La Nota OPAC es para el socio; aparecerá en el registro del socio de OPAC</li>
- <li>La Nota de circulación sólo la utilizará el personal de la biblioteca y aparecerá cuando el personal de circulación vaya a prestar un ítem al socio</li>
+ <li>A continuación, la sección Configuración de biblioteca incluye la colección de ajustes adicionales <ul>
+ <li>El fecha de registro automáticamente se rellena con la fecha de hoy</li>
+ <li>Si el carnet de socio vence (basado en la configuración de la categoría de socio) la fecha de vencimiento se calculará automáticamente</li>
+ <li>La Nota OPAC es una nota para el socio - que aparecerá en el OPAC en el registro del socio</li>
+ <li>La Nota de Circulación es únicamente para el personal de la biblioteca y aparecerá cuando el personal de circulación va a prestar un ítem a un socio</li>
  <li>The Staff/OPAC asks for the username and password to be used by the patron (and/or staff member) to log into their account in the OPAC and for staff to log in to the staff client.</li>
 </ul>
 </li>
- <li>Si has establecido características adicionales del socio, aparecerán a continuación</li>
- <li>Finalmente, si has habilitado EnhancedMessagingPreferences, puedes seleccionar las preferencias de mensajería para este socio.<ul>
+ <li>Si ha configurado atributos adicionales para el socio, estos aparecerán a continuación</li>
+ <li>Finalmente, si tiene habilitado EnhancedMessagingPreferences, puede seleccionar las preferencias de mensajería para este socio. <ul>
  <li style="color: #990000">Important: These preferences will override any you set via the patron categories</li>
  <li style="color: #990000">Important: These preference can be altered by the patron via the OPAC</li>
 </ul>
 </li>
- <li>Cuando hayas finalizado, haz clic en 'Guardar'</li>
+ <li>Cuando haya finalizado, haga clic en 'Guardar'</li>
 </ul>
 
 <p>If the system suspects this patron is a duplicate of another it will warn you.</p>
 
 <h2>Agregar un usuario administrativo</h2>
 
-<p>Todos los miembros del personal deben ser ingresados en Koha como socios del tipo 'Personal'. Sigue los pasos en Agregar un socio para incorporar un miembro del personal. Para darle al personal permisos para acceder a la interfaz administrativa, sigue los pasos en Permisos de socios</p>
+<p>Todos los miembros del personal deben ser ingresados en Koha como socios del tipo 'Personal'. Siga los pasos en Agregar un Socio para incorporar un miembro del personal. Para darle al personal permisos para acceder a la interfaz administrativa, siga los pasos en Permisos de Socios</p>
 
-<p style="color: #990000">Recuerda asignar a tus miembros nombres de usuario y contraseñas seguros, ya que los utilizarán para acceder al cliente administrativo.</p>
+<p style="color: #990000">Recuerde que debe crear nombres de usuario y contraseñas seguras, ya que estos serán utilizados para iniciar la sesión del personal.</p>
 
-<p><strong>See the full documentation for Adding Patrons in the <a href="http://manual.koha-community.org/3.8/en/patrons.html#addnewpatron">manual</a> (online).</strong></p>
+<p><strong>Vea la documentación completa para Agregado de socios en la <a href="http://manual.koha-community.org/3.8/en/patrons.html#addnewpatron">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

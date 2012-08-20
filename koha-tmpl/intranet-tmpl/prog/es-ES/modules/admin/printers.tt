@@ -1,12 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo;
-[% IF ( add_form ) %][% IF ( searchfield ) %] Printers &rsaquo; Modify printer '[% searchfield %]'[% ELSE %] Printers &rsaquo; New printer[% END %][% END %]
-[% IF ( add_validate ) %] Printers &rsaquo; Printer added[% END %]
-[% IF ( delete_confirm ) %] Printers &rsaquo; Confirm deletion of printer '[% searchfield %]'[% END %]
-[% IF ( delete_confirmed ) %] Printers &rsaquo; Printer deleted[% END %]
-[% IF ( else ) %]Printers[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% IF ( add_form ) %]<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; [% IF ( add_form ) %][% IF ( searchfield ) %] Impresoras &rsaquo; Modificar impresora '[% searchfield %]'[% ELSE %] Impresoras &rsaquo; Nueva impresora[% END %][% END %] [% IF ( add_validate ) %] Impresoras &rsaquo; Impresora agregada[% END %] [% IF ( delete_confirm ) %] Impresoras &rsaquo; Confirmar eliminación de impresora '[% searchfield %]'[% END %] [% IF ( delete_confirmed ) %] Impresoras &rsaquo; Impresora eliminada[% END %] [% IF ( else ) %]Impresoras[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] [% IF ( add_form ) %]<script type="text/javascript">
 //<![CDATA[
         //
         function isNotNull(f,noalert) {
@@ -61,16 +54,9 @@
         }
         //]]>
 </script>
- [% END %]
-</head>
+ [% END %] </head>
 <body id="admin_printers" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'printers-admin-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %][% IF ( searchfield ) %]<a href="/cgi-bin/koha/admin/printers.pl">Impresoras</a> &rsaquo; Modificar impresora '[% searchfield %]'[% ELSE %] <a href="/cgi-bin/koha/admin/printers.pl">Impresoras</a> &rsaquo; Nueva impresora[% END %][% END %] [% IF ( add_validate ) %] <a href="/cgi-bin/koha/admin/printers.pl">Impresoras</a> &rsaquo; Printer added[% END %]
-[% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/printers.pl">Impresoras</a> &rsaquo; Confirm deletion of printer '[% searchfield %]'[% END %]
-[% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/printers.pl">Impresoras</a> &rsaquo; Printer deleted[% END %]
-[% IF ( else ) %]Printers[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'printers-admin-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %][% IF ( searchfield ) %] <a href="/cgi-bin/koha/admin/printers.pl">Impresoras</a> &rsaquo; Modificar impresora '[% searchfield %]'[% ELSE %] <a href="/cgi-bin/koha/admin/printers.pl">Impresoras</a> &rsaquo; Nueva impresora[% END %][% END %] [% IF ( add_validate ) %] <a href="/cgi-bin/koha/admin/printers.pl">Impresoras</a> &rsaquo; Impresora agregada[% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/printers.pl">Impresoras</a> &rsaquo; Confirmar eliminación de impresora '[% searchfield %]'[% END %] [% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/printers.pl">Impresoras</a> &rsaquo; Impresora suprimida[% END %] [% IF ( else ) %]Impresoras[% END %]</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -78,68 +64,47 @@
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( add_form ) %]
-
-[% IF ( searchfield ) %]
- <h1>Modificar impresora</h1>
- [% ELSE %]
- <h1>Nueva impresora</h1>
- [% END %]
- <form action="[% script_name %]" name="Aform" method="post">
+[% IF ( add_form ) %] [% IF ( searchfield ) %] <h1>Modificar impresora</h1>
+ [% ELSE %] <h1>Nueva impresora</h1>
+ [% END %] <form action="[% script_name %]" name="Aform" method="post">
  <input type="hidden" name="op" value="add_validate" />
- [% IF ( searchfield ) %]
- <input type="hidden" name="add" value="0" />
- [% ELSE %]
- <input type="hidden" name="add" value="1" />
- [% END %]
- <fieldset class="rows">
-<ol> [% IF ( searchfield ) %]
- <li>
- <span class="label">Printer name: </span>
- <input type="hidden" name="printername" id="" value="[% searchfield %]" />[% searchfield %]
- </li>
- [% ELSE %]
- <li>
- <label for="printername">Printer name: </label>
+ [% IF ( searchfield ) %] <input type="hidden" name="add" value="0" />
+ [% ELSE %] <input type="hidden" name="add" value="1" />
+ [% END %] <fieldset class="rows">
+<ol> [% IF ( searchfield ) %] <li>
+ <span class="label">Nombre de la impresora:</span>
+ <input type="hidden" name="printername" id="" value="[% searchfield %]" />[% searchfield %] </li>
+ [% ELSE %] <li>
+ <label for="printername">Nombre de la impresora:</label>
  <input type="text" name="printername" id="printername" size="50" maxlength="50" />
  </li>
- [% END %]
- <li>
- <label for="printqueue">Queue: </label>
+ [% END %] <li>
+ <label for="printqueue">Cola: </label>
  <input type="text" name="printqueue" id="printqueue" size="50" maxlength="50" value="[% printqueue %]" /> 
  </li>
  <li>
- <label for="printtype">Type: </label>
+ <label for="printtype">Tipo: </label>
  <input type="text" name="printtype" id="printtype" size="50" maxlength="50" value="[% printtype %]" /> 
  </li></ol>
  </fieldset>
  <fieldset class="action"><input value="Enviar" type="submit" onclick="Check(this.form);" /> <a class="cancel" href="/cgi-bin/koha/admin/printers.pl">Cancelar</a></fieldset>
  </form>
 
-[% END %]
-
-[% IF ( add_validate ) %]
-<h3>Printer added</h3>
+[% END %] [% IF ( add_validate ) %] <h3>Impresora agregada</h3>
 <form action="[% script_name %]" method="post">
  <fieldset class="action"> <input type="submit" value="OK" /></fieldset>
 </form>
-[% END %]
-
-[% IF ( delete_confirm ) %]
-<h3>Confirm deletion of printer <em>[% searchfield %]</em></h3>
+[% END %] [% IF ( delete_confirm ) %] <h3>Confirmar eliminación de impresora <em>[% searchfield %]</em></h3>
 <ul>
  <li>
- <strong>Printer: </strong>
- [% searchfield %]
- </li>
+ <strong>Impresora: </strong>
+ [% searchfield %] </li>
  <li>
- <strong>Queue: </strong>
- [% printqueue %]
- </li>
+ <strong>Cola: </strong>
+ [% printqueue %] </li>
  <li>
- <strong>Type: </strong>
- [% printtype %]
- </li>
+ <strong>Tipo: </strong>
+ [% printtype %] </li>
  </ul>
  <form action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="delete_confirmed" />
@@ -148,18 +113,11 @@
  </form> <form action="[% script_name %]" method="post">
  <input value="No borrar" type="submit" />
  </form>
-[% END %]
-
-[% IF ( delete_confirmed ) %]
-<h3>Printer deleted</h3>
+[% END %] [% IF ( delete_confirmed ) %] <h3>Impresora eliminada</h3>
 <form action="[% script_name %]" method="post">
  <fieldset class="action"><input type="submit" value="OK" /></fieldset>
 </form>
-[% END %]
-
-[% IF ( else ) %]
-
-<div id="toolbar">
+[% END %] [% IF ( else ) %] <div id="toolbar">
  <script type="text/javascript">
 	//<![CDATA[
 	// prepare DOM for YUI Toolbar
@@ -173,39 +131,24 @@
 </ul></div>
 
 <h2>Impresoras</h2>
- [% IF ( searchfield ) %] Has buscado sobre [% searchfield %]</span>
- [% END %]
-
-[% IF ( loop ) %]<table>
+ [% IF ( searchfield ) %] Usted buscó sobre [% searchfield %]</span>
+ [% END %] [% IF ( loop ) %]<table>
  <tr>
  <th>Nombre</th>
  <th>Cola</th>
  <th>Tipo</th>
  <th>&nbsp;</th>
  </tr>
- [% FOREACH loo IN loop %]
- [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %]
- <td>[% loo.printername %]</td>
+ [% FOREACH loo IN loop %] [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %] <td>[% loo.printername %]</td>
  <td>[% loo.printqueue %]</td>
  <td>[% loo.printtype %]</td>
- <td><a href="[% loo.script_name %]?op=add_form&amp;searchfield=[% loo.printername %]">Editar</a> <a href="[% loo.script_name %]?op=delete_confirm&amp;searchfield=[% loo.printername %]">Eliminar</a></td>
+ <td><a href="[% loo.script_name %]?op=add_form&amp;searchfield=[% loo.printername %]">Editar</a> <a href="[% loo.script_name %]?op=delete_confirm&amp;searchfield=[% loo.printername %]">Borrar</a></td>
  </tr>
- [% END %]
- </table>[% ELSE %]<div class="notice">No hay impresoras definidas.</div>[% END %]
-
- [% IF ( offsetgtzero ) %]
- <a href="[% script_name %]?offset=[% prevpage %]">&lt;&lt; Anterior</a>
- [% END %]
-
- [% IF ( ltcount ) %]
- <a href="[% script_name %]?offset=[% nextpage %]">Siguiente &gt;&gt;</a> 
- [% END %]
-[% END %]
-
-</div>
+ [% END %] </table>[% ELSE %]<div class="notice">No hay impresoras definidas</div>[% END %] [% IF ( offsetgtzero ) %] <a href="[% script_name %]?offset=[% prevpage %]">&lt;&lt; Anterior</a>
+ [% END %] [% IF ( ltcount ) %] <a href="[% script_name %]?offset=[% nextpage %]">Siguiente &gt;&gt;</a> 
+ [% END %] [% END %] </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'admin-menu.inc' %]
+[% INCLUDE 'admin-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

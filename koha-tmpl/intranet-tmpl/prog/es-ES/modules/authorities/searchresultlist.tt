@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Autoridades &rsaquo; Resultados de búsqueda de autoridad</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" >
+[% PROCESS 'authorities-search-results.inc' %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Autoridades &rsaquo; Resultados de búsqueda de autoridad</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" >
 //<![CDATA[
 function confirm_deletion(id) {
     
@@ -27,10 +25,7 @@ function searchauthority() {
 </script>
 </head>
 <body id="auth_searchresultlist" class="auth">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'authorities-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/authorities/authorities-home.pl">Autoridades</a>  &rsaquo; Resultados de la búsqueda de autoridad</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'authorities-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/authorities/authorities-home.pl">Autoridades</a> &rsaquo; Resultados de la búsqueda de autoridad</div>
 
 <div id="doc" class="yui-t7">
  
@@ -38,51 +33,37 @@ function searchauthority() {
  <div id="yui-main">
  <div class="yui-g">
  
- [% INCLUDE 'authorities-toolbar.inc' %]
-<h1>Resultados de la búsqueda de autoridad</h1>
+ [% INCLUDE 'authorities-toolbar.inc' %] <h1>Resultados de la búsqueda de autoridad</h1>
 
-[% IF ( total ) %]
-<div class="pages">[% pagination_bar %]</div>
+[% IF ( total ) %] <div class="pages">[% pagination_bar %]</div>
 
 <p id="authorities_searchresultlist_current_page_info">
- Results [% from %] to [% to %] of [% total %]
-</p>
+ Resultados [% from %] a [% to %] de [% total %] </p>
 
 <div id="authorities_searchresultlist_results">
  <table>
  <tr>
  <th colspan="2">Resumen</th>
-[% UNLESS ( isEDITORS ) %]
- <th>Usado en</th>
-[% END %]
- <th>Eliminar</th>
+[% UNLESS ( isEDITORS ) %] <th>Usado en</th>
+[% END %] <th>Borrar</th>
  </tr>
-[% FOREACH resul IN result %]
- [% UNLESS ( loop.odd ) %]
- <tr class="highlight">
- [% ELSE %]
- <tr>
- [% END %]
- <td>[% resul.summary %]</td>
- <td><a href="detail.pl?authid=[% resul.authid %]">Detalles</a></td>
- [% UNLESS ( resul.isEDITORS ) %]
- <td>
+[% FOREACH resul IN result %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
+ [% ELSE %] <tr>
+ [% END %] <td>[% PROCESS authresult summary=resul.summary %]</td>
+ <td><a href="detail.pl?authid=[% resul.authid %]">Detalle</a></td>
+ [% UNLESS ( resul.isEDITORS ) %] <td>
  <a href="../catalogue/search.pl?type=intranet&amp;op=do_search&amp;idx=an,phr&amp;q=[% resul.authid %]" class="button">[% resul.used %] registro(s)</a>
  </td>
- [% END %]
- <td>
- [% UNLESS ( resul.used ) %]
- <a href="javascript:confirm_deletion([% resul.authid %])">Eliminar</a>
- [% END %]
- </td>
+ [% END %] <td>
+ [% UNLESS ( resul.used ) %] <a href="javascript:confirm_deletion([% resul.authid %])">Borrar</a>
+ [% END %] </td>
  </tr>
-[% END %]
- </table>
+[% END %] </table>
 </div>
 
 <div class="paginationBar">[% pagination_bar %]</div>
 
- [% ELSE %] No se han encontrado resultados [% END %] </div>
+[% ELSE %] No se encuentran resultados [% END %] </div>
 </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

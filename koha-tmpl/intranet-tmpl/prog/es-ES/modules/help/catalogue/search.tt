@@ -1,12 +1,10 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Buscar</h1>
 
-<h1>Buscar</h1>
+<p>Para ver más opciones de búsqueda haga clic en [Más Opciones] en la parte inferior de la página. Esto permitirá más búsquedas booleanas avanzadas.</p>
 
-<p>Para ver más opciones de búsqueda haz clic en [Más Opciones] en la parte inferior de la página. Esto permitirá búsquedas booleanas más avanzadas.</p>
+<h2>Searching Subtypes on the Staff Client</h2>
 
-<h2>Buscar subtipos en el interfaz administrativo</h2>
-
-<p>Debajo hay un resumen de las diversas opciones para limitar la búsqueda avanzada:</p>
+<p>Debajo hay un resumen de las diversas opciones para limitar la búsqueda avanzada: </p>
 
 <h3>Audiencia</h3>
 
@@ -19,7 +17,7 @@
 
 <h3>Contenido</h3>
 
-<p>Hay tres índices que comprenden Contenido: 'fic' se deriva de 003/33; 'bio' se deriva de 008/34 y 'mus' se deriva de LEADER/06. Los valores comunes para cada uno de estos son:</p>
+<p>There are three indexes that comprise Content: 'fic' is derived from 003/33; 'bio' is derived from the 008/34 and 'mus' is derived from LEADER/06. Common values for each of these are:</p>
 
 <ul><li>fic:1 Ficción</li>
 <li>ic:0 No ficción</li>
@@ -41,30 +39,29 @@
 <li>l-format:co CD Software</li>
 <li>l-format:cr Sitio Web</li></ul>
 
-<h3>Tipos de contenido adicionales</h3>
+<h3>Additional Content Types</h3>
 
-<p>The index name is 'ctype' is taken from the 008 and it's where we get the 'additional content types'. It's position 008/24-28 field. Common values are: </p>
+<p>El nombre del índice 'ctype' se ha tomado de la 008 y es donde se obtienen los 'tipos de contenido adicionales'. Es el campo posición 008/24-28. Los valores comunes son los siguientes: </p>
 
 <ul><li>ctype:a Resumen</li>
-<li>ctype:b Bibliographies
-<li>ctype:c Catálogos</li>
+<li>ctype:b Bibliografías <li>ctype:c Catálogos</li>
 <li>ctype:d Diccionarios</li>
 <li>ctype:e Enciclopedias</li>
 <li>ctype:f Manuales</li>
 <li>ctype:g Artículos legales</li>
-<li>ctype:i Índices<li>ctype:j Documento de patente</li>
+<li>ctype:i Índices <li>ctype:j Documento de patente</li>
 <li>ctype:k Discografías</li>
 <li>ctype:l Legislación</li>
 <li>ctype:l Tesis</li>
 <li>ctype:n Encuestas</li>
-<li>ctype:o Revisiones<li>ctype:p Textos programados</li>
+<li>ctype:o Revisiones <li>ctype:p Textos programados</li>
 <li>ctype:q Filmografías</li>
 <li>ctype:r Directorios</li>
 <li>ctype:s Estadísticas</li>
 <li>ctype:t Informes técnicos</li>
-<li>ctype:v Casos legales y notas de los casos<li>ctype:w Informes y compendios legales</li>
+<li>ctype:v Casos legales y notas legales <li>ctype:w Reportes de leyes y digestos</li>
 <li>ctype:z Tratados</li></ul>
 
-<p><strong>See the full documentation for Searching in the <a href="http://manual.koha-community.org/3.8/en/searching.html">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Searching in the <a href="http://manual.koha-community.org/3.8/en/searching.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

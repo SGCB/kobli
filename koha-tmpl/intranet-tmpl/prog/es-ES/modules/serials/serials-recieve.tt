@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Serials &rsaquo; Check in subscription for [% bibliotitle %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script language="JavaScript" type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Ingreso de suscripción para [% bibliotitle %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script language="JavaScript" type="text/javascript">
 //<![CDATA[
 function popup() {
 	window.open("subscription-renew.pl?subscriptionid=[% subscriptionid %]","subscription_renewal",'width=700,height=400,toolbar=false,scrollbars=yes');
@@ -41,10 +39,7 @@ function barcode_check(){
 </script>
 </head>
 <body id="ser_serials-recieve" class="ser">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'serials-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Check in subscription for <i>[% bibliotitle %]</i></div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Ingreso de suscripción para <i>[% bibliotitle %]</i></div>
 
 <div id="doc3" class="yui-t2">
  
@@ -52,15 +47,13 @@ function barcode_check(){
  <div id="yui-main">
  <div class="yui-b">
 
-<h1>Check In subscription for <i>[% bibliotitle %]</i></h1>
+<h1>Ingresa suscripción de <i>[% bibliotitle %]</i></h1>
 <div id="action">
- <a href="subscription-detail.pl?subscriptionid=[% subscriptionid %]" title="detalle de la suscripción">Detalles de suscripción</a>
+ <a href="subscription-detail.pl?subscriptionid=[% subscriptionid %]" title="detalle de la suscripción">Detalles de la suscripción</a>
  <!-- <a href="/cgi-bin/koha/serials/serials-home.pl?biblionumber=[% biblionumber %]" class="button" title="all subscriptions on [% bibliotitle %]">Search all subscriptions</a> -->
- <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblionumber %]" title="ir a [% bibliotitle %]">Show biblio</a>
- [% IF ( routing ) %]
- <a href="routing.pl?subscriptionid=[% subscriptionid %]" title="lista de destinatarios de suscripción">Lista de ruteo</a>
- [% END %]
-</div>
+ <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblionumber %]" title="ir a [% bibliotitle %]">Mostrar biblio</a>
+ [% IF ( routing ) %] <a href="routing.pl?subscriptionid=[% subscriptionid %]" title="lista de destinatarios de suscripción">Lista de ruteo</a>
+ [% END %] </div>
 
 <h2>Esperado o atrasado</h2>
  <form method="post" name="f" action="serials-recieve.pl" onsubmit="return barcode_check()">
@@ -72,236 +65,125 @@ function barcode_check(){
  <tr>
  <th>Numerado</th>
  <th>Publicado en</th>
- <th>Planned for</th>
+ <th>Planificado por </th>
  <th>Estado</th>
  <th>Notas</th>
  </tr>
- [% FOREACH serialslis IN serialslist %]
- <tr>
+ [% FOREACH serialslis IN serialslist %] <tr>
  <td>
- Ejemplar<input type="text" name="serialseq" value="[% serialslis.serialseq %]" size="20" maxlength="100" />
- [% IF ( serialslis.serialadditems ) %]
- <br /><br />
- Call number <input type="text" name="itemcallnumber" value="[% serialslis.callnumber %]" size="15" maxlength="100" />
- Barcode <input type="text" name="barcode" value="[% serialslis.barcode %]" id="barcode[% serialslis.num %]" size="20" maxlength="20" />
- [% END %]
- </td>
+ Ejemplar <input type="text" name="serialseq" value="[% serialslis.serialseq %]" size="20" maxlength="100" />
+ [% IF ( serialslis.serialadditems ) %] <br /><br />
+ Signatura <input type="text" name="itemcallnumber" value="[% serialslis.callnumber %]" size="15" maxlength="100" />
+ Código de barras <input type="text" name="barcode" value="[% serialslis.barcode %]" id="barcode[% serialslis.num %]" size="20" maxlength="20" />
+ [% END %] </td>
  <td>
  <input type="text" name="publisheddate" value="[% serialslis.publisheddate %]" size="10" maxlength="15" />
- [% IF ( serialslis.serialadditems ) %]
- <br /><br />&nbsp;
- [% END %]
- </td>
+ [% IF ( serialslis.serialadditems ) %] <br /><br />&nbsp; [% END %] </td>
  <td>
  <input type="text" name="planneddate" value="[% serialslis.planneddate %]" size="10" maxlength="15" />
- [% IF ( serialslis.serialadditems ) %]
- <br /><br />
+ [% IF ( serialslis.serialadditems ) %] <br /><br />
  <select name="branch">
  <option value="">Biblioteca</option>
  [% FOREACH branchloo IN serialslis.branchloop %][% IF ( branchloo.selected ) %]<option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>
- [% ELSE %]
- <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>
- [% END %]
- [% END %]
- </select>
- [% END %]
- </td>
+ [% ELSE %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>
+ [% END %] [% END %] </select>
+ [% END %] </td>
  <td>
  <input type="hidden" name="serialid" value="[% serialslis.serialid %]" />
  <select name="status" id="status[% serialslis.num %]">
- [% IF ( serialslis.status1 ) %]
- <option value="1" selected="selected">Esperado</option>
- [% END %]
- [% IF ( serialslis.status2 ) %]
- <option value="2" selected="selected">Recibido</option>
- [% ELSE %]
- <option value="2">Recibido</option>
- [% END %]
- [% IF ( serialslis.status3 ) %]
- <option value="3" selected="selected">Atrasado</option>
- [% ELSE %]
- <option value="3">Atrasado</option>
- [% END %]
- [% IF ( serialslis.status4 ) %]
- <option value="4" selected="selected">Falta</option>
- [% ELSE %]
- <option value="4">Falta</option>
- [% END %]
- [% IF ( serialslis.status5 ) %]
- <option value="5" selected="selected">Not available</option>
- [% ELSE %]
- <option value="5">Not available</option>
- [% END %]
- [% IF ( serialslis.status6 ) %]
- <option value="6" selected="selected">Eliminar</option>
- [% ELSE %]
- <option value="6">Eliminar</option>
- [% END %]
- </select>
- [% IF ( serialslis.serialadditems ) %]
- <br /><br />
- [% IF ( serialslis.itemstatus ) %]
- [% IF ( serialslis.choice ) %]
- [% FOREACH itemstatusloo IN serialslis.itemstatusloop %]
- [% itemstatusloo.itemlib %]: 
- [% IF ( itemstatusloo.selected ) %]
- <input type="checkbox" name="itemstatus" value="[% itemstatusloo.itemval %]" checked="checked" />
- [% ELSE %]
- <input type="checkbox" name="itemstatus" value="[% itemstatusloo.itemval %]" />
- [% END %]
- [% END %]
- [% ELSE %]
- <select name="itemstatus">
- <option value="">Item status</option>
- [% FOREACH itemstatusloo IN serialslis.itemstatusloop %]
- [% IF ( itemstatusloo.selected ) %]
- <option value="[% itemstatusloo.itemval %]" selected="selected">[% itemstatusloo.itemlib %]</option>
- [% ELSE %]
- <option value="[% itemstatusloo.itemval %]">[% itemstatusloo.itemlib %]</option>
- [% END %]
- [% END %]
- </select>
- [% END %]
- [% ELSE %]
- &nbsp;
- [% END %]
- [% END %]
-
- </td>
+ [% IF ( serialslis.status1 ) %] <option value="1" selected="selected">Esperado</option>
+ [% END %] [% IF ( serialslis.status2 ) %] <option value="2" selected="selected">Disponible</option>
+ [% ELSE %] <option value="2">Disponible</option>
+ [% END %] [% IF ( serialslis.status3 ) %] <option value="3" selected="selected">Atrasado</option>
+ [% ELSE %] <option value="3">Atrasado</option>
+ [% END %] [% IF ( serialslis.status4 ) %] <option value="4" selected="selected">Faltante</option>
+ [% ELSE %] <option value="4">Faltante</option>
+ [% END %] [% IF ( serialslis.status5 ) %] <option value="5" selected="selected">No disponible</option>
+ [% ELSE %] <option value="5">No disponible</option>
+ [% END %] [% IF ( serialslis.status6 ) %] <option value="6" selected="selected">Borrar</option>
+ [% ELSE %] <option value="6">Borrar</option>
+ [% END %] </select>
+ [% IF ( serialslis.serialadditems ) %] <br /><br />
+ [% IF ( serialslis.itemstatus ) %] [% IF ( serialslis.choice ) %] [% FOREACH itemstatusloo IN serialslis.itemstatusloop %] [% itemstatusloo.itemlib %]: [% IF ( itemstatusloo.selected ) %] <input type="checkbox" name="itemstatus" value="[% itemstatusloo.itemval %]" checked="checked" />
+ [% ELSE %] <input type="checkbox" name="itemstatus" value="[% itemstatusloo.itemval %]" />
+ [% END %] [% END %] [% ELSE %] <select name="itemstatus">
+ <option value="">Estado del ítem</option>
+ [% FOREACH itemstatusloo IN serialslis.itemstatusloop %] [% IF ( itemstatusloo.selected ) %] <option value="[% itemstatusloo.itemval %]" selected="selected">[% itemstatusloo.itemlib %]</option>
+ [% ELSE %] <option value="[% itemstatusloo.itemval %]">[% itemstatusloo.itemlib %]</option>
+ [% END %] [% END %] </select>
+ [% END %] [% ELSE %] &nbsp; [% END %] [% END %] </td>
  <td>
  <input type="text" name="notes" value="[% serialslis.notes %]" size="20" maxlength="255" />
- [% IF ( serialslis.serialadditems ) %]
- <br /><br />
- [% IF ( serialslis.itemlocation ) %]
- <select name="location">
+ [% IF ( serialslis.serialadditems ) %] <br /><br />
+ [% IF ( serialslis.itemlocation ) %] <select name="location">
  <option value="">Ubicación</option>
- [% FOREACH itemlocationloo IN serialslis.itemlocationloop %]
- [% IF ( itemlocationloo.selected ) %]
- <option value="[% itemlocationloo.value %]" selected="selected">[% itemlocationloo.itemlocationname %]</option>
- [% ELSE %]
- <option value="[% itemlocationloo.value %]">[% itemlocationloo.itemlocationname %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH itemlocationloo IN serialslis.itemlocationloop %] [% IF ( itemlocationloo.selected ) %] <option value="[% itemlocationloo.value %]" selected="selected">[% itemlocationloo.itemlocationname %]</option>
+ [% ELSE %] <option value="[% itemlocationloo.value %]">[% itemlocationloo.itemlocationname %]</option>
+ [% END %] [% END %] </select>
  [% ELSE %] &nbsp; [% END %] [% END %] </td>
  </tr>
- [% END %]
- [% UNLESS ( hassubscriptionexpired ) %]
- <tr>
+ [% END %] [% UNLESS ( hassubscriptionexpired ) %] <tr>
  <td>
- Manual issue <input type="text" name="serialseq" size="30" maxlength="100" value="[% missingseq %]" />
- [% IF ( serialadditems ) %]
- <br /><br />
- Call number <input type="text" name="itemcallnumber" value="" size="10" maxlength="15" />
- Barcode <input type="text" name="barcode" value="" size="20" maxlength="20" />
- [% END %]
- </td>
+ Envío manual <input type="text" name="serialseq" size="30" maxlength="100" value="[% missingseq %]" />
+ [% IF ( serialadditems ) %] <br /><br />
+ Signatura <input type="text" name="itemcallnumber" value="" size="10" maxlength="15" />
+ Código de barras <input type="text" name="barcode" value="" size="20" maxlength="20" />
+ [% END %] </td>
  <td>
  <input type="text" name="publisheddate" value="[% publisheddate %]" size="10" maxlength="15" />
- [% IF ( serialadditems ) %]
- <br /><br />&nbsp;
- [% END %]
- </td>
+ [% IF ( serialadditems ) %] <br /><br />&nbsp; [% END %] </td>
  <td>
  <input type="text" name="planneddate" size="10" maxlength="15" value="[% missingdate %]" />
- [% IF ( serialadditems ) %]
- <br /><br />
+ [% IF ( serialadditems ) %] <br /><br />
  <select name="branch">
  <option value="">Biblioteca</option>
- [% FOREACH branchloo IN branchloop %]
- [% IF ( branchloo.selected ) %]<option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>
- [% ELSE %]
- <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>
- [% END %]
- [% END %]
- </select>
- [% END %]
- </td>
+ [% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %]<option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>
+ [% ELSE %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>
+ [% END %] [% END %] </select>
+ [% END %] </td>
  <td>
- [% IF ( frommissing ) %]
- <input type="hidden" name="serialid" value="[% missingid %]" />
- [% ELSE %]
- <input type="hidden" name="serialid" value="0" />
- [% END %]
- <select name="status">
- [% IF ( frommissing ) %]
- <option value="2" selected="selected">Recibido</option>
- [% ELSE %]
- <option value="2">Recibido</option>
+ [% IF ( frommissing ) %] <input type="hidden" name="serialid" value="[% missingid %]" />
+ [% ELSE %] <input type="hidden" name="serialid" value="0" />
+ [% END %] <select name="status">
+ [% IF ( frommissing ) %] <option value="2" selected="selected">Disponible</option>
+ [% ELSE %] <option value="2">Disponible</option>
  
- [% END %]
- [% IF ( frommissing ) %]
- <option value="3">Atrasado</option>
- [% ELSE %]
- <option value="3" selected="selected">Atrasado</option>
- [% END %]
- <option value="4">Falta</option>
- <option value="5">Not available</option>
+ [% END %] [% IF ( frommissing ) %] <option value="3">Atrasado</option>
+ [% ELSE %] <option value="3" selected="selected">Atrasado</option>
+ [% END %] <option value="4">Faltante</option>
+ <option value="5">No disponible</option>
 
 
  </select>
- [% IF ( serialadditems ) %]
- <br /><br />
- [% IF ( itemstatus ) %]
- [% IF ( choice ) %]
- [% FOREACH itemstatusloo IN itemstatusloop %]
- [% itemstatusloo.itemlib %]: 
- [% IF ( itemstatusloo.selected ) %]
- <input type="checkbox" name="itemstatus" value="[% itemstatusloo.itemval %]" checked="checked" />
- [% ELSE %]
- <input type="checkbox" name="itemstatus" value="[% itemstatusloo.itemval %]" />
- [% END %]
- [% END %]
- [% ELSE %]
- <select name="itemstatus">
- <option value="">Item status</option>
- [% FOREACH itemstatusloo IN itemstatusloop %]
- [% IF ( itemstatusloo.selected ) %]
- <option value="[% itemstatusloo.itemval %]" selected="selected">[% itemstatusloo.itemlib %]</option>
- [% ELSE %]
- <option value="[% itemstatusloo.itemval %]">[% itemstatusloo.itemlib %]</option>
-[% END %]
- [% END %]
- </select>
- [% END %]
- [% ELSE %]
- &nbsp;
- [% END %]
- [% END %]
- </td>
+ [% IF ( serialadditems ) %] <br /><br />
+ [% IF ( itemstatus ) %] [% IF ( choice ) %] [% FOREACH itemstatusloo IN itemstatusloop %] [% itemstatusloo.itemlib %]: [% IF ( itemstatusloo.selected ) %] <input type="checkbox" name="itemstatus" value="[% itemstatusloo.itemval %]" checked="checked" />
+ [% ELSE %] <input type="checkbox" name="itemstatus" value="[% itemstatusloo.itemval %]" />
+ [% END %] [% END %] [% ELSE %] <select name="itemstatus">
+ <option value="">Estado del ítem</option>
+ [% FOREACH itemstatusloo IN itemstatusloop %] [% IF ( itemstatusloo.selected ) %] <option value="[% itemstatusloo.itemval %]" selected="selected">[% itemstatusloo.itemlib %]</option>
+ [% ELSE %] <option value="[% itemstatusloo.itemval %]">[% itemstatusloo.itemlib %]</option>
+[% END %] [% END %] </select>
+ [% END %] [% ELSE %] &nbsp; [% END %] [% END %] </td>
  <td>
- &nbsp;
- [% IF ( serialadditems ) %]
- <br /><br />
- [% IF ( itemlocation ) %]
- <select name="location">
+ &nbsp; [% IF ( serialadditems ) %] <br /><br />
+ [% IF ( itemlocation ) %] <select name="location">
  <option value="">Ubicación</option>
- [% FOREACH itemlocationloo IN itemlocationloop %]
- [% IF ( itemlocationloo.selected ) %]
- <option value="[% itemlocationloo.value %]" selected="selected">[% itemlocationloo.itemlocationname %]</option>
- [% ELSE %]
- <option value="[% itemlocationloo.value %]">[% itemlocationloo.itemlocationname %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH itemlocationloo IN itemlocationloop %] [% IF ( itemlocationloo.selected ) %] <option value="[% itemlocationloo.value %]" selected="selected">[% itemlocationloo.itemlocationname %]</option>
+ [% ELSE %] <option value="[% itemlocationloo.value %]">[% itemlocationloo.itemlocationname %]</option>
+ [% END %] [% END %] </select>
  [% ELSE %] &nbsp; [% END %] [% END %] </td>
  </tr>
- [% END %]
- </table>
+ [% END %] </table>
  <input accesskey="w" value="Guardar cambios" type="submit" class="button" />
- [% IF ( hassubscriptionexpired ) %]
- <h3>La suscripción ha expirado</h3>
- <p><b>Expected issue status can't be changed. <a href="#" onclick="popup()" class="button">Renovar</a> your subscription</b></p>
- [% END %]
- [% IF ( abouttoexpire ) %]
- <h3>Notas</h3>
+ [% IF ( hassubscriptionexpired ) %] <h3>La suscripción ha expirado</h3>
+ <p><b>El estado del ejemplar esperado no puede ser cambiado. <a href="#" onclick="popup()" class="button">Renovar</a> su suscripción</b></p>
+ [% END %] [% IF ( abouttoexpire ) %] <h3>Nota: la suscripción está a punto de caducar el próximo número.</h3>
  <script type="text/javascript">
 		<!--
-		alert(_("Subscription is about to expire next issue"));
+		alert(_("Nota: la suscripción está a punto de caducar el próximo ejemplar"));
 		//-->
 		</script>
- [% END %] 
- </form>
+ [% END %] </form>
 
  <h2>Resumen de la suscripción</h2>
  <form method="post" name="f2" action="serials-recieve.pl">
@@ -310,8 +192,8 @@ function barcode_check(){
  <input type="hidden" name="subscriptionid" value="[% subscriptionid %]" />
  <input type="hidden" name="user" value="[% user %]" />
  <p><label>Bibliotecario</label>[% user %]</p>
- <p><label>Fecha de Inicio</label><input type="text" name="histstartdate" value="[% histstartdate %]" /> (the date of the 1st subscription)</p>
- <p><label>Fecha final</label><input type="text" name="enddate" value="[% enddate %]" />(if empty subscription is still active)</p>
+ <p><label>Fecha de Inicio</label><input type="text" name="histstartdate" value="[% histstartdate %]" /> (la fecha de la 1er suscripción)</p>
+ <p><label>Fecha final</label><input type="text" name="enddate" value="[% enddate %]" />(si está vacío, la suscripción está todavía activa)</p>
  <p>Ejemplares recibidos</p>
  <p><textarea name="recievedlist" cols="60" rows="5">[% recievedlist %]</textarea></p>
  <p>Ejemplares faltantes</p>
@@ -326,7 +208,6 @@ function barcode_check(){
 </div>
 
 <div class="yui-b">
-[% INCLUDE 'serials-menu.inc' %]
+[% INCLUDE 'serials-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

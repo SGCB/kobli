@@ -1,17 +1,12 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Tools &rsaquo; Rotating collections &rsaquo; Edit collections</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Colecciones rotativas &rsaquo; Editar colecciones</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="rcoll_editCollections" class="tools rcoll">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/rotating_collections/rotatingCollections.pl">Colecciones rotativas</a> &rsaquo; Edit collections</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/rotating_collections/rotatingCollections.pl">Colecciones rotativas</a> &rsaquo; Editar colecciones</div>
 
 <div id="doc3">
 <div id="bd">
  <div class="yui-gb">
- <h1>Rotating collections: Edit collections</h1>
+ <h1>Colecciones rotativas: Editar Colecciones</h1>
 
 <!--
  [% IF ( previousActionCreate ) %]
@@ -34,84 +29,61 @@
 
  [% IF ( previousActionUpdate ) %]
  [% IF ( updateSuccess ) %]
- <div>Collection '[% updatedTitle %]' Updated successfully!</div>
- [% ELSE %]
- <div>Collection '[% updatedTitle %]' Failed to be updated!</div>
- <div>Reason: <strong>[% failureMessage %]</strong></div>
- [% END %]
- [% END %]
-
- <div>
- [% IF ( collectionsLoop ) %]
- <table>
+ <div>Colección '[% updatedTitle %]' actualizada exitosamente!</div>
+ [% ELSE %] <div>Falló la actualización de la colección '[% updatedTitle %]'!</div>
+ <div>Razón: <strong>[% failureMessage %]</strong></div>
+ [% END %] [% END %] <div>
+ [% IF ( collectionsLoop ) %] <table>
  <tr>
  <th>Título</th>
  <th>Descripción</th>
- <th>Holding library</th>
+ <th>Biblioteca de existencia</th>
  <td></td>
  <td></td>
  </tr>
- [% FOREACH collectionsLoo IN collectionsLoop %]
- <tr>
+ [% FOREACH collectionsLoo IN collectionsLoop %] <tr>
  <td>[% collectionsLoo.colTitle %]</td>
  <td>[% collectionsLoo.colDesc %]</td>
  <td>[% collectionsLoo.colBranchcode %]</td>
  <td><a href="editCollections.pl?action=edit&amp;colId=[% collectionsLoo.colId %]">Editar</a></td>
- <td><a href="editCollections.pl?action=delete&amp;colId=[% collectionsLoo.colId %]">Eliminar</a></td>
+ <td><a href="editCollections.pl?action=delete&amp;colId=[% collectionsLoo.colId %]">Borrar</a></td>
  </tr>
- [% END %]
- </table>
- [% ELSE %]
- There are no collections currently defined.
- [% END %]
- </div> 
+ [% END %] </table>
+ [% ELSE %] No hay colecciones definidas actualmente. [% END %] </div> 
 
  <div>
  <br />
 
- [% IF ( previousActionEdit ) %]
- <h1>Editar Colección</h1>
- [% ELSE %]
- <h1>Create new collection</h1>
- [% END %]
-
- <form action="editCollections.pl" method="post">
- [% IF ( previousActionEdit ) %]
- <input type="hidden" name="action" value="update" />
+ [% IF ( previousActionEdit ) %] <h1>Editar Colección</h1>
+ [% ELSE %] <h1>Crear nueva colección</h1>
+ [% END %] <form action="editCollections.pl" method="post">
+ [% IF ( previousActionEdit ) %] <input type="hidden" name="action" value="update" />
  <input type="hidden" name="colId" value="[% editColId %]" />
- [% ELSE %]
- <input type="hidden" name="action" value="create" />
- [% END %]
-
- <table>
+ [% ELSE %] <input type="hidden" name="action" value="create" />
+ [% END %] <table>
  <tr>
  <td>
- <label for="title">Título:</label>
+ <label for="title">Título: </label>
  </td>
  <td>
  [% IF ( editColTitle ) %]<input type="text" name="title" value="[% editColTitle %]" />
- [% ELSE %]<input type="text" name="title" />[% END %]
- </td>
+ [% ELSE %]<input type="text" name="title" />[% END %] </td>
  </tr>
  
  <tr>
  <td>
- <label for="description">Descripción:</label>
+ <label for="description">Descripción: </label>
  </td>
  <td>
  [% IF (editColDescription ) %]<input type="text" size="50" name="description" value="[ editColDescription %]" />
- [% ELSE %]<input type="text" size="50" name="description" />[% END %]
- </td>
+ [% ELSE %]<input type="text" size="50" name="description" />[% END %] </td>
  </tr>
 
  <tr>
  <td colspan="2">
- [% IF ( previousActionEdit ) %]
- <input value="Actualizar" type="submit" />
- [% ELSE %]
- <input value="Creado por" type="submit" />
- [% END %]
- </td>
+ [% IF ( previousActionEdit ) %] <input value="Actualizar" type="submit" />
+ [% ELSE %] <input value="Creado por" type="submit" />
+ [% END %] </td>
  </tr>
  </table>
  </form>
@@ -119,10 +91,9 @@
 
  <div>
  <br/>
- <input type="button" value="Return to rotating collections home" onclick="window.location.href='rotatingCollections.pl'">
+ <input value="Regresar a Colecciones Rotativas" type="button" onclick="window.location.href='rotatingCollections.pl'">
  </div>
 
 </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
-
+[% INCLUDE 'intranet-bottom.inc' %] 

@@ -1,17 +1,12 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Tools &rsaquo; Import patrons [% IF ( uploadborrowers ) %]&rsaquo; Results[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<style type="text/css">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Importar socios [% IF ( uploadborrowers ) %]&rsaquo; Resultados[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <style type="text/css">
     .yui-u fieldset.rows label.widelabel { width: 12em; }
     .line_error { width: 100%; }
     code { background-color: yellow; }
 </style>
 </head>
 <body id="tools_import_borrowers" class="tools">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'patron-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/tools/import_borrowers.pl">Importar socios</a>[% IF ( uploadborrowers ) %] &rsaquo; Results[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/tools/import_borrowers.pl">Importar socios</a>[% IF ( uploadborrowers ) %] &rsaquo; Resultados[% END %]</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
@@ -20,57 +15,44 @@
  <div class="yui-g">
  <div class="yui-u first">
 <h1>Importar socios</h1>
-[% IF ( uploadborrowers ) %]
-<h5>Resultados de importación:</h5>
+[% IF ( uploadborrowers ) %] <h5>Resultados de importación:</h5>
 <ul>
- <li>[% imported %] imported records [% IF ( lastimported ) %](last was [% lastimported %])[% END %]</li>
- <li>[% overwritten %] overwritten [% IF ( lastoverwritten ) %](last was [% lastoverwritten %])[% END %]</li>
- <li>[% alreadyindb %] not imported because already in borrowers table and overwrite disabled [% IF ( lastalreadyindb ) %](last was [% lastalreadyindb %])[% END %]</li>
- <li>[% invalid %] not imported because they are not in the expected format [% IF ( lastinvalid ) %](last was [% lastinvalid %])[% END %]</li>
+ <li>[% imported %] registros importados [% IF ( lastimported ) %](el último fue [% lastimported %])[% END %]</li>
+ <li>[% overwritten %] sobrescritos [% IF ( lastoverwritten ) %](la última fue [% lastoverwritten %])[% END %]</li>
+ <li>[% alreadyindb %] no importado porque aún se encuentra en la tabla de socios y la sobrescritura está deshabilitada [% IF ( lastalreadyindb ) %](la última fue [% lastalreadyindb %])[% END %]</li>
+ <li>[% invalid %] no importado porque no están en el formato esperado [% IF ( lastinvalid ) %](la última fue [% lastinvalid %])[% END %]</li>
  <li>[% total %] registros analizados</li>
  <li><a href="/cgi-bin/koha/tools/tools-home.pl">Volver a herramientas</a></li>
 </ul>
- [% IF ( FEEDBACK ) %]
- <br /><br />
+ [% IF ( FEEDBACK ) %] <br /><br />
  <div>
- <h5>Feedback:</h5>
+ <h5>Realimentación:</h5>
  <ul class="feedback">
- [% FOREACH FEEDBAC IN FEEDBACK %]
- <li>
- [% IF ( FEEDBAC.filename ) %]Parsing upload file <span class="filename">[% FEEDBAC.filename %]</span>
- [% ELSIF ( FEEDBAC.backend ) %]Cargar análisis utilizando [% FEEDBAC.backend %] [% ELSIF ( FEEDBAC.headerrow ) %]Estos campos encontraron: [% FEEDBAC.value %] [% ELSE %][% FEEDBAC.name %] : [% FEEDBAC.value %] [% END %] </li>
- [% END %]
- </ul>
+ [% FOREACH FEEDBAC IN FEEDBACK %] <li>
+ [% IF ( FEEDBAC.filename ) %]Analizando el archivo subido <span class="filename">[% FEEDBAC.filename %]</span>
+ [% ELSIF ( FEEDBAC.backend ) %]Analizando el archivo subido usando [% FEEDBAC.backend %] [% ELSIF ( FEEDBAC.headerrow ) %]Se encontraron estos campos: [% FEEDBAC.value %] [% ELSE %][% FEEDBAC.name %] : [% FEEDBAC.value %] [% END %] </li>
+ [% END %] </ul>
  </div>
- [% END %]
- [% IF ( ERRORS ) %]
- <br /><br />
+ [% END %] [% IF ( ERRORS ) %] <br /><br />
  <div>
  <h5>Análisis erróneo:</h5>
  <ul>
- [% FOREACH ERROR IN ERRORS %]
- [% IF ( ERROR.badheader ) %]<li>La cabecera de la fila no puede ser analizada</li>[% END %]
- [% FOREACH missing_critical IN ERROR.missing_criticals %]
- <li class="line_error">
- Line <span class="linenumber">[% missing_critical.line %]</span>
-  [% IF ( missing_critical.badparse ) %] ¡no se ha podido analizar! [% ELSIF ( missing_critical.bad_date ) %] tiene &quot;[% missing_critical.key %]&quot; en un formato no reconocido: &quot;[% missing_critical.value %]&quot; [% ELSE %] Campo crítico &quot;[% missing_critical.key %]&quot; [% IF ( missing_critical.branch_map ) %]tiene un valor no reconocido &quot;[% missing_critical.value %]&quot; [% ELSIF ( missing_critical.category_map ) %]tiene un valor no reconocido &quot;[% missing_critical.value %]&quot; [% ELSE %]falta [% END %] (borrowernumber: [% missing_critical.borrowernumber %]; apellido: [% missing_critical.surname %]). [% END %] <br /><code>[% missing_critical.lineraw %]</code>
+ [% FOREACH ERROR IN ERRORS %] [% IF ( ERROR.badheader ) %]<li>La cabecera de la fila no puede ser analizada</li>[% END %] [% FOREACH missing_critical IN ERROR.missing_criticals %] <li class="line_error">
+ Línea <span class="linenumber">[% missing_critical.line %]</span>
+ [% IF ( missing_critical.badparse ) %] no pudo ser analizado! [% ELSIF ( missing_critical.bad_date ) %] tiene &quot;[% missing_critical.key %]&quot; un formato desconocido: &quot;[% missing_critical.value %]&quot; [% ELSE %] Campo crítico &quot;[% missing_critical.key %]&quot; [% IF ( missing_critical.branch_map ) %]tiene un valor no irreconocible &quot;[% missing_critical.value %]&quot; [% ELSIF ( missing_critical.category_map ) %]tiene un valor irreconocible &quot;[% missing_critical.value %]&quot; [% ELSE %]perdido [% END %] (número de usuario: [% missing_critical.borrowernumber %]; apellido: [% missing_critical.surname %]). [% END %] <br /><code>[% missing_critical.lineraw %]</code>
  </li>
- [% END %]
- [% END %]
- </ul>
+ [% END %] [% END %] </ul>
  </div>
- [% END %]
-[% ELSE %]
-<ul>
- <li>Selecciona un archivo para importar a la tabla de socios</li>
- <li>Si en la tabla existe un número de carné, puedes elegir ignorar el nuevo o sobreescribir el viejo.</li>
+ [% END %] [% ELSE %] <ul>
+ <li>Seleccione un archivo para importar en la tabla de socios</li>
+ <li>Si existe en la tabla el número de carnet, puede elegir ignorar el nuevo o sobreescribir el viejo.</li>
 </ul>
 <form method="post" action="[% SCRIPT_NAME %]" enctype="multipart/form-data">
 <fieldset class="rows">
 <legend>Importar a la tabla de préstamos</legend>
 <ol>
  <li>
- <label for="uploadborrowers">Select the file to import: </label>
+ <label for="uploadborrowers">Seleccione el archivo a importar: </label>
  <input type="file" id="uploadborrowers" name="uploadborrowers" />
  </li>
 </ol></fieldset>
@@ -79,24 +61,20 @@
  <ol>
  <li class="radio">
  <select name="matchpoint" id="matchpoint">
- <option value="cardnumber">Número de carné</option>
- [% FOREACH matchpoint IN matchpoints %]
- <option value="[% matchpoint.code %]">[% matchpoint.description %]</option>
- [% END %]
- </select>
+ <option value="cardnumber">Número de Carnet</option>
+ [% FOREACH matchpoint IN matchpoints %] <option value="[% matchpoint.code %]">[% matchpoint.description %]</option>
+ [% END %] </select>
  </li>
  </ol>
  </fieldset>
 <fieldset class="rows">
 <legend>Valores predeterminados</legend>
 <ol>
- [% FOREACH columnkey IN columnkeys %]
- <li>
+ [% FOREACH columnkey IN columnkeys %] <li>
  <label class="widelabel" for="[% columnkey.key %]">[% columnkey.key %]</label>
  <input id="[% columnkey.key %]" name="[% columnkey.key %]" />
  </li>
- [% END %]
-</ol></fieldset>
+ [% END %] </ol></fieldset>
  <fieldset class="rows">
  <legend>Si hay registros coincidentes en la tabla de socios:</legend>
  <ol><li class="radio">
@@ -107,38 +85,30 @@
  </li>
  </ol>
  </fieldset>
- [% IF ( ExtendedPatronAttributes ) %]
- <fieldset class="rows">
+ [% IF ( ExtendedPatronAttributes ) %] <fieldset class="rows">
  <legend>Atributos de socios</legend>
  <ol><li class="radio">
  <input type="radio" id="ext_preserve_0" name="ext_preserve" value="0" checked="checked" /><label for="ext_preserve_0">Reemplazar todos los atributos de socios</label>
  </li>
  <li class="radio">
- <input type="radio" id="ext_preserve_1" name="ext_preserve" value="1" /><label for="ext_preserve_1">Reemplazar sólo los atributos de socios incluidos</label>
+ <input type="radio" id="ext_preserve_1" name="ext_preserve" value="1" /><label for="ext_preserve_1">Reemplazar solo los atributos de socios incluidos</label>
  </li>
  </ol>
  </fieldset>
- [% END %]
- <fieldset class="action"><input value="Importar" type="submit" /></fieldset>
+ [% END %] <fieldset class="action"><input value="Importar" type="submit" /></fieldset>
 </form>
-[% END %]
-</div>
+[% END %] </div>
 <div class="yui-u">
 <h2>Notas:</h2>
 <ul>
-<li>La primer línea del archivo debe ser una línea de encabezamiento que defina qué columnas provees en el archivo de importación.</li>
-<li><b>Download a starter CSV file with all the columns <a href="?sample=1">aquí</a>.</b> Los valores se separan mediante una coma.</li>
-<li>O selecciona qué campos deseeas proveer de la siguiente lista:<ul><li>
- [% FOREACH columnkey IN columnkeys %]'[% columnkey.key %]', [% END %]
-</li></ul></li>
-[% IF ( ExtendedPatronAttributes ) %]
-<li>Si se cargan atributos de socios, el campo "patron_attributes" debe contener una lista separada por una coma de los tipos de atributos y los valores. El código del tipo de atributo y los dos puntos deben preceder a cada valor. Por ejemplo:<b>INSTID:12345,LANG:fr</b> or <b>SUBTOTAL</b>. Si un registro de entada tiene más de un atributo, los campos deben ser ingresados como texto sin comillas (como en los ejemplos anteriores), o con cada campo encerrado en comillas dobles independientes y separados por una coma:<b>&quot;STARTDATE:1 de enero de 2010&quot;,&quot;TRACK:Day&quot;</b>. La sisntaxis del segundo caso sería necesaria si los datos contienen una coma, como en el caso de una fecha.</li>
-[% END %]
-<li>Los campos "branchcode" y "categorycode" son<b>required</b> and <b>debe coincidir</b> entradas válidas en tu base de datos.</li>
-<li>'contraseña' debe ingresarse como texto plano, y será convertida a un hash MD5 (si tu contraseña ya está cifrada, ponte en contacto con el administrador de tu sistema para discutir otras opciones).</li>
-<li>Date formats should match your system preference, and <b>debe</b> be zero-padded, e.g. '01/02/2008'. Alternatively,
-you can supply dates in ISO format (e.g., '2010-10-28').
-</li>
+<li>La primer linea del archivo debe ser una línea de encabezamiento definiendo cuales columnas provee en el archivo de importación.</li>
+<li><b>Descargue un archivo CSV de arranque con todas las columnas <a href="?sample=1">aquí</a>.</b> Los valores están separados por comas.</li>
+<li>O seleccione que campos desea proveer de la siguiente lista:<ul><li>
+ [% FOREACH columnkey IN columnkeys %]'[% columnkey.key %]', [% END %] </li></ul></li>
+[% IF ( ExtendedPatronAttributes ) %] <li>Si se cargan los atributos de socio, el campo 'patron_attributes' debe contener una lista separada por comas de los tipos de atributos y valores. El código de tipo de atributo y los dos puntos deben preceder a cada valor. Por ejemplo: <b>INSTID:12345,LANG:fr</b> o <b>STARTDATE:January 1 2010,TRACK:Day</b>. Si el registro importado tiene más de un atributo, los campos deberían ser ingresados como una cadena sin comillas (ejemplos anteriores), o con cada campo separado en doble comillas y delimitado por coma: <b>&quot;STARTDATE:Enero 1, 2010&quot;,&quot;TRACK:Día&quot;</b>. Es necesaria la segunda sintaxis si los datos tuvieran una coma, como en el caso de una fecha. </li>
+[% END %] <li>Los campos 'branchcode' y 'categorycode' son <b>obligatorio</b> y <b>debe coincidir</b> entradas válidas en la base de datos.</li>
+<li>'contraseña' debe ingresarse como texto plano, y será convertida a un hash MD5 (si su contraseña ya está cifrada, hable con el administrador del sistema acerca de otras opciones).</li>
+<li>Los formatos para las fechas deben coincidir con los declarados en las preferencias del sistema, y <b>debe</b> deben estar rellenados con ceros, por ejemplo '01/02/2008'. De manera alternativa, se pueden ingresar las fechas en formato ISO, por ejemplo, '2010-10-28'. </li>
 </ul>
 
  </div>
@@ -146,7 +116,6 @@ you can supply dates in ISO format (e.g., '2010-10-28').
  </div>
  </div>
  <div class="yui-b noprint">
-[% INCLUDE 'tools-menu.inc' %]
+[% INCLUDE 'tools-menu.inc' %] </div>
  </div>
- </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

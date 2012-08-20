@@ -1,21 +1,19 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Library Transfer Limits</h1>
 
-<h1>Límites de transferencia de la biblioteca</h1>
+<p>Limitar la capacidad de transferir ítems entre bibliotecas basado en la biblioteca de origen, la biblioteca receptora y código de colección en cuestión.</p>
 
-<p>Limit the ability to transfer items between libraries based on the library sending, the library receiving, and the collection code involved.</p>
+<p>Estas reglas sólo entrarán en vigor si la preferencia UseBranchTransferLimits está en ON.</p>
 
-<p>These rules only go into effect if the preference UseBranchTransferLimits is set to 'enforce'.</p>
+<p>Antes de comenzar querrá seleccionar para cual biblioteca está definiendo estos límites.</p>
 
-<p>Antes de comenzar querrás seleccionar para qué biblioteca estás definiendo estos límites.</p>
-
-<p>Los límites de transferencia están fijados según los códigos de colecciones que has aplicado a través de el área de administración de Valor Autorizado</p>
+<p>Los límites de transferencia se establecen sobre la base de los códigos de colección que se han aplicado a través del área de administración con el uso de Valores autorizados.</p>
 
 <p>Los códigos de colección aparecerán como pestañas sobre las casillas.</p>
 
-<p>Marca las casilla para las bibliotecas de las que aceptarás préstamos para el tipo de ítem que seleccionaste al principio.</p>
+<p>Marque las casilla para las bibliotecas de las cuales aceptará préstamos para el tipo de ítem que seleccionó al principio.</p>
 
-<p>In the above example, Centerville library will allow patrons to return items from all libraries except Liberty and Franklin to their library.</p>
+<p>En el ejemplo anterior, la colección de Centerville permitirá a los clientes devolver los elementos de todas las bibliotecas excepto de las sedes Libertad y Franklin.</p>
 
-<p><strong>See the full documentation for library transfer limits in the <a href="http://manual.koha-community.org/3.6/en/patscirc.html#libtransferlimits">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Library Transfer Limits in the <a href="http://manual.koha-community.org/3.8/en/patscirc.html#libtransferlimits">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

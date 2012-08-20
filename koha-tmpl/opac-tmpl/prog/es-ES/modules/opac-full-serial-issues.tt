@@ -1,6 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Subscription information for [% bibliotitle %]
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Información de suscripción para [% bibliotitle %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" language="javascript">
 //<![CDATA[
 
@@ -172,7 +170,7 @@ function showlayer(numlayer){
  <th>Fecha de recepción</th>
  <th>Número</th>
  <th>Estado</th>
- <th>Subscripción</th>
+ <th>Suscripción</th>
  </tr>
  </thead>
  <tbody>
@@ -202,7 +200,7 @@ function showlayer(numlayer){
 <div id="searchfacetscontainer" class="container">
 <div id="search-facets">
 <form action="opac-serial-issues.pl" id="filterform">
- <h4>Perfecciona tu búsqueda</h4>
+ <h4>Refine su búsqueda</h4>
  <fieldset>
  <ol><li> <label for="libraryfilter">Biblioteca : </label>
  <select id="libraryfilter" name="libraryfilter" style="width:10em;"></select></li>
