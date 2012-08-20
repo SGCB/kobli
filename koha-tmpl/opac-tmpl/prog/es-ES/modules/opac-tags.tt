@@ -1,8 +1,4 @@
-[% USE KohaDates %]
-
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Tags
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Etiquetas [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <style type="text/css">
 	fieldset { padding : .3em;margin:.3em 0;}
 	#tagcloud    {background-color: #F3F3F3; text-align: justify;padding:7px;}
@@ -55,31 +51,30 @@
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
  [% INCLUDE 'search.inc' %] <div class="yui-b"><div class="yui-g">
  <div id="usertags" class="container">
- [% IF ( ERRORS ) %] [% FOREACH ERROR IN ERRORS %] <div class="dialog alert">Se ha producido un problema con esta operación. [% IF ( ERROR.tagsdisabled ) %]Lo sentimos, las etiquetas no están habilitadas en este sistema. [% ELSIF ( ERROR.badparam ) %]ERROR: parámetro ilegal [% ERROR.badparam %] [% ELSIF ( ERROR.login ) %]ERROR: Debes iniciar sesión para completar esta acción. [% ELSIF ( ERROR.failed_delete ) %]ERROR: No puedes eliminar la etiqueta [% ERROR.failed_delete %]. <br />Nota: sólo puedes borrar tus propias etiquetas. [% ELSIF ( ERROR.scrubbed ) %]Nota: tu etiqueta contenía código de marcas que ha sido eliminado. <br />La etiqueta ha sido agregada como &quot;[% ERROR.scrubbed %]&quot;. [% ELSIF ( ERROR.scrubbed_all_bad ) %]Nota: tu etiqueta estaba completamente completamente codificada en lenguaje de marcas. NO se ha agregado. <br />Por favor, inténtalo de nuevo con texto plano. [% ELSE %] Error desconocido. [% END %] </div>
+ [% IF ( ERRORS ) %] [% FOREACH ERROR IN ERRORS %] <div class="dialog alert">Se produjo un problema con esta operación: [% IF ( ERROR.tagsdisabled ) %]Disculpe, las etiquetas no están habilitadas en este sistema. [% ELSIF ( ERROR.badparam ) %]ERROR: parámetro ilegal [% ERROR.badparam %] [% ELSIF ( ERROR.login ) %]ERROR: Debe ingresar para completar esta acción. [% ELSIF ( ERROR.failed_delete ) %]ERROR: No puede eliminar la etiqueta [% ERROR.failed_delete %]. <br />Nota: sólo puede borrar sus propias etiquetas. [% ELSIF ( ERROR.scrubbed ) %]Nota: su etiqueta contenía código inválido que ha sido eliminado. <br />La etiqueta ha sido agregada de esta forma &quot;[% ERROR.scrubbed %]&quot;. [% ELSIF ( ERROR.scrubbed_all_bad ) %]Nota: su etiqueta estaba completamente compuesta por código. NO fue agregada. <br />Por favor trate nuevamente con texto plano. [% ELSE %] Error desconocido. [% END %] </div>
  [% END %] [% END %] <h1>Todas las etiquetas</h1>
  
  <form method="get" action="opac-tags.pl">
  <fieldset>Mostrar hasta <input type="text" name="limit" style="text-align: right;" maxlength="4" size="4" value="[% limit or "100" %]" />
  etiquetas[% IF ( opacuserlogin ) %] de otros usuarios[% END %]. <input value="Aceptar" type="submit" />
- [% IF ( opacuserlogin ) %][% UNLESS ( loggedinusername ) %] <a href="/cgi-bin/koha/opac-user.pl">Iniciar sesión</a> to see your own saved tags.
- [% END %][% END %]</fieldset>
+ [% IF ( opacuserlogin ) %][% UNLESS ( loggedinusername ) %] <a href="/cgi-bin/koha/opac-user.pl">Ingresar</a> para ver sus etiquetas. [% END %][% END %]</fieldset>
  </form>
  
  [% IF ( TAGLOOP ) %] <div id="tagcloud">
- [% FOREACH TAGLOO IN TAGLOOP %] <span class="tag" id="tag[% loop.count %]" title="[% TAGLOO.cloudweight %]">
+ [% FOREACH TAGLOO IN TAGLOOP %] <span class="tag" id="tag[% loop.count %]">
  <a href="/cgi-bin/koha/opac-search.pl?tag=[% TAGLOO.term |url %]&amp;q=[% TAGLOO.term |url %]">
  [% TAGLOO.term |html %]</a>
  <span class="tagweight">[% TAGLOO.weight_total %]</span>
  </span>
  [% END %] </div>
- [% END %] [% IF ( add_op ) %] [% IF ( added_count ) %] <div class="dialog message">[% added_count %] [% IF ( added_count ==1 ) %] etiqueta[% ELSE %]etiquetas[% END %] agregada(s) con éxito.</div>
- [% END %] [% IF ( deleted_count ) %] <div class="dialog message">[% deleted_count %][% IF ( deleted_count ==1 ) %] etiqueta[% ELSE %]etiquetas[% END %] eliminada(s) con éxito.</div>
+ [% END %] [% IF ( add_op ) %] [% IF ( added_count ) %] <div class="dialog message">[% added_count %] [% IF ( added_count ==1 ) %] etiqueta[% ELSE %]etiquetas[% END %] agregada exitosamente.</div>
+ [% END %] [% IF ( deleted_count ) %] <div class="dialog message">[% deleted_count %][% IF ( deleted_count ==1 ) %] etiqueta[% ELSE %]etiquetas[% END %] eliminadas exitosamente.</div>
  [% END %] [% END %] [% IF ( MY_TAGS ) %] <form method="post" action="opac-tags.pl">
  <h2>Mis etiquetas</h2>
  <table id="mytagst">
- <thead><tr><th>Término</th><th>Título</th><th>Date added</th><th>Borrar</th>
+ <thead><tr><th>Término</th><th>Título</th><th>Fecha de añadido</th><th>Borrar</th>
  </tr></thead>
- <tbody>[% FOREACH MY_TAG IN MY_TAGS %] <tr><td><a href="/cgi-bin/koha/opac-search.pl?tag=[% MY_TAG.term |url %]&amp;q=[% MY_TAG.term |url %]">
+ <tbody>[% FOREACH MY_TAG IN MY_TAGS %] <tr><td class="tagterm"><a href="/cgi-bin/koha/opac-search.pl?tag=[% MY_TAG.term |url %]&amp;q=[% MY_TAG.term |url %]">
  [% MY_TAG.term |html %]</a>
  </td>
  <td><a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% MY_TAG.biblionumber %]">

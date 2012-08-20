@@ -42,28 +42,26 @@
 
                var planning_menu = [
 
-                        { text: _("Plan by months"),
+                        { text: _("Planificación por meses"),
                             url: "/cgi-bin/koha/admin/aqplan.pl?budget_period_id=[% budget_period_id %]&authcat=MONTHS"
                             [% UNLESS ( CAN_user_acquisition_planning_manage ) %],  id:'disabled' [% END %]
                         },
 
-                        { text: _("Plan by libraries"),
+                        { text: _("Planificación por bibliotecas"),
                             url: "/cgi-bin/koha/admin/aqplan.pl?budget_period_id=[% budget_period_id %]&authcat=BRANCHES"
                             [% UNLESS ( CAN_user_acquisition_planning_manage ) %],  id:'disabled' [% END %]
                         },
 
-                        { text: _("Plan by item types"),
+                        { text: _("Planificación por tipos de ítem"),
                             url: "/cgi-bin/koha/admin/aqplan.pl?budget_period_id=[% budget_period_id %]&authcat=ITEMTYPES"
                             [% UNLESS ( CAN_user_acquisition_planning_manage ) %],  id:'disabled' [% END %]
                         },
-           [% IF ( authcat ) %]
-                [% FOREACH auth_cats_loo IN auth_cats_loop %]
-                        { text: _("Plan by [% auth_cats_loo.authcat %]    "),
-                            url: "/cgi-bin/koha/admin/aqplan.pl?budget_period_id=[% auth_cats_loo.budget_period_id %]&authcat=[% auth_cats_loo.authcat %]"
-                            [% UNLESS ( CAN_user_acquisition_planning_manage ) %],  id:'disabled' [% END %]
-                        },
-                [% END %]
-           [% END %]
+        [% FOREACH auth_cats_loo IN auth_cats_loop %]
+            { text: _("Plan by [% auth_cats_loo.authcat %]    "),
+            url: "/cgi-bin/koha/admin/aqplan.pl?budget_period_id=[% budget_period_id %]&authcat=[% auth_cats_loo.authcat %]"
+            [% UNLESS ( CAN_user_acquisition_planning_manage ) %],  id:'disabled' [% END %]
+            },
+        [% END %]
                 ]
 
 	            new YAHOO.widget.Button({
@@ -103,10 +101,7 @@
 	//]]>
 </script>
  <ul class="toolbar">
- [% UNLESS ( budget_period_id ) %]<li><a id="newrootbudget" href="/cgi-bin/koha/admin/aqbudgetperiods.pl?op=add_form">Nuevo presupuesto</a></li>[% END %]
- [% UNLESS ( period_button_only ) %]<li id="budgets_menuc"><a id="budgets_menu" href="/cgi-bin/koha/cataloguing/addbiblio.pl">Nuevo</a></li>[% END %]
- <li id="periods_menuc"><a id="periods_menu" href="/cgi-bin/koha/admin/aqbudgetperiods.pl?op=add_form">Presupuestos</a></li>
- [% UNLESS ( period_button_only ) %]<li id="planning_menuc"><a id="planning_menu" href="/cgi-bin/koha/admin/aqplan.pl?budget_period_id=[% budget_period_id %]">Plan de presupuesto</a></li>
- [% END %]
- </ul>
+ [% UNLESS ( budget_period_id ) %]<li><a id="newrootbudget" href="/cgi-bin/koha/admin/aqbudgetperiods.pl?op=add_form">Nuevo presupuesto</a></li>[% END %] [% UNLESS ( period_button_only ) %]<li id="budgets_menuc"><a id="budgets_menu" href="/cgi-bin/koha/cataloguing/addbiblio.pl">Nuevo</a></li>[% END %] <li id="periods_menuc"><a id="periods_menu" href="/cgi-bin/koha/admin/aqbudgetperiods.pl?op=add_form">Presupuestos</a></li>
+ [% UNLESS ( period_button_only ) %]<li id="planning_menuc"><a id="planning_menu" href="/cgi-bin/koha/admin/aqplan.pl?budget_period_id=[% budget_period_id %]">Planificación de presupuesto</a></li>
+ [% END %] </ul>
 </div>

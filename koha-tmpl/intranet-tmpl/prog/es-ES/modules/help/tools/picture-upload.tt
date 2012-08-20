@@ -1,25 +1,22 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Subir imágenes de socios</h1>
 
-<h1>Subir imágenes de socios</h1>
-
-<p>Patron images can be uploaded in bulk if you are allowing patron images to be attached to patron records. These images can also be used when creating patron cards.</p>
+<p>Las imágenes de socios pueden ser cargadas en bloque si permite imágenes adjuntas a registros de socios. Estas imágenes también se pueden utilizar al crear los carnets de socios.</p>
 
 <ul>
- <li>Create a txt file and title it "DATALINK.TXT" or "IDLINK.TXT"</li>
- <li>On each line in the text file enter the patron's card number followed by comma (or tab) and then the image file name
-<ul>
- <li>Make sure that your TXT file is a plain text document, not RTF.</li>
+ <li>Cree un archivo txt y llámelo "DATALINK.TXT" o "IDLINK.TXT"</li>
+ <li>En cada línea del archivo de texto incluya el número de carnet del socio seguido de coma (o tabulación) y luego el nombre del archivo imagen <ul>
+ <li>Asegúrese de que su archivo TXT es un documento de texto simple, no RTF.</li>
 </ul>
 </li>
- <li>Zip up the text file and the image files</li>
- <li>Go to the Upload Patron Images Tool</li>
- <li>For a single image, simply point to the image file and enter the patron card number</li>
- <li>For multiple images, choose to upload a zip file</li>
- <li>After uploading you will be presented with a confirmation</li>
+ <li>Comprima el archivo de texto y los archivos de imagen</li>
+ <li>Ir a la Herramienta de carga de imágenes de socios</li>
+ <li>Para una imagen, simplemente seleccione el archivo imagen e ingrese el número de socio</li>
+ <li>Para imágenes múltiples, elija subir un archivo ZIP</li>
+ <li>Luego de elegir cargar, se le presentará un mensaje de confirmación</li>
 </ul>
 
-<p style="color:#990000;">Important: There is a limit of 520K on the size of the picture uploaded and it is recommended that the image be 200x300 pixels, but smaller images will work as well.</p>
+<p style="color:#990000;">Importante: Existe un límite de 520K en el tamaño de la imagen subida y se recomienda que la imagen sea de 200x300 píxeles, pero también funciona con imágenes más pequeñas.</p>
 
-<p><strong>See the full documentation for the Patron Image Uploader in the <a href="http://manual.koha-community.org/3.8/en/uploadpatronimages.html">manual</a> (online).</strong></p>
+<p><strong>Vea la documentación completa de Cargador de imágenes de socios en la <a href="http://manual.koha-community.org/3.8/en/uploadpatronimages.html">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

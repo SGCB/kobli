@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Katalogisering &rsaquo; Feltbygger for 008</title> 
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; Construcción del campo 008</title> 
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="cat_normarc_field_008" class="cat" style="padding:1em;">
 <h3>008 Informasjonskoder</h3>
 
@@ -9,38 +7,19 @@
  <p><select name="MatTypeList" id="MatTypeList" onchange="RedrawChoices(this.options[selectedIndex].value);">
 
  <option value="" selected="selected">Velg materialtype</option> 
- [% IF ( mon ) %] 
- <option value="mon" selected="selected">Monografier</option> 
- [% ELSE %] 
- <option value="mon">Monografier</option> 
- [% END %]
- [% IF ( per ) %] 
- <option value="per" selected="selected">Periodika</option> 
- [% ELSE %] 
- <option value="per">Periodika</option> 
- [% END %]
- [% IF ( fil ) %] 
- <option value="fil" selected="selected">Maskinlesbare filer</option> 
- [% ELSE %] 
- <option value="fil">Maskinlesbare filer</option> 
- [% END %] 
- [% IF ( mus ) %] 
- <option value="mus" selected="selected">Musikktrykk og lydopptak</option> 
- [% ELSE %] 
- <option value="mus">Musikktrykk og lydopptak</option> 
- [% END %] 
- [% IF ( fv ) %] 
- <option value="fv" selected="selected">Filmer og videogrammer</option> 
- [% ELSE %] 
- <option value="fv">Filmer og videogrammer</option> 
- [% END %] 
- [% IF ( kar ) %] 
- <option value="kar" selected="selected">Kart</option> 
- [% ELSE %] 
- <option value="kar">Kart</option> 
- [% END %]
- 
- </select></p>
+ [% IF ( mon ) %] <option value="mon" selected="selected">Monografía</option> 
+ [% ELSE %] <option value="mon">Monografía</option> 
+ [% END %] [% IF ( per ) %] <option value="per" selected="selected">Periódica</option> 
+ [% ELSE %] <option value="per">Periódica</option> 
+ [% END %] [% IF ( fil ) %] <option value="fil" selected="selected">Archivos legibles por máquina</option> 
+ [% ELSE %] <option value="fil">Archivos legibles por máquina</option> 
+ [% END %] [% IF ( mus ) %] <option value="mus" selected="selected">Musikktrykk og lydopptak</option> 
+ [% ELSE %] <option value="mus">Musikktrykk og lydopptak</option> 
+ [% END %] [% IF ( fv ) %] <option value="fv" selected="selected">Filmer og videogrammer</option> 
+ [% ELSE %] <option value="fv">Filmer og videogrammer</option> 
+ [% END %] [% IF ( kar ) %] <option value="kar" selected="selected">Kart</option> 
+ [% ELSE %] <option value="kar">Kart</option> 
+ [% END %] </select></p>
 </form>
 
 <form name="f_pop" onsubmit="report()">
@@ -61,57 +40,27 @@
  <td><label for="f6">06 Dateringskode/Utgivelsesstatus</label></td>
  <td>
  <select name="f6" id="f6" size="1">
- [% IF ( f6 ) %]
- <option value=" " selected="selected">^ Ikke angitt</option>
- [% ELSE %]
- <option value=" ">^ Ikke angitt</option>
- [% END %]
- [% IF ( f6a ) %] 
- <option value="a" selected="selected">a Antatt/forventet utgivelsesår i pos. 7-10</option> 
- [% ELSE %] 
- <option value="a">a Antatt/forventet utgivelsesår i pos. 7-10</option> 
- [% END %] 
- [% IF ( f6c ) %] 
- <option value="c" selected="selected">c Utgivelsesår i pos. 7-10 og copyrightår i pos. 11-14</option> 
- [% ELSE %] 
- <option value="c">c Utgivelsesår i pos. 7-10 og copyrightår i pos. 11-14</option> 
- [% END %] 
- [% IF ( f6n ) %] 
- <option value="n" selected="selected">n Ukjent år</option> 
- [% ELSE %] 
- <option value="n">n Ukjent år</option> 
- [% END %] 
- [% IF ( f6o ) %] 
- <option value="o" selected="selected">o Opphørt (periodika)</option> 
- [% ELSE %] 
- <option value="o">o Opphørt (periodika)</option> 
- [% END %] 
- [% IF ( f6p ) %] 
- <option value="p" selected="selected">p År for distribusjon/frigivelse i pos. 7-10 og produksjons-/opptaksperiode i pos. 11-14</option> 
- [% ELSE %] 
- <option value="p">p År for distribusjon/frigivelse i pos. 7-10 og produksjons-/opptaksperiode i pos. 11-14</option> 
- [% END %] 
- [% IF ( f6r ) %] 
- <option value="r" selected="selected">r Nyutgaveår i pos. 7-10 og originalår i pos. 11-14</option> 
- [% ELSE %] 
- <option value="r">r Nyutgaveår i pos. 7-10 og originalår i pos. 11-14</option> 
- [% END %] 
- [% IF ( f6s ) %] 
- <option value="s" selected="selected">s Enkelt år (f.eks. utgivelsesår) i pos. 7-10</option> 
- [% ELSE %] 
- <option value="s">s Enkelt år (f.eks. utgivelsesår) i pos. 7-10</option> 
- [% END %] 
- [% IF ( f6u ) %] 
- <option value="u" selected="selected">u Ukjent status (periodika)</option> 
- [% ELSE %] 
- <option value="u">u Ukjent status (periodika)</option> 
- [% END %] 
- [% IF ( f6x ) %] 
- <option value="x" selected="selected">x Løpende (periodika)</option> 
- [% ELSE %] 
- <option value="x">x Løpende (periodika)</option> 
- [% END %] 
- </select>
+ [% IF ( f6 ) %] <option value=" " selected="selected">^ Ikke angitt</option>
+ [% ELSE %] <option value=" ">^ Ikke angitt</option>
+ [% END %] [% IF ( f6a ) %] <option value="a" selected="selected">a Antatt/forventet utgivelsesår i pos. 7-10</option> 
+ [% ELSE %] <option value="a">a Antatt/forventet utgivelsesår i pos. 7-10</option> 
+ [% END %] [% IF ( f6c ) %] <option value="c" selected="selected">c Utgivelsesår i pos. 7-10 og copyrightår i pos. 11-14</option> 
+ [% ELSE %] <option value="c">c Utgivelsesår i pos. 7-10 og copyrightår i pos. 11-14</option> 
+ [% END %] [% IF ( f6n ) %] <option value="n" selected="selected">n Ukjent år</option> 
+ [% ELSE %] <option value="n">n Ukjent år</option> 
+ [% END %] [% IF ( f6o ) %] <option value="o" selected="selected">o Opphørt (periodika)</option> 
+ [% ELSE %] <option value="o">o Opphørt (periodika)</option> 
+ [% END %] [% IF ( f6p ) %] <option value="p" selected="selected">p År for distribusjon/frigivelse i pos. 7-10 og produksjons-/opptaksperiode i pos. 11-14</option> 
+ [% ELSE %] <option value="p">p År for distribusjon/frigivelse i pos. 7-10 og produksjons-/opptaksperiode i pos. 11-14</option> 
+ [% END %] [% IF ( f6r ) %] <option value="r" selected="selected">r Nyutgaveår i pos. 7-10 og originalår i pos. 11-14</option> 
+ [% ELSE %] <option value="r">r Nyutgaveår i pos. 7-10 og originalår i pos. 11-14</option> 
+ [% END %] [% IF ( f6s ) %] <option value="s" selected="selected">s Enkelt år (f.eks. utgivelsesår) i pos. 7-10</option> 
+ [% ELSE %] <option value="s">s Enkelt år (f.eks. utgivelsesår) i pos. 7-10</option> 
+ [% END %] [% IF ( f6u ) %] <option value="u" selected="selected">u Ukjent status (periodika)</option> 
+ [% ELSE %] <option value="u">u Ukjent status (periodika)</option> 
+ [% END %] [% IF ( f6x ) %] <option value="x" selected="selected">x Løpende (periodika)</option> 
+ [% ELSE %] <option value="x">x Løpende (periodika)</option> 
+ [% END %] </select>
  </td>
  </tr>
  <tr>
@@ -128,7 +77,7 @@
  </tr>
 
  <tr>
- <td><label for="f1517">15-17 Utgivelsesland</label> See <a href="http://www.loc.gov/marc/countries/countries_code.html">MARC Code List for Countries</a> </td>
+ <td><label for="f1517">15-17 Utgivelsesland</label> Ver <a href="http://www.loc.gov/marc/countries/countries_code.html">Lista de códigos MARC de países</a> </td>
  <td>
  <input type="text" name="f1517" id="f1517" size="3"  maxlength="3" value="[% f1517 %]"/>
  </td>
@@ -139,7 +88,7 @@
 <tr><td id="choices" colspan="2"></td></tr>
 
 <!-- Start second batch of common fields for all formats -->
- <td><label for="f3537">35-37 Språk</label> See <a href="http://www.loc.gov/marc/languages/language_code.html">MARC Code List for Languages</a></td>
+ <td><label for="f3537">35-37 Språk</label> Ver <a href="http://www.loc.gov/marc/languages/language_code.html">Lista de códigos MARC de Idiomas</a></td>
  <td>
  <input type="text" name="f3537" id="f3537" size="4"  maxlength="4" value="[% f3537 %]"/>
  </td>
@@ -154,47 +103,23 @@
  <td><label for="f39">39 Katalogiseringskilde</label></td>
  <td>
  <select name="f39" id="f39" size="1"> 
- [% IF ( f39 ) %]
- <option value=" " selected="selected">^ Ikke angitt</option>
- [% ELSE %]
- <option value=" ">^ Ikke angitt</option>
- [% END %]
- [% IF ( f390 ) %] 
- <option value="0" selected="selected">0 Norges nasjonalbibliografi, autorisert post</option> 
- [% ELSE %] 
- <option value="0">0 Norges nasjonalbibliografi, autorisert post</option> 
- [% END %] 
- [% IF ( f391 ) %] 
- <option value="1" selected="selected">1 Norges nasjonalbibliografi, uautorisert post</option> 
- [% ELSE %] 
- <option value="1">1 Norges nasjonalbibliografi, uautorisert post</option> 
- [% END %] 
- [% IF ( f392 ) %] 
- <option value="2" selected="selected">2 Biblioteksentralen, autorisert post</option> 
- [% ELSE %] 
- <option value="2">2 Biblioteksentralen, autorisert post</option> 
- [% END %] 
- [% IF ( f393 ) %] 
- <option value="3" selected="selected">3 Biblioteksentralen, uautorisert post</option> 
- [% ELSE %] 
- <option value="3">3 Biblioteksentralen, uautorisert post</option> 
- [% END %] 
- [% IF ( f394 ) %] 
- <option value="4" selected="selected">4 BIBSYS, autorisert post</option> 
- [% ELSE %] 
- <option value="4">4 BIBSYS, autorisert post</option> 
- [% END %] 
- [% IF ( f395 ) %] 
- <option value="5" selected="selected">5 BIBSYS, uautorisert post</option> 
- [% ELSE %] 
- <option value="5">5 BIBSYS, uautorisert post</option> 
- [% END %] 
- [% IF ( f399 ) %] 
- <option value="9" selected="selected">9 Annen kilde</option> 
- [% ELSE %] 
- <option value="9">9 Annen kilde</option> 
- [% END %]
- </select>
+ [% IF ( f39 ) %] <option value=" " selected="selected">^ Ikke angitt</option>
+ [% ELSE %] <option value=" ">^ Ikke angitt</option>
+ [% END %] [% IF ( f390 ) %] <option value="0" selected="selected">0 Norges nasjonalbibliografi, autorisert post</option> 
+ [% ELSE %] <option value="0">0 Norges nasjonalbibliografi, autorisert post</option> 
+ [% END %] [% IF ( f391 ) %] <option value="1" selected="selected">1 Norges nasjonalbibliografi, uautorisert post</option> 
+ [% ELSE %] <option value="1">1 Norges nasjonalbibliografi, uautorisert post</option> 
+ [% END %] [% IF ( f392 ) %] <option value="2" selected="selected">2 Biblioteksentralen, autorisert post</option> 
+ [% ELSE %] <option value="2">2 Biblioteksentralen, autorisert post</option> 
+ [% END %] [% IF ( f393 ) %] <option value="3" selected="selected">3 Biblioteksentralen, uautorisert post</option> 
+ [% ELSE %] <option value="3">3 Biblioteksentralen, uautorisert post</option> 
+ [% END %] [% IF ( f394 ) %] <option value="4" selected="selected">4 BIBSYS, autorisert post</option> 
+ [% ELSE %] <option value="4">4 BIBSYS, autorisert post</option> 
+ [% END %] [% IF ( f395 ) %] <option value="5" selected="selected">5 BIBSYS, uautorisert post</option> 
+ [% ELSE %] <option value="5">5 BIBSYS, uautorisert post</option> 
+ [% END %] [% IF ( f399 ) %] <option value="9" selected="selected">9 Annen kilde</option> 
+ [% ELSE %] <option value="9">9 Annen kilde</option> 
+ [% END %] </select>
  </td>
  </tr>
  
@@ -4516,4 +4441,4 @@ function report() {
 	//]]>
 </script>
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

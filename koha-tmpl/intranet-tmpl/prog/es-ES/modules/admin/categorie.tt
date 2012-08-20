@@ -1,10 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo; Patron categories &rsaquo; [% IF ( add_form ) %][% IF ( categorycode ) %]Modify category '[% categorycode |html %]'[% ELSE %]New category[% END %][% END %]
-[% IF ( add_validate ) %]Data recorded[% END %]
-[% IF ( delete_confirm ) %][% IF ( totalgtzero ) %]Cannot delete: category [% categorycode |html %] in use[% ELSE %]Confirm deletion of category '[% categorycode |html %]'[% END %][% END %]
-[% IF ( delete_confirmed ) %]Category deleted[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Categorías de socios &rsaquo; [% IF ( add_form ) %][% IF ( categorycode ) %]Modificar categoría '[% categorycode |html %]'[% ELSE %]Nueva categoría[% END %][% END %] [% IF ( add_validate ) %]Datos guardados[% END %] [% IF ( delete_confirm ) %][% IF ( totalgtzero ) %]No es posible borrar: categoría [% categorycode |html %] en uso[% ELSE %]Confirmar eliminación de categoría '[% categorycode |html %]'[% END %][% END %] [% IF ( delete_confirmed ) %]Categoría eliminada[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
 <script type="text/javascript" id="js">$(document).ready(function() {
 	$("#table_categorie").tablesorter({
@@ -12,8 +7,8 @@
 		widgets: ['zebra'],
 		headers: { 11: { sorter: false}}
 	}).tablesorterPager({container: $("#pagertable_categorie"),positionFixed: false,size: 20});
+    $( "#enrolmentperioddate" ).datepicker({ minDate: 1 }); // Require that "until date" be in the future
 }); </script>
-[% INCLUDE 'calendar.inc' %]
 <script type="text/javascript">
 //<![CDATA[
 	//
@@ -90,13 +85,7 @@
 <style type="text/css">#enrolmentmessage.hint { display : none; }</style>
 </head>
 <body id="admin_categorie" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'patrons-admin-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; [% IF ( categorycode ) %]Modificar categoría '[% categorycode |html %]'[% ELSE %]Nueva categoría[% END %][% END %] [% IF ( add_validate ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; Data recorded[% END %]
-[% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; [% IF ( totalgtzero ) %]Cannot delete: Category [% categorycode |html %] in use[% ELSE %]Confirm deletion of category '[% categorycode |html %]'[% END %][% END %]
-[% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; Category deleted[% END %]
-[% IF ( else ) %]Patron categories[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patrons-admin-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; [% IF ( categorycode ) %]Modificar categoría '[% categorycode |html %]'[% ELSE %]Nueva categoría[% END %][% END %] [% IF ( add_validate ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; Datos grabados[% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; [% IF ( totalgtzero ) %]No se puede eliminar: Categoría [% categorycode |html %] en uso[% ELSE %]Confirmar eliminación de la categoría '[% categorycode |html %]'[% END %][% END %] [% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; Categoría eliminada[% END %] [% IF ( else ) %]Categorías de socios[% END %] </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -104,144 +93,88 @@
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( add_form ) %]
- 
-
-
- 
- <form name="Aform" action="[% script_name %]" method="post">
+[% IF ( add_form ) %] <form name="Aform" action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="add_validate" />
  <input type="hidden" name="checked" value="0" />
-[% IF ( categorycode ) %]
- <h1>Modificar categoría [% categorycode |html %]</h1>
- [% ELSE %]
- <h1>Nueva categoría</h1>
- [% END %]
- <fieldset class="rows">
- <ol>[% IF ( categorycode ) %]
- <li><span class="label">Código de categoría</span>[% categorycode |html %]
- <input type="hidden" name="categorycode" value="[% categorycode |html %]" /><input type="hidden" name="is_a_modif" value="1" /></li>
- [% ELSE %]
- <li><label for="categorycode">Category code: </label> <input type="text" name="categorycode" id="categorycode" size="10" maxlength="10" onblur="toUC(this)" /></li>
- [% END %]
- <li><label for="description">Descripción:</label> <input type="text" name="description" id="description" size="40" maxlength="80" value="[% description |html %]" /></li>
- <li><label for="enrolmentperiod">Enrollment period: </label>
+[% IF ( categorycode ) %] <h1>Modificar categoría [% categorycode |html %]</h1>
+ [% ELSE %] <h1>Nueva categoría</h1>
+ [% END %] <fieldset class="rows">
+ <ol>[% IF ( categorycode ) %] <li><span class="label">Código de categoría</span>[% categorycode |html %] <input type="hidden" name="categorycode" value="[% categorycode |html %]" /><input type="hidden" name="is_a_modif" value="1" /></li>
+ [% ELSE %] <li><label for="categorycode">Código de categoría: </label> <input type="text" name="categorycode" id="categorycode" size="10" maxlength="10" onblur="toUC(this)" /></li>
+ [% END %] <li><label for="description">Descripción: </label> <input type="text" name="description" id="description" size="40" maxlength="80" value="[% description |html %]" /></li>
+ <li><label for="enrolmentperiod">Período de asociación: </label>
  <fieldset>
- <legend>Choose one</legend>
+ <legend>Elegir uno</legend>
  <ol>
- <li><label for="enrolmentperiod" style="width:6em;">In months: </label>
- <input type="text" name="enrolmentperiod" id="enrolmentperiod" size="3" maxlength="3" value="[% IF ( enrolmentperiod ) %][% enrolmentperiod %][% END %]" /> months</li>
- <li><label for="enrolmentperioddate" style="width:6em;">Until date: </label>
- <input type="text" name="enrolmentperioddate" id="enrolmentperioddate" value="[% enrolmentperioddate %]" /> <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" id="enrolmentperioddate_button" />
- <script type="text/javascript">
-            //<![CDATA[
-               Calendar.setup({
-                    inputField : "enrolmentperioddate",
-                    ifFormat : "[% DHTMLcalendar_dateformat %]",
-                	button : "enrolmentperioddate_button"
-            	});
-           	//]]>
-        </script>
+ <li><label for="enrolmentperiod" style="width:6em;">En meses: </label>
+ <input type="text" name="enrolmentperiod" id="enrolmentperiod" size="3" maxlength="3" value="[% IF ( enrolmentperiod ) %][% enrolmentperiod %][% END %]" /> meses</li>
+ <li><label for="enrolmentperioddate" style="width:6em;">Hasta la fecha: </label>
+ <input type="text" name="enrolmentperioddate" id="enrolmentperioddate" value="[% enrolmentperioddate %]" />
  <div id="enrolmentmessage" class="hint" style="margin-left:0;">No se puede tener "meses" y "hasta" al mismo tiempo</div>
  </li>
  </ol>
  </fieldset>
  </li>
- <li><label for="dateofbirthrequired">Age required: </label> <input type="text" name="dateofbirthrequired" id="dateofbirthrequired" value="[% dateofbirthrequired %]" size="3" maxlength="3" /> years</li>
- <li><label for="upperagelimit">Upperage limit: </label> <input type="text" name="upperagelimit" id="upperagelimit" size="3" maxlength="3" value="[% upperagelimit %]" /> years</li>
- <li><label for="enrolmentfee">Período de asociación</label><input type="text" name="enrolmentfee" id="enrolmentfee" size="6" value="[% enrolmentfee %]" /></li>
- <li><label for="overduenoticerequired">Overdue notice required: </label> <select name="overduenoticerequired" id="overduenoticerequired">
- [% IF ( overduenoticerequired ) %]
- <option value="0">No</option>
+ <li><label for="dateofbirthrequired">Edad requerida: </label> <input type="text" name="dateofbirthrequired" id="dateofbirthrequired" value="[% dateofbirthrequired %]" size="3" maxlength="3" /> años</li>
+ <li><label for="upperagelimit">Límite de edad superior: </label> <input type="text" name="upperagelimit" id="upperagelimit" size="3" maxlength="3" value="[% upperagelimit %]" /> años</li>
+ <li><label for="enrolmentfee">Costo de asociación: </label><input type="text" name="enrolmentfee" id="enrolmentfee" size="6" value="[% enrolmentfee %]" /></li>
+ <li><label for="overduenoticerequired">Se requiere aviso de retraso: </label> <select name="overduenoticerequired" id="overduenoticerequired">
+ [% IF ( overduenoticerequired ) %] <option value="0">No</option>
  <option value="1" selected="selected">Sí</option>
- [% ELSE %]
- <option value="0" selected="selected">No</option>
+ [% ELSE %] <option value="0" selected="selected">No</option>
  <option value="1">Sí</option>
- [% END %]
- </select></li>
- <li><label for="hidelostitems">Lost items in staff client</label> <select name="hidelostitems" id="hidelostitems">
- [% IF ( hidelostitems ) %]
- <option value="0">Shown</option>
+ [% END %] </select></li>
+ <li><label for="hidelostitems">Ítems perdidos en la interfaz administrativa</label> <select name="hidelostitems" id="hidelostitems">
+ [% IF ( hidelostitems ) %] <option value="0">Mostrado</option>
  <option value="1" selected="selected">Oculto por defecto</option>
- [% ELSE %]
- <option value="0" selected="selected">Shown</option>
+ [% ELSE %] <option value="0" selected="selected">Mostrado</option>
  <option value="1">Oculto por defecto</option>
- [% END %]
- </select></li>
- <li><label for="reservefee">Hold fee: </label><input type="text" name="reservefee" id="reservefee" size="6" value="[% reservefee %]" /></li>
- <li><label for="category_type">Category type: </label> <select name="category_type" id="category_type">
- [% IF ( type_n ) %]<option value="" selected="selected">Select a category type</option>[% ELSE %]<option value="">Select a category type</option>[% END %]
- [% IF ( type_A ) %]<option value="A" selected="selected">Adulto</option>[% ELSE %]<option value="A">Adulto</option>[% END %]
- [% IF ( type_C ) %]<option value="C" selected="selected">Niño</option>[% ELSE %]<option value="C">Niño</option>[% END %]
- [% IF ( type_S ) %]<option value="S" selected="selected">Administrativo</option>[% ELSE %]<option value="S">Administrativo</option>[% END %]
- [% IF ( type_I ) %]<option value="I" selected="selected">Institución</option>[% ELSE %]<option value="I">Institución</option>[% END %]
- [% IF ( type_P ) %]<option value="P" selected="selected">Profesional</option>[% ELSE %]<option value="P">Profesional</option>[% END %]
- [% IF ( type_X ) %]<option value="X" selected="selected">Estadístico</option>[% ELSE %]<option value="X">Estadístico</option>[% END %]
- </select>
+ [% END %] </select></li>
+ <li><label for="reservefee">Costo de reserva: </label><input type="text" name="reservefee" id="reservefee" size="6" value="[% reservefee %]" /></li>
+ <li><label for="category_type">Tipo de categoría: </label> <select name="category_type" id="category_type">
+ [% IF ( type_n ) %]<option value="" selected="selected">Seleccionar un tipo de categoría</option>[% ELSE %]<option value="">Seleccionar un tipo de categoría</option>[% END %] [% IF ( type_A ) %]<option value="A" selected="selected">Adulto</option>[% ELSE %]<option value="A">Adulto</option>[% END %] [% IF ( type_C ) %]<option value="C" selected="selected">Niño</option>[% ELSE %]<option value="C">Niño</option>[% END %] [% IF ( type_S ) %]<option value="S" selected="selected">Administrativo</option>[% ELSE %]<option value="S">Administrativo</option>[% END %] [% IF ( type_I ) %]<option value="I" selected="selected">Institución</option>[% ELSE %]<option value="I">Institución</option>[% END %] [% IF ( type_P ) %]<option value="P" selected="selected">Profesional</option>[% ELSE %]<option value="P">Profesional</option>[% END %] [% IF ( type_X ) %]<option value="X" selected="selected">Estadístico</option>[% ELSE %]<option value="X">Estadístico</option>[% END %] </select>
  </li></ol>
 </fieldset>
 
- [% IF ( EnhancedMessagingPreferences ) %]
- <fieldset class="rows">
+ [% IF ( EnhancedMessagingPreferences ) %] <fieldset class="rows">
  <h4>Las preferencias predeterminadas de mensajería para esta categoría de socio</h4>
- [% INCLUDE 'messaging-preference-form.inc' %]
- </fieldset>
- [% END %]
- <fieldset class="action"><input value="Guardar" type="button" onclick="Check(this.form);" /> </fieldset>
+ [% INCLUDE 'messaging-preference-form.inc' %] </fieldset>
+ [% END %] <fieldset class="action"><input value="Guardar" type="button" onclick="Check(this.form);" /> </fieldset>
  </form>
 
-[% END %]
-
-[% IF ( add_validate ) %]
-<h3>Datos guardados</h3>
+[% END %] [% IF ( add_validate ) %] <h3>Datos guardados</h3>
  <form action="[% script_name %]" method="post">
  <input type="submit" value="OK" />
  </form>
 
-[% END %]
-
-[% IF ( delete_confirm ) %]
- 
- <form action="[% script_name %]" method="post">
+[% END %] [% IF ( delete_confirm ) %] <form action="[% script_name %]" method="post">
  <fieldset><legend> 
- [% IF ( totalgtzero ) %]
- Category [% categorycode |html %] is in use. Deletion not possible![% ELSE %]
-Confirm deletion of category [% categorycode |html %][% END %]</legend>
+ [% IF ( totalgtzero ) %] Categoría [% categorycode |html %] está en uso. Imposible eliminar![% ELSE %] Confirmar eliminación de categoría [% categorycode |html %][% END %]</legend>
 
-[% IF ( totalgtzero ) %]<div class="dialog alert"><strong>Esta categoría es usada [% total %] veces</strong>. Imposible Borrar</div>[% END %]
- <table>
- <tr><th scope="row">Category code: </th><td>[% categorycode |html %]</td></tr>
- <tr><th scope="row">Descripción:</th><td>[% description |html %]</td></tr>
- <tr><th scope="row">Enrollment period: </th>
+[% IF ( totalgtzero ) %]<div class="dialog alert"><strong>Esta categoría es usada [% total %] veces</strong>. Imposible Borrar</div>[% END %] <table>
+ <tr><th scope="row">Código de categoría: </th><td>[% categorycode |html %]</td></tr>
+ <tr><th scope="row">Descripción: </th><td>[% description |html %]</td></tr>
+ <tr><th scope="row">Período de asociación: </th>
  <td>
-  [% IF ( enrolmentperiod ) %] [% enrolmentperiod %] meses [% ELSE %] hasta [% enrolmentperioddate %] [% END %]</td>
+ [% IF ( enrolmentperiod ) %] [% enrolmentperiod %] meses [% ELSE %] hasta [% enrolmentperioddate %] [% END %] </td>
  </tr>
- <tr><th scope="row">Age required: </th><td>[% dateofbirthrequired %] años</td></tr>
- <tr><th scope="row">Upperage limit: </th><td>[% upperagelimit %] años</td></tr>
- <tr><th scope="row">Período de asociación</th><td>[% enrolmentfee %]</td></tr>
- <tr><th scope="row">Recepción de pedidos</th><td> [% IF ( overduenoticerequired ) %]Sí[% ELSE %]No[% END %]</td></tr>
- <tr><th scope="row">Lost items in staff client</th><td>[% IF ( hidelostitems ) %]Oculto por defecto[% ELSE %]Mostrado[% END %]</td></tr>
- <tr><th scope="row">Hold fee: </th><td>[% reservefee %]</td></tr>
+ <tr><th scope="row">Edad requerida: </th><td>[% dateofbirthrequired %] años</td></tr>
+ <tr><th scope="row">Límite de edad superior: </th><td>[% upperagelimit %] años</td></tr>
+ <tr><th scope="row">Costo de asociación: </th><td>[% enrolmentfee %]</td></tr>
+ <tr><th scope="row">Recibe avisos de retrasos: </th><td>[% IF ( overduenoticerequired ) %]Si[% ELSE %]No[% END %]</td></tr>
+ <tr><th scope="row">Ítems perdidos en la interfaz administrativa</th><td>[% IF ( hidelostitems ) %]Oculto por defecto[% ELSE %]Mostrado[% END %]</td></tr>
+ <tr><th scope="row">Costo de reserva: </th><td>[% reservefee %]</td></tr>
 </table>
- <fieldset class="action">[% IF ( totalgtzero ) %]
-<input type="submit" value="OK" /></form>
- [% ELSE %]
- <input type="hidden" name="op" value="delete_confirmed" />
- <input type="hidden" name="categorycode" value="[% categorycode |html %]" /> <input type="submit" value="Delete this category" /> <a class="cancel" href="/cgi-bin/koha/admin/categorie.pl">Cancelar</a>
+ <fieldset class="action">[% IF ( totalgtzero ) %] <input type="submit" value="OK" /></form>
+ [% ELSE %] <input type="hidden" name="op" value="delete_confirmed" />
+ <input type="hidden" name="categorycode" value="[% categorycode |html %]" /> <input value="Eliminar esta categoría" type="submit" /> <a class="cancel" href="/cgi-bin/koha/admin/categorie.pl">Cancelar</a>
  [% END %]</fieldset></fieldset></form>
-[% END %]
-
-[% IF ( delete_confirmed ) %]
-<h3>Category deleted</h3>
+[% END %] [% IF ( delete_confirmed ) %] <h3>Categoría eliminada</h3>
 
  <form action="[% script_name %]" method="post">
  <input type="submit" value="OK" />
  </form>
-[% END %]
-
-[% IF ( else ) %]
-
-<div id="toolbar">
+[% END %] [% IF ( else ) %] <div id="toolbar">
  <script type="text/javascript">
 	//<![CDATA[
 
@@ -263,83 +196,51 @@ Confirm deletion of category [% categorycode |html %][% END %]</legend>
  <li><a id="newcategory" href="/cgi-bin/koha/admin/categorie.pl?op=add_form">Nueva categoría</a></li>
 </ul></div>
 
-<h2>Patron category administration</h2>
-[% IF ( searchfield ) %] Has buscado [% searchfield %]</span>
- [% END %]
-[% IF ( loop ) %]
-<div id="pagertable_categorie">
-[% INCLUDE 'table-pager.inc' perpage='20' %]
-</div>
+<h2>Administración de categoría de socio</h2>
+[% IF ( searchfield ) %] Usted buscó [% searchfield %]</span>
+ [% END %] [% IF ( loop ) %] <div id="pagertable_categorie">
+[% INCLUDE 'table-pager.inc' perpage='20' %] </div>
  <table id="table_categorie">
  <thead>
  <th scope="col">Código</th>
  <th scope="col">Nombre de la categoría</th>
  <th scope="col">Tipo</th>
  <th scope="col">Período de asociación</th>
- <th scope="col">Age required</th>
+ <th scope="col">Edad requerida</th>
  <th scope="col">Límite de edad superior</th>
  <th scope="col">Costo de asociación</th>
  <th scope="col">Retraso</th>
- <th scope="col">Lost items</th>
+ <th scope="col">Ítems perdidos</th>
  <th scope="col">Costo de reserva</th>
- [% IF ( EnhancedMessagingPreferences ) %]
- <th scope="col">Mensajería</th>
- [% END %]
- <th scope="col" colspan="2">&nbsp; </th>
+ [% IF ( EnhancedMessagingPreferences ) %] <th scope="col">Mensajería</th>
+ [% END %] <th scope="col" colspan="2">&nbsp; </th>
  </thead>
- [% FOREACH loo IN loop %]
- <tr>
+ [% FOREACH loo IN loop %] <tr>
  <td>[% loo.categorycode |html %]</td>
  <td>
  <a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |url %]">[% loo.description |html %]</a>
  </td>
  <td>
- [% IF ( loo.type_A ) %]Adulot[% END %] [% IF ( loo.type_C ) %]Niño[% END %] [% IF ( loo.type_P ) %]Prof.[% END %] [% IF ( loo.type_I ) %]Org.[% END %] [% IF ( loo.type_S ) %]Personal[% END %] [% IF ( loo.type_X ) %]Estadístico[% END %] </td>
+ [% IF ( loo.type_A ) %]Adulto[% END %] [% IF ( loo.type_C ) %]Niño[% END %] [% IF ( loo.type_P ) %]Prof.[% END %] [% IF ( loo.type_I ) %]Org.[% END %] [% IF ( loo.type_S ) %]Personal[% END %] [% IF ( loo.type_X ) %]Estadístico[% END %] </td>
  <td>
-  [% IF ( loo.enrolmentperiod ) %] [% loo.enrolmentperiod %] meses [% ELSE %] hasta [% loo.enrolmentperioddate %] [% END %]</td>
+ [% IF ( loo.enrolmentperiod ) %] [% loo.enrolmentperiod %] meses [% ELSE %] hasta [% loo.enrolmentperioddate %] [% END %] </td>
  <td>[% loo.dateofbirthrequired %] años</td>
  <td>[% loo.upperagelimit %] años</td>
  <td>[% loo.enrolmentfee %]</td>
- <td> [% IF ( loo.overduenoticerequired ) %]Sí[% ELSE %]No[% END %]</td>
+ <td>[% IF ( loo.overduenoticerequired ) %]Si[% ELSE %]No[% END %]</td>
  <td>[% IF ( loo.hidelostitems ) %]Oculto[% ELSE %]Mostrado[% END %]</td>
  <td>[% loo.reservefee %]</td>
- [% IF ( EnhancedMessagingPreferences ) %]
- <td style="white-space: nowrap; font-size:80%;">
- [% IF ( loo.messaging_prefs ) %]
- [% FOREACH prefs IN loo.messaging_prefs %]
- [% FOREACH transport IN prefs.transports %]
- [% IF ( transport.transport ) %]
- [% IF ( prefs.Item_Due ) %]Item due
- [% ELSIF ( prefs.Advance_Notice ) %]Advance notice
- [% ELSIF ( prefs.Upcoming_Events ) %]Upcoming events
- [% ELSIF ( prefs.Hold_Filled ) %]Hold filled
- [% ELSIF ( prefs.Item_Check_in ) %]Item check-in
- [% ELSIF ( prefs.Item_Checkout ) %]Item checkout
- [% ELSE %]Unknown
- [% END %]:
- <strong>[% transport.transport %]</strong><br />
- [% ELSE %]None<br />[% END %]
- [% END %]
- [% END %]
- [% ELSE %]
- None
- [% END %]
- </td>
- [% END %]
- <td><a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |url %]">Editar</a></td>
- <td><a href="[% loo.script_name %]?op=delete_confirm&amp;categorycode=[% loo.categorycode |url %]">Eliminar</a></td>
+ [% IF ( EnhancedMessagingPreferences ) %] <td style="white-space: nowrap; font-size:80%;">
+ [% IF ( loo.messaging_prefs ) %] [% FOREACH prefs IN loo.messaging_prefs %] [% FOREACH transport IN prefs.transports %] [% IF ( transport.transport ) %] [% IF ( prefs.Item_Due ) %]Ítem vence [% ELSIF ( prefs.Advance_Notice ) %]Aviso previo [% ELSIF ( prefs.Upcoming_Events ) %]Eventos próximos [% ELSIF ( prefs.Hold_Filled ) %]Reserva completada [% ELSIF ( prefs.Item_Check_in ) %]Ítem devuelto [% ELSIF ( prefs.Item_Checkout ) %]Ítem prestado [% ELSE %]Desconocido [% END %]: <strong>[% transport.transport %]</strong><br />
+ [% ELSE %]Ninguno<br />[% END %] [% END %] [% END %] [% ELSE %] Ninguno [% END %] </td>
+ [% END %] <td><a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |url %]">Editar</a></td>
+ <td><a href="[% loo.script_name %]?op=delete_confirm&amp;categorycode=[% loo.categorycode |url %]">Borrar</a></td>
  </tr>
- [% END %]
- </table>
-[% ELSE %]
- <div class="dialog alert">No categories have been defined. <a href="/cgi-bin/koha/admin/categorie.pl?op=add_form">Create a new category</a>.</div>
-[% END %]
-[% END %]
-
-</div>
+ [% END %] </table>
+[% ELSE %] <div class="dialog alert">No se han definido categorías. <a href="/cgi-bin/koha/admin/categorie.pl?op=add_form">Crear una nueva categoría</a>.</div>
+[% END %] [% END %] </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'admin-menu.inc' %]
+[% INCLUDE 'admin-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

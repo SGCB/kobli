@@ -1,12 +1,6 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Circulation &rsaquo; Holds to pull</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación &rsaquo; Reservas a preparar</title>
 [% INCLUDE 'doc-head-close.inc' %]
-<!-- Additions to enable Calendar system -->
-<link rel="stylesheet" type="text/css" href="[% themelang %]/lib/calendar/calendar-system.css" />
-<!-- End of additions --><!-- Additions to enable Calendar system -->
-<script type="text/javascript" src="[% themelang %]/lib/calendar/calendar.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/calendar/calendar-en.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/calendar/calendar-setup.js"></script>
+[% INCLUDE 'calendar.inc' %]
 <!-- Plugin datatables -->
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
@@ -47,11 +41,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body id="circ_pendingreserves" class="circ">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'circ-search.inc' %]
-
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; Holds to pull</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; Reservas a retirar </div>
 
 <div id="doc3" class="yui-t2">
 
@@ -59,49 +49,40 @@ $(document).ready(function() {
  <div id="yui-main">
  <div class="yui-b">
 
-<h2>Holds to pull[% IF ( run_report ) %] placed between [% from %] and [% to %][% END %]</h2>
-[% IF ( run_report ) %]
-<h3>Informe presentado el [% todaysdate %]</h3>
-<p>Las siguientes reservas no se han completado. Por favor, recupéralas y verifícalas.</p>
+<h2>Reservas a retirar[% IF ( run_report ) %] colocadas entre [% from %] y [% to %][% END %]</h2>
+[% IF ( run_report ) %] <h3>Reportada el [% todaysdate %]</h3>
+<p>Las siguientes reservas no se han completado. Por favor búsquelas y retórnelas.</p>
 <div class="searchresults">
- [% IF ( reserveloop ) %]
- <table id="holdst">
+ [% IF ( reserveloop ) %] <table id="holdst">
  <thead>
  <tr>
- <th>Pull this many items</th>
- <th>Items available</th>
- <th>Patrons with holds</th>
+ <th>Retirar estos muchos ítems </th>
+ <th>Ítems disponibles </th>
+ <th>Socios con reservas </th>
  <th>Título</th>
  <th>Bibliotecas</th>
- <th>Available call numbers</th>
- <th>Available copy No</th>
- <th>Available enumeration</th>
- <th>Available itypes</th>
- <th>Available locations</th>
- <th>Earliest hold date</th>
+ <th>Signaturas topográficas disponibles </th>
+ <th>Copia disponible Nro </th>
+ <th>Enumeración disponible </th>
+ <th>Tipos de ítem disponibles </th>
+ <th>Ubicaciones disponibles </th>
+ <th>Primera fecha de reserva</th>
  </tr>
  </thead>
  <tbody>
- [% FOREACH reserveloo IN reserveloop %]
- <tr>
- [% IF ( reserveloo.borrowernumber ) %]
- <td><p><b>[% reserveloo.pullcount %]</b></p></td>
+ [% FOREACH reserveloo IN reserveloop %] <tr>
+ [% IF ( reserveloo.borrowernumber ) %] <td><p><b>[% reserveloo.pullcount %]</b></p></td>
  <td>[% reserveloo.count %]</td>
  <td>[% reserveloo.rcount %]</td>
  <td>
  <p>
- [% INCLUDE 'biblio-default-view.inc' biblionumber = reserveloo.biblionumber %]
- [% reserveloo.title |html %]
- </a> [% IF ( reserveloo.author ) %]<p> por [% reserveloo.author %]</p>[% END %]
- </p>
+ [% INCLUDE 'biblio-default-view.inc' biblionumber = reserveloo.biblionumber %] [% reserveloo.title |html %] </a> [% IF ( reserveloo.author ) %]<p> por [% reserveloo.author %]</p>[% END %] </p>
  </td>
- [% ELSE %]
+ [% ELSE %] <td>"</td>
  <td>"</td>
  <td>"</td>
  <td>"</td>
- <td>"</td>
- [% END %]
- <td>[% reserveloo.holdingbranch %]</td>
+ [% END %] <td>[% reserveloo.holdingbranch %]</td>
  <td><p>[% reserveloo.itemcallnumber %]</p></td>
  <td><p>[% reserveloo.copyno %]</p></td>
  <td><p>[% reserveloo.enumchron %]</p></td>
@@ -110,11 +91,9 @@ $(document).ready(function() {
  <td width="15%">
  <p>[% reserveloo.reservedate %]</p>
  <p>en [% reserveloo.branch %]</p>
- [% IF ( reserveloo.statusw ) %]<p>Esperando</p>[% END %][% IF ( reserveloo.statusf ) %]<p>Rellenado</p>[% END %]
- </td>
+ [% IF ( reserveloo.statusw ) %]<p>Esperando</p>[% END %][% IF ( reserveloo.statusf ) %]<p>Llenado por completo</p>[% END %] </td>
  </tr>
- [% END %]
- </tbody>
+ [% END %] </tbody>
  <tfoot>
  <tr>
  <td><input type="text" class="filter" data-column_num="0" placeholder="Pull this many items" style="width:95%"/></td>
@@ -131,13 +110,9 @@ $(document).ready(function() {
  </tr>
  </tfoot>
  </table>
- [% ELSE %]
- <b>No se encontraron ítems.</b>
- [% END %]
-</div>
-[% END %]
-
-</div>
+ [% ELSE %] <b>No se encontraron ítems</b>
+ [% END %] </div>
+[% END %] </div>
 </div>
 <div class="yui-b">
 <div id="filters">
@@ -148,68 +123,15 @@ $(document).ready(function() {
 <ol>
 <li>
 <label for="from">
- Fecha de inicio:</label>
-<input type="text" size="10" id="from" name="from" value="[% from %]" />
-<img src="[% themelang %]/lib/calendar/cal.gif"  border="0" id="openCalendarFrom" style="cursor: pointer;" alt="" />
-<script language="JavaScript" type="text/javascript">
-function validate1(date) {
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    var weekDay = date.getDay();
-    var dayMonth = month + '-' + day;
-    var dateString = year + '-' + month + '-' + day;
-    var dateTo = document.getElementById('to').value.split("-");
-    var limitDate = new Date(dateTo[0], (dateTo[1] - 1), dateTo[2]);
-    if (date > limitDate) {
-            return true;
-    } else {
-            return false;
-    }
-}
-Calendar.setup(
-        {
-        inputField : "from",
-        ifFormat : "[% DHTMLcalendar_dateformat %]",
-        button : "openCalendarFrom",
-        disableFunc : validate1,
-        dateStatusFunc : validate1
-        }
-);
-</script></li>
+ Fecha de Inicio: </label>
+<input type="text" size="10" id="from" name="from" value="[% from %]" class="datepickerfrom" />
+</li>
 <li><label for="to">
- Fecha de finalización:</label>
-<input size="10" id="to" name="to" value="[% to %]" type="text" />
-<img src="[% themelang %]/lib/calendar/cal.gif" alt="" id="openCalendarTo" style="cursor: pointer;" border="0" />
-<script type="text/javascript">
-        function validate2(date) {
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-            var weekDay = date.getDay();
-            var dayMonth = month + '-' + day;
-            var dateString = year + '-' + month + '-' + day;
-            var dateFrom = document.getElementById('from').value.split("-");
-            var limitDate = new Date(dateFrom[0], (dateFrom[1] - 1), dateFrom[2]);
-            if (limitDate > date) {
-                    return true;
-            } else {
-                    return false;
-            }
-        }
-
-        Calendar.setup(
-                {
-                    inputField : "to",
-                    ifFormat : "[% DHTMLcalendar_dateformat %]",
-                    button : "openCalendarTo",
-                    disableFunc : validate2,
-                    dateStatusFunc : validate2
-                }
-        );
-</script></li>
+ Fecha final: </label>
+<input type="text" size="10" id="to" name="to" value="[% to %]" class="datepickerto" />
+</li>
 </ol>
-<p><i>(Incluyendo el valor por defecto que es de dos días anterior a la fecha actual, por lo que hay que establecer el rango de fechas como se necesite.)</i></p>
+<p><i>(Inclusive, el valor por defecto es de 2 días atrás hasta hoy, establezca otros rangos si es necesario.)</i></p>
 <fieldset class="action"><input value="Enviar" name="run_report" type="submit" class="submit" /></fieldset>
 </fieldset>
 </form>

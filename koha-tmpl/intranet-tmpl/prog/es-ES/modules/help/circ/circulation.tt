@@ -1,8 +1,6 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Checking Out (Issuing)</h1>
 
-<h1>Prestando</h1>
-
-<p>To check an item out to a patron, first search for that patron using one of the many options listed above.</p>
+<p>Para prestar un ítem a un socio, primero busque el socio utilizando una de varias opciones.</p>
 
 <p>At the top of the Check Out screen is a box for you to type or scan the item's barcode into.
 
@@ -10,30 +8,30 @@
  <li style="color: #990000">Important: Many modern barcode scanners will send a 'return' to the browser, making it so that the 'Check Out' button is automatically clicked</li>
 </ul>
 <ul>
- <li>If the barcode is not found you will be prompted to use fast cataloging to add the item. Learn more about fast cataloging later in this manual.</li>
+ <li>Si el código de barras no se encuentra se le ofrecerá utilizar catalogación rápida para agregar el ítem. Aprenda más acerca de catalogación rápida luego en este manual.</li>
 </ul>
 
 <p>Below the box for the barcode there may be options for you to override the default due date for the item.
 
 <ul>
- <li>Esta opción sólo aparecerá si has configurado la preferencia del sistema SpecifyDueDate para permitir al personal sobreescribir la fecha de vencimiento</li>
+ <li>Esta opción sólo aparecerá si ha configurado la preferencia del sistema SpecifyDueDate para permitir al personal sobreescribir la fecha de vencimiento</li>
 </ul>
 
 <p>At the bottom of the page there is a summary of the patron's current checked out items along with the due date (and time if the item is an hourly loan), items checked out today will appear at the top.</p>
 
 <p style="background-color: #ffe599"><strong>Tip</strong> If the checked out time is listed as 00:00 then the item is a daily loan item. The due time for daily checkouts will show 23:59 which is the last minute of the day.</p>
 
-<p>Al final de la página, también está la lista de ítems que el socio tiene en reserva</p>
+<p>Also at the bottom of the page is the list of items the patron has on hold</p>
 
 <p>From the holds list you can suspend or resume patrons holds using the options at the bottom of the list.</p>
 
-<p>Si hay notas en el expediente del socio, aparecerán a la derecha de la casilla de préstamo</p>
+<p>Si hay algunas notas en el expediente del socio éstas aparecerán a la derecha de la caja de préstamo</p>
 
-<p>Si el socio tiene una reserva en espera en la biblioteca, también aparecerá a la derecha de la casilla de préstamo, facilitando que bibliotecario de circulación vea que hay otro ítem que entregar al socio.</p>
+<p>Si el socio tiene una reserva en espera en la biblioteca que aparece a la derecha de la caja de préstamo le será fácil al personal de circulación si hay otro ítem para darle al socio</p>
 
 <h3>Printing Receipts</h3>
 
-<p>Once you have checked out all of the items for the patron you can print them a receipt by choosing one of two methods.</p>
+<p>Una vez haya prestado todos los ítems al socio puede imprimirle un recibo seleccionando uno de dos métodos.</p>
 
 <p>If you have the CircAutoPrintQuickSlip preference set to 'open a print quick slip window' you can simply hit enter on your keyboard or scan a blank piece of paper with your barcode scanner. The idea being that you're "checking out" a blank barcode which triggers Koha to print the 'Quick slip.'</p>
 
@@ -49,50 +47,45 @@
 
 <p>If you have the CircAutoPrintQuickSlip preference set to 'clear the screen' then you simply need to hit enter or scan a blank barcode and the screen will be cleared of the current patron.</p>
 
-<h2>Mensajes de préstamo</h2>
+<h2>Check Out Messages</h2>
 
 <p>If you check out an item that has multiple pieces and you have cataloged that information in subfield 3 of the item record (in MARC21) a message will pop up when you check out that item telling you how many pieces should be there.</p>
 
-<p>Hay momentos en que Koha evitará que el bibliotecario pueda prestar ítems a un socio. Cuando esto suceda aparecerá una advertencia que notificará al bibliotecario por qué el socio no puede tener préstamos.</p>
+<p>Hay momentos en que Koha evitará que el bibliotecario pueda prestar ítem a un socio. Cuando esto suceda aparecerá una advertencia que notificará al bibliotecario por qué el socio no puede tener préstamos.</p>
 
 <ul>
- <li>Patron owes too much in fines
-<ul>
- <li>Puedes establecer la cantidad para la cual se bloquean los préstamos del socio con preferencia del sistema noissuescharge</li>
+ <li>El socio debe demasiado en concepto de multas <ul>
+ <li>Puede establecer la cantidad para la cual se bloquean los préstamos del socio con preferencia del sistema noissuescharge</li>
 </ul>
 </li>
- <li>Patron has been barred from the library
-<ul>
- <li>Un bibliotecario puede establecer esto editando el registro de socio y agregando una bandera o por el disparador de estado Atrasado/Aviso</li>
+ <li>El socio ha sido suspendido en la biblioteca <ul>
+ <li>This can be set by the librarian editing a patron record and adding a flag or by the Overdue/Notice Status Triggers</li>
 </ul>
 </li>
- <li>Patron needs to confirm their address
-<ul>
- <li>Un bibliotecario puede establecer esto editando un registro de usuario y añadiendo una bandera</li>
+ <li>El socio debe confirmar su dirección <ul>
+ <li>Esto se puede establecer por un bibliotecario editando un registro de usuario y adicionando una bandera</li>
 </ul>
 </li>
- <li>Patrons has lost their library card
-<ul>
- <li>Un bibliotecario puede establecer esto editando un registro de usuario y añadiendo una bandera</li>
+ <li>Socios que han perdido su carnet de la biblioteca <ul>
+ <li>Esto se puede establecer por un bibliotecario editando un registro de usuario y adicionando una bandera</li>
 </ul>
 </li>
 </ul>
 
-<h2>Advertencias de préstamos</h2>
+<h2>Check Out Warnings</h2>
 
-<p>En ocasiones, los préstamos activarán mensajes de alerta que aparecerán en una casilla amarilla sobre el campo de préstamo. Estos avisos necesitan ser reconocidos antes de que puedas continuar tomando ítems prestados.</p>
+<p>A veces, los préstamos harán que aparezcan mensajes de advertencia con un recuadro amarillo sobre el campo. Estas advertencias deben ser atendidas antes de seguir prestando ítems.</p>
 
 <ul>
- <li>Patron has outstanding fines</li>
- <li>Item on hold for someone else</li>
- <li>El ítem debería estar en la estantería de reservas esperando a otra persona</li>
- <li>Item already checked out to this patron</li>
- <li>Item checked out to another patron</li>
+ <li>El socio tiene multas pendientes</li>
+ <li>El ítem está reservado a otro socio</li>
+ <li>El ítem debería estar en la estantería de reserva esperando por un socio</li>
+ <li>El ítem está prestado actualmente a este socio</li>
+ <li>El artículo está prestado a otro socio</li>
  <li>El ítem no puede prestarse</li>
- <li>Patron has too many things checked out</li>
- <li>Item cannot be renewed
-<ul>
- <li>Esto se puede anular con la preferencia del sistema AllowRenewalLimitOverride</li>
+ <li>El socio tiene demasiados préstamos</li>
+ <li>El título no puede renovarse <ul>
+ <li>Esto puede ser anulado con la preferencia del sistema AllowRenewalLimitOverride</li>
 </ul>
 </li>
  <li>Barcode not found
@@ -118,7 +111,7 @@
 
 <p>After clicking the 'Add item' button the item will automatically be checked out the patron you were trying to check the book out to originally.</p>
 
-<h2>Mensajes de circulación</h2>
+<h2>Circulation Messages</h2>
 
 <p>Circulation messages are short messages that librarians can leave for their patrons or their colleagues that will appear at the time of circulation.</p>
 
@@ -138,6 +131,6 @@
 
 <p>Circulation messages meant for the patron will appear when they log into the OPAC.</p>
 
-<p><strong>See the full documentation for Checking Out in the <a href="http://manual.koha-community.org/3.8/en/circulation.html#checkingout">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Checking Out in the <a href="http://manual.koha-community.org/3.8/en/circulation.html#checkingout">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

@@ -1,8 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Catalogación &rsaquo; Combinando de registros</title>
-[% INCLUDE 'greybox.inc' %]
-[% INCLUDE 'doc-head-close.inc' %]
-<style type="text/css">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; Fusión de registros</title>
+[% INCLUDE 'greybox.inc' %] [% INCLUDE 'doc-head-close.inc' %] <style type="text/css">
 div.record ul, div.record li { float:none; display:block; }
 div#result { margin-top: 1em; }
 /* We use this style "against" the li ui-tabs-nav style automatically applied */
@@ -19,7 +16,7 @@ div#result { margin-top: 1em; }
 
 $(document).ready(function(){
     // Creating tabs
-    $("#tabs > ul").tabs();
+    $("#tabs").tabs();
 
     // Getting marc structure via ajax
     tagslib = [];
@@ -73,7 +70,7 @@ $(document).ready(function(){
 	    }
 	    // If the field is not repeatable, we check if it already exists in the result table
 	    if (canbeadded == false) {
-		alert(_('El campo no es repetible y ya existe en el registro de destino. Por lo tanto, no se puede añadir.'));
+		alert(_('El campo no es repetible y ya existe en el registro destino. Por lo tanto, no se puede añadir.'));
 		pField.checked = 0;
 	    } else {
 
@@ -170,9 +167,7 @@ function changeFramework(fw) {
 </script>
 </head>
 <body id="cat_merge" class="cat">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cataloging-search.inc' %]
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/cataloguing/addbooks.pl">Catalogación</a> &rsaquo; Merging records</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cataloging-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/cataloguing/addbooks.pl">Catalogación</a> &rsaquo; Combinando registros</div>
 
 <div id="doc" class="yui-t7">
 
@@ -181,21 +176,10 @@ function changeFramework(fw) {
 
 
 <h1>Combinando registros</h1>
-[% IF ( result ) %]
- [% IF ( errors ) %]
- [% FOREACH error IN errors %]
- <div class="dialog alert">[% error.error %].<br />Por lo tanto, el registro a combinar no se ha eliminado.</div>
- [% END %]
-
- [% ELSE %]
- <script type="text/javascript">window.location.href="/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% biblio1 %]"</script> 
- <p>Combinación realizada con éxito.<a href="/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% biblio1 %]">Haz clic aquí para ver el registro combinado.</a></p>
- [% END %]
-
-[% ELSE %]
-
-[% IF ( choosereference ) %]
-<p>Por favor, elige qué registro será la referencia para la combinación .El registro elegido como referencia se mantendrá y el otro será eliminado.</p>
+[% IF ( result ) %] [% IF ( errors ) %] [% FOREACH error IN errors %] <div class="dialog alert">[% error.error %].<br />Por lo tanto, el registro que se fusionará no se ha eliminado.</div>
+ [% END %] [% ELSE %] <script type="text/javascript">window.location.href="/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% biblio1 %]"</script> 
+ <p>La fusión se ha realizado correctamente. <a href="/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% biblio1 %]">Haga clic aquí para ver el registro combinado.</a></p>
+ [% END %] [% ELSE %] [% IF ( choosereference ) %] <p>Por favor elija cual registro será la referencia para la combinación .El registro elegido como referencia se mantendrá y el otro será eliminado.</p>
 <form id="mergeform" action="/cgi-bin/koha/cataloguing/merge.pl" method="post">
  <fieldset class="rows">
  <legend>Combinar referencia</legend>
@@ -203,35 +187,22 @@ function changeFramework(fw) {
  <li class="radio"><input type="radio" value="[% biblio1 %]" checked="checked" id="mergereference1" name="mergereference" onclick="changeFramework('[% frameworkcode1 %]')" /><label for="mergereference1">[% title1 %] [% FOREACH subtitl1 IN subtitle1 %] [% subtitl1.subfield %][% END %] (<a href="/cgi-bin/koha/catalogue/showmarc.pl?id=[% biblio1 %]" title="MARC" rel="gb_page_center[600,500]">[% biblio1 %]</a>)</label></li>
  <li class="radio"><input type="radio" value="[% biblio2 %]" id="mergereference2" name="mergereference" onclick="changeFramework('[% frameworkcode2 %]')" /><label for="mergereference2">[% title2 %] [% FOREACH subtitl2 IN subtitle2 %] [% subtitl2.subfield %][% END %] (<a href="/cgi-bin/koha/catalogue/showmarc.pl?id=[% biblio2 %]" title="MARC" rel="gb_page_center[600,500]">[% biblio2 %]</a>)</label></li>
 
- [% IF frameworkselect %]
- <li><label for="frameworkcode">Using framework:</label>
+ [% IF frameworkselect %] <li><label for="frameworkcode">Utilizando hoja de trabajo:</label>
  <select name="frameworkcode" id="frameworkcode">
  <option value="Default">Predeterminado</option>
- [% FOREACH frameworkcodeloo IN frameworkselect %]
- [% IF ( frameworkcodeloo.selected ) %]
- <option value="[% frameworkcodeloo.value %]" selected="selected">
- [% ELSE %]
- <option value="[% frameworkcodeloo.value %]">
- [% END %]
- [% frameworkcodeloo.frameworktext %]
- </option>
- [% END %]
- </select></li>
- [% END %]
-</ol>
+ [% FOREACH frameworkcodeloo IN frameworkselect %] [% IF ( frameworkcodeloo.selected ) %] <option value="[% frameworkcodeloo.value %]" selected="selected">
+ [% ELSE %] <option value="[% frameworkcodeloo.value %]">
+ [% END %] [% frameworkcodeloo.frameworktext %] </option>
+ [% END %] </select></li>
+ [% END %] </ol>
 
  <input type="hidden" name="biblionumber" value="[% biblio1 %]" />
  <input type="hidden" name="biblionumber" value="[% biblio2 %]" />
  <fieldset class="action"><input value="Siguiente" type="submit" /></fieldset>
  </fieldset>
 </form>
-[% ELSE %]
-[% IF ( errors ) %]
- [% FOREACH error IN errors %]
- <div class="error">[% error.error %]</div>
- [% END %]
-[% ELSE %]
-<form id="mergeform" action="/cgi-bin/koha/cataloguing/merge.pl" method="post" onsubmit="return mergeformsubmit()">
+[% ELSE %] [% IF ( errors ) %] [% FOREACH error IN errors %] <div class="error">[% error.error %]</div>
+ [% END %] [% ELSE %] <form id="mergeform" action="/cgi-bin/koha/cataloguing/merge.pl" method="post" onsubmit="return mergeformsubmit()">
 
 <div class="yui-g">
 <div class="yui-u first">
@@ -242,72 +213,48 @@ function changeFramework(fw) {
  <li><a href="#tabrecord2">[% biblio2 %]</a></li>
  </ul>
  <div id="tabrecord1">
- [% IF ( record1 ) %]
-
- <div class="record">
+ [% IF ( record1 ) %] <div class="record">
  <ul id="ulrecord1">
- [% FOREACH record IN record1 %]
- [% FOREACH fiel IN record.field %]
- <li id="k[% fiel.key %]">
+ [% FOREACH record IN record1 %] [% FOREACH fiel IN record.field %] <li id="k[% fiel.key %]">
  <input type="checkbox" checked="checked" class="fieldpick" id="rec_1_[% fiel.key %]" /> 
  <span class="field">[% fiel.tag %]</span>
 
  <input type="hidden" name="tag_[% fiel.tag %]_indicator1_[% fiel.key %]" value="[% fiel.indicator1 %]" />
  <input type="hidden" name="tag_[% fiel.tag %]_indicator2_[% fiel.key %]" value="[% fiel.indicator2 %]" />
-  [% IF ( fiel.value ) %] / [% fiel.value %] <input type="hidden" name="tag_[% fiel.tag %]_code_00_[% fiel.key %]" value="00" />
+ [% IF ( fiel.value ) %] / [% fiel.value %] <input type="hidden" name="tag_[% fiel.tag %]_code_00_[% fiel.key %]" value="00" />
  <input type="hidden" name="tag_[% fiel.tag %]_subfield_00_[% fiel.key %]" value="[% fiel.value %]" />
- [% END %]
-
- [% IF ( fiel.subfield ) %]
- <ul>
- [% FOREACH subfiel IN fiel.subfield %]
- <li id="k[% subfiel.subkey %]">
+ [% END %] [% IF ( fiel.subfield ) %] <ul>
+ [% FOREACH subfiel IN fiel.subfield %] <li id="k[% subfiel.subkey %]">
  <input type="checkbox" checked="checked" class="subfieldpick" id="rec_1_[% subfiel.subkey %]" /> 
- <span class="subfield">[% subfiel.subtag %]</span> / [% subfiel.value %]<input type="hidden" name="tag_[% subfiel.tag %]_code_[% subfiel.subtag %]_[% subfiel.key %]_[% subfiel.subkey %]" value="[% subfiel.subtag %]" />
+ <span class="subfield">[% subfiel.subtag %]</span> / [% subfiel.value %] <input type="hidden" name="tag_[% subfiel.tag %]_code_[% subfiel.subtag %]_[% subfiel.key %]_[% subfiel.subkey %]" value="[% subfiel.subtag %]" />
  <input type="hidden" name="tag_[% subfiel.tag %]_subfield_[% subfiel.subtag %]_[% subfiel.key %]_[% subfiel.subkey %]" value="[% subfiel.value |html%]" />
  </li>
- [% END %]
- </ul>
- [% END %]
- [% END %]
- </li>
- [% END %]
- </ul>
+ [% END %] </ul>
+ [% END %] [% END %] </li>
+ [% END %] </ul>
  </div><!-- /div.record -->
 [% END %]
  </div><!-- /div#tabrecord1 -->
  <div id="tabrecord2">
- [% IF ( record2 ) %]
-
- <div class="record">
+ [% IF ( record2 ) %] <div class="record">
  <ul id="ulrecord2">
- [% FOREACH record IN record2 %]
- [% FOREACH fiel IN record.field %]
- <li id="k[% fiel.key %]">
+ [% FOREACH record IN record2 %] [% FOREACH fiel IN record.field %] <li id="k[% fiel.key %]">
  <input type="checkbox" class="fieldpick" id="rec_2_[% fiel.key %]" /> 
  <span class="field">[% fiel.tag %]</span>
 
  <input type="hidden" name="tag_[% fiel.tag %]_indicator1_[% fiel.key %]" value="[% fiel.indicator1 %]" />
  <input type="hidden" name="tag_[% fiel.tag %]_indicator2_[% fiel.key %]" value="[% fiel.indicator2 %]" />
-  [% IF ( fiel.value ) %] / [% fiel.value %] <input type="hidden" name="tag_[% fiel.tag %]_code_00_[% fiel.key %]" value="00" />
+ [% IF ( fiel.value ) %] / [% fiel.value %] <input type="hidden" name="tag_[% fiel.tag %]_code_00_[% fiel.key %]" value="00" />
  <input type="hidden" name="tag_[% fiel.tag %]_subfield_00_[% fiel.key %]" value="[% fiel.value |html%]" />
- [% END %]
-
- [% IF ( fiel.subfield ) %]
- <ul>
- [% FOREACH subfiel IN fiel.subfield %]
- <li id="k[% subfiel.subkey %]">
+ [% END %] [% IF ( fiel.subfield ) %] <ul>
+ [% FOREACH subfiel IN fiel.subfield %] <li id="k[% subfiel.subkey %]">
  <input type="checkbox" class="subfieldpick" id="rec_2_[% subfiel.subkey %]" />
- <span class="subfield">[% subfiel.subtag %]</span> / [% subfiel.value %]<input type="hidden" name="tag_[% subfiel.tag %]_code_[% subfiel.subtag %]_[% subfiel.key %]_[% subfiel.subkey %]" value="[% subfiel.subtag %]" />
+ <span class="subfield">[% subfiel.subtag %]</span> / [% subfiel.value %] <input type="hidden" name="tag_[% subfiel.tag %]_code_[% subfiel.subtag %]_[% subfiel.key %]_[% subfiel.subkey %]" value="[% subfiel.subtag %]" />
  <input type="hidden" name="tag_[% subfiel.tag %]_subfield_[% subfiel.subtag %]_[% subfiel.key %]_[% subfiel.subkey %]" value="[% subfiel.value |html%]" />
  </li>
- [% END %]
- </ul>
- [% END %]
- [% END %]
- </li>
- [% END %]
- </ul>
+ [% END %] </ul>
+ [% END %] [% END %] </li>
+ [% END %] </ul>
  </div>
  <!-- /div.record -->
 
@@ -320,33 +267,22 @@ function changeFramework(fw) {
 </div>
 <div class="yui-u">
 <div id="result">
- <h2>Registro de destino</h2>
+ <h2>Registro destino</h2>
  <div style="border:1px solid #E8E8E8;padding:1em;margin-top:2em;">
  <ul id="resultul">
- [% FOREACH record IN record1 %]
- [% FOREACH fiel IN record.field %]<li id="k[% fiel.key %]"><span class="field">[% fiel.tag %]</span> 
+ [% FOREACH record IN record1 %] [% FOREACH fiel IN record.field %]<li id="k[% fiel.key %]"><span class="field">[% fiel.tag %]</span> 
  <input type="hidden" name="tag_[% fiel.tag %]_indicator1_[% fiel.key %]" value="[% fiel.indicator1 %]" />
  <input type="hidden" name="tag_[% fiel.tag %]_indicator2_[% fiel.key %]" value="[% fiel.indicator2 %]" />
-  [% IF ( fiel.value ) %] / [% fiel.value %] <input type="hidden" name="tag_[% fiel.tag %]_code_00_[% fiel.key %]" value="00" />
+ [% IF ( fiel.value ) %] / [% fiel.value %] <input type="hidden" name="tag_[% fiel.tag %]_code_00_[% fiel.key %]" value="00" />
  <input type="hidden" name="tag_[% fiel.tag %]_subfield_00_[% fiel.key %]" value="[% fiel.value |html%]" />
- [% END %]
- 
- [% IF ( fiel.subfield ) %]
- <ul>
- [% FOREACH subfiel IN fiel.subfield %]
- <li id="k[% subfiel.subkey %]">
- <span class="subfield">[% subfiel.subtag %]</span> / [% subfiel.value %]<input type="hidden" name="tag_[% subfiel.tag %]_code_[% subfiel.subtag %]_[% subfiel.key %]_[% subfiel.subkey %]" value="[% subfiel.subtag %]" />
+ [% END %] [% IF ( fiel.subfield ) %] <ul>
+ [% FOREACH subfiel IN fiel.subfield %] <li id="k[% subfiel.subkey %]">
+ <span class="subfield">[% subfiel.subtag %]</span> / [% subfiel.value %] <input type="hidden" name="tag_[% subfiel.tag %]_code_[% subfiel.subtag %]_[% subfiel.key %]_[% subfiel.subkey %]" value="[% subfiel.subtag %]" />
  <input type="hidden" name="tag_[% subfiel.tag %]_subfield_[% subfiel.subtag %]_[% subfiel.key %]_[% subfiel.subkey %]" value="[% subfiel.value |html%]" />
  </li>
- [% END %]
- </ul>
- [% END %]
-
- [% END %]
- </li>
- [% END %]
-
- </ul>
+ [% END %] </ul>
+ [% END %] [% END %] </li>
+ [% END %] </ul>
 </div>
 </div> <!-- // #result -->
 </div> <!-- .yui-u -->
@@ -359,12 +295,8 @@ function changeFramework(fw) {
 <fieldset class="action"><input value="Combinar" name="merge" type="submit" /></fieldset>
 </div>
 </form>
-[% END %]
-[% END %]
-[% END %]
-
-</div>
+[% END %] [% END %] [% END %] </div>
 </div>
 </div>
 
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

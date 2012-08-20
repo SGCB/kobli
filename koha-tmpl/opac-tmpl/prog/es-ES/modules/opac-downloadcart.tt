@@ -1,12 +1,11 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Download cart[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Descargar bolsa[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-downloadcart" style="padding:1em;">
-<div id="userdownloadcart" class="container">[% IF ( format ) %] <p>Tu descarga debería comenzar automáticamente.</p>
+<div id="userdownloadcart" class="container">[% IF ( format ) %] <p>Su descarga debería comenzar automáticamente.</p>
 [% ELSE %] <form method="post" action="/cgi-bin/koha/opac-downloadcart.pl">
  <fieldset class="rows">
- <ol><li><label for="format">Descargar cesta:</label>
+ <ol><li><label for="format">Descargar carrito:</label>
  <select name="format" id="format">
- <option value="">-- Choose format --</option>
+ <option value="">-- Escoja formato --</option>
  <option value="iso2709">iso2709</option>
  <option value="ris">RIS</option>
  <option value="bibtex">BibTex</option>

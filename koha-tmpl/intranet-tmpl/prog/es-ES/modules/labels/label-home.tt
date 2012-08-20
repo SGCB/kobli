@@ -1,28 +1,21 @@
- [% INCLUDE 'doc-head-open.inc' %]
- <title>Koha &rsaquo; Tools &rsaquo; Labels home</title>
- [% INCLUDE 'doc-head-close.inc' %]
- <link rel="stylesheet" type="text/css" href="[% themelang %]/css/label.css" />
+ [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Etiquetas</title>
+ [% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/label.css" />
 </head>
 <body id="labels_label-home" class="tools labels">
- [% INCLUDE 'header.inc' %]
- [% INCLUDE 'cat-search.inc' %]
- <div id="breadcrumbs">
- <a href="/cgi-bin/koha/mainpage.pl">Inicio</a>&rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a>&rsaquo;
- Labels home
- </div>
+ [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a>&rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a>&rsaquo; Etiquetas </div>
  <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
  <div class="yui-g">
- [% INCLUDE 'labels-toolbar.inc' %]
- <div class="yui-u first">
+ [% INCLUDE 'labels-toolbar.inc' %] <div class="yui-u first">
  <div class="justify homeimage">
  <div class="lci_01"></div>
  <div class="lci_02"></div>
  <div class="lci_03"></div>
- <h2>Welcome to Koha's label creator module</h2>
- <p>El creador de etiquetas te permite usar diseños y plantillas hechos por tí para imprimir una variedad casi ilimitada de etiquetas con códigos de barras incluidos. Éstos son algunas de las características del módulo Creador de Etiquetas:</p>
+ <h2>Bienvenido al módulo de creación de etiquetas de Koha</h2>
+ <p>El creador de etiquetas le permite usar diseños y plantillas hechos por usted para imprimir una variedad casi ilimitada de etiquetas con códigos de barras incluidos. Éstos son algunas de las características del módulo Creador de Etiquetas:</p>
  <ul>
  <li>Personalizar diseños de etiqueta</li>
  <li>Diseñar plantillas de etiquetas personalizadas para imprimir etiquetas</li>
@@ -36,15 +29,14 @@
  <li>XML - Se incluye como un formato de exportación alternativo</li>
  </ul>
  </ul>
- <p>En la parte superior de cada pantalla del 'Creador de etiquetas', podrás ver una barra de herramientas que permite el acceso rápido a las funciones pertinentes. El menú a la izquierda de cada pantalla también permite un fácil acceso a las diferentes secciones del 'Creador de Etiquetas'. La ruta de navegación en la parte superior de cada pantalla dará indicación específica sobre dónde te encuentras dentro del módulo 'Creador de etiquetas' y permitirá la navegación rápida a las secciones previamente visitadas. Y, por último, se puede encontrar información más detallada sobre cada sección del 'Creador de etiquetas' haciendo clic en el enlace de ayuda en línea en la esquina superior izquierda de cada página.</p>
- <p>Los desarrolladores del módulo de creación de etiquetas esperan que te sea útil en tu trabajo de catalogación. Te animamos a presentar solicitudes de mejora, así como cualquier error a través del Bugzilla del Proyecto Koha.<a href="http://bugs.koha-community.org/">Proyecto Bugzilla Koha"</a>.</p>
+ <p>En la parte superior de cada pantalla del 'Creador de etiquetas', podrá ver una barra de herramientas que permite el acceso rápido a las funciones pertinentes. El menú a la izquierda de cada pantalla también permite un fácil acceso a las diferentes secciones del 'Creador de Etiquetas'. La ruta de navegación en la parte superior de cada pantalla dará indicación específica sobre dónde se encuentra dentro del módulo 'Creador de etiquetas' y permitirá la navegación rápida a las secciones previamente visitadas. Y, por último, se puede encontrar información más detallada sobre cada sección del 'Creador de etiquetas' haciendo clic en el enlace de ayuda en línea en la esquina superior izquierda de cada página.</p>
+ <p>Los desarrolladores del módulo de creación de etiquetas esperan que lo encuentre útil en su trabajo de catalogación. Le animamos a presentar solicitudes de mejora, así como cualquier error a través del <a href="http://bugs.koha-community.org/">Koha Project Bugzilla</a>.</p>
  </div>
  </div>
  </div>
  </div>
  </div>
  <div class="yui-b">
- [% INCLUDE 'labels-menu.inc' %]
+ [% INCLUDE 'labels-menu.inc' %] </div>
  </div>
- </div>
- [% INCLUDE 'intranet-bottom.inc' %]
+ [% INCLUDE 'intranet-bottom.inc' %] 

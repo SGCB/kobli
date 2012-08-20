@@ -100,7 +100,7 @@
  <xsl:if test="$field019b='i'"> Mikroformer</xsl:if>
  <xsl:if test="contains($field019b,'ib')"> Mikrofilmspole</xsl:if>
  <xsl:if test="contains($field019b,'ic')"> Mikrofilmkort</xsl:if>
- <xsl:if test="$field019b='j'"> Periodika</xsl:if>
+ <xsl:if test="$field019b='j'"> Periódica</xsl:if>
  <xsl:if test="$field019b='k'"> Artikler (i bøker eller periodika)</xsl:if>
  <xsl:if test="$field019b='l'"> Fysiske bøker</xsl:if>
  </xsl:if>
@@ -160,8 +160,8 @@
  <xsl:if test="$controlField007-01='o'">Billedbånd</xsl:if>
  <xsl:if test="$controlField007-01='p'">Stereobilde</xsl:if>
  <xsl:if test="$controlField007-01='r'">Røntgenbilde</xsl:if>
- <xsl:if test="$controlField007-01='s'">Dia</xsl:if>
- <xsl:if test="$controlField007-01='t'">Transparent</xsl:if>
+ <xsl:if test="$controlField007-01='s'">Día</xsl:if>
+ <xsl:if test="$controlField007-01='t'">Transparencia</xsl:if>
  <xsl:if test="$controlField007-01='z'">Annen materialtype</xsl:if>
  </xsl:if>
 
@@ -177,7 +177,7 @@
 
  <xsl:if test="$controlField007-00='k'">
  <!-- Grafisk materiale som er ugjennomtrengelig for lys -->
- <xsl:if test="$controlField007-01='c'">Collage</xsl:if> <!-- Originalt kunstverk -->
+ <xsl:if test="$controlField007-01='c'">Colage</xsl:if> <!-- Originalt kunstverk -->
  <xsl:if test="$controlField007-01='d'">Tegning</xsl:if> <!-- Originalt kunstverk -->
  <xsl:if test="$controlField007-01='e'">Maleri</xsl:if> <!-- Originalt kunstverk -->
  <xsl:if test="$controlField007-01='g'">Fotografi - negativ</xsl:if>
@@ -243,7 +243,7 @@
 
  </xsl:variable>
 
- <a><xsl:attribute name="href">/cgi-bin/koha/catalogue/detail.pl?biblionumber=<xsl:value-of select="$biblionumber"/></xsl:attribute><xsl:attribute name="class">title</xsl:attribute>
+ <a><xsl:attribute name="href">/cgi-bin/koha/catalogue/detail.pl?biblionumber=<xsl:value-of select="$biblionumber"/></xsl:attribute><xsl:attribute name="class">título</xsl:attribute>
 
  <xsl:if test="marc:datafield[@tag=245]">
  <xsl:for-each select="marc:datafield[@tag=245]">
@@ -282,8 +282,7 @@
 
  <xsl:choose>
  <xsl:when test="marc:datafield[@tag=100] or marc:datafield[@tag=110] or marc:datafield[@tag=111] or marc:datafield[@tag=700] or marc:datafield[@tag=710] or marc:datafield[@tag=711]">
- <p class="author">av
- <xsl:for-each select="marc:datafield[@tag=100 or @tag=700]">
+ <p class="author">av <xsl:for-each select="marc:datafield[@tag=100 or @tag=700]">
  <a>
  <xsl:choose>
  <xsl:when test="marc:subfield[@code=9] and $UseAuthoritiesForTracings='1'">
@@ -354,7 +353,7 @@
  </xsl:if>
 
  <xsl:if test="marc:datafield[@tag=020]">
- <span class="results_summary isbn"><span class="label">ISBN:</span>
+ <span class="results_summary isbn"><span class="label">ISBN: </span>
  <xsl:for-each select="marc:datafield[@tag=020]">
  <xsl:variable name="isbn" select="marc:subfield[@code='a']"/>
  <xsl:value-of select="marc:subfield[@code='a']"/>
@@ -364,7 +363,7 @@
  </xsl:if>
 
  <xsl:if test="marc:datafield[@tag=022]">
- <span class="results_summary issn"><span class="label">ISSN:</span>
+ <span class="results_summary issn"><span class="label">ISSN: </span>
  <xsl:for-each select="marc:datafield[@tag=022]">
  <xsl:value-of select="marc:subfield[@code='a']"/>
  <xsl:choose><xsl:when test="position()=last()"><xsl:text>.</xsl:text></xsl:when><xsl:otherwise><xsl:text>; </xsl:text></xsl:otherwise></xsl:choose>
@@ -385,11 +384,11 @@
 
  <span class="results_summary">
  <xsl:if test="$typeOf008!=''">
- <span class="label">Type: </span>
+ <span class="label">Tipo: </span>
 
  <xsl:choose>
- <xsl:when test="$typeOf008='Mon'"><img src="/opac-tmpl/prog/famfamfam/silk/book.png" alt="Bok" title="Bok"/> Bok</xsl:when>
- <xsl:when test="$typeOf008='Per'"><img src="/opac-tmpl/prog/famfamfam/silk/newspaper.png" alt="Periodika" title="Periodika"/> Periodika</xsl:when>
+ <xsl:when test="$typeOf008='Mon'"><img alt="Libro" src="/opac-tmpl/prog/famfamfam/silk/book.png" title="Libro" /> Libro</xsl:when>
+ <xsl:when test="$typeOf008='Per'"><img alt="Periódica" src="/opac-tmpl/prog/famfamfam/silk/newspaper.png" title="Periódica" /> Periódica</xsl:when>
  <xsl:when test="$typeOf008='Fil'"><img src="/opac-tmpl/prog/famfamfam/silk/computer_link.png" alt="Fil" title="Fil"/> Fil</xsl:when>
  <xsl:when test="$typeOf008='Kar'"><img src="/opac-tmpl/prog/famfamfam/silk/map.png" alt="Kart" title="Kart"/> Kart</xsl:when>
  <xsl:when test="$typeOf008='FV'"><img src="/opac-tmpl/prog/famfamfam/silk/film.png" alt="Film og video" title="Film og video"/> Film og video</xsl:when>
@@ -400,7 +399,7 @@
  </xsl:choose>
  </xsl:if>
  <xsl:if test="string-length(normalize-space($physicalDescription))">
- <span class="label">; Format: </span><xsl:copy-of select="$physicalDescription"></xsl:copy-of>
+ <span class="label">; Formato: </span><xsl:copy-of select="$physicalDescription"></xsl:copy-of>
  </xsl:if>
 
  <xsl:if test="$controlField008-21 or $controlField008-22 or $controlField008-24 or $controlField008-26 or $controlField008-29 or $controlField008-34 or $controlField008-33 or $controlField008-30-31 or $controlField008-33">
@@ -442,8 +441,7 @@
  </xsl:choose>
  <xsl:choose>
  <xsl:when test="$controlField008-29='1'">
- Konferansepublikasjon
- </xsl:when>
+ Konferansepublikasjon </xsl:when>
  </xsl:choose>
  </xsl:if>
  <xsl:if test="$typeOf008='CF'">
@@ -468,11 +466,9 @@
  <span class="label">; Innhold: </span>
  </xsl:if>
  <xsl:if test="substring($controlField008,31,1)='1' or substring($controlField008,31,1)='a' or substring($controlField008,31,1)='b'">
- Festskrift
- </xsl:if>
+ Festskrift </xsl:if>
  <xsl:if test="$controlField008-34='a' or $controlField008-34='a' or $controlField008-34='b' or $controlField008-34='c' or $controlField008-34='d'">
- Biografi
- </xsl:if>
+ Biografi </xsl:if>
 
  <xsl:if test="$controlField008-33 and $controlField008-33!='^' and $controlField008-33!=' '">
  <span class="label">; Litterær form: </span>
@@ -496,7 +492,7 @@
  <xsl:if test="contains($controlField008-30-31,'b')">Biografier</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'c')">Samtaler og diskusjoner</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'d')">Drama</xsl:if>
- <xsl:if test="contains($controlField008-30-31,'e')">Essays</xsl:if>
+ <xsl:if test="contains($controlField008-30-31,'e')">Ensayos</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'f')">Romaner</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'g')">Rapporter, referater</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'h')">Fortellinger, noveller</xsl:if>
@@ -606,7 +602,7 @@
  <span class="label">Utgiver: </span>
  <xsl:for-each select="marc:datafield[@tag=260]">
  <xsl:call-template name="subfieldSelect">
- <xsl:with-param name="codes">abcefg</xsl:with-param>
+ <xsl:with-param name="codes">abceg</xsl:with-param>
  </xsl:call-template>
  </xsl:for-each>
  </span>

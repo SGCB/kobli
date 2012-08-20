@@ -9,8 +9,7 @@ Searching:
         pref: NoZebra
       - "el motor de b\xC3\xBAsqueda Zebra. Se recomienda utilizar Zebra; la opci\xC3\xB3n de no utilizar Zebra es obsoleta y no se garantiza que funcione."
     - 
-      - 
-        When Zebra is not in use, translate the following MARC fields to the following indexes (each line should look something like <code>'indexname' =&gt; '100a,245a,500*',</code>): ~
+      - When Zebra is not in use, translate the following MARC fields to the following indexes (each line should look something like <code>'indexname' =&gt; '100a,245a,500*',</code>)
       - 
         class: list
         pref: NoZebraIndexes
@@ -62,7 +61,7 @@ Searching:
         choices: 
           "": No utilizar
           1: Usar
-        default: '0'
+        default: 0
         pref: OpacGroupResults
       - "PazPar2 para agrupar resultados similares en el OPAC. Esto requiere que PazPar2 est\xC3\xA1 configurado y funcionando."
     - 
@@ -70,7 +69,7 @@ Searching:
         choices: 
           "": No forzar
           1: Forzar
-        default: '0'
+        default: 0
         pref: TraceCompleteSubfields
       - trazas de temas en el OPAC y cliente Administrativo para buscar solo coincidencias en campos completos.
     - 
@@ -78,7 +77,7 @@ Searching:
         choices: 
           "": No incluya
           1: Incluya
-        default: '0'
+        default: 0
         pref: TraceSubjectSubdivisions
       - "subdivisiones para b\xC3\xBAsquedas generadas al hacer clic en trazas de temas."
     - 
@@ -86,7 +85,7 @@ Searching:
         choices: 
           "": Not using
           1: Using
-        default: '0'
+        default: 0
         pref: UseICU
       - "ICU Zebra indexing. Please note: This setting will not affect Zebra indexing, it should only be used to tell Koha that you have activated ICU indexing if you have actually done so, since there is no way for Koha to figure this out on its own."
   "Formulario de b\xC3\xBAsqueda": 

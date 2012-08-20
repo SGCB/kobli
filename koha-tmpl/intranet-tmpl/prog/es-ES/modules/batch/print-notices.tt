@@ -1,5 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %]
- <title>Enviar noticias para [% today %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Enviar noticias para [% today %]</title>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <style type="text/css">
         <!-- 
@@ -7,15 +6,11 @@
         pre { font-family: monospace }
         -->
     </style>
- [% IF ( stylesheet ) %]
- <link rel="stylesheet" type="text/css" href="[% stylesheet %]">
- [% END %]
-</head>
+ [% IF ( stylesheet ) %] <link rel="stylesheet" type="text/css" href="[% stylesheet %]">
+ [% END %] </head>
 <body id="batch_print-notices" class="batch">
- [% FOREACH message IN messages %]
- <div class="message">
+ [% FOREACH message IN messages %] <div class="message">
  <pre>[% message.content %]</pre>
  </div>
- [% END %]
-</body>
+ [% END %] </body>
 </html>

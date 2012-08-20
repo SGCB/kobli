@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Catalogación &rsaquo; Constructor de Leader</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; Constructor de Leader</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="cat_marc21_leader_computerfile" class="cat" style="padding:1em;">
 <h3>000 - Encabezamiento</h3>
 <form name="f_pop" onsubmit="report()" action="">
@@ -15,147 +13,71 @@
  <td><label for="f5">5- Estado del registro</label></td>
  <td>
  <select name="f5" id="f5" size="1">
- [% IF ( f5a ) %]
- <option value=" " selected="selected">a- Aumento en nivel de codificación</option>
- [% ELSE %]
- <option value=" ">a- Aumento en nivel de codificación</option>
- [% END %]
-
- [% IF ( f5c ) %]
- <option value="c" selected="selected">c- Corregido o revisado</option>
- [% ELSE %]
- <option value="c">c- Corregido o revisado</option>
- [% END %]
- [% IF ( f5d ) %]
- <option value="d" selected="selected">d- Eliminado</option>
- [% ELSE %]
- <option value="d">d- Eliminado</option>
- [% END %]
- [% IF ( f5n ) %]
- <option value="n" selected="selected">n- Nuevo</option>
- [% ELSE %]
- <option value="n">n- Nuevo</option>
- [% END %]
- [% IF ( f5p ) %]
- <option value="p" selected="selected">p- Aumento en el nivel de codificación desde la prepublicación</option>
- [% ELSE %]
- <option value="p">p- Aumento en el nivel de codificación desde la prepublicación</option>
- [% END %]
- </select>
+ [% IF ( f5a ) %] <option value=" " selected="selected">a- Aumento en nivel de codificación</option>
+ [% ELSE %] <option value=" ">a- Aumento en nivel de codificación</option>
+ [% END %] [% IF ( f5c ) %] <option value="c" selected="selected">c- Corregido o revisado</option>
+ [% ELSE %] <option value="c">c- Corregido o revisado</option>
+ [% END %] [% IF ( f5d ) %] <option value="d" selected="selected">d- Eliminado</option>
+ [% ELSE %] <option value="d">d- Eliminado</option>
+ [% END %] [% IF ( f5n ) %] <option value="n" selected="selected">n- Nuevo</option>
+ [% ELSE %] <option value="n">n- Nuevo</option>
+ [% END %] [% IF ( f5p ) %] <option value="p" selected="selected">p- Aumento en el nivel de codificación desde la prepublicación</option>
+ [% ELSE %] <option value="p">p- Aumento en el nivel de codificación desde la prepublicación</option>
+ [% END %] </select>
  </td>
  </tr>
  <tr>
  <td><label for="f6">6- Tipo de registro</label></td>
  <td>
  <select name="f6" id="f6" size="1">
- [% IF ( f6a ) %]
- <option value="a" selected="selected">a- Material de lenguaje (monografía)</option>
- [% ELSE %]
- <option value="a">a- Material de lenguaje (monografía)</option>
- [% END %]
- [% IF ( f6c ) %]
- <option value="c" selected="selected">c- Música notada</option>
- [% ELSE %]
- <option value="c">c- Música notada</option>
- [% END %]
- [% IF ( f6d ) %]
- <option value="d" selected="selected">d- Manuscrito de música anotada</option>
- [% ELSE %]
- <option value="d">d- Manuscrito de música anotada</option>
- [% END %]
- [% IF ( f6e ) %]
- <option value="e" selected="selected">e- Material cartográfico</option>
- [% ELSE %]
- <option value="e">e- Material cartográfico</option>
- [% END %]
- [% IF ( f6f ) %]
- <option value="f" selected="selected">f- Material cartográfico manuscrito</option>
- [% ELSE %]
- <option value="f">f- Material cartográfico manuscrito</option>
- [% END %]
- [% IF ( f6g ) %]
- <option value="g" selected="selected">g - Medio proyectado</option>
- [% ELSE %]
- <option value="g">g - Medio proyectado</option>
- [% END %]
- [% IF ( f6i ) %]
- <option value="i" selected="selected">i - Grabación de sonidos no musicales</option>
- [% ELSE %]
- <option value="i">i - Grabación de sonidos no musicales</option>
- [% END %]
- [% IF ( f6j ) %]
- <option value="j" selected="selected">j - Grabación de sonidos musicales</option>
- [% ELSE %]
- <option value="j">j - Grabación de sonidos musicales</option>
- [% END %]
- [% IF ( f6k ) %]
- <option value="k" selected="selected">k - Gráfico no proyectable de dos dimensiones</option>
- [% ELSE %]
- <option value="k">k - Gráfico no proyectable de dos dimensiones</option>
- [% END %]
- [% IF ( f6m ) %]
- <option value="m" selected="selected">m - Archivo de ordenador</option>
- [% ELSE %]
- <option value="m">m - Archivo de ordenador</option>
- [% END %]
- [% IF ( f6o ) %]
- <option value="o" selected="selected">o - Kit</option>
- [% ELSE %]
- <option value="o">o - Kit</option>
- [% END %]
- [% IF ( f6r ) %]
- <option value="r" selected="selected">r - Artefacto tridimensional u objeto natural</option>
- [% ELSE %]
- <option value="r">r - Artefacto tridimensional u objeto natural</option>
- [% END %]
- [% IF ( f6t ) %]
- <option value="t" selected="selected">t - Material de idioma manuscrito</option>
- [% ELSE %]
- <option value="t">t - Material de idioma manuscrito</option>
- [% END %]
- </select>
+ [% IF ( f6a ) %] <option value="a" selected="selected">a- Material de lenguaje (monografía)</option>
+ [% ELSE %] <option value="a">a- Material de lenguaje (monografía)</option>
+ [% END %] [% IF ( f6c ) %] <option value="c" selected="selected">c- Música notada</option>
+ [% ELSE %] <option value="c">c- Música notada</option>
+ [% END %] [% IF ( f6d ) %] <option value="d" selected="selected">d- Manuscrito de música anotada</option>
+ [% ELSE %] <option value="d">d- Manuscrito de música anotada</option>
+ [% END %] [% IF ( f6e ) %] <option value="e" selected="selected">e- Material cartográfico</option>
+ [% ELSE %] <option value="e">e- Material cartográfico</option>
+ [% END %] [% IF ( f6f ) %] <option value="f" selected="selected">f- Material cartográfico manuscrito</option>
+ [% ELSE %] <option value="f">f- Material cartográfico manuscrito</option>
+ [% END %] [% IF ( f6g ) %] <option value="g" selected="selected">g- Medio proyectado</option>
+ [% ELSE %] <option value="g">g- Medio proyectado</option>
+ [% END %] [% IF ( f6i ) %] <option value="i" selected="selected">i- Grabación de sonidos no musicales</option>
+ [% ELSE %] <option value="i">i- Grabación de sonidos no musicales</option>
+ [% END %] [% IF ( f6j ) %] <option value="j" selected="selected">j- Grabación de sonidos musicales</option>
+ [% ELSE %] <option value="j">j- Grabación de sonidos musicales</option>
+ [% END %] [% IF ( f6k ) %] <option value="k" selected="selected">k- Gráfico no proyectable de dos dimensiones</option>
+ [% ELSE %] <option value="k">k- Gráfico no proyectable de dos dimensiones</option>
+ [% END %] [% IF ( f6m ) %] <option value="m" selected="selected">m- Archivo de computadora</option>
+ [% ELSE %] <option value="m">m- Archivo de computadora</option>
+ [% END %] [% IF ( f6o ) %] <option value="o" selected="selected">o- Kit</option>
+ [% ELSE %] <option value="o">o- Kit</option>
+ [% END %] [% IF ( f6r ) %] <option value="r" selected="selected">r- Artefacto tridimensional u objeto natural</option>
+ [% ELSE %] <option value="r">r- Artefacto tridimensional u objeto natural</option>
+ [% END %] [% IF ( f6t ) %] <option value="t" selected="selected">t- Material de idioma manuscrito</option>
+ [% ELSE %] <option value="t">t- Material de idioma manuscrito</option>
+ [% END %] </select>
  </td>
  </tr>
  <tr>
  <td><label for="f7">7- Nivel bibliográfico</label></td>
  <td>
  <select name="f7" id="f7" size="1">
- [% IF ( f7a ) %]
- <option value="a" selected="selected">a- Parte de serie monográfica</option>
- [% ELSE %]
- <option value="a">a- Parte de serie monográfica</option>
- [% END %]
- [% IF ( f7b ) %]
- <option value="b" selected="selected">b- Parte de componente periódico</option>
- [% ELSE %]
- <option value="b">b- Parte de componente periódico</option>
- [% END %]
- [% IF ( f7c ) %]
- <option value="c" selected="selected">c- Colección</option>
- [% ELSE %]
- <option value="c">c- Colección</option>
- [% END %]
- [% IF ( f7d ) %]
- <option value="d" selected="selected">d- Subunidad</option>
- [% ELSE %]
- <option value="d">d- Subunidad</option>
- [% END %]
- [% IF ( f7i ) %]
- <option value="i" selected="selected">i- Recurso que integración</option>
- [% ELSE %]
- <option value="i">i- Recurso que integración</option>
- [% END %]
- [% IF ( f7m ) %]
- <option value="m" selected="selected">m- Monografía/ítem</option>
- [% ELSE %]
- <option value="m">m- Monografía/ítem</option>
- [% END %]
- [% IF ( f7s ) %]
- <option value="s" selected="selected">s- Publicación periódica</option>
- [% ELSE %]
- <option value="s">s- Publicación periódica</option>
- [% END %]
- </select>
+ [% IF ( f7a ) %] <option value="a" selected="selected">a- Parte de serie monográfica</option>
+ [% ELSE %] <option value="a">a- Parte de serie monográfica</option>
+ [% END %] [% IF ( f7b ) %] <option value="b" selected="selected">b- Parte de componente periódico</option>
+ [% ELSE %] <option value="b">b- Parte de componente periódico</option>
+ [% END %] [% IF ( f7c ) %] <option value="c" selected="selected">c- Colección</option>
+ [% ELSE %] <option value="c">c- Colección</option>
+ [% END %] [% IF ( f7d ) %] <option value="d" selected="selected">d- Subunidad</option>
+ [% ELSE %] <option value="d">d- Subunidad</option>
+ [% END %] [% IF ( f7i ) %] <option value="i" selected="selected">i- Recurso que integración</option>
+ [% ELSE %] <option value="i">i- Recurso que integración</option>
+ [% END %] [% IF ( f7m ) %] <option value="m" selected="selected">m- Monografía/ítem</option>
+ [% ELSE %] <option value="m">m- Monografía/ítem</option>
+ [% END %] [% IF ( f7s ) %] <option value="s" selected="selected">s- Publicación periódica</option>
+ [% ELSE %] <option value="s">s- Publicación periódica</option>
+ [% END %] </select>
  </td>
  </tr>
  
@@ -163,17 +85,11 @@
  <td><label for="f8">8 - Nivel jerárquico</label></td>
  <td>
  <select name="f8" id="f8" size="1">
- [% IF ( f8 ) %]
- <option value=" " selected="selected">Sin tipo específico</option>
- [% ELSE %]
- <option value=" ">Sin tipo específico</option>
- [% END %]
- [% IF ( f8a ) %]
- <option value="a" selected="selected">a- De archivo</option>
- [% ELSE %]
- <option value="a">a- De archivo</option>
- [% END %]
- </select>
+ [% IF ( f8 ) %] <option value=" " selected="selected">Sin tipo específico</option>
+ [% ELSE %] <option value=" ">Sin tipo específico</option>
+ [% END %] [% IF ( f8a ) %] <option value="a" selected="selected">a- De archivo</option>
+ [% ELSE %] <option value="a">a- De archivo</option>
+ [% END %] </select>
  </td>
  </tr>
 
@@ -181,17 +97,11 @@
  <td><label for="f9">9- Codificación</label></td>
  <td>
  <select name="f9" id="f9" size="1">
- [% IF ( f9 ) %]
- <option value=" " selected="selected">MARC-8</option>
- [% ELSE %]
- <option value=" ">MARC-8</option>
- [% END %]
- [% IF ( f9a ) %]
- <option value="a" selected="selected">a- UCS/Unicode</option>
- [% ELSE %]
- <option value="a">a- UCS/Unicode</option>
- [% END %]
- </select>
+ [% IF ( f9 ) %] <option value=" " selected="selected">MARC-8</option>
+ [% ELSE %] <option value=" ">MARC-8</option>
+ [% END %] [% IF ( f9a ) %] <option value="a" selected="selected">a- UCS/Unicode</option>
+ [% ELSE %] <option value="a">a- UCS/Unicode</option>
+ [% END %] </select>
  </td>
  </tr>
  <tr>
@@ -202,57 +112,27 @@
  <td><label for="f17">17- Codificación</label></td>
  <td>
  <select name="f17" id="f17" size="1">
- [% IF ( f17 ) %]
- <option value=" " selected="selected">nivel completo</option>
- [% ELSE %]
- <option value=" ">Nivel completo</option>
- [% END %]
- [% IF ( f171 ) %]
- <option value="1" selected="selected">1- Nivel completo, material no examinado</option>
- [% ELSE %]
- <option value="1">1- Nivel completo, material no examinado</option>
- [% END %]
- [% IF ( f172 ) %]
- <option value="2" selected="selected">2 - Nivel Menor a nivel completo, material no examinado</option>
- [% ELSE %]
- <option value="2">2 - Nivel Menor a nivel completo, material no examinado</option>
- [% END %]
- [% IF ( f173 ) %]
- <option value="3" selected="selected">3- Nivel abreviado</option>
- [% ELSE %]
- <option value="3">3- Nivel abreviado</option>
- [% END %]
- [% IF ( f174 ) %]
- <option value="4" selected="selected">4- Nivel de base</option>
- [% ELSE %]
- <option value="4">4- Nivel de base</option>
- [% END %]
- [% IF ( f175 ) %]
- <option value="5" selected="selected">5 - Nivel (preliminar) parcial</option>
- [% ELSE %]
- <option value="5">5 - Nivel (preliminar) parcial</option>
- [% END %]
- [% IF ( f177 ) %]
- <option value="7" selected="selected">7- Nivel mínimo</option>
- [% ELSE %]
- <option value="7">7- Nivel mínimo</option>
- [% END %]
- [% IF ( f178 ) %]
- <option value="8" selected="selected">8- Nivel de prepublicación</option>
- [% ELSE %]
- <option value="8">8- Nivel de prepublicación</option>
- [% END %]
- [% IF ( f17u ) %]
- <option value="u" selected="selected">u - Desconocido</option>
- [% ELSE %]
- <option value="u">u - Desconocido</option>
- [% END %]
- [% IF ( f17z ) %]
- <option value="z" selected="selected">z- No aplicable</option>
- [% ELSE %]
- <option value="z">z- No aplicable Nivel completo</option>
- [% END %]
- </select>
+ [% IF ( f17 ) %] <option value=" " selected="selected">nivel completo</option>
+ [% ELSE %] <option value=" ">Nivel completo</option>
+ [% END %] [% IF ( f171 ) %] <option value="1" selected="selected">1- Nivel completo, material no examinado</option>
+ [% ELSE %] <option value="1">1- Nivel completo, material no examinado</option>
+ [% END %] [% IF ( f172 ) %] <option value="2" selected="selected">2- Nivel Menor a nivel completo, material no examinado</option>
+ [% ELSE %] <option value="2">2- Nivel Menor a nivel completo, material no examinado</option>
+ [% END %] [% IF ( f173 ) %] <option value="3" selected="selected">3- Nivel abreviado</option>
+ [% ELSE %] <option value="3">3- Nivel abreviado</option>
+ [% END %] [% IF ( f174 ) %] <option value="4" selected="selected">4- Nivel de base</option>
+ [% ELSE %] <option value="4">4- Nivel de base</option>
+ [% END %] [% IF ( f175 ) %] <option value="5" selected="selected">5 - Nivel (preliminar) parcial</option>
+ [% ELSE %] <option value="5">5 - Nivel (preliminar) parcial</option>
+ [% END %] [% IF ( f177 ) %] <option value="7" selected="selected">7- Nivel mínimo</option>
+ [% ELSE %] <option value="7">7- Nivel mínimo</option>
+ [% END %] [% IF ( f178 ) %] <option value="8" selected="selected">8- Nivel de pre-publicación</option>
+ [% ELSE %] <option value="8">8- Nivel de pre-publicación</option>
+ [% END %] [% IF ( f17u ) %] <option value="u" selected="selected">u- Desconocido</option>
+ [% ELSE %] <option value="u">u- Desconocido</option>
+ [% END %] [% IF ( f17z ) %] <option value="z" selected="selected">z- No aplicable</option>
+ [% ELSE %] <option value="z">z- No aplicable Nivel completo</option>
+ [% END %] </select>
  </td>
  </tr>
 
@@ -260,27 +140,15 @@
  <td><label for="f18">18 - Forma de catalogación descriptiva</label></td>
  <td>
  <select name="f18" id="f18" size="1">
- [% IF ( f18 ) %]
- <option value=" " selected="selected">No-ISDB</option>
- [% ELSE %]
- <option value=" ">No-ISDB</option>
- [% END %]
- [% IF ( f18a ) %]
- <option value="a" selected="selected">a- AACR 2</option>
- [% ELSE %]
- <option value="a">a- AACR 2</option>
- [% END %]
- [% IF ( f18i ) %]
- <option value="i" selected="selected">i- ISBD</option>
- [% ELSE %]
- <option value="i">i- ISBD</option>
- [% END %]
- [% IF ( f18u ) %]
- <option value="u" selected="selected">u- Desconocido</option>
- [% ELSE %]
- <option value="u">u- Desconocido</option>
- [% END %]
- </select>
+ [% IF ( f18 ) %] <option value=" " selected="selected">No-ISDB</option>
+ [% ELSE %] <option value=" ">No-ISDB</option>
+ [% END %] [% IF ( f18a ) %] <option value="a" selected="selected">a- AACR 2</option>
+ [% ELSE %] <option value="a">a- AACR 2</option>
+ [% END %] [% IF ( f18i ) %] <option value="i" selected="selected">i- ISBD</option>
+ [% ELSE %] <option value="i">i- ISBD</option>
+ [% END %] [% IF ( f18u ) %] <option value="u" selected="selected">u- Desconocido</option>
+ [% ELSE %] <option value="u">u- Desconocido</option>
+ [% END %] </select>
  </td>
  </tr>
  
@@ -288,17 +156,11 @@
  <td><label for="f19">19 - Requisito de registro enlazado</label></td>
  <td>
  <select name="f19" id="f19" size="1">
- [% IF ( f19 ) %]
- <option value=" " selected="selected">Registro relacionado no requerido</option>
- [% ELSE %]
- <option value=" ">Registro relacionado no requerido</option>
- [% END %]
- [% IF ( f18r ) %]
- <option value="r" selected="selected">r- Registro relacionado requerido</option>
- [% ELSE %]
- <option value="r">r- Registro relacionado requerido</option>
- [% END %]
- </select>
+ [% IF ( f19 ) %] <option value=" " selected="selected">Registro relacionado no requerido</option>
+ [% ELSE %] <option value=" ">Registro relacionado no requerido</option>
+ [% END %] [% IF ( f18r ) %] <option value="r" selected="selected">r- Registro relacionado requerido</option>
+ [% ELSE %] <option value="r">r- Registro relacionado requerido</option>
+ [% END %] </select>
  </td>
  </tr>
  <tr>
@@ -332,4 +194,4 @@ function report() {
 	//]]>
 </script>
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

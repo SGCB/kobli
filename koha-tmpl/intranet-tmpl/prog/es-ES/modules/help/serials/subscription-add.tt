@@ -1,53 +1,45 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Agregar una nueva suscripción a una publicación periódica</h1>
 
-<h1>Agregar una nueva suscripción a una publicación periódica</h1>
+<p>Las suscripciones se pueden añadir haciendo clic en el botón 'Nuevo' en cualquier registro bibliográfico o visitando el módulo de Publicaciones Periódicas y haciendo clic en 'Nueva suscripción'</p>
 
-<p>Subscriptions can be added by clicking the 'New' button on any bibliographic record or by visiting the Serials module and clicking 'New Subscription'</p>
-
-<p>If you are entering a new subscription from the Serials module you will be presented with a blank form (if creating new from a bibliographic record the form will include the bib info).</p>
+<p>Si usted está entrando en una nueva suscripción desde el módulo de publicaciones periódicas se le presentará un formulario en blanco (si se está creando desde un registro bibliográfico existente el formulario incluirá la información correspondiente).</p>
 
 <ul>
- <li>#~ "#~ "'Bibliotecario' le mostrará el nombre de usuario del bibliotecario "#~ ""#~ "registrado""</li>
- <li>'Vendor' can be found by either searching vendors entered via the Acquisitions module or entering the vendor ID number
-<ul>
+ <li>'Bibliotecario' le mostrará el nombre de usuario del bibliotecario registrado</li>
+ <li>Se puede encontrar un 'Proveedor' buscando proveedores ingresados por la vía del módulo de Adquisiciones o ingresando el número de identificación ID del proveedor <ul>
  <li>No se requiere información del vendedor</li>
- <li>In order to claim missing and late issues you need to enter vendor information</li>
+ <li>Con el fin de reclamar ejemplares perdidos o demorados tendrá que introducir la información del proveedor</li>
 </ul>
 </li>
- <li>'Biblio' is the MARC record you'd like to link this subscription to
-<ul>
- <li>This can be done by searching for an existing record by clicking on the 'Search for Biblio' link below the boxes or by entering the bib number for a record in the first box. Only if you search with the field between the parenthesis.</li>
+ <li>'Biblio' es el registro bibliográfico MARC que a Usted le gustaría enlazar con esta suscripción <ul>
+ <li>Esto puede hacerse buscando un registro existente haciendo clic en el enlace 'Buscar registro' bajo las casillas o ingresando el número de un registro en la primer casilla. Solo si busca con el campo entre paréntesis.</li>
 </ul>
 </li>
- <li>Next you can choose whether a new item is created when receiving an issue</li>
+ <li>A continuación, puede decidir si un ítem nuevo se crea cuando se recibe un ejemplar</li>
  <li>'Ubicación' es para la ubicación en estantería</li>
- <li>#~ "#~ "'Signatura' es para el prefijo de la signatura topográfica de su ítem"#~ """</li>
- <li>'Library' is the library that owns this subscription.
-<ul>
- <li>If more than one library subscribes to this serial you will need to create a subscription for each library</li>
- <li>This can be done easily by using the 'Edit as New (Duplicate)' option found on the subscription information page and changing only the 'Library' field</li>
+ <li>'Signatura' es para el prefijo de la signatura topográfica de su ítem</li>
+ <li>'Biblioteca' es la sede dueña de esta suscripción. <ul>
+ <li>Si hay más de una biblioteca se suscribe a esta publicación periódica tendrá que crear una suscripción para cada biblioteca</li>
+ <li>Esto puede hacerse fácilmente utilizando la opción 'Editar como nuevo (duplicados)' que se encuentra en la página de información de suscripción y cambiando únicamente el campo 'Biblioteca'</li>
 </ul>
 </li>
- <li>The 'Grace Period' is the number of days before an issue is automatically moved from 'expected' status to 'waiting' and how many days before an issue is automatically moved from 'waiting' status to 'late'</li>
- <li>Use the 'Public Note' for any notes you would like to appear in the OPAC for the patrons</li>
- <li>'Nonpublic Note' should be used for notes that are only visible to the librarians via the staff client</li>
- <li>To set up a routing list for serials, choose 'Routing List' from the 'Patron notification' field.
-<ul>
- <li>For this option to appear you need to make sure that you have a Routing List notice set up in the Notices Tool</li>
- <li>#~ "#~ "Aprenda más sobre las listas de enrutamiento más adelante en el "#~ "manual""</li>
+ <li>El 'Período de Gracia' es el número de días antes un ejemplar se mueva automáticamente del estado 'esperado' el estado de 'en espera' y cuántos días antes que un ejemplar se mueva automáticamente del estado 'en espera' a 'retrasado'</li>
+ <li>Use la 'Nota pública' para cualquier nota que desea aparezca en el OPAC para los socios</li>
+ <li>'Nota no pública' debe ser utilizado para notas que solo son visibles par los bibliotecarios vía el cliente administrativo</li>
+ <li>Para configurar una lista de ruteo para publicaciones periódicas, seleccione 'Lista de ruteo' del campo 'Notificación de socios'. <ul>
+ <li>Para que esta opción parece que usted necesita para asegurarse de que usted tiene una lista de enrutamiento notificación establecido en la Herramienta de Avisos</li>
+ <li>Aprenda más sobre las listas de enrutamiento más adelante en el manual</li>
 </ul>
 </li>
- <li>The Staff and OPAC Display options allow you to control how many issues appear by default on bibliographic records in the Staff Client and the OPAC
-<ul>
- <li>If no values are entered in these fields, they will use the OPACSerialIssueDisplayCount and StaffSerialIssueDisplayCount system preference values</li>
+ <li>Las opciones de pantalla para Personal y OPAC le permiten controlar cuantos ejemplares aparecen por defecto en los clientes Personal y OPAC <ul>
+ <li>Si no se introducen los valores en estos campos, se utilizarán los valores OPACSerialIssueDisplayCount y StaffSerialIssueDisplayCount del sistema de preferencias</li>
 </ul>
 </li>
- <li>In 'First issue publication date' you want to enter the date of the issue you have in your hand, the date from which the prediction pattern will start</li>
- <li>There are several pre-defined options for the 'Frequency' of publication
-<ul>
- <li>Without periodicy: some very specific (usually high level science journals) don't have a true periodicity. When you subscribe to the title, you subscribe for 6 issues, which can arrive in 1 year... or 2... There is no regularity or known schedule.</li>
- <li>#~ "#~ "Desconocida seleccione esto si ninguna de las otras opciones son "#~ ""#~ "relevantes""</li>
- <li>Irregular: The journal is not "regular" but has a periodicity. You know that it comes out on January, then in October and December, it is irregular, but you know when it's going to arrive.</li>
+ <li>En 'Fecha del primer ejemplar' querrá introducir la fecha del ejemplar que tiene mano, la fecha desde la que el patrón de predicción se iniciará</li>
+ <li>Hay varias opciones predefinidas para la 'Frecuencia' de la publicación <ul>
+ <li>Sin periodicidad: algunas muy específicas (por lo general revistas científicas de alto nivel) no tienen una verdadera periodicidad. Cuando usted se suscribe al título, se suscribe por 6 ejemplares, que puede llegar en 1 año ... o 2 ... No hay regularidad o periodicidad conocida.</li>
+ <li>Desconocida seleccione esto si ninguna de las otras opciones son relevantes</li>
+ <li>Irregular: La revista no es "regular", pero tiene una periodicidad. Usted sabe que sale en enero, luego en octubre y diciembre, es irregular, pero se sabe cuando va a llegar.</li>
  <li>2/día: dos veces al día</li>
  <li>1/día: todos los días</li>
  <li>3/semana: Tres veces a la semana</li>
@@ -57,33 +49,30 @@
  <li>1/mes: Mensual</li>
  <li>1/2 meses (6/año): Bimestral</li>
  <li>1/3 meses (1/cuatrimestre): trimestral</li>
- <li>1/quarter (seasonal) : Quarterly related to seasons (ie. Summer, Autumn, Winter, Spring)</li>
+ <li>1/trimestre (estacional): Trimestralmente, relacionado con las estaciones (Verano, Otoño, Invierno, Primavera)</li>
  <li>2/año: semestrales</li>
  <li>1/año: Anual</li>
  <li>1/2 años: Bianual</li>
 </ul>
 </li>
- <li>Checking the 'Manual history' box will allow you to enter serials outside the prediction pattern.</li>
- <li>'Numbering pattern' will help you determine how the numbers are printed for each issue
-<ul>
- <li>Start with the numbering on the issue you have in hand, the numbering that matches the date you entered in the 'First issue publication' field</li>
- <li>If you have chosen any 'Numbering Format' other than 'Number' in the 'Rollover at' field, enter the last issue number before the volume number changes
-<ul>
- <li>If you chose the 'Number' Numbering Format you will see 'issues expected' in which you will enter the total number of issues you expect to receive.</li>
+ <li>Si marca la casilla de la 'Historia manual' le permitirá entrar publicaciones periódicas fuera del patrón de predicción.</li>
+ <li>'Patrón de numeración' le ayudará a determinar como se imprimen los números de cada ejemplar <ul>
+ <li>Comience la numeración con el ejemplar que tiene en la mano, la numeración que coincida con la fecha en que ingresó en el campo 'Publicación de primer ejemplar'</li>
+ <li>Si ha elegido un 'Formato de numeración' distinto de 'Número' en el campo 'Repetir en', ingrese el último número de ejemplar antes que el número de volumen cambie <ul>
+ <li>Si elige el Formato de numeración 'Número' verá 'ejemplares esperados' en el cual puede ingresar el número total de ejemplares que espera recibir.</li>
 </ul>
 </li>
- <li>You can choose to create your own numbering pattern by choosing 'None of the above' and clicking the 'Show/Hide Advanced Pattern' button at the bottom of the form</li>
+ <li>Puede optar por crear su propio patrón de numeración eligiendo 'Ninguna de las anteriores' y haciendo clic en 'Mostrar/Ocultar patrón avanzado', situado en la parte inferior del formulario</li>
 </ul>
 </li>
- <li>'Subscription start date' is the date at which the subscription begins. This is used for setting up renewal alerts</li>
- <li>'Subscription length' is the number of issues or months in the subscription. This is also used for setting up renewal alerts</li>
- <li>'Subscription end date' should only be entered for subscriptions that have ended (if you're entering in a backlog of serials)</li>
- <li>The 'Numbering formula' is editable to match the way you'd like your numbering to print on the item record and subscription information pages</li>
+ <li>'Inicio de suscripción' es la fecha en la cual comienza la suscripción. Esto es utilizado para establecer las alertas de renovación</li>
+ <li>'Duración de suscripción' es el número de ejemplares o meses de la suscripción. Esto se utiliza para establecer alertas de renovación</li>
+ <li>'Fin de suscripción' solo debe ingresarse para suscripciones que han terminado (si está analizando los pedidos no surtidos de publicaciones periódicas)</li>
+ <li>La 'Fórmula de Numeración' se puede modificar para coincidir con la forma en que desea su numeración para imprimir en el registro del ítem y las páginas de información de suscripción</li>
 </ul>
 
-<p>#~ "#~ "Haga clic en 'Guardar suscripción' para guardar la información que "#~ "ha "#~ "introducido.""</p>
+<p>Haga clic en 'Guardar suscripción' para guardar la información que ha introducido.</p>
 
-<p><strong>See the full documentation for Adding a Subscription in the <a href="http://manual.koha-community.org/3.6/en/serials.html#newsubscription">manual</a> (online).</strong></p>
+<p><strong>Vea la documentación completa para Agregar suscripción en la <a href="http://manual.koha-community.org/3.8/en/serials.html#newsubscription">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
-
+[% INCLUDE 'help-bottom.inc' %] 

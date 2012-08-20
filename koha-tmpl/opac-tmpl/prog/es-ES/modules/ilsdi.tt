@@ -7,334 +7,75 @@
  <h1>ILS-DI</h1>
  
 [% IF ( GetAvailability ) %] <h2>GetAvailability</h2>
- <p>Dado un conjunto de identificadores bibliográficos o de artículos, devuelve una lista con la disponibilidad de los artículos asociados con los identificadores.</p>
+ <p>Dado un conjunto de identificadores bibliográficos o de ítem, devuelve una lista con la disponibilidad de los ítems asociados con los identificadores.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>id</strong> (Requerido)</dt>
- <dd>lista de identificadores bibliográficos y/o artículos</dd>
+ <dd>lista de identificadores bibliográficos y/o ítems</dd>
  <dt><strong>id_type</strong> (Requerido)</dt>
- <dd>define el tipo de identificador de registro utilizado en la solicitud, valores posibles: <ul>
+ <dd>define el tipo de identificador de registro utilizado en el requerimiento, valores posibles: <ul>
  <li>bib</li>
- <li>artículo</li>
+ <li>ítem</li>
  </ul>
  </dd>
  <dt><strong>return_type</strong> (Opcional)</dt>
- <dd>solicita un nivel de detalle concreto para la presentación de informes de disponibilidad, valores posibles: <ul>
+ <dd>solicita un nivel de detalle particular al informar disponibilidad, valores posibles: <ul>
  <li>bib</li>
- <li>artículo</li>
+ <li>ítem</li>
  </ul>
  </dd>
  <dt><strong>return_fmt</strong> (Opcional)</dt>
- <dd>solicita un formato concreto o un conjunto de formatos para la presentación de informes de disponibilidad</dd>
+ <dd>solicita un formato particular o conjunto de formatos disponibles para reportes</dd>
  </dl>
- <h4>Example call</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=GetAvailability&amp;id=1+2+99999&amp;id_type=item">
- ilsdi.pl?service=GetAvailability&amp;id=1+2+99999&amp;id_type=item
- </a>
- <h4>Example response</h4>
-<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;
-&lt;dlf:collection
- xmlns:dlf="http://diglib.org/ilsdi/1.1"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://diglib.org/ilsdi/1.1
- http://diglib.org/architectures/ilsdi/schemas/1.1/dlfexpanded.xsd"&gt;
- &lt;dlf:record&gt;
- &lt;dlf:bibliographic id="1" /&gt;
- &lt;dlf:items&gt;
- &lt;dlf:item id="1"&gt;
- &lt;dlf:simpleavailability&gt;
- &lt;dlf:identifier&gt;1&lt;/dlf:identifier&gt;
- &lt;dlf:availabilitystatus&gt;available&lt;/dlf:availabilitystatus&gt;
- &lt;dlf:location&gt;Bibliothèque Jean Prunier&lt;/dlf:location&gt;
- &lt;/dlf:simpleavailability&gt;
- &lt;/dlf:item&gt;
- &lt;/dlf:items&gt;
- &lt;/dlf:record&gt;
- &lt;dlf:record&gt;
- &lt;dlf:bibliographic id="2" /&gt;
- &lt;dlf:items&gt;
- &lt;dlf:item id="2"&gt;
- &lt;dlf:simpleavailability&gt;
- &lt;dlf:identifier&gt;2&lt;/dlf:identifier&gt;
- &lt;dlf:availabilitystatus&gt;available&lt;/dlf:availabilitystatus&gt;
- &lt;dlf:location&gt;Bibliothèque Jean Prunier&lt;/dlf:location&gt;
- &lt;/dlf:simpleavailability&gt;
- &lt;/dlf:item&gt;
- &lt;/dlf:items&gt;
- &lt;/dlf:record&gt;
- &lt;dlf:record&gt;
- &lt;dlf:bibliographic id="99999" /&gt;
- &lt;dlf:items&gt;
- &lt;dlf:item id="99999"&gt;
- &lt;dlf:simpleavailability&gt;
- &lt;dlf:identifier&gt;99999&lt;/dlf:identifier&gt;
-
- &lt;dlf:availabilitystatus&gt;unknown&lt;/dlf:availabilitystatus&gt;
- &lt;dlf:availabilitymsg&gt;Error: could not retrieve availability for this ID&lt;/dlf:availabilitymsg&gt;
- &lt;/dlf:simpleavailability&gt;
- &lt;/dlf:item&gt;
- &lt;/dlf:items&gt;
- &lt;/dlf:record&gt;
-&lt;/dlf:collection&gt;</pre>
+ ilsdi.pl?service=GetAvailability&amp;id=1+2+99999&amp;id_type=item </a>
+ <h4>Ejemplo de respuesta</h4>
+<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;dlf:collection xmlns:dlf="http://diglib.org/ilsdi/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://diglib.org/ilsdi/1.1 http://diglib.org/architectures/ilsdi/schemas/1.1/dlfexpanded.xsd"&gt; &lt;dlf:record&gt; &lt;dlf:bibliographic id="1" /&gt; &lt;dlf:items&gt; &lt;dlf:item id="1"&gt; &lt;dlf:simpleavailability&gt; &lt;dlf:identifier&gt;1&lt;/dlf:identifier&gt; &lt;dlf:availabilitystatus&gt;available&lt;/dlf:availabilitystatus&gt; &lt;dlf:location&gt;Bibliothèque Jean Prunier&lt;/dlf:location&gt; &lt;/dlf:simpleavailability&gt; &lt;/dlf:item&gt; &lt;/dlf:items&gt; &lt;/dlf:record&gt; &lt;dlf:record&gt; &lt;dlf:bibliographic id="2" /&gt; &lt;dlf:items&gt; &lt;dlf:item id="2"&gt; &lt;dlf:simpleavailability&gt; &lt;dlf:identifier&gt;2&lt;/dlf:identifier&gt; &lt;dlf:availabilitystatus&gt;available&lt;/dlf:availabilitystatus&gt; &lt;dlf:location&gt;Bibliothèque Jean Prunier&lt;/dlf:location&gt; &lt;/dlf:simpleavailability&gt; &lt;/dlf:item&gt; &lt;/dlf:items&gt; &lt;/dlf:record&gt; &lt;dlf:record&gt; &lt;dlf:bibliographic id="99999" /&gt; &lt;dlf:items&gt; &lt;dlf:item id="99999"&gt; &lt;dlf:simpleavailability&gt; &lt;dlf:identifier&gt;99999&lt;/dlf:identifier&gt; &lt;dlf:availabilitystatus&gt;unknown&lt;/dlf:availabilitystatus&gt; &lt;dlf:availabilitymsg&gt;Error: could not retrieve availability for this ID&lt;/dlf:availabilitymsg&gt; &lt;/dlf:simpleavailability&gt; &lt;/dlf:item&gt; &lt;/dlf:items&gt; &lt;/dlf:record&gt; &lt;/dlf:collection&gt;</pre>
 
 [% ELSIF ( GetRecords ) %] <h2>GetRecords</h2>
- <p>Dada un lista de identificadores de registros, devuelve una lista de registros que contienen información bibliográfica, así como existencias asociadas e información de artículos. Quien hace la petición puede requerir un esquema de metadatos específico para los regisitros recuperados. Esta función se comporta de forma similar a HarvestBibliographicRecords y HarvestExpandedRecords en agregación de datos, pero permite una búsqueda rápida, en tiempo real, por identificador bibliográfico.</p>
- <p>Puedes usar OAI-PMH ListRecords en lugar de este servicio.</p>
+ <p>Dada un lista de identificadores de registros, devuelve una lista de objetos de registros que contienen información bibliográfica, así como existencias asociadas e información de ítems. Quien hace la llamada puede requerir un esquema de metadatos específico para los objetos de registros retornados. Esta función se comporta de forma similar a HarvestBibliographicRecords y HarvestExpandedRecords en agregación de datos, pero permite una búsqueda rápida, en tiempo real, por identificador bibliográfico.</p>
+ <p>Puede usar OAI-PMH ListRecords en lugar de este servicio.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>id</strong> (Requerido)</dt>
  <dd>lista de identificadores de registro del sistema</dd>
  <dt><strong>id_type</strong> (Opcional)</dt>
- <dd>Define el esquema de metadatos con el cual se recuperan los registros, valores posibles: <ul>
+ <dd>Define el esquema de metadatos con el cual se retornan los registros, valores posibles: <ul>
  <li>MARCXML</li>
  </ul>
  </dd>
  </dl>
- <h4>Ejemplo de llamada</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=GetRecords&amp;id=1+2+99999">
- ilsdi.pl?service=GetRecords&amp;id=1+2+99999
- </a>
- <h4>Example response</h4>
-<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;
-&lt;GetRecords&gt;
- &lt;record&gt;
- &lt;biblioitemnumber&gt;1&lt;/biblioitemnumber&gt;
- &lt;isbn&gt;9782862749198&lt;/isbn&gt;
- &lt;marcxml&gt;
- &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
- &lt;record
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/ standards/marcxml/schema/MARC21slim.xsd"
- xmlns="http://www.loc.gov/MARC21/slim"&gt;
- &lt;leader&gt;00397nac a22001451u 4500&lt;/leader&gt;
- &lt;datafield tag="010" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;9782862749198&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="090" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;1&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="101" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;fre&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="100" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;20080725 frey50 &lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="200" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;Jardins d'enfance&lt;/subfield&gt;
- &lt;subfield code="b"&gt;LITT&lt;/subfield&gt;
- &lt;subfield code="f"&gt;Abécassis, Eliette&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="210" ind1=" " ind2=" "&gt;
- &lt;subfield code="c"&gt;cherche midi éditeur&lt;/subfield&gt;
- &lt;subfield code="d"&gt;11/2001&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="215" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;180&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="225" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;nouvelles&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="995" ind1=" " ind2=" "&gt;
- &lt;subfield code="9"&gt;1&lt;/subfield&gt;
- &lt;subfield code="c"&gt;BIB&lt;/subfield&gt;
- &lt;subfield code="2"&gt;0&lt;/subfield&gt;
- &lt;subfield code="k"&gt;R ABE&lt;/subfield&gt;
- &lt;subfield code="o"&gt;0&lt;/subfield&gt;
- &lt;subfield code="e"&gt;Secteur Adulte&lt;/subfield&gt;
- &lt;subfield code="b"&gt;BIB&lt;/subfield&gt;
- &lt;subfield code="j"&gt;7786000200&lt;/subfield&gt;
- &lt;subfield code="q"&gt;a&lt;/subfield&gt;
- &lt;subfield code="r"&gt;2&lt;/subfield&gt;
- &lt;subfield code="s"&gt;Achats&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;controlfield tag="001"&gt;1&lt;/controlfield&gt;
- &lt;/record&gt;
- &lt;/marcxml&gt;
- &lt;publicationyear&gt;2001&lt;/publicationyear&gt;
- &lt;collectiontitle&gt;nouvelles&lt;/collectiontitle&gt;
- &lt;pages&gt;180&lt;/pages&gt;
- &lt;issues&gt;
- &lt;/issues&gt;
- &lt;itemtype&gt;LITT&lt;/itemtype&gt;
- &lt;biblionumber&gt;1&lt;/biblionumber&gt;
- &lt;timestamp&gt;2008-09-03 18:43:19&lt;/timestamp&gt;
- &lt;cn_sort&gt;_&lt;/cn_sort&gt;
- &lt;publishercode&gt;cherche midi éditeur&lt;/publishercode&gt;
- &lt;reserves&gt;
- &lt;/reserves&gt;
- &lt;items&gt;
- &lt;item&gt;
- &lt;biblioitemnumber&gt;1&lt;/biblioitemnumber&gt;
- &lt;wthdrawn&gt;0&lt;/wthdrawn&gt;
- &lt;holdingbranchname&gt;Bibliothèque Jean Prunier&lt;/holdingbranchname&gt;
- &lt;notforloan&gt;0&lt;/notforloan&gt;
- &lt;replacementpricedate&gt;2008-08-20&lt;/replacementpricedate&gt;
- &lt;itemnumber&gt;1&lt;/itemnumber&gt;
- &lt;location&gt;Secteur Adulte&lt;/location&gt;
- &lt;itemcallnumber&gt;R ABE&lt;/itemcallnumber&gt;
- &lt;date_due&gt;&lt;/date_due&gt;
- &lt;itemlost&gt;0&lt;/itemlost&gt;
- &lt;datelastseen&gt;2008-08-20&lt;/datelastseen&gt;
- &lt;homebranch&gt;BIB&lt;/homebranch&gt;
- &lt;homebranchname&gt;Bibliothèque Jean Prunier&lt;/homebranchname&gt;
- &lt;biblionumber&gt;1&lt;/biblionumber&gt;
- &lt;holdingbranch&gt;BIB&lt;/holdingbranch&gt;
- &lt;timestamp&gt;2008-08-20 17:15:51&lt;/timestamp&gt;
- &lt;damaged&gt;0&lt;/damaged&gt;
- &lt;cn_sort&gt;R_ABE&lt;/cn_sort&gt;
- &lt;dateaccessioned&gt;2008-08-20&lt;/dateaccessioned&gt;
- &lt;/item&gt;
- &lt;/items&gt;
- &lt;/record&gt;
- &lt;record&gt;
- &lt;biblioitemnumber&gt;2&lt;/biblioitemnumber&gt;
- &lt;isbn&gt;9782265078031&lt;/isbn&gt;
- &lt;marcxml&gt;
- &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
- &lt;record
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/ standards/marcxml/schema/MARC21slim.xsd"
- xmlns="http://www.loc.gov/MARC21/slim"&gt;
- &lt;leader&gt;00407nac a22001451u 4500&lt;/leader&gt;
- &lt;datafield tag="010" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;9782265078031&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="090" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;2&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="101" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;fre&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="100" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;20080725 frey50 &lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="200" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;(Les) tribulations d'une jeune divorcée&lt;/subfield&gt;
- &lt;subfield code="b"&gt;LITT&lt;/subfield&gt;
- &lt;subfield code="f"&gt;Abécassis, Eliette&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="210" ind1=" " ind2=" "&gt;
- &lt;subfield code="c"&gt;bussière&lt;/subfield&gt;
- &lt;subfield code="d"&gt;01/2005&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="215" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;306&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="225" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;fleuve noir&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="995" ind1=" " ind2=" "&gt;
- &lt;subfield code="9"&gt;2&lt;/subfield&gt;
- &lt;subfield code="c"&gt;BIB&lt;/subfield&gt;
- &lt;subfield code="2"&gt;0&lt;/subfield&gt;
- &lt;subfield code="k"&gt;R ABE&lt;/subfield&gt;
- &lt;subfield code="o"&gt;0&lt;/subfield&gt;
- &lt;subfield code="e"&gt;Secteur Adulte&lt;/subfield&gt;
- &lt;subfield code="b"&gt;BIB&lt;/subfield&gt;
- &lt;subfield code="j"&gt;7786004672&lt;/subfield&gt;
- &lt;subfield code="q"&gt;a&lt;/subfield&gt;
- &lt;subfield code="s"&gt;Achats&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;controlfield tag="001"&gt;2&lt;/controlfield&gt;
- &lt;/record&gt;
- &lt;/marcxml&gt;
- &lt;publicationyear&gt;2005&lt;/publicationyear&gt;
- &lt;collectiontitle&gt;fleuve noir&lt;/collectiontitle&gt;
- &lt;pages&gt;306&lt;/pages&gt;
- &lt;issues&gt;
- &lt;/issues&gt;
- &lt;itemtype&gt;LITT&lt;/itemtype&gt;
- &lt;biblionumber&gt;2&lt;/biblionumber&gt;
- &lt;timestamp&gt;2008-09-03 18:43:19&lt;/timestamp&gt;
- &lt;cn_sort&gt;_&lt;/cn_sort&gt;
- &lt;publishercode&gt;bussière&lt;/publishercode&gt;
- &lt;reserves&gt;
- &lt;/reserves&gt;
- &lt;items&gt;
- &lt;item&gt;
- &lt;biblioitemnumber&gt;2&lt;/biblioitemnumber&gt;
- &lt;wthdrawn&gt;0&lt;/wthdrawn&gt;
- &lt;holdingbranchname&gt;Bibliothèque Jean Prunier&lt;/holdingbranchname&gt;
- &lt;notforloan&gt;0&lt;/notforloan&gt;
- &lt;replacementpricedate&gt;2008-08-20&lt;/replacementpricedate&gt;
- &lt;itemnumber&gt;2&lt;/itemnumber&gt;
- &lt;location&gt;Secteur Adulte&lt;/location&gt;
- &lt;itemcallnumber&gt;R ABE&lt;/itemcallnumber&gt;
- &lt;date_due&gt;&lt;/date_due&gt;
- &lt;itemlost&gt;0&lt;/itemlost&gt;
- &lt;datelastseen&gt;2008-08-20&lt;/datelastseen&gt;
- &lt;homebranch&gt;BIB&lt;/homebranch&gt;
- &lt;homebranchname&gt;Bibliothèque Jean Prunier&lt;/homebranchname&gt;
- &lt;biblionumber&gt;2&lt;/biblionumber&gt;
- &lt;holdingbranch&gt;BIB&lt;/holdingbranch&gt;
- &lt;timestamp&gt;2008-08-20 17:15:51&lt;/timestamp&gt;
- &lt;damaged&gt;0&lt;/damaged&gt;
- &lt;cn_sort&gt;R_ABE&lt;/cn_sort&gt;
- &lt;dateaccessioned&gt;2008-08-20&lt;/dateaccessioned&gt;
- &lt;/item&gt;
- &lt;/items&gt;
- &lt;/record&gt;
- &lt;record&gt;RecordNotFound&lt;/record&gt;
-&lt;/GetRecords&gt;</pre>
+ ilsdi.pl?service=GetRecords&amp;id=1+2+99999 </a>
+ <h4>Ejemplo de respuesta</h4>
+<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;GetRecords&gt; &lt;record&gt; &lt;biblioitemnumber&gt;1&lt;/biblioitemnumber&gt; &lt;isbn&gt;9782862749198&lt;/isbn&gt; &lt;marcxml&gt; &lt;?xml version="1.0" encoding="UTF-8" ?&gt; &lt;record xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/ standards/marcxml/schema/MARC21slim.xsd" xmlns="http://www.loc.gov/MARC21/slim"&gt; &lt;leader&gt;00397nac a22001451u 4500&lt;/leader&gt; &lt;datafield tag="010" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;9782862749198&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="090" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;1&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="101" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;fre&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="100" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;20080725 frey50 &lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="200" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;Jardins d'enfance&lt;/subfield&gt; &lt;subfield code="b"&gt;LITT&lt;/subfield&gt; &lt;subfield code="f"&gt;Abécassis, Eliette&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="210" ind1=" " ind2=" "&gt; &lt;subfield code="c"&gt;cherche midi éditeur&lt;/subfield&gt; &lt;subfield code="d"&gt;11/2001&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="215" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;180&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="225" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;nouvelles&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="995" ind1=" " ind2=" "&gt; &lt;subfield code="9"&gt;1&lt;/subfield&gt; &lt;subfield code="c"&gt;BIB&lt;/subfield&gt; &lt;subfield code="2"&gt;0&lt;/subfield&gt; &lt;subfield code="k"&gt;R ABE&lt;/subfield&gt; &lt;subfield code="o"&gt;0&lt;/subfield&gt; &lt;subfield code="e"&gt;Secteur Adulte&lt;/subfield&gt; &lt;subfield code="b"&gt;BIB&lt;/subfield&gt; &lt;subfield code="j"&gt;7786000200&lt;/subfield&gt; &lt;subfield code="q"&gt;a&lt;/subfield&gt; &lt;subfield code="r"&gt;2&lt;/subfield&gt; &lt;subfield code="s"&gt;Achats&lt;/subfield&gt; &lt;/datafield&gt; &lt;controlfield tag="001"&gt;1&lt;/controlfield&gt; &lt;/record&gt; &lt;/marcxml&gt; &lt;publicationyear&gt;2001&lt;/publicationyear&gt; &lt;collectiontitle&gt;nouvelles&lt;/collectiontitle&gt; &lt;pages&gt;180&lt;/pages&gt; &lt;issues&gt; &lt;/issues&gt; &lt;itemtype&gt;LITT&lt;/itemtype&gt; &lt;biblionumber&gt;1&lt;/biblionumber&gt; &lt;timestamp&gt;2008-09-03 18:43:19&lt;/timestamp&gt; &lt;cn_sort&gt;_&lt;/cn_sort&gt; &lt;publishercode&gt;cherche midi éditeur&lt;/publishercode&gt; &lt;reserves&gt; &lt;/reserves&gt; &lt;items&gt; &lt;item&gt; &lt;biblioitemnumber&gt;1&lt;/biblioitemnumber&gt; &lt;wthdrawn&gt;0&lt;/wthdrawn&gt; &lt;holdingbranchname&gt;Bibliothèque Jean Prunier&lt;/holdingbranchname&gt; &lt;notforloan&gt;0&lt;/notforloan&gt; &lt;replacementpricedate&gt;2008-08-20&lt;/replacementpricedate&gt; &lt;itemnumber&gt;1&lt;/itemnumber&gt; &lt;location&gt;Secteur Adulte&lt;/location&gt; &lt;itemcallnumber&gt;R ABE&lt;/itemcallnumber&gt; &lt;date_due&gt;&lt;/date_due&gt; &lt;itemlost&gt;0&lt;/itemlost&gt; &lt;datelastseen&gt;2008-08-20&lt;/datelastseen&gt; &lt;homebranch&gt;BIB&lt;/homebranch&gt; &lt;homebranchname&gt;Bibliothèque Jean Prunier&lt;/homebranchname&gt; &lt;biblionumber&gt;1&lt;/biblionumber&gt; &lt;holdingbranch&gt;BIB&lt;/holdingbranch&gt; &lt;timestamp&gt;2008-08-20 17:15:51&lt;/timestamp&gt; &lt;damaged&gt;0&lt;/damaged&gt; &lt;cn_sort&gt;R_ABE&lt;/cn_sort&gt; &lt;dateaccessioned&gt;2008-08-20&lt;/dateaccessioned&gt; &lt;/item&gt; &lt;/items&gt; &lt;/record&gt; &lt;record&gt; &lt;biblioitemnumber&gt;2&lt;/biblioitemnumber&gt; &lt;isbn&gt;9782265078031&lt;/isbn&gt; &lt;marcxml&gt; &lt;?xml version="1.0" encoding="UTF-8" ?&gt; &lt;record xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/ standards/marcxml/schema/MARC21slim.xsd" xmlns="http://www.loc.gov/MARC21/slim"&gt; &lt;leader&gt;00407nac a22001451u 4500&lt;/leader&gt; &lt;datafield tag="010" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;9782265078031&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="090" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;2&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="101" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;fre&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="100" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;20080725 frey50 &lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="200" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;(Les) tribulations d'une jeune divorcée&lt;/subfield&gt; &lt;subfield code="b"&gt;LITT&lt;/subfield&gt; &lt;subfield code="f"&gt;Abécassis, Eliette&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="210" ind1=" " ind2=" "&gt; &lt;subfield code="c"&gt;bussière&lt;/subfield&gt; &lt;subfield code="d"&gt;01/2005&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="215" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;306&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="225" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;fleuve noir&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="995" ind1=" " ind2=" "&gt; &lt;subfield code="9"&gt;2&lt;/subfield&gt; &lt;subfield code="c"&gt;BIB&lt;/subfield&gt; &lt;subfield code="2"&gt;0&lt;/subfield&gt; &lt;subfield code="k"&gt;R ABE&lt;/subfield&gt; &lt;subfield code="o"&gt;0&lt;/subfield&gt; &lt;subfield code="e"&gt;Secteur Adulte&lt;/subfield&gt; &lt;subfield code="b"&gt;BIB&lt;/subfield&gt; &lt;subfield code="j"&gt;7786004672&lt;/subfield&gt; &lt;subfield code="q"&gt;a&lt;/subfield&gt; &lt;subfield code="s"&gt;Achats&lt;/subfield&gt; &lt;/datafield&gt; &lt;controlfield tag="001"&gt;2&lt;/controlfield&gt; &lt;/record&gt; &lt;/marcxml&gt; &lt;publicationyear&gt;2005&lt;/publicationyear&gt; &lt;collectiontitle&gt;fleuve noir&lt;/collectiontitle&gt; &lt;pages&gt;306&lt;/pages&gt; &lt;issues&gt; &lt;/issues&gt; &lt;itemtype&gt;LITT&lt;/itemtype&gt; &lt;biblionumber&gt;2&lt;/biblionumber&gt; &lt;timestamp&gt;2008-09-03 18:43:19&lt;/timestamp&gt; &lt;cn_sort&gt;_&lt;/cn_sort&gt; &lt;publishercode&gt;bussière&lt;/publishercode&gt; &lt;reserves&gt; &lt;/reserves&gt; &lt;items&gt; &lt;item&gt; &lt;biblioitemnumber&gt;2&lt;/biblioitemnumber&gt; &lt;wthdrawn&gt;0&lt;/wthdrawn&gt; &lt;holdingbranchname&gt;Bibliothèque Jean Prunier&lt;/holdingbranchname&gt; &lt;notforloan&gt;0&lt;/notforloan&gt; &lt;replacementpricedate&gt;2008-08-20&lt;/replacementpricedate&gt; &lt;itemnumber&gt;2&lt;/itemnumber&gt; &lt;location&gt;Secteur Adulte&lt;/location&gt; &lt;itemcallnumber&gt;R ABE&lt;/itemcallnumber&gt; &lt;date_due&gt;&lt;/date_due&gt; &lt;itemlost&gt;0&lt;/itemlost&gt; &lt;datelastseen&gt;2008-08-20&lt;/datelastseen&gt; &lt;homebranch&gt;BIB&lt;/homebranch&gt; &lt;homebranchname&gt;Bibliothèque Jean Prunier&lt;/homebranchname&gt; &lt;biblionumber&gt;2&lt;/biblionumber&gt; &lt;holdingbranch&gt;BIB&lt;/holdingbranch&gt; &lt;timestamp&gt;2008-08-20 17:15:51&lt;/timestamp&gt; &lt;damaged&gt;0&lt;/damaged&gt; &lt;cn_sort&gt;R_ABE&lt;/cn_sort&gt; &lt;dateaccessioned&gt;2008-08-20&lt;/dateaccessioned&gt; &lt;/item&gt; &lt;/items&gt; &lt;/record&gt; &lt;record&gt;RecordNotFound&lt;/record&gt; &lt;/GetRecords&gt;etRecords&gt;</pre>
 
 [% ELSIF ( GetAuthorityRecords ) %] <h2>GetAuthorityRecords</h2>
- <p>Dada un lista de identificadores de registros de autoridades, devuelve una lista de registros que contienen los registros de autoridades. El usuario puede requerir un esquema de metadatos específico para los registros.</p>
+ <p>Dada un lista de identificadores de registros de autoridades, devuelve una lista de objetos de registros que contienen los registros de autoridades. El usuario de la función puede requerir un esquema de metadatos específico para los objetos de registros.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>id</strong> (Requerido)</dt>
  <dd>lista de identificadores de registros de autoridad</dd>
  <dt><strong>esquema</strong> (Opcional)</dt>
- <dd>especifica el esquema de metadatos de los registros que han de ser devueltos, valores posibles: <ul>
+ <dd>especifica el esquema de metadatos de los registros a ser devueltos, valores posibles: <ul>
  <li>MARCXML</li>
  </ul>
  </dd>
  </dl>
- <h4>Example call</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=GetAuthorityRecords&amp;id=1+2+99999">
- ilsdi.pl?service=GetAuthorityRecords&amp;id=1+2+99999
- </a>
- <h4>Example response</h4>
-<pre>&lt;xml version="1.0" encoding="UTF-8"&gt;;
-&lt;GetAuthorityRecords&gt;
- &lt;record&gt;
- &lt;?xml version="1.0" encoding="UTF-8"?&gt;
- &lt;record
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/ standards/marcxml/schema/MARC21slim.xsd"
- xmlns="http://www.loc.gov/MARC21/slim"&gt;
- &lt;leader&gt;00182 2200085 4500&lt;/leader&gt;
- &lt;controlfield tag="001"&gt;1&lt;/controlfield&gt;
- &lt;datafield tag="200" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;Hugo&lt;/subfield&gt;
- &lt;subfield code="b"&gt;Victor&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="801" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;France&lt;/subfield&gt;
- &lt;subfield code="b"&gt;Nimes&lt;/subfield&gt;
- &lt;subfield code="c"&gt;2010/04/13&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="100" ind1=" " ind2=" "&gt;
- &lt;subfield code="a"&gt;20100413 50 &lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;datafield tag="152" ind1=" " ind2=" "&gt;
- &lt;subfield code="b"&gt;NP&lt;/subfield&gt;
- &lt;/datafield&gt;
- &lt;/record&gt;
- &lt;/record&gt;
- &lt;record&gt;
- &lt;code&gt;RecordNotFound&lt;/code&gt;
- &lt;/record&gt;
- &lt;record&gt;
- &lt;code&gt;RecordNotFound&lt;/code&gt;
- &lt;/record&gt;
-&lt;/GetAuthorityRecords&gt;</pre>
+ ilsdi.pl?service=GetAuthorityRecords&amp;id=1+2+99999 </a>
+ <h4>Ejemplo de respuesta</h4>
+<pre>&lt;xml version="1.0" encoding="UTF-8"&gt;; &lt;GetAuthorityRecords&gt; &lt;record&gt; &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;record xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/ standards/marcxml/schema/MARC21slim.xsd" xmlns="http://www.loc.gov/MARC21/slim"&gt; &lt;leader&gt;00182 2200085 4500&lt;/leader&gt; &lt;controlfield tag="001"&gt;1&lt;/controlfield&gt; &lt;datafield tag="200" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;Hugo&lt;/subfield&gt; &lt;subfield code="b"&gt;Victor&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="801" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;France&lt;/subfield&gt; &lt;subfield code="b"&gt;Nimes&lt;/subfield&gt; &lt;subfield code="c"&gt;2010/04/13&lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="100" ind1=" " ind2=" "&gt; &lt;subfield code="a"&gt;20100413 50 &lt;/subfield&gt; &lt;/datafield&gt; &lt;datafield tag="152" ind1=" " ind2=" "&gt; &lt;subfield code="b"&gt;NP&lt;/subfield&gt; &lt;/datafield&gt; &lt;/record&gt; &lt;/record&gt; &lt;record&gt; &lt;code&gt;RecordNotFound&lt;/code&gt; &lt;/record&gt; &lt;record&gt; &lt;code&gt;RecordNotFound&lt;/code&gt; &lt;/record&gt; &lt;/GetAuthorityRecords&gt;</pre>
 
 [% ELSIF ( LookupPatron ) %] <h2>LookupPatron</h2>
- <p>Busca a un usuario en el SIGB mediante un identificador y devuelve el identificador del SIGB para ese usuario, también denominado identificador del usuario.</p>
+ <p>Busca un socio en el ILS por un identificador, y retorna el identificador del ILS para ese socio, esto es el identificador del socio.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>id</strong> (Requerido)</dt>
- <dd>un identificador utilizado para buscar el usuario en Koha</dd>
+ <dd>un identificador utilizado para buscar el socio en Koha</dd>
  <dt><strong>id_type</strong> (Opcional)</dt>
  <dd>el tipo del identificador, valores posibles: <ul>
  <li>cardnumber</li>
@@ -343,293 +84,171 @@
  </ul>
  </dd>
  </dl>
- <h4>Example call</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=LookupPatron&amp;id=815&amp;id_type=cardnumber">
- ilsdi.pl?service=LookupPatron&amp;id=815&amp;id_type=cardnumber
- </a>
- <h4>Example response</h4>
+ ilsdi.pl?service=LookupPatron&amp;id=815&amp;id_type=cardnumber </a>
+ <h4>Ejemplo de respuesta</h4>
 <pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;LookupPatron&gt; &lt;id&gt;419&lt;/id&gt; &lt;/LookupPatron&gt;</pre>
 
 [% ELSIF ( AuthenticatePatron ) %] <h2>AuthenticatePatron</h2>
- <p>Autentica las credenciales de acceso de un usuario y devuelve su identificador.</p>
+ <p>Autentica las credenciales de ingreso de un usuario y devuelve el identificador del socio.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>nombre de usuario</strong> (Requerido)</dt>
- <dd>identificador de acceso del usuario</dd>
+ <dd>identificador de acceso del socio</dd>
  <dt><strong>contraseña</strong> (Requerido)</dt>
  <dd>contraseña del usuario</dd>
  </dl>
- <h4>Example call</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=AuthenticatePatron&amp;username=john9&amp;password=soul">
- ilsdi.pl?service=AuthenticatePatron&amp;username=john9&amp;password=soul
- </a>
- <h4>Ejemplo de respuesta</h4>
+ ilsdi.pl?service=AuthenticatePatron&amp;username=john9&amp;password=soul </a>
+ <h4>Respuesta de ejemplo</h4>
 <pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;AuthenticatePatron&gt; &lt;id&gt;419&lt;/id&gt; &lt;/AuthenticatePatron&gt;</pre>
 
 [% ELSIF ( GetPatronInfo ) %] <h2>GetPatronInfo</h2>
- <p>Devuelve información sobre el usuario, basado en las opciones de la petición. Esta función puede recuperar opcionalmente información de contacto, sanciones, reservas, préstamos y mensajes del usuario.</p>
+ <p>Retorna información sobre el socio, basado en las opciones da la consulta. Esta función puede retornar opcionalmente información de contacto, multas, reservas, préstamos y mensajes del socio.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>patron_id</strong> (Requerido)</dt>
- <dd>el identificador único de usuario en el SIGB; el mismo identificador devuelto por LookupPatron o AuthenticatePatron (variables del sistema)</dd>
+ <dd>el identificador único de socio en el ILS; el mismo identificador devuelto por LookupPatron o AuthenticatePatron</dd>
  <dt><strong>show_contact</strong> (Opcional, por defecto 1)</dt>
- <dd>recuperar o no información de contacto del usuario en la respuesta</dd>
+ <dd>si retornar o no información de contacto del socio en la respuesta</dd>
  <dt><strong>show_fines</strong> (Opcional, por defecto 0)</dt>
- <dd>recuperar o no información sobre sanciones en la respuesta</dd>
+ <dd>si retornar o no información sobre multas en la respuesta</dd>
  <dt><strong>show_holds</strong> (Opcional, por defecto 0)</dt>
- <dd>si recuperar o no información sobre reservas en la respuesta</dd>
+ <dd>si retornar o no información sobre reservas en la respuesta</dd>
  <dt><strong>show_loans</strong> (Opcional, por defecto 0)</dt>
- <dd>recuperar o no información sobre préstamos en la respuesta</dd>
+ <dd>si retornar o no información sobre préstamos en la respuesta</dd>
  </dl>
- <h4>Example call</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=GetPatronInfo&amp;patron_id=1&amp;show_contact=0&amp;show_loans=1">
- ilsdi.pl?service=GetPatronInfo&amp;patron_id=1&amp;show_contact=0&amp;show_loans=1
- </a>
- <h4>Example response</h4>
-<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;
-&lt;GetPatronInfo&gt;
- &lt;category_type&gt;A&lt;/category_type&gt;
- &lt;categorycode&gt;ADUEXT&lt;/categorycode&gt;
- &lt;borrowernumber&gt;419&lt;/borrowernumber&gt;
- &lt;lost&gt;0&lt;/lost&gt;
- &lt;branchcode&gt;BIB&lt;/branchcode&gt;
- &lt;amountoutstanding&gt;6&lt;/amountoutstanding&gt;
- &lt;description&gt;Adulte extérieur&lt;/description&gt;
- &lt;title&gt;M&lt;/title&gt;
- &lt;enrolmentperiod&gt;12&lt;/enrolmentperiod&gt;
- &lt;charges&gt;6.00&lt;/charges&gt;
- &lt;dateenrolled&gt;2009-03-04&lt;/dateenrolled&gt;
- &lt;borrowernotes&gt;&lt;/borrowernotes&gt;
- &lt;dateexpiry&gt;2010-03-04&lt;/dateexpiry&gt;
- &lt;firstname&gt;Jean-André&lt;/firstname&gt;
- &lt;gonenoaddress&gt;0&lt;/gonenoaddress&gt;
- &lt;dateofbirth&gt;1984-06-08&lt;/dateofbirth&gt;
- &lt;debarred&gt;0&lt;/debarred&gt;
- &lt;branchname&gt;Bibliothèque Jean Prunier&lt;/branchname&gt;
- &lt;surname&gt;SANTONI&lt;/surname&gt;
- &lt;cardnumber&gt;815&lt;/cardnumber&gt;
- &lt;initials&gt;JAS&lt;/initials&gt;
- &lt;sort1&gt;CSP5&lt;/sort1&gt;
- &lt;sex&gt;M&lt;/sex&gt;
- &lt;loans&gt;
- &lt;loan&gt;
- &lt;lastreneweddate&gt;2009-04-03&lt;/lastreneweddate&gt;
- &lt;isbn&gt;2253003689&lt;/isbn&gt;
- &lt;borrowernumber&gt;419&lt;/borrowernumber&gt;
- &lt;branchcode&gt;BIB&lt;/branchcode&gt;
- &lt;itemnumber&gt;4454&lt;/itemnumber&gt;
- &lt;date_due&gt;2009-05-06&lt;/date_due&gt;
- &lt;barcode&gt;4765476&lt;/barcode&gt;
- &lt;datelastseen&gt;2008-08-23&lt;/datelastseen&gt;
- &lt;issuedate&gt;2008-08-23&lt;/issuedate&gt;
- &lt;title&gt;L'Île au trésor&lt;/title&gt;
- &lt;itemtype&gt;LITT&lt;/itemtype&gt;
- &lt;author&gt;Robert Louis Stevenson&lt;/author&gt;
- &lt;timestamp&gt;2009-04-03 14:46:10&lt;/timestamp&gt;
- &lt;publishercode&gt;Librairie générale française&lt;/publishercode&gt;
- &lt;datecreated&gt;2008-08-23&lt;/datecreated&gt;
- &lt;totalrenewals&gt;11&lt;/totalrenewals&gt;
- &lt;dateaccessioned&gt;2008-08-23&lt;/dateaccessioned&gt;
- &lt;onloan&gt;2008-09-17&lt;/onloan&gt;
- &lt;biblioitemnumber&gt;4483&lt;/biblioitemnumber&gt;
- &lt;wthdrawn&gt;0&lt;/wthdrawn&gt;
- &lt;notforloan&gt;0&lt;/notforloan&gt;
- &lt;replacementpricedate&gt;2008-08-23&lt;/replacementpricedate&gt;
- &lt;itemcallnumber&gt;RO STE&lt;/itemcallnumber&gt;
- &lt;location&gt;Salle de lecture&lt;/location&gt;
- &lt;itemlost&gt;0&lt;/itemlost&gt;
- &lt;publicationyear&gt;1985&lt;/publicationyear&gt;
- &lt;issues&gt;1&lt;/issues&gt;
- &lt;homebranch&gt;BIB&lt;/homebranch&gt;
- &lt;holdingbranch&gt;BIB&lt;/holdingbranch&gt;
- &lt;biblionumber&gt;4483&lt;/biblionumber&gt;
- &lt;renewals&gt;3&lt;/renewals&gt;
- &lt;damaged&gt;0&lt;/damaged&gt;
- &lt;cn_sort&gt;RO_STE&lt;/cn_sort&gt;
- &lt;frameworkcode&gt;&lt;/frameworkcode&gt;
- &lt;datelastborrowed&gt;2008-08-23&lt;/datelastborrowed&gt;
- &lt;/loan&gt;
- &lt;loan&gt;
- &lt;lastreneweddate&gt;2009-03-17&lt;/lastreneweddate&gt;
- &lt;isbn&gt;9782700017823&lt;/isbn&gt;
- &lt;borrowernumber&gt;419&lt;/borrowernumber&gt;
- &lt;branchcode&gt;BIB&lt;/branchcode&gt;
- &lt;itemnumber&gt;4456&lt;/itemnumber&gt;
- &lt;date_due&gt;2009-04-18&lt;/date_due&gt;
- &lt;barcode&gt;2700017UUU&lt;/barcode&gt;
- &lt;datelastseen&gt;2008-08-23&lt;/datelastseen&gt;
- &lt;issuedate&gt;2008-08-23&lt;/issuedate&gt;
- &lt;title&gt;La guitare en 10 leçons&lt;/title&gt;
- &lt;itemtype&gt;LITT&lt;/itemtype&gt;
- &lt;author&gt;Jon Buck&lt;/author&gt;
- &lt;timestamp&gt;2009-03-17 16:48:14&lt;/timestamp&gt;
- &lt;publishercode&gt;Gründ&lt;/publishercode&gt;
- &lt;datecreated&gt;2008-08-23&lt;/datecreated&gt;
- &lt;totalrenewals&gt;6&lt;/totalrenewals&gt;
- &lt;dateaccessioned&gt;2008-08-23&lt;/dateaccessioned&gt;
- &lt;notes&gt;La couv. porte en plus : "un guide simple et facile pour apprendre la guitare" | Glossaire. Index&lt;/notes&gt;
- &lt;onloan&gt;2008-09-25&lt;/onloan&gt;
- &lt;biblioitemnumber&gt;4486&lt;/biblioitemnumber&gt;
- &lt;wthdrawn&gt;0&lt;/wthdrawn&gt;
- &lt;notforloan&gt;0&lt;/notforloan&gt;
- &lt;replacementpricedate&gt;2008-08-23&lt;/replacementpricedate&gt;
- &lt;itemcallnumber&gt;787.87 BUC&lt;/itemcallnumber&gt;
- &lt;location&gt;Salle de lecture&lt;/location&gt;
- &lt;itemlost&gt;0&lt;/itemlost&gt;
- &lt;publicationyear&gt;2007&lt;/publicationyear&gt;
- &lt;issues&gt;1&lt;/issues&gt;
- &lt;homebranch&gt;BIB&lt;/homebranch&gt;
- &lt;holdingbranch&gt;BIB&lt;/holdingbranch&gt;
- &lt;biblionumber&gt;4486&lt;/biblionumber&gt;
- &lt;renewals&gt;3&lt;/renewals&gt;
- &lt;damaged&gt;0&lt;/damaged&gt;
- &lt;cn_sort&gt;78787_BUC&lt;/cn_sort&gt;
- &lt;volume&gt;une méthode simple et facile pour apprendre la guitare&lt;/volume&gt;
- &lt;frameworkcode&gt;&lt;/frameworkcode&gt;
- &lt;datelastborrowed&gt;2008-08-23&lt;/datelastborrowed&gt;
- &lt;/loan&gt;
- &lt;/loans&gt;
-&lt;/GetPatronInfo&gt;</pre>
+ ilsdi.pl?service=GetPatronInfo&amp;patron_id=1&amp;show_contact=0&amp;show_loans=1 </a>
+ <h4>Ejemplo de respuesta</h4>
+<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;GetPatronInfo&gt; &lt;category_type&gt;A&lt;/category_type&gt; &lt;categorycode&gt;ADUEXT&lt;/categorycode&gt; &lt;borrowernumber&gt;419&lt;/borrowernumber&gt; &lt;lost&gt;0&lt;/lost&gt; &lt;branchcode&gt;BIB&lt;/branchcode&gt; &lt;amountoutstanding&gt;6&lt;/amountoutstanding&gt; &lt;description&gt;Adulte extérieur&lt;/description&gt; &lt;title&gt;M&lt;/title&gt; &lt;enrolmentperiod&gt;12&lt;/enrolmentperiod&gt; &lt;charges&gt;6.00&lt;/charges&gt; &lt;dateenrolled&gt;2009-03-04&lt;/dateenrolled&gt; &lt;borrowernotes&gt;&lt;/borrowernotes&gt; &lt;dateexpiry&gt;2010-03-04&lt;/dateexpiry&gt; &lt;firstname&gt;Jean-André&lt;/firstname&gt; &lt;gonenoaddress&gt;0&lt;/gonenoaddress&gt; &lt;dateofbirth&gt;1984-06-08&lt;/dateofbirth&gt; &lt;debarred&gt;0&lt;/debarred&gt; &lt;branchname&gt;Bibliothèque Jean Prunier&lt;/branchname&gt; &lt;surname&gt;SANTONI&lt;/surname&gt; &lt;cardnumber&gt;815&lt;/cardnumber&gt; &lt;initials&gt;JAS&lt;/initials&gt; &lt;sort1&gt;CSP5&lt;/sort1&gt; &lt;sex&gt;M&lt;/sex&gt; &lt;loans&gt; &lt;loan&gt; &lt;lastreneweddate&gt;2009-04-03&lt;/lastreneweddate&gt; &lt;isbn&gt;2253003689&lt;/isbn&gt; &lt;borrowernumber&gt;419&lt;/borrowernumber&gt; &lt;branchcode&gt;BIB&lt;/branchcode&gt; &lt;itemnumber&gt;4454&lt;/itemnumber&gt; &lt;date_due&gt;2009-05-06&lt;/date_due&gt; &lt;barcode&gt;4765476&lt;/barcode&gt; &lt;datelastseen&gt;2008-08-23&lt;/datelastseen&gt; &lt;issuedate&gt;2008-08-23&lt;/issuedate&gt; &lt;title&gt;L'Île au trésor&lt;/title&gt; &lt;itemtype&gt;LITT&lt;/itemtype&gt; &lt;author&gt;Robert Louis Stevenson&lt;/author&gt; &lt;timestamp&gt;2009-04-03 14:46:10&lt;/timestamp&gt; &lt;publishercode&gt;Librairie générale française&lt;/publishercode&gt; &lt;datecreated&gt;2008-08-23&lt;/datecreated&gt; &lt;totalrenewals&gt;11&lt;/totalrenewals&gt; &lt;dateaccessioned&gt;2008-08-23&lt;/dateaccessioned&gt; &lt;onloan&gt;2008-09-17&lt;/onloan&gt; &lt;biblioitemnumber&gt;4483&lt;/biblioitemnumber&gt; &lt;wthdrawn&gt;0&lt;/wthdrawn&gt; &lt;notforloan&gt;0&lt;/notforloan&gt; &lt;replacementpricedate&gt;2008-08-23&lt;/replacementpricedate&gt; &lt;itemcallnumber&gt;RO STE&lt;/itemcallnumber&gt; &lt;location&gt;Salle de lecture&lt;/location&gt; &lt;itemlost&gt;0&lt;/itemlost&gt; &lt;publicationyear&gt;1985&lt;/publicationyear&gt; &lt;issues&gt;1&lt;/issues&gt; &lt;homebranch&gt;BIB&lt;/homebranch&gt; &lt;holdingbranch&gt;BIB&lt;/holdingbranch&gt; &lt;biblionumber&gt;4483&lt;/biblionumber&gt; &lt;renewals&gt;3&lt;/renewals&gt; &lt;damaged&gt;0&lt;/damaged&gt; &lt;cn_sort&gt;RO_STE&lt;/cn_sort&gt; &lt;frameworkcode&gt;&lt;/frameworkcode&gt; &lt;datelastborrowed&gt;2008-08-23&lt;/datelastborrowed&gt; &lt;/loan&gt; &lt;loan&gt; &lt;lastreneweddate&gt;2009-03-17&lt;/lastreneweddate&gt; &lt;isbn&gt;9782700017823&lt;/isbn&gt; &lt;borrowernumber&gt;419&lt;/borrowernumber&gt; &lt;branchcode&gt;BIB&lt;/branchcode&gt; &lt;itemnumber&gt;4456&lt;/itemnumber&gt; &lt;date_due&gt;2009-04-18&lt;/date_due&gt; &lt;barcode&gt;2700017UUU&lt;/barcode&gt; &lt;datelastseen&gt;2008-08-23&lt;/datelastseen&gt; &lt;issuedate&gt;2008-08-23&lt;/issuedate&gt; &lt;title&gt;La guitare en 10 leçons&lt;/title&gt; &lt;itemtype&gt;LITT&lt;/itemtype&gt; &lt;author&gt;Jon Buck&lt;/author&gt; &lt;timestamp&gt;2009-03-17 16:48:14&lt;/timestamp&gt; &lt;publishercode&gt;Gründ&lt;/publishercode&gt; &lt;datecreated&gt;2008-08-23&lt;/datecreated&gt; &lt;totalrenewals&gt;6&lt;/totalrenewals&gt; &lt;dateaccessioned&gt;2008-08-23&lt;/dateaccessioned&gt; &lt;notes&gt;La couv. porte en plus : "un guide simple et facile pour apprendre la guitare" | Glossaire. Index&lt;/notes&gt; &lt;onloan&gt;2008-09-25&lt;/onloan&gt; &lt;biblioitemnumber&gt;4486&lt;/biblioitemnumber&gt; &lt;wthdrawn&gt;0&lt;/wthdrawn&gt; &lt;notforloan&gt;0&lt;/notforloan&gt; &lt;replacementpricedate&gt;2008-08-23&lt;/replacementpricedate&gt; &lt;itemcallnumber&gt;787.87 BUC&lt;/itemcallnumber&gt; &lt;location&gt;Salle de lecture&lt;/location&gt; &lt;itemlost&gt;0&lt;/itemlost&gt; &lt;publicationyear&gt;2007&lt;/publicationyear&gt; &lt;issues&gt;1&lt;/issues&gt; &lt;homebranch&gt;BIB&lt;/homebranch&gt; &lt;holdingbranch&gt;BIB&lt;/holdingbranch&gt; &lt;biblionumber&gt;4486&lt;/biblionumber&gt; &lt;renewals&gt;3&lt;/renewals&gt; &lt;damaged&gt;0&lt;/damaged&gt; &lt;cn_sort&gt;78787_BUC&lt;/cn_sort&gt; &lt;volume&gt;une méthode simple et facile pour apprendre la guitare&lt;/volume&gt; &lt;frameworkcode&gt;&lt;/frameworkcode&gt; &lt;datelastborrowed&gt;2008-08-23&lt;/datelastborrowed&gt; &lt;/loan&gt; &lt;/loans&gt; &lt;/GetPatronInfo&gt;</pre>
 
 [% ELSIF ( GetPatronStatus ) %] <h2>GetPatronStatus</h2>
- <p>Devuelve información del estado de un usuario de Koha.</p>
+ <p>Retorna información de estado sobre un socio de Koha.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>patron_id</strong> (Requerido)</dt>
- <dd>el identificador único de usuario en el SIGB; el mismo identificador devuelto por LookupPatron o AuthenticatePatron (variables del sistema)</dd>
+ <dd>el identificador único de socio en el ILS; el mismo identificador devuelto por LookupPatron o AuthenticatePatron</dd>
  </dl>
- <h4>Example call</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=GetPatronStatus&amp;patron_id=1">
- ilsdi.pl?service=GetPatronStatus&amp;patron_id=1
- </a>
- <h4>Ejemplo de respuesta</h4>
+ ilsdi.pl?service=GetPatronStatus&amp;patron_id=1 </a>
+ <h4>Respuesta de ejemplo</h4>
 <pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;GetPatronStatus&gt; &lt;expiry&gt;2010-03-04&lt;/expiry&gt; &lt;status&gt;0&lt;/status&gt; &lt;type&gt;ADUEXT&lt;/type&gt; &lt;/GetPatronStatus&gt;</pre>
 
 [% ELSIF ( GetServices ) %] <h2>GetServices</h2>
- <p>Devuelve información acerca de los servicios disponibles de un determinado artículo para un usuario específico</p>
+ <p>Retorna información sobre los servicios disponibles sobre un determinado ítem para un socio particular.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>patron_id</strong> (Requerido)</dt>
- <dd>el identificador único de usuario en el SIGB; el mismo identificador devuelto por LookupPatron o AuthenticatePatron (variables del sistema)</dd>
+ <dd>el identificador único de socio en el ILS; el mismo identificador devuelto por LookupPatron o AuthenticatePatron</dd>
  <dt><strong>item_id</strong> (Requerido)</dt>
- <dd>identificador de artículo del sistema</dd>
+ <dd>identificador de ítem del sistema</dd>
  </dl>
- <h4>Example call</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=GetServices&amp;patron_id=1&amp;item_id=1">
- ilsdi.pl?service=GetServices&amp;patron_id=1&amp;item_id=1
- </a>
- <h4>Example response</h4>
+ ilsdi.pl?service=GetServices&amp;patron_id=1&amp;item_id=1 </a>
+ <h4>Ejemplo de respuesta</h4>
 <pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;GetServices&gt; &lt;AvailableFor&gt;title level hold&lt;/AvailableFor&gt; &lt;AvailableFor&gt;item level hold&lt;/AvailableFor&gt; &lt;/GetServices&gt;</pre>
 
 [% ELSIF ( RenewLoan ) %] <h2>RenewLoan</h2>
- <p>Amplía la fecha de devolución para un préstamo existente de un usuario.</p>
+ <p>Extiende la fecha de devolución para un préstamo existente de un socio.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>patron_id</strong> (Requerido)</dt>
- <dd>el identificador único de usuario en el SIGB; el mismo identificador devuelto por LookupPatron o AuthenticatePatron (variables del sistema)</dd>
+ <dd>el identificador único de socio en el ILS; el mismo identificador devuelto por LookupPatron o AuthenticatePatron</dd>
  <dt><strong>item_id</strong> (Requerido)</dt>
- <dd>identificador de artículo del sistema</dd>
+ <dd>identificador de ítem del sistema</dd>
  <dt><strong>desired_due_date</strong> (Requerido)</dt>
- <dd>la fecha en que el usuario devolverá el artículo</dd>
+ <dd>a la fecha el socio le gustaría el ítem devuelto por</dd>
  </dl>
- <h4>Example call</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=RenewLoan&amp;patron_id=1&amp;item_id=1">
- ilsdi.pl?service=RenewLoan&amp;patron_id=1&amp;item_id=1
- </a>
- <h4>Example response</h4>
+ ilsdi.pl?service=RenewLoan&amp;patron_id=1&amp;item_id=1 </a>
+ <h4>Ejemplo de respuesta</h4>
 <pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;RenewLoan&gt; &lt;success&gt;0&lt;/success&gt; &lt;renewals&gt;5&lt;/renewals&gt; &lt;date_due&gt;2009-05-11&lt;/date_due&gt; &lt;/RenewLoan&gt;</pre>
 
 [% ELSIF ( HoldTitle ) %] <h2>HoldTitle</h2>
- <p>Crea, para un usuario, una petición a través del título de un registro bibliográfico en Koha.</p>
+ <p>Crea, para un socio, un requerimiento de reserva para un registro bibliográfico en Koha.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>patron_id</strong> (Requerido)</dt>
- <dd>el identificador SIGB del usuario para el cual se hizo la solicitud</dd>
+ <dd>el identificador ILS del socio para el cual se hizo la solicitud</dd>
  <dt><strong>bib_id</strong> (Requerido)</dt>
- <dd>el identificador SIGB para el registro bibliográfico sobre el cual se hizo la solicitud</dd>
+ <dd>el identificador ILS para el registro bibliográfico sobre el cual se hizo la solicitud</dd>
  <dt><strong>request_location</strong> (Requerido)</dt>
- <dd>Dirección IP desde donde se realiza la petición del usuario</dd>
+ <dd>Dirección IP desde donde se realiza el requerimiento del usuario final</dd>
  <dt><strong>pickup_location</strong> (Opcional)</dt>
- <dd>un identificador que indica la ubicación a la que enviar el artículo para ser recogido</dd>
+ <dd>un identificador indicando la ubicación donde enviar el ítem para ser retirado</dd>
  <dt><strong>needed_before_date</strong> (Opcional)</dt>
- <dd>fecha a partir de la cual ya no es necesaria la reserva</dd>
+ <dd>fecha a partir de la cual ya no es necesario el pedido de reserva</dd>
  <dt><strong>pickup_expiry_date</strong> (Opcional)</dt>
- <dd>fecha a partir de la cual el artículo se devuelve a la estantería si no es recogido</dd>
+ <dd>fecha a partir de la cual el ítem se devuelve al estante si no es retirado</dd>
  </dl>
- <h4>Ejemplo de llamada</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=HoldTitle&amp;patron_id=1&amp;bib_id=1&amp;request_location=127.0.0.1">
- ilsdi.pl?service=HoldTitle&amp;patron_id=1&amp;bib_id=1&amp;request_location=127.0.0.1
- </a>
- <h4>Example response</h4>
-<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;
-&lt;HoldTitle&gt;
- &lt;title&gt;(les) galères de l'Orfèvre&lt;/title&gt;
- &lt;date_available&gt;2009-05-11&lt;/date_available&gt;
- &lt;pickup_location&gt;Bibliothèque Jean-Prunier&lt;/pickup_location&gt;
-&lt;/HoldTitle&gt;</pre>
+ ilsdi.pl?service=HoldTitle&amp;patron_id=1&amp;bib_id=1&amp;request_location=127.0.0.1 </a>
+ <h4>Ejemplo de respuesta</h4>
+<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;HoldTitle&gt; &lt;title&gt;(les) galères de l'Orfèvre&lt;/title&gt; &lt;date_available&gt;2009-05-11&lt;/date_available&gt; &lt;pickup_location&gt;Bibliothèque Jean-Prunier&lt;/pickup_location&gt; &lt;/HoldTitle&gt;</pre>
 
 [% ELSIF ( HoldItem ) %] <h2>HoldItem</h2>
- <p>Crea, para un usuario, una petición a través de un artículo específico de un registro bibliográfico en Koha.</p>
+ <p>Crea, para un socio, un requerimiento a nivel de ítem específico de un registro bibliográfico en Koha.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>patron_id</strong> (Requerido)</dt>
- <dd>el identificador SIGB del usuario para el cual se hizo la solicitud</dd>
+ <dd>el identificador ILS del socio para el cual se hizo la solicitud</dd>
  <dt><strong>bib_id</strong> (Requerido)</dt>
- <dd>el identificador SIGB para el registro bibliográfico sobre el cual se hizo la solicitud</dd>
+ <dd>el identificador ILS para el registro bibliográfico sobre el cual se hizo la solicitud</dd>
  <dt><strong>item_id</strong> (Requerido)</dt>
- <dd>el identificador SIGB para el artículo específico sobre el cual se hizo la solicitud</dd>
+ <dd>el identificador ILS para el ítem específico sobre el cual se hizo la solicitud</dd>
  <dt><strong>pickup_location</strong> (Opcional)</dt>
- <dd>un identificador que indica la ubicación a la que enviar el artículo para ser recogido</dd>
+ <dd>un identificador indicando la ubicación donde enviar el ítem para ser retirado</dd>
  <dt><strong>needed_before_date</strong> (Opcional)</dt>
- <dd>fecha a partir de la cual ya no es necesaria la reserva</dd>
+ <dd>fecha a partir de la cual ya no es necesario el pedido de reserva</dd>
  <dt><strong>pickup_expiry_date</strong> (Opcional)</dt>
- <dd>fecha a partir de la cual el artículo se devuelve a la estantería si no es recogido</dd>
+ <dd>fecha a partir de la cual el ítem se devuelve al estante si no es retirado</dd>
  </dl>
- <h4>Ejemplo de llamada</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=HoldItem&amp;patron_id=1&amp;bib_id=1&amp;item_id=1">
- ilsdi.pl?service=HoldItem&amp;patron_id=1&amp;bib_id=1&amp;item_id=1
- </a>
- <h4>Example response</h4>
-<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt;
-&lt;HoldTitle&gt;
- &lt;title&gt;(les) galères de l'Orfèvre&lt;/title&gt;
- &lt;date_available&gt;2009-05-11&lt;/date_available&gt;
- &lt;pickup_location&gt;Bibliothèque Jean-Prunier&lt;/pickup_location&gt;
-&lt;/HoldTitle&gt;</pre>
+ ilsdi.pl?service=HoldItem&amp;patron_id=1&amp;bib_id=1&amp;item_id=1 </a>
+ <h4>Ejemplo de respuesta</h4>
+<pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;HoldTitle&gt; &lt;title&gt;(les) galères de l'Orfèvre&lt;/title&gt; &lt;date_available&gt;2009-05-11&lt;/date_available&gt; &lt;pickup_location&gt;Bibliothèque Jean-Prunier&lt;/pickup_location&gt; &lt;/HoldTitle&gt;</pre>
 
-[% ELSIF ( CancelHold ) %] <h2>CancelHold</h2>
- <p>Cancela una petición activa de reserva del usuario.</p>
+[% ELSIF ( CancelHold ) %] <h2>Cancelar reserva</h2>
+ <p>Cancela una solicitud de reserva activa del socio.</p>
  <h4>Parámetros</h4>
  <dl>
  <dt><strong>patron_id</strong> (Requerido)</dt>
- <dd>el identificador único de usuario en el SIGB; el mismo identificador devuelto por LookupPatron o AuthenticatePatron (variables del sistema)</dd>
+ <dd>el identificador único de socio en el ILS; el mismo identificador devuelto por LookupPatron o AuthenticatePatron</dd>
  <dt><strong>item_id</strong> (Requerido)</dt>
- <dd>identificador de artículo del sistema</dd>
+ <dd>identificador de ítem del sistema</dd>
  </dl>
- <h4>Example call</h4>
+ <h4>Llamada de ejemplo</h4>
  <a href="ilsdi.pl?service=CancelHold&amp;patron_id=1&amp;item_id=1">
- ilsdi.pl?service=CancelHold&amp;patron_id=1&amp;item_id=1
- </a>
- <h4>Example response</h4>
+ ilsdi.pl?service=CancelHold&amp;patron_id=1&amp;item_id=1 </a>
+ <h4>Ejemplo de respuesta</h4>
 <pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; &lt;CancelHold&gt; &lt;message&gt;Canceled&lt;/message&gt; &lt;/CancelHold&gt;</pre>
 
-[% ELSE %] <h2>Level 1: Basic discovery interfaces</h2>
+[% ELSE %] <h2>Nivel 1: Interfaces de descubrimiento básicas</h2>
  <ul>
- <li>HarvestBibliographicRecords <em>(Usar OAI-PMH en su lugar)</em></li>
- <li>HarvestExpandedRecords <em>(Usar OAI-PMH en su lugar)</em></li>
+ <li>HarvestBibliographicRecords <em>(Utilice OAI-PMH en su lugar)</em></li>
+ <li>HarvestExpandedRecords <em>(Utilice OAI-PMH en su lugar)</em></li>
  <li><a href="ilsdi.pl?service=Describe&amp;verb=GetAvailability">GetAvailability</a></li>
- <li>GoToBibliographicRequestPage <em>(Usar OPAC en su lugar)</em></li>
+ <li>GoToBibliographicRequestPage <em>(Usar en cambio OPAC)</em></li>
  </ul>
  <h2>Nivel 2: Suplemento de OPAC elemental</h2>
  <ul>
- <li>HarvestAuthorityRecords <em>(Usar OAI-PMH en su lugar)</em></li>
- <li>HarvestHoldingsRecords <em>(Usar OAI-PMH en su lugar)</em></li>
+ <li>HarvestAuthorityRecords <em>(Utilice OAI-PMH en su lugar)</em></li>
+ <li>HarvestHoldingsRecords <em>(Utilice OAI-PMH en su lugar)</em></li>
  <li><a href="ilsdi.pl?service=Describe&amp;verb=GetRecords">GetRecords</a></li>
- <li>Buscar <em>(Usar SRU en su lugar)</em></li>
- <li>Explorar <em>(Usar SRU en su lugar)</em></li>
+ <li>Buscar <em>(Usar en cambio SRU)</em></li>
+ <li>Digitalizar <em>(Usar en cambio SRU)</em></li>
  <li><a href="ilsdi.pl?service=Describe&amp;verb=GetAuthorityRecords">GetAuthorityRecords</a></li>
- <li>OutputRewritablePage <em>(No admitido todavía)</em></li>
- <li>OutputIntermediateFormat <em>(No admitido todavía)</em></li>
+ <li>OutputRewritablePage <em>(No soportado todavía)</em></li>
+ <li>OutputIntermediateFormat <em>(No soportado todavía)</em></li>
  </ul>
  <h2>Nivel 3: Alternativa de OPAC elemental</h2>
  <ul>
@@ -641,14 +260,14 @@
  <li><a href="ilsdi.pl?service=Describe&amp;verb=RenewLoan">RenewLoan</a></li>
  <li><a href="ilsdi.pl?service=Describe&amp;verb=HoldTitle">HoldTitle</a></li>
  <li><a href="ilsdi.pl?service=Describe&amp;verb=HoldItem">HoldItem</a></li>
- <li><a href="ilsdi.pl?service=Describe&amp;verb=CancelHold">CancelHold</a></li>
- <li>RecallItem <em>(No admitido por Koha)</em></li>
- <li>CancelRecall<em>(No admitido por Koha)</em></li>
+ <li><a href="ilsdi.pl?service=Describe&amp;verb=CancelHold">Cancelar reserva</a></li>
+ <li>RecallItem <em>(Sin soporte por Koha)</em></li>
+ <li>Cancelar reclamo <em>(Sin soporte por Koha)</em></li>
  </ul>
  <h2>Nivel 4: Plataformas de descubrimiento específicas/robustas</h2>
  <ul>
- <li>SearchCourseReserves <em>(No admitido todavía)</em></li>
- <li>Explica<em>(No admitido todavía)</em></li>
+ <li>SearchCourseReserves <em>(No soportado todavía)</em></li>
+ <li>Explique <em>(No soportado todavía)</em></li>
  </ul>
 
 [% END %] </div></div>

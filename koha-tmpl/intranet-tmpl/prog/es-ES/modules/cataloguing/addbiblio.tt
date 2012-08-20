@@ -1,17 +1,13 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Cataloging &rsaquo; [% IF ( biblionumber ) %]Editing [% title |html %] (Record number [% biblionumber %])[% ELSE %]Add MARC record[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/yui/plugins/bubbling-min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; [% IF ( biblionumber ) %]Editar [% title |html %] (Registro número [% biblionumber %])[% ELSE %]Agregar registro MARC[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/yui/plugins/bubbling-min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.fixFloat.js"></script>
-[% IF ( CheckValueIndicators ) %]
-<script type="text/javascript" src='[% themelang %]/js/indicators.js'></script>
-[% END %]
-<script type="text/javascript">
+[% IF ( CheckValueIndicators ) %] <script type="text/javascript" src='[% themelang %]/js/indicators.js'></script>
+[% END %] <script type="text/javascript">
 //<![CDATA[
 
      var fields_in_use = {};
 	 $(document).ready(function() {
- 		$('#addbibliotabs > ul').tabs().bind('show.ui-tabs', function(e, ui) {
+        $('#addbibliotabs').tabs().bind('show.ui-tabs', function(e, ui) {
 			$("#"+ui.panel.id+" input:eq(0)").focus();
 		});
         $('.tag').each(function() {
@@ -33,7 +29,7 @@
 		/* check cookie to hide/show marcdocs*/
 		if($.cookie("marcdocs_[% borrowernumber %]") == 'false'){
 			hideMARCdocLinks();
-			$("#marcDocsSelect").attr('checked',false);
+            $("#marcDocsSelect").removeAttr('checked');
 		} else {
 			/* reset cookie expire date */
 			$.cookie("marcdocs_[% borrowernumber %]",'true',
@@ -42,7 +38,7 @@
 
 	});
 
-	$('#header_search > ul').tabs().bind('show.ui-tabs', function(e, ui) { $('#header_search > div:not(.ui-tabs-hide)').find('input').eq(0).focus(); });
+    $('#header_search').tabs().bind('show.ui-tabs', function(e, ui) { $('#header_search > div:not(.ui-tabs-hide)').find('input').eq(0).focus(); });
 
 
 function confirmnotdup(redirect){
@@ -250,7 +246,7 @@ function AreMandatoriesNotOk(){
             [% END %]
         [% END %]
     [% END %]
-    var StrAlert = _("No se puede guardar este registro porque no se han rellenado los siguientes campos:");
+    var StrAlert = _("No se puede guardar este registro porque el o los siguientes campos no han sido llenados:");
     StrAlert += "\n\n";
     for(var i=0,len=mandatories.length; i<len ; i++){
         var tag=mandatories[i].substr(4,3);
@@ -277,7 +273,7 @@ function AreMandatoriesNotOk(){
       if (tabflag[tagsubfieldid][0]==0){
         var tag=tagsubfieldid.substr(0,3);
         var subfield=tagsubfieldid.substr(3,1);    
-        StrAlert += "\t* "+_("etiqueta")+tag+_(" subfield ")+subfield+" "+tabflag[tagsubfieldid][1]+_(" in tab ")+tabflag[tagsubfieldid][2]+"\n";
+        StrAlert += "\t* "+_("etiqueta ")+tag+_(" subcampo ")+subfield+" "+tabflag[tagsubfieldid][1]+_(" en la pestaña ")+tabflag[tagsubfieldid][2]+"\n";
         //StrAlert += "\t* "+label[i]+_(" in tab ")+tab[i]+"\n"; 
         flag=1;    
       }   
@@ -327,7 +323,7 @@ function AreMandatoriesNotOk(){
     	
     	if(isempty){
     		flag = 1;
-    		StrAlert += _("\\t* Campo") + arr[0] + _(" is mandatory, at least one of its subfields must be filled.") + "\n";
+    		StrAlert += _("\\t* Campo ") + arr[0] + _(" es obligatorio, se debe cargar al menos uno de los subcampos.") + "\n";
     	}
     	
     }
@@ -759,7 +755,7 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
 <body id="cat_addbiblio" class="cat">
 <div id="yui-cms-loading">
  <div id="yui-cms-float">
- Cargando, por favor espere ...</div>
+ Cargando, por favor espere ... </div>
  </div>
 <script type="text/javascript" src="[% themelang %]/lib/yui/plugins/loading-min.js"></script>
 <script type="text/javascript">
@@ -772,8 +768,7 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
 })();
 //]]>
 </script>
-[% INCLUDE 'header.inc' %]
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/cataloguing/addbooks.pl">Catalogación</a> &rsaquo; [% IF ( biblionumber ) %]Editando<em>[% title |html %]</em> (Record number [% biblionumber %])[% ELSE %]Add MARC record[% END %]</div>
+[% INCLUDE 'header.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/cataloguing/addbooks.pl">Catalogación</a> &rsaquo; [% IF ( biblionumber ) %]Editar <em>[% title |html %]</em> (Número de registro [% biblionumber %])[% ELSE %]Agregar registro MARC[% END %]</div>
 
 <div id="doc" class="yui-t7">
 
@@ -781,44 +776,33 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
  <div id="yui-main">
  <div class="yui-g">
 
-<h1>[% IF ( biblionumber ) %]Editing <em>[% title |html %]</em> (Record number [% biblionumber %])</h1>[% ELSE %]Add MARC record</h1>[% END %]
-[% IF marcflavour != 'NORMARC' %]
-<div><input type="checkbox" name="marcDocsSelect" id="marcDocsSelect" checked="true" /> Mostrar enlaces de documentación de etiquetas MARC<br/></div>
+<h1>[% IF ( biblionumber ) %]Edición <em>[% title |html %]</em> (Número de registro [% biblionumber %])</h1>[% ELSE %]Agregar registro MARC </h1>[% END %] [% IF marcflavour != 'NORMARC' %] <div><input type="checkbox" name="marcDocsSelect" id="marcDocsSelect" checked="true" /> Mostrar documentación de campos MARC<br/></div>
 [% END %]
 
 [% UNLESS ( number ) %]
  <!-- show duplicate warning on tab 0 only -->
  [% IF ( duplicatebiblionumber ) %]
  <div class="dialog alert">
- <h4>Duplicate record suspected</h4>
- <p>Is this a duplicate of <a href="/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% duplicatebiblionumber %]" onclick="openWindow('../MARCdetail.pl?biblionumber=[% duplicatebiblionumber %]&amp;popup=1', 'Duplicate biblio'; return false;)">[% duplicatetitle %]</a>?</p>
+ <h4>Posible registro duplicado</h4>
+ <p>¿Es este un duplicado de <a href="/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% duplicatebiblionumber %]" onclick="openWindow('/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% duplicatebiblionumber %]&amp;popup=1', 'Duplicate biblio','800','600'); return false;">[% duplicatetitle %]</a>?</p>
  [% IF ( CAN_user_editcatalogue_edit_items ) %]<form action="/cgi-bin/koha/cataloguing/additem.pl" method="get">
  <input type="hidden" name="biblionumber" value="[% duplicatebiblionumber %]" />
- <input value="Sí: Editar ítems existentes" type="submit" class="edit" />
+ <input value="Sí, editar ítems existentes" type="submit" class="edit" />
  </form>[% ELSE %]<form action="/cgi-bin/koha/catalogue/detail.pl" method="get">
  <input type="hidden" name="biblionumber" value="[% duplicatebiblionumber %]" />
- <input value="Sí: Ver ítems existentes" type="submit" />
- </form>[% END %]
- <form action="/cgi-bin/koha/cataloguing/addbiblio.pl" method="get">
- [% IF ( CAN_user_editcatalogue_edit_items ) %]<input type="button" class="save" onclick="confirmnotdup('items'); return false;" value="No: Save as new record" />[% ELSE %]<input type="button" class="save" onclick="confirmnotdup('view'); return false;" value="No: Save as new record" />[% END %]
- </form>
+ <input value="Si, visualizar los ítems existentes" type="submit" />
+ </form>[% END %] <form action="/cgi-bin/koha/cataloguing/addbiblio.pl" method="get">
+ [% IF ( CAN_user_editcatalogue_edit_items ) %]<input value="No: guardar como nuevo registro" type="button" class="save" onclick="confirmnotdup('items'); return false;" />[% ELSE %]<input value="No: guardar como nuevo registro" type="button" class="save" onclick="confirmnotdup('view'); return false;" />[% END %] </form>
  </div>
- [% END %]
- [% END %]
-
-[% IF ( done ) %]
- <script type="text/javascript">
+ [% END %] [% END %] [% IF ( done ) %] <script type="text/javascript">
         opener.document.forms['f'].biblionumber.value=[% biblionumber %];
         opener.document.forms['f'].title.value='[% title |html %]';
         window.close();
     </script>
-[% ELSE %]
- <form method="post" name="f" id="f" action="/cgi-bin/koha/cataloguing/addbiblio.pl" onsubmit="return Check();" enctype="multipart/form-data">
+[% ELSE %] <form method="post" name="f" id="f" action="/cgi-bin/koha/cataloguing/addbiblio.pl" onsubmit="return Check();" enctype="multipart/form-data">
  <input type="hidden" value="[% IF ( biblionumber ) %]view[% ELSE %]items[% END %]" id="redirect" name="redirect" />
  <input type="hidden" value="0" id="confirm_not_duplicate" name="confirm_not_duplicate" />
-[% END %]
- 
-<div id="toolbar">
+[% END %] <div id="toolbar">
 
 <script type="text/javascript">
 	//<![CDATA[
@@ -893,39 +877,25 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
  <ul class="toolbar">
  <li id="savebutton"><input value="Guardar" id="addbiblio" type="submit" /></li>
  <li id="z3950searchc"><input value="Búsqueda Z39.50" type="button" id="z3950search" onclick="PopupZ3950(); return false;" /></li>
- <li id="changeframework"><label for="Frameworks">Modificar hoja de trabajo:</label>
+ <li id="changeframework"><label for="Frameworks">Modificar hoja de trabajo: </label>
  <select name="frameworkcode" id="Frameworks" onchange="Changefwk(this);">
  <option value="Default">Predeterminado</option>
- [% FOREACH frameworkcodeloo IN frameworkcodeloop %]
- [% IF ( frameworkcodeloo.selected ) %]
- <option value="[% frameworkcodeloo.value %]" selected="selected">
- [% ELSE %]
- <option value="[% frameworkcodeloo.value %]">
- [% END %]
- [% frameworkcodeloo.frameworktext %] 
- </option> 
- [% END %]
- </select> 
+ [% FOREACH frameworkcodeloo IN frameworkcodeloop %] [% IF ( frameworkcodeloo.selected ) %] <option value="[% frameworkcodeloo.value %]" selected="selected">
+ [% ELSE %] <option value="[% frameworkcodeloo.value %]">
+ [% END %] [% frameworkcodeloo.frameworktext %] </option> 
+ [% END %] </select> 
 <input type="hidden" name="op" value="addbiblio" /></li>
  </ul>
- [% IF ( showFilesLocalRepository ) %]
- [% INCLUDE 'cataloguing-attach-files.inc' %]
- [% END %]
-</div>
+ [% IF ( showFilesLocalRepository ) %] [% INCLUDE 'cataloguing-attach-files.inc' %] [% END %] </div>
 
-[% IF ( popup ) %]
- <input type="hidden" name="mode" value="popup" />
-[% END %]
- <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
+[% IF ( popup ) %] <input type="hidden" name="mode" value="popup" />
+[% END %] <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
  <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
  <input type="hidden" name="breedingid" value="[% breedingid %]" />
 
 <div id="addbibliotabs" class="toptabs numbered">
- <ul>[% FOREACH BIG_LOO IN BIG_LOOP %]
- <li> [% IF ( BIG_LOO.number ) %]
- <a href="/cgi-bin/koha/cataloguing/addbiblio.pl#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a>
- [% ELSE %]
- <a href="/cgi-bin/koha/cataloguing/addbiblio.pl#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a>
+ <ul>[% FOREACH BIG_LOO IN BIG_LOOP %] <li> [% IF ( BIG_LOO.number ) %] <a href="#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a>
+ [% ELSE %] <a href="#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a>
  [% END %]</li>
  [% END %]</ul>
 
@@ -933,51 +903,30 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
 <!-- hide every tab except the 1st -->
 [% IF ( BIG_LOO.number ) %]
  <div id="tab[% BIG_LOO.number %]XX">
-[% ELSE %]
- <div id="tab[% BIG_LOO.number %]XX">
-[% END %]
-
- 
- [% FOREACH innerloo IN BIG_LOO.innerloop %]
- [% IF ( innerloo.tag ) %]
- <div class="tag" id="tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
+[% ELSE %] <div id="tab[% BIG_LOO.number %]XX">
+[% END %] [% FOREACH innerloo IN BIG_LOO.innerloop %] [% IF ( innerloo.tag ) %] <div class="tag" id="tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
  <div class="tag_title" id="div_indicator_tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
- [% UNLESS hide_marc %]
- [% IF advancedMARCEditor %]
- <a href="#" tabindex="1" class="tagnum" title="[% innerloo.tag_lib %] - Click to Expand this Tag" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;">[% innerloo.tag %]</a>
- [% ELSE %]
- <span class="tagnum" title="[% innerloo.tag_lib %]">[% innerloo.tag %]
- [% IF marcflavour != 'NORMARC' %]<a class="marcdocs" onclick="PopupMARCFieldDoc('[% innerloo.tag %]', [% BIG_LOO.number %]); return false;">&nbsp;?</a>[% END %]
- </span>
- [% END %]
- [% IF ( innerloo.fixedfield ) %]
- <input tabindex="1" class="indicator flat" type="text" style="display:none;" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator1 %]" />
+ [% UNLESS hide_marc %] [% IF advancedMARCEditor %] <a tabindex="1" href="#" class="tagnum" title="[% innerloo.tag_lib %] - Haga clic par expandir esta etiqueta" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;">[% innerloo.tag %]</a>
+ [% ELSE %] <span class="tagnum" title="[% innerloo.tag_lib %]">[% innerloo.tag %] [% IF marcflavour != 'NORMARC' %]<a class="marcdocs" onclick="PopupMARCFieldDoc('[% innerloo.tag %]', [% BIG_LOO.number %]); return false;">&nbsp;?</a>[% END %] </span>
+ [% END %] [% IF ( innerloo.fixedfield ) %] <input tabindex="1" class="indicator flat" type="text" style="display:none;" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator1 %]" />
  <input tabindex="1" class="indicator flat" type="text" style="display:none;" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator2 %]" />
- [% ELSE %]
- <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator1 %]" />
- [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1" onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Mostrar plugin con valores permitidos para el indicador 1 en el campo [% innerloo.tag %]">...</a>[% END %]
- <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator2 %]" />
- [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2" onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Mostrar plugin con valores permitidos para el indicador 2 en el campo [% innerloo.tag %]">...</a>[% END %]
+ [% ELSE %] <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator1 %]" />
+ [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1"
+onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 1 on field [% innerloo.tag %]">...</a>[% END %] <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator2 %]" />
+ [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
+onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %]
  [% END %] -
  [% ELSE %]
  [% IF ( innerloo.fixedfield ) %]
  <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator1 %]" />
  <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator2 %]" />
- [% ELSE %]
- <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator1 %]" />
- [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1" onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Mostrar plugin con valores permitidos para el indicador 1 en el campo [% innerloo.tag %]">...</a>[% END %]
- <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator2 %]" />
- [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2" onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Mostrar plugin con valores permitidos para el indicador 2 en el campo [% innerloo.tag %]">...</a>[% END %]
- [% END %]
- [% END %]
-
- [% UNLESS advancedMARCEditor %]
- <a tabindex="1" href="#" class="expandfield" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Haz clic para 'Expandir' esta etiqueta">[% innerloo.tag_lib %]</a>
- [% END %]
- [% IF ( innerloo.repeatable ) %]
- <span class="subfield_controls"><a tabindex="1" href="#" class="buttonPlus" onclick="CloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Repetir esta etiqueta"><img alt="Repetir esta etiqueta" src="/intranet-tmpl/prog/img/repeat-tag.png" /></a>
- [% END %]
- <a tabindex="1" href="#" class="buttonMinus" onclick="UnCloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Eliminar esta etiqueta"><img alt="Eliminar esta etiqueta" src="/intranet-tmpl/prog/img/delete-tag.png" /></a></span>
+ [% ELSE %] <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator1 %]" />
+ [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1"
+onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 1 on field [% innerloo.tag %]">...</a>[% END %] <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator2 %]" />
+ [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
+onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %] [% END %] [% END %] [% UNLESS advancedMARCEditor %] <a tabindex="1" href="#" class="expandfield" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Haga clic en 'Expandir' esta etiqueta">[% innerloo.tag_lib %]</a>
+ [% END %] [% IF ( innerloo.repeatable ) %] <span class="subfield_controls"><a tabindex="1" href="#" class="buttonPlus" onclick="CloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Repetir esta etiqueta"><img alt="Repetir esta etiqueta" src="/intranet-tmpl/prog/img/repeat-tag.png" /></a>
+ [% END %] <a tabindex="1" href="#" class="buttonMinus" onclick="UnCloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Eliminar esta etiqueta"><img alt="Eliminar esta etiqueta" src="/intranet-tmpl/prog/img/delete-tag.png" /></a></span>
 
  
  </div>
@@ -986,41 +935,18 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
  <!-- One line on the marc editor -->
  <div class="subfield_line" style="[% subfield_loo.visibility %]; float: left; clear: left; width: 100%;" id="subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]">
  
- [% UNLESS advancedMARCEditor %]
- [% IF ( subfield_loo.fixedfield ) %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" style="display:none;" class="labelsubfield">
- [% ELSE %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" class="labelsubfield">[% END %]
- [% END %] 
- 
- [% UNLESS hide_marc %]
- <span class="subfieldcode">[% IF ( subfield_loo.fixedfield ) %] 
- <img alt="Mover arriba" src="[% themelang %]/../img/up.png" style="display:none;" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
- [% ELSE %]
- <img alt="Mover arriba" src="[% themelang %]/../img/up.png" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
- [% END %]
- <input title="[% subfield_loo.marc_lib_plain %]" style=" [% IF ( subfield_loo.fixedfield ) %]display:none; [% END %]border:0;" type="text" tabindex="0" name="tag_[% subfield_loo.tag %]_code_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" value="[% subfield_loo.subfield %]" size="1" maxlength="1" class="flat" />
+ [% UNLESS advancedMARCEditor %] [% IF ( subfield_loo.fixedfield ) %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" style="display:none;" class="labelsubfield">
+ [% ELSE %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" class="labelsubfield">[% END %] [% END %] [% UNLESS hide_marc %] <span class="subfieldcode">[% IF ( subfield_loo.fixedfield ) %] <img alt="Mover arriba" src="[% themelang %]/../img/up.png" style="display:none;" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
+ [% ELSE %] <img alt="Mover arriba" src="[% themelang %]/../img/up.png" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
+ [% END %] <input title="[% subfield_loo.marc_lib_plain %]" style=" [% IF ( subfield_loo.fixedfield ) %]display:none; [% END %]border:0;" type="text" tabindex="0" name="tag_[% subfield_loo.tag %]_code_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" value="[% subfield_loo.subfield %]" size="1" maxlength="1" class="flat" />
  </span>
- [% ELSE %]
- <input type="hidden" name="tag_[% subfield_loo.tag %]_code_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" value="[% subfield_loo.subfield %]" />
+ [% ELSE %] <input type="hidden" name="tag_[% subfield_loo.tag %]_code_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" value="[% subfield_loo.subfield %]" />
  </span>
- [% END %]
- 
- [% UNLESS advancedMARCEditor %]
- [% IF ( subfield_loo.mandatory ) %]<span class="subfield subfield_mandatory">[% ELSE %]<span class="subfield">[% END %]
- [% subfield_loo.marc_lib_plain %]
- [% IF ( subfield_loo.mandatory ) %]<span class="mandatory_marker" title="Este campo es obligatorio">*</span>[% END %]
- </span>
+ [% END %] [% UNLESS advancedMARCEditor %] [% IF ( subfield_loo.mandatory ) %]<span class="subfield subfield_mandatory">[% ELSE %]<span class="subfield">[% END %] [% subfield_loo.marc_lib_plain %] [% IF ( subfield_loo.mandatory ) %]<span class="mandatory_marker" title="Este campo es obligatorio">*</span>[% END %] </span>
  </label>
- [% END %]
- 
- [% subfield_loo.marc_value %]
- 
- [% IF ( subfield_loo.repeatable ) %]
- <span class="subfield_controls"><a href="#" class="buttonPlus" tabindex="1" onclick="CloneSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]'); return false;"><img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" /></a>
- <a href="#" class="buttonMinus" tabindex="1" onclick="UnCloneField('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]'); return false;"><img alt="Eliminar" src="/intranet-tmpl/prog/img/delete-subfield.png" title="Eliminar este subcampo" /></a></span>
- [% END %]
-
- 
- </div>
+ [% END %] [% subfield_loo.marc_value %] [% IF ( subfield_loo.repeatable ) %] <span class="subfield_controls"><a href="#" class="buttonPlus" tabindex="1" onclick="CloneSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]'); return false;"><img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" /></a>
+ <a href="#" class="buttonMinus" tabindex="1" onclick="UnCloneField('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]'); return false;"><img alt="Borrar" src="/intranet-tmpl/prog/img/delete-subfield.png" title="Eliminar este subcampo" /></a></span>
+ [% END %] </div>
  <!-- End of the line -->
  
  [% END %]
@@ -1028,8 +954,7 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
  [% END %]<!-- tag -->
  [% END %]
  </div>
-[% END %]
-</div>
+[% END %] </div>
 <!-- Fields for fast add cataloguing -->
 <input type="hidden" name="barcode" value="[% barcode %]" />
 <input type="hidden" name="branch" value="[% branch %]" />
@@ -1043,4 +968,4 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
 </div>
 </div>
 
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

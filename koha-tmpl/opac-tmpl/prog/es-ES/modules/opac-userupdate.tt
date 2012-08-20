@@ -1,8 +1,4 @@
-[% USE KohaDates %]
-
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %][% ELSE %]Koha online[% END %] catalog &rsaquo; Your personal details
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha en línea[% END %][% ELSE %]Koha en línea[% END %] Catálogo &rsaquo; Sus detalles personales [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-userupdate">
 <div id="doc3" class="yui-t1">
  <div id="bd">
@@ -10,7 +6,7 @@
  [% INCLUDE 'search.inc' %] <div class="yui-b"><div class="yui-g" id="userupdate">
 
 <div id="userupdatecontainer" class="container">
-[% FOREACH BORROWER_INF IN BORROWER_INFO %] <h3><a href="/cgi-bin/koha/opac-user.pl">[% INCLUDE 'patron-title.inc' firstname = BORROWER_INF.firstname surname = BORROWER_INF.surname othernames = BORROWER_INF.othernames cardnumber = BORROWER_INF.cardnumber %]'s account</a> <img src="[% themelang %]../../images/caret.gif" width="16" height="16" alt="&gt;" border="0" /> Your personal details</h3>
+[% FOREACH BORROWER_INF IN BORROWER_INFO %] <h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% INCLUDE 'patron-title.inc' firstname = BORROWER_INF.firstname surname = BORROWER_INF.surname othernames = BORROWER_INF.othernames cardnumber = BORROWER_INF.cardnumber %]</a> <img src="[% themelang %]../../images/caret.gif" width="16" height="16" alt="&gt;" border="0" /> Sus detalles personales</h3>
 
 [% IF ( OPACPatronDetails ) %] <form action="/cgi-bin/koha/opac-userupdate.pl" method="get">
 <div class="yui-u first">
@@ -18,46 +14,46 @@
 [% IF ( display_patron_image ) %]<p class="patronimage edit">
  <img src="/cgi-bin/koha/opac-patron-image.pl" alt="" />
 </p>[% END %] <fieldset class="brief"><legend>Nombre</legend><ol>
-<li><label for="firstname">First name:</label> <input id="firstname" type="text" value="[% BORROWER_INF.firstname %]"  name="firstname" /></li>
-<li><label for="othernames">Other name:</label> <input id="othernames" type="text" value="[% BORROWER_INF.othernames %]"  name="othernames" /></li>
-<li><label for="surname">Last name:</label> <input id="surname" type="text" value="[% BORROWER_INF.surname %]"  name="surname" /></li>
+<li><label for="firstname">Nombre:</label> <input id="firstname" type="text" value="[% BORROWER_INF.firstname %]"  name="firstname" /></li>
+<li><label for="othernames">Otro nombre:</label> <input id="othernames" type="text" value="[% BORROWER_INF.othernames %]"  name="othernames" /></li>
+<li><label for="surname">Apellido:</label> <input id="surname" type="text" value="[% BORROWER_INF.surname %]"  name="surname" /></li>
 </ol>
 </fieldset>
 
-<fieldset class="brief"><legend>Contact information</legend>
+<fieldset class="brief"><legend>Información de contacto</legend>
 <ol>
 <li><label for="address">Dirección:</label>
  <input id="streetnumber" size ="7" type="text" value="[% BORROWER_INF.streetnumber %]"  name="streetnumber" /> 
  <input type="text" name="address" value="[% BORROWER_INF.address %]" id="address" />
  <input type="text" name="address2" value="[% BORROWER_INF.address2 %]" id="address2" /></li>
 <li><label for="city">Ciudad:</label> <input id="city" type="text" value="[% BORROWER_INF.city %]"  name="city" /></li>
-<li><label for="state">Provincia:</label> <input id="state" type="text" value="[% BORROWER_INF.state %]"  name="state" /></li>
-<li><label for="zipcode">Zip code: </label><input type="text" id="zipcode" value="[% BORROWER_INF.zipcode %]" name="zipcode" /></li>
+<li><label for="state">Estado:</label> <input id="state" type="text" value="[% BORROWER_INF.state %]"  name="state" /></li>
+<li><label for="zipcode">Código postal: </label><input type="text" id="zipcode" value="[% BORROWER_INF.zipcode %]" name="zipcode" /></li>
 <li><label for="country">País: </label><input type="text" id="country" value="[% BORROWER_INF.country %]" name="country" /></li>
-<li><label for="phone">Primary phone:</label> <input id="phone" type="text" value="[% BORROWER_INF.phone %]"  name="phone" /></li>
-<li><label for="mobile">Secondary phone:</label> <input id="mobile" type="text" value="[% BORROWER_INF.mobile %]"  name="mobile" /></li>
-<li><label for="phonepro">Other phone:</label> <input id="phonepro"  type="text" value="[% BORROWER_INF.phonepro %]"  name="phonepro" /></li>
+<li><label for="phone">Teléfono principal:</label> <input id="phone" type="text" value="[% BORROWER_INF.phone %]"  name="phone" /></li>
+<li><label for="mobile">Teléfono secundario:</label> <input id="mobile" type="text" value="[% BORROWER_INF.mobile %]"  name="mobile" /></li>
+<li><label for="phonepro">Otro teléfono:</label> <input id="phonepro"  type="text" value="[% BORROWER_INF.phonepro %]"  name="phonepro" /></li>
 <li><label for="fax">Fax:</label> <input id="fax" type="text" value="[% BORROWER_INF.fax %]"  name="fax" /></li>
-<li><label for="emailaddress">Primary email:</label> <input id="emailaddress" type="text" value="[% BORROWER_INF.email %]"  name="emailaddress" /></li>
-<li><label for="emailpro">Secondary email:</label> <input id="emailpro" type="text" value="[% BORROWER_INF.emailpro %]"  name="emailpro" /></li>
+<li><label for="emailaddress">Email principal:</label> <input id="emailaddress" type="text" value="[% BORROWER_INF.email %]"  name="emailaddress" /></li>
+<li><label for="emailpro">Email secundario:</label> <input id="emailpro" type="text" value="[% BORROWER_INF.emailpro %]"  name="emailpro" /></li>
 </ol>
 </fieldset>
 
 </div>
 <div class="yui-u">
 <fieldset class="brief">
-<legend>Alternate contact information</legend>
+<legend>Información de contacto alternativa</legend>
 <ol>
 <li>
- <label for="B_streetaddress">Alternate address:</label>
+ <label for="B_streetaddress">Dirección alternativa:</label>
  <input id="B_streetnumber" size ="7" type="text" value="[% BORROWER_INF.B_streetnumber %]"  name="B_streetnumber" /> 
  <input id="B_address" type="text" value="[% BORROWER_INF.B_address %]"  name="B_address" /> 
  <input id="B_address2" type="text" value="[% BORROWER_INF.B_address2 %]"  name="B_address2" />
 </li>
 
 <li><label for="B_city">Ciudad:</label> <input id="B_city" type="text" value="[% BORROWER_INF.B_city %]"  name="B_city" /></li>
-<li><label for="B_state">Provincia:</label> <input id="B_state" type="text" value="[% BORROWER_INF.B_state %]"  name="B_state" /></li>
-<li><label for="B_zipcode">Zip code:</label> <input type="text" id="B_zipcode" value="[% BORROWER_INF.B_zipcode %]" name="B_zipcode" /></li>
+<li><label for="B_state">Estado:</label> <input id="B_state" type="text" value="[% BORROWER_INF.B_state %]"  name="B_state" /></li>
+<li><label for="B_zipcode">Código postal:</label> <input type="text" id="B_zipcode" value="[% BORROWER_INF.B_zipcode %]" name="B_zipcode" /></li>
 <li><label for="B_country">País:</label> <input type="text" id="B_country" value="[% BORROWER_INF.B_country %]" name="B_country" /></li>
 <li><label for="B_phone">Teléfono:</label> <input type="text" id="B_phone" value="[% BORROWER_INF.B_phone %]" name="B_phone" /></li>
 <li><label for="B_email">Email:</label> <input type="text" id="B_email" value="[% BORROWER_INF.B_email %]" name="B_email" /></li>
@@ -65,17 +61,17 @@
 </fieldset>
 <fieldset class="brief">
 <ol>
-<li><label for="dob">Date of birth: </label> <input id="dob" type="text" size="10" value="[% BORROWER_INF.dateofbirth | $KohaDates %]" name="dateofbirth" /></li>
-<li><label for="sex">Género:</label> <select name="sex" id="sex"><option></option>
+<li><label for="dob">Fecha de nacimiento: </label> <input id="dob" type="text" size="10" value="[% BORROWER_INF.dateofbirth | $KohaDates %]" name="dateofbirth" /></li>
+<li><label for="sex">Género: </label> <select name="sex" id="sex"><option></option>
 [% IF ( BORROWER_INF.sex == 'F' ) %]<option value="F" selected="selected">Femenino</option>[% ELSE %]<option value="F">Femenino</option>[% END %] [% IF ( BORROWER_INF.sex == 'M' ) %]<option value="M" selected="selected">Masculino</option>[% ELSE %]<option value="M">Masculino</option>[% END %] </select></li>
 </ol></fieldset>
 <fieldset class="brief">
-<legend>Library use:</legend>
+<legend>Uso de la biblioteca:</legend>
 <ol>
- <li><label for="cardnumber">Número de carné:</label><input type="text" id="cardnumber" disabled="disabled" readonly="readonly" value="[% BORROWER_INF.cardnumber %]" /></li>
+ <li><label for="cardnumber">Número de carnet:</label><input type="text" id="cardnumber" disabled="disabled" readonly="readonly" value="[% BORROWER_INF.cardnumber %]" /></li>
  <li><label for="branchname">Biblioteca de origen:</label><input type="text" id="branchname" disabled="disabled" readonly="readonly" value="[% BORROWER_INF.branchname %]" /></li>
- <li><label for="borrowernumber">Patron number:</label><input type="text" id="borrowernumber" disabled="disabled" readonly="readonly" value="[% BORROWER_INF.borrowernumber %]" /></li>
- <li><label for="categorycode">Patron category:</label><input type="text" id="categorycode" disabled="disabled" readonly="readonly" value="[% BORROWER_INF.description %] ([% BORROWER_INF.categorycode %])" /></li>
+ <li><label for="borrowernumber">Número de socio:</label><input type="text" id="borrowernumber" disabled="disabled" readonly="readonly" value="[% BORROWER_INF.borrowernumber %]" /></li>
+ <li><label for="categorycode">Categoría de socio:</label><input type="text" id="categorycode" disabled="disabled" readonly="readonly" value="[% BORROWER_INF.description %] ([% BORROWER_INF.categorycode %])" /></li>
  <li><label for="dateenrolled">Asociado: </label><input type="text" id="dateenrolled" disabled="disabled" readonly="readonly" value="[% BORROWER_INF.dateenrolled | $KohaDates %]" /></li>
  <li><label for="dateexpiry">Expira: </label><input type="text" id="dateexpiry" disabled="disabled" readonly="readonly" value="[% BORROWER_INF.dateexpiry | $KohaDates %]" /></li>
  [% IF ( BORROWER_INF.ExtendedPatronAttributes ) %] [% FOREACH patron_attribute IN BORROWER_INF.patron_attributes %] <li><label>[% patron_attribute.description %]</label>
@@ -85,39 +81,39 @@
  [% END %] [% END %] </ol>
 </fieldset>
 <fieldset class="action">
-<p>Por favor, realiza los cambios necesarios en los datos de tu registro. Al mandar el formulario, se enviará una notificación al personal de la biblioteca, que se encargará de hacer los cambios permanentes.</p>
-<input value="Enviar cambios" type="submit" /> <a class="cancel" href="/cgi-bin/koha/opac-user.pl">Cancelar</a></fieldset>
+<p>Por favor realiza cualquier cambio a los datos de su registro. Al enviar el formulario se notificará al personal de la biblioteca, el cual se encargará de hacer los cambios permanentes.</p>
+<input value="Enviar Cambios" type="submit" /> <a class="cancel" href="/cgi-bin/koha/opac-user.pl">Cancelar</a></fieldset>
 </div>
 
 </form>
-[% ELSE %] <p style="clear:left;padding:1em 0">Para hacer cambios en tu registro, por favor, ponte en contacto con la biblioteca.</p>
+[% ELSE %] <p style="clear:left;padding:1em 0">Para hacer cambios a su registro por favor contacte a la biblioteca.</p>
 <div class="yui-u first">
 [% IF ( display_patron_image ) %]<p class="patronimage">
  <img src="/cgi-bin/koha/opac-patron-image.pl" alt="" />
 </p>[% END %] <fieldset class="rows">
-<legend>Contact information</legend>
+<legend>Información de contacto</legend>
 <ol>
 <li><span class="label">Nombre:</span> [% BORROWER_INF.firstname %] [% BORROWER_INF.surname %]</li>
-<li><span class="label">Other name:</span> [% BORROWER_INF.othernames %]</li>
+<li><span class="label">Otro nombre:</span> [% BORROWER_INF.othernames %]</li>
 <li><span class="label">Dirección:</span> [% BORROWER_INF.streetnumber %] [% BORROWER_INF.address %]</li>
 <li><span class="label">&nbsp;</span>[% BORROWER_INF.address2 %]</li>
 <li><span class="label">Ciudad:</span> [% BORROWER_INF.city %]</li>
-<li><span class="label">Provincia:</span> [% BORROWER_INF.state %]</li>
-<li><span class="label">Zip code:</span> [% BORROWER_INF.zipcode %]</li>
+<li><span class="label">Estado:</span> [% BORROWER_INF.state %]</li>
+<li><span class="label">Código postal:</span> [% BORROWER_INF.zipcode %]</li>
 <li><span class="label">País:</span> [% BORROWER_INF.country %]</li>
-<li><span class="label">Primary phone:</span> [% BORROWER_INF.phone %]</li>
-<li><span class="label">Secondary phone:</span> [% BORROWER_INF.mobile %]</li>
-<li><span class="label">Other phone:</span> [% BORROWER_INF.phonepro %]</li>
+<li><span class="label">Teléfono principal:</span> [% BORROWER_INF.phone %]</li>
+<li><span class="label">Teléfono secundario:</span> [% BORROWER_INF.mobile %]</li>
+<li><span class="label">Otro teléfono:</span> [% BORROWER_INF.phonepro %]</li>
 <li><span class="label">Fax:</span> [% BORROWER_INF.fax %]</li>
-<li><span class="label">Primary email:</span> [% BORROWER_INF.email %]</li>
-<li><span class="label">Secondary email:</span> [% BORROWER_INF.emailpro %]</li>
+<li><span class="label">Email principal:</span> [% BORROWER_INF.email %]</li>
+<li><span class="label">Email secundario:</span> [% BORROWER_INF.emailpro %]</li>
 </ol>
 </fieldset>
 
 <fieldset class="rows">
-<legend>Personal information</legend>
+<legend>Información personal</legend>
 <ol>
-<li><span class="label">Date of birth:</span> [% BORROWER_INF.dateofbirth | $KohaDates %]</li>
+<li><span class="label">Fecha de nacimiento:</span> [% BORROWER_INF.dateofbirth | $KohaDates %]</li>
 <li><span class="label">Género:</span>
 [% IF ( sex == 'F' ) %]Mujer[% END %] [% IF ( sex == 'M' ) %]Varón[% END %] </li>
 </ol>
@@ -126,13 +122,13 @@
 
 <div class="yui-u">
 <fieldset class="rows">
-<legend>Alternate contact information</legend>
+<legend>Información de contacto alternativa</legend>
 <ol>
-<li><span class="label">Alternate address:</span> [% BORROWER_INF.B_streetnumber %] [% BORROWER_INF.B_address %] </li>
+<li><span class="label">Dirección alternativa:</span> [% BORROWER_INF.B_streetnumber %] [% BORROWER_INF.B_address %] </li>
 <li><span class="label">&nbsp;</span>[% BORROWER_INF.B_address2 %]</li>
 <li><span class="label">Ciudad:</span> [% BORROWER_INF.B_city %]</li>
-<li><span class="label">Provincia:</span> [% BORROWER_INF.B_state %]</li>
-<li><span class="label">Zip code:</span> [% BORROWER_INF.B_zipcode %]</li>
+<li><span class="label">Estado:</span> [% BORROWER_INF.B_state %]</li>
+<li><span class="label">Código postal:</span> [% BORROWER_INF.B_zipcode %]</li>
 <li><span class="label">País:</span> [% BORROWER_INF.B_country %]</li>
 <li><span class="label">Teléfono:</span> [% BORROWER_INF.B_phone %]</li>
 <li><span class="label">Email:</span> [% BORROWER_INF.B_email %]</li>
@@ -140,12 +136,12 @@
 </fieldset>
 
 <fieldset class="rows">
-<legend>Library use:</legend>
+<legend>Uso de la biblioteca:</legend>
 <ol>
-<li><span class="label">Número de carné:</span> [% BORROWER_INF.cardnumber %]</li>
+<li><span class="label">Número de carnet:</span> [% BORROWER_INF.cardnumber %]</li>
 <li><span class="label">Biblioteca de origen:</span> [% BORROWER_INF.branchname %]</li>
-<li><span class="label">Patron number:</span> [% BORROWER_INF.borrowernumber %]</li>
-<li><span class="label">Patron category:</span> [% BORROWER_INF.description %] ([% BORROWER_INF.categorycode %])</li>
+<li><span class="label">Número de socio:</span> [% BORROWER_INF.borrowernumber %]</li>
+<li><span class="label">Categoría de socio:</span> [% BORROWER_INF.description %] ([% BORROWER_INF.categorycode %])</li>
 <li><span class="label">Asociado:</span> [% BORROWER_INF.dateenrolled | $KohaDates %]</li>
 <li><span class="label">Expira:</span> [% BORROWER_INF.dateexpiry | $KohaDates %]</li>
  [% IF ( BORROWER_INF.ExtendedPatronAttributes ) %] [% FOREACH patron_attribute IN BORROWER_INF.patron_attributes %] <li><span class="label">[% patron_attribute.description %]</span>

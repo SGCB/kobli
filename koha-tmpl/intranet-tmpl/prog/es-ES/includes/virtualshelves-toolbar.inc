@@ -30,7 +30,7 @@
 			
 	    var editmenu = [
 	        { text: _("Editar lista"), url: "/cgi-bin/koha/virtualshelves/shelves.pl?shelfnumber=[% shelfnumber %]&amp;op=modif" },
-			{ text: _("Borrar lista"), onclick: {fn:function(){confirmDelete(_("¿Está seguro de que quiere eliminar esta lista?"))}}}
+			{ text: _("Borrar lista"), onclick: {fn:function(){confirmDelete(_("¿Está seguro de querer eliminar esta lista?"))}}}
 	    ];
 		
 		var downloadmenu = [
@@ -87,12 +87,9 @@
  
 <ul class="toolbar">
  <li><a id="newshelf" href="/cgi-bin/koha/virtualshelves/shelves.pl?shelves=1">Nueva lista</a></li>
- [% IF ( viewshelf ) %][% IF ( manageshelf ) %]
- <li id="editlistc"><a id="editshelf" href="/cgi-bin/koha/virtualshelves/shelves.pl?shelfnumber=[% shelfnumber %]&amp;op=modif">Editar lista</a></li>
+ [% IF ( viewshelf ) %][% IF ( manageshelf ) %] <li id="editlistc"><a id="editshelf" href="/cgi-bin/koha/virtualshelves/shelves.pl?shelfnumber=[% shelfnumber %]&amp;op=modif">Editar lista</a></li>
  <li id="deletelistc">[% IF ( showprivateshelves ) %]<a id="deleteshelf" href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves&amp;shelves=1&amp;DEL-[% shelfnumber %]=1">Borrar lista</a>[% ELSE %]<a id="deleteshelf" href="/cgi-bin/koha/virtualshelves/shelves.pl?shelves=1&amp;DEL-[% shelfnumber %]=1">Borrar lista</a>[% END %]</li>
- [% END %]
- <li id="sendlistc"><a href="#" id="sendlist">Enviar lista</a></li>
+ [% END %] <li id="sendlistc"><a href="#" id="sendlist">Enviar lista</a></li>
  <li id="printlistc"><a id="printbiblio" href="#">Imprimir lista</a></li>
- [% END %]
-</ul>
+ [% END %] </ul>
 </div>

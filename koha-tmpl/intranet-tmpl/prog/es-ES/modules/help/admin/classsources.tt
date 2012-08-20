@@ -1,58 +1,56 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Classification Sources</h1>
 
-<h1>Fuentes de clasificación</h1>
-
-<p>Source of classification or shelving scheme is an authorized values category that is mapped to field 942$2 in Koha's MARC bibliographic frameworks.</p>
+<p>Source of classification or shelving scheme is an Authorized Values category that is mapped to field 942$2 in Koha's MARC Bibliographic frameworks.</p>
 
 <p>Los valores comúnmente usados de este campo son:</p>
 
 <ul>
- <li>ddc - Dewey Decimal classification</li>
- <li>lcc - Library of Congress classification</li>
+ <li>ddc - Dewey Decimal Classification</li>
+ <li>lcc - Library of Congress Classification</li>
 </ul>
 
-<p>Si eliges instalar las fuentes de clasificación durante la instalación de Koha, verás otros valores como:</p>
+<p>Si decide instalar las fuentes de la clasificación durante la instalación de Koha, vería también otros valores:</p>
 
 <ul>
  <li>ANSCR (grabaciones sonoras)</li>
- <li>SuDOC classification</li>
- <li>Universal decimal classification</li>
- <li>Other/Generic classification</li>
+ <li>Clasificación SuDOC</li>
+ <li>Universal Decimal Classification</li>
+ <li>Other/Generic Classification</li>
 </ul>
 
-<h2>Adding/Editing classification sources</h2>
+<h2>Adding/Editing Classification Sources</h2>
 
-<p>Puedes agregar tu propia fuente de clasificación utilizando el botón Nueva fuente de clasificación. Para editar, utiliza el enlace Editar.</p>
+<p>Usted puede agregar su propia fuente de clasificación usando el botón de Nueva Fuente de Clasificación. Para editar use el enlace de Editar</p>
 
-<p>Al crear o editar:</p>
+<p>Cuando cree o edite:</p>
 
 <ul>
- <li>You will need to enter a code and a description.</li>
- <li>Marca la casilla '¿Fuente en uso?' si deseas que el valor aparezca en la lista desplegable de esta categoría.</li>
- <li>Select the appropriate filing rule from the drop down list.</li>
+ <li>Usted necesitará el ingresar un código y una descripción</li>
+ <li>Marque la casilla 'Fuente en uso?' si desea que el valor aparezca en la lista desplegable para esta categoría.</li>
+ <li>Seleccione la regla de alfabetización adecuada del menú desplegable</li>
 </ul>
 
-<h2>Classification filing rules</h2>
+<h2>Classification Filing Rules</h2>
 
-<p>Las reglas de alfabetización determinan el orden en el cual los ítems se ubican en los estantes.</p>
+<p>Reglas de clasificación determinan el orden en el cual los ítems se ubican en estantes.</p>
 
-<p>Los valores preconfigurados en Koha son: </p>
+<p>Los valores pre-configurados en Koha son:</p>
 
 <ul>
  <li>Dewey</li>
- <li>LCCN</li>
+ <li>LCC</li>
  <li>Genérico</li>
 </ul>
 
-<p>Filing rules are mapped to classification sources. You can setup new filing rules by using the 'New filing rule' button. To edit use the Edit link.</p>
+<p>Filing rules are mapped to Classification sources. You can setup new filing rules by using the New Filing Rule button. To edit use the Edit link.</p>
 
-<p>Al crear o editar:</p>
+<p>Cuando cree o edite:</p>
 
 <ul>
- <li>Ingresa un código y una descripción</li>
- <li>Selecciona una rutina de alfabetización apropiada - dewey, genérica o lcc</li>
+ <li>Ingrese un código y una descripción</li>
+ <li>Seleccione una rutina de clasificación apropiada - dewey, genérica o lcc</li>
 </ul>
 
-<p><strong>See the full documentation for classification sources in the <a href="http://manual.koha-community.org/3.6/en/catadmin.html#classificationsources">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Classification Sources in the <a href="http://manual.koha-community.org/3.8/en/catadmin.html#classificationsources">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

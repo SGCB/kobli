@@ -1,3 +1,4 @@
+[% PROCESS 'authorities-search-results.inc' %]
 [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; [% IF ( total ) %]Authority search result[% ELSE %]No results found[% END %]
 [% INCLUDE 'doc-head-close.inc' %]
 </head>
@@ -6,7 +7,7 @@
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
  [% INCLUDE 'search.inc' %] <div class="yui-b"><div class="yui-g">
 <div id="userauthsearchresults" class="container">
- <h1>Resultados de búsqueda por autoridad</h1>
+ <h1>Resultados de búsqueda de autoridad</h1>
  <div id="pages">
  [% IF ( displayprev ) %] <a href="opac-authorities-home.pl?startfrom=[% startfromprev %]&amp;[% FOREACH searchdat IN searchdata %][% searchdat.term %]=[% searchdat.val |url %]&amp;[% END %]resultsperpage=[% resultsperpage %]&amp;type=opac&amp;op=do_search&amp;authtypecode=[% authtypecode %]&amp;orderby=[% orderby %]">
  &lt;&lt; </a>
@@ -15,28 +16,31 @@
  [% END %] [% END %] [% IF ( displaynext ) %] <a href="opac-authorities-home.pl?startfrom=[% startfromnext %]&amp;[% FOREACH searchdat IN searchdata %][% searchdat.term %]=[% searchdat.val |url %]&amp;[% END %]&amp;resultsperpage=[% resultsperpage %]&amp;type=opac&amp;op=do_search&amp;authtypecode=[% authtypecode %]&amp;orderby=[% orderby %]">&gt;&gt;</a>
  [% END %] </div>
  <div id="results">
- [% IF ( total ) %] <b>Resultados [% from %] a [% to %] de [% total %]</b>
- [% ELSE %] No se encontraron resultados. [% END %] </div>
+ [% IF ( total ) %] [% IF ( countfuzzy ) %] <b>Showing [% resultcount %] of about [% total %] results</b>
+ [% ELSE %] <b>Resultados [% from %] a [% to %] de [% total %]</b>
+ [% END %]
+ [% ELSE %]
+ No results found.
+ [% END %]
+ </div>
 
  [% IF ( total ) %] <div class="searchresults">
  <table>
  <tr>
- <th>Authorized headings</th>
- <th>Type of heading</th>
+ <th>Encabezamientos autorizados</th>
+ <th>Tipo de encabezamiento</th>
  [% UNLESS ( isEDITORS ) %] <th>Registros bibliográficos</th>
- [% END %] <th>Full heading</th>
+ [% END %] <th>Encabezado completo</th>
  </tr>
  [% FOREACH resul IN result %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
  [% ELSE %] <tr>
- [% END %] <td>[% resul.summary %]</td>
-
- <td>
- [% authtypetext %] </td>
+ [% END %] <td>[% PROCESS authresult summary=resul.summary %]</td>
+ <td>[% authtypetext %]</td>
  [% UNLESS ( resul.isEDITORS ) %] <td>
  <a href="/cgi-bin/koha/opac-search.pl?type=opac&amp;op=do_search&amp;q=an=[% resul.authid %]">[% resul.used %] registros</a>
  </td>
  [% END %] <td>
- <a href="opac-authoritiesdetail.pl?authid=[% resul.authid %]">View full heading</a>
+ <a href="opac-authoritiesdetail.pl?authid=[% resul.authid %]">Ver encabezado completo</a>
  </td>
  </tr>
  [% END %] </table>

@@ -1,6 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Serials
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Publicaciones periódicas [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-serial-issues">
 [% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %] <div id="bd">
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
@@ -16,84 +14,21 @@
 <form method="post" name="f">
 [% FOREACH subscription_LOO IN subscription_LOOP %] <div id="subscriptionline[% subscription_LOO.subscriptionid %]" style="border-bottom:1px solid #EEE;">
 <h3>Información de la suscripción para [% subscription_LOO.bibliotitle %]</h3>
- <p>The current subscription began on [% subscription_LOO.startdate %] and is issued every
- [% IF ( subscription_LOO.periodicity1 ) %]
- day
- [% END %]
- [% IF ( subscription_LOO.periodicity2 ) %]
- week
- [% END %]
- [% IF ( subscription_LOO.periodicity3 ) %]
- 2 weeks
- [% END %]
- [% IF ( subscription_LOO.periodicity4 ) %]
- 3 weeks
- [% END %]
- [% IF ( subscription_LOO.periodicity5 ) %]
- month
- [% END %]
- [% IF ( subscription_LOO.periodicity6 ) %]
- 2 months
- [% END %]
- [% IF ( subscription_LOO.periodicity7 ) %]
- 3 months
- [% END %]
- [% IF ( subscription_LOO.periodicity13 ) %]
- 4 months
- [% END %]
- [% IF ( subscription_LOO.periodicity8 ) %]
- quarter
- [% END %]
- [% IF ( subscription_LOO.periodicity9 ) %]
- 2 quarters
- [% END %]
- [% IF ( subscription_LOO.periodicity10 ) %]
- year
- [% END %]
- [% IF ( subscription_LOO.periodicity11 ) %]
- 2 years
- [% END %]
- [% IF ( subscription_LOO.arrival1 ) %]
- on Monday
- [% END %]
- [% IF ( subscription_LOO.arrival2 ) %]
- on Tuesday
- [% END %]
- [% IF ( subscription_LOO.arrival3 ) %]
- on Wednesday
- [% END %]
- [% IF ( subscription_LOO.arrival4 ) %]
- on Thursday
- [% END %]
- [% IF ( subscription_LOO.arrival5 ) %]
- on Friday
- [% END %]
- [% IF ( subscription_LOO.arrival6 ) %]
- on Saturday
- [% END %]
- [% IF ( subscription_LOO.arrival7 ) %]
- on Sunday
- [% END %]
- 
- for 
- [% IF ( subscription_LOO.numberlength ) %][% subscription_LOO.numberlength %] issues[% END %]
- [% IF ( subscription_LOO.weeklength ) %][% subscription_LOO.weeklength %] weeks[% END %]
- [% IF ( subscription_LOO.monthlength ) %][% subscription_LOO.monthlength %] months[% END %]
- 
- <p>La primera suscripción comenzó en [% subscription_LOO.histstartdate %]</p>
- [% IF ( subscription_LOO.histenddate ) %] <p>Esta suscripción terminó en [% subscription_LOO.histenddate %]</p>
+ <p>La suscripción actual comenzó en [% subscription_LOO.startdate %] y se emite cada [% IF ( subscription_LOO.periodicity1 ) %] día [% END %] [% IF ( subscription_LOO.periodicity2 ) %] semana [% END %] [% IF ( subscription_LOO.periodicity3 ) %] 2 semanas [% END %] [% IF ( subscription_LOO.periodicity4 ) %] 3 semanas [% END %] [% IF ( subscription_LOO.periodicity5 ) %] mes [% END %] [% IF ( subscription_LOO.periodicity6 ) %] 2 meses [% END %] [% IF ( subscription_LOO.periodicity7 ) %] 3 meses [% END %] [% IF ( subscription_LOO.periodicity13 ) %] 4 meses [% END %] [% IF ( subscription_LOO.periodicity8 ) %] trimestre [% END %] [% IF ( subscription_LOO.periodicity9 ) %] 2 trimestres [% END %] [% IF ( subscription_LOO.periodicity10 ) %] año [% END %] [% IF ( subscription_LOO.periodicity11 ) %] 2 años [% END %] [% IF ( subscription_LOO.arrival1 ) %] el Lunes [% END %] [% IF ( subscription_LOO.arrival2 ) %] el Martes [% END %] [% IF ( subscription_LOO.arrival3 ) %] el Miércoles [% END %] [% IF ( subscription_LOO.arrival4 ) %] el Jueves [% END %] [% IF ( subscription_LOO.arrival5 ) %] el Viernes [% END %] [% IF ( subscription_LOO.arrival6 ) %] el Sábado [% END %] [% IF ( subscription_LOO.arrival7 ) %] el Domingo [% END %] para [% IF ( subscription_LOO.numberlength ) %][% subscription_LOO.numberlength %] ejemplares[% END %] [% IF ( subscription_LOO.weeklength ) %][% subscription_LOO.weeklength %] semanas[% END %] [% IF ( subscription_LOO.monthlength ) %][% subscription_LOO.monthlength %] meses[% END %]<p>La primera suscripción comenzó en [% subscription_LOO.histstartdate %]</p>
+ [% IF ( subscription_LOO.histenddate ) %] <p>Esta suscripción terminó el [% subscription_LOO.histenddate %]</p>
  [% END %] </p>
- <h4>[% subscription_LOO.branchname %] [% subscription_LOO.notes %]</h4>
- [% IF ( subscription_LOO.recievedlist ) %] <h5>Available issues</h5>
+ <h4>[% subscription_LOO.branchname %]</h4>
+ [% IF ( subscription_LOO.notes ) %] <p>[% subscription_LOO.notes FILTER html_line_break %]</p>
+ [% END %] [% IF ( subscription_LOO.recievedlist ) %] <h5>Ejemplares disponibles</h5>
  <p>
  [% subscription_LOO.recievedlist %] </p>
- [% END %] [% IF ( subscription_LOO.missinglist ) %] <h5>Unavailable issues</h5>
+ [% END %] [% IF ( subscription_LOO.missinglist ) %] <h5>Ejemplares no disponibles</h5>
  <p>
  [% subscription_LOO.missinglist %] </p>
  [% END %] [% IF ( subscription_LOO.opacnote ) %] <h5>Resumen de ejemplares</h5>
  <p>
- [% subscription_LOO.opacnote %] </p>
- [% END %] [% IF ( subscription_LOO.letter ) %] [% IF ( subscription_LOO.hasalert ) %] Te has suscrito a la notificación por email de nuevos ejemplares<a href="opac-alert-subscribe.pl?op=cancel&externalid=[% subscription_LOO.subscriptionid %]&alerttype=issue&biblionumber=[% subscription_LOO.biblionumber %]" class="button" title="Cancelar la notificación por email">
+ [% subscription_LOO.opacnote FILTER html_line_break %] </p>
+ [% END %] [% IF ( subscription_LOO.letter ) %] [% IF ( subscription_LOO.hasalert ) %] Se ha suscrito a la notificación por email de nuevos ejemplares <a href="opac-alert-subscribe.pl?op=cancel&externalid=[% subscription_LOO.subscriptionid %]&alerttype=issue&biblionumber=[% subscription_LOO.biblionumber %]" class="button" title="Cancelar la notificación por email">
  Cancelar la notificación por email </a>
  [% ELSE %] <a href="opac-alert-subscribe.pl?externalid=[% subscription_LOO.subscriptionid %]&alerttype=issue&biblionumber=[% subscription_LOO.biblionumber %]" class="button" title="Suscribirse a la notificación por email de nuevos ejemplares">
  Suscribirse a la notificación por email de nuevos ejemplares </a>

@@ -1,8 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Circulation &rsaquo; Offline circulation file upload</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'file-upload.inc' %]
-[% INCLUDE 'background-job.inc' %]
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación &rsaquo; Carga de archivo de circulación fuera de línea</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'file-upload.inc' %] <script type="text/javascript" src="[% themelang %]/js/background-job-progressbar.js"></script>
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
@@ -10,7 +7,7 @@ $(document).ready(function(){
 });
 function CheckUpload(f){
 	if(f.fileToUpload.value == ""){
-		alert(_("Selecciona el archivo a subir"));
+		alert(_("Seleccione el archivo a subir"));
 	} else {
 		return ajaxFileUpload()
 	}
@@ -18,7 +15,7 @@ function CheckUpload(f){
 }
 function CheckForm(f) {
     if (f.uploadedfileid.value == '') {
-        alert(_('Por favor, sube primero el archivo.'));
+        alert(_('Por favor, suba un archivo primero'));
     } else {
 		$("#fileuploadstatus").hide();
 		$("#fileuploadform").slideUp();
@@ -35,41 +32,26 @@ function CheckForm(f) {
 </style>
 </head>
 <body id="ocirc_process_koc" class="circ ocirc">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'circ-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; [% IF ( transactions_loaded ) %] <a href="/cgi-bin/koha/offline_circ/process_koc.pl">Offline circulation file upload</a> &rsaquo; Results[% ELSE %] Offline circulation file upload[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; [% IF ( transactions_loaded ) %] <a href="/cgi-bin/koha/offline_circ/process_koc.pl">Carga de archivo de circulación fuera de línea</a> &rsaquo; Resultados[% ELSE %] Carga de archivo de circulación fuera de línea[% END %]</div>
 
 <div id="doc" class="yui-t7">
 
  <div id="bd">
 
-[% IF ( transactions_loaded ) %]
- <h2>Koha offline circulation</h2>
- <p>Tus datos han sido procesados. Aquí están los resultados:</p>
- [% FOREACH message IN messages %]
- [% IF ( message.message ) %]
- <div class="dialog alert">
- [% IF ( message.ERROR_file_version ) %]<p>Advertencia: Este archivo es de la versión [% message.upload_version %], pero sólo sé como importar de la versión [% message.current_version %]. Haré todo lo que pueda.</p>[% END %]
- </div>
- [% END %]
- [% IF ( message.ERROR_no_borrower_from_item ) %]<p>Advertencia: Imposible determinar el socio a partir del código de barras ([% message.badbarcode %]). No se puede devolver.</p>[% END %]
- [% IF ( message.issue ) %]<p>Prestado<a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% message.biblionumber %]">[% message.title |html %]</a> ([% message.barcode %]) a<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %]
- [% IF ( message.renew ) %]<p>Renewed <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% message.biblionumber %]">[% message.title |html %]</a> ([% message.barcode %]) para<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %]
- [% IF ( message.return ) %]<p>Devuelto<a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% message.biblionumber %]">[% message.title |html %]</a> ([% message.barcode %]) de :<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %]
- [% IF ( message.payment ) %]<p>Pago aceptado ([% message.amount %]) de<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %]
- [% END %]
-[% ELSE %]
- <h2>Upload offline circulation data</h2>
+[% IF ( transactions_loaded ) %] <h2>Circulación fuera de línea Koha</h2>
+ <p>Sus datos han sido procesados. Aquí están los resultados:</p>
+ [% FOREACH message IN messages %] [% IF ( message.message ) %] <div class="dialog alert">
+ [% IF ( message.ERROR_file_version ) %]<p>Advertencia: Este archivo es de la versión [% message.upload_version %], pero solo sé como importar de la versión [% message.current_version %]. Haré lo posible.</p>[% END %] </div>
+ [% END %] [% IF ( message.ERROR_no_borrower_from_item ) %]<p>Advertencia: imposible determinar el socio a partir del código de barras ([% message.badbarcode %]). No se puede devolver.</p>[% END %] [% IF ( message.issue ) %]<p>Prestado <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% message.biblionumber %]">[% message.title |html %]</a> ([% message.barcode %]) a <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %] [% IF ( message.renew ) %]<p>Renovado <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% message.biblionumber %]">[% message.title |html %]</a> ([% message.barcode %]) de <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %] [% IF ( message.return ) %]<p>Devuelto <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% message.biblionumber %]">[% message.title |html %]</a> ([% message.barcode %]) de <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %] [% IF ( message.payment ) %]<p>Pago aceptado ([% message.amount %]) de <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %] [% END %] [% ELSE %] <h2>Cargar datos de circulación fuera de línea</h2>
  <div id="fileuploadform">
  <form method="post" action="[% SCRIPT_NAME %]" enctype="multipart/form-data">
  <fieldset class="brief">
- <ol><li><label for="fileToUpload">Choose .koc file: </label>
+ <ol><li><label for="fileToUpload">Elija el archivo .koc: </label>
  <input type="file" id="fileToUpload" size="50" name="fileToUpload" /></li></ol>
  <fieldset class="action"><input value="Subir archivo" type="button" class="submit" onclick="CheckUpload(this.form);" /></fieldset>
  </fieldset>
  </form>
- <div id="fileuploadstatus" style="display:none">Upload progress: <div id="fileuploadprogress"></div> <span id="fileuploadpercent"></span>%</div>
+ <div id="fileuploadstatus" style="display:none">Porcentaje subido: <div id="fileuploadprogress"></div> <span id="fileuploadpercent"></span>%</div>
  <div id="fileuploadfailed" style="display:none"></div>
  </div>
  <form action="process_koc.pl" id="processfile" method="post" enctype="multipart/form-data">
@@ -77,11 +59,8 @@ function CheckForm(f) {
  <input type="hidden" name="runinbackground" id="runinbackground" value="" />
  <input type="hidden" name="completedJobID" id="completedJobID" value="" />
  <input value="Procesar archivo de circulación fuera de linea" type="submit" onclick="return CheckForm(this.form);" id="mainformsubmit" />
- <div id="jobstatus" style="display:none">Avance del trabajo:<div id="jobprogress"></div> <span id="jobprogresspercent"></span>%</div>
+ <div id="jobstatus" style="display:none">Avance del trabajo: <div id="jobprogress"></div> <span id="jobprogresspercent"></span>%</div>
  <div id="jobfailed" style="display:none"></div>
  </form>
-[% END %]
-
-
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% END %] </div>
+[% INCLUDE 'intranet-bottom.inc' %] 

@@ -1,24 +1,14 @@
-[% INCLUDE 'doc-head-open.inc' %]<title>Inicio &rsaquo; Listas &rsaquo; Enviando tu lista</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %]<title>Koha &rsaquo; Listas &rsaquo; Enviando su lista</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="lists_sendshelfform" class="lists" style="padding: 1em;">
-<div class="container">[% IF ( email ) %]
-
- [% IF ( SENT ) %]
- <h3>Mensaje enviado</h3>
+<div class="container">[% IF ( email ) %] [% IF ( SENT ) %] <h3>Mensaje enviado</h3>
  <p>La lista fue enviada a: [% email %]</p>
  <p><a class="close focus" href="#">Cerrar ventana</a></p>
- [% END %]
- [% IF ( error ) %]
- <p>Problema al enviar la lista ...</p>
- [% END %]
- 
-[% ELSE %]
-
-<form action="[% url %]" method="post">
+ [% END %] [% IF ( error ) %] <p>Problema al enviar la lista ...</p>
+ [% END %] [% ELSE %] <form action="[% url %]" method="post">
 
 <fieldset class="rows"> 
-<legend>Enviar tu lista</legend>
+<legend>Enviar su lista</legend>
 <ol> <li>
  <label for="email">Correo electrónico:</label>
  <input type="text" id="email" name="email" size="43" class="focus" />

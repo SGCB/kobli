@@ -1,18 +1,12 @@
-[% INCLUDE 'doc-head-open.inc' %]
-[% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]catálogo[% END %] Koha en línea [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-main">
 [% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %] <div id="bd">
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
 
  <div class="yui-b">
- [% IF ( opacuserlogin ) %] [% IF ( loggedinusername ) %] <div id="loggedin" class="yui-g">
- <div>
+ [% IF ( opacuserlogin ) %] [% IF ( loggedinusername ) %] <div id="loggedin" class="yui-ge">
  [% ELSE %] <div id="notloggedin" class="yui-ge">
- <div class="yui-u first">
- [% END %] [% ELSE %] <div id="notloggedin" class="yui-g">
- <div>
+ [% END %] [% ELSE %] <div id="notloggedin" class="yui-ge">
  [% END %] <div id="main-search">
  [% INCLUDE 'search.inc' %] </div>
 
@@ -23,6 +17,7 @@
  <p><i>(publicado en [% koha_new.newdate %])</i></p></td></tr>
  [% END %] </table>
 </div>
+[% END %] [% IF ( display_daily_quote && daily_quote ) %] <div id="daily-quote" class="container"><h1>Quote of the Day</h1><div><span id="daily-quote-text">[% daily_quote.text %]</span><span id="daily-quote-sep"> ~ </span><span id="daily-quote-source">[% daily_quote.source %]</span></div></div>
 [% END %] </div>
  
 </div>

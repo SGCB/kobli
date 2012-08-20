@@ -1,13 +1,8 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Tools &rsaquo; Comments &rsaquo; [% IF ( status ) %] Approved comments[% ELSE %] Comments awaiting moderation[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Comentarios &rsaquo; [% IF ( status ) %] Comentarios aprobados [% ELSE %] Comentarios a moderar [% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="tools_reviewswaiting" class="tools">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a>
-&rsaquo; <a href="/cgi-bin/koha/reviews/reviewswaiting.pl">Comentarios</a> &rsaquo;[% IF ( status ) %] Approved comments[% ELSE %] Comments awaiting moderation[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a>
+&rsaquo; <a href="/cgi-bin/koha/reviews/reviewswaiting.pl">Comentarios</a> &rsaquo;[% IF ( status ) %] Comentarios aprobados[% ELSE %] Comentarios esperando a ser moderados[% END %]</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -18,55 +13,46 @@
 <h1>Comentarios</h1>
 
 <!-- The manual invoice and credit buttons -->
-<div class="toptabs">
-<ul class="ui-tabs-nav">
- [% IF ( status ) %]<li class="ui-tabs-selected">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/reviews/reviewswaiting.pl?status=1">Approved comments</a></li>
- [% IF ( status ) %]<li>[% ELSE %]<li class="ui-tabs-selected">[% END %]<a href="/cgi-bin/koha/reviews/reviewswaiting.pl" >Comments awaiting moderation</a></li>
+<div class="statictabs">
+<ul>
+ [% IF ( status ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/reviews/reviewswaiting.pl?status=1">Comentario Aprobado</a></li>
+ [% IF ( status ) %]<li>[% ELSE %]<li class="active">[% END %]<a href="/cgi-bin/koha/reviews/reviewswaiting.pl" >Comentarios esperando moderación</a></li>
 </ul>
 <div class="tabs-container">
 
-[% IF ( reviews ) %]
-<table id="commentst">
+[% IF ( reviews ) %] <table id="commentst">
  <thead><tr>
  <th>
- Comentarista</th>
+ Comentador </th>
  <th>
- On title
- </th>
+ En título </th>
  <th>
- Comentario</th>
+ Comentario </th>
  <th>
  &nbsp;
  </th>
  </tr></thead>
- <tbody>[% FOREACH review IN reviews %]
- <tr>
+ <tbody>[% FOREACH review IN reviews %] <tr>
  <td>
- [% IF ( review.borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% review.borrowernumber %]">[% review.surname %], [% review.firstname %]</a>[% ELSE %](deleted patron)[% END %]
- </td>
+ [% IF ( review.borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% review.borrowernumber %]">[% review.surname %], [% review.firstname %]</a>[% ELSE %](socio eliminado)[% END %] </td>
  <td>
  <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% review.biblionumber %]">[% review.bibliotitle %]</a>
  </td>
  <td>
- [% review.review |html %]
- </td>
+ [% review.review |html %] </td>
  <td>
- [% IF ( status ) %]<a href="/cgi-bin/koha/reviews/reviewswaiting.pl?op=unapprove&amp;reviewid=[% review.reviewid %]">Unapprove</a>[% ELSE %]<a href="/cgi-bin/koha/reviews/reviewswaiting.pl?op=approve&amp;reviewid=[% review.reviewid %]">Aprobar</a>[% END %] | <a href="/cgi-bin/koha/reviews/reviewswaiting.pl?op=delete&amp;reviewid=[% review.reviewid %]">Eliminar</a>
+ [% IF ( status ) %]<a href="/cgi-bin/koha/reviews/reviewswaiting.pl?op=unapprove&amp;reviewid=[% review.reviewid %]">Desaprobar</a>[% ELSE %]<a href="/cgi-bin/koha/reviews/reviewswaiting.pl?op=approve&amp;reviewid=[% review.reviewid %]">Aprobar</a>[% END %] | <a href="/cgi-bin/koha/reviews/reviewswaiting.pl?op=delete&amp;reviewid=[% review.reviewid %]">Borrar</a>
  </td>
  </tr>
  [% END %]</tbody>
 </table>
  <div class="pages">[% pagination_bar %]</div>
-[% ELSE %]
-[% IF ( status ) %]<p><b>No comments have been approved.</b></p>[% ELSE %]<p><b>No comments to moderate.</b></p>[% END %]
-[% END %]
-</div>
+[% ELSE %] [% IF ( status ) %]<p><b>No se han aprobado comentarios.</b></p>[% ELSE %]<p><b>No hay comentarios a moderar.</b></p>[% END %] [% END %] </div>
 </div>
 
 </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'tools-menu.inc' %]
+[% INCLUDE 'tools-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

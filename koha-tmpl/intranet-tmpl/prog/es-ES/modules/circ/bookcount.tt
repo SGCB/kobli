@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Circulation &rsaquo; Circulation statistics for [% title |html %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación &rsaquo; Estadísticas de circulación para [% title |html %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 $(document).ready(function(){
     $(".striped tr:even").addClass("highlight");
     $("tr.mybranch td").css("background-color", "#CFE7FF");
@@ -9,10 +7,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body id="circ_bookcount" class="circ">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'circ-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; Circulation statistics for [% title |html %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; Estadísticas de circulación de [% title |html %] </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -21,10 +16,10 @@ $(document).ready(function(){
  <div class="yui-b">
 
 <h2>
-[% title |html %] [% IF ( author ) %] by [% author |html %][% END %]</h2>
+[% title |html %] [% IF ( author ) %] por [% author |html %][% END %]</h2>
 <h3>Código de barras [% barcode %]</h3>
 <table>
- <tr><th>Biblioteca de origen</th><th>Current library</th><th>Fecha de recepción<br />at current library </th><th>Número de préstamos<br />desde la última transferencia</th></tr>
+ <tr><th>Biblioteca de origen</th><th>Biblioteca actual</th><th>Fecha de recepción<br />en la biblioteca actual </th><th>Número de préstamos<br />desde la última transferencia</th></tr>
  
  <tr><td>[% homebranch %]</td>
  <td>[% holdingbranch %]</td>
@@ -35,32 +30,25 @@ $(document).ready(function(){
 <table class="striped">
  <tr>
  <th>Biblioteca</th>
- <th>N.º de veces prestado</th>
+ <th>No. de veces prestado</th>
  <th>Última vez visto</th>
  </tr>
- [% FOREACH branchloo IN branchloop %]
- [% IF ( branchloo.selected ) %]
- <tr class="mybranch">
- [% ELSE %]
- <tr>
- [% END %]
- <td>[% branchloo.branchname %]</td>
+ [% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <tr class="mybranch">
+ [% ELSE %] <tr>
+ [% END %] <td>[% branchloo.branchname %]</td>
  <td>[% branchloo.issues %]</td>
- <td>[% IF ( branchloo.seen ) %]
- <span style="display:none;">[% branchloo.seen %][% branchloo.seentime %]</span>
+ <td>[% IF ( branchloo.seen ) %] <span style="display:none;">[% branchloo.seen %][% branchloo.seentime %]</span>
  <!-- invisible span for eventual use by tablesorter -->
  [% branchloo.seen %] [% branchloo.seentime %]
  [% ELSE %]Never
  [% END %]
  </td>
  </tr>
- [% END %]
-</table>
+ [% END %] </table>
 
 </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'biblio-view-menu.inc' %]
+[% INCLUDE 'biblio-view-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

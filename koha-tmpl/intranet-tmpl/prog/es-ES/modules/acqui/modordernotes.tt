@@ -1,18 +1,14 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Acquisition &rsaquo; Change order notes</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; Cambiar notas de órden </title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 
 <body>
-[% INCLUDE 'header.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Acquisition</a> &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername|html %]</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Basket [% basketname|html %] ([% basketno %])</a> &rsaquo; Change order notes</div>
+[% INCLUDE 'header.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisición</a> &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername|html %]</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Bolsa [% basketname|html %] ([% basketno %])</a> &rsaquo; Cambiar notas de órdenes </div>
 
 <div id="doc" class="yui-t7">
 
 <div id="bd">
  <div id="yui-main">
- <h1>Change order notes (order no. [% ordernumber %])</h1>
+ <h1>Cambiar notas de órden (órden no. [% ordernumber %])</h1>
  <form action="/cgi-bin/koha/acqui/modordernotes.pl" method="post">
  <fieldset class="brief">
  <label for="ordernotes">Notas:</label>
@@ -28,4 +24,4 @@
  </form>
  </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

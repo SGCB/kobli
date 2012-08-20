@@ -1,45 +1,41 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Disparadores de estado/aviso de retrasos</h1>
 
-<h1>Overdue Notice/Status Triggers</h1>
+<p>Para enviar avisos de vencimiento que ha definido utilizando la herramienta de avisos, es necesario establecer primero los factores que desencadenan que estos mensajes.</p>
 
-<p>Para enviar notificaciones de vencimiento que hayas definido utilizando la herramienta de notificaciones, es necesario establecer primero los factores desencadenantes que estos mensajes.</p>
+<p style="color: #990000;">Importante: Para enviar avisos de vencimiento a sus usuarios, es necesario establecer que dicha categoría de socios tendrá avisos de vencimiento.</p>
 
-<p style="color: #990000;">Important: In order to have overdue notices sent to your patrons, you need to set that patron category to require overdue notices.</p>
-
-<p>La herramienta Notificaciones de retraso/Disparadores de estado da al bibliotecario el poder de enviar hasta tres avisos a cada tipo de usuario para notificar el retraso de los ítems</p>
+<p>La herramienta Avisos de retraso/Disparadores de estado da al bibliotecario el poder de enviar hasta tres avisos a cada tipo de usuario para notificar de ítems retrasados</p>
 
 <ul>
- <li>Delay is the number of days after an issue is due before an action is triggered.
-<ul>
- <li style="color: #990000;">Important: If you want Koha to trigger an action (send a letter or restrict member), a delay value is required.</li>
+ <li>Demora es el número de días desde que se espera un ejemplar antes que se dispare una acción. <ul>
+ <li style="color: #990000;">Importante: Si desea que Koha dispare una acción (enviar una carta o suspender a un miembro), es necesario un valor de retardo.</li>
 </ul>
 </li>
- <li>Para enviar notificaciones adicionales, haz clic en las pestañas de 'Segundo' y 'Tercer' aviso</li>
- <li>Si deseas evitar que un socio tome prestados ítems debido a sus retrasos, marca la casilla 'Restringir', esto hará que aparezca una notificación en el registro del socio. Cuando el socio quiera hacer un trámite el bibliotecario verá que el socio no puede tomar ítems prestados debido a los ítems atrasados.</li>
- <li>See a Sample Overdue Notice</li>
+ <li>Para enviar avisos adicionales, haga clic en las pestañas de 'Segundo' y 'Tercer' aviso</li>
+ <li>Si desea evitar que un socio tome prestado ítems debido a sus demoras, marque la casilla 'Suspender', esto hará que aparezca un aviso en el registro del socio. Cuando el socio quiera hacer un trámite la bibliotecaria verá que al socio no se le prestará debido a los ítems atrasados.</li>
+ <li>Vea un ejemplo de aviso de retraso</li>
 </ul>
 
 <h3>Ejemplo de aviso de retraso</h3>
 
-<p>Nicole Engard<br>410 Biblioteca Rd.<br>Filadelfia, PA 19107</p>
+<p>Nicole Engard <br>410 Biblioteca Rd. <br>Filadelfia, PA 19107</p>
 
 <p>Estimada Nicole Engard (23529000035726),</p>
 
-<p>Según nuestros registros, en el momento de esta notificación, tienes ítems que están atrasados. Por favor, devúelvelos o renúevalos tan pronto como te sea posible para evitar el aumento de multas por demora.</p>
+<p>Según nuestros registros, en el momento de esta notificación, tiene ítems que están atrasados. Por favor, devolver o renovar tan pronto como le sea posible para evitar el aumento de multas por demora.</p>
 
-<p>Si has registrado una contraseña en la biblioteca, puedes usarla con tu número de socio de biblioteca para hacer renovaciones por Internet.</p>
+<p>Si ha registrado una contraseña en la biblioteca, es posible usarla con su número de socio de biblioteca para renovaciones por Internet.</p>
 
-<p>Si crees que has devuelto el ítem por favor llama al personal de la biblioteca y ellos te ayudarán a resolver el problema.</p>
+<p>Si usted cree que ha devuelto el ítem por favor llame al personal de la biblioteca y ellos le ayudarán a resolver el problema.</p>
 
-<p>Los siguientes ítems están retrasados:</p>
+<p>El/los siguiente(s) ítem(s) están retrasados:</p>
 
 <p>07/08/2008 Creando escuelas y comunidades libres de drogas: 502326000054 Fox, C. Lynn.</p>
 
 <p>06/27/2008 Comiendo Fracciones / 502326000022 McMillan, Bruce.</p>
 
-<p>Sinceramente, el personal de la biblioteca</p>
+<p>Sinceramente, Personal de la Biblioteca</p>
 
-<p><strong>See the full documentation for the Overdue Notice/Status Triggers in the <a href="http://manual.koha-community.org/3.8/en/noticetriggers.html">manual</a> (online).</strong></p>
+<p><strong>Vea la documentación completa de Disparadores de estado/aviso de retrasos en la <a href="http://manual.koha-community.org/3.8/en/noticetriggers.html">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
-
+[% INCLUDE 'help-bottom.inc' %] 

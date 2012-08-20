@@ -52,7 +52,7 @@
  <label>Biografía</label>
  <select name="limit" class="subtype" size="1">
  <option value="">Cualquiera</option>
- <option value="Biography-code:y">No es un duplicado. Guardar como nuevo registro</option>
+ <option value="Biography-code:y">No es una biografía</option>
  <option value="Biography-code:a">autobiografía</option>
  <option value="Biography-code:b">biografía individual</option>
  <option value="Biography-code:c">biografía colectiva</option>
@@ -97,7 +97,7 @@
  <option value="ctype:j" >libros de texto programados</option>
  <option value="ctype:k" >patente</option>
  <option value="ctype:l" >estándar</option>
- <option value="ctype:m" >disertación o tésis</option>
+ <option value="ctype:m" >disertación o tesis</option>
  <option value="ctype:n" >leyes y legislación</option>
  <option value="ctype:o" >tabla numérica</option>
  <option value="ctype:p" >informe técnico</option>
@@ -121,7 +121,7 @@
  <fieldset>
  <legend>Publicaciones periódicas</legend><p>
  <p>
- <label>Serie</label>
+ <label>Tipo de publicación periódica</label>
  <select name="limit" class="subtype">
  <option value="">Cualquier tipo</option>
  <option value="Type-Of-Serial:a">Periódica</option>
@@ -170,7 +170,7 @@
  <legend>Pintura</legend><p>
  <select name="limit" class="subtype">
  <option value="">Cualquiera</option>
- <option value="Graphics-type:a">collage</option>
+ <option value="Graphics-type:a">colage</option>
  <option value="Graphics-type:b">dibujo</option>
  <option value="Graphics-type:c">pintura</option>
  <option value="Graphics-type:d">reproducción fotomecánica</option>

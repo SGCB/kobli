@@ -1,5 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Online help</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Ayuda en línea</title>
 <script language="javascript" type="text/javascript" src="[% themelang %]/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script language="javascript" type="text/javascript">
 tinyMCE.init({
@@ -20,22 +19,15 @@ tinyMCE.init({
     apply_source_formatting : true
 });
 </script>
-[% IF ( intranetstylesheet ) %]
- <link rel="stylesheet" type="text/css" href="[% intranetstylesheet %]" />
-[% ELSE %]
- <link rel="stylesheet" type="text/css" href="[% themelang %]/css/staff-global.css" />
-[% END %]
-[% IF ( intranetcolorstylesheet ) %]
- <link rel="stylesheet" type="text/css" href="[% themelang %]/css/[% intranetcolorstylesheet %]" />
-[% END %]
-<link rel="stylesheet" type="text/css" href="[% themelang %]/css/help.css" />
+[% IF ( intranetstylesheet ) %] <link rel="stylesheet" type="text/css" href="[% intranetstylesheet %]" />
+[% ELSE %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/staff-global.css" />
+[% END %] [% IF ( intranetcolorstylesheet ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/[% intranetcolorstylesheet %]" />
+[% END %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/help.css" />
 </head>
 <body id="help">
  <h1>Ayuda en línea</h1>
-[% IF ( error ) %]
-<h5>[% error %]</h5>
-[% END %]
-<form action="/cgi-bin/koha/edithelp.pl" method="post">
+[% IF ( error ) %] <h5>[% error %]</h5>
+[% END %] <form action="/cgi-bin/koha/edithelp.pl" method="post">
 <input type="hidden" name="referer" value="[% referer %]" />
 <input type="hidden" name="type" value="[% type %]" />
 <textarea name="help" cols="60" rows="20">[% help %]</textarea>

@@ -24,7 +24,7 @@
 
 	    new YAHOO.widget.Button({
 	        type: "menu",
-            label: _("New record"),
+            label: _("Nuevo registro"),
 	        name: "newmenubutton",
 	        menu: newmenu,
 	        container: "newmenuc"
@@ -51,7 +51,7 @@
         new YAHOO.widget.Button({
                 id: "z3950search",
                 type: "button",
-                label: _("Z39.50 search"),
+                label: _("Búsqueda Z39.50"),
                 container: "newmenuc",
                 onclick: {fn:function(){PopupZ3950()}}
         });
@@ -61,18 +61,15 @@
  
  <div id="newmenuc">
  <form name="f" action="addbiblio.pl" method="post">
- <label for="frameworkcode">New record with framework:</label>
+ <label for="frameworkcode">Nuevo registro con hoja de trabajo:</label>
  <select name="frameworkcode" id="frameworkcode">
  <option value="">Predeterminado</option>
- [% FOREACH frameworkcodeloo IN frameworkcodeloop %]
- <option value="[% frameworkcodeloo.value %]">
- [% frameworkcodeloo.frameworktext %]
- </option>
- [% END %]
- </select>
- <input value="Agregar registro sin búsqueda" type="submit" />
+ [% FOREACH frameworkcodeloo IN frameworkcodeloop %] <option value="[% frameworkcodeloo.value %]">
+ [% frameworkcodeloo.frameworktext %] </option>
+ [% END %] </select>
+ <input value="Agregar registro sin buscar" type="submit" />
  </form>
- <a id="z3950search" onclick="PopupZ3950(); return false;">Z39.50 search</a>
+ <a id="z3950search" onclick="PopupZ3950(); return false;">Búsqueda Z39.50</a>
 
  </div>
 </div>

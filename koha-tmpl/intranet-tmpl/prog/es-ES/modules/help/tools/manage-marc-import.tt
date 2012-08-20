@@ -1,46 +1,39 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Administrar registros MARC preparados</h1>
 
-<h1>Administrar registros MARC preparados</h1>
-
-<p>Una vez que se han preparado los registros para la importación, se puede completar la importación usando esta herramienta.</p>
+<p>Una vez que se han preparado los registros para importación se puede completar la importación usando esta herramienta.</p>
 
 <ul>
- <li>From the list of staged records, click on the file name that you want to finish importing
-<ul>
- <li>Observarás que los registros que ya han sido importados dejarán constancia en 'Estado'</li>
+ <li>Desde la lista de registros preparados, haga clic en el nombre que desee terminar de importar <ul>
+ <li>Usted notará que los registros que ya han sido importados así lo dirán en 'Estado'</li>
 </ul>
 </li>
- <li>Aparecerá un resumen de tu importación junto con la opción de cambiar tus reglas de coincidencia</li>
- <li>Below the summary is the option to import the batch of bib records using a specific framework
-<ul>
- <li>Choosing a framework other than 'Default' isn't necessary, but it's helpful for running reports and having the right bib level item type selected on import.</li>
+ <li>Un resumen de su importación se presentará junto con la opción de cambiar sus reglas de coincidencia</li>
+ <li>En la parte inferior del sumario está la opción para importar el lote de registros bibliográficos usando una plantilla específica <ul>
+ <li>Seleccionar una hoja de trabajo distinta de 'Predeterminada' no es necesario, pero ayuda al generar reportes y que tengan el tipo de ítem bibliográfico correcto al importar.</li>
 </ul>
 </li>
- <li>Below the framework selection there will be a list of the records that will be imported
-<ul>
- <li>Revisor</li>
+ <li>Debajo de la plantilla de selección habrá una lista de los registros que se importarán <ul>
+ <li>Revise su resumen antes de completar su importación para asegurarse de que su regla de correspondencia funcionado y que los registros aparecen en la forma que se espera</li>
 </ul>
 </li>
- <li>Haz clic en 'Importar en el catálogo' para completar la importación</li>
- <li>Una vez que tu importación se ha completado, aparecerá un enlace a los registros bibliográficos a la derecha de cada título importado</li>
- <li>También puedes deshacer la importación haciendo clic en botón 'Deshacer importación en catálogo'</li>
+ <li>Haga clic en 'Importar en el catálogo' para completar la importación</li>
+ <li>Una vez que su importación se ha completado un enlace a los registros bibliográficos aparecerá a la derecha de cada título que fue importado</li>
+ <li>También puede deshacer la importación haciendo clic en botón 'Deshacer importación en catálogo'</li>
 </ul>
 
-<p>Records imported using this tool remain in the 'reservoir' until they are cleaned. These items will appear when searching the catalog from the Cataloging tool:</p>
+<p>Los registros importados usando esta herramienta permanecer en el 'reservorio' hasta que se limpien. Estos ítems aparecerán cuando se busque en el catálogo desde la herramienta de Catalogación:</p>
 
-<p>Para limpiar los ítems del 'depósito':</p>
+<p>Para limpiar los ítems del 'reservorio':</p>
 
 <ul>
- <li>Visita la pantalla principal de la herramienta de Administrar Registros Preparados MARC</li>
- <li>Para limpiar un lote, haz clic en el botón 'Limpiar' a la derecha</li>
- <li>You will be presented with a confirmation message
-<ul>
- <li>Acepta la eliminación y los registros serán eliminados del depósito y el estado se cambiará a 'limpio'</li>
+ <li>Visite la pantalla principal de la herramienta de Administrar Registros Preparados MARC</li>
+ <li>Para limpiar un lote, haga clic en el botón 'Limpiar' a la derecha</li>
+ <li>Se le presentará un mensaje de confirmación <ul>
+ <li>Acepte la eliminación y los registros serán removidos del depósito y el estado se cambiará a 'limpio'</li>
 </ul>
 </li>
 </ul>
 
-<p><strong>See the full documentation for the Managing Staged MARC Records in the <a href="http://manual.koha-community.org/3.8/en/managestaged.html">manual</a> (online).</strong></p>
+<p><strong>Vea la documentación completa de Administrar Registros Preparados MARC en la <a href="http://manual.koha-community.org/3.8/en/managestaged.html">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
-
+[% INCLUDE 'help-bottom.inc' %] 

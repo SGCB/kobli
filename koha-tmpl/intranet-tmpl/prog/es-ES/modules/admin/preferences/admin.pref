@@ -6,7 +6,7 @@ Administration:
         choices: 
           "": No usar
           1: Usar
-        default: '0'
+        default: 0
         pref: casAuthentication
       - "CAS para autenticaci\xC3\xB3n de acceso."
     - 
@@ -14,7 +14,7 @@ Administration:
         choices: 
           "": "No cerrar sesi\xC3\xB3n"
           1: "Cerrar sesi\xC3\xB3n"
-        default: '0'
+        default: 0
         pref: casLogout
       - de CAS cuando abandone Koha.
     - 
@@ -37,7 +37,7 @@ Administration:
         choices: 
           "": No permita
           1: Permita
-        default: '0'
+        default: 0
         pref: insecure
       - "al personal acceder la interfaz administrativa sin autenticarse. Habilitar esto es peligroso, y no debe hacerse en un entorno de producci\xC3\xB3n."
     - 
@@ -51,7 +51,7 @@ Administration:
         choices: 
           "": No requiere
           1: Requiere
-        default: '0'
+        default: 0
         pref: AutoLocation
       - que el personal ingrese desde una computadora en el rango de direcciones IP <a href="/cgi-bin/koha/admin/branches.pl">especificada por su biblioteca</a> (si hubiera).
     - 
@@ -69,7 +69,7 @@ Administration:
         choices: 
           "": No prevenir
           1: Prevenir
-        default: '0'
+        default: 0
         pref: IndependantBranches
       - "al personal (pero no superusuarios) de modificar objetos (reserva, \xC3\xADtems, socios, etc.) pertenecientes a otras bibliotecas."
   Opciones de interfaz: 
@@ -83,10 +83,10 @@ Administration:
       - Mostrar
       - 
         choices: 
-          "0": ninguna
+          0: ninguna
           1: alguna
           2: mucha
-        default: '0'
+        default: 0
         pref: DebugLevel
       - "informaci\xC3\xB3n de depuraci\xC3\xB3n en el navegador cuando ocurre un error interno."
     - 
@@ -94,7 +94,7 @@ Administration:
         choices: 
           "": Mostrar
           1: No mostrar
-        default: '0'
+        default: 0
         pref: noItemTypeImages
       - "iconos de tipo de \xC3\xADtem en el cat\xC3\xA1logo."
     - 
@@ -117,3 +117,12 @@ Administration:
           1: Permitir
         pref: virtualshelves
       - al personal y socios crear y ver listas almacenadas de libros.
+  Search Engine: 
+    - 
+      - 
+        choices: 
+          Solr: Solr
+          Zebra: Zebra
+        default: Zebra
+        pref: SearchEngine
+      - is the search engine used.

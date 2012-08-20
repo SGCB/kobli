@@ -1,7 +1,5 @@
- [% INCLUDE 'doc-head-open.inc' %]
- <title>Koha &rsaquo; Tools &rsaquo; Patron card creator</title>
- [% INCLUDE 'doc-head-close.inc' %]
- <script type="text/JavaScript" language="JavaScript">
+ [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Creador de carnets de socios</title>
+ [% INCLUDE 'doc-head-close.inc' %] <script type="text/JavaScript" language="JavaScript">
         //<![CDATA[
             $(document).ready(function() {
                 var selectedUnit = $("#units option:selected").attr("value");
@@ -45,7 +43,7 @@
                     eBarcode.style.display = 'block';
                 } else {
                     eBarcode.style.display = 'none';
-                    $('input[name=barcode_text_print]').attr('checked', false);
+                    $('input[name=barcode_text_print]').removeAttr('checked');
                 }
             }
             function getUnit(unit){
@@ -134,12 +132,8 @@
     </script>
 </head>
 <body id="pcard_edit-layout" class="tools pcard">
- [% INCLUDE 'header.inc' %]
- [% INCLUDE 'cat-search.inc' %]
- <div id="breadcrumbs">
- <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/patroncards/home.pl">Creador de carnet de socio</a> &rsaquo; <a href="/cgi-bin/koha/patroncards/manage.pl?card_element=layout">Manage patron card layouts</a> &rsaquo;
- [% IF ( layout_id ) %]Edit[% ELSE %]Create[% END %] patron card layout
- </div>
+ [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/patroncards/home.pl">Creador de carnet de socio</a> &rsaquo; <a href="/cgi-bin/koha/patroncards/manage.pl?card_element=layout">Administrar diseños de carnet de socio</a> &rsaquo; [% IF ( layout_id ) %]Editar[% ELSE %]Crear[% END %] Diseño de carnet </div>
  <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
@@ -149,62 +143,39 @@
  <div class="yui-g">
  <div class="yui-g first">
  <fieldset class="rows">
- <legend>[% IF ( layout_id ) %]Edit[% ELSE %]Create[% END %] Patron card text layout</legend>
+ <legend>[% IF ( layout_id ) %]Editar[% ELSE %]Crear[% END %] Diseño de texto de carnet de socio</legend>
  <ol>
  <li>
  <fieldset>
- <legend>General settings</legend>
+ <legend>Configuración general</legend>
  <li>
- <label for="layout_name">Layout name</label>
+ <label for="layout_name">Nombre del diseño</label>
  <input type="text" name="layout_name" id="layout_name" size="20" value="[% layout_name %]" />
  </li>
  <li>
  <label for="units">Unidades:</label>
  <select id="units" name="units">
- [% FOREACH unit IN units %]
- [% IF ( unit.selected ) %]
- <option value="[% unit.type %]" selected="selected">
- [% ELSE %]
- <option value="[% unit.type %]">
- [% END %]
- [% unit.desc %]
- </option>
- [% END %]
- </select>
+ [% FOREACH unit IN units %] [% IF ( unit.selected ) %] <option value="[% unit.type %]" selected="selected">
+ [% ELSE %] <option value="[% unit.type %]">
+ [% END %] [% unit.desc %] </option>
+ [% END %] </select>
  </li>
  <li>
- <label for="page_side">Page side:</label>
- [% IF ( page_side ) %]
- <input type="radio" name="page_side" id="page_side" value="F" />Front
- <input type="radio" name="page_side" id="page_side" value="B" checked="checked" />Back
- [% ELSE %]
- <input type="radio" name="page_side" id="page_side" value="F" checked="checked" />Front
- <input type="radio" name="page_side" id="page_side" value="B" />Back
- [% END %]
- </li>
+ <label for="page_side">Lado de la página:</label>
+ [% IF ( page_side ) %] <input type="radio" name="page_side" id="page_side" value="F" />Frente <input type="radio" name="page_side" id="page_side" value="B" checked="checked" />Volver [% ELSE %] <input type="radio" name="page_side" id="page_side" value="F" checked="checked" />Frente <input type="radio" name="page_side" id="page_side" value="B" />Volver [% END %] </li>
  <li>
- <label for="guide_box">Guide box:</label>
- [% IF ( guide_box ) %]
- <input type="radio" name="guide_box" id="guide_box" value="1" checked="checked" />On
- <input type="radio" name="guide_box" id="guide_box" value="0" />Off
- [% ELSE %]
- <input type="radio" name="guide_box" id="guide_box" value="1" />On
- <input type="radio" name="guide_box" id="guide_box" value="0" checked="checked" />Off
- [% END %]
- </li>
+ <label for="guide_box">Caja guía:</label>
+ [% IF ( guide_box ) %] <input type="radio" name="guide_box" id="guide_box" value="1" checked="checked" />En: <input type="radio" name="guide_box" id="guide_box" value="0" />Fuera de [% ELSE %] <input type="radio" name="guide_box" id="guide_box" value="1" />En: <input type="radio" name="guide_box" id="guide_box" value="0" checked="checked" />Fuera de [% END %] </li>
  </fieldset>
  </li>
  <li>
  <fieldset>
- <legend>Text fields</legend>
+ <legend>Campos de texto</legend>
  <li>
  <fieldset>
- [% IF ( field_1 ) %]
- <legend><input type="checkbox" name="field_1_enable" id="field_1_enable" value="1" checked="checked" /> Campo 1</legend>
- [% ELSE %]
- <legend><input type="checkbox" name="field_1_enable" id="field_1_enable" value="1" /> Campo 1</legend>
- [% END %]
- <div id="field_1_select" style="display: none;">
+ [% IF ( field_1 ) %] <legend><input type="checkbox" name="field_1_enable" id="field_1_enable" value="1" checked="checked" /> Campo 1</legend>
+ [% ELSE %] <legend><input type="checkbox" name="field_1_enable" id="field_1_enable" value="1" /> Campo 1</legend>
+ [% END %] <div id="field_1_select" style="display: none;">
  <li>
  <label for="field_1_text">Texto</label>
  <input type="text" name="field_1_text" id="field_1_text" size="60" value="[% field_1_text |html %]" />
@@ -212,38 +183,28 @@
  <li>
  <label for="field_1_font">Fuente</label>
  <select name="field_1_font" id="field_1_font">
- [% FOREACH field_1_fon IN field_1_font %]
- [% IF ( field_1_fon.selected ) %]
- <option value="[% field_1_fon.type %]" selected="selected">[% field_1_fon.name %]</option>
- [% ELSE %]
- <option value="[% field_1_fon.type %]">[% field_1_fon.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH field_1_fon IN field_1_font %] [% IF ( field_1_fon.selected ) %] <option value="[% field_1_fon.type %]" selected="selected">[% field_1_fon.name %]</option>
+ [% ELSE %] <option value="[% field_1_fon.type %]">[% field_1_fon.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  <li>
- <label for="field_1_font_size">Font size</label>
+ <label for="field_1_font_size">Tamaño de fuente</label>
  <input type="text" name="field_1_font_size" id="field_1_font_size" size="2" value="[% field_1_font_size |html %]" />
  <span class="font_unit"> pt</span>
  </li>
  <li>
- <label for="field_1_text_alignment">Text alignment</label>
+ <label for="field_1_text_alignment">Alineación del texto</label>
  <select name="field_1_text_alignment" id="field_1_text_alignment">
- [% FOREACH field_1_text_alignmen IN field_1_text_alignment %]
- [% IF ( field_1_text_alignmen.selected ) %]
- <option value="[% field_1_text_alignmen.type %]" selected="selected">[% field_1_text_alignmen.name %]</option>
- [% ELSE %]
- <option value="[% field_1_text_alignmen.type %]">[% field_1_text_alignmen.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH field_1_text_alignmen IN field_1_text_alignment %] [% IF ( field_1_text_alignmen.selected ) %] <option value="[% field_1_text_alignmen.type %]" selected="selected">[% field_1_text_alignmen.name %]</option>
+ [% ELSE %] <option value="[% field_1_text_alignmen.type %]">[% field_1_text_alignmen.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  <li>
- <label for="field_1_llx">Lower left X coordinate</label>
+ <label for="field_1_llx">Coordenada inferior izquierda X</label>
  <input type="text" name="field_1_llx" id="field_1_llx" size="2" value="[% field_1_llx |html %]" />
  </li>
  <li>
- <label for="field_1_lly">Lower left Y coordinate</label>
+ <label for="field_1_lly">Coordenada inferior izquierda Y</label>
  <input type="text" name="field_1_lly" id="field_1_lly" size="2" value="[% field_1_lly |html %]" />
  </li>
  </div>
@@ -251,12 +212,9 @@
  </li>
  <li>
  <fieldset>
- [% IF ( field_2 ) %]
- <legend><input type="checkbox" name="field_2_enable" id="field_2_enable" value="1" checked="checked"/> Campo 2</legend>
- [% ELSE %]
- <legend><input type="checkbox" name="field_2_enable" id="field_2_enable" value="1" /> Campo 2</legend>
- [% END %]
- <div id="field_2_select" style="display: none;">
+ [% IF ( field_2 ) %] <legend><input type="checkbox" name="field_2_enable" id="field_2_enable" value="1" checked="checked"/> Campo 2</legend>
+ [% ELSE %] <legend><input type="checkbox" name="field_2_enable" id="field_2_enable" value="1" /> Campo 2</legend>
+ [% END %] <div id="field_2_select" style="display: none;">
  <li>
  <label for="field_2_text">Texto</label>
  <input type="text" name="field_2_text" id="field_2_text" size="60" value="[% field_2_text |html %]" />
@@ -264,38 +222,28 @@
  <li>
  <label for="field_2_font">Fuente</label>
  <select name="field_2_font" id="field_2_font">
- [% FOREACH field_2_fon IN field_2_font %]
- [% IF ( field_2_fon.selected ) %]
- <option value="[% field_2_fon.type %]" selected="selected">[% field_2_fon.name %]</option>
- [% ELSE %]
- <option value="[% field_2_fon.type %]">[% field_2_fon.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH field_2_fon IN field_2_font %] [% IF ( field_2_fon.selected ) %] <option value="[% field_2_fon.type %]" selected="selected">[% field_2_fon.name %]</option>
+ [% ELSE %] <option value="[% field_2_fon.type %]">[% field_2_fon.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  <li>
- <label for="field_2_font_size">Font size</label>
+ <label for="field_2_font_size">Tamaño de fuente</label>
  <input type="text" name="field_2_font_size" id="field_2_font_size" size="2" value="[% field_2_font_size |html %]" />
  <span class="font_unit"> pt</span>
  </li>
  <li>
- <label for="field_2_text_alignment">Text alignment</label>
+ <label for="field_2_text_alignment">Alineación del texto</label>
  <select name="field_2_text_alignment" id="field_2_text_alignment">
- [% FOREACH field_2_text_alignmen IN field_2_text_alignment %]
- [% IF ( field_2_text_alignmen.selected ) %]
- <option value="[% field_2_text_alignmen.type %]" selected="selected">[% field_2_text_alignmen.name %]</option>
- [% ELSE %]
- <option value="[% field_2_text_alignmen.type %]">[% field_2_text_alignmen.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH field_2_text_alignmen IN field_2_text_alignment %] [% IF ( field_2_text_alignmen.selected ) %] <option value="[% field_2_text_alignmen.type %]" selected="selected">[% field_2_text_alignmen.name %]</option>
+ [% ELSE %] <option value="[% field_2_text_alignmen.type %]">[% field_2_text_alignmen.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  <li>
- <label for="field_2_llx">Lower left X coordinate</label>
+ <label for="field_2_llx">Coordenada inferior izquierda X</label>
  <input type="text" name="field_2_llx" id="field_2_llx" size="2" value="[% field_2_llx |html %]" />
  </li>
  <li>
- <label for="field_2_lly">Lower left Y coordinate</label>
+ <label for="field_2_lly">Coordenada inferior izquierda Y</label>
  <input type="text" name="field_2_lly" id="field_2_lly" size="2" value="[% field_2_lly |html %]" />
  </li>
  </div>
@@ -303,12 +251,9 @@
  </li>
  <li>
  <fieldset>
- [% IF ( field_3 ) %]
- <legend><input type="checkbox" name="field_3_enable" id="field_3_enable" value="1" checked="checked"/> Campo 3</legend>
- [% ELSE %]
- <legend><input type="checkbox" name="field_3_enable" id="field_3_enable" value="0" /> Campo 3</legend>
- [% END %]
- <div id="field_3_select" style="display: none;">
+ [% IF ( field_3 ) %] <legend><input type="checkbox" name="field_3_enable" id="field_3_enable" value="1" checked="checked"/> Campo 3</legend>
+ [% ELSE %] <legend><input type="checkbox" name="field_3_enable" id="field_3_enable" value="0" /> Campo 3</legend>
+ [% END %] <div id="field_3_select" style="display: none;">
  <li>
  <label for="field_3_text">Texto</label>
  <input type="text" name="field_3_text" id="field_3_text" size="60" value="[% field_3_text |html %]" />
@@ -316,38 +261,28 @@
  <li>
  <label for="field_3_font">Fuente</label>
  <select name="field_3_font" id="field_3_font">
- [% FOREACH field_3_fon IN field_3_font %]
- [% IF ( field_3_fon.selected ) %]
- <option value="[% field_3_fon.type %]" selected="selected">[% field_3_fon.name %]</option>
- [% ELSE %]
- <option value="[% field_3_fon.type %]">[% field_3_fon.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH field_3_fon IN field_3_font %] [% IF ( field_3_fon.selected ) %] <option value="[% field_3_fon.type %]" selected="selected">[% field_3_fon.name %]</option>
+ [% ELSE %] <option value="[% field_3_fon.type %]">[% field_3_fon.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  <li>
- <label for="field_3_font_size">Font size</label>
+ <label for="field_3_font_size">Tamaño de fuente</label>
  <input type="text" name="field_3_font_size" id="field_3_font_size" size="2" value="[% field_3_font_size |html %]" />
  <span class="font_unit"> pt</span>
  </li>
  <li>
- <label for="field_3_text_alignment">Text alignment</label>
+ <label for="field_3_text_alignment">Alineación del texto</label>
  <select name="field_3_text_alignment" id="field_3_text_alignment">
- [% FOREACH field_3_text_alignmen IN field_3_text_alignment %]
- [% IF ( field_3_text_alignmen.selected ) %]
- <option value="[% field_3_text_alignmen.type %]" selected="selected">[% field_3_text_alignmen.name %]</option>
- [% ELSE %]
- <option value="[% field_3_text_alignmen.type %]">[% field_3_text_alignmen.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH field_3_text_alignmen IN field_3_text_alignment %] [% IF ( field_3_text_alignmen.selected ) %] <option value="[% field_3_text_alignmen.type %]" selected="selected">[% field_3_text_alignmen.name %]</option>
+ [% ELSE %] <option value="[% field_3_text_alignmen.type %]">[% field_3_text_alignmen.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  <li>
- <label for="field_3_llx">Lower left X coordinate</label>
+ <label for="field_3_llx">Coordenada inferior izquierda X</label>
  <input type="text" name="field_3_llx" id="field_3_llx" size="2" value="[% field_3_llx |html %]" />
  </li>
  <li>
- <label for="field_3_lly">Lower left Y coordinate</label>
+ <label for="field_3_lly">Coordenada inferior izquierda Y</label>
  <input type="text" name="field_3_lly" id="field_3_lly" size="2" value="[% field_3_lly |html %]" />
  </li>
  </div>
@@ -364,7 +299,7 @@
  </div>
  <div class="yui-g">
  <fieldset class="rows">
- <legend>[% IF ( layout_id ) %]Edit[% ELSE %]Create[% END %] Patron card graphic layout</legend>
+ <legend>[% IF ( layout_id ) %]Editar[% ELSE %]Crear[% END %] Diseño de carnet de socio</legend>
  <ol>
 <!--
  <li>
@@ -382,42 +317,31 @@
  <fieldset>
  <legend>Código de barras</legend>
  <li>
- <label for="barcode_print">Print card number as barcode</label>
- [% IF ( barcode_print ) %]
- <input type="checkbox" name="barcode_print" id="barcode_print" value="1" checked="checked" />
- [% ELSE %]
- <input type="checkbox" name="barcode_print" id="barcode_print" value="1" />
- [% END %]
- </li>
+ <label for="barcode_print">Imprimir el número de carnet como código de barras</label>
+ [% IF ( barcode_print ) %] <input type="checkbox" name="barcode_print" id="barcode_print" value="1" checked="checked" />
+ [% ELSE %] <input type="checkbox" name="barcode_print" id="barcode_print" value="1" />
+ [% END %] </li>
  <div id="barcode_param" style="display: none;">
  <li>
- <label for="barcode_llx">Lower left X coordinate</label>
+ <label for="barcode_llx">Coordenada inferior izquierda X</label>
  <input type="text" name="barcode_llx" id="barcode_llx" size="2" value="[% barcode_llx |html %]" />
  </li>
  <li>
- <label for="barcode_lly">Lower left Y coordinate</label>
+ <label for="barcode_lly">Coordenada inferior izquierda Y</label>
  <input type="text" name="barcode_lly" id="barcode_lly" size="2" value="[% barcode_lly |html %]" />
  </li>
  <li>
- <label for="barcode_type">Barcode type</label>
+ <label for="barcode_type">Tipo de código de barras</label>
  <select name="barcode_type" id="barcode_type">
- [% FOREACH barcode_typ IN barcode_type %]
- [% IF ( barcode_typ.selected ) %]
- <option value="[% barcode_typ.type %]" selected="selected">[% barcode_typ.name %]</option>
- [% ELSE %]
- <option value="[% barcode_typ.type %]">[% barcode_typ.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH barcode_typ IN barcode_type %] [% IF ( barcode_typ.selected ) %] <option value="[% barcode_typ.type %]" selected="selected">[% barcode_typ.name %]</option>
+ [% ELSE %] <option value="[% barcode_typ.type %]">[% barcode_typ.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  <li>
- <label for="barcode_text_print">Print card number as text under barcode</label>
- [% IF ( barcode_text_print ) %]
- <input type="checkbox" name="barcode_text_print" id="barcode_text_print" value="1" checked="checked" />
- [% ELSE %]
- <input type="checkbox" name="barcode_text_print" id="barcode_text_print" value="1" />
- [% END %]
- </li>
+ <label for="barcode_text_print">Imprimir Número de carnet como texto bajo el código de barras</label>
+ [% IF ( barcode_text_print ) %] <input type="checkbox" name="barcode_text_print" id="barcode_text_print" value="1" checked="checked" />
+ [% ELSE %] <input type="checkbox" name="barcode_text_print" id="barcode_text_print" value="1" />
+ [% END %] </li>
  </div>
  </fieldset>
  </li>
@@ -428,42 +352,32 @@
  <fieldset>
  <legend>Imagen 1</legend>
  <li>
- <label for="image_1_image_source">Image source</label>
+ <label for="image_1_image_source">Fuente de la imagen</label>
  <select name="image_1_image_source" id="image_1_image_source">
- [% FOREACH image_1_image_sourc IN image_1_image_source %]
- [% IF ( image_1_image_sourc.selected ) %]
- <option value="[% image_1_image_sourc.type %]" selected="selected">[% image_1_image_sourc.name %]</option>
- [% ELSE %]
- <option value="[% image_1_image_sourc.type %]">[% image_1_image_sourc.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH image_1_image_sourc IN image_1_image_source %] [% IF ( image_1_image_sourc.selected ) %] <option value="[% image_1_image_sourc.type %]" selected="selected">[% image_1_image_sourc.name %]</option>
+ [% ELSE %] <option value="[% image_1_image_sourc.type %]">[% image_1_image_sourc.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  <div id="image_1_image_name" style="display: none;">
  <li>
  <label for="image_1_image_name">Imagen</label>
  <select name="image_1_image_name" id="image_1_image_name">
- [% FOREACH image_1_image_nam IN image_1_image_name %]
- [% IF ( image_1_image_nam.selected ) %]
- <option value="[% image_1_image_nam.type %]" selected="selected">[% image_1_image_nam.name %]</option>
- [% ELSE %]
- <option value="[% image_1_image_nam.type %]">[% image_1_image_nam.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH image_1_image_nam IN image_1_image_name %] [% IF ( image_1_image_nam.selected ) %] <option value="[% image_1_image_nam.type %]" selected="selected">[% image_1_image_nam.name %]</option>
+ [% ELSE %] <option value="[% image_1_image_nam.type %]">[% image_1_image_nam.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  </div>
  <div id="image_1_image_metrics" style="display: none;">
  <li>
- <label for="image_1_Dx">Display height</label>
+ <label for="image_1_Dx">Mostrar altura</label>
  <input type="text" name="image_1_Dx" id="image_1_Dx" size="2" value="[% image_1_Dx |html %]" />
  </li>
  <li>
- <label for="image_1_Tx">Lower left X coordinate</label>
+ <label for="image_1_Tx">Coordenada inferior izquierda X</label>
  <input type="text" name="image_1_Tx" id="image_1_Tx" size="2" value="[% image_1_Tx |html %]" />
  </li>
  <li>
- <label for="image_1_Ty">Lower left Y coordinate</label>
+ <label for="image_1_Ty">Coordenada inferior izquierda Y</label>
  <input type="text" name="image_1_Ty" id="image_1_Ty" size="2" value="[% image_1_Ty |html %]" />
  </li>
  </div>
@@ -478,42 +392,32 @@
  <fieldset>
  <legend>Imagen 2</legend>
  <li>
- <label for="image_2_image_source">Image source</label>
+ <label for="image_2_image_source">Fuente de la imagen</label>
  <select name="image_2_image_source" id="image_2_image_source">
- [% FOREACH image_2_image_sourc IN image_2_image_source %]
- [% IF ( image_2_image_sourc.selected ) %]
- <option value="[% image_2_image_sourc.type %]" selected="selected">[% image_2_image_sourc.name %]</option>
- [% ELSE %]
- <option value="[% image_2_image_sourc.type %]">[% image_2_image_sourc.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH image_2_image_sourc IN image_2_image_source %] [% IF ( image_2_image_sourc.selected ) %] <option value="[% image_2_image_sourc.type %]" selected="selected">[% image_2_image_sourc.name %]</option>
+ [% ELSE %] <option value="[% image_2_image_sourc.type %]">[% image_2_image_sourc.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  <div id="image_2_image_name" style="display: none;">
  <li>
  <label for="image_2_image_name">Imagen</label>
  <select name="image_2_image_name" id="image_2_image_name">
- [% FOREACH image_2_image_nam IN image_2_image_name %]
- [% IF ( image_2_image_nam.selected ) %]
- <option value="[% image_2_image_nam.type %]" selected="selected">[% image_2_image_nam.name %]</option>
- [% ELSE %]
- <option value="[% image_2_image_nam.type %]">[% image_2_image_nam.name %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH image_2_image_nam IN image_2_image_name %] [% IF ( image_2_image_nam.selected ) %] <option value="[% image_2_image_nam.type %]" selected="selected">[% image_2_image_nam.name %]</option>
+ [% ELSE %] <option value="[% image_2_image_nam.type %]">[% image_2_image_nam.name %]</option>
+ [% END %] [% END %] </select>
  </li>
  </div>
  <div id="image_2_image_metrics" style="display: none;">
  <li>
- <label for="image_2_Dx">Display height</label>
+ <label for="image_2_Dx">Mostrar altura</label>
  <input type="text" name="image_2_Dx" id="image_2_Dx" size="2" value="[% image_2_Dx |html %]" />
  </li>
  <li>
- <label for="image_2_Tx">Lower left X coordinate</label>
+ <label for="image_2_Tx">Coordenada inferior izquierda X</label>
  <input type="text" name="image_2_Tx" id="image_2_Tx" size="2" value="[% image_2_Tx |html %]" />
  </li>
  <li>
- <label for="image_2_Ty">Lower left Y coordinate</label>
+ <label for="image_2_Ty">Coordenada inferior izquierda Y</label>
  <input type="text" name="image_2_Ty" id="image_2_Ty" size="2" value="[% image_2_Ty |html %]" />
  </li>
  </div>
@@ -540,7 +444,6 @@
  </div>
  </div>
  <div class="yui-b">
- [% INCLUDE 'patroncards-menu.inc' %]
+ [% INCLUDE 'patroncards-menu.inc' %] </div>
  </div>
- </div>
- [% INCLUDE 'intranet-bottom.inc' %]
+ [% INCLUDE 'intranet-bottom.inc' %] 

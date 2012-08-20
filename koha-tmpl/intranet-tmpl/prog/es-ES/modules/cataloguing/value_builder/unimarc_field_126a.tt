@@ -1,9 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>UNIMARC field 126a builder</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Constructor Campo UNIMARC 126a</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="cat_unimarc_field_126a" class="cat" style="padding:1em;">
-<h3>UNIMARC field 126a builder</h3>
+<h3>Constructor Campo UNIMARC 126a</h3>
 <form name="f_pop" action="">
 <table>
  <tr>
@@ -11,1017 +9,464 @@
  <td>
  <select name="f1" id="f1" size="1">
 
- [% IF ( f1a ) %]
- <option value="a" selected="selected">disco</option>
- [% ELSE %]
- <option value="a">disco</option>
- [% END %]
- [% IF ( f1b ) %]
- <option value="b" selected="selected">cinta (carrete abierto)</option>
- [% ELSE %]
- <option value="b">cinta (carrete abierto)</option>
- [% END %]
- [% IF ( f1c ) %]
- <option value="c" selected="selected">cinta (en casete)</option>
- [% ELSE %]
- <option value="c">cinta (en casete)</option>
- [% END %]
- [% IF ( f1d ) %]
- <option value="d" selected="selected">cinta (cartucho)</option>
- [% ELSE %]
- <option value="d">cinta (cartucho)</option>
- [% END %]
- [% IF ( f1e ) %]
- <option value="e" selected="selected">grabación en alambre magnético</option>
- [% ELSE %]
- <option value="e">grabación en alambre magnético</option>
- [% END %]
- [% IF ( f1f ) %]
- <option value="f" selected="selected">cilindro</option>
- [% ELSE %]
- <option value="f">cilindro</option>
- [% END %]
- [% IF ( f1g ) %]
- <option value="g" selected="selected">rollo</option>
- [% ELSE %]
- <option value="g">rollo</option>
- [% END %]
- [% IF ( f1h ) %]
- <option value="h" selected="selected">película (película sonora)</option>
- [% ELSE %]
- <option value="h">película (película sonora)</option>
- [% END %]
- [% IF ( f1z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f1a ) %] <option value="a" selected="selected">disco</option>
+ [% ELSE %] <option value="a">disco</option>
+ [% END %] [% IF ( f1b ) %] <option value="b" selected="selected">cinta (carrete abierto)</option>
+ [% ELSE %] <option value="b">cinta (carrete abierto)</option>
+ [% END %] [% IF ( f1c ) %] <option value="c" selected="selected">cinta (en casete)</option>
+ [% ELSE %] <option value="c">cinta (en casete)</option>
+ [% END %] [% IF ( f1d ) %] <option value="d" selected="selected">cinta (cartucho)</option>
+ [% ELSE %] <option value="d">cinta (cartucho)</option>
+ [% END %] [% IF ( f1e ) %] <option value="e" selected="selected">grabación en alambre magnético</option>
+ [% ELSE %] <option value="e">grabación en alambre magnético</option>
+ [% END %] [% IF ( f1f ) %] <option value="f" selected="selected">cilindro</option>
+ [% ELSE %] <option value="f">cilindro</option>
+ [% END %] [% IF ( f1g ) %] <option value="g" selected="selected">rollo</option>
+ [% ELSE %] <option value="g">rollo</option>
+ [% END %] [% IF ( f1h ) %] <option value="h" selected="selected">película (película sonora)</option>
+ [% ELSE %] <option value="h">película (película sonora)</option>
+ [% END %] [% IF ( f1z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f2">Velocidad:</label></td>
  <td>
  <select name="f2" id="f2" size="1">
- [% IF ( f2u ) %]
- <option value="u" selected="selected">desconocido</option>
- [% ELSE %]
- <option value="u">desconocido</option>
- [% END %]
- [% IF ( f2x ) %]
- <option value="x" selected="selected">no aplicable</option>
- [% ELSE %]
- <option value="x">no aplicable</option>
- [% END %]
- [% IF ( f2z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- [% IF ( f2a ) %]
- <option value="a" selected="selected">16 2/3 rpm</option>
- [% ELSE %]
- <option value="a">16 2/3 rpm</option>
- [% END %]
- [% IF ( f2b ) %]
- <option value="b" selected="selected">33 1/3 rpm</option>
- [% ELSE %]
- <option value="b">33 1/3 rpm</option>
- [% END %]
- [% IF ( f2c ) %]
- <option value="c" selected="selected">45 rpm</option>
- [% ELSE %]
- <option value="c">45 rpm</option>
- [% END %]
- [% IF ( f2d ) %]
- <option value="d" selected="selected">78 rpm</option>
- [% ELSE %]
- <option value="d">78 rpm</option>
- [% END %]
- [% IF ( f2e ) %]
- <option value="e" selected="selected">8 rpm</option>
- [% ELSE %]
- <option value="e">8 rpm</option>
- [% END %]
- [% IF ( f2g ) %]
- <option value="g" selected="selected">1.4 m/seg (disco compacto)</option>
- [% ELSE %]
- <option value="g">1.4 m/seg (disco compacto)</option>
- [% END %]
- [% IF ( f2h ) %]
- <option value="h" selected="selected">120 rpm</option>
- [% ELSE %]
- <option value="h">120 rpm</option>
- [% END %]
- [% IF ( f2i ) %]
- <option value="i" selected="selected">160 rpm</option>
- [% ELSE %]
- <option value="i">160 rpm</option>
- [% END %]
- [% IF ( f2k ) %]
- <option value="k" selected="selected">1 7/8 pulgadas por segundo</option>
- [% ELSE %]
- <option value="k">1 7/8 pulgadas por segundo</option>
- [% END %]
- [% IF ( f2l ) %]
- <option value="l" selected="selected">15/16 pulgadas por segundo</option>
- [% ELSE %]
- <option value="l">15/16 pulgadas por segundo</option>
- [% END %]
- [% IF ( f2m ) %]
- <option value="m" selected="selected">3 3/4 pulgadas por segundo</option>
- [% ELSE %]
- <option value="m">3 3/4 pulgadas por segundo</option>
- [% END %]
- [% IF ( f2n ) %]
- <option value="n" selected="selected">7 1/2 pulgadas/seg</option>
- [% ELSE %]
- <option value="n">7 1/2 pulgadas/seg</option>
- [% END %]
- [% IF ( f2o ) %]
- <option value="o" selected="selected">15 pulgadas por segundo</option>
- [% ELSE %]
- <option value="o">15 pulgadas por segundo</option>
- [% END %]
- [% IF ( f2p ) %]
- <option value="p" selected="selected">30 pulgadas por segundo</option>
- [% ELSE %]
- <option value="p">30 pulgadas por segundo</option>
- [% END %]
- [% IF ( f2q ) %]
- <option value="q" selected="selected">8/10 pulgadas/seg</option>
- [% ELSE %]
- <option value="q">8/10 pulgadas/seg</option>
- [% END %]
- [% IF ( f2r ) %]
- <option value="r" selected="selected">4/10 pulgadas por segundo</option>
- [% ELSE %]
- <option value="r">4/10 pulgadas por segundo</option>
- [% END %]
- </select>
+ [% IF ( f2u ) %] <option value="u" selected="selected">desconocido</option>
+ [% ELSE %] <option value="u">desconocido</option>
+ [% END %] [% IF ( f2x ) %] <option value="x" selected="selected">no aplicable</option>
+ [% ELSE %] <option value="x">no aplicable</option>
+ [% END %] [% IF ( f2z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] [% IF ( f2a ) %] <option value="a" selected="selected">16 2/3 rpm</option>
+ [% ELSE %] <option value="a">16 2/3 rpm</option>
+ [% END %] [% IF ( f2b ) %] <option value="b" selected="selected">33 1/3 rpm</option>
+ [% ELSE %] <option value="b">33 1/3 rpm</option>
+ [% END %] [% IF ( f2c ) %] <option value="c" selected="selected">45 rpm</option>
+ [% ELSE %] <option value="c">45 rpm</option>
+ [% END %] [% IF ( f2d ) %] <option value="d" selected="selected">78 rpm</option>
+ [% ELSE %] <option value="d">78 rpm</option>
+ [% END %] [% IF ( f2e ) %] <option value="e" selected="selected">8 rpm</option>
+ [% ELSE %] <option value="e">8 rpm</option>
+ [% END %] [% IF ( f2g ) %] <option value="g" selected="selected">1.4 m/seg (disco compacto)</option>
+ [% ELSE %] <option value="g">1.4 m/seg (disco compacto)</option>
+ [% END %] [% IF ( f2h ) %] <option value="h" selected="selected">120 rpm</option>
+ [% ELSE %] <option value="h">120 rpm</option>
+ [% END %] [% IF ( f2i ) %] <option value="i" selected="selected">160 rpm</option>
+ [% ELSE %] <option value="i">160 rpm</option>
+ [% END %] [% IF ( f2k ) %] <option value="k" selected="selected">1 7/8 pulgadas por segundo</option>
+ [% ELSE %] <option value="k">1 7/8 pulgadas por segundo</option>
+ [% END %] [% IF ( f2l ) %] <option value="l" selected="selected">15/16 pulgadas por segundo</option>
+ [% ELSE %] <option value="l">15/16 pulgadas por segundo</option>
+ [% END %] [% IF ( f2m ) %] <option value="m" selected="selected">3 3/4 pulgadas por segundo</option>
+ [% ELSE %] <option value="m">3 3/4 pulgadas por segundo</option>
+ [% END %] [% IF ( f2n ) %] <option value="n" selected="selected">7 1/2 pulgadas/seg</option>
+ [% ELSE %] <option value="n">7 1/2 pulgadas/seg</option>
+ [% END %] [% IF ( f2o ) %] <option value="o" selected="selected">15 pulgadas por segundo</option>
+ [% ELSE %] <option value="o">15 pulgadas por segundo</option>
+ [% END %] [% IF ( f2p ) %] <option value="p" selected="selected">30 pulgadas por segundo</option>
+ [% ELSE %] <option value="p">30 pulgadas por segundo</option>
+ [% END %] [% IF ( f2q ) %] <option value="q" selected="selected">8/10 pulgadas/seg</option>
+ [% ELSE %] <option value="q">8/10 pulgadas/seg</option>
+ [% END %] [% IF ( f2r ) %] <option value="r" selected="selected">4/10 pulgadas por segundo</option>
+ [% ELSE %] <option value="r">4/10 pulgadas por segundo</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f3">Tipo de sonido:</label></td>
  <td>
  <select name="f3" id="f3" size="1">
- [% IF ( f3a ) %]
- <option value="a" selected="selected">monoaural</option>
- [% ELSE %]
- <option value="a">monoaural</option>
- [% END %]
- [% IF ( f3b ) %]
- <option value="b" selected="selected">estereofónico</option>
- [% ELSE %]
- <option value="b">estereofónico</option>
- [% END %]
- [% IF ( f3c ) %]
- <option value="c" selected="selected">cuadrafónico</option>
- [% ELSE %]
- <option value="c">cuadrafónico</option>
- [% END %]
- [% IF ( f3u ) %]
- <option value="u" selected="selected">desconocido</option>
- [% ELSE %]
- <option value="u">desconocido</option>
- [% END %]
- [% IF ( f3z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f3a ) %] <option value="a" selected="selected">monoaural</option>
+ [% ELSE %] <option value="a">monoaural</option>
+ [% END %] [% IF ( f3b ) %] <option value="b" selected="selected">estereofónico</option>
+ [% ELSE %] <option value="b">estereofónico</option>
+ [% END %] [% IF ( f3c ) %] <option value="c" selected="selected">cuadrafónico</option>
+ [% ELSE %] <option value="c">cuadrafónico</option>
+ [% END %] [% IF ( f3u ) %] <option value="u" selected="selected">desconocido</option>
+ [% ELSE %] <option value="u">desconocido</option>
+ [% END %] [% IF ( f3z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f4">Ancho de la ranura:</label></td>
  <td>
  <select name="f4" id="f4" size="1">
- [% IF ( f4a ) %]
- <option value="a" selected="selected">tosco/estándar</option>
- [% ELSE %]
- <option value="a">tosco/estándar</option>
- [% END %]
- [% IF ( f4b ) %]
- <option value="b" selected="selected">micrograbado/fino</option>
- [% ELSE %]
- <option value="b">micrograbado/fino</option>
- [% END %]
- [% IF ( f4u ) %]
- <option value="u" selected="selected">desconocido</option>
- [% ELSE %]
- <option value="u">desconocido</option>
- [% END %]
- [% IF ( f4x ) %]
- <option value="x" selected="selected">no aplicable</option>
- [% ELSE %]
- <option value="x">no aplicable</option>
- [% END %]
- [% IF ( f4z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f4a ) %] <option value="a" selected="selected">tosco/estándar</option>
+ [% ELSE %] <option value="a">tosco/estándar</option>
+ [% END %] [% IF ( f4b ) %] <option value="b" selected="selected">micrograbado/fino</option>
+ [% ELSE %] <option value="b">micrograbado/fino</option>
+ [% END %] [% IF ( f4u ) %] <option value="u" selected="selected">desconocido</option>
+ [% ELSE %] <option value="u">desconocido</option>
+ [% END %] [% IF ( f4x ) %] <option value="x" selected="selected">no aplicable</option>
+ [% ELSE %] <option value="x">no aplicable</option>
+ [% END %] [% IF ( f4z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f5">Dimensiones (grabaciones sonoras):</label></td>
  <td>
  <select name="f5" id="f5" size="1">
- [% IF ( f5a ) %]
- <option value="a" selected="selected">7.62cm o 3 pulgadas.</option>
- [% ELSE %]
- <option value="a">7.62cm o 3 pulgadas.</option>
- [% END %]
- [% IF ( f5b ) %]
- <option value="b" selected="selected">12.7 cm o 5 pulgadas.</option>
- [% ELSE %]
- <option value="b">12.7 cm o 5 pulgadas.</option>
- [% END %]
- [% IF ( f5c ) %]
- <option value="c" selected="selected">17.78 cm o 7 pulgadas.</option>
- [% ELSE %]
- <option value="c">17.78 cm o 7 pulgadas.</option>
- [% END %]
- [% IF ( f5d ) %]
- <option value="d" selected="selected">25.4 cm o 10 pulgadas.</option>
- [% ELSE %]
- <option value="d">25.4 cm o 10 pulgadas.</option>
- [% END %]
- [% IF ( f5e ) %]
- <option value="e" selected="selected">30,48 cm o 12 pulgadas.</option>
- [% ELSE %]
- <option value="e">30,48 cm o 12 pulgadas.</option>
- [% END %]
- [% IF ( f5f ) %]
- <option value="f" selected="selected">40.64 cm o 16 pulgadas.</option>
- [% ELSE %]
- <option value="f">40.64 cm o 16 pulgadas.</option>
- [% END %]
- [% IF ( f5g ) %]
- <option value="g" selected="selected">35.56 cm o 14 pulgadas.</option>
- [% ELSE %]
- <option value="g">35.56 cm o 14 pulgadas.</option>
- [% END %]
- [% IF ( f5h ) %]
- <option value="h" selected="selected">12cm o 4 3/4"</option>
- [% ELSE %]
- <option value="h">12cm o 4 3/4"</option>
- [% END %]
- [% IF ( f5j ) %]
- <option value="j" selected="selected">10 cm x 6.3 cm o 3" 7/8 x 2" 1/2</option>
- [% ELSE %]
- <option value="j">10 cm x 6.3 cm o 3" 7/8 x 2" 1/2</option>
- [% END %]
- [% IF ( f5o ) %]
- <option value="o" selected="selected">13.2 cm x 9.7 cm o 5" 1/4 x 3" 7/8</option>
- [% ELSE %]
- <option value="o">13.2 cm x 9.7 cm o 5" 1/4 x 3" 7/8</option>
- [% END %]
- [% IF ( f5s ) %]
- <option value="s" selected="selected">5.7 cm x 10 cm o 2 1/4 pulgadas x 4 pulgadas, cilindro</option>
- [% ELSE %]
- <option value="s">5.7 cm x 10 cm o 2 1/4 pulgadas x 4 pulgadas, cilindro</option>
- [% END %]
- [% IF ( f5u ) %]
- <option value="u" selected="selected">desconocido</option>
- [% ELSE %]
- <option value="u">desconocido</option>
- [% END %]
- [% IF ( f5x ) %]
- <option value="x" selected="selected">no aplicable</option>
- [% ELSE %]
- <option value="x">no aplicable</option>
- [% END %]
- [% IF ( f5z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f5a ) %] <option value="a" selected="selected">7.62cm o 3 pulgadas.</option>
+ [% ELSE %] <option value="a">7.62cm o 3 pulgadas.</option>
+ [% END %] [% IF ( f5b ) %] <option value="b" selected="selected">12.7 cm o 5 pulgadas.</option>
+ [% ELSE %] <option value="b">12.7 cm o 5 pulgadas.</option>
+ [% END %] [% IF ( f5c ) %] <option value="c" selected="selected">17.78 cm o 7 pulgadas.</option>
+ [% ELSE %] <option value="c">17.78 cm o 7 pulgadas.</option>
+ [% END %] [% IF ( f5d ) %] <option value="d" selected="selected">25.4 cm o 10 pulgadas.</option>
+ [% ELSE %] <option value="d">25.4 cm o 10 pulgadas.</option>
+ [% END %] [% IF ( f5e ) %] <option value="e" selected="selected">30,48 cm o 12 pulgadas.</option>
+ [% ELSE %] <option value="e">30,48 cm o 12 pulgadas.</option>
+ [% END %] [% IF ( f5f ) %] <option value="f" selected="selected">40.64 cm o 16 pulgadas.</option>
+ [% ELSE %] <option value="f">40.64 cm o 16 pulgadas.</option>
+ [% END %] [% IF ( f5g ) %] <option value="g" selected="selected">35.56 cm o 14 pulgadas.</option>
+ [% ELSE %] <option value="g">35.56 cm o 14 pulgadas.</option>
+ [% END %] [% IF ( f5h ) %] <option value="h" selected="selected">12 cm o 4" 3/4</option>
+ [% ELSE %] <option value="h">12 cm o 4" 3/4</option>
+ [% END %] [% IF ( f5j ) %] <option value="j" selected="selected">10 cm x 6.3 cm o 3" 7/8 x 2" 1/2</option>
+ [% ELSE %] <option value="j">10 cm x 6.3 cm o 3" 7/8 x 2" 1/2</option>
+ [% END %] [% IF ( f5o ) %] <option value="o" selected="selected">13.2 cm x 9.7 cm o 5" 1/4 x 3" 7/8</option>
+ [% ELSE %] <option value="o">13.2 cm x 9.7 cm o 5" 1/4 x 3" 7/8</option>
+ [% END %] [% IF ( f5s ) %] <option value="s" selected="selected">5.7 cm x 10 cm o 2 1/4 pulgadas x 4 pulgadas, cilindro</option>
+ [% ELSE %] <option value="s">5.7 cm x 10 cm o 2 1/4 pulgadas x 4 pulgadas, cilindro</option>
+ [% END %] [% IF ( f5u ) %] <option value="u" selected="selected">desconocido</option>
+ [% ELSE %] <option value="u">desconocido</option>
+ [% END %] [% IF ( f5x ) %] <option value="x" selected="selected">no aplicable</option>
+ [% ELSE %] <option value="x">no aplicable</option>
+ [% END %] [% IF ( f5z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f6">Ancho de la cinta:</label></td>
  <td>
  <select name="f6" id="f6" size="1">
  
- [% IF ( f6a ) %]
- <option value="a" selected="selected">1/4 pulgada.</option>
- [% ELSE %]
- <option value="a">1/4 pulgada.</option>
- [% END %]
- [% IF ( f6b ) %]
- <option value="b" selected="selected">1/2 pulgada.</option>
- [% ELSE %]
- <option value="b">1/2 pulgada.</option>
- [% END %]
- [% IF ( f6c ) %]
- <option value="c" selected="selected">1 pulgada.</option>
- [% ELSE %]
- <option value="c">1 pulgada.</option>
- [% END %]
- [% IF ( f6d ) %]
- <option value="d" selected="selected">1/8 de pulgada.</option>
- [% ELSE %]
- <option value="d">1/8 de pulgada.</option>
- [% END %]
- [% IF ( f6e ) %]
- <option value="e" selected="selected">2 pulgadas.</option>
- [% ELSE %]
- <option value="e">2 pulgadas.</option>
- [% END %]
- [% IF ( f6f ) %]
- <option value="f" selected="selected">1/3 de pulgada (8 mm)</option>
- [% ELSE %]
- <option value="f">1/3 de pulgada (8 mm)</option>
- [% END %]
- [% IF ( f6u ) %]
- <option value="u" selected="selected">desconocido</option>
- [% ELSE %]
- <option value="u">desconocido</option>
- [% END %]
- [% IF ( f6x ) %]
- <option value="x" selected="selected">grabación no en cinta</option>
- [% ELSE %]
- <option value="x">grabación no en cinta</option>
- [% END %]
- [% IF ( f6z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f6a ) %] <option value="a" selected="selected">1/4 pulgada.</option>
+ [% ELSE %] <option value="a">1/4 pulgada.</option>
+ [% END %] [% IF ( f6b ) %] <option value="b" selected="selected">1/2 pulgada.</option>
+ [% ELSE %] <option value="b">1/2 pulgada.</option>
+ [% END %] [% IF ( f6c ) %] <option value="c" selected="selected">1 pulgada.</option>
+ [% ELSE %] <option value="c">1 pulgada.</option>
+ [% END %] [% IF ( f6d ) %] <option value="d" selected="selected">1/8 de pulgada.</option>
+ [% ELSE %] <option value="d">1/8 de pulgada.</option>
+ [% END %] [% IF ( f6e ) %] <option value="e" selected="selected">2 pulgadas.</option>
+ [% ELSE %] <option value="e">2 pulgadas.</option>
+ [% END %] [% IF ( f6f ) %] <option value="f" selected="selected">1/3 de pulgada (8 mm)</option>
+ [% ELSE %] <option value="f">1/3 de pulgada (8 mm)</option>
+ [% END %] [% IF ( f6u ) %] <option value="u" selected="selected">desconocido</option>
+ [% ELSE %] <option value="u">desconocido</option>
+ [% END %] [% IF ( f6x ) %] <option value="x" selected="selected">grabación no en cinta</option>
+ [% ELSE %] <option value="x">grabación no en cinta</option>
+ [% END %] [% IF ( f6z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f7">Configuración de la cinta:</label></td>
  <td>
  <select name="f7" id="f7" size="1">
  
- [% IF ( f7a ) %]
- <option value="a" selected="selected">pista completa</option>
- [% ELSE %]
- <option value="a">pista completa</option>
- [% END %]
- [% IF ( f7b ) %]
- <option value="b" selected="selected">media pista</option>
- [% ELSE %]
- <option value="b">media pista</option>
- [% END %]
- [% IF ( f7c ) %]
- <option value="c" selected="selected">cuarto de pista</option>
- [% ELSE %]
- <option value="c">cuarto de pista</option>
- [% END %]
- [% IF ( f7d ) %]
- <option value="d" selected="selected">pista ocho</option>
- [% ELSE %]
- <option value="d">pista ocho</option>
- [% END %]
- [% IF ( f7e ) %]
- <option value="e" selected="selected">doce pistas</option>
- [% ELSE %]
- <option value="e">doce pistas</option>
- [% END %]
- [% IF ( f7f ) %]
- <option value="f" selected="selected">pista dieciséis</option>
- [% ELSE %]
- <option value="f">pista dieciséis</option>
- [% END %]
- [% IF ( f7g ) %]
- <option value="g" selected="selected">veinticuatro pistas</option>
- [% ELSE %]
- <option value="g">veinticuatro pistas</option>
- [% END %]
- [% IF ( f7h ) %]
- <option value="h" selected="selected">pista seis</option>
- [% ELSE %]
- <option value="h">pista seis</option>
- [% END %]
- [% IF ( f7u ) %]
- <option value="u" selected="selected">desconocido</option>
- [% ELSE %]
- <option value="u">desconocido</option>
- [% END %]
- [% IF ( f7x ) %]
- <option value="x" selected="selected">grabación no en cinta</option>
- [% ELSE %]
- <option value="x">grabación no en cinta</option>
- [% END %]
- [% IF ( f7z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f7a ) %] <option value="a" selected="selected">pista completa</option>
+ [% ELSE %] <option value="a">pista completa</option>
+ [% END %] [% IF ( f7b ) %] <option value="b" selected="selected">media pista</option>
+ [% ELSE %] <option value="b">media pista</option>
+ [% END %] [% IF ( f7c ) %] <option value="c" selected="selected">cuarto de pista</option>
+ [% ELSE %] <option value="c">cuarto de pista</option>
+ [% END %] [% IF ( f7d ) %] <option value="d" selected="selected">pista ocho</option>
+ [% ELSE %] <option value="d">pista ocho</option>
+ [% END %] [% IF ( f7e ) %] <option value="e" selected="selected">doce pistas</option>
+ [% ELSE %] <option value="e">doce pistas</option>
+ [% END %] [% IF ( f7f ) %] <option value="f" selected="selected">pista dieciséis</option>
+ [% ELSE %] <option value="f">pista dieciséis</option>
+ [% END %] [% IF ( f7g ) %] <option value="g" selected="selected">veinticuatro pistas</option>
+ [% ELSE %] <option value="g">veinticuatro pistas</option>
+ [% END %] [% IF ( f7h ) %] <option value="h" selected="selected">pista seis</option>
+ [% ELSE %] <option value="h">pista seis</option>
+ [% END %] [% IF ( f7u ) %] <option value="u" selected="selected">desconocido</option>
+ [% ELSE %] <option value="u">desconocido</option>
+ [% END %] [% IF ( f7x ) %] <option value="x" selected="selected">grabación no en cinta</option>
+ [% ELSE %] <option value="x">grabación no en cinta</option>
+ [% END %] [% IF ( f7z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f8">Material textual adjunto 1:</label></td>
  <td>
  <select name="f8" id="f8" size="1">
- [% IF ( f8space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f8a ) %]
- <option value="a" selected="selected">discografía</option>
- [% ELSE %]
- <option value="a">discografía</option>
- [% END %]
- [% IF ( f8b ) %]
- <option value="b" selected="selected">bibliografía</option>
- [% ELSE %]
- <option value="b">bibliografía</option>
- [% END %]
- [% IF ( f8c ) %]
- <option value="c" selected="selected">índice temático</option>
- [% ELSE %]
- <option value="c">índice temático</option>
- [% END %]
- [% IF ( f8d ) %]
- <option value="d" selected="selected">libreto o texto</option>
- [% ELSE %]
- <option value="d">libreto o texto</option>
- [% END %]
- [% IF ( f8e ) %]
- <option value="e" selected="selected">biografía del compositor</option>
- [% ELSE %]
- <option value="e">biografía del compositor</option>
- [% END %]
- [% IF ( f8f ) %]
- <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
- [% ELSE %]
- <option value="f">biografía del interprete o reseña histórica del conjunto</option>
- [% END %]
- [% IF ( f8g ) %]
- <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
- [% ELSE %]
- <option value="g">información histórica o técnica por instrumentos</option>
- [% END %]
- [% IF ( f8h ) %]
- <option value="h" selected="selected">información técnica en música</option>
- [% ELSE %]
- <option value="h">información técnica en música</option>
- [% END %]
- [% IF ( f8i ) %]
- <option value="i" selected="selected">información histórica sobre música</option>
- [% ELSE %]
- <option value="i">información histórica sobre música</option>
- [% END %]
- [% IF ( f8j ) %]
- <option value="j" selected="selected">otra información histórica</option>
- [% ELSE %]
- <option value="j">otra información histórica</option>
- [% END %]
- [% IF ( f8k ) %]
- <option value="k" selected="selected">información etnológica</option>
- [% ELSE %]
- <option value="k">información etnológica</option>
- [% END %]
- [% IF ( f8l ) %]
- <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
- [% ELSE %]
- <option value="l">biografía del arreglador o transcriptor</option>
- [% END %]
- [% IF ( f8r ) %]
- <option value="r" selected="selected">material de instrucción</option>
- [% ELSE %]
- <option value="r">material de instrucción</option>
- [% END %]
- [% IF ( f8s ) %]
- <option value="s" selected="selected">partitura</option>
- [% ELSE %]
- <option value="s">partitura</option>
- [% END %]
- [% IF ( f8z ) %]
- <option value="z" selected="selected">otra material textual adjunto</option>
- [% ELSE %]
- <option value="z">otra material textual adjunto</option>
- [% END %]
- </select>
+ [% IF ( f8space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f8a ) %] <option value="a" selected="selected">discografía</option>
+ [% ELSE %] <option value="a">discografía</option>
+ [% END %] [% IF ( f8b ) %] <option value="b" selected="selected">bibliografía</option>
+ [% ELSE %] <option value="b">bibliografía</option>
+ [% END %] [% IF ( f8c ) %] <option value="c" selected="selected">índice temático</option>
+ [% ELSE %] <option value="c">índice temático</option>
+ [% END %] [% IF ( f8d ) %] <option value="d" selected="selected">libreto o texto</option>
+ [% ELSE %] <option value="d">libreto o texto</option>
+ [% END %] [% IF ( f8e ) %] <option value="e" selected="selected">biografía del compositor</option>
+ [% ELSE %] <option value="e">biografía del compositor</option>
+ [% END %] [% IF ( f8f ) %] <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
+ [% ELSE %] <option value="f">biografía del interprete o reseña histórica del conjunto</option>
+ [% END %] [% IF ( f8g ) %] <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
+ [% ELSE %] <option value="g">información histórica o técnica por instrumentos</option>
+ [% END %] [% IF ( f8h ) %] <option value="h" selected="selected">información técnica en música</option>
+ [% ELSE %] <option value="h">información técnica en música</option>
+ [% END %] [% IF ( f8i ) %] <option value="i" selected="selected">información histórica sobre música</option>
+ [% ELSE %] <option value="i">información histórica sobre música</option>
+ [% END %] [% IF ( f8j ) %] <option value="j" selected="selected">otra información histórica</option>
+ [% ELSE %] <option value="j">otra información histórica</option>
+ [% END %] [% IF ( f8k ) %] <option value="k" selected="selected">información etnológica</option>
+ [% ELSE %] <option value="k">información etnológica</option>
+ [% END %] [% IF ( f8l ) %] <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
+ [% ELSE %] <option value="l">biografía del arreglador o transcriptor</option>
+ [% END %] [% IF ( f8r ) %] <option value="r" selected="selected">material de instrucción</option>
+ [% ELSE %] <option value="r">material de instrucción</option>
+ [% END %] [% IF ( f8s ) %] <option value="s" selected="selected">partitura</option>
+ [% ELSE %] <option value="s">partitura</option>
+ [% END %] [% IF ( f8z ) %] <option value="z" selected="selected">otra material textual adjunto</option>
+ [% ELSE %] <option value="z">otra material textual adjunto</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f9">Material textual adjunto 2:</label></td>
  <td>
  <select name="f9" id="f9" size="1">
  
- [% IF ( f9space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f9a ) %]
- <option value="a" selected="selected">discografía</option>
- [% ELSE %]
- <option value="a">discografía</option>
- [% END %]
- [% IF ( f9b ) %]
- <option value="b" selected="selected">bibliografía</option>
- [% ELSE %]
- <option value="b">bibliografía</option>
- [% END %]
- [% IF ( f9c ) %]
- <option value="c" selected="selected">índice temático</option>
- [% ELSE %]
- <option value="c">índice temático</option>
- [% END %]
- [% IF ( f9d ) %]
- <option value="d" selected="selected">libreto o texto</option>
- [% ELSE %]
- <option value="d">libreto o texto</option>
- [% END %]
- [% IF ( f9e ) %]
- <option value="e" selected="selected">biografía del compositor</option>
- [% ELSE %]
- <option value="e">biografía del compositor</option>
- [% END %]
- [% IF ( f9f ) %]
- <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
- [% ELSE %]
- <option value="f">biografía del interprete o reseña histórica del conjunto</option>
- [% END %]
- [% IF ( f9g ) %]
- <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
- [% ELSE %]
- <option value="g">información histórica o técnica por instrumentos</option>
- [% END %]
- [% IF ( f9h ) %]
- <option value="h" selected="selected">información técnica en música</option>
- [% ELSE %]
- <option value="h">información técnica en música</option>
- [% END %]
- [% IF ( f9i ) %]
- <option value="i" selected="selected">información histórica sobre música</option>
- [% ELSE %]
- <option value="i">información histórica sobre música</option>
- [% END %]
- [% IF ( f9j ) %]
- <option value="j" selected="selected">otra información histórica</option>
- [% ELSE %]
- <option value="j">otra información histórica</option>
- [% END %]
- [% IF ( f9k ) %]
- <option value="k" selected="selected">información etnológica</option>
- [% ELSE %]
- <option value="k">información etnológica</option>
- [% END %]
- [% IF ( f9l ) %]
- <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
- [% ELSE %]
- <option value="l">biografía del arreglador o transcriptor</option>
- [% END %]
- [% IF ( f9r ) %]
- <option value="r" selected="selected">material de instrucción</option>
- [% ELSE %]
- <option value="r">material de instrucción</option>
- [% END %]
- [% IF ( f9s ) %]
- <option value="s" selected="selected">partitura</option>
- [% ELSE %]
- <option value="s">partitura</option>
- [% END %]
- [% IF ( f9z ) %]
- <option value="z" selected="selected">otra material textual adjunto</option>
- [% ELSE %]
- <option value="z">otra material textual adjunto</option>
- [% END %]
- </select>
+ [% IF ( f9space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f9a ) %] <option value="a" selected="selected">discografía</option>
+ [% ELSE %] <option value="a">discografía</option>
+ [% END %] [% IF ( f9b ) %] <option value="b" selected="selected">bibliografía</option>
+ [% ELSE %] <option value="b">bibliografía</option>
+ [% END %] [% IF ( f9c ) %] <option value="c" selected="selected">índice temático</option>
+ [% ELSE %] <option value="c">índice temático</option>
+ [% END %] [% IF ( f9d ) %] <option value="d" selected="selected">libreto o texto</option>
+ [% ELSE %] <option value="d">libreto o texto</option>
+ [% END %] [% IF ( f9e ) %] <option value="e" selected="selected">biografía del compositor</option>
+ [% ELSE %] <option value="e">biografía del compositor</option>
+ [% END %] [% IF ( f9f ) %] <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
+ [% ELSE %] <option value="f">biografía del interprete o reseña histórica del conjunto</option>
+ [% END %] [% IF ( f9g ) %] <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
+ [% ELSE %] <option value="g">información histórica o técnica por instrumentos</option>
+ [% END %] [% IF ( f9h ) %] <option value="h" selected="selected">información técnica en música</option>
+ [% ELSE %] <option value="h">información técnica en música</option>
+ [% END %] [% IF ( f9i ) %] <option value="i" selected="selected">información histórica sobre música</option>
+ [% ELSE %] <option value="i">información histórica sobre música</option>
+ [% END %] [% IF ( f9j ) %] <option value="j" selected="selected">otra información histórica</option>
+ [% ELSE %] <option value="j">otra información histórica</option>
+ [% END %] [% IF ( f9k ) %] <option value="k" selected="selected">información etnológica</option>
+ [% ELSE %] <option value="k">información etnológica</option>
+ [% END %] [% IF ( f9l ) %] <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
+ [% ELSE %] <option value="l">biografía del arreglador o transcriptor</option>
+ [% END %] [% IF ( f9r ) %] <option value="r" selected="selected">material de instrucción</option>
+ [% ELSE %] <option value="r">material de instrucción</option>
+ [% END %] [% IF ( f9s ) %] <option value="s" selected="selected">partitura</option>
+ [% ELSE %] <option value="s">partitura</option>
+ [% END %] [% IF ( f9z ) %] <option value="z" selected="selected">otra material textual adjunto</option>
+ [% ELSE %] <option value="z">otra material textual adjunto</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f10">Material textual adjunto 3:</label></td>
  <td>
  <select name="f10" id="f10" size="1">
  
- [% IF ( f10space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f10a ) %]
- <option value="a" selected="selected">discografía</option>
- [% ELSE %]
- <option value="a">discografía</option>
- [% END %]
- [% IF ( f10b ) %]
- <option value="b" selected="selected">bibliografía</option>
- [% ELSE %]
- <option value="b">bibliografía</option>
- [% END %]
- [% IF ( f10c ) %]
- <option value="c" selected="selected">índice temático</option>
- [% ELSE %]
- <option value="c">índice temático</option>
- [% END %]
- [% IF ( f10d ) %]
- <option value="d" selected="selected">libreto o texto</option>
- [% ELSE %]
- <option value="d">libreto o texto</option>
- [% END %]
- [% IF ( f10e ) %]
- <option value="e" selected="selected">biografía del compositor</option>
- [% ELSE %]
- <option value="e">biografía del compositor</option>
- [% END %]
- [% IF ( f10f ) %]
- <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
- [% ELSE %]
- <option value="f">biografía del interprete o reseña histórica del conjunto</option>
- [% END %]
- [% IF ( f10g ) %]
- <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
- [% ELSE %]
- <option value="g">información histórica o técnica por instrumentos</option>
- [% END %]
- [% IF ( f10h ) %]
- <option value="h" selected="selected">información técnica en música</option>
- [% ELSE %]
- <option value="h">información técnica en música</option>
- [% END %]
- [% IF ( f10i ) %]
- <option value="i" selected="selected">información histórica sobre música</option>
- [% ELSE %]
- <option value="i">información histórica sobre música</option>
- [% END %]
- [% IF ( f10j ) %]
- <option value="j" selected="selected">otra información histórica</option>
- [% ELSE %]
- <option value="j">otra información histórica</option>
- [% END %]
- [% IF ( f10k ) %]
- <option value="k" selected="selected">información etnológica</option>
- [% ELSE %]
- <option value="k">información etnológica</option>
- [% END %]
- [% IF ( f10l ) %]
- <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
- [% ELSE %]
- <option value="l">biografía del arreglador o transcriptor</option>
- [% END %]
- [% IF ( f10r ) %]
- <option value="r" selected="selected">material de instrucción</option>
- [% ELSE %]
- <option value="r">material de instrucción</option>
- [% END %]
- [% IF ( f10s ) %]
- <option value="s" selected="selected">partitura</option>
- [% ELSE %]
- <option value="s">partitura</option>
- [% END %]
- [% IF ( f10z ) %]
- <option value="z" selected="selected">otra material textual adjunto</option>
- [% ELSE %]
- <option value="z">otra material textual adjunto</option>
- [% END %]
- </select>
+ [% IF ( f10space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f10a ) %] <option value="a" selected="selected">discografía</option>
+ [% ELSE %] <option value="a">discografía</option>
+ [% END %] [% IF ( f10b ) %] <option value="b" selected="selected">bibliografía</option>
+ [% ELSE %] <option value="b">bibliografía</option>
+ [% END %] [% IF ( f10c ) %] <option value="c" selected="selected">índice temático</option>
+ [% ELSE %] <option value="c">índice temático</option>
+ [% END %] [% IF ( f10d ) %] <option value="d" selected="selected">libreto o texto</option>
+ [% ELSE %] <option value="d">libreto o texto</option>
+ [% END %] [% IF ( f10e ) %] <option value="e" selected="selected">biografía del compositor</option>
+ [% ELSE %] <option value="e">biografía del compositor</option>
+ [% END %] [% IF ( f10f ) %] <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
+ [% ELSE %] <option value="f">biografía del interprete o reseña histórica del conjunto</option>
+ [% END %] [% IF ( f10g ) %] <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
+ [% ELSE %] <option value="g">información histórica o técnica por instrumentos</option>
+ [% END %] [% IF ( f10h ) %] <option value="h" selected="selected">información técnica en música</option>
+ [% ELSE %] <option value="h">información técnica en música</option>
+ [% END %] [% IF ( f10i ) %] <option value="i" selected="selected">información histórica sobre música</option>
+ [% ELSE %] <option value="i">información histórica sobre música</option>
+ [% END %] [% IF ( f10j ) %] <option value="j" selected="selected">otra información histórica</option>
+ [% ELSE %] <option value="j">otra información histórica</option>
+ [% END %] [% IF ( f10k ) %] <option value="k" selected="selected">información etnológica</option>
+ [% ELSE %] <option value="k">información etnológica</option>
+ [% END %] [% IF ( f10l ) %] <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
+ [% ELSE %] <option value="l">biografía del arreglador o transcriptor</option>
+ [% END %] [% IF ( f10r ) %] <option value="r" selected="selected">material de instrucción</option>
+ [% ELSE %] <option value="r">material de instrucción</option>
+ [% END %] [% IF ( f10s ) %] <option value="s" selected="selected">partitura</option>
+ [% ELSE %] <option value="s">partitura</option>
+ [% END %] [% IF ( f10z ) %] <option value="z" selected="selected">otra material textual adjunto</option>
+ [% ELSE %] <option value="z">otra material textual adjunto</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f11">Material textual adjunto 4:</label></td>
  <td>
  <select name="f11" id="f11" size="1">
  
- [% IF ( f11space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f11a ) %]
- <option value="a" selected="selected">discografía</option>
- [% ELSE %]
- <option value="a">discografía</option>
- [% END %]
- [% IF ( f11b ) %]
- <option value="b" selected="selected">bibliografía</option>
- [% ELSE %]
- <option value="b">bibliografía</option>
- [% END %]
- [% IF ( f11c ) %]
- <option value="c" selected="selected">índice temático</option>
- [% ELSE %]
- <option value="c">índice temático</option>
- [% END %]
- [% IF ( f11d ) %]
- <option value="d" selected="selected">libreto o texto</option>
- [% ELSE %]
- <option value="d">libreto o texto</option>
- [% END %]
- [% IF ( f11e ) %]
- <option value="e" selected="selected">biografía del compositor</option>
- [% ELSE %]
- <option value="e">biografía del compositor</option>
- [% END %]
- [% IF ( f11f ) %]
- <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
- [% ELSE %]
- <option value="f">biografía del interprete o reseña histórica del conjunto</option>
- [% END %]
- [% IF ( f11g ) %]
- <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
- [% ELSE %]
- <option value="g">información histórica o técnica por instrumentos</option>
- [% END %]
- [% IF ( f11h ) %]
- <option value="h" selected="selected">información técnica en música</option>
- [% ELSE %]
- <option value="h">información técnica en música</option>
- [% END %]
- [% IF ( f11i ) %]
- <option value="i" selected="selected">información histórica sobre música</option>
- [% ELSE %]
- <option value="i">información histórica sobre música</option>
- [% END %]
- [% IF ( f11j ) %]
- <option value="j" selected="selected">otra información histórica</option>
- [% ELSE %]
- <option value="j">otra información histórica</option>
- [% END %]
- [% IF ( f11k ) %]
- <option value="k" selected="selected">información etnológica</option>
- [% ELSE %]
- <option value="k">información etnológica</option>
- [% END %]
- [% IF ( f11l ) %]
- <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
- [% ELSE %]
- <option value="l">biografía del arreglador o transcriptor</option>
- [% END %]
- [% IF ( f11r ) %]
- <option value="r" selected="selected">material de instrucción</option>
- [% ELSE %]
- <option value="r">material de instrucción</option>
- [% END %]
- [% IF ( f11s ) %]
- <option value="s" selected="selected">partitura</option>
- [% ELSE %]
- <option value="s">partitura</option>
- [% END %]
- [% IF ( f11z ) %]
- <option value="z" selected="selected">otra material textual adjunto</option>
- [% ELSE %]
- <option value="z">otra material textual adjunto</option>
- [% END %]
- </select>
+ [% IF ( f11space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f11a ) %] <option value="a" selected="selected">discografía</option>
+ [% ELSE %] <option value="a">discografía</option>
+ [% END %] [% IF ( f11b ) %] <option value="b" selected="selected">bibliografía</option>
+ [% ELSE %] <option value="b">bibliografía</option>
+ [% END %] [% IF ( f11c ) %] <option value="c" selected="selected">índice temático</option>
+ [% ELSE %] <option value="c">índice temático</option>
+ [% END %] [% IF ( f11d ) %] <option value="d" selected="selected">libreto o texto</option>
+ [% ELSE %] <option value="d">libreto o texto</option>
+ [% END %] [% IF ( f11e ) %] <option value="e" selected="selected">biografía del compositor</option>
+ [% ELSE %] <option value="e">biografía del compositor</option>
+ [% END %] [% IF ( f11f ) %] <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
+ [% ELSE %] <option value="f">biografía del interprete o reseña histórica del conjunto</option>
+ [% END %] [% IF ( f11g ) %] <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
+ [% ELSE %] <option value="g">información histórica o técnica por instrumentos</option>
+ [% END %] [% IF ( f11h ) %] <option value="h" selected="selected">información técnica en música</option>
+ [% ELSE %] <option value="h">información técnica en música</option>
+ [% END %] [% IF ( f11i ) %] <option value="i" selected="selected">información histórica sobre música</option>
+ [% ELSE %] <option value="i">información histórica sobre música</option>
+ [% END %] [% IF ( f11j ) %] <option value="j" selected="selected">otra información histórica</option>
+ [% ELSE %] <option value="j">otra información histórica</option>
+ [% END %] [% IF ( f11k ) %] <option value="k" selected="selected">información etnológica</option>
+ [% ELSE %] <option value="k">información etnológica</option>
+ [% END %] [% IF ( f11l ) %] <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
+ [% ELSE %] <option value="l">biografía del arreglador o transcriptor</option>
+ [% END %] [% IF ( f11r ) %] <option value="r" selected="selected">material de instrucción</option>
+ [% ELSE %] <option value="r">material de instrucción</option>
+ [% END %] [% IF ( f11s ) %] <option value="s" selected="selected">partitura</option>
+ [% ELSE %] <option value="s">partitura</option>
+ [% END %] [% IF ( f11z ) %] <option value="z" selected="selected">otra material textual adjunto</option>
+ [% ELSE %] <option value="z">otra material textual adjunto</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f12">Material textual adjunto 5:</label></td>
  <td>
  <select name="f12" id="f12" size="1">
- [% IF ( f12space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- [% IF ( f12a ) %]
- <option value="a" selected="selected">discografía</option>
- [% ELSE %]
- <option value="a">discografía</option>
- [% END %]
- [% IF ( f12b ) %]
- <option value="b" selected="selected">bibliografía</option>
- [% ELSE %]
- <option value="b">bibliografía</option>
- [% END %]
- [% IF ( f12c ) %]
- <option value="c" selected="selected">índice temático</option>
- [% ELSE %]
- <option value="c">índice temático</option>
- [% END %]
- [% IF ( f12d ) %]
- <option value="d" selected="selected">libreto o texto</option>
- [% ELSE %]
- <option value="d">libreto o texto</option>
- [% END %]
- [% IF ( f12e ) %]
- <option value="e" selected="selected">biografía del compositor</option>
- [% ELSE %]
- <option value="e">biografía del compositor</option>
- [% END %]
- [% IF ( f12f ) %]
- <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
- [% ELSE %]
- <option value="f">biografía del interprete o reseña histórica del conjunto</option>
- [% END %]
- [% IF ( f12g ) %]
- <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
- [% ELSE %]
- <option value="g">información histórica o técnica por instrumentos</option>
- [% END %]
- [% IF ( f12h ) %]
- <option value="h" selected="selected">información técnica en música</option>
- [% ELSE %]
- <option value="h">información técnica en música</option>
- [% END %]
- [% IF ( f12i ) %]
- <option value="i" selected="selected">información histórica sobre música</option>
- [% ELSE %]
- <option value="i">información histórica sobre música</option>
- [% END %]
- [% IF ( f12j ) %]
- <option value="j" selected="selected">otra información histórica</option>
- [% ELSE %]
- <option value="j">otra información histórica</option>
- [% END %]
- [% IF ( f12k ) %]
- <option value="k" selected="selected">información etnológica</option>
- [% ELSE %]
- <option value="k">información etnológica</option>
- [% END %]
- [% IF ( f12l ) %]
- <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
- [% ELSE %]
- <option value="l">biografía del arreglador o transcriptor</option>
- [% END %]
- [% IF ( f12r ) %]
- <option value="r" selected="selected">material de instrucción</option>
- [% ELSE %]
- <option value="r">material de instrucción</option>
- [% END %]
- [% IF ( f12s ) %]
- <option value="s" selected="selected">partitura</option>
- [% ELSE %]
- <option value="s">partitura</option>
- [% END %]
- [% IF ( f12z ) %]
- <option value="z" selected="selected">otra material textual adjunto</option>
- [% ELSE %]
- <option value="z">otra material textual adjunto</option>
- [% END %]
- </select>
+ [% IF ( f12space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f12a ) %] <option value="a" selected="selected">discografía</option>
+ [% ELSE %] <option value="a">discografía</option>
+ [% END %] [% IF ( f12b ) %] <option value="b" selected="selected">bibliografía</option>
+ [% ELSE %] <option value="b">bibliografía</option>
+ [% END %] [% IF ( f12c ) %] <option value="c" selected="selected">índice temático</option>
+ [% ELSE %] <option value="c">índice temático</option>
+ [% END %] [% IF ( f12d ) %] <option value="d" selected="selected">libreto o texto</option>
+ [% ELSE %] <option value="d">libreto o texto</option>
+ [% END %] [% IF ( f12e ) %] <option value="e" selected="selected">biografía del compositor</option>
+ [% ELSE %] <option value="e">biografía del compositor</option>
+ [% END %] [% IF ( f12f ) %] <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
+ [% ELSE %] <option value="f">biografía del interprete o reseña histórica del conjunto</option>
+ [% END %] [% IF ( f12g ) %] <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
+ [% ELSE %] <option value="g">información histórica o técnica por instrumentos</option>
+ [% END %] [% IF ( f12h ) %] <option value="h" selected="selected">información técnica en música</option>
+ [% ELSE %] <option value="h">información técnica en música</option>
+ [% END %] [% IF ( f12i ) %] <option value="i" selected="selected">información histórica sobre música</option>
+ [% ELSE %] <option value="i">información histórica sobre música</option>
+ [% END %] [% IF ( f12j ) %] <option value="j" selected="selected">otra información histórica</option>
+ [% ELSE %] <option value="j">otra información histórica</option>
+ [% END %] [% IF ( f12k ) %] <option value="k" selected="selected">información etnológica</option>
+ [% ELSE %] <option value="k">información etnológica</option>
+ [% END %] [% IF ( f12l ) %] <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
+ [% ELSE %] <option value="l">biografía del arreglador o transcriptor</option>
+ [% END %] [% IF ( f12r ) %] <option value="r" selected="selected">material de instrucción</option>
+ [% ELSE %] <option value="r">material de instrucción</option>
+ [% END %] [% IF ( f12s ) %] <option value="s" selected="selected">partitura</option>
+ [% ELSE %] <option value="s">partitura</option>
+ [% END %] [% IF ( f12z ) %] <option value="z" selected="selected">otra material textual adjunto</option>
+ [% ELSE %] <option value="z">otra material textual adjunto</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f13">Material textual adjunto 6:</label></td>
  <td>
  <select name="f13" id="f13" size="1">
- [% IF ( f13space ) %]
- <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %]
- <option value=" ">valor no requerido</option>
- [% END %]
- 
- [% IF ( f13a ) %]
- <option value="a" selected="selected">discografía</option>
- [% ELSE %]
- <option value="a">discografía</option>
- [% END %]
- [% IF ( f13b ) %]
- <option value="b" selected="selected">bibliografía</option>
- [% ELSE %]
- <option value="b">bibliografía</option>
- [% END %]
- [% IF ( f13c ) %]
- <option value="c" selected="selected">índice temático</option>
- [% ELSE %]
- <option value="c">índice temático</option>
- [% END %]
- [% IF ( f13d ) %]
- <option value="d" selected="selected">libreto o texto</option>
- [% ELSE %]
- <option value="d">libreto o texto</option>
- [% END %]
- [% IF ( f13e ) %]
- <option value="e" selected="selected">biografía del compositor</option>
- [% ELSE %]
- <option value="e">biografía del compositor</option>
- [% END %]
- [% IF ( f13f ) %]
- <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
- [% ELSE %]
- <option value="f">biografía del interprete o reseña histórica del conjunto</option>
- [% END %]
- [% IF ( f13g ) %]
- <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
- [% ELSE %]
- <option value="g">información histórica o técnica por instrumentos</option>
- [% END %]
- [% IF ( f13h ) %]
- <option value="h" selected="selected">información técnica en música</option>
- [% ELSE %]
- <option value="h">información técnica en música</option>
- [% END %]
- [% IF ( f13i ) %]
- <option value="i" selected="selected">información histórica sobre música</option>
- [% ELSE %]
- <option value="i">información histórica sobre música</option>
- [% END %]
- [% IF ( f13j ) %]
- <option value="j" selected="selected">otra información histórica</option>
- [% ELSE %]
- <option value="j">otra información histórica</option>
- [% END %]
- [% IF ( f13k ) %]
- <option value="k" selected="selected">información etnológica</option>
- [% ELSE %]
- <option value="k">información etnológica</option>
- [% END %]
- [% IF ( f13l ) %]
- <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
- [% ELSE %]
- <option value="l">biografía del arreglador o transcriptor</option>
- [% END %]
- [% IF ( f13r ) %]
- <option value="r" selected="selected">material de instrucción</option>
- [% ELSE %]
- <option value="r">material de instrucción</option>
- [% END %]
- [% IF ( f13s ) %]
- <option value="s" selected="selected">partitura</option>
- [% ELSE %]
- <option value="s">partitura</option>
- [% END %]
- [% IF ( f13z ) %]
- <option value="z" selected="selected">otra material textual adjunto</option>
- [% ELSE %]
- <option value="z">otra material textual adjunto</option>
- [% END %]
- </select>
+ [% IF ( f13space ) %] <option value=" " selected="selected">valor no requerido</option>
+ [% ELSE %] <option value=" ">valor no requerido</option>
+ [% END %] [% IF ( f13a ) %] <option value="a" selected="selected">discografía</option>
+ [% ELSE %] <option value="a">discografía</option>
+ [% END %] [% IF ( f13b ) %] <option value="b" selected="selected">bibliografía</option>
+ [% ELSE %] <option value="b">bibliografía</option>
+ [% END %] [% IF ( f13c ) %] <option value="c" selected="selected">índice temático</option>
+ [% ELSE %] <option value="c">índice temático</option>
+ [% END %] [% IF ( f13d ) %] <option value="d" selected="selected">libreto o texto</option>
+ [% ELSE %] <option value="d">libreto o texto</option>
+ [% END %] [% IF ( f13e ) %] <option value="e" selected="selected">biografía del compositor</option>
+ [% ELSE %] <option value="e">biografía del compositor</option>
+ [% END %] [% IF ( f13f ) %] <option value="f" selected="selected">biografía del interprete o reseña histórica del conjunto</option>
+ [% ELSE %] <option value="f">biografía del interprete o reseña histórica del conjunto</option>
+ [% END %] [% IF ( f13g ) %] <option value="g" selected="selected">información histórica o técnica por instrumentos</option>
+ [% ELSE %] <option value="g">información histórica o técnica por instrumentos</option>
+ [% END %] [% IF ( f13h ) %] <option value="h" selected="selected">información técnica en música</option>
+ [% ELSE %] <option value="h">información técnica en música</option>
+ [% END %] [% IF ( f13i ) %] <option value="i" selected="selected">información histórica sobre música</option>
+ [% ELSE %] <option value="i">información histórica sobre música</option>
+ [% END %] [% IF ( f13j ) %] <option value="j" selected="selected">otra información histórica</option>
+ [% ELSE %] <option value="j">otra información histórica</option>
+ [% END %] [% IF ( f13k ) %] <option value="k" selected="selected">información etnológica</option>
+ [% ELSE %] <option value="k">información etnológica</option>
+ [% END %] [% IF ( f13l ) %] <option value="l" selected="selected">biografía del arreglador o transcriptor</option>
+ [% ELSE %] <option value="l">biografía del arreglador o transcriptor</option>
+ [% END %] [% IF ( f13r ) %] <option value="r" selected="selected">material de instrucción</option>
+ [% ELSE %] <option value="r">material de instrucción</option>
+ [% END %] [% IF ( f13s ) %] <option value="s" selected="selected">partitura</option>
+ [% ELSE %] <option value="s">partitura</option>
+ [% END %] [% IF ( f13z ) %] <option value="z" selected="selected">otra material textual adjunto</option>
+ [% ELSE %] <option value="z">otra material textual adjunto</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f14">Técnica de grabación:</label></td>
  <td>
  <select name="f14" id="f14" size="1">
- [% IF ( f14a ) %]
- <option value="a" selected="selected">acústico</option>
- [% ELSE %]
- <option value="a">acústico</option>
- [% END %]
- [% IF ( f14b ) %]
- <option value="b" selected="selected">eléctrico</option>
- [% ELSE %]
- <option value="b">eléctrico</option>
- [% END %]
- [% IF ( f14c ) %]
- <option value="c" selected="selected">digital</option>
- [% ELSE %]
- <option value="c">digital</option>
- [% END %]
- [% IF ( f14u ) %]
- <option value="u" selected="selected">desconocido</option>
- [% ELSE %]
- <option value="u">desconocido</option>
- [% END %]
- [% IF ( f14z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f14a ) %] <option value="a" selected="selected">acústico</option>
+ [% ELSE %] <option value="a">acústico</option>
+ [% END %] [% IF ( f14b ) %] <option value="b" selected="selected">eléctrico</option>
+ [% ELSE %] <option value="b">eléctrico</option>
+ [% END %] [% IF ( f14c ) %] <option value="c" selected="selected">digital</option>
+ [% ELSE %] <option value="c">digital</option>
+ [% END %] [% IF ( f14u ) %] <option value="u" selected="selected">desconocido</option>
+ [% ELSE %] <option value="u">desconocido</option>
+ [% END %] [% IF ( f14z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
  <tr>
  <td><label for="f15">Características de la reproducción especial:</label></td>
  <td>
  <select name="f15" id="f15" size="1">
- [% IF ( f15a ) %]
- <option value="a" selected="selected">Estándar NAB</option>
- [% ELSE %]
- <option value="a">Estándar NAB</option>
- [% END %]
- [% IF ( f15b ) %]
- <option value="b" selected="selected">Estándar CCIR/IEC</option>
- [% ELSE %]
- <option value="b">Estándar CCIR/IEC</option>
- [% END %]
- [% IF ( f15c ) %]
- <option value="c" selected="selected">Procesado DBX</option>
- [% ELSE %]
- <option value="c">Procesado DBX</option>
- [% END %]
- [% IF ( f15d ) %]
- <option value="d" selected="selected">digital (disco compacto)</option>
- [% ELSE %]
- <option value="d">digital (disco compacto)</option>
- [% END %]
- [% IF ( f15e ) %]
- <option value="e" selected="selected">Codificado Dolby-A</option>
- [% ELSE %]
- <option value="e">Codificado Dolby-A</option>
- [% END %]
- [% IF ( f15f ) %]
- <option value="f" selected="selected">Codificado Dolby-B</option>
- [% ELSE %]
- <option value="f">Codificado Dolby-B</option>
- [% END %]
- [% IF ( f15g ) %]
- <option value="g" selected="selected">Codificado Dolby-C</option>
- [% ELSE %]
- <option value="g">Codificado Dolby-C</option>
- [% END %]
- [% IF ( f15h ) %]
- <option value="h" selected="selected">Codificado CX</option>
- [% ELSE %]
- <option value="h">Codificado CX</option>
- [% END %]
- [% IF ( f15x ) %]
- <option value="x" selected="selected">no aplicable</option>
- [% ELSE %]
- <option value="x">no aplicable</option>
- [% END %]
- [% IF ( f15u ) %]
- <option value="u" selected="selected">desconocido</option>
- [% ELSE %]
- <option value="u">desconocido</option>
- [% END %]
- [% IF ( f15z ) %]
- <option value="z" selected="selected">otro</option>
- [% ELSE %]
- <option value="z">otro</option>
- [% END %]
- </select>
+ [% IF ( f15a ) %] <option value="a" selected="selected">Estándar NAB</option>
+ [% ELSE %] <option value="a">Estándar NAB</option>
+ [% END %] [% IF ( f15b ) %] <option value="b" selected="selected">Estándar CCIR/IEC</option>
+ [% ELSE %] <option value="b">Estándar CCIR/IEC</option>
+ [% END %] [% IF ( f15c ) %] <option value="c" selected="selected">Procesado DBX</option>
+ [% ELSE %] <option value="c">Procesado DBX</option>
+ [% END %] [% IF ( f15d ) %] <option value="d" selected="selected">digital (disco compacto)</option>
+ [% ELSE %] <option value="d">digital (disco compacto)</option>
+ [% END %] [% IF ( f15e ) %] <option value="e" selected="selected">Codificado Dolby-A</option>
+ [% ELSE %] <option value="e">Codificado Dolby-A</option>
+ [% END %] [% IF ( f15f ) %] <option value="f" selected="selected">Codificado Dolby-B</option>
+ [% ELSE %] <option value="f">Codificado Dolby-B</option>
+ [% END %] [% IF ( f15g ) %] <option value="g" selected="selected">Codificado Dolby-C</option>
+ [% ELSE %] <option value="g">Codificado Dolby-C</option>
+ [% END %] [% IF ( f15h ) %] <option value="h" selected="selected">Codificado CX</option>
+ [% ELSE %] <option value="h">Codificado CX</option>
+ [% END %] [% IF ( f15x ) %] <option value="x" selected="selected">no aplicable</option>
+ [% ELSE %] <option value="x">no aplicable</option>
+ [% END %] [% IF ( f15u ) %] <option value="u" selected="selected">desconocido</option>
+ [% ELSE %] <option value="u">desconocido</option>
+ [% END %] [% IF ( f15z ) %] <option value="z" selected="selected">otro</option>
+ [% ELSE %] <option value="z">otro</option>
+ [% END %] </select>
  </td></tr>
 </table>
 <fieldset class="action"><input type="button" value="OK" onclick="report();" /> <a href="#" class="cancel close">Cancelar</a></fieldset>
@@ -1038,4 +483,4 @@
 //]]>
 </script>
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

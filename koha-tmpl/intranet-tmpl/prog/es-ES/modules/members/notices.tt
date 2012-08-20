@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Sent notices for [% INCLUDE 'patron-title.inc' %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Enviar noticias para [% INCLUDE 'patron-title.inc' %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" language="javascript">
 //<![CDATA[
     $(document).ready(function() {
@@ -26,17 +24,13 @@
 </style>
 </head>
 <body id="pat_notices" class="pat">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'patron-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Sent notices for [% INCLUDE 'patron-title.inc' %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Enviar avisos a [% INCLUDE 'patron-title.inc' %]</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
-[% INCLUDE 'circ-toolbar.inc' %]
-<h1>Sent notices for [% INCLUDE 'patron-title.inc' %]</h1>
+[% INCLUDE 'circ-toolbar.inc' %] <h1>Enviar noticias para [% INCLUDE 'patron-title.inc' %]</h1>
 
 
  <table id="noticestable">
@@ -48,44 +42,27 @@
  <th>Tiempo</th>
  </tr>
  </thead>
-[% IF ( QUEUED_MESSAGES ) %]
- <tbody>
- [% FOREACH QUEUED_MESSAGE IN QUEUED_MESSAGES %]
- <tr>
+[% IF ( QUEUED_MESSAGES ) %] <tbody>
+ [% FOREACH QUEUED_MESSAGE IN QUEUED_MESSAGES %] <tr>
  <td>
  <a class="message-title" href="#">[% QUEUED_MESSAGE.subject %]</a>
  <p class="message">
- [% QUEUED_MESSAGE.content FILTER html_line_break %]
- </p>
+ [% QUEUED_MESSAGE.content FILTER html_line_break %] </p>
  </td>
  <td>
- [% IF ( QUEUED_MESSAGE.message_transport_type == 'email' ) %]email
- [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'print' ) %]print
- [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'feed' ) %]feed
- [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'sms' ) %]sms
- [% ELSE %][% QUEUED_MESSAGE.message_transport_type %][% END %]
- </td>
+ [% IF ( QUEUED_MESSAGE.message_transport_type == 'email' ) %]email [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'print' ) %]Impresión[% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'feed' ) %]feed [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'sms' ) %]sms [% ELSE %][% QUEUED_MESSAGE.message_transport_type %][% END %] </td>
  <td>
- [% IF ( QUEUED_MESSAGE.status == 'sent' ) %]sent
- [% ELSIF ( QUEUED_MESSAGE.status == 'pending' ) %]pending
- [% ELSIF ( QUEUED_MESSAGE.status == 'failed' ) %]failed
- [% ELSIF ( QUEUED_MESSAGE.status == 'deleted' ) %]deleted
- [% ELSE %][% QUEUED_MESSAGE.status %][% END %]
- </td>
+ [% IF ( QUEUED_MESSAGE.status == 'sent' ) %]enviado [% ELSIF ( QUEUED_MESSAGE.status == 'pending' ) %]pendiente [% ELSIF ( QUEUED_MESSAGE.status == 'failed' ) %]fallado [% ELSIF ( QUEUED_MESSAGE.status == 'deleted' ) %]borrado [% ELSE %][% QUEUED_MESSAGE.status %][% END %] </td>
  <td>[% QUEUED_MESSAGE.time_queued %]</td>
  </tr>
- [% END %]
- </tbody>
- [% ELSE %]
- <tr><td colspan="4">No hay registro de los mensajes que han sido enviados a este socio.</td></tr>
- [% END %]
- </table>
+ [% END %] </tbody>
+ [% ELSE %] <tr><td colspan="4">No hay registro de los mensajes que han sido enviados a este socio.</td></tr>
+ [% END %] </table>
 
 </div>
 </div>
 
 <div class="yui-b">
-[% INCLUDE 'circ-menu.inc' %]
+[% INCLUDE 'circ-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

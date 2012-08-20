@@ -36,7 +36,7 @@
  <xsl:when test="$field019b='b' or $field019b='k' or $field019b='l' or $leader6='b'">Lun</xsl:when>
  <xsl:when test="$field019b='e' or contains($field019b,'ec') or contains($field019b,'ed') or contains($field019b,'ee') or contains($field019b,'ef') or $leader6='g'">FV</xsl:when>
  <xsl:when test="$field019b='c' or $field019b='d' or contains($field019b,'da') or contains($field019b,'db') or contains($field019b,'dc') or contains($field019b,'dd') or contains($field019b,'dg') or contains($field019b,'dh') or contains($field019b,'di') or contains($field019b,'dj') or contains($field019b,'dk') or $leader6='c' or $leader6='d' or $leader6='i' or $leader6='j'">Mus</xsl:when>
- <xsl:when test="$field019b='a' or contains($field019b,'ab') or contains($field019b,'aj') or $leader6='e' or $leader6='f'">Cesta</xsl:when>
+ <xsl:when test="$field019b='a' or contains($field019b,'ab') or contains($field019b,'aj') or $leader6='e' or $leader6='f'">Mapa</xsl:when>
  <xsl:when test="$field019b='f' or $field019b='i' or contains($field019b,'ib') or contains($field019b,'ic') or contains($field019b,'fd') or contains($field019b,'ff') or contains($field019b,'fi') or $leader6='k'">gra</xsl:when>
  <xsl:when test="$field019b='g' or contains($field019b,'gb') or contains($field019b,'gd') or contains($field019b,'ge') or $leader6='m'">Archivo</xsl:when>
  <xsl:when test="$leader6='o'">kom</xsl:when>
@@ -109,24 +109,24 @@
  <xsl:if test="$field019b">
  <xsl:if test="$field019b='a'"> Material cartográfico</xsl:if>
  <xsl:if test="contains($field019b,'ab')"> Atlas</xsl:if>
- <xsl:if test="contains($field019b,'aj')"> Cesta</xsl:if>
- <xsl:if test="$field019b='b'"> Manuscritos</xsl:if>
+ <xsl:if test="contains($field019b,'aj')"> Mapa</xsl:if>
+ <xsl:if test="$field019b='b'"> Manuscrito</xsl:if>
  <xsl:if test="$field019b='c'"> Partitura</xsl:if>
  <xsl:if test="$field019b='d'"> Grabación de sonido</xsl:if>
  <xsl:if test="contains($field019b,'da')"> Disco fonográfico</xsl:if>
- <xsl:if test="contains($field019b,'db')"> Cassette</xsl:if>
+ <xsl:if test="contains($field019b,'db')"> Casete</xsl:if>
  <xsl:if test="contains($field019b,'dc')"> Disco compacto</xsl:if>
  <xsl:if test="contains($field019b,'dd')"> Avspiller med lydfil (eks. Digibøker)</xsl:if>
  <xsl:if test="contains($field019b,'dg')"> Música</xsl:if>
  <xsl:if test="contains($field019b,'dh')"> Språkkurs</xsl:if>
  <xsl:if test="contains($field019b,'di')"> Audiolibro</xsl:if>
- <xsl:if test="contains($field019b,'dj')"> Otros</xsl:if>
- <xsl:if test="contains($field019b,'dk')"> Material variado</xsl:if>
+ <xsl:if test="contains($field019b,'dj')"> Otra vos/otros</xsl:if>
+ <xsl:if test="contains($field019b,'dk')"> Documento compuesto</xsl:if>
  <xsl:if test="$field019b='e'"> Película o vídeo</xsl:if>
  <xsl:if test="contains($field019b,'ec')"> Rollo de película</xsl:if>
- <xsl:if test="contains($field019b,'ed')"> Videocassete (VHS)</xsl:if>
+ <xsl:if test="contains($field019b,'ed')"> Videocasete (VHS)</xsl:if>
  <xsl:if test="contains($field019b,'ee')"> Videodisco (DVD)</xsl:if>
- <xsl:if test="contains($field019b,'ef')"> Disco blue-ray</xsl:if>
+ <xsl:if test="contains($field019b,'ef')"> Disco Blue-Ray</xsl:if>
  <xsl:if test="$field019b='f'"> Material visual</xsl:if>
  <xsl:if test="contains($field019b,'fd')"> Días</xsl:if>
  <xsl:if test="contains($field019b,'ff')"> Fotografía</xsl:if>
@@ -156,15 +156,15 @@
  <xsl:if test="$controlField007-01='f'">Mapa de navegación</xsl:if>
  <xsl:if test="$controlField007-01='g'">Diagrama en bloques</xsl:if>
  <xsl:if test="$controlField007-01='h'">Mapa estelar</xsl:if>
- <xsl:if test="$controlField007-01='j'">Cesta</xsl:if>
+ <xsl:if test="$controlField007-01='j'">Mapa</xsl:if>
  <xsl:if test="$controlField007-01='k'">Mapa de niveles</xsl:if>
  <xsl:if test="$controlField007-01='l'">Foto Mapa</xsl:if>
  <xsl:if test="$controlField007-01='m'">Foto Mosaicos</xsl:if>
  <xsl:if test="$controlField007-01='n'">Ortofotos</xsl:if>
  <xsl:if test="$controlField007-01='o'">Mapa de caracteres</xsl:if>
  <xsl:if test="$controlField007-01='p'">Mapas impresos</xsl:if>
- <xsl:if test="$controlField007-01='q'">Terrengmodell</xsl:if>
- <xsl:if test="$controlField007-01='r'">Teledetección de la imagen</xsl:if>
+ <xsl:if test="$controlField007-01='q'">Modelo del Terreno</xsl:if>
+ <xsl:if test="$controlField007-01='r'">Imagen de teledetección</xsl:if>
  <xsl:if test="$controlField007-01='s'">Mapa de la sección</xsl:if>
  <xsl:if test="$controlField007-01='t'">Lista</xsl:if>
  <xsl:if test="$controlField007-01='y'">Mapa en perspectiva</xsl:if>
@@ -174,13 +174,13 @@
  <xsl:if test="$controlField007-00='c'">
  <!-- Maskinlesbar fil -->
  <xsl:if test="$controlField007-01='a'">Disco magneto-óptico</xsl:if>
- <xsl:if test="$controlField007-01='b'">Memoria</xsl:if>
- <xsl:if test="$controlField007-01='c'">Cassete óptico</xsl:if>
+ <xsl:if test="$controlField007-01='b'">Tarjeta de almacenamiento</xsl:if>
+ <xsl:if test="$controlField007-01='c'">Casete óptico</xsl:if>
  <xsl:if test="$controlField007-01='d'">Disquete</xsl:if>
  <xsl:if test="$controlField007-01='h'">Registros de almacenamiento (disco duro)</xsl:if>
  <xsl:if test="$controlField007-01='k'">Magnetbåndkassett</xsl:if>
  <xsl:if test="$controlField007-01='m'">Magnetbåndspole</xsl:if>
- <xsl:if test="$controlField007-01='n'">Acceso remoto (online)</xsl:if>
+ <xsl:if test="$controlField007-01='n'">Acceso remoto (en linea)</xsl:if>
  <xsl:if test="$controlField007-01='o'">Disco óptico</xsl:if>
  <xsl:if test="$controlField007-01='z'">Otro medio de almacenamiento</xsl:if>
  </xsl:if>
@@ -189,7 +189,7 @@
  <!-- Globus -->
  <xsl:if test="$controlField007-01='a'">Globo estelar</xsl:if>
  <xsl:if test="$controlField007-01='b'">Planet- eller måneglobus</xsl:if>
- <xsl:if test="$controlField007-01='c'">Globo terraqueo</xsl:if>
+ <xsl:if test="$controlField007-01='c'">Globo terráqueo</xsl:if>
  <xsl:if test="$controlField007-01='z'">Otro tipo de globo</xsl:if>
  </xsl:if>
 
@@ -207,7 +207,7 @@
  <xsl:if test="$controlField007-00='h'">
  <!-- Mikroform -->
  <xsl:if test="$controlField007-01='a'">Tarjetas</xsl:if>
- <xsl:if test="$controlField007-01='c'">Cassette de microfilm</xsl:if>
+ <xsl:if test="$controlField007-01='c'">Casete de microfilm</xsl:if>
  <xsl:if test="$controlField007-01='d'">Cinta de microfilm</xsl:if>
  <xsl:if test="$controlField007-01='e'">Lector de microfilm</xsl:if>
  <xsl:if test="$controlField007-01='g'">Micro-opaco</xsl:if>
@@ -229,7 +229,7 @@
  <xsl:if test="$controlField007-01='n'">Gráfico</xsl:if>
  <xsl:if test="$controlField007-01='o'">Cartas</xsl:if>
  <xsl:if test="$controlField007-01='p'">Tarjetas</xsl:if>
- <xsl:if test="$controlField007-01='q'">TOC</xsl:if>
+ <xsl:if test="$controlField007-01='q'">Símbolos</xsl:if>
  <xsl:if test="$controlField007-01='r'">Reproducción artística</xsl:if>
  <xsl:if test="$controlField007-01='s'">Postal</xsl:if>
  <xsl:if test="$controlField007-01='t'">Cartel</xsl:if>
@@ -239,7 +239,7 @@
  <xsl:if test="$controlField007-00='m'">
  <!-- Film -->
  <xsl:if test="$controlField007-01='c'">Filmsløyfe</xsl:if>
- <xsl:if test="$controlField007-01='f'">Videocassette</xsl:if>
+ <xsl:if test="$controlField007-01='f'">Casete de película</xsl:if>
  <xsl:if test="$controlField007-01='r'">Rollo de película</xsl:if>
  <xsl:if test="$controlField007-01='z'">Otro tipo de película</xsl:if>
  </xsl:if>
@@ -250,9 +250,9 @@
  <xsl:if test="$controlField007-01='d'">Disco fonográfico</xsl:if>
  <xsl:if test="$controlField007-01='e'">Cilindro</xsl:if> <!-- Lydrull, voksrull, fonografsylinder -->
  <xsl:if test="$controlField007-01='g'">Sløyfekassett</xsl:if>
- <xsl:if test="$controlField007-01='i'">Banda sonora original</xsl:if>
+ <xsl:if test="$controlField007-01='i'">Banda sonora película</xsl:if>
  <xsl:if test="$controlField007-01='q'">Rollo (de piano/órgano)</xsl:if>
- <xsl:if test="$controlField007-01='s'">Cintas de cassette</xsl:if>
+ <xsl:if test="$controlField007-01='s'">Casete de audio</xsl:if>
  <xsl:if test="$controlField007-01='t'">Lydbånd</xsl:if>
  <xsl:if test="$controlField007-01='w'">Alambre</xsl:if>
  <xsl:if test="$controlField007-01='z'">Otro tipo de audio</xsl:if>
@@ -274,10 +274,10 @@
 
  <xsl:if test="$controlField007-00='v'">
  <!-- Videoopptak -->
- <xsl:if test="$controlField007-01='d'">Videodisco</xsl:if>
- <xsl:if test="$controlField007-01='f'">Videocassette</xsl:if>
- <xsl:if test="$controlField007-01='r'">Cinta de video</xsl:if>
- <xsl:if test="$controlField007-01='z'">Otro tipo de video</xsl:if>
+ <xsl:if test="$controlField007-01='d'">Placa de vídeo</xsl:if>
+ <xsl:if test="$controlField007-01='f'">Videocasete</xsl:if>
+ <xsl:if test="$controlField007-01='r'">Cinta de vídeo</xsl:if>
+ <xsl:if test="$controlField007-01='z'">Otro tipo de vídeo</xsl:if>
  </xsl:if>
 
  </xsl:variable>
@@ -322,8 +322,7 @@
  <xsl:choose>
  <xsl:when test="marc:datafield[@tag=100] or marc:datafield[@tag=110] or marc:datafield[@tag=111] or marc:datafield[@tag=700] or marc:datafield[@tag=710] or marc:datafield[@tag=711]">
 
- av 
- <xsl:for-each select="marc:datafield[@tag=100 or @tag=700]">
+ av <xsl:for-each select="marc:datafield[@tag=100 or @tag=700]">
  <xsl:choose>
  <xsl:when test="position()=last()">
  <xsl:call-template name="nameABCDQ"/>. </xsl:when>
@@ -355,7 +354,7 @@
 
  <xsl:if test="marc:datafield[@tag=250]">
  <span class="results_summary">
- <span class="label">Utgave: </span>
+ <span class="label">Número: </span>
  <xsl:for-each select="marc:datafield[@tag=250]">
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">ab</xsl:with-param>
@@ -367,17 +366,17 @@
 <xsl:if test="$DisplayOPACiconsXSLT!='0'">
  <span class="results_summary">
  <xsl:if test="$typeOf008!=''">
- <span class="label">Type: </span>
+ <span class="label">Tipo: </span>
  
  <xsl:choose>
  <xsl:when test="$typeOf008='Mon'"><img alt="Libro" src="/opac-tmpl/prog/famfamfam/silk/book.png" title="Libro" /> Libro</xsl:when>
  <xsl:when test="$typeOf008='Per'"><img alt="Periódico" src="/opac-tmpl/prog/famfamfam/silk/newspaper.png" title="Periódico" /> Periódico</xsl:when> 
  <xsl:when test="$typeOf008='Fil'"><img alt="Archivo" src="/opac-tmpl/prog/famfamfam/silk/computer_link.png" title="Archivo" /> Archivo</xsl:when>
- <xsl:when test="$typeOf008='Kar'"><img alt="Cesta" src="/opac-tmpl/prog/famfamfam/silk/map.png" title="Cesta" /> Cesta</xsl:when>
+ <xsl:when test="$typeOf008='Kar'"><img alt="Mapa" src="/opac-tmpl/prog/famfamfam/silk/map.png" title="Mapa" /> Mapa</xsl:when>
  <xsl:when test="$typeOf008='FV'"><img alt="Película o vídeo" src="/opac-tmpl/prog/famfamfam/silk/film.png" title="Película o vídeo" /> Película o vídeo</xsl:when>
  <xsl:when test="$typeOf008='Mus'"><img alt="Partitura o grabaciones de sonido" src="/opac-tmpl/prog/famfamfam/silk/sound.png" title="Partitura o grabaciones de sonido" /> Música</xsl:when>
  <xsl:when test="$typeOf008='gra'"> Material visual</xsl:when>
- <xsl:when test="$typeOf008='kom'"> Materiales variados</xsl:when>
+ <xsl:when test="$typeOf008='kom'"> Documentos combinados</xsl:when>
  <xsl:when test="$typeOf008='trd'"> Objetos tridimensionales</xsl:when>
  </xsl:choose>
  </xsl:if>
@@ -398,7 +397,7 @@
 
  <xsl:if test="$typeOf008='Per'">
  <xsl:if test="$controlField008-21 and contains($controlField008-21,'amnpz')">
- <span class="label">; Tipo de publicación periódica:</span>
+ <span class="label">; Type periodikum: </span>
  </xsl:if>
  <xsl:choose>
  <xsl:when test="$controlField008-21='a'">Årbok</xsl:when>
@@ -411,16 +410,16 @@
  
  <xsl:if test="$typeOf008='Mon' or $typeOf008='Per'">
  <xsl:if test="contains($controlField008-24,'abcdefhiklmnoqrstx')">
- <span class="label">; Contenido: </span>
+ <span class="label">; Innhold: </span>
  </xsl:if>
  <xsl:choose>
- <xsl:when test="contains($controlField008-24,'a')"> Resúmenes (abstracts) / Publicaciones oficiales</xsl:when>
+ <xsl:when test="contains($controlField008-24,'a')"> Resúmenes (abstracts) / Minutas</xsl:when>
  <xsl:when test="contains($controlField008-24,'b')"> Bibliografías</xsl:when>
  <xsl:when test="contains($controlField008-24,'c')"> Directorios</xsl:when>
  <xsl:when test="contains($controlField008-24,'d')"> Ordbøker</xsl:when>
  <xsl:when test="contains($controlField008-24,'e')"> Léxico de conversación</xsl:when>
  <xsl:when test="contains($controlField008-24,'f')"> Håndbøker</xsl:when>
- <xsl:when test="contains($controlField008-24,'h')"> Obras de referencia</xsl:when>
+ <xsl:when test="contains($controlField008-24,'h')"> Referencias</xsl:when>
  <xsl:when test="contains($controlField008-24,'i')"> Registros</xsl:when>
  <xsl:when test="contains($controlField008-24,'k')"> Discografía</xsl:when>
  <xsl:when test="contains($controlField008-24,'l')"> Leyes y reglamentos</xsl:when>
@@ -438,25 +437,24 @@
  </xsl:choose>
  <xsl:choose>
  <xsl:when test="$controlField008-29='1'">
- Konferansepublikasjon
- </xsl:when>
+ Publicación de conferencia </xsl:when>
  </xsl:choose>
  </xsl:if>
  <xsl:if test="$typeOf008='CF'">
  <xsl:if test="$controlField008-26='a' or $controlField008-26='b' or $controlField008-26='c' or $controlField008-26='d' or $controlField008-26='e' or $controlField008-26='f' or $controlField008-26='g' or $controlField008-26='h' or $controlField008-26='i' or $controlField008-26='j'">
- <span class="label">; Tipo de archivo informático: </span>
+ <span class="label">; Type maskinlesbar fil: </span>
  </xsl:if>
  <xsl:choose>
  <xsl:when test="$controlField008-26='a'">Dato numérico</xsl:when>
  <xsl:when test="$controlField008-26='b'">Software</xsl:when>
  <xsl:when test="$controlField008-26='c'">Gráfico de datos</xsl:when>
  <xsl:when test="$controlField008-26='d'">Texto</xsl:when>
- <xsl:when test="$controlField008-26='e'">Datos bibliograficos</xsl:when>
+ <xsl:when test="$controlField008-26='e'">Datos bibliográficos</xsl:when>
  <xsl:when test="$controlField008-26='f'">Fuente</xsl:when>
  <xsl:when test="$controlField008-26='g'">Juegos</xsl:when>
  <xsl:when test="$controlField008-26='h'">Audio</xsl:when>
- <xsl:when test="$controlField008-26='i'">Interactivos multimedia</xsl:when>
- <xsl:when test="$controlField008-26='j'">Servicio online</xsl:when>
+ <xsl:when test="$controlField008-26='i'">Multimedio interactivo</xsl:when>
+ <xsl:when test="$controlField008-26='j'">Servicio en Línea</xsl:when>
  <!-- Probably makes no sense to display these
  <xsl:when test="$controlField008-26='m'">En kombinasjon av to eller flere av de ovennevnte</xsl:when>
  <xsl:when test="$controlField008-26='u'">Ukjent</xsl:when>
@@ -466,17 +464,15 @@
  </xsl:if>
  <xsl:if test="$typeOf008='Mon'">
  <xsl:if test="(substring($controlField008,25,1)='j') or (substring($controlField008,25,1)='1') or ($controlField008-34='a' or $controlField008-34='b' or $controlField008-34='c' or $controlField008-34='d')">
- <span class="label">; Contenido: </span>
+ <span class="label">; Innhold: </span>
  </xsl:if>
  <xsl:if test="substring($controlField008,31,1)='1' or substring($controlField008,31,1)='a' or substring($controlField008,31,1)='b'">
- Festskrift
- </xsl:if>
+ Festschrift </xsl:if>
  <xsl:if test="$controlField008-34='a' or $controlField008-34='a' or $controlField008-34='b' or $controlField008-34='c' or $controlField008-34='d'">
- Biografi
- </xsl:if>
+ Biografía </xsl:if>
 
  <xsl:if test="$controlField008-33 and $controlField008-33!='^' and $controlField008-33!=' '">
- <span class="label">; Litterær form: </span>
+ <span class="label">; Litterær form:</span>
  </xsl:if>
  <xsl:choose>
  <xsl:when test="$controlField008-33='0'">Ikke skjønnlitteratur</xsl:when>
@@ -492,13 +488,13 @@
  </xsl:choose>
  </xsl:if> 
  <xsl:if test="$typeOf008='Mus' and $controlField008-30-31 and $controlField008-30-31!='^^' and $controlField008-30-31!='  '">
- <span class="label">; Litterær form: </span> <!-- Literary text for sound recordings -->
+ <span class="label">; Litterær form:</span> <!-- Literary text for sound recordings -->
  <xsl:if test="contains($controlField008-30-31,'a')">Autobiografía</xsl:if>
- <xsl:if test="contains($controlField008-30-31,'b')">Biografías</xsl:if>
+ <xsl:if test="contains($controlField008-30-31,'b')">Biógrafo</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'c')">Conversaciones y discusiones</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'d')">Drama</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'e')">Ensayos</xsl:if>
- <xsl:if test="contains($controlField008-30-31,'f')">Novelas</xsl:if>
+ <xsl:if test="contains($controlField008-30-31,'f')">Romanos</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'g')">Informes, actas</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'h')">Historias, cuentos</xsl:if>
  <xsl:if test="contains($controlField008-30-31,'i')">Enseñanza</xsl:if>
@@ -586,7 +582,7 @@
  <xsl:if test="($typeOf008='Mon' or $typeOf008='Per' or $typeOf008='Mus' or $typeOf008='FV' or $typeOf008='Fil') and ($controlField008-22='a' or $controlField008-22='b' or $controlField008-22='c' or $controlField008-22='d' or $controlField008-22='e' or $controlField008-22='g' or $controlField008-22='j' or $controlField008-22='f')">
  -->
  <xsl:if test="$typeOf008='Mon'">
- <span class="label">; Målgruppe: </span>
+ <span class="label">; Målgruppe:</span>
  <xsl:choose>
  <xsl:when test="$controlField008-22='a'">Adultos;</xsl:when>
  <xsl:when test="$controlField008-22='b'">Billedbøker for voksne;</xsl:when>
@@ -604,14 +600,14 @@
  <xsl:when test="$controlField008-22='z'">Billedbøker for elever på ungdomstrinnet;</xsl:when>
  <xsl:when test="$controlField008-22='f'">Especializados;</xsl:when>
  <xsl:when test="$controlField008-22='q'">Fácil de leer;</xsl:when>
- <xsl:when test="$controlField008-22='r'">Para discapacitados</xsl:when>
+ <xsl:when test="$controlField008-22='r'">Para los retrasados ​​mentales;</xsl:when>
  <xsl:when test="$controlField008-22='s'">Letra grande;</xsl:when>
  <xsl:when test="$controlField008-22='g'">General;</xsl:when>
  <xsl:when test="$controlField008-22='u'">Desconocido;</xsl:when>
  </xsl:choose>
  </xsl:if>
  <xsl:if test="$typeOf008='Per'">
- <span class="label">; Målgruppe: </span>
+ <span class="label">; Målgruppe:</span>
  <xsl:choose>
  <xsl:when test="$controlField008-22='a'">Adultos;</xsl:when>
  <xsl:when test="$controlField008-22='b'">Dibujos animados para adultos;</xsl:when>
@@ -629,14 +625,14 @@
  <xsl:when test="$controlField008-22='z'">Tegneserier for elever på ungdomstrinnet;</xsl:when>
  <xsl:when test="$controlField008-22='f'">Especializados;</xsl:when>
  <xsl:when test="$controlField008-22='q'">Fácil de leer;</xsl:when>
- <xsl:when test="$controlField008-22='r'">Para discapacitados</xsl:when>
+ <xsl:when test="$controlField008-22='r'">Para los retrasados ​​mentales;</xsl:when>
  <xsl:when test="$controlField008-22='s'">Letra grande;</xsl:when>
  <xsl:when test="$controlField008-22='g'">General;</xsl:when>
  <xsl:when test="$controlField008-22='u'">Desconocido;</xsl:when>
  </xsl:choose>
  </xsl:if>
  <xsl:if test="$typeOf008='Fil' or $typeOf008='Mus'">
- <span class="label">; Målgruppe: </span>
+ <span class="label">; Målgruppe:</span>
  <xsl:choose>
  <xsl:when test="$controlField008-22='a'">Adultos;</xsl:when>
  <xsl:when test="$controlField008-22='j'">Niños y jóvenes;</xsl:when>
@@ -647,14 +643,14 @@
  <xsl:when test="$controlField008-22='p'">Elever på ungdomstrinnet;</xsl:when>
  <xsl:when test="$controlField008-22='f'">Especializados;</xsl:when>
  <xsl:when test="$controlField008-22='q'">Fácil de leer;</xsl:when>
- <xsl:when test="$controlField008-22='r'">Para discapacitados</xsl:when>
+ <xsl:when test="$controlField008-22='r'">Para los retrasados ​​mentales;</xsl:when>
  <xsl:when test="$controlField008-22='s'">Letra grande;</xsl:when>
  <xsl:when test="$controlField008-22='g'">General;</xsl:when>
  <xsl:when test="$controlField008-22='u'">Desconocido;</xsl:when>
  </xsl:choose>
  </xsl:if>
  <xsl:if test="$typeOf008='FV'">
- <span class="label">; Målgruppe: </span>
+ <span class="label">; Målgruppe:</span>
  <xsl:choose>
  <xsl:when test="$controlField008-22='a'">Adultos;</xsl:when>
  <xsl:when test="$controlField008-22='1'">Voksne over 18 år;</xsl:when>
@@ -674,7 +670,7 @@
  <!-- Utgivelse, distribusjon osv -->
  <xsl:if test="marc:datafield[@tag=260]">
  <span class="results_summary">
- <span class="label">Utgiver: </span> 
+ <span class="label">Autor: </span> 
  <xsl:for-each select="marc:datafield[@tag=260]">
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">bcg</xsl:with-param>
@@ -686,7 +682,7 @@
  <!-- Parallelltittel (R) -->
  <xsl:if test="marc:datafield[@tag=246]">
  <span class="results_summary">
- <span class="label">Parallelltittel: </span>
+ <span class="label">Título paralelo: </span>
  <xsl:for-each select="marc:datafield[@tag=246]">
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">ab</xsl:with-param>
@@ -771,14 +767,14 @@
  <xsl:if test="count(key('item-by-status', 'On order'))>0">
 
  <span class="unavailable">
- <xsl:text>Pedido (</xsl:text>
+ <xsl:text>En orden (</xsl:text>
  <xsl:value-of select="count(key('item-by-status', 'On order'))"/>
  <xsl:text>). </xsl:text> </span>
  </xsl:if>
  <xsl:if test="count(key('item-by-status', 'In transit'))>0">
  <span class="unavailable">
 
- <xsl:text>En ruta (</xsl:text>
+ <xsl:text>En tránsito (</xsl:text>
  <xsl:value-of select="count(key('item-by-status', 'In transit'))"/>
  <xsl:text>). </xsl:text> </span>
  </xsl:if>

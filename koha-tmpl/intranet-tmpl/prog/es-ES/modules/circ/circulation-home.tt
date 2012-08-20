@@ -1,12 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Circulación</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="circ_circulation-home" class="circ">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'circ-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Circulation</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Circulación</div>
 
 <div id="doc" class="yui-t7">
  
@@ -17,31 +12,24 @@
 
 <div class="yui-u first"> 
  <ul>
- <li><a href="/cgi-bin/koha/circ/circulation.pl">Check out</a></li>
+ <li><a href="/cgi-bin/koha/circ/circulation.pl">Préstamo</a></li>
  <li><a href="/cgi-bin/koha/circ/returns.pl">Devolución</a></li>
  <li><a href="/cgi-bin/koha/circ/branchtransfers.pl">Transferencia</a></li>
- [% IF ( AutoLocation ) %][% ELSE %][% IF ( IndependantBranches ) %][% ELSE %]<li><a href="/cgi-bin/koha/circ/selectbranchprinter.pl">Seleccionar Biblioteca</a></li>[% END %][% END %]
- [% IF ( fast_cataloging ) %]
- [% IF ( CAN_user_editcatalogue_fast_cataloging ) %]
- <li><a href="/cgi-bin/koha/cataloguing/addbiblio.pl?frameworkcode=FA">Catalogación rápida</a></li>
- [% END %]
- [% END %]
- </ul>
+ [% IF ( AutoLocation ) %][% ELSE %][% IF ( IndependantBranches ) %][% ELSE %]<li><a href="/cgi-bin/koha/circ/selectbranchprinter.pl">Seleccionar Biblioteca</a></li>[% END %][% END %] [% IF ( fast_cataloging ) %] [% IF ( CAN_user_editcatalogue_fast_cataloging ) %] <li><a href="/cgi-bin/koha/cataloguing/addbiblio.pl?frameworkcode=FA">Catalogación rápida</a></li>
+ [% END %] [% END %] </ul>
  </div>
 
  <div class="yui-u">
  
 <h5>Informes de circulación</h5>
 <ul>
- <li> <a href="/cgi-bin/koha/circ/view_holdsqueue.pl" title="cola de reservas">Holds queue</a></li>
- <li> <a href="/cgi-bin/koha/circ/pendingreserves.pl" title="reservas para retirar de las estanterías">Reservas a preparar</a></li>
- <li> <a href="/cgi-bin/koha/circ/waitingreserves.pl" title="reservas a la espera de ser retiradas">Reservas esperando a ser recogidas</a></li>
- <li> <a href="/cgi-bin/koha/circ/reserveratios.pl">La reserva comienza el día:</a></li>
- <li> <a href="/cgi-bin/koha/circ/transferstoreceive.pl" title="transferencias a recibir en tu biblioteca">Transferencias a recibir</a></li>
+ <li> <a href="/cgi-bin/koha/circ/view_holdsqueue.pl" title="cola de reservas">Cola de reservas</a></li>
+ <li> <a href="/cgi-bin/koha/circ/pendingreserves.pl" title="reservas para retirar de los estantes">Reservas a preparar</a></li>
+ <li> <a href="/cgi-bin/koha/circ/waitingreserves.pl" title="reservas a la espera de ser retiradas">Reservas a retirar</a></li>
+ <li> <a href="/cgi-bin/koha/circ/reserveratios.pl">Proporción de reservas</a></li>
+ <li> <a href="/cgi-bin/koha/circ/transferstoreceive.pl" title="transferencias a recibir en su biblioteca">Transferencias a recibir</a></li>
  [% IF ( CAN_user_reports_execute_reports ) %]<li> <a href="/cgi-bin/koha/circ/overdue.pl">Retrasos</a>
- - <b>Atención: Socio duplicado</b> This report is very resource intensive on
- systems with large numbers of overdue items.</li>[% END %]
- <li> <a href="/cgi-bin/koha/circ/branchoverdues.pl">Overdues with fines</a> - Limited to your library. See report help for other details.</li>
+ - <b>Advertencia:</b> Este informe consume muchos recursos en sistema con gran cantidad de ejemplares retrasados.</li>[% END %] <li> <a href="/cgi-bin/koha/circ/branchoverdues.pl">Retrasos con multas</a> - Limitados a su biblioteca. Vea la ayuda del informe para más detalles.</li>
 <!-- <li> <a href="/cgi-bin/koha/circ/stats.pl?time=yesterday">Daily reconciliation</a></li> -->
 </ul>
  
@@ -49,13 +37,13 @@
 
 
  <div class="yui-u">
- <h5>Offline circulation</h5>
+ <h5>Circulación fuera de línea</h5>
  <ul>
- <li><a href="/cgi-bin/koha/offline_circ/process_koc.pl">Offline circulation file (.koc) uploader</a></li>
- <li><a href="/cgi-bin/koha/offline_circ/list.pl">Offline circulation</a> (<a href="https://addons.mozilla.org/[% lang %]/firefox/addon/koct/">Firefox add-on</a>)</li>
+ <li><a href="/cgi-bin/koha/offline_circ/process_koc.pl">Cargador del archivo de circulación fuera de línea (.koc)</a></li>
+ <li><a href="/cgi-bin/koha/offline_circ/list.pl">Circulación fuera de línea</a> (<a href="https://addons.mozilla.org/[% lang %]/firefox/addon/koct/">Firefox add-on</a>)</li>
  </ul>
  </div>
 </div>
 </div>
 
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

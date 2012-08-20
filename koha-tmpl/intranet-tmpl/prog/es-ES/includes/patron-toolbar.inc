@@ -1,5 +1,4 @@
-[% UNLESS ( no_add ) %]
-<div id="toolbar">
+[% UNLESS ( no_add ) %] <div id="toolbar">
  <script type="text/javascript">
 	//<![CDATA[
 
@@ -39,7 +38,7 @@
 
 	    new YAHOO.widget.Button({
 	        type: "menu",
-	        label: _("New patron"),
+	        label: _("Nuevo socio "),
 	        name: "newmenubutton",
 	        menu: newmenu,
 	        container: "newmenuc"
@@ -53,18 +52,14 @@
  <li id="newmenuc">
  <form action="/cgi-bin/koha/members/memberentry.pl" method="get">
  <input type="hidden" name="op" value="add" />
- <label for="newcategorycode">New patron: </label><select name="categorycode" id="newcategorycode">
- [% IF ( AddPatronLists_categorycode ) %]
- [% FOREACH categorie IN categories %]<option value="[% categorie.categorycode %]">[% categorie.description %]</option>[% END %]
- [% ELSE %]
- <option value="A">Socio adulto</option>
+ <label for="newcategorycode">Nuevo socio: </label><select name="categorycode" id="newcategorycode">
+ [% IF ( AddPatronLists_categorycode ) %] [% FOREACH categorie IN categories %]<option value="[% categorie.categorycode %]">[% categorie.description %]</option>[% END %] [% ELSE %] <option value="A">Socio adulto</option>
  <option value="C">Socio infantil</option>
  <option value="P">Socio profesional</option>
  <option value="I">Institución</option>
  <option value="S">Administrativo</option>
  <option value="X">Estadístico</option>
- [% END %]
- </select>
+ [% END %] </select>
  <input value="Ir" type="submit" class="submit" />
  </form>
  </li>

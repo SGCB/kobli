@@ -1,14 +1,12 @@
- [% INCLUDE "doc-head-open.inc" %]
- <title>Koha &rsaquo; Circulation &rsaquo; Offline circulation</title>
- [% INCLUDE "doc-head-close.inc" %]
- <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+ [% INCLUDE "doc-head-open.inc" %] <title>Koha &rsaquo; Circulación &rsaquo; Circulación fuera de línea</title>
+ [% INCLUDE "doc-head-close.inc" %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
  <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
  <script type="text/javascript" language="javascript">
     //<![CDATA[
         $(document).ready(function() {
 
-        $("span.clearall").html("<a id=\"CheckNone\" href=\"/cgi-bin/koha/offline_circ/list.pl\">"+_('Uncheck all')+"<\/a>");
-        $("span.checkall").html("<a id=\"CheckAll\" href=\"/cgi-bin/koha/offline_circ/list.pl\">"+_('Check all')+"<\/a>");
+        $("span.clearall").html("<a id=\"CheckNone\" href=\"/cgi-bin/koha/offline_circ/list.pl\">"+_('De-seleccionar todo')+"<\/a>");
+        $("span.checkall").html("<a id=\"CheckAll\" href=\"/cgi-bin/koha/offline_circ/list.pl\">"+_('Verificar todo ')+"<\/a>");
             $('#CheckNone').click(function() {
                 $("#operations").unCheckCheckboxes();
                 return false;
@@ -28,19 +26,19 @@
                         dataType: "text",
                         success: function(data) {
                             if( data == "Added." ){
-                                cb.replaceWith(_("Added."));
+                                cb.replaceWith(_("Agregado."));
                             } else if ( data == "Deleted."){
-                                cb.replaceWith(_("Deleted."));
+                                cb.replaceWith(_("Eliminado."));
                             } else if ( data == "Success."){
-                                cb.replaceWith(_("Success."));
+                                cb.replaceWith(_("Éxito."));
                             } else if ( data == "Item not issued."){
-                                cb.replaceWith(_("Item not checked out."));
+                                cb.replaceWith(_("Ítem no prestado."));
                             } else if ( data == "Item not found."){
-                                cb.replaceWith(_("Item not found."));
+                                cb.replaceWith(_("El ítem no encontrado."));
                             } else if ( data == "Barcode not found."){
-                                cb.replaceWith(_("Item not found."));
+                                cb.replaceWith(_("El ítem no encontrado."));
                             } else if ( data == "Borrower not found."){
-                                cb.replaceWith(_("Patron not found."));
+                                cb.replaceWith(_("Socio no encontrado."));
                             } else {
                                 cb.replaceWith(data);
                             }
@@ -55,22 +53,16 @@
     </script>
 </head>
 <body id="ocirc_list" class="circ ocirc">
- [% INCLUDE 'header.inc' %]
- [% INCLUDE 'circ-search.inc' %]
-
- <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; Offline circulation</div>
+ [% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; Circulación fuera de línea </div>
 
  <div id="doc" class="yui-t7">
 
  <div id="bd">
 
- <h2>Offline circulation</h2>
+ <h2>Circulación fuera de línea</h2>
 
- [% IF ( pending_operations ) %]
-
- <form>
- <p><span class="checkall"></span> |
- <span class="clearall"></span></p>
+ [% IF ( pending_operations ) %] <form>
+ <p><span class="checkall"></span> | <span class="clearall"></span></p>
  <table id="operations">
  <thead>
  <tr>
@@ -78,48 +70,33 @@
  <th>Fecha</th>
  <th>Acción</th>
  <th>Código de barras</th>
- <th>Número de carnet</th>
+ <th>Número de Carnet</th>
  </tr>
  </thead>
  <tbody>
- [% FOREACH operation IN pending_operations %]
- <tr class="oc-[% operation.action %]">
+ [% FOREACH operation IN pending_operations %] <tr class="oc-[% operation.action %]">
  <td><input type="checkbox" name="operationid" value="[% operation.operationid %]" /></td>
  <td>[% operation.timestamp %]</td>
  <td>[% operation.action %]</td>
  <td>
- [% IF ( biblionumber ) %]
- <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% operation.biblionumber %]" title="[% operation.bibliotitle %]">[% operation.barcode %]</a>
- [% ELSE %]
- <span class="error">[% operation.barcode %]</span>
- [% END %]
- </td>
+ [% IF ( biblionumber ) %] <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% operation.biblionumber %]" title="[% operation.bibliotitle %]">[% operation.barcode %]</a>
+ [% ELSE %] <span class="error">[% operation.barcode %]</span>
+ [% END %] </td>
  <td>
- [% IF ( operation.actionissue ) %]
- [% IF ( operation.borrowernumber ) %]
- <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% operation.borrowernumber %]" title="[% operation.borrower %]">[% operation.cardnumber %]</a>
- [% ELSE %]
- <span class="error">[% operation.cardnumber %]</span>
- [% END %]
- [% END %]
- </td>
+ [% IF ( operation.actionissue ) %] [% IF ( operation.borrowernumber ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% operation.borrowernumber %]" title="[% operation.borrower %]">[% operation.cardnumber %]</a>
+ [% ELSE %] <span class="error">[% operation.cardnumber %]</span>
+ [% END %] [% END %] </td>
  </tr>
- [% END %]
- </tbody>
+ [% END %] </tbody>
  </table>
 
- <p id="actions">For the selected operations:
- <input type="button" id="process" value="Process" />
- <input value="Eliminar" type="button" id="delete" /></p>
+ <p id="actions">Para las operaciones seleccionadas: <input value="Procesar" type="button" id="process" />
+ <input value="Borrar" type="button" id="delete" /></p>
 
  </form>
 
- [% ELSE %]
+ [% ELSE %] <p>No hay operaciones fuera de línea pendientes. </p>
 
- <p>There is no pending offline operations.</p>
+ [% END %] </div>
 
- [% END %]
-
- </div>
-
- [% INCLUDE 'intranet-bottom.inc' %]
+ [% INCLUDE 'intranet-bottom.inc' %] 

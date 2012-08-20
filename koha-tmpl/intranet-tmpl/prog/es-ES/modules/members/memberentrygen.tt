@@ -1,8 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Socios &rsaquo; [% IF ( opadd ) %]Agregar[% ELSIF ( opduplicate ) %]Duplicar[% ELSE %] Modificar[% END %] [% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesioanl[% END %][% IF ( S ) %] Socio administrativo[% END %][% END %][% UNLESS ( opadd ) %] [% surname %], [% firstname %][% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'calendar.inc' %]
-<script type="text/JavaScript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; [% IF ( opadd ) %]Agregar[% ELSIF ( opduplicate ) %]Duplicar[% ELSE %] Modificar[% END %] [% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio del personal[% END %][% END %][% UNLESS ( opadd ) %] [% surname %], [% firstname %][% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/JavaScript">
 //<![CDATA[
     $(document).ready(function() {
 		$("fieldset.rows input").keydown(function(e){ return checkEnter(e); });
@@ -31,7 +28,7 @@
                 update_category_code( category_code );
             }
         [% END %]
-
+        $("#dateofbirth").datepicker({ maxDate: "-1D" });
     });
 
     function clear_entry(node) {
@@ -80,112 +77,62 @@
 
     }
 
-		var MSG_SEPARATOR = _("El separador debe ser / en el campo");
-        var MSG_INCORRECT_DAY = _("Día no válido ingresado en el campo");
-        var MSG_INCORRECT_MONTH = _("Mes no válido ingresado en el campo");
-        var MSG_INCORRECT_YEAR = _("Año no válido ingresado en el campo");
+		var MSG_SEPARATOR = _("El separador debe ser / en el campo ");
+        var MSG_INCORRECT_DAY = _("Día inválido ingresado en el campo ");
+        var MSG_INCORRECT_MONTH = _("Mes inválido ingresado en el campo ");
+        var MSG_INCORRECT_YEAR = _("Año inválido ingresado en el campo ");
         var MSG_DUPLICATE_PATRON = _("Atención: Socio duplicado");
-        var MSG_DUPLICATE_ORGANIZATION = _("Advertencia: Institución duplicada");
+        var MSG_DUPLICATE_ORGANIZATION = _("Advertencia: Organización duplicada");
         var MSG_LATE_EXPIRY = _("Advertencia: La fecha de expiración es posterior a la fecha de membresía");
         var MSG_MISSING_MANDATORY = _("Los siguientes campos son obligatorios:");
-        var MSG_DUPLICATE_SUSPICION = _("Por favor, confirma si este es un socio duplicado");
-        var MSG_PASSWORD_MISMATCH = _("The passwords entered do not match");
+        var MSG_DUPLICATE_SUSPICION = _("Por favor confirme si este es un socio duplicado");
+        var MSG_PASSWORD_MISMATCH = _("Las contraseñas ingresadas no coinciden");
 //]]>
 </script>
 <script type="text/javascript" src="[% themelang %]/js/members.js"></script>
 </head>
 <body id="pat_memberentrygen" class="pat">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'patron-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; [% IF ( opadd ) %] Agregar[% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio administrativo[% END %][% END %] [% surname %] [% firstname %] [% ELSE %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% firstname %] [% surname %]</a> &rsaquo; <strong>[% IF ( opduplicate ) %]Duplicar[% ELSE %]Modificar[% END %][% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio administrativo[% END %][% END %]</strong>[% END %]</div>
-[% IF ( opadd ) %]<div id="doc" class="yui-t7">[% ELSE %]<div id="doc3" class="yui-t2">[% END %]
- 
- <div id="bd">
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; [% IF ( opadd ) %] Agregar[% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional [% END %][% IF ( S ) %] Socio del personal[% END %][% END %] [% surname %] [% firstname %] [% ELSE %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% firstname %] [% surname %]</a> &rsaquo; <strong>[% IF ( opduplicate ) %]Duplicado[% ELSE %]Modificado[% END %][% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio del personal[% END %][% END %] </strong>[% END %]</div>
+[% IF ( opadd ) %]<div id="doc" class="yui-t7">[% ELSE %]<div id="doc3" class="yui-t2">[% END %] <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
 
- [% IF error_alert %]
- [% IF ( error_alert == "no_email" ) %]
- <div class="error">This member has no email</div>
- [% ELSE %]
- <div class="error">[% error_alert %]</div>
- [% END %]
- [% END %]
- [% IF info_alert %]
- <div class="dialog message">Email has been sent.</div>
- [% END %]
-
- [% IF ( no_add ) %]<div class="dialog alert"><h3>No se puede agregar socio</h3>
- [% IF ( no_branches ) %]<p>Hay<strong>no hay impresoras definidas</strong>. [% IF ( CAN_user_parameters ) %]Por favor<a href="/cgi-bin/koha/admin/branches.pl">agregar una biblioteca</a>.[% ELSE %]Un administrador debe definir al menos una biblioteca.[% END %]</p>[% END %]
- [% IF ( no_categories ) %]<p>Hay<strong>no hay categorías de socio definidas</strong>. [% IF ( CAN_user_parameters ) %]Por favor<a href="/cgi-bin/koha/admin/categorie.pl">agregar una categoría de socio</a>.[% ELSE %]Un administrador debe definir al menos una categoría de socio.</p>[% END %][% END %]</div>[% END %]
-
- [% UNLESS ( no_add ) %]
- [% IF ( opadd ) %]
- <h1>
- Agregar[% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio administrativo[% END %][% END %] [% firstname %] [% surname %]</h1>
- [% ELSE %]
- <h1>
- [% IF ( opduplicate ) %]Duplicar[% ELSE %]Modificar[% END %][% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio administrativo[% END %][% END %] [% firstname %] [% surname %]</h1>
- [% END %]
- 
- [% IF ( check_member ) %]
- <div class="dialog alert">
+ [% IF error_alert %] [% IF ( error_alert == "no_email" ) %] <div class="error">Este socio no tiene email</div>
+ [% ELSE %] <div class="error">[% error_alert %]</div>
+ [% END %] [% END %] [% IF info_alert %] <div class="dialog message">Email ha sido enviado.</div>
+ [% END %] [% IF ( no_add ) %]<div class="dialog alert"><h3>No se puede agregar socio</h3>
+ [% IF ( no_branches ) %]<p>Hay <strong>o hay bibliotecas definidas</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/branches.pl">agregar una biblioteca</a>.[% ELSE %]Un administrador debe definir al menos una biblioteca.[% END %]</p>[% END %] [% IF ( no_categories ) %]<p>Hay <strong>no hay definidas categorías de socios</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/categorie.pl">agregar una categoría de socio</a>.[% ELSE %]Un administrador debe definir al menos una categoría de socio.</p>[% END %][% END %]</div>[% END %] [% UNLESS ( no_add ) %] [% IF ( opadd ) %] <h1>
+ Agregar[% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio del personal[% END %][% END %] [% firstname %] [% surname %] </h1>
+ [% ELSE %] <h1>
+ [% IF ( opduplicate ) %]Duplicar[% ELSE %]Modificar[% END %][% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio del personal[% END %][% END %] [% firstname %] [% surname %] </h1>
+ [% END %] [% IF ( check_member ) %] <div class="dialog alert">
  <h3>¿Duplicar el registro de socio?</h3>
  <p><a class="popup" href="javascript:Dopop('moremember.pl?print=brief&amp;borrowernumber=[% check_member %]');" >Ver un registro existente</a></p>
  <form action="/cgi-bin/koha/members/memberentry.pl" method="get"><input type="hidden" name="op" value="modify" /><input type="hidden" name="borrowernumber" value="[% check_member %]" /><input type="hidden" name="category_type" value="[% check_categorytype %]" /><input value="Es un duplicado. Editar el registro existente" class="edit" type="submit" /></form>
 
- <form name="form_double" action="/cgi-bin/koha/members/memberentry.pl" method="post">
+ <form name="form_double" action="/cgi-bin/koha/members/memberentry.pl" method="post" autocomplete="off">
  <input type="hidden" name="nodouble" value="1" />
  <input value="No es un duplicado. Guardar como nuevo registro" class="new" type="submit" />
  </div>
- [% END %]
-
- [% IF ( debug ) %]
- <div id="debug">
+ [% END %] [% IF ( debug ) %] <div id="debug">
  <div>Nivel de depuración activado (nivel [% debug %])</div>
  </div>
- [% END %]
- [% IF ( nok ) %]
- <div class="dialog alert">
- <p>Los campos siguientes no son correctos. Por favor corrígelos.</p>
+ [% END %] [% IF ( nok ) %] <div class="dialog alert">
+ <p>Los campos siguientes son incorrectos. Por favor corríjalos.</p>
  <ul>
- [% IF ( ERROR_login_exist ) %]
- <li id="ERROR_login_exist">Nombre de usuario/contraseña ya existe.</li>
- [% END %]
- [% IF ( ERROR_cardnumber ) %]
- <li id="ERROR_cardnumber">Este número de carnet ya ha sido asignado.</li>
- [% END %]
- [% IF ( ERROR_age_limitations ) %]
- <li id="ERROR_age_limitations">La edad del socio no es correcta para esta categoría. Las edades permitidas son [% ERROR_age_limitations %].</li>
- [% END %]
- [% IF ( ERROR_branch ) %]
- <li id="ERROR_branch">La biblioteca no es válida.</li>
- [% END %] 
- [% IF ( ERROR_dateofbirth ) %]
- <li id="ERROR_dateofbirth">Fecha de nacimiento no válida.</li>
- [% END %]
- [% IF ( ERROR_dateenrolled ) %]
- <li id="ERROR_dateenrolled">Fecha de inscripción no válida.</li>
- [% END %]
- [% IF ( ERROR_dateexpiry ) %]
- <li id="ERROR_dateexpiry">Fecha de vencimiento no válida.</li>
- [% END %]
- [% IF ( ERROR_short_password ) %]
- <li id="ERROR_short_password">La contraseña debe tener al menos [% minPasswordLength %] caracteres.</li>
- [% END %]
- [% IF ( ERROR_password_mismatch ) %]
- <li id="ERROR_password_mismatch">Passwords do not match.</li>
- [% END %]
- [% IF ( ERROR_extended_unique_id_failed ) %]
- <li id="ERROR_extended_unique_id_failed">El valor del atributo [% ERROR_extended_unique_id_failed %] ya está en uso en otro registro de socio.</li>
- [% END %]
- </ul>
+ [% IF ( ERROR_login_exist ) %] <li id="ERROR_login_exist">Cuenta/contraseña ya existe.</li>
+ [% END %] [% IF ( ERROR_cardnumber ) %] <li id="ERROR_cardnumber">Este número de carnet ya ha sido asignado.</li>
+ [% END %] [% IF ( ERROR_age_limitations ) %] <li id="ERROR_age_limitations">La edad del socio es incorrecta para esta categoría. Las edades permitidas son [% ERROR_age_limitations %].</li>
+ [% END %] [% IF ( ERROR_branch ) %] <li id="ERROR_branch">La biblioteca no es válida.</li>
+ [% END %] [% IF ( ERROR_dateofbirth ) %] <li id="ERROR_dateofbirth">Fecha de nacimiento no válida</li>
+ [% END %] [% IF ( ERROR_dateenrolled ) %] <li id="ERROR_dateenrolled">Fecha de inscripción no válida.</li>
+ [% END %] [% IF ( ERROR_dateexpiry ) %] <li id="ERROR_dateexpiry">Fecha de cese inválida.</li>
+ [% END %] [% IF ( ERROR_short_password ) %] <li id="ERROR_short_password">La contraseña debe tener al menos [% minPasswordLength %] caracteres.</li>
+ [% END %] [% IF ( ERROR_password_mismatch ) %] <li id="ERROR_password_mismatch">Las contraseñas no coinciden.</li>
+ [% END %] [% IF ( ERROR_extended_unique_id_failed ) %] <li id="ERROR_extended_unique_id_failed">El valor del atributo [% ERROR_extended_unique_id_failed %] ya está en uso en otro registro de socio.</li>
+ [% END %] </ul>
  </div>
- [% END %]
-
-
-[% UNLESS ( check_member ) %]<form name="form" id="entryform"  action="/cgi-bin/koha/members/memberentry.pl" method="post">
+ [% END %] [% UNLESS ( check_member ) %]<form name="form" id="entryform"  action="/cgi-bin/koha/members/memberentry.pl" method="post" autocomplete="off">
 <input type="hidden" name="nodouble"  value="[% nodouble %]" /> [% END %]
 <!-- field always hidden in different form (1,2,3) -->
 <input type="hidden" name="BorrowerMandatoryField" value="[% BorrowerMandatoryField %]" />
@@ -196,490 +143,226 @@
 <input type="hidden" name="check_member" value="[% check_member %]" />
 <input type="hidden" name="borrowernumber" value="[% IF ( opduplicate ) %][% ELSE %][% borrowernumber %][% END %]" />
 <input type="hidden" name="nodouble"  value="[% IF ( opduplicate ) %][% ELSE %][% nodouble %][% END %]" />
-[% IF ( step ) %]<input type="hidden" name="step"  value="[% step %]" />[% END %]
-[% IF ( opadd ) %]<input type="hidden" name="op" value="insert" />
-[% ELSIF ( opduplicate ) %]
-<input type="hidden" name="op" value="insert" />
-[% ELSE %]
-<input type="hidden" name="op" value="save" />
-[% IF step == 4 || step == 5 || step == 6 || step == 2 || step == 1 %]
-[%# Only put the cardnumber if we arent showing it in the form later %]
-[% IF cardnumber %]
-<input type="hidden" name="cardnumber" value="[% cardnumber %]" />
-[% END %]
-[% END %]
-[% END %]
-
-[% IF ( step_1 ) %]
-[%UNLESS notitle && nosurname && nofirstname && nodateofbirth && noinitials && noothernames &&nosex %]
- <fieldset class="rows" id="memberentry_identity">
- <legend id="identity_lgd">[% IF ( I ) %]Institución [% ELSE %]Socio  [% END %]identidad</legend>
+[% IF ( step ) %]<input type="hidden" name="step"  value="[% step %]" />[% END %] [% IF ( opadd ) %]<input type="hidden" name="op" value="insert" />
+[% ELSIF ( opduplicate ) %] <input type="hidden" name="op" value="insert" />
+[% ELSE %] <input type="hidden" name="op" value="save" />
+[% IF step == 4 || step == 5 || step == 6 || step == 2 || step == 1 %] [%# Only put the cardnumber if we arent showing it in the form later %] [% IF cardnumber %] <input type="hidden" name="cardnumber" value="[% cardnumber %]" />
+[% END %] [% END %] [% END %] [% IF ( step_1 ) %] [%UNLESS notitle && nosurname && nofirstname && nodateofbirth && noinitials && noothernames &&nosex %] <fieldset class="rows" id="memberentry_identity">
+ <legend id="identity_lgd">[% IF ( I ) %]Institución [% ELSE %]Socio [% END %]identidad</legend>
  <ol>
- [% UNLESS ( I ) %]
- [% UNLESS notitle %]
- [% IF ( title_cgipopup ) %]
- <li>
- [% IF ( mandatorytitle ) %]
- <label for="btitle" class="required">
- [% ELSE %]
- <label for="btitle">
- [% END %] Saludo:</label>
- [% borrotitlepopup %]
- [% IF ( mandatorytitle ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% END %]
- [% END %]
- [% UNLESS nosurname %]
- <li>
- [% IF ( mandatorysurname ) %]
- <label for="surname" class="required">
- [% ELSE %]
- <label for="surname">
- [% END %] Apellido:</label>
- [% IF ( uppercasesurnames ) %]
- [% IF ( opduplicate ) %]
- <input style="text-transform:uppercase;" type="text" id="surname" name="surname" size="20"  value="[% surname %]" onclick="this.value=''" />
- [% ELSE %]
- <input style="text-transform:uppercase;" type="text" id="surname" name="surname" size="20"  value="[% surname %]" />
- [% END %]
- [% ELSE %]
- [% IF ( opduplicate ) %]
- <input type="text" id="surname" name="surname" size="20"  value="[% surname %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="surname" name="surname" size="20"  value="[% surname %]" />
- [% END %]
- [% END %]
- [% IF ( mandatorysurname ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS ( I ) %]
- [% UNLESS nofirstname %]
- <li>
- [% IF ( mandatoryfirstname ) %]
- <label for="firstname" class="required">
- [% ELSE %]
- <label for="firstname">
- [% END %] Nombre:</label>
+ [% UNLESS ( I ) %] [% UNLESS notitle %] [% IF ( title_cgipopup ) %] <li>
+ [% IF ( mandatorytitle ) %] <label for="btitle" class="required">
+ [% ELSE %] <label for="btitle">
+ [% END %] Saludo: </label>
+ [% borrotitlepopup %] [% IF ( mandatorytitle ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% END %] [% END %] [% UNLESS nosurname %] <li>
+ [% IF ( mandatorysurname ) %] <label for="surname" class="required">
+ [% ELSE %] <label for="surname">
+ [% END %] Apellido: </label>
+ [% IF ( uppercasesurnames ) %] [% IF ( opduplicate ) %] <input style="text-transform:uppercase;" type="text" id="surname" name="surname" size="20"  value="[% surname %]" onclick="this.value=''" />
+ [% ELSE %] <input style="text-transform:uppercase;" type="text" id="surname" name="surname" size="20"  value="[% surname %]" />
+ [% END %] [% ELSE %] [% IF ( opduplicate ) %] <input type="text" id="surname" name="surname" size="20"  value="[% surname %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="surname" name="surname" size="20"  value="[% surname %]" />
+ [% END %] [% END %] [% IF ( mandatorysurname ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS ( I ) %] [% UNLESS nofirstname %] <li>
+ [% IF ( mandatoryfirstname ) %] <label for="firstname" class="required">
+ [% ELSE %] <label for="firstname">
+ [% END %] Nombre: </label>
  <input type="text" id="firstname" name="firstname" size="20"  value="[% IF ( opduplicate ) %][% ELSE %][% firstname %][% END %]" />
- [% IF ( mandatoryfirstname ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS nodateofbirth %]
- <li>
- [% IF ( mandatorydateofbirth ) %]
- <label for="dateofbirth" class="required">
- [% ELSE %]
- <label for="dateofbirth">
- [% END %] Fecha de nacimiento:</label>
+ [% IF ( mandatoryfirstname ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS nodateofbirth %] <li>
+ [% IF ( mandatorydateofbirth ) %] <label for="dateofbirth" class="required">
+ [% ELSE %] <label for="dateofbirth">
+ [% END %] Fecha de nacimiento: </label>
  
- [% IF ( metric ) %] 
- <input type="text" id="dateofbirth" name="dateofbirth" size="20" onchange="CheckDate(document.form.dateofbirth);" value="[% IF ( opduplicate ) %][% ELSE %][% dateofbirth %][% END %]" />
-[% ELSE %]
- <input type="text" id="dateofbirth" name="dateofbirth" size="20" value="[% IF ( opduplicate ) %][% ELSE %][% dateofbirth %][% END %]" />
-[% END %]
-
- <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" id="dateofbirth_button" />
- <script language="JavaScript" type="text/javascript">
-            Calendar.setup(
-            {
-                inputField : "dateofbirth",
-                ifFormat : "[% DHTMLcalendar_dateformat %]",
-                button : "dateofbirth_button"
-            }
-            );
-        </script>
- [% IF ( mandatorydateofbirth ) %]<span class="required">Requerido</span>[% END %]
- [% IF ( ERROR_dateofbirth ) %]<span class="required">(Error)</span>[% END %]
- <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
+ [% IF ( metric ) %] <input type="text" id="dateofbirth" name="dateofbirth" size="20" onchange="CheckDate(document.form.dateofbirth);" value="[% IF ( opduplicate ) %][% ELSE %][% dateofbirth %][% END %]" />
+[% ELSE %] <input type="text" id="dateofbirth" name="dateofbirth" size="20" value="[% IF ( opduplicate ) %][% ELSE %][% dateofbirth %][% END %]" />
+[% END %] [% IF ( mandatorydateofbirth ) %]<span class="required">Requerido</span>[% END %] [% IF ( ERROR_dateofbirth ) %]<span class="required">(Error)</span>[% END %] <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
- [% END %]
- [% UNLESS noinitials %]
- <li>
- [% IF ( mandatoryinitials ) %]
- <label for="initials" class="required">
- [% ELSE %]
- <label for="initials">
- [% END %] Iniciales:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="initials" name="initials" size="20"  value="[% initials %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="initials" name="initials" size="20"  value="[% initials %]" />
- [% END %]
- [% IF ( mandatoryinitials ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% END %]
- [% UNLESS noothernames %]
- <li>
- [% IF ( mandatoryothernames ) %]
- <label for="othernames" class="required">
- [% ELSE %]
- <label for="othernames">
- [% END %] Otro nombre:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="othernames" name="othernames" size="20"  value="[% othernames %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="othernames" name="othernames" size="20"  value="[% othernames %]" />
- [% END %]
-[% IF ( mandatoryothernames ) %]<span class="required">Requerido</span>[% END %]
- [% IF ( I ) %]<input type="hidden" name="sex" value="N" />[% END %]
- </li>
- [% END %]
- [% UNLESS ( I ) %]
- [% UNLESS nosex %]
- <li class="radio">
+ [% END %] [% UNLESS noinitials %] <li>
+ [% IF ( mandatoryinitials ) %] <label for="initials" class="required">
+ [% ELSE %] <label for="initials">
+ [% END %] Iniciales: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="initials" name="initials" size="20"  value="[% initials %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="initials" name="initials" size="20"  value="[% initials %]" />
+ [% END %] [% IF ( mandatoryinitials ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% END %] [% UNLESS noothernames %] <li>
+ [% IF ( mandatoryothernames ) %] <label for="othernames" class="required">
+ [% ELSE %] <label for="othernames">
+ [% END %] Otro nombre: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="othernames" name="othernames" size="20"  value="[% othernames %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="othernames" name="othernames" size="20"  value="[% othernames %]" />
+ [% END %] [% IF ( mandatoryothernames ) %]<span class="required">Requerido</span>[% END %] [% IF ( I ) %]<input type="hidden" name="sex" value="N" />[% END %] </li>
+ [% END %] [% UNLESS ( I ) %] [% UNLESS nosex %] <li class="radio">
  
- [% IF ( female ) %]
- <label for="sex-female">Female </label><input type="radio" name="sex" id="sex-female" value="F" checked="checked"  />
-[% ELSE %]
- <label for="sex-female">Female </label><input type="radio" name="sex" id="sex-female" value="F" />
-[% END %]
- [% IF ( male ) %]
- <label for="sex-male">Male </label><input type="radio" name="sex" id="sex-male" value="M" checked="checked" />
-[% ELSE %]
- <label for="sex-male">Male </label><input type="radio" name="sex" id="sex-male" value="M" />
-[% END %]
-[% IF ( none ) %]
- <label for="sex-none">N/D</label><input type="radio" name="sex" id="sex-none" value=""  checked="checked"  />
-[% ELSE %]
- <label for="sex-none">N/D</label><input type="radio" name="sex" id="sex-none" value="" />
-[% END %]
- </li>
- [% END %]
- [% END %]
- </ol>
+ [% IF ( female ) %] <label for="sex-female">Femenino </label><input type="radio" name="sex" id="sex-female" value="F" checked="checked"  />
+[% ELSE %] <label for="sex-female">Femenino </label><input type="radio" name="sex" id="sex-female" value="F" />
+[% END %] [% IF ( male ) %] <label for="sex-male">Masculino </label><input type="radio" name="sex" id="sex-male" value="M" checked="checked" />
+[% ELSE %] <label for="sex-male">Masculino </label><input type="radio" name="sex" id="sex-male" value="M" />
+[% END %] [% IF ( none ) %] <label for="sex-none">N/D </label><input type="radio" name="sex" id="sex-none" value=""  checked="checked"  />
+[% ELSE %] <label for="sex-none">N/D </label><input type="radio" name="sex" id="sex-none" value="" />
+[% END %] </li>
+ [% END %] [% END %] </ol>
  </fieldset>
-[% END # hide fieldset %]
-
-[% IF ( showguarantor ) %]<input type="hidden" id="guarantorid" name="guarantorid"   value="[% guarantorid %]" />
+[% END # hide fieldset %] [% IF ( showguarantor ) %]<input type="hidden" id="guarantorid" name="guarantorid"   value="[% guarantorid %]" />
  <fieldset class="rows">
- <legend>Guarantor information</legend>
+ <legend>Información del garante</legend>
  <ol>
-[% IF ( P ) %]
- [% IF ( guarantorid ) %]
- <li id="contact-details">
- [% ELSE %]
- <li id="contact-details" style="display: none">
- [% END %]
- <span class="label">Institución #:</span> [% IF ( guarantorid ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% guarantorid %]" target="blank">[% guarantorid %]</a>[% END %]
- </li>
+[% IF ( P ) %] [% IF ( guarantorid ) %] <li id="contact-details">
+ [% ELSE %] <li id="contact-details" style="display: none">
+ [% END %] <span class="label">Institución #:</span> [% IF ( guarantorid ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% guarantorid %]" target="blank">[% guarantorid %]</a>[% END %] </li>
  <li>
- <label for="contactname">Nombre de la institución:</label>
- [% IF ( guarantorid ) %]
- <span>[% contactname %]</span>
+ <label for="contactname">Nombre de la institución: </label>
+ [% IF ( guarantorid ) %] <span>[% contactname %]</span>
  <input name="contactname" id="contactname" type="hidden" size="20" value="[% contactname %]" />
- [% ELSE %]
- [% IF ( opduplicate ) %]
- <input name="contactname" id="contactname" type="text" size="20" value="[% contactname %]" onclick="this.value=''" />
- [% ELSE %]
- <input name="contactname" id="contactname" type="text" size="20" value="[% contactname %]" />
- [% END %]
- [% END %]
- </li>
-[% ELSE %]
- [% IF ( C ) %]
- [% IF ( guarantorid ) %]
- <li id="contact-details">
- [% ELSE %]
- <li id="contact-details" style="display: none">
- [% END %]
- <span class="label">Socio #:</span> [% IF ( guarantorid ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% guarantorid %]" target="blank">[% guarantorid %]</a>[% END %]
- </li>
- [% UNLESS nocontactname %]
- <li>
- <label for="contactname">Apellido:</label>
- [% IF ( guarantorid ) %]
- <span>[% contactname %]</span>
+ [% ELSE %] [% IF ( opduplicate ) %] <input name="contactname" id="contactname" type="text" size="20" value="[% contactname %]" onclick="this.value=''" />
+ [% ELSE %] <input name="contactname" id="contactname" type="text" size="20" value="[% contactname %]" />
+ [% END %] [% END %] </li>
+[% ELSE %] [% IF ( C ) %] [% IF ( guarantorid ) %] <li id="contact-details">
+ [% ELSE %] <li id="contact-details" style="display: none">
+ [% END %] <span class="label">Socio #:</span> [% IF ( guarantorid ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% guarantorid %]" target="blank">[% guarantorid %]</a>[% END %] </li>
+ [% UNLESS nocontactname %] <li>
+ <label for="contactname">Apellido: </label>
+ [% IF ( guarantorid ) %] <span>[% contactname %]</span>
  <input name="contactname" id="contactname" type="hidden" size="20" value="[% contactname %]" />
- [% ELSE %]
- [% IF ( opduplicate ) %]
- <input name="contactname" id="contactname" type="text" size="20" value="[% contactname %]" onclick="this.value=''" />
- [% ELSE %]
- <input name="contactname" id="contactname" type="text" size="20" value="[% contactname %]" />
- [% END %]
- [% END %]
- </li>
- [% END %]
- [% UNLESS nocontactfirstname %]
- <li>
- <label for="contactfirstname">First name: </label>
- [% IF ( guarantorid ) %]
- <span>[% contactfirstname %]</span>
+ [% ELSE %] [% IF ( opduplicate ) %] <input name="contactname" id="contactname" type="text" size="20" value="[% contactname %]" onclick="this.value=''" />
+ [% ELSE %] <input name="contactname" id="contactname" type="text" size="20" value="[% contactname %]" />
+ [% END %] [% END %] </li>
+ [% END %] [% UNLESS nocontactfirstname %] <li>
+ <label for="contactfirstname">Nombre: </label>
+ [% IF ( guarantorid ) %] <span>[% contactfirstname %]</span>
  <input name="contactfirstname" id="contactfirstname" type="hidden" size="20" value="[% contactfirstname %]" />
- [% ELSE %]
- [% IF ( opduplicate ) %]
- <input name="contactfirstname" id="contactfirstname" type="text" size="20" value="[% contactfirstname %]" onclick="this.value=''" />
- [% ELSE %]
- <input name="contactfirstname" id="contactfirstname" type="text" size="20" value="[% contactfirstname %]" />
- [% END %]
- [% END %]
- </li>
- [% END %]
- [% IF ( relshiploop ) %]
- <li>
- <label for="relationship">Relación:</label>
+ [% ELSE %] [% IF ( opduplicate ) %] <input name="contactfirstname" id="contactfirstname" type="text" size="20" value="[% contactfirstname %]" onclick="this.value=''" />
+ [% ELSE %] <input name="contactfirstname" id="contactfirstname" type="text" size="20" value="[% contactfirstname %]" />
+ [% END %] [% END %] </li>
+ [% END %] [% IF ( relshiploop ) %] <li>
+ <label for="relationship">Relación: </label>
  <select name="relationship" id="relationship" >
- [% FOREACH relshiploo IN relshiploop %]
- [% IF ( relshiploo.selected ) %]
- <option value="[% relshiploo.relationship %]" selected="selected" >[% relshiploo.relationship %]</option>
- [% ELSE %]
- <option value="[% relshiploo.relationship %]">[% relshiploo.relationship %]</option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH relshiploo IN relshiploop %] [% IF ( relshiploo.selected ) %] <option value="[% relshiploo.relationship %]" selected="selected" >[% relshiploo.relationship %]</option>
+ [% ELSE %] <option value="[% relshiploo.relationship %]">[% relshiploo.relationship %]</option>
+ [% END %] [% END %] </select>
  </li>
- [% END %]
- [% END %]
-[% END %]
- <li>
+ [% END %] [% END %] [% END %] <li>
  <span class="label">&nbsp;</span>
- [% IF ( guarantorid ) %]
- <input value="Cambiar" id="guarantorsearch" type="button" onclick="Dopopguarantor('guarantor_search.pl?category_type=[% category_type %]');" />
- [% ELSE %]
- <input id="guarantorsearch" type="button" value="Set to patron" onclick="Dopopguarantor('guarantor_search.pl?category_type=[% category_type %]');" />
- [% END %]
- <input value="Eliminar" id="guarantordelete" type="button" />
+ [% IF ( guarantorid ) %] <input value="Cambiar" id="guarantorsearch" type="button" onclick="Dopopguarantor('guarantor_search.pl?category_type=[% category_type %]');" />
+ [% ELSE %] <input value="Establecer al socio" id="guarantorsearch" type="button" onclick="Dopopguarantor('guarantor_search.pl?category_type=[% category_type %]');" />
+ [% END %] <input value="Borrar" id="guarantordelete" type="button" />
  </li>
  </ol>
  </fieldset>
 
-[% END %]
-[% UNLESS noaddress && noaddress2 && nocity && nostate && nozipcode && nocountry %]
-<fieldset class="rows">
+[% END %] [% UNLESS noaddress && noaddress2 && nocity && nostate && nozipcode && nocountry %] <fieldset class="rows">
  <legend id="main_address_lgd">Dirección principal</legend><ol>
- [% UNLESS nostreetnumber %]
- <li>
- [% IF ( mandatorystreetnumber ) %]
- <label for="streetnumber" class="required">
- [% ELSE %]
- <label for="streetnumber">
- [% END %] Número de la dirección:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="streetnumber" name="streetnumber" size="5" value="[% streetnumber %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="streetnumber" name="streetnumber" size="5" value="[% streetnumber %]" />
- [% END %]
-[% IF ( mandatorystreetnumber ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS nostreettype %]
- [% IF ( road_cgipopup ) %]
- <li>
- [% IF ( mandatorystreettype ) %]
- <label for="streettype" class="required">
- [% ELSE %]
- <label for="streettype">
- [% END %] Tipo de calle:</label>
- [% roadpopup %]
- [% IF ( mandatorystreettype ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %] 
- [% END %]
- [% UNLESS noaddress %]
- <li>
- [% IF ( mandatoryaddress ) %]
- <label for="address" class="required">
- [% ELSE %]
- <label for="address">
- [% END %] Dirección:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="address" name="address" size="35" value="[% address %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="address" name="address" size="35" value="[% address %]" />
- [% END %]
- [% IF ( mandatoryaddress ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noaddress2 %]
- <li>
- [% IF ( mandatoryaddress2 ) %]
- <label for="address2" class="required">
- [% ELSE %]
- <label for="address2">
- [% END %] Dirección 2:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="address2" name="address2" size="35" value="[% address2 %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="address2" name="address2" size="35" value="[% address2 %]" />
- [% END %]
- [% IF ( mandatoryaddress2 ) %]<span class="required">Requerido</span>[% END %]
- </li> 
- [% END %]
- [% UNLESS nocity %]
- <li>
- [% IF ( mandatorycity ) %]
- <label for="city" class="required">
- [% ELSE %]
- <label for="city">
- [% END %] Ciudad:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="city" name="city" size="20" value="[% city %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="city" name="city" size="20" value="[% city %]" />
- [% END %]
- [% IF ( city_cgipopup ) %]or <strong>elige</strong>
+ [% UNLESS nostreetnumber %] <li>
+ [% IF ( mandatorystreetnumber ) %] <label for="streetnumber" class="required">
+ [% ELSE %] <label for="streetnumber">
+ [% END %] Número de calle: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="streetnumber" name="streetnumber" size="5" value="[% streetnumber %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="streetnumber" name="streetnumber" size="5" value="[% streetnumber %]" />
+ [% END %] [% IF ( mandatorystreetnumber ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS nostreettype %] [% IF ( road_cgipopup ) %] <li>
+ [% IF ( mandatorystreettype ) %] <label for="streettype" class="required">
+ [% ELSE %] <label for="streettype">
+ [% END %] Tipo de calle: </label>
+ [% roadpopup %] [% IF ( mandatorystreettype ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% END %] [% UNLESS noaddress %] <li>
+ [% IF ( mandatoryaddress ) %] <label for="address" class="required">
+ [% ELSE %] <label for="address">
+ [% END %] Dirección: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="address" name="address" size="35" value="[% address %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="address" name="address" size="35" value="[% address %]" />
+ [% END %] [% IF ( mandatoryaddress ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noaddress2 %] <li>
+ [% IF ( mandatoryaddress2 ) %] <label for="address2" class="required">
+ [% ELSE %] <label for="address2">
+ [% END %] Dirección 2: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="address2" name="address2" size="35" value="[% address2 %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="address2" name="address2" size="35" value="[% address2 %]" />
+ [% END %] [% IF ( mandatoryaddress2 ) %]<span class="required">Requerido</span>[% END %] </li> 
+ [% END %] [% UNLESS nocity %] <li>
+ [% IF ( mandatorycity ) %] <label for="city" class="required">
+ [% ELSE %] <label for="city">
+ [% END %] Ciudad: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="city" name="city" size="20" value="[% city %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="city" name="city" size="20" value="[% city %]" />
+ [% END %] [% IF ( city_cgipopup ) %]o <strong>elija</strong>
  <select id="select_city" name="select_city">
- [% FOREACH city_loo IN city_loop %]
- [% IF ( city_loo.selected ) %]
- <option value="[% city_loo.city_zipcode %]|[% city_loo.city_name %]|[% city_loo.city_state %]|[% city_loo.city_country %]" selected="selected">
- [% ELSE %]
- <option value="[% city_loo.city_zipcode %]|[% city_loo.city_name %]|[% city_loo.city_state %]|[% city_loo.city_country %]">
- [% END %]
- [% city_loo.city_name %] [% city_loo.city_state %] [% city_loo.city_zipcode %]
- </option>
- [% END %]
- </select>
- [% END %]
- [% IF ( mandatorycity ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS nostate %]
- <li> 
- [% IF ( mandatorystate ) %]
- <label for="state" class="required">
- [% ELSE %]
- <label for="state">
- [% END %]  Provincia:</label>
+ [% FOREACH city_loo IN city_loop %] [% IF ( city_loo.selected ) %] <option value="[% city_loo.city_zipcode %]|[% city_loo.city_name %]|[% city_loo.city_state %]|[% city_loo.city_country %]" selected="selected">
+ [% ELSE %] <option value="[% city_loo.city_zipcode %]|[% city_loo.city_name %]|[% city_loo.city_state %]|[% city_loo.city_country %]">
+ [% END %] [% city_loo.city_name %] [% city_loo.city_state %] [% city_loo.city_zipcode %] </option>
+ [% END %] </select>
+ [% END %] [% IF ( mandatorycity ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS nostate %] <li> 
+ [% IF ( mandatorystate ) %] <label for="state" class="required">
+ [% ELSE %] <label for="state">
+ [% END %] Estado: </label>
  <input type="text" name="state" id="state" size="20" value="[% state %]" />
- [% IF ( mandatorystate ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS nozipcode %]
- <li> 
- [% IF ( mandatoryzipcode ) %]
- <label for="zipcode" class="required">
- [% ELSE %]
- <label for="zipcode">
- [% END %] Código Postal:</label>
- [% IF ( opduplicate ) %]
- <input type="text" name="zipcode" id="zipcode" size="10" value="[% zipcode %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" name="zipcode" id="zipcode" size="10" value="[% zipcode %]" />
- [% END %]
- [% IF ( mandatoryzipcode ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS nocountry %]
- <li> 
- [% IF ( mandatorycountry ) %]
- <label for="country" class="required">
- [% ELSE %]
- <label for="country">
- [% END %] País:</label>
- [% IF ( opduplicate ) %]
- <input type="text" name="country" id="country" size="20" value="[% country %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" name="country" id="country" size="20" value="[% country %]" />
- [% END %]
- [% IF ( mandatorycountry ) %]<span class="required">Requerido</span>[% END %]
- </li> 
- [% END %]
- </ol>
+ [% IF ( mandatorystate ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS nozipcode %] <li> 
+ [% IF ( mandatoryzipcode ) %] <label for="zipcode" class="required">
+ [% ELSE %] <label for="zipcode">
+ [% END %] Código Postal: </label>
+ [% IF ( opduplicate ) %] <input type="text" name="zipcode" id="zipcode" size="10" value="[% zipcode %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" name="zipcode" id="zipcode" size="10" value="[% zipcode %]" />
+ [% END %] [% IF ( mandatoryzipcode ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS nocountry %] <li> 
+ [% IF ( mandatorycountry ) %] <label for="country" class="required">
+ [% ELSE %] <label for="country">
+ [% END %] País: </label>
+ [% IF ( opduplicate ) %] <input type="text" name="country" id="country" size="20" value="[% country %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" name="country" id="country" size="20" value="[% country %]" />
+ [% END %] [% IF ( mandatorycountry ) %]<span class="required">Requerido</span>[% END %] </li> 
+ [% END %] </ol>
  </fieldset>
-[% END # nostreet && nocity etc group%]
-
-[% UNLESS nophone && nophonepro && nomobile && noemail && noemailpro && nofax %]
- <fieldset class="rows" id="memberentry_contact">
+[% END # nostreet && nocity etc group%] [% UNLESS nophone && nophonepro && nomobile && noemail && noemailpro && nofax %] <fieldset class="rows" id="memberentry_contact">
  <legend id="contact_lgd">Contacto</legend><ol>
- [% UNLESS nophone %]
- <li>
- [% IF ( mandatoryphone ) %] 
- <label for="phone" class="required">
- [% ELSE %]
- <label for="phone">
- [% END %]
- Primary phone: </label>
- [% IF ( opduplicate ) %]
- <input type="text" id="phone" name="phone" value="[% phone %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="phone" name="phone" value="[% phone %]" />
- [% END %]
- [% IF ( mandatoryphone ) %]<span class="required">Requerido</span>[% END %]<div class="hint">Muestra slips en tránsito</div>
+ [% UNLESS nophone %] <li>
+ [% IF ( mandatoryphone ) %] <label for="phone" class="required">
+ [% ELSE %] <label for="phone">
+ [% END %] Teléfono principal: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="phone" name="phone" value="[% phone %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="phone" name="phone" value="[% phone %]" />
+ [% END %] [% IF ( mandatoryphone ) %]<span class="required">Requerido</span>[% END %]<div class="hint">Muestra slips en tránsito</div>
 
  </li>
- [% END %]
- [% UNLESS nophonepro %]
- <li>
- [% IF ( mandatoryphonepro ) %]
- <label for="phonepro" class="required">
- [% ELSE %]
- <label for="phonepro">
- [% END %]
- Secondary phone: </label>
- [% IF ( opduplicate ) %]
- <input type="text" id="phonepro" name="phonepro" value="[% phonepro %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="phonepro" name="phonepro" value="[% phonepro %]" />
- [% END %]
- [% IF ( mandatoryphonepro ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS nomobile %]
- <li>
- [% IF ( mandatorymobile ) %]
- <label for="mobile" class="required">
- [% ELSE %]
- <label for="mobile">
- [% END %]
- Other phone: </label>
- [% IF ( opduplicate ) %]
- <input type="text" id="mobile" name="mobile" value="[% mobile %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="mobile" name="mobile" value="[% mobile %]" />
- [% END %]
- [% IF ( mandatorymobile ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noemail %]
- <li>
- [% IF ( mandatoryemail ) %]
- <label for="email" class="required">
- [% ELSE %]
- <label for="email">
- [% END %]
- Primary email: </label>
- [% IF ( opduplicate ) %]
- <input type="text" id="email" name="email" size="45" value="[% email %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="email" name="email" size="45" value="[% email %]" />
- [% END %]
- [% IF ( mandatoryemail ) %]<span class="required">Requerido</span>[% END %]<div class="hint">Muestra slips en tránsito</div>
+ [% END %] [% UNLESS nophonepro %] <li>
+ [% IF ( mandatoryphonepro ) %] <label for="phonepro" class="required">
+ [% ELSE %] <label for="phonepro">
+ [% END %] Teléfono secundario: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="phonepro" name="phonepro" value="[% phonepro %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="phonepro" name="phonepro" value="[% phonepro %]" />
+ [% END %] [% IF ( mandatoryphonepro ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS nomobile %] <li>
+ [% IF ( mandatorymobile ) %] <label for="mobile" class="required">
+ [% ELSE %] <label for="mobile">
+ [% END %] Otro teléfono: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="mobile" name="mobile" value="[% mobile %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="mobile" name="mobile" value="[% mobile %]" />
+ [% END %] [% IF ( mandatorymobile ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noemail %] <li>
+ [% IF ( mandatoryemail ) %] <label for="email" class="required">
+ [% ELSE %] <label for="email">
+ [% END %] Email principal: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="email" name="email" size="45" value="[% email %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="email" name="email" size="45" value="[% email %]" />
+ [% END %] [% IF ( mandatoryemail ) %]<span class="required">Requerido</span>[% END %]<div class="hint">Muestra slips en tránsito</div>
 
  </li>
- [% END %]
- [% UNLESS noemailpro %]
- <li>
- [% IF ( mandatoryemailpro ) %] 
- <label for="emailpro" class="required">
- [% ELSE %]
- <label for="emailpro">
- [% END %]
- Secondary email: </label>
- [% IF ( opduplicate ) %]
- <input type="text" id="emailpro" name="emailpro" size="45" value="[% emailpro %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="emailpro" name="emailpro" size="45" value="[% emailpro %]" />
- [% END %]
- [% IF ( mandatoryemailpro ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS nofax %]
- <li>
- [% IF ( mandatoryfax ) %]
- <label for="fax" class="required">
- [% ELSE %]
- <label for="fax">
- [% END %] Fax:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="fax" name="fax" value="[% fax %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="fax" name="fax" value="[% fax %]" />
- [% END %]
- [% IF ( mandatoryfax ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- </ol>
+ [% END %] [% UNLESS noemailpro %] <li>
+ [% IF ( mandatoryemailpro ) %] <label for="emailpro" class="required">
+ [% ELSE %] <label for="emailpro">
+ [% END %] Email secundario: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="emailpro" name="emailpro" size="45" value="[% emailpro %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="emailpro" name="emailpro" size="45" value="[% emailpro %]" />
+ [% END %] [% IF ( mandatoryemailpro ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS nofax %] <li>
+ [% IF ( mandatoryfax ) %] <label for="fax" class="required">
+ [% ELSE %] <label for="fax">
+ [% END %] Fax: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="fax" name="fax" value="[% fax %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="fax" name="fax" value="[% fax %]" />
+ [% END %] [% IF ( mandatoryfax ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] </ol>
  </fieldset>
 [%END # hide fieldset %]
 
@@ -690,706 +373,326 @@
  [% UNLESS noB_address && noB_address2 && noB_city && noB_zipcode && noB_state && noB_country &&nocontactnote && noB_phone && noB_email %]
  <fieldset class="rows" id="memberentry_address">
  <legend id="alt_address_lgd">Dirección alternativa</legend><ol>
- [% UNLESS noB_address %]
- <li>
- [% IF ( mandatoryB_address ) %]
- <label for="B_address" class="required">
- [% ELSE %]
- <label for="B_address">
- [% END %] Dirección:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="B_address" name="B_address" size="40" value="[% B_address %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="B_address" name="B_address" size="40" value="[% B_address %]" />
- [% END %]
- [% IF ( mandatoryB_address ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noB_address2 %]
- <li>
- [% IF ( mandatoryB_address2 ) %]
- <label for="B_address2" class="required">
- [% ELSE %]
- <label for="B_address2">
- [% END %] Dirección 2:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="B_address2" name="B_address2" size="40" value="[% B_address2 %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="B_address2" name="B_address2" size="40" value="[% B_address2 %]" />
- [% END %]
- [% IF ( mandatoryB_address2 ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noB_city %]
- <li>
- [% IF ( mandatoryB_city ) %]
- <label for="B_city" class="required" >
- [% ELSE %]
- <label for="B_city">
- [% END %] Ciudad:</label>
+ [% UNLESS noB_address %] <li>
+ [% IF ( mandatoryB_address ) %] <label for="B_address" class="required">
+ [% ELSE %] <label for="B_address">
+ [% END %] Dirección: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="B_address" name="B_address" size="40" value="[% B_address %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="B_address" name="B_address" size="40" value="[% B_address %]" />
+ [% END %] [% IF ( mandatoryB_address ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noB_address2 %] <li>
+ [% IF ( mandatoryB_address2 ) %] <label for="B_address2" class="required">
+ [% ELSE %] <label for="B_address2">
+ [% END %] Dirección 2: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="B_address2" name="B_address2" size="40" value="[% B_address2 %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="B_address2" name="B_address2" size="40" value="[% B_address2 %]" />
+ [% END %] [% IF ( mandatoryB_address2 ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noB_city %] <li>
+ [% IF ( mandatoryB_city ) %] <label for="B_city" class="required" >
+ [% ELSE %] <label for="B_city">
+ [% END %] Ciudad: </label>
  <input type="text" id="B_city" name="B_city" size="20" value="[% B_city %]" />
- [% IF ( mandatoryB_city ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noB_state %]
- <li>
- [% IF ( mandatoryB_state ) %]
- <label for="B_state" class="required" >
- [% ELSE %]
- <label for="B_state">
- [% END %]  Provincia:</label>
+ [% IF ( mandatoryB_city ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noB_state %] <li>
+ [% IF ( mandatoryB_state ) %] <label for="B_state" class="required" >
+ [% ELSE %] <label for="B_state">
+ [% END %] Estado: </label>
  <input type="text" id="B_state" name="B_state" size="20" value="[% B_state %]" />
- [% IF ( mandatoryB_state ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noB_zipcode %]
- <li>
- [% IF ( mandatoryB_zipcode ) %]
- <label for="B_zipcode" class="required">
- [% ELSE %]
- <label for="B_zipcode">
- [% END %] Código Postal:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="B_zipcode" name="B_zipcode" maxlength="10" size="10" value="[% B_zipcode %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="B_zipcode" name="B_zipcode" maxlength="10" size="10" value="[% B_zipcode %]" />
- [% END %]
- [% IF ( mandatoryB_zipcode ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noB_country %]
- <li>
- [% IF ( mandatoryB_country ) %]
- <label for="B_country" class="required">
- [% ELSE %]
- <label for="B_country">
- [% END %] País:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="B_country" name="B_country" size="20" value="[% B_country %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="B_country" name="B_country" size="20" value="[% B_country %]" />
- [% END %]
- [% IF ( mandatoryB_country ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noB_phone %]
- <li>
- [% IF ( mandatoryB_phone ) %]
- <label for="B_phone" class="required">
- [% ELSE %]
- <label for="B_phone">
- [% END %] Teléfono:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="B_phone" name="B_phone" value="[% B_phone %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="B_phone" name="B_phone" value="[% B_phone %]" />
- [% END %]
- [% IF ( mandatoryB_phone ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noB_email %]
- <li> 
- [% IF ( mandatoryB_email ) %]
- <label for="B_email" class="required">
- [% ELSE %]
- <label for="B_email">
- [% END %] E-Mail:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="B_email" name="B_email" size="45" value="[% B_email %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="B_email" name="B_email" size="45" value="[% B_email %]" />
- [% END %]
- [% IF ( mandatoryB_email ) %]<span class="required">Requerido</span>[% END %] </li>
- [% END %]
- [% UNLESS nocontactnote %]
- <li>
- [% IF ( mandatorycontactnote ) %]
- <label for="contactnote" class="required">
- [% ELSE %]
- <label for="contactnote">
- [% END %] Nota de contacto:</label>
+ [% IF ( mandatoryB_state ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noB_zipcode %] <li>
+ [% IF ( mandatoryB_zipcode ) %] <label for="B_zipcode" class="required">
+ [% ELSE %] <label for="B_zipcode">
+ [% END %] Código Postal: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="B_zipcode" name="B_zipcode" maxlength="10" size="10" value="[% B_zipcode %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="B_zipcode" name="B_zipcode" maxlength="10" size="10" value="[% B_zipcode %]" />
+ [% END %] [% IF ( mandatoryB_zipcode ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noB_country %] <li>
+ [% IF ( mandatoryB_country ) %] <label for="B_country" class="required">
+ [% ELSE %] <label for="B_country">
+ [% END %] País: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="B_country" name="B_country" size="20" value="[% B_country %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="B_country" name="B_country" size="20" value="[% B_country %]" />
+ [% END %] [% IF ( mandatoryB_country ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noB_phone %] <li>
+ [% IF ( mandatoryB_phone ) %] <label for="B_phone" class="required">
+ [% ELSE %] <label for="B_phone">
+ [% END %] Teléfono: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="B_phone" name="B_phone" value="[% B_phone %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="B_phone" name="B_phone" value="[% B_phone %]" />
+ [% END %] [% IF ( mandatoryB_phone ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noB_email %] <li> 
+ [% IF ( mandatoryB_email ) %] <label for="B_email" class="required">
+ [% ELSE %] <label for="B_email">
+ [% END %] E-Mail: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="B_email" name="B_email" size="45" value="[% B_email %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="B_email" name="B_email" size="45" value="[% B_email %]" />
+ [% END %] [% IF ( mandatoryB_email ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS nocontactnote %] <li>
+ [% IF ( mandatorycontactnote ) %] <label for="contactnote" class="required">
+ [% ELSE %] <label for="contactnote">
+ [% END %] Nota de contacto: </label>
  <textarea id="contactnote" name="contactnote" cols="40" rows="2">[% contactnote %]</textarea>
- [% IF ( mandatorycontactnote ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- </ol>
+ [% IF ( mandatorycontactnote ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] </ol>
  </fieldset>
- [% END # UNLESS noB_address && noB_city && noB_state && noB_phone && noB_email %]
-[% END %]
-[% IF ( step_2 ) %]
- [% UNLESS noaltcontactsurname && noaltcontactfirstname && noaltcontactaddress1 && noaltcontactaddress2 && noaltcontactaddress3 && noaltcontactstate && noaltcontactzipcode && noaltcontactcountry && noaltcontactphone %]
- <fieldset class="rows" id="memberentry_altaddress"> 
- <legend id="alt_contact_lgd">Alternate contact</legend><ol>
- [% UNLESS noaltcontactsurname %]
- <li>
- [% IF ( mandatoryaltcontactsurname ) %]
- <label for="altcontactsurname" class="required">
- [% ELSE %]
- <label for="altcontactsurname">
+ [% END # UNLESS noB_address && noB_city && noB_state && noB_phone && noB_email %] [% END %] [% IF ( step_2 ) %] [% UNLESS noaltcontactsurname && noaltcontactfirstname && noaltcontactaddress1 && noaltcontactaddress2 && noaltcontactaddress3 && noaltcontactstate && noaltcontactzipcode && noaltcontactcountry && noaltcontactphone %] <fieldset class="rows" id="memberentry_altaddress"> 
+ <legend id="alt_contact_lgd">Contacto alternativo</legend><ol>
+ [% UNLESS noaltcontactsurname %] <li>
+ [% IF ( mandatoryaltcontactsurname ) %] <label for="altcontactsurname" class="required">
+ [% ELSE %] <label for="altcontactsurname">
  [% END %] Apellido:</label>
- [% IF ( opduplicate ) %]
- <input type="text" name="altcontactsurname" id="altcontactsurname" value="[% altcontactsurname %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" name="altcontactsurname" id="altcontactsurname" value="[% altcontactsurname %]" />
- [% END %]
- [% IF ( mandatoryaltcontactsurname ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noaltcontactfirstname %]
- <li>
- [% IF ( mandatoryaltcontactfirstname ) %]
- <label for="altcontactfirstname" class="required">
- [% ELSE %]
- <label for="altcontactfirstname">
+ [% IF ( opduplicate ) %] <input type="text" name="altcontactsurname" id="altcontactsurname" value="[% altcontactsurname %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" name="altcontactsurname" id="altcontactsurname" value="[% altcontactsurname %]" />
+ [% END %] [% IF ( mandatoryaltcontactsurname ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noaltcontactfirstname %] <li>
+ [% IF ( mandatoryaltcontactfirstname ) %] <label for="altcontactfirstname" class="required">
+ [% ELSE %] <label for="altcontactfirstname">
  [% END %] Nombre:</label>
- [% IF ( opduplicate ) %]
- <input type="text" name="altcontactfirstname" id="altcontactfirstname" value="[% altcontactfirstname %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" name="altcontactfirstname" id="altcontactfirstname" value="[% altcontactfirstname %]" />
- [% END %]
- [% IF ( mandatoryaltcontactfirstname ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noaltcontactaddress1 %]
- <li>
- [% IF ( mandatoryaltcontactaddress1 ) %]
- <label for="altcontactaddress1" class="required">
- [% ELSE %]
- <label for="altcontactaddress1">
+ [% IF ( opduplicate ) %] <input type="text" name="altcontactfirstname" id="altcontactfirstname" value="[% altcontactfirstname %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" name="altcontactfirstname" id="altcontactfirstname" value="[% altcontactfirstname %]" />
+ [% END %] [% IF ( mandatoryaltcontactfirstname ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noaltcontactaddress1 %] <li>
+ [% IF ( mandatoryaltcontactaddress1 ) %] <label for="altcontactaddress1" class="required">
+ [% ELSE %] <label for="altcontactaddress1">
  [% END %] Dirección:</label>
- [% IF ( opduplicate ) %]
- <input type="text" name="altcontactaddress1" id="altcontactaddress1" value="[% altcontactaddress1 %]" onclick="this.value=''" size="40" />
- [% ELSE %]
- <input type="text" name="altcontactaddress1" id="altcontactaddress1" value="[% altcontactaddress1 %]" size="40" />
- [% END %]
- [% IF ( mandatoryaltcontactaddress1 ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noaltcontactaddress2 %]
- <li>
- [% IF ( mandatoryaltcontactaddress2 ) %]
- <label for="altcontactaddress2" class="required">
- [% ELSE %]
- <label for="altcontactaddress2">
+ [% IF ( opduplicate ) %] <input type="text" name="altcontactaddress1" id="altcontactaddress1" value="[% altcontactaddress1 %]" onclick="this.value=''" size="40" />
+ [% ELSE %] <input type="text" name="altcontactaddress1" id="altcontactaddress1" value="[% altcontactaddress1 %]" size="40" />
+ [% END %] [% IF ( mandatoryaltcontactaddress1 ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noaltcontactaddress2 %] <li>
+ [% IF ( mandatoryaltcontactaddress2 ) %] <label for="altcontactaddress2" class="required">
+ [% ELSE %] <label for="altcontactaddress2">
  [% END %] Dirección 2:</label>
- [% IF ( opduplicate ) %]
- <input type="text" name="altcontactaddress2" id="altcontactaddress2" value="[% altcontactaddress2 %]" onclick="this.value=''" size="40" />
- [% ELSE %]
- <input type="text" name="altcontactaddress2" id="altcontactaddress2" value="[% altcontactaddress2 %]" size="40" />
- [% END %]
- [% IF ( mandatoryaltcontactaddress2 ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noaltcontactaddress3 %]
- <li>
- [% IF ( mandatoryaltcontactaddress3 ) %]
- <label for="altcontactaddress3" class="required">
- [% ELSE %]
- <label for="altcontactaddress3">
+ [% IF ( opduplicate ) %] <input type="text" name="altcontactaddress2" id="altcontactaddress2" value="[% altcontactaddress2 %]" onclick="this.value=''" size="40" />
+ [% ELSE %] <input type="text" name="altcontactaddress2" id="altcontactaddress2" value="[% altcontactaddress2 %]" size="40" />
+ [% END %] [% IF ( mandatoryaltcontactaddress2 ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noaltcontactaddress3 %] <li>
+ [% IF ( mandatoryaltcontactaddress3 ) %] <label for="altcontactaddress3" class="required">
+ [% ELSE %] <label for="altcontactaddress3">
  [% END %] Ciudad:</label>
  <input type="text" name="altcontactaddress3" id="altcontactaddress3" value="[% altcontactaddress3 %]" size="20" />
- [% IF ( mandatoryaltcontactaddress3 ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noaltcontactstate %]
- <li>
- [% IF ( mandatoryaltcontactstate ) %]
- <label for="altcontactstate" class="required">
- [% ELSE %]
- <label for="altcontactstate">
- [% END %] Provincia:</label>
+ [% IF ( mandatoryaltcontactaddress3 ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noaltcontactstate %] <li>
+ [% IF ( mandatoryaltcontactstate ) %] <label for="altcontactstate" class="required">
+ [% ELSE %] <label for="altcontactstate">
+ [% END %] Estado:</label>
  <input type="text" name="altcontactstate" id="altcontactstate" value="[% altcontactstate %]" size="20" />
- [% IF ( mandatoryaltcontactstate ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noaltcontactzipcode %]
- <li>
- [% IF ( mandatoryaltcontactzipcode ) %]
- <label for="altcontactzipcode" class="required">
- [% ELSE %]
- <label for="altcontactzipcode">
+ [% IF ( mandatoryaltcontactstate ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noaltcontactzipcode %] <li>
+ [% IF ( mandatoryaltcontactzipcode ) %] <label for="altcontactzipcode" class="required">
+ [% ELSE %] <label for="altcontactzipcode">
  [% END %] Código Postal:</label>
- [% IF ( opduplicate ) %]
- <input type="text" name="altcontactzipcode" id="altcontactzipcode" value="[% altcontactzipcode %]" onclick="this.value=''" size="5" />
- [% ELSE %]
- <input type="text" name="altcontactzipcode" id="altcontactzipcode" value="[% altcontactzipcode %]" size="5" />
- [% END %]
- [% IF ( mandatoryaltcontactzipcode ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noaltcontactcountry %]
- <li>
- [% IF ( mandatoryaltcontactcountry ) %]
- <label for="altcontactcountry" class="required">
- [% ELSE %]
- <label for="altcontactcountry">
+ [% IF ( opduplicate ) %] <input type="text" name="altcontactzipcode" id="altcontactzipcode" value="[% altcontactzipcode %]" onclick="this.value=''" size="5" />
+ [% ELSE %] <input type="text" name="altcontactzipcode" id="altcontactzipcode" value="[% altcontactzipcode %]" size="5" />
+ [% END %] [% IF ( mandatoryaltcontactzipcode ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noaltcontactcountry %] <li>
+ [% IF ( mandatoryaltcontactcountry ) %] <label for="altcontactcountry" class="required">
+ [% ELSE %] <label for="altcontactcountry">
  [% END %] País:</label>
- [% IF ( opduplicate ) %]
- <input type="text" name="altcontactcountry" id="altcontactcountry" value="[% altcontactcountry %]" onclick="this.value=''" size="20" />
- [% ELSE %]
- <input type="text" name="altcontactcountry" id="altcontactcountry" value="[% altcontactcountry %]" size="20" />
- [% END %]
- [% IF ( mandatoryaltcontactcountry ) %]<span class="required">Requerido</span>[% END %]
- </li> 
- [% END %]
- [% UNLESS noaltcontactphone %]
- <li>
- [% IF ( mandatoryaltcontactphone ) %]
- <label for="altcontactphone" class="required">
- [% ELSE %]
- <label for="altcontactphone">
+ [% IF ( opduplicate ) %] <input type="text" name="altcontactcountry" id="altcontactcountry" value="[% altcontactcountry %]" onclick="this.value=''" size="20" />
+ [% ELSE %] <input type="text" name="altcontactcountry" id="altcontactcountry" value="[% altcontactcountry %]" size="20" />
+ [% END %] [% IF ( mandatoryaltcontactcountry ) %]<span class="required">Requerido</span>[% END %] </li> 
+ [% END %] [% UNLESS noaltcontactphone %] <li>
+ [% IF ( mandatoryaltcontactphone ) %] <label for="altcontactphone" class="required">
+ [% ELSE %] <label for="altcontactphone">
  [% END %] Teléfono:</label>
- [% IF ( opduplicate ) %]
- <input type="text" name="altcontactphone" id="altcontactphone" value="[% altcontactphone %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" name="altcontactphone" id="altcontactphone" value="[% altcontactphone %]" />
- [% END %]
- [% IF ( mandatoryaltcontactphone ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- </ol>
+ [% IF ( opduplicate ) %] <input type="text" name="altcontactphone" id="altcontactphone" value="[% altcontactphone %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" name="altcontactphone" id="altcontactphone" value="[% altcontactphone %]" />
+ [% END %] [% IF ( mandatoryaltcontactphone ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] </ol>
  </fieldset>
- [% END # UNLESS noaltcontactsurname && noaltcontactfirstname etc %]
-
-[% END %]
-[% IF ( step_3 ) %]
-
- <fieldset class="rows" id="memberentry_library_management">
- <legend id="library_management_lgd">Library management</legend><ol>
- [% UNLESS nocardnumber %]
- <li> [% IF ( mandatorycardnumber ) %]
- <label for="cardnumber" class="required">
- [% ELSE %]
- <label for="cardnumber">
- [% END %] Número carné:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="cardnumber" name="cardnumber" size="20" />
- [% ELSE %]
- <input type="text" id="cardnumber" name="cardnumber" size="20" value="[% cardnumber %]" />
- [% END %]
- [% IF ( mandatorycardnumber ) %]<span class="required">Requerido</span>[% END %]</li>
- [% END %]
- [% UNLESS nobranchcode %]
- <li>
- [% IF ( mandatorybranchcode ) %]
- <label for="branchcode" class="required">
- [% ELSE %]
- <label for="branchcode">
- [% END %] Biblioteca:</label>
- [% CGIbranch %]
- [% IF ( mandatorybranchcode ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- <li>
- <label for="categorycode">Categoría:</label>
+ [% END # UNLESS noaltcontactsurname && noaltcontactfirstname etc %] [% END %] [% IF ( step_3 ) %] <fieldset class="rows" id="memberentry_library_management">
+ <legend id="library_management_lgd">Administración de biblioteca</legend><ol>
+ [% UNLESS nocardnumber %] <li> [% IF ( mandatorycardnumber ) %] <label for="cardnumber" class="required">
+ [% ELSE %] <label for="cardnumber">
+ [% END %] Número de socio: </label>
+ [% IF ( opduplicate ) %] <input type="text" id="cardnumber" name="cardnumber" size="20" />
+ [% ELSE %] <input type="text" id="cardnumber" name="cardnumber" size="20" value="[% cardnumber %]" />
+ [% END %] [% IF ( mandatorycardnumber ) %]<span class="required">Requerido</span>[% END %]</li>
+ [% END %] [% UNLESS nobranchcode %] <li>
+ [% IF ( mandatorybranchcode ) %] <label for="branchcode" class="required">
+ [% ELSE %] <label for="branchcode">
+ [% END %] Biblioteca: </label>
+ [% CGIbranch %] [% IF ( mandatorybranchcode ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] <li>
+ <label for="categorycode">Categoría: </label>
  <select id="categorycode" name="categorycode" onchange="update_category_code(this);">
- [% FOREACH typeloo IN typeloop %]
- [% FOREACH categoryloo IN typeloo.categoryloop %]
- [% IF ( loop.first ) %]
- [% IF ( typeloo.typename_C ) %]<optgroup value="C" label="Niño">[% END %]
- [% IF ( typeloo.typename_A ) %]<optgroup value="A" label="Adulto">[% END %]
- [% IF ( typeloo.typename_S ) %]<optgroup value="S" label="Administrativo">[% END %]
- [% IF ( typeloo.typename_I ) %]<optgroup value="I" label="Institución">[% END %]
- [% IF ( typeloo.typename_P ) %]<optgroup value="P" label="Profesional">[% END %]
- [% IF ( typeloo.typename_X ) %]<optgroup value="X" label="Estadístico">[% END %]
- [% END %]
- [% IF ( categoryloo.categorycodeselected ) %]
- <option value="[% categoryloo.categorycode %]" selected="selected" data-typename="[% typeloo.typename %]">[% categoryloo.categoryname %]</option>
- [% ELSE %]
- <option value="[% categoryloo.categorycode %]" data-typename="[% typeloo.typename %]">[% categoryloo.categoryname %]</option>
- [% END %]
- [% IF ( loop.last ) %]
- </optgroup>
- [% END %]
- [% END %]
- [% END %]
- </select>
+ [% FOREACH typeloo IN typeloop %] [% FOREACH categoryloo IN typeloo.categoryloop %] [% IF ( loop.first ) %] [% IF ( typeloo.typename_C ) %]<optgroup value="C" label="Niño">[% END %] [% IF ( typeloo.typename_A ) %]<optgroup value="A" label="Adulto">[% END %] [% IF ( typeloo.typename_S ) %]<optgroup value="S" label="Administrativo">[% END %] [% IF ( typeloo.typename_I ) %]<optgroup value="I" label="Institución">[% END %] [% IF ( typeloo.typename_P ) %]<optgroup value="P" label="Profesional">[% END %] [% IF ( typeloo.typename_X ) %]<optgroup value="X" label="Estadístico">[% END %] [% END %] [% IF ( categoryloo.categorycodeselected ) %] <option value="[% categoryloo.categorycode %]" selected="selected" data-typename="[% typeloo.typename %]">[% categoryloo.categoryname %]</option>
+ [% ELSE %] <option value="[% categoryloo.categorycode %]" data-typename="[% typeloo.typename %]">[% categoryloo.categoryname %]</option>
+ [% END %] [% IF ( loop.last ) %] </optgroup>
+ [% END %] [% END %] [% END %] </select>
  </li>
- [% UNLESS nosort1 %]
- <li>
- [% IF ( mandatorysort1 ) %]
- <label for="sort1" class="required">
- [% ELSE %]
- <label for="sort1">
- [% END %] Control1</label>
- [% IF ( CGIsort1 ) %] 
- [% CGIsort1 %]
- [% ELSE %]
- <input  type="text" id="sort1" name="sort1" size="20"  value="[% sort1 %]" />
- [% IF ( mandatorysort1 ) %]<span class="required">Requerido</span>[% END %]
- [% END %] 
- </li>
- [% END %]
- [% UNLESS nosort2 %]
- <li>
- [% IF ( mandatorysort2 ) %]
- <label for="sort2" class="required">
- [% ELSE %]
- <label for="sort2">
- [% END %] Orden 2:</label>
- [% IF ( CGIsort2 ) %] 
- [% CGIsort2 %]
- [% ELSE %]
- [% IF ( opduplicate ) %]
- <input  type="text" id="sort2" name="sort2" size="20"  value="[% sort2 %]" onclick="this.value=''" />
- [% ELSE %]
- <input  type="text" id="sort2" name="sort2" size="20"  value="[% sort2 %]" />
- [% END %]
- [% IF ( mandatorysort2 ) %]<span class="required">Requerido</span>[% END %]
- [% END %] 
- </li>
- [% END %]
- </ol>
+ [% UNLESS nosort1 %] <li>
+ [% IF ( mandatorysort1 ) %] <label for="sort1" class="required">
+ [% ELSE %] <label for="sort1">
+ [% END %] Orden 1: </label>
+ [% IF ( CGIsort1 ) %] [% CGIsort1 %] [% ELSE %] <input  type="text" id="sort1" name="sort1" size="20"  value="[% sort1 %]" />
+ [% IF ( mandatorysort1 ) %]<span class="required">Requerido</span>[% END %] [% END %] </li>
+ [% END %] [% UNLESS nosort2 %] <li>
+ [% IF ( mandatorysort2 ) %] <label for="sort2" class="required">
+ [% ELSE %] <label for="sort2">
+ [% END %] Orden 2: </label>
+ [% IF ( CGIsort2 ) %] [% CGIsort2 %] [% ELSE %] [% IF ( opduplicate ) %] <input  type="text" id="sort2" name="sort2" size="20"  value="[% sort2 %]" onclick="this.value=''" />
+ [% ELSE %] <input  type="text" id="sort2" name="sort2" size="20"  value="[% sort2 %]" />
+ [% END %] [% IF ( mandatorysort2 ) %]<span class="required">Requerido</span>[% END %] [% END %] </li>
+ [% END %] </ol>
  </fieldset>
- [% UNLESS nodateenrolled && nodateexpiry &&  noopacnote && noborrowernotes %]
- <fieldset class="rows" id="memberentry_subscription">
+ [% UNLESS nodateenrolled && nodateexpiry &&  noopacnote && noborrowernotes %] <fieldset class="rows" id="memberentry_subscription">
  <legend id="library_setup_lgd">Configuración de biblioteca</legend><ol>
- [% UNLESS nodateenrolled %]
- <li>
- [% IF ( mandatorydateenrolled ) %]
- <label for="dateenrolled" class="required">
- [% ELSE %]
- <label for="dateenrolled">
- [% END %] Fecha de registro:</label>
- [% IF ( metric ) %]
- <input type="text" id="dateenrolled" name="dateenrolled"  maxlength="10" size="10" onchange="CheckDate(document.form.dateenrolled);check_manip_date('verify');" value="[% dateenrolled %]" />
- [% ELSE %]
- <input type="text" id="dateenrolled" name="dateenrolled"  maxlength="10" size="10" value="[% dateenrolled %]" />
- [% END %]
- <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" id="dateenrolled_button" />
- <script language="JavaScript" type="text/javascript">
-        Calendar.setup(
-          {
-            inputField : "dateenrolled",
-            ifFormat : "[% DHTMLcalendar_dateformat %]",
-            button : "dateenrolled_button"
-          }
-        );
-      </script>
- [% IF ( mandatorydateenrolled ) %]<span class="required">Requerido</span>[% END %]
- [% IF ( ERROR_dateenrolled ) %]<span class="required">(Error)</span>[% END %]
- <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
+ [% UNLESS nodateenrolled %] <li>
+ [% IF ( mandatorydateenrolled ) %] <label for="from" class="required">
+ [% ELSE %] <label for="from">
+ [% END %] Fecha de registro: </label>
+ [% IF ( metric ) %] <input type="text" id="from" name="dateenrolled"  maxlength="10" size="10" onchange="CheckDate(document.form.dateenrolled);check_manip_date('verify');" value="[% dateenrolled %]" class="datepickerfrom" />
+ [% ELSE %] <input type="text" id="from" name="dateenrolled"  maxlength="10" size="10" value="[% dateenrolled %]" class="datepickerfrom" />
+ [% END %] [% IF ( mandatorydateenrolled ) %]<span class="required">Requerido</span>[% END %] [% IF ( ERROR_dateenrolled ) %]<span class="required">(Error)</span>[% END %] <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
- [% END %]
- [% UNLESS nodateexpiry %]
- <li>
- [% IF ( mandatorydateexpiry ) %]
- <label for="dateexpiry" class="required">
- [% ELSE %]
- <label for="dateexpiry">
- [% END %] Fecha de vencimiento (dejar en blanco para autocalcular)</label>
- [% IF ( metric ) %]
- [% UNLESS ( opadd ) %]
- <input type="text" id="dateexpiry" name="dateexpiry" maxlength="10"  size="10" onchange="CheckDate(document.form.dateexpiry);check_manip_date('verify');" value="[% dateexpiry %]" />
- [% ELSE %]
- <input type="text" id="dateexpiry" name="dateexpiry" maxlength="10"  size="10" onchange="CheckDate(document.form.dateexpiry);check_manip_date('verify');" />
- [% END %]
- [% ELSE %]
- [% UNLESS ( opadd ) %]
- <input type="text" id="dateexpiry" name="dateexpiry" maxlength="10"  size="10" value="[% dateexpiry %]" />
- [% ELSE %]
- <input type="text" id="dateexpiry" name="dateexpiry" maxlength="10"  size="10" />
- [% END %]
- [% END %]
- <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" id="dateexpiry_button" />
- <script language="JavaScript" type="text/javascript">
-        Calendar.setup(
-          {
-            inputField : "dateexpiry",
-            ifFormat : "[% DHTMLcalendar_dateformat %]",
-            button : "dateexpiry_button"
-          }
-        );
-      </script>
- [% IF ( mandatorydateexpiry ) %]<span class="required">Requerido</span>[% END %]
- [% IF ( ERROR_dateexpiry ) %]<span class="required">(Error)</span>[% END %]
- <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
+ [% END %] [% UNLESS nodateexpiry %] <li>
+ [% IF ( mandatorydateexpiry ) %] <label for="to" class="required">
+ [% ELSE %] <label for="to">
+ [% END %] Fecha de vencimiento (dejar en blanco para auto-calcular) </label>
+ [% IF ( metric ) %] [% UNLESS ( opadd ) %] <input type="text" id="to" name="dateexpiry" maxlength="10"  size="10" onchange="CheckDate(document.form.dateexpiry);check_manip_date('verify');" value="[% dateexpiry %]" class="datepickerto" />
+ [% ELSE %] <input type="text" id="to" name="dateexpiry" maxlength="10"  size="10" onchange="CheckDate(document.form.dateexpiry);check_manip_date('verify');" class="datepickerto" />
+ [% END %] [% ELSE %] [% UNLESS ( opadd ) %] <input type="text" id="to" name="dateexpiry" maxlength="10"  size="10" value="[% dateexpiry %]" class="datepickerto" />
+ [% ELSE %] <input type="text" id="to" name="dateexpiry" maxlength="10"  size="10" class="datepickerto" />
+ [% END %] [% END %] [% IF ( mandatorydateexpiry ) %]<span class="required">Requerido</span>[% END %] [% IF ( ERROR_dateexpiry ) %]<span class="required">(Error)</span>[% END %] <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
- [% END %]
- [% UNLESS noopacnote %]
- <li>
- [% IF ( mandatoryopacnote ) %]
- <label for="opacnote" class="required">
- [% ELSE %]
- <label for="opacnote">
- [% END %] Nota de OPAC:</label>
+ [% END %] [% UNLESS noopacnote %] <li>
+ [% IF ( mandatoryopacnote ) %] <label for="opacnote" class="required">
+ [% ELSE %] <label for="opacnote">
+ [% END %] Nota de OPAC: </label>
  <textarea id="opacnote" name="opacnote" cols="55" rows="5">[% opacnote %]</textarea>
- <div class="hint">Es mensaje se muestra en la página del socio en el OPAC</div>
- [% IF ( mandatoryopacnote ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- [% UNLESS noborrowernotes %]
- <li>
- [% IF ( mandatoryborrowernotes ) %] 
- <label for="borrowernotes" class="required">
- [% ELSE %]
- <label for="borrowernotes">
- [% END %] Nota de circulación:</label>
+ <div class="hint">Es mensaje se muestra en la página del socio en el OPAC.</div>
+ [% IF ( mandatoryopacnote ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] [% UNLESS noborrowernotes %] <li>
+ [% IF ( mandatoryborrowernotes ) %] <label for="borrowernotes" class="required">
+ [% ELSE %] <label for="borrowernotes">
+ [% END %] Nota de circulación: </label>
  <textarea id="borrowernotes" name="borrowernotes" cols="55" rows="5">[% borrowernotes %]</textarea>
- <div class="hint">Este mensaje se muestra cuando se hace un préstamo a este socio</div>
- [% IF ( mandatoryborrowernotes ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [% END %]
- </ol>
+ <div class="hint">Este mensaje se muestra cuando se presta a este socio</div>
+ [% IF ( mandatoryborrowernotes ) %]<span class="required">Requerido</span>[% END %] </li>
+ [% END %] </ol>
  </fieldset>
- [% END # hide fieldset %]
+ [% END # hide fieldset %] [% UNLESS nouserid && nopassword %] <fieldset class="rows" id="memberentry_userid">
+ <legend id="opac_staff_login_lgd">Usuario OPAC/Staff</legend><ol>
+ [% UNLESS nouserid %] <li>
+ [% IF ( mandatoryuserid ) %] <label for="userid" class="required">
+ [% ELSE %] <label for="userid">
+ [% END %] Nombre de usuario: </label>
 
- [% UNLESS nouserid && nopassword %]
- <fieldset class="rows" id="memberentry_userid">
- <legend id="opac_staff_login_lgd">OPAC/Staff login</legend><ol>
- [% UNLESS nouserid %]
+[% IF ( NoUpdateLogin ) %] [% IF ( opduplicate ) %] <input type="text" id="userid" name="userid" size="20" disabled="disabled" />
+ [% ELSE %] <input type="text" id="userid" name="userid" size="20" disabled="disabled" value="[% userid %]" />
+ [% END %] [% ELSE %] [% IF ( opduplicate ) %] <input type="text" id="userid" name="userid" size="20" value="" />
+ [% ELSE %] <input type="text" id="userid" name="userid" size="20" value="[% userid %]" />
+ [% END %] [% END %] [% IF ( mandatoryuserid ) %]<span class="required">Requerido</span>[% END %] </li>
+ [%END %] [% UNLESS nopassword %] <li>
+ [% IF ( mandatorypassword ) %] <label for="password" class="required">
+ [% ELSE %] <label for="password">
+ [% END %] Contraseña: </label>
+ [% IF ( opadd ) %] [% IF ( NoUpdateLogin ) %] [% IF ( opduplicate ) %] <input type="password" id="password" name="password" size="20"  disabled="disabled" />
+ [% ELSE %] <input type="password" id="password" name="password" size="20"  disabled="disabled" value="[% password %]" />
+ [% END %] [% ELSE %] [% IF ( opduplicate ) %] <input type="password" id="password" name="password" size="20" />
+ [% ELSE %] <input type="password" id="password" name="password" size="20" value="[% password %]" />
+ [% END %] [% END %] [% ELSE %] [% IF ( password ) %] [% IF ( NoUpdateLogin ) %] <input type="password" id="password" name="password" size="20"  disabled="disabled" value="****" />
+ [% ELSE %] [% IF ( opduplicate ) %] <input type="password" id="password" name="password" size="20" />
+ [% ELSE %] <input type="password" id="password" name="password" size="20" value="****" />
+ [% END %] [% END %] [% ELSE %] [% IF ( NoUpdateLogin ) %] <input type="password" id="password" name="password" size="20"  disabled="disabled" value="" />
+ [% ELSE %] <input type="password" id="password" name="password" size="20" value="" />
+ [% END %] [% END %] [% END %] [% IF ( mandatorypassword ) %]<span class="required">Requerido</span>[% END %][% IF ( ERROR_short_password ) %]<span class="required">La contraseña es demasiado corta</span>[% END %] [% IF ( minPasswordLength ) %]<div class="hint">Longitud mínima de contraseña: [% minPasswordLength %]</div>[% END %] </li>
  <li>
- [% IF ( mandatoryuserid ) %]
- <label for="userid" class="required">
- [% ELSE %]
- <label for="userid">
- [% END %] Nombre de usuario:</label>
-
-[% IF ( NoUpdateLogin ) %]
- [% IF ( opduplicate ) %]
- <input type="text" id="userid" name="userid" size="20" disabled="disabled" />
- [% ELSE %]
- <input type="text" id="userid" name="userid" size="20" disabled="disabled" value="[% userid %]" />
- [% END %]
-[% ELSE %]
- [% IF ( opduplicate ) %]
- <input type="text" id="userid" name="userid" size="20" value="" />
- [% ELSE %]
- <input type="text" id="userid" name="userid" size="20" value="[% userid %]" />
- [% END %]
-[% END %]
-
- [% IF ( mandatoryuserid ) %]<span class="required">Requerido</span>[% END %]
- </li>
- [%END %]
- [% UNLESS nopassword %]
- <li>
- [% IF ( mandatorypassword ) %]
- <label for="password" class="required">
- [% ELSE %]
- <label for="password">
- [% END %] Contraseña:</label>
- [% IF ( opadd ) %]
- [% IF ( NoUpdateLogin ) %]
- [% IF ( opduplicate ) %]
- <input type="password" id="password" name="password" size="20"  disabled="disabled" />
- [% ELSE %]
- <input type="password" id="password" name="password" size="20"  disabled="disabled" value="[% password %]" />
- [% END %]
-[% ELSE %]
- [% IF ( opduplicate ) %]
- <input type="password" id="password" name="password" size="20" />
- [% ELSE %]
- <input type="password" id="password" name="password" size="20" value="[% password %]" />
- [% END %]
-[% END %]
- [% ELSE %]
- [% IF ( password ) %]
- [% IF ( NoUpdateLogin ) %]
- <input type="password" id="password" name="password" size="20"  disabled="disabled" value="****" />
- [% ELSE %]
- [% IF ( opduplicate ) %]
- <input type="password" id="password" name="password" size="20" />
- [% ELSE %]
- <input type="password" id="password" name="password" size="20" value="****" />
- [% END %]
- [% END %]
- [% ELSE %]
- [% IF ( NoUpdateLogin ) %]
- <input type="password" id="password" name="password" size="20"  disabled="disabled" value="" />
- [% ELSE %]
- <input type="password" id="password" name="password" size="20" value="" />
- [% END %]
- [% END %]
- [% END %]
- [% IF ( mandatorypassword ) %]<span class="required">Requerido</span>[% END %][% IF ( ERROR_short_password ) %]<span class="required">La contraseña es demasiado corta</span>[% END %]
-[% IF ( minPasswordLength ) %]<div class="hint">Longitud mínima de contraseña: [% minPasswordLength %]</div>[% END %]
- </li>
- <li>
- [% IF ( mandatorypassword ) %]
- <label for="password2" class="required">
- [% ELSE %]
- <label for="password2">
- [% END %]
- Confirm password: </label>
- [% IF ( opadd ) %]
- [% IF ( NoUpdateLogin ) %]
- [% IF ( opduplicate ) %]
- <input type="password" id="password2" name="password2" size="20"  disabled="disabled" />
- [% ELSE %]
- <input type="password" id="password2" name="password2" size="20"  disabled="disabled" value="[% password %]" />
- [% END %]
-[% ELSE %]
- [% IF ( opduplicate ) %]
- <input type="password" id="password2" name="password2" size="20" />
- [% ELSE %]
- <input type="password" id="password2" name="password2" size="20" value="[% password %]" />
- [% END %]
-[% END %]
- [% ELSE %]
- [% IF ( password ) %]
- [% IF ( NoUpdateLogin ) %]
- <input type="password" id="password2" name="password2" size="20"  disabled="disabled" value="****" />
- [% ELSE %]
- [% IF ( opduplicate ) %]
- <input type="password" id="password2" name="password2" size="20" />
- [% ELSE %]
- <input type="password" id="password2" name="password2" size="20" value="****" />
- [% END %]
- [% END %]
- [% ELSE %]
- [% IF ( NoUpdateLogin ) %]
- <input type="password" id="password2" name="password2" size="20"  disabled="disabled" value="" />
- [% ELSE %]
- <input type="password" id="password2" name="password2" size="20" value="" />
- [% END %]
- [% END %]
- [% END %]
- [% IF ( mandatorypassword ) %]<span class="required">Requerido</span>[% END %][% IF ( ERROR_password_mismatch ) %]<span class="required">Passwords do not match</span>[% END %]
- </li>
+ [% IF ( mandatorypassword ) %] <label for="password2" class="required">
+ [% ELSE %] <label for="password2">
+ [% END %] Confirmar contraseña: </label>
+ [% IF ( opadd ) %] [% IF ( NoUpdateLogin ) %] [% IF ( opduplicate ) %] <input type="password" id="password2" name="password2" size="20"  disabled="disabled" />
+ [% ELSE %] <input type="password" id="password2" name="password2" size="20"  disabled="disabled" value="[% password %]" />
+ [% END %] [% ELSE %] [% IF ( opduplicate ) %] <input type="password" id="password2" name="password2" size="20" />
+ [% ELSE %] <input type="password" id="password2" name="password2" size="20" value="[% password %]" />
+ [% END %] [% END %] [% ELSE %] [% IF ( password ) %] [% IF ( NoUpdateLogin ) %] <input type="password" id="password2" name="password2" size="20"  disabled="disabled" value="****" />
+ [% ELSE %] [% IF ( opduplicate ) %] <input type="password" id="password2" name="password2" size="20" />
+ [% ELSE %] <input type="password" id="password2" name="password2" size="20" value="****" />
+ [% END %] [% END %] [% ELSE %] [% IF ( NoUpdateLogin ) %] <input type="password" id="password2" name="password2" size="20"  disabled="disabled" value="" />
+ [% ELSE %] <input type="password" id="password2" name="password2" size="20" value="" />
+ [% END %] [% END %] [% END %] [% IF ( mandatorypassword ) %]<span class="required">Requerido</span>[% END %][% IF ( ERROR_password_mismatch ) %]<span class="required">Las contraseñas no coinciden</span>[% END %] </li>
  </ol>
  </fieldset>
  [% END # hide fieldset %][% END %]
  <!--this zones are not necessary in modif mode -->
  [% UNLESS ( opadd ) %]
  <fieldset class="rows">
- <legend>Patron account flags</legend>
+ <legend>Indicadores de cuenta de socio</legend>
  <ol class="radio">
- [% FOREACH flagloo IN flagloop %]
- <li><label class="radio" for="yes[% flagloo.name %]">
- [% IF ( flagloo.key == 'gonenoaddress' ) %]Gone no address:[% END %]
- [% IF ( flagloo.key == 'debarred' ) %]Restricted:[% END %]
- [% IF ( flagloo.key == 'lost' ) %]Lost card:[% END %]
- </label>
- <label for="yes[% flagloo.name %]">Sí</label>
- [% IF ( flagloo.yes ) %]
- <input type="radio" id="yes[% flagloo.name %]" name="[% flagloo.name %]" value="1" checked="checked" />
- [% ELSE %]
- <input type="radio" id="yes[% flagloo.name %]" name="[% flagloo.name %]" value="1" />
- [% END %]
- <label for="no[% flagloo.name %]">No</label>
- [% IF ( flagloo.no ) %]
- <input type="radio" id="no[% flagloo.name %]" name="[% flagloo.name %]" value="0" checked="checked"/>
- [% ELSE %]
- <input type="radio" id="no[% flagloo.name %]" name="[% flagloo.name %]" value="0" />
- [% END %]
-
- </li>
- [% END %]
- <li>
- <label for="yesdebarred" class="radio">Restricted: </label>
- [% IF ( debarred ) %]
- <label for="yesdebarred">Sí</label>
+ [% FOREACH flagloo IN flagloop %] <li><label class="radio" for="yes[% flagloo.name %]">
+ [% IF ( flagloo.key == 'gonenoaddress' ) %]Desaparecido sin dirección:[% END %] [% IF ( flagloo.key == 'debarred' ) %]Restringido:[% END %] [% IF ( flagloo.key == 'lost' ) %]Carnet perdido:[% END %] </label>
+ <label for="yes[% flagloo.name %]">Sí </label>
+ [% IF ( flagloo.yes ) %] <input type="radio" id="yes[% flagloo.name %]" name="[% flagloo.name %]" value="1" checked="checked" />
+ [% ELSE %] <input type="radio" id="yes[% flagloo.name %]" name="[% flagloo.name %]" value="1" />
+ [% END %] <label for="no[% flagloo.name %]">No </label>
+ [% IF ( flagloo.no ) %] <input type="radio" id="no[% flagloo.name %]" name="[% flagloo.name %]" value="0" checked="checked"/>
+ [% ELSE %] <input type="radio" id="no[% flagloo.name %]" name="[% flagloo.name %]" value="0" />
+ [% END %] </li>
+ [% END %] <li>
+ <label for="yesdebarred" class="radio">Restringido:</label>
+ [% IF ( debarred ) %] <label for="yesdebarred">Sí </label>
  <input type="radio" id="yesdebarred" name="debarred" value="1" checked="checked"/>
- <label for="nodebarred">No</label>
+ <label for="nodebarred">No </label>
  <input type="radio" id="nodebarred" name="debarred" value="0"/>
- [% ELSE %]
- <label for="yesdebarred">Sí</label>
+ [% ELSE %] <label for="yesdebarred">Sí </label>
  <input type="radio" id="yesdebarred" name="debarred" value="1" />
- <label for="nodebarred">No</label>
+ <label for="nodebarred">No </label>
  <input type="radio" id="nodebarred" name="debarred" value="0" checked="checked"/>
- [% END %]
- 
- <br />
- <label for="datedebarred" class="radio">until:</label> 
- [% IF opduplicate %]
- <input type="text" name="datedebarred" id="datedebarred" class="debarred" value="[% datedebarred %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" name="datedebarred" id="datedebarred" class="debarred" value="[% datedebarred %]" />
- [% END %]
- <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" id="debarred_button" />
- <script language="JavaScript" type="text/javascript">
-		            Calendar.setup(
-		            {
-		                inputField : "datedebarred",
-		                ifFormat : "[% DHTMLcalendar_dateformat %]",
-		                button : "debarred_button"
-		            }
-		            );
-		        </script>
- <br />
- <label for="debarredcomment" class="radio">Comentario:</label>
- [% IF ( opduplicate ) %] 
- <textarea id="debarredcomment" name="debarredcomment" cols="55" rows="3" onclick="this.value=''">[% debarredcomment %]</textarea>
- [% ELSE %]
- <textarea id="debarredcomment" name="debarredcomment" cols="55" rows="3">[% debarredcomment %]</textarea>
- [% END %]
+ [% END %] <span id="debarreduntil"><label for="datedebarred" class="inline">Until:</label>
+ [% IF opduplicate %] <input type="text" name="datedebarred" id="datedebarred" class="debarred datepicker" value="[% datedebarred %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" name="datedebarred" id="datedebarred" class="debarred datepicker" value="[% datedebarred %]" />
+ [% END %] <span class="hint">(optional)</span> </span>
  </li>
+ <li>
+ <label for="debarredcomment" class="radio">Comentario:</label>
+ [% IF ( opduplicate ) %] <textarea id="debarredcomment" name="debarredcomment" cols="55" rows="3" onclick="this.value=''">[% debarredcomment %]</textarea>
+ [% ELSE %] <textarea id="debarredcomment" name="debarredcomment" cols="55" rows="3">[% debarredcomment %]</textarea>
+ [% END %] </li>
 
  </ol>
  </fieldset>
  
- [% END %]
-
-[% END %]
-
-[% IF ( step_4 ) %][% IF ( ExtendedPatronAttributes ) %][% UNLESS ( no_patron_attribute_types ) %]
- <fieldset class="rows" id="memberentry_patron_attributes">
+ [% END %] [% END %] [% IF ( step_4 ) %][% IF ( ExtendedPatronAttributes ) %][% UNLESS ( no_patron_attribute_types ) %] <fieldset class="rows" id="memberentry_patron_attributes">
  <input type="hidden" name="setting_extended_patron_attributes" value="1" />
  <legend>Atributos e identificadores adicionales</legend>
- [% FOREACH pa_loo IN patron_attributes %]
- [% IF pa_loo.class %]
- <h4>[% pa_loo.lib %]</h4>
- <table id=aai_[% pa_loo.class %] class="attributes_table">
- [% ELSE %]
- <table id="aai" class="attributes_table">
- [% END %]
- <thead>
+ [% FOREACH pa_loo IN patron_attributes %] [% IF pa_loo.class %] <table id="aai_[% pa_loo.class %]" class="attributes_table">
+ <caption>[% pa_loo.lib %]</caption>
+ [% ELSE %] <table id="aai" class="attributes_table">
+ [% END %] <thead>
  <tr>
  <th>Tipo</th>
  <th colspan="2">Valor</th>
  </tr>
  </thead>
  <tbody>
- [% FOREACH patron_attribute IN pa_loo.items %]
- <tr data-category_code="[% patron_attribute.category_code %]">
+ [% FOREACH patron_attribute IN pa_loo.items %] <tr data-category_code="[% patron_attribute.category_code %]">
  <td>
  [% patron_attribute.code %] ([% patron_attribute.description %]) </td>
  <td>
  <input type="hidden" id="[% patron_attribute.form_id %]_code" name="[% patron_attribute.form_id %]_code" value="[% patron_attribute.code |html %]" />
- [% IF ( patron_attribute.use_dropdown ) %]
- <select id="[% patron_attribute.form_id %]" name="[% patron_attribute.form_id %]">
+ [% IF ( patron_attribute.use_dropdown ) %] <select id="[% patron_attribute.form_id %]" name="[% patron_attribute.form_id %]">
  <option value="" />
- [% FOREACH auth_val_loo IN patron_attribute.auth_val_loop %]
- [% IF ( auth_val_loo.selected ) %]
- <option value="[% auth_val_loo.authorised_value %]" selected="selected">
- [% auth_val_loo.lib %]
- </option>
- [% ELSE %]
- <option value="[% auth_val_loo.authorised_value %]" >
- [% auth_val_loo.lib %]
- </option>
- [% END %]
- [% END %]
- </select>
- [% ELSE %]
- [% IF ( opduplicate ) %]
- <input type="text" maxlength="64" value="[% patron_attribute.value %]"
+ [% FOREACH auth_val_loo IN patron_attribute.auth_val_loop %] [% IF ( auth_val_loo.selected ) %] <option value="[% auth_val_loo.authorised_value %]" selected="selected">
+ [% auth_val_loo.lib %] </option>
+ [% ELSE %] <option value="[% auth_val_loo.authorised_value %]" >
+ [% auth_val_loo.lib %] </option>
+ [% END %] [% END %] </select>
+ [% ELSE %] [% IF ( opduplicate ) %] <input type="text" maxlength="64" value="[% patron_attribute.value %]"
                                    id="[% patron_attribute.form_id %]" name="[% patron_attribute.form_id %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" maxlength="64" value="[% patron_attribute.value %]"
+ [% ELSE %] <input type="text" maxlength="64" value="[% patron_attribute.value %]"
                                    id="[% patron_attribute.form_id %]" name="[% patron_attribute.form_id %]" />
- [% END %]
- [% END %]
- [% IF ( patron_attribute.password_allowed ) %]
- (Password: <input type="password" maxlength="64" value="[% patron_attribute.password %]"
+ [% END %] [% END %] [% IF ( patron_attribute.password_allowed ) %] (Contraseña: <input type="password" maxlength="64" value="[% patron_attribute.password %]"
                                    id="[% patron_attribute.form_id %]_password" name="[% patron_attribute.form_id %]_password" />) [% END %] </td>
  <td>
  <a href="#" onclick="clear_entry(this); return false;">Limpiar</a>
- [% IF ( patron_attribute.repeatable ) %]
- <a href="#" onclick="clone_entry(this); return false;">Nuevo</a>
- [% END %]
- </td>
+ [% IF ( patron_attribute.repeatable ) %] <a href="#" onclick="clone_entry(this); return false;">Nuevo</a>
+ [% END %] </td>
  </tr>
- [% END %]
- </tbody>
+ [% END %] </tbody>
  </table>
- [% END %]
- </fieldset>
-[% END %][% END %][% END %]
-
-[% IF ( step_5 ) %][% IF ( EnhancedMessagingPreferences ) %]
- <fieldset class="rows" id="memberentry_messaging_prefs">
+ [% END %] </fieldset>
+[% END %][% END %][% END %] [% IF ( step_5 ) %][% IF ( EnhancedMessagingPreferences ) %] <fieldset class="rows" id="memberentry_messaging_prefs">
  [% IF ( opadd ) %]
  <!-- handle changing prefs if creating new patron and changing
  the patron category
@@ -1435,42 +738,24 @@
         });
     //]]>
     </script>
- [% END %]
- <input type="hidden" name="setting_messaging_prefs" value="1" />
+ [% END %] <input type="hidden" name="setting_messaging_prefs" value="1" />
  <legend id="patron_messaging_prefs_lgd">Preferencias de mensajes de socios</legend>
- [% IF type_only %]
- <i>Si no se han establecido preferencias, las preferencias por defecto para la categoría elegida se aprlicarán al guardar, de otro modo tu selección está guardad aquí</i>
- [% END %]
- [% INCLUDE 'messaging-preference-form.inc' %]
- [% IF ( SMSSendDriver ) %]
- <p><label for="SMSnumber">Número SMS:</label>
- [% IF ( opduplicate ) %]
- <input type="text" id="SMSnumber" name="SMSnumber" value="[% SMSnumber %]" onclick="this.value=''" />
- [% ELSE %]
- <input type="text" id="SMSnumber" name="SMSnumber" value="[% SMSnumber %]" />
- [% END %]
- </p>
- [% END %]
- </fieldset>
-[% END %] [% END %]
-
- <fieldset class="action">
+ [% IF type_only %] <p>Si no se selecciona ninguna preferencia, al guardar se aplicarán las preferencias por defecto de la categoría elegida, de lo contrario se guardará lo que seleccione</p>
+ [% END %] [% INCLUDE 'messaging-preference-form.inc' %] [% IF ( SMSSendDriver ) %] <p><label for="SMSnumber">Número SMS:</label>
+ [% IF ( opduplicate ) %] <input type="text" id="SMSnumber" name="SMSnumber" value="[% SMSnumber %]" onclick="this.value=''" />
+ [% ELSE %] <input type="text" id="SMSnumber" name="SMSnumber" value="[% SMSnumber %]" />
+ [% END %] </p>
+ [% END %] </fieldset>
+[% END %] [% END %] <fieldset class="action">
  <input value="Guardar" name="save" type="submit" onclick="return check_form_borrowers();" />
- [% IF ( opadd ) %]
- <a class="cancel" href="/cgi-bin/koha/members/member.pl">Cancelar</a>
- [% ELSE %]
- <a class="cancel" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">Cancelar</a>
- [% END %]
- </fieldset>
+ [% IF ( opadd ) %] <a class="cancel" href="/cgi-bin/koha/members/member.pl">Cancelar</a>
+ [% ELSE %] <a class="cancel" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">Cancelar</a>
+ [% END %] </fieldset>
 </form>
  
 </div>
 </div>
 
 [% UNLESS ( opadd ) %]<div class="yui-b">
-[% INCLUDE 'members-menu.inc' %]
-</div>[% END %]
-[% END %]
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
-
+[% INCLUDE 'members-menu.inc' %] </div>[% END %] [% END %] </div>
+[% INCLUDE 'intranet-bottom.inc' %] 

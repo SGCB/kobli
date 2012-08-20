@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Admin &rsaquo; OAI set mappings</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Correspondencia de conjuntos OAI</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function() {
     // Some JS
@@ -26,27 +24,20 @@ function returnToSetsPage() {
 </head>
 
 <body id="admin_oai_set_mappings" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; <a href="/cgi-bin/koha/admin/oai_set_mappings.pl?id=[% id %]">OAI set mappings</a></div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administrador</a> &rsaquo; <a href="/cgi-bin/koha/admin/oai_set_mappings.pl?id=[% id %]">Correspondencia de conjunto OAI</a></div>
 
 <div id="doc3" class="yui-t2">
 
 <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% IF ( mappings_saved ) %]
- <div class="dialog">
- <p>Mappings have been saved</p>
- <p><a href="/cgi-bin/koha/admin/oai_sets.pl">Return to sets management</a></p>
+ [% IF ( mappings_saved ) %] <div class="dialog">
+ <p>Se han grabado correspondencias</p>
+ <p><a href="/cgi-bin/koha/admin/oai_sets.pl">Regresar a administración de conjuntos</a></p>
  </div>
- [% END %]
- <h1>Mappings for set '[% setName %]' ([% setSpec %])</h1>
- [% UNLESS ( mappings ) %]
- <p class="warning">Warning: no mappings defined for this set</p>
- [% END %]
- <form action="/cgi-bin/koha/admin/oai_set_mappings.pl" method="post" onsubmit="hideDialogBox();">
+ [% END %] <h1>Correspondencias para el conjunto '[% setName %]' ([% setSpec %])</h1>
+ [% UNLESS ( mappings ) %] <p class="warning">Atención: no hay correspondencias definidas para este conjunto</p>
+ [% END %] <form action="/cgi-bin/koha/admin/oai_set_mappings.pl" method="post" onsubmit="hideDialogBox();">
  <table id="mappings">
  <thead>
  <tr>
@@ -58,34 +49,25 @@ function returnToSetsPage() {
  </tr>
  </thead>
  <tbody>
- [% IF ( mappings ) %]
- [% FOREACH mapping IN mappings %]
- <tr>
+ [% IF ( mappings ) %] [% FOREACH mapping IN mappings %] <tr>
  <td><input type="text" name="marcfield" size="3" value="[% mapping.marcfield %]" /></td>
  <td style="text-align:center"><input type="text" name="marcsubfield" size="1" value="[% mapping.marcsubfield %]" /></td>
- <td>is equal to</td>
+ <td>es igual a </td>
  <td><input type="text" name="marcvalue" value="[% mapping.marcvalue %]" /></td>
  <td style="text-align:center">
- [% IF ( loop.last ) %]
- <input value="O" type="button" id="ORbutton" onclick="newCondition()" />
- [% ELSE %]
- OR
- [% END %]
- </td>
+ [% IF ( loop.last ) %] <input type="button" id="ORbutton" value="OR" onclick="newCondition()"/>
+ [% ELSE %] OR [% END %] </td>
  </tr>
- [% END %]
- [% ELSE %]
- <tr>
+ [% END %] [% ELSE %] <tr>
  <td><input type="text" name="marcfield" size="3" /></td>
  <td style="text-align:center"><input type="text" name="marcsubfield" size="1" /></td>
- <td>is equal to</td>
+ <td>es igual a </td>
  <td><input type="text" name="marcvalue" /></td>
- <td><input value="O" type="button" id="ORbutton" onclick="newCondition()" /></td>
+ <td><input type="button" id="ORbutton" value="OR" onclick="newCondition()"/></td>
  </tr>
- [% END %]
- </tbody>
+ [% END %] </tbody>
  </table>
- <p class="hint">Hint: to delete a line, empty at least one of the text fields in this line</p>
+ <p class="hint">Ayuda: para eliminar una línea, vacíe al menos uno de los campos de texto de esta línea</p>
  <input type="hidden" name="id" value="[% id %]" />
  <input type="hidden" name="op" value="save" />
  <fieldset class="action">
@@ -97,7 +79,6 @@ function returnToSetsPage() {
  </div>
  </div>
  <div class="yui-b">
- [% INCLUDE 'admin-menu.inc' %]
- </div>
+ [% INCLUDE 'admin-menu.inc' %] </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

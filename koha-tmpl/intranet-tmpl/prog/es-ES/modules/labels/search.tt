@@ -1,14 +1,12 @@
-[% INCLUDE 'doc-head-open.inc' %]<title>Inicio &rsaquo; Etiquetas</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'calendar.inc' %]
-<style type="text/css">#custom-doc { width:47.23em;*width:46.04em;min-width:610px; margin:auto;margin-top: .4em; text-align:left; }</style>
+[% INCLUDE 'doc-head-open.inc' %]<title>Koha &rsaquo; Etiquetas</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <style type="text/css">#custom-doc { width:47.23em;*width:46.04em;min-width:610px; margin:auto;margin-top: .4em; text-align:left; }</style>
 </head>
 <body id="labels_search" class="tools labels">
 
 <div id="custom-doc" class="yui-t7">
  <div id="bd">
 
-<h1>Buscar ítems [% IF ( batch_id ) %] para agregar al lote [% batch_id %] [% END %] </h1>
+<h1>Buscar ítems [% IF ( batch_id ) %] para agregar al procesamiento de lotes [% batch_id %] [% END %] </h1>
 
 <form name="f" method="post" action="/cgi-bin/koha/labels/label-item-search.pl">
  <input type="hidden" name="op" value="do_search" />
@@ -20,99 +18,41 @@
 <select name="idx" > <!-- FIXME: script does keyword search regardless -->
 
 [% IF ( selected ) %]<option value="kw" selected="selected">Palabra clave</option>
-[% ELSE %]<option value="kw">Palabra clave</option>[% END %]
+[% ELSE %]<option value="kw">Palabra clave</option>[% END %] [% IF ( selected ) %]<option value="au" selected="selected">Autor</option>
+[% ELSE %]<option value="au">Autor</option>[% END %] [% IF ( selected ) %]<option value="yr" selected="selected">Fecha de publicación</option>
+[% ELSE %]<option value="yr">Fecha de publicación</option>[% END %] [% IF ( selected ) %]<option value="sn" selected="selected">Numero estándar</option>
+[% ELSE %]<option value="sn">Numero estándar</option>[% END %] [% IF ( selected ) %]<option value="nb" selected="selected">ISBN</option>
+[% ELSE %]<option value="nb">ISBN</option>[% END %] [% IF ( selected ) %]<option value="ns" selected="selected">ISSN</option>
+[% ELSE %]<option value="ns">ISSN</option>[% END %] [% IF ( selected ) %]<option value="lcn,phr" selected="selected">Signatura</option>
+[% ELSE %]<option value="lcn,phr">Signatura</option>[% END %] [% IF ( selected ) %]<option value="su" selected="selected">Tema</option>
+[% ELSE %]<option value="su">Tema</option>[% END %] [% IF ( selected ) %] <option value="ti" selected="selected">Título</option>
+[% ELSE %] <option value="ti" selected="selected">Título</option>[% END %] [% IF ( selected ) %]<option value="ti,phr" selected="selected">Frase de título</option>
+[% ELSE %]<option value="ti,phr">Frase de título</option>[% END %] [% IF ( selected ) %]<option value="se" selected="selected">Título de publicación periódica</option>
+[% ELSE %]<option value="se">Título de publicación periódica</option>[% END %] [% IF ( selected ) %]<option value="bc" selected="selected">Código de barras</option>
+[% ELSE %]<option value="bc">Código de barras</option>[% END %] [% IF ( selected ) %]<option value="acqdate" selected="selected">Fecha de adquisición</option>
+[% ELSE %]<option value="acqdate">Fecha de adquisición</option>[% END %] </select>
 
-[% IF ( selected ) %]<option value="au" selected="selected">Autor</option>
-[% ELSE %]<option value="au">Autor</option>[% END %]
-
-[% IF ( selected ) %]<option value="yr" selected="selected">Fecha de publicación</option>
-[% ELSE %]<option value="yr">Fecha de publicación</option>[% END %]
-
-[% IF ( selected ) %]<option value="sn" selected="selected">Standard number</option>
-[% ELSE %]<option value="sn">Standard number</option>[% END %]
-
-[% IF ( selected ) %]<option value="nb" selected="selected">ISBN</option>
-[% ELSE %]<option value="nb">ISBN</option>[% END %]
-
-[% IF ( selected ) %]<option value="ns" selected="selected">ISSN</option>
-[% ELSE %]<option value="ns">ISSN</option>[% END %]
-
-[% IF ( selected ) %]<option value="lcn,phr" selected="selected">Signatura</option>
-[% ELSE %]<option value="lcn,phr">Signatura</option>[% END %]
-
-[% IF ( selected ) %]<option value="su" selected="selected">Tema</option>
-[% ELSE %]<option value="su">Tema</option>[% END %]
-
-[% IF ( selected ) %]
- <option value="ti" selected="selected">Título</option>
-[% ELSE %]
- <option value="ti" selected="selected">Título</option>[% END %]
-
-[% IF ( selected ) %]<option value="ti,phr" selected="selected">Title phrase</option>
-[% ELSE %]<option value="ti,phr">Title phrase</option>[% END %]
-
-[% IF ( selected ) %]<option value="se" selected="selected">Series title</option>
-[% ELSE %]<option value="se">Series title</option>[% END %]
-
-[% IF ( selected ) %]<option value="bc" selected="selected">Código de barras</option>
-[% ELSE %]<option value="bc">Código de barras</option>[% END %]
-
-[% IF ( selected ) %]<option value="acqdate" selected="selected">Acquisition date</option>
-[% ELSE %]<option value="acqdate">Acquisition date</option>[% END %]
-</select>
-
- <input value="" name="ccl_textbox" type="text" id="ccl_textbox" class="focus" title="Ingresa términos de búsqueda" size="30" />
+ <input value="" name="ccl_textbox" type="text" id="ccl_textbox" class="focus" title="Ingrese términos de búsqueda" size="30" />
 
 </li>
 </ol>
 </fieldset>
 
-[% IF ( sort_by_loop ) %]
-<fieldset><legend>Ordenar por :</legend>
+[% IF ( sort_by_loop ) %] <fieldset><legend>Ordenar por : </legend>
  <p><select id="sort_by" name="sort_by">
- <option value="">Field-weighted, relevance ranked</option>
- [% FOREACH sort_by_loo IN sort_by_loop %]
-
-[% IF ( sort_by_loo.selected ) %]<option value="[% sort_by_loo.value %]" selected="selected">[% sort_by_loo.label %]</option>[% ELSE %]<option value="[% sort_by_loo.value %]">[% sort_by_loo.label %]</option>[% END %]
-
- [% END %]
- </select>
+ <option value="">Valoración de campo, ranking por relevancia</option>
+ [% FOREACH sort_by_loo IN sort_by_loop %] [% IF ( sort_by_loo.selected ) %]<option value="[% sort_by_loo.value %]" selected="selected">[% sort_by_loo.label %]</option>[% ELSE %]<option value="[% sort_by_loo.value %]">[% sort_by_loo.label %]</option>[% END %] [% END %] </select>
  </p>
-</fieldset>[% END %]
-
-
-
-
-<fieldset class="rows">
+</fieldset>[% END %] <fieldset class="rows">
 <ol>
  <li>
- <label for="datefrom">Agregado en la fecha o después de la fecha</label>
- <input type="text" size="10" id="datefrom" name="datefrom" value="" />
- <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" id="openCalendarFrom" border="0" />
-<script type="text/javascript">
-    Calendar.setup({
-        inputField     :    "datefrom",
-      ifFormat : "[% DHTMLcalendar_dateformat %]",
-        button         :    "openCalendarFrom",
-        align          :    "Tl",
-        singleClick    :    false
-    });
-</script>
+ <label for="from">Agregado en o después de la fecha</label>
+ <input type="text" size="10" id="from" name="datefrom" class="datepickerfrom" value="" />
 <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
 </li>
 <li>
- <label for="dateto">Agregado en la fecha o después de la fecha</label>
- <input type="text" size="10" id="dateto" name="dateto" value="" />
- <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" id="openCalendarTo" border="0" />
-
-<script type="text/javascript">
-    Calendar.setup({
-        inputField     :    "dateto",
-      ifFormat : "[% DHTMLcalendar_dateformat %]",
-        button         :    "openCalendarTo",
-        align          :    "Tl"
-    });
-</script>
+ <label for="to">Agregado en o antes de la fecha</label>
+ <input type="text" size="10" id="to" name="dateto" class="datepickerto" value="" />
 <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
 </li></ol>
 </fieldset>
@@ -121,4 +61,4 @@
 </form>
 </div>
 </div>
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

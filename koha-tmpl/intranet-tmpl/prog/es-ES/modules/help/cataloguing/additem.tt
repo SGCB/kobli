@@ -1,62 +1,59 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h2>Agregando ítems</h2>
 
-<h2>Adding items</h2>
+<p>Luego de guardar un nuevo registro bibliográfico, será redirigido a un ítem vacío para que pueda asociar un ítem el registro. También puede hacer clic en 'Agregar existencias' desde los resultado de búsqueda o puede agregar un nuevo ítem en cualquier momento haciendo clic en 'Nuevo' en el registro bibliográfico y seleccionando 'Nuevo ítem'</p>
 
-<p>After saving a new bibliographic record, you will be redirected to a blank item record so that you can attach an item to the bibliographic record. You can also click 'Add holdings' from the cataloging search results or you can add new item at any time by clicking 'New' on the bibliographic record and choosing 'New item'</p>
+<p>El formulario de edición del ítem aparecerá:</p>
 
-<p>El formulario de revisión de ítems aparecerá:</p>
-
-<p>At the very least, if you plan on circulating the item, the following fields should be entered for new items:</p>
+<p>Como mínimo, si Usted planea prestar el ítem, los siguientes campos deben ser ingresados para nuevos ítems:</p>
 
 <ul>
- <li>2 - Source of classification</li>
- <li>a - Ubicación permanente</li>
- <li>b - Ubicación de estantería</li>
- <li>o - Full call number</li>
- <li>p - Código de barras</li>
- <li>v - Cost, replacement price
-<ul>
- <li>El valor se reembolsará a los socios cuando marques un ítem prestado como 'Perdido'</li>
+ <li>2- Fuente de la clasificación</li>
+ <li>a- Ubicación permanente</li>
+ <li>b- Ubicación de estantería:</li>
+ <li>o- Signatura topográfica completa</li>
+ <li>p- Código de barras</li>
+ <li>v- Costo, precio de reposición <ul>
+ <li>Este valor será cargado a los socios cuando marque un ítem prestado como 'Perdido'</li>
 </ul>
 </li>
- <li>y - Tipo de ítem de Koha</li>
+ <li>y- Tipo de ítem de Koha</li>
 </ul>
 
 <p>Bajo el formulario hay 3 botones para agregar un ítem</p>
 
 <ul>
- <li>'Add item' will add just the one item</li>
- <li>'Add &amp; duplicate' will add the item and fill in a new form with the same values for your to alter</li>
- <li>'Add multiple copies' will ask how many copies and will then add that number of copies adding +1 to the barcode so each barcode is unique</li>
+ <li>'Agregar ítem' solo agregará un ítem</li>
+ <li>'Agregar &amp; duplicar' agregará el ítem y generará un nuevo formulario con los mismos datos, para que los modifique</li>
+ <li>'Agregar múltiples copias' le preguntará cuantas copias y luego las agregará adicionando +1 al código de barras de modo que cada uno sea único</li>
 </ul>
 
-<p>Tus ítems añadidos aparecerán arriba del formulario una vez lo hayas enviado</p>
+<p>Sus ítems agregados aparecerán encima del formulario una vez enviado el formulario</p>
 
-<p>Tus ítems también aparecerán bajo los detalles bibliográficos en el visualizados de los registros bibliográficos.</p>
+<p>Sus ítems también aparecerán bajo los detalles bibliográficos en la pantalla de los registros bibliográficos.</p>
 
-<p>Si has fijado SpineLabelShowPrintOnBibDetails como 'Mostrar' habrá también un enlace para imprimir de forma rápida una etiqueta de lomo al lado de cada ítem.</p>
+<p>Si usted tiene SpineLabelShowPrintOnBibDetails en 'Mostrar', entonces también habrá un enlace para imprimir una etiqueta rápida junto a cada artículo.</p>
 
-<h2>Editing items</h2>
+<h2>Editando ítems</h2>
 
-<p>Los ítems pueden editarse de muchas maneras.</p>
+<p>Los ítems pueden ser editados de varias formas.</p>
 
 <ul>
- <li>Clicking 'Edit' and 'Edit items' from the bibliographic record</li>
- <li>Clicking 'Edit items' beside the item on the 'Items' tab</li>
+ <li>Haciendo clic en 'Editar' y 'Editar ítems' desde el registro bibliográfico</li>
+ <li>Haciendo clic en 'Editar ítems' al lado del ítem en la pestaña 'Ítems'</li>
 </ul>
 
-<p>Los ítems también pueden ser eliminados desde el menú de edición</p>
+<p>El menú de edición es también donde los ítems pueden borrar</p>
 
-<h2>Deleting items</h2>
+<h2>Eliminando ítems</h2>
 
-<p>There are many ways to delete item records. If you only need to delete one item you can do this by opening up the detail page for the bib record and clicking the 'Edit' button at the top. From there you can choose to 'Edit items'.</p>
+<p>Hay varias maneras de eliminar registros. Si solo necesita eliminar un ítem puede hacerlo abriendo la página de detalles del registro bibliográfico y haciendo clic en el botón 'Editar' en el tope. Desde aquí puede elegir 'Editar ítems'.</p>
 
-<p>You will be presented with a list of items and next to each one will be a link labeled 'Delete'. Click that link and if the item is not checked out it will delete that item.</p>
+<p>Se le presentará una lista de ítems y a lado de cada uno un enlace etiquetado 'Eliminar'. Haga clic en ese enlace y si el ítem no está prestado se eliminará ese ítem.</p>
 
-<p>If you know that all of the items attached to your record are not currently checked out you can use the 'Delete all items' option under the 'Edit menu' and it will remove all items from the record.</p>
+<p>Si sabe que todos los ítem del registro no están prestados puede utilizar la opción 'Eliminar todos los ítems' en 'Menú de edición' y removerá todos los ítems del registro.</p>
 
-<p>Finally you can use the batch delete tool to delete a batch of items.</p>
+<p>Finalmente puede utilizar la herramienta de eliminación de ítems en lote.</p>
 
-<p><strong>See the full documentation for Adding/Editing Items in the <a href="http://manual.koha-community.org/3.8/en/catitems.html">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Adding/Editing Items in the <a href="http://manual.koha-community.org/3.8/en/catitems.html">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

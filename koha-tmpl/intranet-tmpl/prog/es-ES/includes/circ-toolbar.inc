@@ -3,21 +3,21 @@
 	//<![CDATA[
 
 function confirm_deletion() {
-    var is_confirmed = window.confirm(_('¿Estás seguro de que quieres eliminar este socio? Esta operación es irreversible.'));
+    var is_confirmed = window.confirm(_('¿Está seguro de querer borrar este socio? Esto no puede deshacerse.'));
     if (is_confirmed) {
         window.location='/cgi-bin/koha/members/deletemem.pl?member=[% borrowernumber %]';
     }
 }
 
 function confirm_updatechild() {
-    var is_confirmed = window.confirm(_('¿Estás seguro de que quieres actualizar este niño a categoría de adulto? Esta operación es irreversible.'));
+    var is_confirmed = window.confirm(_('¿Está seguro de querer promover este niño a categoría adulto? Esto no puede deshacerse.'));
     if (is_confirmed) {
         window.location='/cgi-bin/koha/members/update-child.pl?op=update&borrowernumber=[% borrowernumber %]&catcode=[% catcode %]&catcode_multi=[% CATCODE_MULTI %]';
     }
 }
 
 function confirm_reregistration() {
-    var is_confirmed = window.confirm(_('¿Estás seguro de que quieres renovar el registro de este socio?'));
+    var is_confirmed = window.confirm(_('¿Está seguro de querer renovar el registro de este socio?'));
     // var borrowernumbervalue1 = $("#borrowernumber").attr("value");
     if (is_confirmed) {
 	window.location = '/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=circ&amp;reregistration=y';
@@ -61,18 +61,18 @@ function export_barcodes() {
 	function yuiToolbar() {
 	    var printmenu = [
             [% IF ( CAN_user_borrowers ) %]
-            { text: _("Print summary"), onclick: {fn: function(){printx_window("page")}} },
+            { text: _("Imprimir resumen"), onclick: {fn: function(){printx_window("page")}} },
             [% END %]
-            { text: _("Print slip"), onclick: {fn: function(){printx_window("slip")}} },
-            { text: _("Print quick slip"), onclick: {fn: function(){printx_window("qslip")}} }
+            { text: _("Imprimir tira"), onclick: {fn: function(){printx_window("slip")}} },
+            { text: _("Imprimir tira"), onclick: {fn: function(){printx_window("qslip")}} }
 	    ];
 	
 		var moremenu = [
-            { text: _("Renew patron"),  onclick: { fn: confirm_reregistration } },
-            { text: _("Set permissions"), url: "/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]"[% UNLESS CAN_user_permissions %], disabled: true[% END %]},
-            { text: _("Eliminar"), [% UNLESS CAN_user_borrowers %]disabled: true, [% END %] onclick: { fn: confirm_deletion } },
-            { text: _("Update child to adult patron") , onclick: { fn: update_child }[% UNLESS is_child %], disabled: true[% END %]},
-            { text: _("Export today's checked in barcodes"), onclick: { fn: export_barcodes }}
+            { text: _("Renovar socio"),  onclick: { fn: confirm_reregistration } },
+            { text: _("Establecer permisos"), url: "/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]"[% UNLESS CAN_user_permissions %], disabled: true[% END %]},
+            { text: _("Borrar"), [% UNLESS CAN_user_borrowers %]disabled: true, [% END %] onclick: { fn: confirm_deletion } },
+            { text: _("Actualizar socio niño a adulto") , onclick: { fn: update_child }[% UNLESS is_child %], disabled: true[% END %]},
+            { text: _("Exportar los préstamos del día en códigos de barras "), onclick: { fn: export_barcodes }}
         ];
 
 	    new YAHOO.widget.Button({
@@ -91,7 +91,7 @@ function export_barcodes() {
 		});
 	    new YAHOO.widget.Button({
 	        type: "menu",
-	        label: _("Más"),
+	        label: _("Mas"),
 	        name: "moremenubutton",
 	        menu: moremenu,
 	        container: "moremenuc"
@@ -109,40 +109,19 @@ function export_barcodes() {
 	//]]>
 	</script>
  <ul class="toolbar">
- [% IF ( CAN_user_borrowers ) %]
- [% IF ( category_type ) %]
- [% IF ( guarantor ) %]
- <li><a id="editpatron" href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;guarantorid=[% guarantorborrowernumber %]&amp;category_type=[% category_type %]">
- [% ELSE %]
- <li><a id="editpatron" href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;category_type=[% category_type %]">
+ [% IF ( CAN_user_borrowers ) %] [% IF ( category_type ) %] [% IF ( guarantor ) %] <li><a id="editpatron" href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;guarantorid=[% guarantorborrowernumber %]&amp;category_type=[% category_type %]">
+ [% ELSE %] <li><a id="editpatron" href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;category_type=[% category_type %]">
  [% END %]Editar</a></li>
  [% ELSE %] <!-- try with categorycode if no category_type -->
  [% IF ( categorycode ) %]
  <li><a id="editpatron" href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;categorycode=[% categorycode %]">Editar</a></li>
  [% ELSE %] <!-- if no categorycode, set category_type to A by default -->
  <li><a id="editpatron" href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;category_type=A">Editar</a></li>
- [% END %]
- [% END %]
- [% END %]
- [% IF ( CAN_user_borrowers ) %]
- [% IF ( adultborrower AND activeBorrowerRelationship ) %]<li><a id="addchild" href="/cgi-bin/koha/members/memberentry.pl?op=add&amp;guarantorid=[% borrowernumber %]&amp;category_type=C">Agregar niño</a></li>[% END %]
- [% IF ( CAN_user_borrowers ) %] <li><a id="changepassword" href="/cgi-bin/koha/members/member-password.pl?member=[% borrowernumber %]">Change password</a></li>[% END %]
- [% END %]
- <li><a id="duplicate" href="/cgi-bin/koha/members/memberentry.pl?op=duplicate&amp;borrowernumber=[% borrowernumber %]&amp;category_type=[% category_type %]">Duplicado</a></li>
- <li id="printmenuc"><a id="printpage" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]&amp;print=page">Print summary</a></li>
- <li><a id="printslip" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]&amp;print=slip">Print slip</a></li>
+ [% END %] [% END %] [% END %] [% IF ( CAN_user_borrowers ) %] [% IF ( adultborrower AND activeBorrowerRelationship ) %]<li><a id="addchild" href="/cgi-bin/koha/members/memberentry.pl?op=add&amp;guarantorid=[% borrowernumber %]&amp;category_type=C">Agregar infante</a></li>[% END %] [% IF ( CAN_user_borrowers ) %] <li><a id="changepassword" href="/cgi-bin/koha/members/member-password.pl?member=[% borrowernumber %]">Cambiar contraseña</a></li>[% END %] [% END %] <li><a id="duplicate" href="/cgi-bin/koha/members/memberentry.pl?op=duplicate&amp;borrowernumber=[% borrowernumber %]&amp;category_type=[% category_type %]">Duplicado</a></li>
+ <li id="printmenuc"><a id="printpage" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]&amp;print=page">Imprimir resumen</a></li>
+ <li><a id="printslip" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]&amp;print=slip">Imprimir tira</a></li>
  <li id="searchtoholdc"><a id="searchtohold" href="#">Buscar para reservar</a></li>
- <li id="moremenuc"><a id="renewpatron" href="/cgi-bin/koha/members/moremember.pl?reregistration=y&amp;borrowernumber=[% borrowernumber %]">Renew account</a></li>
- [% IF ( CAN_user_permissions ) %]
- [% IF ( StaffMember ) %]
- [% IF ( CAN_user_staffaccess ) %]
- <li><a id="patronflags" href="/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]">Set permissions</a></li>
- [% END %]
- [% ELSE %]
- <li><a id="patronflags" href="/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]">Set permissions</a></li>
- [% END %]
- [% END %]
- [% IF ( StaffMember ) %][% UNLESS ( CAN_user_staffaccess ) %]<li><a id="deletepatron" href="javascript:confirm_deletion();">Eliminar</a></li>[% END %]
- [% ELSE %]<li><a id="deletepatron" href="javascript:confirm_deletion();">Eliminar</a></li>[% END %]
-
-</ul></div>
+ <li id="moremenuc"><a id="renewpatron" href="/cgi-bin/koha/members/moremember.pl?reregistration=y&amp;borrowernumber=[% borrowernumber %]">Renovar cuenta</a></li>
+ [% IF ( CAN_user_permissions ) %] [% IF ( StaffMember ) %] [% IF ( CAN_user_staffaccess ) %] <li><a id="patronflags" href="/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]">Establecer permisos</a></li>
+ [% END %] [% ELSE %] <li><a id="patronflags" href="/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]">Establecer permisos</a></li>
+ [% END %] [% END %] [% IF ( StaffMember ) %][% UNLESS ( CAN_user_staffaccess ) %]<li><a id="deletepatron" href="javascript:confirm_deletion();">Borrar</a></li>[% END %] [% ELSE %]<li><a id="deletepatron" href="javascript:confirm_deletion();">Borrar</a></li>[% END %] </ul></div>

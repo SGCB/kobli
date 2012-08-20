@@ -9,7 +9,7 @@
  <!-- url encoding -->
 
  <xsl:variable name="ascii">
- <xsl:text> !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~</xsl:text>
+ <xsl:text> !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~</xsl:text>
  </xsl:variable>
 
  <xsl:variable name="latin1">
@@ -161,8 +161,7 @@
  <!-- was 160 -->
  </xsl:when>
  <xsl:otherwise>
- <xsl:message terminate="no">Warning: string contains a character
- that is out of range! Substituting "?".</xsl:message>
+ <xsl:message terminate="no">Atención: la cadena contiene un caracter fuera de rango! Substituyendo "?"</xsl:message>
  <xsl:text>63</xsl:text>
  </xsl:otherwise>
  </xsl:choose>

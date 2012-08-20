@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Autoridades</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script language="JavaScript" type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Autoridades</title>
+[% INCLUDE 'doc-head-close.inc' %] <script language="JavaScript" type="text/javascript">
 //<![CDATA[
 function Help() {
     newin=window.open("/cgi-bin/koha/help.pl","KohaHelp",'width=600,height=600,toolbar=false,scrollbars=yes');
@@ -23,19 +21,14 @@ function confirm_deletion() {   // not really implemented, but required by phant
 </script>
 </head>
 <body id="auth_authorities_home" class="auth">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'authorities-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Authorities</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'authorities-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Autoridades</div>
 
 <div id="doc" class="yui-t7">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-g">
  
- [% INCLUDE 'authorities-toolbar.inc' %]
-
+ [% INCLUDE 'authorities-toolbar.inc' %] </div>
  </div>
  </div>
- </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

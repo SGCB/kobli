@@ -1,11 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %]<title>Inicio &rsaquo; Herramientas &rsaquo; Creador rápido de columna de etiquetas</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %]<title>Koha &rsaquo; Herramientas &rsaquo; Creador rápido de columna de etiquetas</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="labels_spinelabel-home" class="tools labels">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; Quick spine label creator</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; Creador rápido de etiquetas en columnas</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -16,7 +12,7 @@
  <form action="/cgi-bin/koha/labels/spinelabel-print.pl" method="post">
  <fieldset class="brief">
  <ol>
- <li><label for="barcode">Código de barras:</label>
+ <li><label for="barcode">Código de barras: </label>
  <input type="text" name="barcode" id="barcode" class="focus" />
  </li>
  </ol>
@@ -26,8 +22,7 @@
  </div>
  </div>
  <div class="yui-b">
- [% INCLUDE 'tools-menu.inc' %]
- </div>
+ [% INCLUDE 'tools-menu.inc' %] </div>
 
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

@@ -1,55 +1,51 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>MARC Bibliographic Frameworks Subfields</h1>
 
-<h1>MARC bibliographic frameworks subfields</h1>
-
-<p>Frameworks are made up of MARC fields and subfields. To make edits to most frameworks you must edit the fields and subfields. Clicking 'Edit' to the right of each subfield will allow you to make changes to the text associated with the field</p>
+<p>Frameworks are made up of MARC fields and subfields. To make edits to most Frameworks you must edit the fields and subfields. Clicking 'Edit' to the right of each subfield will allow you to make changes to the text associated with the field</p>
 
 <ul>
- <li>Cada campo tiene una etiqueta (que es la etiqueta MARC)<ul>
- <li>La "Etiqueta para biblioteca" es lo que se mostrará en el cliente administrativo si has dispuesto que advancedMARCeditor muestre etiquetas</li>
- <li>La "Etiqueta para OPAC" es lo que se mostrará en la vista MARC en OPAC</li>
- <li>Si verificas 'Repetible' el campo tendrá un signo de más extra al lado, que te permitirá agregar muchas de esas etiquetas</li>
- <li>Si verificas 'Obligatorio' no se le permitirá guardar al registro, a menos que hayas asignado un valor a esta estiqueta</li>
+ <li>Cada campo tiene una etiqueta (la cual es la etiqueta MARC) <ul>
+ <li>La 'Etiqueta para biblioteca' es lo que mostrará en la interfaz del personal si tiene advancedMARCeditor configurado para mostrar las etiquetas</li>
+ <li>La 'Etiqueta de OPAC' es lo que se mostrará en la vista MARC en el OPAC</li>
+ <li>Si usted marca 'Repetible' el campo tendrá un signo + al costado que al presionarlo le permitirá agregar múltiples valores de ese campo</li>
+ <li>Si se marca 'Obligatorio' no se podrá guardar el registro hasta que no se asigne un valor a ese campo</li>
  <li>'Authorized value' is where you define an authorized value that your catalogers can choose from a pull down to fill this field in
-To edit the subfields associated with the tag, click 'Subfields' to the right of the tag on the 'MARC structure' listing</li>
+To edit the subfields associated with the tag, click 'Subfields' to the right of the tag on the 'MARC Structure' listing</li>
 </ul>
 </li>
- <li>Desde la lista de subcampos puedes hacer clic en 'Eliminar' a la derecha de cada uno para eliminarlos.</li>
- <li>To edit the subfields click 'Edit subfields'</li>
- <li>Para cada subcampo puedes determinar los siguientes valores<ul>
- <li>Texto para bibliotecario<ul>
+ <li>Desde la lista de subcampos puede hacer clic en 'Eliminar' a la derecha de cada uno para eliminarlos.</li>
+ <li>Para editar los subcampos haga clic en 'Editar Subcampos'</li>
+ <li>Para cada subcampo puede poner los siguientes valores <ul>
+ <li>Texto para bibliotecario: <ul>
  <li>lo que aparece antes del subcampo en el interfaz de bibliotecario</li>
 </ul>
 </li>
- <li>Texto para OPAC:<ul>
+ <li>Texto para el OPAC: <ul>
  <li>lo que aparece antes del campo en el OPAC.</li>
- <li>Si no rellenas este campo, se utiliza el mismo texto que para bibliotecario</li>
+ <li>Si queda vacío, el texto para el bibliotecario es usado en su lugar</li>
 </ul>
 </li>
- <li>Repetible<ul>
- <li>el campo tendrá un signo de más cerca del mismo, permitiéndote añadir muchas de esas etiquetas</li>
+ <li>Repetible <ul>
+ <li>el campo tendrá un signo más junto a él lo que le permite repetir ese campo</li>
 </ul>
 </li>
- <li>Mandatory
-<ul>
- <li>el registro no podrá guardar a menos que hayas asignado un valor a esta etiqueta</li>
+ <li>Obligatorio <ul>
+ <li>no se permitirá guardar el registro a menos que haya asignado un valor asignado a este campo</li>
 </ul>
 </li>
- <li>Administrado en pestaña:<ul>
- <li>se refiere a la pestaña donde se muestra el subcampo. Todos los subcampos de un campo en concreto deben estar en la misma etiqueta o ignorarse. Ignorar significa que el subcampo no se muestra.</li>
-</ul>
-</li>
-</ul>
-<ul>
- <li>Default value
-<ul>
- <li>define lo que quieres que aparezca en el campo por defecto, lo cual puede editarse, pero ahorrarás tiempo si utilizas la misma nota una y otra vez o el mismo valor en un campo.</li>
+ <li>Administrado en campo <ul>
+ <li>define la pestaña donde se muestra el subcampo. Todos los subcampos de un campo determinado debe estar en la misma pestaña o ignoradas. No haga caso significa que el subcampo no se gestiona.</li>
 </ul>
 </li>
 </ul>
 <ul>
- <li>oculto<ul>
- <li>te permite elegir entre 19 condiciones posibles de visibilidad, 17 de las cuales están implementadas. Son las siguientes:<ul>
+ <li>Valor predeterminado <ul>
+ <li>define lo que desea que aparezca en el campo de forma predeterminada, esto se puede editar, pero ahorra tiempo si usa la misma nota una y otra vez o el mismo valor en un campo a menudo.</li>
+</ul>
+</li>
+</ul>
+<ul>
+ <li>oculto <ul>
+ <li>le permite seleccionar entre 19 condiciones posibles de visibilidad, 17 de las cuales están implementadas. Son las siguientes: <ul>
  <li>-9 =&gt; Uso futuro</li>
  <li>-8 =&gt; Marca</li>
  <li>-7 =&gt; OPAC !Intranet !Editor Colapsado</li>
@@ -76,61 +72,59 @@ To edit the subfields associated with the tag, click 'Subfields' to the right of
 </li>
 </ul>
 <ul>
- <li>Max length
-<ul>
- <li>Define the max characters to fill.</li>
+ <li>Longitud máxima<ul>
+ <li>Defina el máximo de caracteres a rellenar.</li>
 </ul>
 </li>
 </ul>
 <ul>
- <li>Is a URL
+ <li>Is a url
 <ul>
- <li>if checked, it means that the subfield is a URL and can be clicked</li>
-</ul>
-</li>
-</ul>
-<ul>
- <li>Enlace<ul>
- <li>Si ingresas un campo/subcampo aquí (200b), aparecerá un enlace después del subcampo en la vista detallada MARC. Esta vista se presenta sólo en la intranet, no en el OPAC. Si el bibliotecario hace clic en el enlace, se hace una búsqueda en la BD por un campo/subcampo con el mismo valor. Puede usarse para 2 temas principales:<ul>
- <li>en un campo como el de autor (200f en UNIMARC), al poner 200f aquí, podrás ver todos los registros bibliográficos del mismo autor</li>
- <li>en un campo que es un enlace (4xx) para alcanzar otro registro bibliográfico. Por ejemplo, al poner 011a en 464$x, encontrarás la serie que tiene este ISSN.</li>
-</ul>
-</li>
- <li style="color: #990000;">NOTA: Si cambias este valor debes pedirle a tu administrador que ejecute el script misc/batchRebuildBiblioTables.pl.</li>
+ <li>if checked, it means that the subfield is a url and can be clicked</li>
 </ul>
 </li>
 </ul>
 <ul>
- <li>Enlace de Koha<ul>
- <li>Koha soporta múltiples versiones de MARC. No sabe lo que significa el campo 245$a, ni tampoco el 200$f (esos 2 campos son el título en MARC21 y UNIMARC). Por lo tanto en esta lista se puede "conectar" un subcampo de MARC con su significando. Koha mantiene constantemente la consistencia entre un subcampo y su significando. Cuando el socio desea buscar en "título", este enlace se utiliza para encontrar lo que se busca (245 si es MARC21, 200 si es UNIMARC).</li>
+ <li>Enlace: <ul>
+ <li>Si ingresa un campo/subcampo aquí (200b), un enlace aparecerá después del subcampo en la vista detallada MARC. Esta vista se presenta solo en la Intranet, no en el OPAC. Si el bibliotecario hace clic en el enlace, se hace una búsqueda en la base de datos por un campo/subcampo con el mismo valor. Puede usarse para 2 tópicos principales: <ul>
+ <li>en un campo como el de autor (200f en UNIMARC), poner 200f aquí, será capaz de ver todos los libros del mismo autor.</li>
+ <li>en un campo que es un enlace (4xx) para alcanzar otro registro bibliográfico. Por ejemplo, poniendo 011a en 464$x, encontrará la serie que tiene este ISSN.</li>
+</ul>
+</li>
+ <li style="color: #990000;">NOTA: si cambia algo en esta tabla, pídale a su administrador que ejecute el script misc/batchRebuildBiblioTables.pl.</li>
 </ul>
 </li>
 </ul>
 <ul>
- <li>Authorized value
-<ul>
- <li>significa que el bibliotecario no puede escribir el valor, pero debe elegirlo de un menú desplegable generado por la lista de valores autorizada</li>
- <li>En el ejemplo anterior, el campo 504a mostrará los valores autorizados de MARC504 al catalogar</li>
+ <li>Enlace de Koha <ul>
+ <li>Koha es múlti-MARC. Entonces, no sabe lo que significa el campo 245$a, ni tampoco 200$f (esos 2 campos son el título en MARC21 y UNIMARC). Por lo tanto, en esta lista se puede "conectar" un subcampo MARC con su significando. Koha mantiene constantemente la consistencia entre un subcampo y su significando. Cuando el usuario desea buscar en "título", este enlace se utiliza para encontrar lo que se busca (245 si es MARC21, 200 si es UNIMARC).</li>
 </ul>
 </li>
 </ul>
 <ul>
- <li>Tesauro<ul>
- <li>means that the value is not free text, but must be searched in the authority/thesaurus of the selected category</li>
+ <li>Valor autorizado <ul>
+ <li>significa que el valor se calcula o gestiona por un plugin. Los plugins puede hacer casi cualquier cosa.</li>
+ <li>En el ejemplo anterior, el campo 504a mostrará al catalogar los valores MARC504 autorizados</li>
 </ul>
 </li>
 </ul>
 <ul>
- <li>Plugin:<ul>
- <li>significa que un plugin calcula o administra el valor. Los plugins pueden hacer casi cualquier cosa.</li>
- <li>Por ejemplo, en UNIMARC hay plugins para cada 1xx que son campos codificados. El plugin es una gran ayuda para el catalogador. Hay también dos plugins (unimarc_plugin_210c y unimarc_plugin_225a) que pueden de forma "mágica " encontrar el editor desde el ISBN, y la lista de la colección para el editor.</li>
+ <li>Tesauro <ul>
+ <li>significa que el valor no es libre, pero puede ser buscado en la autoridad/tesauro de la categoría seleccionada</li>
+</ul>
+</li>
+</ul>
+<ul>
+ <li>Plugin: <ul>
+ <li>significa que el valor se calcula o gestiona por un plugin. Los plugins puede hacer casi cualquier cosa.</li>
+ <li>Por ejemplo, en UNIMARC hay plugins para cada 1xx que son campos codificados. El plugin es una ayuda enorme para el catalogador. Hay también dos plugins (unimarc_plugin_210c y unimarc_plugin_225a) que pueden de forma "mágica " encontrar el editor desde el ISBN, y la lista de la colección para el editor.</li>
 </ul>
 </li>
 </ul>
 </li>
- <li>To save your changes simply click the 'Save changes' button at the top of the screen</li>
+ <li>To save your changes simply click the 'Save Changes' button at the top of the screen</li>
 </ul>
 
-<p><strong>See the full documentation for MARC frameworks in the <a href="http://manual.koha-community.org/3.6/en/catadmin.html#marcbibframeworks">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for MARC Frameworks in the <a href="http://manual.koha-community.org/3.8/en/catadmin.html#marcbibframeworks">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

@@ -1,13 +1,19 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Catalog &rsaquo; Checkout history for [% title |html %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catálogo &rsaquo; Historial de préstamo para [% title |html %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" id="js">
+$(document).ready(function() {
+    $("#table_issues").dataTable($.extend(true, {}, dataTablesDefaults, {
+//      maybe some defaults?
+        })
+    );
+}); </script>
+
 </head>
 <body id="catalog_issuehistory" class="catalog">
 
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/catalogue/search.pl">Catálogo</a> &rsaquo; Checkout history for <i>[% title |html %]</i></div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/catalogue/search.pl">Catálogo</a> &rsaquo; Historial de préstamos de <i>[% title |html %]</i></div>
 
 <div id="doc3" class="yui-t2">
 
@@ -16,12 +22,9 @@
  <div class="yui-b">
 
 <h1>Historial de préstamos de [% title |html %]</h1>
-[% IF ( author ) %]<h3>por [% author %]</h3>[% END %]
-
-<div class="searchresults">
- [% IF ( issues ) %]
- <h4>Ha sido prestado [% total %] veces</h4>
- <table>
+[% IF ( author ) %]<h3>por [% author %]</h3>[% END %] <div class="searchresults">
+ [% IF ( issues ) %] <h4>Ha sido prestado [% total %] veces</h4>
+ <table id="table_issues">
  <thead><tr>
  <th>Socio</th>
  <th>Código de barras</th>
@@ -32,55 +35,26 @@
  <th>Devuelto</th>
  </tr></thead>
  <tbody>
- [% FOREACH issue IN issues %]
- [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %]
- <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% issue.borrowernumber %]">[% IF HidePatronName %][% issue.cardnumber %][% ELSE %][% issue.surname %][% IF ( issue.firstname ) %], [% issue.firstname %][% END %][% END %]</a></td>
- <td>[% IF ( issue.barcode ) %]
- <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% issue.biblionumber %]&amp;itemnumber=[% issue.itemnumber %]">[% issue.barcode %]</a>
- [% ELSE %]
- &nbsp;
- [% END %]</td>
- <td>[% IF ( issue.branchcode ) %]
- [% issue.branchcode %]
- [% ELSE %]
- &nbsp;
- [% END %]</td>
- <td>[% IF ( issue.renewals ) %]
- Yes[% IF ( issue.lastreneweddate ) %], <small>dura hasta: [% issue.lastreneweddate %]</small>
- [% END %]
- [% ELSE %]
- No
- [% END %]</td>
- <td>[% IF ( issue.issuedate ) %]
- [% issue.issuedate %]
- [% ELSE %]
- &nbsp;
- [% END %]</td>
- <td>[% IF ( issue.date_due ) %]
- [% issue.date_due %]
- [% ELSE %]
- &nbsp;
- [% END %]</td>
- <td>[% IF ( issue.returndate ) %]
- [% issue.returndate %]
- [% ELSE %]
- &nbsp;
- [% END %]</td>
+ [% FOREACH issue IN issues %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% issue.borrowernumber %]">[% IF HidePatronName %][% issue.cardnumber %][% ELSE %][% issue.surname %][% IF ( issue.firstname ) %], [% issue.firstname %][% END %][% END %]</a></td>
+ <td>[% IF ( issue.barcode ) %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% issue.biblionumber %]&amp;itemnumber=[% issue.itemnumber %]">[% issue.barcode %]</a>
+ [% ELSE %] &nbsp; [% END %]</td>
+ <td>[% IF ( issue.branchcode ) %] [% issue.branchcode %] [% ELSE %] &nbsp; [% END %]</td>
+ <td>[% IF ( issue.renewals ) %] Sí[% IF ( issue.lastreneweddate ) %], <small>dura hasta: [% issue.lastreneweddate %]</small>
+ [% END %] [% ELSE %] No [% END %]</td>
+ <td>[% IF ( issue.issuedate ) %] [% issue.issuedate %] [% ELSE %] &nbsp; [% END %]</td>
+ <td>[% IF ( issue.date_due ) %] [% issue.date_due %] [% ELSE %] &nbsp; [% END %]</td>
+ <td>[% IF ( issue.returndate ) %] [% issue.returndate %] [% ELSE %] &nbsp; [% END %]</td>
  </tr>
- [% END %]
- </tbody>
+ [% END %] </tbody>
  </table>
- [% ELSE %]
- <div class="dialog message"><p>
- <b>[% title |html %][% IF ( author ) %], by [% author %][% END %]</b> no ha sido prestado nunca.</p></div>
+ [% ELSE %] <div class="dialog message"><p>
+ <b>[% title |html %][% IF ( author ) %], por [% author %][% END %]</b> no ha sido prestado nunca.</p></div>
 
- [% END %]
-</div>
+ [% END %] </div>
 
 </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'biblio-view-menu.inc' %]
+[% INCLUDE 'biblio-view-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

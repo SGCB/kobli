@@ -1,13 +1,14 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Tools &rsaquo; Task scheduler</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'calendar.inc' %]
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Planificador de tareas</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/JavaScript">
+//<![CDATA[
+    $(document).ready(function(){
+        $("#startdate").datepicker({ minDate: "+0D" });
+    });
+//]]>
+</script>
 </head>
 <body id="tools_scheduler" class="tools">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'circ-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <strong>Planificador de tareas</strong></div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <strong>Planificador de tareas</strong></div>
 
 <div id="doc3" class="yui-t2">
 
@@ -17,45 +18,26 @@
 
 <div id="main">
 
-[% IF ( job_add_failed ) %]
-<div class="dialog message">No se ha podido agregar la tarea programada</div>
-[% END %]
-
-<form name="form1" action="scheduler.pl" method="post">
+[% IF ( job_add_failed ) %] <div class="dialog message">No se ha podido agregar la tarea programada</div>
+[% END %] <form name="form1" action="scheduler.pl" method="post">
 <input type="hidden" name="mode" value="job_add" />
 
 <fieldset class="rows">
 <legend>Planificador de tareas</legend><ol>
-<li><span class="label">La hora actual del servidor es:</span>
+<li><span class="label">Hora actual del servidor es:</span>
 [% time %]</li>
 <li><label for="starttime">Tiempo:</label>
 <input type="text" name="starttime" id="starttime" value="" maxlength="5" size="5" /></li>
-<li><label for="startdate">Fecha:</label> <input type="text" size="10" id="startdate" name="startdate" value="" />
-<img src="[% themelang %]/lib/calendar/cal.gif" border="0" alt="Show calendar" id="openCalendarStartdate" style="cursor: pointer;" />
-
-<script type="text/javascript">
-//<![CDATA[
-				Calendar.setup({
-					inputField : "startdate",
-					ifFormat : "[% DHTMLcalendar_dateformat %]",
-					button : "openCalendarStartdate"
-				});
-//]]>
-</script>
+<li><label for="startdate">Fecha: </label> <input type="text" size="10" id="startdate" name="startdate" value="" />
 <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
 </li>
 <li><label for="report">Informe:</label>
 <select name="report" id="report">
-[% FOREACH savedreport IN savedreports %]
- [% IF ( savedreport.selected ) %]
- <option value="[% savedreport.id %]" selected="selected">[% savedreport.report_name %]</option>
- [% ELSE %]
- <option value="[% savedreport.id %]">[% savedreport.report_name %]</option>
- [% END %]
-[% END %]
-</select>
+[% FOREACH savedreport IN savedreports %] [% IF ( savedreport.selected ) %] <option value="[% savedreport.id %]" selected="selected">[% savedreport.report_name %]</option>
+ [% ELSE %] <option value="[% savedreport.id %]">[% savedreport.report_name %]</option>
+ [% END %] [% END %] </select>
 </li>
-<li><label for="format">Output format:</label>
+<li><label for="format">Formato de salida:</label>
 <select name="format" id="format">
 <option value="text">Texto</option>
 <option value="url">URL</option>
@@ -76,27 +58,20 @@
 <th>Acción</th>
 <th>&nbsp;</th>
 </tr>
-[% FOREACH JOB IN JOBS %]
-<form action="scheduler.pl" method="post">
+[% FOREACH JOB IN JOBS %] <form action="scheduler.pl" method="post">
 <input type="hidden" name="mode" value="job_change" />
 
 <tr>
 <td>[% JOB.TIME %]</td>
 <td>[% JOB.TAG %]</td>
-<td><input value="Eliminar" name="delete" type="submit" /></td>
+<td><input value="Borrar" name="delete" type="submit" /></td>
 </tr>
 <input type="hidden" name="jobid" value="[% JOB.JOBID %]" />
 </form>
-[% END %]
-</table>[% END %]
-
-
-</div>
+[% END %] </table>[% END %] </div>
 </div>
 </div>
 <div class="yui-b noprint">
-[% INCLUDE 'tools-menu.inc' %]
-[% INCLUDE 'guided-reports-view.inc' %]
+[% INCLUDE 'tools-menu.inc' %] [% INCLUDE 'guided-reports-view.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

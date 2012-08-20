@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Cataloging authority plugin</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<style type="text/css">
+[% PROCESS 'authorities-search-results.inc' %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Plugin de catalogación de autoridades</title>
+[% INCLUDE 'doc-head-close.inc' %] <style type="text/css">
 #custom-doc { width:51.46em;*width:50.17em;min-width:675px; margin:auto; text-align:left; } 
 </style>
 <script type="text/javascript">
@@ -20,39 +18,23 @@ function jumpfull(page)
  <div class="yui-b"><div class="yui-g">
 
  <h1>Resultados de la búsqueda de autoridad</h1>
- [% INCLUDE 'auth-finder-search.inc' %]
- [% IF ( total ) %]<div id="resultnumber">
- [% IF ( displayprev ) %]
- <a href="auth_finder.pl?startfrom=[% startfromprev %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranet&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
- &lt;&lt;
- </a>
- [% END %]
- [% FOREACH number IN numbers %]
- [% IF ( number.highlight ) %]
- [% number.number %]
- [% ELSE %]
- <a href="auth_finder.pl?startfrom=[% number.startfrom %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN number.searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranet&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
+ [% INCLUDE 'auth-finder-search.inc' %] [% IF ( total ) %]<div id="resultnumber">
+ [% IF ( displayprev ) %] <a href="auth_finder.pl?startfrom=[% startfromprev %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranet&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
+ &lt;&lt; </a>
+ [% END %] [% FOREACH number IN numbers %] [% IF ( number.highlight ) %] [% number.number %] [% ELSE %] <a href="auth_finder.pl?startfrom=[% number.startfrom %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN number.searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranet&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
  [% number.number %]</a>
- [% END %]
- [% END %]
- [% IF ( displaynext ) %]
- <a href="auth_finder.pl?startfrom=[% startfromnext %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranet&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
+ [% END %] [% END %] [% IF ( displaynext ) %] <a href="auth_finder.pl?startfrom=[% startfromnext %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranet&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
  &gt;&gt;</a>
- [% END %]
- <div>
+ [% END %] <div>
  
  <p><b>Resultados [% from %] a [% to %] de [% total %]</b></p>
- [% ELSE %]
- 
- 
- </div><p>No se encontraron resultados</p>[% END %]
- </div>
+ [% ELSE %] </div><p>No se encontraron resultados</p>[% END %] </div>
  [% IF ( result ) %]<div id="resultlist">
  <table>
  <tr>
  <th>Resumen</th>
  <th>Usado</th>
- <th>Get it!</th>
+ <th>Obtenlo!</th>
  <th>Otra acción</th>
  </tr>
  <tr>
@@ -60,45 +42,32 @@ function jumpfull(page)
  <td>&nbsp;</td>
  <td>
  <a href="javascript:jumpfull('blinddetail-biblio-search.pl?authid=0&amp;index=[% index %]')" class="button">
- Limpiar</a>
+ Limpiar </a>
  </td>
  <td>&nbsp;</td>
  </tr>
- [% FOREACH resul IN result %]
- <tr>
- <td>[% resul.summary %]</td>
+ [% FOREACH resul IN result %] <tr>
+ <td>[% PROCESS authresult summary=resul.summary %]</td>
  <td>[% resul.used %] veces</td>
  <td>
- <a href="javascript:jumpfull('blinddetail-biblio-search.pl?authid=[% resul.authid %]&amp;index=[% index %]')">elige</a>
- </td>
+ [% IF resul.repets %] [% FOREACH repet IN resul.repets %] <a href="javascript:jumpfull('blinddetail-biblio-search.pl?authid=[% resul.authid %]&amp;index=[% repet.index %]&amps;repet=[% repet.repet %]')" title="[% repet.value %]">[% repet.repet %]</a>
+ [% END %] [% ELSE %] <a href="javascript:jumpfull('blinddetail-biblio-search.pl?authid=[% resul.authid %]&amp;index=[% index %]')">elija</a>
+ [% END %] </td>
  <td><a href="authorities.pl?authid=[% resul.authid %]">Editar autoridad</a></td>
  </tr>
- [% END %]
- </table>
+ [% END %] </table>
  
  </div>
  <div id="resultnumber">
- [% IF ( displayprev ) %]
- <a href="auth_finder.pl?startfrom=[% startfromprev %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranetamp;&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
- &lt;&lt;
- </a>
- [% END %]
- [% FOREACH number IN numbers %]
- [% IF ( number.highlight ) %]
- [% number.number %]
- [% ELSE %]
- <a href="auth_finder.pl?startfrom=[% number.startfrom %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN number.searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranet&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
+ [% IF ( displayprev ) %] <a href="auth_finder.pl?startfrom=[% startfromprev %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranetamp;&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
+ &lt;&lt; </a>
+ [% END %] [% FOREACH number IN numbers %] [% IF ( number.highlight ) %] [% number.number %] [% ELSE %] <a href="auth_finder.pl?startfrom=[% number.startfrom %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN number.searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranet&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
  [% number.number %]</a>
- [% END %]
- [% END %]
- [% IF ( displaynext ) %]
- <a href="auth_finder.pl?startfrom=[% startfromnext %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranet&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
+ [% END %] [% END %] [% IF ( displaynext ) %] <a href="auth_finder.pl?startfrom=[% startfromnext %]&amp;authtypecode=[% authtypecode %][% FOREACH searchdat IN searchdata %]&amp;[% searchdat.term %]=[% searchdat.val %][% END %]&amp;op=do_search&amp;type=intranet&amp;index=[% index %]&amp;tagid=[% tagid %]&amp;orderby=[% orderby %]">
  &gt;&gt;</a>
- [% END %]
- </div>[% END %]
+ [% END %] </div>[% END %] </div>
 </div>
 </div>
 </div>
 </div>
-</div>
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

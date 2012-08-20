@@ -25,7 +25,7 @@
 
  <xsl:template name="tag_210">
  <li>
- <strong>Publication: </strong>
+ <strong>Publicación: </strong>
  <xsl:for-each select="marc:datafield[@tag=210]">
  <span>
  <xsl:call-template name="addClassRtl" />
@@ -65,18 +65,15 @@
  <xsl:template name="tag_215">
  <xsl:for-each select="marc:datafield[@tag=215]">
  <li>
- <strong>Descripción:</strong>
+ <strong>Descripción: </strong>
  <xsl:if test="marc:subfield[@code='a']">
  <xsl:value-of select="marc:subfield[@code='a']"/>
  </xsl:if>
- <xsl:if test="marc:subfield[@code='c']"> :
- <xsl:value-of select="marc:subfield[@code='c']"/>
+ <xsl:if test="marc:subfield[@code='c']"> : <xsl:value-of select="marc:subfield[@code='c']"/>
  </xsl:if>
- <xsl:if test="marc:subfield[@code='d']"> ;
- <xsl:value-of select="marc:subfield[@code='d']"/>
+ <xsl:if test="marc:subfield[@code='d']"> ; <xsl:value-of select="marc:subfield[@code='d']"/>
  </xsl:if>
- <xsl:if test="marc:subfield[@code='e']"> +
- <xsl:value-of select="marc:subfield[@code='e']"/>
+ <xsl:if test="marc:subfield[@code='e']"> + <xsl:value-of select="marc:subfield[@code='e']"/>
  </xsl:if>
  </li>
  </xsl:for-each>
@@ -85,20 +82,17 @@
  <xsl:template name="tag_4xx">
  <xsl:for-each select="marc:datafield[@tag=464 or @tag=461]">
  <li>
- <strong>Linked with: </strong>
+ <strong>Enlazado con: </strong>
  <span>
  <xsl:call-template name="addClassRtl" />
  <xsl:if test="marc:subfield[@code='t']">
  <xsl:value-of select="marc:subfield[@code='t']"/>
  </xsl:if>
- <xsl:if test="marc:subfield[@code='e']"> :
- <xsl:value-of select="marc:subfield[@code='e']"/>
+ <xsl:if test="marc:subfield[@code='e']"> : <xsl:value-of select="marc:subfield[@code='e']"/>
  </xsl:if>
- <xsl:if test="marc:subfield[@code='f']"> /
- <xsl:value-of select="marc:subfield[@code='f']"/>
+ <xsl:if test="marc:subfield[@code='f']"> / <xsl:value-of select="marc:subfield[@code='f']"/>
  </xsl:if>
- <xsl:if test="marc:subfield[@code='v']">,
- <xsl:value-of select="marc:subfield[@code='v']"/>
+ <xsl:if test="marc:subfield[@code='v']">, <xsl:value-of select="marc:subfield[@code='v']"/>
  </xsl:if>
  </span>
  </li>

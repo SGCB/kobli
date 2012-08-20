@@ -1,11 +1,8 @@
-[% INCLUDE 'doc-head-open.inc' %]<title>Koha &rsaquo; Web installer &rsaquo; Step 3</title>
-[% IF ( finish ) %]<meta http-equiv="refresh" content="10; url=/cgi-bin/koha/mainpage.pl">[% END %]
-[% INCLUDE 'installer-doc-head-close.inc' %]
-<div>
-<h1 id="logo"><img alt="Koha" src="/intranet-tmpl/prog/img/koha.org-logo.gif" /> Web installer &rsaquo; Step 3</h1>
+[% INCLUDE 'doc-head-open.inc' %]<title>Koha &rsaquo; Instalador Web &rsaquo; Paso 3 </title>
+[% IF ( finish ) %]<meta http-equiv="refresh" content="10; url=/cgi-bin/koha/mainpage.pl">[% END %] [% INCLUDE 'installer-doc-head-close.inc' %] <div>
+<h1 id="logo"><img alt="Koha" src="/intranet-tmpl/prog/img/koha.org-logo.gif" /> Instalador Web &rsaquo; Paso 3</h1>
 
-[% IF ( selectframeworks ) %]
- <script language="JavaScript">
+[% IF ( selectframeworks ) %] <script language="JavaScript">
     <!--
     
     var surl = unescape(window.location.pathname);
@@ -75,185 +72,107 @@
             if (initstyle == 'none') subfield.style.display = 'block' ;
     }
     </script>
-[% END %]
-[% IF ( finish ) %]
- <h1>Felicidades, instalación completada</h1>
+[% END %] [% IF ( finish ) %] <h1>Felicitaciones, la instalación esta completa</h1>
  <p>Si esta página no lo redirige en 5 segundos, haga clic <a href="/">aquí</a>.</p> 
-[% END %]
-[% IF ( choosemarc ) %]
- <h2 align="center">Selecciones su familia MARC</h2>
+[% END %] [% IF ( choosemarc ) %] <h2 align="center">Seleccionar su tipo MARC</h2>
  <form name="frameworkselection" method="post" action="install.pl"> 
  <input type="hidden" name="step" value="3" />
  <input type="hidden" name="op" value="selectframeworks" />
  <p> 
- [% FOREACH flavourloo IN flavourloop %]
- <div>
- [% IF ( flavourloo.checked ) %]
- <input type="radio" name="marcflavour" value="[% flavourloo.code %]" checked /> [% flavourloo.label %] <br/>
- [% ELSE %]
- <input type="radio" name="marcflavour" value="[% flavourloo.code %]" /> [% flavourloo.label %] <br/>
- [% END %]
- </div>
- [% END %]
- </p>
- <p> Haga clic en Siguiente para continuar <input value="Siguiente >>" type="submit" /></p>
+ [% FOREACH flavourloo IN flavourloop %] <div>
+ [% IF ( flavourloo.checked ) %] <input type="radio" name="marcflavour" value="[% flavourloo.code %]" checked /> [% flavourloo.label %] <br/>
+ [% ELSE %] <input type="radio" name="marcflavour" value="[% flavourloo.code %]" /> [% flavourloo.label %] <br/>
+ [% END %] </div>
+ [% END %] </p>
+ <p> Haga clic en 'Siguiente' para continuar <input value="Siguiente >>" type="submit" /></p>
  </form>
-[% END %]
-
-[% IF ( selectframeworks ) %]
- <h2 align="center">Selección de configuración por defecto</h2>
+[% END %] [% IF ( selectframeworks ) %] <h2 align="center">Selección de configuración por defecto</h2>
  <form name="frameworkselection" method="post" action="install.pl">
  <input type="hidden" name="step" value="3" />
  <input type="hidden" name="op" value="addframeworks" />
  
- [% IF ( frameworksloop ) %]
- <h2>MARC frameworks: [% marcflavour %]</h2>
- [% IF ( en_marc_frameworks ) %]
- <h4><span class="error">No hay hojas de trabajo MARC disponibles para su idioma. Se utilizan como predeterminadas las hojas de trabajo en inglés (en)<span></h4>
- [% END %]
- [% FOREACH frameworksloo IN frameworksloop %]
- <div>
+ [% IF ( frameworksloop ) %] <h2>Hojas de trabajo MARC: [% marcflavour %]</h2>
+ [% IF ( en_marc_frameworks ) %] <h4><span class="error">No hay hojas de trabajo MARC disponibles para su idioma. Se utilizan como predeterminadas las hojas de trabajo en inglés (en)<span></h4>
+ [% END %] [% FOREACH frameworksloo IN frameworksloop %] <div>
  <h3>[% frameworksloo.label %]</h3>
- [% FOREACH framework IN frameworksloo.frameworks %]
- <table style="border:1px;vertical-align:top;">
+ [% FOREACH framework IN frameworksloo.frameworks %] <table style="border:1px;vertical-align:top;">
  <tr>
  <td style="vertical-align:top;">
- [% IF ( framework.checked ) %]
- <input type="checkbox" name="framework" value="[% framework.fwkfile %]" checked="checked" />
- [% ELSE %]
- <input type="checkbox" name="framework" value="[% framework.fwkfile %]" />
- [% END %]
- </td>
+ [% IF ( framework.checked ) %] <input type="checkbox" name="framework" value="[% framework.fwkfile %]" checked="checked" />
+ [% ELSE %] <input type="checkbox" name="framework" value="[% framework.fwkfile %]" />
+ [% END %] </td>
  <td>
- [% framework.fwkdescription %]
- <em>([% framework.fwkname %])</em>
+ [% framework.fwkdescription %] <em>([% framework.fwkname %])</em>
  </td>
  </table>
- [% END %]
- </div>
+ [% END %] </div>
  </p>
- [% END %]
- <h2>Otros datos</h2>
- [% END %]
- [% IF ( en_sample_data ) %]
- <h4><span class="error">No hay datos de muestra y configuraciones disponibles para su idioma. Las muestras están disponibles en inglés (en)<span></h4>
- [% END %]
- [% FOREACH levelloo IN levelloop %]
- <div>
+ [% END %] <h2>Otros datos</h2>
+ [% END %] [% IF ( en_sample_data ) %] <h4><span class="error">No hay datos de muestra y configuraciones disponibles para su idioma. Las muestras están disponibles en inglés (en)<span></h4>
+ [% END %] [% FOREACH levelloo IN levelloop %] <div>
  <h3>[% levelloo.label %]</h3>
- [% FOREACH framework IN levelloo.frameworks %]
- <table style="border:1px;vertical-align:top;">
+ [% FOREACH framework IN levelloo.frameworks %] <table style="border:1px;vertical-align:top;">
  <tr>
  <td style="vertical-align:top;">
- [% IF ( framework.checked ) %]
- <input type="checkbox" name="framework" value="[% framework.fwkfile %]" checked="checked" />
- [% ELSE %]
- <input type="checkbox" name="framework" value="[% framework.fwkfile %]" />
- [% END %]
- </td>
+ [% IF ( framework.checked ) %] <input type="checkbox" name="framework" value="[% framework.fwkfile %]" checked="checked" />
+ [% ELSE %] <input type="checkbox" name="framework" value="[% framework.fwkfile %]" />
+ [% END %] </td>
  <td>
- [% framework.fwkdescription %]
- <em>([% framework.fwkname %])</em>
+ [% framework.fwkdescription %] <em>([% framework.fwkname %])</em>
  </td>
  </table>
- [% END %]
- </div>
+ [% END %] </div>
  </p>
- [% END %]
- <p>Cuando usted haya realizado su selección, por favor haga clic en 'Importar' para iniciar el proceso. La importación puede tardar un rato, por favor sea paciente.</p>
+ [% END %] <p>Cuando usted haya realizado su selección, por favor haga clic en 'Importar' para iniciar el proceso. La importación puede tomar un tiempo, por favor sea paciente.</p>
  <p><input value="importar" type="submit" />
  </p>
  </form>
  </p>
-[% END %]
-
-
-[% IF ( addframeworks ) %]
- [% FOREACH lis IN list %]
- <h3>datos &quot;[% lis.level %]&quot; agregados</h3>
+[% END %] [% IF ( addframeworks ) %] [% FOREACH lis IN list %] <h3>datos [% lis.level %] agregados</h3>
  <ul>
- [% FOREACH fwklis IN lis.fwklist %]
- <li>[% fwklis.fwkname %][% IF ( fwklis.error ) %]<br /><span class="error">[% fwklis.error %]</span>[% END %] </li>
- [% END %]
- </ul>
- [% END %]
- <h3>¡Todo realizado!</h3>
+ [% FOREACH fwklis IN lis.fwklist %] <li>[% fwklis.fwkname %][% IF ( fwklis.error ) %]<br /><span class="error">[% fwklis.error %]</span>[% END %] </li>
+ [% END %] </ul>
+ [% END %] <h3>Hecho!</h3>
  <p>Instalación completa.<br />
- <p>Haga clic en Finalizar para completar y carga la intranaet de Koha.
- <form name="finish">
+ <p>Haga clic en 'Terminar' para finalizar y cargar la interfaz administrativa. <form name="finish">
  <input type="hidden" name="step" value="3" />
  <input type="hidden" name="op" value="finish" />
  <input value="Finalizar" type="submit" /></form>
  </p>
  </p>
-[% END %]
-
-
-[% IF ( importdatastructure ) %]
- [% IF ( error ) %]
- <p>El siguiente error se ha producido al importar la estructura de base de datos:</p>
+[% END %] [% IF ( importdatastructure ) %] [% IF ( error ) %] <p>El siguiente se ha producido un error al importar la estructura de base de datos:</p>
  <p class="error">[% error %] </p>
  <p>Por favor, contacte al administrador del sistema</p>
- [% ELSE %]
- <h2 align="center">Éxito</h2>
+ [% ELSE %] <h2 align="center">Éxito</h2>
  <ul>
  <li>Tablas de la base de datos creadas</li>
  </ul>
  <form action="install.pl">
  <input type="hidden" name="step" value="3" />
- <p> Haga clic en Siguiente para continuar <input value="Siguiente >>" type="submit" /></p>
+ <p> Haga clic en 'Siguiente' para continuar <input value="Siguiente >>" type="submit" /></p>
  </form>
- [% END %]
-[% END %]
-
-
-[% IF ( proposeimport ) %]
- <p>Ahora estamos preparados para crear las tablas de la base de datos y de rellenarlas con algunos datos predeterminados.</p>
+ [% END %] [% END %] [% IF ( proposeimport ) %] <p>Ahora estamos preparados para crear las tablas de la base de datos y de llenarlas con algunos datos predeterminados.</p>
  <form action="install.pl">
  <input type="hidden" name="step" value="3" />
  <input type="hidden" name="op" value="importdatastructure" />
- <p> Haga clic en Siguiente para continuar <input value="Siguiente >>" type="submit" /></p>
+ <p> Haga clic en 'Siguiente' para continuar <input value="Siguiente >>" type="submit" /></p>
  </form>
-[% END %]
-
-
-[% IF ( default ) %]
- [% IF ( upgrading ) %]
- <p>
+[% END %] [% IF ( default ) %] [% IF ( upgrading ) %] <p>
  Estamos actualizando desde Koha [% dbversion %] a [% kohaversion %], usted debe <a href="install.pl?step=3&amp;op=updatestructure" class="button">actualizar su base de datos</a>
  </p>
- [% ELSE %]
- <p>Estamos preparados para hacer una configuración básica. Por favor <a href="install.pl?step=3&amp;op=choosemarc" class="button">instalar parámetros de configuración básica </a>
- para continuar con la instalación. </p>
- [% END %]
-[% END %]
-
-
-
-[% IF ( updatestructure ) %]
- <div><h2 align="center">Actualizando la estructura de la base de datos</h2>
- [% IF ( has_update_succeeds ) %]
- <p>Actualizar informe:</p>
+ [% ELSE %] <p>Estamos preparados para hacer algunas configuraciones básicas. Por favor, <a href="install.pl?step=3&amp;op=choosemarc" class="button">instalar los ajustes de configuración básica</a>
+ para continuar la instalación. </p>
+ [% END %] [% END %] [% IF ( updatestructure ) %] <div><h2 align="center">Actualizando la estructura de la base de datos</h2>
+ [% IF ( has_update_succeeds ) %] <p>Actualizar informe:</p>
  <ul>
- [% FOREACH update_repor IN update_report %]
- <li>[% update_repor.line |html %]</li>
- [% END %] 
- </ul>
- [% END %]
- [% IF ( has_update_errors ) %]
- <p>Errores de actualización:</p>
+ [% FOREACH update_repor IN update_report %] <li>[% update_repor.line |html %]</li>
+ [% END %] </ul>
+ [% END %] [% IF ( has_update_errors ) %] <p>Errores de actualización:</p>
  <ul>
- [% FOREACH update_error IN update_errors %]
- <li class="update_error">[% update_error.line |html %]</li>
- [% END %] 
- </ul>
- [% END %]
- [% UNLESS ( has_update_errors ) %]
- <p>Todo funcionó bien, actualización terminada.</p>
- [% END %]
-<a href="install.pl?step=3&amp;op=finished" class="button">Continúe para acceder a Koha</a>
+ [% FOREACH update_error IN update_errors %] <li class="update_error">[% update_error.line |html %]</li>
+ [% END %] </ul>
+ [% END %] [% UNLESS ( has_update_errors ) %] <p>Todo funcionó bien, actualización terminada.</p>
+ [% END %] <a href="install.pl?step=3&amp;op=finished" class="button">Continúe ingresando a Koha</a>
  </div>
-[% END %]
-
-</body>
+[% END %] </body>
 </html>

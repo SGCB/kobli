@@ -1,32 +1,30 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Calendario de feriados</h1>
 
-<h1>Calencario de festivos</h1>
-
-<p>Las bibliotecas pueden definir los días que cierran y los festivos para calcular las fechas de devolución. Puedes hacer uso del Calendario de Festivos habilitando las preferencias del sistema correspondientes:</p>
+<p>Las bibliotecas pueden definir los días que cierran y los feriados para calcular las fechas de devolución. Puede hacer uso del Calendario de Feriados habilitando la preferencia del sistema correspondiente</p>
 
 <ul>
- <li><em>Llegar:</em>More &gt; Administration &gt; Global System Preferences &gt; Circulation &gt; <span class="link"><span class="link">useDaysMode</span></span>
+ <li><em>Get there: </em>More &gt; Administration &gt; Global System Preferences &gt; Circulation &gt; <span class="link"><span class="link">useDaysMode</span></span>
 <ul>
- <li>Selecciona el método de cálculo para la fecha de vencimiento - incluyendo los días que la biblioteca está cerrada en dicho cálculo, o no.</li>
+ <li>Seleccione el método de cálculo para la fecha de vencimiento - incluyendo los días que la biblioteca está cerrada en dicho cálculo, o no.</li>
 </ul>
 </li>
  <li><em>Llegar:</em> More &gt; Administration &gt; Global System Preferences &gt; Circulation &gt; <span class="link"><span class="link">finescalendar</span></span>
 <ul>
- <li>Esto comprobará el calendario de festivos antes del cobro de multas</li>
+ <li>Esto comprobará el calendario de feriados antes del cobro de multas</li>
 </ul>
 </li>
 </ul>
 
 <h3>Agregando eventos</h3>
 
-<p>Antes de añadir eventos, selecciona la biblioteca a la que deseas aplicar los festivos. Al añadir eventos se te preguntará si deseas aplicar el evento a una sede o a todas las sedes. Para agregar eventos, simplemente</p>
+<p>Before adding events, choose the library you would like to apply the closings to. When adding events you will be asked if you would like to apply the event to one branch or all branches. To add events, simply</p>
 
 <ul>
- <li>Haz clic en la fecha del calendario en que deseas aplicar el cierre de</li>
+ <li>Haga clic en la fecha del calendario en que desea aplicar el cierre de</li>
  <li>In the form that appears above the calendar, enter the closing information (for more info on each option click the question mark [?] to the right of the option)
 <ul>
- <li>La biblioteca se asignará automáticamente. Puedes elegir una biblioteca del menú desplegable en la parte superior de la página</li>
- <li>La información del día se rellenará automáticamente a partir de la fecha en la que hciste clic en el calendario</li>
+ <li>La biblioteca se asignará automáticamente. Puede elegir una biblioteca del menú desplegable en la parte superior de la página</li>
+ <li>La información del día se rellenará automáticamente a partir de la fecha en la que hizo clic en el calendario</li>
  <li>En la descripción ingresar la razón por la cual la biblioteca está cerrada</li>
  <li>Next you can choose if this event is a one time event or if it is repeatable.
 <ul>
@@ -44,28 +42,26 @@
 </li>
 </ul>
 </li>
- <li>After saving you will see the event listed in the summary to the right the calendar</li>
+ <li>Después de guardar podrá ver el evento listado en el resumen a la derecha del calendario</li>
 </ul>
 
-<h3>Edición de eventos</h3>
+<h3>Edición de Eventos</h3>
 
 <p>Para editar los eventos</p>
 
 <ul>
- <li>Haz clic en el evento del calendario que deseas cambiar (haz esto haciendo clic en la fecha en el calendario, no en el evento listado en el resumen)</li>
- <li>Desde este formulario puedes editar o eliminar completamente el festivo. Ambas acciones requieren que hagas clic en 'Guardar' antes de que se realice el cambio.</li>
- <li>Clicking on repeatable events will offer slightly different options
-<ul>
- <li>En el formulario de arriba podrás observar que ahora hay una opción 'Generar una excepción para este festivo repetido,'. Si eliges esta opción podrás abrir la biblioteca en una fecha en la que suele estar cerrada.</li>
+ <li>Haga clic en el evento del calendario que desea cambiar (hacer esto haciendo clic en la fecha en el calendario, no en el evento enumerado en el resumen)</li>
+ <li>Desde este formulario puedo editar o eliminar completamente el feriado. Ambas acciones requieren que haga clic en 'Guardar' antes que se realice el cambio.</li>
+ <li>Haciendo clic en eventos repetíbles tendrá opciones ligeramente diferentes <ul>
+ <li>En el formulario de arriba se dará cuenta de que ahora hay una opción 'Generar una excepción para este feriado repetido,'. Elegir esta opción le permitirá abrir la biblioteca en una fecha en que la biblioteca usualmente está cerrada.</li>
 </ul>
 </li>
 </ul>
 
 <h3>Ayuda adicional</h3>
 
-<p>When adding or editing events you can get additional help by clicking on the question mark next to various different options on the form</p>
+<p>Al agregar o editar eventos se puede obtener ayuda adicional haciendo clic en el signo de interrogación al lado de distintas opciones en el formulario</p>
 
-<p><strong>See the full documentation for the Calendar in the <a href="http://manual.koha-community.org/3.8/en/calholidays.html">manual</a> (online).</strong></p>
+<p><strong>Vea la documentación completa para Calendario en la <a href="http://manual.koha-community.org/3.8/en/calholidays.html">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
-
+[% INCLUDE 'help-bottom.inc' %] 

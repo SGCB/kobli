@@ -1,8 +1,4 @@
-[% USE KohaDates %]
-
-[% INCLUDE 'doc-head-open.inc' %][% LibraryNameTitle or "Koha online" %] catalog &rsaquo; Your checkout history
-[% INCLUDE 'doc-head-close.inc' %]
-<style type="text/css">ul.ui-tabs-nav li a, ul.ui-tabs-nav li span.a  { padding:0.6em 1em; }</style>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %][% LibraryNameTitle or "Koha online" %] catálogo &rsaquo; Su historial de préstamo [% INCLUDE 'doc-head-close.inc' %] <style type="text/css">ul.ui-tabs-nav li a, ul.ui-tabs-nav li span.a  { padding:0.6em 1em; }</style>
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
@@ -22,31 +18,31 @@ $(document).ready(function(){
  [% INCLUDE 'search.inc' %] <div class="yui-b"><div class="yui-g">
 <div id="userreadingrecord" class="container">
 <!--CONTENT-->
-<h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% firstname %] [% surname %]</a> <img src="[% themelang %]../../images/caret.gif" width="16" height="16" alt="&gt;" border="0" /> Checkout history</h3>
+<h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% firstname %] [% surname %]</a> <img src="[% themelang %]../../images/caret.gif" width="16" height="16" alt="&gt;" border="0" /> Historial de préstamos</h3>
 
-[% UNLESS ( count ) %] No has tenido préstamos con esta biblioteca. [% ELSE %] <div id="opac-user-readingrec" class="toptabs">
+[% UNLESS ( count ) %] Usted nunca ha pedido prestado algo de esta biblioteca. [% ELSE %] <div id="opac-user-readingrec" class="statictabs">
 
 <div class="resultscontrol resort"> <form id="sortform" action="/cgi-bin/koha/opac-readingrecord.pl" method="get">
 [% UNLESS ( limit ) %]<input type="hidden" name="limit" value="full" />[% END %] <select name="order" id="order">
 
 [% IF ( orderbydate ) %]<option value="" selected="selected">Ordenar por fecha</option>[% ELSE %]<option value="">Ordenar por fecha</option>[% END %] [% IF ( orderbytitle ) %]<option value="title" selected="selected">Ordenar por título</option>[% ELSE %]<option value="title">Ordenar por título</option>[% END %] </select> <input value="Ir" type="submit" id="sortsubmit" class="submit clearfix" /></form></div>
 
-<ul class="ui-tabs-nav">
+<ul>
 
-[% IF ( showfulllink ) %] [% IF ( limit ) %] <li><a href="/cgi-bin/koha/opac-readingrecord.pl?limit=full[% IF ( orderbytitle ) %]&amp;order=title[% END %]">Mostrar todos los artículos</a></li><li class="ui-tabs-selected"><a href="#readingrec">Showing last 50 items</a></li>
-[% ELSE %] <li class="ui-tabs-selected"><a href="/cgi-bin/koha/opac-readingrecord.pl#readingrec">Showing all items</a></li><li><a href="/cgi-bin/koha/opac-readingrecord.pl?limit=50[% IF ( orderbytitle ) %]&amp;order=title[% END %]">Show last 50 items only</a></li>
-[% END %] [% ELSE %] <li class="ui-tabs-selected"><a href="/cgi-bin/koha/opac-readingrecord.pl#readingrec">Showing all items</a></li>
+[% IF ( showfulllink ) %] [% IF ( limit ) %] <li><a href="/cgi-bin/koha/opac-readingrecord.pl?limit=full[% IF ( orderbytitle ) %]&amp;order=title[% END %]">Mostrar todos los ítems</a></li><li class="active"><a href="#readingrec">Mostrando últimos 50 ítems</a></li>
+[% ELSE %] <li class="active"><a href="/cgi-bin/koha/opac-readingrecord.pl#readingrec">Mostrando todos los ítems</a></li><li><a href="/cgi-bin/koha/opac-readingrecord.pl?limit=50[% IF ( orderbytitle ) %]&amp;order=title[% END %]">Mostrar sólo últimos 50 ítems</a></li>
+[% END %] [% ELSE %] <li class="active"><a href="/cgi-bin/koha/opac-readingrecord.pl#readingrec">Mostrando todos los ítems</a></li>
 [% END %] </ul>
-<div class="ui-tabs-panel"><table id="readingrec">
+<div class="tabs-container"><table id="readingrec">
 <tr>
 <th colspan="2">Título</th>
-<th>Tipo de artículo</th>
-<th>Call no.</th>
+<th>Tipo de ítem</th>
+<th>Signatura top.</th>
 <th>Fecha</th>
 </tr>
 
 [% FOREACH READING_RECOR IN READING_RECORD %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td>
-[% IF ( OPACAmazonEnabled ) %][% IF ( OPACAmazonCoverImages ) %][% IF ( READING_RECOR.normalized_isbn ) %]<a href="http://www.amazon.com/gp/reader/[% READING_RECOR.normalized_isbn %]/ref=sib_dp_pt/002-7879865-0184864#reader-link"><img alt="Imagen de portada" src="http://images.amazon.com/images/P/[% READING_RECOR.normalized_isbn %].01.THUMBZZZ.jpg" border="0" /></a>[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %][% END %] [% IF ( GoogleJackets ) %][% IF ( READING_RECOR.normalized_isbn ) %]<div style="block" title="[% READING_RECOR.biblionumber |url %]" class="[% READING_RECOR.normalized_isbn %]" id="gbs-thumbnail[% loop.count %]"></div>[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %] [% IF ( BakerTaylorEnabled ) %][% IF ( READING_RECOR.normalized_isbn ) %]<a href="https://[% BakerTaylorBookstoreURL |html %][% READING_RECOR.normalized_isbn %]"><img alt="Ver Baker & Taylor" src="[% BakerTaylorImageURL |html %][% READING_RECOR.normalized_isbn %]" /></a>[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %] [% IF ( SyndeticsEnabled ) %][% IF ( SyndeticsCoverImages ) %][% IF ( using_https ) %] <img src="https://secure.syndetics.com/index.aspx?isbn=[% READING_RECOR.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% READING_RECOR.normalized_upc %]&amp;oclc=[% READING_RECOR.normalized_oclc %]" alt="" class="thumbnail" />
+[% IF ( OPACAmazonEnabled ) %][% IF ( OPACAmazonCoverImages ) %][% IF ( READING_RECOR.normalized_isbn ) %]<a href="http://www.amazon.com/gp/reader/[% READING_RECOR.normalized_isbn %]/ref=sib_dp_pt/002-7879865-0184864#reader-link"><img alt="Imagen de cubierta" src="http://images.amazon.com/images/P/[% READING_RECOR.normalized_isbn %].01.THUMBZZZ.jpg" border="0" /></a>[% ELSE %]<span class="no-image">No hay imagen de cubierta disponible</span>[% END %][% END %][% END %] [% IF ( GoogleJackets ) %][% IF ( READING_RECOR.normalized_isbn ) %]<div style="block" title="[% READING_RECOR.biblionumber |url %]" class="[% READING_RECOR.normalized_isbn %]" id="gbs-thumbnail[% loop.count %]"></div>[% ELSE %]<span class="no-image">No hay imagen de cubierta disponible</span>[% END %][% END %] [% IF ( BakerTaylorEnabled ) %][% IF ( READING_RECOR.normalized_isbn ) %]<a href="https://[% BakerTaylorBookstoreURL |html %][% READING_RECOR.normalized_isbn %]"><img alt="Ver Baker & Taylor" src="[% BakerTaylorImageURL |html %][% READING_RECOR.normalized_isbn %]" /></a>[% ELSE %]<span class="no-image">No hay imagen de cubierta disponible</span>[% END %][% END %] [% IF ( SyndeticsEnabled ) %][% IF ( SyndeticsCoverImages ) %][% IF ( using_https ) %] <img src="https://secure.syndetics.com/index.aspx?isbn=[% READING_RECOR.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% READING_RECOR.normalized_upc %]&amp;oclc=[% READING_RECOR.normalized_oclc %]" alt="" class="thumbnail" />
  [% ELSE %] <img src="http://www.syndetics.com/index.aspx?isbn=[% READING_RECOR.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% READING_RECOR.normalized_upc %]&amp;oclc=[% READING_RECOR.normalized_oclc %]" alt="" class="thumbnail" />[% END %][% END %][% END %] </td>
 <td>[% IF ( READING_RECOR.BiblioDefaultViewmarc ) %]<a class="title" href="/cgi-bin/koha/opac-MARCdetail.pl?biblionumber=[% READING_RECOR.biblionumber |url %]">[% READING_RECOR.title |html %] [% IF ( READING_RECOR.subtitle ) %][% FOREACH subtitl IN READING_RECOR.subtitle %][% subtitl.subfield %][% END %][% END %]</a>[% ELSE %] [% IF ( READING_RECOR.BiblioDefaultViewisbd ) %]<a class="title" href="/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber=[% READING_RECOR.biblionumber |url %]">[% READING_RECOR.title |html %] [% IF ( READING_RECOR.subtitle ) %][% FOREACH subtitl IN READING_RECOR.subtitle %][% subtitl.subfield %][% END %][% END %]</a>[% ELSE %] <a class="title" href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% READING_RECOR.biblionumber |url %]">[% READING_RECOR.title |html %] [% IF ( READING_RECOR.subtitle ) %][% FOREACH subtitl IN READING_RECOR.subtitle %][% subtitl.subfield %][% END %][% END %]</a>[% END %][% END %] <span class="item-details">
  [% READING_RECOR.author %] </span></td>

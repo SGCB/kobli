@@ -98,7 +98,7 @@ Added Log Comment
  <xsl:value-of select="substring($titleChop,1,@ind2)"/>
  </nonSort>
  <title>
- <xsl:value-of select="substring($titleChop,@ind2+1)"/></title>
+ <xsl:value-of select="substring($titleChop,@ind2+1)"/> </title>
  </xsl:when>
  <xsl:otherwise>
  <title>
@@ -126,7 +126,7 @@ Added Log Comment
  <xsl:for-each select="marc:datafield[@tag=210]">
  <titleInfo type="abbreviated">
  <title>
- <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">a</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template></title>
+ <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">a</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="subtitle"/>
  </titleInfo>
  </xsl:for-each>
@@ -206,7 +206,7 @@ Added Log Comment
  <xsl:for-each select="marc:datafield[@tag=740][@ind2!=2]">
  <titleInfo type="alternative">
  <title>
- <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">ah</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template></title>
+ <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">ah</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="part"/>
  </titleInfo>
  </xsl:for-each>
@@ -280,10 +280,10 @@ Added Log Comment
 
  <typeOfResource>
  <xsl:if test="$leader7='c'">
- <xsl:attribute name="collection">sí</xsl:attribute>
+ <xsl:attribute name="collection">si</xsl:attribute>
  </xsl:if>
  <xsl:if test="$leader6='d' or $leader6='f' or $leader6='p' or $leader6='t'">
- <xsl:attribute name="manuscript">sí</xsl:attribute>
+ <xsl:attribute name="manuscript">si</xsl:attribute>
  </xsl:if>
  <xsl:choose>
  <xsl:when test="$leader6='a' or $leader6='t'">texto</xsl:when>
@@ -861,7 +861,7 @@ Added Log Comment
 
  <xsl:choose>
  <xsl:when test="($check008-23 and $controlField008-23='f') or ($check008-29 and $controlField008-29='f')">
- <form authority="marcform">braille</form>
+ <form authority="marcform">Braille</form>
  </xsl:when>
  <xsl:when test="($controlField008-23=' ' and ($leader6='c' or $leader6='d')) or (($typeOf008='BK' or $typeOf008='SE') and ($controlField008-23=' ' or $controlField008='r'))">
  <form authority="marcform">imprimir</form>
@@ -1275,7 +1275,7 @@ Added Log Comment
  <relatedItem type="series">
  <titleInfo>
  <title>
- <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">av</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template></title>
+ <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">av</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="part"/>
  </titleInfo>
  </relatedItem>
@@ -1285,7 +1285,7 @@ Added Log Comment
  <relatedItem type="series">
  <titleInfo>
  <title>
- <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">av</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template></title>
+ <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">av</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="part"/>
  </titleInfo>
  </relatedItem>
@@ -1397,7 +1397,7 @@ Added Log Comment
  <xsl:call-template name="constituentOrRelatedType"/>
  <titleInfo>
  <title>
-  <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="specialSubfieldSelect"> <xsl:with-param name="anyCodes">tfklsv</xsl:with-param> <xsl:with-param name="axis">t</xsl:with-param> <xsl:with-param name="afterCodes">g</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template></title>
+ <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="specialSubfieldSelect"> <xsl:with-param name="anyCodes">tfklsv</xsl:with-param> <xsl:with-param name="axis">t</xsl:with-param> <xsl:with-param name="afterCodes">g</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="relatedPartNumName"/>
  </titleInfo>
  <name type="conference">
@@ -1419,7 +1419,7 @@ Added Log Comment
  <xsl:call-template name="constituentOrRelatedType"/>
  <titleInfo>
  <title>
- <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">adfgklmorsv</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template></title>
+ <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">adfgklmorsv</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="part"/>
  </titleInfo>
  <xsl:call-template name="relatedForm"/>
@@ -1561,7 +1561,7 @@ Added Log Comment
  <relatedItem type="series">
  <titleInfo>
  <title>
-  <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="specialSubfieldSelect"> <xsl:with-param name="anyCodes">tfklsv</xsl:with-param> <xsl:with-param name="axis">t</xsl:with-param> <xsl:with-param name="afterCodes">g</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template></title>
+ <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="specialSubfieldSelect"> <xsl:with-param name="anyCodes">tfklsv</xsl:with-param> <xsl:with-param name="axis">t</xsl:with-param> <xsl:with-param name="afterCodes">g</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="relatedPartNumName"/>
  </titleInfo>
  <name type="conference">
@@ -1582,7 +1582,7 @@ Added Log Comment
  <relatedItem type="series">
  <titleInfo>
  <title>
- <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">adfgklmorsv</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template></title>
+ <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">adfgklmorsv</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template> </title>
  <xsl:call-template name="part"/>
  </titleInfo>
  <xsl:call-template name="relatedForm"/>
@@ -1637,7 +1637,7 @@ Added Log Comment
  <xsl:call-template name="isInvalid"/>
  <xsl:attribute name="type">
  <xsl:choose>
- <xsl:when test="@ind1=0">no se ha perdido Y,</xsl:when>
+ <xsl:when test="@ind1=0">número de ejemplar</xsl:when>
  <xsl:when test="@ind1=1">número de matriz</xsl:when>
  <xsl:when test="@ind1=2">placa de música</xsl:when>
  <xsl:when test="@ind1=3">editor de música</xsl:when>
@@ -2321,7 +2321,7 @@ Added Log Comment
  <xsl:call-template name="subjectAuthority"/>
  <titleInfo>
  <title>
-  <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">adfhklor</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template> <xsl:call-template name="part"/></title>
+ <xsl:call-template name="chopPunctuation"> <xsl:with-param name="chopString"> <xsl:call-template name="subfieldSelect"> <xsl:with-param name="codes">adfhklor</xsl:with-param> </xsl:call-template> </xsl:with-param> </xsl:call-template> <xsl:call-template name="part"/> </title>
  </titleInfo>
  <xsl:call-template name="subjectAnyOrder"/>
  </subject>
@@ -2415,7 +2415,7 @@ Added Log Comment
 
  <xsl:template name="isInvalid">
  <xsl:if test="marc:subfield[@code='z']">
- <xsl:attribute name="invalid">sí</xsl:attribute>
+ <xsl:attribute name="invalid">si</xsl:attribute>
  </xsl:if>
  </xsl:template>
 

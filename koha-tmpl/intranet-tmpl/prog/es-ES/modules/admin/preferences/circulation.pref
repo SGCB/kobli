@@ -173,6 +173,13 @@ Circulation:
         class: url
         pref: NoticeCSS
       - on Notices. (This should be a complete URL, starting with <code>http://</code>)
+    - 
+      - 
+        choices: 
+          "": Do not
+          1: Do
+        pref: UpdateTotalIssuesOnCirc
+      - update a bibliographic record's total issues count whenever an item is issued (WARNING! This increases server load significantly; if performance is a concern, use the update_totalissues.pl cron job to update the total issues count).
   "Pol\xC3\xADtica de multas": 
     - 
       - "Calcular las multas sobre la base de d\xC3\xADas de atraso"
@@ -309,8 +316,8 @@ Circulation:
     - 
       - 
         choices: 
-          "": No impida
-          1: Impida
+          "": Impida
+          1: No impida
         pref: IssuingInProcess
       - "a socios pedir prestado un \xC3\xADtem cuyo valor de alquiler los lleve sobre el l\xC3\xADmite."
     - 
@@ -352,6 +359,15 @@ Circulation:
           homebranch: the library the item is from.
         pref: HomeOrHoldingBranchReturn
         type: choice
+    - 
+      - "When issuing an item that has been marked as lost, "
+      - 
+        choices: 
+          alert: display a message
+          confirm: require confirmation
+          nothing: do nothing
+        pref: IssueLostItem
+      - .
   "Pol\xC3\xADtica de reservas": 
     - 
       - 
@@ -481,3 +497,17 @@ Circulation:
           1: Allow
         pref: AutoResumeSuspendedHolds
       - suspended holds to be automatically resumed by a set date.
+    - 
+      - 
+        choices: 
+          "": Don't allow
+          1: Allow
+        pref: SuspendHoldsIntranet
+      - holds to be suspended from the intranet.
+    - 
+      - 
+        choices: 
+          "": Don't allow
+          1: Allow
+        pref: SuspendHoldsOpac
+      - holds to be suspended from the OPAC.

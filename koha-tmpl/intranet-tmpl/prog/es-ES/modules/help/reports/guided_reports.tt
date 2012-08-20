@@ -1,52 +1,50 @@
-[% INCLUDE 'help-top.inc' %]
-
-<h1>Agregar un informe personalizado</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Agregar un informe personalizado</h1>
 
 <h2>Guided Report Wizard</h2>
 
-<p>Si el informe que necesitas no está disponible, el asistente de 'Informes guiados' te guiará para hacer un informe personalizado.</p>
+<p>Si el informe que usted necesita no está disponible, el asistente de 'Reportes guiadas' le guiará para hacer un informe personalizado.</p>
 
 <ul>
-<li>Ir al módulo de 'Informes' (por lo general en 'Más' en tu navegación global)</li>
-<li>Selecciona 'Informes guiados' bajo 'Asistente de informes guiados'</li>
+<li>Ir al módulo de 'Informes' (por lo general en 'Más' en su navegación global)</li>
+<li>Seleccione 'Informes guiados' bajo 'Asistente de informes guiados'</li>
 </ul>
 
-<p>Responde a las 6 preguntas presentadas para crear el informe.</p>
+<p>Responda a las 6 preguntas presentadas, en orden, para crear el informe.</p>
 
 <p><strong>Paso 1: elegir un módulo para ser informado</strong></p>
 
 <ul>
-<li>Elige un módulo de Koha sobre el que construir un informe (socios, circulación, catalogación, etc.)</li>
-<li>Haz clic en 'Siguiente'</li>
+<li>Elija un módulo de Koha sobre el cual construir un informe (socios, circulación, catalogación, etc.)</li>
+<li>Haga clic en 'Siguiente'</li>
 </ul>
 
 <p><strong>Paso 2: elegir un tipo de informe</strong></p>
 
-<ul><li style="color: #990000">IMPORTANTE: Sólo se puede elegir Tabular con esta opción</li></ul>
+<ul><li style="color: #990000">IMPORTANTE: Sólo tabular debe ser elegido con esta opción</li></ul>
 
 <p><strong>Paso 3: elegir columnas para mostrar</strong></p>
 
-<p><strong>Paso 4: elegir un criterio para limitar</strong></p>
+<p><strong>Paso 4: elegir un criterio para límite</strong></p>
 
-<ul><li>Esto es opcional, si no deseas limitar los resultados mediante cualquier campo, deja esta sección en blanco.</li></ul>
+<ul><li>Esto es opcional, si usted no desea limitar los resultados por cualquier campo, deje esta sección en blanco.</li></ul>
 
-<p><strong>Paso 5: elegir en qué columnas realizar funciones matemáticas</strong></p>
+<p><strong>Paso 5: Elija en que columnas realizará funciones matemáticas</strong></p>
 
-<ul><li>Esto es opcional, si no quieres hacer ninguna cuenta con los resultados, deja esta sección en blanco.</li></ul>
+<ul><li>Esto es opcional, si no quiere hacer ninguna cuenta con los resultados, deje esta sección en blanco.</li></ul>
 
-<p><strong>Paso 6: elegir como deseas que esté ordenado el informe</strong></p>
+<p><strong>Paso 6: elegir como desea que esté ordenado el informe</strong></p>
 
-<ul><li>Esto es opcional, si deseas que los resultados salgan como están en la tabla, deja esta sección en blanco.</li></ul>
+<ul><li>Esto es opcional, si desea que los resultados salgan como están en la tabla, deje esta sección en blanco.</li></ul>
 
 <h1>Editar informes</h1>
 
 <p>Los informes personalizados se pueden editar en su totalidad en la página 'Informes guiados guardados'.</p>
 
-<ul><li><em>Llegar:</em> More > Reports > Guided Reports > Use Saved</li></ul>
+<ul><li><em>Llegar:</em> Más &gt; Informes &gt; Informes guiados &gt; Usar Guardado</li></ul>
 
 <ul>
-<li>Para editar un informe haz clic en 'Editar SQL' al lado del informe</li>
-<li>Una página con campos editables se abrirá para que puedas cambiar el título, notas y SQL relacionados con el informe</li>
+<li>Para editar un informe haga clic en 'Editar SQL' al lado del informe</li>
+<li>Una página con campos editables se abrirá para que pueda cambiar el título, notas y SQL relacionados con el informe</li>
 </ul>
 
 <h2>Report from SQL</h2>
@@ -65,7 +63,7 @@
 <ul>
  <li><strong>Note:</strong> There is a limit of 10,000 records put on SQL statements entered in Koha. To get around this you want to add 'LIMIT 100000' to the end of your SQL statement (or any other number above 10,000.</li>
  <li>There is a specific syntax that Koha will understand as 'ask for values when running the report'. The syntax is &lt;&lt;Question to ask|authorized_value&gt;&gt;.</li>
- <li>Los &lt;&lt; y &gt;&gt; son sólo delimitadores. Debes poner &lt;&lt; al principio y &gt;&gt; al final de tu parámetro</li>
+ <li>Los &lt;&lt; y &gt;&gt; son solo delimitadores. Usted debe poner &lt;&lt; al principio y &gt;&gt; al final de su parámetro</li>
  <li>The 'Question to ask' will be displayed on the left of the string to enter.</li>
  <li>The authorized_value can be omitted if not applicable. If it contains an authorized value category, or branches or itemtype or categorycode, a list with the Koha authorized values will be displayed instead of a free field Note that you can have more than one parameter in a given SQL Note that entering nothing at run time won't probably work as you expect. It will be considered as "value empty" not as "ignore this parameter". For example entering nothing for : "title=&lt;&lt;Enter title&gt;&gt;" will display results with title='' (no title). If you want to have to have something not mandatory, use "title like &lt;&lt;Enter title&gt;&gt;" and enter a % at run time instead of nothing</li>
 </ul>
@@ -90,12 +88,20 @@
 
 <h1>Preguntas</h1>
 
+<p><strong>What are duration and visibility?</strong></p>
+<p>The duration field may be visible or not, don't worry if you don't see it. If you see it, it says how long a report run is kept in Koha and, any subsequent re-run will in fact display the result run the 1st time</p>
+<p>The visibility field specify if your report is accessible <strong>without authentication</strong> from the OPAC. Reports can be retrieved from the following URLs:
+<ul><li> opac: http://localhost/cgi-bin/koha/svc/report?id=1</li>
+<li>intranet: http://localhost:8080/cgi-bin/koha/svc/report?id=1</li>
+</ul>
+<p>(replace localhost and localhost:8080 with the appropriate URLs)</p>
+
 <p><strong>¿Hay un depósito de informes?</strong></p>
 
-<p>There is a page on the Koha Wiki: <a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library" target="_new">http://wiki.koha-community.org/wiki/SQL_Reports_Library</a> con informes escritos por las bibliotecas Koha de todo el mundo.</p>
+<p>Hay una página en la wiki de Koha <a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library" target="_new">http://wiki.koha-community.org/wiki/SQL_Reports_Library</a> con los informes escritos por las bibliotecas Koha en todo el mundo.</p>
 
-<p>NELKS también tiene una gran página (<a href="http://www.nexpresslibrary.org/training/reports-training/" target="_new">http://www.nexpresslibrary.org/training/reports-training/</a>) con una lista de informes escrita por ellos.</p>
+<p>NEKLS tiene también una buena página (<a href="http://www.nexpresslibrary.org/training/reports-training/" target="_new">http://www.nexpresslibrary.org/training/reports-training/</a>) con una lista de informes que han escrito.</p>
 
-<p><strong>See the full documentation for Custom Reports in the <a href="http://manual.koha-community.org/3.8/en/reports.html#customreports">manual</a> (online).</strong></p>
+<p><strong>Vea la documentación completa para Informes manuales en la <a href="http://manual.koha-community.org/3.8/en/reports.html#customreports">manual</a> (en línea).</strong></p>
 
-[% INCLUDE 'help-bottom.inc' %]
+[% INCLUDE 'help-bottom.inc' %] 

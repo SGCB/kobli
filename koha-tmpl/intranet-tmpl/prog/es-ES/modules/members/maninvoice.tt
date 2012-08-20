@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Borrowers &rsaquo; Create manual invoice</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Crear factura manual</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
 	$("fieldset.rows input").keydown(function(e){ return checkEnter(e); });
@@ -10,10 +8,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body id="pat_maninvoice" class="pat">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'patron-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Factura manual</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Factura manual</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -23,16 +18,16 @@ $(document).ready(function(){
 [% INCLUDE 'members-toolbar.inc' %]
 
 <!-- The manual invoice and credit buttons -->
-<div class="toptabs">
-<ul class="ui-tabs-nav">
+<div class="statictabs">
+<ul>
  <li><a href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Cuenta</a></li>
  <li><a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrowernumber %]" >Pagar multas</a></li>
- <li class="ui-tabs-selected"><a href="/cgi-bin/koha/members/maninvoice.pl?borrowernumber=[% borrowernumber %]" >Crear factura manual</a></li>
+ <li class="active"><a href="/cgi-bin/koha/members/maninvoice.pl?borrowernumber=[% borrowernumber %]" >Crear factura manual</a></li>
  <li><a href="/cgi-bin/koha/members/mancredit.pl?borrowernumber=[% borrowernumber %]" >Crear crédito manual</a></li>
 </ul>
 <div class="tabs-container">
 
-[% IF ( ERROR ) %] [% IF ( ITEMNUMBER ) %] ERROR se ingresó un numero de ítem no válido. Por favor vuelve a la pantalla anterior y prueba otra vez [% END %] [% ELSE %] <form action="/cgi-bin/koha/members/maninvoice.pl" method="post"><input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" />
+[% IF ( ERROR ) %] [% IF ( ITEMNUMBER ) %] ERROR se ingresó un numero de ítem no válido. Por favor vuelva a la pantalla anterior e intente otra vez. [% END %] [% ELSE %] <form action="/cgi-bin/koha/members/maninvoice.pl" method="post"><input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" />
  <fieldset class="rows">
  <legend>Factura Manual</legend>
  <ol>
@@ -48,34 +43,30 @@ type_fees['M'] = '';
 type_fees['[% invoice_types_loo.authorised_value %]'] = "[% invoice_types_loo.lib %]";
 [% END %]
 </script>
- <label for="type">Type: </label>
+ <label for="type">Tipo: </label>
  <select name="type" id="type" onchange="this.form.desc.value=this.options[this.selectedIndex].value; this.form.amount.value=type_fees[this.options[this.selectedIndex].value];">
- <option value="L">Lost item</option>
+ <option value="L">Ítem perdido</option>
  <option value="F">Multa</option>
- <option value="A">Account management fee</option>
- <option value="N">New card</option>
- <option value="M">Varios</option>
- [% FOREACH invoice_types_loo IN invoice_types_loop %]
- <option value="[% invoice_types_loo.authorised_value %]">[% invoice_types_loo.authorised_value %]</option>
- [% END %]
- </select>
+ <option value="A">Costo de administración de cuenta</option>
+ <option value="N">Nuevo carnet</option>
+ <option value="M">Diverso</option>
+ [% FOREACH invoice_types_loo IN invoice_types_loop %] <option value="[% invoice_types_loo.authorised_value %]">[% invoice_types_loo.authorised_value %]</option>
+ [% END %] </select>
  </li>
- <li><label for="barcode">Código de barras:</label><input type="text" name="barcode" id="barcode" /></li>
- <li><label for="desc">Descripción:</label><input type="text" name="desc" id="desc" size="50" /></li>
- <li><label for="note">Note: </label><input type="text" name="note" size="50" id="note" /></li>
- <li><label for="amount">Amount: </label><input type="text" name="amount" id="amount" /> Ejemplo: 5.00</li>
+ <li><label for="barcode">Código de barras: </label><input type="text" name="barcode" id="barcode" /></li>
+ <li><label for="desc">Descripción: </label><input type="text" name="desc" id="desc" size="50" /></li>
+ <li><label for="note">Nota: </label><input type="text" name="note" size="50" id="note" /></li>
+ <li><label for="amount">Monto: </label><input type="text" name="amount" id="amount" /> Ejemplo: 5.00</li>
  </ol></fieldset>
 <fieldset class="action"><input value="Guardar" name="add" type="submit" /> <a class="cancel" href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Cancelar</a></fieldset>
 </form>
 
-[% END %]
-</div></div>
+[% END %] </div></div>
 
 </div>
 </div>
 
 <div class="yui-b">
-[% INCLUDE 'circ-menu.inc' %]
+[% INCLUDE 'circ-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

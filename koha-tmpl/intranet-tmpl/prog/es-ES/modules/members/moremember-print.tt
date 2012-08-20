@@ -1,5 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Resumen para [% firstname %] [% surname %] ([% cardnumber %])</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Resumen para [% firstname %] [% surname %] ([% cardnumber %])</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="[% IF ( IntranetFavicon ) %][% IntranetFavicon %][% ELSE %][% themelang %]/includes/favicon.ico[% END %]" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/print.css" />
@@ -16,17 +15,15 @@
 
 <div id="main">
 
-<h3><a href="/cgi-bin/koha/circ/circulation.pl?findborrower=[% cardnumber %]">Account summary: [% firstname %] [% surname %] ([% cardnumber %])</a></h3>
+<h3><a href="/cgi-bin/koha/circ/circulation.pl?findborrower=[% cardnumber %]">Resumen de cuenta: [% firstname %] [% surname %] ([% cardnumber %])</a></h3>
 
 <ul><li>[% address %]<br />[% address2 %]</li><li>[% city %], [% zipcode %]</li>
 <li>[% IF ( phone ) %][% phone %][% ELSE %](no hay número de teléfono registrado)[% END %]</li>
-<li>[% IF ( email ) %][% email %][% ELSE %](no hay ningún correo electrónico registrado)[% END %]</li>
-[% IF ( emailpro ) %]<li>[% emailpro %]</li>[% END %]
-</ul>
+<li>[% IF ( email ) %][% email %][% ELSE %](no hay ningún dirección de email principal en el archivo)[% END %]</li>
+[% IF ( emailpro ) %]<li>[% emailpro %]</li>[% END %] </ul>
 
-[% IF ( issueloop ) %]
-<table>
- <caption>Items checked out</caption>
+[% IF ( issueloop ) %] <table>
+ <caption>Ítem prestados</caption>
  <tr>
  <th>Título</th>
  <th>Autor</th>
@@ -37,11 +34,8 @@
  <th>Estado</th>
  </tr>
 
- [% FOREACH issueloo IN issueloop %]
- [% IF ( issueloo.red ) %]<tr class="overdue">[% ELSE %]<tr>[% END %]
- <td>
- [% issueloo.title |html %]
- <a href="/cgi-bin/koha/catalogue/detail.pl?item=[% issueloo.itemnumber %]&amp;biblionumber=[% issueloo.biblionumber %]&amp;bi=[% issueloo.biblioitemnumber %]">
+ [% FOREACH issueloo IN issueloop %] [% IF ( issueloo.red ) %]<tr class="overdue">[% ELSE %]<tr>[% END %] <td>
+ [% issueloo.title |html %] <a href="/cgi-bin/koha/catalogue/detail.pl?item=[% issueloo.itemnumber %]&amp;biblionumber=[% issueloo.biblionumber %]&amp;bi=[% issueloo.biblioitemnumber %]">
  </a>
  </td>
  <td>[% issueloo.author %]</td>
@@ -49,20 +43,16 @@
  <td>[% issueloo.date_due %]</td>
  <td>[% issueloo.charge %]</td>
  <td>[% issueloo.replacementprice %]</td>
- <td>[% IF ( issueloo.red ) %]¡Retraso![% ELSE %]&nbsp;[% END %]</td>
+ <td>[% IF ( issueloo.red ) %]¡Atrasado![% ELSE %]&nbsp;[% END %]</td>
  </tr>
- [% END %]
- <tr>
+ [% END %] <tr>
  <td colspan="4" style="text-align: right; font-weight:bold;">Totales:</td>
  <td>[% totaldue %]</td>
  <td>[% totalprice %]</td>
  <td colspan="2">&nbsp;</td>
  </tr>
  </table>
- [% END %]
- 
-[% IF ( reserveloop ) %]
-<table>
+ [% END %] [% IF ( reserveloop ) %] <table>
  <caption>Ítems en reserva</caption>
  <tr>
  <th>Título</th>
@@ -71,15 +61,11 @@
  <th>Requerido</th>
  </tr>
 
-[% FOREACH reserveloo IN reserveloop %]
- <tr>
+[% FOREACH reserveloo IN reserveloop %] <tr>
  <td><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% reserveloo.biblionumber %]">[% reserveloo.btitle %]</a></td>
  <td>[% reserveloo.author %]</td>
  <td>[% reserveloo.description %]</td>
  <td>[% reserveloo.reservedate2 %]</td>
  </tr>
- [% END %]
-</table>
-[% END %]
-
-[% INCLUDE 'intranet-bottom.inc' %]
+ [% END %] </table>
+[% END %] [% INCLUDE 'intranet-bottom.inc' %] 

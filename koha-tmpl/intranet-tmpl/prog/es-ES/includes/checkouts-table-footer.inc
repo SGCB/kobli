@@ -4,22 +4,9 @@
  <td>[% totaldue %]</td>
  <td>[% totalprice %]</td>
  <td colspan="2">
- <p>Renewal due date: <input type="text" size="8" id="newduedate" name="newduedate" value="[% newduedate %]" />
- <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" id="newduedate_button" />
- <script type="text/javascript"> //<![CDATA[
-			//#TODO - ADD syspref (AllowPostDatedCheckouts).
-			 Calendar.setup(
-			      {
-			         inputField : "newduedate",
-			         ifFormat : "[% DHTMLcalendar_dateformat %]",
-			         button : "newduedate_button",
-			         disableFunc : validate1,
-			         dateStatusFunc : validate1
-			       }
-			    );
-			//]]>
-			</script></p>
- <p><label>Forgive fines on return: <input type="checkbox" name="exemptfine" value="1" /></label></p>
+ <p>Vencimiento de renovación: <input type="text" size="8" id="newduedate" name="newduedate" value="[% newduedate %]" />
+</p>
+ <p><label>Perdonar multas en la devolución: <input type="checkbox" name="exemptfine" value="1" /></label></p>
  </td>
  </tr>
 </tfoot>

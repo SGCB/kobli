@@ -1,11 +1,9 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Administración &rsaquo; Estructura de subcampo MARC de autoridad</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Estructura de subcampo MARC de autoridad</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 
 	 $(document).ready(function() {
- 		$('#subfieldtabs > ul').tabs();
+        $('#subfieldtabs').tabs();
 	 });
 
 function displayMoreConstraint(numlayer){
@@ -23,20 +21,7 @@ function displayMoreConstraint(numlayer){
 </script>
 </head>
 <body id="admin_auth_subfields_structure" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo;
- [% IF ( else ) %]Authority MARC subfield structure
- [% ELSE %]<a href="/cgi-bin/koha/admin/auth_subfields_structure.pl?tagfield=[% tagfield %]&amp;tagsubfield=[% tagsubfield %]&amp;authtypecode=[% authtypecode %]">Estructura de subcampos (formato) de Autoridades MARC</a> &rsaquo;
- [% END %]
- [% IF ( delete_confirm ) %]Confirm deletion of subfield [% tagsubfield %]?[% END %]
- [% IF ( delete_confirmed ) %]Data deleted[% END %]
- [% IF ( add_form ) %]
- [% IF ( use_heading_flags_p ) %]
- [% IF ( heading_edit_subfields_p ) %]Edit MARC subfields constraints[% END %]
- [% ELSE %][% action %][% END %]
- [% END %]
-</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( else ) %]Estructura de subcampos (formato) de Autoridades MARC [% ELSE %]<a href="/cgi-bin/koha/admin/auth_subfields_structure.pl?tagfield=[% tagfield %]&amp;tagsubfield=[% tagsubfield %]&amp;authtypecode=[% authtypecode %]">Estructura de subcampos (formato) de Autoridades MARC</a> &rsaquo; [% END %] [% IF ( delete_confirm ) %]Confirmar eliminación de subcampo [% tagsubfield %]?[% END %] [% IF ( delete_confirmed ) %]Datos eliminados[% END %] [% IF ( add_form ) %] [% IF ( use_heading_flags_p ) %] [% IF ( heading_edit_subfields_p ) %]Editar restricciones de subcampos MARC[% END %] [% ELSE %][% action %][% END %] [% END %] </div>
 
 <div id="doc3" class="yui-t2">
 
@@ -44,9 +29,7 @@ function displayMoreConstraint(numlayer){
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( add_form ) %]
-
- <h1>[% IF ( use_heading_flags_p ) %] [% IF ( heading_edit_subfields_p ) %]Editar restricciones de subcampo MARC para el campo [% tagfield %] autoridad [% authtypecode %][% END %] [% ELSE %][% action %][% END %]</h1>
+[% IF ( add_form ) %] <h1>[% IF ( use_heading_flags_p ) %] [% IF ( heading_edit_subfields_p ) %]Editar restricciones de subcampo MARC para el campo [% tagfield %] autoridad [% authtypecode %][% END %] [% ELSE %][% action %][% END %]</h1>
  <form action="[% script_name %]" name="Aform" method="post">
  <input type="hidden" name="op" value="add_validate" />
  <input type="hidden" name="tagfield" value="[% tagfield %]" />
@@ -57,43 +40,34 @@ function displayMoreConstraint(numlayer){
  [% FOREACH loo IN loop %]
  [% IF ( loo.new_subfield ) %]
  [% IF ( tagfield >=10 ) %]<!-- display new only for > 10 fields -->
- <li><a href="/cgi-bin/koha/admin/auth_subfields_structure.pl#sub[% loo.tagsubfield %]field" title="[% loo.liblibrarian %]">Nuevo</a></li>
- [% END %]
- [% ELSE %]
- <li><a href="/cgi-bin/koha/admin/auth_subfields_structure.pl#sub[% loo.tagsubfield %]field" title="[% loo.liblibrarian %]">
- [% loo.tagsubfield %]
- </a></li>
- [% END %]
- [% END %]
- </ul>
+ <li><a href="#sub[% loo.tagsubfield %]field" title="[% loo.liblibrarian %]">Nuevo</a></li>
+ [% END %] [% ELSE %] <li><a href="#sub[% loo.tagsubfield %]field" title="[% loo.liblibrarian %]">
+ [% loo.tagsubfield %] </a></li>
+ [% END %] [% END %] </ul>
 
- [% FOREACH loo IN loop %]
- <div id="sub[% loo.tagsubfield %]field">
+ [% FOREACH loo IN loop %] <div id="sub[% loo.tagsubfield %]field">
  <fieldset class="rows"><ol>
 
- [% IF ( loo.new_subfield ) %]
- <li><label for="tagsubfieldinput[% loo.row %]">Código de subcampo:</label>[% loo.tagsubfieldinput %]&nbsp;</li>
- [% ELSE %]
- <li>
+ [% IF ( loo.new_subfield ) %] <li><label for="tagsubfieldinput[% loo.row %]">Código de subcampo: </label>[% loo.tagsubfieldinput %]&nbsp;</li>
+ [% ELSE %] <li>
  <input type="hidden" name="tagsubfield" value="[% loo.tagsubfield %]" />
  </li>
- [% END %]
- <li><label for="repeatable[% loo.row %]">Repetible:</label>[% loo.repeatable %]&nbsp;</li>
- <li><label for="mandatory[% loo.row %]">Obligatorio:</label>[% loo.mandatory %]&nbsp;</li>
- <li><label for="liblibrarian[% loo.row %]">Texto para bibliotecario:</label><input id="liblibrarian[% loo.row %]" type="text" name="liblibrarian" value="[% loo.liblibrarian %]" size="40" maxlength="80" /></li>
- <li><label for="libopac[% loo.row %]">Texto para OPAC:</label><input type="text" id="libopac[% loo.row %]" name="libopac" value="[% loo.libopac %]" size="40" maxlength="80" /></li>
- <li><label for="tab[% loo.row %]">Administrado en pestaña:</label>[% loo.tab %] (ignorar significa que el subcampo NO se muestra en el editor de registros)</li>
+ [% END %] <li><label for="repeatable[% loo.row %]">Repetible </label>[% loo.repeatable %]&nbsp;</li>
+ <li><label for="mandatory[% loo.row %]">Obligatorio: </label>[% loo.mandatory %]&nbsp;</li>
+ <li><label for="liblibrarian[% loo.row %]">Texto para bibliotecario: </label><input id="liblibrarian[% loo.row %]" type="text" name="liblibrarian" value="[% loo.liblibrarian %]" size="40" maxlength="80" /></li>
+ <li><label for="libopac[% loo.row %]">Texto para el OPAC: </label><input type="text" id="libopac[% loo.row %]" name="libopac" value="[% loo.libopac %]" size="40" maxlength="80" /></li>
+ <li><label for="tab[% loo.row %]">Administrado en campo: </label>[% loo.tab %] (ignorar significa que el subcampo NO se muestra en el editor de registros)</li>
  <li>
  <fieldset>
  <legend>Mostrar</legend>
  <ol>
- <li><label for="ohidden[% loo.row %]">Selecciona si mostrar o no:</label>[% loo.ohidden %] </li>
+ <li><label for="ohidden[% loo.row %]">Seleccione si mostrar o no:</label>[% loo.ohidden %] </li>
  <!-- <li><label for="ihidden[% loo.row %]">Intranet:</label>[% loo.ihidden %] </li> -->
  <!-- <li><label for="ehidden[% loo.row %]">Editor:</label>[% loo.ehidden %] (see online help)</li> -->
  </ol>
  </fieldset>
  </li>
- <li><label for="isurl[% loo.row %]">Is a URL:</label>[% loo.isurl %] (if checked, it means that the subfield is a URL and can be clicked)</li>
+ <li><label for="isurl[% loo.row %]">Es una URL:</label>[% loo.isurl %] (si está seleccionado, significa que el subcampo es una URL y puede hacer clic sobre ella)</li>
  <li>
  <fieldset><legend>Ayuda de entrada</legend> 
  <ol>
@@ -105,14 +79,9 @@ function displayMoreConstraint(numlayer){
  </li>
  </ol></fieldset><br class="clear" />
  </div>
- [% END %]
- </div>
+ [% END %] </div>
  </form>
-[% END %]
-
-[% IF ( delete_confirm ) %]
-
- <div class="dialog alert"><h3>Delete subfield <span class="ex">'[% tagsubfield %]'?</span></h3>
+[% END %] [% IF ( delete_confirm ) %] <div class="dialog alert"><h3>Eliminar subcampo <span class="ex">'[% tagsubfield %]'?</span></h3>
  <form action="[% delete_link %]" method="post"><input type="hidden" name="op" value="delete_confirmed" />
  <table><tr><th scope="row">Subcampo:</th> <td>[% tagsubfield %]</td></tr>
  <tr><th scope="row">Descripción:</th> <td>[% liblibrarian %]</td></tr></table>
@@ -130,60 +99,34 @@ function displayMoreConstraint(numlayer){
  <input value="No, no eliminar" type="submit" class="deny" />
  </form>
  </form></div>
-[% END %]
-
-[% IF ( delete_confirmed ) %]
-
- <div class="dialog message"> <h3>Datos borrados</h3>
+[% END %] [% IF ( delete_confirmed ) %] <div class="dialog message"> <h3>Datos borrados</h3>
  <form action="[% script_name %]" method="post">
  <input type="hidden" name="tagfield" value="[% tagfield %]" />
  <input type="submit" class="approve" value="OK" />
  </form></div>
-[% END %]
-
-
-[% IF ( else ) %]
-<h1>Administrar estructura de subcampos (formato) de Autoridades MARC para [% tagfield %] (autoridad: [% authtypecode %])</h1>
-<p>Esta pantalla muestra los subcampos asociados con la etiqueta seleccionada. Puedes editar los subcampos o agregar uno nuevo haciendo clic en editar.</p>
-<p>La columna<b>Campo Koha:</b> shows that the subfield is linked with a Koha field. Koha can manage a MARC interface, and a Koha interface. This link ensures that both DB are synchronized</p>
+[% END %] [% IF ( else ) %] <h1>Administrar estructura de subcampos (formato) de Autoridades MARC para [% tagfield %] (autoridad: [% authtypecode %])</h1>
+<p>Esta pantalla muestra los subcampos asociados con la etiqueta seleccionada. Puede editar los subcampos o agregar uno nuevo haciendo clic en editar. </p>
+<p>La columna <b>Campo Koha</b> muestra que el subcampo está conectado a un campo Koha. Koha puede administrar una interfaz MARC, o una interfaz Koha. Este enlace asegura que ambas bases de datos están sincronizadas,</p>
 
 <table>
  <tr>
  <th>Subcampo</th>
  <th>Texto</th>
  <th>Restricciones</th>
- <th>Eliminar</th>
+ <th>Borrar</th>
  </tr>
- [% FOREACH loo IN loop %]
- [% UNLESS ( loop.odd ) %]
- <tr class="highlight">
- [% ELSE %]
- <tr>
- [% END %]
- <td>[% loo.tagsubfield %]</td>
+ [% FOREACH loo IN loop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
+ [% ELSE %] <tr>
+ [% END %] <td>[% loo.tagsubfield %]</td>
  <td>
- [% IF ( loo.subfield_ignored ) %]
- <i>[% loo.liblibrarian %]</i>
- [% ELSE %]
- [% loo.liblibrarian %]
- [% END %]
- </td>
+ [% IF ( loo.subfield_ignored ) %] <i>[% loo.liblibrarian %]</i>
+ [% ELSE %] [% loo.liblibrarian %] [% END %] </td>
  <td>
- [% IF ( loo.subfield_ignored ) %]
- <i>subcampo ignorado</i>
- [% ELSE %]
- <strong>Pestaña:</strong>[% loo.tab %],
- [% IF ( loo.kohafield ) %] | <strong>Campo Koha:</strong> [% loo.kohafield %], [% END %] [% IF ( loo.repeatable ) %]Repetible, [% ELSE %]Not repetible, [% END %] [% IF ( loo.mandatory ) %]Obligatorio, [% ELSE %]No obligatorio, [% END %] [% IF ( loo.hidden ) %]escondido, [% END %] [% IF ( loo.isurl ) %]is a url, [% END %] [% IF ( loo.authorised_value ) %] | <strong>Valor autorizado:</strong>[% loo.authorised_value %],
- [% END %]
- [% IF ( loo.frameworkcode ) %] | <strong>Autoridad:</strong>[% loo.frameworkcode %],
- [% END %]
- [% IF ( loo.value_builder ) %] | <strong>Plugin:</strong>[% loo.value_builder %],[% END %]
- [% END %]
- </td>
- <td><a href="[% loo.delete %]">Eliminar</a></td>
+ [% IF ( loo.subfield_ignored ) %] <i>subcampo ignorado</i>
+ [% ELSE %] <strong>Pestaña:</strong>[% loo.tab %], [% IF ( loo.kohafield ) %] | <strong>Campo Koha:</strong> [% loo.kohafield %], [% END %] [% IF ( loo.repeatable ) %]Repetible, [% ELSE %]No repetible, [% END %] [% IF ( loo.mandatory ) %]Obligatorio, [% ELSE %]No obligatorio, [% END %] [% IF ( loo.hidden ) %]oculto, [% END %] [% IF ( loo.isurl ) %]es una URL, [% END %] [% IF ( loo.authorised_value ) %] | <strong>Valor autorizado:</strong>[% loo.authorised_value %], [% END %] [% IF ( loo.frameworkcode ) %] | <strong>Autoridad:</strong>[% loo.frameworkcode %], [% END %] [% IF ( loo.value_builder ) %] | <strong>Plugin:</strong>[% loo.value_builder %],[% END %] [% END %] </td>
+ <td><a href="[% loo.delete %]">Borrar</a></td>
  </tr>
- [% END %]
-</table>
+ [% END %] </table>
 
  <form action="[% script_name %]" method="get">
  <fieldset class="action"><input type="hidden" name="op" value="add_form" />
@@ -193,22 +136,13 @@ function displayMoreConstraint(numlayer){
  <a class="cancel" href="auth_tag_structure.pl?searchfield=[% tagfield %]&amp;authtypecode=[% authtypecode %]">Cancelar</a></fieldset>
  </form>
 
- [% IF ( previous ) %]
- <input alt="anterior" src="[% interface %]/[% theme %]/images/1leftarrow.png" type="image" title="anterior" border="0" />
+ [% IF ( previous ) %] <input alt="anterior" src="[% interface %]/[% theme %]/images/1leftarrow.png" type="image" title="anterior" border="0" />
  </a>
- [% END %]
- [% IF ( next ) %]
- [% next %]
- <input alt="siguiente" src="[% interface %]/[% theme %]/images/1rightarrow.png" type="image" title="siguiente" border="0" />
+ [% END %] [% IF ( next ) %] [% next %] <input alt="siguiente" src="[% interface %]/[% theme %]/images/1rightarrow.png" type="image" title="siguiente" border="0" />
  </a>
- [% END %]
-
-[% END %]
-
-</div>
+ [% END %] [% END %] </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'admin-menu.inc' %]
+[% INCLUDE 'admin-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

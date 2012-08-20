@@ -1,68 +1,35 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Cataloging &rsaquo; 007 feltbygger</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; constructor del 007</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="cat_normarc_field_007" class="cat" style="padding:1em;" onload="RedrawChoices('[% f0 %]');">
 <h3>007 Fysisk beskrivelse av dokumentet</h3>
 <form id="f_pop" onsubmit="report()">
 <input type="hidden" name="plugin_name" value="normarc_field_007.pl" />
 
-<p><label for="MatTypeList">00 Type materiale: </label>
+<p><label for="MatTypeList">00 Tipo de material: </label>
 
  <select name="MatTypeList" id="MatTypeList" onchange="RedrawChoices(this.options[selectedIndex].value);">
 
- [% IF ( f0a ) %]
- <option value="a" selected="selected">a Kartografisk materiale (unntatt globus)</option>
- [% ELSE %]
- <option value="a">a Kartografisk materiale (unntatt globus)</option>
- [% END %]
- [% IF ( f0c ) %]
- <option value="c" selected="selected">c Maskinlesbar fil</option>
- [% ELSE %]
- <option value="c">c Maskinlesbar fil</option>
- [% END %]
- [% IF ( f0d ) %]
- <option value="d" selected="selected">d Globus</option>
- [% ELSE %]
- <option value="d">d Globus</option>
- [% END %]
- [% IF ( f0g ) %]
- <option value="g" selected="selected">g Grafisk materiale som er tenkt projisert eller gjennomlyst</option>
- [% ELSE %]
- <option value="g">g Grafisk materiale som er tenkt projisert eller gjennomlyst</option>
- [% END %]
- [% IF ( f0h ) %]
- <option value="h" selected="selected">h Mikroform </option>
- [% ELSE %]
- <option value="h">h Mikroform </option>
- [% END %]
- [% IF ( f0k ) %]
- <option value="k" selected="selected">k Grafisk materiale som er ugjennomtrengelig for lys</option>
- [% ELSE %]
- <option value="k">k Grafisk materiale som er ugjennomtrengelig for lys</option>
- [% END %]
- [% IF ( f0m ) %]
- <option value="m" selected="selected">m Film </option>
- [% ELSE %]
- <option value="m">m Film </option>
- [% END %]
- [% IF ( f0s ) %]
- <option value="s" selected="selected">s Lydopptak </option>
- [% ELSE %]
- <option value="s">s Lydopptak </option>
- [% END %]
- [% IF ( f0u ) %]
- <option value="u" selected="selected">u Tre-dimensjonal gjenstand</option>
- [% ELSE %]
- <option value="u">u Tre-dimensjonal gjenstand</option>
- [% END %]
- [% IF ( f0v ) %]
- <option value="v" selected="selected">v Videoopptak </option>
- [% ELSE %]
- <option value="v">v Videoopptak </option>
- [% END %]
-
- </select></p>
+ [% IF ( f0a ) %] <option value="a" selected="selected">a- material cartográfico</option>
+ [% ELSE %] <option value="a">a- material cartográfico</option>
+ [% END %] [% IF ( f0c ) %] <option value="c" selected="selected">c Maskinlesbar fil</option>
+ [% ELSE %] <option value="c">c Maskinlesbar fil</option>
+ [% END %] [% IF ( f0d ) %] <option value="d" selected="selected">d- Globo</option>
+ [% ELSE %] <option value="d">d- Globo</option>
+ [% END %] [% IF ( f0g ) %] <option value="g" selected="selected">g Grafisk materiale som er tenkt projisert eller gjennomlyst</option>
+ [% ELSE %] <option value="g">g Grafisk materiale som er tenkt projisert eller gjennomlyst</option>
+ [% END %] [% IF ( f0h ) %] <option value="h" selected="selected">h- Microforma </option>
+ [% ELSE %] <option value="h">h- Microforma </option>
+ [% END %] [% IF ( f0k ) %] <option value="k" selected="selected">k Grafisk materiale som er ugjennomtrengelig for lys</option>
+ [% ELSE %] <option value="k">k Grafisk materiale som er ugjennomtrengelig for lys</option>
+ [% END %] [% IF ( f0m ) %] <option value="m" selected="selected">m Película </option>
+ [% ELSE %] <option value="m">m Película </option>
+ [% END %] [% IF ( f0s ) %] <option value="s" selected="selected">s- grabación de audio </option>
+ [% ELSE %] <option value="s">s- grabación de audio </option>
+ [% END %] [% IF ( f0u ) %] <option value="u" selected="selected">u Tre-dimensjonal gjenstand</option>
+ [% ELSE %] <option value="u">u Tre-dimensjonal gjenstand</option>
+ [% END %] [% IF ( f0v ) %] <option value="v" selected="selected">v- Grabación de vídeo </option>
+ [% ELSE %] <option value="v">v- Grabación de vídeo </option>
+ [% END %] </select></p>
 
 <div id="choices">
 </div>
@@ -2823,4 +2790,4 @@ function RedrawChoices(typ){
 //]]>
 </script>
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

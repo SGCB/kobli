@@ -2,9 +2,10 @@
     $(document).ready(function() {
         var path = location.pathname.substring(1);
         var url = window.location.toString();
-        url.match(/\?(.+)$/);
-        var params = RegExp.$1;
-        if (params) { params = "?" + params; }
+        var params = '';
+        if ( url.match(/\?(.+)$/) ) {
+            params = "?" + RegExp.$1;
+        }
         $('#navmenulist a[href$="/' + path + params + '"]').css('font-weight','bold');
     });
 //]]>
@@ -18,7 +19,7 @@
 
 <h5>Parámetros básicos</h5>
 <ul>
- <li><a href="/cgi-bin/koha/admin/branches.pl">Libraries and groups</a></li>
+ <li><a href="/cgi-bin/koha/admin/branches.pl">Bibliotecas y grupos</a></li>
  <li><a href="/cgi-bin/koha/admin/itemtypes.pl">Tipos de ítem</a></li>
  <li><a href="/cgi-bin/koha/admin/authorised_values.pl">Valores autorizados</a></li>
 </ul>
@@ -28,7 +29,7 @@
  <li><a href="/cgi-bin/koha/admin/categorie.pl">Tipos y categorías de socio</a></li>
  <li><a href="/cgi-bin/koha/admin/cities.pl">Ciudades y pueblos</a></li>
  <li><a href="/cgi-bin/koha/admin/roadtype.pl">Tipos de camino</a></li>
- <li><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de características de socio</a></li>
+ <li><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a></li>
  <li><a href="/cgi-bin/koha/admin/smart-rules.pl">Reglas de circulación y multas</a></li>
  <li><a href="/cgi-bin/koha/admin/branch_transfer_limits.pl">Límites de transferencia de la biblioteca</a></li>
  <li><a href="/cgi-bin/koha/admin/item_circulation_alerts.pl">Alertas de circulación de ítems</a></li>
@@ -36,20 +37,20 @@
 
 <h5>Catálogo</h5>
 <ul>
- <li><a href="/cgi-bin/koha/admin/biblio_framework.pl">MARC bibliographic framework</a></li>
+ <li><a href="/cgi-bin/koha/admin/biblio_framework.pl">Hoja de trabajo bibliográfico MARC</a></li>
  <li><a href="/cgi-bin/koha/admin/koha2marclinks.pl">Correspondencia Koha - MARC</a></li>
- <li><a href="/cgi-bin/koha/admin/fieldmapping.pl">Palabras clave para correspondencia MARC</a></li>
- <li><a href="/cgi-bin/koha/admin/checkmarc.pl">MARC bibliographic framework test</a></li>
+ <li><a href="/cgi-bin/koha/admin/fieldmapping.pl">Palabras claves para correspondencia MARC</a></li>
+ <li><a href="/cgi-bin/koha/admin/checkmarc.pl">Verificación de hoja de trabajo bibliográfica MARC</a></li>
  <li><a href="/cgi-bin/koha/admin/authtypes.pl">Tipos de autoridad</a></li>
  <li><a href="/cgi-bin/koha/admin/classsources.pl">Fuentes de clasificación</a></li>
  <li><a href="/cgi-bin/koha/admin/matching-rules.pl">Regla de coincidencia de registro</a></li>
- <li><a href="/cgi-bin/koha/admin/oai_sets.pl">OAI sets configuration</a></li>
+ <li><a href="/cgi-bin/koha/admin/oai_sets.pl">Configuración de conjunto OAI</a></li>
 </ul>
 
-<h5>Parámetros de adquisición</h5>
+<h5>Parámetros de la adquisición</h5>
 
 <ul>
- <li><a href="/cgi-bin/koha/admin/currency.pl">Divisas y tipos de cambio</a></li>
+ <li><a href="/cgi-bin/koha/admin/currency.pl">Monedas y tipo de cambio</a></li>
  <li><a href="/cgi-bin/koha/admin/aqbudgetperiods.pl">Presupuestos</a></li>
  <li><a href="/cgi-bin/koha/admin/aqbudgets.pl">Fondos</a></li>
 
@@ -60,7 +61,7 @@
 <ul>
  [% IF ( NoZebra ) %]<li><a href="/cgi-bin/koha/admin/stopwords.pl">Palabras eliminadas</a></li>[% END %]
  <!-- <li><a href="/cgi-bin/koha/admin/printers.pl">Network Printers</a></li> -->
- <li><a href="/cgi-bin/koha/admin/z3950servers.pl">Z39.50 client targets</a></li>
+ <li><a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a></li>
 </ul>
 </div>
 </div>

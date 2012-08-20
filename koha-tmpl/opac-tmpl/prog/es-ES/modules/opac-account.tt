@@ -1,8 +1,4 @@
-[% USE KohaDates %]
-
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Your fines and charges
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha en línea[% END %] catálogo &rsaquo; Sus multas y costos [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-account">
 <div id="doc3" class="yui-t1">
  <div id="bd">
@@ -11,20 +7,20 @@
  <div id="useraccount" class="container">
 <!--CONTENT-->
  [% FOREACH BORROWER_INF IN BORROWER_INFO %]
- <h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% BORROWER_INF.firstname %] [% BORROWER_INF.surname %]</a> <img src="[% themelang %]../../images/caret.gif" width="16" height="16" alt="&gt;" border="0" /> Fines and charges</h3>
+ <h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% BORROWER_INF.firstname %] [% BORROWER_INF.surname %]</a> <img src="[% themelang %]../../images/caret.gif" width="16" height="16" alt="&gt;" border="0" /> Multas y cargos</h3>
  [% END %] [% IF ( ACCOUNT_LINES ) %] <table>
  <thead>
  <tr>
  <th>Fecha</th>
  <th>Descripción</th>
- <th>Fine amount</th>
- <th>Amount outstanding</th>
+ <th>Importe de multas</th>
+ <th>Monto adeudado</th>
  </tr>
  </thead>
 
  <tfoot>
  <tr>
- <th class="sum" colspan="3">Total due</th>
+ <th class="sum" colspan="3">Total adeudado</th>
  <td class="sum">[% total %]</td>
  </tr>
  </tfoot>
@@ -38,7 +34,7 @@
  [% END %] </tbody>
 
  </table>
- [% ELSE %] <h4>You have no fines or charges</h4>
+ [% ELSE %] <h4>No tiene multas o cargos</h4>
  [% END %] </div>
 </div>
 </div>

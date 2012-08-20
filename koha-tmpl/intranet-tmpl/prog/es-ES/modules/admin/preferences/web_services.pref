@@ -1,5 +1,5 @@
 --- 
-Web Services: 
+Web services: 
   ILS-DI: 
     - 
       - 
@@ -47,3 +47,10 @@ Web Services:
           1: Enable
         pref: OAI-PMH:AutoUpdateSets
       - automatic update of OAI-PMH sets when a bibliographic record is created or updated
+  Reporting: 
+    - 
+      - Only return
+      - 
+        class: integer
+        pref: SvcMaxReportRows
+      - rows of a report requested via the reports web service.

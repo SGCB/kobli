@@ -1,26 +1,19 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Descargar cesta</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Descargar carrito</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body style="padding:1em;" id="cart_downloadcart" class="cart">
-[% IF ( format ) %]
- <p>Tu descarga comenzará automáticamente.</p>
-[% ELSE %]
-<form method="post" action="/cgi-bin/koha/basket/downloadcart.pl">
+[% IF ( format ) %] <p>Su descarga comenzará automáticamente.</p>
+[% ELSE %] <form method="post" action="/cgi-bin/koha/basket/downloadcart.pl">
 <fieldset class="rows">
- <legend>Descargar cesta</legend>
+ <legend>Descargar carrito</legend>
  <ol><li>
  <label for="format">Formato:</label>
  <select name="format" id="format">
- <option value="">-- Choose format --</option>
+ <option value="">-- Elegir formato --</option>
  <option value="iso2709">iso2709</option>
  <option value="ris">RIS</option>
  <option value="bibtex">BibTex</option>
- [% FOREACH csv_profile IN csv_profiles %]
- <option value="[% csv_profile.export_format_id %]">CSV - [% csv_profile.profile %]</option>
- [% END %]
-
- </select></li>
+ [% FOREACH csv_profile IN csv_profiles %] <option value="[% csv_profile.export_format_id %]">CSV - [% csv_profile.profile %]</option>
+ [% END %] </select></li>
  </ol>
  </fieldset>
  <fieldset class="action">
@@ -29,6 +22,5 @@
  </fieldset>
  </form>
 
-[% END %]
-</body>
+[% END %] </body>
 </html>

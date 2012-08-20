@@ -1,23 +1,21 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Diccionario de informes</h1>
 
-<h1>Diccionario de informes</h1>
+<p>El diccionario de informes es una manera de pre-definir filtros comunes a aplicar a sus informes. Es una buena manera de agregar filtros que el asistente de informes no incluye por defecto. Para agregar una nueva definición, o filtro, haga clic en 'Nueva definición' en la página del Diccionario de reportes y siga el proceso de 4 pasos.</p>
 
-<p>The report dictionary is a way to pre-define common filters you'd like to apply to your reports. This is a good way to add in filters that the report wizard doesn't include by default. To add a new definition, or filter, click 'New Definition' on the Reports Dictionary page and follow the 4 step process.</p>
+<p>Paso 1: Nombre la definición y provea una descripción de ser necesario</p>
 
-<p>Step 1: Name the definition and provide a description if necessary</p>
+<p>Paso 2: elegir el módulo que será consultado.</p>
 
-<p>Step 2: Choose the module that the will be queried.</p>
+<p>Paso 3: Seleccione las columnas a consultar desde las tablas presentas.</p>
 
-<p>Step 3: Choose columns to query from the tables presented.</p>
+<p>Paso 4: Seleccione los valores de los campos. Estos se llenarán automáticamente con opciones disponibles en su base de datos.</p>
 
-<p>Step 4: Choose the value(s) from the field(s). These will be automatically populated with options available in your database.</p>
+<p>Confirme su selección para guardar la definición.</p>
 
-<p>Confirm your selections to save the definition.</p>
+<p>Sus definiciones aparecerán en la página Diccionario de Informes</p>
 
-<p>Your definitions will all appear on the Reports Dictionary page</p>
+<p>Entonces cuando genere informes en el módulo para el cual creo el valor verá una opción de limitar por la definición al final de los filtros usuales.</p>
 
-<p>Then when generating reports on the module you created the value for you will see an option to limit by the definition at the bottom of the usual filters.</p>
-
-<p><strong>See the full documentation for the Reports Dictionary in the <a href="http://manual.koha-community.org/3.8/en/reportdic.html">manual</a> (online).</strong></p>
+<p><strong>Vea la documentación completa para Diccionario de reportes en la <a href="http://manual.koha-community.org/3.8/en/reportdic.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

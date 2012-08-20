@@ -1,9 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>UNIMARC field 210c builder</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% PROCESS 'authorities-search-results.inc' %] [% INCLUDE 'doc-head-open.inc' %] <title>Constructor Campo UNIMARC 210c</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="cat_unimarc_field_210c" class="cat" style="padding:1em;">
-<h3>UNIMARC field 210c builder</h3>
+<h3>Constructor Campo UNIMARC 210c</h3>
  <h4>Buscar tipo de autoridad: EDITORES</h4>
  <form name="f" method="post" action="plugin_launcher.pl">
  <fieldset class="rows">
@@ -37,46 +35,31 @@
  <input value="Buscar" type="submit" />
  </fieldset>
  </form>
- [% IF ( total ) %]
- <h3>Resultados de la búsqueda de autoridad</h3>
+ [% IF ( total ) %] <h3>Resultados de la búsqueda de autoridad</h3>
  <div class="pages">
- [% pagination_bar %] 
- </div>[% END %]
- <p>
- [% IF ( total ) %]
- &nbsp;<b>Resultados [% from %] a [% to %] de [% total %]</b><br /><br />
- [% ELSE %]
- &nbsp; No results found<br />
- [% END %]
- </p>
-[% IF ( total ) %]
- <div id="resultlist">
+ [% pagination_bar %] </div>[% END %] <p>
+ [% IF ( total ) %] &nbsp;<b>Resultados [% from %] a [% to %] de [% total %]</b><br /><br />
+ [% ELSE %] &nbsp; No se encontraron resultados<br />
+ [% END %] </p>
+[% IF ( total ) %] <div id="resultlist">
  <table>
  <tr>
  <th>Resumen</th>
  <th>Usado</th>
- <th>Get it!</th>
+ <th>Obtenlo!</th>
  </tr>
- [% FOREACH resul IN result %]
- <tr>
- <td>[% resul.summary %]</td>
+ [% FOREACH resul IN result %] <tr>
+ <td>[% PROCESS authresult summary=resul.summary %]</td>
  <td>[% resul.used %] veces</td>
  <td>
- [% IF ( resul.to_report ) %]
- <a href="javascript:report('[% resul.to_report |replace("'", "\'") |replace('"', '\"') |replace('\n', '\\n') |replace('\r', '\\r') %]')"><img width="32" alt="elige" src="[% interface %]/[% theme %]/images/arrow.gif" /></a>
- [% END %]
- </td>
+ [% IF ( resul.to_report ) %] <a href="javascript:report('[% resul.to_report |replace("'", "\'") |replace('"', '\"') |replace('\n', '\\n') |replace('\r', '\\r') %]')"><img width="32" alt="elija" src="[% interface %]/[% theme %]/images/arrow.gif" /></a>
+ [% END %] </td>
  </tr>
- [% END %]
- </table>
+ [% END %] </table>
  </div>
-[% END %]
-
- [% IF ( total ) %]<div class="pages">
- [% pagination_bar %] 
- </div>
- [% END %]
-<script type="text/javascript">
+[% END %] [% IF ( total ) %]<div class="pages">
+ [% pagination_bar %] </div>
+ [% END %] <script type="text/javascript">
 //<![CDATA[
 function report(summary)
 {    
@@ -89,4 +72,4 @@ function report(summary)
 //]]>
 </script>
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

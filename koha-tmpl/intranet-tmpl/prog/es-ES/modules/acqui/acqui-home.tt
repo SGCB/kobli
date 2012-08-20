@@ -1,8 +1,12 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Adquisiciones</title>
-[% INCLUDE 'doc-head-close.inc' %]
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones</title>
+<link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript">
 //<![CDATA[
+
+dt_overwrite_html_sorting_localeCompare();
+
 $(document).ready(function() {
     $('#showallbudgets').click(function() {
 	if ( $('#showallbudgets:checked').val() !== undefined) {
@@ -18,16 +22,27 @@ $(document).ready(function() {
 	    $('.bu_active').hide();
 	}
     });
+    var srlt = $("#accounts").dataTable($.extend(true, {}, dataTablesDefaults, {
+        "aoColumns": [
+            null,
+            null,
+            null,
+            null,
+            { "sType": "num-html" },
+            { "sType": "num-html" },
+            null,
+        ],
+        'bPaginate': false,
+        'bFilter': false,
+        'bInfo': false,
+    } ) );
 });
 //]]>
 </script>
 
 </head>
 <body id="acq_acqui-home" class="acq">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'acquisitions-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; </div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; </div>
 
 <div id="doc3" class="yui-t2">
 
@@ -35,51 +50,33 @@ $(document).ready(function() {
  <div id="yui-main">
  <div class="yui-b">
 
-[% INCLUDE 'acquisitions-toolbar.inc' %]
-
-<h1>Adquisiciones</h1>
+[% INCLUDE 'acquisitions-toolbar.inc' %] <h1>Adquisiciones</h1>
 <div class="yui-g">
 <div class="yui-u first">
 <div id="acqui_acqui_home_order">
- <fieldset>
- <legend>Administrar pedidos</legend>
- [% IF ( nobudget ) %]
- [% IF ( CAN_user_parameters ) %]
- <span class="problem">You must <a href="/cgi-bin/koha/admin/aqbudgetperiods.pl">define a budget</a> in Administration</span>
- [% ELSE %]
- <span class="problem">Tu administrador debe definir un presupuesto en Administración</span>
- [% END %]
- <form name="findsupplier" action="/cgi-bin/koha/acqui/booksellers.pl" method="post">
- <p><label for="supplierpage">Vendor </label><input type="text" size="25" name="supplier" id="supplierpage" class="focus" />
- <input value="Buscar" type="submit" />
- </p>
- </form>
- [% ELSE %]
- <form name="findsupplier" action="/cgi-bin/koha/acqui/booksellers.pl" method="post">
- <p><label for="supplierpage">Vendor: </label><input type="text" size="25" name="supplier" id="supplierpage" class="focus" />
- <input value="Buscar" type="submit" />
- </p>
- </form>
 
- [% END %]
+ [% UNLESS ( loop_budget ) %] [% IF ( CAN_user_parameters ) %] <div class="dialog alert">Ud. debe <a href="/cgi-bin/koha/admin/aqbudgetperiods.pl">defina un presupuesto</a> en Administración</div>
+ [% ELSE %] <div class="dialog alert">Su administrador debe definir un presupuesto en Administración</div>
+ [% END %] [% END %] <fieldset>
+ <legend>Administrar pedidos</legend>
+ <form name="findsupplier" action="/cgi-bin/koha/acqui/booksellers.pl" method="post">
+ <p><label for="supplierpage">Proveedor: </label><input type="text" size="25" name="supplier" id="supplierpage" class="focus" />
+ <input value="Buscar" type="submit" />
+ </p>
+ </form>
  </fieldset>
 </div>
 
-[% IF ( suggestion ) %][% IF ( suggestions_count ) %]
-<div id="acqui_acqui_home_suggestions">
+[% IF ( suggestion ) %][% IF ( suggestions_count ) %] <div id="acqui_acqui_home_suggestions">
  <fieldset>
  <legend>Sugerencias pendientes</legend>
- <p>[% suggestions_count %] sugerencias esperando.<a href="/cgi-bin/koha/suggestion/suggestion.pl">Manage suggestions</a>.</p>
+ <p>[% suggestions_count %] sugerencias esperando. <a href="/cgi-bin/koha/suggestion/suggestion.pl">Administrar sugerencias</a>.</p>
  </fieldset>
-</div>[% END %][% END %]
-
-</div>
+</div>[% END %][% END %] </div>
 
 <div class="yui-u">
 
- [% IF ( loop_budget ) %]
-
- <h3>All available funds[% IF ( branchname ) %] for [% branchname %] library[% END %]</h3>
+ [% IF ( loop_budget ) %] <h3>Todos los fondos disponibles[% IF ( branchname ) %] para [% branchname %] biblioteca[% END %]</h3>
 
  <!-- <a href="/cgi-bin/koha/admin/aqbookfund.pl" title="[ Manage funds ]">[ Manage ]</a>
  <a href="/cgi-bin/koha/admin/budgetperiods.pl">manage budgets</a><br><br> -->
@@ -93,7 +90,7 @@ $(document).ready(function() {
  <th>Fondo</th>
  <th>Propietario</th>
  <th>Biblioteca</th>
- <th>Cantidad</th>
+ <th>Monto</th>
  <th>Pedido</th>
  <th>Gastado</th>
  <th>Aval</th>
@@ -111,14 +108,9 @@ $(document).ready(function() {
  </tr>
  </tfoot>
  <tbody>
- [% FOREACH loop_budge IN loop_budget %]
- [% IF ( loop_budge.budget_period_active ) %]
- [% IF ( loop.odd ) %]
- <tr>
- [% ELSE %]
- <tr class="highlight">
- [% END %]
- <td align="center">[% loop_budge.budget_code %]</td>
+ [% FOREACH loop_budge IN loop_budget %] [% IF ( loop_budge.budget_period_active ) %] [% IF ( loop.odd ) %] <tr>
+ [% ELSE %] <tr class="highlight">
+ [% END %] <td align="center">[% loop_budge.budget_code %]</td>
  <td align="center">[% loop_budge.budget_owner %]</td>
  <td align="center">[% loop_budge.budget_branchname %]</td>
  <td align="right" >[% loop_budge.budget_amount %]</td>
@@ -126,32 +118,24 @@ $(document).ready(function() {
  <td align="right" ><a href="spent.pl?fund=[% loop_budge.budget_id %]&amp;fund_code=[% loop_budge.budget_code %]">[% loop_budge.budget_spent %]</a></td>
  <td align="right" >[% loop_budge.budget_avail %]</td>
  </tr>
- [% ELSE %]
- [% IF ( loop.odd ) %]
- <tr class="b_inactive" style="display : none;">
- [% ELSE %]
- <tr class="highlight" id = "b_inactive" style="display : none;">
- [% END %]
- <td align="center" >[% loop_budge.budget_code %]</td>
+ [% ELSE %] [% IF ( loop.odd ) %] <tr class="b_inactive" style="display : none;">
+ [% ELSE %] <tr class="highlight" id = "b_inactive" style="display : none;">
+ [% END %] <td align="center" >[% loop_budge.budget_code %]</td>
  <td align="center">[% loop_budge.budget_owner %]</td>
  <td align="center">[% loop_budge.budget_branchname %]</td>
  <td align="right" >[% loop_budge.budget_amount %]</td>
  <td align="right" ><a href="ordered.pl?fund=[% loop_budge.budget_id %]&amp;fund_code=[% loop_budge.budget_code %]">[% loop_budge.budget_ordered %]</a></td>
  <td align="right" ><a href="spent.pl?fund=[% loop_budge.budget_id %]&amp;fund_code=[% loop_budge.budget_code %]">[% loop_budge.budget_spent %]</a></td>
  <td align="right" >[% loop_budge.budget_avail %]</td>
- [% END %]
- [% END %]
- </tbody>
+ [% END %] [% END %] </tbody>
  </table>
- </div><span class="label">Show all :&nbsp;</span><input type="checkbox" id="showallbudgets" />
- [% END %]
-</div>
+ </div><span class="label">Mostrar todo:</span><input type="checkbox" id="showallbudgets" />
+ [% END %] </div>
 
 </div>
 </div>
 </div>
 <div class="yui-b">
-[% INCLUDE 'acquisitions-menu.inc' %]
+[% INCLUDE 'acquisitions-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

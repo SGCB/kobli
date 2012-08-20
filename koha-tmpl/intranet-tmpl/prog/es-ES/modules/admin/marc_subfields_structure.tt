@@ -1,20 +1,17 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo;[% IF ( add_form ) %][% IF ( use_heading_flags_p ) %][% IF ( heading_edit_subfields_p ) %] MARC subfield structure &rsaquo; Edit MARC subfields constraints[% END %][% ELSE %] MARC subfield structure &rsaquo; [% action %][% END %][% END %]
-[% IF ( delete_confirm ) %] MARC subfield structure &rsaquo; Confirm deletion of subfield [% tagsubfield %][% END %][% IF ( delete_confirmed ) %] MARC subfield structure &rsaquo; Subfield deleted[% END %][% IF ( else ) %]MARC subfield structure[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo;[% IF ( add_form ) %][% IF ( use_heading_flags_p ) %][% IF ( heading_edit_subfields_p ) %] Estructura de subcampos MARC &rsaquo; Editar restricciones de subcampos MARC[% END %][% ELSE %] Estructura de subcampos MARC &rsaquo; [% action %][% END %][% END %] [% IF ( delete_confirm ) %] Estructura de subcampos MARC &rsaquo; Confirmar eliminación de subcampo [% tagsubfield %][% END %][% IF ( delete_confirmed ) %] Estructura de subcampos MARC &rsaquo; Subcampo eliminado[% END %][% IF ( else ) %]Estructura de subcampos MARC[% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 
 $(document).ready(function() {
-    $('#subfieldtabs > ul').tabs();
+    $('#subfieldtabs').tabs();
         $("a.displaymore").click(function(){
         var link = $(this);
         var constraints = $("#"+$(this).attr("href").replace("#",""));
         constraints.toggle();
             if($(constraints).is(':visible')){
-                link.html(_("Hide constraints"));
+                link.html(_("Ocultar restricciones "));
             } else {
-                link.html(_("Display more constraints"));
+                link.html(_("muestre más restricciones"));
             }
     });
 });
@@ -34,16 +31,8 @@ $(document).ready(function() {
 </script>
 </head>
 <body id="admin_marc_subfields_structure" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'cat-search.inc' %]
-
-<div id="breadcrumbs">
- <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; <a href="/cgi-bin/koha/admin/biblio_framework.pl">MARC frameworks</a> &rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% frameworkcode %]&amp;searchfield=[% tagfield %]">[% frameworkcode %] framework structure</a> &rsaquo; [% IF ( add_form ) %] [% IF ( use_heading_flags_p ) %] [% IF ( heading_edit_subfields_p ) %] <a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?tagfield=[% tagfield %]&amp;frameworkcode=[% frameworkcode %]">Tag [% tagfield %] subfield structure</a> &rsaquo; Editar restricciones de subcampo [% END %] [% ELSE %] <a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?tagfield=[% tagfield %]&amp;frameworkcode=[% frameworkcode %]">Tag [% tagfield %] Subfield structure</a>  &rsaquo; [% action %] [% END %] [% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?tagfield=[% tagfield %]&amp;frameworkcode=[% frameworkcode %]">Tag [% tagfield %] Subfield structure</a> &rsaquo; Confirm deletion of subfield [% tagsubfield %]
-[% END %]
-[% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?tagfield=[% tagfield %]&amp;frameworkcode=[% frameworkcode %]">Tag [% tagfield %] subfield structure</a> &rsaquo; Subfield deleted
-[% END %]
-[% IF ( else ) %]Tag [% tagfield %] Subfield structure[% END %]
-</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; <a href="/cgi-bin/koha/admin/biblio_framework.pl">Hojas de trabajo MARC</a> &rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% frameworkcode %]&amp;searchfield=[% tagfield %]">[% frameworkcode %] estructura de la hoja de trabajo</a> &rsaquo; [% IF ( add_form ) %] [% IF ( use_heading_flags_p ) %] [% IF ( heading_edit_subfields_p ) %] <a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?tagfield=[% tagfield %]&amp;frameworkcode=[% frameworkcode %]">Estructura de subcampo de etiqueta [% tagfield %]</a> &rsaquo; Editar restricciones de subcampo [% END %] [% ELSE %] <a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?tagfield=[% tagfield %]&amp;frameworkcode=[% frameworkcode %]">Estructura de subcampo de etiqueta [% tagfield %]</a> &rsaquo; [% action %] [% END %] [% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?tagfield=[% tagfield %]&amp;frameworkcode=[% frameworkcode %]">Estructura de subcampo de etiqueta [% tagfield %]</a> &rsaquo; Confirmar eliminación de subcampo [% tagsubfield %] [% END %] [% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?tagfield=[% tagfield %]&amp;frameworkcode=[% frameworkcode %]">Estructura de subcampo de etiqueta [% tagfield %]</a> &rsaquo; Subcampo eliminado [% END %] [% IF ( else ) %]Pestaña [% tagfield %] Estructura de subcampo[% END %] </div>
 
 <div id="doc" class="yui-t7">
  
@@ -51,14 +40,8 @@ $(document).ready(function() {
  <div id="yui-main">
  <div class="yui-g">
 
-[% IF ( add_form ) %]
- <h1>
- [% IF ( use_heading_flags_p ) %]
- [% IF ( heading_edit_subfields_p ) %]Tag [% tagfield %] Subfield constraints[% END %]
- [% ELSE %]
- [% action %]
- [% END %]
- </h1>
+[% IF ( add_form ) %] <h1>
+ [% IF ( use_heading_flags_p ) %] [% IF ( heading_edit_subfields_p ) %]Etiqueta [% tagfield %] Restricciones de subcampo[% END %] [% ELSE %] [% action %] [% END %]s </h1>
  <form action="[% script_name %]" name="Aform" method="post">
  <input type="hidden" name="op" value="add_validate" />
  <input type="hidden" name="tagfield" value="[% tagfield %]" />
@@ -67,45 +50,35 @@ $(document).ready(function() {
  
  <div id="subfieldtabs" class="toptabs numbered">
  <ul>
- [% FOREACH loo IN loop %]
- [% IF ( loo.new_subfield ) %]
- <li><a href="/cgi-bin/koha/admin/marc_subfields_structure.pl#sub[% loo.urisubfieldcode %]field" title="[% loo.liblibrarian %]">Nuevo</a></li>
- [% ELSE %]
- <li><a href="/cgi-bin/koha/admin/marc_subfields_structure.pl#sub[% loo.urisubfieldcode %]field" title="[% loo.liblibrarian %]">
- [% loo.subfieldcode %]
- </a></li>
- [% END %]
- [% END %]
- </ul>
+ [% FOREACH loo IN loop %] [% IF ( loo.new_subfield ) %] <li><a href="#sub[% loo.urisubfieldcode %]field" title="[% loo.liblibrarian %]">Nuevo</a></li>
+ [% ELSE %] <li><a href="#sub[% loo.urisubfieldcode %]field" title="[% loo.liblibrarian %]">
+ [% loo.subfieldcode %] </a></li>
+ [% END %] [% END %] </ul>
  
- [% FOREACH loo IN loop %] 
- <div id="sub[% loo.urisubfieldcode %]field">
+ [% FOREACH loo IN loop %] <div id="sub[% loo.urisubfieldcode %]field">
  
  <fieldset class="rows" style="float:none;"><legend>[% IF ( loo.new_subfield ) %]Agregar nuevo subcampo[% ELSE %]Restricciones básicas[% END %]</legend>
  <ol>
- [% IF ( subfieldcode == 0 || subfieldcode ) %] 
- <li><span class="label">Código de subcampo:</span> [% loo.subfieldcode %] <input type="hidden" name="tagsubfield" value="[% loo.subfieldcode %]" /></li>
- [% ELSE %]
- <li><label for="tagsubfield[% loo.row %]">Código de subcampo:</label> <input type="text" id="tagsubfield[% loo.row %]" name="tagsubfield" value="[% loo.subfieldcode %]" /></li>
- [% END %]
- <li><label for="liblibrarian[% loo.row %]">Texto para bibliotecario:</label><input id="liblibrarian[% loo.row %]" type="text" name="liblibrarian" value="[% loo.liblibrarian %]" size="40" maxlength="80" /></li>
- <li><label for="libopac[% loo.row %]">Texto para OPAC:</label><input type="text" id="libopac[% loo.row %]" name="libopac" value="[% loo.libopac %]" size="40" maxlength="80" /></li>
- <li><label for="repeatable[% loo.row %]">Repetible:</label>[% loo.repeatable %]</li>
- <li><label for="mandatory[% loo.row %]">Obligatorio:</label>[% loo.mandatory %]</li>
- <li><label for="tab[% loo.row %]">Administrado en pestaña:</label>[% loo.tab %] (ignorar significa que el subcampo NO se muestra en el editor de registros)</li>
+ [% IF ( subfieldcode == 0 || subfieldcode ) %] <li><span class="label">Código de subcampo:</span> [% loo.subfieldcode %] <input type="hidden" name="tagsubfield" value="[% loo.subfieldcode %]" /></li>
+ [% ELSE %] <li><label for="tagsubfield[% loo.row %]">Código de subcampo:</label> <input type="text" id="tagsubfield[% loo.row %]" name="tagsubfield" value="[% loo.subfieldcode %]" /></li>
+ [% END %] <li><label for="liblibrarian[% loo.row %]">Texto para bibliotecario: </label><input id="liblibrarian[% loo.row %]" type="text" name="liblibrarian" value="[% loo.liblibrarian %]" size="40" maxlength="80" /></li>
+ <li><label for="libopac[% loo.row %]">Texto para el OPAC: </label><input type="text" id="libopac[% loo.row %]" name="libopac" value="[% loo.libopac %]" size="40" maxlength="80" /></li>
+ <li><label for="repeatable[% loo.row %]">Repetible </label>[% loo.repeatable %]</li>
+ <li><label for="mandatory[% loo.row %]">Obligatorio: </label>[% loo.mandatory %]</li>
+ <li><label for="tab[% loo.row %]">Administrado en campo: </label>[% loo.tab %] (ignorar significa que el subcampo NO se muestra en el editor de registros)</li>
  </ol>
  </fieldset>
  
- <a class="displaymore" href="#more[% loo.urisubfieldcode %]">Display more constraints</a>
+ <a class="displaymore" href="#more[% loo.urisubfieldcode %]">muestre más restricciones</a>
  <div id="more[% loo.urisubfieldcode %]" style="display:none; clear: both">
  <fieldset class="rows" style="float:none;">
  <legend>Restricciones avanzadas:</legend>
- <ol><li><label for="defaultvalue[% loo.row %]">Valor predeterminado:</label>
+ <ol><li><label for="defaultvalue[% loo.row %]">Valore predeterminado:</label>
  <input type="text" name="defaultvalue" id="defaultvalue[% loo.row %]" value="[% loo.defaultvalue %]" /></li>
- <li><label for="maxlength[% loo.row %]">Max length:</label><input type="text" id="maxlength[% loo.row %]" name="maxlength" value="[% loo.maxlength %]" size="4" /> (ver ayuda en línea)</li>
+ <li><label for="maxlength[% loo.row %]">Longitud máxima:</label><input type="text" id="maxlength[% loo.row %]" name="maxlength" value="[% loo.maxlength %]" size="4" /> (ver ayuda en línea)</li>
  <li><label for="hidden[% loo.row %]">oculto</label><input type="text" id="hidden[% loo.row %]" name="hidden" value="[% loo.hidden %]" size="2" /> (ver ayuda en línea)</li>
- <li><label for="isurl[% loo.row %]">Es una URL:</label>[% loo.isurl %] (si está seleccionado, el subcampo es una URL y puedes hacer clic sobre ella)</li>
- <li><label for="link[% loo.row %]">Enlace:</label><input type="text" id="link[% loo.row %]" name="link" value="[% loo.link %]" size="10" maxlength="80" /> (e.g., title or local-number) <span class="error"><em>NOTA: Si cambias este valor debes pedirle a tu administrador que ejecute el script misc/batchRebuildBiblioTables.pl.</em></span></li>
+ <li><label for="isurl[% loo.row %]">Es una URL:</label>[% loo.isurl %] (si está seleccionado, significa que el subcampo es una URL y puede hacer clic sobre ella)</li>
+ <li><label for="link[% loo.row %]">Enlace:</label><input type="text" id="link[% loo.row %]" name="link" value="[% loo.link %]" size="10" maxlength="80" /> (e.g., Title or Local-Number) <span class="error"><em>NOTA: si cambia algo en esta tabla, pídale a su administrador que ejecute el script misc/batchRebuildBiblioTables.pl.</em></span></li>
  <li><label for="kohafield[% loo.row %]">Enlace de Koha:</label>[% loo.kohafield %]</li>
  </ol>
  </fieldset>
@@ -122,11 +95,7 @@ $(document).ready(function() {
  [% END %]
  </div><!-- /content -->
  </form>
-[% END %]
-
-[% IF ( delete_confirm ) %]
-
-<h3>Confirm deletion of subfield [% tagsubfield %]?</h3>
+[% END %] [% IF ( delete_confirm ) %] <h3>Confirmar eliminación de subcampo [% tagsubfield %]?</h3>
  <p>Subcampo: [% tagsubfield %]</p>
  <p>Descripción: [% liblibrarian %]</p>
 
@@ -145,22 +114,14 @@ $(document).ready(function() {
  <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
  <input value="No, no eliminar" type="submit" />
  </form>
-[% END %]
-
-[% IF ( delete_confirmed ) %]
-
- <h3>Datos borrados</h3>
+[% END %] [% IF ( delete_confirmed ) %] <h3>Datos borrados</h3>
  <form action="[% script_name %]" method="post">
  <input type="hidden" name="tagfield" value="[% tagfield %]" />
  <input type="submit" value="OK" />
  </form>
-[% END %]
-
-
-[% IF ( else ) %]
-<h1>Administrador de estructuras de subcampo MARC para [% tagfield %] [% IF ( frameworkcode ) %](hoja de trabajo [% frameworkcode %])[% ELSE %](hoja de trabajo predeterminada)[% END %]</h1>
-<p>Esta pantalla muestra los subcampos asociados con la etiqueta seleccionada. Puedes editar los subcampos o agregar uno nuevo haciendo clic en editar.</p>
-<p>La columna campo Koha muestra que el subcampo está conectado a un campo Koha. Koha puede adminstrar una interfaz MARC, o una interfaz Koha. Este enlace asegura que ambas bases de datos están sincronizadas, de manera que puedas cambiar de una interfaz MARC a una Koha con facilidad.</p>
+[% END %] [% IF ( else ) %] <h1>Administrar estructura de subcampos MARC para [% tagfield %] [% IF ( frameworkcode ) %](hoja de trabajo [% frameworkcode %])[% ELSE %](hoja de trabajo por defecto)[% END %]</h1>
+<p>Esta pantalla muestra los subcampos asociados con la etiqueta seleccionada. Puede editar los subcampos o agregar uno nuevo haciendo clic en editar. </p>
+<p>La columna campo Koha muestra que el subcampo está conectado a un campo Koha. Koha puede administrar una interfaz MARC, o una interfaz Koha. Este enlace asegura que ambas bases de datos están sincronizadas, de manera que pueda cambiar de una interfaz MARC a una Koha con facilidad.</p>
 
 <table>
 <tr>
@@ -168,31 +129,34 @@ $(document).ready(function() {
  <th>Texto</th>
  <th>Restricciones</th>
  <th>Editar</th>
- <th>Eliminar</th>
+ <th>Borrar</th>
 </tr>
-[% FOREACH loo IN loop %]
-[% UNLESS ( loop.odd ) %]
-<tr class="highlight">
-[% ELSE %]
-<tr>
-[% END %]
- <td><a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?op=add_form&amp;tagfield=[% loo.tagfield %]&amp;frameworkcode=[% frameworkcode %]#sub[% loo.tagsubfield %]field">[% loo.tagsubfield %]</a></td>
+[% FOREACH loo IN loop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
+[% ELSE %] <tr>
+[% END %] <td><a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?op=add_form&amp;tagfield=[% loo.tagfield %]&amp;frameworkcode=[% frameworkcode %]#sub[% loo.tagsubfield %]field">[% loo.tagsubfield %]</a></td>
  <td>
- [% IF ( loo.subfield_ignored ) %]
- <i>[% loo.liblibrarian %]</i>
+ [% IF ( loo.subfield_ignored ) %] <i>[% loo.liblibrarian %]</i>
+ [% ELSE %] [% loo.liblibrarian %] [% END %] </td>
+ <td>
+ [% IF ( loo.subfield_ignored ) %] <i>subcampo ignorado</i>
  [% ELSE %]
- [% loo.liblibrarian %]
+ Tab:[% loo.tab %],
+ [% IF ( loo.kohafield ) %] | Koha field: [% loo.kohafield %], [% END %]
+ [% IF ( loo.repeatable ) %]Repeatable, [% ELSE %]Not repeatable,[% END %]
+ [% IF ( loo.mandatory ) %]Mandatory, [% ELSE %]Not mandatory,[% END %]
+ [% IF ( loo.seealso ) %] | See Also: [% loo.seealso %],[% END %]
+ [% IF ( loo.hidden ) %]hidden,[% END %]
+ [% IF ( loo.isurl ) %]is a URL,[% END %]
+ [% IF ( loo.authorised_value ) %] | Auth value:[% loo.authorised_value %],[% END %]
+ [% IF ( loo.authtypecode ) %] | Authority:[% loo.authtypecode %],[% END %]
+ [% IF ( loo.value_builder ) %] | Plugin:[% loo.value_builder %],[% END %]
+ [% IF ( loo.link ) %] | Link:[% loo.link %],[% END %]
  [% END %]
  </td>
- <td>
- [% IF ( loo.subfield_ignored ) %]
- <i>subcampo ignorado</i>
- [% ELSE %] Pestaña:[% loo.tab %], [% IF ( loo.kohafield ) %] | Campo Koha: [% loo.kohafield %], [% END %] [% IF ( loo.repeatable ) %]Repetible, [% ELSE %]No repetible,[% END %] [% IF ( loo.mandatory ) %]Obligatorio, [% ELSE %]No obligatorio,[% END %] [% IF ( loo.seealso ) %] | Ver también: [% loo.seealso %],[% END %] [% IF ( loo.hidden ) %]oculto,[% END %] [% IF ( loo.isurl ) %]es una url,[% END %] [% IF ( loo.authorised_value ) %] | Valor autorizado:[% loo.authorised_value %],[% END %] [% IF ( loo.authtypecode ) %] | Authoridad:[% loo.authtypecode %],[% END %] [% IF ( loo.value_builder ) %] | Plugin:[% loo.value_builder %],[% END %] [% IF ( loo.link ) %] | Enlace:[% loo.link %],[% END %] [% END %] </td>
  <td><a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?op=add_form&amp;tagfield=[% loo.tagfield %]&amp;frameworkcode=[% frameworkcode %]#sub[% loo.tagsubfield %]field">Editar</a></td>
- <td><a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?op=delete_confirm&amp;tagfield=[% loo.tagfield %]&amp;tagsubfield=[% loo.tagsubfield %]&amp;frameworkcode=[% frameworkcode %]">Eliminar</a></td>
+ <td><a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?op=delete_confirm&amp;tagfield=[% loo.tagfield %]&amp;tagsubfield=[% loo.tagsubfield %]&amp;frameworkcode=[% frameworkcode %]">Borrar</a></td>
 </tr>
-[% END %]
-</table>
+[% END %] </table>
 
 <form action="[% script_name %]" method="get">
  <fieldset class="action"><input type="hidden" name="op" value="add_form" />
@@ -203,11 +167,7 @@ $(document).ready(function() {
  </fieldset>
 </form>
 
-[% END %]
-
-
-
+[% END %] </div>
 </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

@@ -1,25 +1,19 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Patrons &rsaquo; Account for [% INCLUDE 'patron-title.inc' %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Cuenta de [% INCLUDE 'patron-title.inc' %]</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="pat_borraccount" class="pat">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'patron-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Account for [% INCLUDE 'patron-title.inc' %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Cuenta de [% INCLUDE 'patron-title.inc' %]</div>
 
 <div id="doc3" class="yui-t2">
  
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
-[% INCLUDE 'members-toolbar.inc' %]
-<form action="/cgi-bin/koha/members/boraccount.pl" method="get"><input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" /></form>
+[% INCLUDE 'members-toolbar.inc' %] <form action="/cgi-bin/koha/members/boraccount.pl" method="get"><input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" /></form>
 
 <!-- The manual invoice and credit buttons -->
-<div class="toptabs">
-<ul class="ui-tabs-nav">
- <li class="ui-tabs-selected"><a href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Cuenta</a></li>
+<div class="statictabs">
+<ul>
+ <li class="active"><a href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Cuenta</a></li>
  <li><a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrowernumber %]" >Pagar multas</a></li>
  <li><a href="/cgi-bin/koha/members/maninvoice.pl?borrowernumber=[% borrowernumber %]" >Crear factura manual</a></li>
  <li><a href="/cgi-bin/koha/members/mancredit.pl?borrowernumber=[% borrowernumber %]" >Crear crédito manual</a></li>
@@ -31,56 +25,37 @@
  <th>Fecha</th>
  <th>Descripción de cargos</th>
  <th>Nota</th>
- <th>Cantidad</th>
- <th>Pendiente</th>
- [% IF ( reverse_col ) %]
- <th>&nbsp;</th>
- [% END %]
- <th>Imprimir</th>
+ <th>Monto</th>
+ <th>Excepcional</th>
+ [% IF ( reverse_col ) %] <th>&nbsp;</th>
+ [% END %] <th>Imprimir</th>
  </tr>
 
  <!-- FIXME: Shouldn't hardcode dollar signs, since Euro or Pound might be needed -->
  [% FOREACH account IN accounts %]
 
- [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %]
- <td>[% account.date %]</td>
+ [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %] <td>[% account.date %]</td>
  <td>[% account.description %]&nbsp;[% IF ( account.itemnumber ) %]<a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% account.biblionumber %]&amp;itemnumber=[% account.itemnumber %]">Ver ítem</a>&nbsp;[% END %][% account.title |html %]</td>
  <td>[% account.note %]</td>
  [% IF ( account.amountcredit ) %]<td class="credit">[% ELSE %]<td class="debit">[% END %][% account.amount %]</td>
  [% IF ( account.amountoutstandingcredit ) %]<td class="credit">[% ELSE %]<td class="debit">[% END %][% account.amountoutstanding %]</td>
- [% IF ( reverse_col ) %]
- <td>
- [% IF ( account.payment ) %]
- <a href="boraccount.pl?action=reverse&amp;borrowernumber=[% account.borrowernumber %]&amp;accountno=[% account.accountno %]">Reverso</a>
-  [% ELSE %] &nbsp; [% END %]</td>
- [% END %]
-<td>
- [% IF ( account.payment ) %]
- <a target="_blank" href="printfeercpt.pl?action=print&amp;borrowernumber=[% account.borrowernumber %]&amp;accountno=[% account.accountno %]">Imprimir</a>
- [% ELSE %]
- <a target="_blank" href="printinvoice.pl?action=print&amp;borrowernumber=[% account.borrowernumber %]&amp;accountno=[% account.accountno %]">Imprimir</a>
- [% END %]
- </td>
+ [% IF ( reverse_col ) %] <td>
+ [% IF ( account.payment ) %] <a href="boraccount.pl?action=reverse&amp;borrowernumber=[% account.borrowernumber %]&amp;accountno=[% account.accountno %]">Reverso</a>
+ [% ELSE %] &nbsp; [% END %] </td>
+ [% END %] <td>
+ [% IF ( account.payment ) %] <a target="_blank" href="printfeercpt.pl?action=print&amp;borrowernumber=[% account.borrowernumber %]&amp;accountno=[% account.accountno %]">Imprimir</a>
+ [% ELSE %] <a target="_blank" href="printinvoice.pl?action=print&amp;borrowernumber=[% account.borrowernumber %]&amp;accountno=[% account.accountno %]">Imprimir</a>
+ [% END %] </td>
  </tr>
 
- [% END %]
-<tfoot>
+ [% END %] <tfoot>
  <tr>
  <td colspan="4">Deuda total</td>
- [% IF ( totalcredit ) %]
- [% IF ( reverse_col ) %]
- <td colspan="3" class="credit">
- [% ELSE %]
- <td colspan="2" class="credit">
- [% END %]
- [% ELSE %]
- [% IF ( reverse_col ) %]
- <td colspan="3" class="debit">
- [% ELSE %]
- <td colspan="2" class="credit">
- [% END %]
- [% END %]
- [% total %]</td>
+ [% IF ( totalcredit ) %] [% IF ( reverse_col ) %] <td colspan="3" class="credit">
+ [% ELSE %] <td colspan="2" class="credit">
+ [% END %] [% ELSE %] [% IF ( reverse_col ) %] <td colspan="3" class="debit">
+ [% ELSE %] <td colspan="2" class="credit">
+ [% END %] [% END %] [% total %]</td>
  </tr>
  </tfoot>
 </table>
@@ -90,7 +65,6 @@
 </div>
 
 <div class="yui-b">
-[% INCLUDE 'circ-menu.inc' %]
+[% INCLUDE 'circ-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

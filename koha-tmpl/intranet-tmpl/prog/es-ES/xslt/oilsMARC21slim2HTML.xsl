@@ -36,8 +36,7 @@
  <table class='marc_table'>
  <tr class='marc_tag_row'>
  <th class='marc_tag_col' NOWRAP="TRUE" ALIGN="RIGHT" VALIGN="middle">
- LDR
- </th>
+ LDR </th>
  <td class='marc_tag_data' COLSPAN='3'>
  <xsl:value-of select="marc:leader"/>
  </td>

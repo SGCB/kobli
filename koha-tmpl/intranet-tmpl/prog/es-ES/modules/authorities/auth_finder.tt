@@ -1,13 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Cataloging authority plugin</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<style type="text/css">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Plugin de catalogación de autoridades</title>
+[% INCLUDE 'doc-head-close.inc' %] <style type="text/css">
 #custom-doc { width:51.46em;*width:50.17em;min-width:675px; margin:auto; text-align:left; } 
 </style>
- <script type="text/javascript" src="[% yuipath %]/utilities/utilities.js"></script>
- <script type="text/javascript" src="[% yuipath %]/datasource/datasource.js"></script>
- <script type="text/javascript" src="[% yuipath %]/autocomplete/autocomplete-min.js"></script>
-
 
 </head>
 <body id="auth_auth_finder" class="auth">
@@ -18,11 +12,9 @@
  <div class="yui-b"><div class="yui-g">
 
 <h1>Búsqueda de autoridad</h1>
-[% INCLUDE 'auth-finder-search.inc' %]
-
- </div>
+[% INCLUDE 'auth-finder-search.inc' %] </div>
  </div>
  </div>
 </div>
 </div>
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

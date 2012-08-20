@@ -1,19 +1,19 @@
-[% INCLUDE 'help-top.inc' %] <h1>Gestor de Traducción</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Translations Manager</h1>
 
- <p>"Gestor de Traducción" se encuentra en en la sección de Administración en la que podrá realizar las siguientes acciones:</p>
+ <p>"Translations Manager" at the Admin section will be able to perform the following actions:</p>
  
  <ul>
- <li><p>Crear los archivos de traducción PO para el nuevo idioma</p>
- <p>Para crear un nuevo lenguaje, el primer paso es crear su archivos de traducción PO. Debe introducir el código nuevo lenguaje en el campo de texto. Este proceso creará tres ficheros PP (opac, intranet y preferencias).</p></li>
- <li><p>Editar archivos PO</p>
- <p>Para editar traducciones, el primer paso es  seleccionar un lenguage del menú desplegable,  posteriormente se mostrará un menú despleglable para seleccionar un fichero PO, (si seleccionas el archivo PO de intranet u OPAC, se mostrará un desplegable de plantillas con secciones de las preferencias, mientras si seleccionas el archivo Po de preferencias, mostrará un desplegable con las secciones de las preferencias).</p></li>
- <p>Después de seleccionar una plantilla o una preferencia, ésta aplicará las diferentes etiquetas y sus traducciones que puedan ser modificadas y guardadas a los ficheros PO.</p>
- <li><p>Eliminar archivos PO</p>
- <p>Seleccione un idioma en el desplegable para eliminar sus archivos PO.</p></li>
- <li><p>Instalación de nuevos lenguajes desde ficheros traducidos PO</p>
- <p>Para instalar un nuevo idioma deben existir sus correspondientes archivos PO. Seleccione un idioma en el desplegable para instalarlo.</p></li>
- <li><p>Actualizar idioma instalado</p>
- <p>Después de editar los archivos del PO desde un idioma instalado, si desea traducir los cambios del Opac, la intranet y las preferencias del sistemas, debe actualizar su instalación de idioma. Para actualizar la instalación del idioma deberá seleccionar el idioma desde del desplegable.</p></li> 
+ <li><p>Create PO files for a new languages</p>
+ <p>To create a new language, the first step is to create his translation PO files. You must enter the new language code that can not match the code of some existing PO file. This procedure will create three PO files (opac, staff and preferences).</p></li>
+ <li><p>Edit PO files</p>
+ <p>To edit translations, the first step is to select a language from a language combobox and after selecting a language, you will see a PO files combobox to select one (if you select the Opac or Staff PO file, it will show a templates combobox, whereas if you select the preferences PO file, it will show a combobox with sections of preferences).</p></li>
+ <p>After selecting a template or a preference section, it will display the different labels and their translations that can be modified and saved to the PO files.</p>
+ <li><p>Delete PO files</p>
+ <p>Select a language from a language combobox to delete his PO files.</p></li>
+ <li><p>Install new languages from PO files</p>
+ <p>To install a new language must exist their corresponding PO files, in that case select a language from the language combobox to install it.</p></li>
+ <li><p>Update installed languages</p>
+ <p>After editing PO files from a installed language, to translate the changes to the Opac, the Staff and preferences, you must update your installation language. To update the language installation you must select the language from the language combobox and it will be updated.</p></li> 
  </ul>
 
 [% INCLUDE 'help-bottom.inc' %] 

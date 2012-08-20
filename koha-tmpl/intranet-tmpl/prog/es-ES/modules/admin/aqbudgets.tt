@@ -1,25 +1,74 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo; Funds[% IF ( add_form ) %] &rsaquo; [% IF ( budget_id ) %]Modify fund[% IF ( budget_name ) %] '[% budget_name %]'[% END %][% ELSE %]Add fund [% END %][% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Fondos[% IF ( add_form ) %] &rsaquo; [% IF ( budget_id ) %]Modificar fondo[% IF ( budget_name ) %] '[% budget_name %]'[% END %][% ELSE %]Agregar fondo [% END %][% END %]</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
 
-[% IF ( add_form ) %]
-<script type="text/javascript">
+[% IF ( add_form ) %] <script type="text/javascript">
 //<![CDATA[
-//
-     var actTotal ="";
 
-    function ownerRemove(f) {
-        document.getElementById('budget_owner_name').innerHTML = '';
-        document.getElementById('budget_owner_id').value = '';
+    function userPopup() {
+        window.open("/cgi-bin/koha/admin/aqbudget_user_search.pl?type=user",
+            'PatronPopup',
+            'width=740,height=450,location=yes,toolbar=no,'
+            + 'scrollbars=yes,resize=yes'
+        );
+    }
+
+    function ownerPopup() {
+        window.open("/cgi-bin/koha/admin/aqbudget_user_search.pl?type=owner",
+            'PatronPopup',
+            'width=740,height=450,location=yes,toolbar=no,'
+            + 'scrollbars=yes,resize=yes'
+        );
+    }
+
+    function edit_owner(borrowernumber, surname, firstname) {
+        $('#budget_owner_name').empty();
+        $('#budget_owner_id').val('');
+        if (borrowernumber) {
+            var ownerlink = '<a href="/cgi-bin/koha/members/moremember.pl'
+                + '?borrowernumber=' + borrowernumber + '">'
+                + firstname + ' ' + surname + '</a>';
+            $('#budget_owner_name').html(ownerlink);
+            $('#budget_owner_id').val(borrowernumber);
+        }
+    }
+
+    function ownerRemove() {
+        edit_owner(0);
+    }
+
+    function add_user(borrowernumber, surname, firstname) {
+        var ids = $("#budget_users_id").val().split(':');
+        if(borrowernumber && ids.indexOf(borrowernumber) == -1) {
+            var li = '<li id="user_' + borrowernumber + '">'
+                + '<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber='
+                + borrowernumber + '">' + firstname + ' ' + surname
+                + '</a> [<a style="cursor:pointer"'
+                + 'onclick="del_user(' + borrowernumber +')">Remove</a>]</li>';
+            $(li).insertBefore("li#add_user_button");
+            ids.push(borrowernumber);
+            $("#budget_users_id").val(ids.join(':'));
+        } else {
+            return -1;
+        }
+        return 0;
+    }
+
+    function del_user(borrowernumber) {
+        var ids = $("#budget_users_id").val().split(':');
+        if (borrowernumber) {
+            var idx = ids.indexOf(borrowernumber+'');
+            if (idx != -1) {
+                ids.splice(idx, 1);
+                $("#budget_users_id").val(ids.join(':'));
+                $("li#user_" + borrowernumber).remove();
+            }
+        }
     }
 
     function Check(f) {
         var ok=1;
         var _alertString="";
         var alertString2;
-
-        // var actTotal ="";
 
         if (!(isNotNull(f.budget_code,1))) {
             _alertString += _("- El código del presupuesto no puede estar en blanco") + "\n";
@@ -53,7 +102,7 @@
             if   (budgetId  > 0)  {  ; //its a mod ...
                 // if parent == curent-budget, fail...
                 if ( newBudgetParent  ==  budgetId     ) {
-                        _alertString += _("- El presupuesto matriz es el presupuesto actual") + "\n";
+                        _alertString += _("- El presupuesto padre es el presupuesto actual") + "\n";
                 }
 
                 else if (newBudgetParent) {
@@ -83,8 +132,7 @@
     }
 //]]>
 </script>
-[% ELSE %]
-<link href="[% themelang %]/lib/jquery/plugins/treetable/stylesheets/jquery.treeTable.css" rel="stylesheet" type="text/css" />
+[% ELSE %] <link href="[% themelang %]/lib/jquery/plugins/treetable/stylesheets/jquery.treeTable.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/treetable/jquery.treeTable.min.js"></script>
@@ -137,45 +185,38 @@
     });
 //]]>
 </script>
-[% END %]
-
-</head>
+[% END %] </head>
 <body id="admin_aqbudgets" class="admin">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'budgets-admin-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; <a href="/cgi-bin/koha/admin/aqbudgetperiods.pl">Presupuestos</a> &rsaquo; [% IF ( else ) %]Funds for '[% budget_period_description %]'[% END %][% IF ( add_form ) %]
- <a href="/cgi-bin/koha/admin/aqbudgets.pl?budget_period_id=[% budget_period_id %]">Fondos</a> &rsaquo; [% IF ( budget_id ) %]Modificar fondo[% IF ( budget_name ) %] '[% budget_name %]'[% END %][% ELSE %]Añadir fondo[% END %][% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/aqbudgets.pl">Fondos</a> &rsaquo; Delete fund?[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'budgets-admin-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; <a href="/cgi-bin/koha/admin/aqbudgetperiods.pl">Presupuestos</a> &rsaquo; [% IF ( else ) %]Fondos para '[% budget_period_description %]'[% END %][% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/aqbudgets.pl?budget_period_id=[% budget_period_id %]">Fondos</a> &rsaquo; [% IF ( budget_id ) %]Modificar fondo[% IF ( budget_name ) %] '[% budget_name %]'[% END %][% ELSE %]Agregar fondo[% END %][% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/aqbudgets.pl">Fondos</a> &rsaquo; ¿Eliminar fondo?[% END %]</div>
 
 <div id="doc3" class="yui-t2">
 <div id="bd">
 <div id="yui-main">
 <div class="yui-b" id="content">
 
-[% UNLESS ( delete_confirm ) %][% INCLUDE 'budgets-admin-toolbar.inc' %][% END %]
-[% IF ( else ) %]
 
-<h1>Fondos para '[% budget_period_description %]'</h1>
+[% UNLESS ( delete_confirm ) %][% INCLUDE 'budgets-admin-toolbar.inc' %][% END %] [% IF (error_not_authorised_to_modify) %] <div class="error">
+ <p>You are not authorised to modify this fund</p>
+ </div>
+[% END %] [% IF ( else ) %] <h1>Fondos para '[% budget_period_description %]'</h1>
 
-[% INCLUDE 'budgets-active-currency.inc' %]
-
-<table id="budgeth">
+[% INCLUDE 'budgets-active-currency.inc' %] <table id="budgeth">
  <thead>
  <tr>
  <th>Código del fondo</th>
  <th>Nombre del fondo</th>
  <th>Total<br />asignado</th>
- <th>Nivel de base<br />asignado</th>
- <th>Nivel de base<br />gastado</th>
+ <th>Nivel de la base<br />asignado</th>
+ <th>Nivel de la base<br />gastado</th>
  <th>Total de subniveles<br />gastado</th>
- <th>Nivel de base<br />restante</th>
+ <th>Nivel de la base<br />restante</th>
  <th class="tooltipcontent">&nbsp;</th>
  <th>Acciones</th>
  </tr>
  </thead>
 <tfoot>
  <tr>
- <th colspan="2" style="text-align: left;" nowrap="nowrap">Period allocated [% IF ( budget_period_total ) %][% budget_period_total %][% END %] </th>
+ <th colspan="2" style="text-align: left;" nowrap="nowrap">Periodo ubicado [% IF ( budget_period_total ) %][% budget_period_total %][% END %] </th>
  <th nowrap="nowrap" class="data"> [% period_alloc_total %]</th>
  <th nowrap="nowrap"  class="data"> [% base_alloc_total %]</th>
  <th class="data">[% base_spent_total %]</th>
@@ -186,57 +227,32 @@
  </tr>
  </tfoot>
  <tbody>
- [% IF ( budget ) %]
- [% FOREACH budge IN budget %]
- [% IF ( budge.toggle ) %]
- <tr id="node-[% budge.budget_id %]" class="highlight[% IF ( budge.budget_parent_id ) %] child-of-node-[% budge.budget_parent_id %][% END %] tooltiped">
- [% ELSE %]
- <tr id="node-[% budge.budget_id %]" class="tooltiped [% IF ( budge.budget_parent_id ) %] child-of-node-[% budge.budget_parent_id %][% END %]">
- [% END %]
-
- <td>[% budge.budget_code_indent %]</td>
+ [% IF ( budget ) %] [% FOREACH budge IN budget %] [% IF ( budge.toggle ) %] <tr id="node-[% budge.budget_id %]" class="highlight[% IF ( budge.budget_parent_id ) %] child-of-node-[% budge.budget_parent_id %][% END %] tooltiped">
+ [% ELSE %] <tr id="node-[% budge.budget_id %]" class="tooltiped [% IF ( budge.budget_parent_id ) %] child-of-node-[% budge.budget_parent_id %][% END %]">
+ [% END %] <td>[% budge.budget_code_indent %]</td>
  <td>[% budge.budget_name %]</td>
  <td class="data">[% budge.budget_amount_total %]</td>
  <td class="data">[% budge.budget_amount %] </td>
  <td class="data">[% budge.budget_spent %] </td>
  <td class="data">[% budge.total_levels_spent %]</td>
- [% IF ( budge.remaining_pos ) %]
- <td class="data" style="color: green;">
- [% ELSIF ( budge.remaining_neg ) %] 
- <td class="data" style="color: red;">
- [% ELSE %]
- <td class="data">
- [% END %]
- [% budge.budget_remaining %] </td>
+ [% IF ( budge.remaining_pos ) %] <td class="data" style="color: green;">
+ [% ELSIF ( budge.remaining_neg ) %] <td class="data" style="color: red;">
+ [% ELSE %] <td class="data">
+ [% END %] [% budge.budget_remaining %] </td>
 
- <td class="tooltipcontent">[% IF ( budge.budget_owner_id ) %]<strong>Owner: </strong><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% budge.budget_owner_id %]">[% budge.budget_owner_name %]</a>[% END %]
- [% IF ( budge.budget_branchcode ) %]<br /><strong>Biblioteca:</strong>[% budge.budget_branchcode %][% END %]
- [% IF ( budge.budget_notes ) %]<br /><strong>Notas:</strong>[% budge.budget_notes %][% END %]
- [% IF ( budge.budget_hierarchy ) %]
- <ul class="budget_hierarchy">[% FOREACH budget_hierarch IN budge.budget_hierarchy %]
- [% IF ( budget_hierarch.element_id ) %]
- <li><a href="?op=add_form&amp;budget_id=[% budget_hierarch.element_id %]&amp;budget_period_id=[% budget_hierarch.budget_period_id %]">[% budget_hierarch.element_name %]</a></li>
- [% ELSE %]
- <li><strong>[% budget_hierarch.element_name %] : </strong></li>
- [% END %]
- [% END %]
- </ul>
+ <td class="tooltipcontent">[% IF ( budge.budget_owner_id ) %]<strong>Propietario: </strong><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% budge.budget_owner_id %]">[% budge.budget_owner_name %]</a>[% END %] [% IF ( budge.budget_branchcode ) %]<br /><strong>Biblioteca: </strong>[% budge.budget_branchcode %][% END %] [% IF ( budge.budget_notes ) %]<br /><strong>Notas: </strong>[% budge.budget_notes %][% END %] [% IF ( budge.budget_hierarchy ) %] <ul class="budget_hierarchy">[% FOREACH budget_hierarch IN budge.budget_hierarchy %] [% IF ( budget_hierarch.element_id ) %] <li><a href="?op=add_form&amp;budget_id=[% budget_hierarch.element_id %]&amp;budget_period_id=[% budget_hierarch.budget_period_id %]">[% budget_hierarch.element_name %]</a></li>
+ [% ELSE %] <li><strong>[% budget_hierarch.element_name %] : </strong></li>
+ [% END %] [% END %] </ul>
  [% END %]</td>
- [% IF ( budge.budget_lock ) %]
- <td> <span style="color: gray;"> Edit Delete </span> </td>
- [% ELSE %]
- <td>
+ [% IF ( budge.budget_lock ) %] <td> <span style="color: gray;"> Editar Borrar </span> </td>
+ [% ELSE %] <td>
  <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_id=[% budge.budget_id %]&amp;budget_period_id=[% budge.budget_period_id %]" >Editar</a>
- <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=delete_confirm&amp;budget_id=[% budge.budget_id %]&amp;budget_period_id=[% budge.budget_period_id %]">Eliminar</a>
- <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_parent_id=[% budge.budget_id %]&amp;budget_period_id=[% budge.budget_period_id %]">Add child fund</a>
+ <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=delete_confirm&amp;budget_id=[% budge.budget_id %]&amp;budget_period_id=[% budge.budget_period_id %]">Borrar</a>
+ <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_parent_id=[% budge.budget_id %]&amp;budget_period_id=[% budge.budget_period_id %]">Agregar un fondo infantil</a>
  </td>
- [% END %]
- </tr>
- [% END %]
- [% ELSE %]
- <tr><td colspan="12">No se encontraron fondos</td></tr>
- [% END %]
- </tbody>
+ [% END %] </tr>
+ [% END %] [% ELSE %] <tr><td colspan="12">No se encontraron fondos</td></tr>
+ [% END %] </tbody>
 </table>
 
 [% IF ( pagination_bar ) %]<div class="pages">[% pagination_bar %]</div>[% END %]
@@ -244,123 +260,136 @@
 
 <!-- ********************************************************************************************** -->
 <!-- create add/mod entry form -->
-[% IF ( add_form ) %]
+[% IF ( add_form && !error_not_authorised_to_modify ) %]
 <form action="/cgi-bin/koha/admin/aqbudgets.pl" name="Aform" method="post">
  <fieldset class="rows">
- <legend>[% IF ( budget_id ) %]Modificar[% ELSE %]Añadir[% END %] Fondo [% IF ( budget_period_description ) %] [% budget_name %] para Presupuesto '[% budget_period_description %]' [% END %] </legend>
+ <legend>[% IF ( budget_id ) %]Modificar[% ELSE %]Agregar[% END %] Fondo [% IF ( budget_period_description ) %] [% budget_name %] para presupuesto '[% budget_period_description %]' [% END %] </legend>
 
  <input type="hidden" name="op" value="add_validate" />
  <input type="hidden" name="checked" value="0" />
  <ol>
- [% IF ( budget_parent_id ) %]
- <li>
- <span class="label">Fund parent: </span>
- [% budget_parent_name %]
- [% budget_parent_id %] - [% budget_parent_name %]
- <input type="hidden" name="budget_parent_id" value="[% budget_parent_id %]" />
+ [% IF ( budget_parent_id ) %] <li>
+ <span class="label">Padre del fondo: </span>
+ [% budget_parent_name %] [% budget_parent_id %] - [% budget_parent_name %] <input type="hidden" name="budget_parent_id" value="[% budget_parent_id %]" />
  </li>
- [% END %]
- <li>
- <label class="required"  for="budget_code">Fund code: </label>
+ [% END %] <li>
+ <label class="required"  for="budget_code">Código del fondo: </label>
  <input type="text" name="budget_code" id="budget_code" value="[% budget_code %]" size="30" />
  </li>
 
  <li>
- <label class="required" for="budget_name">Fund name: </label>
+ <label class="required" for="budget_name">Nombre del fondo: </label>
  <input type="text" name="budget_name" id="budget_name" value="[% budget_name %]" size="60" />
  </li>
 
  <li>
- <label style="white-space: nowrap;" for="budget_amount" class="required">Amount: </label>
+ <label style="white-space: nowrap;" for="budget_amount" class="required">Monto: </label>
  <input type="text" name="budget_amount" id="budget_amount" value="[% budget_amount %]" size="8" />
  </li>
 
  <li>
- <label for="budget_encumb">Encumbrance: </label>
+ <label for="budget_encumb">Gravamen: </label>
  <input type="text" name="budget_encumb" id="budget_encumb" value="[% budget_encumb %]" size="8" />
  </li>
 
  <li>
- <label for="budget_expend">Expenditure: </label>
- <input type="text" name="budget_expend" id="budget_expend" value="[% budget_expend %]" size="8" /><input type="hidden" name="budget_owner_id" id="budget_owner_id" value="[% budget_owner_id %]" />
+ <label for="budget_expend">Gasto: </label>
+ <input type="text" name="budget_expend" id="budget_expend" value="[% budget_expend %]" size="8" />
  </li>
 
  <li>
- <span class="label">Owner: </span>
+ <span class="label">Propietario: </span>
  <span  id="budget_owner_name">
- <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% budget_owner_id %]">[% budget_owner_name %]</a>
+ <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% budget_owner_id %]">
+ [% budget_owner_name %] </a>
  </span>
+ <input type="hidden" name="budget_owner_id" id="budget_owner_id"
+            value="[% budget_owner_id %]" />
 
  <!-- FIXME: hardcoded button positions :/ -->
- <input value="Editar dueño" style="" type="button" id="edit_owner" onclick="ownerPopup(); return false;" />
- <input value="Eliminar propietario" style="" type="button" id="remove_owner" onclick="ownerRemove(this.form); return false;" />
+ <input value="Editar dueño" type="button" id="edit_owner" onclick="ownerPopup(); return false;" />
+ <input value="Eliminar dueño" type="button" id="remove_owner" onclick="ownerRemove(); return false;" />
  </li>
 
  <li>
- <label for="budget_branchcode">Biblioteca:</label>
+ <span class="label">Users:</span>
+ <ul style="float:left;" id="budget_users">
+ [% FOREACH user IN budget_users %] <li id="user_[% user.borrowernumber %]">
+ <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% user.borrowernumber %]">
+ [% user.firstname %] [% user.surname %] </a>
+ [<a style="cursor:pointer"
+                    onclick="del_user([% user.borrowernumber %])">Eliminar</a>] </li>
+ [% END %] <li id="add_user_button">
+ <input type="button" onclick="userPopup()" value="Add users" />
+ </li>
+ </ul>
+ <input type="hidden" name="budget_users_ids" id="budget_users_id" value="[% budget_users_ids %]" />
+ <li>
+ <label for="budget_branchcode">Biblioteca: </label>
  <select name="budget_branchcode" id="budget_branchcode">
  <option value=""></option>
- [% FOREACH branchloop_selec IN branchloop_select %]
- [% UNLESS ( branchloop_selec.selected ) %] <option value="[% branchloop_selec.value %]" > [% ELSE %] <option value="[% branchloop_selec.value %]" selected="selected"> [% END %] [% branchloop_selec.value %]-[% branchloop_selec.branchname %]</option>
- [% END %]
- </select>
+ [% FOREACH branchloop_selec IN branchloop_select %] [% UNLESS ( branchloop_selec.selected ) %] <option value="[% branchloop_selec.value %]" > [% ELSE %] <option value="[% branchloop_selec.value %]" selected="selected"> [% END %] [% branchloop_selec.value %]-[% branchloop_selec.branchname %]</option>
+ [% END %] </select>
  </li>
 
  <li>
- <label for="budget_permission">Restrict access to: </label>
+ <label for="budget_permission">Restringir acceso a: </label>
  <select name="budget_permission" id="budget_permission">
- [% IF ( budget_perm_0 ) %]<option value="0" selected="selected">Ninguno</option>[% ELSE %]<option value="0">Ninguno</option>[% END %]
- [% IF ( budget_perm_1 ) %]<option value="1" selected="selected">Propietario</option>[% ELSE %]<option value="1">Propietario</option>[% END %]
- [% IF ( budget_perm_2 ) %]<option value="2" selected="selected">Biblioteca</option>[% ELSE %]<option value="2">Biblioteca</option>[% END %]
+ [% IF ( budget_perm_0 ) %] <option value="0" selected="selected">
+ [% ELSE %] <option value="0">
+ [% END %]
+ None
+ </option>
+
+ [% IF ( budget_perm_1 ) %] <option value="1" selected="selected">
+ [% ELSE %] <option value="1">
+ [% END %]
+ Owner
+ </option>
+
+ [% IF ( budget_perm_3) %] <option value="3" selected="selected">
+ [% ELSE %] <option value="3">
+ [% END %]
+ Owner and users
+ </option>
+
+ [% IF ( budget_perm_2 ) %] <option value="2" selected="selected">
+ [% ELSE %] <option value="2">
+ [% END %]
+ Owner, users and library
  </option>
  </select>
  </li>
 
  <li>
- <label for="budget_notes">Notas:</label>
+ <label for="budget_notes">Notas: </label>
  <textarea name="budget_notes" id="budget_notes"  cols="80" rows="6">[% budget_notes %]</textarea>
  </li>
 
  <li>
- <label  style="white-space: nowrap;" for="authorised_value_category1">Statistic 1 done on: </label>
+ <label  style="white-space: nowrap;" for="authorised_value_category1">Estadísticas 1 hecho: </label>
  <select name="sort1_authcat" id="authorised_value_category1">
  <option value=""></option>
- [% FOREACH authorised_value_categories IN authorised_value_categories1 %]
- [% IF ( authorised_value_categories.selected ) %]
- <option value="[% authorised_value_categories.category %]" selected="selected">
- [% authorised_value_categories.category %]
- </option>
- [% ELSE %]
- <option value="[% authorised_value_categories.category %]">
- [% authorised_value_categories.category %]
- </option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH authorised_value_categories IN authorised_value_categories1 %] [% IF ( authorised_value_categories.selected ) %] <option value="[% authorised_value_categories.category %]" selected="selected">
+ [% authorised_value_categories.category %] </option>
+ [% ELSE %] <option value="[% authorised_value_categories.category %]">
+ [% authorised_value_categories.category %] </option>
+ [% END %] [% END %] </select>
  </li>
  <li>
- <label  style="white-space: nowrap;" for="authorised_value_category2">Statistic 2 done on: </label>
+ <label  style="white-space: nowrap;" for="authorised_value_category2">Estadística 2 hecho: </label>
  <select name="sort2_authcat" id="authorised_value_category2">
  <option value=""></option>
- [% FOREACH authorised_value_categories IN authorised_value_categories2 %]
- [% IF ( authorised_value_categories.selected ) %]
- <option value="[% authorised_value_categories.category %]" selected="selected">
- [% authorised_value_categories.category %]
- </option>
- [% ELSE %]
- <option value="[% authorised_value_categories.category %]">
- [% authorised_value_categories.category %]
- </option>
- [% END %]
- [% END %]
- </select>
+ [% FOREACH authorised_value_categories IN authorised_value_categories2 %] [% IF ( authorised_value_categories.selected ) %] <option value="[% authorised_value_categories.category %]" selected="selected">
+ [% authorised_value_categories.category %] </option>
+ [% ELSE %] <option value="[% authorised_value_categories.category %]">
+ [% authorised_value_categories.category %] </option>
+ [% END %] [% END %] </select>
  </li>
  </ol>
 
- [% IF ( budget_id ) %]
- <input type="hidden" name="budget_id" value="[% budget_id %]" />
- [% END %]
- </fieldset>
+ [% IF ( budget_id ) %] <input type="hidden" name="budget_id" value="[% budget_id %]" />
+ [% END %] </fieldset>
 
  <fieldset class="action">
  <input value="Enviar" type="submit" onclick="Check(this.form); return false;" /> <a class="cancel" href="/cgi-bin/koha/admin/aqbudgets.pl">Cancelar</a>
@@ -371,10 +400,10 @@
 [% END %] <!-- add_form -->
 
 [% IF ( delete_confirm ) %]
-<div class="dialog alert"> <h3>Delete fund [% budget_name %]?</h3>
+<div class="dialog alert"> <h3>Eliminar fondo [% budget_name %]?</h3>
 <table>
  <tr>
- <th scope="row">Fund amount:</th>
+ <th scope="row">Monto del fondo:</th>
  <td>[% budget_amount %]</td>
  </tr>
 </table>
@@ -387,12 +416,10 @@
 </form>
 
 <form action="[% action %]" method="get">
- <input type="submit" class="deny" value="No, do not delete" />
+ <input value="No, no eliminar" type="submit" class="deny" />
 </form>
 </div>
-[% END %]
-
-</div>
+[% END %] </div>
 </div>
 <div class="yui-b">
 [% IF ( else ) %]<form action="/cgi-bin/koha/admin/aqbudgets.pl" method="get">
@@ -401,33 +428,25 @@
  <h4>Filtros del fondo</h4>
  <ol>
  <li>
- <label for="filter_budgetbranch2">Biblioteca:</label>
+ <label for="filter_budgetbranch2">Biblioteca: </label>
  <select name="filter_budgetbranch" id="filter_budgetbranch2" style="width:10em;">
  <option value=""></option>
- [% FOREACH branchloo IN branchloop %]
- [% UNLESS ( branchloo.selected ) %]<option value="[% branchloo.value %]">
- [% ELSE %]<option value="[% branchloo.value %]" selected="selected">[% END %]
- [% branchloo.branchname %]</option>
- [% END %]
- </select>
+ [% FOREACH branchloo IN branchloop %] [% UNLESS ( branchloo.selected ) %]<option value="[% branchloo.value %]">
+ [% ELSE %]<option value="[% branchloo.value %]" selected="selected">[% END %] [% branchloo.branchname %]</option>
+ [% END %] </select>
  </li>
  <li class="radio">
 
  <label for="show_mine">Mostrar sólo mis fondos</label>
- [% IF ( show_mine ) %]
- <input type="checkbox" id="show_mine"  name="show_mine" value="1" checked="checked" />
- [% ELSE %]
- <input type="checkbox" id="show_mine"  name="show_mine" value="1" />
- [% END %]
- </li>
+ [% IF ( show_mine ) %] <input type="checkbox" id="show_mine"  name="show_mine" value="1" checked="checked" />
+ [% ELSE %] <input type="checkbox" id="show_mine"  name="show_mine" value="1" />
+ [% END %] </li>
  </ol>
 
  <input type="hidden" name="show" value="1" />
  <input type="hidden"  name="budget_period_id" value="[% budget_period_id %]" />
  <input value="Ir" name="filter" type="submit" class="submit" />
  </fieldset>
-</form>[% END %]
-[% INCLUDE 'acquisitions-menu.inc' %]
+</form>[% END %] [% INCLUDE 'acquisitions-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

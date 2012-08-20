@@ -4,18 +4,10 @@
  <input type="hidden" name="surname" value="[% surname %]" />
  <ol>
  <li><label for="member">Nombre:</label> <input type="text" id="member" name="member" value="[% member %]" />[% IF ( subscriptionid ) %]<input type="hidden" name="subscriptionid" value="[% subscriptionid %]">[% END %]</li>
- <li><label for="branchcode"> Biblioteca:</label><select name="branchcode" id="branchcode">
- <option value="">Cualquiera</option>[% FOREACH branchloo IN branchloop %]
- [% IF ( branchloo.selected ) %]
- <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %]
- <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %]
- [% END %]</select></li>
- <li><label for="categorycode">Categoría:</label><select name="categorycode" id="categorycode">
- <option value="">Cualquiera</option>[% FOREACH categorie IN categories %]
- [% IF ( categorie.selected ) %]
- <option value="[% categorie.categorycode %]" selected="selected">[% categorie.description %]</option>[% ELSE %]
- <option value="[% categorie.categorycode %]">[% categorie.description %]</option>[% END %]
- [% END %]</select> </li>
+ <li><label for="branchcode"> Biblioteca: </label><select name="branchcode" id="branchcode">
+ <option value="">Cualquiera</option>[% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %] [% END %]</select></li>
+ <li><label for="categorycode">Categoría: </label><select name="categorycode" id="categorycode">
+ <option value="">Cualquiera</option>[% FOREACH categorie IN categories %] [% IF ( categorie.selected ) %] <option value="[% categorie.categorycode %]" selected="selected">[% categorie.description %]</option>[% ELSE %] <option value="[% categorie.categorycode %]">[% categorie.description %]</option>[% END %] [% END %]</select> </li>
  <fieldset class="action"><input value="Buscar" type="submit" /></fieldset>
  </fieldset>
  </form>

@@ -1,31 +1,20 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>UNIMARC field 123a builder</title>
-[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %] <title>Constructor Campo UNIMARC 123a</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="cat_unimarc_field_123a" class="cat" style="padding:1em;">
-<h3>UNIMARC field 123a builder</h3>
+<h3>Constructor Campo UNIMARC 123a</h3>
 <form name="f_pop" action="">
 <table>
  <tr>
- <td><label for="f1">Type of scale:</label></td>
+ <td><label for="f1">Tipo de escala:</label></td>
  <td>
  <select name="f1" id="f1" size="1">
- [% IF ( f1a ) %]
- <option value="a" selected="selected">escala lineal</option>
- [% ELSE %]
- <option value="a">escala lineal</option>
- [% END %]
- [% IF ( f1b ) %]
- <option value="b" selected="selected">escala angular</option>
- [% ELSE %]
- <option value="b">escala angular</option>
- [% END %]
- [% IF ( f1z ) %]
- <option value="z" selected="selected">otro tipo de escala (por ejemplo, escala de tiempo, escala cuantitativa estadística)</option>
- [% ELSE %]
- <option value="z">otro tipo de escala (por ejemplo, escala de tiempo, escala cuantitativa estadística)</option>
- [% END %]
- </select>
+ [% IF ( f1a ) %] <option value="a" selected="selected">escala lineal</option>
+ [% ELSE %] <option value="a">escala lineal</option>
+ [% END %] [% IF ( f1b ) %] <option value="b" selected="selected">escala angular</option>
+ [% ELSE %] <option value="b">escala angular</option>
+ [% END %] [% IF ( f1z ) %] <option value="z" selected="selected">otro tipo de escala (por ejemplo, escala de tiempo, escala cuantitativa estadística)</option>
+ [% ELSE %] <option value="z">otro tipo de escala (por ejemplo, escala de tiempo, escala cuantitativa estadística)</option>
+ [% END %] </select>
  </td></tr>
 </table>
 <fieldset class="action"><input type="button" value="OK" onclick="report();" /> <a href="#" class="cancel close">Cancelar</a></fieldset>
@@ -43,4 +32,4 @@ function report() {
 </script>
 
 
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

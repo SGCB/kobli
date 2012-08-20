@@ -1,35 +1,33 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Administration Help</h1>
 
-<h1>Administration help</h1>
+<p>The administration area is where you set all of your preferences for the system. Preference are broken down into several categories, detailed below.</p>
 
-<p>El área de administración es donde se definen todas stus preferencias para el sistema. Las preferencias se dividen en varias categorías.</p>
+<h3>Global System Preferences</h3>
 
-<h3>Preferencias globales del sistema</h3>
+<p>Koha has an extensive set of system preferences. The system preferences control all the various features within Koha, whether they are active in your install or not. System preferences are set at install and are generally not changed afterwards.</p>
 
-<p>Koha cuenta con un amplio conjunto de preferencias del sistema. Las preferencias del sistema controlan todas las características y funciones de Koha tanto si están activas como si no. Las preferencias del sistema generalmente se establecen en la instalación y luego no cambian.</p>
+<p>If you are not sure what combination of system preferences to use, try using one of the sample profiles at install.</p>
 
-<p>If you are not sure what combination of system preferences to use, try using one of the sample profiles at install. </p>
+<p style="color: #990000">IMPORTANT: Many preferences interact with each other. Turning on one system preference may require that others are also set.</p>
 
-<p style="color: #990000">IMPORTANTE: Muchas preferencias interactúan entre sí. Habilitar una preferencia del sistema puede que exija que otras preferencias sean también habilitadas.</p>
+<h3>Basic Parameters</h3>
 
-<h3>Parámetros básicos</h3>
+<p>"Basic Parameters" is where library policies are set and governed. It is best to set your system preferences and then work through the basic parameters in the order that they appear on this page.</p>
 
-<p>Parámetros Básicos es donde se establecen las políticas de biblioteca. Lo mejor es establecer primero las preferencias del sistema, y luego trabajar con los parámetros básicos, en el orden en que aparecen en esta página.</p>
+<p>Please note that it is not required to set all the basic parameters. For example, if you do not plan to use budget based acquisitions, then 'Funds,' 'Budgets,' and 'Currencies and Exchange Rates' can be ignored.</p>
 
-<p>Ten en cuenta que no es obligatorio configurar todos los parámetros del sistema. Por ejemplo, si no tienes intención de utilizar las adquisiciones basadas en presupuestos, entonces la configuración de Cuentas y Presupuestos, Divisas y Tipos de cambio puede ser ignorada.</p>
+<h3>Patrons and Circulation</h3>
 
-<h3>Socios y circulación</h3>
-
-<p>Estos parámetros ayudan con el control de los registros de socios y las reglas de circulación. Lo mejor es asegurarse de establecer los parámetros básicos antes de visitar esta sección.</p>
+<p>These parameters help control patron records and circulation rules. It is best to set the basic parameters before visiting this section.</p>
 
 <h3>Catálogo</h3>
 
-<p>Catalog parameters assist in configuring the cataloging functionality within Koha. 
+<p>Catalog parameters assist in configuring the cataloging functionality within Koha.</p>
 
-<h3>Parámetros adicionales</h3>
+<h3>Additional Parameters</h3>
 
-<p>Este mensaje se muestra cuando se presta a este socio</p>
-<p>
-<p><strong>See the full documentation for system administration in the <a href="http://manual.koha-community.org/3.6/en/administration.html">manual</a> (online).</strong></p>
+<p>This list of parameters includes functionalities that didn't fit in any other category. These items are optional and may not need to be altered, depending on your library's needs.</p>
 
-[% INCLUDE 'help-bottom.inc' %]
+<p><strong>See the full documentation for system Administration in the <a href="http://manual.koha-community.org/3.8/en/administration.html">manual</a> (en línea).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %] 

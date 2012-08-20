@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; Verificar socio duplicado</title>
-[% INCLUDE 'doc-head-close.inc' %]
- <style type="text/css">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Verificar socio duplicado</title>
+[% INCLUDE 'doc-head-close.inc' %] <style type="text/css">
 		#custom-doc { width:44.23em;*width:43.12em;min-width:491px; margin:auto; text-align:left; } 
 	</style>
 </head>
@@ -13,53 +11,18 @@
 <div class="yui-u first">
  <div id="patron-information" style="padding: .5em;">
 
-  [% UNLESS ( I ) %][% IF ( othernames ) %]&ldquo;[% othernames %]&rdquo;[% END %] <p class="address">[% streetnumber %]
- [% IF ( roaddetails ) %]
- [% roaddetails %]
- [% END %]
- [% address %]<br />
- [% IF ( address2 ) %][% address2 %]<br />[% END %]
- [% IF ( city ) %][% city %][% END %]
- [% IF ( zipcode ) %][% zipcode %]<br />[% END %]
- [% IF ( country ) %][% country %][% END %]</p>
+ [% UNLESS ( I ) %][% IF ( othernames ) %]&ldquo;[% othernames %]&rdquo;[% END %] <p class="address">[% streetnumber %] [% IF ( roaddetails ) %] [% roaddetails %] [% END %] [% address %]<br />
+ [% IF ( address2 ) %][% address2 %]<br />[% END %] [% IF ( city ) %][% city %][% END %] [% IF ( zipcode ) %][% zipcode %]<br />[% END %] [% IF ( country ) %][% country %][% END %]</p>
 
  <div class="rows">
  <ol>
- [% IF ( I ) %]
- [% IF ( phonepro ) %]<li><span class="label">Teléfono de la institución</span>[% phonepro %]</li>[% END %]
- [% IF ( emailpro ) %]<li><span class="label">E-Mail de la institución:</span>[% emailpro %]</li>[% END %]
- [% ELSE %]
- [% IF ( phone ) %]<li><span class="label">Primary phone: </span>[% phone %]</li>[% END %]
- [% IF ( mobile ) %]<li><span class="label">Secondary phone: </span>[% mobile %]</li>[% END %]
- [% IF ( phonepro ) %]<li><span class="label">Other phone: </span>[% phonepro %]</li>[% END %]
- [% END %]
-
- [% IF ( P ) %]
- [% IF ( phone ) %]<li><span class="label">Primary phone: </span>[% phone %]</li>[% END %]
- [% IF ( mobile ) %]<li><span class="label">Secondary mobile: </span>[% mobile %]</li>[% END %]
- [% END %]
- [% IF ( fax ) %]<li><span class="label">Fax:</span>[% fax %]</li>[% END %]
- [% UNLESS ( I ) %]
- [% IF ( email ) %]<li><span class="label">Primary email:</span><a href="mailto:[% email %]">[% email %]</a></li>[% END %]
- [% IF ( emailpro ) %]<li><span class="label">Secondary email: </span><a href="mailto:[% emailpro %]">[% emailpro %]</a></li>[% END %]
- [% END %]
- <li><span class="label">Iniciales:</span>[% initials %]</li>
+ [% IF ( I ) %] [% IF ( phonepro ) %]<li><span class="label">Teléfono de la institución: </span>[% phonepro %]</li>[% END %] [% IF ( emailpro ) %]<li><span class="label">Email de la institución: </span>[% emailpro %]</li>[% END %] [% ELSE %] [% IF ( phone ) %]<li><span class="label">Teléfono principal: </span>[% phone %]</li>[% END %] [% IF ( mobile ) %]<li><span class="label">Teléfono secundario: </span>[% mobile %]</li>[% END %] [% IF ( phonepro ) %]<li><span class="label">Otro teléfono: </span>[% phonepro %]</li>[% END %] [% END %] [% IF ( P ) %] [% IF ( phone ) %]<li><span class="label">Teléfono principal: </span>[% phone %]</li>[% END %] [% IF ( mobile ) %]<li><span class="label">Celular secundario: </span>[% mobile %]</li>[% END %] [% END %] [% IF ( fax ) %]<li><span class="label">Fax: </span>[% fax %]</li>[% END %] [% UNLESS ( I ) %] [% IF ( email ) %]<li><span class="label">Email principal:</span><a href="mailto:[% email %]">[% email %]</a></li>[% END %] [% IF ( emailpro ) %]<li><span class="label">Email secundario: </span><a href="mailto:[% emailpro %]">[% emailpro %]</a></li>[% END %] [% END %] <li><span class="label">Iniciales: </span>[% initials %]</li>
  <li><span class="label">Fecha de nacimiento:</span>[% dateofbirth %]</li>
- <li><span class="label">Género:</span>[% IF ( sex == 'F' ) %]Mujer[% ELSIF ( sex == 'M' ) %]Hombre[% ELSE %][% sex %][% END %]</li>[% END %]
- [% IF ( printethnicityline ) %]
- <li><span class="label">Origen étnico</span>[% ethnicity %]</li>
- <li><span class="label">Observaciones sobre origen étnico</span>[% ethnotes %]</li>
- [% END %]
- [% IF ( isguarantee ) %]
- [% IF ( guaranteeloop ) %]
- <li><span class="label">Garantías:</span><ul>[% FOREACH guaranteeloo IN guaranteeloop %]<li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% guaranteeloo.borrowernumber %]">[% guaranteeloo.name %] </a></li>[% END %]</ul></li>
- [% END %]
- [% ELSE %]
- [% IF ( guarantorborrowernumber ) %]
- <li><span class="label">Garante:</span><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% guarantorborrowernumber %]">[% guarantorsurname %], [% guarantorfirstname %]</a></li>
- [% END %]
- [% END %]
- </ol>
+ <li><span class="label">Género</span>[% IF ( sex == 'F' ) %]Femenino[% ELSIF ( sex == 'M' ) %]Masculino[% ELSE %][% sex %][% END %]</li>[% END %] [% IF ( printethnicityline ) %] <li><span class="label">Origen étnico</span>[% ethnicity %]</li>
+ <li><span class="label">Observaciones sobre origen étnico </span>[% ethnotes %]</li>
+ [% END %] [% IF ( isguarantee ) %] [% IF ( guaranteeloop ) %] <li><span class="label">Garantías:</span><ul>[% FOREACH guaranteeloo IN guaranteeloop %]<li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% guaranteeloo.borrowernumber %]">[% guaranteeloo.name %] </a></li>[% END %]</ul></li>
+ [% END %] [% ELSE %] [% IF ( guarantorborrowernumber ) %] <li><span class="label">Garante:</span><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% guarantorborrowernumber %]">[% guarantorsurname %], [% guarantorfirstname %]</a></li>
+ [% END %] [% END %] </ol>
  </div>
  </div>
  </div>
@@ -68,22 +31,16 @@
  <h3>Uso de biblioteca</h3>
  <div class="rows">
  <ol>
- <li><span class="label">Número de carné:</span>[% cardnumber %]</li>
- <li><span class="label">Número de socio:</span> [% borrowernumber %]</li>
- <li><span class="label">Categoría:</span>[% description %] ([% categorycode %])</li>
- <li><span class="label">Fecha de registro:</span>[% dateenrolled %]</li>
- <li><span class="label">Fecha de vencimiento:</span>
- [% IF ( reregistration ) %]
- <strong class="reregistrinfo">[% dateexpiry %]</span>
- [% ELSE %]
- [% dateexpiry %]
- [% END %]
- </li>
- <li><span class="label">Biblioteca:</span>[% branchname %]</li>
+ <li><span class="label">Número de carnet: </span>[% cardnumber %]</li>
+ <li><span class="label">Número de socio: </span> [% borrowernumber %]</li>
+ <li><span class="label">Categoría: </span>[% description %] ([% categorycode %])</li>
+ <li><span class="label">Fecha de registro: </span>[% dateenrolled %]</li>
+ <li><span class="label">Fecha de vencimiento: </span>
+ [% IF ( reregistration ) %] <strong class="reregistrinfo">[% dateexpiry %]</span>
+ [% ELSE %] [% dateexpiry %] [% END %] </li>
+ <li><span class="label">Biblioteca: </span>[% branchname %]</li>
 
- [% IF ( sort1 ) %]<li><span class="label">Campo de orden 1 :</span>[% lib1 %]</li>[% END %]
- [% IF ( sort2 ) %]<li><span class="label">Campo de orden 2 :</span>[% lib2 %]</li>[% END %]
- </ol>
+ [% IF ( sort1 ) %]<li><span class="label">Campo Sort 1 :</span>[% lib1 %]</li>[% END %] [% IF ( sort2 ) %]<li><span class="label">Campo Sort 2 :</span>[% lib2 %]</li>[% END %] </ol>
  </div>
  </div>
  <fieldset class="action"><input value="Cerrar ventana" type="button" class="submit" onclick="window.close();" /></fieldset>
@@ -91,4 +48,4 @@
  </div>
 </div>
 </div>
-[% INCLUDE 'popup-bottom.inc' %]
+[% INCLUDE 'popup-bottom.inc' %] 

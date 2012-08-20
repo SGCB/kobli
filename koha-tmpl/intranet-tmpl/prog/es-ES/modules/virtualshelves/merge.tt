@@ -1,15 +1,6 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Inicio &rsaquo; [% shelf %] unir</title>
-[% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'header.inc' %]
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; [% shelf %] unir</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'header.inc' %] <h1> [% session %] </h1>
 
-<h1> [% session %] </h1>
-
-[% IF ( fields ) %][% INCLUDE virtualshelves/merge/selection.tmpl %]
-[% ELSE %]
-<h1>HACER</h1><pre>[% new %]</pre>
+[% IF ( fields ) %][% INCLUDE virtualshelves/merge/selection.tmpl %] [% ELSE %] <h1>HACER</h1><pre>[% new %]</pre>
 <h1>ÍTEMS</h1><pre>[% items %]</pre>
-[% END %]
-
-[% INCLUDE 'intranet-bottom.inc' %]
-
+[% END %] [% INCLUDE 'intranet-bottom.inc' %] 

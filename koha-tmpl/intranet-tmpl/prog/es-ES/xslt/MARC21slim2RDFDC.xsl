@@ -32,11 +32,11 @@
 
  <dc:type> 
  <xsl:if test="$leader7='c'">
- <xsl:attribute name="collection">sí</xsl:attribute>
+ <xsl:attribute name="collection">si</xsl:attribute>
  </xsl:if>
 
  <xsl:if test="$leader6='d' or $leader6='f' or $leader6='p' or $leader6='t'">
- <xsl:attribute name="manuscript">sí</xsl:attribute>
+ <xsl:attribute name="manuscript">si</xsl:attribute>
  </xsl:if>
 
  <xsl:choose>

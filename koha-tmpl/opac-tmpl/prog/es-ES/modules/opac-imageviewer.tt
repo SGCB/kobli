@@ -1,7 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %]
-[% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Images for: [% biblio.title |html %]
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] catálogo &rsaquo; Imágenes para: [% biblio.title |html %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 
 $(document).ready(function(){
@@ -49,7 +46,7 @@ img.thumbnail {
  <div class="yui-b">
  <div class="yui-ge">
  <div class="container">
- <h1 class="title">Images for [% IF ( BiblioDefaultViewmarc ) %]<a href="/cgi-bin/koha/opac-MARCdetail.pl?biblionumber=[% biblionumber |url %]" class="title" title="Ver detalles para este título">
+ <h1 class="title">Imágenes para [% IF ( BiblioDefaultViewmarc ) %]<a href="/cgi-bin/koha/opac-MARCdetail.pl?biblionumber=[% biblionumber |url %]" class="title" title="Ver detalles para este título">
  [% ELSE %] [% IF ( BiblioDefaultViewisbd ) %]<a href="/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber=[% biblionumber |url %]" class="title" title="Ver detalles para este título">
  [% ELSE %]<a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% biblionumber |url %]" class="title" title="Ver detalles para este título">
  [% END %] [% END %][% biblio.title %]</a> [% biblio.author %]</h1>
@@ -59,16 +56,12 @@ img.thumbnail {
 
  [% IF OPACLocalCoverImages == 1 %] <div class="yui-u"><div id="thumbnails">
  [% FOREACH img IN images %] [% IF img %] <a href="/cgi-bin/koha/opac-imageviewer.pl?biblionumber=[% biblionumber %]&amp;imagenumber=[% img %]" onclick="showCover([% img %]); return false;">
- [% IF ( imagenumber == img ) %]<img class="thumbnail selected" id="[% img %]" src="/cgi-bin/koha/opac-image.pl?imagenumber=[% img %]&amp;thumbnail=1" alt="Thumbnail"/>
- [% ELSE %] <img class="thumbnail" id="[% img %]" src="/cgi-bin/koha/opac-image.pl?imagenumber=[% img %]&amp;thumbnail=1" alt="Thumbnail"/>
+ [% IF ( imagenumber == img ) %]<img alt="Imagen" src="/cgi-bin/koha/opac-image.pl?imagenumber=[% img %]&thumbnail=1" class="thumbnail selected" id="[% img %]" />
+ [% ELSE %] <img alt="Imagen" src="/cgi-bin/koha/opac-image.pl?imagenumber=[% img %]&thumbnail=1" class="thumbnail" id="[% img %]" />
  [% END %] </a>
  [% END %] [% END %] </div></div>
  </div>
-[% ELSE %]
-Unfortunately, images are not enabled for this catalog at this time.
-[% END %]
-
-</div>
+[% ELSE %] Lamentablemente, las imágenes no están habilitadas en este catálogo por el momento. [% END %] </div>
 </div>
 </div>
 [% IF ( OpacNav ) %] <div class="yui-b"><div id="leftmenus" class="container">

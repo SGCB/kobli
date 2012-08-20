@@ -1,5 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %]Koha &rsaquo; Tools &rsaquo; Labels &rsaquo;: Search[% INCLUDE 'doc-head-close.inc' %]
-</head>
+[% INCLUDE 'doc-head-open.inc' %]Inicio &rsaquo; Herramientas &rsaquo; Etiquetas &rsaquo;: Buscar[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="labels_label-bib-search" class="tools labels">
 <div id="main-compact">
 
@@ -11,11 +10,10 @@
  <div class="details">
  <h2>Buscar en</h2>
  <p>
- <label for="category">Name or ISSN: </label>
- [% category %]
- </p>
+ <label for="category">Nombre o ISSN: </label>
+ [% category %] </p>
  <p>
- <label for="index">Search value: </label>
+ <label for="index">Buscar valor: </label>
  <input type="text" name="value" value="[% value %]" />
  <input type="hidden" name="authtypecode" value="[% category %]" />
  <input type="hidden" name="marclist" value="" />
@@ -31,4 +29,4 @@
 </form>
 </div>
 
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

@@ -1,82 +1,70 @@
-[% INCLUDE 'help-top.inc' %]
+[% INCLUDE 'help-top.inc' %] <h1>Patron Categories</h1>
 
-<h1>Categorías de socio</h1>
+<p>Las categorías de socios le permiten organizar sus socios según diferentes roles, grupos de edad y los tipos de socio.</p>
 
-<p>Las categorías de socio te permiten organizar tus socios en diferentes roles, grupos de edades y tipos de socios.</p>
-
-<p>Patrons are assigned to one of six main categories:</p>
+<p>Los socios son asignados a una de las siguientes categorías principales:</p>
 
 <ul>
- <li>Adult
-<ul>
- <li>Tipo de socio más comús, normalmente utilizado para una categoría general de "Socio"</li>
+ <li>Adulto <ul>
+ <li>El tipo de usuario más común, usualmente se usa para una categoría llamada 'Socio'</li>
 </ul>
 </li>
- <li>Child
-<ul>
+ <li>Niño <ul>
  <li>Los socios infantiles pueden tener tutor al cual estar asociados.</li>
 </ul>
 </li>
- <li>Staff
-<ul>
- <li>Los socios en la categoría de personal tendrán acceso al cliente administrativo.</li>
+ <li>Administrativo <ul>
+ <li>Los socios dentro de la categoría del personal tendrán acceso a la interfaz del personal.</li>
 </ul>
 </li>
- <li>Organizational
-<ul>
- <li>Organizational patrons are organizations. Organizations can be used as guarantors for Professional patrons.</li>
+ <li>Institucional <ul>
+ <li>Un socio institucional es una institución. Las instituciones pueden ser utilizadas como garantes para los socios profesionales.</li>
 </ul>
 </li>
- <li>Professional
-<ul>
- <li>Professional patrons can be linked to Organizational patrons</li>
+ <li>Profesional <ul>
+ <li>Profesional = un socio que puede tener una institución como garante.</li>
 </ul>
 </li>
- <li>Statistical
-<ul>
- <li>Este tipo de socio se utiliza estrictamente con propósitos estadísticos, tales como el uso de ítems interno.</li>
+ <li>Estadístico <ul>
+ <li>Este tipo de el socio se utiliza estrictamente para fines estadísticos, como en el caso de uso de los ítems en la biblioteca.</li>
 </ul>
 </li>
 </ul>
 
 <h2>Agregando una categoría de socio</h2>
 
-<p>To add a new patron category click 'New category' at the top of the page</p>
+<p>To add a new patron category click 'New Category' at the top of the page</p>
 
 <ul>
- <li>The 'Category code' is an identifier for your new code.
+ <li>The 'Category Code' is an identifier for your new code.
 <ul>
- <li style="color: #990000;">Importante: El código de categoría está limitado a 10 caracteres (números y letras)</li>
+ <li style="color: #990000;">Importante: El código de la categoría se limita a 10 caracteres (números y letras)</li>
 </ul>
 </li>
- <li>Ingresa una versión de texto de la categoría en el campo 'Descripción'.</li>
- <li>Enrollment period (in months) should be filled in if you have a limited enrollment period for your patrons (eg. Student cards expire after 9 months or until a specific date)
-<ul>
- <li style="color: #990000;">Importante: No puedes insertar tanto el límite mensual como la fecha final. Elige entre el uno o la otra.</li>
+ <li>Ingrese una versión de texto de la categoría en el campo 'Descripción'.</li>
+ <li>El periodo de inscripción (en meses) debe ser llenado si hay un periodo limitado asociación (Ej. matrícula de estudiante vence luego de 9 meses o hasta una fecha específica) <ul>
+ <li style="color: #990000;">Importante: No se puede introducir tanto en un plazo de un mes y una fecha hasta. Elija entre una o la otra.</li>
 </ul>
 </li>
- <li>Algunas categorías de socios requieren un mínimo de edad (en años) asociada, ingresa esta edad en "Edad requerida"</li>
- <li>Las categorías de socios también pueden tener una edad máxima (en años) asociada a los mismos (como los niños), ingresa esta edad en "Límite de edad"</li>
- <li>If you charge a membership fee for your patrons (such as those who live in another region) you can enter that in the 'Enrollment fee' field.
-<ul>
- <li style="color: #990000;">Importante: Es preciso que hayas deshabilitado EnhancedMessagingPreferences</li>
+ <li>Algunas categorías de socio pueden tener una edad mínima (en años) como requisito asociado a ellas, ingrese esa edad en 'Edad requerida'</li>
+ <li>Las categorías de socios también pueden tener una edad máxima (en años) asociadas con ellas (como los niños), entrar esta edad en 'Edad máxima'</li>
+ <li>Si cobra por la afiliación a la biblioteca ingrese la cantidad correspondiente en el campo 'Costo por asociación' <ul>
+ <li style="color: #990000;">Importante: Ingrese solo números y puntos decimales.</li>
 </ul>
 </li>
- <li>Si quieres que tu socio reciba notificaciones de retraso, marca la "Notificación de retraso requerida" como "Sí"</li>
- <li>If you charge patrons for placing holds on items, enter the fee amount in the 'Hold fee' field.
-<ul>
- <li style="color: #990000;">Importante: Es preciso que hayas deshabilitado EnhancedMessagingPreferences</li>
+ <li>Si desea que el socio reciba avisos por vencimientos, ponga 'Aviso de vencimiento requerido en 'Sí''</li>
+ <li>Si cobra un valor por reservar ítems, ingrese dicha la cantidad en el campo 'Costo por reserva' <ul>
+ <li style="color: #990000;">Importante: Ingrese solo números y puntos decimales.</li>
 </ul>
 </li>
- <li>En el campo "Tipo de categoría" elige una de las seis categorías principiales</li>
- <li>Finally you can assign advanced messaging preferences by default to a patron category
-<ul>
- <li style="color: #990000;">Importante: Es preciso que hayas deshabilitado EnhancedMessagingPreferences</li>
- <li style="color: #990000;">Importante: Esto se puede cambiar para socios individuales, este ajuste sólo se utiliza por defecto para facilitar la instalación de mensajes para una categoría completa</li>
+ <li>En el campo "Tipo de categoría", elija uno de los seis principales categorías superiores</li>
+ <li>Finalmente puede asignar preferencias avanzadas de mensajería de forma predeterminada a una categoría de socio <ul>
+ <li style="color: #990000;">Importante: Requiere que esté habilitado EnhancedMessagingPreferences</li>
+ <li style="color: #990000;">Importante: Estos pueden ser cambiados por los socios individuales, esta opción es simplemente una forma predeterminada para que sea más fácil de configurar mensajes para toda una categoría</li>
 </ul>
 </li>
 </ul>
 
-<p><strong>See the full documentation for patron categories in the <a href="http://manual.koha-community.org/3.6/en/patscirc.html#patcats">manual</a> (online).</strong></p>
+<p><strong>See the full documentation for Patron Categories in the <a href="http://manual.koha-community.org/3.8/en/patscirc.html#patcats">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

@@ -1,6 +1,5 @@
 [% INCLUDE 'doc-head-open.inc' %][% LibraryNameTitle or "Koha online" %] catalog &rsaquo; Placing a hold
 [% INCLUDE 'doc-head-close.inc' %]
-[% INCLUDE 'calendar.inc' %]
 <script type="text/javascript">
 // <![CDATA[
  var MSG_NO_COPY_SELECTED = _("Esperando la selección de una copia específica.");
@@ -163,36 +162,33 @@
  <div id="yui-g">
  [% INCLUDE 'search.inc' %] <div id="holds" class="container">
  [% IF ( message ) %] [% IF ( GNA ) %] <div id="gna" class="dialog alert">
- <p><strong>Lo sentimos</strong>, no puedes hacer reservas porque la biblioteca no está actualizada <a href="/cgi-bin/koha/opac-userupdate.pl">Información de contacto</a> on file.</p>
- <p>Por favor, contacta con tu bibliotecario, o utiliza<a href="/cgi-bin/koha/opac-userupdate.pl">formulario de actualización online</a> to submit current information (<em>Por favor, observa:</em> puede haber una demora en el restablecimiento de tu cuenta si te registras en línea)</p>
+ <p><strong>Lo sentimos</strong>, no puede hacer reservas porque la biblioteca no tiene <a href="/cgi-bin/koha/opac-userupdate.pl">información de contacto</a> actualizada en archivo.</p>
+ <p>Por favor contacte a su bibliotecarios, o utilice el <a href="/cgi-bin/koha/opac-userupdate.pl">formulario de actualización en línea</a> para enviar la información actual (<em>Por favor notar:</em> puede haber una demora en restablecer su cuenta si usted envía en línea)</p>
  </div>
  [% END %] [% IF ( lost ) %] <div id="lost" class="dialog alert">
- <p><strong>Lo sentimos</strong>, no puedes hacer reservas porque tu carné consta como perdido o robado.</p>
- <p>Si esto es un error, por favor, lleva tu carné a la biblioteca y el error será corregido.</p>
+ <p><strong>Lo sentimos</strong>, no puede hacer reservas porque su carnet está marcado como perdido o robado.</p>
+ <p>Si esto es un error, por favor lleve su carnet a la biblioteca y el error será corregido.</p>
  </div>
  [% END %] [% IF ( debarred ) %] <div id="debarred" class="dialog alert">
- <p><strong>Lo sentimos</strong>, no puedes hacer reservas porque tu cuenta está bloqueada.</p>
- <p>Usually the reason for freezing an account is old overdues or damage fees. If <a href="/cgi-bin/koha/opac-user.pl">your account page</a> shows your account to be clear, please consult a librarian.</p>
+ <p><strong>Lo sentimos</strong>, no puede hacer reservas porque su cuenta está congelada.</p>
+ <p>Normalmente la razón para congelar una cuenta es viejos retrasos o multas por daños. Si <a href="/cgi-bin/koha/opac-user.pl">la página de su cuenta</a> muestra que su cuenta esta limpia, por favor consulte al bibliotecario.</p>
  </div>
  [% END %] [% IF ( too_much_oweing ) %] <div id="too_much_oweing" class="dialog alert">
- Lo sentimos, no puedes hacer reservas porque debes [% too_much_oweing %]. </div>
- [% END %] [% IF ( too_many_reserves ) %] <div id="too_many_reserves" class="dialog alert">Lo sentimos, no puedes hacer más de [% too_many_reserves %] reservas. </div>
+ Lo sentimos, usted no puede hacer reservas porque debe [% too_much_oweing %]. </div>
+ [% END %] [% IF ( too_many_reserves ) %] <div id="too_many_reserves" class="dialog alert">Lo sentimos, usted no puede hacer más de [% too_many_reserves %] reservas. </div>
  [% END %] [% IF ( bad_biblionumber ) %] <div id="bad_biblionumber" class="dialog alert">ERROR: No hay registro bibliográfico correspondiente a biblionumber [% bad_biblionumber %].</div>
  [% END %] [% IF ( no_items_selected ) %] <div id="no_items_selected" class="dialog alert">
- You must select at least one item.
- </div>
+ Debe seleccionar al menos un ítem. </div>
  [% END %] [% IF ( no_branch_selected ) %] <div id="no_branch_selected" class="dialog alert">
- You must select a library for pickup.
- </div>
+ Debe seleccionar una biblioteca para hacer el retiro. </div>
  [% END %] [% IF ( no_biblionumber ) %] <div id="no_biblionumber" class="dialog alert">ERROR: No se recibió biblionumber.</div>
- [% END %] [% IF ( bad_data ) %] <div id="bad_data" class="dialog alert">ERROR: Error interno: petición de reserva incompleta.</div>
- [% END %] [% ELSE %] [% IF ( none_available ) %] <div id="none_available" class="dialog alert"><strong>Lo sentimos</strong>, no se puede reservar ninguno de estos artículos. </div>
+ [% END %] [% IF ( bad_data ) %] <div id="bad_data" class="dialog alert">ERROR: Error interno: requerimiento de reserva incompleto.</div>
+ [% END %] [% ELSE %] [% IF ( none_available ) %] <div id="none_available" class="dialog alert"><strong>Lo sentimos</strong>, no se puede reservar ninguno de estos ítems. </div>
  [% END %]
  [% END %]<!-- NAME="message" -->
 
  [% UNLESS ( message ) %][% UNLESS ( none_available ) %]<h3>Confirmar reservas para: [% FOREACH USER_INF IN USER_INFO %] [% USER_INF.firstname %] [% USER_INF.surname %] ([% USER_INF.cardnumber %]) [% END %] </h3>[% END %] [% IF (RESERVE_CHARGE) %] <div class="dialog alert" id="reserve_fee">
- There is a charge of [% RESERVE_CHARGE %] for placing this hold
- </div>
+ Hay un cargo de [% RESERVE_CHARGE %] por hacer esta reserva </div>
  [% END %] <form action="/cgi-bin/koha/opac-reserve.pl" method="post" id="hold-request-form">
  <input type="hidden" name="place_reserve" value="1"/>
 
@@ -204,12 +200,14 @@
  [% UNLESS ( none_available ) %]<tr>
  <th>Reservado</th>
  <th>Título</th>
- [% UNLESS ( item_level_itypes ) %] <th>Tipo de artículo</th>
- [% END %] [% IF ( showpriority ) %] <th>Prioridad</th>
- [% END %] [% IF ( reserve_in_future ) %] <th>Hold starts on date</th>
- [% END %] <th>Hold not needed after</th>
- [% IF ( OPACItemHolds ) %] <th id="place_on_hdr" style="display:none">Place on</th>
- [% END %] [% UNLESS ( singleBranchMode ) %] [% IF ( choose_branch ) %] <th>Pickup location</th>
+ [% UNLESS ( item_level_itypes ) %] <th>Tipo de ítem</th>
+ [% END %] [% IF showholds && showpriority %] <th>Holds and priority</th>
+ [% ELSIF showholds %] <th>Reservas</th>
+ [% ELSIF showpriority %] <th>Prioridad</th>
+ [% END %] [% IF ( reserve_in_future ) %] <th>La reserva comienza en la fecha</th>
+ [% END %] <th>Reserva no necesaria después de</th>
+ [% IF ( OPACItemHolds ) %] <th id="place_on_hdr" style="display:none">Poner en</th>
+ [% END %] [% UNLESS ( singleBranchMode ) %] [% IF ( choose_branch ) %] <th>Ubicación de retiro</th>
  [% END %] [% END %] </tr>[% ELSE %]<tr><th colspan="5">Título</th></tr>[% END %] [% FOREACH bibitemloo IN bibitemloop %] <tr>
  [% IF ( bibitemloo.holdable ) %] <td>
  <input class="reserve_mode" name="reserve_mode" type="hidden" value="single"/>
@@ -224,82 +222,33 @@
  </span>
  </td>
  [% ELSE %] [% UNLESS ( none_available ) %]<td>&nbsp;</td>[% END %] [% END %] [% IF ( bibitemloo.holdable ) %]<td>[% ELSE %]<td colspan="5">[% END %] <a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% bibitemloo.biblionumber %]">[% bibitemloo.title |html %][% IF ( bibitemloo.subtitle ) %] [% FOREACH subtitl IN bibitemloo.subtitle %][% subtitl.subfield %][% END %][% END %]</a>
- [% IF ( bibitemloo.author ) %], por [% bibitemloo.author %][% END %] [% UNLESS ( bibitemloo.holdable ) %] [% IF ( bibitemloo.already_reserved ) %] <div class="bibmessage">Ya has solicitado este título.</div>
- [% ELSE %] [% UNLESS ( bibitemloo.bib_available ) %] <div class="bibmessage">No hay artículos disponibles.</div>
- [% ELSE %] <div class="bibmessage">Este título no se puede solicitar.</div>
+ [% IF ( bibitemloo.author ) %], por [% bibitemloo.author %][% END %] [% UNLESS ( bibitemloo.holdable ) %] [% IF ( bibitemloo.already_reserved ) %] <div class="bibmessage">Usted ya ha requerido este título.</div>
+ [% ELSE %] [% UNLESS ( bibitemloo.bib_available ) %] <div class="bibmessage">No hay ítems disponibles.</div>
+ [% ELSE %] <div class="bibmessage">Este título no se puede requerir.</div>
  [% END %] [% END %] [% END %] </td>
- [% IF ( bibitemloo.holdable ) %][% UNLESS ( item_level_itypes ) %] <td>
+ [% IF ( bibitemloo.holdable ) %]
+ <!-- HOLDABLE -->
+ [% UNLESS ( item_level_itypes ) %]
+ <td>
  [% IF ( bibitemloo.imageurl ) %]<img src="[% bibitemloo.imageurl %]" alt="" />[% END %] [% bibitemloo.description %] </td>
- [% END %][% END %] [% IF ( bibitemloo.holdable ) %] [% IF ( showpriority ) %] <td>
- [% bibitemloo.rank %] de [% bibitemloo.reservecount %] </td>[% END %][% END %] [% IF ( reserve_in_future ) %] [% IF ( bibitemloo.holdable ) %]<td>
- <input name="reserve_date_[% bibitemloo.biblionumber %]" id="reserve_date_[% bibitemloo.biblionumber %]" size="10">
+ [% END %] [% IF showholds || showpriority %] <td>
+ [% IF showpriority %] [% bibitemloo.rank %] [% END %]
+ [% IF showholds && showpriority %] out of [% END %]
+ [% IF showholds %] [% bibitemloo.reservecount %] [% END %]
+ </td>
+ [% END %] [% IF ( reserve_in_future ) %] <td>
+ <input name="reserve_date_[% bibitemloo.biblionumber %]" id="from" size="10" class="datepickerfrom"/>
  <script language="JavaScript" type="text/javascript">
               //<![CDATA[
               $("#reserve_date_[% bibitemloo.biblionumber %]").attr( 'readonly', 'readonly' );
-
-              var cal_img = document.createElement('img');
-              cal_img.src = "[% themelang %]/lib/calendar/cal.gif";
-              cal_img.alt = "Show Calendar";
-              cal_img.border = "0";
-              cal_img.id = "CalendarReserveDate[% bibitemloo.biblionumber %]";
-              cal_img.style.cursor = "pointer";
-              document.getElementById("reserve_date_[% bibitemloo.biblionumber %]").parentNode.appendChild( cal_img );
-
-              function validate[% bibitemloo.biblionumber %](date) {
-                  var today = new Date();
-                        if ( (date > today) ||
-                                ( date.getDate() == today.getDate() &&
-                                  date.getMonth() == today.getMonth() &&
-                                  date.getFullYear() == today.getFullYear() ) ) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-              };
-              Calendar.setup(
-              {
-                inputField : "reserve_date_[% bibitemloo.biblionumber %]",
-                ifFormat : "[% DHTMLcalendar_dateformat %]",
-                button : "CalendarReserveDate[% bibitemloo.biblionumber %]",
-                disableFunc : validate[% bibitemloo.biblionumber %],
-                dateStatusFunc : validate[% bibitemloo.biblionumber %],
-                firstDay : [% CalendarFirstDayOfWeek %]
-              }
-              );
               //]]>
               </script>
  <p style="margin:.3em 2em;">
- <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('reserve_date_[% bibitemloo.biblionumber %]').value='';return false;">Clear date</a></p>
+ <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('reserve_date_[% bibitemloo.biblionumber %]').value='';return false;">Limpiar fecha</a></p>
  </td>[% END %] [% END %] [% IF ( bibitemloo.holdable ) %]<td>
- <input name="expiration_date_[% bibitemloo.biblionumber %]" id="expiration_date_[% bibitemloo.biblionumber %]" size="10" readonly="readonly" />
- <img alt="Mostrar calendario" src="[% themelang %]/lib/calendar/cal.gif" style="cursor: pointer;" id="CalendarExpirationDate_[% bibitemloo.biblionumber %]" border="0" />
- <script language="JavaScript" type="text/javascript">
-      //<![CDATA[
-      function validate1(date) {
-        var today = new Date();
-        if ( (date > today) ||
-                      ( date.getDate() == today.getDate() &&
-                        date.getMonth() == today.getMonth() &&
-                        date.getFullYear() == today.getFullYear() ) ) {
-          return false;
-        } else {
-          return true;
-        }
-      };
-      Calendar.setup(
-        {
-          inputField : "expiration_date_[% bibitemloo.biblionumber %]",
-          ifFormat : "[% DHTMLcalendar_dateformat %]",
-          button : "CalendarExpirationDate_[% bibitemloo.biblionumber %]",
-          disableFunc : validate1,
-          dateStatusFunc : validate1,
-          firstDay : [% CalendarFirstDayOfWeek %]
-        }
-      );
-      //]]>
-        </script>
+ <input name="expiration_date_[% bibitemloo.biblionumber %]" id="to" size="10" readonly="readonly" class="datepickerto" />
  <p style="margin:.3em 2em;">
- <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('expiration_date_[% bibitemloo.biblionumber %]').value='';return false;">Clear date</a></p>
+ <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('expiration_date_[% bibitemloo.biblionumber %]').value='';return false;">Limpiar fecha</a></p>
  </td>[% END %]
 
  [% IF ( bibitemloo.holdable ) %]
@@ -355,14 +304,14 @@
  <td>&nbsp;</td>
  <td colspan="[% itemtable_colspan %]">
  <table>
- <caption>Seleccionar una copia específica:</caption>
+ <caption>Seleccione una copia específica:</caption>
  <tr>
  <th>Copia</th>
- [% IF ( item_level_itypes ) %] <th>Tipo de artículo</th>
+ [% IF ( item_level_itypes ) %] <th>Tipo de ítem</th>
  [% END %] <th>Código de barras</th>
- [% UNLESS ( singleBranchMode ) %] <th>Home library</th>
- <th>Last location</th>
- [% END %] <th>Call number</th>
+ [% UNLESS ( singleBranchMode ) %] <th>Biblioteca de origen</th>
+ <th>Última ubicación</th>
+ [% END %] <th>Signatura topográfica</th>
  [% IF ( bibitemloo.itemdata_enumchron ) %] <th>Vol info</th>
  [% END %] <th>Información</th>
  </tr>
@@ -384,10 +333,10 @@
  <td>[% itemLoo.enumchron %]</td>
  [% END %] <td>
  [% IF ( itemLoo.dateDue ) %] <span class="checkedout">Devolución [% itemLoo.dateDue %]</span>
- [% ELSIF ( itemLoo.transfertwhen ) %] <span class="intransit">En ruta desde [% itemLoo.transfertfrom %] a [% itemLoo.transfertto %], desde [% itemLoo.transfertwhen %]</span>
+ [% ELSIF ( itemLoo.transfertwhen ) %] <span class="intransit">En tránsito de [% itemLoo.transfertfrom %] a [% itemLoo.transfertto %], desde [% itemLoo.transfertwhen %]</span>
  [% END %] [% IF ( itemLoo.message ) %] <span class="lost">No disponible (perdido o desaparecido)</span>
- [% END %] [% IF ( itemLoo.notforloan ) %] <span class="notforloan">No disponible para préstamo ([% itemLoo.notforloanvalue %])</span>
- [% END %] [% IF ( itemLoo.reservedate ) %] <span class="waiting">[% IF ( itemLoo.waitingdate ) %]Esperando[% ELSE %]En reserva[% END %] para usuario [% IF ( itemLoo.waitingdate ) %]at[% ELSE %]esperado el[% END %] [% itemLoo.ExpectedAtLibrary %] desde [% IF ( itemLoo.waitingdate ) %][% itemLoo.waitingdate %][% ELSE %][% IF ( itemLoo.reservedate ) %][% itemLoo.reservedate %][% END %][% END %]. </span>
+ [% END %] [% IF ( itemLoo.notforloan ) %] <span class="notforloan">No para préstamo ([% itemLoo.notforloanvalue %])</span>
+ [% END %] [% IF ( itemLoo.reservedate ) %] <span class="waiting">[% IF ( itemLoo.waitingdate ) %]Esperando[% ELSE %]Reservado[% END %] para socio [% IF ( itemLoo.waitingdate ) %]en[% ELSE %]esperado el[% END %] [% itemLoo.ExpectedAtLibrary %] desde [% IF ( itemLoo.waitingdate ) %][% itemLoo.waitingdate %][% ELSE %][% IF ( itemLoo.reservedate ) %][% itemLoo.reservedate %][% END %][% END %]. </span>
  [% ELSE %] <span class="notonhold">No está reservado</span>
  [% END %]&nbsp; </td>
  </tr>

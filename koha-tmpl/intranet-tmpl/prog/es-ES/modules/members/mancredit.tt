@@ -1,7 +1,5 @@
-[% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Borrowers &rsaquo; Create manual credit</title>
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript">
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Crear crédito manual</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
 	$("fieldset.rows input").keydown(function(e){ return checkEnter(e); });
@@ -10,10 +8,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body id="pat_mancredit" class="pat">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'patron-search.inc' %]
-
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Manual credit</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Crédito manual </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -23,12 +18,12 @@ $(document).ready(function(){
 [% INCLUDE 'members-toolbar.inc' %]
 
 <!-- The manual invoice and credit buttons -->
-<div class="toptabs">
-<ul class="ui-tabs-nav">
+<div class="statictabs">
+<ul>
  <li><a href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Cuenta</a></li>
  <li><a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrowernumber %]" >Pagar multas</a></li>
  <li><a href="/cgi-bin/koha/members/maninvoice.pl?borrowernumber=[% borrowernumber %]" >Crear factura manual</a></li>
- <li class="ui-tabs-selected"><a href="/cgi-bin/koha/members/mancredit.pl?borrowernumber=[% borrowernumber %]" >Crear crédito manual</a></li>
+ <li class="active"><a href="/cgi-bin/koha/members/mancredit.pl?borrowernumber=[% borrowernumber %]" >Crear crédito manual</a></li>
 </ul>
 <div class="tabs-container">
 
@@ -36,18 +31,18 @@ $(document).ready(function(){
 <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" />
 
 <fieldset class="rows">
-<legend>Manual credit</legend><ol>
- <li><label for="type">Tipo de crédito:</label><select name="type" id="type">
+<legend>Crédito manual</legend><ol>
+ <li><label for="type">Tipo de crédito: </label><select name="type" id="type">
 <option value="C">Crédito</option>
 <option value="FOR">Perdonado</option>
 </select></li>
- <li><label for="barcode">Código de barras:</label><input type="text" name="barcode" id="barcode" /></li>
- <li><label for="desc">Descripción:</label><input type="text" name="desc" size="50" id="desc" /></li>
- <li><label for="note">Note: </label><input type="text" name="note" size="50" id="note" /></li>
- <li><label for="amount">Amount: </label><input type="text" name="amount" id="amount" /> Ejemplo: 5.00</li>
+ <li><label for="barcode">Código de barras: </label><input type="text" name="barcode" id="barcode" /></li>
+ <li><label for="desc">Descripción: </label><input type="text" name="desc" size="50" id="desc" /></li>
+ <li><label for="note">Nota: </label><input type="text" name="note" size="50" id="note" /></li>
+ <li><label for="amount">Monto: </label><input type="text" name="amount" id="amount" /> Ejemplo: 5.00</li>
 </ol></fieldset>
 
-<fieldset class="action"><input type="submit" name="add" value="Add credit" /> <a class="cancel" href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Cancelar</a></fieldset>
+<fieldset class="action"><input value="Agregar crédito" name="add" type="submit" /> <a class="cancel" href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Cancelar</a></fieldset>
 </form>
 
 </div></div>
@@ -56,7 +51,6 @@ $(document).ready(function(){
 </div>
 
 <div class="yui-b">
-[% INCLUDE 'circ-menu.inc' %]
+[% INCLUDE 'circ-menu.inc' %] </div>
 </div>
-</div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 
