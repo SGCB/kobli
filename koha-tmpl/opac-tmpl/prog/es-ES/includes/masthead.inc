@@ -102,13 +102,3 @@
 <div id="listsDetails"></div>
 </div>
 </div>
-<div id="breadcrumbs" class="yui-g">
-[% IF ( searchdesc ) %]<p>[% IF ( total ) %]<strong>Su búsqueda retornó [% total |html %] resultados.</strong> [% IF ( related ) %] (búsquedas relacionadas: [% FOREACH relate IN related %][% relate.related_search %][% END %]). [% END %] <a href="[% OPACBaseURL %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&amp;count=[% countrss |html %]&amp;sort_by=acqdate_dsc&amp;format=rss2"><img alt="Suscribirse a esta búsqueda" src="/opac-tmpl/prog/images/feed-icon-16x16.png" title="Suscribirse a esta búsqueda" border="0" /></a>
-[% ELSE %] <strong>No se encontraron resultados!</strong>
-<p>
- [% IF ( searchdesc ) %] Sin resultados para ello en el catálogo [% LibraryName %]. <a href="[% OPACBaseURL %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&amp;format=rss2"><img alt="Suscribirse a esta búsqueda" src="/opac-tmpl/prog/images/feed-icon-16x16.png" title="Suscribirse a esta búsqueda" border="0" /></a>
- [% ELSE %] Usted no especificó ningún criterio de búsqueda. [% END %] </p>
-[% IF ( OPACNoResultsFound ) %] <div id="noresultsfound">
-[% OPACNoResultsFound %] </div>
-[% END %] </div>
-[% END %]</p>[% END %]</div>
