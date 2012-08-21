@@ -352,7 +352,7 @@ INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opacbookbag',1,'If ON, enables display of Cart feature','','YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('intranetbookbag','1','If ON, enables display of Cart feature in the intranet','','YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OpacBrowser',1,'If ON, enables subject authorities browser on OPAC (needs to set misc/cronjob/sbuild_browser_and_cloud.pl)',NULL,'YesNo');
-INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OpacCloud',0,'If ON, enables subject cloud on OPAC',NULL,'YesNo');
+INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OpacCloud',0,'Si ON, habilita nube de temas en el OPAC',NULL,'YesNo');
 INSERT INTO `systempreferences`(`variable`,`value`,`options`,`explanation`,`type`) VALUES ('opaccolorstylesheet','color1.css','','Define the color stylesheet to use in the OPAC','free');
 INSERT INTO `systempreferences`(`variable`,`value`,`options`,`explanation`,`type`) VALUES ('opaccredits','Koha. Kobli, Ministerio de Cultura Espa&ntilde;a, 2011','70|10','Define HTML Credits at the bottom of the OPAC page','Textarea');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opacSerialDefaultTab', 'subscriptions', 'Define the default tab for serials in OPAC.', 'holdings|serialcollection|subscriptions', 'Choice');
@@ -365,7 +365,7 @@ INSERT INTO `systempreferences`(`variable`,`value`,`options`,`explanation`,`type
 INSERT INTO `systempreferences`(`variable`,`value`,`options`,`explanation`,`type`) VALUES ('OpacNav','<div class=\"enlaces\">\n<h2>Enlaces Relacionados</h2>\n<ul>\n<li><a href=\"http://www.mcu.es/bibliotecas/MC/BAGE/index.html\">MCU</a>Sede de las bibliotecas de la AGE</li>\n<li><a href=\"http://koha-community.org/\">Koha Community</a>M&aacute;s informaci&oacute;n sobre Koha</li>\n<li><a href=\"http://www.kobli.belrios.de/wordpress\">Kobli</a>M&aacute;s informaci&oacute;n sobre el proyecto Kobli</li>\n</ul>\n</div>','70|10','Use HTML tags to add navigational links to the left-hand navigational bar in OPAC','Textarea');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OPACNoResultsFound','','Display this HTML when no results are found for a search in the OPAC','70|10','Textarea');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OpacPasswordChange',1,'If ON, enables patron-initiated password change in OPAC (disable it when using LDAP auth)',NULL,'YesNo');
-INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OpacPrivacy', '0', 'if ON, allows patrons to define their privacy rules (reading history)',NULL,'YesNo');
+INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OpacPrivacy', '0', 'Si ON, permite a los socios definir sus reglas privadadas (leyendo historia)',NULL,'YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opacreadinghistory',1,'If ON, enables display of Patron Circulation History in OPAC','','YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OPACResultsSidebar','','Define HTML to be included on the search results page, underneath the facets sidebar','70|10','Textarea');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opacsmallimage','/opac-tmpl/prog/images/logo_kobli.gif','Enter a complete URL to an image to replace the default Koha logo','','free');
@@ -379,7 +379,7 @@ INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('QuoteOfTheDay',0,'Enable or disable display of Quote of the Day on the OPAC home page',NULL,'YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('patronimages',0,'Enable patron images for the Staff Client',NULL,'YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OPACpatronimages',0,'Enable patron images in the OPAC',NULL,'YesNo');
-INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('printcirculationslips',1,'If ON, enable printing circulation receipts','','YesNo');
+INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('printcirculationslips',1,'Si ON, permitir la impresión de recibos de circulación','','YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('RecordLocalUseOnReturn',0,'If ON, statistically record returns of unissued items as local use, instead of return',NULL,'YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('RequestOnOpac',1,'If ON, globally enables patron holds on OPAC',NULL,'YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('ReservesMaxPickUpDelay',7,'Define the Maximum delay to pick up an item on hold','','Integer');
