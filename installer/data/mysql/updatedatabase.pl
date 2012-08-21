@@ -7200,7 +7200,7 @@ sub SetVersion {
       my $finish=$dbh->prepare("UPDATE systempreferences SET value=? WHERE variable='Version'");
       $finish->execute($kohaversion);
     } else {
-      my $finish=$dbh->prepare("INSERT into systempreferences (variable,value,explanation) values ('Version',?,'The Koha database version. WARNING: Do not change this value manually, it is maintained by the webinstaller')");
+      my $finish=$dbh->prepare("INSERT into systempreferences (variable,value,explanation) values ('Version',?,'Versión de la base de datos de Koha. ATENCIÓN: No cambies este valor manualmente, éste es mantenido por el instalador web')");
       $finish->execute($kohaversion);
     }
     C4::Context::clear_syspref_cache(); # invalidate cached preferences
@@ -7247,7 +7247,7 @@ sub SetVersionKobli {
       my $finish=$dbh->prepare("UPDATE systempreferences SET value=? WHERE variable='VersionKobli'");
       $finish->execute($kobliversion);
     } else {
-      my $finish=$dbh->prepare("INSERT into systempreferences (variable,value,explanation) values ('VersionKobli',?,'The Koha database version. WARNING: Do not change this value manually, it is maintained by the webinstaller')");
+      my $finish=$dbh->prepare("INSERT into systempreferences (variable,value,explanation) values ('VersionKobli',?,'Versión de la base de datos de Koha. ATENCIÓN: No cambies este valor manualmente, éste es mantenido por el instalador web')");
       $finish->execute($kobliversion);
     }
 }

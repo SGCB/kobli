@@ -393,7 +393,7 @@ sub load_sql_in_order {
 
     unless ( $updateflag == 1 ) {
         my $string =
-            "INSERT INTO systempreferences (value, variable, explanation, type) VALUES (\"$systempreference\",'FrameworksLoaded','Frameworks loaded through webinstaller','choice')";
+            "INSERT INTO systempreferences (value, variable, explanation, type) VALUES (\"$systempreference\",'FrameworksLoaded','Los Frameworks se cargan a través del instalador web','choice')";
         my $rq = $self->{'dbh'}->prepare($string);
         $rq->execute;
     }
