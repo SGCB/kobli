@@ -304,10 +304,11 @@
                         </xsl:call-template>
                     </xsl:if>
                     <xsl:if test="marc:subfield[@code='h']">
-                        <xsl:text> </xsl:text>
+                        <xsl:text> [</xsl:text>
                         <xsl:call-template name="subfieldSelect">
                             <xsl:with-param name="codes">h</xsl:with-param>
                         </xsl:call-template>
+                        <xsl:text>]</xsl:text>
                     </xsl:if>
                 <xsl:text> </xsl:text>
                     <xsl:call-template name="subfieldSelect">
