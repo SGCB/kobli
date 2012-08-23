@@ -24,14 +24,14 @@
 
     <div id="abouttabs" class="toptabs numbered">
         <ul>
-        <li><a href="about.pl#about">Server Information</a></li>
-        <li><a href="about.pl#perl">Perl modules</a></li>
+        <li><a href="#about">Server Information</a></li>
+        <li><a href="#perl">Perl modules</a></li>
         <li><a href="#sysinfo">System information</a></li>
-	<li><a href="about.pl#team">Koha Team</a></li>
-        <li><a href="about.pl#kobliteam">Kobli Team</a></li>
-        <li><a href="about.pl#licenses">Licenses</a></li>
-        <li><a href="about.pl#translations">Translations</a></li>
-        <li><a href="about.pl#history">Koha Timeline</a></li>
+        <li><a href="#team">Koha Team</a></li>
+        <li><a href="#kobliteam">Kobli Team</a></li>
+        <li><a href="#licenses">Licenses</a></li>
+        <li><a href="#translations">Translations</a></li>
+        <li><a href="#history">Koha Timeline</a></li>
         </ul>
 
         <div id="about">
@@ -98,7 +98,6 @@
                 [% END %]
             </table>
         </div>
-<<<<<<< HEAD:koha-tmpl/intranet-tmpl/prog/en/modules/about.tt
 
         <div id="sysinfo">
         [% IF (warnIsRootUser) %]
@@ -125,11 +124,9 @@
         [% END %]
         </div>
 
-=======
         <div id="kobliteam">
-	    <h2>Kobli 1.8, distro developed by Ministerio de Cultura based on Koha 3.8</h2>
+	    <h2>Kobli 1.8.1, distro developed by Ministerio de Cultura based on Koha 3.8</h2>
         </div>
->>>>>>> Kobli version:koha-tmpl/intranet-tmpl/prog/en/modules/about.tt
         <div id="team">
             <h2>Special thanks to the following organizations</h2>
             <ul>

@@ -13,12 +13,15 @@
 	<div class="yui-b">
      [% IF ( opacuserlogin ) %]
 	 [% IF ( loggedinusername ) %]
-         <div id="loggedin" class="yui-ge">
+	     <div id="loggedin" class="yui-g">
+	     <div>
 	 [% ELSE %]
-        <div id="notloggedin" class="yui-ge">
+	     <div id="notloggedin" class="yui-ge">
+	     <div class="yui-u first">
          [% END %]
      [% ELSE %]
-        <div id="notloggedin" class="yui-ge">
+         <div id="notloggedin" class="yui-g">
+	 <div>
     [% END %]
     <div id="main-search">
   [% INCLUDE 'search.inc' %]

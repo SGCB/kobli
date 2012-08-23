@@ -5288,6 +5288,7 @@ if ( C4::Context->preference("Version") < TransformToNum($DBversion) ) {
     $dbh->do("UPDATE systempreferences SET value='Koha. Kobli, Ministerio de Educaci&oacute;n, Cultura y Deporte Espa&ntilde;a, 2012' WHERE variable='opaccredits'");
     $dbh->do("UPDATE systempreferences SET value='/opac-tmpl/prog/imgs/opacsmallimage.gif' WHERE variable='opacsmallimage'");
     $dbh->do("UPDATE systempreferences SET value='/opac-tmpl/prog/imgs/opacsmallimageright.jpg' WHERE variable='opacsmallimageright'");
+}
 
 $DBversion = "3.09.00.001";
 if ( C4::Context->preference("Version") < TransformToNum($DBversion) ) {
