@@ -7,6 +7,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+INSERT INTO biblio_framework VALUES ( 'FA','Fast Add Framework' );
+
 /*Data for the table `marc_tag_structure` */
 
 insert  into `marc_tag_structure`(`tagfield`,`liblibrarian`,`libopac`,`repeatable`,`mandatory`,`authorised_value`,`frameworkcode`) values ('000','CABECERA','CABECERA',0,1,'','FA'),
