@@ -5267,9 +5267,27 @@ if ( C4::Context->preference("Version") < TransformToNum($DBversion) ) {
 
 $DBversion = "3.08.00.000";
 if ( C4::Context->preference("Version") < TransformToNum($DBversion) ) {
+    $dbh->do("INSERT INTO permissions (module_bit, code, description) VALUES
+            (13, 'upload_prefs_images', 'Subir imágenes opcionales de las preferencias del sistema')");
+    $dbh->do("INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES 
+        ('UseExportMarcHoldings', '0', 'Marc Holdings into tools to export records','','YesNo'),
+        ('UseImportMarcHoldings', '0', 'Marc Holdings into tools to import records','','YesNo')");
+    $dbh->do("ALTER TABLE branches ADD notforopac tinyint(1) default NULL");
+    $dbh->do("INSERT INTO `opac_news`(`idnew`,`title`,`new`,`lang`,`timestamp`,`expirationdate`,`number`) values (1,'Kobli 1.8','<p>\r\nEl Ministerio de Educaci&oacute;n, Cultura y Deporte pone a disposici&oacute;n de las <strong>Bibliotecas de la AGE</strong> la segunda versi&oacute;n de Kobli.\r\n</p>\r\n<p>\r\n&nbsp;Con esta iniciativa, el Ministerio pretende&nbsp; no s&oacute;lo facilitar la automatizaci&oacute;nde las bibliotecas pertenecientes a la Administraci&oacute;n del Estado, si no que, adem&aacute;s, hace una importante apuesta hacia la estandarizaci&oacute;n, normalizaci&oacute;n bibliotecaria y el uso y desarrollo de aplicaciones de fuentes abiertas.\r\n</p>\r\n<p>\r\n&nbsp;\r\n</p>\r\n','en','2012-06-01 00:00:00',NULL,1);");
+    $dbh->do("INSERT INTO `opac_news`(`idnew`,`title`,`new`,`lang`,`timestamp`,`expirationdate`,`number`) values (2,'Kobli 1.8','<p>\r\nEl Ministerio de Educaci&oacute;n, Cultura y Deporte pone a disposici&oacute;n de las <strong>Bibliotecas de la AGE</strong> la segunda versi&oacute;n de Kobli.\r\n</p>\r\n<p>\r\n&nbsp;Con esta iniciativa, el Ministerio pretende&nbsp; no s&oacute;lo facilitar la automatizaci&oacute;nde las bibliotecas pertenecientes a la Administraci&oacute;n del Estado, si no que, adem&aacute;s, hace una importante apuesta hacia la estandarizaci&oacute;n, normalizaci&oacute;n bibliotecaria y el uso y desarrollo de aplicaciones de fuentes abiertas.\r\n</p>\r\n<p>\r\n&nbsp;\r\n</p>\r\n','es-ES','2012-06-01 00:00:00',NULL,1);");
     print "Upgrade to $DBversion done\n";
     SetVersion($DBversion);
 }
+
+$DBversion = "3.08.00.001";
+if ( C4::Context->preference("Version") < TransformToNum($DBversion) ) {
+    $dbh->do("UPDATE systempreferences SET value=1 WHERE variable='AllowHoldDateInFuture' OR variable='OPACAllowHoldDateInFuture'");
+    $dbh->do("UPDATE systempreferences SET value='Biblioteca de la AGE' WHERE variable='LibraryName'");
+    $dbh->do("UPDATE systempreferences SET value='Monday' WHERE variable='CalendarFirstDayOfWeek'");
+    $dbh->do("UPDATE systempreferences SET value='Los Frameworks se cargan a trav  del instalador web' WHERE variable='FrameworksLoaded'");
+    $dbh->do("UPDATE systempreferences SET value='Koha. Kobli, Ministerio de Educaci&oacute;n, Cultura y Deporte Espa&ntilde;a, 2012' WHERE variable='opaccredits'");
+    $dbh->do("UPDATE systempreferences SET value='/opac-tmpl/prog/imgs/opacsmallimage.gif' WHERE variable='opacsmallimage'");
+    $dbh->do("UPDATE systempreferences SET value='/opac-tmpl/prog/imgs/opacsmallimageright.jpg' WHERE variable='opacsmallimageright'");
 
 $DBversion = "3.09.00.001";
 if ( C4::Context->preference("Version") < TransformToNum($DBversion) ) {
