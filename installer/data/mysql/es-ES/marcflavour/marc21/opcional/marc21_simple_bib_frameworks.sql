@@ -6,6 +6,22 @@
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+-- ********************************
+-- SIMPLE KOHA MARC 21 FRAMEWORKS.
+-- ********************************
+
+
+INSERT INTO `biblio_framework` (`frameworkcode`,`frameworktext`) VALUES
+		('BKS', 'Books, Booklets, Workbooks'),
+		('CF', 'CD-ROMs, DVD-ROMs, General Online Resources'),
+		('SR', 'Audio Cassettes, CDs'),
+		('VR', 'DVDs, VHS'),
+		('AR', 'Models'),
+		('KT', 'Kits'),
+		('IR', 'Binders'),
+		('SER', 'Serials');
+        
 /*Data for the table `marc_subfield_structure` */
 
 insert  into `marc_subfield_structure`(`tagfield`,`tagsubfield`,`liblibrarian`,`libopac`,`repeatable`,`mandatory`,`kohafield`,`tab`,`authorised_value`,`authtypecode`,`value_builder`,`isurl`,`hidden`,`frameworkcode`,`seealso`,`link`,`defaultvalue`) values
