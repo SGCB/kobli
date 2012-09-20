@@ -288,19 +288,19 @@ do
             *db_scheme* )
                 node_config_db_scheme=$(echo $line | sed -r 's#<db_scheme>(.+)</db_scheme>#\1#')
                 ;;
-            *database* )
+            */database* )
                 node_config_database=$(echo $line | sed -r 's#<database>(.+)</database>#\1#')
                 ;;
-            *hostname* )
+            */hostname* )
                 node_config_hostname=$(echo $line | sed -r 's#<hostname>(.+)</hostname>#\1#')
                 ;;
-            *port* )
+            */port* )
                 node_config_port=$(echo $line | sed -r 's#<port>(.+)</port>#\1#')
                 ;;
-            *user* )
+            */user* )
                 node_config_user=$(echo $line | sed -r 's#<user>(.+)</user>#\1#')
                 ;;
-            *pass* )
+            */pass* )
                 node_config_pass=$(echo $line | sed -r 's#<pass>(.+)</pass>#\1#')
                 ;;
             *intranetdir* )
