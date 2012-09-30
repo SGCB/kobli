@@ -3,6 +3,7 @@
 # Copyright 2008 Garry Collum and the Koha Development team
 # Copyright 2010 BibLibre
 # Copyright 2011 KohaAloha, NZ
+# Copyright 2012 Catalyst IT, NZ
 #
 # This file is part of Koha.
 #
@@ -889,6 +890,7 @@ $template->{VARS}->{DidYouMean} =
 $template->{VARS}->{IDreamBooksReviews} = C4::Context->preference('IDreamBooksReviews');
 $template->{VARS}->{IDreamBooksReadometer} = C4::Context->preference('IDreamBooksReadometer');
 $template->{VARS}->{IDreamBooksResults} = C4::Context->preference('IDreamBooksResults');
+$template->{VARS}->{'BiblioItemtypeImage'} = C4::Context->preference('BiblioItemtypeImage');
 
     $template->param( borrowernumber    => $borrowernumber);
 output_with_http_headers $cgi, $cookie, $template->output, $content_type;
