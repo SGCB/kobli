@@ -427,3 +427,4 @@ INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES (
 INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('UseImportMarcHoldings', '0', 'Marc Holdings into tools to import records','','YesNo');
 INSERT INTO systempreferences (variable, value, options, explanation, type) VALUES ('autoControlNumber','OFF','incremental|biblionumber|OFF','Used to autogenerate a Control Number: incremental will be of the form 1, 2, 3; biblionumber will be as biblionumber;','Choice');
 INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES('incrementalControlNumber', '1', 'Set the number (controlnumber) of the next bibliographic record.',NULL,'');
+INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES('BiblioItemtypeImage','Control','Control which itemtype info displays for biblio level itemtypes','Control|Koha','Choice');

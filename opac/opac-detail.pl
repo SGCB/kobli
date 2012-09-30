@@ -1042,6 +1042,7 @@ my $defaulttab =
     @serialcollections > 0 
         ? 'serialcollection' : 'subscriptions';
 $template->param('defaulttab' => $defaulttab);
+$template->{VARS}->{'BiblioItemtypeImage'} = C4::Context->preference('BiblioItemtypeImage');
 
 if (C4::Context->preference('OPACLocalCoverImages') == 1) {
     my @images = ListImagesForBiblio($biblionumber);
