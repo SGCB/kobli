@@ -605,31 +605,20 @@ sub BatchCommitRecords {
         my $query;
         if ($record_result eq 'create_new') {
             $num_added++;
-<<<<<<< HEAD:C4/ImportBatch.pm
             if ($record_type eq 'biblio') {
                 my $biblioitemnumber;
                 ($recordid, $biblioitemnumber) = AddBiblio($marc_record, $framework);
                 $query = "UPDATE import_biblios SET matched_biblionumber = ? WHERE import_record_id = ?";
                 if ($item_result eq 'create_new') {
-                    my ($bib_items_added, $bib_items_errored) = BatchCommitItems($rowref->{'import_record_id'}, $recordid);
+                    my ($bib_items_added, $bib_items_errored_barcode, $bib_items_errored_homebranch, $bib_items_errored_holdingbranch) = BatchCommitItems($rowref->{'import_record_id'}, $recordid);
                     $num_items_added += $bib_items_added;
-                    $num_items_errored += $bib_items_errored;
+                    $num_items_errored_barcode += $bib_items_errored_barcode;
+                    $num_items_errored_homebranch += $bib_items_errored_homebranch;
+                    $num_items_errored_holdingbranch += $bib_items_errored_holdingbranch;
                 }
             } else {
                 $recordid = AddAuthority($marc_record, undef, GuessAuthTypeCode($marc_record));
                 $query = "UPDATE import_auths SET matched_authid = ? WHERE import_record_id = ?";
-=======
-            my ($biblionumber, $biblioitemnumber) = AddBiblio($marc_record, $framework);
-            my $sth = $dbh->prepare_cached("UPDATE import_biblios SET matched_biblionumber = ? WHERE import_record_id = ?");
-            $sth->execute($biblionumber, $rowref->{'import_record_id'});
-            $sth->finish();
-            if ($item_result eq 'create_new') {
-                my ($bib_items_added, $bib_items_errored_barcode, $bib_items_errored_homebranch, $bib_items_errored_holdingbranch) = BatchCommitItems($rowref->{'import_record_id'}, $biblionumber);
-                $num_items_added += $bib_items_added;
-                $num_items_errored_barcode += $bib_items_errored_barcode;
-				$num_items_errored_homebranch += $bib_items_errored_homebranch;
-				$num_items_errored_holdingbranch += $bib_items_errored_holdingbranch;
->>>>>>> Herramienta para importar Holdings como items a Kobli y para exportar items como holdings.:C4/ImportBatch.pm
             }
             my $sth = $dbh->prepare_cached($query);
             $sth->execute($recordid, $rowref->{'import_record_id'});
@@ -656,9 +645,11 @@ sub BatchCommitRecords {
                 $query = "UPDATE import_biblios SET matched_biblionumber = ? WHERE import_record_id = ?";
 
                 if ($item_result eq 'create_new') {
-                    my ($bib_items_added, $bib_items_errored) = BatchCommitItems($rowref->{'import_record_id'}, $recordid);
+                    my ($bib_items_added, $bib_items_errored_barcode, $bib_items_errored_homebranch, $bib_items_errored_holdingbranch) = BatchCommitItems($rowref->{'import_record_id'}, $recordid);
                     $num_items_added += $bib_items_added;
-                    $num_items_errored += $bib_items_errored;
+                    $num_items_errored_barcode += $bib_items_errored_barcode;
+                    $num_items_errored_homebranch += $bib_items_errored_homebranch;
+                    $num_items_errored_holdingbranch += $bib_items_errored_holdingbranch;
                 }
             } else {
                 $oldxml = GetAuthorityXML($recordid);
@@ -672,32 +663,13 @@ sub BatchCommitRecords {
             my $sth2 = $dbh->prepare_cached($query);
             $sth2->execute($recordid, $rowref->{'import_record_id'});
             $sth2->finish();
-<<<<<<< HEAD:C4/ImportBatch.pm
-=======
-            if ($item_result eq 'create_new') {
-                my ($bib_items_added, $bib_items_errored_barcode, $bib_items_errored_homebranch, $bib_items_errored_holdingbranch) = BatchCommitItems($rowref->{'import_record_id'}, $biblionumber);
-                $num_items_added += $bib_items_added;
-                $num_items_errored_barcode += $bib_items_errored_barcode;
-				$num_items_errored_homebranch += $bib_items_errored_homebranch;
-				$num_items_errored_holdingbranch += $bib_items_errored_holdingbranch;
-            }
->>>>>>> Herramienta para importar Holdings como items a Kobli y para exportar items como holdings.:C4/ImportBatch.pm
             SetImportRecordOverlayStatus($rowref->{'import_record_id'}, 'match_applied');
             SetImportRecordStatus($rowref->{'import_record_id'}, 'imported');
         } elsif ($record_result eq 'ignore') {
             $num_ignored++;
-<<<<<<< HEAD:C4/ImportBatch.pm
             $recordid = $record_match;
-=======
-<<<<<<< HEAD:C4/ImportBatch.pm
->>>>>>> Herramienta para importar Holdings como items a Kobli y para exportar items como holdings.:C4/ImportBatch.pm
             if ($record_type eq 'biblio' and defined $recordid and $item_result eq 'create_new') {
-                my ($bib_items_added, $bib_items_errored) = BatchCommitItems($rowref->{'import_record_id'}, $recordid);
-=======
-            my $biblionumber = $bib_match;
-            if (defined $biblionumber and $item_result eq 'create_new') {
-                my ($bib_items_added, $bib_items_errored_barcode, $bib_items_errored_homebranch, $bib_items_errored_holdingbranch) = BatchCommitItems($rowref->{'import_record_id'}, $biblionumber);
->>>>>>> Herramienta para importar Holdings como items a Kobli y para exportar items como holdings.:C4/ImportBatch.pm
+                my ($bib_items_added, $bib_items_errored_barcode, $bib_items_errored_homebranch, $bib_items_errored_holdingbranch) = BatchCommitItems($rowref->{'import_record_id'}, $recordid);
                 $num_items_added += $bib_items_added;
                 $num_items_errored_barcode += $bib_items_errored_barcode;
 				$num_items_errored_homebranch += $bib_items_errored_homebranch;
