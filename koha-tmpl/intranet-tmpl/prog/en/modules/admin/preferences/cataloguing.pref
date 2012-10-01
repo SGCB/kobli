@@ -111,17 +111,18 @@ Cataloging:
             - as default language in the UNIMARC field 100 when creating a new record or in the field plugin.
     Display:
         -
-            - 'Separate multiple displayed authors, series or subjects with '
-            - pref: authoritysep
-              class: short
-            - '.'
-		-
             - pref: CheckValueIndicators
               choices:
                   yes: Check
                   no: "Don't check"
             - the values of the indicators against the defined values of the indicators for a framework when saving a biblio record.
-
+       
+    Display:
+        -
+            - 'Separate multiple displayed authors, series or subjects with '
+            - pref: authoritysep
+              class: short
+            - '.'
         -
             - Show
             - pref: URLLinkText
