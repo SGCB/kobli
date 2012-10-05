@@ -917,7 +917,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
         [% END %]
 
         [% IF !item_level_itypes ||  BiblioItemtypeImage == 'Koha' %]
-          <div class="results_summary">Itemtype:
+          <div class="results_summary"><span class="label">Itemtype:</span>
           [% IF ( description ) %]
             [% description %]
           [% ELSE %]
