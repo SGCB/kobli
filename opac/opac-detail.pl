@@ -973,29 +973,6 @@ if (C4::Context->preference("BakerTaylorEnabled")) {
 my $OpacExportOptions=C4::Context->preference("OpacExportOptions");
 my @export_options = split(/\|/,$OpacExportOptions);
 $template->{VARS}->{'export_options'} = \@export_options;
-# Covers from local repository
-# if (C4::Context->preference("LocalRepositoryCoverImages")) {
-    # my $dirFLR = C4::Context->preference("dirFileLocalRepository");
-    # my $urlFLR = C4::Context->preference("dirUrlLocalRepository");
-    # if ($dirFLR && $urlFLR && -d $dirFLR) {
-        # $dirFLR .= '/' unless ($dirFLR =~ /\/$/);
-        # my $dirFLRDoc = $dirFLR . 'documents/';
-        # $dirFLR .= 'covers/';
-        # $urlFLR .= '/' unless ($urlFLR =~ /\/$/);
-        # my $urlFLRDoc = $urlFLR . 'documents/';
-        # $urlFLR .= 'covers/';
-        # if (-f $dirFLR . $biblionumber . '.jpg') {
-            # $template->param(coverLR => $urlFLR . $biblionumber . '.jpg');
-            # $template->param(coverThumbLR => $urlFLR . 'Thumb_' . $biblionumber . '.jpg') if (-f $dirFLR . 'Thumb_' . $biblionumber . '.jpg');
-        # } elsif (-f $dirFLR . $biblionumber . '.png') {
-            # $template->param(coverLR => $urlFLR . $biblionumber . '.png');
-            # $template->param(coverThumbLR => $urlFLR . 'Thumb_' . $biblionumber . '.png') if (-f $dirFLR . 'Thumb_' . $biblionumber . '.png');
-        # } elsif (-f $dirFLR . $biblionumber . '.gif') {
-            # $template->param(coverLR => $urlFLR . $biblionumber . '.gif');
-            # $template->param(coverThumbLR => $urlFLR . 'Thumb_' . $biblionumber . '.gif') if (-f $dirFLR . 'Thumb_' . $biblionumber . '.gif');
-        # }
-    # }
-# }
 
 my $tag_quantity;
 if (C4::Context->preference('TagsEnabled') and $tag_quantity = C4::Context->preference('TagsShowOnDetail')) {
