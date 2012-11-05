@@ -53,14 +53,14 @@ function update_child() {
 	function yuiToolbar() {
 	    var printmenu = [
             { text: _("Imprimir resumen"), onclick: {fn: function(){printx_window("page")}} },
-            { text: _("Imprimir tira"), onclick: {fn: function(){printx_window("slip")}} },
-            { text: _("Imprimir tira"), onclick: {fn: function(){printx_window("qslip")}} }
+            { text: _("Imprimir recibo"), onclick: {fn: function(){printx_window("slip")}} },
+            { text: _("Imprimir recibo"), onclick: {fn: function(){printx_window("qslip")}} }
 	    ];
 
 		var moremenu = [
             { text: _("Renovar socio"),  onclick: { fn: confirm_reregistration } },
             { text: _("Establecer permisos"), url: "/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]"[% UNLESS ( CAN_user_permissions ) %], disabled: true[% END %]},
-			{ text: _("Borrar"), onclick: { fn: confirm_deletion}[% UNLESS ( CANDELETEUSER ) %], disabled: true[% END %] },
+			{ text: _("Eliminar"), onclick: { fn: confirm_deletion}[% UNLESS ( CANDELETEUSER ) %], disabled: true[% END %] },
             { text: _("Actualizar socio niño a adulto") , onclick: { fn: update_child }[% UNLESS ( is_child ) %], disabled: true[% END %]}
 		];
 
@@ -82,7 +82,7 @@ function update_child() {
 
 	    new YAHOO.widget.Button({
 	        type: "menu",
-	        label: _("Mas"),
+	        label: _("Más"),
 	        name: "moremenubutton",
 	        menu: moremenu,
 	        container: "moremenuc"
@@ -111,7 +111,7 @@ function update_child() {
  <li><a id="editpatron" href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;borrowernumber=[% borrowernumber %]&amp;category_type=A">Editar</a></li>
  [% END %] [% END %] [% IF ( adultborrower AND activeBorrowerRelationship ) %]<li><a id="addchild" href="/cgi-bin/koha/members/memberentry.pl?op=add&amp;guarantorid=[% borrowernumber %]&amp;category_type=C">Agregar infante</a></li>[% END %] [% IF CAN_user_borrowers %]<li><a id="changepassword" href="/cgi-bin/koha/members/member-password.pl?member=[% borrowernumber %]">Cambiar contraseña</a></li> [% END %] <li><a id="duplicate" href="/cgi-bin/koha/members/memberentry.pl?op=duplicate&amp;borrowernumber=[% borrowernumber %]&amp;category_type=[% category_type %]">Duplicado</a></li>
  <li id="printmenuc"><a id="printpage" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]&amp;print=page">Imprimir resumen</a></li>
- <li><a id="printslip" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]&amp;print=slip">Imprimir tira</a></li>
+ <li><a id="printslip" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]&amp;print=slip">Imprimir recibo</a></li>
  <li id="searchtoholdc"><a id="searchtohold" href="#">Buscar para reservar</a></li>
- <li id="moremenuc"><a id="renewpatron" href="/cgi-bin/koha/members/moremember.pl?reregistration=y&amp;borrowernumber=[% borrowernumber %]">Renovar cuenta</a></li>[% IF ( CAN_user_permissions ) %]<li><a id="patronflags" href="/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]">Establecer permisos</a></li>[% END %]<li><a id="deletepatron" href="javascript:confirm_deletion();">Borrar</a></li>
+ <li id="moremenuc"><a id="renewpatron" href="/cgi-bin/koha/members/moremember.pl?reregistration=y&amp;borrowernumber=[% borrowernumber %]">Renovar cuenta</a></li>[% IF ( CAN_user_permissions ) %]<li><a id="patronflags" href="/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]">Establecer permisos</a></li>[% END %]<li><a id="deletepatron" href="javascript:confirm_deletion();">Eliminar</a></li>
 </ul></div>

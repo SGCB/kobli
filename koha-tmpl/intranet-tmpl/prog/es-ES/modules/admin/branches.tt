@@ -116,11 +116,9 @@ tinyMCE.init({
  -->
  <li><label for="branchnotes">Notas</label><input type="text" name="branchnotes" id="branchnotes" value="[% branchnotes |html %]" /></li>
  <li>
- <label for="notforloan">Don't show in OPAC</label> [% IF ( notforopac ) %] <input type="checkbox" id="notforopac" name="notforopac" checked="checked" value="1" />
+ <label for="notforloan">No mostrar en OPAC</label> [% IF ( notforopac ) %] <input type="checkbox" id="notforopac" name="notforopac" checked="checked" value="1" />
  [% ELSE %] <input type="checkbox" id="notforopac" name="notforopac" value="1" />
- [% END %]
- (The library doesn't show in the OPAC)
- </li>
+ [% END %] (La biblioteca no muestra en el OPAC) </li>
  </ol>
  </fieldset>
  <fieldset class="action"><input value="Enviar" type="submit" /> <a class="cancel" href="/cgi-bin/koha/admin/branches.pl">Cancelar</a></fieldset>
@@ -163,7 +161,7 @@ tinyMCE.init({
  <a href="[% branche.action %]?op=edit&amp;branchcode=[% branche.value |url %]">Editar</a>
  </td>
  <td>
- <a href="[% branche.action %]?branchcode=[% branche.value |url %]&amp;branchname=[% branche.branch_name |url %]&amp;op=delete">Borrar</a>
+ <a href="[% branche.action %]?branchcode=[% branche.value |url %]&amp;branchname=[% branche.branch_name |url %]&amp;op=delete">Eliminar</a>
  </td>
  </tr>
  [% END %]</tbody>
@@ -189,17 +187,13 @@ tinyMCE.init({
  <a href="[% catloo.action %]?op=editcategory&amp;categorycode=[% catloo.categorycode |url %]">Editar</a>
  </td>
  <td>
- <a href="[% catloo.action %]?op=delete_category&amp;categorycode=[% catloo.categorycode |url %]">Borrar</a>
+ <a href="[% catloo.action %]?op=delete_category&amp;categorycode=[% catloo.categorycode |url %]">Eliminar</a>
  </td>
  </tr>
  [% END %] </tbody>
  </table>
  [% ELSE %]
- No [% IF ( branchcategorie.properties ) %]properties[% ELSIF ( branchcategorie.searchdomain ) %]search domain[% END %] defined. <a href="/cgi-bin/koha/admin/branches.pl?op=editcategory">Add a new group</a>.
- [% END %]
- [% END %]
- [% ELSE %]
- <p>No hay grupos definidos.</p>
+ No [% IF ( branchcategorie.properties ) %]properties[% ELSIF ( branchcategorie.searchdomain ) %]search domain[% END %] defined. <a href="/cgi-bin/koha/admin/branches.pl?op=editcategory">Agregar nuevo grupo </a>. [% END %] [% END %] [% ELSE %] <p>No hay grupos definidos.</p>
  [% END %] <!-- NAME="branchcategories" -->
 [% END %]
 

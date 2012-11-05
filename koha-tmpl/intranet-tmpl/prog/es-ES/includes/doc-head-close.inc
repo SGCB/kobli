@@ -33,16 +33,16 @@
     </script>
 [% END %] <script type="text/javascript" language="javascript">
     //<![CDATA[
-    [% IF ( intranetbookbag ) %]var MSG_BASKET_EMPTY = _("Su canasta está vacía");
-        var MSG_RECORD_IN_BASKET = _("Este ítem ya está en su carrito");
-        var MSG_RECORD_ADDED = _("Este ítem ha sido añadido a su carrito");
+    [% IF ( intranetbookbag ) %]var MSG_BASKET_EMPTY = _("Su cesta está vacía");
+        var MSG_RECORD_IN_BASKET = _("Este ítem ya está en su cesta");
+        var MSG_RECORD_ADDED = _("Este ítem ha sido añadido a su cesta");
         var MSG_NRECORDS_ADDED = _(" ítem(s) incluidos en su bolsa");
         var MSG_NRECORDS_IN_BASKET = _("ya en su carro");
         var MSG_NO_RECORD_SELECTED = _("Ningún ítem fue seleccionado");
-        var MSG_NO_RECORD_ADDED = _("Ningún ítem ha sido agregado a su carrito");
-        var MSG_CONFIRM_DEL_BASKET = _("¿Está seguro de querer vaciar su carrito?");
+        var MSG_NO_RECORD_ADDED = _("Ningún ítem ha sido agregado a su cesta");
+        var MSG_CONFIRM_DEL_BASKET = _("¿Está seguro de querer vaciar su cesta?");
         var MSG_CONFIRM_DEL_RECORDS = _("¿Está seguro de querer eliminar los ítems seleccionados?");
-        var MSG_IN_YOUR_CART = _("Items in your cart: ");
+        var MSG_IN_YOUR_CART = _("Items en su cesta:");
         var MSG_NON_RESERVES_SELECTED = _("Uno o más ítems seleccionados no se pueden reservar.");
     [% END %]
     //]]>

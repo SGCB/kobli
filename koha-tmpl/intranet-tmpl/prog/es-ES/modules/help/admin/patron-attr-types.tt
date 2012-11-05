@@ -1,4 +1,4 @@
-[% INCLUDE 'help-top.inc' %] <h1>Patron Attribute Types</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Tipos de atributo de socio </h1>
 
 <p>Los atributos de los socios se pueden utilizar para definir los campos personalizados asociados con los registros de sus socios. Para poder definir campos personalizados es necesario establecer la preferencia del sistema ExtendedPatronAttributes.</p>
 
@@ -8,23 +8,23 @@
 
 <p>Un uso común para este campo sería el de contener el número de documento de un socio o el número de su licencia de conducir.</p>
 
-<h3>Adding Patron Attributes</h3>
+<h3>Añadir Atributos de Socio</h3>
 
-<p>To add a new Patron Attribute Type, click the 'New Patron Attribute Type' button at the top of the page</p>
+<p>Para agregar un nuevo tipo de atributo de socio, seleccionar en 'Nuevo tipo de atributo de socio' en la parte superior de la página</p>
 
 <ul>
  <li>En el ''Código de tipo de atributo de socio', introduzca un código corto para identificar este campo <ul>
- <li style="color: #990000;">Important: This field is limited to 10 characters (numbers and letters only)</li>
- <li style="color: #990000;">Important: This setting cannot be changed after an attribute is defined</li>
+ <li style="color: #990000;">Importante: Este campo se limita a 10 caracteres (sólamente letras y números)</li>
+ <li style="color: #990000;">Importante: Este ajuste no se puede cambiar después de que un atributo es definido.</li>
 </ul>
 </li>
  <li>En el campo 'Descripción', escriba una explicación (en texto) de lo que este campo contendrá</li>
  <li>Marque la casilla al lado de 'Repetible' para permitir que el socio tenga múltiples valores de este atributo. <ul>
- <li style="color: #990000;">Important: This setting cannot be changed after an attribute is defined</li>
+ <li style="color: #990000;">Importante: Este ajuste no se puede cambiar después de que un atributo es definido.</li>
 </ul>
 </li>
  <li>Si está seleccionado 'Identificador único', el atributo será un identificador único. Esto significa que si se le da un valor a un registro de socio, el mismo valor no puede ser asignado a un registro diferente. <ul>
- <li style="color: #990000;">Important: This setting cannot be changed after an attribute is defined</li>
+ <li style="color: #990000;">Importante: Este ajuste no se puede cambiar después de que un atributo es definido.</li>
 </ul>
 </li>
  <li>Marcar 'Permitir contraseña' para que sea posible asociar una contraseña a este atributo.</li>
@@ -32,24 +32,23 @@
  <li>Marque 'Buscable' para que este atributo sea buscable en la búsqueda de socios de la interfaz administrativa.</li>
  <li>Marque 'Mostrar al prestar' para hacer que este atributo esté visible en la pantalla corta de muestra de detalles del usuario a la izquierda de la pantalla de préstamo y otras páginas de usuarios</li>
  <li>Categoría de valor autorizado; si se selecciona alguno, la página de ingreso de socios sólo permitirá seleccionar valores de la lista de valores autorizados. <ul>
- <li>You will first need to add an authorized value list for it to appear in this menu
-<ul>
- <li><em>Get there: </em>More &gt; Administration &gt; Basic Parameters &gt; Authorized Values</li>
+ <li>En primer lugar, tendrá que añadir una lista de valores autorizados para que aparezca en este menú <ul>
+ <li><em>Hay que llegar:</em>More &gt; Administration &gt; Basic Parameters &gt; Authorized Values</li>
 </ul>
 </li>
- <li style="color: #990000;"> Important: an authorized value list is not enforced during batch patron import.</li>
+ <li style="color: #990000;">Importante: una lista de valores autorizados no se aplica al importar los usuarios en lote.</li>
 </ul>
 </li>
- <li>If you'd like to only show this attribute on patrons of one type choose that patron type from the 'Category' pull down</li>
- <li>If you have a lot of attributes it might be handy to group them so that you can easily find them for editing. If you create an Authorized Value for PA_CLASS it will show in the 'Class' pull down and you can then change your attributes page to have sections of attributes</li>
+ <li>Si quisiera mostrar sólo este atributo en un tipo de socios elegirá que tipo de socio desde el desplegable 'Category'</li>
+ <li>Si t¡enes muchos atributos podría ser útil agruparlas para poder encontrarlas fácilmente para editar. Si creas un  Valor Autorizado ara PA_CLASS este se mostrará en 'Class? tirar hacia abajo y después podrás cambiar la página de atributos a tener secciones de atributos.</li>
  <li>Haga clic en Guardar para guardar su nuevo atributo</li>
 </ul>
 
 <p>Una vez añadido el atributo aparecerá en la lista de atributos y también en el formulario de agregar o modificar socios</o>
 
-<p>If you have set up classes for organizing attributes they will appear that way on the add/edit patron form</p>
+<p>Si tiene configuración de clases para la organización de atributos estos podrán aparecer en el formularios de socio de añadir/editar</p>
 
-<h3>Editing/Deleting Patron Attributes</h3>
+<h3>Editar/Eliminar Atributos de Socios</h3>
 
 <p>Cada atributo de socio tiene a su lado un enlace editar o eliminar en la lista de atributos.</p>
 
@@ -63,6 +62,6 @@
 
 <p>Usted no podrá eliminar un atributo si está en uso.</p>
 
-<p><strong>See the full documentation for Patron Attribute Types in the <a href="http://manual.koha-community.org/3.8/en/patscirc.html#patronattributetypes">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa de Tipos de Atributos de Socio en la <a href="http://manual.koha-community.org/3.10/en/patscirc.html#patronattributetypes">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

@@ -1,6 +1,11 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Información de colección para [% bibliotitle %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
+function generateReceive(subscriptionid) {
+    if(nbissues=prompt(_("How many issues do you want to receive ?"))){
+        document.location = 'serials-collection.pl?op=gennext&subscriptionid='+subscriptionid+'&nbissues='+nbissues;
+    }
+}
 function print_slip(subscriptionid,issue){
     var myurl = 'routing-preview.pl?ok=1&subscriptionid='+subscriptionid+'&issue='+issue;
     window.open(myurl,'PrintSlip','width=500,height=500,toolbar=no,scrollbars=yes');
@@ -97,7 +102,7 @@ $(document).ready(function() {
  [% IF ( CAN_user_serials_receive_serials ) %] <p>
  <input value="Editar publicación periódica" type="submit" />&nbsp;
  <input value="Generar siguiente" type="button" onclick="javascript:generateNext([% subscriptionidlist %])" />
- </p>
+ [% IF ( subscriptions.size == 1 and !serialsadditems ) %]&nbsp;<input type="button" value="Multi receiving" onclick="javascript:generateReceive([% subscriptionidlist %])" />[% END %] </p>
  [% END %] <table>
  <tr>
 [% IF ( subscriptions.size > 1 ) %] <th># Subs</th>

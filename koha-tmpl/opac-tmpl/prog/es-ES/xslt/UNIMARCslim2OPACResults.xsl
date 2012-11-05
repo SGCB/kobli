@@ -9,7 +9,7 @@
   exclude-result-prefixes="marc items">
 
 <xsl:import href="UNIMARCslimUtils.xsl"/>
-<xsl:output method = "xml" indent="yes" omit-xml-declaration = "yes" />
+<xsl:output method = "html" indent="yes" omit-xml-declaration = "yes" />
 <xsl:key name="item-by-status" match="items:item" use="items:status"/>
 <xsl:key name="item-by-status-and-branch" match="items:item" use="concat(items:status, ' ', items:homebranch)"/>
 
@@ -27,6 +27,7 @@
    select="marc:datafield[@tag=010]/marc:subfield[@code='a']"/>
 
  <xsl:variable name="hidelostitems" select="marc:sysprefs/marc:syspref[@name='hidelostitems']"/>
+ <xsl:variable name="singleBranchMode" select="marc:sysprefs/marc:syspref[@name='singleBranchMode']"/>
 
  <xsl:if test="marc:datafield[@tag=200]">
  <xsl:for-each select="marc:datafield[@tag=200]">
@@ -51,7 +52,7 @@
  <xsl:text>]</xsl:text>
  </xsl:when>
  <xsl:when test="@code='d'">
- <xsl:text> = </xsl:text>
+ <xsl:text> =</xsl:text>
  <xsl:value-of select="."/>
  </xsl:when>
  <xsl:when test="@code='e'">
@@ -82,12 +83,12 @@
 
  <xsl:call-template name="tag_title">
  <xsl:with-param name="tag">461</xsl:with-param>
- <xsl:with-param name="label">Establecer nivel</xsl:with-param>
+ <xsl:with-param name="label">Elegir nivel</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_title">
  <xsl:with-param name="tag">464</xsl:with-param>
- <xsl:with-param name="label">Nivel Fragmento-Analítico</xsl:with-param>
+ <xsl:with-param name="label">Nivel analítico</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_210" />
@@ -112,7 +113,7 @@
  </xsl:call-template>
  </xsl:when>
  <xsl:when test="not(marc:subfield[@code='y']) and not(marc:subfield[@code='3']) and not(marc:subfield[@code='z'])">
- Haga clic aquí para acceso en linea </xsl:when>
+ Haga clic aquí para acceder en línea</xsl:when>
  </xsl:choose>
  </a>
  <xsl:choose>
@@ -129,6 +130,17 @@
  <span class="available">
  <b><xsl:text>Copias disponibles para préstamo: </xsl:text></b>
  <xsl:variable name="available_items" select="key('item-by-status', 'available')"/>
+ <xsl:choose>
+ <xsl:when test="$singleBranchMode=1">
+ <xsl:for-each select="$available_items[generate-id() = generate-id(key('item-by-status-and-branch', concat(items:status, ' ', items:homebranch))[1])]">
+ <xsl:if test="items:itemcallnumber != '' and items:itemcallnumber"> [<xsl:value-of select="items:itemcallnumber"/>]</xsl:if>
+ <xsl:text> (</xsl:text>
+ <xsl:value-of select="count(key('item-by-status-and-branch', concat(items:status, ' ', items:homebranch)))"/>
+ <xsl:text>)</xsl:text>
+ <xsl:choose><xsl:when test="position()=last()"><xsl:text>. </xsl:text></xsl:when><xsl:otherwise><xsl:text>, </xsl:text></xsl:otherwise></xsl:choose>
+ </xsl:for-each>
+ </xsl:when>
+ <xsl:otherwise>
  <xsl:for-each select="$available_items[generate-id() = generate-id(key('item-by-status-and-branch', concat(items:status, ' ', items:homebranch))[1])]">
  <xsl:value-of select="items:homebranch"/>
  <xsl:if test="items:itemcallnumber != '' and items:itemcallnumber">[<xsl:value-of select="items:itemcallnumber"/>] </xsl:if>
@@ -144,6 +156,8 @@
  </xsl:otherwise>
  </xsl:choose>
  </xsl:for-each>
+ </xsl:otherwise>
+ </xsl:choose>
  </span>
  </xsl:when>
  </xsl:choose>
@@ -201,14 +215,14 @@
  </xsl:if>
  <xsl:if test="count(key('item-by-status', 'On Orangemanr'))>0">
  <span class="unavailable">
- <xsl:text>En orden (</xsl:text>
+ <xsl:text>Pedido (</xsl:text>
  <xsl:value-of select="count(key('item-by-status', 'On order'))"/>
  <xsl:text>). </xsl:text>
  </span>
  </xsl:if>
  <xsl:if test="count(key('item-by-status', 'In transit'))>0">
  <span class="unavailable">
- <xsl:text>En tránsito (</xsl:text>
+ <xsl:text>En ruta (</xsl:text>
  <xsl:value-of select="count(key('item-by-status', 'In transit'))"/>
  <xsl:text>). </xsl:text>
  </span>

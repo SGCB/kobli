@@ -1,4 +1,4 @@
-[% INCLUDE 'help-top.inc' %] <h1>Record Matching Rules</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Regla de Coincidencia de Registro</h1>
 
 <p>Las reglas de registros coincidentes se utilizan en la importación de registros MARC en Koha.</p>
 
@@ -7,8 +7,7 @@
 <p>Para crear una nueva regla de coincidencia:</p>
 
 <ul>
- <li>Click 'New Record Matching Rule'
-<ul>
+ <li>Seleccionar 'Nueva Regla de oincidencia de Registro' <ul>
  <li>Seleccione un nombre único e ingréselo en el campo 'Código de regla de coincidencia'</li>
  <li>'Descripción' puede ser cualquier cosa que deje en claro qué regla está eligiendo</li>
  <li>'Límite de coincidencia' - El total de 'puntos' que debe sumar un registro para considerarse una 'coincidencia'</li>
@@ -25,7 +24,7 @@
 </li>
 </ul>
 
-<h2>Sample Record Matching Rule: Control Number</h2>
+<h2>Ejemplo de Regla de Coincidencia de Registros: Número de Control</h2>
 
 <ul>
  <li>Umbral de coincidencia: 100</li>
@@ -33,16 +32,16 @@
  <li>Buscar en el índice: número de control</li>
  <li>Puntaje: 101</li>
  <li>Campo: 001 <ul>
- <li>este campo es para el número de control asignado por la organización a crear, usar o distribuir el registro</li>
+ <li>este campo es para el número de control asignado por la organización para crear, usar o distribuir el registro</li>
 </ul>
 </li>
  <li>Subcampos: un</li>
  <li>Offset: 0</li>
  <li>Longitud: 0</li>
  <li>Regla de normalización: número de control</li>
- <li>Required Match checks: none (remove the blank one)</li>
+ <li>Verificación de Coincidencia Requerido: ninguno (eliminar el que está en blanco)</li>
 </ul>
 
-<p><strong>See the full documentation for Record Matching Rules in the <a href="http://manual.koha-community.org/3.8/en/catadmin.html#recordmatchingrules">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa de Record Matching Rules en la <a href="http://manual.koha-community.org/3.10/en/catadmin.html#recordmatchingrules">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

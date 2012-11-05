@@ -1,8 +1,10 @@
-[% INCLUDE 'doc-head-open.inc' %][% LibraryName %] &rsaquo; Auto-préstamo</title>
+[% INCLUDE 'doc-head-open.inc' %][% LibraryName %] &rsaquo; Autopréstamo</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Koha [% Version %]" /> <!-- leave this for stats -->
 <link rel="shortcut icon" href="[% themelang %]/includes/favicon.ico" type="image/x-icon" />
 
+<link rel="stylesheet" type="text/css" href="[% yuipath %]/reset-fonts-grids.css" />
+<link rel="stylesheet" type="text/css" href="[% yuipath %]/skin.css" />
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/sco.css" />
 </head>
 <body>
@@ -10,23 +12,23 @@
  <div id="bd">
  <div class="yui-g">
 
-<h1>Ayuda de auto-préstamo</h1>
+<h1>Ayuda de autopréstamo</h1>
 
 [% IF ( SelfCheckHelpMessage ) %] <div id="selfcheckhelpmessage">
 [% SelfCheckHelpMessage %] </div>
-[% END %] <p>Si es la primera vez que utiliza el sistema de auto-préstamo, o si el sistema no está comportándose como se esperaba, es posible que desee hacer referencia a esta guía para comenzar.</p>
+[% END %] <p>Si es la primera vez que utiliza el sistema de autopréstamo, o si el sistema no está funcionado como debe, puede que quiera consultar este manual.</p>
 
-<h3>Paso Uno: introduzca su id de usuario[% IF ( SelfCheckoutByLogin ) %] y contraseña[% END %]</h3>
-<p>Ingrese su ID[% IF ( SelfCheckoutByLogin ) %] de usuario y su contraseña[% END %], y haga clic en el botón de enviar (o presione la tecla Enter).</p>
+<h3>Paso Uno: Introduce tu id[% IF ( SelfCheckoutByLogin ) %] de usuario y contraseña[% END %]</h3>
+<p>Introduzca su ID[% IF ( SelfCheckoutByLogin ) %] de usuario y su contraseña[% END %], y haga clic en el botón de enviar (o presiona la tecla Enter).</p>
 
-<h3>Paso Dos: Escanee el código de barras de cada ítem, uno a la vez</h3>
-<p>Escanee cada ítem y espere que la página se recargue antes de escanear el siguiente. El ítem prestado debería figurar en su lista de préstamos. El botón de Enviar sólo hay que usarlo en caso de introducir manualmente el código de barras.</p>
+<h3>Paso Dos: Escanea el código de barras de cada ítem, de uno en uno</h3>
+<p>Escanee cada ítem y espere a que la página se recargue antes de escanear el siguiente. El ítem prestado debería figurar en tu lista de préstamos. El botón de Enviar sólo hay que usarlo en caso de introducir manualmente el código de barras.</p>
 
-<h3>Paso tres: haga clic en el botón 'Finalizar'</h3>
-<p>Si no hace clic en el botón 'Finalizar' , su sesión expirará en [% SelfCheckTimeout %] segundos.</p>
+<h3>Paso tres: Haz click en el botón 'Finalizar'</h3>
+<p>Si no hace clic en el botón 'Finalizar', su sesión expirará en [% SelfCheckTimeout %] segundos.</p>
 
  <div class="button">
- <a href="javascript:history.go(-1)">Volver a auto-préstamo</a>
+ <a href="javascript:history.go(-1)">Volver al autopréstamo</a>
  </div>
 
 </div></div></div>

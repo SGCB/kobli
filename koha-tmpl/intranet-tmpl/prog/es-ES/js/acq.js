@@ -4,7 +4,7 @@
 function uncheckbox(form, field) {
     var price = new Number(form.elements['price' + field].value);
     var tmpprice = "";
-    var errmsg = _("ERROR: El precio no es un número válido, por favor revísalo e inténtalo otra vez!")
+    var errmsg = _("ERROR: Price is not a valid number, please check the price and try again!")
     if (isNaN(price)) {
         alert(errmsg);
         for(var i=0; i<form.elements['price' + field].value.length; ++i) {
@@ -335,7 +335,7 @@ function enterpressed(event){
 
 //Closes a basketgroup
 function closebasketgroup(bgid) {
-    var answer=confirm(_("¿Estás seguro de cerrar este conjunto de cesta?"));
+    var answer=confirm(_("Are you sure you want to close this basketgroup?"));
     if(! answer){
         return;
     }
@@ -353,7 +353,7 @@ function closebasketgroup(bgid) {
     var ul = document.getElementById(ulid);
     var lis = ul.getElementsByTagName('li');
     if (lis.length == 0 ) {
-        alert(_("¿Cerrar una cesta vacía?"));
+        alert(_("Why close an empty basket?"));
         return;
     }
     var cantprint = document.createElement('p');
@@ -369,7 +369,7 @@ function closebasketgroup(bgid) {
     ddtarget.unreg();
     div.removeChild(stufftoremove);
 // the print button is disabled because the page's content might (or is probably) not in sync with what the database contains
-    cantprint.innerHTML=_("¿Necesitas guardar la página antes de imprimir?");
+    cantprint.innerHTML=_("You need to save the page before printing");
     cantprint.id = 'cantprint-' + bgid;
     var unclosegroup = document.createElement('a');
     unclosegroup.href='javascript:unclosegroup('+bgid+');';
@@ -384,7 +384,7 @@ function closeandprint(bg){
 	if(document.location = '/cgi-bin/koha/acqui/basketgroup.pl?op=closeandprint&amp;basketgroupid=' + bg ){
 		setTimeout("window.location.reload();",3000);
 	}else{
-		alert(_('Error descargando el fichero'));
+		alert(_('Error downloading the file'));
 	}
 }
 
@@ -639,49 +639,25 @@ function messenger(X,Y,etc){    // FIXME: unused?
 
 //  NEXT BLOCK IS USED BY NEWORDERBEMPTY
 
-function calcNeworderTotal(){
-    //collect values
-    var f        = document.getElementById('Aform');
-    var quantity = new Number(f.quantity.value);
-    var discount = new Number(f.discount.value);
-    var listinc  = new Number (f.listinc.value);
-    //var currency = f.currency.value;
-    var applygst = new Number (f.applygst.value);
-    var listprice   =  new Number(f.listprice.value);
-    var invoiceingst =  new Number (f.invoiceincgst.value);
-//    var exchangerate =  new Number(f.elements[currency].value);      //get exchange rate
-        var currcode = new String(document.getElementById('currency').value);
-	var exchangerate =  new Number(document.getElementById(currcode).value);
+function updateCosts(){
+    var quantity = new Number($("#quantity").val());
+    var discount = new Number($("#discount").val());
+    var applygst = new Number ($("#applygst").val());
+    var listprice   =  new Number($("#listprice").val());
+    var exchangerate =  new Number($("#currency_rate").val());
+    var gst_on=false;
 
-    var gst_on=(!listinc && invoiceingst);
-
-    //do real stuff
     var rrp   = new Number(listprice*exchangerate);
     var ecost = rrp;
-    if (100-discount != 100) { //Prevent rounding issues if no discount
-        ecost = new Number(Math.floor(rrp * (100 - discount ))/100);
+    if ( 100-discount != 100 ) { //Prevent rounding issues if no discount
+        ecost = new Number(Math.floor(rrp * (100 - discount )) / 100);
     }
-    var GST   = new Number(0);
-    if (gst_on) {
-            rrp=rrp * (1+f.gstrate.value / 100);
-        GST=ecost * f.gstrate.value / 100;
-    }
+    var total =  new Number( ecost * quantity);
+    $("#rrp").val(rrp.toFixed(2));
+    $("#ecost").val(ecost.toFixed(2));
+    $("#total").val(total.toFixed(2));
+    $("listprice").val(listprice.toFixed(2));
 
-    var total =  new Number( (ecost + GST) * quantity);
-
-    f.rrp.value = rrp.toFixed(2);
-
-//	f.rrp.value = rrp
-//	f.rrp.value = 'moo'
-
-    f.ecost.value = ecost.toFixed(2);
-    f.total.value = total.toFixed(2);
-    f.listprice.value =  listprice.toFixed(2);
-
-//  gst-stuff needs verifing, mason.
-    if (f.GST) {
-        f.GST.value=GST;
-    }
     return true;
 }
 
@@ -744,7 +720,7 @@ function fetchSortDropbox(f) {
 
 for (i=1;i<=2;i++) {
 
-    var sort_dropbox = document.getElementById('sort'+i);
+    var sort_zone = document.getElementById('sort'+i+'_zone');
     var url = '../acqui/fetch_sort_dropbox.pl?sort='+i+'&budget_id='+budgetId;
 
     var xmlhttp = null;
@@ -764,7 +740,13 @@ for (i=1;i<=2;i++) {
         }
     };
     // rc =  eval ( xmlhttp.responseText );
-    sort_dropbox.innerHTML  =  xmlhttp.responseText;
+    var retRootType = xmlhttp.responseXML.firstChild.nodeName;
+    var existingInputs = sort_zone.getElementsByTagName('input');
+    if (existingInputs.length > 0 && retRootType == 'input') {
+        // when sort is already an input, do not override to preseve value
+        return;
+    }
+    sort_zone.innerHTML = xmlhttp.responseText;
 }
 }
 
@@ -837,9 +819,9 @@ if ( newBudgetParent  ) { url +=  '&parent_id=' + newBudgetParent};
     var result = eval ( xmlhttp.responseText );
 
     if (result == '1') {
-            return _("- El total de este presupuesto excede el del presupuesto padre\n");
+            return _("- Budget total exceeds parent allocation\n");
     } else if (result == '2') {
-            return _("- El total del presupuesto excede la cantidad asignada\n");
+            return _("- Budget total exceeds period allocation\n");
     } else  {
             return false;
     }
@@ -871,7 +853,7 @@ function checkBudgetParent(budgetId, newBudgetParent) {
     var result = eval ( xmlhttp.responseText );
 
     if (result == '1') {
-            return _("- El nuevo presupuesto padre es un presupuesto inferior\n");
+            return _("- New budget-parent is beneath budget\n");
 //     } else if (result == '2') {
 //            return "- New budget-parent has insufficent funds\n";
 //     } else  {

@@ -1,5 +1,5 @@
 --- 
-Web services: 
+web_services.pref: 
   ILS-DI: 
     - 
       - 
@@ -20,8 +20,8 @@ Web services:
           "": Deshabilite
           1: Habilite
         pref: OAI-PMH
-      - el servidor
-      - <a href="http://www.openarchives.org/pmh/">OAI-PMH</a> de Koha.
+      - " el servidor."
+      - <a href="http://www.openarchives.org/pmh/">OAI-PMH</a> de Koha
     - 
       - Identificar registros en este sitio con el prefijo
       - 
@@ -43,14 +43,14 @@ Web services:
     - 
       - 
         choices: 
-          "": Disable
-          1: Enable
+          "": Deshabilitar
+          1: Habilitar
         pref: OAI-PMH:AutoUpdateSets
-      - automatic update of OAI-PMH sets when a bibliographic record is created or updated
-  Reporting: 
+      - "actualizar autom\xC3\xA1ticamente los ajustes de OAI-PMH cuando un registro bibliogr\xC3\xA1fico es creado o actualizado"
+  web_services.pref Informes: 
     - 
-      - Only return
+      - web_services.pref#SvcMaxReportRows# Solo volver
       - 
         class: integer
         pref: SvcMaxReportRows
-      - rows of a report requested via the reports web service.
+      - "web_services.pref#SvcMaxReportRows# serie de un informe requerido a trav\xC3\xA9s del servicio web de informes."

@@ -131,7 +131,7 @@ $(document).ready(function() {
 <input type="text" size="10" id="to" name="to" value="[% to %]" class="datepickerto" />
 </li>
 </ol>
-<p><i>(Inclusive, el valor por defecto es de 2 días atrás hasta hoy, establezca otros rangos si es necesario.)</i></p>
+<p><i>(Inclusive, default is [% HoldsToPullStartDate %] days ago to today, set other date ranges as needed. )</i></p>
 <fieldset class="action"><input value="Enviar" name="run_report" type="submit" class="submit" /></fieldset>
 </fieldset>
 </form>
@@ -139,4 +139,4 @@ $(document).ready(function() {
 </div>
 </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

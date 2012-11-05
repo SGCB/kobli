@@ -292,8 +292,8 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <thead>
  <tr><th>&nbsp;</th>
  <th>Sugerencia</th>
- <th>Sugerido por</th>
- <th>Administrado por</th>
+ <th>Suggested by - on</th>
+ <th>Managed by - on</th>
  <th>Biblioteca</th>
  <th>Presupuesto</th>
  <th>Estado</th></tr>
@@ -308,9 +308,13 @@ $(document).ready(function() { calcNewsuggTotal(); });
  [<a href="suggestion.pl?suggestionid=[% suggestions_loo.suggestionid %]&op=edit" title="sugerencia">editar </a>] <br />
  [% IF ( suggestions_loo.copyrightdate ) %]&copia; [% suggestions_loo.copyrightdate %] [% END %] [% IF ( suggestions_loo.volumedesc ) %]; Volumen:<i>[% suggestions_loo.volumedesc %]</i> [% END %] [% IF ( suggestions_loo.isbn ) %]; ISBN:<i>[% suggestions_loo.isbn %]</i> [% END %][% IF ( suggestions_loo.publishercode ) %]; Publicado por [% suggestions_loo.publishercode %] [% END %][% IF ( suggestions_loo.publicationyear ) %] en <i>[% suggestions_loo.publicationyear %]</i> [% END %][% IF ( suggestions_loo.place ) %] en <i>[% suggestions_loo.place %]</i> [% END %][% IF ( suggestions_loo.collectiontitle ) %]; [% suggestions_loo.collectiontitle %] [% END %][% IF ( suggestions_loo.itemtype ) %]; [% suggestions_loo.itemtype %] [% END %]<br />[% IF ( suggestions_loo.note ) %]<span class="note">[% suggestions_loo.note %]</span>[% END %] </td>
  <td>
- [% IF ( suggestions_loo.emailsuggestedby ) %]<a href="mailto:[% suggestions_loo.emailsuggestedby %]">[% END %][% suggestions_loo.surnamesuggestedby %][% IF ( suggestions_loo.firstnamesuggestedby ) %], [% suggestions_loo.firstnamesuggestedby %][% END %] [% IF ( suggestions_loo.emailsuggestedby ) %]</a>[% END %] [% IF ( suggestions_loo.suggesteddate ) %] / [% suggestions_loo.suggesteddate %][% END %] </td>
+ [% IF ( suggestions_loo.emailsuggestedby ) %]<a href="mailto:[% suggestions_loo.emailsuggestedby %]">[% END %][% suggestions_loo.surnamesuggestedby %][% IF ( suggestions_loo.firstnamesuggestedby ) %], [% suggestions_loo.firstnamesuggestedby %][% END %] [% IF ( suggestions_loo.emailsuggestedby ) %]</a>[% END %]
+ [% IF ( suggestions_loo.suggesteddate ) %] - [% suggestions_loo.suggesteddate %][% END %]
+ </td>
  <td>
- [% IF ( suggestions_loo.emailmanagedby ) %]<a href="mailto:[% suggestions_loo.emailmanagedby %]">[% END %][% suggestions_loo.surnamemanagedby %][% IF ( suggestions_loo.firstnamemanagedby ) %], [% suggestions_loo.firstnamemanagedby %][% END %] [% IF ( suggestions_loo.emailmanagedby ) %]</a>[% END %] [% IF ( suggestions_loo.manageddate ) %], [% suggestions_loo.manageddate %][% END %] </td>
+ [% IF ( suggestions_loo.emailmanagedby ) %]<a href="mailto:[% suggestions_loo.emailmanagedby %]">[% END %][% suggestions_loo.surnamemanagedby %][% IF ( suggestions_loo.firstnamemanagedby ) %], [% suggestions_loo.firstnamemanagedby %][% END %] [% IF ( suggestions_loo.emailmanagedby ) %]</a>[% END %]
+ [% IF ( suggestions_loo.manageddate ) %] - [% suggestions_loo.manageddate %][% END %]
+ </td>
  <td>
  [% suggestions_loo.branchcode %] </td>
  <td>
@@ -385,10 +389,10 @@ $(document).ready(function() { calcNewsuggTotal(); });
 [% FOREACH suggestedby_loo IN suggestedby_loop %][% IF ( suggestedby_loo.selected ) %]<option value="[% suggestedby_loo.code %]" selected="selected">[% suggestedby_loo.desc %]</option>[% ELSE %]<option value="[% suggestedby_loo.code %]">[% suggestedby_loo.desc %]</option>[% END %][% END %] </select></li>
  <li><label for="suggesteddate_from"> Sugerido sobre:</label>[% suggesteddate %] <table class="invis">
  <tr>
- <td><label for="suggesteddate_from">from:</label></td><td><input type="text" id="suggesteddate_from" name="suggesteddate_from" style="width:80px;" /></td>
+ <td><label for="suggesteddate_from">de:</label></td><td><input type="text" id="suggesteddate_from" name="suggesteddate_from" style="width:80px;" /></td>
  </tr>
  <tr>
- <td><label for="suggesteddate_to">to:</label></td><td><input type="text" id="suggesteddate_to" name="suggesteddate_to" style="width:80px;" /></td>
+ <td><label for="suggesteddate_to">en:</label></td><td><input type="text" id="suggesteddate_to" name="suggesteddate_to" style="width:80px;" /></td>
  </tr>
  </table>
  </li>
@@ -396,10 +400,10 @@ $(document).ready(function() { calcNewsuggTotal(); });
 [% FOREACH managedby_loo IN managedby_loop %][% IF ( managedby_loo.selected ) %]<option value="[% managedby_loo.code %]" selected="selected">[% managedby_loo.desc %]</option>[% ELSE %]<option value="[% managedby_loo.code %]">[% managedby_loo.desc %]</option>[% END %][% END %] </select></li>
  <li><label for="manageddate_from"> Fecha de administración:</label>[% manageddate %] <table class="invis">
  <tr>
- <td><label for="manageddate_from">from:</label></td><td><input type="text" id="manageddate_from" name="manageddate_from" style="width:80px;" /></td>
+ <td><label for="manageddate_from">de:</label></td><td><input type="text" id="manageddate_from" name="manageddate_from" style="width:80px;" /></td>
  </tr>
  <tr>
- <td><label for="manageddate_to">to:</label></td><td><input type="text" id="manageddate_to" name="manageddate_to" style="width:80px;" /></td>
+ <td><label for="manageddate_to">en:</label></td><td><input type="text" id="manageddate_to" name="manageddate_to" style="width:80px;" /></td>
  </tr>
  </table>
  </li>
@@ -407,10 +411,10 @@ $(document).ready(function() { calcNewsuggTotal(); });
 [% FOREACH acceptedby_loo IN acceptedby_loop %][% IF ( acceptedby_loo.selected ) %] <option value="[% acceptedby_loo.code %]" selected="selected">[% acceptedby_loo.desc %]</option>[% ELSE %]<option value="[% acceptedby_loo.code %]">[% acceptedby_loo.desc %]</option>[% END %][% END %] </select></li>
  <li><label for="accepteddate_from"> Aceptado en:</label>[% accepteddate %] <table class="invis">
  <tr>
- <td><label for="accepteddate_from">from:</label></td><td><input type="text" id="accepteddate_from" name="accepteddate_from" style="width:80px;" /></td>
+ <td><label for="accepteddate_from">de:</label></td><td><input type="text" id="accepteddate_from" name="accepteddate_from" style="width:80px;" /></td>
  </tr>
  <tr>
- <td><label for="accepteddate_to">to:</label></td><td><input type="text" id="accepteddate_to" name="accepteddate_to" style="width:80px;" /></td>
+ <td><label for="accepteddate_to">en:</label></td><td><input type="text" id="accepteddate_to" name="accepteddate_to" style="width:80px;" /></td>
  </tr>
  </table>
  </li>

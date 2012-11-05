@@ -47,7 +47,7 @@ $(document).ready(function() {
  <input type="hidden" name="op" value="send_alert" />
  <input type="hidden" name="delay" value="[% delay %]" />
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
- [% IF ( letters ) %] <p><label for="letter_code">Reclamo usando aviso: </label><select name="letter_code" id="letter_code">
+ [% IF ( letters ) %] <p><label for="letter_code">Reclamo a través de aviso: </label><select name="letter_code" id="letter_code">
  [% FOREACH letter IN letters %] <option value="[% letter.code %]">[% letter.name %]</option>
  [% END %] </select>
  </p>
@@ -81,10 +81,10 @@ $(document).ready(function() {
  [% lateorder.unitpricesupplier %]x[% lateorder.quantity %] = [% lateorder.subtotal %] <p title="presupuesto">[% lateorder.budget %]</p>
  </td>
  <td>
- <p><a href="basket.pl?basketno=[% lateorder.basketno %]" title="canasta">
+ <p><a href="basket.pl?basketno=[% lateorder.basketno %]" title="cesta">
  [% lateorder.basketno %] </a>
  </p>
- <p title="sede">[% lateorder.branch %]</p>
+ <p title="biblioteca">[% lateorder.branch %]</p>
  </td>
  <td>[% lateorder.claims_count %]</td>
  <td>[% lateorder.claimed_date %]</td>
@@ -121,7 +121,7 @@ $(document).ready(function() {
 <h4>Filtrar resultados:</h4>
 [% FOREACH ERROR_LOO IN ERROR_LOOP %] [% IF ( ERROR_LOO.delay_digits ) %]<p class="error">El número de días ([% ERROR_LOO.bad_delay %]) debe ser un número entre 0 y 999.</p>[% END %] [% END %] <ol>
  <li><label for="delay">Fecha de pedido:</label><input size="3" maxlength="3" id="delay" type="text" name="delay" value="[% delay %]" /> días hace</li>
- <li><label for="from">Estimated delivery date from: </label>
+ <li><label for="from">Fecha de entrega estimada desde:  </label>
  <input type="text" size="10" id="from" name="estimateddeliverydatefrom" value="[% estimateddeliverydatefrom %]" class="datepickerfrom" />
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>

@@ -44,7 +44,7 @@
  [% IF ( itemtags ) %]
  <tr>
  <td>Etiqueta del ítem</td>
- <td>Hay mas de 1 etiqueta MARC relacionada con el campo (10) de los ítems: [% itemtags %]</td>
+ <td>Hay más de 1 etiqueta MARC relacionada con el campo (10) de los ítems: [% itemtags %]</td>
  </tr>
  [% ELSE %] <tr>
  <td>OK</td>
@@ -55,9 +55,9 @@
 [% IF ( itemtype ) %]
  <tr>
  <td>el tipo de ítem no está mapeado</td>
- <td>el campo biblioitems.itemtype DEBE :<br />
+ <td>el biblioitems.itemtype DEBE :<br />
  <ul><li>tiene que ser mapeado a un subcampo MARC, </li>
- <li>el subcampo correspondiente DEBE tener authorised_value=itemtype</li></ul></td>
+ <li>el subcampo correspondiente MUST tener authorised_value=itemtype</li></ul></td>
  </tr>
 [% ELSE %] <tr>
  <td>OK</td>
@@ -67,27 +67,27 @@
 <!-- -->
 [% IF ( branch ) %]
  <tr>
- <td>sede central NO mapeada</td>
- <td>el campo items.homebranch DEBE:<br />
+ <td>biblioteca central NO mapeada</td>
+ <td>el items.homebranch campo DEBE:<br />
  <ul><li>tiene que ser mapeado a un subcampo MARC,</li>
- <li>el subcampo correspondiente DEBE tener authorised_value=branches</li></ul></td>
+ <li>el subcampo correspondiente MUST tener authorised_value=branches</li></ul></td>
  </tr>
 [% ELSE %] <tr>
  <td>OK</td>
- <td>sede propietaria definida</td>
+ <td>biblioteca propietaria definida</td>
  </tr>
 [% END %]
 <!-- -->
 [% IF ( holdingbranch ) %]
  <tr>
- <td>la sede NO está mapeada</td>
- <td>el campo items.holdingbranch DEBE:<br />
+ <td>la biblioteca NO está mapeada</td>
+ <td>el items.holdingbranch campo DEBE :<br />
  <ul><li>tiene que ser mapeado a un subcampo MARC, </li>
- <li>el subcampo correspondiente DEBE tener authorised_value=branches</li></ul></td>
+ <li>el subcampo correspondiente MUST tener authorised_value=branches</li></ul></td>
  </tr>
 [% ELSE %] <tr>
  <td>OK</td>
- <td>sede definida</td>
+ <td>biblioteca definida</td>
  </tr>
 [% END %]
 <!-- -->
@@ -123,7 +123,7 @@
  <td>biblionumber y biblioitemnumber mapeados correctamente</td>
  </tr>
 [% END %] [% IF ( frameworknull ) %] <tr>
- <td>valores del formato</td>
+ <td>valores de la plantilla de trabajo</td>
  <td>hay un valor nulo en un código de la hoja de trabajo. Compruebe las tablas siguientes<br />
  <li>select * from marc_subfield_structure where frameworkcode is NULL</li>
  <li>select * from marc_tag_structure where frameworkcode is NULL</li>
@@ -134,7 +134,7 @@
  <td>ningún valor NULO en el código de la hoja de trabajo</td>
  </tr>
  [% END %] [% IF ( inconsistent_tabs ) %] <tr>
- <td style="vertical-align:top;">subcampos no en la misma pestañas</td>
+ <td style="vertical-align:top;">subcampos que no están  en la misma pestañas</td>
  <td>No todos los subcampos de los siguientes campos se encuentran en la misma pestaña (o marcados como 'ignorado'). <table>
  <tr>
  <th>Código</th>
@@ -145,7 +145,7 @@
  [% FOREACH tab_inf IN tab_info %] <tr>
  <td>[% tab_inf.frameworkcode %]</td>
  [% IF ( tab_inf.frameworkcode ) %] <td>[% tab_inf.frameworktext %]</td>
- [% ELSE %] <td>Hoja de trabajo predeterminada</td>
+ [% ELSE %] <td>Plantilla predeterminada</td>
  [% END %] <td>[% tab_inf.tagfield %]</td>
  <td>[% tab_inf.tabs %]</td>
  </tr>
@@ -169,7 +169,7 @@
  [% FOREACH authtypecode_inf IN authtypecode_info %] <tr>
  <td>[% authtypecode_inf.frameworkcode %]</td>
  [% IF ( authtypecode_inf.frameworkcode ) %] <td>[% authtypecode_inf.frameworktext %]</td>
- [% ELSE %] <td>Hoja de trabajo predeterminada</td>
+ [% ELSE %] <td>Plantilla predeterminada</td>
  [% END %] <td>[% authtypecode_inf.tagfield %]</td>
  <td>[% authtypecode_inf.tagsubfield %]</td>
  <td>[% authtypecode_inf.authtypecode %]</td>

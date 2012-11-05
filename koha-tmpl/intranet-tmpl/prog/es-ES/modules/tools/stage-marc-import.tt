@@ -8,6 +8,13 @@
 //<![CDATA[
 $(document).ready(function(){
 	$("#processfile").hide();
+    $("#record_type").change(function() {
+        if ($(this).val() == 'auth') {
+            $('#items').hide();
+        } else {
+            $('#items').show();
+        }
+    });
 });
 function CheckForm(f) {
     if ($("#fileToUpload").value == '') {
@@ -33,20 +40,22 @@ function CheckForm(f) {
 <h1>Registros preparados MARC para importar</h1>
 [% IF ( uploadmarc ) %] <p>Resultados de preparación MARC:</p>
 <ul>
- <li>[% total %] registros en el archivo</li>
+ [% SWITCH (record_type) %] [% CASE 'biblio' %] <li>Processing bibliographic records</li>
+ [% CASE 'auth' %] <li>Processing authority records</li>
+ [% END %] <li>[% total %] registros en el archivo</li>
  <li>[% import_errors %] registros no preparados debido a error MARC</li>
  <li>[% staged %] registros preparados</li>
  [% IF ( checked_matches ) %] <li>[% matched %] registros con al menos una coincidencia en el catálogo por regla de coincidencia &quot;[% matcher_code %]&quot;</li>
  [% ELSE %] [% IF ( matcher_failed ) %] <li>Fallo en coincidencia de registro -- imposible obtener regla de coincidencia.</li>
  [% ELSE %] <li>No se comprobaron coincidencias con los registros existentes en el catálogo</li>
- [% END %] [% END %] <li>[% num_items %] registros procesados</li>
+ [% END %] [% END %] <li>[% num_items %] ítems encontrados y preparados</li>
  [% IF ( label_batch ) %] <li>Nuevo lote de procesamiento de etiquetas: nro.[% label_batch %] </li>
  [% END %] <li><a href="/cgi-bin/koha/tools/manage-marc-import.pl?import_batch_id=[% import_batch_id %]">Administrar registros preparados</a></li>
  <li><a href="/cgi-bin/koha/tools/tools-home.pl">Volver</a></li>
 </ul>
 [% ELSE %] <ul>
  <li>Seleccione un archivo MARC para preparar en el depósito. Será procesado y cada registro válido será preparado para su posterior uso en el catálogo.</li>
- <li>Puede introducir un nombre para esta importación. Puede ser útil, cuando se crea un registro, para recordar de dónde vienen los datos de MARC sugeridos!</li>
+ <li>You can enter a name for this import. It may be useful, when creating a record, to remember where the suggested MARC data comes from!</li>
 </ul>
 <form method="post" action="[% SCRIPT_NAME %]" id="uploadfile" enctype="multipart/form-data">
 <fieldset class="rows" id="uploadform">
@@ -76,6 +85,13 @@ function CheckForm(f) {
  
  </li>
  <li>
+ <label for='record_type'>Record type:</label>
+ <select name='record_type' id='record_type'>
+ <option value='biblio' selected='selected'>Bibliographic</option>
+ <option value='auth'>Authority</option>
+ </select>
+ </li>
+ <li>
  <label for="encoding">Codificación de caracteres: </label>
  <select name="encoding" id="encoding"><option value="utf8" selected="selected">UTF-8 (Predeterminado)</option><option value="MARC-8">MARC 8</option><option value="ISO_5426">ISO 5426</option><option value="ISO_6937">ISO 6937</option><option value=ISO_8859-1">ISO 8859-1</option><option value="EUC-KR">EUC-KR</option></select>
  </li>
@@ -88,13 +104,13 @@ function CheckForm(f) {
  [% FOREACH available_matcher IN available_matchers %] <option value="[% available_matcher.matcher_id %]">[% available_matcher.code %] ([% available_matcher.description %]) </option>
  [% END %] </select>
  </li>
- <li><label for="overlay_action">Acción en caso de registro bibliográfico coincidente encontrado: </label>
+ <li><label for="overlay_action">Action if matching record found: </label>
  [% INCLUDE 'tools-overlay-action.inc' %] </li>
  <li><label for="nomatch_action">Acción si no se encontró coincidencia: </label>
  [% INCLUDE 'tools-nomatch-action.inc' %] </li>
  </ol>
  </fieldset>
- <fieldset class="rows">
+ <fieldset class="rows" id="items">
  <legend>¿Verificar datos de ejemplar embebidos?</legend>
  <ol>
  <li class="radio">

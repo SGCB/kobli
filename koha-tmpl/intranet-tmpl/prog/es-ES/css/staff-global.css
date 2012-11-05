@@ -128,22 +128,6 @@ em strong {
     font-style : italic;
 }
 
-#navigation {
-	border-right : 1px solid #BCBCBC;
-}
-
-#navigation li {
-	font-weight : bold;
-}
-
-#navigation li li {
-	font-weight : normal;
-}
-
-#navigation input {
-	font-size : 85%;
-}
-
 #navmenulist li {
 	padding : .2em 0;
 	list-style-image : url("../../img/arrow-bullet.gif");
@@ -158,7 +142,7 @@ em strong {
 	padding-top : 1em;
 }
 
-#login	 {
+#login_controls	 {
 	position : absolute;
 	right : .5em;
 }
@@ -189,7 +173,6 @@ ol li {
 }
 
 #header a.toplinks {
-    #color: #ffffff;
     font-weight: bold;
 }
 
@@ -635,8 +618,9 @@ fieldset.rows label, fieldset.rows span.label {
 }
 
 fieldset.rows fieldset {
+    background-color: #FFF;
 	border-width : 1px;
-	margin : 0 0 .5em 0;
+    margin : 1em;
 	padding : .3em;
 }
 
@@ -727,12 +711,17 @@ fieldset.rows label.yesno {
 }
 
 fieldset.action, div.action {
+    background-color: transparent;
 	clear : both;
 	float : none;
     border : 0px;
   margin: 0;
      padding: .4em .4em .4em .1em;
   width: auto;
+}
+
+div.rows+div.rows {
+    margin-top : .6em;
 }
 
 div.rows {
@@ -1161,6 +1150,7 @@ td input.approve {
 
 div.dialog {
 	border: 1px solid #bcbcbc;
+    text-align : center;
 }
 
 div.alert {
@@ -1180,13 +1170,18 @@ div.alert strong {
 	color : #900;
 }
 
-div.dialog {
-  background : #FFC url(../../img/dialog-bg.gif) repeat-x left 0;
-  text-align : center;
+.dialog li {
+    list-style-position:inside;
 }
 
-.dialog li {
- list-style-position:inside;
+a.clear-field {
+    background : transparent url("../../img/clear-field.png") center left no-repeat;
+    padding-left : 16px;
+}
+
+a.clone-field {
+    background : transparent url("../../img/clone-field.png") center left no-repeat;
+    padding-left : 20px;
 }
 
 a.document {
@@ -1263,6 +1258,10 @@ div.note {
 span.required {
 	font-style : italic;
 	margin-left : .5em;
+}
+
+.missing{
+    background-color : #FFFFCC;
 }
 
 .term {
@@ -2114,6 +2113,7 @@ div.pager {
 	background-color : #E8E8E8;
 	border : 1px solid #BCBCBC;
 	-moz-border-radius : 5px;
+    border-radius : 5px;
 	display : inline-block;
 	font-size : 85%;
 	padding : .3em .5em .3em .5em;
@@ -2139,18 +2139,6 @@ a.localimage img {
 }
 div.pager p {
 	margin: 0;
-
-form#f_pop  ul {
-    list-style-type: none;
-}
-form#f_pop ul li {
-    list-style-type: none;
-    padding-top: 10px;
-    font-family: tahoma, verdana, arial;
-    font-size: 12px;
-}
-form#f_pop table {
-    float: left;
 }
 
 div#acqui_order_supplierlist > div.supplier {
@@ -2173,12 +2161,38 @@ div#acqui_order_supplierlist > div.supplier > div.baskets {
     margin-top: 0.5em;
 }
 
-/* jQuery UI Autocomplete */
+/* Override core jQueryUI widgets */
+.ui-widget-content { border: 1px solid #B9D8D9; background: #ffffff none; color: #222222; }
+.ui-widget-header { border: 1px solid #B9D8D9; background: #E6F0F2 none; color: #222222; font-weight: bold; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #B9D8D9; background: #F4F8F9 none; font-weight: normal; color: #555555; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #B9D8D9; background: #E6F0F2 none; font-weight: normal; color: #212121; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #aaaaaa; background: #ffffff none; font-weight: normal; color: #212121; }
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  {border: 1px solid #FED22F; background: #FFF4C6; color: #363636; }
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {border: 1px solid #cd0a0a; background: #fef1ec; color: #cd0a0a; }
 
-
-
+/* Override jQuery Autocomplete */
+.ui-autocomplete {
+    position: absolute;
+    cursor: default;
+    -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+    -moz-box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+    box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+}
+.ui-autocomplete.ui-widget-content .ui-state-hover {
+    border: 1px solid #B9D8D9;
+    background: #E6F0F2 none;
+    font-weight: normal;
+    color: #212121;
+}
+.ui-autocomplete-loading {
+    background: #FFF url("../../img/loading-small.gif") right center no-repeat;
+}
 
 /* jQuery UI standard tabs */
+.ui-menu li {
+    list-style:none;
+}
+
 .ui-tabs-nav .ui-tabs-selected a,
 .ui-tabs-nav a:hover,
 .ui-tabs-nav a:focus,
@@ -2365,7 +2379,106 @@ ul.ui-tabs-nav li {
     font-style: italic;
 }
 
+#authfinderops {
+    float: right;
+}
+div.authorizedheading {
+  font-weight: bold;
+}
+.authres_notes, .authres_seealso, .authres_otherscript {
+  padding-top: 3px;
+}
+.authres_notes {
+  font-style: italic;
+}
+
+
+.contents {
+    width: 75%;
+}
+
+.contentblock {
+    position: relative;
+    margin-left: 2em;
+}
+
+.contents .t:first-child:before {
+    content: "→ ";
+}
+
+.contents .t:before {
+    content: "\A→ ";
+    white-space: pre;
+}
+
+.contents .t {
+    font-weight: bold;
+    display: inline;
+}
+
+.contents .r {
+    display: inline;
+}
+
+#hierarchies a {
+    font-weight: normal;
+    text-decoration: underline;
+    color: #069;
+}
+
+#hierarchies a:hover {
+    color: #990033;
+}
+
+#didyoumeanopac, #didyoumeanintranet {
+    float: left;
+    width: 260px;
+}
+
+.pluginlist {
+    padding-bottom: 10px;
+}
+.plugin {
+    margin: 0 1em 1em 0;
+}
+.pluginname {
+    margin: 0.3em;
+    padding-bottom: 4px;
+    padding-left: 0.2em;
+    background-color: #E6F0F2;
+}
+.pluginname .ui-icon {
+    float: right;
+}
+.plugindesc {
+    padding: 0.4em;
+}
+.ui-sortable-placeholder {
+    border: 1px dotted black;
+    visibility: visible !important;
+    height: 80px !important;
+}
+.ui-sortable-placeholder * {
+    visibility: hidden;
+}
+
 /* jQuery UI Datepicker */
+.ui-datepicker table {
+    width: 100%;
+    font-size: .9em;
+    border : 0;
+    border-collapse: collapse;
+    margin:0 0 .4em;
+}
+
+.ui-datepicker th {
+    background : transparent none;
+    padding: .7em .3em;
+    text-align: center;
+    font-weight: bold;
+    border: 0;
+}
+
 .ui-datepicker-trigger {
     vertical-align: middle;
     margin : 0 3px;
@@ -2376,13 +2489,20 @@ ul.ui-tabs-nav li {
     box-shadow: 1px 1px 3px 0 #666;
 }
 
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
 ul.doc-biblio{}
 ul.doc-biblio li{
     list-style:none;
     float:left;
     width:100%;
-    padding:5px 0;
-}
+    padding:5px 0;}
 
 .uploadfile {
     text-align:center;

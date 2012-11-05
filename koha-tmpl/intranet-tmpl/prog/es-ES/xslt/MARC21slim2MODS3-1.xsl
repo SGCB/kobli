@@ -352,7 +352,7 @@ Added Log Comment
  <genre authority="marc">legislación</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'m')">
- <genre authority="marc">tesis</genre>
+ <genre authority="marc">tesinas</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'n')">
  <genre authority="marc">revisión de literatura</genre>
@@ -2333,7 +2333,7 @@ Added Log Comment
  <xsl:when test="not(contains($usedLanguages, $currentLanguage))">
  <language>
  <xsl:if test="@code!='a'">
- <xsl:attribute name="objectPart"><xsl:choose><xsl:when test="@code='b'">resumen o subtítulo</xsl:when><xsl:when test="@code='d'">texto cantado o hablado</xsl:when><xsl:when test="@code='e'">libreto</xsl:when><xsl:when test="@code='f'">índice</xsl:when><xsl:when test="@code='g'">material adjunto</xsl:when><xsl:when test="@code='h'">traducción</xsl:when></xsl:choose></xsl:attribute>
+ <xsl:attribute name="objectPart"><xsl:choose><xsl:when test="@code='b'">resumen o subtítulo</xsl:when><xsl:when test="@code='d'">texto cantado o hablado</xsl:when><xsl:when test="@code='e'">libreto</xsl:when><xsl:when test="@code='f'">tabla de contenidos</xsl:when><xsl:when test="@code='g'">material adjunto</xsl:when><xsl:when test="@code='h'">traducción</xsl:when></xsl:choose></xsl:attribute>
  </xsl:if>
  <languageTerm authority="iso639-2b" type="code">
  <xsl:value-of select="$currentLanguage"/>
@@ -2391,7 +2391,7 @@ Added Log Comment
  <xsl:if test="not(contains($usedLanguages,$currentLanguage))">
  <language>
  <xsl:if test="@code!='a'">
- <xsl:attribute name="objectPart"><xsl:choose><xsl:when test="@code='b'">resumen o subtítulo</xsl:when><xsl:when test="@code='d'">texto cantado o hablado</xsl:when><xsl:when test="@code='e'">libreto</xsl:when><xsl:when test="@code='f'">índice</xsl:when><xsl:when test="@code='g'">material adjunto</xsl:when><xsl:when test="@code='h'">traducción</xsl:when></xsl:choose></xsl:attribute>
+ <xsl:attribute name="objectPart"><xsl:choose><xsl:when test="@code='b'">resumen o subtítulo</xsl:when><xsl:when test="@code='d'">texto cantado o hablado</xsl:when><xsl:when test="@code='e'">libreto</xsl:when><xsl:when test="@code='f'">tabla de contenidos</xsl:when><xsl:when test="@code='g'">material adjunto</xsl:when><xsl:when test="@code='h'">traducción</xsl:when></xsl:choose></xsl:attribute>
  </xsl:if>
  <languageTerm authority="rfc3066" type="code">
  <xsl:value-of select="$currentLanguage"/>

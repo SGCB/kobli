@@ -1,5 +1,5 @@
 <div id="search-facets">
-<h4>Refine su búsqueda</h4>
+<h4>Refina su búsqueda</h4>
 <form method="get" action="/cgi-bin/koha/opac-topissues.pl">
  <fieldset>
  <ol> <li><label for="limit">Mostrar los primeros </label> <select name="limit" id="limit" style="width: 10em;">
@@ -14,7 +14,7 @@
  </li>
  <li><label for="itemtype">Limitar a: </label>
  <select name="itemtype" id="itemtype" style="width: 10em;">
- [% IF ( ccodesearch ) %]<option value="">Todas las colecciones</option>[% ELSE %]<option value="">Todos los tipos de ítem</option>[% END %] [% FOREACH itemtypeloo IN itemtypeloop %] [% IF ( itemtypeloo.selected ) %]<option value="[% itemtypeloo.value %]" selected="selected">[% ELSE %]<option value="[% itemtypeloo.value %]">[% END %] [% itemtypeloo.description %] </option>
+ [% IF ( ccodesearch ) %]<option value="">Todas las colecciones</option>[% ELSE %]<option value="">Todos los tipos de ítems</option>[% END %] [% FOREACH itemtypeloo IN itemtypeloop %] [% IF ( itemtypeloo.selected ) %]<option value="[% itemtypeloo.value %]" selected="selected">[% ELSE %]<option value="[% itemtypeloo.value %]">[% END %] [% itemtypeloo.description %] </option>
  [% END %] </select></li>
  <li>
  <label for="timeLimit">Adquirido en los últimos:</label> <select name="timeLimit" id="timeLimit">

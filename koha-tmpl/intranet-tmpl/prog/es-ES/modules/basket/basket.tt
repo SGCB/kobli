@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Catálogo [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha en línea[% END %] &rsaquo; Su carrito</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>[% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Kobli online[% END %] Catálogo &rsaquo; Su cesta</title>
  [% IF ( print_basket ) %] <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="[% IF ( IntranetFavicon ) %][% IntranetFavicon %][% ELSE %][% themelang %]/includes/favicon.ico[% END %]" type="image/x-icon" />
 <meta http-equiv="Content-Language" content="en-us" />
@@ -76,7 +76,7 @@ function placeHold () {
  [% END %] </head>
 [% IF ( print_basket ) %]<body id="cart_basket" class="cart" onload="print();history.back();">[% ELSE %]<body id="cart_basket" class="cart">[% END %] <div id="doc" class="yui-t7">
 <div class="container">
-[% UNLESS ( print_basket ) %] <h1>Su carrito</h1>
+[% UNLESS ( print_basket ) %] <h1>Su cesta</h1>
 
 <div id="toolbar">
 <ul class="toolbar">

@@ -4,6 +4,28 @@
 //<![CDATA[
     function Check(form) {
         [% IF (AcqCreateItemReceiving) %]
+            var total_errors=0;
+            $("input[name='mandatory'],select[name='mandatory']").each(function(i){
+                if($(this).val() == 1){
+                    var mandatory_field = $("input[name='field_value'],select[name='field_value']").eq(i);
+                    if(mandatory_field.val() == ''){
+                        mandatory_field.addClass("missing");
+                        total_errors++;
+                    }
+                }
+            });
+
+            var alertString;
+            if (total_errors==0) {
+                return true;
+            } else {
+                alertString  = _("El formulario no fue procesado debido a los siguientes problemas");
+                alertString += "\n------------------------------------------------------------------------------------\n";
+                alertString += "\n- "+ total_errors+_(" campos obligatorios vacíos (resaltados)");
+                alert(alertString);
+                return false;
+            }
+
             // Remove last itemblock if it is not in items_list
             var lastitemblock = $("#outeritemblock > div:last");
             var tobedeleted = true;
@@ -143,8 +165,8 @@
  <th>&nbsp;</th>
  <th>&nbsp;</th>
  <th>Código de barras</th>
- <th>Sede de origen</th>
- <th>Sede de la reserva</th>
+ <th>Biblioteca de origen</th>
+ <th>Biblioteca de la reserva</th>
  <th>No para préstamo</th>
  <th>Suspendido:</th>
  <th>Ubicación</th>
@@ -174,11 +196,11 @@
  <table>
  <thead>
  <tr>
- <th>Receive?</th>
+ <th>¿Recibir?</th>
  <th>&nbsp;</th>
  <th>Código de barras</th>
- <th>Sede de origen</th>
- <th>Sede de la reserva</th>
+ <th>Biblioteca de origen</th>
+ <th>Biblioteca de la reserva</th>
  <th>No para préstamo</th>
  <th>Suspendido:</th>
  <th>Ubicación</th>
@@ -213,12 +235,12 @@
  </table>
  </div>
  [% END %] [% END %] <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
+ <input type="hidden" name="invoiceid" value="[% invoiceid %]" />
  <input type="hidden" name="ordernumber" value="[% ordernumber %]" />
  <input type="hidden" name="biblioitemnumber" value="[% biblioitemnumber %]" />
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  <input type="hidden" name="datereceived" value="[% datereceived_iso %]" />
- <input type="hidden" name="freight" value="[% freight %]" />
- <input type="hidden" name="gst" value="[% gst %]" />
+ <input type="hidden" name="gstrate" value="[% gstrate %]" />
  </div>
  <div class="yui-u">
  <fieldset class="rows">
@@ -242,8 +264,7 @@
  [% ELSE %] <input type="text" size="20" id="quantity" name="quantityrec" value="1" />
  [% END %] <input id="origquantityrec" READONLY type="hidden" name="origquantityrec" value="0" />
  [% END %] <div id="qtyrecerror" style="display:none">
- <p class="error">Warning, you have entered more items than expected.
- Items will not be created.</p>
+ <p class="error">Advertencia, ha introducido más ítems de lo esperado.Ítems no pueden ser creados.</p>
  </div>
  [% END %][%# IF (AcqCreateItemReceiving) %] </li>
  <li><label for="rrp">Costo de reposición: </label><input type="text" size="20" name="rrp" id="rrp" value="[% rrp %]" /></li>
@@ -253,13 +274,12 @@
  [% ELSE %] <input type="text" size="20" name="cost" id="cost" value="[% ecost %]" />
  [% END %]</li></ol>
  <label for="note">Notas: </label><textarea name="note" width="40" rows="8" >[% notes %]</textarea>
- <input type="hidden" name="invoice" value="[% invoice %]" />
  </fieldset>
 
 </div>
 </div><div class="yui-g"><fieldset class="action">
  <input value="Guardar" type="submit" />
- <a class="cancel" href="/cgi-bin/koha/acqui/parcel.pl?booksellerid=[% supplierid %]&amp;invoice=[% invoice %]&amp;gst=[% gst %]&amp;freight=[% freight %]">Cancelar</a>
+ <a class="cancel" href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% invoiceid %]">Cancelar</a>
 </fieldset></div> </form>
 [% ELSE %] <div id="acqui_acquire_orderlist">
  <table>
@@ -274,7 +294,7 @@
  [% FOREACH loo IN loop %] <tr>
  <td>[% loo.basketno %]</td>
  <td>[% loo.isbn %]</td>
- <td><a href="orderreceive.pl?datereceived=[% loo.datereceived %]&amp;receive=[% loo.ordernumber %]&amp;biblio=[% loo.biblionumber %]&amp;invoice=[% loo.invoice %]&amp;freight=[% loo.freight %]&amp;gst=[% loo.gst %]&amp;id=[% loo.id %]">[% loo.title |html %]</a></td>
+ <td><a href="orderreceive.pl?ordernumber=[% loo.ordernumber %]&amp;invoiceid=[% invoiceid %]">[% loo.title |html %]</a></td>
  <td>[% loo.author %]</td>
  <td>[% loo.quantity %]</td>
  <td>[% loo.quantityreceived %]</td>

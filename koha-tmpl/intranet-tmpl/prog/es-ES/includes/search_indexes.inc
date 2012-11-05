@@ -13,7 +13,10 @@
  <option value="se">&nbsp;&nbsp;&nbsp;&nbsp; Título de la serie</option>
  <option value="su">Tema</option>
  <option value="su,phr">&nbsp;&nbsp;&nbsp;&nbsp; Tema como frase</option>
- <option value="bc">Código de barras</option>
+ [% IF ( expanded_options ) %] <option value="su-br">&nbsp;&nbsp;&nbsp;&nbsp; Subject and broader terms</option>
+ <option value="su-na">&nbsp;&nbsp;&nbsp;&nbsp; Subject and narrower terms</option>
+ <option value="su-rl">&nbsp;&nbsp;&nbsp;&nbsp; Subject and related terms</option>
+ [% END %] <option value="bc">Código de barras</option>
  <option value="location">Ubicación en estantería</option>
  <option value="sn">Numero estándar</option>
  <option value="nb">&nbsp;&nbsp;&nbsp;&nbsp; ISBN</option>
@@ -21,8 +24,8 @@
  <option value="callnum">&nbsp;&nbsp;&nbsp;&nbsp; Número de clasificación</option>
  <option value="ln,rtrn">Idioma</option>
  <option value="nt">Notas/comentarios</option>
- <option value="curriculum">Currículum</option>
- <option value="pb">Editor</option>
+ [% IF (marcflavour != 'UNIMARC' ) %] <option value="curriculum">Currículum</option>
+ [% END %] <option value="pb">Editor</option>
  <option value="pl">Ubicación de editorial</option>
  <option value="yr">Fecha de publicación (aaaa)</option>
  <option value="acqdate">Fecha de adquisición (aaaa-mm-dd)</option>

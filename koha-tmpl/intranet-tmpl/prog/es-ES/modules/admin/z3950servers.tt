@@ -200,7 +200,7 @@
  </tr></thead>
  <tbody>[% FOREACH loo IN loop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
  [% ELSE %] <tr>
- [% END %] <td><a href="[% loo.script_name %]?op=add_form&amp;searchfield=[% loo.name |url %]">[% loo.name %]</a></td><td>[% loo.host %]:[% loo.port %]</td><td>[% loo.db %]</td><td>[% loo.userid %]</td><td>[% loo.password %]</td><td>[% IF ( loo.checked ) %]Si[% ELSE %]No[% END %]</td><td>[% loo.rank %]</td> <td>[% loo.syntax %]</td><td>[% loo.encoding %]</td><td>[% loo.timeout %]</td><td><a href="[% loo.script_name %]?op=add_form&amp;searchfield=[% loo.name |url %]">Editar</a></td><td><a href="[% loo.script_name %]?op=delete_confirm&amp;searchfield=[% loo.name |url %]">Borrar</a></td> </tr>
+ [% END %] <td><a href="[% loo.script_name %]?op=add_form&amp;searchfield=[% loo.name |url %]">[% loo.name %]</a></td><td>[% loo.host %]:[% loo.port %]</td><td>[% loo.db %]</td><td>[% loo.userid %]</td><td>[% loo.password %]</td><td>[% IF ( loo.checked ) %]Si[% ELSE %]No[% END %]</td><td>[% loo.rank %]</td> <td>[% loo.syntax %]</td><td>[% loo.encoding %]</td><td>[% loo.timeout %]</td><td><a href="[% loo.script_name %]?op=add_form&amp;searchfield=[% loo.name |url %]">Editar</a></td><td><a href="[% loo.script_name %]?op=delete_confirm&amp;searchfield=[% loo.name |url %]">Eliminar</a></td> </tr>
  [% END %]</tbody>
  </table>
 

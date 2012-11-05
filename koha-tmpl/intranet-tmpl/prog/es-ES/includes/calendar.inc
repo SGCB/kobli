@@ -1,5 +1,26 @@
 <script type="text/javascript">
 //<![CDATA[
+
+var debug    = "[% debug %]";
+var dformat  = "[% dateformat %]";
+var sentmsg = 0;
+if (debug > 1) {alert("dateformat: " + dformat + "\ndebug is on (level " + debug + ")");}
+
+function Date_from_syspref(dstring) {
+        var dateX = dstring.split(/[-/]/);
+        if (debug > 1 && sentmsg < 1) {sentmsg++; alert("Date_from_syspref(" + dstring + ") splits to:\n" + dateX.join("\n"));}
+        if (dformat === "iso") {
+                return new Date(dateX[0], (dateX[1] - 1), dateX[2]);  // YYYY-MM-DD to (YYYY,m(0-11),d)
+        } else if (dformat === "us") {
+                return new Date(dateX[2], (dateX[0] - 1), dateX[1]);  // MM/DD/YYYY to (YYYY,m(0-11),d)
+        } else if (dformat === "metric") {
+                return new Date(dateX[2], (dateX[1] - 1), dateX[0]);  // DD/MM/YYYY to (YYYY,m(0-11),d)
+        } else {
+                if (debug > 0) {alert("KOHA ERROR - Unrecognized date format: " +dformat);}
+                return 0;
+        }
+}
+
 /* Instead of including multiple localization files as you would normally see with
    jQueryUI we expose the localization strings in the default configuration */
 jQuery(function($){
@@ -14,8 +35,8 @@ jQuery(function($){
         _('Jul'), _('Agosto'), _('Set'), _('Oct'), _('Nov'), _('Dic')],
         dayNames: [_('Domingo'), _('Lunes'), _('Martes'), _('Miércoles'), _('Jueves'), _('Viernes'), _('Sábado')],
         dayNamesShort: [_('Dom'), _('Lun'), _('Mar'), _('Mie'), _('Jue'), _('Vie'), _('Sab')],
-        dayNamesMin: [_('Su'),_('Mo'),_('Tu'),_('We'),_('Th'),_('Fr'),_('Sa')],
-        weekHeader: _('Wk'),
+        dayNamesMin: [_('Dom '),_('Lun '),_('Jue '),_('Nosotros'),_('Jue '),_('Fr'),_('Sab ')],
+        weekHeader: _('Semana '),
         dateFormat: '[% IF ( dateformat_us ) %]mm/dd/yy[% ELSIF ( dateformat_metric ) %]dd/mm/yy[% ELSE %]yy-mm-dd[% END %]',
         firstDay: [% CalendarFirstDayOfWeek %],
         isRTL: [% IF ( bidi ) %]true[% ELSE %]false[% END %],

@@ -1,4 +1,4 @@
-[% INCLUDE 'help-top.inc' %] <h1>OAI-PMH Sets Configuration</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Configuración de colecciones OAI-PMH</h1>
 
 <p>En esta página puede crear, modificar y eliminar conjuntos OAI-PMH<p>
 
@@ -7,26 +7,26 @@
 <ol>
  <li>Haga clic en el enlace 'Agregar un nuevo conjunto'</li>
  <li>Rellene los campos obligatorios 'setSpec' y 'setName'</li>
- <li>Then you can add descriptions for this set. To do this click on 'Add description' and fill the newly created text box. You can add as many descriptions as you want.</li>
+ <li>Después  puede agregar descripciones para este conjunto. Para hacerloseleccionar en 'Agregar descripción' y rellene la casilla de texto creada. Puede agregar cuantas descripciones desee.</li>
  <li>Haga clic en al botón  'Guardar'</li>
 </ol>
 
 <h2>Modificar un conjunto</h2>
 
-<p>To modify a set, just click on the link 'Modify' on the same line of the set you want to modify. A form similar to set creation form will appear and allow you to modify the setSpec, setName and descriptions.</p>
+<p>Para modificar un conjunto, seleccione el enlace 'Modificar' en la mísma línea del conjunto que desea modificar. Aparecerá un formulario similar al de creación y le permitirá modificar setSpec, setName y descriptores.</p>
 
 <h2>Eliminar un conjunto</h2>
 
-<p>To delete a set, just click on the link 'Delete' on the same line of the set you want to delete.</p>
+<p>Para eliminar un conjunto, sólo tiene que seleccionar en el enlace 'Eliminar' en la misma línea del conjunto que desea eliminar. </p>
 
 <h2>Defina correspondencias</h2>
 
-<p>The 'Define mappings' link allow you to tell how the set will be build (what records will belong to this set)</p>
+<p>El enlace 'Define mappings'  le permitirá contar cómo se construirá el conjunto (que registros pertenecerán a este conjunto)</p>
 
 <h2>Crear conjuntos</h2>
 
-<p>Once you have configured all your sets, you have to build the sets. This is done by calling the script misc/migration_tools/build_oai_sets.pl.</p>
+<p>Una vez haya configurado todos sus conjuntos, deberá construirlos. Este se hace llamando al script misc/migration_tools/build_oai_sets.pl.</p>
 
-<p><strong>See the full documentation for OAI Sets in the <a href="http://manual.koha-community.org/3.8/en/catadmin.html#oaisetsconfig">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para OAI Sets en la <a href="http://manual.koha-community.org/3.10/en/catadmin.html#oaisetsconfig">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

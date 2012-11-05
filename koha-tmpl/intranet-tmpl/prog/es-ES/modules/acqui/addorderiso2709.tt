@@ -47,7 +47,7 @@
  Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %] <span class="current">[% page.page_number %]</span>
  [% ELSE %] <a class="nav" href="[% page.script_name %]?import_batch_id=[% page.import_batch_id %]&amp;offset=[% page.offset %]">[% page.page_number %]</a>
  [% END %] [% END %] [% END %] [% ELSE %] <div>
- <h1>Seleccione el archivo que desea agregar a la canasta</h1>
+ <h1>Seleccione el archivo que desea agregar a la cesta</h1>
  <table id="files">
  <thead>
  <tr>
@@ -116,7 +116,7 @@
  [% IF ( close ) %] <span class="label">Presupuesto: </span>
  <input type="hidden" size="20" name="budget_id" id="budget_id" value="[% budget_id %]" />[% Budget_name %] [% ELSE %] <li>
  <label for="currency">Moneda:</label>
- <select name="currency" id="currency" onchange="calcNeworderTotal();">
+ <select name="currency" id="currency">
  [% FOREACH loop_currencie IN loop_currencies %] [% IF ( loop_currencie.selected ) %]<option value="[% loop_currencie.currcode %]" selected="selected">[% loop_currencie.currcode %]</option>[% ELSE %]<option value="[% loop_currencie.currcode %]">[% loop_currencie.currcode %]</option>[% END %][% END %] </select>
  </li>
  <li>
@@ -133,22 +133,24 @@
  </li>
  <li><div class="hint">Los siguientes 2 campos están disponibles para su propio uso. Ellos pueden ser útiles para propósitos estadísticos</div>
  <label for="sort1">Planificación valor1: </label>
-
+ <span id="sort1_zone">
  [% IF CGIsort1 %] <select id="sort1" size="1" name="sort1">
  [% FOREACH sort_opt IN CGIsort1 %] [% IF sort_opt.default %] <option value="[% sort_opt.id %]" selected="selected">[% sort_opt.label %]</option>
  [% ELSE %] <option value="[% sort_opt.id %]">[% sort_opt.label %]</option>
  [% END %] [% END %] </select>
  [% ELSE %] <input type="text" id="sort1" size="20" name="sort1" value="[% sort1 %]" />
- [% END %] </li>
+ [% END %] </span>
+ </li>
  <li>
  <label for="sort2">Planificación valor2: </label>
-
+ <span id="sort2_zone">
  [% IF CGIsort2 %] <select id="sort2" size="1" name="sort1">
  [% FOREACH sort_opt IN CGIsort2 %] [% IF sort_opt.default %] <option value="[% sort_opt.id %]" selected="selected">[% sort_opt.label %]</option>
  [% ELSE %] <option value="[% sort_opt.id %]">[% sort_opt.label %]</option>
  [% END %] [% END %] </select>
  [% ELSE %] <input type="text" id="sort2" size="20" name="sort2" value="[% sort2 %]" />
- [% END %] </li>
+ [% END %] </span>
+ </li>
  <li>
  
  </li>

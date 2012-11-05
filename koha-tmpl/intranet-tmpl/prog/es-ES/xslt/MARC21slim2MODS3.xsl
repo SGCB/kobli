@@ -377,7 +377,7 @@ Added Log Comment
  <genre authority="marc">legislación</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'m')">
- <genre authority="marc">tesis</genre>
+ <genre authority="marc">tesinas</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'n')">
  <genre authority="marc">revisión de literatura</genre>

@@ -38,16 +38,16 @@ function search_member(subscriptionid){
 [% IF memberloop %] <li><span class="label">Destinatarios:</span><table style="clear:none;margin:0;">
  <tr><th>Nombre</th>
  <th>Orden</th>
- <th>Borrar</th>
+ <th>Eliminar</th>
  </tr>
  [% USE m_loop = iterator(memberloop) %] [% FOREACH member IN m_loop %] <tr><td>[% member.name %]</td>
  <td>
- <select name="itemrank" onchange="reorder_item([%- subscriptionid -%], [%- member.routingid -%], this.option[this.selectedIndex].value)">
+ <select name="itemrank" onchange="reorder_item([%- subscriptionid -%], [%- member.routingid -%], this.value)">
  [% rankings = [1 .. m_loop.size] %] [% FOREACH r IN rankings %] [% IF r == member.ranking %] <option selected="selected" value="[% r %]">[% r %]</option>
  [% ELSE %] <option value="[% r %]">[% r %]</option>
  [% END %] [% END %] </select>
  </td>
- <td><a href="/cgi-bin/koha/serials/routing.pl?routingid=[% member.routingid %]&amp;subscriptionid=[% subscriptionid %]&amp;op=delete">Borrar</a></td>
+ <td><a href="/cgi-bin/koha/serials/routing.pl?routingid=[% member.routingid %]&amp;subscriptionid=[% subscriptionid %]&amp;op=delete">Eliminar</a></td>
  </tr>
  [% END %] </table><p style="margin-left:10em;"><a onclick="search_member([% subscriptionid %]); return false"
 href="/cgi-bin/koha/serials/member-search.pl?subscriptionid=[% subscriptionid %]" class="button">Agregar destinatarios</a> &nbsp; <a

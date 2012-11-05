@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title> RECIBO </title>
+<title> RECEIPT </title>
 
 <script language="JavaScript" type="text/javascript">
 x = 0; 
@@ -36,7 +36,7 @@ function closeNow()
 
 <!-- begin code Mamata-->
 [% IF ( todayissues ) %]<br>
-<p><b>Prestamos del día</b></p>
+<p><b>Préstamos del día</b></p>
 [% FOREACH todayissue IN todayissues %]<br>
 [% todayissue.title |html %]<br> 
 [% todayissue.author %]<br>

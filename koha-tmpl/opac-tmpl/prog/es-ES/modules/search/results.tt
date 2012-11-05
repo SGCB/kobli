@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %]Catálogo [% ELSE %]Koha en línea[% END %] &rsaquo; [% IF ( searchdesc ) %] Resultados de la búsqueda [% IF ( query_desc ) %]para '[% query_desc | html%]'[% END %][% IF ( limit_desc ) %]&nbsp;con límite(s):&nbsp;'[% limit_desc | html %]'[% END %] [% ELSE %] No especificó un criterio de búsqueda. [% END %] [% INCLUDE 'doc-head-close.inc' %] <link rel="alternate" href="[% OPACBaseurl %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&count=[% countrss |html %]&sort_by=acqdate_dsc&format=rss2" type="application/rss+xml" title="[% LibraryName |html %] Buscar RSS Feed" />
+[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %]Catálogo [% ELSE %]Koha Online[% END %] &rsaquo; [% IF ( searchdesc ) %] Resultados de la búsqueda [% IF ( query_desc ) %]para '[% query_desc | html%]'[% END %][% IF ( limit_desc ) %]&nbsp;con límite(s):&nbsp;'[% limit_desc | html %]'[% END %] [% ELSE %] No ha especificado ningún criterio de búsqueda. [% END %] [% INCLUDE 'doc-head-close.inc' %] <link rel="alternate" href="[% OPACBaseURL %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&count=[% countrss |html %]&sort_by=acqdate_dsc&format=rss2" type="application/rss+xml" title="[% PREVIOUS_SHELF_BROWS.biblionumber |url %]" />
 <script type="text/javascript" src="/opac-tmpl/prog/en/lib/jquery/jquery.js"></script>
 <link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/jquery.rating.css" />
 
@@ -30,8 +30,7 @@
 <!-- Search Results Table -->
 [% IF ( total ) %]
  <div class="num_of_results">
- We have [% total %] results for your search
- </div>
+ Encontrados [% total %] resultadospara su búsqueda</div>
  <div class="searchresults">
  <form action="/cgi-bin/koha/opac-search.pl" method="get" name="bookbag_form" id="bookbag_form">
  <!-- TABLE RESULTS START -->
@@ -42,7 +41,7 @@
  <div class="resort">
  <form method="get" id="sortbyform">
  [% FOREACH param IN follower_params %] [% UNLESS param.var == 'sort_by' %] <input type="hidden" name='[% param.var |html %]' value='[% param.val %]' />
- [% END %] [% END %] <label for="sort_by">Sort By: </label>
+ [% END %] [% END %] <label for="sort_by">Ordenar por: </label>
  <select id="sort_by" name="sort_by">
  [% INCLUDE 'search/resort_form.inc' %] </select>
  <input value="Ir" type="submit" />

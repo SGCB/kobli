@@ -67,9 +67,9 @@ $(document).ready(function() {
  <li><label for="authtypetext">Descripción: </label><input type="text" id="authtypetext" name="authtypetext" size="40" maxlength="80" value="[% authtypetext |html %]" /></li>
  <li><label for="summary">Resumen: </label><textarea id="summary" name="summary" cols="55" rows="7">[% summary %]</textarea></li>
  <li>
- [% IF ( authtypesloop ) %] [% IF ( authtypecode ) %] <li><label for="indicators">Clone indicators using</label>
+ [% IF ( authtypesloop ) %] [% IF ( authtypecode ) %] <li><label for="indicators">Clonar indicadores utilizados</label>
  <select name="indicators" id="indicators">
- <option value="">Don't clone</option>
+ <option value="">No clonar</option>
  [% FOREACH loo IN authtypesloop %] [% IF ( loo.authtypecode == "" ) %] <option value="Default">[% loo.authtypetext %]</option>
  [% ELSE %] <option value="[% loo.authtypecode %]">[% loo.authtypetext %]</option>
  [% END %] [% END %] </select>
@@ -108,7 +108,7 @@ $(document).ready(function() {
  <th>Campo de autoridad copiado</th>
  <th>&nbsp;</th>
  <th>Editar</th>
- <th>Borrar</th>
+ <th>Eliminar</th>
  </tr>
  
  [% FOREACH loo IN loop %] [% IF ( loop.odd ) %] <tr>
@@ -119,7 +119,7 @@ $(document).ready(function() {
  <td>[% loo.auth_tag_to_report %]</td>
  <td><a href="auth_tag_structure.pl?authtypecode=[% loo.authtypecode %]" class="button parameters" >Estructura MARC</a></td>
  <td><a href="[% loo.script_name %]?op=add_form&amp;authtypecode=[% loo.authtypecode |html %]">Editar</a></td>
- <td><a href="[% loo.script_name %]?op=delete_confirm&amp;authtypecode=[% loo.authtypecode |html %]">Borrar</a></td>
+ <td><a href="[% loo.script_name %]?op=delete_confirm&amp;authtypecode=[% loo.authtypecode |html %]">Eliminar</a></td>
  </tr>
  [% END %] </table>
 

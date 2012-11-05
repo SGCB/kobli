@@ -9,7 +9,7 @@
   exclude-result-prefixes="marc items">
 
 <xsl:import href="UNIMARCslimUtils.xsl"/>
-<xsl:output method = "xml" indent="yes" omit-xml-declaration = "yes" />
+<xsl:output method = "html" indent="yes" omit-xml-declaration = "yes" />
 <xsl:template match="/">
  <xsl:apply-templates/>
 </xsl:template>
@@ -19,14 +19,13 @@
  <xsl:variable name="leader6" select="substring($leader,7,1)"/>
  <xsl:variable name="leader7" select="substring($leader,8,1)"/>
  <xsl:variable name="biblionumber" select="marc:datafield[@tag=090]/marc:subfield[@code='a']"/>
- <xsl:variable name="DisplayOPACiconsXSLT" select="marc:sysprefs/marc:syspref[@name='DisplayOPACiconsXSLT']"    />
- <xsl:variable name="OPACURLOpenInNewWindow" select="marc:sysprefs/marc:syspref[@name='OPACURLOpenInNewWindo    w']"/>
+ <xsl:variable name="DisplayOPACiconsXSLT" select="marc:sysprefs/marc:syspref[@name='DisplayOPACiconsXSLT']"/>
+ <xsl:variable name="OPACURLOpenInNewWindow" select="marc:sysprefs/marc:syspref[@name='OPACURLOpenInNewWindow']"/>
  <xsl:variable name="URLLinkText" select="marc:sysprefs/marc:syspref[@name='URLLinkText']"/>
- <xsl:variable name="ShowISBD" select="marc:sysprefs/marc:syspref[@name='viewISBD']"/>
 
  <xsl:if test="marc:datafield[@tag=200]">
  <xsl:for-each select="marc:datafield[@tag=200]">
- <h1>
+ <h1 class="title">
  <xsl:call-template name="addClassRtl" />
  <xsl:for-each select="marc:subfield">
  <xsl:choose>
@@ -42,7 +41,7 @@
  <xsl:text>]</xsl:text>
  </xsl:when>
  <xsl:when test="@code='d'">
- <xsl:text> = </xsl:text>
+ <xsl:text> =</xsl:text>
  <xsl:value-of select="."/>
  </xsl:when>
  <xsl:when test="@code='e'">
@@ -67,23 +66,6 @@
  </xsl:for-each>
  </xsl:if>
 
- <div id="views">
- <span class="view">
- <span id="Normalview">Vista normal</span>
- </span>
- <span class="view">
- <a id="MARCviewPop" href="/cgi-bin/koha/opac-showmarc.pl?id={marc:datafield[@tag=090]/marc:subfield[@code='a']}" title="MARC" rel="gb_page_center[600,500]">Vista MARC</a>
- </span>
- <span class="view">
- <a id="MARCview" href="/cgi-bin/koha/opac-MARCdetail.pl?biblionumber={marc:datafield[@tag=090]/marc:subfield[@code='a']}" title="MARC">Vista MARC expandida</a>
- </span>
- <xsl:if test="$ShowISBD!='0'">
- <span class="view">
- <a id="ISBDview" href="/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber={marc:datafield[@tag=090]/marc:subfield[@code='a']}">Vista de ficha (ISBD)</a>
- </span>
- </xsl:if>
- </div>
-
  <xsl:call-template name="tag_title">
  <xsl:with-param name="tag">454</xsl:with-param>
  <xsl:with-param name="label">Traducción de</xsl:with-param>
@@ -91,12 +73,12 @@
 
  <xsl:call-template name="tag_title">
  <xsl:with-param name="tag">461</xsl:with-param>
- <xsl:with-param name="label">Establecer nivel</xsl:with-param>
+ <xsl:with-param name="label">Elegir nivel</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_title">
  <xsl:with-param name="tag">464</xsl:with-param>
- <xsl:with-param name="label">Nivel Fragmento-Analítico</xsl:with-param>
+ <xsl:with-param name="label">Nivel analítico</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_7xx">
@@ -106,7 +88,7 @@
 
  <xsl:call-template name="tag_7xx">
  <xsl:with-param name="tag">710</xsl:with-param>
- <xsl:with-param name="label">Autor institucional (Principal)</xsl:with-param>
+ <xsl:with-param name="label">Autor corporativo (principal)</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_7xx">
@@ -121,12 +103,12 @@
 
  <xsl:call-template name="tag_7xx">
  <xsl:with-param name="tag">711</xsl:with-param>
- <xsl:with-param name="label">Autor institucional (coautor)</xsl:with-param>
+ <xsl:with-param name="label">Autor corporativo (coautor)</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_7xx">
  <xsl:with-param name="tag">712</xsl:with-param>
- <xsl:with-param name="label">Autor institucional (Secundario)</xsl:with-param>
+ <xsl:with-param name="label">Autor corporativo (secundario)</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_title">
@@ -141,16 +123,16 @@
 
  <xsl:if test="marc:datafield[@tag=101]">
  <span class="results_summary">
- <span class="label">Idioma:</span>
+ <span class="label">Idioma: </span>
  <xsl:for-each select="marc:datafield[@tag=101]">
  <xsl:for-each select="marc:subfield">
  <xsl:choose>
  <xsl:when test="@code='b'">del texto intermedio, </xsl:when>
  <xsl:when test="@code='c'">de trabajo original, </xsl:when>
  <xsl:when test="@code='d'">de resumen, </xsl:when>
- <xsl:when test="@code='e'">de la página de contenidos, </xsl:when>
- <xsl:when test="@code='f'">de título de la página, </xsl:when>
- <xsl:when test="@code='g'">del título propiamente, </xsl:when>
+ <xsl:when test="@code='e'">de contenidos de la página, </xsl:when>
+ <xsl:when test="@code='f'">de título de la página,</xsl:when>
+ <xsl:when test="@code='g'">del propio título,</xsl:when>
  <xsl:when test="@code='h'">de libreto, </xsl:when>
  <xsl:when test="@code='i'">de material complementario, </xsl:when>
  <xsl:when test="@code='j'">de subtítulos, </xsl:when>
@@ -189,7 +171,7 @@
 
  <xsl:call-template name="tag_comma">
  <xsl:with-param name="tag">205</xsl:with-param>
- <xsl:with-param name="label">Declaración de edición</xsl:with-param>
+ <xsl:with-param name="label">Mención de edición:</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_210" />
@@ -348,7 +330,7 @@
 
  <xsl:if test="marc:datafield[@tag=955]">
  <span class="results_summary">
- <span class="label">Historial de seriales SUDOC: </span>
+ <span class="label">Historial de periódicas SUDOC: </span>
  <xsl:for-each select="marc:datafield[@tag=955]">
  <xsl:value-of select="marc:subfield[@code='9']"/>: <xsl:value-of select="marc:subfield[@code='r']"/>
  <xsl:choose><xsl:when test="position()=last()"><xsl:text>.</xsl:text></xsl:when><xsl:otherwise><xsl:text>; </xsl:text></xsl:otherwise></xsl:choose>
@@ -358,7 +340,7 @@
 
  <xsl:call-template name="tag_subject">
  <xsl:with-param name="tag">600</xsl:with-param>
- <xsl:with-param name="label">Tema - Nombre</xsl:with-param>
+ <xsl:with-param name="label">Tema - Nombre personal</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_subject">
@@ -378,7 +360,7 @@
 
  <xsl:call-template name="tag_subject">
  <xsl:with-param name="tag">606</xsl:with-param>
- <xsl:with-param name="label">Tema - Seudónimo</xsl:with-param>
+ <xsl:with-param name="label">Tema - Materia</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_subject">
@@ -388,7 +370,7 @@
 
  <xsl:call-template name="tag_subject">
  <xsl:with-param name="tag">608</xsl:with-param>
- <xsl:with-param name="label">Tema - Formulario</xsl:with-param>
+ <xsl:with-param name="label">Tema - Forma</xsl:with-param>
  </xsl:call-template>
 
  <xsl:call-template name="tag_subject">
@@ -408,7 +390,7 @@
 
  <xsl:if test="marc:datafield[@tag=856]">
  <span class="results_summary">
- <span class="label">Recursos en Línea:</span>
+ <span class="label">Recursos en línea:</span>
  <xsl:for-each select="marc:datafield[@tag=856]">
  <a>
  <xsl:attribute name="href">
@@ -429,7 +411,7 @@
  <xsl:value-of select="$URLLinkText"/>
  </xsl:when>
  <xsl:otherwise>
- <xsl:text>Haga clic aquí para acceso en linea</xsl:text>
+ <xsl:text>Haga clic aquí para acceder en línea</xsl:text>
  </xsl:otherwise>
  </xsl:choose>
  </xsl:when>
@@ -449,7 +431,7 @@
  <span class="results_summary">
  <xsl:choose>
  <xsl:when test="@ind2=0">
- <span class="label">Continua:</span>
+ <span class="label">Continúa:</span>
  </xsl:when>
  <xsl:when test="@ind2=1">
  <span class="label">Continúa en parte:</span>

@@ -23,7 +23,9 @@
 
         var manageorders = [
             [% IF ( CAN_user_acquisition_order_manage ) %]
+              [% IF (active) %]
                 { text: _("Nueva bolsa"), url: "/cgi-bin/koha/acqui/basketheader.pl?booksellerid=[% booksellerid %]&op=add_form"},
+              [% END %]
                 { text: _("Bolsas"), url: "/cgi-bin/koha/acqui/booksellers.pl?booksellerid=[% booksellerid %]"},
                 { text: _("Bolsas de grupos"), url: "/cgi-bin/koha/acqui/basketgroup.pl?booksellerid=[% booksellerid %]"},
             [% END %]
@@ -45,10 +47,10 @@
     </script>
  <ul id="toolbar-list" class="toolbar">
  [% IF ( booksellerid ) %] [% IF ( CAN_user_acquisition_vendors_manage ) %] <li><a id="editsupplier" href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]&amp;op=enter">Editar</a></li>
- [% UNLESS ( basketcount OR subscriptioncount ) %] <li><a id="deletesupplier" href="javascript:confirm_deletion()">Borrar</a></li>
+ [% UNLESS ( basketcount OR subscriptioncount ) %] <li><a id="deletesupplier" href="javascript:confirm_deletion()">Eliminar</a></li>
  [% END %] <li><a id="newcontract" href="/cgi-bin/koha/admin/aqcontract.pl?op=add_form&amp;booksellerid=[% booksellerid %]">Nuevo contrato</a></li>
  <li><a id="editcontracts" href="/cgi-bin/koha/admin/aqcontract.pl?booksellerid=[% booksellerid %]">Contratos</a></li>
- [% UNLESS ( basketcount ) %] <li><a id="newbasket" href="/cgi-bin/koha/acqui/basketheader.pl?booksellerid=[% booksellerid %]&amp;op=add_form">Nueva bolsa</a></li>
+ [% IF (active && !basketcount) %] <li><a id="newbasket" href="/cgi-bin/koha/acqui/basketheader.pl?booksellerid=[% booksellerid %]&amp;op=add_form">Nueva bolsa</a></li>
  [% END %] [% END %] [% ELSE %] <li><a id="newbudget" href="/cgi-bin/koha/acqui/supplier.pl?op=enter">Nuevo proveedor</a></li>
  [% END %] </ul>
 </div>

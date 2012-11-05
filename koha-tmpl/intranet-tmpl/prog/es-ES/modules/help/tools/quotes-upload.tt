@@ -1,42 +1,43 @@
-[% INCLUDE 'help-top.inc' %] <h1>QOTD Uploader</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Quote of the Day Uploader</h1>
 
-<p style="font-size:18px;font-style:italic;">The QOTD uploader allows for uploading of bulk quotes into the pool of quotes which serve as the source of the Quote-Of-The-Day (QOTD) feature in OPAC.</p>
-<p>There are four basic functions in the uploader:</p>
+<p>The Quote of the Day (QOTD) uploader allows for uploading of bulk quotes into the pool of quotes which serve as the source of the Quote-Of-The-Day (QOTD) feature in OPAC.</p>
+
+<p>Existen cuatro funciones básicas en la carga: </p>
 
 <ol>
- <li><b>CSV File Uploading</b></li>
+ <li><b>Subida fichero CSV</b></li>
  <ol>
- <li>This function allows for the selection and upload of a CSV file containing quotes.</li>
- <li>Click the 'Choose File' button below the instructions.</li>
- <li>You will be presented with a file browser allowing you to select the CSV file you wish to upload.</li>
- <li>After selecting the CSV file, click the 'Open' button and the file will be uploaded into a temporary editing table.</li>
- <li>The CSV file must contain two columns in the form: "source","text" with no header row.</li>
- <li><b>Note:</b> You will be prompted to confirm upload of files larger than 512KB.</li>
+ <li>Esta función permite para la seleción y carga de un fichero CVS que contenga quotes.</li>
+ <li>Seleccionar botón 'Cambiar Fichero' debajo de las instrucciones.</li>
+ <li>Se le presentará con un explorador de archivos que le permite seleccionar el archivo CSV que desea cargar.</li>
+ <li>Después de seleccionar el fichero CSV, seleccionar el botón 'Abrir' y el fichero se cargará en una tabla de edición temporalmente.</li>
+ <li>El fichero CSV deberá tener dos columnas en el formulario:"source","text" sin fila de encabezado.</li>
+ <li><b>Nota: </b> Se le presentará un mensaje de confirmación para descargas de archivos superiores a 512kb</li>
  </ol>
- <li><b>Pre-save Editing</b></li>
+ <li><b>Pre-salvar Edición</b></li>
  <ol>
- <li>Once the CSV file has been loaded into the temporary editing table, you may edit the quotes prior to saving them.</li>
- <li>Edit either the 'Source' or 'Text' fields by clicking on the desired field.</li>
- <li>When you are finished editing a field, press the &lt;Enter&gt; key to save the changes.</li>
- <li>The list will be updated and the edits should now be visible.</li>
+ <li>Una vez el fichero CVS ha sido descargado en la tabla temporal de edición, debe ser editada las quotes  antes de ser guardadas.</li>
+ <li>Editar  campos de  'Fuente' o 'Texto'  seleccionando en el campo deseado.</li>
+ <li>Cuando haya terminado de editar un campo, presione la tecla  &lt;Enter&gt; para guardar los cambios.</li>
+ <li>La lista será actualizada y las ediciones ahora debería ser visibles. </li>
  </ol>
- <li><b>Delete Quote(s)</b></li>
+ <li><b>Eliminar Comilla(s)</b></li>
  <ol>
- <li>This option allows for the deletion of one or more quotes at a time.</li>
- <li>Select the quote(s) you desire to delete by clicking on the corrisponding quote id.</li>
- <li>Once quote selection is finished, simply click the 'Delete quote(s)' key.</li>
- <li>You will be prompted to confirm the deletion.</li>
- <li>After confirming the deletion, the list will update and the quote(s) will no longer appear.</li>
+ <li>Esta opción permite para la eliminación uno o más quotes al mismo tiempo.</li>
+ <li>Seleccionar la quote(s) que dese borrar seleccionando en la correspondiente id quote.</li>
+ <li>Una vez la selección de quote ha terminado, simplemente seleccione la tecla  'Delete quote(s)' .</li>
+ <li>Se le presentará un mensaje de confirmación de borrado.</li>
+ <li>Después de confirmar la eleminaió, la lista se actualizará y las quote(s) no aparecerán más.</li>
  </ol>
- <li><b>Save Quotes</b></li>
+ <li><b>Salvar comillas</b></li>
  <ol>
- <li>This option allows for saving all of the quotes in the temporary editing table to the pool of quotes.</li>
- <li>Once you are satisfied with the quotes, click the 'Save quotes' button in the toolbar and the quotes will be saved.</li>
- <li><b>Note:</b>The process of saving quotes is "asynchronous" meaning that you may navigate to other sections of the staff client while the quotes are being saved.</li>
- <li>If you choose to remain on the QOTD uploader page, you will receive a confirmation message once the quotes have successfully been saved.</li>
+ <li>Esta opción permite guardar todas las quotes en una tabla de edición temporal para el conjunto de quotes.</li>
+ <li>Una vez haya hecho sus cambios con las quotes, seleccione el botón 'Guardar quotes'  en la barra de herramientas y las quotes serán guardadas.</li>
+ <li><b>Nota: </b>El proceso de guardar quotes es "asincrónico" significa que tiene que navegar por otras secciones del usuario personal mientras las quotes son guardadas.</li>
+ <li>Si eliges permanecer en la página de garga de QOTD, podrás recibir un mensaje de confirmación una vez las quotes se hayan guardado satisfactoriamente.</li>
  </ol>
 </ol>
 
-<p><strong>See the full documentation for the QOTD Uploader in the <a href="http://manual.koha-community.org/3.8/en/QOTDuploader.html">manual</a> (en línea).</strong></p>
+<p><strong>See the full documentation for the Quote of the Day Uploader in the <a href="http://manual.koha-community.org/3.10/en/additionaltools.html#importquote">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

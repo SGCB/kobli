@@ -3,7 +3,8 @@
 <p>Los registros se pueden agregar ingresándolos en Koha o copiando la catalogación. Si desea un catalogar usando una plantilla en blanco</p>
 
 <ul>
- <li>Haga clic en 'Nuevo registro' <ul>
+ <li>Click 'New Record'
+<ul>
  <li>Seleccione la hoja de trabajo en que desea basar su registro</li>
 </ul>
 </li>
@@ -12,15 +13,17 @@
 <p>Si usted desea catalogar un registro basado en un registro existente en otra biblioteca</p>
 
 <ul>
- <li>Haga clic en 'Búsqueda Z39.50' <ul>
+ <li>Click 'z39.50 Search'
+<ul>
  <li>Buscar el ítem que desea catalogar <ul>
  <li>Sugerencia: Si no se encuentran resultados, trate de buscar menos campos, no todos los servidores Z39.50 puede buscar en todos los campos.</li>
 </ul>
 </li>
- <li>Los servidores Z39.50 se pueden cambiar en el área administrativa.</li>
- <li>Desde los resultados puede ver la vista MARC o vista de tarjeta de los registros o decidir importarlos dentro de Koha <ul>
- <li>Además del enlace de 'Importar' a la derecha de cada título, puede hacer clic en el título que le interesa y aparecerá un menú con enlaces para ver el registro e importarlo</li>
- <li>Si no encuentra el título que necesita en sus resultados de búsqueda Z39.50 puede hacer clic en el botón 'Intentar otra búsqueda' abajo a la izquierda de sus resultados</li>
+ <li>Search targets can be altered by using the Z39.50 Admin area.</li>
+ <li>From the results you can view the MARC or Card view for the records or choose to Import them into Koha
+<ul>
+ <li>In addition to the Import link to the right of each title, you can click on the title you're interested in and a menu will pop up with links to preview the record and import it</li>
+ <li>If you don't find the title you need in your Z39.50 search results you can click the 'Try Another Search' button at the bottom left of your results</li>
 </ul>
 </li>
 </ul>
@@ -31,11 +34,13 @@
 
 <ul>
  <li>Para expandir una etiqueta colapsada haga clic en la descripción de la misma</li>
- <li>Para conseguir ayuda de la Library of Congress de una etiqueta MARC haga clic en el signo de interrogación (?) a la derecha de cada número de campo <ul>
+ <li>To get help from the Library of Congress on a Marc tag click the question mark (?) to the right of each field number
+<ul>
  <li>Si piensa que esto desordena la pantalla puede ocultar los signos de interrogación desmarcando la casilla de verificación a lado de la nota 'Mostrar enlaces de documentación MARC' en la parte superior derecha del editor</li>
 </ul>
 </li>
- <li>A veces los campos no son editables por el valor de BiblioAddsAuthorities en las preferencias del sistema. Si usted tiene esta preferencia configurada para no permitir que los catalogadores escriban los campos controlados por autoridades es posible que aparezca un símbolo de bloqueo a la izquierda del campo. <ul>
+ <li>Sometimes fields may not be editable due to the value in your <span class="link">BiblioAddsAuthorities</span>system preference. If you have this preference set to not allow catalogers to type in fields controlled by authorities you may see a lock symbol to the left of the field.
+<ul>
  <li>Si aparece este icono debe hacer clic en el icono a la derecha del campo para buscar una autoridad existente.</li>
  <li>Desde los resultados haga clic en 'Elegir autoridad' para traerla dentro de su registro</li>
 </ul>
@@ -43,7 +48,7 @@
  <li>Para duplicar un campo haga clic en el icono 'repetir este campo' a la derecha del campo <ul>
  <li>Para mostrar los subcampos en el orden correcto, haga clic en la flecha hacia arriba a la izquierda del campo</li>
  <li>Para duplicar un campo, haga clic en el signo + (más) a la derecha del el campo</li>
- <li>Para borrar un subcampo (si hay mas de uno del mismo tipo), haga clic en el signo de menos (-) a la derecha del campo</li>
+ <li>Para borrar un subcampo (si hay más de uno del mismo tipo), haga clic en el signo de menos (-) a la derecha del campo</li>
 </ul>
 </li>
  <li>Para usar un plugin haga clic en el icono a la derecha del campo <ul>
@@ -78,6 +83,6 @@
 
 <p>Si usted quiere fusionar varios registros, puede hacerlo a través de la Herramienta de listas.</p>
 
-<p><strong>See the full documentation for Cataloging in the <a href="http://manual.koha-community.org/3.8/en/cataloging.html#catbibs">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Catalogación en la <a href="http://manual.koha-community.org/3.10/en/cataloging.html#catbibs">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

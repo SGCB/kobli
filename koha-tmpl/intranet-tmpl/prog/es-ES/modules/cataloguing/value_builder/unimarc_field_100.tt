@@ -35,8 +35,8 @@
  [% END %] [% IF ( f2j ) %] <option value="j"
  selected="selected">j- documento con fecha detallada de edición</option>
  [% ELSE %] <option value="j">j- documento con fecha detallada de edición</option>
- [% END %] [% IF ( f2k ) %] <option value="k" selected="selected">k - monograph with both publication date and print date</option>
- [% ELSE %] <option value="k">k - monograph with both publication date and print date</option>
+ [% END %] [% IF ( f2k ) %] <option value="k" selected="selected">ki- monografía con fecha de edición y publicación</option>
+ [% ELSE %] <option value="k">ki- monografía con fecha de edición y publicación</option>
  [% END %] [% IF ( f2u ) %] <option value="u" selected="selected">u- Fecha de publicación desconocida</option>
  [% ELSE %] <option value="u">u- Fecha de publicación desconocida</option>
  [% END %] </select>
@@ -227,16 +227,16 @@
  [% ELSE %] <option value="03">03- ISO 5426 (conjunto extendido de caracteres latinos)</option>
  [% END %] [% IF ( f1204 ) %] <option value="04" selected="selected">04- ISO 5427 (conjunto extendido de caracteres cirílicos)</option>
  [% ELSE %] <option value="04">04- ISO 5427 (conjunto extendido de caracteres cirílicos)</option>
- [% END %] [% IF ( f1205 ) %] <option value="05" selected="selected">05- ISO 5428 (caracteres griegos)</option>
- [% ELSE %] <option value="05">05- ISO 5428 (caracteres griegos)</option>
+ [% END %] [% IF ( f1205 ) %] <option value="05" selected="selected">05- ISO 5428 (conjunto caracteres griegos)</option>
+ [% ELSE %] <option value="05">05- ISO 5428 (conjunto caracteres griegos)</option>
  [% END %] [% IF ( f1206 ) %] <option value="06" selected="selected">06- ISO 6438 (conjunto de caracteres africanos codificados)</option>
  [% ELSE %] <option value="06">06- ISO 6438 (conjunto de caracteres africanos codificados)</option>
- [% END %] [% IF ( f1207 ) %] <option value="07" selected="selected">07- ISO 10586 (caracteres georgianos)</option>
- [% ELSE %] <option value="07">07- ISO 10586 (caracteres georgianos)</option>
- [% END %] [% IF ( f1208 ) %] <option value="08" selected="selected">08- ISO 8957 (caracteres hebreos) Tabla 1</option>
- [% ELSE %] <option value="08">08- ISO 8957 (caracteres hebreos) Tabla 1</option>
- [% END %] [% IF ( f1209 ) %] <option value="09" selected="selected">09- ISO 8957 (caracteres hebreos) Tabla 2</option>
- [% ELSE %] <option value="09">09- ISO 8957 (caracteres hebreos) Tabla 2</option>
+ [% END %] [% IF ( f1207 ) %] <option value="07" selected="selected">07- ISO 10586 (conjunto caracteres georgianos)</option>
+ [% ELSE %] <option value="07">07- ISO 10586 (conjunto caracteres georgianos)</option>
+ [% END %] [% IF ( f1208 ) %] <option value="08" selected="selected">08- ISO 8957 (conjunto caracteres hebreos) Tabla 1</option>
+ [% ELSE %] <option value="08">08- ISO 8957 (conjunto caracteres hebreos) Tabla 1</option>
+ [% END %] [% IF ( f1209 ) %] <option value="09" selected="selected">09- ISO 8957 (conjunto caracteres hebreos) Tabla 2</option>
+ [% ELSE %] <option value="09">09- ISO 8957 (conjunto caracteres hebreos) Tabla 2</option>
  [% END %] [% IF ( f1211 ) %] <option value="11" selected="selected">11- ISO 5426-2 (Caracteres latinos utilizados en lenguajes europeos minoritarios o en tipografía obsoleta) </option>
  [% ELSE %] <option value="11">11- ISO 5426-2 (Caracteres latinos utilizados en lenguajes europeos minoritarios o en tipografía obsoleta) </option>
  [% END %] [% IF ( f1250 ) %] <option value="50" selected="selected">50- ISO 10646 Nivel 3 (Unicode, UTF-8) </option>
@@ -261,16 +261,16 @@
  [% ELSE %] <option value="03">03- ISO 5426 (conjunto extendido de caracteres latinos)</option>
  [% END %] [% IF ( f1304 ) %] <option value="04" selected="selected">04- ISO 5427 (conjunto extendido de caracteres cirílicos)</option>
  [% ELSE %] <option value="04">04- ISO 5427 (conjunto extendido de caracteres cirílicos)</option>
- [% END %] [% IF ( f1305 ) %] <option value="05" selected="selected">05- ISO 5428 (caracteres griegos)</option>
- [% ELSE %] <option value="05">05- ISO 5428 (caracteres griegos)</option>
+ [% END %] [% IF ( f1305 ) %] <option value="05" selected="selected">05- ISO 5428 (conjunto caracteres griegos)</option>
+ [% ELSE %] <option value="05">05- ISO 5428 (conjunto caracteres griegos)</option>
  [% END %] [% IF ( f1306 ) %] <option value="06" selected="selected">06- ISO 6438 (conjunto de caracteres africanos codificados)</option>
  [% ELSE %] <option value="06">06- ISO 6438 (conjunto de caracteres africanos codificados)</option>
- [% END %] [% IF ( f1307 ) %] <option value="07" selected="selected">07- ISO 10586 (caracteres georgianos)</option>
- [% ELSE %] <option value="07">07- ISO 10586 (caracteres georgianos)</option>
- [% END %] [% IF ( f1308 ) %] <option value="08" selected="selected">08- ISO 8957 (caracteres hebreos) Tabla 1</option>
- [% ELSE %] <option value="08">08- ISO 8957 (caracteres hebreos) Tabla 1</option>
- [% END %] [% IF ( f1309 ) %] <option value="09" selected="selected">09- ISO 8957 (caracteres hebreos) Tabla 2</option>
- [% ELSE %] <option value="09">09- ISO 8957 (caracteres hebreos) Tabla 2</option>
+ [% END %] [% IF ( f1307 ) %] <option value="07" selected="selected">07- ISO 10586 (conjunto caracteres georgianos)</option>
+ [% ELSE %] <option value="07">07- ISO 10586 (conjunto caracteres georgianos)</option>
+ [% END %] [% IF ( f1308 ) %] <option value="08" selected="selected">08- ISO 8957 (conjunto caracteres hebreos) Tabla 1</option>
+ [% ELSE %] <option value="08">08- ISO 8957 (conjunto caracteres hebreos) Tabla 1</option>
+ [% END %] [% IF ( f1309 ) %] <option value="09" selected="selected">09- ISO 8957 (conjunto caracteres hebreos) Tabla 2</option>
+ [% ELSE %] <option value="09">09- ISO 8957 (conjunto caracteres hebreos) Tabla 2</option>
  [% END %] [% IF ( f1311 ) %] <option value="11" selected="selected">11- ISO 5426-2 (Caracteres latinos utilizados en lenguajes europeos minoritarios o en tipografía obsoleta)</option>
  [% ELSE %] <option value="11">11- ISO 5426-2 (Caracteres latinos utilizados en lenguajes europeos minoritarios o en tipografía obsoleta)</option>
  [% END %] [% IF ( f1350 ) %] <option value="50" selected="selected">50- ISO 10646 Nivel 3 (Unicode, UTF-8)</option>

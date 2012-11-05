@@ -2,9 +2,9 @@
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 
-	 $(document).ready(function() {
+     $(document).ready(function() {
         $('#subfieldtabs').tabs();
-	 });
+     });
 
 function displayMoreConstraint(numlayer){
     var thisdiv = document.getElementById(numlayer);
@@ -21,7 +21,10 @@ function displayMoreConstraint(numlayer){
 </script>
 </head>
 <body id="admin_auth_subfields_structure" class="admin">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( else ) %]Estructura de subcampos (formato) de Autoridades MARC [% ELSE %]<a href="/cgi-bin/koha/admin/auth_subfields_structure.pl?tagfield=[% tagfield %]&amp;tagsubfield=[% tagsubfield %]&amp;authtypecode=[% authtypecode %]">Estructura de subcampos (formato) de Autoridades MARC</a> &rsaquo; [% END %] [% IF ( delete_confirm ) %]Confirmar eliminación de subcampo [% tagsubfield %]?[% END %] [% IF ( delete_confirmed ) %]Datos eliminados[% END %] [% IF ( add_form ) %] [% IF ( use_heading_flags_p ) %] [% IF ( heading_edit_subfields_p ) %]Editar restricciones de subcampos MARC[% END %] [% ELSE %][% action %][% END %] [% END %] </div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; <a href="/cgi-bin/koha/admin/authtypes.pl">Tipos de autoridad</a> &rsaquo; [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] hoja de trabajo</a> &rsaquo; [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a> &rsaquo;
+ [% END %]
+ [% IF ( else ) %]Authority MARC subfield structure for [% tagfield %]
+ [% ELSE %]<a href="/cgi-bin/koha/admin/auth_subfields_structure.pl?tagfield=[% tagfield %]&amp;tagsubfield=[% tagsubfield %]&amp;authtypecode=[% authtypecode %]">Authority MARC subfield structure for [% tagfield %]</a> &rsaquo; [% END %] [% IF ( delete_confirm ) %]Confirmar eliminación de subcampo [% tagsubfield %]?[% END %] [% IF ( delete_confirmed ) %]Datos eliminados[% END %] [% IF ( add_form ) %] [% IF ( use_heading_flags_p ) %] [% IF ( heading_edit_subfields_p ) %]Editar restricciones de subcampos MARC[% END %] [% ELSE %][% action %][% END %] [% END %] </div>
 
 <div id="doc3" class="yui-t2">
 
@@ -113,7 +116,7 @@ function displayMoreConstraint(numlayer){
  <th>Subcampo</th>
  <th>Texto</th>
  <th>Restricciones</th>
- <th>Borrar</th>
+ <th>Eliminar</th>
  </tr>
  [% FOREACH loo IN loop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
  [% ELSE %] <tr>
@@ -124,7 +127,7 @@ function displayMoreConstraint(numlayer){
  <td>
  [% IF ( loo.subfield_ignored ) %] <i>subcampo ignorado</i>
  [% ELSE %] <strong>Pestaña:</strong>[% loo.tab %], [% IF ( loo.kohafield ) %] | <strong>Campo Koha:</strong> [% loo.kohafield %], [% END %] [% IF ( loo.repeatable ) %]Repetible, [% ELSE %]No repetible, [% END %] [% IF ( loo.mandatory ) %]Obligatorio, [% ELSE %]No obligatorio, [% END %] [% IF ( loo.hidden ) %]oculto, [% END %] [% IF ( loo.isurl ) %]es una URL, [% END %] [% IF ( loo.authorised_value ) %] | <strong>Valor autorizado:</strong>[% loo.authorised_value %], [% END %] [% IF ( loo.frameworkcode ) %] | <strong>Autoridad:</strong>[% loo.frameworkcode %], [% END %] [% IF ( loo.value_builder ) %] | <strong>Plugin:</strong>[% loo.value_builder %],[% END %] [% END %] </td>
- <td><a href="[% loo.delete %]">Borrar</a></td>
+ <td><a href="[% loo.delete %]">Eliminar</a></td>
  </tr>
  [% END %] </table>
 

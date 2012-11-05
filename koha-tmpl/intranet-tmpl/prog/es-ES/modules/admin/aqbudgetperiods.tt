@@ -1,5 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %] [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+<script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
 <script type="text/javascript">
 // #################################################################################
 // Javascript
@@ -66,33 +68,37 @@
                     alert(alertString2);
             }
     }
-	$(document).ready(function() {
-		 $("#periodsh").tablesorter({
-	            widgets : ['zebra'],
-	            sortList: [[0,0]],
-	            headers:  {6:{sorter:false}}
-	     });
-	});
+
+
+
+    [% IF ( dateformat == 'metric' ) %]
+        dt_add_type_uk_date();
+    [% END %]
+    $(document).ready(function() {
+        var tabs = $('#budgetsTabs').tabs();
+        [% IF ( tab ) %]
+            tabs.tabs('select', [% tab %]);
+        [% END %]
+        $("#activeperiodst,#inactiveperiodst").dataTable($.extend(true, {}, dataTablesDefaults, {
+            "aoColumnDefs": [
+                {
+                    [% IF ( dateformat == 'metric' ) %]
+                        "aTargets": [ 1, 2 ], "sType": "uk_date",
+                    [% END %]
+                    "bSortable": false, 'aTargets':['_all'],
+                },
+            ],
+            "sPaginationType": "four_button",
+            "bAutoWidth": false,
+            "bPaginate": false,
+            "bInfo": false,
+            "bFilter": false,
+        } ) );
+    });
 </script>
 
 <title>
- Koha &rsaquo; Administration &rsaquo; Budgets
-
- [% IF ( add_form ) %]&rsaquo;
- [% IF ( budget_period_id ) %]
- Modify budget'[% budget_period_id %]'
- [% ELSE %]
- Add budget
- [% END %]
- [% END %]
- [% IF ( duplicate_form ) %]&rsaquo; Duplicate budget[% END %]
- [% IF ( delete_confirm ) %]&rsaquo;
- Delete budget '[% budget_period_description %]'?
- [% END %]
- [% IF ( delete_confirmed ) %]&rsaquo;
- Data deleted
- [% END %]
-</title>
+ Koha &rsaquo; Administration &rsaquo; Budgets [% IF ( add_form ) %]&rsaquo; [% IF ( budget_period_id ) %] Modify budget'[% budget_period_id %]' [% ELSE %] Add budget [% END %] [% END %] [% IF ( duplicate_form ) %]&rsaquo; Duplicate budget[% END %] [% IF ( delete_confirm ) %]&rsaquo; Delete budget '[% budget_period_description %]'? [% END %] [% IF ( delete_confirmed ) %]&rsaquo; Data deleted [% END %] </title>
 
 
 </head>
@@ -157,13 +163,13 @@
 
  <li>
  <label class="required" for="from">Fecha de Inicio</label>
- <input type="text" size="10" id="from" name="budget_period_startdate" value="[% budget_period_startdate %]" class="datepickerfrom" />
+ <input type="text" size="10" id="from" name="budget_period_startdate" value="[% budget_period_startdate | $KohaDates %]" class="datepickerfrom" />
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
  <li>
 
  <label class="required" for="to">Fecha final</label>
- <input type="text" size="10" id="to" name="budget_period_enddate" value="[% budget_period_enddate %]" class="datepickerto" />
+ <input type="text" size="10" id="to" name="budget_period_enddate" value="[% budget_period_enddate | $KohaDates %]" class="datepickerto" />
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
 
@@ -194,13 +200,13 @@
  <ol>
  <li>
  <label class="required" for="from">Fecha de Inicio</label>
- <input type="text" size="10" id="from" name="budget_period_startdate" value="[% budget_period_startdate %]" class="datepickerfrom" />
+ <input type="text" size="10" id="from" name="budget_period_startdate" value="[% budget_period_startdate | $KohaDates %]" class="datepickerfrom" />
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
  <li>
 
  <label class="required" for="to">Fecha final</label>
- <input type="text" size="10" id="to" name="budget_period_enddate" value="[% budget_period_enddate %]" class="datepickerto" />
+ <input type="text" size="10" id="to" name="budget_period_enddate" value="[% budget_period_enddate | $KohaDates %]" class="datepickerto" />
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
 
@@ -266,7 +272,7 @@
  <form action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="delete_confirmed" />
  <input type="hidden" name="budget_period_id" value="[% budget_period_id %]" />
- <input value="Borrar" type="submit" class="approve" />
+ <input value="Eliminar" type="submit" class="approve" />
  </form>
 
  <form action="[% script_name %]" method="post">
@@ -279,37 +285,79 @@
 [% IF ( else ) %]
  <h2>Administración de presupuestos</h2>
 
- [% INCLUDE 'budgets-active-currency.inc' %] <table id="periodsh">
+ [% INCLUDE 'budgets-active-currency.inc' %] <div id="budgetsTabs" class="toptabs">
+ <ul>
+ <li><a href="#active">Active Budgets</a></li>
+ <li><a href="#inactive">Inactive Budgets</a></li>
+ </ul>
+
+ <div id="active">
+ [% IF ( period_active_loop ) %] <table id="activeperiodst">
  <thead>
  <tr>
  <th>Nombre del presupuesto</th>
  <th>Fecha de Inicio</th>
  <th>Fecha final</th>
- <th>Activo</th>
  <th>Bloqueado</th>
  <th>Total</th>
  <th>Acciones</th>
  </tr>
  </thead>
  <tbody>
- [% FOREACH period_loo IN period_loop %] [% IF ( loop.odd ) %] <tr>
+ [% FOREACH period_active IN period_active_loop %] <tr>
+ <td><a href="/cgi-bin/koha/admin/aqbudgets.pl?budget_period_id=[% period_active.budget_period_id %]" title="View funds for [% period_active.budget_period_description %]">[% period_active.budget_period_description %]</a></td>
+ <td>[% period_active.budget_period_startdate | $KohaDates %]</td>
+ <td>[% period_active.budget_period_enddate | $KohaDates %]</td>
+ <td>
+ [% IF ( period_active.budget_period_locked ) %] <span style="color:green;">Bloqueado</span>&nbsp; [% END %] </td>
+ <td align='right'>[% period_active.budget_period_total %]</td>
+ <td>
+ <a href="[% script_name %]?op=add_form&amp;budget_period_id=[% period_active.budget_period_id |html %]">Editar</a>
+ <a href="[% script_name %]?op=delete_confirm&amp;budget_period_id=[% period_active.budget_period_id %]">Eliminar</a>
+ <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_period_id=[% period_active.budget_period_id %]">Add Fund</a>
+ </td>
+ </tr>
+ [% END %] </tbody>
+ </table>
+ [% ELSE %]
+ No active budgets
+ [% END %]
+ <div class="paginationBar">[% active_pagination_bar %]</div>
+ </div>
+ <div id="inactive">
+ [% IF ( period_inactive_loop ) %] <table id="inactiveperiodst">
+ <thead>
+ <tr>
+ <th>Nombre del presupuesto</th>
+ <th>Fecha de Inicio</th>
+ <th>Fecha final</th>
+ <th>Bloqueado</th>
+ <th>Total</th>
+ <th>Acciones</th>
+ </tr>
+ </thead>
+ <tbody>
+ [% FOREACH period_loo IN period_inactive_loop %] [% IF ( loop.odd ) %] <tr>
  [% ELSE %] <tr class="highlight">
  [% END %] <td><a href="/cgi-bin/koha/admin/aqbudgets.pl?budget_period_id=[% period_loo.budget_period_id %]" title="Ver los fondos para [% period_loo.budget_period_description %]">[% period_loo.budget_period_description %]</a></td>
- <td>[% period_loo.budget_period_startdate %]</td>
- <td>[% period_loo.budget_period_enddate %]</td>
- <td>[% IF ( period_loo.budget_period_active ) %]<span style="color:green;">Activo</span>&nbsp;[% ELSE %][% END %] </td>
+ <td>[% period_loo.budget_period_startdate | $KohaDates %]</td>
+ <td>[% period_loo.budget_period_enddate | $KohaDates %]</td>
  <td> [% IF ( period_loo.budget_period_locked ) %]<span style="color:green;">Bloqueado</span>&nbsp;[% ELSE %][% END %] </td>
  <td align='right'>[% period_loo.budget_period_total %]</td>
  <td>
  <a href="[% period_loo.script_name %]?op=add_form&amp;budget_period_id=[% period_loo.budget_period_id |html %]">Editar</a>
- <a href="[% period_loo.script_name %]?op=delete_confirm&amp;budget_period_id=[% period_loo.budget_period_id %]">Borrar</a>
+ <a href="[% period_loo.script_name %]?op=delete_confirm&amp;budget_period_id=[% period_loo.budget_period_id %]">Eliminar</a>
  <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_period_id=[% period_loo.budget_period_id %]">Agregar fondo</a>
  </td>
  </tr>
- [% END %] [% UNLESS ( period_loop ) %] <tr><td colspan="7">Sin presupuesto</td></tr>
  [% END %] </tbody>
  </table>
- <div class="pages">[% pagination_bar %]</div>
+ [% ELSE %]
+ No inactive budgets
+ [% END %]
+ <div class="pages">[% inactive_pagination_bar %]</div>
+ </div>
+ </div>
 [% END %] </div>
 </div>
 <div class="yui-b">

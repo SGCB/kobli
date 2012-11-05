@@ -17,7 +17,7 @@
 	function yuiToolbar() {
 	
 		var newmenu = [
-			{ text: _("Hoja de trabajo predeterminada"), url: "/cgi-bin/koha/cataloguing/addbiblio.pl?frameworkcode=" },
+			{ text: _("Plantilla predeterminada"), url: "/cgi-bin/koha/cataloguing/addbiblio.pl?frameworkcode=" },
 			[% FOREACH frameworkcodeloo IN frameworkcodeloop %]{ text: "[% frameworkcodeloo.frameworktext %]", url: "/cgi-bin/koha/cataloguing/addbiblio.pl?frameworkcode=[% frameworkcodeloo.value %]"},
 [% END %]
 		]

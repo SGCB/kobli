@@ -1,20 +1,6 @@
 --- 
-Searching: 
+searching.pref: 
   "Caracter\xC3\xADsticas": 
-    - 
-      - 
-        choices: 
-          "": Usar
-          1: No utilice
-        pref: NoZebra
-      - "el motor de b\xC3\xBAsqueda Zebra. Se recomienda utilizar Zebra; la opci\xC3\xB3n de no utilizar Zebra es obsoleta y no se garantiza que funcione."
-    - 
-      - When Zebra is not in use, translate the following MARC fields to the following indexes (each line should look something like <code>'indexname' =&gt; '100a,245a,500*',</code>)
-      - 
-        class: list
-        pref: NoZebraIndexes
-        type: textarea
-      - ~
     - 
       - "Realizar la b\xC3\xBAsqueda comod\xC3\xADn (donde, por ejemplo, <cite>Har</cite> coincidir\xC3\xADa con <cite>Harry</cite> y <cite>harp</cite>)"
       - 
@@ -32,14 +18,6 @@ Searching:
         pref: QueryFuzzy
         type: boolean
       - "para encontrar las palabras escritas de manera similar en una b\xC3\xBAsqueda (por ejemplo, la b\xC3\xBAsqueda de <cite>flang</cite> tambi\xC3\xA9n encontrar\xC3\xA1 <cite>flange</cite> y <cite>fang</cite>; REQUIERE ZEBRA)."
-    - 
-      - 
-        choices: 
-          "": No ignorar
-          1: Ignorar
-        pref: QueryRemoveStopwords
-        type: boolean
-      - "palabras eliminadas durante la b\xC3\xBAsqueda en Koha. (S\xC3\xB3lo se aplica cuando Zebra est\xC3\xA1 apagado)."
     - 
       - 
         choices: 
@@ -83,19 +61,34 @@ Searching:
     - 
       - 
         choices: 
-          "": Not using
-          1: Using
+          "": No usar
+          1: Usar
         default: 0
         pref: UseICU
-      - "ICU Zebra indexing. Please note: This setting will not affect Zebra indexing, it should only be used to tell Koha that you have activated ICU indexing if you have actually done so, since there is no way for Koha to figure this out on its own."
+      - "Note por favor: Este valor no afectar\xC3\xA1 la indexaci\xC3\xB3n Zebra, solo debe ser utilizado para indicar a Koha que ha activado la indexaci\xC3\xB3n ICU si es que lo ha hecho, ya que Koha no tiene forma de saberlo por su cuenta."
+    - 
+      - 
+        choices: 
+          "": Don't suggest
+          1: Suggest
+        default: 0
+        pref: DidYouMeanFromAuthorities
+      - alternate searches based on data in the authority file.
+      - 
+        choices: 
+          "": Don't include
+          1: Include
+        default: 0
+        pref: IncludeSeeFromInSearches
+      - "<i>see from</i> (non-preferred form) headings in bibliographic searches. Please note: you will need to reindex your bibliographic database when changing this preference."
   "Formulario de b\xC3\xBAsqueda": 
     - 
-      - Show tabs in OPAC and staff-side advanced search for limiting searches on the
+      - "Mostrar etiquetas en OPAC y en la parte de b\xC3\xBAsquedas avanzadas del administrador para limitar las b\xC3\xBAsquedas en los"
       - 
         class: long
         pref: AdvancedSearchTypes
-      - fields (separate values with |). Tabs appear in the order listed.<br/>
-      - "<em>Currently supported values</em>: Item types (<strong>itemtypes</strong>), Collection Codes (<strong>ccode</strong>) and Shelving Location (<strong>loc</strong>)."
+      - campos (separar valores con |). Las etiquetas aparecen en el orden listado.<br/>
+      - "<em>Actualmente los valores admitidos</em>: Tipos de \xC3\xADtem(<strong>itemtypes</strong>), C\xC3\xB3digos de colecciones (<strong>ccode</strong>) y Localizaci\xC3\xB3n de estanter\xC3\xADa (<strong>loc</strong>)."
     - 
       - De forma predeterminada,
       - 
@@ -112,7 +105,7 @@ Searching:
         choices: 
           acqdate: fecha de ingreso
           author: autor
-          callnumber: signatura
+          call_number: signatura
           popularity: "n\xC3\xBAmero total de pr\xC3\xA9stamos"
           pubdate: "fecha de publicaci\xC3\xB3n"
           relevance: relevancia
@@ -148,7 +141,7 @@ Searching:
         choices: 
           acqdate: fecha de ingreso
           author: autor
-          callnumber: signatura
+          call_number: signatura
           popularity: "n\xC3\xBAmero total de pr\xC3\xA9stamos"
           pubdate: "fecha de publicaci\xC3\xB3n"
           relevance: relevancia
@@ -190,7 +183,7 @@ Searching:
           1: Mostrar
         pref: OPACItemsResultsDisplay
         type: boolean
-      - an item's library, location and call number in OPAC search results.
+      - "la sede, la ubicaci\xC3\xB3n y la signatura de un \xC3\xADtem en los resultados de b\xC3\xBAsqueda del OPAC. "
     - 
       - Truncar longitud de facetas a
       - 

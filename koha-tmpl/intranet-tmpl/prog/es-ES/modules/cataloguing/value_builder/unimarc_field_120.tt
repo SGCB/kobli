@@ -31,8 +31,8 @@
  <td>
  <select name="f3" id="f3" size="1">
 
- [% IF ( f3a ) %] <option value="a" selected="selected">texto en el material cartográfico</option>
- [% ELSE %] <option value="a">texto en el material cartográfico</option>
+ [% IF ( f3a ) %] <option value="a" selected="selected">texto en el propio registro cartográfico</option>
+ [% ELSE %] <option value="a">texto en el propio registro cartográfico</option>
  [% END %] [% IF ( f3b ) %] <option value="b" selected="selected">texto que acompaña al ítem cartográfico en cuadernillo, panfleto...</option>
  [% ELSE %] <option value="b">texto que acompaña al ítem cartográfico en cuadernillo, panfleto...</option>
  [% END %] [% IF ( f3y ) %] <option value="y" selected="selected">no es texto narrativo</option>
@@ -56,8 +56,8 @@
  [% ELSE %] <option value="e">batimetría - sondeos</option>
  [% END %] [% IF ( f4f ) %] <option value="f" selected="selected">líneas de formulario</option>
  [% ELSE %] <option value="f">líneas de formulario</option>
- [% END %] [% IF ( f4g ) %] <option value="g" selected="selected">alturas de punto</option>
- [% ELSE %] <option value="g">alturas de punto</option>
+ [% END %] [% IF ( f4g ) %] <option value="g" selected="selected">punto de alturas</option>
+ [% ELSE %] <option value="g">punto de alturas</option>
  [% END %] [% IF ( f4h ) %] <option value="h" selected="selected">otros métodos en color</option>
  [% ELSE %] <option value="h">otros métodos en color</option>
  [% END %] [% IF ( f4i ) %] <option value="i" selected="selected">ilustradamente</option>
@@ -90,8 +90,8 @@
  [% ELSE %] <option value="e">batimetría - sondeos</option>
  [% END %] [% IF ( f5f ) %] <option value="f" selected="selected">líneas de formulario</option>
  [% ELSE %] <option value="f">líneas de formulario</option>
- [% END %] [% IF ( f5g ) %] <option value="g" selected="selected">alturas de punto</option>
- [% ELSE %] <option value="g">alturas de punto</option>
+ [% END %] [% IF ( f5g ) %] <option value="g" selected="selected">punto de alturas</option>
+ [% ELSE %] <option value="g">punto de alturas</option>
  [% END %] [% IF ( f5h ) %] <option value="h" selected="selected">otros métodos en color</option>
  [% ELSE %] <option value="h">otros métodos en color</option>
  [% END %] [% IF ( f5i ) %] <option value="i" selected="selected">ilustradamente</option>
@@ -125,8 +125,8 @@
  [% ELSE %] <option value="e">batimetría - sondeos</option>
  [% END %] [% IF ( f6f ) %] <option value="f" selected="selected">líneas de formulario</option>
  [% ELSE %] <option value="f">líneas de formulario</option>
- [% END %] [% IF ( f6g ) %] <option value="g" selected="selected">alturas de punto</option>
- [% ELSE %] <option value="g">alturas de punto</option>
+ [% END %] [% IF ( f6g ) %] <option value="g" selected="selected">punto de alturas</option>
+ [% ELSE %] <option value="g">punto de alturas</option>
  [% END %] [% IF ( f6h ) %] <option value="h" selected="selected">otros métodos en color</option>
  [% ELSE %] <option value="h">otros métodos en color</option>
  [% END %] [% IF ( f6i ) %] <option value="i" selected="selected">ilustradamente</option>
@@ -159,8 +159,8 @@
  [% ELSE %] <option value="e">batimetría - sondeos</option>
  [% END %] [% IF ( f7f ) %] <option value="f" selected="selected">líneas de formulario</option>
  [% ELSE %] <option value="f">líneas de formulario</option>
- [% END %] [% IF ( f7g ) %] <option value="g" selected="selected">alturas de punto</option>
- [% ELSE %] <option value="g">alturas de punto</option>
+ [% END %] [% IF ( f7g ) %] <option value="g" selected="selected">punto de alturas</option>
+ [% ELSE %] <option value="g">punto de alturas</option>
  [% END %] [% IF ( f7h ) %] <option value="h" selected="selected">otros métodos en color</option>
  [% ELSE %] <option value="h">otros métodos en color</option>
  [% END %] [% IF ( f7i ) %] <option value="i" selected="selected">ilustradamente</option>
@@ -238,8 +238,8 @@
  [% ELSE %] <option value="bf">Mollweide</option>
  [% END %] [% IF ( f8bg ) %] <option value="bg" selected="selected">sinusoidal</option>
  [% ELSE %] <option value="bg">sinusoidal</option>
- [% END %] [% IF ( f8bh ) %] <option value="bh" selected="selected">Mercator transversa</option>
- [% ELSE %] <option value="bh">Mercator transversa</option>
+ [% END %] [% IF ( f8bh ) %] <option value="bh" selected="selected">transversal de Mercator </option>
+ [% ELSE %] <option value="bh">transversal de Mercator </option>
  [% END %] [% IF ( f8bi ) %] <option value="bi" selected="selected">Gauss</option>
  [% ELSE %] <option value="bi">Gauss</option>
  [% END %] [% IF ( f8bj ) %] <option value="bj" selected="selected">Llana Cuadrada</option>

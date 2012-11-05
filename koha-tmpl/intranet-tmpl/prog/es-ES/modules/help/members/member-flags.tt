@@ -4,22 +4,21 @@
 
 <p style="color: #990000">Importante: De manera de permitir al personal ingresar a la interfaz administrativa deberán tener (por lo menos) permisos de 'catalogo' para permitirle ver la interfaz administrativa.</p>
 
-<h2>Setting Patron Permissions</h2>
+<h2>Confirgurar Permisos de Socios</h2>
 
 <p>Para establecer permisos de socios, deberá primero tener un socio de tipo 'Staff' abierto</p>
 
 <ul>
- <li>En el registro del socio haga clic en Mas y seleccione Establecer permisos para cambiar los permisos del socio</li>
- <li>Se le presentará una lista de preferencias, algunas de la cuales pueden ser expandidas haciendo clic en el signo mas a la izquierda del título de sección.</li>
+ <li>En el registro del socio haga clic en Más y seleccione Establecer permisos para cambiar los permisos del socio</li>
+ <li>Se le presentará una lista de preferencias, algunas de la cuales pueden ser expandidas haciendo clic en el signo más a la izquierda del título de sección.</li>
 </ul>
 
 <h3>Permisos de socios definidos</h3>
 
 <ul>
- <li>superusuario <ul>
- <li>Access to all functions within the staff client
-<ul>
- <li style="background-color: #ffe599;">Tip: With this selected there is no need to choose any other permissions</li>
+ <li>superlibrarian<ul>
+ <li>Acceso a todas las funciones disponibles en la interfaz administrador<ul>
+ <li style="background-color: #ffe599;">Consejo: Con esta selección no es necesario elegirotros permisos</li>
 </ul>
 </li>
 </ul>
@@ -36,6 +35,7 @@
 </li>
  <li>parámetros <ul>
  <li>Proporciona acceso a todas las áreas del menú de Administración</li>
+ <li>Esta sección se puede ampliar</li>
 </ul>
 </li>
  <li>socios <ul>
@@ -60,7 +60,7 @@
  <li>Esta sección se puede ampliar</li>
 </ul>
 </li>
- <li>actualizar cargas <ul>
+ <li>updatecharges <ul>
  <li>Manejar cuentas de socios (incluyendo el pago de multas, ingreso de créditos y confección de facturas)</li>
 </ul>
 </li>
@@ -95,7 +95,7 @@
 </li>
  <li>staffaccess <ul>
  <li>Proporciona la capacidad de modificar Id de usuarios/permisos del personal administrativo</li>
- <li style="color: #990000">Important: Requires the borrowers permission above</li>
+ <li style="color: #990000">Importante: a la tabla de préstamos: Requiere supervisión del  permiso de los prestatarios</li>
 </ul>
 </li>
 </ul>
@@ -106,12 +106,29 @@
 
 <ul>
  <li>circulate_remaining_permissions <ul>
- <li>All circulation rights except the ability to override renewals</li>
+ <li>Todos los derechos de circulación excepto la capacidad de anular las renovaciones</li>
 </ul>
 </li>
  <li>override_renewals <ul>
  <li>Sobrescribir renovaciones bloqueadas:</li>
- <li>Requires that the staff member also has circulate_remaining_permissions</li>
+ <li>Requerir que los miemebros del personal también tengan circulate_remaining_permissions </li>
+</ul>
+</li>
+</ul>
+
+<h4>Granular Parameters Permissions</h4>
+
+<p>If the staff member has 'parameters' permissions they have the ability to perform all of these actions. If you would like to control parameter permissions on a more granular level choose from these options:</p>
+
+<ul>
+ <li>manage_circ_rules
+<ul>
+ <li>The ability to edit circulation and fine rules in the administration area</li>
+</ul>
+</li>
+ <li>parameters_remaining_permissions
+<ul>
+ <li>Access to all other areas under Administration</li>
 </ul>
 </li>
 </ul>
@@ -126,7 +143,7 @@
 </ul>
 </li>
  <li>place_holds <ul>
- <li>Allows staff members to place holds for patrons via the staff interface</li>
+ <li>Permitir al personal hacer reservas para los socios a través del interfaz administrador</li>
 </ul>
 </li>
 </ul>
@@ -156,7 +173,7 @@
 
 <ul>
  <li>budget_add_del <ul>
- <li>Ability to add and delete budgets (not modify)</li>
+ <li>Habilitar para agregar o borrar presupuestos (no modificarlos)</li>
 </ul>
 </li>
  <li>budget_manage <ul>
@@ -309,9 +326,8 @@
  <li>Preparar registros MARC en del depósito (acceso a la herramienta Preparar registros MARC)</li>
 </ul>
 </li>
- <li>upload_local_cover_images
-<ul>
- <li>Upload local cover images (Access to the Upload Local Cover Image Tool)</li>
+ <li>upload_local_cover_images <ul>
+ <li>Cargar las imágnes de las cubiertas de los registros  (Acceso a Herramienta de Carga de Imágenes de Cubiertas de Registros)</li>
 </ul>
 </li>
  <li>view_system_logs <ul>
@@ -335,6 +351,6 @@
 </li>
 </ul>
 
-<p><strong>Vea la documentación completa de Permisos de socios en la <a href="http://manual.koha-community.org/3.8/en/patronpermissions.html">manual</a> (en línea).</strong></p>
+<p><strong>Vea la documentación completa de Permisos de socios en la <a href="http://manual.koha-community.org/3.10/en/patronpermissions.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

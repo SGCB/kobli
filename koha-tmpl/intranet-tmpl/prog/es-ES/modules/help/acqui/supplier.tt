@@ -1,54 +1,49 @@
 [% INCLUDE 'help-top.inc' %] <h1>Proveedores</h1>
 
-<p>Before any orders can be placed, you must first enter at least one vendor.</p>
+<p>Antes de introducir una orden, deberá introducir primero al menos un proveedor.</p>
 
-<h2>Add a Vendor</h2>
+<h2>Agregar un proveedor </h2>
 
-<p>To add a vendor, click the 'New Vendor' button on the Acquisitions page.</p>
+<p>Para agregar un proveedor, seleccionar en el botón 'Nuevo Proveedor' en la página de Adquisiciones.</p>
 
-<p>The vendor add form is broken into three pieces:</p>
+<p>El formulario para agregar el proveedor está dividido en tres partes:</p>
 
 <ul>
- <li>The first section is for basic information about the vendor.
-<ul>
- <li>Of these fields, only the vendor name is required. The rest of the information should be added to help with generating claim letters and invoices.</li>
+ <li>La primera sección es para  información básica sobre el proveedor.<ul>
+ <li>De estos campos, sólo el nombre del proveedor es necesario. El resto de la información debe ser añadida para ayudar con la generación de cartas de reclamos y facturas.</li>
 </ul>
 </li>
- <li>The second section is for information regarding your contact at the Vendor's office.
-<ul>
- <li>None of these fields are required. They should only be entered if you want to keep track of your contact information within Koha.</li>
+ <li>La segunda sección es para información acerca de su contacto en la oficina del Proveedor <ul>
+ <li>Ninguno de estos campos son obligatorios.  Sólo deberán ser rellenados si se desea realizar un seguimiento de la información de su contacto dentro de Koha.</li>
 </ul>
 </li>
- <li>The final section is for billing information:
-<ul>
- <li>To be able to order from a vendor, you must make them 'Active.'</li>
- <li>For List Prices and Invoice Prices, choose the currency.
-<ul>
- <li>Currencies are assigned in the Currencies &amp; Exchange Rates admin area.</li>
+ <li>El última sección es para los datos de facturación:<ul>
+ <li>Para poder hacer un pedido a un proveedor,  debe ponerlas en 'Activar'.</li>
+ <li>Para  Lista de Precios y Precios de Factura, seleccione su moneda.<ul>
+ <li>Currencies  se asignan en el área de Currencies &amp; Exchange Rates</li>
 </ul>
 </li>
- <li>If your library is charged tax, mark your Tax Number as registered.</li>
- <li>Note: if you list prices and/or invoice prices, include tax.</li>
- <li>If the vendor offers a consistent blank discount, enter that in the 'Discount' field.
-<ul>
+ <li>Si su biblioteca carga impuestos, marque su Número de Impuesto como registrado.</li>
+ <li>Nota: si su lista de precios y/o facturas, incluye impuestos.</li>
+ <li>Si el vendedor ofrece un descuento, este se introducirá en el campo 'Descuento'.<ul>
  <li>Usted pueda acceder descuentos específicos del ítem al hacer un pedido</li>
 </ul>
 </li>
- <li>Enter your tax rate if your library is charged taxes on orders.</li>
- <li>If you know how long it usually takes orders to arrive from this vendor, you can enter a delivery time. This will allow Koha to estimate when orders will arrive at your library on the late orders report.</li>
- <li>Notes are for internal use.</li>
+ <li>Introducir su tasa de impuestos si su biblioteca se carga impuestos sobre pedidos</li>
+ <li>Si usted sabe cuanto tiempo suele tardar el pedido de este proveedor, puede introducir toempo de entrega. Esto permite que koha estime cuando llegaran los pedidos a la biblioteca segun el informe de pedido de retraso.</li>
+ <li>Las notas son para uso interno. </li>
 </ul>
 </li>
 </ul>
 
-<h2>View/Edit a Vendor</h2>
+<h2>Ver/Editar un proveedor</h2>
 
-<p>To view a vendor's information page, you must search for the vendor from the Acquisitions home page. Your search can be for any part of the vendor's name. From the results, click on the name of the vendor you want to view or edit.</p>
+<p>Para ver la página de información de un proveedor, tiene que buscar el proveedor en la página principal de Adquisiciones. Puede hacer la búsqueda a partir de cualquier parte del nombre del proveedor. Desde  los resultados, seleccionar en el nombrede el proveedor que desea ver o editar.</p>
 
 <p>Para realizar cambios al vendedor o proveedor, simplemente haga clic en el botón "Editar"</p>
 
-<p>If the vendor has no baskets attached to it, a 'Delete' button will also be visible, allowing the vendor to be deleted.</p>
+<p>Si el proveedor no ha adjuntado cestas que se le atribuye, un botón 'Borrar' será visible, permitiendo borrar el proveedor.</p>
 
-<p><strong>See the full documentation for managing Vendors in the <a href="http://manual.koha-community.org/3.8/en/acqvendors.html">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para administración de proveedores en la <a href="http://manual.koha-community.org/3.10/en/acqvendors.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

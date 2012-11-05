@@ -1,39 +1,39 @@
 --- 
-Acquisitions: 
+acquisitions.pref: 
   "Impresi\xC3\xB3n": 
     - 
-      - Utilice
+      - Usar
       - 
         pref: OrderPdfFormat
-      - cuando imprima grupos de bolsas.
+      - cuando imprima grupos de cestas.
   "Pol\xC3\xADtica": 
     - 
-      - "Crear un \xC3\xADtem al"
+      - "Crear un \xC3\xADtem cuando"
       - 
         choices: 
-          cataloguing: catalogar un registro.
-          ordering: realizar una compra.
-          receiving: recibir una compra.
+          cataloguing: catalogue un registro.
+          ordering: realice una orden de compra.
+          receiving: reciba una orden de compra.
         pref: AcqCreateItem
     - 
       - 
         pref: UniqueItemFields
-      - (space-separated list of fields that should be unique for items, must be valid SQL fields of items table)
+      - "(lista separada por espacios de campos que deber\xC3\xADan ser \xC3\xBAnicos para \xC3\xADtems, debe ser v\xC3\xA1lido para la tabla de campos de \xC3\xADtems de SQL)"
     - 
-      - When closing or reopening a basket,
+      - Cuando cierras o reabres una cesta,
       - 
         choices: 
-          1: always ask for confirmation.
-          2: do not ask for confirmation.
+          1: "siempre pedir confirmaci\xC3\xB3n."
+          2: "no pedir confirmaci\xC3\xB3n."
         default: 1
         pref: BasketConfirmations
     - 
-      - Show baskets
+      - Mostrar cestas
       - 
         choices: 
-          all: in system, regardless of owner.
-          branch: from staff member's library.
-          user: created by staff member.
+          all: en sistema, a pesar del propietario.
+          branch: de miembros del personal de la biblioteca
+          user: "creadas por miembros del personal de administraci\xC3\xB3n."
         pref: AcqViewBaskets
     - 
       - Mostrar monedas utilizando el siguiente formato
@@ -43,7 +43,7 @@ Acquisitions:
           US: 360,000.00 (US)
         pref: CurrencyFormat
     - 
-      - La tasa de impuesto predeterminada es
+      - Default tax rates are
       - 
         pref: gist
-      - "(ingrese en formato num\xC3\xA9rico, 0.12 para 12%)"
+      - (enter in numeric form, 0.12 for 12%. First is the default. If you want more than 1 value, please separate with |)

@@ -110,7 +110,8 @@ function confirm_items_deletion() {
 	    var editmenu = [
             [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]{ text: _("Editar registro"), url: "/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=&amp;op=" },[% END %]
             [% IF ( CAN_user_editcatalogue_edit_items ) %]{ text: _("Editar ítems"), url: "/cgi-bin/koha/cataloguing/additem.pl?biblionumber=[% biblionumber %]" },[% END %]
-            [% IF ( CAN_user_tools_items_batchmod ) %]{ text: _("Edit items in batch"), url: "/cgi-bin/koha/tools/batchMod.pl?op=show&biblionumber=[% biblionumber %]&src=CATALOGUING" },[% END %]
+            [% IF ( CAN_user_tools_items_batchmod ) %]{ text: _("Editar ítems en un lote"), url: "/cgi-bin/koha/tools/batchMod.pl?op=show&biblionumber=[% biblionumber %]&src=CATALOGUING" },[% END %]
+            [% IF ( CAN_user_tools_items_batchdel ) %]{ text: _("Delete items in batch"), url: "/cgi-bin/koha/tools/batchMod.pl?del=1&op=show&biblionumber=[% biblionumber %]&src=CATALOGUING" },[% END %]
             [% IF ( CAN_user_editcatalogue_edit_items ) %]{ text: _("Adjuntar ítem"), url: "/cgi-bin/koha/cataloguing/moveitem.pl?biblionumber=[% biblionumber %]" },[% END %]
             [% IF ( EasyAnalyticalRecords ) %][% IF ( CAN_user_editcatalogue_edit_items ) %]{ text: _("Enlace a ítem"), url: "/cgi-bin/koha/cataloguing/linkitem.pl?biblionumber=[% biblionumber %]" },[% END %][% END %]
             [% IF ( LocalCoverImages || OPACLocalCoverImages) %][% IF ( CAN_user_tools_upload_local_cover_images ) %]{ text: _("Cargar imagen"), url: "/cgi-bin/koha/tools/upload-cover-image.pl?biblionumber=[% biblionumber %]&filetype=image" },[% END %][% END %]
@@ -148,7 +149,7 @@ function confirm_items_deletion() {
 	    });
 
 	    var addtomenu = [
-			{ text: _("Carrito"), onclick: { fn: addToCart } },
+			{ text: _("Cesta"), onclick: { fn: addToCart } },
 			{ text: _("Lista"),  onclick: { fn: addToShelf } }
 		];
 
@@ -216,10 +217,10 @@ function confirm_items_deletion() {
  [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="editbiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=[% current_framework %]&amp;op=">Editar registro</a></li>
  [% END %] [% IF ( CAN_user_editcatalogue_edit_items ) %] <li><a id="edititems" href="/cgi-bin/koha/cataloguing/additem.pl?biblionumber=[% biblionumber %]">Editar ítems</a></li>
  [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="duplicatebiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=[% current_framework %]&amp;op=duplicate">Registro duplicado</a></li>
- [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="deletebiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?op=delete&amp;biblionumber=[% biblionumber %]">Borrar</a></li>
+ [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="deletebiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?op=delete&amp;biblionumber=[% biblionumber %]">Eliminar</a></li>
  [% END %] <li><a id="addtoshelf" href="/cgi-bin/koha/virtualshelves/addbybiblionumber.pl?biblionumber=[% biblionumber %]">Agregar al estante</a></li>
  <li><a id="printbiblio" href="/cgi-bin/koha/catalogue/detailprint.pl?biblionumber=[% biblionumber %]">Imprimir</a></li>
- [% IF ( CAN_user_reserveforothers ) %] [% UNLESS ( norequests ) %]<li><a id="placehold" href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>[% END %] [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]<li id="z3950searchc"><input value="Búsqueda Z39.50" type="button" id="z3950search" onclick="PopupZ3950(); return false;" /></li>[% END %] </ul>
+ [% IF ( CAN_user_reserveforothers ) %] [% UNLESS ( norequests ) %]<li><a id="placehold" href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>[% END %] [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]<li id="z3950searchc"><input value="Búsqueda Z39.50" type="button" id="z3950search" onclick="if (confirm(_('Please note that this Z39.50 search could replace the current record.'))){ PopupZ3950(); } return false;" /></li>[% END %] </ul>
 </form>
 </div>
 

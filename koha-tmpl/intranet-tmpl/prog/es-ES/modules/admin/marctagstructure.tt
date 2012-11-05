@@ -13,7 +13,7 @@ function Check(f) {
     var _alertString="";
     var alertString2;
     if (f.tagfield.value.length==0) {
-        _alertString += "\n- " + _("falta el número de etiqueta");
+        _alertString += "\n- " + _("etiqueta de número perdido");
     }
     if (_alertString.length==0) {
         document.Aform.submit();
@@ -50,7 +50,7 @@ $(document).ready(function() {
 [% IF ( else ) %] <div id="toolbar">
  <ul class="toolbar">
  <li><a id="addtag" href="/cgi-bin/koha/admin/marctagstructure.pl?op=add_form&amp;frameworkcode=[% frameworkcode %]">Nueva etiqueta</a></li>
-</ul></div>[% END %] <h1>Hoja de trabajo MARC para [% IF ( frameworkcode ) %][% frameworktext %] ([% frameworkcode %])[% ELSE %]Hoja de trabajo MARC por defecto[% END %]</h1>
+</ul></div>[% END %] <h1>Plantilla MARC para [% IF ( frameworkcode ) %][% frameworktext %] ([% frameworkcode %])[% ELSE %]Hoja de trabajo MARC por defecto[% END %]</h1>
 
 [% IF ( add_form ) %] <form action="[% script_name %]" name="Aform" method="post">
  
@@ -90,7 +90,7 @@ $(document).ready(function() {
  [% FOREACH existingframeworkloo IN existingframeworkloop %] <option value="[% existingframeworkloo.value %]">[% existingframeworkloo.frameworktext %]</option>
  [% END %] </select>
  <input type="submit" value="OK" />
- <br /><label for="clone_indicators" title="Clone indicators from the framework used as template">Clone indicators:&nbsp;</label><input type="checkbox" name="clone_indicators" id="clone_indicators" value ="1" checked="checked" />
+ <br /><label for="clone_indicators" title="Clonar indicadores desde la plantilla  usada en las plantilla de visualización">Clonar indicators:&nbsp;</label><input type="checkbox" name="clone_indicators" id="clone_indicators" value ="1" checked="checked" />
  
  </form>
 [% END %] [% IF ( else ) %] <form name="f" action="[% script_name %]" method="post">
@@ -121,9 +121,9 @@ $(document).ready(function() {
  <th>Obligatorio</th>
  <th>Valor autorizado</th>
  <th>Subcampos</th>
- <th>Indicators</th>
+ <th>Indicadores</th>
  <th>Editar</th>
- <th>Borrar</th>
+ <th>Eliminar</th>
  </thead>
 
  [% IF ( select_display ) %] [% FOREACH loo IN loop %] [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %] <td>[% loo.tagfield %]</td>
@@ -132,9 +132,9 @@ $(document).ready(function() {
  <td>[% IF ( loo.mandatory ) %]Si[% ELSE %]No[% END %]</td>
  <td>[% loo.authorised_value %]</td>
  <td><a href="[% loo.subfield_link %]">subcampos</a></td>
- <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">indicators</a>[% END %]</td>
+ <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">Indicadores</a>[% END %]</td>
  <td><a href="[% loo.edit %]">Editar</a></td>
- <td><a href="[% loo.delete %]">Borrar</a></td>
+ <td><a href="[% loo.delete %]">Eliminar</a></td>
  </tr>
  [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %] <td>&nbsp;</td>
  <td colspan="8">
@@ -147,9 +147,9 @@ $(document).ready(function() {
  <td>[% IF ( loo.mandatory ) %]Si[% ELSE %]No[% END %]</td>
  <td>[% loo.authorised_value %]</td>
  <td><a href="[% loo.subfield_link %]">Subcampos</a></td>
- <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">Indicators</a>[% END %]</td>
+ <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">Indicadores</a>[% END %]</td>
  <td><a href="[% loo.edit %]">Editar</a></td>
- <td><a href="[% loo.delete %]">Borrar</a></td>
+ <td><a href="[% loo.delete %]">Eliminar</a></td>
  </tr>
  [% END %] [% END %] </table>
 

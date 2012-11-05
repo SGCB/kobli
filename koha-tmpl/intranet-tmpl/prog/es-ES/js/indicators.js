@@ -27,29 +27,29 @@
             var a_usevalue = $("#" + field + "_btn_usevalue_" + ind);
             var a_usevalue_3 = $("#" + field + "_btn_usevalue_3");
             if (okBoth.ind1) {
-                obj.prev("label").attr("title", "El Valor del usuario para el Indicador " + ind + " es valido");
-                obj.attr("title", "El Valor del usuario para el Indicador " + ind + " es valido");
+                obj.prev("label").attr("title", "User Value for Indicator " + ind + " is valid");
+                obj.attr("title", "User Value for Indicator " + ind + " is valid");
                 obj.css("backgroundColor", "");
                 if (a_usevalue && a_usevalue_3) {
-                    a_usevalue.attr('title', "Usar este valor y cerrar la ventana");
-                    a_usevalue.val("Usar y Cerrar");
+                    a_usevalue.attr('title', "Use this value and close the window");
+                    a_usevalue.val("Use and Close");
                     if (okBoth.ind1 && okBoth.ind2) {
-                        a_usevalue_3.attr('title', 'Usar estos valores y cerrar la ventana');
-                        a_usevalue_3.val('Usar ambos y Cerrar');
+                        a_usevalue_3.attr('title', 'Use these values and close the window');
+                        a_usevalue_3.val('Use both and Close');
                     } else {
-                        a_usevalue_3.attr('title', "No puede usar estos valores mientras no sean correctos");
-                        a_usevalue_3.val("No puede usar estos valores mientras no sean correctos");
+                        a_usevalue_3.attr('title', "Can't Use these values until they're correct");
+                        a_usevalue_3.val("Can't Use these values until they're correct");
                     }
                 }
             } else {
-                obj.prev("label").attr("title", "El Valor del usuario para el Indicador " + ind + " no es válido");
-                obj.attr("title", "El Valor del usuario para el Indicador " + ind + " no es válido");
+                obj.prev("label").attr("title", "User Value for Indicator " + ind + " not is valid");
+                obj.attr("title", "User Value for Indicator " + ind + " is not valid");
                 obj.css("backgroundColor", "yellow");
                 if (a_usevalue && a_usevalue_3) {
-                    a_usevalue.attr('title', "No puede usar este valor mientras no sea correcto");
-                    a_usevalue.val("No puede usar este valor mientras no sea correcto");
-                    a_usevalue_3.attr('title', "No puede usar estos valores mientras no sean correctos");
-                    a_usevalue_3.val("No puede usar estos valores mientras no sean correctos");
+                    a_usevalue.attr('title', "Can't Use this value until is correct");
+                    a_usevalue.val("Can't Use this value until is correct");
+                    a_usevalue_3.attr('title', "Can't Use these values until they're correct");
+                    a_usevalue_3.val("Can't Use these values until they're correct");
                 }
             }
         } else okBoth.ind1 = true;
@@ -122,8 +122,8 @@
                 return true;
             } else {
                 var obja = $("#" + field + "_btn_usevalue_" + ind);
-                if (obja) obja.attr('title', "Valor " + value + " inválido para indicador " + ind);
-                alert(_("Valor ") + value + _(" inválido para indicador " + ind));
+                if (obja) obja.attr('title', "Value " + value + " invalid for indicator " + ind);
+                alert(_("Value ") + value + _(" invalid for indicator " + ind));
             }
         }
         return false;
@@ -189,7 +189,7 @@
         });
         $("*").ajaxError(function(evt, request, settings){
             if (!errorAjax) {
-                alert(_("AJAX error: recibiendo datos desde ") + settings.url);
+                alert(_("AJAX error: receiving data from ") + settings.url);
                 errorAjax = true;
             }
         });
@@ -291,7 +291,7 @@
                                                     if (objInd != undefined) {
                                                         var valueInd = objInd.val();
                                                         if (!checkValidIndField(j, valueInd, nodeField)) {
-                                                            strErrorInd += "El valor \"" + valueInd + "\" no es valido para el indicador " + j + " en el tag " + tag + ". ";
+                                                            strErrorInd += "The value \"" + valueInd + "\" is not valid for indicator " + j + " on tag " + tag + ". ";
                                                             numError++;
                                                             if (numError > 0 && (numError + 1) % 2 == 0) strErrorInd += "\n";
                                                             objInd.css("backgroundColor", "yellow");

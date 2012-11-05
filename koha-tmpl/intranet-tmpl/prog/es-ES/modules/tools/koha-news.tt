@@ -64,7 +64,7 @@ tinyMCE.init({
  <label for="lang">Mostrar ubicación</label>
  <select id="lang" name="lang">
  <option value="koha">Interfaz para bibliotecarios</option>
- [% IF ( slip ) %]<option value="slip" selected="selected">Tira</option>[% ELSE %]<option value="slip">Tira</option>[% END %] [% FOREACH lang_lis IN lang_list %] [% IF ( lang_lis.selected ) %]<option value="[% lang_lis.language %]" selected="selected">OPAC ([% lang_lis.language %])</option>[% ELSE %]<option value="[% lang_lis.language %]">OPAC ([% lang_lis.language %])</option>[% END %] [% END %] </select>
+ [% IF ( slip ) %]<option value="slip" selected="selected">Comprobante</option>[% ELSE %]<option value="slip">Comprobante</option>[% END %] [% FOREACH lang_lis IN lang_list %] [% IF ( lang_lis.selected ) %]<option value="[% lang_lis.language %]" selected="selected">OPAC ([% lang_lis.language %])</option>[% ELSE %]<option value="[% lang_lis.language %]">OPAC ([% lang_lis.language %])</option>[% END %] [% END %] </select>
  </li>
  <li>
  <label for="title">Título</label>
@@ -98,7 +98,7 @@ tinyMCE.init({
  <select name="lang" id="lang">
  <option value="">Todo</option>
  <option value="koha">Interfaz para bibliotecarios</option>
- <option value="slip">Tira</option>
+ <option value="slip">Comprobante</option>
  [% FOREACH lang_lis IN lang_list %] [% IF ( lang_lis.selected ) %] <option value="[% lang_lis.language %]" selected="selected">
  [% ELSE %] <option value="[% lang_lis.language %]">
  [% END %] OPAC ([% lang_lis.language %]) </option>
@@ -123,7 +123,7 @@ tinyMCE.init({
  [% END %] <td>
  <input type="checkbox" name="ids" value="[% opac_new.idnew %]" />
  </td>
- <td>[% IF ( opac_new.lang == 'koha' ) %] Interfaz del bibliotecario [% ELSE %] [% IF ( opac_new.lang == 'slip' ) %] Tira [% ELSE %] OPAC [% END %] [% END %] </td>
+ <td>[% IF ( opac_new.lang == 'koha' ) %] Interfaz del bibliotecario [% ELSE %] [% IF ( opac_new.lang == 'slip' ) %] Recibo [% ELSE %] OPAC [% END %] [% END %] </td>
 
  <td>[% opac_new.number %]</td>
  <td>[% opac_new.newdate %]</td>

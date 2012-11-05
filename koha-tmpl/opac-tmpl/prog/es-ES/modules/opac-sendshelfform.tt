@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Enviando su lista [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">//<![CDATA[
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Enviando su lista [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">//<![CDATA[
 	$(document).ready(function(){
 		$(".close").html(_("Cerrar esta ventana"));
 	});
@@ -8,12 +8,12 @@
 <body style="padding: 1em;" id="sendshelf">
 <div id="usersendshelfform" class="container">[% IF ( email ) %] [% IF ( SENT ) %] <h3>Mensaje enviado</h3>
  <p>La lista fue enviada a: [% email %]</p>
- <p><a class="focus close" href="/cgi-bin/koha/opac-shelves.pl">Volver las listas</a></p>
- [% END %] [% IF ( error ) %] <p>Problema enviado la lista...</p>
+ <p><a class="focus close" href="/cgi-bin/koha/opac-shelves.pl">Volver a las listas</a></p>
+ [% END %] [% IF ( error ) %] <p>Problema enviando la lista...</p>
  [% END %] [% ELSE %] [% IF ( invalidlist ) %] <div class="dialog alert">
- <p>No tiene permiso para enviar esta lista.</p>
+ <p>ERROR: No tiene permiso para enviar esta lista.</p>
  </div>
- <p><a class="button close" href="/cgi-bin/koha/opac-shelves.pl">Volver las listas</a></p>
+ <p><a class="button close" href="/cgi-bin/koha/opac-shelves.pl">Volver a las listas</a></p>
  [% ELSE %] <form action="[% url %]" method="post" id="sendshelfform">
 
  <fieldset class="rows">

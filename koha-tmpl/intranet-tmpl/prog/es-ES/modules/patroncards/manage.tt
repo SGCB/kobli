@@ -97,7 +97,7 @@
             var deleteButton = new YAHOO.widget.Button({
                 type: "link",
                 onclick: {fn: DeleteConfirm},
-                label: _("Borrar"),
+                label: _("Eliminar"),
                 id: "delete",
                 container: "delete",
             });
@@ -137,12 +137,12 @@
  [% END %] [% END %] </table>
  <fieldset class="action">
  <span id="edit"><input value="Editar" type="button" id="edit" onclick="Edit()" /></span>
- <span id="delete"><input value="Borrar" type="button" id="delete" onclick="DeleteConfirm()" /></span>
+ <span id="delete"><input value="Eliminar" type="button" id="delete" onclick="DeleteConfirm()" /></span>
  [% IF ( print ) %]<span id="xport"><input value="Exportar" type="button" id="print" onclick="Xport()" /></span>[% END %] </fieldset>
  </form>
  [% ELSE %] <div class="dialog message">
  <h4>Actualmente no hay [% card_element_title %] disponibles.</h4>
- <p>Utilice la barra de herramientas anteriores para crear una nueva [% card_element %].</p></div>
+ <p>Utilice la barra de herramientas anterior para crear un nuevo [% card_element %].</p></div>
  [% END %] </div>
  </div>
  </div>

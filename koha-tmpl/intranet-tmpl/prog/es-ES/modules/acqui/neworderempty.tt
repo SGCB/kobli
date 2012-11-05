@@ -101,7 +101,7 @@ $(document).ready(function()
         [% END %]
 
         $("#quantity").change(function() {
-            calcNeworderTotal();
+            updateCosts();
         });
 
         //We apply the fonction only for modify option
@@ -125,20 +125,23 @@ $(document).ready(function()
         });
         [% END %]
         
+        //keep a copy of all budgets before removing the inactives
+        disabledBudgetsCopy = $('#budget_id').html();
+        $('#budget_id .b_inactive').remove();
+
         $('#showallbudgets').click(function() {
-            if ( $('#budget_id .b_inactive').is(":visible") )
-            {
-            $('#budget_id .b_inactive').hide();
+            if ($(this).is(":checked")) {
+                $('#budget_id').html(disabledBudgetsCopy); //Puts back all the funds
             }
             else {
-            $('#budget_id .b_inactive').show();
+                $('#budget_id .b_inactive').remove();
             }
         });
     });
 //]]>
 </script>
 </head>
-<body id="acq_neworderempty" class="acq">
+<body id="acq_neworderempty" class="acq" onload="updateCosts()">
 
 [% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% name %]</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Bolsa [% basketno %]</a> &rsaquo; [% IF ( ordernumber ) %]Modificar detalles de pedido (línea #[% ordernumber %])[% ELSE %]Nuevo pedido[% END %]</div>
 
@@ -186,17 +189,14 @@ $(document).ready(function()
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
  <input type="hidden" name="biblioitemnumber" value="[% biblioitemnumber %]" />
- <input type="hidden" name="discount" value="[% discount %]" />
- <input type="hidden" name="listinc" value="[% listincgst %]" />
-<!-- <input type="hidden" name="currency" value="[% currency %]" />-->
- <input type="hidden" name="applygst" value="[% gstreg %]" />
- <input type="hidden" name="invoiceincgst" value="[% invoiceincgst %]" />
- <input type="hidden" name="gstrate" value="[% gstrate %]" />
+ <input type="hidden" name="listinc" id="listinc" value="[% listincgst %]" />
+ <input type="hidden" name="applygst" id="applygst" value="[% gstreg %]" />
+ <input type="hidden" name="invoiceincgst" id="invoiceincgst" value="[% invoiceincgst %]" />
  <input type="hidden" name="suggestionid" value="[% suggestionid %]" />
  <input type="hidden" name="import_batch_id" value="[% import_batch_id %]" />
+ <input type="hidden" name="currency_rate" id="currency_rate" value="[% currency_rate %]" />
 
- [% FOREACH loop_currencie IN loop_currencies %] <input type="hidden" id="[% loop_currencie.currcode %]"  name="[% loop_currencie.currcode %]" value="[% loop_currencie.rate %]" />
- [% END %] <ol><li>
+ <ol><li>
  [% IF ( biblionumber ) %] <span class="label">Título</span>
  <input type="hidden" size="50" name="title" value="[% title |html %]" /> <span class="title">[% title |html %]</span>
  [% ELSE %] <label for="entertitle" class="required">Título: </label>
@@ -265,8 +265,8 @@ $(document).ready(function()
  <th>&nbsp;</th>
  <th>&nbsp;</th>
  <th>Código de barras</th>
- <th>Sede de origen</th>
- <th>Sede de la reserva</th>
+ <th>Biblioteca de origen</th>
+ <th>Biblioteca de la reserva</th>
  <th>No para préstamo</th>
  <th>Suspendido:</th>
  <th>Ubicación</th>
@@ -298,7 +298,7 @@ $(document).ready(function()
  [% IF ( close ) %] <span class="label required">Cantidad: </span>
  <input type="hidden" size="20" name="quantity" value="[% quantity %]" />[% quantity %] [% ELSE %] <label class="required" for="quantity">Cantidad: </label>
  [% IF (AcqCreateItemOrdering) %] <input type="text" readonly="readonly" size="20" id="quantity" name="quantity" value="0" />
- [% ELSE %] <input type="text" size="20" id="quantity" name="quantity" value="[% quantityrec %]" />
+ [% ELSE %] <input type="text" size="20" id="quantity" name="quantity" value="[% quantityrec %]" onchange="updateCosts();" />
  [% END %]
  [% END %]
  <!-- origquantityrec only here for javascript compatibility (additem.js needs it, useless here, usefull when receiveing an order -->
@@ -311,7 +311,7 @@ $(document).ready(function()
  <option value="">Seleccione un presupuesto</option>
  [% FOREACH budget_loo IN budget_loop %] [% IF ( budget_loo.b_sel ) %] <option value="[% budget_loo.b_id %]" selected="selected">[% budget_loo.b_txt %]</option>
  [% ELSE %] [% IF ( budget_loo.b_active ) %]<option value="[% budget_loo.b_id %]">[% budget_loo.b_txt %]</option>
- [% ELSE %]<option value="[% budget_loo.b_id %]" class="b_inactive" style="display : none;">[% budget_loo.b_txt %]</option> 
+ [% ELSE %]<option value="[% budget_loo.b_id %]" class="b_inactive">[% budget_loo.b_txt %]</option>
  [% END %] [% END %] [% END %] </select>
  <label for="showallbudgets" style="float:none;width:auto;">&nbsp;Mostrar todo:</label>
  <input type="checkbox" id="showallbudgets" />
@@ -319,13 +319,13 @@ $(document).ready(function()
  <li>
  [% IF ( close ) %] <span class="label">Moneda: </span>
  <input type="hidden" size="10" name="currency" id="currency" value="[% currency %]" />[% currency %] [% ELSE %] <label for="currency">Moneda:</label>
- <select name="currency" id="currency" onchange="calcNeworderTotal();">
+ <select name="currency" id="currency" onchange="updateCosts();">
  [% FOREACH loop_currencie IN loop_currencies %] [% IF ( loop_currencie.selected ) %]<option value="[% loop_currencie.currcode %]" selected="selected">[% loop_currencie.currcode %]</option>[% ELSE %]<option value="[% loop_currencie.currcode %]">[% loop_currencie.currcode %]</option>[% END %][% END %] </select>
  [% END %] </li>
  <li>
  [% IF ( close ) %] <span class="label">Precio provisto por el proveedor: </span>
  <input type="hidden" size="20" name="listprice" id="listprice" value="[% listprice %]" />[% listprice %] [% ELSE %] <label for="listprice">Precio provisto por el proveedor: </label>
- <input type="text" size="20" name="listprice" id="listprice" value="[% listprice %]" onchange="calcNeworderTotal()" />
+ <input type="text" size="20" name="listprice" id="listprice" value="[% listprice %]" onchange="updateCosts()" />
  [% END %] </li>
  [% UNLESS ( close ) %] <li>
  <label for="uncertainprice">Precio incierto: </label>
@@ -333,6 +333,30 @@ $(document).ready(function()
  [% ELSE %] <input type="checkbox" name="uncertainprice" id="uncertainprice" value="1" />
  [% END %] </li>
  [% END %] <li>
+ [% IF ( close ) %] <span class="label">Tasa de impuesto: </span>
+ <input type="hidden" size="20" name="gstrate" id="gstrate" value="[% gstrate %]" />[% gstrate %]%
+ [% ELSE %]
+ <label for="gst">Tasa de impuesto: </label>
+ <select name="gstrate" id="gstrate" onchange="updateCosts();">
+ [% FOREACH gst IN gst_values %] [% IF ( gst.option == gstrate ) %] <option value="[% gst.option %]" selected="selected">[% gst.option * 100 | format("%.1f") %]%</option>
+ [% ELSE %] <option value="[% gst.option %]">[% gst.option * 100 | format("%.1f") %]%</option>
+ [% END %] [% END %] </select>
+ [% END %] </li>
+ <li>
+ <label for="discount">Descuento: </label>
+ [% IF ( close ) %] [% IF ( orderdiscount ) %] <input type="hidden" name="discount" id="discount" value="[% orderdiscount %]" />[% orderdiscount_2dp %]%
+ [% ELSE %]
+ <input type="hidden" name="discount" id="discount" value="[% discount %]" />[% discount_2dp %]%
+ [% END %]
+ [% ELSE %]
+ [% IF ( orderdiscount ) %]
+ <input type="text" size="6" name="discount" id="discount" value="[% orderdiscount %]" onchange="updateCosts();" />%
+ [% ELSE %]
+ <input type="text" size="6" name="discount" id="discount" value="[% discount %]" onchange="updateCosts();" />%
+ [% END %]
+ [% END %]
+ </li>
+ <li>
  [% IF ( close ) %] <span class="label">Costo de reposición: </span>
  <input type="hidden" size="20" name="rrp" id="rrp" value="[% rrp %]" />[% rrp %] [% ELSE %] <label for="rrp">Costo de reposición: </label>
  <input type="text" size="20" name="rrp" id="rrp" value="[% rrp %]" /> (ajustado por [% cur_active %]) [% END %] </li>
@@ -341,22 +365,16 @@ $(document).ready(function()
  <input type="text" size="20" name="ecost" id="ecost" value="[% ecost %]" readonly="readonly"  />
  [% ELSE %] <label for="ecost">Costo presupuestado: </label>
  <input type="text" size="20" name="ecost" id="ecost" value="[% ecost %]" />
- [% END %] [% IF ( discount_2dp ) %] (ajustado por [% discount_2dp %]% de descuento) [% END %] </li>
- [% IF ( GST ) %] <li>
- [% IF ( close ) %] <label for="GST">IVA presupuestado: </label>
- <input type="text" id="" size="20" name="gst" value="" id="GST" readonly="readonly" />
- [% ELSE %] <label for="GST">IVA presupuestado: </label>
- <input type="text" size="20" name="gst" id="GST" value="" />
  [% END %] </li>
- [% END %] <li>
+ <li>
  [% IF ( close ) %] <label for="total">Total: </label>
  <input type="text" id="total" size="20" name="total" value="[% total %]" readonly="readonly" />
  [% ELSE %] <label for="total">Total: </label>
  <input type="text" id="total" size="20" name="total" value="[% total %]" /> (costo presupuestado * cantidad) [% END %] </li>
  <li>
- [% IF ( close ) %] <label for="cost">Costo real: </label>
+ [% IF ( close ) %] <label for="unitprice">Costo real: </label>
  <input type="text" id="unitprice" size="20" name="unitprice" value="[% unitprice %]" readonly="readonly" />
- [% ELSE %] <label for="cost">Costo real: </label>
+ [% ELSE %] <label for="unitprice">Costo real: </label>
  <input type="text" id="unitprice" size="20" name="unitprice" value="[% unitprice %]" />
  [% END %] </li>
  <li>
@@ -365,22 +383,24 @@ $(document).ready(function()
  </li>
  <li><div class="hint">Los siguientes 2 campos están disponibles para su propio uso. Ellos pueden ser útiles para propósitos estadísticos</div>
  <label for="sort1">Estadística 1: </label>
-
+ <span id="sort1_zone">
  [% IF CGIsort1 %] <select id="sort1" size="1" name="sort1">
  [% FOREACH sort_opt IN CGIsort1 %] [% IF sort_opt.default %] <option value="[% sort_opt.value %]" selected="selected">[% sort_opt.label %]</option>
  [% ELSE %] <option value="[% sort_opt.value %]">[% sort_opt.label %]</option>
  [% END %] [% END %] </select>
  [% ELSE %] <input type="text" id="sort1" size="20" name="sort1" value="[% sort1 %]" />
- [% END %] </li>
+ [% END %] </span>
+ </li>
  <li>
  <label for="sort2">Estadística 2 </label>
-
+ <span id="sort2_zone">
  [% IF CGIsort2 %] <select id="sort2" size="1" name="sort2">
  [% FOREACH sort_opt IN CGIsort2 %] [% IF sort_opt.default %] <option value="[% sort_opt.value %]" selected="selected">[% sort_opt.label %]</option>
  [% ELSE %] <option value="[% sort_opt.value %]">[% sort_opt.label %]</option>
  [% END %] [% END %] </select>
  [% ELSE %] <input type="text" id="sort2" size="20" name="sort2" value="[% sort2 %]" />
- [% END %] </li>
+ [% END %] </span>
+ </li>
 </ol>
  </fieldset>
  <fieldset class="action">

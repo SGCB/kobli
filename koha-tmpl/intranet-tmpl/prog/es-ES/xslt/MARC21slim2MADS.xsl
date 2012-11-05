@@ -78,12 +78,12 @@
  <xsl:choose>
  <xsl:when test="$controlField008-06='d'">
  <xsl:attribute name="geographicSubdivision">
- <xsl:text>direct</xsl:text>
+ <xsl:text>directo</xsl:text>
  </xsl:attribute>
  </xsl:when>
  <xsl:when test="$controlField008-06='i'">
  <xsl:attribute name="geographicSubdivision">
- <xsl:text>indirect</xsl:text>
+ <xsl:text>indirecto</xsl:text>
  </xsl:attribute>
  </xsl:when>
  <xsl:when test="$controlField008-06='n'">
@@ -249,7 +249,7 @@
  </xsl:for-each>
 
  <mads:recordInfo>
- <mads:recordOrigin>Converted from MARCXML to MADS version 2.0 (Revision 2.10)</mads:recordOrigin>
+ <mads:recordOrigin>Convertido desde MARCXML a MADS version 2.0 (Revision 2.10)</mads:recordOrigin>
  <!-- <xsl:apply-templates select="marc:datafield[@tag=024]"/> -->
 
  <xsl:apply-templates select="marc:datafield[@tag=040]/marc:subfield[@code='a']"/>
@@ -260,7 +260,7 @@
  <xsl:for-each select="marc:controlfield[@tag=008]">
  <xsl:if test="substring(.,11,1)='a'">
  <mads:descriptionStandard>
- <xsl:text>earlier rules</xsl:text>
+ <xsl:text>nomas anteriores</xsl:text>
  </mads:descriptionStandard>
  </xsl:if>
  <xsl:if test="substring(.,11,1)='b'">
@@ -280,7 +280,7 @@
  </xsl:if>
  <xsl:if test="substring(.,11,1)='z'">
  <mads:descriptionStandard>
- <xsl:text>other rules</xsl:text>
+ <xsl:text>otras normas</xsl:text>
  </mads:descriptionStandard>
  </xsl:if>
  </xsl:for-each>
@@ -1045,10 +1045,10 @@
  <mads:note>
  <xsl:choose>
  <xsl:when test="@tag=667">
- <xsl:attribute name="type">nonpublic</xsl:attribute>
+ <xsl:attribute name="type">no pública</xsl:attribute>
  </xsl:when>
  <xsl:when test="@tag=670">
- <xsl:attribute name="type">source</xsl:attribute>
+ <xsl:attribute name="type">fuente</xsl:attribute>
  </xsl:when>
  <xsl:when test="@tag=675">
  <xsl:attribute name="type">notFound</xsl:attribute>
@@ -1057,13 +1057,13 @@
  <xsl:attribute name="type">historia</xsl:attribute>
  </xsl:when>
  <xsl:when test="@tag=681">
- <xsl:attribute name="type">subject example</xsl:attribute>
+ <xsl:attribute name="type">ejemplo tema</xsl:attribute>
  </xsl:when>
  <xsl:when test="@tag=682">
- <xsl:attribute name="type">deleted heading information</xsl:attribute>
+ <xsl:attribute name="type">eliminada información encabezamiento</xsl:attribute>
  </xsl:when>
  <xsl:when test="@tag=688">
- <xsl:attribute name="type">application history</xsl:attribute>
+ <xsl:attribute name="type">Historial de circulación </xsl:attribute>
  </xsl:when>
  </xsl:choose>
  <xsl:call-template name="chopPunctuation">
@@ -1107,19 +1107,19 @@
  <xsl:when
                 test="@tag=500 or @tag=510 or @tag=511 or @tag=548 or @tag=550 or @tag=551 or @tag=555 or @tag=580 or @tag=581 or @tag=582 or @tag=585">
  <xsl:if test="substring(marc:subfield[@code='w'],1,1)='a'">
- <xsl:attribute name="type">earlier</xsl:attribute>
+ <xsl:attribute name="type">anterior</xsl:attribute>
  </xsl:if>
  <xsl:if test="substring(marc:subfield[@code='w'],1,1)='b'">
- <xsl:attribute name="type">later</xsl:attribute>
+ <xsl:attribute name="type">después</xsl:attribute>
  </xsl:if>
  <xsl:if test="substring(marc:subfield[@code='w'],1,1)='t'">
  <xsl:attribute name="type">parentOrg</xsl:attribute>
  </xsl:if>
  <xsl:if test="substring(marc:subfield[@code='w'],1,1)='g'">
- <xsl:attribute name="type">broader</xsl:attribute>
+ <xsl:attribute name="type">Más amplio</xsl:attribute>
  </xsl:if>
  <xsl:if test="substring(marc:subfield[@code='w'],1,1)='h'">
- <xsl:attribute name="type">narrower</xsl:attribute>
+ <xsl:attribute name="type">específico</xsl:attribute>
  </xsl:if>
  <xsl:if test="substring(marc:subfield[@code='w'],1,1)='r'">
  <xsl:attribute name="type">otro</xsl:attribute>
@@ -1133,7 +1133,7 @@
  </xsl:when>
  <xsl:otherwise>
  <!-- 7xx -->
- <xsl:attribute name="type">equivalent</xsl:attribute>
+ <xsl:attribute name="type">equivalencia</xsl:attribute>
  </xsl:otherwise>
  </xsl:choose>
  <xsl:apply-templates select="marc:subfield[@code='i']"/>
@@ -1144,7 +1144,7 @@
  <xsl:when
                 test="@tag=400 or @tag=410 or @tag=411 or @tag=451 or @tag=455 or @tag=480 or @tag=481 or @tag=482 or @tag=485">
  <xsl:if test="substring(marc:subfield[@code='w'],1,1)='d'">
- <xsl:attribute name="type">acronym</xsl:attribute>
+ <xsl:attribute name="type">acrónimo</xsl:attribute>
  </xsl:if>
  <xsl:if test="substring(marc:subfield[@code='w'],1,1)='n'">
  <xsl:attribute name="type">otro</xsl:attribute>
@@ -1192,7 +1192,7 @@
  </xsl:when>
  <xsl:when
                 test="ancestor-or-self::marc:datafield/@tag=100 and @ind1=3 and $controlField008-11='k' and $controlField008-14='b'">
- <xsl:attribute name="authority">cash</xsl:attribute>
+ <xsl:attribute name="authority">efectivo</xsl:attribute>
  </xsl:when>
  <xsl:when
                 test="ancestor-or-self::marc:datafield/@tag=110 and $controlField008-11='a' and $controlField008-14='a'">
@@ -1211,7 +1211,7 @@
  <xsl:when
                 test="ancestor-or-self::marc:datafield/@tag=110 and $controlField008-11='k' and $controlField008-14='b'">
  <xsl:attribute name="authority">
- <xsl:text>cash</xsl:text>
+ <xsl:text>efectivo</xsl:text>
  </xsl:attribute>
  </xsl:when>
  <xsl:when
@@ -1240,7 +1240,7 @@
  </xsl:when>
  <xsl:when
                 test="100 &lt;= ancestor-or-self::marc:datafield/@tag and ancestor-or-self::marc:datafield/@tag &lt;= 155 and $controlField008-11='s'">
- <xsl:attribute name="authority">sears</xsl:attribute>
+ <xsl:attribute name="authority">sellar</xsl:attribute>
  </xsl:when>
  <xsl:when
                 test="100 &lt;= ancestor-or-self::marc:datafield/@tag and ancestor-or-self::marc:datafield/@tag &lt;= 155 and $controlField008-11='v'">
@@ -1299,7 +1299,7 @@
  <xsl:when
                 test="(ancestor-or-self::marc:datafield/@tag=148 or ancestor-or-self::marc:datafield/@tag=150  or ancestor-or-self::marc:datafield/@tag=155) and $controlField008-11='k' ">
  <xsl:attribute name="authority">
- <xsl:text>cash</xsl:text>
+ <xsl:text>efectivo</xsl:text>
  </xsl:attribute>
  </xsl:when>
  <xsl:when
@@ -1318,7 +1318,7 @@
  </xsl:when>
  <xsl:when
                 test="ancestor-or-self::marc:datafield/@tag=151 and $controlField008-11='k' and $controlField008-14='b'">
- <xsl:attribute name="authority">cash</xsl:attribute>
+ <xsl:attribute name="authority">efectivo</xsl:attribute>
  </xsl:when>
  <xsl:when
                 test="(..//ancestor-or-self::marc:datafield/@tag=180 or ..//ancestor-or-self::marc:datafield/@tag=181 or ..//ancestor-or-self::marc:datafield/@tag=182 or ..//ancestor-or-self::marc:datafield/@tag=185) and $controlField008-11='a'">
@@ -1336,7 +1336,7 @@
  <xsl:attribute name="authority">lcsh</xsl:attribute>
  </xsl:when>
  <xsl:when test="ancestor-or-self::marc:datafield/@tag=700 and @ind1='3' and @ind2='5'">
- <xsl:attribute name="authority">cash</xsl:attribute>
+ <xsl:attribute name="authority">efectivo</xsl:attribute>
  </xsl:when>
  <xsl:when
                 test="(700 &lt;= ancestor-or-self::marc:datafield/@tag and ancestor-or-self::marc:datafield/@tag &lt;= 755 ) and @ind2='1'">
@@ -1382,7 +1382,7 @@
  </xsl:when>
  <xsl:when
                 test="(ancestor-or-self::marc:datafield/@tag=748 or ancestor-or-self::marc:datafield/@tag=750 or ancestor-or-self::marc:datafield/@tag=755)  and @ind2='5'">
- <xsl:attribute name="authority">cash</xsl:attribute>
+ <xsl:attribute name="authority">efectivo</xsl:attribute>
  </xsl:when>
  </xsl:choose>
  </xsl:template>

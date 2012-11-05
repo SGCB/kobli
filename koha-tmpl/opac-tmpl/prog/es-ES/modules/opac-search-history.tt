@@ -1,7 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha en línea[% END %] catálogo &rsaquo; Su historia de búsqueda [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Su historial de búsqueda [% INCLUDE 'doc-head-close.inc' %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/JavaScript" language="JavaScript">
 //<![CDATA[
-	var MSG_CONFIRM_DELETE_HISTORY = _("¿Está seguro de querer borrar su historial de búsqueda?");
+	var MSG_CONFIRM_DELETE_HISTORY = _("¿Está seguro de que quiere borrar su historial de búsqueda?");
          $(document).ready(function() {
 		// We show table ordered by descending dates by default
 		// (so that the more recent query is shown first)
@@ -24,7 +24,7 @@
  [% INCLUDE 'search.inc' %] <div class="yui-b"><div class="yui-g">
  <div id="searchhistory" class="container">
  <h1>Historial de búsqueda</h1>
- [% IF ( recentSearches ) %]<form action="/cgi-bin/koha/opac-search-history.pl" method="get"><input type="hidden" name="action" value="delete" /><input value="Borrar historial de búsqueda" type="submit" class="deleteshelf" onclick="return confirm(MSG_CONFIRM_DELETE_HISTORY);" /></form>[% ELSE %][% IF ( previousSearches ) %]<form action="/cgi-bin/koha/opac-search-history.pl" method="get"><input type="hidden" name="action" value="delete" /><input value="Borrar historial de búsqueda" type="submit" class="deleteshelf" onclick="return confirm(MSG_CONFIRM_DELETE_HISTORY);" /></form>[% END %][% END %] [% IF ( recentSearches ) %] <table class="historyt">
+ [% IF ( recentSearches ) %]<form action="/cgi-bin/koha/opac-search-history.pl" method="get"><input type="hidden" name="action" value="delete" /><input value="Borrar el historial de búsqueda" type="submit" class="deleteshelf" onclick="return confirm(MSG_CONFIRM_DELETE_HISTORY);" /></form>[% ELSE %][% IF ( previousSearches ) %]<form action="/cgi-bin/koha/opac-search-history.pl" method="get"><input type="hidden" name="action" value="delete" /><input value="Borrar el historial de búsqueda" type="submit" class="deleteshelf" onclick="return confirm(MSG_CONFIRM_DELETE_HISTORY);" /></form>[% END %][% END %] [% IF ( recentSearches ) %] <table class="historyt">
  [% IF ( previousSearches ) %] <caption>Sesión actual</caption>
  [% END %] <thead>
  <tr><th>Fecha</th><th>Buscar</th><th>Resultados</th></tr>
@@ -38,7 +38,7 @@
  [% END %] </tbody>
  </table>
  [% END %] [% IF ( previousSearches ) %] <table class="historyt">
- <caption>Sesiones previas</caption>
+ <caption>Sesiones anteriores</caption>
  <thead>
  <tr><th>Fecha</th><th>Buscar</th><th>Resultados</th></tr>
  </thead>

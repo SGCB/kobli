@@ -1,10 +1,6 @@
-[% INCLUDE 'help-top.inc' %] <h1>Circulation and Fines Rules</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Reglas de Circulación y Multas</h1>
 
 <p>Estas reglas definen cómo circulan los ítems, cómo y cuando se calculan las multas y cómo se manejan las reservas.</p>
-
-<ul>
- <li><em>Llegar:</em> More &gt; Administration &gt; Patrons &amp; Circulation &gt; Circulation and fines rules</li>
-</ul>
 
 <p>Las normas se aplicarán de la más específica a la menos específica, utilizando la primera encontrada en este orden:</p>
 
@@ -19,13 +15,13 @@
  <li>todas las bibliotecas, todos los tipos de socio, todos los tipos de ítem</li>
 </ul>
 
-<p style="background-color: #ffe599;">Tip: If you are a single library system choose your branch name before creating rules (sometimes having only rules for the 'all libraries' option can cause issues with holds)
+<p>Tip: If you are a single library system choose your branch name before creating rules (sometimes having only rules for the 'all libraries' option can cause issues with holds)</p>
 
-<p style="color: #990000;">Important: At the very least you will need to set a default circulation rule. This rule should be set for all item types, all libraries and all patron categories. That will catch all instances that do not match a specific rule. When checking out if you do not have a rule for all libraries, all item types and all patron types then you may see patrons getting blocked from placing holds. You will also want a rule for your specific library set for all item types and all patron types to avoid this holds issue. Koha needs to know what rule to fall back on.
+<p style="color: #990000;">Important: At the very least you will need to set a default circulation rule. This rule should be set for all item types, all libraries and all patron categories. That will catch all instances that do not match a specific rule. When checking out if you do not have a rule for all libraries, all item types and all patron types then you may see patrons getting blocked from placing holds. You will also want a rule for your specific library set for all item types and all patron types to avoid this holds issue. Koha needs to know what rule to fall back on.</p>
 
-<h3>Default Circulation Rules</h3>
+<h4>Reglas de Circulación Predeterminadas</h4>
 
-<p>Using the issuing rules matrix you can define rules that depend on patron/item type combos. To set your rules, choose a library from the pull down (or 'all libraries' if you want to apply these rules to all branches)</p>
+<p>Using the issuing rules matrix you can define rules that depend on patron/item typecombos. To set your rules, choose a library from the pull down (or 'all libraries' if you want to apply these rules to all branches)</p>
 
 <p>De la matriz usted puede seleccionar cualquier combinación de categorías de socios y tipos de ítem a los cuales aplicar la regla</p>
 
@@ -33,29 +29,30 @@
  <li>Primero seleccione a cual categoría de socio aplicará esta regla. Si deja esto en 'Todas' se le aplicará a todas las categorías.</li>
  <li>Seleccione el 'Tipo de ítem' al que quiere aplicar esta regla. Si lo deja en 'Todos' se aplicará a todos los tipos de ítem</li>
  <li>Limite el número de ítems que un socio puede tener prestado al mismo tiempo ingresando un número en el campo 'Préstamos vigentes permitidos'</li>
- <li>Define the period of time an item can be checked out to a patron by entering the number of units (days or hours) in the 'Loan Period' box.</li>
- <li>Choose which unit of time, Days or Hours, that the loan period and fines will be calculate in</li>
- <li>También puede definir una fecha de devolución estricta para un tipo de socio específico o tipo de ítem. Una fecha de devolución estricta ignora sus reglas de circulación normales y hace que todos los ítems del tipo definido venzan en, antes o después de la fecha especificada.</li>
- <li>'Fine Amount' should have the amount you would like to charge for overdue items
-<ul>
+ <li>Define el período de tiempo que un ítem puede ser prestado a un socio ingresando el númerounidades (días u horas) en la caja detexto  'Período de préstamo'.</li>
+ <li>Cambiar que unidad de tiempo, Días o Horas, que el período de préstamo y multas se calcule en</li>
+ <li>You can also define a hard due date for a specific patron category and item type. A hard due date ignores your usual circulation rules and makes it so that allitems of the type defined are due on, before or after the date you specify.</li>
+ <li>'Cantidad de la multa' debe indicar la cantidad que quiere cobrar por ítems retrasados<ul>
  <li style="color: #990000;">Importante: Ingrese solo números y puntos decimales (sin símbolos de moneda)</li>
-
 </ul>
 </li>
- <li>Enter the 'Fine Charging Interval' in the unit you set (ex. charge fines every 1 day, or every 2 hours)</li>
- <li>The 'Fine Grace Period' is the period of time an item can be overdue before you start charging fines.
+ <li>Introducir el 'Intervalo de actualización de multas' en días (ej. actualiza multas cada 1 día, o cada 2 horas)</li>
+ <li>'Fine Grace Period' es el período de tiempo que un ítem puede estar retrasado antes que se comience a aplicar multas.<ul>
+ <li style="color: #990000;">Importante: Este sólo puede ser configurado por la unidad Día, no en Horas</li>
+</ul>
+</li>
+ <li>The 'Overdue Fines Cap' is the maximum fine for this patron and item combination
 <ul>
- <li style="color: #990000;">Important: This can only be set for the Day unit, not in Hours</li>
+ <li style="color: #990000;">Important: If this field is left blank then Koha will not put a limit on the fines this item will accrue. A maximum fine amount can be set using the MaxFinesystem preference.</li>
 </ul>
 </li>
- <li>If your library 'fines' patrons by suspending their account you can enter the number of days their fine should be suspended in the 'Suspension in Days' field
-<ul>
- <li style="color: #990000;">Important: This can only be set for the Day unit, not in Hours</li>
+ <li>Si su biblioteca 'multa' a socios suspendiendo su cuenta puede introducir el número de días que deben ser suspendidos en el campo 'Suspensión en días'<ul>
+ <li style="color: #990000;">Importante: Este sólo puede ser configurado por la unidad Día, no en Horas</li>
 </ul>
 </li>
- <li>Next decide if the patron can renew this item type and if so, enter how many times they can renew it in the 'Renewals Allowed' box</li>
- <li>If the patron can place holds on this item type, enter the total numbers of items (of this type) that can be put on hold in the 'Holds Allowed' field</li>
- <li>Finally, if you charge a rental fee for the item type and want to give a specific patron type a discount on that fee, enter the percentage discount (without the % symbol) in the 'Rental Discount' field</li>
+ <li>A continuación decida si el socio puede renovar este tipo de ítem y si es así, ingrese el número de veces que podrá renovarlo en la casilla 'Renovaciones Permitidas'</li>
+ <li>Si el socio puede hacer reservas de este tipo de ítem, introducir el número total de ítems (de este tipo) que pueden reservarse en el campo 'Reservas permitidas'</li>
+ <li>Finally, if you charge a rental feefor the item type and want to give a specific patron type a discount on that fee, enter the percentage discount (without the % symbol) in the 'Rental Discount' field</li>
 </ul>
 
 <p>Cuando haya terminado, haga clic en 'Agregar' para guardar sus cambios. Para modificar una regla, cree una nueva con los mismos tipo de socio e ítem. Si desea eliminar una regla, simplemente haga clic en el enlace 'Eliminar' a la derecha de la regla.</p>
@@ -64,28 +61,25 @@
 
 <p>Luego de elegir clonar, se le presentará un mensaje de confirmación.</p>
 
-<h3>Default Checkouts and Hold Policy</h3>
+<h4>Políticas Predeterminadas de Préstamos y Reservas</h4>
 
 <p>Usted puede establecer un número máximo predeterminado de préstamos y reservas que se utilizará si no se definen debajo para un tipo de ítem determinado o categoría.</p>
 
 <p>De este menú usted puede establecer un valor predeterminado para todos los tipos de ítems y socios de la biblioteca.</p>
 
 <ul>
- <li>In 'Total Current Checkouts Allowed' enter the total number of items patrons can have checked out at one time</li>
- <li>Control where patrons can place holds from using the 'Hold Policy' menu
-<ul>
- <li>From Any Library: Patrons from any library may put this item on hold. (default if none is defined)</li>
- <li>From Home Library: Only patrons from the item's home library may put this book on hold.</li>
- <li>No Holds Allowed: No patron may put this book on hold.</li>
+ <li>En 'Total Current Checkouts Allowed' introducir el número total de ítems que un socio puede tener prestado al mismo tiempo</li>
+ <li>Controla dónde los socios pueden hacer reservas utilizando el menú 'Política de Reservas'<ul>
+ <li>Desde cualquier biblioteca: Socios de cualquier biblioteca sede pueden reservar este ítem. (predeterminado si no se define)</li>
+ <li>Desde sede principal: Solo socios de la misma sede que el ítem pueden reservar este libro. </li>
+ <li>No se permiten Reservas: Ningún socio puede reservar este libro.</li>
 </ul>
 </li>
- <li>Control where the item returns to once it is checked in
-<ul>
+ <li>Controlar donde el ítem se devuelve una vez es revisado<ul>
  <li>Sede de devolución de ítem</li>
- <li>Ítem retorna a sede de préstamo</li>
- <li>Item floats
-<ul>
- <li>When an item floats it stays where it was checked in and does not ever return 'home'</li>
+ <li>Ítem retorna a la biblioteca de préstamo</li>
+ <li>Fluctuación de ítem <ul>
+ <li>Cuando un ítem flota éste está  ha sido registrado y nunca volvió a 'home'</li>
 </ul>
 </li>
 </ul>
@@ -93,44 +87,42 @@
  <li>Una vez que estableció su política, puede quitarla haciendo clic en el enlace 'Eliminar' a la derecha de la regla</li>
 </ul>
 
-<h3>Checkouts Per Patron</h3>
+<h4>Préstamos por socio </h4>
 
 <p>Para esta biblioteca, puede especificar el número máximo de préstamos que un socio de una determinada categoría puede recibir, independientemente del tipo de ítem.</p>
 
-<p style="background-color: #ffe599;">Sugerencia: Si la cantidad permitida a una dada categoría de socio se deja en blanco, no tendrá límites, a menos que defina un límite para un tipo específico de ítem.</p>
+<p>Sugerencia: Si la cantidad permitida a una dada categoría de socio se deja en blanco, no tendrá límites, a menos que defina un límite para un tipo específico de ítem.</p>
 
-<h3>Item Hold Policies</h3>
+<h4>Políticas de Reserva de ítem</h4>
 
-For this library, you can edit rules for given itemtypes, regardless of the patron's category. Currently, this means hold policies.
+<p>For this library, you can edit rules for given itemtypes, regardless of the patron's category. Currently, this means hold policies.</p>
 
-<p>The various Hold Policies have the following effects:</p>
+<p>Las diferentes Políticas de Reserva tienen los siguientes efectos:</p>
 
 <ul>
- <li>From Any Library: Patrons from any library may put this item on hold. (default if none is defined)</li>
- <li>From Home Library: Only patrons from the item's home library may put this book on hold.</li>
- <li>No Holds Allowed: No patron may put this book on hold.</li>
+ <li>Desde cualquier biblioteca: Socios de cualquier biblioteca sede pueden reservar este ítem. (predeterminado si no se define)</li>
+ <li>Desde sede principal: Solo socios de la misma sede que el ítem pueden reservar este libro. </li>
+ <li>No se permiten Reservas: Ningún socio puede reservar este libro.</li>
 </ul>
 
-<p style="color: #990000;">Importante: Note que si la preferencia del sistema AllowHoldPolicyOverride está establecida en 'permitir', estas políticas pueden ser ignoradas por el personal de circulación.</p>
+<p style="color: #990000;">Important: Note that if the system preference AllowHoldPolicyOverrideset to 'allow', these policies can be overridden by your circulation staff.</p>
 
-<p style="color: #990000;">Important: These policies are based on the patron's home branch, not the branch that the reserving staff member is from.</p>
+<p style="color: #990000;">Importante: Estas políticas están basadas en la biblioteca de la que es socio el usuario, no de la biblioteca a la cual pertenece el bibliotecario que realiza la reserva. </p>
 
-<p>The various Return Policies have the following effects:</p>
+<p>Las diferentes Políticas de Devolución tienen los siguientes efectos:</p>
 
 <ul>
- <li>Item returns home: The item will prompt the librarian to transfer the item to its home library
-<ul>
- <li style="color: #990000;">Important: If the AutomaticItemReturn preference is set to automatically transfer the items home, then a prompt will not appear</li>
-</ul>
-</li>
- <li>Item returns to issuing branch: The item will prompt the librarian to transfer the item back to the library where it was checked out
-<ul>
- <li style="color: #990000;">Important: If the AutomaticItemReturn preference is set to automatically transfer the items home, then a prompt will not appear</li>
+ <li>Item devuelto a casa: El ítem sugerie al bibliotecario transferir el ítem asu biblioteca casa<ul>
+ <li style="color: #990000;">Important: If the AutomaticItemReturnpreference is set to automatically transfer the items home, then a prompt will not appear</li>
 </ul>
 </li>
- <li>Item floats: The item will not be transferred from the branch it was checked in at, instead it will remain there until transferred manually or checked in at another branch</li>
+ <li>Ïtem vuelve a la biblioteca editada: El ítem solicitará transferencia  al bibliotecario para que el ítem regrese a la librería donde fue  verificado<ul>
+ <li style="color: #990000;">Important: If the AutomaticItemReturnpreference is set to automatically transfer the items home, then a prompt will not appear</li>
+</ul>
+</li>
+ <li>Item flotante: El ítem que no puede ser tansferido desde la biblioteca en la que ha sido registrado, en su lugar permanecerá allí hasa que sea transferido manualmente or registrado por otra biblioteca</li>
 </ul>
 
-<p><strong>See the full documentation for Circulation and Fine Rules in the <a href="http://manual.koha-community.org/3.8/en/patscirc.html#circfinerules">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Reglas de Circulación y Multas en la <a href="http://manual.koha-community.org/3.10/en/patscirc.html#circfinerules">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

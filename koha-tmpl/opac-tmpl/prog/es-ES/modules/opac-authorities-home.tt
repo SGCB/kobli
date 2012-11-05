@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Explorar por autor o tema [% INCLUDE 'doc-head-close.inc' %] </head>
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Buscar por autor o tema [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-authorities">
 [% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %] <div id="bd">
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
@@ -8,24 +8,28 @@
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="opac" />
 <fieldset class="rows">
- <legend>Explorar por autor o tema</legend>
+ <legend>Buscar por autor o tema</legend>
 <ol>
- <li><label for="authtypecode">Buscar: </label> <select name="authtypecode" id="authtypecode">
+ <li><label for="authtypecode">Buscar:</label> <select name="authtypecode" id="authtypecode">
  [% FOREACH authtypesloo IN authtypesloop %] [% IF ( authtypesloo.selected ) %]<option value="[% authtypesloo.value %]" selected="selected">[% authtypesloo.authtypetext %]</option>
  [% ELSE %]<option value="[% authtypesloo.value %]"> [% authtypesloo.authtypetext %]</option>
  [% END %] [% END %] </select>
- <select name="operatorc" id="anywhere">
+ <select name="operator" id="anywhere">
  <option value="contains">contiene</option>
  <option value="start">comienza con</option>
  <option value="is">es exactamente</option>
  </select>
- <input type="text" name="valuec" id="anywhere_value" value="[% value %]" />
- <input type="hidden" name="marclistc" value="" />
+ <input type="text" name="value" id="value" value="[% value %]" />
+ <select name="marclist" id="marclist">
+ <option value="any" selected="selected">in keyword</option>
+ <option value="match">in any heading</option>
+ <option value="mainentry">in main entry</option>
+ </select>
  <input type="hidden" name="and_ora" value="and" />
- <input type="hidden" name="excludingc" value="" />
+ <input type="hidden" name="excluding" value="" />
  </li>
- <li><label for="orderby">Ordenado por: </label><select name="orderby" id="orderby">
- <option value="">Nada</option>
+ <li><label for="orderby">Ordenar por: </label><select name="orderby" id="orderby">
+ <option value="">Ninguno</option>
  <option value="HeadingAsc" selected="selected">Ascendente por encabezado</option>
  <option value="HeadingDsc">Descendente por encabezado</option>
  </select>

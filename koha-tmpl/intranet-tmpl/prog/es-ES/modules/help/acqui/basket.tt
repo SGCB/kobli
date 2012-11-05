@@ -1,46 +1,45 @@
-[% INCLUDE 'help-top.inc' %] <h2>Placing an Order</h2>
+[% INCLUDE 'help-top.inc' %] <h2>Realizar un pedido </h2>
 
 <p>Una vez que la bolsa se crea se presentan varias opciones para añadir ítems al pedido.</p>
 
 <ul>
- <li>If you are ordering another copy of an existing item, you can simply search for the record in your system.
-<ul>
- <li>From the results, simply click 'Order' to be brought to the order form.
-<ul>
- <li>All of the details associated with the item will already be listed under 'Catalog details.'</li>
+ <li>Si está solicitando hacer un pedido de un registro existente, busque el registro en su sistema.<ul>
+ <li>Desde los resultados, seleccione 'Pedido' para ir al formulario de compra.<ul>
+ <li>Todos los detalles asociados con el ítem se listarán bajo 'Detalles de catalogación'.</li>
 </ul>
 </li>
 </ul>
 </li>
- <li>If you allow patrons to make purchase suggestions (learn more in the Managing Suggestions section of this manual), then you can place orders from those suggestions.
- <li>From this form you can make changes to the Catalog Details if necessary.</li>
+ <li>If you allow patrons to make purchase suggestions (learn more in the Managing Suggestions section of this manual), then you can place orders from those suggestions.</li>
+ <li>From the results, click 'Order' next to the item you want to order and you will be presented with the order form including a link to the suggestion
+<ul>
+ <li>Desde este formulario, puede hacer cambios a los Detalles de Catálogo si es necesario.</li>
+ <li>When the item appears in your basket it will include a link to the suggestion.</li>
 </ul>
 </li>
+ <li>Para crear una orden desde un registro que no se encuentra, elija 'Desde un registro nuevo (vacío)'.<ul>
+ <li>Se le presentará con un formulario en blanco para rellenar todos los datos necesarios sobre el ítem que está pidiendo.</li>
 </ul>
 </li>
- <li>To order from a record that can't be found anywhere else, choose the 'From a new (empty) record.'
-<ul>
- <li>You will be presented with an empty form to fill in all of the necessary details about the item you are ordering.</li>
+ <li>Si desea buscar en otras bibliotecas para comprar un ítem, puede usar la opción 'De una fuente externa'  que le permitirá hacer un pedido a partir de un registro MARC encontrado por una búsqueda Z39.50.<ul>
+ <li>Desde los resultados, seleccionar el enlace Orden al lado de cada ítem que desee adquirir.</li>
+ <li>Si el ítem que usted está pidiendo de una fuente externa parece que podría estar duplicado, Koha le advertirá y le dará opciones sobre cómo proceder.<ul>
+ <li>Desde la advertencia, puede elegir ordenar otra copia de un registro existente, crear uno nuevo o cancelar su orden de este ítem.</li>
 </ul>
 </li>
- <li>If you want to search other libraries for an item to purchase, you can use the 'From an external source' option that will allow you to order from a MARC record found via a Z39.50 search.
-<ul>
- <li>From the results, click the Order link next to the item you want to purchase.</li>
- <li>If the item you're ordering from an external source looks like it might be a duplicate, Koha will warn you and give you options on how to proceed.
-<ul>
- <li>From the warning, you can choose to order another copy on the existing bib record, create a new bib record, or cancel your order of this item.</li>
+ <li>En el formulario de pedido que aparece, usted no será capaz de editar los detalles del catálogo.</li>
 </ul>
 </li>
- <li>In the order form that pops up, you will not be able to edit the catalog details.</li>
+ <li>El última opción para ordenar es obtener un registro preparado (más información sobre los registros preparados).<ul>
+ <li>From the list of files you are presented with, choose the 'Add orders' link.
+<ul>
+ <li>Desde la lista de registros, seleccionar 'Agregar orden' al lado del ítem que desea agregar a su orden.<ul>
+ <li>Desde el formulario de orden, no podrá editar los detalles de catálogo.</li>
 </ul>
 </li>
- <li>The final option for ordering is to order from a staged record (learn more about staging records).
+ <li>The other option is to import all records from the staged file by scrolling below the list of records in the staged file and filling in the item information.
 <ul>
- <li>From the list of files with which you are presented, choose the 'Add orders' link.
-<ul>
- <li>From the list of records, click 'Add order' next to the item that you want to add to your order.
-<ul>
- <li>From the order form, you will not be able to edit the catalog details.</li>
+ <li>If you choose this option the Koha will look in the 020$c and grab the pricing information from that field and put that on each order line.</li>
 </ul>
 </li>
 </ul>
@@ -49,41 +48,59 @@
 </li>
 </ul>
 
-<p/>
-<p>Once you have entered the info about the item, you need to enter the Accounting information.</p>
+<p>After bringing in the bib information, if your AcqCreateItem system preference is set to add an item when ordering you will enter the item info next. You need to fill out at least one item record and then click the 'Add' button at the bottom left of the item form.</p>
+
+<p>After clicking add the item will appear above the form and then you can enter your next item the same way (if ordering more than one item).</p>
+
+<p>Una vez que haya ingresado la información sobre el ítem, es necesario ingresar la Información contable.</p>
 
 <ul>
- <li>Quantity is populated by the number of items you've added to the order above.</li>
+ <li>La cantidad es formada por el número de ítems que se han añadido al orden de arriba.</li>
  <li>La lista de los fondos está poblada de los fondos que se han asignado en el área de Adquisiciones de la Administración.</li>
- <li>The vendor price will be used to calculate the rest of the amount fields below.</li>
+ <li>The currency pull down will have the currencies you set up in the Acquisitions Administration area.</li>
+ <li>The vendor price is the price before any taxes or discounts are applied.</li>
  <li>Si el precio es incierto, marque la casilla del precio incierto. <ul>
- <li>A basket with at least one uncertain price can't be closed.</li>
+ <li>Una cesta con al menos un precio no fijado no puede cerrarse.</li>
 </ul>
 </li>
- <li>If you added Planning Values when creating the Fund, those values will appear in the two Planning Value fields.</li>
+ <li>If you are charged sales tax, choose that from the gstrate field</li>
+ <li>Enter the percentage discount you're receiving on this order, once you enter this, hit tab and Koha will populate the rest of the cost fields below.</li>
+ <li>Si usted agrega Valores de Planificación cuando crea un Fondo, aquellos valores aparecerán en los dos campos de Valores de Planificación.</li>
 </ul>
 
-<p/>
-<p>Once an item is added to the basket you will be presented with a basket summary. From here, you can edit or remove the items that you have added.</p>
-<p>On the summary page, you also have the option to edit the information that you entered about the basket by clicking the 'Edit basket header information' button, to delete the basket altogether by clicking the 'Delete this basket' button, or to export your basket as a CSV file by clicking the 'Export this basket as CSV' button.</p>
+<p>Once an item is added to the basket you will be presented with a basket summary.</p>
 
-<p>Once you're sure your basket is complete, you can click 'Close this basket' button to indicate that this basket is complete and has been sent to the vendor.</p>
+<p>If you would like to see more details you can check the 'Show all details' checkbox.</p>
 
-<p style="color: #ff0000">Important: A basket with at least one item marked as 'uncertain price' will not be able to be closed</p>
+<p>From here, you can edit or remove the items that you have added.</p>
 
+<ul>
+ <li>Choosing to 'Delete the order' will delete the order line but leave the record in the catalog.</li>
+ <li>Choosing to 'Delete order and catalog record' removes both the order line and the record in the catalog.
+<ul>
+ <li>The catalog record cannot always be deleted. You might see notes explaining why.</li>
+</ul>
+</li>
+</ul>
 
-<p>Clicking the 'Uncertain Prices' button will call up a list of items with uncertain prices to quick editing.</p>
+<p>En la página de resumen, también encontrará la opción de editar la información que ingresó sobre la cesta seleccionando, seleccionando  'Editar información de cabecera de cesta', eliminar la cesta seleccionando en 'Eliminar esta cesta', o exportar su cesta como un archivo CSV seleccionando en 'Exportar la cesta como CSV'.</p>
 
-<p style="color: #ff0000">Important: The Uncertain Prices page is independent of the basket. It is linked to the vendor so you will see all items on order with uncertain prices for that vender.</p>
+<p>Una vez que esté seguro que su cesta está completa, puede seleccionar 'Cerrar esta cesta' para indicar que  se ha completado y ha sido enviada al proveedor.</p>
 
-<h2>Printing Baskets</h2>
+<p style="color: #ff0000">Importante: No será posible cerrar una cesta con algún un ítem marcado con 'precio incierto'</p>
 
-<p>When you are finished adding items to your basket, click 'Close this Basket.' You will be asked if you want to create a purchase order at this time.</p>
+<p>Seleccionar botón 'Uncertain Prices' le mostrará una lista de ítems con precios inciertos para edición rápida.</p>
 
-<p>Your completed order will be listed on the Basket Grouping page for printing or further modification.</p>
+<p style="color: #ff0000">Importante: La página de Precios Inciertos es independiente de la cesta. Está relacionada con el proveedor, por lo que podrá ver todos los ítems con precios inciertos por orden de este proveedor.</p>
 
-<p>Clicking 'Print' below your order will generate a PDF for printing, which will have all of your library information followed by the items in your order.</p>
+<h2>Imprimir Cestas</h2>
 
-<p><strong>Vea la documentación completa para Órdenes en la <a href="http://manual.koha-community.org/3.8/en/placingacqorder.html#createacqbasket">manual</a> (en línea).</strong></p>
+<p>Cuando haya terminado de añadir ítems a su cesta, seleccionar 'Cerrar esta Cesta'. Se le preguntará si desea crear una orden de compra en este momento.</p>
+
+<p>Su orden terminada sera listada en la página de Agrupación de Pedidos para su impresión o posterior modificación.</p>
+
+<p>Seleccionar 'Imprimir' su orden generará un PDF para imprimir, éste tendrá toda la información sobre su biblioteca seguida de los ítems en su orden.</p>
+
+<p><strong>Vea la documentación completa para Órdenes en la <a href="http://manual.koha-community.org/3.10/en/placingacqorder.html#createacqbasket">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

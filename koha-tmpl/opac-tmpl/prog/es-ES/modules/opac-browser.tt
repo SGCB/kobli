@@ -1,13 +1,13 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; ISBD [% INCLUDE 'doc-head-close.inc' %] </head>
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; ISBD [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-browser">
  [% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %] <div id="bd">
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
  [% INCLUDE 'search.inc' %] <div class="yui-b"><div class="yui-g">
 <div id="userbrowser" class="container">
- <h1>Explore nuestro catálogo</h1>
+ <h1>Navegue por nuestro catálogo</h1>
  [% IF ( have_hierarchy ) %] <ul>
  <li>
- [% description %] <a href="opac-browser.pl">Nivel principal</a>
+ [% description %] <a href="opac-browser.pl">Nivel superior</a>
  </li>
  <li style="list-style-type: none;"><ul>
  [% FOREACH HIERARCHY_LOO IN HIERARCHY_LOOP %] <li>
@@ -20,12 +20,12 @@
  [% IF ( LEVEL_LOO.endnode ) %] <a href="opac-search.pl?q=Dewey-classification:[% LEVEL_LOO.classification |uri %]">[% LEVEL_LOO.description |html %]</a>
  [% ELSE %] <a href="opac-browser.pl?level=[% LEVEL_LOO.level %]&amp;filter=[% LEVEL_LOO.classification |uri %]">[% LEVEL_LOO.description |html %]</a>
  [% END %]</p>
- <p style="font-size:0.75em"><i>([% LEVEL_LOO.number %] registros bibliográficos)</i></p>
+ <p style="font-size:0.75em"><i>([% LEVEL_LOO.number %] registros)</i></p>
  </td>
  [% IF ( LEVEL_LOO.count3 ) %]</tr><tr>[% END %] [% END %] </tr></table></li>
  [% FOREACH HIERARCHY_LOO IN HIERARCHY_LOOP %] </ul></li>
  [% END %] </ul></li></ul>
- [% ELSE %] <div class="warning">La tabla de navegación está vacía. Esta característica no está completamente configurada. Vea la <a href="http://wiki.koha-community.org/wiki/Opac_browse_feature">Wiki de Koha</a> para más información sobre que hace y como configurarlo.</div>
+ [% ELSE %] <div class="warning">La tabla de navegación está vacía. Esta característica no está completamente configurada. Mira la <a href="http://wiki.koha-community.org/wiki/Opac_browse_feature">Wiki de Koha</a>  para más información sobre qué hace y cómo configurarla.</div>
  [% END %] </div></div>
 </div>
 </div>

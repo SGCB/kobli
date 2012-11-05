@@ -185,7 +185,7 @@ function validate1(date) {
  <fieldset class="action">
  <input value="Subir" type="submit" class="submit" />
  <input name="op" type="hidden" value="Upload" />
- [% IF ( picture ) %]<a id="delpicture" href="/cgi-bin/koha/tools/picture-upload.pl?op=Delete&amp;cardnumber=[% cardnumber %]&amp;borrowernumber=[% borrowernumber %]" class="delete">Borrar</a>[% END %] </fieldset>
+ [% IF ( picture ) %]<a id="delpicture" href="/cgi-bin/koha/tools/picture-upload.pl?op=Delete&amp;cardnumber=[% cardnumber %]&amp;borrowernumber=[% borrowernumber %]" class="delete">Eliminar</a>[% END %] </fieldset>
  </fieldset>
  </form>
  [% END %] [% END %] </div>
@@ -196,24 +196,15 @@ function validate1(date) {
 [% UNLESS ( no_patron_attribute_types ) %]
 <div id="patron-extended-attributes" style="padding-top: 1em;">
 <h3>Atributos e identificadores adicionales</h3>
-[% FOREACH attribute IN attributes_loop %] [% IF attribute.class %] <h4>[% attribute.lib %]</h4>
- <table id="aai_[% attribute.class %]">
- [% ELSE %] <table id="aai">
- [% END %] <thead>
- <tr>
- <th>Tipo</th>
- <th>Descripción</th>
- <th>Valor</th>
- </tr>
- </thead>
- <tbody>
- [% FOREACH item IN attribute.items %] <tr>
- <td>[% item.code %]</td>
- <td>[% item.description %]</td>
- <td>[% item.value %] [% IF ( item.value_description ) %] ([% item.value_description %]) [% END %] </td>
- </tr>
- [% END %] </tbody>
- </table>
+[% FOREACH attribute IN attributes_loop %] [% IF attribute.class %] <div id="aai_[% attribute.class %]" class="rows">
+ [% ELSE %] <div id="aai" class="rows">
+ [% END %] <h4>[% attribute.lib %]</h4>
+ <ol>
+ [% FOREACH item IN attribute.items %] <li>
+ <span class="label">[% item.description %]: </span>
+ [% IF ( item.value_description ) %] [% item.value_description %] [% ELSE %] [% item.value| html_line_break %] [% END %] </li>
+ [% END %] </ol>
+ </div>
 [% END %] </div>
 <div class="action"><a href="memberentry.pl?op=modify&amp;borrowernumber=[% borrowernumber %]&amp;step=4">Editar</a></div>
 [% END %] [% END %] [% IF ( EnhancedMessagingPreferences ) %] <div id="patron-messaging-prefs" style="padding-top: 1em;">
@@ -328,7 +319,7 @@ function validate1(date) {
  [% IF ( issueloo.red ) %] <input type="checkbox" name="items[]" value="[% issueloo.itemnumber %]" checked="checked" onclick="uncheck_sibling(this);" />
  [% ELSE %] <input type="checkbox" name="items[]" value="[% issueloo.itemnumber %]" onclick="uncheck_sibling(this);" />
  [% END %] [% END %] </td>
- [% END %] [% IF ( issueloo.return_failed ) %] <td class="problem">Falló la devolución</td>
+ [% END %] [% IF ( issueloo.return_failed ) %] <td class="problem">Check-in failed</td>
  [% ELSE %] [% IF ( issueloo.norenew_reason_on_reserve ) %] <td><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% issueloo.biblionumber %]">Reservado</a></td>
  [% ELSE %] <td><input type="checkbox" name="barcodes[]"  value="[% issueloo.barcode %]" onclick="uncheck_sibling(this);" />
  <input type="checkbox" name="all_barcodes[]" value="[% issueloo.barcode %]" checked="checked" style="display: none;" />

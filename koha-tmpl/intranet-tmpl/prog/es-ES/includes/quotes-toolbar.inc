@@ -13,7 +13,7 @@
 
         new YAHOO.widget.Button({
             type: "button",
-            label: _("Add quote"),
+            label: _("Agregar cita"),
             name: "add",
             container: "add_quote",
             onclick: {fn: fnClickAddRow}
@@ -21,7 +21,7 @@
 
         new YAHOO.widget.Button({
             type: "button",
-            label: _("Delete quote(s)"),
+            label: _("Eliminar Comilla(s)"),
             name: "delete",
             container: "delete_quote",
             onclick: {fn: fnClickDeleteRow}
@@ -40,8 +40,8 @@
 </script>
 <div id="toolbar">
  <ul class="toolbar">
- <li id="add_quote"><a id="add" href="#">Add quote</a></li>
- <li id="delete_quote"><a id="delete" href="#">Delete quote(s)</a></li>
+ <li id="add_quote"><a id="add" href="#">Agregar cita</a></li>
+ <li id="delete_quote"><a id="delete" href="#">Eliminar Comilla(s)</a></li>
  <li id="import_quotes"><a id="import" href="#">Import quotes</a></li>
  </ul>
 </div>

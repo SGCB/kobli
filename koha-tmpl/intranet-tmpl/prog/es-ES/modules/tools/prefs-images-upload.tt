@@ -1,4 +1,4 @@
- [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Upload preferences images</title>
+ [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Subir imágenes de preferencias</title>
  [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
         //<![CDATA[
             function DeleteConfirm(fn) {
@@ -52,7 +52,7 @@
                 onclick: {fn: DeleteConfirm(fn: opacsmallimage)},
                 onclick: {fn: DeleteConfirm(fn: opacsmallimageright)},
                 onclick: {fn: DeleteConfirm(fn: OpacFavicon)},
-                label: _("Borrar"),
+                label: _("Eliminar"),
                 id: "deletesb",
                 value: "delete",
                 container: "delete"
@@ -62,9 +62,7 @@
 </head>
 <body>
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
- <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo;
- Upload OPAC images
-</div>
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; Subir imágenes del OPAC</div>
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
@@ -73,39 +71,38 @@
  <div class="yui-u first">
  <h1>Subir Imágenes</h1>
  [% IF ( IMPORT_SUCCESSFUL ) %] <div id="dialog" class="dialog message">
- <li><h3>Imagen cargada con éxito.</h3></li>
+ <li><h3>Imagen subida con éxito.</h3></li>
  <li>Archivo: [% SOURCE_FILE %]</li>
  </div>
  [% END %] <form name="upload_images" method="post" action="/cgi-bin/koha/tools/prefs-images-upload.pl" enctype="multipart/form-data">
  <fieldset class="brief">
  <div class="hint">
- <b>NOTA:</b> Only image formats are supported.
- </div>
+ <b>NOTA:</b> Sólo son soportados formatos de imagen. </div>
  <div class="uploadfile"><li>
  <h1>opacsmallimage</h1>
  [% IF ( opacsmallimage ) %] [% IF ( SMALLIMAGE ) %]<img src="[% SMALLIMAGE %]" />[% END %] <fieldset class="action">
- <span id="delete"><input id="deletesu" type="button" id="delete" onclick="DeleteConfirm(opacsmallimage())" value="Delete Image(s)" /></span> 
+ <span id="delete"><input value="Eliminar Imagen(es)" id="deletesu" type="button" onclick="DeleteConfirm(opacsmallimage())" /></span> 
  </fieldset>
- [% END %] <label for="uploadfile_1">Select the file to upload in opacsmallimage: </label>
+ [% END %] <label for="uploadfile_1">Seleccionar el archivo para subir en opacsmallimage: </label>
  <input type="file" id="uploadfile_1" name="uploadfile_1" />
  <input type="hidden" id="image" name="filetype" value="image" />
  </li></div>
  <div class="uploadfile"><li>
  <h1>opacsmallimageright</h1>
  [% IF ( opacsmallimageright ) %] [% IF ( IMAGERIGHT ) %]<img src="[% IMAGERIGHT %]" />[% END %] <fieldset class="action">
- <span id="delete"><input id="deletesu" type="button" id="delete" onclick="DeleteConfirm(opacsmallimageright())" value="Delete Image(s)" /></span> 
+ <span id="delete"><input value="Eliminar Imagen(es)" id="deletesu" type="button" onclick="DeleteConfirm(opacsmallimageright())" /></span> 
  </fieldset>
- [% END %] <label for="uploadfile_2">Select the file to upload in opacsmallimageright: </label>
+ [% END %] <label for="uploadfile_2">Seleccione el archivo par subir en opacsmallimageright : </label>
  <input type="file" id="uploadfile_2" name="uploadfile_2" />
  <input type="hidden" id="image" name="filetype" value="image" />
  </li></div>
  <div class="uploadfile"><li>
  <h1 for="uploadfile_3">OpacFavicon</h1>
  [% IF ( OpacFavicon ) %] [% IF ( FAVICON ) %]<img src="[% FAVICON %]" />[% END %] <fieldset class="action">
- <span id="delete"><input id="deletesu" type="button" id="delete" onclick="DeleteConfirm(OpacFavicon())" value="Delete Image(s)" /></span> 
+ <span id="delete"><input value="Eliminar Imagen(es)" id="deletesu" type="button" onclick="DeleteConfirm(OpacFavicon())" /></span> 
  </fieldset>
  [% ELSE %] <img src="/intranet-tmpl/prog/en/includes/favicon.ico" />
- [% END %] <label for="uploadfile_3">Select the file to upload in OpacFavicon: </label>
+ [% END %] <label for="uploadfile_3">Seleccionar el archivo para subir en OpacFavicon: </label>
  <input type="file" id="uploadfile_3" name="uploadfile_3" />
  <input type="hidden" id="image" name="filetype" value="image" />
  </li></div>
@@ -117,7 +114,7 @@
  </div>
  </fieldset>
  [% IF ( DELETE_SUCCESSFULL ) %] <div id="dialog" class="dialog message">
- <li><h3>Imagen(es) eliminada(s) exitosamente</h3></li>
+ <li><h3>Imagen(es) eliminada(s) satisfactoriamente</h3></li>
  </div>
  [% END %] </fieldset>
  </form>

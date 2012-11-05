@@ -52,7 +52,7 @@ function barcode_check(){
  <a href="subscription-detail.pl?subscriptionid=[% subscriptionid %]" title="detalle de la suscripción">Detalles de la suscripción</a>
  <!-- <a href="/cgi-bin/koha/serials/serials-home.pl?biblionumber=[% biblionumber %]" class="button" title="all subscriptions on [% bibliotitle %]">Search all subscriptions</a> -->
  <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblionumber %]" title="ir a [% bibliotitle %]">Mostrar biblio</a>
- [% IF ( routing ) %] <a href="routing.pl?subscriptionid=[% subscriptionid %]" title="lista de destinatarios de suscripción">Lista de ruteo</a>
+ [% IF ( routing ) %] <a href="routing.pl?subscriptionid=[% subscriptionid %]" title="suscripción de la lista de enrutamiento">Lista de ruteo</a>
  [% END %] </div>
 
 <h2>Esperado o atrasado</h2>
@@ -100,8 +100,8 @@ function barcode_check(){
  [% ELSE %] <option value="4">Faltante</option>
  [% END %] [% IF ( serialslis.status5 ) %] <option value="5" selected="selected">No disponible</option>
  [% ELSE %] <option value="5">No disponible</option>
- [% END %] [% IF ( serialslis.status6 ) %] <option value="6" selected="selected">Borrar</option>
- [% ELSE %] <option value="6">Borrar</option>
+ [% END %] [% IF ( serialslis.status6 ) %] <option value="6" selected="selected">Eliminar</option>
+ [% ELSE %] <option value="6">Eliminar</option>
  [% END %] </select>
  [% IF ( serialslis.serialadditems ) %] <br /><br />
  [% IF ( serialslis.itemstatus ) %] [% IF ( serialslis.choice ) %] [% FOREACH itemstatusloo IN serialslis.itemstatusloop %] [% itemstatusloo.itemlib %]: [% IF ( itemstatusloo.selected ) %] <input type="checkbox" name="itemstatus" value="[% itemstatusloo.itemval %]" checked="checked" />

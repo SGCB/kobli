@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %]Catálogo [% ELSE %]Koha en línea[% END %] &rsaquo; [% IF ( searchdesc ) %] Resultados de la búsqueda [% IF ( query_desc ) %]para '[% query_desc | html%]'[% END %][% IF ( limit_desc ) %]&nbsp;con límite(s):&nbsp;'[% limit_desc | html %]'[% END %] [% ELSE %] No especificó un criterio de búsqueda. [% END %] [% INCLUDE 'doc-head-close.inc' %] <link rel="alternate" href="[% OPACBaseurl %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&count=[% countrss |html %]&sort_by=acqdate_dsc&format=rss2" type="application/rss+xml" title="[% LibraryName |html %] Buscar RSS Feed" />
+[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %]Catálogo [% ELSE %]Koha Online[% END %] &rsaquo; [% IF ( searchdesc ) %] Resultados de la búsqueda [% IF ( query_desc ) %]para '[% query_desc | html%]'[% END %][% IF ( limit_desc ) %]&nbsp;con límite(s):&nbsp;'[% limit_desc | html %]'[% END %] [% ELSE %] No ha especificado ningún criterio de búsqueda. [% END %] [% INCLUDE 'doc-head-close.inc' %] <link rel="alternate" href="[% OPACBaseURL %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&count=[% countrss |html %]&sort_by=acqdate_dsc&format=rss2" type="application/rss+xml" title="[% PREVIOUS_SHELF_BROWS.biblionumber |url %]" />
 [% IF ( OpacStarRatings == 'all' ) %]<script type="text/javascript" src="/opac-tmpl/prog/en/lib/jquery/plugins/jquery.rating.js"></script>
 <link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/jquery.rating.css" />[% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 [% IF ( OpacHighlightedWords ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.highlight-3.js"></script>
@@ -87,22 +87,28 @@ function highlightOn() {
 }
 [% END %]
 $(document).ready(function(){
+    [% IF ( OpacHighlightedWords ) %]
+        $('a.title').each(function() {
+            $(this).attr('href', $(this).attr('href') + '&query_desc=[% query_desc | url %]');
+        });
+    [% END %]
+
     [% IF ( opacbookbag ) %]$(".addtocart").show();[% END %]
 
 [% IF ( opacbookbag ) %]
     [% IF ( virtualshelves ) %]
     var param1 = "<label for=\"addto\">"+_("Agregar a: ")+"<\/label><select name=\"addto\" id=\"addto\"><option value=\"\"><\/option>";
-    [% IF ( opacbookbag ) %]    param1 += "<option value=\"addtocart\">"+_("Mapa")+"<\/option>";
+    [% IF ( opacbookbag ) %]    param1 += "<option value=\"addtocart\">"+_("Cesta")+"<\/option>";
     [% END %][% IF ( virtualshelves ) %][% IF ( loggedinusername ) %][% IF ( addbarshelves ) %]
-    param1 += "<optgroup label=\""+_("Sus listas:")+"\">";[% FOREACH addbarshelvesloo IN addbarshelvesloop %]
+    param1 += "<optgroup label=\""+_("Sus Listas:")+"\">";[% FOREACH addbarshelvesloo IN addbarshelvesloop %]
     param1 += "<option id=\"s[% addbarshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addbarshelvesloo.shelfname |html %]<\/option>";[% END %]
     param1 += "<\/optgroup>";[% END %]
-    [% IF ( addpubshelves ) %]param1 += "<optgroup label=\""+_("Listas públicas:")+"\">"[% FOREACH addpubshelvesloo IN addpubshelvesloop %]+"<option id=\"s[% addpubshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addpubshelvesloo.shelfname |html %]<\/option>"[% END %];
+    [% IF ( addpubshelves ) %]param1 += "<optgroup label=\""+_("Listas públicas")+"\">"[% FOREACH addpubshelvesloo IN addpubshelvesloop %]+"<option id=\"s[% addpubshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addpubshelvesloo.shelfname |html %]<\/option>"[% END %];
     param1 += "<\/optgroup>";[% END %]
     [% IF (( addbarshelvesloop && addbarshelvesloop.size>9) || (addpubshelvesloop && addpubshelvesloop.size>9 )) %]
-        param1 += "<option value=\"morelists\">[ "+_("Mas Listas")+" ]<\/option>";
+        param1 += "<option value=\"morelists\">[ "+_("Más Listas")+" ]<\/option>";
     [% END %]
-    param1 += "<option value=\"newlist\">[ "+_("Nueva lista")+" ]<\/option>";
+    param1 += "<option value=\"newlist\">[ "+_("Nueva Lista")+" ]<\/option>";
     [% END %]
     [% END %]
     param1 += "<\/select> <input type=\"submit\" class=\"submit\" value=\""+_("Guardar")+"\" />";
@@ -112,11 +118,11 @@ $(document).ready(function(){
 [% ELSE %]
         var param1 = "<label for=\"addto\">"+_("Agregar a la lista: ")+"<\/label><select name=\"addto\" id=\"addto\"><option value=\"\"><\/option>";
 [% IF ( virtualshelves ) %][% IF ( loggedinusername ) %][% IF ( addbarshelves ) %]
-    param1 += "<optgroup label=\""+_("Sus listas:")+"\">";[% FOREACH addbarshelvesloo IN addbarshelvesloop %]
+    param1 += "<optgroup label=\""+_("Sus Listas:")+"\">";[% FOREACH addbarshelvesloo IN addbarshelvesloop %]
     param1 += "<option id=\"s[% addbarshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addbarshelvesloo.shelfname |html %]<\/option>";[% END %]
     param1 += "<\/optgroup>";[% END %]
-    [% IF ( addpubshelves ) %]param1 += "<optgroup label=\""+_("Listas públicas:")+"\">"[% FOREACH addpubshelvesloo IN addpubshelvesloop %]+"<option id=\"s[% addpubshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addpubshelvesloo.shelfname |html %]<\/option>"[% END %][% END %]
-    param1 +="<\/optgroup><option value=\"newlist\">[ "+_("Nueva lista")+" ]<\/option>"
+    [% IF ( addpubshelves ) %]param1 += "<optgroup label=\""+_("Listas públicas")+"\">"[% FOREACH addpubshelvesloo IN addpubshelvesloop %]+"<option id=\"s[% addpubshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addpubshelvesloo.shelfname |html %]<\/option>"[% END %][% END %]
+    param1 +="<\/optgroup><option value=\"newlist\">[ "+_("Nueva Lista")+" ]<\/option>"
     [% END %]
     [% END %]
     param1 += "<\/select> <input type=\"submit\" class=\"submit\" value=\""+_("Guardar")+"\" />";
@@ -157,12 +163,12 @@ $(document).ready(function(){
         } else if($("#addto").find("option:selected").attr("value") == "newlist"){
             [% IF ( loggedinusername ) %]if (vShelfAdd()) {
             Dopop('/cgi-bin/koha/opac-addbybiblionumber.pl?newshelf=1&' + vShelfAdd());
-            }[% ELSE %] alert(_('Debe ingresar a su cuenta para crear o agregar a listas')); [% END %]
+            }[% ELSE %] alert(_('Debe iniciar sesión en su cuenta para crear o añadir listas')); [% END %]
             return false;
         } else if($("#addto").find("option:selected").attr("value") == "morelists"){
             [% IF ( loggedinusername ) %]if (vShelfAdd()) {
             Dopop('/cgi-bin/koha/opac-addbybiblionumber.pl?' + vShelfAdd());
-            }[% ELSE %] alert(_('Debe ingresar a su cuenta para crear o agregar a listas')); [% END %]
+            }[% ELSE %] alert(_('Debe iniciar sesión en su cuenta para crear o añadir listas')); [% END %]
             return false;
         }
         if($("#addto").find("option:selected").attr("value") == "addtocart" || $("#addto").attr("class") == "addtocart"){
@@ -191,8 +197,13 @@ $(document).ready(function(){
 [% END %]
     $("#holdDetails").hide();
 
-[% IF ( query_desc ) %][% IF ( OpacHighlightedWords ) %]var query_desc = "[% query_desc |replace("'", "\'") |replace('"', '\"') |replace('\n', '\\n') |replace('\r', '\\r') %]";
+[% IF ( query_desc ) %][% IF ( OpacHighlightedWords ) %]var query_desc = "[% query_desc |replace("'", "\'") |replace('\n', '\\n') |replace('\r', '\\r') |html %]";
         q_array = query_desc.split(" ");
+        // ensure that we don't have "" at the end of the array, which can
+        // break the highlighter
+        while (q_array.length > 0 && q_array[q_array.length-1] == "") {
+            q_array = q_array.splice(0,-1);
+        }
         highlightOn();
         $("#highlight_toggle_on" ).hide().click(function() {highlightOn() ;});
         $("#highlight_toggle_off").show().click(function() {highlightOff();});[% END %][% END %]
@@ -242,6 +253,13 @@ $(document).ready(function(){
     [% IF OpenLibraryCovers %]KOHA.OpenLibrary.GetCoverFromIsbn();[% END %]
     [% IF OPACLocalCoverImages %]KOHA.LocalCover.GetCoverFromBibnumber(false);[% END %]
     [% IF ( GoogleJackets ) %]KOHA.Google.GetCoverFromIsbn();[% END %]
+
+    $('#didyoumean').load('/cgi-bin/koha/svc/suggestion?render=stub&q=[% querystring | uri %]',
+        function() {
+            $('.searchsuggestion').parent().parent().css({
+                'border-color': '#F4ECBE',
+                'background-color': '#FFFBEA'});
+            } );
 });
 
 //]]>
@@ -252,23 +270,23 @@ $(document).ready(function(){
 
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
  [% UNLESS ( total ) %] [% INCLUDE 'search.inc' %] [% END %] <div id="breadcrumbs" class="notice">
- [% IF ( searchdesc ) %]<p>[% IF ( total ) %]<strong>&ldquo;[% query_desc |html %] [% limit_desc |html %]&rdquo; </strong>returned [% total |html %] results. [% IF ( related ) %] (related searches: [% FOREACH relate IN related %][% relate.related_search %][% END %]). [% END %]
- <a href="[% OPACBaseurl %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %][% IF ( sort_by ) %]&amp;sort_by=[% sort_by |html %][% END %]&amp;format=rss2"><img alt="Suscribirse a esta búsqueda" src="/opac-tmpl/prog/images/feed-icon-16x16.png" title="Suscribirse a esta búsqueda" border="0" /></a>
- [% ELSE %] <strong>No Results Found!</strong>
+ [% IF ( searchdesc ) %]<p>[% IF ( total ) %]<strong>&ldquo;[% query_desc |html %] [% limit_desc |html %]&rdquo; </strong>devolvió [% total |html %] resultados. [% IF ( related ) %] (búsquedas relacionadas: [% FOREACH relate IN related %][% relate.related_search %][% END %]). [% END %]<a href="[% OPACBaseurl %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %][% IF ( sort_by ) %]&amp;sort_by=[% sort_by |html %][% END %]&amp;format=rss2"><img alt="Suscribirse a esta búsqueda" src="/opac-tmpl/prog/images/feed-icon-16x16.png" title="Suscribirse a esta búsqueda" border="0" /></a>
+ [% ELSE %] <strong>¡No se encontraron resultados!</strong>
  <p>
- [% IF ( searchdesc ) %]
- No results match your search for <span style="font-weight: bold;">&ldquo;[% query_desc |html %] [% limit_desc |html %]&rdquo;</span> in [% LibraryName %] Catalog. <a href="[% OPACBaseurl %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&amp;format=rss2"><img alt="Suscribirse a esta búsqueda" src="/opac-tmpl/prog/images/feed-icon-16x16.png" title="Suscribirse a esta búsqueda" border="0" /></a>
- [% ELSE %] Usted no especificó ningún criterio de búsqueda. [% END %] </p>
+ [% IF ( searchdesc ) %] Ningún resultado coincide con su búsqueda de <span style="font-weight: bold;">&ldquo;[% query_desc |html %] [% limit_desc |html %]&rdquo;</span> en Catálogo [% LibraryName %]. <a href="[% OPACBaseurl %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&amp;format=rss2"><img alt="Suscribirse a esta búsqueda" src="/opac-tmpl/prog/images/feed-icon-16x16.png" title="Suscribirse a esta búsqueda" border="0" /></a>
+ [% ELSE %] No hs especificado ningún criterio de búsqueda. [% END %] </p>
  [% IF ( OPACNoResultsFound ) %] <div id="noresultsfound">
  [% OPACNoResultsFound %] </div>
  [% END %] [% END %]</p>
 
  [% END %] </div>
  [% IF ( total ) %] <div id="list_detail">
- [% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %] [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink" class=""><i></i><span><i></i><span></span>Lists </span></a>[% END %] </div>
+ [% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %] [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink" class=""><i></i><span><i></i><span></span>Listas </span></a>[% END %] </div>
  [% END %] <div class="yui-b">
  <div id="userresults" class="container">
- [% IF ( koha_spsuggest ) %] Quiso decir: <ul style="list-style: none;">
+ [% IF ( DidYouMean ) %] <div id='didyoumean'>Not what you expected? Check for <a href='/cgi-bin/koha/svc/suggestion?render=standalone&amp;q=[% querystring | uri %]'>suggestions</a></div>
+ [% END %] <div id="top-pages">[% INCLUDE 'page-numbers.inc' %]</div>
+ [% IF ( koha_spsuggest ) %] Quizá quiso decir: <ul style="list-style: none;">
  [% FOREACH SPELL_SUGGES IN SPELL_SUGGEST %] <li>
  <a href="/cgi-bin/koha/opac-search.pl?q=[% SPELL_SUGGES.spsuggestion %]">[% SPELL_SUGGES.spsuggestion %]</a>
  </li>
@@ -299,7 +317,7 @@ $(document).ready(function(){
  <option value="ti,phr:">Frase de título</option>
  <option value="au,phr:">Autor</option>
  <option value="su:">Tema</option>
- <option value="su,phr:">Frase temática</option>
+ <option value="su,phr:">Frase de tema</option>
  <option value="se:">Series</option>
  <option value="pb:">Editor</option>
  <option value="nt:">Notas</option>
@@ -317,7 +335,7 @@ $(document).ready(function(){
  <table>
  <tr>
  <th>Término/Frase</th>
- <th>Conteo</th>
+ <th>Cuenta</th>
  </tr>
  [% FOREACH SEARCH_RESULT IN SEARCH_RESULTS %] [% IF ( SEARCH_RESULT.even ) %] <tr class="highlight">
  [% ELSE %] <tr>
@@ -344,7 +362,7 @@ $(document).ready(function(){
  <!-- checkall, clearall are now needed for placehold -->
  <span class="checkall"></span>
  <span class="clearall"></span>
- [% IF ( OpacHighlightedWords ) %] <a href="#" class="highlight_toggle" id="highlight_toggle_off">De-resaltar</a>
+ [% IF ( OpacHighlightedWords ) %] <a href="#" class="highlight_toggle" id="highlight_toggle_off">No resaltar</a>
  <a href="#" class="highlight_toggle" id="highlight_toggle_on">Resaltar</a>
  [% END %] [% IF ( opacbookbag || virtualshelves ) %] <span class="addto"></span>
  [% END %] <span id="placehold"><!-- input class="submit" type="submit" value="Place Hold"/ --></span>
@@ -368,7 +386,7 @@ $(document).ready(function(){
  <tr class="highlight">
  [% ELSE %] <tr>
  [% END %] <td class="select selectcol">[% IF ( opacbookbag ) %]<input type="checkbox" id="bib[% SEARCH_RESULT.biblionumber %]" name="biblionumber" value="[% SEARCH_RESULT.biblionumber %]" /> <label for="bib[% SEARCH_RESULT.biblionumber %]"></label>[% ELSE %] [% IF ( virtualshelves ) %]<input type="checkbox" id="bib[% SEARCH_RESULT.biblionumber %]" name="biblionumber" value="[% SEARCH_RESULT.biblionumber %]" /> <label for="bib[% SEARCH_RESULT.biblionumber %]"></label>[% ELSE %] [% IF ( RequestOnOpac ) %][% UNLESS ( SEARCH_RESULT.norequests ) %][% IF ( opacuserlogin ) %]<input type="checkbox" id="bib[% SEARCH_RESULT.biblionumber %]" name="biblionumber" value="[% SEARCH_RESULT.biblionumber %]" /> <label for="bib[% SEARCH_RESULT.biblionumber %]"></label>[% END %][% END %][% END %][% END %][% END %]</td>
- <td class="select selectcol">[% UNLESS suppress_result_number %][% SEARCH_RESULT.result_number %].[% END %]</td>
+ <td class="select selectcol">[% UNLESS suppress_result_number %][% SEARCH_RESULT.result_number %][% END %]</td>
 
  [% UNLESS ( item_level_itypes ) %] [% UNLESS ( noItemTypeImages ) %] <td class="itypecol">
  [% IF ( SEARCH_RESULT.imageurl ) %] <img src="[% SEARCH_RESULT.imageurl %]" title="[% SEARCH_RESULT.description %]" alt="[% SEARCH_RESULT.description %]" />
@@ -392,18 +410,27 @@ $(document).ready(function(){
  [% SEARCH_RESULT.summary %] </span>
  [% END %] [% IF ( SEARCH_RESULT.copyrightdate ) %]<span class="results_summary"><span class="label">Fecha:</span>[% SEARCH_RESULT.copyrightdate %]</span>[% END %] <span class="results_summary">
  <span class="label">Disponibilidad:</span>
- [% IF ( SEARCH_RESULT.available_items_loop.0 ) %] <span class="available"><strong>Copias disponibles:</strong>
- [% FOREACH available_items_loo IN SEARCH_RESULT.available_items_loop %] [% UNLESS ( available_items_loo.hideatopac ) %] [% IF ( singleBranchMode ) %] [% available_items_loo.location %] [% ELSE %] [% available_items_loo.branchname %] [% END %] [% IF ( OPACItemsResultsDisplay ) %] [% UNLESS ( singleBranchMode ) %][% available_items_loo.location %][% END %] [% IF ( available_items_loo.itemcallnumber ) %][<a href="/cgi-bin/koha/opac-search.pl?q=callnum:[% available_items_loo.itemcallnumber |url %]">[% available_items_loo.itemcallnumber %]</a>][% END %] [% END %] ([% available_items_loo.count %]), [% END %] [% END %] </span>
+ [% IF ( SEARCH_RESULT.available_items_loop.size() ) %] <span class="available"><strong>Copias disponibles:</strong>
+ [% FOREACH available_items_loo IN SEARCH_RESULT.available_items_loop %]
+ [% IF ( singleBranchMode ) %]
+ [% available_items_loo.location %]
+ [% ELSE %]
+ [% available_items_loo.branchname %]
+ [% END %]
+
+ [% IF ( OPACItemsResultsDisplay ) %]
+ [% UNLESS ( singleBranchMode ) %][% available_items_loo.location %][% END %]
+ [% IF ( available_items_loo.itemcallnumber ) %][<a href="/cgi-bin/koha/opac-search.pl?q=callnum:[% available_items_loo.itemcallnumber |url %]">[% available_items_loo.itemcallnumber %]</a>][% END %] [% END %] ([% available_items_loo.count %]), [% END %] </span>
  [% ELSE %] [% IF ( SEARCH_RESULT.ALTERNATEHOLDINGS ) %] [% FOREACH ALTERNATEHOLDING IN SEARCH_RESULT.ALTERNATEHOLDINGS %] &nbsp;<span id="alternateholdings">[% ALTERNATEHOLDING.holding %]</span>, [% END %] [% ELSE %] <span class="unavailable">No hay ítems disponibles:</span>
  [% END %] [% END %] <span class="unavailable">
- [% IF ( SEARCH_RESULT.onloancount ) %] Prestados ([% SEARCH_RESULT.onloancount %]), [% END %] [% IF ( SEARCH_RESULT.wthdrawncount ) %] Retirados ([% SEARCH_RESULT.wthdrawncount %]), [% END %] [% UNLESS ( SEARCH_RESULT.hidelostitems ) %][% IF ( SEARCH_RESULT.itemlostcount ) %] Perdidos ([% SEARCH_RESULT.itemlostcount %]),[% END %][% END %] [% IF ( SEARCH_RESULT.damagedcount ) %] Dañados ([% SEARCH_RESULT.damagedcount %]),[% END %] [% IF ( SEARCH_RESULT.orderedcount ) %] Pedidos ([% SEARCH_RESULT.orderedcount %]),[% END %] [% IF ( SEARCH_RESULT.onholdcount ) %] Reservados ([% SEARCH_RESULT.onholdcount %]),[% END %] [% IF ( SEARCH_RESULT.intransitcount ) %] En tránsito ([% SEARCH_RESULT.intransitcount %]),[% END %] </span>
+ [% IF ( SEARCH_RESULT.onloancount ) %] Prestados ([% SEARCH_RESULT.onloancount %]), [% END %] [% IF ( SEARCH_RESULT.wthdrawncount ) %] Retirados ([% SEARCH_RESULT.wthdrawncount %]), [% END %] [% UNLESS ( SEARCH_RESULT.hidelostitems ) %][% IF ( SEARCH_RESULT.itemlostcount ) %] Perdidos ([% SEARCH_RESULT.itemlostcount %]),[% END %][% END %] [% IF ( SEARCH_RESULT.damagedcount ) %] Dañados ([% SEARCH_RESULT.damagedcount %]),[% END %] [% IF ( SEARCH_RESULT.orderedcount ) %] Pedidos ([% SEARCH_RESULT.orderedcount %]),[% END %] [% IF ( SEARCH_RESULT.onholdcount ) %] Reservados ([% SEARCH_RESULT.onholdcount %]),[% END %] [% IF ( SEARCH_RESULT.intransitcount ) %] En ruta ([% SEARCH_RESULT.intransitcount %]),[% END %] </span>
  </span>
  [% END %] [% IF ( SEARCH_RESULT.score_avg ) %] <span class="result_summary">
- <img src="[% themelang %]/../images/Star[% SEARCH_RESULT.score_int %].gif" title="" style="max-height: 15px;"/> <span style="font-size: 85%;">[% SEARCH_RESULT.score_avg %] / 5 (en [% SEARCH_RESULT.num_scores %] tasas)</span>
+ <img src="[% themelang %]/../images/Star[% SEARCH_RESULT.score_int %].gif" title="" style="max-height: 15px;"/> <span style="font-size: 85%;">[% SEARCH_RESULT.score_avg %] / 5 (en [% SEARCH_RESULT.num_scores %] valoraciones)</span>
  [% IF ( SEARCH_RESULT.num_critics ) %] <span class="social_data">[% SEARCH_RESULT.num_critics %] Críticas de usuarios de Internet </span>
  [% END %] [% IF ( SEARCH_RESULT.num_critics_pro ) %] <span class="social_data">[% SEARCH_RESULT.num_critics_pro %] Críticos profesionales </span>
  [% END %] [% IF ( SEARCH_RESULT.num_videos ) %] <span class="social_data">[% SEARCH_RESULT.num_videos %] Extractos de vídeo </span>
- [% END %] [% IF ( SEARCH_RESULT.num_quotations ) %] <span class="social_data">[% SEARCH_RESULT.num_quotations %] Citas </span>
+ [% END %] [% IF ( SEARCH_RESULT.num_quotations ) %] <span class="social_data">[% SEARCH_RESULT.num_quotations %] Citas</span>
  [% END %] </span>
  [% END %] [% IF ( LibraryThingForLibrariesID ) %]<div class="ltfl_reviews"></div>[% END %] [% IF ( opacuserlogin ) %][% IF ( TagsEnabled ) %] [% IF ( TagsShowOnList ) %] [% IF ( SEARCH_RESULT.TagLoop.size ) %] <div class="results_summary"><span class="label">Etiquetas:</span>
  <ul style="display: inline; list-style: none;">[% FOREACH TagLoo IN SEARCH_RESULT.TagLoop %]<li style="display: inline; list-style: none;"><a href="/cgi-bin/koha/opac-search.pl?tag=[% TagLoo.term |url %]&amp;q=[% TagLoo.term |url %]">[% TagLoo.term %]</a> <span class="weight">([% TagLoo.weight_total %])</span></li>
@@ -431,26 +458,32 @@ $(document).ready(function(){
 
  [% IF ( TagsInputOnList ) %]
  [% IF ( loggedinusername ) %]
- <a class="tag_results_add" id="tag_add[% SEARCH_RESULT.biblionumber %]" href="#">Add tag</a>
- <span id="tagform[% SEARCH_RESULT.biblionumber %]" class="tag_results_input"><label for="newtag[% SEARCH_RESULT.biblionumber %]">New tag(s):</label><input name="newtag[% SEARCH_RESULT.biblionumber %]" id="newtag[% SEARCH_RESULT.biblionumber %]" maxlength="100" />
+ <a class="tag_results_add" id="tag_add[% SEARCH_RESULT.biblionumber %]" href="#">Añadir etiqueta</a>
+ <span id="tagform[% SEARCH_RESULT.biblionumber %]" class="tag_results_input"><label for="newtag[% SEARCH_RESULT.biblionumber %]">Nueva etiqueta:</label><input name="newtag[% SEARCH_RESULT.biblionumber %]" id="newtag[% SEARCH_RESULT.biblionumber %]" maxlength="100" />
  <input value="Agregar" name="tagbutton" class="tagbutton" title="[% SEARCH_RESULT.biblionumber %]" type="submit" /> <a class="cancel_tag_add" id="cancel[% SEARCH_RESULT.biblionumber %]" href="#">Cancelar</a>
  <span id="newtag[% SEARCH_RESULT.biblionumber %]_status" class="tagstatus" style="display:none;">
  Estado de etiqueta aquí. </span></span>
- [% ELSIF ( loop.first ) %]<span id="login4tags">Ingresar para agregar etiquetas.</span>
- [% END %] [% END %] [% IF ( opacuserlogin ) %][% IF ( loggedinusername ) %][% IF ( virtualshelves ) %]<a class="addtoshelf" href="/cgi-bin/koha/opac-addbybiblionumber.pl?biblionumber=[% SEARCH_RESULT.biblionumber %]" onclick="Dopop('opac-addbybiblionumber.pl?biblionumber=[% SEARCH_RESULT.biblionumber %]'); return false;">Guardar en listas</a>
- [% END %][% END %][% END %] [% IF ( opacbookbag ) %] [% IF ( SEARCH_RESULT.incart ) %]<a class="addtocart cart[% SEARCH_RESULT.biblionumber %]" href="#" onclick="addRecord('[% SEARCH_RESULT.biblionumber %]'); return false;">En su carrito</a> <a class="cartRemove cartR[% SEARCH_RESULT.biblionumber %]" href="#" onclick="delSingleRecord('[% SEARCH_RESULT.biblionumber %]'); return false;">(remover)</a>
- [% ELSE %] <a class="addtocart cart[% SEARCH_RESULT.biblionumber %]" href="#" onclick="addRecord('[% SEARCH_RESULT.biblionumber %]'); return false;">Agregar al carrito</a> <a style="display:none;" class="cartRemove cartR[% SEARCH_RESULT.biblionumber %]" href="#" onclick="delSingleRecord('[% SEARCH_RESULT.biblionumber %]'); return false;">(remover)</a>
+ [% ELSIF ( loop.first ) %]<span id="login4tags">Inicie sesión para agregar etiquetas.</span>
+ [% END %] [% END %] [% IF ( opacuserlogin ) %][% IF ( loggedinusername ) %][% IF ( virtualshelves ) %]<a class="addtoshelf" href="/cgi-bin/koha/opac-addbybiblionumber.pl?biblionumber=[% SEARCH_RESULT.biblionumber %]" onclick="Dopop('opac-addbybiblionumber.pl?biblionumber=[% SEARCH_RESULT.biblionumber %]'); return false;">Guardar en sus listas </a>
+ [% END %] [% END %][% END %] [% IF ( opacbookbag ) %] [% IF ( SEARCH_RESULT.incart ) %] <a class="addtocart cart[% SEARCH_RESULT.biblionumber %]" href="#" onclick="addRecord('[% SEARCH_RESULT.biblionumber %]'); return false;">En su cesta</a> <a class="cartRemove cartR[% SEARCH_RESULT.biblionumber %]" href="#" onclick="delSingleRecord('[% SEARCH_RESULT.biblionumber %]'); return false;">(Borrar)</a>
+ [% ELSE %] <a class="addtocart cart[% SEARCH_RESULT.biblionumber %]" href="#" onclick="addRecord('[% SEARCH_RESULT.biblionumber %]'); return false;">Agregar a la cesta</a> <a style="display:none;" class="cartRemove cartR[% SEARCH_RESULT.biblionumber %]" href="#" onclick="delSingleRecord('[% SEARCH_RESULT.biblionumber %]'); return false;">(Borrar)</a>
  [% END %] [% END %] </span>
  </td><td>
  <!--[% IF ( SEARCH_RESULT.coverThumbLR ) %]<img alt="" src="[% SEARCH_RESULT.coverThumbLR |html %]" class="thumbnail" />
  [% ELSE %][% IF ( SEARCH_RESULT.coverLR ) %]<img alt="" src="[% SEARCH_RESULT.coverLR |html %]" width="90" height="124" class="thumbnail" border="0" />[% END %]
  [% END %]-->
  <a class="p1" href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% SEARCH_RESULT.biblionumber %]">
- [% IF ( OPACLocalCoverImages ) %]<span title="[% SEARCH_RESULT.biblionumber |url %]" class="[% SEARCH_RESULT.biblionumber %]" id="local-thumbnail[% loop.count %]"></span>[% END %] [% IF ( OPACAmazonEnabled ) %][% IF ( OPACAmazonCoverImages ) %][% IF ( SEARCH_RESULT.normalized_isbn ) %]<img src="http://images.amazon.com/images/P/[% SEARCH_RESULT.normalized_isbn %].01.TZZZZZZZ.jpg" alt="" class="thumbnail" />[% ELSE %]<span class="no-image">No hay imagen de cubierta disponible</span>[% END %][% END %][% END %] [% IF ( SyndeticsEnabled ) %] [% IF ( SyndeticsCoverImages ) %] [% IF SEARCH_RESULT.normalized_isbn %] [% IF ( using_https ) %]<img src="https://secure.syndetics.com/index.aspx?isbn=[% SEARCH_RESULT.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% SEARCH_RESULT.normalized_upc %]&amp;oclc=[% SEARCH_RESULT.normalized_oclc %]" alt="" class="thumbnail" />
+ [% IF ( OPACLocalCoverImages ) %]<span title="[% SEARCH_RESULT.biblionumber |url %]" class="[% SEARCH_RESULT.biblionumber %]" id="local-thumbnail[% loop.count %]"></span>[% END %] [% IF ( OPACAmazonCoverImages ) %][% IF ( SEARCH_RESULT.normalized_isbn ) %]<img src="http://images.amazon.com/images/P/[% SEARCH_RESULT.normalized_isbn %].01.TZZZZZZZ.jpg" alt="" class="thumbnail" />[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %]
+
+ [% IF ( SyndeticsEnabled ) %]
+ [% IF ( SyndeticsCoverImages ) %]
+ [% IF SEARCH_RESULT.normalized_isbn %]
+ [% IF ( using_https ) %]
+ <img src="https://secure.syndetics.com/index.aspx?isbn=[% SEARCH_RESULT.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% SEARCH_RESULT.normalized_upc %]&amp;oclc=[% SEARCH_RESULT.normalized_oclc %]" alt="" class="thumbnail" />
  [% ELSE %] <img src="http://www.syndetics.com/index.aspx?isbn=[% SEARCH_RESULT.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% SEARCH_RESULT.normalized_upc %]&amp;oclc=[% SEARCH_RESULT.normalized_oclc %]" alt="" class="thumbnail" />
- [% END %] [% ELSE %] <span class="no-image">No hay imagen de cubierta disponible</span>
- [% END %] [% END %] [% END %] [% IF ( GoogleJackets ) %][% IF ( SEARCH_RESULT.normalized_isbn ) %]<span style="block" title="[% SEARCH_RESULT.biblionumber |url %]" class="[% SEARCH_RESULT.normalized_isbn %]" id="gbs-thumbnail[% loop.count %]"></span>[% ELSE %]<span class="no-image">No hay imagen de cubierta disponible</span>[% END %][% END %] [% IF OpenLibraryCovers %][% IF SEARCH_RESULT.normalized_isbn %]<span style="block" title="[% SEARCH_RESULT.biblionumber %]" class="[% SEARCH_RESULT.normalized_isbn %]" id="openlibrary-thumbnail[% loop.count %]"></span>[% ELSE %]<span class="no-image">No hay imagen de cubierta disponible</span>[% END %][% END %] </a>
- [% IF ( BakerTaylorEnabled ) %][% IF ( SEARCH_RESULT.normalized_isbn ) %]<a href="https://[% BakerTaylorBookstoreURL |html %][% SEARCH_RESULT.normalized_isbn %]"><img alt="Ver Baker & Taylor" src="[% BakerTaylorImageURL |html %][% SEARCH_RESULT.normalized_isbn %]" /></a>[% ELSE %]<span class="no-image">No hay imagen de cubierta disponible</span>[% END %][% END %] </td>
+ [% END %] [% ELSE %] <span class="no-image">No hay imagen de portada disponible</span>
+ [% END %] [% END %] [% END %] [% IF ( GoogleJackets ) %][% IF ( SEARCH_RESULT.normalized_isbn ) %]<span style="block" title="[% SEARCH_RESULT.biblionumber |url %]" class="[% SEARCH_RESULT.normalized_isbn %]" id="gbs-thumbnail[% loop.count %]"></span>[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %] [% IF OpenLibraryCovers %][% IF SEARCH_RESULT.normalized_isbn %]<span style="block" title="[% SEARCH_RESULT.biblionumber %]" class="[% SEARCH_RESULT.normalized_isbn %]" id="openlibrary-thumbnail[% loop.count %]"></span>[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %] </a>
+ [% IF ( BakerTaylorEnabled ) %][% IF ( SEARCH_RESULT.normalized_isbn ) %]<a href="https://[% BakerTaylorBookstoreURL |html %][% SEARCH_RESULT.normalized_isbn %]"><img alt="Ver Baker & Taylor" src="[% BakerTaylorImageURL |html %][% SEARCH_RESULT.normalized_isbn %]" /></a>[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %] </td>
  </tr>
  [% END %] </table>
  </form>
@@ -459,7 +492,9 @@ $(document).ready(function(){
  <input id="hold_form_biblios" type="hidden" name="biblionumbers" value=""/>
  </form>
  </div>
- [% END %] [% INCLUDE 'page-numbers.inc' %] [% ELSE %] [% END %] [% IF ( suggestion ) %] [% IF ( AnonSuggestions ) %]<div class="suggestion">¿No encontró lo que usted está buscando?<br /> Hacer un <a href="/cgi-bin/koha/opac-suggestions.pl?op=add">sugerencia de compra</a></div>[% ELSE %][% IF ( loggedinusername ) %]<div class="suggestion">¿No encontró lo que usted está buscando?<br /> Hacer un <a href="/cgi-bin/koha/opac-suggestions.pl?op=add">sugerencia de compra</a></div>[% END %][% END %] [% END %] </div>
+ [% END %] <div id="bottom-pages">[% INCLUDE 'page-numbers.inc' %]</div>
+
+ [% ELSE %] [% END %] [% IF ( suggestion ) %] [% IF ( AnonSuggestions ) %]<div class="suggestion">¿No encuentras lo que estás buscando?<br /> Hacer una <a href="/cgi-bin/koha/opac-suggestions.pl?op=add">sugerencia de compra</a></div>[% ELSE %][% IF ( loggedinusername ) %]<div class="suggestion">¿No encuentras lo que estás buscando?<br /> Hacer una <a href="/cgi-bin/koha/opac-suggestions.pl?op=add">sugerencia de compra</a></div>[% END %][% END %] [% END %] </div>
 </div>
 </div>
  [% IF ( opacfacets ) %] <div class="yui-b"><div id="facetcontainer" class="container">

@@ -1,15 +1,11 @@
-[% INCLUDE 'help-top.inc' %] <h1>Overdues with Fines</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Vencimiento con sanción</h1>
 
-<p>Este informe muestra ítems que: <ul>
- <li>están todavía prestados,</li>
- <li>no se ha enviado un aviso, y</li>
- <li>ya tiene una multa asociada (tipo &quot;FU&quot;)</li>
-</ul>
+<p>This report will show you any overdues at your library that have accrued fines on them.</p>
 
-<p>Este informe no le mostrará los ítem con tanto retraso que el sistema ya los ha marcado como 'Perdidos'.</p>
+<p>If you would like to limit the report you can use the pull down menu at the top to limit to a specific shelving location at your branch. To see overdues with fines at other branches you will have to change your branch or log in at that branch.</p>
 
-<p>Una vez abierto el informe se puede filtrar por la ubicación del estante.</p>
+<p style="color: #990000">Important: If you do not charge fines and/or don't have the fines cron job running you will see no data on this report.</p>
 
-<p><strong>See the full documentation for Overdues with Fines in the <a href="http://manual.koha-community.org/3.8/en/circreports.html#overduesfines">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Retrasos con Sanciones en la <a href="http://manual.koha-community.org/3.10/en/circreports.html#overduesfines">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

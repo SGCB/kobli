@@ -11,8 +11,8 @@ $(document).ready(function(){
 	        $(".checkboxed").unCheckCheckboxes();
 	        return false;
 	    });
-[% IF ( offset ) %]$("#markseen").before("<input type=\"submit\" value=\"&lt;&lt; Mark seen and continue\" id=\"markback\" />");[% END %]
-[% IF ( nextoffset ) %]$("#markseen").after("<input type=\"submit\" id=\"marknext\" value=\"Mark seen and continue &gt;&gt;\" />");[% END %]
+[% IF ( offset ) %]$("#markseen").before("<input type=\"submit\" value=\"&lt;&lt; " + _("Mark seen and continue") + "\" id=\"markback\" /> ");[% END %]
+[% IF ( nextoffset ) %]$("#markseen").after(" <input type=\"submit\" id=\"marknext\" value=\"" + _("Mark seen and continue") + " &gt;&gt;\" />");[% END %]
 	$("#markback").click(function(){
 		$(".checkboxed").find("input").filter("[name=offset]").attr("value","[% prevoffset %]");
 		return true;
@@ -34,7 +34,7 @@ $(document).ready(function(){
  <div id="yui-main">
  <div class="yui-b">
  <h1>Inventario/existencias</h1>
- [% IF ( Number ) %]<div class="dialog message">[% Number %] ítems modificados: fecha de último acceso puesta a [% date %]</div>[% END %] [% IF ( errorfile ) %]<div class="dialog alert">[% errorfile %] no se puede abrir</div>[% END %] [% FOREACH errorloo IN errorloop %] <div class="dialog alert">
+ [% IF ( Number ) %]<div class="dialog message">[% Number %] ítems modificados: datelastseen establecida en [% date %]</div>[% END %] [% IF ( errorfile ) %]<div class="dialog alert">[% errorfile %] no se puede abrir</div>[% END %] [% FOREACH errorloo IN errorloop %] <div class="dialog alert">
  [% errorloo.barcode %] [% IF ( errorloo.ERR_BARCODE ) %]: código de barras no encontrado[% END %] [% IF ( errorloo.ERR_WTHDRAWN ) %]:ítem retirado[% END %] [% IF ( errorloo.ERR_ONLOAN_RET ) %]: el ítem no estaba prestado. El ítem fue devuelto antes de ser marcado como visto[% END %] [% IF ( errorloo.ERR_ONLOAN_NOT_RET ) %]: el ítem estaba prestado. no pudo ser devuelto.[% END %] </div>
  [% END %] [% UNLESS ( loop ) %] <div class="yui-g">
  <form method="post" action="/cgi-bin/koha/tools/inventory.pl" enctype="multipart/form-data">
@@ -51,8 +51,8 @@ $(document).ready(function(){
  <legend>Seleccione los ítems que quiere revisar</legend>
  <ol><li>
  <label for="branch">Biblioteca</label>
- <input type="radio" name="branch" value="homebranch">Biblioteca de origen</input>
- <input type="radio" name="branch" value="holdingbranch">Ubicación actual</input>
+ <input type="radio" name="branch" value="homebranch"> Biblioteca de origen</input>
+ <input type="radio" name="branch" value="holdingbranch"> Ubicación actual</input>
  </li><li>
  <label for="branchloop">Biblioteca</label><select id="branchloop" name="branchcode" style="width:12em;">
  <option value="">Todas las ubicaciones</option>

@@ -62,6 +62,6 @@ onclick: {fn:function(){popup([% subscriptionid %])}}
  [% END %] [% END %] [% IF ( CAN_user_serials_create_subscription ) %] <li><a id="duplicate" href="/cgi-bin/koha/serials/subscription-add.pl?op=dup&amp;subscriptionid=[% subscriptionid %]">Duplicar </a></li>
  [% END %] [% UNLESS ( cannotedit ) %] [% IF ( CAN_user_serials_renew_subscription ) %] <li id="renewc"><a id="renew" href="#" onclick="popup([% subscriptionid %])">Renovar </a></li>
  [% END %] [% IF ( CAN_user_serials_receive_serials ) %] <li><a id="receive" href="/cgi-bin/koha/serials/serials-edit.pl?subscriptionid=[% subscriptionid %]&amp;serstatus=1,3">Recibir</a></li>
- [% END %] [% IF ( CAN_user_serials_delete_subscription ) %] <li><a id="delete" href="javascript:confirm_deletion()">Borrar</a></li>
+ [% END %] [% IF ( CAN_user_serials_delete_subscription ) %] <li><a id="delete" href="javascript:confirm_deletion()">Eliminar</a></li>
  [% END %] [% END %] [% END %] [% END %] </ul>
 </div>
