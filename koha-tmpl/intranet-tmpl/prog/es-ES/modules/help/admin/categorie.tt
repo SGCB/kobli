@@ -1,4 +1,4 @@
-[% INCLUDE 'help-top.inc' %] <h1>Patron Categories</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Categorías de socio </h1>
 
 <p>Las categorías de socios le permiten organizar sus socios según diferentes roles, grupos de edad y los tipos de socio.</p>
 
@@ -33,11 +33,10 @@
 
 <h2>Agregando una categoría de socio</h2>
 
-<p>To add a new patron category click 'New Category' at the top of the page</p>
+<p>Para agregar una nueva categoría de socio, seleccionar en 'Nueva categoría' en la parte superior de la página</p>
 
 <ul>
- <li>The 'Category Code' is an identifier for your new code.
-<ul>
+ <li>'Category Code' es un identificador para su nuevo código. <ul>
  <li style="color: #990000;">Importante: El código de la categoría se limita a 10 caracteres (números y letras)</li>
 </ul>
 </li>
@@ -46,8 +45,16 @@
  <li style="color: #990000;">Importante: No se puede introducir tanto en un plazo de un mes y una fecha hasta. Elija entre una o la otra.</li>
 </ul>
 </li>
- <li>Algunas categorías de socio pueden tener una edad mínima (en años) como requisito asociado a ellas, ingrese esa edad en 'Edad requerida'</li>
- <li>Las categorías de socios también pueden tener una edad máxima (en años) asociadas con ellas (como los niños), entrar esta edad en 'Edad máxima'</li>
+ <li>Some patron categories can have a minimum age (in years) requirement associated with them, enter this age in the 'Age required'
+<ul>
+ <li style="color: #990000;">Important: This value will only be checked if BorrowerMandatoryField defines the dateofbirth as a required field on the patron record</li>
+</ul>
+</li>
+ <li>Patron categories can also have a maximum age (in years) associated with them (such as children), enter this age in the 'Upperage limit'
+<ul>
+ <li style="color: #990000;">Important: This value will only be checked if BorrowerMandatoryField defines the dateofbirth as a required field on the patron record</li>
+</ul>
+</li>
  <li>Si cobra por la afiliación a la biblioteca ingrese la cantidad correspondiente en el campo 'Costo por asociación' <ul>
  <li style="color: #990000;">Importante: Ingrese solo números y puntos decimales.</li>
 </ul>
@@ -65,6 +72,6 @@
 </li>
 </ul>
 
-<p><strong>See the full documentation for Patron Categories in the <a href="http://manual.koha-community.org/3.8/en/patscirc.html#patcats">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Categorías de Socios en la <a href="http://manual.koha-community.org/3.10/en/patscirc.html#patcats">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

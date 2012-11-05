@@ -37,7 +37,7 @@ function print_slip(subscriptionid,issue){
 <fieldset class="action">
 <input value="Guardar y ver vista preliminar de comprobante de ruta" name="ok" type="submit" class="button" onclick="print_slip([% subscriptionid %],'[% issue_escaped %]'); return false" />
 <input value="Editar" name="edit" type="submit" class="button" />
-<input value="Borrar" name="delete" type="submit" class="button" /></fieldset>
+<input value="Eliminar" name="delete" type="submit" class="button" /></fieldset>
 </form>
 
 </div>

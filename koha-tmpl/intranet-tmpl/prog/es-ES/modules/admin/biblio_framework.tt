@@ -139,9 +139,9 @@ $(document).ready(function() {
  [% ELSE %] <li><label for="frameworkcode">Código de hoja de trabajo</label><input type="text" id="frameworkcode" name="frameworkcode" size="4" maxlength="4" onblur="toUC(this)" /></li>
  [% END %] <li><label for="description">Descripción</label>
  <input type="text" name="frameworktext" id="description" size="40" maxlength="80" value="[% frameworktext |html %]" /></li>
- [% IF ( frameworkloop ) %] [% IF ( frameworkcode ) %] <li><label for="indicators">Clone indicators using</label>
+ [% IF ( frameworkloop ) %] [% IF ( frameworkcode ) %] <li><label for="indicators">Clonar indicadores utilizados</label>
  <select name="indicators" id="indicators">
- <option value="">Don't clone</option>
+ <option value="">No clonar</option>
  [% FOREACH loo IN frameworkloop %] <option value="[% loo.frameworkcode %]">[% loo.frameworktext %]</option>
  [% END %] </select>
  </li>
@@ -163,13 +163,13 @@ $(document).ready(function() {
  <th>Descripción</th>
  <th>&nbsp;</th>
  <th>Editar</th>
- <th>Borrar</th>
- <th title="Exportar estructura de hoja de trabajo (campos, subcampos) a hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Exportar</th>
- <th title="Importar estructura de hoja de trabajo (campos, subcampos) desde una hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Importar</th>
+ <th>Eliminar</th>
+ <th title="Exportar estructura de  la plantilla  (campos, subcampos) a hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Exportar</th>
+ <th title="Importar estructura de plantilla(campos, subcampos) desde una hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Importar</th>
  </tr>
  <tr>
  <td>&nbsp;</td>
- <td>Hoja de trabajo predeterminada</td>
+ <td>Plantilla predeterminada</td>
  <td><a href="marctagstructure.pl?frameworkcode=[% frameworkcode %]">Estructura MARC</a></td>
  <td>&nbsp;</td>
  <td>&nbsp;</td>
@@ -212,7 +212,7 @@ $(document).ready(function() {
  <td>[% loo.frameworktext %]</td>
  <td><a href="marctagstructure.pl?frameworkcode=[% loo.frameworkcode %]" >Estructura MARC</a></td>
  <td><a href="[% loo.script_name %]?op=add_form&amp;frameworkcode=[% loo.frameworkcode |html %]">Editar</a></td>
- <td><a href="[% loo.script_name %]?op=delete_confirm&amp;frameworkcode=[% loo.frameworkcode |html %]">Borrar</a></td>
+ <td><a href="[% loo.script_name %]?op=delete_confirm&amp;frameworkcode=[% loo.frameworkcode |html %]">Eliminar</a></td>
  <td>
  <div class="import_export"><a href="#" class="import_export_fw" title="Exportar estructura de hoja de trabajo [% loo.frameworkcode %] (campos, subcampos) a hoja de cálculo (.csv, .xml, .ods) o archivo SQL">Exportar</a>
  <div class="import_export_options">

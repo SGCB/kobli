@@ -1,34 +1,83 @@
 --- 
-Authorities: 
+authorities.pref: 
+  Enlaces: 
+    - 
+      - "Usar "
+      - 
+        choices: 
+          Default: Por defecto
+          FirstMatch: "Primera combinaci\xC3\xB3n"
+          LastMatch: "\xC3\x9Altima combinaci\xC3\xB3n"
+        default: Default
+        pref: LinkerModule
+      - "el m\xC3\xB3dulo enlaces para combinar encabezamiento con registros de autoridades"
+    - 
+      - Asignar las siguientes opciones para la autoridad enlazada
+      - 
+        class: multi
+        pref: LinkerOptions
+      - (separar opciones con |)
+    - 
+      - 
+        choices: 
+          "": No hacer
+          1: Hacer
+        default: 1
+        pref: LinkerRelink
+      - reenlazar encabezamientos que previamente hayan sido enlazados a registros de autoridades
+    - 
+      - 
+        choices: 
+          "": No hacer
+          1: Hacer
+        default: ''
+        pref: LinkerKeepStale
+      - mantener los enlaces existentes con los registros de autoridades para encabezamientos donde el enlace no encuentre coincidencia
+    - 
+      - 
+        choices: 
+          "": No hacer
+          1: Hacer
+        default: ''
+        pref: CatalogModuleRelink
+      - "autom\xC3\xA1ticamente reenlazar encabezamientos que previamente hayan sido enlazados al guardar los registros en el m\xC3\xB3dulo de catalogaci\xC3\xB3n"
   General: 
+    - 
+      - 
+        choices: 
+          "": Don't display
+          1: Display
+        default: ''
+        pref: AuthDisplayHierarchy
+      - broader term/narrower term hierarchies when viewing authorities.
     - 
       - Cuando edite registros,
       - 
         choices: 
-          "": no permita
-          1: permita
+          "": no permitir
+          1: permitir
         default: ''
         pref: BiblioAddsAuthorities
-      - them to automatically create new authority records if needed, rather than having to reference existing authorities.
+      - "crear autom\xC3\xA1ticamente nuevos registros de autoridad en caso necesario, en lugar de referenciar autoridades existentes. "
     - 
-      - When editing records,
+      - Cuando editamos registros,
       - 
         choices: 
-          "": do not generate
-          1: generate
+          "": no generar
+          1: generar
         default: 1
         pref: AutoCreateAuthorities
-      - authority records that are missing (BiblioAddsAuthorities must be set to "allow" for this to have any effect).
+      - "registros de autoridades que est\xC3\xA1n perdidos (BiblioAddsAuthorities debe poner \"allow\" para que esta opci\xC3\xB3n aplique)."
     - 
       - 
         choices: 
-          "": Haga
-          1: No haga
+          "": Hacer
+          1: No hacer
         default: 1
         pref: dontmerge
-      - automatically update attached biblios when changing an authority record. If this is off, please ask your administrator to enable the merge_authority.pl cronjob.
+      - "actualizar autom\xC3\xA1ticamente los biblios adjuntos cuando se cambie un registro de autoridad. Si est\xC3\xA1 desactivado, por favor pedir a tu administrador habiltar la tarea progrmada merge_authority.pl"
     - 
-      - Use the following text for the contents of MARC authority control field 008 position 06-39 (fixed length data elements). Do NOT include the date (position 00-05).
+      - "Usar el texto siguiente para los contenidos del campo de control de autoridades 008 posici\xC3\xB3n 06-39  de Marc (longitud fija de elementos de dato). NO incluir la fecha (posici\xC3\xB3n 00-05)"
       - 
         class: code
         default: "|| aca||aabn           | a|a     d"
@@ -37,49 +86,8 @@ Authorities:
     - 
       - 
         choices: 
-          "": No utilice
-          1: Utilice
+          "": No utilizar
+          1: Utilizar
         default: 1
         pref: UseAuthoritiesForTracings
       - "n\xC3\xBAmeros de registros de autoridad en vez de cadenas de texto para b\xC3\xBAsquedas desde trazas de temas."
-  Linker: 
-    - 
-      - Use the
-      - 
-        choices: 
-          Default: Default
-          FirstMatch: First Match
-          LastMatch: Last Match
-        default: Default
-        pref: LinkerModule
-      - linker module for matching headings to authority records.
-    - 
-      - Set the following options for the authority linker
-      - 
-        class: multi
-        pref: LinkerOptions
-      - (separate options with |)
-    - 
-      - 
-        choices: 
-          "": Do not
-          1: Do
-        default: 1
-        pref: LinkerRelink
-      - relink headings that have previously been linked to authority records.
-    - 
-      - 
-        choices: 
-          "": Do not
-          1: Do
-        default: ''
-        pref: LinkerKeepStale
-      - keep existing links to authority records for headings where the linker is unable to find a match.
-    - 
-      - 
-        choices: 
-          "": Do not
-          1: Do
-        default: ''
-        pref: CatalogModuleRelink
-      - automatically relink headings that have previously been linked when saving records in the cataloging module.

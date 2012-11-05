@@ -4,7 +4,7 @@
 var MSG_NO_ITEM_SELECTED = _("No se ha seleccionado nada");
 var MSG_NON_RESERVES_SELECTED = _("Uno o más ítems seleccionados no se pueden reservar.");
 var q_array = new Array();  // will hold search terms, if present
-[% IF ( AmazonEnabled ) %]
+[% IF ( AmazonCoverImages ) %]
 // http://www.oreillynet.com/pub/a/javascript/2003/10/21/amazonhacks.html
 function verify_images() {
     $("img").each(function(i){
@@ -61,7 +61,7 @@ $('#sort_by').change(function() {
     });
 $(".addtocart").show();
         var param1 = "<label for=\"addto\">"+_("Agregar a:")+"<\/label><select name=\"addto\" id=\"addto\"><option value=\"\"><\/option>";
-        [% IF ( intranetbookbag ) %]     param1 += "<option value=\"addtocart\">"+_("Carrito")+"<\/option>"; [% END %]
+        [% IF ( intranetbookbag ) %]     param1 += "<option value=\"addtocart\">"+_("Cesta")+"<\/option>"; [% END %]
         [% IF ( virtualshelves ) %][% IF ( addbarshelves ) %]
         param1 += "<optgroup label=\""+_("Sus listas:")+"\">";[% FOREACH addbarshelvesloo IN addbarshelvesloop %]
         param1 += "<option id=\"s[% addbarshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addbarshelvesloo.shelfname |html %]<\/option>";[% END %]
@@ -69,7 +69,7 @@ $(".addtocart").show();
         [% IF ( addpubshelves ) %]param1 += "<optgroup label=\""+_("Listas públicas:")+"\">"[% FOREACH addpubshelvesloo IN addpubshelvesloop %]+"<option id=\"s[% addpubshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addpubshelvesloo.shelfname |html %]<\/option>"[% END %]
         param1 += "<\/optgroup>";[% END %]
         [% IF ( ( addbarshelvesloop && addbarshelvesloop.size>9 ) || (addpubshelvesloop && addpubshelvesloop.size>9 )) %]
-            param1 += "<option value=\"morelists\">[ "+_("Mas listas")+" ]<\/option>";
+            param1 += "<option value=\"morelists\">[ "+_("Más listas")+" ]<\/option>";
         [% END %]
         param1 +="<option value=\"newlist\">"+_("[ Nueva lista ]")+"<\/option>"
         [% END %]
@@ -94,6 +94,11 @@ $(".addtocart").show();
     toHighlight = $("p,span.results_summary,a.title");
         var query_desc = "[% query_desc |replace("'", "\'") |replace('"', '\"') |replace('\n', '\\n') |replace('\r', '\\r') %]";
         q_array = query_desc.split(" ");
+        // ensure that we don't have "" at the end of the array, which can
+        // break the highlighter
+        while (q_array.length > 0 && q_array[q_array.length-1] == "") {
+            q_array = q_array.splice(0,-1);
+        }
         highlightOn();
         $("#highlight_toggle_on" ).hide().click(function() {highlightOn() ;});
         $("#highlight_toggle_off").show().click(function() {highlightOff();});
@@ -371,23 +376,25 @@ YAHOO.util.Event.onContentReady("searchheader", function () {
  <!-- TABLE RESULTS START -->
  <table>
  <tr>
- [% IF ( AmazonEnabled ) %][% IF ( AmazonCoverImages ) %]<th>&nbsp;</th>[% END %][% END %] <th colspan="2">Resultados</th>
+ [% IF ( AmazonCoverImages ) %]<th>&nbsp;</th>[% END %] <th colspan="2">Resultados</th>
  <th>Ubicación</th>
  </tr>
  <!-- Actual Search Results -->
  [% FOREACH SEARCH_RESULT IN SEARCH_RESULTS %]
- [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %] [% IF ( AmazonEnabled ) %][% IF ( AmazonCoverImages ) %] <td>
+ [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %] [% IF ( AmazonCoverImages ) %] <td>
  <a class="p1" href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% SEARCH_RESULT.biblionumber |url %]">
  
  <img src="[% IF ( SEARCH_RESULT.normalized_isbn ) %]http://images.amazon.com/images/P/[% SEARCH_RESULT.normalized_isbn %].01.TZZZZZZZ.jpg[% ELSE %]http://g-images.amazon.com/images/G/01/x-site/icons/no-img-sm.gif[% END %]" alt="" class="thumbnail" />
  </a></td>
- [% END %][% END %] <td>
+ [% END %] <td>
  <input type="checkbox" class="selection" id="bib[% SEARCH_RESULT.biblionumber %]" name="biblionumber" value="[% SEARCH_RESULT.biblionumber %]" style="display:none" />
  </td>
  <td>
  [% IF ( SEARCH_RESULT.XSLTResultsRecord ) %] [% SEARCH_RESULT.result_number %]. [% SEARCH_RESULT.XSLTResultsRecord %] [% ELSE %] <p>[% SEARCH_RESULT.result_number %]. [% biblionumber = SEARCH_RESULT.biblionumber %] [% INCLUDE 'biblio-default-view.inc' %] <b>[% IF ( SEARCH_RESULT.title ) %][% SEARCH_RESULT.title |html %][% ELSE %]Ningún título[% END %]</b>
  </a>
  [% FOREACH subtitl IN SEARCH_RESULT.subtitle %], [% subtitl.subfield %][% END %]
+ [% IF ( SEARCH_RESULT.seriestitle ) %][% SEARCH_RESULT.seriestitle %][% END %]
+ [% IF ( SEARCH_RESULT.volume ) %][% SEARCH_RESULT.volume %][% END %] [% IF ( SEARCH_RESULT.volumeddesc ) %], [% SEARCH_RESULT.volumeddesc %][% END %]
  [% IF ( SEARCH_RESULT.volumedesc ) %], [% SEARCH_RESULT.volumedesc %][% END %]
  </p>
  [% IF ( SEARCH_RESULT.summary ) %] [% IF ( SEARCH_RESULT.author ) %] <a href="/cgi-bin/koha/catalogue/search.pl?idx=au&q=[% SEARCH_RESULT.author |url %]" title="Busque este autor">[% SEARCH_RESULT.author %]</a>
@@ -398,8 +405,7 @@ YAHOO.util.Event.onContentReady("searchheader", function () {
  [% UNLESS ( item_level_itypes ) %] [% IF !noItemTypeImages && SEARCH_RESULT.imageurl %] <img src="[% SEARCH_RESULT.imageurl %]" title="[% SEARCH_RESULT.description %]" style="float: left; margin: .1em;" alt="" />
  [% END %] [% END %] [% IF ( SEARCH_RESULT.author ) %] <a href="/cgi-bin/koha/catalogue/search.pl?idx=au&q=[% SEARCH_RESULT.author |url %]" title="Busque este autor">[% SEARCH_RESULT.author %]</a>
  [% ELSE %] &nbsp; [% END %] Descripción: <span class="results_imprint">[% IF ( SEARCH_RESULT.place ) %][% SEARCH_RESULT.place %] [% END %] [% IF ( SEARCH_RESULT.publishercode ) %][% SEARCH_RESULT.publishercode %][% END %] [% IF ( SEARCH_RESULT.publicationyear ) %] [% SEARCH_RESULT.publicationyear %] [% ELSIF ( SEARCH_RESULT.copyrightdate ) %] [% SEARCH_RESULT.copyrightdate %][% END %]</span>
- [% IF ( SEARCH_RESULT.edition ) %]<span class="results_edition">Edición: [% SEARCH_RESULT.edition %]</span>[% END %] <span class="results_physicaldesc">[% IF ( SEARCH_RESULT.pages ) %]: [% SEARCH_RESULT.pages %][% END %]
- </span> [% IF ( SEARCH_RESULT.isbn ) %]<span class="results_isbn">ISBN: [% SEARCH_RESULT.isbn | replace('\s\|', ', ')%]</span>[% END %] <span class="results_itemtype">[% SEARCH_RESULT.description %]</span>
+ [% IF ( SEARCH_RESULT.edition ) %]<span class="results_edition">Edición: [% SEARCH_RESULT.edition %]</span>[% END %] <span class="results_physicaldesc">[% IF ( SEARCH_RESULT.pages ) %]: [% SEARCH_RESULT.pages %][% END %] </span> [% IF ( SEARCH_RESULT.isbn ) %]<span class="results_isbn">ISBN: [% SEARCH_RESULT.isbn | replace('\s\|', ', ')%]</span>[% END %] <span class="results_itemtype">[% SEARCH_RESULT.description %]</span>
  [% IF ( SEARCH_RESULT.timestamp ) %] <i>(modificado el [% SEARCH_RESULT.timestamp %])</i>[% END %] [% IF ( SEARCH_RESULT.cn_class ) %][<a href="/cgi-bin/koha/catalogue/search.pl?idx=callnum&amp;q=[% SEARCH_RESULT.cn_class |url %]">[% SEARCH_RESULT.cn_class %]</a>][% END %] </p>
  [% IF ( SEARCH_RESULT.searchhighlightblob ) %]<p class="searchhighlightblob">[% SEARCH_RESULT.searchhighlightblob %]</p>[% END %] [% IF ( SEARCH_RESULT.authorised_value_images ) %] <p>
  [% FOREACH authorised_value_image IN SEARCH_RESULT.authorised_value_images %] <img src="[% authorised_value_image.imageurl %]" alt="[% authorised_value_image.description %]" />

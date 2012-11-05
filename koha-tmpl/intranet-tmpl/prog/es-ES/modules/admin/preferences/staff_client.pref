@@ -1,5 +1,5 @@
 --- 
-Staff Client: 
+staff_client.pref: 
   Apariencia: 
     - 
       - Utilice el tema
@@ -14,13 +14,13 @@ Staff Client:
         pref: staffClientBaseURL
       - .
     - 
-      - Incluya la hoja de estilo en
+      - Incluya la hoja de estilo en la ruta
       - 
         class: url
         pref: intranetstylesheet
-      - "en todas las p\xC3\xA1ginas de la interfaz administrativa, en vez de la predeterminada. (Esto debe ser una URL completa, comenzando con <code>http://</code>.)"
+      - "en todas las p\xC3\xA1ginas de la interfaz administrativa, en lugar de la predeterminada. (Deber\xC3\xADa ser una URL completa, comenzando con <code>http://</code>.)"
     - 
-      - "Use the following JavaScript for printing slips. Define at least function printThenClose(). For use e.g. with Firefox PlugIn jsPrintSetup, see http://jsprintsetup.mozdev.org/:"
+      - "staff_client.pref#IntranetSlipPrinterJS# Usar el siguiente JavaScript pa imprimir recibos. Definir al menos la funci\xC3\xB3n printThenClose(). Para usar e.g. con Firefox PlugIn jsPrintSetup, ver http://jsprintsetup.mozdev.org/:"
       - 
         class: code
         pref: IntranetSlipPrinterJS
@@ -36,13 +36,13 @@ Staff Client:
       - 
         class: file
         pref: intranetcolorstylesheet
-      - "en todas la p\xC3\xA1ginas de la interfaz administrativa. (Deje en blanco para deshabilitar.)"
+      - "para todas la p\xC3\xA1ginas de la interfaz administrativa. (Deje en blanco para deshabilitar.)"
     - 
-      - Utilice archivos incluidos desde el directorio
+      - Utilice archivos de tipo <code>includes/</code> desde el directorio
       - 
         class: file
         pref: intranet_includes
-      - en el directorio templates, en cambio de <code>includes</code>. (Deje en blanco para deshabilitar.)
+      - dentro del directorio templates,en lugar de <code>includes</code>. (Deje en blanco para deshabilitar.)
     - 
       - "Mostrar el siguiente HTML en su propia columna en la p\xC3\xA1gina principal del cliente administrativo:"
       - 
@@ -50,13 +50,13 @@ Staff Client:
         pref: IntranetmainUserblock
         type: textarea
     - 
-      - "Show the following HTML to the left of the More menu at the top of each page on the staff client (should be a list of links or blank):"
+      - "Mostrar el siguiente HTML para la salida de M\xC3\xA1s menu en la parte superior de cada p\xC3\xA1gina del cliente administrador (deber\xC3\xADa ser una lista de enlaces o en blanco):"
       - 
         class: code
         pref: IntranetNav
         type: textarea
     - 
-      - "Include the following JavaScript on all pages in the staff client:"
+      - "Incluir el siguiente JavaScript en todas las p\xC3\xA1ginas en el cliente administrador:"
       - 
         class: code
         pref: intranetuserjs
@@ -68,23 +68,23 @@ Staff Client:
         pref: IntranetFavicon
       - para el favicon del cliente administrativo. (Esto debe ser una URL completa, comenzando con <code>http://</code>.)
     - 
-      - "Display results in the staff client using XSLT stylesheet at: "
+      - "Mostrar resultados en el cliente administrador utilizando la hoja de estilo XSLT en:"
       - 
         class: file
         pref: XSLTResultsDisplay
-      - <br />Options:<br />- leave empty for "no xslt"<br />- enter "default" for the default one<br />- put a path to define a xslt file<br />- put an URL for an external specific stylesheet.<br />{langcode} will be replaced with current interface language
+      - "<br />Opciones:<br />-dejar vacio para \"no xslt\"<br />- introducir \"default\" para el predeterminado<br />- poner una ruta para dedinir un archivo xslt<br />- poner una URL para una hoja de estilo externa espec\xC3\xADfica.<br />{langcode} ser\xC3\xA1 reemplazado por un lenguaje com\xC3\xBAn"
     - 
-      - "Display details in the staff client using XSLT stylesheet at: "
+      - "Mostrar detalles en el clietne administrador utilizando la hoja de estilo XSLT en:"
       - 
         class: file
         pref: XSLTDetailsDisplay
-      - <br />Options:<br />- leave empty for "no xslt"<br />- enter "default" for the default one<br />- put a path to define a xslt file<br />- put an URL for an external specific stylesheet.<br />{langcode} will be replaced with current interface language
+      - " <br />Opciones:<br />-dejar vac\xC3\xADo para\"no xslt\"<br />- introducir \"default\" para el predeterminado<br />- poner una ruta para dedinir un archivo xslt<br />- poner una URL para una hoja de estilo externa espec\xC3\xADfica.<br />{langcode} ser\xC3\xA1 reemplazado por un lenguaje com\xC3\xBAn"
     - 
       - "Utilice las librer\xC3\xADas UI de Yahoo"
       - 
         choices: 
-          http://yui.yahooapis.com/2.5.1/build: desde los servidores de Yahoo (menos demanda en sus servidores)
-          local: "incluidas con Koha (mas r\xC3\xA1pida, funcionan aun si Internet no anda)."
+          http://yui.yahooapis.com/2.5.1/build: desde los servidores de Yahoo (menos demanda en sus servidores).
+          local: "incluidas con Koha (m\xC3\xA1s r\xC3\xA1pida, funcionan a\xC3\xBAn si Internet reduce conexi\xC3\xB3n)."
         pref: yuipath
     - 
       - 
@@ -92,23 +92,23 @@ Staff Client:
           "": No mostrar
           1: Mostrar
         pref: StaffAuthorisedValueImages
-      - "im\xC3\xA1genes para <a href=\"/cgi-bin/koha/admin/authorised_values.pl\">valores autorizados</a> (tales como ubicaciones) en resultados de b\xC3\xBAsquedas."
+      - "im\xC3\xA1genes para <a href=\"/cgi-bin/koha/admin/authorised_values.pl\">valores autorizados</a> (tal como estado perdidos y localizaciones) en resultados de b\xC3\xBAsquedas."
     - 
       - "Mostrar la URI en el campo 856u como imagen en:"
       - 
         choices: 
-          "": "Ni en la p\xC3\xA1gina de detalles o resultados"
+          "": "No mostrar en la p\xC3\xA1gina de detalles ni en la de resultados"
           Both: "Tanto la p\xC3\xA1gina de Resultados como de Detalles (para uso futuro, el XSLT de Resultados no es funcional en este momento)."
-          Details: "P\xC3\xA1gina de detalles solamente"
+          Details: "S\xC3\xB3lo p\xC3\xA1gina de detalles "
           Results: "P\xC3\xA1gina de resultados (de uso futuro, el XSLT de Resultados no es funcional en este momento)."
         pref: Display856uAsImage
       - "Nota: La opci\xC3\xB3n XSLT correspondiente debe estar activa."
     - 
-      - Include the stylesheet at
+      - Incluir la hoja de estilo en
       - 
         class: url
         pref: SlipCSS
-      - on Issue and Reserve Slips. (This should be a complete URL, starting with <code>http://</code>.)
+      - "en Pr\xC3\xA9stamo y Reservas Equivocadas. (\xC3\x89sta opci\xC3\xB3n debe ser una URL completa, empezando con <code>http://</code>.)"
   Opciones: 
     - 
       - 
@@ -144,18 +144,18 @@ Staff Client:
           "": No mostrar
           1: Mostrar
         pref: intranetbookbag
-      - el carrito en el cliente administrativo.
+      - el cesta en el cliente administrativo.
     - 
       - 
         choices: 
           "": No usar
           1: Usar
         pref: UseImportMarcHoldings
-      - "Datos de Fondos Marc21 en las herramienta de importaci\xC3\xB3n de registros. "
+      - "Datos de Fondos Marc21 en la herramienta de importaci\xC3\xB3n de registros. "
     - 
       - 
         choices: 
           "": No usar
           1: Usar
         pref: UseExportMarcHoldings
-      - "Datos de Fondos Marc21 en las herramienta de exportaci\xC3\xB3n de registros. "
+      - "Datos de Fondos Marc21 en la herramienta de exportaci\xC3\xB3n de registros. "

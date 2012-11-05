@@ -2,10 +2,10 @@
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
 <script type="text/javascript" id="js">$(document).ready(function() {
-	$("#table_authtagstructure").tablesorter({
-		sortList: [[0,0]],
-		headers: { 5: { sorter: false},6: { sorter: false},7: { sorter: false}}
-	}).tablesorterPager({container: $("#pagertable_authtagstructure"),positionFixed: false,size: 20});
+    $("#table_authtagstructure").tablesorter({
+        sortList: [[0,0]],
+        headers: { 5: { sorter: false},6: { sorter: false},7: { sorter: false}}
+    }).tablesorterPager({container: $("#pagertable_authtagstructure"),positionFixed: false,size: 20});
 }); </script>
 <script type="text/javascript">
 //<![CDATA[
@@ -46,7 +46,7 @@ return false;
         var _alertString="";
         var alertString2;
         if (f.tagfield.value.length==0) {
-            _alertString += "\n- " + _("falta el número de etiqueta");
+            _alertString += "\n- " + _("etiqueta de número perdido");
         }
         if (_alertString.length==0) {
             document.Aform.submit();
@@ -61,8 +61,38 @@ return false;
 </script>
 </head>
 <body id="admin_auth_tag_structure" class="admin">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %][% IF ( use_heading_flags_p ) %] [% IF ( heading_modify_tag_p ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo de Autoridades MARC</a> &rsaquo; [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] Hoja de trabajo</a>[% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo predeterminada</a>[% END %] &rsaquo; Modificar etiqueta[% END %] [% IF ( heading_add_tag_p ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo de Autoridades MARC</a> &rsaquo; [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] hoja de trabajo</a>[% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo predeterminada</a>[% END %] &rsaquo; Nueva etiqueta[% END %] [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo de Autoridades MARC</a> &rsaquo; [% action %] [% END %] [% ELSE %] [% IF ( delete_confirm ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo de Autoridades MARC</a> &rsaquo; [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] hoja de trabajo</a>
- [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo predeterminada</a>[% END %] &rsaquo; Confirmar eliminación [% ELSE %] [% IF ( delete_confirmed ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Hoja de trabajo de Autoridades MARC</a> &rsaquo; Datos eliminados [% ELSE %]Hoja de trabajo MARC de autoridades: [% IF ( authtypecode ) %][% authtypecode %] hoja de trabajo [% ELSE %]Hoja de trabajo predeterminada[% END %] [% END %] [% END %] [% END %] </div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; <a href="/cgi-bin/koha/admin/authtypes.pl">Tipos de autoridad</a> &rsaquo; [% IF ( add_form ) %] [% IF ( use_heading_flags_p ) %] [% IF ( heading_modify_tag_p ) %] [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] Hoja de trabajo</a>
+ [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a>
+ [% END %] &rsaquo; Modify tag
+ [% END %]
+ [% IF ( heading_add_tag_p ) %]
+ [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] hoja de trabajo</a>
+ [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a>
+ [% END %] &rsaquo; New tag
+ [% END %]
+ [% ELSE %]
+ [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] Hoja de trabajo</a>
+ [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a>
+ [% END %] &rsaquo; [% action %]
+ [% END %]
+ [% ELSE %]
+ [% IF ( delete_confirm ) %]
+ [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] hoja de trabajo</a>
+ [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a>
+ [% END %] &rsaquo; Confirm deletion
+ [% ELSE %]
+ [% IF ( delete_confirmed ) %]
+ [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] hoja de trabajo</a>
+ [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a>
+ [% END %] &rsaquo; Data deleted
+ [% ELSE %]
+ [% IF ( authtypecode ) %][% authtypecode %] Framework</a>
+ [% ELSE %]Default framework
+ [% END %]
+ [% END %]
+ [% END %]
+ [% END %]
+</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -115,30 +145,30 @@ return false;
 [% END %] [% IF ( authtype_create ) %] <form action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="authtype_create_confirm" />
  <input type="hidden" name="authtypecode" value="[% authtypecode %]" />
- Crear hojas de trabajo de autoridad para [% authtypecode %] usando <select name="existingauthtypecode">
+ Crear plantilla de autoridad para [% authtypecode %] usando <select name="existingauthtypecode">
  <option value="">Predeterminado</option>
  [% FOREACH existingauthtypeloo IN existingauthtypeloop %] <option value="[% existingauthtypeloo.value %]">[% existingauthtypeloo.authtypetext %]</option>
  [% END %] </select>
  <input type="submit" value="OK" class="submit" />
- <br /><label for="clone_indicators" title="Clone indicators from the authority framework used as template">Clone indicators:&nbsp;</label><input type="checkbox" name="clone_indicators" id="clone_indicators" value ="1" checked="checked" />
+ <br /><label for="clone_indicators" title="Clonar indicadores desde la plantilla de autoridades usada en las plantilla de visualización">Clonar indicators:&nbsp;</label><input type="checkbox" name="clone_indicators" id="clone_indicators" value ="1" checked="checked" />
  </form>
 [% END %] [% IF ( else ) %] <div id="toolbar">
  <script type="text/javascript">
-	//<![CDATA[
-	// prepare DOM for YUI Toolbar
-	 $(document).ready(function() {
-	    yuiToolbar();
-	 });
-	// YUI Toolbar Functions
-	function yuiToolbar() {
-	    new YAHOO.widget.Button("newtag");
-	}	//]]>
-	</script>
+    //<![CDATA[
+    // prepare DOM for YUI Toolbar
+     $(document).ready(function() {
+        yuiToolbar();
+     });
+    // YUI Toolbar Functions
+    function yuiToolbar() {
+        new YAHOO.widget.Button("newtag");
+    }    //]]>
+    </script>
  <ul class="toolbar">
  <li><a id="newtag" href="/cgi-bin/koha/admin/auth_tag_structure.pl?op=add_form&amp;authtypecode=[% authtypecode %]">Nueva etiqueta</a></li>
 </ul></div>
 
-<h2>Seleccionar una hoja de trabajo de autoridades</h2>
+<h2>Seleccionar una plantilla de autoridades</h2>
 <form action="[% script_name %]" method="post">
  <select name="authtypecode">
  <option value="">Predeterminado</option>
@@ -158,9 +188,9 @@ return false;
  <th>Obligatorio</th>
  <th>Autorizado<br />valor</th>
  <th>Subcampos</th>
- <th>Indicators</th>
+ <th>Indicadores</th>
  <th>Editar</th>
- <th>Borrar</th>
+ <th>Eliminar</th>
  </thead>
  [% FOREACH loo IN loop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
  [% ELSE %] <tr>
@@ -170,9 +200,9 @@ return false;
  <td>[% IF ( loo.mandatory ) %]Si[% ELSE %]No[% END %]</td>
  <td>[% loo.authorised_value %]</td>
  <td><a href="[% loo.subfield_link %]" class="button">subcampos</a></td>
- <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">indicators</a>[% END %]</td>
+ <td>[% IF ( loo.indicator_link ) %]<a href="[% loo.indicator_link %]">Indicadores</a>[% END %]</td>
  <td><a href="[% loo.edit %]">Editar</a></td>
- <td><a href="[% loo.delete %]">Borrar</a></td>
+ <td><a href="[% loo.delete %]">Eliminar</a></td>
  </tr>
  [% END %] </table>
 

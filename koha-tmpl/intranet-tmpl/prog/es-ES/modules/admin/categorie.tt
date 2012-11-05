@@ -47,10 +47,18 @@
 	    var ok=0;
 		var _alertString=_("El formulario no fue procesado debido a los siguientes problemas");
 		_alertString +="\n-------------------------------------------------------------------\n\n";
-		if (ff.categorycode.value.length==0) {
-		    ok=1;
-			_alertString += _("- Falta código de categoría") + "\n";
-		}
+                ff.categorycode.value = ff.categorycode.value.trim();
+                if (ff.categorycode.value.length==0) {
+                   ok=1;
+                   _alertString += _("- Falta código de categoría") + "\n";
+                }
+                else{
+                   var patt=/^[a-zA-Z0-9\-_]+$/g;
+                   if ( !patt.test(ff.categorycode.value) ) {
+                      ok=1;
+                      _alertString += _("- el código de categoría sólo puede contener los siguientes caracteres: letras, números, - y _") + "\n";
+                   }
+                }
 		if (!(ff.category_type.value)){
 		    ok=1;
 		    _alertString += _("- Falta el tipo de categoría") + "\n";
@@ -218,7 +226,7 @@
  [% FOREACH loo IN loop %] <tr>
  <td>[% loo.categorycode |html %]</td>
  <td>
- <a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |url %]">[% loo.description |html %]</a>
+ <a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |uri %]">[% loo.description |html %]</a>
  </td>
  <td>
  [% IF ( loo.type_A ) %]Adulto[% END %] [% IF ( loo.type_C ) %]Niño[% END %] [% IF ( loo.type_P ) %]Prof.[% END %] [% IF ( loo.type_I ) %]Org.[% END %] [% IF ( loo.type_S ) %]Personal[% END %] [% IF ( loo.type_X ) %]Estadístico[% END %] </td>
@@ -233,8 +241,8 @@
  [% IF ( EnhancedMessagingPreferences ) %] <td style="white-space: nowrap; font-size:80%;">
  [% IF ( loo.messaging_prefs ) %] [% FOREACH prefs IN loo.messaging_prefs %] [% FOREACH transport IN prefs.transports %] [% IF ( transport.transport ) %] [% IF ( prefs.Item_Due ) %]Ítem vence [% ELSIF ( prefs.Advance_Notice ) %]Aviso previo [% ELSIF ( prefs.Upcoming_Events ) %]Eventos próximos [% ELSIF ( prefs.Hold_Filled ) %]Reserva completada [% ELSIF ( prefs.Item_Check_in ) %]Ítem devuelto [% ELSIF ( prefs.Item_Checkout ) %]Ítem prestado [% ELSE %]Desconocido [% END %]: <strong>[% transport.transport %]</strong><br />
  [% ELSE %]Ninguno<br />[% END %] [% END %] [% END %] [% ELSE %] Ninguno [% END %] </td>
- [% END %] <td><a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |url %]">Editar</a></td>
- <td><a href="[% loo.script_name %]?op=delete_confirm&amp;categorycode=[% loo.categorycode |url %]">Borrar</a></td>
+ [% END %] <td><a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |uri %]">Editar</a></td>
+ <td><a href="[% loo.script_name %]?op=delete_confirm&amp;categorycode=[% loo.categorycode |uri %]">Eliminar</a></td>
  </tr>
  [% END %] </table>
 [% ELSE %] <div class="dialog alert">No se han definido categorías. <a href="/cgi-bin/koha/admin/categorie.pl?op=add_form">Crear una nueva categoría</a>.</div>

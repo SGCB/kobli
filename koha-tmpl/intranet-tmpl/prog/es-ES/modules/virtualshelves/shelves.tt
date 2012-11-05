@@ -111,22 +111,22 @@ function placeHold () {
 </head>
 <body id="lists_shelves" class="lists">
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] [% BLOCK list_permissions %] <li>
- <label for="permissions">Permissions: </label>
+ <label for="permissions">Permisos:</label>
  <select name="allow_add" id="allow_add">
- [% IF allow_add %]<option value="0">Do not allow</option>[% ELSE %]<option value="0" selected="selected">Do not allow</option>[% END %] [% IF allow_add %]<option value="1" selected="selected">Allow</option>[% ELSE %]<option value="1">Allow</option>[% END %] </select>
- &nbsp;<span>anyone else to add entries.</span>
+ [% IF allow_add %]<option value="0">No permitir</option>[% ELSE %]<option value="0" selected="selected">No permitir</option>[% END %] [% IF allow_add %]<option value="1" selected="selected">permitir</option>[% ELSE %]<option value="1">permitir</option>[% END %] </select>
+ &nbsp;<span>nadier más para añadir entradas.</span>
  </li>
  <li>
  <label>&nbsp;</label>
  <select name="allow_delete_own" id="allow_delete_own">
- [% IF allow_delete_own %]<option value="0">Do not allow</option>[% ELSE %]<option value="0" selected="selected">Do not allow</option>[% END %] [% IF allow_delete_own %]<option value="1" selected="selected">Allow</option>[% ELSE %]<option value="1">Allow</option>[% END %] </select>
- &nbsp;<span>anyone to remove his own contributed entries.</span>
+ [% IF allow_delete_own %]<option value="0">No permitir</option>[% ELSE %]<option value="0" selected="selected">No permitir</option>[% END %] [% IF allow_delete_own %]<option value="1" selected="selected">permitir</option>[% ELSE %]<option value="1">permitir</option>[% END %] </select>
+ &nbsp;<span>alguien para eliminar las entradas propias aportadas</span>
  </li>
  <li>
  <label>&nbsp;</label>
  <select name="allow_delete_other" id="allow_delete_other">
- [% IF allow_delete_other %]<option value="0">Do not allow</option>[% ELSE %]<option value="0" selected="selected">Do not allow</option>[% END %] [% IF allow_delete_other %]<option value="1" selected="selected">Allow</option>[% ELSE %]<option value="1">Allow</option>[% END %] </select>
- &nbsp;<span>anyone to remove other contributed entries.</span>
+ [% IF allow_delete_other %]<option value="0">No permitir</option>[% ELSE %]<option value="0" selected="selected">No permitir</option>[% END %] [% IF allow_delete_other %]<option value="1" selected="selected">permitir</option>[% ELSE %]<option value="1">permitir</option>[% END %] </select>
+ &nbsp;<span>alguien para eliminar otras entradas aportadas.</span>
  </li>
 [% END %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/virtualshelves/shelves.pl">Listas</a> [% IF ( category1 ) %] &rsaquo; [% IF ( viewshelf || edit ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves">Sus listas</a> [% ELSE %] Sus listas [% END %] [% ELSIF ( category2 ) %] &rsaquo; [% IF ( viewshelf ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=publicshelves">Listas públicas</a> [% ELSE %] Listas publicas [% END %] [% ELSIF ( showprivateshelves ) %] &rsaquo; [% IF ( viewshelf || edit ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=privateshelves">Sus listas</a> [% ELSE %] Sus listas [% END %] [% ELSIF ( showpublicshelves ) %] &rsaquo; [% IF ( viewshelf || edit ) %] <a href="/cgi-bin/koha/virtualshelves/shelves.pl?display=publicshelves">Listas públicas</a> [% ELSE %] Listas públicas [% END %] [% END %] [% IF ( viewshelf ) %]&rsaquo; Índice de <i>[% shelfname | html %]</i>[% END %][% IF ( shelves ) %] &rsaquo; Crear nueva lista[% END %][% IF ( edit ) %] &rsaquo; Editar lista <i>[% shelfname | html %]</i>[% END %]</div>
 
@@ -142,7 +142,7 @@ function placeHold () {
  [% END %] [% IF ( paramsloo.duplicatebiblio ) %] <div class="dialog alert">Agregar regla de coincidencia de registro para el código de barras <b>[% paramsloo.duplicatebiblio %]</b> ya ha sido ingresado</div>
  [% END %] [% IF ( paramsloo.nothingdeleted) %] <div class="dialog message">Atención: No puede eliminar ninguno de los ítems seleccionados desde este estante.</div>
  [% END %] [% IF ( paramsloo.somedeleted) %] <div class="dialog message">Atención: No puede eliminar todos los ítems seleccionados desde este estante.</div>
- [% END %] [% IF ( paramsloo.modifyfailure) %] <div class="dialog message">ERROR: List could not be modified.</div>
+ [% END %] [% IF ( paramsloo.modifyfailure) %] <div class="dialog message">ERROR: Lista no ha podido ser modificada.</div>
  [% END %] </div>
 </div>
 [% END %] [% END %] [% IF ( viewshelf ) %] <div class="yui-g">
@@ -255,7 +255,7 @@ function placeHold () {
  <li>Un <b>Privado</b> la lista sólo puede ser administrada y vista por usted.</li>
  <li> Un <b>Público</b> la lista puede ser vista por cualquiera, pero administrada solamente por usted.</li>
  <br/>
- <li>The owner of a list is always allowed to add entries, but needs permission to remove.</li>
+ <li>El propietario de una lista siempre se le permite añadir entradas, pero necesita permisos para borrar.</li>
  </ul>
  </div>
  </div>
@@ -297,7 +297,7 @@ function placeHold () {
  <input type="hidden" name="DEL-[% shelveslooppri.shelf %]" value="1" />
  [% IF ( shelveslooppri.confirm ) %] <input type="hidden" name="CONFIRM-[% shelveslooppri.confirm %]" value="1" />
  <input value="Confirmar" type="submit" class="approve" />
- [% ELSE %] <input value="Borrar" type="submit" class="deleteshelf" onclick="return confirmDelete(_('Are you sure you want to remove this list?'));" />
+ [% ELSE %] <input value="Eliminar" type="submit" class="deleteshelf" onclick="return confirmDelete(_('Are you sure you want to remove this list?'));" />
  [% END %] </form>
  [% ELSE %] Ninguno [% END %] </td>
  </tr>
@@ -329,7 +329,7 @@ function placeHold () {
  <input type="hidden" name="DEL-[% shelvesloo.shelf %]" value="1" />
  [% IF ( shelvesloo.confirm ) %] <input type="hidden" name="CONFIRM-[% shelvesloo.confirm %]" value="1" />
  <input value="Confirmar" type="submit" class="approve" />
- [% ELSE %] <input value="Borrar" type="submit" class="deleteshelf" onclick="return confirmDelete(_('Are you sure you want to remove this list?'));" />
+ [% ELSE %] <input value="Eliminar" type="submit" class="deleteshelf" onclick="return confirmDelete(_('Are you sure you want to remove this list?'));" />
  [% END %] </form>
  [% ELSE %] Ninguno [% END %] </td>
  </tr>

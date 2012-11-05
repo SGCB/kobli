@@ -58,12 +58,12 @@ $(document).ready(function() {
  <td>[% field.field %]</td>
  <td>[% field.fieldcode %]</td>
  <td>[% field.subfieldcode %]</td>
- <td><a href="?op=delete&amp;id=[% field.id %]&amp;framework=[% field.framework %]">Borrar</a></td>
+ <td><a href="?op=delete&amp;id=[% field.id %]&amp;framework=[% field.framework %]">Eliminar</a></td>
  </tr>
  [% END %] </table>[% END %] </div>
  </div>
 
  <div class="yui-b">
  [% INCLUDE 'admin-menu.inc' %] </div>
-</div>
+
 [% INCLUDE 'intranet-bottom.inc' %] 

@@ -13,11 +13,12 @@
  <option value='email,emailpro,B_email,'>Correo electrónico</option>
  <option value='borrowernumber'>Número de socio </option>
  <option value='phone,phonepro,B_phone,altcontactphone,mobile'>Número de teléfono</option>
+ <option value='streettype,address,address2,city,state,zipcode,country'>Dirección </option>
  </select>
 
  <label for="orderby">Ordenado por: </label>
  <select name="orderby" id="searchorderby">
- <option value="surname,0">Apellidos</option>
+ <option value="">Apellido, Nombre</option>
  <option value="cardnumber,0">Número de Carnet</option>
  </select>
  <input value="Buscar" class="submit" type="submit" />

@@ -1,6 +1,6 @@
 [% INCLUDE 'help-top.inc' %] <h2>Agregando ítems</h2>
 
-<p>Luego de guardar un nuevo registro bibliográfico, será redirigido a un ítem vacío para que pueda asociar un ítem el registro. También puede hacer clic en 'Agregar existencias' desde los resultado de búsqueda o puede agregar un nuevo ítem en cualquier momento haciendo clic en 'Nuevo' en el registro bibliográfico y seleccionando 'Nuevo ítem'</p>
+<p>Luego de guardar un nuevo registro bibliográfico, será redirigido a un ítem vacío para que pueda asociar un ítem el registro. También puede seleccionar 'Agregar existencias' desde los resultado de búsqueda o puede agregar un nuevo ítem en cualquier momento haciendo clic en 'Nuevo' en el registro bibliográfico y seleccionando 'Nuevo ítem'</p>
 
 <p>El formulario de edición del ítem aparecerá:</p>
 
@@ -12,12 +12,16 @@
  <li>b- Ubicación de estantería:</li>
  <li>o- Signatura topográfica completa</li>
  <li>p- Código de barras</li>
- <li>v- Costo, precio de reposición <ul>
+ <li>v- Costo, reemplazo de los precios<ul>
  <li>Este valor será cargado a los socios cuando marque un ítem prestado como 'Perdido'</li>
 </ul>
 </li>
  <li>y- Tipo de ítem de Koha</li>
 </ul>
+
+<p>To make sure that these values are filled in you can mark them as mandatory in the framework you're using and then they will appear in red with a 'required' label. The item will not save until the required fields are filled in.</p>
+
+<p>Tip: To make item subfields required in a framework you'll want to edit the 952 field in the framework editor.</p>
 
 <p>Bajo el formulario hay 3 botones para agregar un ítem</p>
 
@@ -38,8 +42,21 @@
 <p>Los ítems pueden ser editados de varias formas.</p>
 
 <ul>
- <li>Haciendo clic en 'Editar' y 'Editar ítems' desde el registro bibliográfico</li>
- <li>Haciendo clic en 'Editar ítems' al lado del ítem en la pestaña 'Ítems'</li>
+ <li>Clicking 'Edit' and 'Edit Items' from the bibliographic record
+<ul>
+ <li>Which will open up a list of items where you can click 'Edit' to the left of the specific item you would like to edit.</li>
+</ul>
+</li>
+ <li>Clicking 'Edit Items' beside the item on the 'Items' tab
+<ul>
+ <li>Which will open up a list of items where you can click 'Edit' to the left of the specific item you would like to edit.</li>
+</ul>
+</li>
+ <li>Clicking 'Edit' and then 'Edit items in batch'
+<ul>
+ <li>This will open up the batch item modification tool where you can edit all of the items on this record as a batch.</li>
+</ul>
+</li>
 </ul>
 
 <p>El menú de edición es también donde los ítems pueden borrar</p>
@@ -54,6 +71,6 @@
 
 <p>Finalmente puede utilizar la herramienta de eliminación de ítems en lote.</p>
 
-<p><strong>See the full documentation for Adding/Editing Items in the <a href="http://manual.koha-community.org/3.8/en/catitems.html">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Añadir/Editar ítems en la <a href="http://manual.koha-community.org/3.10/en/catitems.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

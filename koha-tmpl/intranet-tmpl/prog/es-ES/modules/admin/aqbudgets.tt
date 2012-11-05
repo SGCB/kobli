@@ -196,7 +196,7 @@
 
 
 [% UNLESS ( delete_confirm ) %][% INCLUDE 'budgets-admin-toolbar.inc' %][% END %] [% IF (error_not_authorised_to_modify) %] <div class="error">
- <p>You are not authorised to modify this fund</p>
+ <p>No está autorizado para modificar este fondo</p>
  </div>
 [% END %] [% IF ( else ) %] <h1>Fondos para '[% budget_period_description %]'</h1>
 
@@ -247,7 +247,7 @@
  [% IF ( budge.budget_lock ) %] <td> <span style="color: gray;"> Editar Borrar </span> </td>
  [% ELSE %] <td>
  <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_id=[% budge.budget_id %]&amp;budget_period_id=[% budge.budget_period_id %]" >Editar</a>
- <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=delete_confirm&amp;budget_id=[% budge.budget_id %]&amp;budget_period_id=[% budge.budget_period_id %]">Borrar</a>
+ <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=delete_confirm&amp;budget_id=[% budge.budget_id %]&amp;budget_period_id=[% budge.budget_period_id %]">Eliminar</a>
  <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_parent_id=[% budge.budget_id %]&amp;budget_period_id=[% budge.budget_period_id %]">Agregar un fondo infantil</a>
  </td>
  [% END %] </tr>
@@ -312,7 +312,7 @@
  </li>
 
  <li>
- <span class="label">Users:</span>
+ <span class="label">Usuarios:</span>
  <ul style="float:left;" id="budget_users">
  [% FOREACH user IN budget_users %] <li id="user_[% user.borrowernumber %]">
  <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% user.borrowernumber %]">
@@ -320,7 +320,7 @@
  [<a style="cursor:pointer"
                     onclick="del_user([% user.borrowernumber %])">Eliminar</a>] </li>
  [% END %] <li id="add_user_button">
- <input type="button" onclick="userPopup()" value="Add users" />
+ <input value="Agregar usuarios" type="button" onclick="userPopup()" />
  </li>
  </ul>
  <input type="hidden" name="budget_users_ids" id="budget_users_id" value="[% budget_users_ids %]" />
@@ -337,27 +337,19 @@
  <select name="budget_permission" id="budget_permission">
  [% IF ( budget_perm_0 ) %] <option value="0" selected="selected">
  [% ELSE %] <option value="0">
- [% END %]
- None
- </option>
+ [% END %] Ningún</option>
 
  [% IF ( budget_perm_1 ) %] <option value="1" selected="selected">
  [% ELSE %] <option value="1">
- [% END %]
- Owner
- </option>
+ [% END %] Propietario</option>
 
  [% IF ( budget_perm_3) %] <option value="3" selected="selected">
  [% ELSE %] <option value="3">
- [% END %]
- Owner and users
- </option>
+ [% END %] Propietario y usuarios</option>
 
  [% IF ( budget_perm_2 ) %] <option value="2" selected="selected">
  [% ELSE %] <option value="2">
- [% END %]
- Owner, users and library
- </option>
+ [% END %] Propietario, usuarios y bibliotecas</option>
  </select>
  </li>
 

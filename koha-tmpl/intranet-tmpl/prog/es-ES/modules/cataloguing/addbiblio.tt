@@ -1,31 +1,16 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; [% IF ( biblionumber ) %]Editar [% title |html %] (Registro número [% biblionumber %])[% ELSE %]Agregar registro MARC[% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/yui/plugins/bubbling-min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.fixFloat.js"></script>
+<script type="text/javascript" src="[% themelang %]/js/cataloging.js"></script>
 [% IF ( CheckValueIndicators ) %] <script type="text/javascript" src='[% themelang %]/js/indicators.js'></script>
 [% END %] <script type="text/javascript">
 //<![CDATA[
 
-     var fields_in_use = {};
 	 $(document).ready(function() {
         $('#addbibliotabs').tabs().bind('show.ui-tabs', function(e, ui) {
 			$("#"+ui.panel.id+" input:eq(0)").focus();
 		});
-        $('.tag').each(function() {
-            var field_id = this.getAttribute('id').substring(0, 7);
-            if (field_id in fields_in_use) {
-                fields_in_use[field_id]++;
-            } else {
-                fields_in_use[field_id] = 1;
-            }
-        });
-        $('.subfield_line').each(function() {
-            var field_id = this.getAttribute('id').substring(0, 12);
-            if (field_id in fields_in_use) {
-                fields_in_use[field_id]++;
-            } else {
-                fields_in_use[field_id] = 1;
-            }
-        });
+
 		/* check cookie to hide/show marcdocs*/
 		if($.cookie("marcdocs_[% borrowernumber %]") == 'false'){
 			hideMARCdocLinks();
@@ -83,7 +68,7 @@ function confirmnotdup(redirect){
                 }
             }
         [% END %]
-        if (strIndError != "") alert(_("Record not saved due to errors on indicators:\n\n") + strIndError);
+        if (strIndError != "") alert(_("Registro no guardado por errorres en los indicadores:\\n\\n") + strIndError);
         });
 
     [% END %]
@@ -335,6 +320,21 @@ function AreMandatoriesNotOk(){
 	}
 }
 
+/**
+ *
+ *
+ */
+function Check(){
+    var StrAlert = AreMandatoriesNotOk();
+    if( ! StrAlert ){
+        document.f.submit();
+        return true;
+    } else {
+        alert(StrAlert);
+        return false;
+    }
+}
+
 /** 
  * check if z3950 mandatories are set or not
  */
@@ -360,6 +360,8 @@ function Changefwk(FwkList) {
     f.submit();
 }
 
+<<<<<<< HEAD:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
+=======
 // returns the subfieldcode based upon subfieldid writing
 function getSubfieldcode(tagsubfieldid){
     // 3 : tag +3 : tagnumber +4 : number of _ +8 subfield -1 begins at 0  
@@ -748,6 +750,7 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
     label = document.getElementById(labelindex);
     label.style.display='none';	
 }
+>>>>>>> Bug 4888 - pre-set of field indicators value:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
 //]]>
 </script>
 <link type="text/css" rel="stylesheet" href="[% themelang %]/css/addbiblio.css" />
@@ -867,7 +870,7 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
             type: "button",
             label: _("Búsqueda Z39.50"),
             container: "z3950searchc",
-			onclick: {fn:function(){PopupZ3950()}}
+            onclick: {fn:function(){if (confirm(_("Please note that this Z39.50 search could replace the current record."))) PopupZ3950()}}
         });
 	}
 
@@ -894,67 +897,140 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
  <input type="hidden" name="breedingid" value="[% breedingid %]" />
 
 <div id="addbibliotabs" class="toptabs numbered">
- <ul>[% FOREACH BIG_LOO IN BIG_LOOP %] <li> [% IF ( BIG_LOO.number ) %] <a href="#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a>
- [% ELSE %] <a href="#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a>
- [% END %]</li>
- [% END %]</ul>
+ <ul>
+ [% FOREACH BIG_LOO IN BIG_LOOP %] <li><a href="#tab[% BIG_LOO.number %]XX">[% BIG_LOO.number %]</a></li>
+ [% END %] </ul>
 
-[% FOREACH BIG_LOO IN BIG_LOOP %]
-<!-- hide every tab except the 1st -->
-[% IF ( BIG_LOO.number ) %]
- <div id="tab[% BIG_LOO.number %]XX">
-[% ELSE %] <div id="tab[% BIG_LOO.number %]XX">
-[% END %] [% FOREACH innerloo IN BIG_LOO.innerloop %] [% IF ( innerloo.tag ) %] <div class="tag" id="tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
+[% FOREACH BIG_LOO IN BIG_LOOP %] <div id="tab[% BIG_LOO.number %]XX">
+ 
+ [% FOREACH innerloo IN BIG_LOO.innerloop %] [% IF ( innerloo.tag ) %] <div class="tag" id="tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
  <div class="tag_title" id="div_indicator_tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
  [% UNLESS hide_marc %] [% IF advancedMARCEditor %] <a tabindex="1" href="#" class="tagnum" title="[% innerloo.tag_lib %] - Haga clic par expandir esta etiqueta" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;">[% innerloo.tag %]</a>
  [% ELSE %] <span class="tagnum" title="[% innerloo.tag_lib %]">[% innerloo.tag %] [% IF marcflavour != 'NORMARC' %]<a class="marcdocs" onclick="PopupMARCFieldDoc('[% innerloo.tag %]', [% BIG_LOO.number %]); return false;">&nbsp;?</a>[% END %] </span>
- [% END %] [% IF ( innerloo.fixedfield ) %] <input tabindex="1" class="indicator flat" type="text" style="display:none;" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator1 %]" />
- <input tabindex="1" class="indicator flat" type="text" style="display:none;" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator2 %]" />
- [% ELSE %] <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator1 %]" />
- [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1"
-onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 1 on field [% innerloo.tag %]">...</a>[% END %] <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator2 %]" />
+ [% END %] [% IF ( innerloo.fixedfield ) %] <input type="text"
+                        tabindex="1"
+                        class="indicator flat"
+                        style="display:none;"
+                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
+                        size="1"
+                        maxlength="1"
+                        value="[% innerloo.indicator1 %]" />
+ <input type="text"
+                        tabindex="1"
+                        class="indicator flat"
+                        style="display:none;"
+                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
+                        size="1"
+                        maxlength="1"
+                        value="[% innerloo.indicator2 %]" />
+ [% ELSE %]
+<<<<<<< HEAD:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
+ <input type="text"
+                        tabindex="1"
+                        class="indicator flat"
+                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
+                        size="1"
+                        maxlength="1"
+                        value="[% innerloo.indicator1 %]" />
+ <input type="text"
+                        tabindex="1"
+                        class="indicator flat"
+                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
+                        size="1"
+                        maxlength="1"
+                        value="[% innerloo.indicator2 %]" />
+======= <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator1 %]" />
+ [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1" onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Mostrar plug in con los valores permitidos para el indicador 1 en el campo [% innerloo.tag %]">...</a>[% END %] <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator2 %]" />
  [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
 onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %]
+>>>>>>> Bug 4888 - pre-set of field indicators value:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
  [% END %] -
  [% ELSE %]
  [% IF ( innerloo.fixedfield ) %]
- <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator1 %]" />
- <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator2 %]" />
- [% ELSE %] <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator1 %]" />
- [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1"
-onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 1 on field [% innerloo.tag %]">...</a>[% END %] <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator2 %]" />
+ <input type="hidden"
+                        tabindex="1"
+                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
+                        value="[% innerloo.indicator1 %]" />
+ <input type="hidden"
+                        tabindex="1"
+                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
+                        value="[% innerloo.indicator2 %]" />
+ [% ELSE %]
+<<<<<<< HEAD:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
+ <input type="hidden"
+                        tabindex="1"
+                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
+                        value="[% innerloo.indicator1 %]" />
+ <input type="hidden"
+                        tabindex="1"
+                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
+                        value="[% innerloo.indicator2 %]" />
+======= <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator1 %]" />
+ [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1" onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Mostrar plug in con los valores permitidos para el indicador 1 en el campo [% innerloo.tag %]">...</a>[% END %] <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator2 %]" />
  [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
-onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %] [% END %] [% END %] [% UNLESS advancedMARCEditor %] <a tabindex="1" href="#" class="expandfield" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Haga clic en 'Expandir' esta etiqueta">[% innerloo.tag_lib %]</a>
- [% END %] [% IF ( innerloo.repeatable ) %] <span class="subfield_controls"><a tabindex="1" href="#" class="buttonPlus" onclick="CloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Repetir esta etiqueta"><img alt="Repetir esta etiqueta" src="/intranet-tmpl/prog/img/repeat-tag.png" /></a>
- [% END %] <a tabindex="1" href="#" class="buttonMinus" onclick="UnCloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Eliminar esta etiqueta"><img alt="Eliminar esta etiqueta" src="/intranet-tmpl/prog/img/delete-tag.png" /></a></span>
+onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %]
+>>>>>>> Bug 4888 - pre-set of field indicators value:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
+ [% END %]
+ [% END %]
 
- 
+ [% UNLESS advancedMARCEditor %]
+ <a tabindex="1" href="#" class="expandfield" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Haga clic en 'Expandir' esta etiqueta">[% innerloo.tag_lib %]</a>
+ [% END %] <span class="field_controls">
+ [% IF ( innerloo.repeatable ) %] <a tabindex="1" href="#" class="buttonPlus" onclick="CloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]','[% hide_marc %]','[% advancedMARCEditor %]'); return false;" title="Repetir esta etiqueta">
+ <img alt="Repetir esta etiqueta" src="/intranet-tmpl/prog/img/repeat-tag.png" />
+ </a>
+ [% END %] <a tabindex="1" href="#" class="buttonMinus" onclick="UnCloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Eliminar esta etiqueta">
+ <img alt="Eliminar esta etiqueta" src="/intranet-tmpl/prog/img/delete-tag.png" />
+ </a>
+ </span>
+
  </div>
- 
+
  [% FOREACH subfield_loo IN innerloo.subfield_loop %]
  <!-- One line on the marc editor -->
- <div class="subfield_line" style="[% subfield_loo.visibility %]; float: left; clear: left; width: 100%;" id="subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]">
+ <div class="subfield_line" style="[% subfield_loo.visibility %]" id="subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]">
  
  [% UNLESS advancedMARCEditor %] [% IF ( subfield_loo.fixedfield ) %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" style="display:none;" class="labelsubfield">
- [% ELSE %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" class="labelsubfield">[% END %] [% END %] [% UNLESS hide_marc %] <span class="subfieldcode">[% IF ( subfield_loo.fixedfield ) %] <img alt="Mover arriba" src="[% themelang %]/../img/up.png" style="display:none;" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
- [% ELSE %] <img alt="Mover arriba" src="[% themelang %]/../img/up.png" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
- [% END %] <input title="[% subfield_loo.marc_lib_plain %]" style=" [% IF ( subfield_loo.fixedfield ) %]display:none; [% END %]border:0;" type="text" tabindex="0" name="tag_[% subfield_loo.tag %]_code_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" value="[% subfield_loo.subfield %]" size="1" maxlength="1" class="flat" />
+ [% ELSE %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" class="labelsubfield">
+ [% END %] [% END %] [% UNLESS hide_marc %] <span class="subfieldcode">
+ [% IF ( subfield_loo.fixedfield ) %] <img alt="Mover arriba" src="/intranet-tmpl/prog/img/up.png" style="display:none;" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
+ [% ELSE %] <img alt="Mover arriba" src="/intranet-tmpl/prog/img/up.png" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
+ [% END %] <input type="text"
+                            title="[% subfield_loo.marc_lib_plain %]"
+                            style=" [% IF ( subfield_loo.fixedfield ) %]display:none; [% END %]border:0;"
+                            name="tag_[% subfield_loo.tag %]_code_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]"
+                            value="[% subfield_loo.subfield %]"
+                            size="1"
+                            maxlength="1"
+                            class="flat"
+                            tabindex="0" />
  </span>
- [% ELSE %] <input type="hidden" name="tag_[% subfield_loo.tag %]_code_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" value="[% subfield_loo.subfield %]" />
- </span>
+ [% ELSE %] <input type="hidden"
+                        name="tag_[% subfield_loo.tag %]_code_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]"
+                        value="[% subfield_loo.subfield %]" />
  [% END %] [% UNLESS advancedMARCEditor %] [% IF ( subfield_loo.mandatory ) %]<span class="subfield subfield_mandatory">[% ELSE %]<span class="subfield">[% END %] [% subfield_loo.marc_lib_plain %] [% IF ( subfield_loo.mandatory ) %]<span class="mandatory_marker" title="Este campo es obligatorio">*</span>[% END %] </span>
  </label>
- [% END %] [% subfield_loo.marc_value %] [% IF ( subfield_loo.repeatable ) %] <span class="subfield_controls"><a href="#" class="buttonPlus" tabindex="1" onclick="CloneSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]'); return false;"><img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" /></a>
- <a href="#" class="buttonMinus" tabindex="1" onclick="UnCloneField('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]'); return false;"><img alt="Borrar" src="/intranet-tmpl/prog/img/delete-subfield.png" title="Eliminar este subcampo" /></a></span>
- [% END %] </div>
- <!-- End of the line -->
+ [% END %] [% subfield_loo.marc_value %] <span class="subfield_controls">
+ [% IF ( subfield_loo.repeatable ) %] <a href="#" class="buttonPlus" tabindex="1" onclick="CloneSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]','[% advancedMARCEditor %]'); return false;">
+ <img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" />
+ </a>
+ <a href="#" class="buttonMinus" tabindex="1" onclick="UnCloneField('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]'); return false;">
+ <img alt="Eliminar" src="/intranet-tmpl/prog/img/delete-subfield.png" title="Eliminar este subcampo" />
+ </a>
+ [% END %] </span>
  
- [% END %]
  </div>
- [% END %]<!-- tag -->
+ <!-- End of the line -->
  [% END %]
+
  </div>
-[% END %] </div>
+ [% END %]<!-- if innerloo.tag -->
+ [% END %]<!-- BIG_LOO.innerloop -->
+ </div>
+[% END %]<!-- BIG_LOOP -->
+
+</div><!-- tabs -->
+
 <!-- Fields for fast add cataloguing -->
 <input type="hidden" name="barcode" value="[% barcode %]" />
 <input type="hidden" name="branch" value="[% branch %]" />
@@ -962,6 +1038,7 @@ onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerlo
 <input type="hidden" name="stickyduedate" value="[% stickyduedate %]" />
 <input type="hidden" name="duedatespec" value="[% duedatespec %]" />
 <!-- /End of fast add fields -->
+
 </form>
 
 </div>

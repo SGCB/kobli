@@ -1,20 +1,20 @@
 [% INCLUDE 'help-top.inc' %] <h1>Reservas</h1>
 
-<h2>Placing Holds in Staff Client</h2>
+<h2>Hacer reservas en Cliente Administrador</h2>
 
-<p>There are several ways to place holds from the staff client. The most obvious is using the 'Place Hold' button at the top of any bibliographic record.</p>
+<p>Hay varias maneras de reservar desde el cliente administrador. La más obvia es utilizar el botón 'Reservar' en la parte superior de cualquier registro bibliográfico.</p>
 
-<p>You can also click the smaller 'Place Hold' link found at the top of your catalog search results, or the 'Holds' link found below each result.</p>
+<p>También puede hacer clic en el enlace 'Reservar' ubicado en la parte superior de sus resultados de búsqueda, o en el enlace 'Reservas' ubicado debajo cada resultado.</p>
 
 <p>Se le pedirá buscar el socio por número o por cualquier parte de su nombre para iniciar el proceso de reserva.</p>
 
-<p>If you'd like to search for the patron first and then the bib record for the hold, you can open the patron record and click on the 'Search to Hold' button at the top of the patron record.</p>
+<p>Si desea buscar primero el socio y luego el registro de la reserva, puede abrir el registro del socio y seleccionar en el botón 'Buscar para reservar' en la parte superior del registro del socio.</p>
 
-<p>After clicking the button you will be brought to the catalog search page where you can find the book(s) you want to place a hold on. Under each title on the results you'll see an option to 'Hold for Patron Name.'</p>
+<p>Después de seleccionar el botón será enviado a la búsqueda del catálogo donde podrá encontrar los libros que quiera reservar. Debajo de cada título de los resultados verá la opción de 'Reservar por Nombre de Socio.'</p>
 
-<p>If you want to place a hold on multiple items, simply check the boxes to the left of them and click the arrow to the right of the 'Place Hold' button.</p>
+<p>Si desea hacer una reserva de varios ítems, simplemente marque las casillas a la izquierda de ellos y seleccione en la flecha a la derecha del botón 'Reservar'.</p>
 
-<p>Depending on how many items you choose to place a hold on at once you will see a different place hold form. If you are placing a hold on one bibliographic record you will see a list of all of the items you can place a hold on.</p>
+<p>Dependiendo de cuantos ítems elija reservar a la vez verá un formulario diferente para hacer reservas. Si hace una reserva en un registro bibliográfico verá una lista de todos los ítems que puede reservar.</p>
 
 <ul>
  <li>Ingrese cualquier nota que se aplique a esta reserva</li>
@@ -32,30 +32,30 @@
 
 <p>Si está reservando múltiples ítems se le presentará la primer opción disponible para todos los títulos. Si no hay ítems disponibles para reservar lo verá en la pantalla de confirmación.</p>
 
-<p>Once your hold is placed, if you'd like to have Koha forget that you used the 'Search to Hold' function, you can choose to have Koha 'forget' the patron's name by clicking the arrow to the right of the 'Place Hold' button on the search results and choosing the 'Forget' option.</p>
+<p>Una vez que su reserva se realiza, si usted quisiera que Koha olvidara esta información debe utilizar la función 'Búsqueda de Reserva', puede optar porque Koha 'olvide' el nombre del socioseleccionando en la flecha de la derecha en el botón 'Reservas' en los resultado de búsqueda y elegir opción 'Olvidar'.</p>
 
-<h2>Managing Holds</h2>
+<h2>Administrar Reservas</h2>
 
 <p>Las reservas pueden ser alteradas y canceladas desde la pestaña Reservas a la izquierda del registro bibliográfico.</p>
 
 <p>Desde la lista de reservas puede cambiar el orden de las mismas, la ubicación de retiro y/o cancelar la reserva.</p>
 
-<p><strong>Nota</strong> If you have your AutoResumeSuspendedHolds preference set to "Don't allow" then you will not have the option to put an end date on the hold suspension</p>
+<p><strong>Nota</strong> Si usted tiene su preferencia AutoResumeSuspendedHolds configurada en "No permitir ", entonces usted no tendrá la opción de poner una fecha de finalización de la suspensión de reserva</p>
 
-<p><strong>Nota</strong> Depending on how you have your HidePatronName system preference set the list may show card numbers instead of names in the Patron column like in the image above.</p>
+<p><strong>Nota</strong> Dependiendo del valor de la preferencia del sistema HidePatronName la lista puede mostrar nombres de socios en vez de números de socio en la columna Socios como en la imagen abajo.</p>
 
 <p>Para cambiar o eliminar reservas, seleccione simplemente desde el desplegable 'Prioridad' o haga clic en las flechas a la derecha del desplegable prioridad.</p>
 
 <p>Para eliminar o cancelar una reserva, seleccione 'eliminar' desde el menú o haga clic en la 'X' roja a la derecha de la línea de reserva.</p>
 
-<p>If you use the priority pull down to rearrange or delete holds you will need to click the 'Update hold(s)' button to save your changes.</p>
+<p>Si utiliza la prioridad de desactivación para cambiar la hora/fecha o borrar las reservas, necesitará seleccionar el botón 'Actualización de reserva(s)' para guardar los cambios</p>
 
-<p>Haciendo clic en la flecha hacia abajo a la derecha de la reserva la llevará al final de la lista aun si se hacen mas requerimientos.</p>
+<p>Haciendo clic en la flecha hacia abajo a la derecha de la reserva la llevará al final de la lista aun si se hacen más requerimientos.</p>
 
 <p>Por ejemplo, la biblioteca tiene socios a los que se permite retener libros por meses. No sería justo para otros si estos socios pudieran retirar libros nuevos y retenerlos por meses. Por esta razón, el pedido de reserva para estos socios permanecerá al final de la cola hasta que cualquier otro que desee leer el libro lo haya hecho.</p>
 
-<p>If a patron asks to have their hold suspended you can do so by clicking the Suspend button to far right. If the patron gives you a date for the items to become unsuspended you can enter that in the date box and click the 'Update hold(s)' button to save your changes.</p>
+<p>Si un socio solicita suspender su reserva, podemos reallizar esta acción seleccionando el botén Suspender en la parte derecha. Si el socio nos comunica una fecha para que el ítem reservado pueda ser activada, podrá introducir la fecha en la caja de texto y seleccionar botón  'Actualizar Reserva(s)' para guardar los cambios.</p>
 
-<p><strong>See the full documentation for Holds in the <a href="http://manual.koha-community.org/3.8/en/holds.html">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Reservas en la <a href="http://manual.koha-community.org/3.10/en/holds.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

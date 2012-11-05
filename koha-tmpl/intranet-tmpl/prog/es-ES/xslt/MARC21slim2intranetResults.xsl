@@ -7,7 +7,7 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   exclude-result-prefixes="marc items">
  <xsl:import href="MARC21slimUtils.xsl"/>
- <xsl:output method = "xml" indent="yes" omit-xml-declaration = "yes" />
+ <xsl:output method = "html" indent="yes" omit-xml-declaration = "yes" />
  <xsl:key name="item-by-status" match="items:item" use="items:status"/>
  <xsl:key name="item-by-status-and-branch" match="items:item" use="concat(items:status, ' ', items:homebranch)"/>
 
@@ -100,9 +100,9 @@
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='r']">
  disponible en línea</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='a']">
- cartucho de cinta</xsl:if>
+ cinta de cartucho</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='f']">
- casete de cinta</xsl:if>
+ cinte de casete</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='h']">
  bobina de cinta</xsl:if>
 
@@ -179,11 +179,11 @@
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='s']">
  casete de sonido</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='t']">
- rollo de cinta de sonido</xsl:if>
+ bobina de cinta de sonido</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='i']">
  pista de audio de película</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='w']">
- grabación en alambre</xsl:if>
+ grabación en cable</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='f'][substring(text(),2,1)='c']">
  braille </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='f'][substring(text(),2,1)='b']">
@@ -197,13 +197,13 @@
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='t'][substring(text(),2,1)='a']">
  impresión normal</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='t'][substring(text(),2,1)='d']">
- texto en hojas encarpetadas</xsl:if>
+ texto en carpetas de hojas sueltas</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='v'][substring(text(),2,1)='c']">
  cartucho de vídeo</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='v'][substring(text(),2,1)='f']">
  casete de vídeo</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='v'][substring(text(),2,1)='r']">
- carrete de vídeo</xsl:if>
+ bonina de vídeo</xsl:if>
 <!--
  <xsl:for-each select="marc:datafield[@tag=856]/marc:subfield[@code='q'][string-length(.)>1]">
  <xsl:value-of select="."></xsl:value-of>
@@ -273,7 +273,7 @@
 
  <xsl:choose>
  <xsl:when test="marc:datafield[@tag=100] or marc:datafield[@tag=110] or marc:datafield[@tag=111] or marc:datafield[@tag=700] or marc:datafield[@tag=710] or marc:datafield[@tag=711]">
- <p class="author">por <xsl:for-each select="marc:datafield[@tag=100 or @tag=700]">
+ <p class="author">por <xsl:for-each select="marc:datafield[(@tag=100 or @tag=700) and @ind1!='z']">
  <a>
  <xsl:choose>
  <xsl:when test="marc:subfield[@code=9] and $UseAuthoritiesForTracings='1'">
@@ -288,7 +288,7 @@
  <xsl:when test="position()=last()"><xsl:text>. </xsl:text></xsl:when><xsl:otherwise><xsl:text>; </xsl:text></xsl:otherwise></xsl:choose>
  </xsl:for-each>
 
- <xsl:for-each select="marc:datafield[@tag=110 or @tag=710]">
+ <xsl:for-each select="marc:datafield[(@tag=110 or @tag=710) and @ind1!='z']">
  <a>
  <xsl:choose>
  <xsl:when test="marc:subfield[@code=9] and $UseAuthoritiesForTracings='1'">
@@ -302,7 +302,7 @@
  <xsl:choose><xsl:when test="position()=last()"><xsl:text> </xsl:text></xsl:when><xsl:otherwise><xsl:text>; </xsl:text></xsl:otherwise></xsl:choose>
  </xsl:for-each>
 
- <xsl:for-each select="marc:datafield[@tag=111 or @tag=711]">
+ <xsl:for-each select="marc:datafield[(@tag=111 or @tag=711) and @ind1!='z']">
  <xsl:choose>
  <xsl:when test="marc:subfield[@code='n']">
  <xsl:text> </xsl:text>
@@ -377,7 +377,7 @@
  <xsl:for-each select="marc:datafield[@tag=773]">
  <xsl:if test="marc:subfield[@code='t']">
  <span class="results_summary">
- <span class="label">Source: </span>
+ <span class="label">Fuente: </span>
  <xsl:value-of select="marc:subfield[@code='t']"/>
  </span>
  </xsl:if>
@@ -454,7 +454,7 @@
  <xsl:when test="contains($controlField008-24,'l')">
  legislación</xsl:when>
  <xsl:when test="contains($controlField008-24,'m')">
- tésis</xsl:when>
+ tesinas</xsl:when>
  <xsl:when test="contains($controlField008-24,'n')">
  revisión de literatura</xsl:when>
  <xsl:when test="contains($controlField008-24,'o')">

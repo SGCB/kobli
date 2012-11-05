@@ -166,7 +166,7 @@ td input,td input[type="submit"] { font-size: 85%; padding: 1px; }
  </tr>
  [% FOREACH tagloo IN tagloop %] <tr>
  <td class="count">[% offset + loop.count %] </td>
- [% IF ( approved == 0 ) %]<td><span><input type="checkbox" value="[% tagloo.term %]" name="tags" class="pending" /></span>
+ [% IF ( tagloo.approved == 0 ) %]<td><span><input type="checkbox" value="[% tagloo.term %]" name="tags" class="pending" /></span>
  [% ELSE %]<td><span><input type="checkbox" value="[% tagloo.term %]" name="tags" /></span>[% END %] </td>
  [% IF ( tagloo.approved == -1 ) %]<td class="red">rechazado [% ELSIF ( tagloo.approved == 1 ) %]<td class="green"><img alt="OK" src="/intranet-tmpl/prog/img/approve.gif" />
  [% ELSE %]<td class="pending">
@@ -175,7 +175,7 @@ td input,td input[type="submit"] { font-size: 85%; padding: 1px; }
  </td>
  <td>[% tagloo.weight_total %] </td>
  [% IF ( tagloo.approved ) %] <td><span class="ajax_buttons" style="visibility:hidden">
- [% IF ( approved == -1 ) %] <input value="Aprobar" name="approve" class="ok" type="submit" title="[% tagloo.term %]" />
+ [% IF ( tagloo.approved == -1 ) %] <input value="Aprobar" name="approve" class="ok" type="submit" title="[% tagloo.term %]" />
  <input disabled="disabled" value="Rechazado" name="reject" class="rej" type="submit" title="[% tagloo.term %]" />
  [% ELSE %] <input disabled="disabled" value="Aprobado" name="approve" class="ok" type="submit" title="[% tagloo.term %]" />
  <input value="Rechazar" name="reject" class="rej" type="submit" title="[% tagloo.term %]" />

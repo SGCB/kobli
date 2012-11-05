@@ -7,7 +7,7 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   exclude-result-prefixes="marc items">
  <xsl:import href="MARC21slimUtils.xsl"/>
- <xsl:output method = "xml" indent="yes" omit-xml-declaration = "yes" />
+ <xsl:output method = "html" indent="yes" omit-xml-declaration = "yes" />
  <xsl:template match="/">
  <xsl:apply-templates/>
  </xsl:template>
@@ -21,9 +21,8 @@
  <xsl:variable name="DisplayOPACiconsXSLT" select="marc:sysprefs/marc:syspref[@name='DisplayOPACiconsXSLT']"/>
  <xsl:variable name="OPACURLOpenInNewWindow" select="marc:sysprefs/marc:syspref[@name='OPACURLOpenInNewWindow']"/>
  <xsl:variable name="URLLinkText" select="marc:sysprefs/marc:syspref[@name='URLLinkText']"/>
- <xsl:variable name="ShowISBD" select="marc:sysprefs/marc:syspref[@name='viewISBD']"/>
  
- <xsl:variable name="SubjectModifier"><xsl:if test="marc:sysprefs/marc:syspref[@name='TraceCompleteSubfields']='1'">,subcampo completo</xsl:if></xsl:variable>
+ <xsl:variable name="SubjectModifier"><xsl:if test="marc:sysprefs/marc:syspref[@name='TraceCompleteSubfields']='1'">,complete-subfield</xsl:if></xsl:variable>
  <xsl:variable name="UseAuthoritiesForTracings" select="marc:sysprefs/marc:syspref[@name='UseAuthoritiesForTracings']"/>
  <xsl:variable name="TraceSubjectSubdivisions" select="marc:sysprefs/marc:syspref[@name='TraceSubjectSubdivisions']"/>
  <xsl:variable name="Show856uAsImage" select="marc:sysprefs/marc:syspref[@name='OPACDisplay856uAsImage']"/>
@@ -71,7 +70,7 @@
  <xsl:when test="$leader7='c' or $leader7='d' or $leader7='m'">Libro</xsl:when>
  <xsl:when test="$leader7='i' or $leader7='s'">
  <xsl:choose>
- <xsl:when test="substring($controlField008,22,1)!='m'">Recursos continuo</xsl:when>
+ <xsl:when test="substring($controlField008,22,1)!='m'">Recursos continuos</xsl:when>
  <xsl:otherwise>Series</xsl:otherwise>
  </xsl:choose>
  </xsl:when>
@@ -79,14 +78,14 @@
  </xsl:choose>
  </xsl:when>
  <xsl:when test="$leader6='t'">Libro</xsl:when>
- <xsl:when test="$leader6='o'">Equipo</xsl:when>
- <xsl:when test="$leader6='p'">Materiales combinados</xsl:when>
- <xsl:when test="$leader6='m'">Archivo de computadora</xsl:when>
+ <xsl:when test="$leader6='o'">Kit</xsl:when>
+ <xsl:when test="$leader6='p'">Materiales variados</xsl:when>
+ <xsl:when test="$leader6='m'">Archivo de ordenador</xsl:when>
  <xsl:when test="$leader6='e' or $leader6='f'">Mapa</xsl:when>
- <xsl:when test="$leader6='g' or $leader6='k' or $leader6='r'">Material Visual</xsl:when>
+ <xsl:when test="$leader6='g' or $leader6='k' or $leader6='r'">Material visual</xsl:when>
  <xsl:when test="$leader6='j'">Música</xsl:when>
  <xsl:when test="$leader6='i'">Sonido</xsl:when>
- <xsl:when test="$leader6='c' or $leader6='d'">Partitura</xsl:when>
+ <xsl:when test="$leader6='c' or $leader6='d'">Puntuación</xsl:when>
  </xsl:choose>
  </xsl:variable>
 
@@ -152,7 +151,7 @@
  <xsl:if test="$DisplayOPACiconsXSLT!='0'">
  <xsl:if test="$materialTypeCode!=''">
  <span class="results_summary type"><span class="label">Tipo: </span>
- <xsl:element name="img"><xsl:attribute name="src">/opac-tmpl/prog/famfamfam/<xsl:value-of select="$materialTypeCode"/>.png</xsl:attribute><xsl:attribute name="alt">materialTypeLabel</xsl:attribute><xsl:attribute name="class">materialtype</xsl:attribute></xsl:element>
+ <xsl:element name="img"><xsl:attribute name="src">/opac-tmpl/lib/famfamfam/<xsl:value-of select="$materialTypeCode"/>.png</xsl:attribute><xsl:attribute name="alt">materialTypeLabel</xsl:attribute><xsl:attribute name="class">materialtype</xsl:attribute></xsl:element>
  <xsl:value-of select="$materialTypeLabel"/>
  </span>
  </xsl:if>
@@ -203,7 +202,7 @@
  </span>
  </xsl:if>
  <xsl:if test="marc:datafield[@tag=590]">
- <span class="results_summary"><span class="label">Date: </span>
+ <span class="results_summary"><span class="label">Fecha:</span>
  <xsl:for-each select="marc:datafield[@tag=590]">
  <xsl:if test="marc:subfield[@code='a']">
  <xsl:text> </xsl:text>
@@ -360,7 +359,7 @@
  <xsl:call-template name="m880Select">
  <xsl:with-param name="basetags">260</xsl:with-param>
  <xsl:with-param name="codes">abcg</xsl:with-param>
- <xsl:with-param name="class">results_summary publicista</xsl:with-param>
+ <xsl:with-param name="class">results_summary publisher</xsl:with-param>
  <xsl:with-param name="label">Editor: </xsl:with-param>
  </xsl:call-template>
  </xsl:if>
@@ -399,7 +398,7 @@
  <xsl:call-template name="m880Select">
  <xsl:with-param name="basetags">250</xsl:with-param>
  <xsl:with-param name="codes">ab</xsl:with-param>
- <xsl:with-param name="class">results_summary edición</xsl:with-param>
+ <xsl:with-param name="class">results_summary edition</xsl:with-param>
  <xsl:with-param name="label">Edición: </xsl:with-param>
  </xsl:call-template>
  </xsl:if>
@@ -424,7 +423,7 @@
  <xsl:call-template name="m880Select">
  <xsl:with-param name="basetags">300</xsl:with-param>
  <xsl:with-param name="codes">abceg</xsl:with-param>
- <xsl:with-param name="class">results_summary descripción</xsl:with-param>
+ <xsl:with-param name="class">results_summary edition</xsl:with-param>
  <xsl:with-param name="label">Descripción: </xsl:with-param>
  </xsl:call-template>
  </xsl:if>
@@ -468,7 +467,7 @@
  <xsl:call-template name="m880Select">
  <xsl:with-param name="basetags">246</xsl:with-param>
  <xsl:with-param name="codes">abhfgnp</xsl:with-param>
- <xsl:with-param name="class">results_summary otro título</xsl:with-param>
+ <xsl:with-param name="class">results_summary other_title</xsl:with-param>
  <xsl:with-param name="label">Otro título: </xsl:with-param>
  </xsl:call-template>
  </xsl:if>
@@ -490,7 +489,7 @@
 
 
  <xsl:if test="marc:datafield[@tag=242]">
- <span class="results_summary translated_title"><span class="label">Título traducido: </span>
+ <span class="results_summary translated_title"><span class="label">Título traducido:</span>
  <xsl:for-each select="marc:datafield[@tag=242]">
  <xsl:call-template name="chopPunctuation">
  <xsl:with-param name="chopString">
@@ -509,7 +508,7 @@
  <xsl:call-template name="m880Select">
  <xsl:with-param name="basetags">130,240</xsl:with-param>
  <xsl:with-param name="codes">adfklmor</xsl:with-param>
- <xsl:with-param name="class">results_summary título uniforme</xsl:with-param>
+ <xsl:with-param name="class">results_summary uniform_title</xsl:with-param>
  <xsl:with-param name="label">Títulos uniformes: </xsl:with-param>
  </xsl:call-template>
  </xsl:if>
@@ -547,7 +546,7 @@
  <xsl:when test="$TraceSubjectSubdivisions='1'">
  <xsl:attribute name="href">/cgi-bin/koha/opac-search.pl?q=<xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">abcdfgklmnopqrstvxyz</xsl:with-param>
- <xsl:with-param name="delimeter"> AND </xsl:with-param>
+ <xsl:with-param name="delimeter"> Y</xsl:with-param>
  <xsl:with-param name="prefix">(su<xsl:value-of select="$SubjectModifier"/>:<xsl:value-of select="$TracingQuotesLeft"/></xsl:with-param>
  <xsl:with-param name="suffix"><xsl:value-of select="$TracingQuotesRight"/>)</xsl:with-param>
  </xsl:call-template>
@@ -567,6 +566,12 @@
  </xsl:with-param>
  </xsl:call-template>
  </a>
+ <xsl:if test="marc:subfield[@code=9]">
+ <a class='authlink'>
+ <xsl:attribute name="href">/cgi-bin/koha/opac-authoritiesdetail.pl?authid=<xsl:value-of select="marc:subfield[@code=9]"/></xsl:attribute>
+ <img style="vertical-align:middle" height="15" width="15" src="/opac-tmpl/prog/images/filefind.png"/>
+ </a>
+ </xsl:if>
  <xsl:choose>
  <xsl:when test="position()=last()"></xsl:when>
  <xsl:otherwise> | </xsl:otherwise>
@@ -578,7 +583,7 @@
 
 <!-- Image processing code added here, takes precedence over text links including y3z text -->
  <xsl:if test="marc:datafield[@tag=856]">
- <span class="results_summary online_resources"><span class="label">Recursos en Línea: </span>
+ <span class="results_summary online_resources"><span class="label">Recursos en línea: </span>
  <xsl:for-each select="marc:datafield[@tag=856]">
  <xsl:variable name="SubqText"><xsl:value-of select="marc:subfield[@code='q']"/></xsl:variable>
  <a><xsl:attribute name="href"><xsl:value-of select="marc:subfield[@code='u']"/></xsl:attribute>
@@ -598,7 +603,7 @@
  <xsl:value-of select="$URLLinkText"/>
  </xsl:when>
  <xsl:otherwise>
- <xsl:text>Haga clic aquí para acceso en linea</xsl:text>
+ <xsl:text>Haga clic aquí para acceder en línea</xsl:text>
  </xsl:otherwise>
  </xsl:choose>
  </a>
@@ -631,33 +636,37 @@
 
  <!-- 505 -->
  <xsl:if test="marc:datafield[@tag=505]">
+ <div class="results_summary contents">
  <xsl:for-each select="marc:datafield[@tag=505]">
- <span class="results_summary contents">
+ <xsl:if test="position()=1">
  <xsl:choose>
  <xsl:when test="@ind1=1">
  <span class="label">Contenidos incompletos:</span>
  </xsl:when>
- <xsl:when test="@ind1=1">
+ <xsl:when test="@ind1=2">
  <span class="label">Contenidos parciales:</span>
  </xsl:when>
  <xsl:otherwise>
  <span class="label">Contenidos:</span>
  </xsl:otherwise>
  </xsl:choose>
+ </xsl:if>
+ <div class='contentblock'>
  <xsl:choose>
  <xsl:when test="@ind2=0">
- <xsl:call-template name="subfieldSelect">
+ <xsl:call-template name="subfieldSelectSpan">
  <xsl:with-param name="codes">tru</xsl:with-param>
  </xsl:call-template>
  </xsl:when>
  <xsl:otherwise>
- <xsl:call-template name="subfieldSelect">
- <xsl:with-param name="codes">au</xsl:with-param>
+ <xsl:call-template name="subfieldSelectSpan">
+ <xsl:with-param name="codes">atru</xsl:with-param>
  </xsl:call-template>
  </xsl:otherwise>
  </xsl:choose>
- </span>
+ </div>
  </xsl:for-each>
+ </div>
  </xsl:if>
 
  <!-- 583 -->
@@ -762,8 +771,8 @@
  <span class="results_summary summary"><span class="label">
  <xsl:choose>
  <xsl:when test="@ind1=0"><xsl:text>Tema: </xsl:text></xsl:when>
- <xsl:when test="@ind1=1"><xsl:text>Revisión: </xsl:text></xsl:when>
- <xsl:when test="@ind1=2"><xsl:text>Alcance y contenido: </xsl:text></xsl:when>
+ <xsl:when test="@ind1=1"><xsl:text>Comentario:</xsl:text></xsl:when>
+ <xsl:when test="@ind1=2"><xsl:text>Ámbito y contenido: </xsl:text></xsl:when>
  <xsl:when test="@ind1=3"><xsl:text>Resumen: </xsl:text></xsl:when>
  <xsl:when test="@ind1=4"><xsl:text>Recomendación de contenido: </xsl:text></xsl:when>
  <xsl:otherwise><xsl:text>Resumen: </xsl:text></xsl:otherwise>
@@ -777,7 +786,7 @@
 
  <!-- 866 textual holdings -->
  <xsl:if test="marc:datafield[@tag=866]">
- <span class="results_summary holdings_note"><span class="label">Nota de existencias: </span>
+ <span class="results_summary holdings_note"><span class="label">Nota de ejemplares: </span>
  <xsl:for-each select="marc:datafield[@tag=866]">
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">az</xsl:with-param>
@@ -830,7 +839,7 @@
  <span class="results_summary preceeding_entry">
  <xsl:choose>
  <xsl:when test="@ind2=0">
- <span class="label">Continua:</span>
+ <span class="label">Continúa:</span>
  </xsl:when>
  <xsl:when test="@ind2=1">
  <span class="label">Continúa en parte:</span>
@@ -986,6 +995,12 @@
  <xsl:text>]</xsl:text>
  </xsl:if>
  </a>
+ <xsl:if test="marc:subfield[@code=9]">
+ <a class='authlink'>
+ <xsl:attribute name="href">/cgi-bin/koha/opac-authoritiesdetail.pl?authid=<xsl:value-of select="marc:subfield[@code=9]"/></xsl:attribute>
+ <img style="vertical-align:middle" height="15" width="15" src="/opac-tmpl/prog/images/filefind.png"/>
+ </a>
+ </xsl:if>
  </xsl:for-each>
  <xsl:text>.</xsl:text>
  </xsl:template>

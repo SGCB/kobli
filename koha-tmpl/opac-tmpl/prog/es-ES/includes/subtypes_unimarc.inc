@@ -9,7 +9,7 @@
  <option value="aud:c">Primaria (5-8)</option>
  <option value="aud:d">niños (9-14)</option>
  <option value="aud:e">Adulto joven</option>
- <option value="aud:k">Adulto, serio</option>
+ <option value="aud:k">Adulto</option>
  <option value="aud:m">Adulto, General</option>
  <option value="aud:u">Desconocido</option>
  </select>
@@ -21,8 +21,8 @@
  <option value="Material-type:r">impresión regular</option>
  <option value="Material-type:d">impresión grande</option>
  <option value="Material-type:e">formato de periódico</option>
- <option value="Material-type:f">Braille o escritura Moon</option>
- <option value="Material-type:g">micro impreso</option>
+ <option value="Material-type:f">Braille o Moon script</option>
+ <option value="Material-type:g">microimpreso</option>
  <option value="Material-type:h">escrito a mano</option>
  <option value="Material-type:i">multimedia</option>
  <option value="Material-type:j">mini-impreso</option>
@@ -38,7 +38,7 @@
  <option value="Literature-Code:c">ensayos</option>
  <option value="Literature-Code:d">humor, sátira</option>
  <option value="Literature-Code:e">cartas</option>
- <option value="Literature-Code:f">cuentos</option>
+ <option value="Literature-Code:f">historias cortas</option>
  <option value="Literature-Code:g">poesía</option>
  <option value="Literature-Code:h">discursos, oratoria</option>
  <option value="Literature-Code:y">no es un texto literario</option>
@@ -64,7 +64,7 @@
  <option value="Illustration-Code:b">mapas</option>
  <option value="Illustration-Code:c">retratos</option>
  <option value="Illustration-Code:d">cartas</option>
- <option value="Illustration-Code:e">planes</option>
+ <option value="Illustration-Code:e">esquemas</option>
  <option value="Illustration-Code:f">placas</option>
  <option value="Illustration-Code:g">música</option>
  <option value="Illustration-Code:h">facsímiles</option>
@@ -99,7 +99,7 @@
  <option value="ctype:o" >tabla numérica</option>
  <option value="ctype:p" >informe técnico</option>
  <option value="ctype:q" >trabajo de examinación</option>
- <option value="ctype:r" >repasos/críticas literarias</option>
+ <option value="ctype:r" >repasos/críticas literiarias</option>
  <option value="ctype:s" >tratados</option>
  <option value="ctype:t" >historietas o cómics</option>
  <option value="ctype:z" >otro</option>
@@ -121,7 +121,7 @@
  <label>Tipo de publicación periódica</label>
  <select name="limit" class="subtype">
  <option value="">Cualquier tipo</option>
- <option value="Type-Of-Serial:a">Periódico</option>
+ <option value="Type-Of-Serial:a">Publicación periódica</option>
  <option value="Type-Of-Serial:b">Series monográficas</option>
  <option value="Type-Of-Serial:c">Periódico</option>
  <option value="Type-Of-Serial:z">Otro</option>
@@ -134,13 +134,13 @@
  <option value="Frequency-code:a">Diario</option>
  <option value="Frequency-code:b">Bisemanal</option>
  <option value="Frequency-code:c">Semanal</option>
- <option value="Frequency-code:d">Bisemanal</option>
+ <option value="Frequency-code:d">Quincenal</option>
  <option value="Frequency-code:e">Bimensual</option>
  <option value="Frequency-code:f">Mensual</option>
  <option value="Frequency-code:g">Bimensual</option>
  <option value="Frequency-code:h">Trimestral</option>
  <option value="Frequency-code:i">Tres veces al año</option>
- <option value="Frequency-code:j">Semi anual</option>
+ <option value="Frequency-code:j">Semestral</option>
  <option value="Frequency-code:k">Anual</option>
  <option value="Frequency-code:l">Bianual</option>
  <option value="Frequency-code:m">Trienal</option>
@@ -172,7 +172,7 @@
  <option value="Graphics-type:c">pintura</option>
  <option value="Graphics-type:d">reproducción fotomecánica</option>
  <option value="Graphics-type:e">negativo fotográfico</option>
- <option value="Graphics-type:f">impresión fotográfica</option>
+ <option value="Graphics-type:f">fotoimpresión</option>
  <option value="Graphics-type:h">imagen</option>
  <option value="Graphics-type:i">imprimir</option>
  <option value="Graphics-type:k">dibujo técnico</option>
@@ -181,7 +181,7 @@
  <select name="limit" class="subtype">
  <option value="">cualquiera</option>
  <option value="Graphics-support:a">lienzo</option>
- <option value="Graphics-support:b">papel bristol</option>
+ <option value="Graphics-support:b">cartulina</option>
  <option value="Graphics-support:c">cartón/ilustración</option>
  <option value="Graphics-support:d">cristal</option>
  <option value="Graphics-support:j">yeso</option>
@@ -191,7 +191,7 @@
  <option value="Graphics-support:n">madera</option>
  <option value="Graphics-support:u">desconocido</option>
  <option value="Graphics-support:v">colección mixta</option>
- <option value="Graphics-support:e">sintéticos</option>
+ <option value="Graphics-support:e">sintético</option>
  <option value="Graphics-support:f">piel</option>
  <option value="Graphics-support:g">textil</option>
  <option value="Graphics-support:h">metal</option>

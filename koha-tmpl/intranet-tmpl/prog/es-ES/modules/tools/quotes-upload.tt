@@ -178,7 +178,7 @@
                 var quoteNum = $('td', nRow)[0].innerHTML;
                 $(nRow).attr("id", quoteNum); /* set row ids to quote number */
                 $('td:eq(0)', nRow).click(function() {$(this.parentNode).toggleClass('selected',this.clicked);}); /* add row selectors */
-                $('td:eq(0)', nRow).attr("title", _("Click ID to select/deselect quote"));
+                $('td:eq(0)', nRow).attr("title", _("Clicar ID para seleccionar/deseleccionar quote"));
                 /* apply no_edit id to noEditFields */
                 noEditFields = [0]; /* number */
                 for (i=0; i<noEditFields.length; i++) {
@@ -234,12 +234,12 @@
         var fileSizeInK = Math.round(evt.target.files[0].size/1024);
 
         if (!fileType.match(/comma-separated-values|csv|excel/i)) {
-            alert(_('Uploads limited to csv. Incorrect filetype: ')+fileType);
+            alert(_('Cargar limitada para cvs. Tipo de fichero incorrecto:')+fileType);
             parent.location='quotes-upload.pl';
             return;
         }
         if (fileSizeInK > 512) {
-            if (!confirm(evt.target.files[0].name+' '+fileSizeInK+_(' KB Do you really want to upload this file?'))) {
+            if (!confirm(evt.target.files[0].name+' '+fileSizeInK+_(' ¿Está seguro de que querer subir este fichero?'))) {
                 parent.location='quotes-upload.pl';
                 return;
             }
@@ -265,11 +265,11 @@
             success     : function(){
                             var response = JSON.parse(jqXHR.responseText);
                             if (response.success) {
-                                alert(response.records+_(' quotes saved.'));
+                                alert(response.records+_(' indicaciones guardadas.'));
                                 window.location.reload(true);   // is this the best route?
                             }
                             else {
-                                alert(response.records+_(' quotes saved, but an error has occurred. Please ask your administrator to check the server log for more details.'));
+                                alert(response.records+_(' citas guardadas, pero ha ocurrido un error. Por favor, pedir al administrador del sistema que verifique el registro de errores para ver más detalles. '));
                                 window.location.reload(true);   // is this the best route?
                             }
                           },
@@ -281,9 +281,9 @@
               return this.id;
         }).get().join(', ');
         if (!idsToDelete) {
-            alert(_('Please select a quote(s) by clicking the quote id(s) you desire to delete.'));
+            alert(_('Por favor, seleccione un quote(s) haciendo clic en quote (s) que desea eliminar.'));
         }
-        else if (confirm(_('Are you sure you wish to delete quote(s) ')+idsToDelete+'?')) {
+        else if (confirm(_('¿Está seguro de desea borrar este pedido(s)?')+idsToDelete+'?')) {
             oTable.$('.selected').each(function(){
                 oTable.fnDeleteRow(this);
             });
@@ -294,44 +294,44 @@
     </script>
 </head>
 <body id="tools_quotes" class="tools">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/tools/quotes.pl">Quote editor</a> &rsaquo; Quote uploader</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/tools/quotes.pl">Editor de presupuesto</a> &rsaquo; Cita del cargador</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% INCLUDE 'quotes-upload-toolbar.inc' %] <h2>Quote uploader</h2>
+ [% INCLUDE 'quotes-upload-toolbar.inc' %] <h2>Subir presupuesto</h2>
  <div id="instructions">
  <fieldset id="file_uploader_help" class="rows">
- <legend>Instructions</legend>
+ <legend>instrucciones </legend>
  <div id="file_uploader_inst">
  <ul>
- <li>The quote uploader accepts standard csv files with two columns: "source","text"</li>
- <li>Click the "Choose File" button and select the csv file to be uploaded.</li>
- <li>The file will be imported into an editable table for review prior to saving.</li>
+ <li>La carga de quote acepta estándar fichero cvs con dos columnas:  "source","text"</li>
+ <li>Seleccionar el botón "Elige fichero"  y seleccionar el fichero csv para cargarlo.</li>
+ <li>El fichero será importada dentro de la tabla editable para su revisión antes de guardar.</li>
  </ul>
  </div>
  <div id="file_editor_inst">
  <ul>
- <li>Click on any field to edit the contents; Press the &lt;Enter&gt; key to save edit.</li>
- <li>Click on one or more quote numbers to select entire quotes for deletion; Click the 'Delete Quote(s)' button to delete selected quotes.</li>
- <li>Click the 'Save Quotes' button in the toolbar to save the entire batch of quotes.</li>
+ <li>Seleccionar en algún campo para editar contenidos; presionar  &lt;Enter&gt; tecla para salvar edición.</li>
+ <li>Seleccionar uno o más quote de números para seleccionar quotes enteras para eliminación; selecciona el botón  'Delete Quote(s)' para borrar quotes seleccionadas.</li>
+ <li>Seleccionar en el botón 'Save Quotes' enal inic la barra de herramientas para salvar el lote entero de valores.</li>
  </ul>
  </div>
  </fieldset>
  </div>
  <fieldset id="file_uploader" class="rows">
- <legend>Upload quotes</legend>
+ <legend>Subir cuota</legend>
  <div id="file_upload">
  <input type="file" name="file" />
- <button id="cancel_upload" style="visibility:hidden;" onclick="fnAbortRead();">Cancel Upload</button>
+ <button id="cancel_upload" style="visibility:hidden;" onclick="fnAbortRead();">Cancelar Subida</button>
  <div id="progress_bar"><div class="percent">0%</div></div>
  </div>
  </fieldset>
  <table id="quotes_editor" style="visibility: hidden;">
  <thead>
  <tr>
- <th>Source</th>
+ <th>Fuente</th>
  <th>Texto</th>
  <th>Acciones</th>
  </tr>
@@ -340,7 +340,7 @@
  <!-- tbody content is generated by DataTables -->
  <tr>
  <td></td>
- <td>Loading data...</td>
+ <td>Cargando datos...</td>
  <td></td>
  </tr>
  </tbody>

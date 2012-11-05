@@ -79,7 +79,7 @@
             var deleteButton = new YAHOO.widget.Button({
                 type: "link",
                 onclick: {fn: DeleteConfirm},
-                label: _("Borrar"),
+                label: _("Eliminar"),
                 id: "deletesb",
                 value: "delete",
                 container: "delete",
@@ -98,7 +98,7 @@
  <div class="yui-u first">
  <h1>Subir Imágenes</h1>
  [% IF ( IMPORT_SUCCESSFUL ) %] <div id="dialog" class="dialog message">
- <li><h3>Imagen cargada con éxito.</h3></li>
+ <li><h3>Imagen subida con éxito.</h3></li>
  <li>Archivo: [% SOURCE_FILE %]</li>
  <li>Nombre de la imagen: [% IMAGE_NAME %]</li>
  </div>
@@ -128,7 +128,7 @@
  <div class="yui-u">
  <h1>Eliminar imágenes</h1>
  [% IF ( DELETE_SUCCESSFULL ) %] <div id="dialog" class="dialog message">
- <li><h3>Imagen(es) eliminada(s) exitosamente</h3></li>
+ <li><h3>Imagen(es) eliminada(s) satisfactoriamente</h3></li>
  </div>
  [% END %] [% IF ( TABLE ) %] <form name="delete_images" method="post" action="/cgi-bin/koha/patroncards/image-manage.pl" enctype="multipart/form-data">
  <fieldset class="brief">

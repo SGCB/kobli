@@ -181,7 +181,7 @@ $(document).ready(function() {
  <td>[% class_source.sortrule %]</td>
  <td>
  <a href="[% class_source.script_name %]?op=edit_source&amp;class_source=[% class_source.code |html %]">Editar</a>
- <a href="[% class_source.script_name %]?op=delete_source&amp;class_source=[% class_source.code |html %]">Borrar</a>
+ <a href="[% class_source.script_name %]?op=delete_source&amp;class_source=[% class_source.code |html %]">Eliminar</a>
  </td>
  </tr>
  [% END %] </table>
@@ -206,7 +206,7 @@ $(document).ready(function() {
  <td>[% class_sort_rule.sort_routine %]</td>
  <td>
  <a href="[% class_sort_rule.script_name %]?op=edit_sort_rule&amp;sort_rule=[% class_sort_rule.rule |html %]">Editar</a>
- <a href="[% class_sort_rule.script_name %]?op=delete_sort_rule&amp;sort_rule=[% class_sort_rule.rule |html %]">Borrar</a>
+ <a href="[% class_sort_rule.script_name %]?op=delete_sort_rule&amp;sort_rule=[% class_sort_rule.rule |html %]">Eliminar</a>
  </td>
  </tr>
  [% END %] </table>

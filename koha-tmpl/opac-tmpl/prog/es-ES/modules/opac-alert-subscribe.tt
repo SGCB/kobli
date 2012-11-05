@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Publicaciones periódicas [% INCLUDE 'doc-head-close.inc' %] </head>
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Publicaciones periódicas [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-alert-subscribe">
 [% INCLUDE 'masthead.inc' %] <div id="doc3" class="yui-t1">
 <div id="bd">
@@ -6,8 +6,8 @@
  [% INCLUDE 'search.inc' %] <div class="yui-b">
 <div id="useralertsubscribe" class="container"> [% IF ( typeissue ) %] <h1 class="catalogue">Suscribirse a la alerta de ejemplares recibidos</h1>
  <form action="opac-alert-subscribe.pl" method="post">
- <p>¿Desea recibir un email cuando recibamos un nuevo número de esta suscripción?</p>
- [% bibliotitle %] [% IF ( notes ) %]([% notes %])[% END %] arribó ?</p>
+ <p>¿Quiere recibir un email cuando llegue un nuevo número de esta suscripción?</p>
+ [% bibliotitle %] [% IF ( notes ) %]([% notes %])[% END %] llegó ?</p>
  <input type="hidden" name="externalid" value="[% externalid %]">
  <input type="hidden" name="alerttype" value="issue">
  <input type="hidden" name="biblionumber" value="[% biblionumber %]">
@@ -16,9 +16,9 @@
  <a href="opac-serial-issues.pl?biblionumber=[% biblionumber %]" >No</a>
  </form>
 
- [% END %] [% IF ( typeissuecancel ) %] <h1 class="catalogue">De-suscribirse</h1>
+ [% END %] [% IF ( typeissuecancel ) %] <h1 class="catalogue">Cancelar la suscripción</h1>
  <form action="opac-alert-subscribe.pl" method="post">
- <p>Por favor confirme que usted no desea recibir un email cuando arribe un nuevo número de esta suscripción</p>
+ <p>Por favor, confirma que no deseas recibir un email cuando llegue un nuevo número de esta suscripción</p>
  [% bibliotitle %] [% IF ( notes ) %]([% notes %])[% END %] ?</p>
  <input type="hidden" name="externalid" value="[% externalid %]">
  <input type="hidden" name="alerttype" value="issue">

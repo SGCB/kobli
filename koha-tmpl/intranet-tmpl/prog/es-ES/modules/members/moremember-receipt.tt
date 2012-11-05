@@ -20,7 +20,7 @@
 
 [% todaysdate %]<br />
 
-[% IF ( quickslip ) %] <h4>Checked out today</h4>
+[% IF ( quickslip ) %] <h4>Prestado hoy </h4>
 [% FOREACH issueloo IN issueloop %] [% IF ( issueloo.red ) %][% ELSE %] [% IF ( issueloo.today ) %] <p><a href="/cgi-bin/koha/catalogue/detail.pl?item=[% issueloo.itemnumber %]&amp;biblionumber=[% issueloo.biblionumber %]&amp;bi=[% issueloo.biblioitemnumber %]">[% issueloo.title |html %]</a><br />
 Código de barras: [% issueloo.barcode %]<br />
 Vencimiento: [% issueloo.date_due %]<br /></p>

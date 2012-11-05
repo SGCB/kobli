@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Información de suscripción para [% bibliotitle %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Información de suscripción para [% bibliotitle %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" language="javascript">
 //<![CDATA[
 
@@ -170,7 +170,7 @@ function showlayer(numlayer){
  <th>Fecha de recepción</th>
  <th>Número</th>
  <th>Estado</th>
- <th>Suscripción</th>
+ <th>Subscripción</th>
  </tr>
  </thead>
  <tbody>
@@ -180,14 +180,7 @@ function showlayer(numlayer){
  <td> [% serial.notes %] </td>
  <td> [% IF ( serial.status2 ) %] [% serial.planneddate %] [% END %] </td>
  <td> [% serial.serialseq %] </td>
- <td> [% IF ( serial.status1 ) %]Waiting[% END %]
- [% IF ( serial.status2 ) %]Arrived[% END %]
- [% IF ( serial.status3 ) %]Late[% END %]
- [% IF ( serial.status4 ) %]Missing[% END %]
- [% IF ( serial.status5 ) %]Not available[% END %]
- [% IF ( serial.status7 ) %]Claimed[% END %]
- [% IF ( serial.notes ) %]([% serial.notes %])[% END %]
- </td>
+ <td> [% IF ( serial.status1 ) %]En espera[% END %] [% IF ( serial.status2 ) %]Recibido[% END %] [% IF ( serial.status3 ) %]Retrasado[% END %] [% IF ( serial.status4 ) %]Perdido[% END %] [% IF ( serial.status5 ) %]No disponible[% END %] [% IF ( serial.status7 ) %]Reclamado[% END %] [% IF ( serial.notes ) %]([% serial.notes %])[% END %] </td>
  <td class="subscriptionidfilterclass"> [% serial.subscriptionid %] </td>
  </tr>
  [% END %] </tbody>
@@ -200,7 +193,7 @@ function showlayer(numlayer){
 <div id="searchfacetscontainer" class="container">
 <div id="search-facets">
 <form action="opac-serial-issues.pl" id="filterform">
- <h4>Refine su búsqueda</h4>
+ <h4>Refina su búsqueda</h4>
  <fieldset>
  <ol><li> <label for="libraryfilter">Biblioteca : </label>
  <select id="libraryfilter" name="libraryfilter" style="width:10em;"></select></li>

@@ -21,7 +21,7 @@
  [% IF ( definitions ) %] <h2>Términos actuales</h2>
  <form action="/cgi-bin/koha/reports/dictionary.pl" method="post">
  <input type="hidden" name="phase" value="View Dictionary" />
- [% IF ( areas ) %] Filtrar por área <select name="areas">
+ [% IF ( areas ) %] Filtrar por área <select name="area">
  <option value="">Todo</option>
  [% FOREACH area IN areas %] [% IF ( area.selected ) %] <option value="[% area.id %]" selected="selected" >[% area.name %]</option>
  [% ELSE %] <option value="[% area.id %]">[% area.name %]</option>
@@ -73,7 +73,7 @@
 <ol><li><input type="hidden" name="phase" value="New Term step 3" />
 <input type="hidden" name="definition_name" value="[% definition_name %]" />
 <input type="hidden" name="definition_description" value="[% definition_description %]" />
-<label for="areas">Seleccionar tabla </label><select name="areas" id="areas">
+<label for="area">Seleccionar tabla </label><select name="area" id="area">
 [% FOREACH area IN areas %] <option value="[% area.id %]">[% area.name %]</option> 
 [% END %] </select></li>
 </ol>

@@ -1,14 +1,33 @@
-[% INCLUDE 'help-top.inc' %] <h1>Ayuda de catalogación</h1><h2>¡Cómo editar un registro bibliográfico?</h2>
+[% INCLUDE 'help-top.inc' %] <h1>Catalogación</h1>
 
-<p>Para editar un registro bibliográfico, busque en el catálogo para encontrarlo. Esto puede hacerse o bien a través de la interfaz de catalogación o en la búsqueda del catálogo. Una búsqueda en el módulo de catalogación buscará en el catálogo activo y en el depósito (ver más adelante).</p>
+<p>Before you start cataloging in Koha you're going to want to do some basic setup. Refer to the Implementation Checklist for a full list of these things. Most importantly you're going to want to make sure that your Frameworks are all defined the way you want. Once in the cataloging module you will not be able to add or remove fields and subfields so your frameworks must be ready before you start cataloging.</p>
 
-<h2>¡Cómo agrega un nuevo registro bibliográfico?</h2>
+<p>From here you can add new bibliographic records to Koha.</p>
 
-<p>Use el botón 'Nuevo registro' para añadir un nuevo registro. Elija la hoja de trabajo que va a utilizar para dar forma al registro bibliográfico. Las hojas de trabajo son plantillas que pueden ser creadas y editadas en 'Administración del sistema'.</p>
+<p>Los registros se pueden agregar ingresándolos en Koha o copiando la catalogación. Si desea un catalogar usando una plantilla en blanco</p>
 
-<h2>¡Cómo agregar nuevos ejemplares a un registro?</h2>
+<ul>
+ <li>Click 'New Record'</li>
+ <li>Seleccione la hoja de trabajo en que desea basar su registro</li>
+</ul>
 
-<p>Un registro bibliográfico necesita un ítem para ser mostrado en el OPAC. Hay dos formas de agregar un nuevo ítem a un registro bibliográfico:</p><ol><li><strong>Vía catalogación</strong>. Después de añadir un nuevo registro bibliográfico, se le dará la opción de agregar ejemplares al registro. Un registro puede tener muchos ejemplares. </li><li><strong>Vía adquisiciones</strong>.&nbsp; Se puede agregar ítems a las ordenes en adquisiciones. Los detalles del ítem son agregados al recibir el ítem. Usando el módulo de adquisiciones para agregar ítems permite hacer el seguimiento del gasto de cada biblioteca en relación a los fondos y presupuestos. </li></ol><h2>¿Qué es el depósito?</h2>
+<p>Si usted desea catalogar un registro basado en un registro existente en otra biblioteca</p>
 
-<p>El reservorio es un área de almacenamiento para registros bibliográficos que no se han usado aún en el catálogo de la biblioteca. Cuando llega un ítem que coincide con un registro del reservorio, los dos pueden ser apareados y los datos bibliográficos extraídos del reservorio hacia el catálogo principal.</p><p>El reservorio puede ser poblado con registros MARC usando de 'Importación de registros MARC' en Herramientas.</p> 
+<ul>
+ <li>Click 'z39.50 Search'</li>
+ <li>Search for the item you would like to catalog</li>
+ <li>Sugerencia: Si no se encuentran resultados, trate de buscar menos campos, no todos los servidores Z39.50 puede buscar en todos los campos.</li>
+ <li>Search targets can be altered by using the Z39.50 Admin area.</li>
+ <li>From the results you can view the MARC or Card view for the records or choose to Import them into Koha
+<ul>
+ <li>In addition to the Import link to the right of each title, you can click on the title you're interested in and a menu will pop up with links to preview the record and import it</li>
+</ul>
+</li>
+ <li>If you don't find the title you need in your Z39.50 search results you can click the 'Try Another Search' button at the bottom left of your results</li>
+</ul>
+
+<p>Una vez que haya abierto una hoja de trabajo en blanco o importado un registro a través de Z39.50 se le presentará una forma para continuar la catalogación</p>
+
+<p><strong>Ver la documentación completa para Catalogación en la <a href="http://manual.koha-community.org/3.10/en/cataloging.html">manual</a> (en línea).</strong></p>
+
 [% INCLUDE 'help-bottom.inc' %] 

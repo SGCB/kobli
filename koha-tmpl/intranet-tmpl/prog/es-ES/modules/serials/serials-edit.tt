@@ -1,6 +1,13 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Edición de publicación periódica [% bibliotitle %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script language="JavaScript" type="text/javascript">
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/cataloging.js"></script>
+<script language="JavaScript" type="text/javascript">
 //<![CDATA[
+function generateReceive() {
+    var subscriptionid =  document.getElementsByName("subscriptionid")[0].value;
+    if(nbissues=prompt(_("How many issues do you want to receive ?"))){
+        document.location = 'serials-collection.pl?op=gennext&subscriptionid='+subscriptionid+'&nbissues='+nbissues;
+    }
+}
 function popup(subscriptionid) {
 	window.open("subscription-renew.pl?subscriptionid="+subscriptionid,"subscription_renewal",'width=700,height=400,toolbar=false,scrollbars=yes');
 }
@@ -66,70 +73,7 @@ function changeDate2(adate) {
    var elem = document.getElementById("supexpecteddate");
     elem.value = adate;
 }
-function CloneSubfield(index){
-    var original = document.getElementById(index); //original <div>
-    var clone = original.cloneNode(true);
-    var new_key = CreateKey();
-    var old_id =  original.getAttribute('id');
-    old_id=old_id.substr(12);
-    var new_id  = old_id+new_key;
-    
-    // set the attribute for the new 'div' subfields
-    var inputs     = clone.getElementsByTagName('input');
-    var selects    = clone.getElementsByTagName('select');
-    var textareas  = clone.getElementsByTagName('textarea');
-        
-    // input
-    var id_input = "";
-    for(var i=0,len=inputs.length; i<len ; i++ ){
-        id_input = inputs[i].getAttribute('id')+new_key;
-        inputs[i].setAttribute('id',id_input);
-        inputs[i].setAttribute('name',inputs[i].getAttribute('name'));
-    }
-    
-    // select 
-    for(var i=0,len=selects.length; i<len ; i++ ){
-        id_input = selects[i].getAttribute('id')+new_key;
-        selects[i].setAttribute('id',selects[i].getAttribute('id')+new_key);
-        selects[i].setAttribute('name',selects[i].getAttribute('name'));
-    }
-    
-    // textarea
-    for(var i=0,len=textareas.length; i<len ; i++ ){
-        id_input = textareas[i].getAttribute('id')+new_key;
-        textareas[i].setAttribute('id',textareas[i].getAttribute('id')+new_key);
-        textareas[i].setAttribute('name',textareas[i].getAttribute('name'));
-    }
-    
-    [% UNLESS ( advancedMARCEditor ) %]
-    // when cloning a subfield, reset its label too.
-    var label = clone.getElementsByTagName('label')[0];
-    label.setAttribute('for',id_input);
-    [% END %]
-    
-    // setting a new if for the parent div
-    clone.setAttribute('id',new_id);
-    
-    var CloneButtonPlus;
-    try {
-      var spans = clone.getElementsByTagName('span');
-      if(spans.length){
-          for(var i = 0 ,lenspans = spans.length ; i < lenspans ; i++){
-            if(spans[i].getAttribute('class') == 'buttonPlus'){
-                    CloneButtonPlus = spans[i];
-                    CloneButtonPlus.setAttribute('onclick',"CloneSubfield('" + new_id + "')");
-                    var buttonUp = clone.getElementsByTagName('img')[0];
-                    buttonUp.setAttribute('onclick',"upSubfield('" + new_id + "')");
-                }
-            }
-        }
-    }
-    catch(e){
-        // do nothig if ButtonPlus & CloneButtonPlus don't exist.
-    }
-    // insert this line on the page
-    original.parentNode.insertBefore(clone,original.nextSibling);
-}
+
 $(document).ready(function() {
 	$("form#serials_edit").submit(function() {
 	    var total_errors = 0;
@@ -173,7 +117,7 @@ $(document).ready(function() {
 
 <h1>Edición de publicación periódica <i>[% bibliotitle %]</i>
  [% IF location %] ( [% location %] ) [% END %] [% IF ( callnumber ) %] signatura topográfica: [% callnumber %][% END %]</h1>
-<form method="post" name="f" action="serials-edit.pl" id="serials_edit">
+[% IF internalnotes %]<p>Nonpublic note: [% internalnotes %]</p>[% END %] <form method="post" name="f" action="serials-edit.pl" id="serials_edit">
 <!--onsubmit="return barcode_check()">-->
 
 [% IF ( Errors ) %]
@@ -222,8 +166,8 @@ $(document).ready(function() {
  [% ELSE %] <option value="7">Reclamado</option>
  [% END %] [% IF ( serialslis.status5 ) %] <option value="5" selected="selected">No disponible</option>
  [% ELSE %] <option value="5">No disponible</option>
- [% END %] [% IF ( serialslis.status6 ) %] <option value="6" selected="selected">Borrar</option>
- [% ELSE %] <option value="6">Borrar</option>
+ [% END %] [% IF ( serialslis.status6 ) %] <option value="6" selected="selected">Eliminar</option>
+ [% ELSE %] <option value="6">Eliminar</option>
  [% END %] </select>
 
  </td>
@@ -242,7 +186,7 @@ $(document).ready(function() {
  <div class="cataloguing_additem_itemlist">
  [% FOREACH item IN serialslis.items %] <div id="item[% item.serialid %][% item.countitems %]" class="items">
  <ol>[% FOREACH iteminformatio IN item.iteminformation %]<li>
- <div class="subfield_line" style="[% iteminformatio.hidden %];" id="subfield[% item.serialid %][% item.countitems %][% iteminformatio.subfield %][% iteminformatio.random %]">
+ <div class="subfield_line" style="[% iteminformatio.hidden %]" id="subfield[% item.serialid %][% item.countitems %][% iteminformatio.subfield %][% iteminformatio.random %]">
  
  <label>[% iteminformatio.subfield %] - [% IF ( iteminformatio.mandatory ) %]<b>[% END %][% iteminformatio.marc_lib %][% IF ( iteminformatio.mandatory ) %] *</b>[% END %]</label>
  [% iteminformatio.marc_value %] <input type="hidden" name="itemid" value="[% item.itemid %]" />
@@ -250,7 +194,9 @@ $(document).ready(function() {
  <input type="hidden" name="tag" value="[% iteminformatio.tag %]" />
  <input type="hidden" name="subfield" value="[% iteminformatio.subfield %]" />
  <input type="hidden" name="mandatory" value="[% iteminformatio.mandatory %]" />
- [% IF ( iteminformatio.ITEM_SUBFIELDS_ARE_NOT_REPEATABLE ) %] <span class="buttonPlus" onclick="CloneSubfield('subfield[% item.serialid %][% item.countitems %][% iteminformatio.subfield %][% iteminformatio.random %]')">+</span>
+ [% IF ( iteminformatio.repeatable ) %] <a href="#" class="buttonPlus" onclick="CloneItemSubfield(this.parentNode); return false;">
+ <img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" />
+ </a>
  [% END %] </div></li>
  [% END %]</ol></div><!-- /iteminformation -->
  
@@ -295,8 +241,8 @@ $(document).ready(function() {
  [% ELSE %] <option value="7">Reclamado</option>
  [% END %] [% IF ( newserialloo.status5 ) %] <option value="5" selected="selected">No disponible</option>
  [% ELSE %] <option value="5">No disponible</option>
- [% END %] [% IF ( newserialloo.status6 ) %] <option value="6" selected="selected">Borrar</option>
- [% ELSE %] <option value="6">Borrar</option>
+ [% END %] [% IF ( newserialloo.status6 ) %] <option value="6" selected="selected">Eliminar</option>
+ [% ELSE %] <option value="6">Eliminar</option>
  [% END %] </select>
 
  </td>
@@ -315,7 +261,7 @@ $(document).ready(function() {
  <div class="cataloguing_additem_itemlist">
  <div id="item[% newserialloo.serialid %][% newserialloo.countitems %]" class="items">
  <ol>[% FOREACH iteminformatio IN newserialloo.iteminformation %]<li>
- <div class="subfield_line" style="[% iteminformatio.hidden %];" id="subfield[% newserialloo.serialid %][% newserialloo.countitems %][% iteminformatio.subfield %][% iteminformatio.random %]">
+ <div class="subfield_line" style="[% iteminformatio.hidden %]" id="subfield[% newserialloo.serialid %][% newserialloo.countitems %][% iteminformatio.subfield %][% iteminformatio.random %]">
  
  <label>[% iteminformatio.subfield %] - [% IF ( iteminformatio.mandatory ) %]<b>[% END %][% iteminformatio.marc_lib %][% IF ( iteminformatio.mandatory ) %] *</b>[% END %]</label>
  [% iteminformatio.marc_value %] <input type="hidden" name="itemid" value="[% newserialloo.itemid %]" />
@@ -323,7 +269,9 @@ $(document).ready(function() {
  <input type="hidden" name="tag" value="[% iteminformatio.tag %]" />
  <input type="hidden" name="subfield" value="[% iteminformatio.subfield %]" />
  <input type="hidden" name="mandatory" value="[% iteminformatio.mandatory %]" />
- [% IF ( iteminformatio.ITEM_SUBFIELDS_ARE_NOT_REPEATABLE ) %] <span class="buttonPlus" onclick="CloneSubfield('subfield[% newserialloo.serialid %][% newserialloo.countitems %][% iteminformatio.subfield %][% iteminformatio.random %]')">+</span>
+ [% IF ( iteminformatio.repeatable ) %] <a href="#" class="buttonPlus" onclick="CloneItemSubfield(this.parentNode); return false;">
+ <img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" />
+ </a>
  [% END %] </div>
  </li>[% END %]</ol>
  
@@ -341,7 +289,7 @@ $(document).ready(function() {
  </tr>
  [% END %] [% END %] [% END %] </table>
  <fieldset class="action"><input accesskey="w" value="Guardar" type="submit" class="button" />
-</form>
+ [% UNLESS ( serialsadditems ) %]&nbsp;&nbsp;<input type="button" onclick="javascript:generateReceive()" value="Multi receiving">[% END %] </form>
 
 </div>
 </div>

@@ -1,11 +1,11 @@
 --- 
-Cataloging: 
+cataloguing.pref: 
   Estructura de registro: 
     - 
-      - Fill in the default language for field 008 Range 35-37 (e.g. eng, nor, ger, see <a href="http://www.loc.gov/marc/languages/language_code.html">MARC Code List for Languages</a>)
+      - cataloguing.pref#DefaultLanguageField008# Rellenar en el idioma por defecto para el campo 008 Rango 35-37 (e.g. eng, nor, ger, see <a href="http://www.loc.gov/marc/languages/language_code.html">MARC Code List for Languages</a>)
       - 
         pref: DefaultLanguageField008
-      - " Empty defaults to eng."
+      - "cataloguing.pref#DefaultLanguageField008# Por defecto vac\xC3\xADo para eng."
     - 
       - Interpreta y almacena registros MARC en formato
       - 
@@ -22,12 +22,12 @@ Cataloging:
           "": "registro bibliogr\xC3\xA1fico"
           1: "\xC3\xADtem espec\xC3\xADfico"
         pref: item-level_itypes
-      - "como el tipo de \xC3\xADtem autoritativo (para determinar reglas de circulaci\xC3\xB3n y multas, etc.)."
+      - "como el tipo de \xC3\xADtem de referencia (para determinar reglas de circulaci\xC3\xB3n y multas, etc.)."
     - 
       - Mapear el subcampo MARC
       - 
         pref: itemcallnumber
-      - "a el c\xC3\xB3digo de barras de un \xC3\xADtem. (Esto puede contener m\xC3\xBAltiples subcampos donde buscar; por ejemplo <code>082ab</code> buscar\xC3\xA1 en 082, subcampos a y b.)<br />Ejemplos: <strong>Dewey</strong>: <code>082ab</code> o <code>092ab</code>; <strong>LOC</strong>: <code>050ab</code> o <code>090ab</code>; <strong>del registro del \xC3\xADtem</strong>: <code>852hi</code>"
+      - "a la signatura de un \xC3\xADtem. (Esto puede contener m\xC3\xBAltiples subcampos donde buscar; por ejemplo <code>082ab</code> buscar\xC3\xA1 en 082, subcampos a y b.)<br />Ejemplos: <strong>Dewey</strong>: <code>082ab</code> o <code>092ab</code>; <strong>LOC</strong>: <code>050ab</code> o <code>090ab</code>; <strong>del registro del \xC3\xADtem</strong>: <code>852hi</code>"
     - 
       - Mostrar el subcampo MARC
       - 
@@ -42,7 +42,7 @@ Cataloging:
         pref: MARCOrgCode
       - por defecto en nuevos registros MARC (deje en blanco para deshabilitar).
     - 
-      - "Cuando se crean los \xC3\xADtems, asignarles ubicaci\xC3\xB3n temporaria en"
+      - "Cuando se crean los \xC3\xADtems, asignarles ubicaci\xC3\xB3n temporal en"
       - 
         class: short
         pref: NewItemsDefaultLocation
@@ -62,11 +62,23 @@ Cataloging:
       - "Los c\xC3\xB3digos de barras"
       - 
         choices: 
+          EAN13: "cataloguing.pref#autoBarcode# incremental EAN-13 c\xC3\xB3digo de barras"
           "OFF": "no son generados autom\xC3\xA1ticamente."
           annual: son generados con la forma &lt;year&gt;-0001, &lt;year&gt;-0002.
           hbyymmincr: son generados con la forma &lt;branchcode&gt;yymm0001.
           incremental: son generados con la forma 1, 2, 3.
         pref: autoBarcode
+    - 
+      - When a new item is added,
+      - 
+        choices: 
+          "": the new item is not prefilled with last created item values.
+          1: the new item is prefilled with last created item values.
+        pref: PrefillItem
+    - 
+      - Define a list of subfields to use when prefilling items (separated by space)
+      - 
+        pref: SubfieldsToUseWhenPrefill
     - 
       - 
         choices: 
@@ -74,9 +86,9 @@ Cataloging:
           1: Validar
         pref: CheckValueIndicators
       - los valores de los indicadores definidos en las hojas de trabajo cuando se cataloga un registro.
-  Interfase: 
+  Interfaz: 
     - 
-      - Use
+      - Usar
       - 
         choices: class-sources
         pref: DefaultClassificationSource
@@ -91,33 +103,10 @@ Cataloging:
     - 
       - 
         choices: 
-          "": Don't Display
-          1: Display
+          "": No mostrar
+          1: Mostrar
         pref: EasyAnalyticalRecords
-      - easy ways to create analytical record relationships
-  Marbetes: 
-    - 
-      - "Cuando utilice la impresi\xC3\xB3n r\xC3\xA1pida de marbetes,"
-      - 
-        choices: 
-          "": 'no'
-          1: si
-        pref: SpineLabelAutoPrint
-      - "abra autom\xC3\xA1ticamente el di\xC3\xA1logo de impresi\xC3\xB3n."
-    - 
-      - "Incluya los siguientes campos en un marbete r\xC3\xA1pido:"
-      - (Ingrese en columnas desde las tablas <code>biblio</code>, <code>biblioitems</code> o <code>items</code>, rodeadas por &lt; y &gt;.)
-      - 
-        pref: SpineLabelFormat
-        type: textarea
-    - 
-      - 
-        choices: 
-          "": No muestre
-          1: Muestre
-        pref: SpineLabelShowPrintOnBibDetails
-      - "botones en la p\xC3\xA1gina de detalles de registros para imprimir marbetes."
-    - ~
+      - "modo sencillo para crear relaciones de registros anal\xC3\xADticos"
   Mostrar: 
     - 
       - "Separa m\xC3\xBAltiples autores, series o temas con "
@@ -147,10 +136,10 @@ Cataloging:
     - 
       - 
         choices: 
-          economical: Haga
-          standard: No haga
+          economical: Hacer
+          standard: No hacer
         pref: LabelMARCView
-      - que colapsen etiquetas repetidas del mismo tipo en una etiqueta en la pantalla.
+      - "que plieguen las etiquetas repetidas del mismo campo en la visualizaci\xC3\xB3n."
     - 
       - Por defecto, mostrar registros en
       - 
@@ -161,7 +150,7 @@ Cataloging:
           normal: forma normal.
         pref: IntranetBiblioDefaultView
     - 
-      - "Utilice lo siguiente como modelo ISBD:"
+      - "Utilice lo siguiente como plantilla ISBD:"
       - 
         class: code
         pref: ISBD
@@ -169,10 +158,15 @@ Cataloging:
     - 
       - 
         choices: 
-          "": No oculte
-          1: Oculte
+          "": No ocultar
+          1: Ocultar
         pref: OpacSuppression
       - "\xC3\xADtems marcados como suprimidos en el resultado de una b\xC3\xBAsqueda OPAC. Note que debe tener el \xC3\xADndice <code>Suprimido</code> configurado en Zebra y por lo menos un \xC3\xADtem suprimido, o no funcionar\xC3\xA1n sus b\xC3\xBAsquedas."
+      - Restrict the suppression to IP adresses outside of the IP range
+      - 
+        class: short
+        pref: OpacSuppressionByIPRange
+      - (Leave blank if not used. Define a range like <code>192.168.</code>.)
     - 
       - 
         choices: 
@@ -180,3 +174,26 @@ Cataloging:
           1: No ocultar
         pref: DisplayPluginValueIndicators
       - "el enlace junto al campo del indicador para abrir un plugin que muestra los valores correctos del indicador para este campo y hoja de trabajo. Si CheckValueIndicators est\xC3\xA1 deshabilitado y esta variable est\xC3\xA1 habilitada, se validar\xC3\xA1n los valores tambi\xC3\xA9n, i.e., se incluye la funcionalidad de CheckValueIndicators."
+  Tejuelos: 
+    - 
+      - "Cuando utilice la impresi\xC3\xB3n r\xC3\xA1pida de tejuelos,"
+      - 
+        choices: 
+          "": 'no'
+          1: si
+        pref: SpineLabelAutoPrint
+      - "abra autom\xC3\xA1ticamente el di\xC3\xA1logo de impresi\xC3\xB3n."
+    - 
+      - "Incluya los siguientes campos en un tejuelo r\xC3\xA1pido:"
+      - (Ingrese en columnas desde las tablas <code>biblio</code>, <code>biblioitems</code> o <code>items</code>, rodeadas por &lt; y &gt;.)
+      - 
+        pref: SpineLabelFormat
+        type: textarea
+    - 
+      - 
+        choices: 
+          "": No mostrar
+          1: Mostrar
+        pref: SpineLabelShowPrintOnBibDetails
+      - "botones en la p\xC3\xA1gina de detalles de registros para imprimir en el lomo."
+    - ~

@@ -27,30 +27,34 @@ $.tablesorter.addParser({
 &rsaquo; <a href="/cgi-bin/koha/circ/waitingreserves.pl">Reservas a retirar</a>
 </div>
 
-<div id="doc" class="yui-t7">
+<div id="doc3" class="yui-t7">
 
  <div id="bd">
  <div id="yui-main">
  <div class="yui-g">
 
- <h2>Reservas a retirar para su biblioteca en: [% show_date %] [% IF ( all_branches_link ) %] <span style="margin-left:20px"><a href="[% all_branches_link %]">
+ <h2>Reservas a retirar por su biblioteca en: [% show_date %] [% IF ( all_branches_link ) %] <span style="margin-left:20px"><a href="[% all_branches_link %]">
  Ver todas las bibliotecas</a></span>
  [% END %] </h2>
- [% IF ( cancel_result ) %] [% IF ( cancel_result.messagetransfert ) %] <div>
- <h2>Reserva encontrada para ([% nextreservtitle %]), debe transferirse</h2>
- <p>Esta reserva hecha por: <b> [% nextreservsurname %] [% nextreservfirstname %]</b> en la biblioteca: <b> [% branchname %] </b>, Por favor transfiera esta reserva. </p>
+ [% IF ( cancel_result ) %] [% FOREACH cancel_result %] [% IF ( messagetransfert ) %] <div class="dialog message">
+ <h2>This item is on hold for pick-up at [% branchname %]</h2>
+ <p><strong>[% nextreservtitle %]</strong> is on hold for <strong> [% nextreservsurname %], [% nextreservfirstname %]</strong>.
+ Please retain this item and check it in to process the hold.
+ </p>
  <form name="cancelReservewithtransfert" action="waitingreserves.pl" method="post">
- <input type="submit" class="button" />
+ <input type="submit" class="submit" value="OK" />
  </form>
  </div>
- [% END %] [% IF ( cancel_result.waiting ) %] <div id="bloc25">
- <h2>Esta reserva está en espera</h2>
- <p>Esta reserva ([% nextreservtitle %]) fue hecha por <b> :[% nextreservsurname %] [% nextreservfirstname %]</b>, Por favor retenga este ítem. </p>
+ [% END %] [% IF ( waiting ) %] <div class="dialog message">
+ <h2>This item is on hold for pick-up at your library</h2>
+ <p><strong>[% nextreservtitle %]</strong> is on hold for <strong>[% nextreservsurname %], [% nextreservfirstname %]</strong>.
+ Please retain this item and check it in to process the hold.
+ </p>
  <form name="cancelReservewithwaiting" action="waitingreserves.pl" method="post">
- <input type="submit" />
+ <input type="submit" class="submit" value="OK"/>
  </form>
  </div>
- [% END %] [% ELSE %] <div id="resultlist" class="toptabs">
+ [% END %] [% END %] [% ELSE %] <div id="resultlist" class="toptabs">
  <ul>
  <li><a href="#holdswaiting">[% reservecount %] Reserva(s) en espera</a></li>
  <li><a href="#holdsover">[% overcount %] Reserva(s) pospuesta</a></li>
@@ -82,7 +86,7 @@ $.tablesorter.addParser({
  <input type="hidden" name="itemnumber" value="[% reserveloo.itemnumber %]" />
  <input type="hidden" name="fbr" value="[% reserveloo.holdingbranch %]" />
  <input type="hidden" name="tbr" value="[% reserveloo.homebranch %]" />
- [% IF ( reserveloo.dotransfer ) %] <input value="Cancelar reserva y devolver a: [% reserveloo.homebranch %]" type="submit" /> 
+ [% IF ( reserveloo.dotransfer ) %] <input value="Cancelar reserva y devolver a: [% reserveloo.branchname %]" type="submit" /> 
  [% ELSE %] <input value="Cancelar reserva" type="submit" />
  [% END %] </form>
  </td>
@@ -126,7 +130,7 @@ $.tablesorter.addParser({
  <input type="hidden" name="itemnumber" value="[% overloo.itemnumber %]" />
  <input type="hidden" name="fbr" value="[% overloo.holdingbranch %]" />
  <input type="hidden" name="tbr" value="[% overloo.homebranch %]" />
- [% IF ( overloo.dotransfer ) %] <input value="Cancelar la reserva y devolver a : [% overloo.homebranch %]" type="submit" />
+ [% IF ( overloo.dotransfer ) %] <input value="Cancelar la reserva y devolver a : [% overloo.branchname %]" type="submit" />
  [% ELSE %] <input value="Cancelar reserva" type="submit" />
  [% END %] </form>
  </td>

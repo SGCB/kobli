@@ -5,7 +5,18 @@ function confirm_deletion(id) {
     
     var is_confirmed = confirm('Are you sure you want to delete this authority?');
     if (is_confirmed) {
-        window.location="authorities-home.pl?op=delete&amp;authid="+id;
+      window.location="authorities-home.pl?op=delete"
+          + "&authid=" + id
+          + "&type=intranet"
+          + "&authtypecode=[% authtypecode %]"
+          + "&marclist=[% marclist %]"
+          + "&and_or=[% and_or %]"
+          + "&excluding=[% excluding %]"
+          + "&operator=[% operator %]"
+          + "&orderby=[% orderby %]"
+          + "&value=[% value |url %]"
+          + "&startfrom=[% startfrom %]"
+          + "&resultsperpage=[% resultsperpage %]";
     }
 }
 function Help() {
@@ -45,17 +56,17 @@ function searchauthority() {
  <tr>
  <th colspan="2">Resumen</th>
 [% UNLESS ( isEDITORS ) %] <th>Usado en</th>
-[% END %] <th>Borrar</th>
+[% END %] <th>Eliminar</th>
  </tr>
 [% FOREACH resul IN result %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
  [% ELSE %] <tr>
- [% END %] <td>[% PROCESS authresult summary=resul.summary %]</td>
+ [% END %] <td>[% PROCESS authresult summary=resul.summary link="/cgi-bin/koha/authorities/authorities-home.pl?op=do_search&type=intranet&marclist=any&operator=contains&orderby=HeadingAsc&value=" %]</td>
  <td><a href="detail.pl?authid=[% resul.authid %]">Detalle</a></td>
  [% UNLESS ( resul.isEDITORS ) %] <td>
  <a href="../catalogue/search.pl?type=intranet&amp;op=do_search&amp;idx=an,phr&amp;q=[% resul.authid %]" class="button">[% resul.used %] registro(s)</a>
  </td>
  [% END %] <td>
- [% UNLESS ( resul.used ) %] <a href="javascript:confirm_deletion([% resul.authid %])">Borrar</a>
+ [% UNLESS ( resul.used ) %] <a href="javascript:confirm_deletion([% resul.authid %])">Eliminar</a>
  [% END %] </td>
  </tr>
 [% END %] </table>

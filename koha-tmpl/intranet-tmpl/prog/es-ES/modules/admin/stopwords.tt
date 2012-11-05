@@ -83,7 +83,7 @@
  [% FOREACH loo IN loop %] [% IF ( loop.odd ) %]<tr>
  [% ELSE %]<tr class="highlight">
  [% END %] <td>[% loo.word %]</td>
- <td><a href="[% loo.script_name %]?op=delete_confirm&amp;searchfield=[% loo.word %]">Borrar</a></td>
+ <td><a href="[% loo.script_name %]?op=delete_confirm&amp;searchfield=[% loo.word %]">Eliminar</a></td>
  </tr>
  [% END %] </table>
 

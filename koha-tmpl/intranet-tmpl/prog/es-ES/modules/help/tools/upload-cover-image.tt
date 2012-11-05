@@ -1,43 +1,42 @@
-[% INCLUDE 'help-top.inc' %] <h1>Upload Cover Images</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Cargar Imágenes de Cubiertas de registros</h1>
 
-<p>This tool will allow you to upload cover images for the materials in your catalog. To access this tool, staff will need the upload_local_cover_images permission. In order for images to show in the staff client and/or OPAC you will need to set your LocalCoverImages and/or OPACLocalCoverImages preferences to 'Display.' Images can be uploaded in batches or one by one.</p>
+<p>Esta herramienta le permitirá cargar imágenes de la cubierta por los materiales en el catálogo. Para acceder a esta herramienta, el personal necesita el permiso upload_local_cover_images. Para que las imágenes se muestren en el usuario administrador tendrá que establecer sus LocalCoverImages y / o preferencias OPACLocalCoverImages en 'Mostrar'. Imágenes se pueden cargar en lotes o de uno en uno.</p>
 
-<p>If uploading a single image:</p>
+<p>Si cargas una imagen:</p>
 
 <ul>
- <li>Visit the tool and click the 'Browse' button to browse to the image on your local machine.</li>
- <li>Click 'Upload file'</li>
- <li>Choose 'Image file' under the 'File type' section</li>
- <li>Enter the biblionumber for the record you're attaching this image to. This is not the same as the barcode, this is the system generated number assigned by Koha.</li>
+ <li>Consultar la herramienta y seleccione el botón de 'Búsqueda' para buscar la imagen en su ordenar local. </li>
+ <li>Clicar 'Cargar Archivo'</li>
+ <li>Elegir 'Archivo de imagen' debajo de la sección ?Tipo de Archivo'</li>
+ <li>Introducir el biblionumber para el registro que está adjuntando a esta imagen. Este número no es el mismo que el código de barras, este número es generado por el sistema y asignado por Koha</li>
 <ul>
- <li>Find the biblionumber by looking at the end of the URL in the address bar when on the detail page or by clicking on the MARC tab on the detail page in the staff client</li>
+ <li>Encuentra el biblionumber mirando el final de la URL en la barra de direcciones cuando estáen la página de detalle o seleccionando en la pestaña MARC en la página de detalle en el cliente administrador</li>
 </ul>
- <li>If you would like to replace any other cover images you may have uploaded in the past, check the 'Replace existing covers' box under the 'Options' section</li>
- <li>Click 'Process images'</li>
- <li>You will be presented with a summary of the upload and a link to the record you have just added the image to</li>
+ <li>Si quisiera remplazar alguna otra imagen de cubierta, deberá haberla cargado anteriormente, seleccionar en la caja de texto 'Reemplazar cubiertas existentes'  debajo de la sección 'Opciones'</li>
+ <li>Clicar 'Procesar imágenes'</li>
+ <li>Se le presentará con un formulario para rellenar los datos de la carga y un enlace a el registro al que ha sido añadida la imagen</li>
 </ul>
 
-<p>If uploading a batch of images at once you will need to prepare a ZIP file first.</p>
+<p>Si cargamos un lote de imágenes a la vez, primero necesitará que preparar un archivo ZIP</p>
 
 <ul>
- <li>Enter in to the ZIP file all the images you are uploading</li>
- <li>Also include a text file (*.TXT) named either datalink.txt or idlink.txt listing the biblionumber followed by the image name for each image one per line
-<ul>
+ <li>Introducir en el archivo ZIP todas las imágenes qu estás cargando</li>
+ <li>También incluye un archivo de texto (*.TXT) nombrado como  datalink.txt o idlink.txt listando el biblionumber seguido por el nombre de la imagen  para cada imagen, una por línea<ul>
  <li>ex. 4091,image4091.jpg</li>
 </ul>
 </li>
- <li>Browse your local computer to the ZIP file</li>
- <li>Click 'Upload file'</li>
- <li>Choose 'Zip file' under the 'File type' section</li>
- <li>If you would like to replace any other cover images you may have uploaded in the past, check the 'Replace existing covers' box under the 'Options' section</li>
- <li>Click 'Process images'</li>
- <li>You will be presented with a summary of the upload</li>
+ <li>Buscar en su ordenador desde un archivo ZIP</li>
+ <li>Clicar 'Cargar Archivo'</li>
+ <li>Eligir 'archivo Zip' debajo de la sección 'Tipo de archivo'</li>
+ <li>Si quisiera remplazar alguna otra imagen de cubierta, deberá haberla cargado anteriormente, seleccionar en la caja de texto 'Reemplazar cubiertas existentes'  debajo de la sección 'Opciones'</li>
+ <li>Clicar 'Procesar imágenes'</li>
+ <li>Se le presentará un mensaje de confirmación en la carga</li>
 </ul>
 
-<p>You will be able to see your cover images in the staff client on the detail page under the 'Image' tab in the holdings table at the bottom</p>
+<p>Usted será capaz de ver sus imágenes de la cubierta en el usuario adminsitrador en la página de detalle en la ficha 'Imagen' en la tabla de participaciones en el fondo</p>
 
-<p>In the OPAC the cover images will also appear in the images tab, as well as next to the title and on the search results.</p>
+<p>En el OPAC las imágenes de la cubierta también aparecerán en la pestaña de imágenes, al lado del título y en los resultados de búsqueda.</p>
 
-<p><strong>See the full documentation for Uploading Cover Images in the <a href="http://manual.koha-community.org/3.8/en/uploadlocalimages.html">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Cargar Imágenes de Cubiertas en la <a href="http://manual.koha-community.org/3.10/en/uploadlocalimages.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

@@ -363,7 +363,7 @@ Added Log Comment
  <genre authority="marc">legislación</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'m')">
- <genre authority="marc">tesis</genre>
+ <genre authority="marc">tesinas</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'n')">
  <genre authority="marc">revisión de literatura</genre>
@@ -925,10 +925,10 @@ Added Log Comment
  <form authority="smd">remoto</form>
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='a']">
- <form authority="smd">cartucho de cinta</form>
+ <form authority="smd">cinta de cartucho</form>
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='f']">
- <form authority="smd">casete de cinta</form>
+ <form authority="smd">cinta de casete</form>
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='h']">
  <form authority="smd">bobina de cinta</form>
@@ -1083,13 +1083,13 @@ Added Log Comment
  <form authority="smd">disco de sonido</form>
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='t']">
- <form authority="smd">rollo de cinta de sonido</form>
+ <form authority="smd">bobina de cinta de sonido</form>
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='i']">
  <form authority="smd">pista de audio de película</form>
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='s'][substring(text(),2,1)='w']">
- <form authority="smd">grabación en alambre magnético</form>
+ <form authority="smd">grabación en cable</form>
  </xsl:if>
  
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='f'][substring(text(),2,1)='c']">
@@ -1115,7 +1115,7 @@ Added Log Comment
  <form authority="smd">impresión normal</form>
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='t'][substring(text(),2,1)='d']">
- <form authority="smd">texto en hojas encarpetadas</form>
+ <form authority="smd">texto en carpetas de hojas sueltas</form>
  </xsl:if>
  
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='v'][substring(text(),2,1)='c']">
@@ -1128,7 +1128,7 @@ Added Log Comment
  <form authority="smd">videodisco</form>
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='v'][substring(text(),2,1)='r']">
- <form authority="smd">carrete de vídeo</form>
+ <form authority="smd">bobina de vídeo</form>
  </xsl:if>
  
  <xsl:for-each select="marc:datafield[@tag=856]/marc:subfield[@code='q'][string-length(.)>1]">
@@ -2817,7 +2817,7 @@ Added Log Comment
  <xsl:when test="@code='b'">resumen o subtítulo</xsl:when>
  <xsl:when test="@code='d'">texto cantado o hablado</xsl:when>
  <xsl:when test="@code='e'">libreto</xsl:when>
- <xsl:when test="@code='f'">índice</xsl:when>
+ <xsl:when test="@code='f'">tabla de contenidos</xsl:when>
  <xsl:when test="@code='g'">material adjunto</xsl:when>
  <xsl:when test="@code='h'">traducción</xsl:when>
  </xsl:choose>
@@ -2884,7 +2884,7 @@ Added Log Comment
  <xsl:when test="@code='b'">resumen o subtítulo</xsl:when>
  <xsl:when test="@code='d'">texto cantado o hablado</xsl:when>
  <xsl:when test="@code='e'">libreto</xsl:when>
- <xsl:when test="@code='f'">índice</xsl:when>
+ <xsl:when test="@code='f'">tabla de contenidos</xsl:when>
  <xsl:when test="@code='g'">material adjunto</xsl:when>
  <xsl:when test="@code='h'">traducción</xsl:when>
  </xsl:choose>

@@ -1,4 +1,4 @@
-[% INCLUDE "doc-head-open.inc" %] <title>Koha &rsaquo; Administration &rsaquo; Translations Manager</title>
+[% INCLUDE "doc-head-open.inc" %] <title>Koha &rsaquo; Administración &rsaquo; Gestor de Traducción</title>
 [% INCLUDE "doc-head-close.inc" %] <script>
 if (document.images)
 {
@@ -86,36 +86,35 @@ function loading_formul8(){
 </script>
 </head>
 <body onLoad="message();">
-[% INCLUDE "header.inc" %] [% INCLUDE "cat-search.inc" %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; Translations Manager</div>
+[% INCLUDE "header.inc" %] [% INCLUDE "cat-search.inc" %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; Gestor de traducción</div>
 
 <div id="doc" class="yui-t7">
  <div id="bd">
  <a name="inicio"></a>
  <div class="yui-g" style="width:800px;">
- <h1>Translations Manager</h1>
+ <h1>Gestor de Traducción</h1>
  <div class="toptabs">
  <ul class="ui-tabs-nav">
- [% IF (createpo) %] <li id="createpo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createpo" title="Allows you to create the PO translation files for a new language">Create PO Files</a></li>
- [% ELSE %] <li id="createpo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createpo" title="Allows you to create the PO translation files for a new language">Create PO Files</a></li>
- [% END %] [% IF (editpo) %] <li id="editpo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=editpo" title="Allows you to edit PO translation files">Edit PO Files</a></li>
- [% ELSE %] <li id="editpo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=editpo" title="Allows you to edit PO translation files">Edit PO Files</a></li>
- [% END %] [% IF (deletepo) %] <li id="deletepo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=deletepo" title="Allows you to delete PO translation files for a language">Delete PO Files</a></li>
- [% ELSE %] <li id="deletepo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=deletepo" title="Allows you to delete PO translation files for a language">Delete PO Files</a></li>
- [% END %] [% IF (createtranslation) %] <li id="createtranslation_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createtranslation" title="Allows you to install a new language">Install Language</a></li>
- [% ELSE %] <li id="createtranslation_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createtranslation" title="Allows you to install a new language">Install Language</a></li>
- [% END %] [% IF (updatetranslation) %] <li id="updatetranslation_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=updatetranslation" title="Allows you to update an installed language">Update Language</a></li>
- [% ELSE %] <li id="updatetranslation_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=updatetranslation" title="Allows you to update an installed language">Update Language</a></li>
+ [% IF (createpo) %] <li id="createpo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createpo" title="Permitir crear los archivos de traducción PO para el nuevo idioma">Crear Po de Archivos</a></li>
+ [% ELSE %] <li id="createpo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createpo" title="Permitir crear los archivos de traducción PO para el nuevo idioma">Crear Po de Archivos</a></li>
+ [% END %] [% IF (editpo) %] <li id="editpo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=editpo" title="Permitir editar los archivos de traducción PO">Editar archivs de PO</a></li>
+ [% ELSE %] <li id="editpo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=editpo" title="Permitir editar los archivos de traducción PO">Editar archivs de PO</a></li>
+ [% END %] [% IF (deletepo) %] <li id="deletepo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=deletepo" title="Permitir borrar los archivos de traducción POpara un idioma">Eliminar PO archivos</a></li>
+ [% ELSE %] <li id="deletepo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=deletepo" title="Permitir borrar los archivos de traducción POpara un idioma">Eliminar PO archivos</a></li>
+ [% END %] [% IF (createtranslation) %] <li id="createtranslation_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createtranslation" title="Permitir instalar un nuevo idioma">Instalar idioma</a></li>
+ [% ELSE %] <li id="createtranslation_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createtranslation" title="Permitir instalar un nuevo idioma">Instalar idioma</a></li>
+ [% END %] [% IF (updatetranslation) %] <li id="updatetranslation_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=updatetranslation" title="Permitir actualizar un idioma instalado">Cargar Idiomas</a></li>
+ [% ELSE %] <li id="updatetranslation_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=updatetranslation" title="Permitir actualizar un idioma instalado">Cargar Idiomas</a></li>
  [% END %] </ul>
  
  
  [% IF (createpo) %] <div id="createpo" class="ui-tabs-panel" style="display:block;width:800px;">
  [% ELSE %] <div id="createpo" class="ui-tabs-panel" style="display:none;width:800px;">
  [% END %] <div style="width:785px;border-style:dashed;border-width:1px;border-color:#98bf21;padding:5px;">
- To create a new language, the first step is to create his translation PO files. You must enter the new language code in the text field.<br/>The language code introduced for create a new language can not match the code of some existing PO file.
- </div>
+ Para crear un nuevo lenguaje, el primer paso es crear su archivos de traducción PO. Debe introducir el código nuevo lenguaje en el campo de texto.<br/>El código de idioma introducido para crear un lenguaje nuevo no puede coincidir con el código de algún archivo existente PO.</div>
  <fieldset>
  <form name="formul6" name="formul6" action="/cgi-bin/koha/admin/translations_manager.pl" method="POST" onsubmit="return loading_formul6();">
- <p>Type the code of new Language (The code can not match the code of some existing PO file).</p>
+ <p>Tipo de código del nuevo Idioma (El código no pudrá ser corresponder al código de algún archivo de Po existente).</p>
  <input type="hidden" name="op" value="INSERT_NEW_LANGUAGE" />
  <input type="hidden" name="display" value="createpo" />
  <input type="text" name="newLangCode" value="[% newLangCode %]" size="20" maxlength="20"/>
@@ -124,31 +123,29 @@ function loading_formul8(){
  [% IF (tablePODir) %] <br/><br/>
  <table style="border:0;"><tr><td style="border:0;">
  <table>
- <tr><th>Directory</th><th>Propietario</th><th>Grupo</th><th>Permissions</th></tr>
+ <tr><th>Directorio</th><th>Propietario</th><th>Grupo</th><th>Permisos </th></tr>
  [% tablePODir %] </table>
  </td><td style="border:0;">&nbsp;</td><td style="border:0; vertical-align:top;">
  <table>
- <tr><th>Script User</th><th>Script User Group</th></tr>
+ <tr><th>Script User</th><th>Grupo de Usuarios de Script</th></tr>
  <tr><td>[% scriptUser %]</td><td>[% scriptGroup %]</td></tr>
- <tr><td colspan="2" style="color:#FF0000;">No permission to Write !!!</td></tr>
+ <tr><td colspan="2" style="color:#FF0000;">¡¡¡No permiso para Escribir!!!</td></tr>
  </table><br/>
  </td></tr></table>
  [% END %] [% IF (CreatePoDetails) %] <br/><br/>
- Create PO Files Details.
- <textarea name="details" cols="78" rows="10">[% CreatePoDetails |html %]</textarea>
+ Crear Archivo de Detalles del PO.<textarea name="details" cols="78" rows="10">[% CreatePoDetails |html %]</textarea>
  [% END %] </fieldset>
  </div>
  
  [% IF (editpo) %] <div id="editpo" class="ui-tabs-panel" style="display:block;width:800px;">
  [% ELSE %] <div id="editpo" class="ui-tabs-panel" style="display:none;width:800px;">
  [% END %] <div style="width:785px;border-style:dashed;border-width:1px;border-color:#98bf21;padding:5px;">
- To edit translations, the first step is to select a language from the language combobox.<br/>After selecting a language, you will see a table of permissions for translation PO files and PO files combobox to select one.<br/>
- If you select the Opac or Staff PO file, it will show a templates combobox, whereas if you select the preferences PO file, it will show a combobox with sections of preferences.<br/>
- After selecting a template or a preference section, it will display the different labels and their translations that can be modified.
- </div>
+ Para editar las traducciones, el primer paso es seleccionar un idioma en el cuadro combinado de idioma.<br/>Después de seleccionar el idioma, verá una tabla de permisos para traducir los archivos del PO y un desplegable de archivos Po para seleccionar uno.<br/>
+ Si selecciona el archivo OPAC o Staff de PO, se mostrará un cuadro combinado de plantillas, mientras que si selecciona el archivo de Preferencias de PO, se mostrará un cuadro combinado con secciones de las preferencias.<br/>
+ Después de seleccionar una plantilla o una preferencia, ésta aplicará las diferentes etiquetas y sus traducciones que puedan ser modificadas.</div>
  <fieldset>
  <form id="formul1" name="formul1" action="/cgi-bin/koha/admin/translations_manager.pl" method="POST">
- <p>Select a Language.</p>
+ <p>Seleccionar un Idioma.</p>
  <input type="hidden" name="op" value="SELECT_LANGUAGE" />
  <input type="hidden" name="display" value="editpo" />
  <select name="selectedlang">
@@ -159,16 +156,16 @@ function loading_formul8(){
  [% IF (tablePermissions) %] <br/><br/>
  <table style="border:0;"><tr><td style="border:0;">
  <table>
- <tr><th>File</th><th>Propietario</th><th>Grupo</th><th>Permissions</th></tr>
+ <tr><th>Archivo</th><th>Propietario</th><th>Grupo</th><th>Permisos </th></tr>
  [% tablePermissions %] </table>
  </td><td style="border:0;">&nbsp;</td><td style="border:0; vertical-align:top;">
  <table>
- <tr><th>Script User</th><th>Script User Group</th></tr>
+ <tr><th>Script User</th><th>Grupo de Usuarios de Script</th></tr>
  <tr><td>[% scriptUser %]</td><td>[% scriptGroup %]</td></tr></table>
  </td></tr></table>
  [% END %] [% IF (viewPoSelect) %] <br/>
  <form id="formul2" name="formul2" action="/cgi-bin/koha/admin/translations_manager.pl" method="POST">
- <p>Select PO File.</p>
+ <p>Seleccionar archivo PO.</p>
  <input type="hidden" name="op" value="SELECT_PO_FILE" />
  <input type="hidden" name="display" value="editpo" />
  <input type="hidden" name="selectedlang" value="[% selectedlang %]" />
@@ -179,7 +176,7 @@ function loading_formul8(){
  </form>
  [% END %] [% IF (viewTemplateSelect) %] <br/>
  <form id="formul3" name="formul3" action="/cgi-bin/koha/admin/translations_manager.pl" method="POST">
- <p>Select Template.</p>
+ <p>Seleccionar Plantilla.</p>
  <input type="hidden" name="op" value="SELECT_TEMPLATE" />
  <input type="hidden" name="display" value="editpo" />
  <input type="hidden" name="selectedlang" value="[% selectedlang %]" />
@@ -191,7 +188,7 @@ function loading_formul8(){
  </form>
  [% END %] [% IF (viewSectionSelect) %] <br/>
  <form id="formul4" name="formul4" action="/cgi-bin/koha/admin/translations_manager.pl" method="POST">
- <p>Select Preference Section.</p>
+ <p>Seleccionar Preferencias de Sección.</p>
  <input type="hidden" name="op" value="SELECT_SECTION" />
  <input type="hidden" name="display" value="editpo" />
  <input type="hidden" name="selectedlang" value="[% selectedlang %]" />
@@ -207,11 +204,10 @@ function loading_formul8(){
  [% IF (deletepo) %] <div id="deletepo" class="ui-tabs-panel" style="display:block;width:800px;">
  [% ELSE %] <div id="deletepo" class="ui-tabs-panel" style="display:none;width:800px;">
  [% END %] <div style="width:785px;border-style:dashed;border-width:1px;border-color:#98bf21;padding:5px;">
- Through this interface you can delete all PO files for a language. Select a language from the combobox to delete his PO files.
- </div>
+ A través de esta interfaz se puede borrar todos los archivos PO de un idioma. Seleccione un idioma en el desplegable para eliminar sus archivos PO.</div>
  <fieldset>
  <form name="formul8" name="formul8" action="/cgi-bin/koha/admin/translations_manager.pl" method="POST" onsubmit="return loading_formul8();">
- <p>Select a Language.</p>
+ <p>Seleccionar un Idioma.</p>
  <input type="hidden" name="op" value="SELECT_LANGUAGE_DELETE" />
  <input type="hidden" name="display" value="deletepo" />
  <select name="selectedlang">
@@ -222,13 +218,13 @@ function loading_formul8(){
  [% IF (tablePermissions) %] <br/><br/>
  <table style="border:0;"><tr><td style="border:0;">
  <table>
- <tr><th>File</th><th>Propietario</th><th>Grupo</th><th>Permissions</th></tr>
+ <tr><th>Archivo</th><th>Propietario</th><th>Grupo</th><th>Permisos </th></tr>
  [% tablePermissions %] </table>
  </td><td style="border:0;">&nbsp;</td><td style="border:0; vertical-align:top;">
  <table>
- <tr><th>Script User</th><th>Script User Group</th></tr>
+ <tr><th>Script User</th><th>Grupo de Usuarios de Script</th></tr>
  <tr><td>[% scriptUser %]</td><td>[% scriptGroup %]</td></tr>
- <tr><td colspan="2" style="color:#FF0000;">No permission to Delete all Po files !!!</td></tr>
+ <tr><td colspan="2" style="color:#FF0000;">¡¡¡No permiso para Borrar todos los ficheros Po!!!</td></tr>
  </table><br/>
  </td></tr></table>
  [% END %] </fieldset>
@@ -237,11 +233,10 @@ function loading_formul8(){
  [% IF (createtranslation) %] <div id="createtranslation" class="ui-tabs-panel" style="display:block;width:800px;">
  [% ELSE %] <div id="createtranslation" class="ui-tabs-panel" style="display:none;width:800px;">
  [% END %] <div style="width:785px;border-style:dashed;border-width:1px;border-color:#98bf21;padding:5px;">
- To install a new language must exist their corresponding PO files. Select a language from the combobox to install it.
- </div>
+ Para instalar un nuevo idioma debe existir sus correspondientes archivos PO. Seleccione un idioma en el desplegable para instalarlo.</div>
  <fieldset>
  <form name="formul5" name="formul5" action="/cgi-bin/koha/admin/translations_manager.pl" method="POST" onsubmit="return loading_formul5();">
- <p>Select a Language.</p>
+ <p>Seleccionar un Idioma.</p>
  <input type="hidden" name="op" value="SELECT_INACTIVE_LANGUAGE" />
  <input type="hidden" name="display" value="createtranslation" />
  <select name="selectedInactivelang">
@@ -252,29 +247,27 @@ function loading_formul8(){
  [% IF (tableTemplateDirs) %] <br/><br/>
  <table style="border:0;"><tr><td style="border:0;">
  <table>
- <tr><th>Directory</th><th>Propietario</th><th>Grupo</th><th>Permissions</th></tr>
+ <tr><th>Directorio</th><th>Propietario</th><th>Grupo</th><th>Permisos </th></tr>
  [% tableTemplateDirs %] </table>
  </td><td style="border:0;">&nbsp;</td><td style="border:0; vertical-align:top;">
  <table>
- <tr><th>Script User</th><th>Script User Group</th></tr>
+ <tr><th>Script User</th><th>Grupo de Usuarios de Script</th></tr>
  <tr><td>[% scriptUser %]</td><td>[% scriptGroup %]</td></tr>
- <tr><td colspan="2" style="color:#FF0000;">No permission to Write !!!</td></tr>
+ <tr><td colspan="2" style="color:#FF0000;">¡¡¡No permiso para Escribir!!!</td></tr>
  </table><br/>
  </td></tr></table>
  [% END %] [% IF (CreateTranslationDetails) %] <br/><br/>
- Create Translation Details.
- <textarea name="details" cols="78" rows="10">[% CreateTranslationDetails |html %]</textarea>
+ Crear Traducción de Detalles<textarea name="details" cols="78" rows="10">[% CreateTranslationDetails |html %]</textarea>
  [% END %] </fieldset>
  </div>
  
  [% IF (updatetranslation) %] <div id="updatetranslation" class="ui-tabs-panel" style="display:block;width:800px;">
  [% ELSE %] <div id="updatetranslation" class="ui-tabs-panel" style="display:none;width:800px;">
  [% END %] <div style="width:785px;border-style:dashed;border-width:1px;border-color:#98bf21;padding:5px;">
- After editing PO files from a installed language, to translate the changes to the Opac, the Staff and preferences, you must upgrade your installation language. To update the language installation you must select the language from the combobox.
- </div>
+ Después de editar los archivos del PO desde un idioma instalado, para traducir los cambios del Opac, la intranet  y las preferencias del sistemas, debe actualizar su instalación de idioma. Para actualizar la instalación del idioma deberá seleccionar el idioma desde del desplegable.</div>
  <fieldset>
  <form name="formul7" name="formul7" action="/cgi-bin/koha/admin/translations_manager.pl" method="POST" onsubmit="return loading_formul7();">
- <p>Select a Language.</p>
+ <p>Seleccionar un Idioma.</p>
  <input type="hidden" name="op" value="SELECT_ACTIVE_LANGUAGE" />
  <input type="hidden" name="display" value="updatetranslation" />
  <select name="selectedActivelang">
@@ -285,18 +278,17 @@ function loading_formul8(){
  [% IF (tableTemplateDirs2) %] <br/><br/>
  <table style="border:0;"><tr><td style="border:0;">
  <table>
- <tr><th>Directory</th><th>Propietario</th><th>Grupo</th><th>Permissions</th></tr>
+ <tr><th>Directorio</th><th>Propietario</th><th>Grupo</th><th>Permisos </th></tr>
  [% tableTemplateDirs2 %] </table>
  </td><td style="border:0;">&nbsp;</td><td style="border:0; vertical-align:top;">
  <table>
- <tr><th>Script User</th><th>Script User Group</th></tr>
+ <tr><th>Script User</th><th>Grupo de Usuarios de Script</th></tr>
  <tr><td>[% scriptUser %]</td><td>[% scriptGroup %]</td></tr>
- <tr><td colspan="2" style="color:#FF0000;">No permission to Write !!!</td></tr>
+ <tr><td colspan="2" style="color:#FF0000;">¡¡¡No permiso para Escribir!!!</td></tr>
  </table><br/>
  </td></tr></table>
  [% END %] [% IF (UpdateTranslationDetails) %] <br/><br/>
- Update Translation Details.
- <textarea name="details" cols="78" rows="10">[% UpdateTranslationDetails |html %]</textarea>
+ Cargar detalles de traducción<textarea name="details" cols="78" rows="10">[% UpdateTranslationDetails |html %]</textarea>
  [% END %] </fieldset>
  </div>
  

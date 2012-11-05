@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Descargar lista[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">//<![CDATA[
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Descargar lista[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">//<![CDATA[
 	$(document).ready(function(){
 		$(".close").html(_("Cerrar esta ventana"));
 	});
@@ -7,7 +7,7 @@
 </head>
 <body id="opac-downloadlist" style="padding:1em;">
 <div id="userdownloadshelf" class="container">
-[% UNLESS ( invalidlist ) %] [% IF ( format ) %] <p>Su descarga debería comenzar automáticamente.</p>
+[% UNLESS ( invalidlist ) %] [% IF ( format ) %] <p>La descarga debería comenzar automáticamente.</p>
  [% ELSE %] <form method="post" action="/cgi-bin/koha/opac-downloadshelf.pl">
  <fieldset class="rows">
  <ol><li><label for="format">Descargar lista:</label>
@@ -23,12 +23,12 @@
  <input value="Ir" name="save" type="submit" /></fieldset>
  </form>
 
- <p><a class="button close" href="/cgi-bin/koha/opac-shelves.pl">Volver las listas</a></p>
+ <p><a class="button close" href="/cgi-bin/koha/opac-shelves.pl">Volver a las listas</a></p>
 
  [% END %] [% ELSE %] <div class="dialog alert">
  <p>No tiene permiso para descargar esta lista.</p>
  </div>
- <p><a class="button close" href="/cgi-bin/koha/opac-shelves.pl">Volver las listas</a></p>
+ <p><a class="button close" href="/cgi-bin/koha/opac-shelves.pl">Volver a las listas</a></p>
 [% END %] </div>
 </body>
 </html>

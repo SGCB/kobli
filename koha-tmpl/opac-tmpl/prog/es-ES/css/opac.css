@@ -391,6 +391,13 @@ a .term {
 	background-image:url(../../images/print.gif);
 }
 
+#action a.highlight_toggle {
+    background-image: url("../../images/sprite.png"); /* place hold icon */
+    background-position: -5px -841px;
+    background-repeat: no-repeat;
+    display: none;
+}
+
 #action a#furthersearches {
 	background : transparent url(../../images/menu-arrow.gif) no-repeat right center;
 	border : 1px solid #F3F3F3;
@@ -1822,7 +1829,6 @@ a#MARCview, a#MARCviewPop, a#ISBDview, a#Normalview, a#Fullhistory, a#Briefhisto
 	text-decoration : none;
 }
 #shelfbrowser td, #shelfbrowser th {
-	vertical-align : bottom;
 	width : 20%;
 }
 #shelfbrowser td.top {
@@ -1833,6 +1839,30 @@ a#MARCview, a#MARCviewPop, a#ISBDview, a#Normalview, a#Fullhistory, a#Briefhisto
 }
 #shelfbrowser a {
 	display : block;
+}
+#shelfbrowser #browser_next,
+#shelfbrowser #browser_previous {
+    background-image : url("../../images/sprite.png");
+    background-position : -5px -988px;
+    background-repeat: no-repeat;
+    width : 16px;
+}
+#shelfbrowser #browser_next a,
+#shelfbrowser #browser_previous a {
+    cursor: pointer;
+    display : block;
+    height: 0 !important;
+    margin: 0;
+    overflow: hidden;
+    padding: 50px 0 0;
+    text-decoration: none;
+    width: 16px;
+}
+#shelfbrowser #browser_previous {
+background-position: -9px -1001px;
+}
+#shelfbrowser #browser_next {
+background-position: -9px -1051px;
 }
 
 #comments .commentline {
@@ -1946,7 +1976,7 @@ div.ft {
 
 #basket td ul li {
 	font-size:90%;
-	list-style:disc outside url("../../images/item-bullet.gif");
+    list-style:disc outside url(data:image/gif;base64,R0lGODlhBQAHAJECAP///5zD6v///wAAACH5BAEAAAIALAAAAAAFAAcAAAIMjCUGkbvhFGQSmVAAADs=);
 	padding:0.2em 0;
 }
 
@@ -2590,6 +2620,65 @@ span.sep {
     margin: 5px;
 }
 
+/* jQueryUI Core */
+
+.ui-widget-content { border: 1px solid #B9D8D9; background: #ffffff none; color: #222222; }
+.ui-widget-header { border: 1px solid #B9D8D9; background: #E6F0F2 none; color: #222222; font-weight: bold; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #B9D8D9; background: #F4F8F9 none; font-weight: normal; color: #555555; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #B9D8D9; background: #E6F0F2 none; font-weight: normal; color: #212121; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #aaaaaa; background: #ffffff none; font-weight: normal; color: #212121; }
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  {border: 1px solid #fcefa1; background: #fbf9ee; color: #363636; }
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {border: 1px solid #cd0a0a; background: #fef1ec; color: #cd0a0a; }
+
+/* jQueryUI autocomplete */
+
+.ui-autocomplete { position: absolute; cursor: default; -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.3); -moz-box-shadow: 2px 2px 2px rgba(0,0,0,.3); box-shadow: 2px 2px 2px rgba(0,0,0,.3); }
+.ui-autocomplete.ui-widget-content .ui-state-hover { border: 1px solid #B9D8D9; background: #E6F0F2 none; font-weight: normal; color: #212121; }
+.ui-autocomplete-loading { background: #FFF url("../../img/loading-small.gif") right center no-repeat; }
+.ui-menu li { list-style:none; }
+
+#social_networks span {
+    color: #274D7F;
+    display : block;
+    float : left;
+    font-size: 85%;
+    font-weight: bold;
+    line-height: 2em;
+    margin : .5em 0 .5em .5em !important;
+}
+#social_networks a {
+    background: transparent url("../../images/social-sprite.png") no-repeat;
+    display: block;
+    height : 20px !important;
+    width : 20px;
+    text-indent : -999em;
+}
+
+#social_networks div {
+    float : left !important;
+    margin : .5em 0 .5em .2em !important;
+}
+
+#social_networks #facebook {
+    background-position : -7px -35px;
+}
+
+#social_networks #twitter {
+    background-position : -7px -5px;
+}
+
+#social_networks #linkedin {
+    background-position : -7px -95px;
+}
+
+#social_networks #delicious {
+    background-position : -7px -66px;
+}
+
+#social_networks #email {
+    background-position : -7px -126px;
+}
+
 /* jQuery UI standard tabs */
 .ui-tabs-nav .ui-tabs-selected a,
 .ui-tabs-nav a:hover,
@@ -2613,6 +2702,7 @@ span.sep {
     font-family : inherit;
     font-size : inherit;
 }
+
 ul.ui-tabs-nav li {
     list-style : none;
 }
@@ -2750,11 +2840,69 @@ ul.ui-tabs-nav li {
 }
 
 .authref .label {
- font-style: italic;
+    font-style: italic;
 }
 
+.authstanza {
+    margin-top: 1em;
+}
+
+.authstanzaheading {
+    font-weight: bold;
+}
+div.authorizedheading {
+    font-weight: bold;
+}
+.authstanza li {
+    margin-left: 0.5em;
+}
+.authres_notes, .authres_seealso, .authres_otherscript {
+  padding-top: 5px;
+}
+.authres_notes {
+  font-style: italic;
+}
+
+#didyoumean {
+    background-color: #EEE;
+    border: 1px solid #E8E8E8;
+    margin: 0 0 0.5em;
+    text-align: left;
+    padding: 0.5em;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.suggestionlabel {
+    font-weight: bold;
+}
+
+.searchsuggestion {
+    padding: 0.2em 0.5em;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.authlink {
+    padding-left: 0.25em;
+}
+#hierarchies a {
+    font-weight: normal;
+    text-decoration: underline;
+    color: #069;
+}
+
+#hierarchies a:hover {
+    color: #990033;
+}
+
+#top-pages {
+    margin: 0 0 0.5em;
+}
 
 /* jQuery UI Datepicker */
+.ui-datepicker table {width: 100%; font-size: .9em; border : 0; border-collapse: collapse; margin:0 0 .4em; }
+.ui-datepicker th { background : transparent none; padding: .7em .3em; text-align: center; font-weight: bold; border: 0;  }
+
 .ui-datepicker-trigger {
     vertical-align: middle;
     margin : 0 3px;
@@ -2765,6 +2913,81 @@ ul.ui-tabs-nav li {
     box-shadow: 1px 1px 3px 0 #666;
 }
 
+.contents {
+    width: 75%;
+}
+
+.contentblock {
+    position: relative;
+    margin-left: 2em;
+}
+
+.contents .t:first-child:before {
+    content: "→ ";
+}
+
+.contents .t:before {
+    content: "\A→ ";
+    white-space: pre;
+}
+
+.contents .t {
+    font-weight: bold;
+    display: inline;
+}
+
+.contents .r {
+    display: inline;
+}
+
+body#opac-main #opacmainuserblockmobile {
+    display: none;
+}
+
+.mobile_only {
+   display : none;
+}
+
+/* different sizes for different tags in opac-tags.tt */
+.tagweight0 {
+    font-size: 12px;
+}
+
+.tagweight1 {
+    font-size: 14px;
+}
+
+.tagweight2 {
+    font-size: 16px;
+}
+
+.tagweight3 {
+    font-size: 18px;
+}
+
+.tagweight4 {
+    font-size: 20px;
+}
+
+.tagweight5 {
+    font-size: 22px;
+}
+
+.tagweight6 {
+    font-size: 24px;
+}
+
+.tagweight7 {
+    font-size: 26px;
+}
+
+.tagweight8 {
+    font-size: 28px;
+}
+
+.tagweight9 {
+    font-size: 30px;
+}
 /* ## BABELTHEQUE ## */
 /* Uncomment if babeltheque configuration no contains these lines */
 /*

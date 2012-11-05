@@ -23,7 +23,7 @@
  [% END %] [% IF ( CAN_user_tools_edit_notice_status_triggers ) %] <li><a href="/cgi-bin/koha/tools/overduerules.pl">Disparadores de avisos de retraso/estado</a></li>
  [% END %] [% IF ( CAN_user_tools_label_creator ) %] <li><a href="/cgi-bin/koha/patroncards/home.pl">Creador de carnet de socio</a></li>
  [% END %] [% IF ( CAN_user_tools_delete_anonymize_patrons ) %] <li><a href="/cgi-bin/koha/tools/cleanborrowers.pl">Socios (anonimizar, borrar en bloque)</a></li>
- [% END %] [% IF ( CAN_user_tools_edit_patrons ) %] <li><a href="/cgi-bin/koha/tools/modborrowers.pl">Batch patron modification</a></li>
+ [% END %] [% IF ( CAN_user_tools_edit_patrons ) %] <li><a href="/cgi-bin/koha/tools/modborrowers.pl">Lote modificaciones de socio</a></li>
  [% END %] [% IF ( CAN_user_tools_moderate_tags ) %] <li><a href="/cgi-bin/koha/tags/review.pl">Moderación de etiquetas</a></li>
  [% END %] [% IF ( CAN_user_tools_batch_upload_patron_images ) %] <li><a href="/cgi-bin/koha/tools/picture-upload.pl">Subir imágenes de socios</a></li>
  [% END %] </ul>
@@ -31,7 +31,7 @@
 <ul>
  [% IF ( CAN_user_tools_items_batchdel ) %] <li><a href="/cgi-bin/koha/tools/batchMod.pl?del=1">Eliminar ítems en lote</a></li>
  [% END %] [% IF ( CAN_user_tools_items_batchmod ) %] <li><a href="/cgi-bin/koha/tools/batchMod.pl">Modificación de ítems en lote</a></li>
- [% END %] [% IF ( CAN_user_tools_export_catalog ) %] <li><a href="/cgi-bin/koha/tools/export.pl">Exportar registros bibliográficos/existencias</a></li>
+ [% END %] [% IF ( CAN_user_tools_export_catalog ) %] <li><a href="/cgi-bin/koha/tools/export.pl">Exportar datos </a></li>
  [% END %] [% IF ( CAN_user_tools_inventory ) %] <li><a href="/cgi-bin/koha/tools/inventory.pl">Inventario/existencias</a></li>
  [% END %] [% IF ( CAN_user_tools_label_creator ) %] <li><a href="/cgi-bin/koha/labels/label-home.pl">Creador de etiquetas</a></li>
  <li><a href="/cgi-bin/koha/labels/spinelabel-home.pl">Creador rápido de etiquetas en columnas</a></li>
@@ -53,6 +53,6 @@
  [% END %] [% IF ( CAN_user_tools_view_system_logs ) %] <li><a href="/cgi-bin/koha/tools/viewlog.pl">Visor del log</a></li>
  [% END %] [% IF ( CAN_user_tools_edit_news ) %] <li><a href="/cgi-bin/koha/tools/koha-news.pl">Noticias</a></li>
  [% END %] [% IF ( CAN_user_tools_schedule_tasks ) %] <li><a href="/cgi-bin/koha/tools/scheduler.pl">Planificador de tareas</a></li>
- [% END %] [% IF ( CAN_user_tools_edit_quotes ) %] <li><a href="/cgi-bin/koha/tools/quotes.pl">Quote editor</a></li>
- [% END %] [% IF ( CAN_user_tools_upload_prefs_images ) %] <li><a href="/cgi-bin/koha/tools/prefs-images-upload.pl">Upload OPAC images</a></li>
+ [% END %] [% IF ( CAN_user_tools_edit_quotes ) %] <li><a href="/cgi-bin/koha/tools/quotes.pl">Editor de presupuesto</a></li>
+ [% END %] [% IF ( CAN_user_tools_upload_prefs_images ) %] <li><a href="/cgi-bin/koha/tools/prefs-images-upload.pl">Subir imágenes del OPAC</a></li>
  [% END %] </ul></div></div>

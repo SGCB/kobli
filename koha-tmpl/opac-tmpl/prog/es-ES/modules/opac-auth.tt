@@ -23,57 +23,57 @@
 [% IF ( opacuserlogin ) %]
 [% IF ( nopermission ) %]
 <!-- This is what is displayed if user doesnt have permission -->
-<p>Lo sentimos, el sistema considera que no tiene permisos para acceder a esta página. </p>
+<p>Lo sentimos, el sistema considera que no tienes permiso para acceder a esta página. </p>
 [% END %]
 [% IF ( loginprompt ) %]
 <!-- login prompt time-->
-<h3>Ingresar a su cuenta</h3>
+<h3>Inicie sesión para acceder a su cuenta</h3>
 [% IF ( timed_out ) %]
 <!-- This is what is displayed if login has timed out -->
-<p>Lo sentimos, su sesión ha expirado. Por favor ingrese nuevamente.</p>
+<p>Lo sentimos, tu sesión ha expirado. Por favor, inicia sesión de nuevo.</p>
 [% END %]
 
 [% IF ( different_ip ) %]
 <!-- This is what is displayed if user doesnt have permission -->
-<p>Está conectado desde una dirección IP diferente. Por favor, ingrese de nuevamente.</p>
+<p>Está conectado desde una dirección IP diferente. Por favor, inicie sesión de nuevo.</p>
 [% END %]
 
 [% IF ( invalid_username_or_password ) %]
 <!-- This is what is displayed if user doesnt have permission -->
-<p>Ha introducido un usuario o contraseña incorrecta. Por favor inténtelo nuevamente! Y recuerde, el nombre de usuario y la contraseña son sensibles a mayúsculas.</p>
-[% END %] [% IF ( casAuthentication ) %] <h4>Usuario CAS</h4>
+<p>Ha introducido un usuario o contraseña incorrecta. Por favor, inténtelo de nuevo. Y recuerde, el nombre de usuario y la contraseña son sensibles a mayúsculas.</p>
+[% END %] [% IF ( casAuthentication ) %] <h4>Acceso CAS</h4>
 
 [% IF ( invalidCasLogin ) %]
 <!-- This is what is displayed if cas login has failed -->
-<p>Lo sentimos, el ingreso CAS a fallado.</p>
-[% END %] <p>Si usted tiene un <acronym title="Servicio de Autenticación Central">CAS</acronym> cuenta, [% IF ( casServerUrl ) %] por favor <a href="[% casServerUrl %]">haga clic aquí para ingresar</a>.<p>
-[% END %] [% IF ( casServersLoop ) %] por favor seleccione que sistema desea para autenticarse: </p>
+<p>Lo sentimos, el login CAS ha fallado</p>
+[% END %] <p>Si tiene un <acronym title="Servicio de Autenticación Central">CAS</acronym> cuenta, [% IF ( casServerUrl ) %] por favor <a href="[% casServerUrl %]">Haga clic aquí para iniciar sesión</a>.<p>
+[% END %] [% IF ( casServersLoop ) %] por favor, elija contra cuál quiere autenticarse:</p>
 <ul>
  [% FOREACH casServer IN casServersLoop %] <li><a href="[% casServer.value %]">[% casServer.name %]</a></li>
  [% END %] [% END %] </ul>
 
 <h4>Usuario local</h4>
-<p>Si no tiene una cuenta CAS, sino una cuenta local, lo mismo puede ingresar : </p>
+<p>Si no tiene una cuenta CAS, sino una cuenta local, también puede iniciar sesión: </p>
 
 [% END %] <form action="[% url %]" name="auth" id="auth" method="post">
  <input type="hidden" name="koha_login_context" value="opac" />
 <fieldset class="brief">[% FOREACH INPUT IN INPUTS %] <input type="hidden" name="[% INPUT.name |html %]" value="[% INPUT.value |html %]" />
 [% END %] <ol>
-<li><label for="userid">Usuario</label>
+<li><label for="userid">Login</label>
 <input type="text"  size="25" id="userid"  name="userid" /></li>
 <li><label for="password">Contraseña</label><input type="password"  size="25" id="password"  name="password" /></li>
 </ol></fieldset>
 
-<input value="Ingresar" type="submit" class="submit" />
-<div id="nologininstructions"> <h5>¿No tiene una contraseña aún?</h5><p> Si no tiene contraseña, pase por la administración de la biblioteca la próxima vez que venga. Se le proporcionará una.</p>
-<h5>¿No tiene carnet de la biblioteca?</h5><p> Si no es socio de la biblioteca, pase por la administración de su biblioteca y asóciese. </p></div>
+<input value="Iniciar sesión" type="submit" class="submit" />
+<div id="nologininstructions"> <h5>¿Todavía no tiene una contraseña?</h5><p> Si no tiene contraseña, pase por la administración de la biblioteca la próxima vez que venga. Se le proporcionará una.</p>
+<h5>¿No tiene carné de la biblioteca?</h5><p> Si no tiene carné de la biblioteca, pase por la administración de ésta e inscríbase. </p></div>
 </form>
 
 
-[% END %] [% ELSE %] <h4>La biblioteca no ha autorizado el ingreso al catálogo.</h4>
+[% END %] [% ELSE %] <h4>La biblioteca no ha autorizado el acceso al catálogo.</h4>
 <ul>
- <li>Para reportar este error, puede <a href="mailto:[% admin %]">escriba al administrador Koha</a>.</li>
- <li>Usar la barra de menú superior para navegar por Koha.</li>
+ <li>Para informar de este error, puede<a href="mailto:[% admin %]">escribir al administrador de Koha</a>.</li>
+ <li>Usar la barra de menú superior para navegar por Kobli.</li>
 </ul>
 [% END %]</div>
 </div>

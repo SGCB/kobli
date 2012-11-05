@@ -16,19 +16,17 @@
 
 <h2>Agregar un nuevo socio</h2>
 
-<p>Patrons are added by going to the 'Patrons' module.</p>
+<p>Socios que están añadisos por el módulo de 'Socios'</p>
 
 <ul>
  <li>Haga clic en 'Nuevo'</li>
- <li>First enter the identifying information regarding your patron
-<ul>
+ <li>Primero introducir la información de identificación correspondiente a su socio <ul>
  <li>Los campos obligatorios están definidos en la preferencia del sistema BorrowerMandatoryField</li>
  <li>El saludo se llena por la preferencia del sistema BorrowersTitles</li>
 </ul>
 </li>
- <li>Next enter the contact information
-<ul>
- <li>For contact information, note that the primary phone and email addresses are the ones that appear on notices and slips printed during circulation (receipts, transfer slips and hold slips). The primary email is also the one that overdue notices and other messages go to.</li>
+ <li>A continuación introduzca información de contacto<ul>
+ <li>Para información de contacto, tenga en cuenta que el teléfono principal y direcciones de correo electrónico son los que aparecen en avisos impresos y formularios en circulación (recibos, recibos de transferencia y recibos de reservas). El  correo electrónico principal  es al que notificarán los avisos de vencimiento y otros mensajes.</li>
 </ul>
 </li>
  <li>Si el socio es un niño, se le pedirá que el socio niño dependa de un socio adulto <ul>
@@ -38,7 +36,7 @@
 </ul>
 </li>
  <li>Si el socio es un profesional, se le pedirá que el socio dependa de un socio institucional <ul>
- <li>Haga clic en 'Permitir a socios buscar socios existentes'</li>
+ <li>Seleccionar 'Permitir a los socios buscar en su sistema a socios existentes'</li>
 </ul>
 </li>
  <li>Cada socio puede tener un contacto alternativo <ul>
@@ -47,7 +45,7 @@
 </li>
  <li>El sección de administración de la biblioteca incluye los valores que son utilizados dentro de la biblioteca <ul>
  <li>El campo de número del carnet de socio se calcula automáticamente si usted tiene la preferencia del sistema autoMemberNum establecida de esa manera</li>
- <li><strong>Note:</strong> For a newly installed system this preference will start at 1 and increment by 1 each time after. To have it start with the starting number of your barcodes, enter the first barcode by hand in the patron record and save the patron. After that the field will increment that number by 1.</li>
+ <li><strong>Nota: </strong> Para que un sistema recién instalado active esta preferencia empezará en 1 e incrementará en 1 cada vez. Para que empiece con el número de inicio de los código de barras, introduzca el código de barras por primera vez a mano en el registro de socio y guardar el socio. Después  el campo se incrementará en ese número por 1.</li>
  <li>Si usted accidentalmente elije al comienzo una categoría de socio equivocada puede arreglarla aquí</li>
  <li>Sort 1 and 2 son utilizados con propósitos estadísticos</li>
 </ul>
@@ -57,19 +55,19 @@
  <li>Si el carnet de socio vence (basado en la configuración de la categoría de socio) la fecha de vencimiento se calculará automáticamente</li>
  <li>La Nota OPAC es una nota para el socio - que aparecerá en el OPAC en el registro del socio</li>
  <li>La Nota de Circulación es únicamente para el personal de la biblioteca y aparecerá cuando el personal de circulación va a prestar un ítem a un socio</li>
- <li>The Staff/OPAC asks for the username and password to be used by the patron (and/or staff member) to log into their account in the OPAC and for staff to log in to the staff client.</li>
+ <li>Para registrarse en la cuenta de socio y en la cuenta de  personal como cliente Administrador en el OPAC, el Cliente Administrador/OPAC pedirá el apellido y contraseña </li>
 </ul>
 </li>
  <li>Si ha configurado atributos adicionales para el socio, estos aparecerán a continuación</li>
  <li>Finalmente, si tiene habilitado EnhancedMessagingPreferences, puede seleccionar las preferencias de mensajería para este socio. <ul>
- <li style="color: #990000">Important: These preferences will override any you set via the patron categories</li>
- <li style="color: #990000">Important: These preference can be altered by the patron via the OPAC</li>
+ <li style="color: #990000">Importante: Estas preferencias sobreescribirán cualquiera establecida a través de las categorías del socio</li>
+ <li style="color: #990000">Importante: Estas preferencias pueden ser modificadas por el socio a través del OPAC</li>
 </ul>
 </li>
  <li>Cuando haya finalizado, haga clic en 'Guardar'</li>
 </ul>
 
-<p>If the system suspects this patron is a duplicate of another it will warn you.</p>
+<p>En este punto si el sistema le advertirá si sospecha que el socio es un duplicado de otro.</p>
 
 <h2>Agregar un usuario administrativo</h2>
 
@@ -77,6 +75,6 @@
 
 <p style="color: #990000">Recuerde que debe crear nombres de usuario y contraseñas seguras, ya que estos serán utilizados para iniciar la sesión del personal.</p>
 
-<p><strong>Vea la documentación completa para Agregado de socios en la <a href="http://manual.koha-community.org/3.8/en/patrons.html#addnewpatron">manual</a> (en línea).</strong></p>
+<p><strong>Vea la documentación completa para Agregado de socios en la <a href="http://manual.koha-community.org/3.10/en/patrons.html#addnewpatron">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

@@ -18,8 +18,7 @@
 [% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs">
  <a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
 &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a>
-&rsaquo; [% IF ( unknowuser ) %]Patron does not exist[% ELSE %]Patron statistics for [% firstname %] [% surname %] ([% cardnumber %])[% END %]
-</div>
+&rsaquo; [% IF ( unknowuser ) %]El socio no existe[% ELSE %]Detalles de socio para [% firstname %][% surname %] ([% cardnumber %])[% END %] </div>
 
 <div id="doc3" class="yui-t1">
 
@@ -32,10 +31,10 @@
  <thead>
  <tr>
  [% FOREACH cn IN column_names %] <th>[% cn %]</th>
- [% END %] <th>Total checkouts as of yesterday</th>
- <th>Today's checkouts</th>
- <th>Today's checkins</th>
- <th>Total checkouts</th>
+ [% END %] <th>Total de préstamos a fecha de ayer</th>
+ <th>Préstamos de hoy</th>
+ <th>Notificaciones de hoy </th>
+ <th>Total de préstamos: </th>
  </tr>
  </thead>
 

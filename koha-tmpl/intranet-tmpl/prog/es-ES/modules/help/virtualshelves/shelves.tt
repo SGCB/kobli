@@ -1,6 +1,6 @@
 [% INCLUDE 'help-top.inc' %] <h1>Listas</h1>
  
-<p>Una lista puede ser creada visitando la página de Listas y haciendo clic en 'Nueva Lista'</p>
+<p>Una lista puede ser creada visitando la página de Listas y seleccionar 'Nueva Lista'</p>
 
 <p>En nuevo formulario de listas ofrece varias opciones para crear su lista:</p>
 
@@ -46,22 +46,22 @@
 
 <p>Haciendo clic en 'Nombre de lista' mostrará los contenidos de la lista</p>
 
-<h2>Merging Bibliographic Records Via Lists</h2>
+<h2>Combinar Registros Bibliográficos a través de Listas</h2>
 
-<p>La forma mas sencilla de combinar dos registros bibliográficos duplicados es agregarlos a una lista y utilizar la herramienta de combinación desde allí.</p>
+<p>La forma más sencilla de combinar dos registros bibliográficos duplicados es agregarlos a una lista y utilizar la herramienta de combinación desde allí.</p>
 
 <p>De la lista, seleccione los dos registros bibliográficos que desee combinar. Si elige más o menos de 2, se le presentará un error</p>
 
-<p>Once you have selected the records you want to merge, click the 'Merge selected items' button. You will be asked which of the two records you would like to keep as your primary record and which will be deleted after the merge. If the records were created using different frameworks, Koha will also ask you what Framework you would like the newly merged record to use.</p>
+<p>Una vez que haya seleccionado los registros que desea combinar, seleccione el botón 'Combinar ítems seleccionados'. Se le preguntará cual de los dos registros desea conservar como primario y cual será eliminado luego de la combinación. Si los registros se han creado utilizando distintos plantillas de trabajo, Koha también le preguntará qué plantilla le gustaría que utilice el nuevo registro recién combinado.</p>
 
 <p>Se le presentará la vista MARC de ambos registros (cada uno accesible por pestañas identificadas con el número propio de esos registros). De forma predeterminada el primer registro estará seleccionado, desmarque los campos que no desee en el registro final (destino) y luego muévase a la segunda pestaña y seleccione cuales campos deben ir en el registro final (destino).</p>
 
 <p>Si intenta agregar un campo que no es repetible dos veces (como la selección del campo 245 de ambos registros #1 y #2) se le presentará con un error</p>
 
-<p>Once you have completed your selections click the 'merge' button. The primary record will now show the data you chose for it as well as all of the items/holdings from both bib records, and the second record will be deleted.</p>
+<p>Una vez haya completado su opción seleccione en el botón 'combinar'. El registro primario mostrará los datos seleccionados, y el segundo registro será eliminado.</p>
 
 <p style="color: rgb(153, 0, 0);">Importante: Es importante regenerar el índice Zebra inmediatamente después de combinar registros. Si una búsqueda se realiza para un registro que ha sido borrado, Koha retornará a los socios un error en el OPAC.</p>
 
-<p><strong>See the full documentation for Lists in the <a href="http://manual.koha-community.org/3.8/en/stafflists.html#lists">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Listas en la <a href="http://manual.koha-community.org/3.10/en/stafflists.html#lists">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

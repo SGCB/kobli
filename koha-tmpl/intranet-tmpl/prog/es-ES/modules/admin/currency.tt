@@ -35,7 +35,7 @@
         } else {
             $("#active").removeAttr('checked');
             $("#active").attr('disabled','disabled');
-            $("#hint").html(_("The active currency must have a rate of 1.0"));
+            $("#hint").html(_("La moneda activa debe ser una tarifa de 1.0"));
         }
     }
 
@@ -151,7 +151,7 @@
  <td>[% loo.timestamp %]</td>
  <td style="color:green;">[% IF ( loo.active ) %]✓[% END %]</td>
  <td><a href="[% loo.script_name %]?op=add_form&amp;searchfield=[% loo.currency %]">Editar</a></td>
- <td><a href="[% loo.script_name %]?op=delete_confirm&amp;searchfield=[% loo.currency %]">Borrar</a></td>
+ <td><a href="[% loo.script_name %]?op=delete_confirm&amp;searchfield=[% loo.currency %]">Eliminar</a></td>
  </tr>
  [% END %] </table>
 <br />

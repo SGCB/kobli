@@ -70,12 +70,7 @@ window.onload=function(){
 <div id='mypopup' name='mypopup' style='position: absolute; width: 400px; height: 131px; display: none; background: #FFC url(/intranet-tmpl/prog/img/alert-bg.gif) repeat-x left 0; border: 1px solid #bcbcbc; right: 0px; top: 500px'>
  <span id="message" style="position: absolute; top: 5px; left: 5px;">
  <strong style="color: #900;">ADVERTENCIA:</strong>
- [% IF ( error_1 ) %]
- An error has occurred. Please ask your system administrator to check the error log for more details.
- [% ELSIF ( error_2 ) %]
- An error has occurred. File is not an image or is corrupted. Please ask you system administrator to check the error log for more details.
- [% END %]
- </span>
+ [% IF ( error_1 ) %]  Ha ocurrido un error. Para más detalles, por favor haga que el administrador del sistema verifique el log de errores. [% ELSIF ( error_2 ) %] Ha ocurrido un error. El archivo no es una imagen o está corrupto. Por favor haga que el administrador del sistema verifique el log de errores. [% END %]</span>
  <span id="close" style="position: absolute; top: 100px; left: 175px;">
  <input value="Cerrar" type="submit" onclick="document.getElementById("mypopup").style.display = "none"">
  </span>

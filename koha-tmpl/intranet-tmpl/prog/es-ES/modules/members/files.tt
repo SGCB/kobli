@@ -1,50 +1,53 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Files for [% INCLUDE 'patron-title.inc' %]</title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Ficheroe por [% INCLUDE 'patron-title.inc' %]</title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body>
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Files for [% INCLUDE 'patron-title.inc' %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Imágenes para  [% INCLUDE 'patron-title.inc' %]</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% INCLUDE 'circ-toolbar.inc' %] <h1>Files</h1>
+ [% INCLUDE 'circ-toolbar.inc' %] <h1>Ficheros</h1>
 
- <table>
+ [% IF errors %] <div class="dialog alert">
+ [% IF errors.empty_upload %]The file you are attempting to upload has no contents.[% END %] [% IF errors.no_file %]You did not select a file to upload.[% END %] </div>
+ [% END %] [% IF ( files ) %] <table>
  <thead>
+ <tr>
  <th>Nombre</th>
  <th>Tipo</th>
  <th>Descripción</th>
- <th>Uploaded</th>
- [% IF CAN_user_borrowers %]<th>&nbsp;</th>[% END %] </thead>
+ <th>Subida</th>
+ [% IF CAN_user_borrowers %]<th>&nbsp;</th>[% END %] </tr>
+ </thead>
 
  <tbody>
- [% IF errors %] <div class="error warn">
- [% IF errors.empty_upload %]The file you are attempting to upload has no contents.[% END %]
- [% IF errors.no_file %]You did not select a file to upload.[% END %]
- </div>
- [% END %] [% FOREACH f IN files %] <tr>
- <td><a href="?borrowernumber=[% borrowernumber %]&op=download&file_id=[% f.file_id %]">[% f.file_name %]</a></td>
+ [% FOREACH f IN files %] <tr>
+ <td><a href="?borrowernumber=[% borrowernumber %]&amp;op=download&amp;file_id=[% f.file_id %]">[% f.file_name %]</a></td>
  <td>[% f.file_type %]</td>
  <td>[% f.file_description %]</td>
  <td>[% f.date_uploaded | $KohaDates %]</td>
- [% IF CAN_user_borrowers %]<td><a href="?borrowernumber=[% borrowernumber %]&op=delete&file_id=[% f.file_id %]">Borrar</a></td>[% END %] </tr>
+ [% IF CAN_user_borrowers %]<td><a href="?borrowernumber=[% borrowernumber %]&amp;op=delete&amp;file_id=[% f.file_id %]">Eliminar</a></td>[% END %] </tr>
  [% END %] </tbody>
  </table>
-
- <form method="post" enctype="multipart/form-data">
- <fieldset>
- <legend>Upload New File</legend>
-
- <input type="hidden" name="op" value="upload" />
+ [% ELSE %] <div class="dialog message">
+ <p>Este socio no tiene ficheros asociados. </p>
+ </div>
+ [% END %] <form method="post" action="/cgi-bin/koha/members/files.pl" enctype="multipart/form-data">
+ <fieldset class="rows">
+ <legend>Subir nuevo fichero</legend>
+ <ol>
+ <li><input type="hidden" name="op" value="upload" />
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
  <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
 
  <label for="description">Descripción:</label>
- <input name="description" type="text" />
+ <input name="description" id="description" type="text" /></li>
 
- <input name="uploadfile" type="file" id="uploadfile" />
+ <li><label for="uploadfile">Fichero: </label><input name="uploadfile" type="file" id="uploadfile" /></li>
 
- <input name="upload" type="submit" id="upload" value="Upload File" />
+ </ol>
+ <fieldset class="action"><input value="Subir fichero" name="upload" type="submit" id="upload" /></fieldset>
  </fieldset>
  </form>
 
@@ -54,5 +57,4 @@
  <div class="yui-b">
  [% INCLUDE 'circ-menu.inc' %] </div>
  </div>
-</div>
 [% INCLUDE 'intranet-bottom.inc' %] 

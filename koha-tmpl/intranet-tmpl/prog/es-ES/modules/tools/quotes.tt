@@ -9,7 +9,7 @@
  <script type="text/javascript">
     //<![CDATA[
     var oTable; /* oTable needs to be global */
-    var sEmptyTable = _('No quotes available. Please use the "Add quote" button to add a quote.'); /* override the default message in datatables-strings.inc */
+    var sEmptyTable = _('Quotes no disponibles. Por favor usar el botón "Add quote" par añadir una quote.'); /* override the default message in datatables-strings.inc */
     $(document).ready(function() {
         /* NOTE: This is an ajax-source datatable and *not* a server-side sourced datatable. */
         /* See the datatable docs if you don't understand this difference. */
@@ -37,7 +37,7 @@
                         var quoteID = $('td', nRow)[0].innerHTML;
                         $(nRow).attr("id", quoteID); /* set row ids to quote id */
                         $('td:eq(0)', nRow).click(function() {$(this.parentNode).toggleClass('selected',this.clicked);}); /* add row selectors */
-                        $('td:eq(0)', nRow).attr("title", _("Click ID to select/deselect quote"));
+                        $('td:eq(0)', nRow).attr("title", _("Clicar ID para seleccionar/deseleccionar quote"));
                         $('td', nRow).attr("id",quoteID); /* FIXME: this is a bit of a hack */
                         if (isNaN(quoteID)) {
                             noEditFields = [0,1,2,3]; /* all fields when adding a quote */
@@ -100,11 +100,11 @@
                     });
                 }
                 else {
-                    alert(_('Please supply both the text and source of the quote before saving.'));
+                    alert(_('Por favor facilite el texto y la fuente antes de guardar la quote.'));
                 }
             }
             else if (e.keyCode == 27) {
-                if (confirm(_('Are you sure you want to cancel adding this quote?'))) {
+                if (confirm(_('¿Está seguro de desea cancelar este pedido?'))) {
                     oTable.fnDeleteRow(node);
                 }
                 else {
@@ -133,9 +133,9 @@
                   return this.id;
             }).get().join(', ');
             if (!idsToDelete) {
-                alert(_('Please select a quote(s) by clicking the quote id(s) you desire to delete.'));
+                alert(_('Por favor, seleccione un quote(s) haciendo clic en quote (s) que desea eliminar.'));
             }
-            else if (confirm(_('Are you sure you wish to delete quote(s) ')+idsToDelete+'?')) {
+            else if (confirm(_('¿Está seguro de desea borrar este pedido(s)?')+idsToDelete+'?')) {
                 oTable.$('.selected').each(function(){
                         var quoteID = $(this).attr('id');
                             $.ajax({
@@ -161,22 +161,22 @@
     </script>
 </head>
 <body id="tools_quotes" class="tools">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; Quote Editor</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; Cita editor</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% INCLUDE 'quotes-toolbar.inc' %] <h2>Quote editor</h2>
+ [% INCLUDE 'quotes-toolbar.inc' %] <h2>Editor de presupuesto</h2>
  <div id="instructions">
  <fieldset id="quote_editor_help" class="rows">
- <legend>Instructions</legend>
+ <legend>instrucciones </legend>
  <div id="quote_editor_inst">
  <ul>
- <li>Click on the 'Add quote' button to add a single quote; Press the &lt;Enter&gt; key to save the quote. <b>Note:</b> Both the 'source' and 'text' fields must have content in order for the quote to be saved.</li>
- <li>Click on any field to edit the contents; Press the &lt;Enter&gt; key to save edit.</li>
- <li>Click on one or more quote numbers to select entire quotes for deletion; Click the 'Delete quote(s)' button to delete selected quotes.</li>
- <li>Click the 'Import quotes' button in the toolbar to import a CSV file of quotes.</li>
+ <li>Seleccionar en el botón 'Add quote' para añair una única quote; presionar &lt;Enter&gt; tecla para salvar la quote. <b>Nota: </b> Ambos campos source' y 'texto' deben tener contenido para que la quote se  pueda guardar.</li>
+ <li>Seleccionar en algún campo para editar contenidos; presionar  &lt;Enter&gt; tecla para salvar edición.</li>
+ <li>Seleccionar uno o más quote de números para seleccionar quotes enteras para eliminación; selecciona el botón  'Delete Quote(s)' para borrar quotes seleccionadas.</li>
+ <li>Seleccionar el botón ?Importar quotes' en la barra de herramienta para importar un fichero CVS de quotes.</li>
  </ul>
  </div>
  </fieldset>
@@ -185,9 +185,9 @@
  <thead>
  <tr>
  <th><span style="cursor: help" onclick="event.stopPropagation();alert(_('Click on the quote\'s id to select or deselect the quote. Multiple quotes may be selected.'));">ID</span></th>
- <th>Source</th>
+ <th>Fuente</th>
  <th>Texto</th>
- <th>Last displayed</th>
+ <th>Última actualización </th>
  </tr>
  </thead>
  <tbody>
@@ -195,7 +195,7 @@
  <tr>
  <td></td>
  <td></td>
- <td>Loading data...</td>
+ <td>Cargando datos...</td>
  <td></td>
  </tr>
  </tbody>

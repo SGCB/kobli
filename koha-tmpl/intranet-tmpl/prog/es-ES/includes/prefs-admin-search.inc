@@ -6,7 +6,7 @@
  <form action="/cgi-bin/koha/admin/preferences.pl">
  <input type="hidden" name="tab" value="[% last_tab %]" />
  <input type="hidden" name="op" value="search" />
- <input type="text" size="40" name="searchfield" value="[% searchfield %]" />
+ <input type="text" size="40" name="searchfield" value="[% searchfield |html %]" />
  <input value="Buscar" type="submit" class="submit" />
  </form>
  </div>

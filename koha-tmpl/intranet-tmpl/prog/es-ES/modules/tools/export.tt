@@ -18,10 +18,10 @@ $(document).ready(function() {
 
 <div id="exporttype" class="toptabs">
 <ul>
-<li><a href="#bibs">Export bibliographic records</a></li>
-<li><a href="#auths">Export authority records</a></li>
-[% IF ( allow_db_export ) %] <li><a href="#db">Export database</a></li>
-[% END %] [% IF ( allow_conf_export ) %] <li><a href="#conf">Export configuration</a></li>
+<li><a href="#bibs">Exportar registros bibliográficos</a></li>
+<li><a href="#auths">Exportar registros de autoridad</a></li>
+[% IF ( allow_db_export ) %] <li><a href="#db">Exportar base de datos</a></li>
+[% END %] [% IF ( allow_conf_export ) %] <li><a href="#conf">Exportar configuración</a></li>
 [% END %] </ul>
 <div id="bibs">
 <p>
@@ -86,8 +86,8 @@ $(document).ready(function() {
  <input id="strip_nonlocal_items" type="checkbox" name="strip_nonlocal_items" />
  </li>
  <li>
- <label for="dont_export_fields">No exporte campos</label>
- <input id="dont_export_fields" type="text" name="dont_export_fields" />
+ <label for="export_remove_fields">No exporte campos</label>
+ <input id="export_remove_fields" type="text" name="export_remove_fields" value="[% export_remove_fields %]" />
  separado por un espacio. (e.g., 100a 200 606) </li></ol>
  </fieldset>
  <fieldset class="rows">
@@ -108,7 +108,7 @@ $(document).ready(function() {
  <input type="hidden" name="op" value="export" />
  <input type="hidden" name="record_type" value="bibs" />
 
- <fieldset class="action"><input type="submit" value="Export bibliographic records" class="button" /></fieldset>
+ <fieldset class="action"><input value="Exportar registros bibliográficos" type="submit" class="button" /></fieldset>
 </form>
 </div>
 
@@ -117,11 +117,11 @@ $(document).ready(function() {
  <fieldset class="rows">
  <legend> Seleccionar registros a exportar </legend>
  <ol><li>
- <label for="start">From authid: </label>
+ <label for="start">De authid:</label>
  <input id="start" type="text" name="starting_authid" size="6" />
  </li>
  <li>
- <label for="end">To authid: </label>
+ <label for="end">Para autorizar: </label>
  <input id="end" type="text" name="ending_authid" size="6" />
  </li>
  <li>
@@ -138,12 +138,12 @@ $(document).ready(function() {
  <legend>Opciones</legend>
  <ol>
  <li>
- <label for="dont_export_fields">No exporte campos</label>
- <input id="dont_export_fields" type="text" name="dont_export_fields" />
+ <label for="export_remove_fields">No exporte campos</label>
+ <input id="export_remove_fields" type="text" name="export_remove_fields" />
  separado por un espacio. (e.g., 100a 200 606) </li></ol>
  </fieldset>
  <fieldset class="rows">
- <legend>Output format</legend>
+ <legend>Formato de salida  </legend>
  <ol><li>
  <label for="output_format">Formato de archivo: </label>
  <select id="output_format" name="output_format">
@@ -158,40 +158,40 @@ $(document).ready(function() {
  <input type="hidden" name="op" value="export" />
  <input type="hidden" name="record_type" value="auths" />
 
- <fieldset class="action"><input type="submit" value="Export authority records" class="button" /></fieldset>
+ <fieldset class="action"><input value="Exportar registros de autoridad" type="submit" class="button" /></fieldset>
 </form>
 </div>
 
 [% IF ( allow_db_export ) %] <div id="db">
 <form method="post" action="/cgi-bin/koha/tools/export.pl">
- <p><b>Note : This export file will be very large, and is generated nightly.</b></p>
+ <p><b>Nota: Este fichero exportado será muy largo, y se genera cada noche.</b></p>
  <fieldset class="rows">
- <legend> Choose a file </legend>
+ <legend> Elija el archivo</legend>
  [% IF ( dbfiles && (dbfiles.size > 0) ) %] <ul>
  [% FOREACH dbfile IN dbfiles %] <li><input type="radio" name="filename" value="[% dbfile %]">[% dbfile %]</input></li>
  [% END %] </ul>
- [% ELSE %] <p>Unfortunately, no backups are available.</p>
+ [% ELSE %] <p>Desafortunadamente, no hay copias disponibles.</p>
  [% END %] </fieldset>
 
  [% IF ( dbfiles && (dbfiles.size > 0) ) %] <input type="hidden" name="op" value="export" />
  <input type="hidden" name="record_type" value="db" />
- <fieldset class="action"><input type="submit" value="Download database" class="button" /></fieldset>
+ <fieldset class="action"><input value="Descargar base de datos" type="submit" class="button" /></fieldset>
  [% END %] </form>
 </div>
 [% END %] [% IF ( allow_conf_export ) %] <div id="conf">
 <form method="post" action="/cgi-bin/koha/tools/export.pl">
- <p><b>Note : This export file will be very large, and is generated nightly.</b></p>
+ <p><b>Nota: Este fichero exportado será muy largo, y se genera cada noche.</b></p>
  <fieldset class="rows">
- <legend> Choose a file </legend>
+ <legend> Elija el archivo</legend>
  [% IF ( conffiles && (conffiles.size > 0) ) %] <ul>
  [% FOREACH conffile IN conffiles %] <li><input type="radio" name="filename" value="[% conffile %]">[% conffile %]</input></li>
  [% END %] </ul>
- [% ELSE %] <p>Unfortunately, no backups are available.</p>
+ [% ELSE %] <p>Desafortunadamente, no hay copias disponibles.</p>
  [% END %] </fieldset>
 
  [% IF ( conffiles && (conffiles.size > 0) ) %] <input type="hidden" name="op" value="export" />
  <input type="hidden" name="record_type" value="conf" />
- <fieldset class="action"><input type="submit" value="Download configuration" class="button" /></fieldset>
+ <fieldset class="action"><input value="Descargar configuración" type="submit" class="button" /></fieldset>
  [% END %] </form>
 </div>
 [% END %] </div>

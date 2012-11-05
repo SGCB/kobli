@@ -74,7 +74,7 @@
 <p>Por favor, elija uno o más filtros para continuar.</p>
 
 [% ELSE %] <h2>[% nnoverdue %] [% IF ( noverdue_is_plural ) %]Items[% ELSE %]Item[% END %]
-overdue as of [% todaysdate %][% IF ( isfiltered ) %] <span style="font-size:70%;">(Filtered. <a href="/cgi-bin/koha/circ/overdue.pl">Reset filter</a>)</span>[% END %]</h2>
+overdue as of [% todaysdate %][% IF ( isfiltered ) %] <span style="font-size:70%;">(Filtrado por.<a href="/cgi-bin/koha/circ/overdue.pl">Reajustar filtro</a>)</span>[% END %]</h2>
 
 <p>
  [% IF ( isfiltered ) %] <a href="overdue.pl?op=csv&amp;[% csv_param_string |html %]">Bajar archivo de los retrasos mostrados</a>
@@ -148,9 +148,9 @@ overdue as of [% todaysdate %][% IF ( isfiltered ) %] <span style="font-size:70%
  </span>
  [% ELSE %] <input type="text" name="patron_attr_filter_[% patron_attr_filter_loo.code |html %]" value="[% patron_attr_filter_loo.cgivalue |html %]"/>
  [% END %] [% IF ( patron_attr_filter_loo.repeatable ) %] <a href="#" onclick="clone_parent(this); return false;">Agregar</a>
- [% IF ( patron_attr_filter_loo.isclone ) %] <a href="#" onclick="delete_parent(this); return false;" style="visibility: visible">Borrar</a>
- [% ELSIF ( patron_attr_filter_loo.ismany ) %] <a href="#" onclick="delete_parent(this); return false;" style="visibility: visible">Borrar</a>
- [% ELSE %] <a href="#" onclick="delete_parent(this); return false;" style="visibility: hidden">Borrar</a>
+ [% IF ( patron_attr_filter_loo.isclone ) %] <a href="#" onclick="delete_parent(this); return false;" style="visibility: visible">Eliminar</a>
+ [% ELSIF ( patron_attr_filter_loo.ismany ) %] <a href="#" onclick="delete_parent(this); return false;" style="visibility: visible">Eliminar</a>
+ [% ELSE %] <a href="#" onclick="delete_parent(this); return false;" style="visibility: hidden">Eliminar</a>
  [% END %] [% END %] </li>
  [% END %] <li><label>Tipo de ítem:</label><select name="itemtype" id="itemtype"><option value="">Cualquiera</option>
  [% FOREACH itemtypeloo IN itemtypeloop %][% IF ( itemtypeloo.selected ) %] <option value="[% itemtypeloo.value |html %]" selected="selected">[% itemtypeloo.itemtypename %]</option>[% ELSE %] <option value="[% itemtypeloo.value |html %]">[% itemtypeloo.itemtypename %]</option>[% END %] [% END %] </select>
@@ -162,7 +162,7 @@ overdue as of [% todaysdate %][% IF ( isfiltered ) %] <span style="font-size:70%
  [% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value |html %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %] <option value="[% branchloo.value |html %]">[% branchloo.branchname %]</option>[% END %] [% END %] </select>
  </li>
 
- <li><label for="order">Sort by:</label> <select name="order" id="order">
+ <li><label for="order">Ordenar por:</label> <select name="order" id="order">
 [% FOREACH ORDER_LOO IN ORDER_LOOP %] [% IF ( ORDER_LOO.selected ) %] <option value="[% ORDER_LOO.ordervalue %]" selected="selected">
  [% ELSE %] <option value="[% ORDER_LOO.ordervalue %]">
  [% END %] [% IF ( ORDER_LOO.order_date_due ) %]Fecha de devolución [% ELSIF ( ORDER_LOO.order_borrower ) %]Socio [% ELSIF ( ORDER_LOO.order_barcode ) %]Código de barras [% ELSIF ( ORDER_LOO.order_title ) %]Título [% ELSIF ( ORDER_LOO.order_date_due_desc ) %]Fecha de devolución desc [% ELSIF ( ORDER_LOO.order_borrower_desc ) %]Socio desc [% ELSIF ( ORDER_LOO.order_barcode_desc ) %]Código de barras desc [% ELSIF ( ORDER_LOO.order_title_desc ) %]Título desc [% ELSE %][% ORDER_LOO.label %] [% IF ( ORDER_LOO.desc ) %]desc[% END %] [% END %] </option>

@@ -8,20 +8,20 @@
 var dataTablesDefaults = {
     "oLanguage": {
         "oPaginate": {
-            "sFirst"    : window.MSG_DT_FIRST || "Primero",
-            "sLast"     : window.MSG_DT_LAST || "Último",
-            "sNext"     : window.MSG_DT_NEXT || "Siguiente",
-            "sPrevious" : window.MSG_DT_PREVIOUS || "Anterior"
+            "sFirst"    : window.MSG_DT_FIRST || "First",
+            "sLast"     : window.MSG_DT_LAST || "Last",
+            "sNext"     : window.MSG_DT_NEXT || "Next",
+            "sPrevious" : window.MSG_DT_PREVIOUS || "Previous"
         },
-        "sEmptyTable"       : window.MSG_DT_EMPTY_TABLE || "No hay fatos disponibles en la tabla",
-        "sInfo"             : window.MSG_DT_INFO || "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-        "sInfoEmpty"        : window.MSG_DT_INFO_EMPTY || "No se encuentran entradas para mostrar",
-        "sInfoFiltered"     : window.MSG_DT_INFO_FILTERED || "(filtrado desde _MAX_ entradas totales)",
-        "sLengthMenu"       : window.MSG_DT_LENGTH_MENU || "Mostrar _MENU_ entradas",
-        "sLoadingRecords"   : window.MSG_DT_LOADING_RECORDS || "Cargando...",
-        "sProcessing"       : window.MSG_DT_PROCESSING || "Procesando...",
-        "sSearch"           : window.MSG_DT_SEARCH || "Buscar:",
-        "sZeroRecords"      : window.MSG_DT_ZERO_RECORDS || "No se han encontrado coincidencias en los registros"
+        "sEmptyTable"       : window.MSG_DT_EMPTY_TABLE || "No data available in table",
+        "sInfo"             : window.MSG_DT_INFO || "Showing _START_ to _END_ of _TOTAL_ entries",
+        "sInfoEmpty"        : window.MSG_DT_INFO_EMPTY || "No entries to show",
+        "sInfoFiltered"     : window.MSG_DT_INFO_FILTERED || "(filtered from _MAX_ total entries)",
+        "sLengthMenu"       : window.MSG_DT_LENGTH_MENU || "Show _MENU_ entries",
+        "sLoadingRecords"   : window.MSG_DT_LOADING_RECORDS || "Loading...",
+        "sProcessing"       : window.MSG_DT_PROCESSING || "Processing...",
+        "sSearch"           : window.MSG_DT_SEARCH || "Search:",
+        "sZeroRecords"      : window.MSG_DT_ZERO_RECORDS || "No matching records found"
     },
     "sDom": '<"top pager"ilpf>t<"bottom pager"ip>'
 };
@@ -313,10 +313,10 @@ $.fn.dataTableExt.oPagination.four_button = {
         nNext = document.createElement( 'span' );
         nLast = document.createElement( 'span' );
 
-/*        nFirst.appendChild( document.createTextNode( oSettings.oLanguage.oPaginate.sFirst ) );
+        nFirst.appendChild( document.createTextNode( oSettings.oLanguage.oPaginate.sFirst ) );
         nPrevious.appendChild( document.createTextNode( oSettings.oLanguage.oPaginate.sPrevious ) );
         nNext.appendChild( document.createTextNode( oSettings.oLanguage.oPaginate.sNext ) );
-        nLast.appendChild( document.createTextNode( oSettings.oLanguage.oPaginate.sLast ) );*/
+        nLast.appendChild( document.createTextNode( oSettings.oLanguage.oPaginate.sLast ) );
 
         nFirst.className = "paginate_button first";
         nPrevious.className = "paginate_button previous";
@@ -376,24 +376,24 @@ $.fn.dataTableExt.oPagination.four_button = {
             var buttons = an[i].getElementsByTagName('span');
             if ( oSettings._iDisplayStart === 0 )
             {
-                buttons[0].className = "paginate_disabled_first";
+                buttons[0].className = "paginate_disabled_previous";
                 buttons[1].className = "paginate_disabled_previous";
             }
             else
             {
-                buttons[0].className = "paginate_enabled_first";
+                buttons[0].className = "paginate_enabled_previous";
                 buttons[1].className = "paginate_enabled_previous";
             }
 
             if ( oSettings.fnDisplayEnd() == oSettings.fnRecordsDisplay() )
             {
                 buttons[2].className = "paginate_disabled_next";
-                buttons[3].className = "paginate_disabled_last";
+                buttons[3].className = "paginate_disabled_next";
             }
             else
             {
                 buttons[2].className = "paginate_enabled_next";
-                buttons[3].className = "paginate_enabled_last";
+                buttons[3].className = "paginate_enabled_next";
             }
         }
     }

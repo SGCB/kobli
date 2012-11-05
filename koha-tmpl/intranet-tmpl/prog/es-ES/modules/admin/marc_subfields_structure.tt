@@ -78,7 +78,7 @@ $(document).ready(function() {
  <li><label for="maxlength[% loo.row %]">Longitud máxima:</label><input type="text" id="maxlength[% loo.row %]" name="maxlength" value="[% loo.maxlength %]" size="4" /> (ver ayuda en línea)</li>
  <li><label for="hidden[% loo.row %]">oculto</label><input type="text" id="hidden[% loo.row %]" name="hidden" value="[% loo.hidden %]" size="2" /> (ver ayuda en línea)</li>
  <li><label for="isurl[% loo.row %]">Es una URL:</label>[% loo.isurl %] (si está seleccionado, significa que el subcampo es una URL y puede hacer clic sobre ella)</li>
- <li><label for="link[% loo.row %]">Enlace:</label><input type="text" id="link[% loo.row %]" name="link" value="[% loo.link %]" size="10" maxlength="80" /> (e.g., Title or Local-Number) <span class="error"><em>NOTA: si cambia algo en esta tabla, pídale a su administrador que ejecute el script misc/batchRebuildBiblioTables.pl.</em></span></li>
+ <li><label for="link[% loo.row %]">Enlace:</label><input type="text" id="link[% loo.row %]" name="link" value="[% loo.link %]" size="10" maxlength="80" /> (e.j., titulo o Número-Local) <span class="error"><em>NOTA: si cambia algo en esta tabla, pídale a su administrador que ejecute el script misc/batchRebuildBiblioTables.pl.</em></span></li>
  <li><label for="kohafield[% loo.row %]">Enlace de Koha:</label>[% loo.kohafield %]</li>
  </ol>
  </fieldset>
@@ -129,7 +129,7 @@ $(document).ready(function() {
  <th>Texto</th>
  <th>Restricciones</th>
  <th>Editar</th>
- <th>Borrar</th>
+ <th>Eliminar</th>
 </tr>
 [% FOREACH loo IN loop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
 [% ELSE %] <tr>
@@ -139,22 +139,9 @@ $(document).ready(function() {
  [% ELSE %] [% loo.liblibrarian %] [% END %] </td>
  <td>
  [% IF ( loo.subfield_ignored ) %] <i>subcampo ignorado</i>
- [% ELSE %]
- Tab:[% loo.tab %],
- [% IF ( loo.kohafield ) %] | Koha field: [% loo.kohafield %], [% END %]
- [% IF ( loo.repeatable ) %]Repeatable, [% ELSE %]Not repeatable,[% END %]
- [% IF ( loo.mandatory ) %]Mandatory, [% ELSE %]Not mandatory,[% END %]
- [% IF ( loo.seealso ) %] | See Also: [% loo.seealso %],[% END %]
- [% IF ( loo.hidden ) %]hidden,[% END %]
- [% IF ( loo.isurl ) %]is a URL,[% END %]
- [% IF ( loo.authorised_value ) %] | Auth value:[% loo.authorised_value %],[% END %]
- [% IF ( loo.authtypecode ) %] | Authority:[% loo.authtypecode %],[% END %]
- [% IF ( loo.value_builder ) %] | Plugin:[% loo.value_builder %],[% END %]
- [% IF ( loo.link ) %] | Link:[% loo.link %],[% END %]
- [% END %]
- </td>
+ [% ELSE %] Etiqueta:[% loo.tab %], [% IF ( loo.kohafield ) %] | Campo Koha: [% loo.kohafield %], [% END %] [% IF ( loo.repeatable ) %]Repetible, [% ELSE %]No repetible,[% END %] [% IF ( loo.mandatory ) %]Obligatorio, [% ELSE %]No obligatorio,[% END %] [% IF ( loo.seealso ) %] | Ver también: [% loo.seealso %],[% END %] [% IF ( loo.hidden ) %]oculto,[% END %] [% IF ( loo.isurl ) %]es una URL,[% END %] [% IF ( loo.authorised_value ) %] | Valor autorizado:[% loo.authorised_value %],[% END %] [% IF ( loo.authtypecode ) %] | Autoridad:[% loo.authtypecode %],[% END %] [% IF ( loo.value_builder ) %] | Plugin:[% loo.value_builder %],[% END %] [% IF ( loo.link ) %] | Enlace:[% loo.link %],[% END %] [% END %]  </td>
  <td><a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?op=add_form&amp;tagfield=[% loo.tagfield %]&amp;frameworkcode=[% frameworkcode %]#sub[% loo.tagsubfield %]field">Editar</a></td>
- <td><a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?op=delete_confirm&amp;tagfield=[% loo.tagfield %]&amp;tagsubfield=[% loo.tagsubfield %]&amp;frameworkcode=[% frameworkcode %]">Borrar</a></td>
+ <td><a href="/cgi-bin/koha/admin/marc_subfields_structure.pl?op=delete_confirm&amp;tagfield=[% loo.tagfield %]&amp;tagsubfield=[% loo.tagsubfield %]&amp;frameworkcode=[% frameworkcode %]">Eliminar</a></td>
 </tr>
 [% END %] </table>
 

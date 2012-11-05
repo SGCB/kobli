@@ -1,6 +1,6 @@
-[% INCLUDE 'help-top.inc' %] <h1>MARC Bibliographic Frameworks Subfields</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Subcampos de Hojas de Trabajo Bibliográfica MARC</h1>
 
-<p>Frameworks are made up of MARC fields and subfields. To make edits to most Frameworks you must edit the fields and subfields. Clicking 'Edit' to the right of each subfield will allow you to make changes to the text associated with the field</p>
+<p>Hojas de Trabajo están hechas por campos y subcampos MARC. Para editar Hojas de Trabajo debe editar los campos y subcampos. Seleccionar en 'Editar' a la derecha de cada subcampo, le permitirá hacer cambios al texto asociado con el campo</p>
 
 <ul>
  <li>Cada campo tiene una etiqueta (la cual es la etiqueta MARC) <ul>
@@ -8,8 +8,7 @@
  <li>La 'Etiqueta de OPAC' es lo que se mostrará en la vista MARC en el OPAC</li>
  <li>Si usted marca 'Repetible' el campo tendrá un signo + al costado que al presionarlo le permitirá agregar múltiples valores de ese campo</li>
  <li>Si se marca 'Obligatorio' no se podrá guardar el registro hasta que no se asigne un valor a ese campo</li>
- <li>'Authorized value' is where you define an authorized value that your catalogers can choose from a pull down to fill this field in
-To edit the subfields associated with the tag, click 'Subfields' to the right of the tag on the 'MARC Structure' listing</li>
+ <li>'Valor autorizado' donde se define un valor autorizado que sus catalogadores pueden elegir entre una lista desplegable para rellenar este campo en Para editar los subcampos asociados a la etiqueta, haga clic en 'Subcampos' a la derecha de la etiqueta en el listado de la 'Estructura MARC' </li>
 </ul>
 </li>
  <li>Desde la lista de subcampos puede hacer clic en 'Eliminar' a la derecha de cada uno para eliminarlos.</li>
@@ -25,7 +24,7 @@ To edit the subfields associated with the tag, click 'Subfields' to the right of
 </ul>
 </li>
  <li>Repetible <ul>
- <li>el campo tendrá un signo más junto a él lo que le permite repetir ese campo</li>
+ <li>el campo tendrá un signo siguiente a él permitiendo añadir multiples de esa etiqueta</li>
 </ul>
 </li>
  <li>Obligatorio <ul>
@@ -78,9 +77,8 @@ To edit the subfields associated with the tag, click 'Subfields' to the right of
 </li>
 </ul>
 <ul>
- <li>Is a url
-<ul>
- <li>if checked, it means that the subfield is a url and can be clicked</li>
+ <li>Es una URL<ul>
+ <li>si está seleccionado, significa que el subcampo es una URL y puede hacer click </li>
 </ul>
 </li>
 </ul>
@@ -122,9 +120,9 @@ To edit the subfields associated with the tag, click 'Subfields' to the right of
 </li>
 </ul>
 </li>
- <li>To save your changes simply click the 'Save Changes' button at the top of the screen</li>
+ <li>Para guardar sus cambios seleccione  el botón 'Guardar cambios' en la parte superior de la pantalla</li>
 </ul>
 
-<p><strong>See the full documentation for MARC Frameworks in the <a href="http://manual.koha-community.org/3.8/en/catadmin.html#marcbibframeworks">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Hojas de trabajo MARC en la <a href="http://manual.koha-community.org/3.10/en/catadmin.html#marcbibframeworks">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

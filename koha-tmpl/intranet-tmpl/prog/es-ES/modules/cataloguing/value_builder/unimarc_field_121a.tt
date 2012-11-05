@@ -73,8 +73,8 @@
  [% ELSE %] <option value="ah">medio de almacenamiento magnético - compatible con computadora</option>
  [% END %] [% IF ( f4ai ) %] <option value="ai" selected="selected">medio de almacenamiento magnético - no compatible con computadora</option>
  [% ELSE %] <option value="ai">medio de almacenamiento magnético - no compatible con computadora</option>
- [% END %] [% IF ( f4aj ) %] <option value="aj" selected="selected">papel de calcar</option>
- [% ELSE %] <option value="aj">papel de calcar</option>
+ [% END %] [% IF ( f4aj ) %] <option value="aj" selected="selected">papel de calco</option>
+ [% ELSE %] <option value="aj">papel de calco</option>
  [% END %] [% IF ( f4ak ) %] <option value="ak" selected="selected">cartulina</option>
  [% ELSE %] <option value="ak">cartulina</option>
  [% END %] [% IF ( f4ap ) %] <option value="ap" selected="selected">yeso</option>
@@ -83,14 +83,14 @@
  [% ELSE %] <option value="au">desconocido</option>
  [% END %] [% IF ( f4az ) %] <option value="az" selected="selected">otro medio no fotográfico</option>
  [% ELSE %] <option value="az">otro medio no fotográfico</option>
- [% END %] [% IF ( f4ba ) %] <option value="ba" selected="selected"> base positiva o transparente flexible</option>
- [% ELSE %] <option value="ba"> base positiva o transparente flexible</option>
- [% END %] [% IF ( f4bb ) %] <option value="bb" selected="selected">base negativa o transparente flexible</option>
- [% ELSE %] <option value="bb">base negativa o transparente flexible</option>
- [% END %] [% IF ( f4bc ) %] <option value="bc" selected="selected">base positiva o transparente no flexible</option>
- [% ELSE %] <option value="bc">base positiva o transparente no flexible</option>
- [% END %] [% IF ( f4bd ) %] <option value="bd" selected="selected">base negativa o transparente no flexible</option>
- [% ELSE %] <option value="bd">base negativa o transparente no flexible</option>
+ [% END %] [% IF ( f4ba ) %] <option value="ba" selected="selected"> base positiva transparente u opaca flexible</option>
+ [% ELSE %] <option value="ba"> base positiva transparente u opaca flexible</option>
+ [% END %] [% IF ( f4bb ) %] <option value="bb" selected="selected">base negativa transparente u opaca flexible</option>
+ [% ELSE %] <option value="bb">base negativa transparente u opaca flexible</option>
+ [% END %] [% IF ( f4bc ) %] <option value="bc" selected="selected">base positiva transparente u opaca no flexible</option>
+ [% ELSE %] <option value="bc">base positiva transparente u opaca no flexible</option>
+ [% END %] [% IF ( f4bd ) %] <option value="bd" selected="selected">base negativa transparente u opaca no flexible</option>
+ [% ELSE %] <option value="bd">base negativa transparente u opaca no flexible</option>
  [% END %] [% IF ( f4bz ) %] <option value="bz" selected="selected">otro medio fotográfico</option>
  [% ELSE %] <option value="bz">otro medio fotográfico</option>
  [% END %] </select>
@@ -124,8 +124,8 @@
  [% ELSE %] <option value="b">impreso</option>
  [% END %] [% IF ( f6c ) %] <option value="c" selected="selected">fotografía</option>
  [% ELSE %] <option value="c">fotografía</option>
- [% END %] [% IF ( f6d ) %] <option value="d" selected="selected">impresión de línea de transferencia</option>
- [% ELSE %] <option value="d">impresión de línea de transferencia</option>
+ [% END %] [% IF ( f6d ) %] <option value="d" selected="selected">transferencia de la línea se impresión</option>
+ [% ELSE %] <option value="d">transferencia de la línea se impresión</option>
  [% END %] [% IF ( f6y ) %] <option value="y" selected="selected">no es una reproducción</option>
  [% ELSE %] <option value="y">no es una reproducción</option>
  [% END %] </select>

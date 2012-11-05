@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Cataloging &rsaquo; [% IF ( biblionumber ) %]Editing Indicators for [% title |html %] (Record Number [% biblionumber %])[% ELSE %]Editing Indicators for Add MARC Record[% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; [% IF ( biblionumber ) %]Editar Indicadores para [% title |html %] (Número Registro [% biblionumber %])[% ELSE %]Editar Indicadores para Agregar Registro MARC[% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src='[% themelang %]/js/indicators.js'></script>
 
  <script type="text/javascript">
@@ -102,49 +102,49 @@
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- <h1>Cataloging &rsaquo; [% IF ( biblionumber ) %]Editing Indicators for <em>[% title |html %]</em> (Record Number [% biblionumber %])[% ELSE %]Indicators for Add MARC Record[% END %]</h1>
+ <h1>Catalogación &rsaquo; [% IF ( biblionumber ) %]Editar Indicadores por<em>[% title |html %]</em> (Número de registro [% biblionumber %])[% ELSE %]Añadir indicadores para registro MARC[% END %]</h1>
  <form name="f_pop" id="f_pop" action="">
  <ul>
- [% FOREACH INDICATORS_LOO IN INDICATORS_LOOP %] <li><h2>Field [% INDICATORS_LOO.tagfield %]: [% INDICATORS_LOO.desc %]</h2></li>
+ [% FOREACH INDICATORS_LOO IN INDICATORS_LOOP %] <li><h2>Campo [% INDICATORS_LOO.tagfield %]: [% INDICATORS_LOO.desc %]</h2></li>
 
- <li><label for="[% INDICATORS_LOO.tagfield %]_ind1">User Value for Indicator 1:</label>
+ <li><label for="[% INDICATORS_LOO.tagfield %]_ind1">Usar Valor para Indicador 1:</label>
  <input type="text" name="[% INDICATORS_LOO.tagfield %]_ind1" id="[% INDICATORS_LOO.tagfield %]_ind1" value="[% INDICATORS_LOO.current_value_1 %]" size="1" maxlength="1" class="input_ind" />
- <input type="button" id="[% INDICATORS_LOO.tagfield %]_btn_usevalue_1" title="Use this  value and close the window" class="btn_usevalue" value="Use and Close" />
+ <input value="Usar y Cerrar" type="button" id="[% INDICATORS_LOO.tagfield %]_btn_usevalue_1" title="Utilizar este valor y cerrar la ventana" class="btn_usevalue" />
  </li>
- <li><label for="[% INDICATORS_LOO.tagfield %]_ind2">User Value for Indicator 2: </label>
+ <li><label for="[% INDICATORS_LOO.tagfield %]_ind2">Usar Valor para Indicador 2:</label>
  <input type="text" name="[% INDICATORS_LOO.tagfield %]_ind2" id="[% INDICATORS_LOO.tagfield %]_ind2" value="[% INDICATORS_LOO.current_value_2 %]" size="1" maxlength="1" class="input_ind" />
 
- <input type="button" id="[% INDICATORS_LOO.tagfield %]_btn_usevalue_2" title="Use this  value and close the window" class="btn_usevalue" value="Use and Close" />
+ <input value="Usar y Cerrar" type="button" id="[% INDICATORS_LOO.tagfield %]_btn_usevalue_2" title="Utilizar este valor y cerrar la ventana" class="btn_usevalue" />
  </li>
- <li><input type="button" id="[% INDICATORS_LOO.tagfield %]_btn_usevalue_3" title="Use these values and close the window" class="btn_usevalue3" value="Use both and Close" />&nbsp;&nbsp;<a href="javascript:void(0);" onclick="window.close();" title="Close the window">Cerrar</a></li>
- <li><a href="javascript:void(0);" title="Reload this page and the javascript xml data for validation of indicators value in the addbiblio window. Useful if you've made changes in the framework's indicators and don't want to reload the addbiblio page to realize them." class="reload_xml_opener">Reload validation in opener</a><div style="display:none" class="reloading"><img src="/intranet-tmpl/prog/img/loading.gif" />&nbsp;Reloading...</div></li>
- [% IF ( INDICATORS_LOO.data ) %] <li><h3 style="text-decoration: underline">Predefined values</h3></li>
+ <li><input value="Usar ambos y Cerrar" type="button" id="[% INDICATORS_LOO.tagfield %]_btn_usevalue_3" title="Utilizar estos vlores y cerrar la ventana" class="btn_usevalue3" />&nbsp;&nbsp;<a href="javascript:void(0);" onclick="window.close();" title="Cerrar esta ventana">Cerrar</a></li>
+ <li><a href="javascript:void(0);" title="Actualizar esta página y los datos xml javascript para la validación del valor de los indicadores en la ventana de addbiblio. Es útil si usted ha hecho cambios en la palntilla de trabajo de los indicadores y no quieren volver a cargar la página de addbiblio para llevarlas a cabo." class="reload_xml_opener">Recargar validación en la ventana anterior</a><div style="display:none" class="reloading"><img src="/intranet-tmpl/prog/img/loading.gif" />&nbsp;Recargando...</div></li>
+ [% IF ( INDICATORS_LOO.data ) %] <li><h3 style="text-decoration: underline">Valores predefinidos </h3></li>
  <li>
  <ul>
- <li><label for="[% INDICATORS_LOO.tagfield %]_select_ind1">Indicator 1</label>
- <select name="[% INDICATORS_LOO.tagfield %]_select_ind1" id="[% INDICATORS_LOO.tagfield %]_select_ind1" title="Choose an option to change the value on indicator 1 for field [% INDICATORS_LOO.tagfield %]" class="select_ind">
- <option value="">Choose an option to change the value</option>
+ <li><label for="[% INDICATORS_LOO.tagfield %]_select_ind1">Indicador 1</label>
+ <select name="[% INDICATORS_LOO.tagfield %]_select_ind1" id="[% INDICATORS_LOO.tagfield %]_select_ind1" title="Elegir una opción para cambiar el valor  del indicador 1 para el campo [% INDICATORS_LOO.tagfield %]" class="select_ind">
+ <option value="">Elegir una opción para cambiar el valor</option>
  [% FOREACH dat IN INDICATORS_LOO.data %] [% IF ( dat.ind == 1 ) %] [% IF ( dat.ind_value == "#son#" ) %] <option value="[% dat.ind_value %]">&nbsp;&nbsp;&nbsp;[% dat.desc_partial %]</option>
  [% ELSIF ( dat.desc_partial ) %] <option value="[% dat.ind_value %]">&quot;[% dat.ind_value %]&quot;: [% dat.desc_partial %]</option>
  [% ELSE %] <option value="[% dat.ind_value %]">&quot;[% dat.ind_value %]&quot;: [% dat.ind_desc %]</option>
  [% END %] [% END %] [% END %] </select>
  </li>
  <li>&nbsp;</li>
- <li><label for="[% INDICATORS_LOO.tagfield %]_select_ind2">Indicator 2</label>
- <select name="[% INDICATORS_LOO.tagfield %]_select_ind2" id="[% INDICATORS_LOO.tagfield %]_select_ind2" title="Choose an option to change the value on indicator 2 for field [% INDICATORS_LOO.tagfield %]" class="select_ind">
- <option value="">Choose an option to change the value</option>
+ <li><label for="[% INDICATORS_LOO.tagfield %]_select_ind2">Indicador 2</label>
+ <select name="[% INDICATORS_LOO.tagfield %]_select_ind2" id="[% INDICATORS_LOO.tagfield %]_select_ind2" title="Elegir una opción para cambiar el valor del indicador 2 para el campo [% INDICATORS_LOO.tagfield %]" class="select_ind">
+ <option value="">Elegir una opción para cambiar el valor</option>
  [% FOREACH dat IN INDICATORS_LOO.data %] [% IF ( dat.ind == 2 ) %] [% IF ( dat.ind_value == "#son#" ) %] <option value="[% dat.ind_value %]">&nbsp;&nbsp;&nbsp;[% dat.desc_partial %]</option>
  [% ELSIF ( dat.desc_partial ) %] <option value="[% dat.ind_value %]">&quot;[% dat.ind_value %]&quot;: [% dat.desc_partial %]</option>
  [% ELSE %] <option value="[% dat.ind_value %]">&quot;[% dat.ind_value %]&quot;: [% dat.ind_desc %]</option>
  [% END %] [% END %] [% END %] </select>
  </li>
  <li>&nbsp;</li>
- <li><a href="#" id="[% INDICATORS_LOO.tagfield %]_view_table" class="view_table">View values as a table</a></li>
+ <li><a href="#" id="[% INDICATORS_LOO.tagfield %]_view_table" class="view_table">Ver valores como una tabla</a></li>
  <li>&nbsp;</li>
  <li>
  <table id="[% INDICATORS_LOO.tagfield %]_table_ind_values" class="table_ind_values">
  <thead>
- <th>Indicator</th>
+ <th>Indicador</th>
  <th>Descripción</th>
  <th>Valor</th>
  <th>Acción</th>
@@ -154,7 +154,7 @@
  <td>[% dat.ind %]</td>
  <td>[% dat.ind_desc %]</td>
  <td>&quot;[% dat.ind_value %]&quot;</td>
- <td><a href="javascript:void(0)" onclick="changeValueInd('[% dat.ind_value %]', [% dat.ind %], '[% INDICATORS_LOO.tagfield %]', '[% INDICATORS_LOO.current_field_1 %]', '[% INDICATORS_LOO.current_field_2 %]');" title="Use this value [% dat.ind_value %] on indicator [% dat.ind %] for field [% INDICATORS_LOO.tagfield %]">Use this value</a></td>
+ <td><a href="javascript:void(0)" onclick="changeValueInd('[% dat.ind_value %]', [% dat.ind %], '[% INDICATORS_LOO.tagfield %]', '[% INDICATORS_LOO.current_field_1 %]', '[% INDICATORS_LOO.current_field_2 %]');" title="Utilizar este valor [% dat.ind_value %] en indicador [% dat.ind %] para campo [% INDICATORS_LOO.tagfield %]">Usar este valor</a></td>
  <input type="hidden" name="[% INDICATORS_LOO.tagfield %]_[% dat.ind %]_[% dat.id_indicator_value %]" id="[% INDICATORS_LOO.tagfield %]_[% dat.ind %]_[% dat.id_indicator_value %]" value="[% dat.ind_value %]" />
  </tr>
  [% END %] [% END %] </tbody>
@@ -163,8 +163,7 @@
  </ul>
  </li>
  [% ELSE %] <li>
- There aren't predefined values for this field
- </li>
+ No hay valores predefinidos para este campo</li>
  [% END %] [% END %] </ul>
  </form>
  </div>

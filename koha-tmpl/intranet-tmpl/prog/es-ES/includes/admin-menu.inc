@@ -27,17 +27,18 @@
 <h5>Socios y circulación</h5>
 <ul>
  <li><a href="/cgi-bin/koha/admin/categorie.pl">Tipos y categorías de socio</a></li>
+ <li><a href="/cgi-bin/koha/admin/smart-rules.pl">Reglas de circulación y multas</a></li>
+ <li><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a></li>
+ <li><a href="/cgi-bin/koha/admin/branch_transfer_limits.pl">Límites de transferencia de la biblioteca</a></li>
+ <li><a href="/cgi-bin/koha/admin/transport-cost-matrix.pl">Transport cost matrix</a></li>
+ <li><a href="/cgi-bin/koha/admin/item_circulation_alerts.pl">Alertas de circulación de ítems</a></li>
  <li><a href="/cgi-bin/koha/admin/cities.pl">Ciudades y pueblos</a></li>
  <li><a href="/cgi-bin/koha/admin/roadtype.pl">Tipos de camino</a></li>
- <li><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a></li>
- <li><a href="/cgi-bin/koha/admin/smart-rules.pl">Reglas de circulación y multas</a></li>
- <li><a href="/cgi-bin/koha/admin/branch_transfer_limits.pl">Límites de transferencia de la biblioteca</a></li>
- <li><a href="/cgi-bin/koha/admin/item_circulation_alerts.pl">Alertas de circulación de ítems</a></li>
 </ul>
 
 <h5>Catálogo</h5>
 <ul>
- <li><a href="/cgi-bin/koha/admin/biblio_framework.pl">Hoja de trabajo bibliográfico MARC</a></li>
+ <li><a href="/cgi-bin/koha/admin/biblio_framework.pl">Plantilla bibliográfico MARC</a></li>
  <li><a href="/cgi-bin/koha/admin/koha2marclinks.pl">Correspondencia Koha - MARC</a></li>
  <li><a href="/cgi-bin/koha/admin/fieldmapping.pl">Palabras claves para correspondencia MARC</a></li>
  <li><a href="/cgi-bin/koha/admin/checkmarc.pl">Verificación de hoja de trabajo bibliográfica MARC</a></li>
@@ -62,6 +63,7 @@
  [% IF ( NoZebra ) %]<li><a href="/cgi-bin/koha/admin/stopwords.pl">Palabras eliminadas</a></li>[% END %]
  <!-- <li><a href="/cgi-bin/koha/admin/printers.pl">Network Printers</a></li> -->
  <li><a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a></li>
+ <li><a href="/cgi-bin/koha/admin/didyoumean.pl">Did you mean?</a></li>
 </ul>
 </div>
 </div>

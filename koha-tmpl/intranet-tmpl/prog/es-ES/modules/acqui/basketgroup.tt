@@ -185,6 +185,7 @@ function yuiToolbar() {
  <input type="text" name="basketgroupname" id="basketgroupname" value="[% name %]" /></li>
  <li><label for="billingplace">Lugar de facturación:</label>
  <select name="billingplace" id="billingplace" style="width:13em;">
+ <option value="">--</option>
  [% FOREACH billingplaceloo IN billingplaceloop %] [% IF ( billingplaceloo.selected ) %]<option value="[% billingplaceloo.value %]" selected="selected">[% billingplaceloo.branchname %]</option>
  [% ELSE %]<option value="[% billingplaceloo.value %]">[% billingplaceloo.branchname %]</option>[% END%] [% END %] </select></li>
  <li><label for="deliveryplace">Lugar de entrega:</label>
@@ -241,7 +242,7 @@ function yuiToolbar() {
  <span>
  <input value="Cerrar e Imprimir" type="button" onclick="closeandprint([% basketgroup.id %])" />
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="add" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Editar" type="submit" /></form>
- <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="delete" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Borrar" type="submit" /></form>
+ <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="delete" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Eliminar" type="submit" /></form>
  </span>
  </td>
  </tr>
@@ -263,6 +264,7 @@ function yuiToolbar() {
  <td>
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="reopen" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Reabrir" type="submit" /></form>
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="print" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Imprimir" type="submit" /></form>
+ <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="export" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Exportar como CSV" type="submit" /></form>
  </td>
  </tr>
  [% END %] [% END %] </tbody>

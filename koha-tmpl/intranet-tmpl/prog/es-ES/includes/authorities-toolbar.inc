@@ -33,7 +33,7 @@
 		var delAuthButton = new YAHOO.widget.Button({
           id: "delAuth", 
           type: "button", 
-          label: _("Borrar"), 
+          label: _("Eliminar"), 
           container: "delAuthc",
 		  onclick: {fn: confirm_deletion }
         });
@@ -60,7 +60,7 @@
  
 [% IF ( authid ) %] <a id="editAuth" href="authorities.pl?authid=[% authid %]">Editar</a>
  
- [% UNLESS ( count ) %] <span id="delAuthc"><a id="delAuth" href="javascript:confirm_deletion()">Borrar</a></span>
+ [% UNLESS ( count ) %] <span id="delAuthc"><a id="delAuth" href="javascript:confirm_deletion()">Eliminar</a></span>
  [% END %] <span id="savemenuc">Guardar</span>
 [% ELSE %]&nbsp;[% END %] <span id="newmenuc">
  <label for="add_authtypecode">Nuevo: </label>

@@ -18,7 +18,7 @@
  <input type="hidden" name="op" value="search" />
  <input type="text" name="searchfield" value="[% searchfield %]" />
  <input value="Buscar" name="ok" type="submit" class="submit" />
-<br/><br/><h4><a href="/cgi-bin/koha/admin/translations_manager.pl">Translations Manager</a></h4>
+<br/><br/><h4><a href="/cgi-bin/koha/admin/translations_manager.pl">Gestor de Traducción</a></h4>
 </fieldset>
 </form>
 
@@ -38,31 +38,33 @@
 <dl>
  <dt><a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a></dt>
  <dd>Defina las categorías de socios.</dd>
+[% IF CAN_user_parameters_manage_circ_rules %] <dt><a href="/cgi-bin/koha/admin/smart-rules.pl">Reglas de circulación y multas</a></dt>
+ <dd>Defina reglas de circulación y multas para conjuntos de bibliotecas, categorías de socios y tipos de ítem</dd>
+[% END %] <dt><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a></dt>
+ <dd>Definir los atributos extendidos (identificadores y categorías estadística) para los registros de socios</dd>
+ <dt><a href="/cgi-bin/koha/admin/branch_transfer_limits.pl">Límites de transferencia de la biblioteca</a></dt>
+ <dd>Limitar la capacidad de transferir ítems entre bibliotecas basado en la biblioteca de origen, la biblioteca receptora y el tipo de ítem en cuestión. Estas normas sólo entrarán en vigor si la preferencia UseBranchTransferLimits está ON.</dd>
+ <dt><a href="/cgi-bin/koha/admin/transport-cost-matrix.pl">Transport cost matrix</a></dt>
+ <dd>Define transport costs between branches</dd>
+ <dt><a href="/cgi-bin/koha/admin/item_circulation_alerts.pl">Alertas de circulación de ítems</a></dt>
+ <dd>Defina reglas para notificaciones de préstamos y devoluciones para combinaciones de bibliotecas, categorías de socio, y los tipos de ítems</dd>
  <dt><a href="/cgi-bin/koha/admin/cities.pl">Ciudades y pueblos</a></dt>
  <dd>Defina localidades y ciudades de sus usuarios.</dd>
  <dt><a href="/cgi-bin/koha/admin/roadtype.pl" >Tipos de camino</a>
  </dt>
  <dd>Defina tipos de calles (calle, avenida, pasaje, etc.). Los tipos de calles se despliegan como valores autorizados cuando se agregan/modifican datos de usuarios y pueden ser usados en estadísticas geográficas.</dd>
- <dt><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a></dt>
- <dd>Definir los atributos extendidos (identificadores y categorías estadística) para los registros de socios</dd>
- <dt><a href="/cgi-bin/koha/admin/smart-rules.pl">Reglas de circulación y multas</a></dt>
- <dd>Defina reglas de circulación y multas para conjuntos de bibliotecas, categorías de socios y tipos de ítem</dd>
- <dt><a href="/cgi-bin/koha/admin/branch_transfer_limits.pl">Límites de transferencia de la biblioteca</a></dt>
- <dd>Limitar la capacidad de transferir ítems entre bibliotecas basado en la biblioteca de origen, la biblioteca receptora y el tipo de ítem en cuestión. Estas normas sólo entrarán en vigor si la preferencia UseBranchTransferLimits está ON.</dd>
- <dt><a href="/cgi-bin/koha/admin/item_circulation_alerts.pl">Alertas de circulación de ítems</a></dt>
- <dd>Defina reglas para notificaciones de préstamos y devoluciones para combinaciones de bibliotecas, categorías de socio, y los tipos de ítems</dd>
 </dl>
 </div>
 <div class="yui-u">
 <h3>Catálogo</h3>
 <dl>
- <dt><a href="/cgi-bin/koha/admin/biblio_framework.pl">Hoja de trabajo bibliográfico MARC</a></dt>
+ <dt><a href="/cgi-bin/koha/admin/biblio_framework.pl">Plantilla bibliográfico MARC</a></dt>
  <dd>Crear y gestionar hojas de trabajo para registros bibliográficos que definen las características de sus registros MARC (definiciones de campos y subcampos) como también las plantillas usadas en el editor MARC.</dd>
  <dt><a href="/cgi-bin/koha/admin/koha2marclinks.pl">Correspondencia Koha - MARC</a></dt>
- <dd>Definir equivalencias entre la base de datos de transacciones de Koha (SQL) y los registros bibliográficos MARC. Note que estas equivalencias pueden ser definidas en la estructura de hojas de carga MARC. Esta herramienta es sólo un atajo para acelerar el trabajo.</dd>
+ <dd>Definir equivalencias entre la base de datos de transacciones de Koha (SQL) y los registros bibliográficos MARC. Note que estas equivalencias pueden ser definidas en la estructura plantilla Bibliográficos MARC. Esta herramienta es sólo un atajo para acelerar el trabajo.</dd>
  <dt><a href="/cgi-bin/koha/admin/fieldmapping.pl">Palabras claves para correspondencia MARC</a></dt>
- <dd>Defina la correspondencia entre palabras clave y campos MARC, esas palabras clave son usadas para encontrar algunos datos independientemente de la hoja de carga.</dd>
- <dt><a href="/cgi-bin/koha/admin/checkmarc.pl">Prueba de las hojas de trabajo bibliográficas MARC</a></dt>
+ <dd>Defina la correspondencia entre palabras clave y campos MARC, esas palabras clave son usadas para encontrar algunos datos independientemente de la plantilla.</dd>
+ <dt><a href="/cgi-bin/koha/admin/checkmarc.pl">Prueba de la plantilla bibliográficos MARC</a></dt>
  <dd>Verifica la estructura MARC. Si modifica su hoja de trabajo, recomendamos que utilice esta herramienta para chequear errores en su definición de formato.</dd>
  <dt><a href="/cgi-bin/koha/admin/authtypes.pl">Tipos de autoridad</a></dt>
  <dd>Crear y gestionar hojas de trabajo para autoridades. Estas definen las características de sus registros MARC (definiciones de campos y subcampos).</dd>
@@ -72,8 +74,8 @@
  <dd>Administra reglas para buscar coincidencias automáticas en registros MARC durante la importación.</dd>
  <dt><a href="/cgi-bin/koha/admin/oai_sets.pl">Configuración de conjunto OAI</a></dt>
  <dd>Administrar conjuntos OAI </dd>
- [% IF ( SearchEngine != 'Zebra' ) %] <dt><a href="/cgi-bin/koha/admin/searchengine/solr/indexes.pl">Search engine configuration</a></dt>
- <dd>Manage indexes, facets, and their mappings to MARC fields and subfields.</dd>
+ [% IF ( SearchEngine != 'Zebra' ) %] <dt><a href="/cgi-bin/koha/admin/searchengine/solr/indexes.pl">Buscar motor de configuración</a></dt>
+ <dd>Gestión de índices, facetas, y sus correspondencias con los campos y subcampos MARC.</dd>
  [% END %] </dl>
 
 <h3>Parámetros de la adquisición</h3>
@@ -97,6 +99,8 @@
  <dd>Printers (UNIX paths).</dd> -->
  <dt><a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a></dt>
  <dd>Defina los servidores que se usarán en el cliente Z39.50 integrado.</dd>
+ <dt><a href="/cgi-bin/koha/admin/didyoumean.pl">Did you mean?</a></dt>
+ <dd>Choose which plugins to use to suggest searches to patrons and staff.</dd>
 </dl>
 </div>
 

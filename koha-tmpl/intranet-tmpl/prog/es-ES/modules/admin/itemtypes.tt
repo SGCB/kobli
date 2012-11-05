@@ -225,7 +225,7 @@ function Check(f) {
  [% UNLESS ( loo.notforloan ) %] [% loo.rentalcharge %] [% END %] </td>
  <td>
  <a href="[% loo.script_name %]?op=add_form&amp;itemtype=[% loo.itemtype |html %]">Editar</a>
- <a href="[% loo.script_name %]?op=delete_confirm&amp;itemtype=[% loo.itemtype |html %]">Borrar</a>
+ <a href="[% loo.script_name %]?op=delete_confirm&amp;itemtype=[% loo.itemtype |html %]">Eliminar</a>
  </td>
  </tr>
  [% END %] </table>[% ELSE %] <div class="dialog message">No hay tipos de ítem definidos</div>

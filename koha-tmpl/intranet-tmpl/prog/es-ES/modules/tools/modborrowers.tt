@@ -97,24 +97,24 @@
 </head>
 <body>
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
- <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/tools/modborrowers.pl">Patrons modification</a>
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/tools/modborrowers.pl">Modificación de socios: </a>
 </div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% IF ( op == 'show_form' ) %] <h1>Batch patrons modification</h1>
+ [% IF ( op == 'show_form' ) %] <h1>Lote modificaciones de socio</h1>
  <form method="post" enctype="multipart/form-data" action="/cgi-bin/koha/tools/modborrowers.pl">
  <fieldset class="rows">
  <legend>Use un archivo</legend>
  <label for="uploadfile">Archivo: </label> <input type="file" id="uploadfile" name="uploadfile" />
  </fieldset>
  <fieldset class="rows">
- <legend>Or list cardnumbers one by one</legend>
+ <legend>O listar los números de tarjeta uno por uno</legend>
  <ol>
  <li>
- <label for="cardnumberlist">Carnumber list (one cardnumber per line): </label>
+ <label for="cardnumberlist">Lista de número de tarjeta (uno por cada línea): </label>
  <textarea rows="10" cols="30" id="cardnumberlist" name="cardnumberlist">[% cardnumberlist %]</textarea>
  </li>
  </ol>
@@ -125,12 +125,12 @@
  <a class="cancel" href="/cgi-bin/koha/tools/tools-home.pl">Cancelar</a>
  </fieldset>
  </form>
- [% END %] [% IF ( op == 'show' or op == 'show_results' ) %] [% IF ( op == 'show' ) %] <h1>Batch patrons modification</h1>
- [% ELSE %] <h1>Batch patrons results</h1>
- [% END %] [% IF ( notfoundcardnumbers ) %] <div class="dialog alert"><p>Warning, the following cardnumbers were not found:</p></div>
+ [% END %] [% IF ( op == 'show' or op == 'show_results' ) %] [% IF ( op == 'show' ) %] <h1>Lote modificaciones de socio</h1>
+ [% ELSE %] <h1>Lote de resutlados de socios</h1>
+ [% END %] [% IF ( notfoundcardnumbers ) %] <div class="dialog alert"><p>Atención, los siguientes número de tarjeta  no se encontraron:</p></div>
  <table style="margin:auto;">
  <thead>
- <tr><th>Cardnumbers not found</th></tr>
+ <tr><th>Código de barras no encontrado </th></tr>
  </thead>
  <tbody>
  [% FOREACH notfoundcardnumber IN notfoundcardnumbers %] <tr><td>[% notfoundcardnumber.cardnumber %]</td></tr>
@@ -142,7 +142,7 @@
  [% IF ( errors ) %]
  Errors occured :
  <ul class="warnings">
- [% FOREACH error IN errors %] [% IF ( error.error == 'can_not_update' ) %] <li>Can not update borrower with borrowernumber [% error.borrowernumber %]</li>
+ [% FOREACH error IN errors %] [% IF ( error.error == 'can_not_update' ) %] <li>No se puede actualizar el prestatario con número de prestatario [% error.borrowernumber %]</li>
  [% ELSE %] <li>[% error.error %]</li>
  [% END %] [% END %] </ul>
  [% END %] <br/>
@@ -156,13 +156,13 @@
  <tr>
  [% IF ( op == 'show' ) %] <th>&nbsp;</th>
  [% END %] <th>Apellidos</th>
- <th>Firstname</th>
- <th>Branchname</th>
+ <th>Nombre </th>
+ <th>Biblioteca </th>
  <th>Código de categoría</th>
  <th>Número de Carnet</th>
- <th>dateenrolled</th>
- <th>dateexpiry</th>
- <th>debarred</th>
+ <th>fecha de inscricpión</th>
+ <th>fecha de expiración:</th>
+ <th>excluido</th>
  [% FOREACH attrh IN attributes_header %] <th>[% attrh.attribute %]</th>
  [% END %] </tr>
  </thead>
@@ -186,35 +186,55 @@
  </div>
 
  [% IF ( op == 'show' ) %] <div id="cataloguing_additem_newitem">
- <h2>Edit Patrons</h2>
- <div class="hint">Checking the box right next the label will disable the entry and delete the values of that field on all selected patrons</div>
+ <h2>Editando Socios</h2>
+ <div class="hint">Marcar el recuadro próximo a la derecha de la etiqueta del subcampo deshabilita la entrada y borra los valores de ese subcampo en todos los socios seleccionados</div>
  <fieldset class="rows" id="fields_list">
  <ol>
  [% FOREACH field IN fields %] <li>
- <label style="width:20em;">[% field.lib %]</label>
+ <label style="width:20em;">
+ [% SWITCH ( field.name ) %]
+ [% CASE 'surname' %]
+ Surname:
+ [% CASE 'firstname' %]
+ First name:
+ [% CASE 'branchcode' %]
+ Library:
+ [% CASE 'categorycode' %]
+ Category
+ [% CASE 'sort1' %]
+ Sort 1:
+ [% CASE 'sort2' %]
+ Sort 2:
+ [% CASE 'dateenrolled' %]
+ Registration date:
+ [% CASE 'dateexpiry' %]
+ Expiry date:
+ [% CASE 'debarred' %]
+ Restricted:
+ [% CASE 'debarredcomment' %]
+ Restriction comment:
+ [% CASE 'borrowernotes' %]
+ Circulation note:
+ [% END %]
+ </label>
  [% IF field.mandatory %] <input readonly="readonly" value="[% field.name %]" name="disable_input" type="checkbox" title="Este campo es obligatorio" onclick="return false;" />
- [% ELSE %] <input type="checkbox" title="Check to delete this field" name="disable_input" value="[% field.name %]" />
+ [% ELSE %] <input value="[% field.name %]" name="disable_input" type="checkbox" title="Revisar para borrar este campo" />
  [% END %] [% IF ( field.type == 'text' ) %] <input type="text" name="[% field.name %]" value="" />
  [% END %] [% IF ( field.type == 'select' ) %] [% IF field.option.size %] <select name="[% field.name %]" >
  [% FOREACH opt IN field.option %] <option value="[% opt.value %]">[% opt.lib %]</option>
  [% END %] </select>
- [% ELSE %]
- There is no value defined for [% field.name %]
- [% END %]
- [% END %]
- [% IF ( field.type == 'date' ) %]
- <input type="text" name="[% field.name %]" id="[% field.name %]" value="" size="10" maxlength="10" readonly="readonly" class="datepicker" />
+ [% ELSE %]  No hay valores definidos para  [% field.name %] [% END %] [% END %] [% IF ( field.type == 'date' ) %] <input type="text" name="[% field.name %]" id="[% field.name %]" value="" size="10" maxlength="10" readonly="readonly" class="datepicker" />
  <a href="#" onclick="clearDate('[% field.name %]');return false;">X</a>
  [% END %] </li>
  [% END %] [% IF ( patron_attributes_codes ) %] <li class="attributes">
- <label style="width:20em;">Attribute
+ <label style="width:20em;">Attribute:
  <select name="patron_attributes">
  [% FOREACH pac IN patron_attributes_codes %] <option value="[% pac.attribute_code %]" data-type="[% pac.type %]" data-category="[% pac.category_lib %]">[% pac.attribute_lib %]</option>
  [% END %] </select>
  </label>
- <input type="checkbox" title="check to delete this field" name="disable_input" value="attr0_value" />
+ <input value="attr0_value" name="disable_input" type="checkbox" title="para eliminar este campo seleccionar" />
  <span class="patron_attributes_value"></span>
- <a href="#" title="Add an attribute" onclick="add_attributes(); return false;">+</a>
+ <a href="#" title="Agregando un atributo " onclick="add_attributes(); return false;">+</a>
  <span class="information_category"></span>
  </li>
  [% END %] </ol>
@@ -226,7 +246,7 @@
  </div>
  </form>
  [% END %] [% END %] [% IF ( op == 'show_results' ) %] <br/>
- <a href="/cgi-bin/koha/tools/modborrowers.pl" title="new Batch patrons modification">new Batch patrons modification</a>
+ <a href="/cgi-bin/koha/tools/modborrowers.pl" title="nueva modificación de Lote de socios">nueva modificación de Lote de socios</a>
  [% END %] </div>
  </div>
  <div class="yui-b">

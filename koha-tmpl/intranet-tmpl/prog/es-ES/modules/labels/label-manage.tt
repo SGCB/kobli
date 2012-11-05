@@ -100,12 +100,12 @@
  [% END %] [% END %] </table>
  <fieldset class="action">
  <input value="Editar" type="button" id="edit" onclick="Edit()" />
- <input value="Borrar" type="button" id="delete" onclick="DeleteConfirm()" />
+ <input value="Eliminar" type="button" id="delete" onclick="DeleteConfirm()" />
  [% IF ( print ) %]<input value="Exportar" type="button" id="print" onclick="Xport()" />[% END %] </fieldset>
  </form>
  [% ELSE %] <div class="dialog message">
  <h4>Actualmente no hay [% label_element_title %] disponibles.</h4>
- <p>Utilice la barra de herramientas anteriores para crear una nueva [% label_element %].</p></div>
+ <p>Utilice la barra de herramientas anterior para crear un nuevo [% label_element %].</p></div>
  [% END %] </div>
  [% IF ( error ) %] <div class="yui-u">
  <div class="dialog alert">

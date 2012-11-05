@@ -1,14 +1,14 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Catálogo [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha en línea[% END %] &rsaquo; Enviando su carrito </title>
+[% INCLUDE 'doc-head-open.inc' %] <title>[% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Kobli online[% END %] catálogo &rsaquo; Enviando su cesta </title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body style="padding: 1em;" id="cart_sendbasketform" class="cart">
 <div class="container">[% IF ( email_add ) %] [% IF ( SENT ) %] <h3>Mensaje enviado</h3>
  <p>La bolsa fue enviada a: [% email_add %]</p>
  <p><a class="focus close" href="#">Cerrar ventana</a></p>
- [% END %] [% IF ( error ) %] <p>Problema al enviar el carrito...</p>
+ [% END %] [% IF ( error ) %] <p>Problema al enviar el cesta...</p>
  [% END %] [% ELSE %] <form action="[% url %]" method="post">
 
 <fieldset class="rows"> 
-<legend>Enviar su carrito</legend>
+<legend>Enviar su cesta</legend>
 <ol> <li>
  <label for="email_add">Correo electrónico:</label>
  <input type="text" id="email_add" name="email_add" size="43" class="focus" />

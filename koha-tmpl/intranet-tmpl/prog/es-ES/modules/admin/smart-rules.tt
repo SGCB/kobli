@@ -27,10 +27,10 @@ $(document).ready(function() {
  <li>misma biblioteca, mismo tipo de socio, todos los tipos de ítem</li>
  <li>misma biblioteca, todos los tipos de socios, mismo tipo de ítem</li>
  <li>misma biblioteca, todos los tipos de socio, todos los tipos de ítem</li>
- <li>todas las bibliotecas, mismo tipo de socio, mismo tipo de ítem</li>
- <li>todas las bibliotecas, mismo tipo de socio, todos los tipos de ítem</li>
- <li>todas las bibliotecas, todos los tipos de socio, mismo tipo de ítem</li>
- <li>todas las bibliotecas, todos los tipos de socio, todos los tipos de ítem</li>
+ <li>default (all libraries), same patron type, same item type</li>
+ <li>default (all libraries), same patron type, all item types</li>
+ <li>default (all libraries), all patron types, same item type</li>
+ <li>default (all libraries), all patron types, all item types</li>
  </ul>
  <p>Para modificar una regla, cree una nueva con el mismo tipo de socio y tipo de ítem.</p>
  </div>
@@ -57,6 +57,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <th>Monto de la multa</th>
  <th>Intervalo de costo de multa</th>
  <th>Período de gracia de la multa (día)</th>
+ <th>Vencimiento con sanción ($)</th>
  <th>Suspensión en días (día)</th>
  <th>Renovaciones permitidas (conteo)</th>
  <th>Reservas permitidas (recuento)</th>
@@ -78,12 +79,13 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  [% ELSE %][% IF ( rule.hardduedateafter ) %]después [% rule.hardduedate %]</td>[% END %] [% END %] [% END %] [% ELSE %]Sin definición[% END %] <td>[% rule.fine %]</td>
  <td>[% rule.chargeperiod %]</td>
  <td>[% rule.firstremind %]</td>
+ <td>[% rule.overduefinescap FILTER format("%.2f") %]</td>
  <td>[% rule.finedays %]</td>
  <td>[% rule.renewalsallowed %]</td>
  <td>[% rule.reservesallowed %]</td>
  <td>[% rule.rentaldiscount %]</td>
  <td>
- <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete&amp;itemtype=[% rule.itemtype %]&amp;categorycode=[% rule.categorycode %]&amp;branch=[% rule.current_branch %]">Borrar</a>
+ <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete&amp;itemtype=[% rule.itemtype %]&amp;categorycode=[% rule.categorycode %]&amp;branch=[% rule.current_branch %]">Eliminar</a>
  </td>
  </tr>
  [% END %] <tr>
@@ -118,6 +120,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <td><input name="fine" size="4" /></td>
  <td><input name="chargeperiod" size="2" /></td>
  <td><input name="firstremind" size="2" /> </td>
+ <td><input name="overduefinescap" size="6" /> </td>
  <td><input name="finedays" size="3" /> </td>
  <td><input name="renewalsallowed" size="2" /></td>
  <td><input name="reservesallowed" size="2" /></td>
@@ -128,7 +131,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  </form>
  </div>
  <div id="defaults-for-this-library" class="container">
- <h3>Políticas predeterminadas de préstamo, reserva y devolución para [% IF ( humanbranch ) %][% humanbranch %][% ELSE %]todas las bibliotecas[% END %]</h3>
+ <h3>Default checkout, hold and return policy[% IF ( humanbranch ) %] for [% humanbranch %][% END %]</h3>
  <p>Usted puede establecer un número máximo predeterminado de préstamos, política de reservas y devoluciones que se utilizará si no se definen debajo para un tipo de ítem determinado o categoría.</p>
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
  <input type="hidden" name="op" value="set-branch-defaults" />
@@ -180,7 +183,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  </form>
  </div>
  [% IF ( show_branch_cat_rule_form ) %] <div id="holds-policy-by-patron-category" class="container">
- <h3>Límite de préstamos por categoría de socio para [% IF ( humanbranch ) %][% humanbranch %][% ELSE %]todas las bibliotecas[% END %]</h3>
+ <h3>[% IF humanbranch %]Checkout limit by patron category for [% humanbranch %][% ELSE %]Default checkout limit by patron category[% END %]</h3>
  <p>Para esta biblioteca, puede especificar el número máximo de préstamos que un socio de una determinada categoría puede recibir, independientemente del tipo de ítem. </p>
  <p>Si la cantidad total de préstamos a una dada categoría de socio se deja en blanco, no tendrá límites, a menos que defina un límite específico para un dado tipo de ítem. </p>
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
@@ -198,7 +201,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  [% ELSE %] [% branch_cat_rule_loo.humancategorycode %] [% END %] </td>
  <td>[% IF ( branch_cat_rule_loo.unlimited_maxissueqty ) %] Ilimitado [% ELSE %] [% branch_cat_rule_loo.maxissueqty %] [% END %] </td>
  <td>
- <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete-branch-cat&amp;categorycode=[% branch_cat_rule_loo.categorycode %]&amp;branch=[% current_branch %]">Borrar</a>
+ <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete-branch-cat&amp;categorycode=[% branch_cat_rule_loo.categorycode %]&amp;branch=[% current_branch %]">Eliminar</a>
  </td>
  </tr>
  [% END %] <tr>
@@ -214,7 +217,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  </form>
  </div>
  [% END %] <div id="holds-policy-by-item-type" class="container">
- <h3>Política de reservas por tipo de ítem para [% IF ( humanbranch ) %][% humanbranch %][% ELSE %]todas las bibliotecas[% END %]</h3>
+ <h3>[% IF humanbranch %]Holds policy by item type for [% humanbranch %][% ELSE %]Default holds policy by item type[% END %]</h3>
  <p>
  Para esta biblioteca, podrá editar las reglas para los tipos de ítem, independientemente de las categorías de socios. </p>
  <p>
@@ -225,7 +228,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <li><strong>No se permiten reservas:</strong> Ningún socio puede reservar este libro.</li>
  </ul>
  <p>
- Note que si la preferencia del sistema <code>AllowHoldPolicyOverride</code> está habilitada, estas políticas pueden ser alteradas por el personal de circulación. Además, estas políticas están basadas en la sede de origen del socio, <em>no</em> la biblioteca donde se hace la reserva. </p>
+ Note que si la preferencia del sistema <code>AllowHoldPolicyOverride</code> está habilitada, estas políticas pueden ser alteradas por el personal de circulación. Además, estas políticas están basadas en la sede de origen del socio, <em>no</em> la biblioteca donde se hace la reserva..</p>
 
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
  <input type="hidden" name="op" value="add-branch-item" />
@@ -244,7 +247,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <td>[% IF ( branch_item_rule_loo.holdallowed_any ) %] Desde cualquier biblioteca [% ELSIF ( branch_item_rule_loo.holdallowed_same ) %] Desde la biblioteca de origen [% ELSE %] No se permiten reservas [% END %] </td>
  <td>[% IF ( branch_item_rule_loo.returnbranch == 'homebranch' ) %] Ítem regresa sede origen [% ELSIF ( branch_item_rule_loo.returnbranch == 'holdingbranch' ) %] Ítem regresa a sede de préstamo [% ELSIF ( branch_item_rule_loo.returnbranch == 'noreturn' ) %] Ítem permanece en sede de retorno [% ELSE %] Error - opción desconocida [% END %] </td>
  <td>
- <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete-branch-item&amp;itemtype=[% branch_item_rule_loo.itemtype %]&amp;branch=[% current_branch %]">Borrar</a>
+ <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete-branch-item&amp;itemtype=[% branch_item_rule_loo.itemtype %]&amp;branch=[% current_branch %]">Eliminar</a>
  </td>
  </tr>
  [% END %] <tr>
@@ -263,7 +266,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <td>
  <select name="returnbranch">
  <option value="homebranch">Sede de devolución de ítem</option>
- <option value="holdingbranch">Ítem retorna a sede de préstamo</option>
+ <option value="holdingbranch">Ítem retorna a la biblioteca de préstamo</option>
  <option value="noreturn">Fluctuación de ítem</option>
  </select>
  </td>

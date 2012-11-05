@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; [% IF ( op_add ) %]Ingrese una nueva sugerencia de compra[% END %] [% IF ( op_else ) %]Sugerencias de compra[% END %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; [% IF ( op_add ) %]Realice una nueva sugerencia de compra[% END %] [% IF ( op_else ) %]Sugerencias de compra[% END %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/JavaScript" language="JavaScript">
 //<![CDATA[
@@ -12,10 +12,10 @@ $.tablesorter.addParser({
     // Enable/disable controls if checkboxes are checked
     var checkedBoxes = $(".checkboxed input:checkbox:checked");
     if ($(checkedBoxes).size()) {
-      $("#selections").html(_("With selected suggestions: "));
+      $("#selections").html(_("Con los ítems seleccionados:"));
       $("#selections-toolbar .links a").removeClass("disabled");
     } else {
-      $("#selections").html(_("Select suggestions to: "));
+      $("#selections").html(_("Títulos seleccionados para:"));
       $("#selections-toolbar .links a").addClass("disabled");
     }
 }[% END %]
@@ -73,7 +73,7 @@ $.tablesorter.addParser({
 		if (_alertString.length==0) {
 			f.submit();
 		} else {
-			alertString2 = _("Formulario no enviado debido al o los siguientes problemas");
+			alertString2 = _("Formulario no enviado debido a los siguientes problemas");
 			alertString2 += "\n------------------------------------------------------------------------------------\n\n";
 			alertString2 += _alertString;
 			alert(alertString2);
@@ -89,14 +89,14 @@ $.tablesorter.addParser({
 <div id="usersuggestions" class="container">
 [% IF ( op_add ) %] <h1>Introduzca una nueva sugerencia de compra</h1>
 
- <p>Llene este formulario para hacer una sugerencia de compra. Será notificado por email cuando la biblioteca procese su sugerencia</p>
- <p>Only the title is required, but the more information you enter the easier it will be for the librarians to find the title you're requesting. The "Notes" field can be used to provide any additional information.</p>
+ <p>Rellene este formulario para realizar una sugerencia de compra. Cuando la biblioteca procese tu sugerencia se le notificará por email.</p>
+ <p>Sólo se requiere el título, pero mientras más información proporciones, más fácil le resultará a los bibliotecarios encontrar el ejemplar requerido. El campo "Notas" puede utilizarse para proporcionar información adicional.</p>
  <form action="/cgi-bin/koha/opac-suggestions.pl" method="post">
  <fieldset class="rows"> <ol>
  <li><label class="required" for="title">Título:</label><input type="text" id="title" name="title" size="50" maxlength="80" /></li>
  <li><label for="author">Autor:</label><input type="text" id="author" name="author" size="50" maxlength="80" /></li>
- <li><label for="copyrightdate">Fecha de copyright:</label><input type="text" id="copyrightdate" name="copyrightdate" size="4" maxlength="4" /></li>
- <li><label for="isbn">Número estándar (ISBN, ISSN u Otro):</label><input type="text" id="isbn" name="isbn" size="50" maxlength="80" /></li>
+ <li><label for="copyrightdate">Fecha de publicación:</label><input type="text" id="copyrightdate" name="copyrightdate" size="4" maxlength="4" /></li>
+ <li><label for="isbn">Número estandarizado (ISBN, ISSN u otro):</label><input type="text" id="isbn" name="isbn" size="50" maxlength="80" /></li>
  <li><label for="publishercode">Editor:</label><input type="text" id="publishercode" name="publishercode" size="50" maxlength="80" /></li>
  <li><label for="collectiontitle">Título de colección:</label><input type="text" id="collectiontitle" name="collectiontitle" size="50" maxlength="80" /></li>
  <li><label for="place">Lugar de publicación:</label><input type="text" id="place" name="place" size="50" maxlength="80" /></li>
@@ -110,13 +110,13 @@ $.tablesorter.addParser({
  [% ELSE %] <option value="[% branch_loo.value %]">[% branch_loo.branchname %]</option>
  [% END %] [% END %] </select>
  </li>
- [% END %] [% IF ( patron_reason_loop ) %]<li><label for="patronreason">Razón de la sugerencia: </label><select name="patronreason" id="patronreason"><option value="">-- Escoja --</option>[% FOREACH patron_reason_loo IN patron_reason_loop %] <option value="[% patron_reason_loo.authorised_value %]">[% patron_reason_loo.lib %]</option>
+ [% END %] [% IF ( patron_reason_loop ) %]<li><label for="patronreason">Motivo de la sugerencia: </label><select name="patronreason" id="patronreason"><option value="">-- Escoge --</option>[% FOREACH patron_reason_loo IN patron_reason_loop %] <option value="[% patron_reason_loo.authorised_value %]">[% patron_reason_loo.lib %]</option>
  [% END %]</select></li>[% END %] <li><label for="note">Notas:</label><textarea name="note" id="note" rows="5" cols="40"></textarea></li>
  </ol></fieldset>
- <fieldset class="action"><input type="hidden" name="suggestedby" value="[% suggestedbyme %]" /><input type="hidden" name="op" value="add_confirm" /><input value="Enviar mis sugerencias" type="submit" onclick="Check(this.form); return false;" /> <a class="action" href="/cgi-bin/koha/opac-suggestions.pl">Cancelar</a></fieldset>
+ <fieldset class="action"><input type="hidden" name="suggestedby" value="[% suggestedbyme %]" /><input type="hidden" name="op" value="add_confirm" /><input value="Enviar mi sugerencia" type="submit" onclick="Check(this.form); return false;" /> <a class="action" href="/cgi-bin/koha/opac-suggestions.pl">Cancelar</a></fieldset>
  </form>
 
-[% END %] [% IF ( op_else ) %] <h1>[% IF ( OPACViewOthersSuggestions ) %]Purchase suggestions[% ELSE %][% IF ( loggedinusername ) %]My purchase suggestions[% ELSE %]Purchase suggestions[% END %][% END %]</h1>
+[% END %] [% IF ( op_else ) %] <h1>[% IF ( OPACViewOthersSuggestions ) %]Sugerencias de adquisición[% ELSE %][% IF ( loggedinusername ) %]Mi sugerencias de adquisición[% ELSE %]Sugerencias de adquisición[% END %][% END %] </h1>
 
  [% IF ( deleted ) %]<div class="dialog message">La sugerencia seleccionada ha sido eliminada.</div>[% END %] [% IF ( submitted ) %]<div class="dialog message">Su sugerencia ha sido enviada.</div>[% END %] [% IF ( suggestions_loop ) %] [% IF ( OPACViewOthersSuggestions ) %] <form action="/cgi-bin/koha/opac-suggestions.pl" method="get">
  <table>
@@ -124,7 +124,7 @@ $.tablesorter.addParser({
  <th>
  Buscar: </th>
  <td>
- <input type="text" name="title" value="[% title %]" />
+ <input type="text" name="title" value="[% title |html %]" />
  </td>
  <th>
  Sugerido por: </th>
@@ -144,7 +144,7 @@ $.tablesorter.addParser({
  <div id="toolbar" class="list-actions">[% IF ( loggedinusername ) %]<a class="new" href="/cgi-bin/koha/opac-suggestions.pl?op=add">Nueva sugerencia de compra</a>[% ELSE %][% IF ( AnonSuggestions ) %]<a class="new" href="/cgi-bin/koha/opac-suggestions.pl?op=add">Nueva sugerencia de compra</a>[% END %][% END %] </div>
  [% IF ( loggedinusername ) %]<div id="selections-toolbar" class="list-actions">
  <span class="checkall"></span> <span class="clearall"></span> <span class="sep">|</span>
- <span class="links"><span id="selections">Select suggestions to: </span>
+ <span class="links"><span id="selections">Títulos seleccionados para:</span>
  <span id="removeitems"></span>
  </div>[% END %] <table id="suggestt" class="checkboxed">
  <thead><tr>
@@ -165,11 +165,11 @@ $.tablesorter.addParser({
  [% IF ( suggestions_loo.branchcodesuggestedby ) %][% suggestions_loo.branchcodesuggestedby %][% ELSE %]&nbsp;[% END %] </td>[% END %] <td>
  [% IF ( suggestions_loo.surnamemanagedby ) %][% suggestions_loo.surnamemanagedby %][% IF ( suggestions_loo.firstnamemanagedby ) %],[% END %] [% suggestions_loo.firstnamemanagedby %][% ELSE %]&nbsp;[% END %] </td>
  <td>
- [% IF ( suggestions_loo.ASKED ) %]Requerido[% END %] [% IF ( suggestions_loo.CHECKED ) %]Comprobado por la biblioteca[% END %] [% IF ( suggestions_loo.ACCEPTED ) %]Aceptado por la biblioteca[% END %] [% IF ( suggestions_loo.ORDERED ) %]Pedido por la biblioteca[% END %] [% IF ( suggestions_loo.REJECTED ) %]Sugerencia rechazada [% END %] [% IF ( suggestions_loo.AVAILABLE ) %]Disponible en la biblioteca[% END %] [% IF ( suggestions_loo.reason ) %]([% suggestions_loo.reason %])[% END %] </td>
+ [% IF ( suggestions_loo.ASKED ) %]Pedido[% END %] [% IF ( suggestions_loo.CHECKED ) %]Comprobado por la biblioteca[% END %] [% IF ( suggestions_loo.ACCEPTED ) %]Aceptado por la biblioteca[% END %] [% IF ( suggestions_loo.ORDERED ) %]Pedido por la biblioteca[% END %] [% IF ( suggestions_loo.REJECTED ) %]Sugerencia rechazada [% END %] [% IF ( suggestions_loo.AVAILABLE ) %]Disponible en la biblioteca[% END %] [% IF ( suggestions_loo.reason ) %]([% suggestions_loo.reason %])[% END %] </td>
  </tr>
  [% END %] </tbody>
  </table> [% IF ( loggedinusername ) %]<fieldset class="action">
- <input type="submit" value="Delete selected" />
+ <input value="Borrar seleccionados" type="submit" />
  </fieldset>
  [% END %] </form>
  [% ELSE %]<p>No hay sugerencias de compras pendientes.</p> [% IF ( loggedinusername ) %]<p><a class="new" href="/cgi-bin/koha/opac-suggestions.pl?op=add">Nueva sugerencia de compra</a></p>[% ELSE %][% IF ( AnonSuggestions ) %]<p><a class="new" href="/cgi-bin/koha/opac-suggestions.pl?op=add">Nueva sugerencia de compra</a></p>[% END %][% END %][% END %] [% END %] </div>

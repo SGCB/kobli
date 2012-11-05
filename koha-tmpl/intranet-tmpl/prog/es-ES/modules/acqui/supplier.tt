@@ -107,7 +107,7 @@ if (f.company.value == "") {
  </li>
  </ol>
  <ol class="radio">
- <li><label for="gstyes" class="radio">Número de impuesto registrado:</label>
+ <li><label for="gstyes" class="radio">Tax number registered:</label>
  [% IF ( gstreg ) %] <label for="gstyes">Sí</label> <input type="radio" name="gst" id="gstyes" value="1" checked="checked" />
  <label for="gstno">No</label> <input type="radio" name="gst" id="gstno" value="0" />
  [% ELSE %] <label for="gstyes">Sí</label> <input type="radio" name="gst" id="gstyes" value="1" />
@@ -129,9 +129,17 @@ if (f.company.value == "") {
  [% END %]</li>
  </ol>
  <ol>
+ <li>
+ <label for="gst">Tasa de impuesto</label>
+ <select name="gstrate" id="gstrate">
+ [% FOREACH gst IN gst_values %] [% IF ( gstrate == gst.option ) %] <option value="[% gst.option %]" selected="selected">[% gst.option * 100 | format ("%.1f") %] %</option>
+ [% ELSE %] <option value="[% gst.option %]">[% gst.option * 100 | format ("%.1f") %] %</option>
+ [% END %] [% END %] </select>
+ </li>
+ </ol>
+ <ol>
  <li><label for="discount">Descuento</label>
  <input type="text" size="6" id="discount" name="discount" value="[% discount %]" />%</li>
- <li><label for="gstrate">Tasa de impuesto</label><input type="text" name="gstrate" id="gstrate" size="6" value="[% gstrate %]"/>% (dejar vacío para un impuesto por defecto de [% default_gst_rate %]%)</li>
  <li>
  <label for="deliverytime">Hora de entrega </label>
  <input type="text" size="2" id="deliverytime" name="deliverytime" value="[% deliverytime %]" /> días </li>
@@ -171,7 +179,7 @@ if (f.company.value == "") {
  [% IF ( active ) %] Activo [% ELSE %] Inactivo [% END %]</p>
  <p><strong>Las listas de precios son: </strong>[% listprice %]</p>
  <p><strong>Los precios en la factura son: </strong>[% invoiceprice %]</p>
- [% IF ( GST ) %]<p><strong>Número de impuesto registrado: </strong>
+ [% IF ( gstrate ) %]<p><strong>Número de impuesto registrado: </strong>
  [% IF ( gstreg ) %]Si[% ELSE %]No[% END %]</p>
  <p><strong>Precio de lista de ítem incluye impuesto: </strong>
  [% IF ( listincgst ) %]Si[% ELSE %]No[% END %]</p>
@@ -179,7 +187,7 @@ if (f.company.value == "") {
  [% IF ( invoiceincgst ) %]Si[% ELSE %]No[% END %]</p>[% END %] <p><strong>Descuento: </strong>
  [% discount %] %</p>
  <p><strong>Tasa de impuesto: </strong>
- [% GST %]%[% UNLESS ( default_tax ) %] (predeterminado)[% END %]</p>
+ [% 0 + gstrate * 100 | format("%.1f") %]%</p>
  [% IF deliverytime.defined %] <p><strong>Hora de entrega: </strong>
  [% deliverytime %] días </p>
  [% END %] [% IF ( notes ) %]<p><strong>Notas: </strong>
@@ -205,7 +213,7 @@ if (f.company.value == "") {
  <td>[% contract.contractstartdate | $KohaDates %]</td>
  <td>[% contract.contractenddate | $KohaDates %]</td>
  <td><a href="/cgi-bin/koha/admin/aqcontract.pl?op=add_form&amp;contractnumber=[% contract.contractnumber %]&amp;booksellerid=[% contract.booksellerid %]">Editar</a></td>
- <td><a href="/cgi-bin/koha/admin/aqcontract.pl?op=delete_confirm&amp;contractnumber=[% contract.contractnumber %]&amp;booksellerid=[% contract.booksellerid %]">Borrar</a></td>
+ <td><a href="/cgi-bin/koha/admin/aqcontract.pl?op=delete_confirm&amp;contractnumber=[% contract.contractnumber %]&amp;booksellerid=[% contract.booksellerid %]">Eliminar</a></td>
  </tr>
  [% END %] </tbody>
  </table>

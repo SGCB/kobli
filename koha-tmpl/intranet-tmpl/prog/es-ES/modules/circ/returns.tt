@@ -42,10 +42,8 @@ $(document).ready(function () {
 </script>
 </head>
 <body id="circ_returns" class="circ">
-<div id="header" class="gradient">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'checkin-search.inc' %] </div>
 
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; Devolver</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'checkin-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; Devolver</div>
 
 <div id="doc" class="yui-t7">
 
@@ -73,11 +71,11 @@ $(document).ready(function () {
  <h3>[% holdsfirstname %] [% holdssurname %] tiene [% waiting_holds %] reserva(s) a la espera de ser retirada(s).</h3>
  <p><a href="/cgi-bin/koha/circ/circulation.pl?borrowernumber=[% holdsborrowernumber %]">Prestado a este socio</a>.</p>
  </div>
-[% END %] [% IF ( wrongbranch ) %] <div class="dialog alert"><h3>No se puede devolver</h3><p>Este ítem debe ser devuelto en la biblioteca de origen. <strong>NO DEVUELTO</strong></p>
+[% END %] [% IF ( wrongbranch ) %] <div class="dialog alert"><h3>Cannot check in</h3><p>Este ítem debe ser devuelto en la biblioteca de origen. <strong>NO DEVUELTO</strong></p>
 </div>
 [% END %]
 <!-- case of a mistake in transfer loop -->
-[% IF ( WrongTransfer ) %]<div id="return2" class="dialog message"><!-- WrongTransfer --><h3>Por favor, devolver <a href="/cgi-bin/koha/catalogue/detail.pl?type=intra&amp;biblionumber=[% itembiblionumber %]">[% title |html %]</a> a [% TransferWaitingAt | $KohaBranchName %]</h3><h3><a href="#" onclick="Dopop('transfer-slip.pl?transferitem=[% itemnumber %]&amp;&amp;branchcode=[% homebranch %]&amp;op=slip'); return true;">Imprimir tira</a> o <a href="/cgi-bin/koha/circ/returns.pl?itemnumber=[% itemnumber %]&amp;canceltransfer=1">Cancelar transferencia</a></h3>
+[% IF ( WrongTransfer ) %]<div id="return2" class="dialog message"><!-- WrongTransfer --><h3>Por favor, devolver <a href="/cgi-bin/koha/catalogue/detail.pl?type=intra&amp;biblionumber=[% itembiblionumber %]">[% title |html %]</a> a [% TransferWaitingAt | $KohaBranchName %]</h3><h3><a href="#" onclick="Dopop('transfer-slip.pl?transferitem=[% itemnumber %]&amp;&amp;branchcode=[% homebranch %]&amp;op=slip'); return true;">Imprimir recibo</a> o <a href="/cgi-bin/koha/circ/returns.pl?itemnumber=[% itemnumber %]&amp;canceltransfer=1">Cancelar transferencia</a></h3>
 [% IF ( wborcnum ) %]<h5>Reservado por:</h5>
  <ul><li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">
  [% borsurname %], [% borfirstname %]</a> ([% borcnum %])</li>
@@ -161,7 +159,7 @@ $(document).ready(function () {
  [% IF ( transfer ) %]
  <!-- transfer: item with no reservation, must be returned to its home library -->
  <div id="return1" class="dialog message">
- <h3>Por favor, devolver <a href="/cgi-bin/koha/catalogue/detail.pl?type=intra&amp;biblionumber=[% itembiblionumber %]">[% title or "item" |html %]</a> a [% homebranchname %]<br/>( <a href="#" onclick="Dopop('transfer-slip.pl?transferitem=[% itemnumber %]&amp;branchcode=[% homebranch %]&amp;op=slip'); return true;">Imprimir tira</a> )</h3>
+ <h3>Por favor, devolver <a href="/cgi-bin/koha/catalogue/detail.pl?type=intra&amp;biblionumber=[% itembiblionumber %]">[% title or "item" |html %]</a> a [% homebranchname %]<br/>( <a href="#" onclick="Dopop('transfer-slip.pl?transferitem=[% itemnumber %]&amp;branchcode=[% homebranch %]&amp;op=slip'); return true;">Imprimir recibo</a> )</h3>
  </div>
  [% IF ( soundon ) %] <audio src="/intranet-tmpl/prog/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
  [% END %]
@@ -174,7 +172,7 @@ $(document).ready(function () {
  [% END %] <div id="item-transfer" class="dialog message"><h3> Este ítem necesita ser transferido a [% homebranchname %]</h3>
  Transferir ahora?<br />
  <form method="post" action="returns.pl" name="mainform" id="mainform">
- [% IF itemnumber %] <input value="Si, imprimir tira" name="dotransfer" type="submit" class="print" onclick="Dopop('transfer-slip.pl?transferitem=[% itemnumber %]&&branchcode=[% homebranch %]&op=slip'); return true;" />
+ [% IF itemnumber %] <input value="Si, imprimir recibo" name="dotransfer" type="submit" class="print" onclick="Dopop('transfer-slip.pl?transferitem=[% itemnumber %]&&branchcode=[% homebranch %]&op=slip'); return true;" />
  [% END %] <input value="Sí" name="dotransfer" type="submit" class="submit" />
  <input type="submit" name="notransfer" value="No" class="submit" />
  <input type="hidden" name="tobranch" value="[% homebranch %]" />
@@ -248,8 +246,10 @@ $(document).ready(function () {
  [% END %] [% IF ( errmsgloo.notissued ) %] <p class="problem">No prestado.</p>
  [% END %] [% IF ( errmsgloo.localuse) %] <p class="problem">Uso local almacenado</p>
  [% END %] [% IF ( errmsgloo.waslost ) %] <p class="problem">El ítem estaba perdido, se ha encontrado.</p>
- [% END %] [% IF ( errmsgloo.withdrawn ) %] <p class="problem">Ítem retirado.</p>
- [% END %] [% IF ( errmsgloo.debarred ) %] <p class="problem"><a href="/cgi-bin/koha/circ/circulation.pl?borrowernumber=[% errmsgloo.debarborrowernumber %]">[% errmsgloo.debarname %]([% errmsgloo.debarcardnumber %])</a> está ahora congelado hasta [% errmsgloo.debarred | $KohaDates %] </p>
+ [% END %] [% IF ( errmsgloo.withdrawn ) %] [% IF BlockReturnOfWithdrawnItems %] <h3>No se puede devolver</h3>
+ <p class="problem">Item is withdrawn. <strong>NO DEVUELTO</strong></p>
+ [% ELSE %] <p class="problem">Ítem retirado.</p>
+ [% END %] [% END %] [% IF ( errmsgloo.debarred ) %] <p class="problem"><a href="/cgi-bin/koha/circ/circulation.pl?borrowernumber=[% errmsgloo.debarborrowernumber %]">[% errmsgloo.debarname %]([% errmsgloo.debarcardnumber %])</a> está ahora congelado hasta [% errmsgloo.debarred | $KohaDates %] </p>
  [% END %] [% END %] [% IF ( soundon ) %] <audio src="/intranet-tmpl/prog/sound/critical.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
 [% END %] [% ELSE %] [% IF ( soundon ) %] <audio src="/intranet-tmpl/prog/sound/beep.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
 [% END %] [% END %] </div>
@@ -305,7 +305,7 @@ $(document).ready(function () {
  </table>
 [% END %] [% IF ( riloop ) %] <h2>Ítems devueltos</h2>
  <table>
- <tr><th>Fecha de devolución</th><th>Título</th> <th>Autor</th> <th>Código de barras</th><th>Ubicación en estantería</th><th>Signatura</th><th>Tipo</th> <th>Socio</th><th>Nota</th></tr>
+ <tr><th>Fecha de devolución</th><th>Título</th> <th>Autor</th> <th>Código de barras</th><th>Biblioteca de origen</th><th>Biblioteca de la reserva</th><th>Ubicación en estantería</th><th>Signatura</th><th>Tipo</th> <th>Socio</th><th>Nota</th></tr>
 
  [% FOREACH riloo IN riloop %] <tr>
  <td>[% IF ( riloo.duedate ) %] [% IF ( riloo.return_overdue ) %] <span class="overdue">[% riloo.duedate %] (retraso)</span>
@@ -314,6 +314,8 @@ $(document).ready(function () {
  [% riloo.itemtitle |html %]</a></td>
  <td>[% riloo.itemauthor %]</td>
  <td><a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% riloo.itembiblionumber %]&amp;itemnumber=[% riloo.itemnumber %]#item[% riloo.itemnumber %]">[% riloo.barcode %]</a></td>
+ <td>[% riloo.homebranch %]</td>
+ <td>[% riloo.holdingbranch %]</td>
  <td>[% riloo.location %]</td>
  <td>[% riloo.itemcallnumber %]</td>
  <td>[% riloo.itemtype %] [% riloo.ccode %]</td>

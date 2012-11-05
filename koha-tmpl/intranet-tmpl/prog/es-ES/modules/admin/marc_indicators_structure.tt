@@ -1,5 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administration &rsaquo; Indicators Set - [% IF ( type == 'biblio' ) %]Framework[% ELSE %]Auth Type[% END %] [% code %] - Tag
-[% tagfield %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administration &rsaquo; Conjunto indicadores - [% IF ( type == 'biblio' ) %]Plantilla de trabajo[% ELSE %]Tipo Autoridad[% END %] [% code %] - Tag [% tagfield %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
         var numInd = [% numInd %];
     </script>
@@ -26,8 +25,7 @@
 </head>
 <body>
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
- <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( type == 'biblio' ) %]<a href="/cgi-bin/koha/admin/biblio_framework.pl">MARC Frameworks</a> &rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% code %]&amp;searchfield=[% tagfield %]">[% frameworkcode %] Framework Structure</a>[% ELSE %]<a href="/cgi-bin/koha/admin/authtypes.pl">Authority MARC Framework</a> &rsaquo; <a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% code %]&amp;searchfield=[% tagfield %]">[% frameworkcode %] Framework Structure</a>[% END %] &rsaquo; Indicators Structure - Tag [% tagfield %]
-</div>
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( type == 'biblio' ) %]<a href="/cgi-bin/koha/admin/biblio_framework.pl">Plantillas MARC</a> &rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% code %]&amp;searchfield=[% tagfield %]">[% frameworkcode %] Estructura de hoja de trabajo</a>[% ELSE %]<a href="/cgi-bin/koha/admin/authtypes.pl">Plantilla de Autoridades MARC</a> &rsaquo; <a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% code %]&amp;searchfield=[% tagfield %]">[% frameworkcode %] Estructura de hoja de trabajo</a>[% END %] &rsaquo; Estructura Indicadores - Etiqueta [% tagfield %]</div>
 
 <div id="doc" class="yui-t7">
  <div id="bd">
@@ -40,19 +38,19 @@
  [% IF ( type == 'biblio' ) %] <input type="hidden" name="frameworkcode" value="[% code %]" />
  [% ELSE %] <input type="hidden" name="authtypecode" value="[% code %]" />
  [% END %] <input type="hidden" name="lang" value="[% lang %]" />
- <fieldset class="rows" id="marc_indicators_structure"><legend id="marc_indicators_structure">[% IF ( op == 'mod' ) %]Edit value indicators[% ELSE %]Add value indicators[% END %]</legend>
+ <fieldset class="rows" id="marc_indicators_structure"><legend id="marc_indicators_structure">[% IF ( op == 'mod' ) %]Editar el valor de los indicadores[% ELSE %]Añadir valor a los indicadores[% END %]</legend>
  [% FOREACH BIG_LOO IN BIG_LOOP %] <ol id='ul_[% BIG_LOO.numInd %]'>
  <input type="hidden" name="id_indicator_[% BIG_LOO.numInd %]" value="[% BIG_LOO.id_indicator_value %]" />
  <li>&nbsp;</li>
- <li><b><a href="javascript:void(0)" id="a_in_[% BIG_LOO.numInd %]" class="ul_in">[% BIG_LOO.numInd %] - Indicator [% BIG_LOO.ind %]</a></b></li>
+ <li><b><a href="javascript:void(0)" id="a_in_[% BIG_LOO.numInd %]" class="ul_in">[% BIG_LOO.numInd %] - Indicador [% BIG_LOO.ind %]</a></b></li>
  <li id='ul_in_[% BIG_LOO.numInd %]' style="display:block">
  <ol>
  <li>
- <label for="ind_[% BIG_LOO.numInd %]" title="Type of indicator: 1 or 2">Type of indicator</label>
+ <label for="ind_[% BIG_LOO.numInd %]" title="Tipo de indicador: 1 ó 2">Tipo de indicador</label>
  <input type="text" size="1" maxlength="1" name="ind_[% BIG_LOO.numInd %]" id="ind_[% BIG_LOO.numInd %]" value="[% BIG_LOO.ind %]" onkeyup="changeLabelInd([% BIG_LOO.numInd %], this)" />
  </li>
  <li>
- <label for="ind_value_[% BIG_LOO.numInd %]" title="Value: only one char allowed">Valor</label>
+ <label for="ind_value_[% BIG_LOO.numInd %]" title="Valor: sólo un carácter permitido">Valor</label>
  <input type="text" size="1" maxlength="1" name="ind_value_[% BIG_LOO.numInd %]" id="ind_value_[% BIG_LOO.numInd %]" value="[% BIG_LOO.ind_value %]" onkeyup="checkValueIndCompleteSet([% BIG_LOO.numInd %], this)" />
  </li>
  <li>
@@ -60,15 +58,15 @@
  <textarea cols="80" rows="4" name="ind_desc_[% BIG_LOO.numInd %]" id="ind_desc_[% BIG_LOO.numInd %]">[% BIG_LOO.ind_desc %]</textarea>
  </li>
  <li>
- <input value="Borrar" type="button" onclick="delete_ind_value([% BIG_LOO.numInd %])" />
+ <input value="Eliminar" type="button" onclick="delete_ind_value([% BIG_LOO.numInd %])" />
  </li>
  </ol>
  </li>
  </ol>
  [% END %] </fieldset>
  <fieldset class="action">
- <input type="button" class="button" title="Add another value" value="Add another value" onclick="add_ind_value()" name="btn_add_ind" />
- <input type="submit" class="button" title="Save Values" value="Save Values" name="btn_save" />
+ <input value="Añdir otro valor" name="btn_add_ind" type="button" class="button" title="Añdir otro valor" onclick="add_ind_value()" />
+ <input value="Salvar valores" name="btn_save" type="submit" class="button" title="Salvar valores" />
  </fieldset>
  </form>
 

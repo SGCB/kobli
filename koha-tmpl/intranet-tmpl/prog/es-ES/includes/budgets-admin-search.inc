@@ -1,9 +1,9 @@
-<div id="header" class="gradient">
+<div class="gradient">
 <h1 id="logo"><a href="/cgi-bin/koha/mainpage.pl">[% LibraryName %]</a></h1><!-- Begin Fund Admin Resident Search Box -->
 
 <div id="header_search">
  <div id="budgets_search" class="residentsearch">
- <p class="tip">Search funds:</p>
+ <p class="tip">Buscar fondos:</p>
  <form action="/cgi-bin/koha/admin/aqbudgets.pl" method="post">
  <label for="filter_budgetname">Código del fondo: </label><input type="text" name="filter_budgetname" id="filter_budgetname" size="20" value="[% filter_budgetname %]" />
  <label for="filter_budgetbranch">Biblioteca: </label>
@@ -24,7 +24,7 @@
  <input value="Enviar" type="submit" class="submit" />
  </form>
  </div>[% END %] <ul>
- <li><a href="#budgets_search">Search funds</a></li>
+ <li><a href="#budgets_search">Buscar fondos</a></li>
  [% IF ( CAN_user_circulate ) %]<li><a href="#circ_search">Préstamo</a></li>[% END %] [% IF ( CAN_user_catalogue ) %]<li><a href="#catalog_search">Buscar en el catálogo</a></li>[% END %] </ul>
 </div>
 </div>

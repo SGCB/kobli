@@ -1,5 +1,5 @@
 --- 
-Patrons: 
+patrons.pref: 
   - 
     - Listar
     - 
@@ -14,19 +14,19 @@ Patrons:
         "": No enviar
         1: Enviar
       pref: AutoEmailOpacUser
-    - an email to newly created patrons with their account details.
+    - "un correo electr\xC3\xB3nico a socios de nueva creaci\xC3\xB3n con la informaci\xC3\xB3n de sus cuentas."
   - 
-    - Use
+    - Usar
     - 
       choices: 
-        B_email: alternate
-        "OFF": first valid
-        cardnumber: cardnumber as
-        email: home
-        emailpro: work
+        B_email: Alternar
+        "OFF": "Primera validaci\xC3\xB3n"
+        cardnumber: "n\xC3\xBAmero de tarjeta como"
+        email: Inicio
+        emailpro: trabajo
       default: 'OFF'
       pref: AutoEmailPrimaryAddress
-    - patron email address for sending out emails.
+    - "direccic\xC3\xB3n de correo electr\xC3\xB3nico del socio para enviar emails"
   - 
     - 
       choices: 
@@ -35,23 +35,23 @@ Patrons:
       pref: autoMemberNum
     - "configurar por defecto el siguiente n\xC3\xBAmero de socio disponible (por ejemplo, si el mayor n\xC3\xBAmero de socio utilizado actualmente es 26345000012941, este campo valdr\xC3\xA1 de forma predeterminada 26345000012942)."
   - 
-    - "The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> must be filled in on the patron entry screen:"
+    - "El siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de la base de datos</a> debe ser rellenado en la pantalla de entrada del socio:"
     - 
       class: multi
       pref: BorrowerMandatoryField
     - (columnas separadas con |)
   - 
-    - "The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> will not appear on the patron entry screen:"
+    - "Las siguientes <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de la base de datos</a> no aparecer\xC3\xA1n en la pantalla de entrada de socio:"
     - 
       class: multi
       pref: BorrowerUnwantedField
-    - (separate columns with |)
+    - (columnas separadas con |)
   - 
-    - "Garantes pueden ser los siguientes de los que garantizan:"
+    - "La funci\xC3\xB3n de garante se asigna a:"
     - 
       class: multi
       pref: borrowerRelationship
-    - (input multiple choices separated by |). Leave empty to deactivate
+    - "(m\xC3\xBAltiples opciones de entrada separadas por |).Cuando est\xC3\xA9 desactivado salir vac\xC3\xADo"
   - 
     - "Los socios pueden tener los siguientes t\xC3\xADtulos:"
     - 
@@ -71,7 +71,7 @@ Patrons:
         "": No permitir
         1: Permitir
       pref: EnhancedMessagingPreferences
-    - "a socios elegir cuales avisos recibir\xC3\xA1n y cuando los recibir\xC3\xA1n. Note que esto solo se aplica a ciertos tipos de avisos."
+    - "a los socios elegir cuales avisos recibir\xC3\xA1n y cuando los recibir\xC3\xA1n. Note que esto solo se aplica a ciertos tipos de avisos."
   - 
     - 
       choices: 
@@ -87,11 +87,12 @@ Patrons:
       pref: intranetreadinghistory
     - "personal para acceder a la historial de pr\xC3\xA9stamos de un socio (se almacena independientemente)."
   - 
-    - "La multa tard\xC3\xADa para una devoluci\xC3\xB3n espec\xC3\xADfica s\xC3\xB3lo podr\xC3\xA1 ser hasta"
+    - patrons.pref#MaxFine# The late fine for all checkouts will only go up to
     - 
       class: currency
       pref: MaxFine
     - "[% local_currency %]."
+    - "patrons.pref#MaxFine# Valor vac\xC3\xADo significa no l\xC3\xADmite. El tope del \xC3\xADtem se especifica en la matriz de normas de circulaci\xC3\xB3n. "
   - 
     - 
       choices: 
@@ -104,7 +105,7 @@ Patrons:
     - 
       class: integer
       pref: minPasswordLength
-    - caracteres de largo.
+    - caracteres de longitud.
   - 
     - "Mostrar un aviso cuando la afiliaci\xC3\xB3n de un socio est\xC3\xA9 a punto de caducar"
     - 
@@ -137,29 +138,29 @@ Patrons:
       pref: uppercasesurnames
     - "almacenar y mostrar los apellidos en may\xC3\xBAsculas."
   - 
-    - When renewing borrowers, base the new expiry date on
+    - Al renovar al prestatario, basar la nueva fecha vigente en
     - 
       choices: 
-        dateexpiry: current membership expiry date.
-        now: current date.
+        dateexpiry: fecha vigente de vencimiento de socio
+        now: fecha vigente.
       pref: BorrowerRenewalPeriodBase
   - 
     - 
       choices: 
-        "": Disable
-        1: Enable
+        "": patrons.pref#TalkingTechItivaPhoneNotification# Invalidar
+        1: patrons.pref#TalkingTechItivaPhoneNotification# Permitir
       pref: TalkingTechItivaPhoneNotification
-    - patron phone notifications using Talking Tech i-tiva (overdues, predues and holds notices currently supported).
+    - "patrons.pref#TalkingTechItivaPhoneNotification# notificaci\xC3\xB3n telef\xC3\xB3nica a los socios usando Talking Tech i-tiva (vencimientos, predues y noticias de reservas actualmente admitidas)."
   - 
-    - "Show the following fields from the items database table as columns on the statistics tab on the patron record: "
+    - "patrons.pref#StatisticsFields# Mostrar los siguientes campos de las tablas de la base de datos de los \xC3\xADtems como columnas en la pesta\xC3\xB1a de estad\xC3\xADsticas sobre el registro de usuario: "
     - 
       class: multi
       pref: StatisticsFields
-    - (separate fields with |)
+    - patrons.pref#StatisticsFields# (separa campos com |)
   - 
     - 
       choices: 
-        "": Don't
-        1: Do
+        "": patrons.pref#EnableBorrowerFiles# No hacer
+        1: patrons.pref#EnableBorrowerFiles# Hacer
       pref: EnableBorrowerFiles
-    - enable the ability to upload and attach arbitrary files to a borrower record.
+    - patrons.pref#EnableBorrowerFiles# permitir la posibilidad para subir y adjuntar archivos arbitrarios a un registro prestado.

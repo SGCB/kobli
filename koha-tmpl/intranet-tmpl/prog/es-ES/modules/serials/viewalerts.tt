@@ -22,11 +22,11 @@
  <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% alertloo.borrowernumber %]">[% alertloo.name %]</a></td>
  </tr>
  [% END %] </table>
-[% ELSE %] <p>No hay socios suscritos a esta alerta de suscripción de publicaciones periódicas.</p>
+[% ELSE %] <p>There are no patrons subscribed to this subscription serial alert.</p>
 [% END %] </div>
 </div>
 
 <div class="yui-b">
 [% INCLUDE 'serials-menu.inc' %] </div>
 </div>
-[% INCLUDE 'intranet-bottom.inc' %]
+[% INCLUDE 'intranet-bottom.inc' %] 

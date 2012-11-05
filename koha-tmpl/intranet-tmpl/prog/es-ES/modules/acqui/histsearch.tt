@@ -32,6 +32,10 @@
  [% END %] <li><label for="name">Proveedor: </label> <input type="text" name="name" id="name" value="[% name %]" /></li>
  <li><label for="basket">Bolsa: </label> <input type="text" name="basket" id="basket" value="[% basket %]" /></li>
  <li><label for="booksellerinvoicenumber ">Bookseller invoice no: </label> <input type="text" name="booksellerinvoicenumber" id="booksellerinvoicenumber" value="[% booksellerinvoicenumber %]" /></li>
+ <li>
+ <label for="basketgroupname">Bolsa de grupo:</label>
+ <input type="text" name="basketgroupname" id="basketgroupname" value="[% basketgroupname %]" />
+ </li>
  <li><label for="from">Desde: </label> 
  <input type="text" size="10" id="from" name="from" value="[% from_placed_on %]" class="datepickerfrom" />
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
@@ -52,7 +56,7 @@
  <th>Bolsa</th>
  <th>Grupo de bolsa</th>
  <th>Número de factura</th>
- <th>Order number</th>
+ <th>Número de orden</th>
  <th>Resumen</th>
  <th>Proveedor</th>
  <th>Puesto en</th>
@@ -65,11 +69,7 @@
  [% FOREACH suggestions_loo IN suggestions_loop %] <tr>
  <td>[% suggestions_loo.basketname %] (<a href="basket.pl?basketno=[% suggestions_loo.basketno %]">[% suggestions_loo.basketno %]</a>)</td>
  <td>
- [% IF ( suggestions_loo.basketgroupid ) %] [% suggestions_loo.groupname %] (<a href="basketgroup.pl?booksellerid=[% suggestions_loo.id %]">[% suggestions_loo.basketgroupid %]</a>)
- [% ELSE %]
- &nbsp;
- [% END %]
- </td>
+ [% IF ( suggestions_loo.basketgroupid ) %] [% suggestions_loo.groupname %] ( <a href="basketgroup.pl?booksellerid=[% suggestions_loo.id %]">[% suggestions_loo.basketgroupid %]</a>) [% ELSE %] &nbsp; [% END %] </td>
  <td>[% IF ( suggestions_loo.invoicenumber ) %] <a href="/cgi-bin/koha/acqui/parcel.pl?invoice=[% suggestions_loo.invoicenumber %]&amp;booksellerid=[% suggestions_loo.id %]&amp;datereceived=[% suggestions_loo.datereceived %]">[% suggestions_loo.invoicenumber %]</a>
  [% ELSE %] &nbsp; [% END %] </td>
  <td>[% suggestions_loo.ordernumber %]</td>
@@ -77,7 +77,8 @@
  <br />[% suggestions_loo.author %] <br /> [% suggestions_loo.isbn %]</td>
  <td><a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% suggestions_loo.id %]">[% suggestions_loo.name %]</a></td>
  <td>[% suggestions_loo.creationdate | $KohaDates %]</td>
- <td>[% suggestions_loo.datereceived | $KohaDates %]</td>
+ <td>
+ [% IF suggestions_loo.datereceived %] [% suggestions_loo.datereceived | $KohaDates %] [% END %] </td>
  <td>[% suggestions_loo.quantity %]</td>
  <td>[% suggestions_loo.ecost %]</td>
  </tr>

@@ -1,27 +1,27 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Su administración de privacidad [% INCLUDE 'doc-head-close.inc' %] </head>
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Gestión de la privacidad para [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-privacy">
 <div id="doc3" class="yui-t1">
  <div id="bd">
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
  <div class="yui-b"><div class="yui-g">
  <div id="userprivacy" class="container">
- <h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% firstname %] [% surname %]</a> <img src="[% themelang %]l../../images/caret.gif" width="16" height="16" alt="&gt;" border="0" /> Política de privacidad </h3>
+ <h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% firstname %] [% surname %]</a> &#8674; Privacy policy </h3>
 
  [% IF ( deleted ) %] <div class="dialog message">Su historial de lectura ha sido eliminado.</div>
  [% END %] [% IF ( privacy_updated ) %] <div class="dialog message">Sus reglas de privacidad han sido actualizadas</div>
- [% END %] <h2>Regla de privacidad</h2>
- [% IF ( Ask_data ) %] <p>Nos preocupa mucho proteger su privacidad. En esta pantalla, puede definir durante cuanto tiempo preservar su historial de lectura.</p>
+ [% END %] <h2>Reglamento de privacidad</h2>
+ [% IF ( Ask_data ) %] <p>Nos preocupa proteger tu privacidad. En esta pantalla, puedes especificar durante cuánto tiempo quieres que guardemos tu historial de lectura.</p>
  <p>Sus opciones son: <p>
  <form action="/cgi-bin/koha/opac-privacy.pl" method="post" id="opac-privacy-update-form">
  <input type="hidden" name="op" value="update_privacy" />
  <ul id="opac-privacy-options-list">
- <li class="privacy0">Para siempre: almacenar mi historial de lecturas sin límite. Esta es la opción para usuarios que desean preservar qué están leyendo.</li>
- <li class="privacy1">Predeterminado: guardar mi historial de lectura según leyes locales. Esta es la opción predeterminada: la biblioteca almacenará su historial de lectura durante el tiempo permitido por las leyes locales.</li>
- <li class="privacy2">Nunca: Borrar mi historial de lecturas inmediatamente. Esto borrará todos registro de ítems prestados o devueltos.</li>
+ <li class="privacy0">Para siempre: almacenar mi historial de lecturas sin límite. Ésta es la opción para aquellos usuarios que desean mantener un registro de lo que están leyendo.</li>
+ <li class="privacy1">Predeterminado: guardar mi historial de lectura según la legislación local. Esta es la opción predeterminada: la biblioteca almacenará tu historial de lectura durante el tiempo permitido por la legislación local.</li>
+ <li class="privacy2">Nunca: Borrar mi historial de lecturas inmediatamente. Esto borrará todos los ítems prestados o devueltos.</li>
  </ul>
- <p id="note1">Note por favor que la información sobre cualquier libro prestado debe ser almacenada por la biblioteca independiente de que opción de privacidad elija.</p>
- <p id="note2">Note por favor que el personal de la biblioteca no puede actualizar estos valores por usted: es su privacidad!</p>
- <label for:"privacy">Por favor elija su regla de privacidad:</label>
+ <p id="note1">Por favor, observe que la información sobre cualquier libro prestado debe ser almacenada por la biblioteca independiente de qué opción de privacidad elijas.</p>
+ <p id="note2">Por favor, observe que el personal de la biblioteca no puede actualizar estos valores por ti: ¡es tu privacidad!</p>
+ <label for:"privacy">Por favor, elige su reglamento de privacidad:</label>
  <select name="privacy">
  [% IF ( privacy0 ) %] <option value="0" selected="1" class="privacy0">Para siempre</option>
  [% ELSE %] <option value="0" class="privacy0">Para siempre</option>
@@ -35,7 +35,7 @@
  <h2>Supresión inmediata</h2>
  <form action="/cgi-bin/koha/opac-privacy.pl" method="post" id="opac-privacy-delete-form">
  <input type="hidden" name="op" value="delete_record" />
- <p>Independientemente de que regla de privacidad elija, puede eliminar su historial lectura inmediatamente haciendo clic aquí. <b>SEA CUIDADOSO</b>. Una vez haya confirmado la eliminación, nadie podrá recuperar la lista!</p>
+ <p>Independientemente de qué reglamento de privacidad elijas, puedes eliminar todo tu historial de lectura inmediatamente haciendo clic aquí. <b>TENGA CUIDADO</b>. ¡Si confirma que quiere eliminar, no podrá recuperar la lista!</p>
  <input value="Supresión inmediata" type="submit" onclick="return confirmDelete(_('Warning: Cannot be undone. Please confirm once again'));" />
  </form>
  [% END %] </div>

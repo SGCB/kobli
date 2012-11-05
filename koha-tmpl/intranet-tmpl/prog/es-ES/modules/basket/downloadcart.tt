@@ -1,10 +1,10 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Descargar carrito</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Descargar cesta</title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body style="padding:1em;" id="cart_downloadcart" class="cart">
 [% IF ( format ) %] <p>Su descarga comenzará automáticamente.</p>
 [% ELSE %] <form method="post" action="/cgi-bin/koha/basket/downloadcart.pl">
 <fieldset class="rows">
- <legend>Descargar carrito</legend>
+ <legend>Descargar cesta</legend>
  <ol><li>
  <label for="format">Formato:</label>
  <select name="format" id="format">

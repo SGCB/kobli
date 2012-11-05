@@ -1,29 +1,26 @@
-[% INCLUDE 'help-top.inc' %] <h1>MARC Record Subfields</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Subcampos de registro MARC </h1>
 
-<p>'Frameworks' are made up of MARC fields and subfields. To make edits to most frameworks, you must edit the fields and subfields. Click 'Edit' (on the right of each subfield) to make changes to the text associated with the field.</p>
+<p>'Las hojas de trabajo' están hechas de campos y subcampos MARC. Para editar hojas de trabajo debe editar los campos y subcampos. Seleccionar 'Editar' (a la derecha de cada subcampo) le permitirá hacer cambios al texto asociado con el campo.</p>
 
 <ul>
- <li>Each field has a tag (the MARC tag).
-<ul>
- <li>'Label for lib' is what will show in the staff client if you have advancedMARCeditor set to display labels.</li>
- <li>'Label for OPAC' is what will show on the MARC view in the OPAC.</li>
- <li>If you check 'Repeatable,' the field will have a plus sign next to it that will allow you to add multiples of that tag.</li>
- <li>If you check 'Mandatory,' the record will not be allowed to save unless you have a value assigned to this tag.</li>
- <li>'Authorized value' is where you chose an authorized value list from which your catalogers can select a value for this subfield. To edit the subfields associated with the tag, click 'Subfields' to the right of the tag on the 'MARC Structure' listing.</li>
+ <li>Cada campo tiene una etiqueta (etiqueta MARC).<ul>
+ <li>'Label for lib' es lo que mostrará en la interfaz del personal si tiene advancedMARCeditor configurado para mostrar las etiquetas.</li>
+ <li>'Label for OPAC' es lo que se mostrará en la vista MARC en el OPAC</li>
+ <li>Si usted marca 'Repetible', el campo tendrá un signo más al lado que al presionarlo le permitirá agregar múltiples valores de ese campo.</li>
+ <li>Si se marca 'Obligatorio' no se podrá guardar el registro hasta que no se asigne un valor a ese campo.</li>
+ <li>'Valor autorizado' debe seleccionar una lista de valores autorizados las cuales sus catalogadores podrán seleccionar un valor para este subcampo. Para editar los subcampos asociados a la etiqueta, haga clic en 'subcampos' a la derecha de la etiqueta en la lista 'Estructura MARC'.</li>
 </ul>
 </li>
- <li>From the list of subfields, you can click 'Delete' to the right of each to erase the subfield in question.</li>
- <li>To edit the subfields, click 'Edit Subfields'.</li>
- <li>For each subfield, you can set the following values:
-<ul>
- <li>'Text for librarian' is what appears before the subfield in the librarian interface.</li>
- <li>'Text for OPAC' is what appears before the field in the OPAC.If left empty, the text for librarian is used instead</li>
- <li>If 'Repeatable' is checked, the field will have a plus sign next to it in the MARC cataloguing monologue which allows you to add multiples of that tag.</li>
- <li>'Mandatory' prevents the user from saving a record unless there is a value assigned to the tag.</li>
- <li>'Managed in tab' defines the tab where the subfield is shown. All subfields of a given field must either be in the same tab or ignored. 'Ignore' means that the subfield is not managed.</li>
- <li>'Default value' defines what you want to appear in the field by default. This field will be editable, but it saves time if you use the same note over and over.</li>
- <li>'Hidden' allows you to select from nineteen possible visibility conditions, seventeen of which are implemented. They are the following:
-<ul>
+ <li>Desde la lista de subcampos,  puede seleccionar  'Eliminar' a la derecha de cada uno para eliminarlos.</li>
+ <li>Para editar los subcampos, seleccione 'Editar Subcampos'</li>
+ <li>Para cada subcampo, puede poner los siguientes valores:<ul>
+ <li>'Text for librarian' lo que aparece antes del subcampo en el interfaz de bibliotecario.</li>
+ <li>'Text for OPAC' es lo que aparece antes  que el campo en el OPAC. Si queda vacío, el texto para el bibliotecario es usado en su lugar</li>
+ <li>Si usted marca 'Repetible' el campo tendrá un signo más al lado del catálogo MARC, que al presionarlo le permitirá agregar múltiples valores de ese campo.</li>
+ <li>'Mandatory'  previene que no se podrá guardar el registro hasta que no se asigne un valor a ese campo.</li>
+ <li>'Managed in tab' define la pestaña donde se muestra el subcampo. Todos los subcampos de un campo determinado debe estar en la misma pestaña o ignorados. 'Ignore' siginifica  que el subcampo no se gestiona.</li>
+ <li>'Valor por defecto' define lo que se desea que aparezca en el campo de forma predeterminada, esto se puede editar pero ahorra tiempo si usa la misma nota una y otra vez o el mismo valor en un campo.</li>
+ <li>'Hidden'  permite seleccionar entre 19 condiciones posibles de visibilidad, 17 de las cuales están implementadas. Estas son las siguientes: <ul>
  <li>-9 =&gt; Uso futuro</li>
  <li>-8 =&gt; Marca</li>
  <li>-7 =&gt; OPAC !Intranet !Editor Colapsado</li>
@@ -46,21 +43,21 @@
 </ul>
 </ul>
 <ul>
- <li>(! means 'not visible' or in the case of collapsed 'not collapsed')</li>
- <li>If 'Is a url' is checked, the subfield is a url and can be clicked</li>
- <li>'Authorized Value' allows the librarian to select an authorized value list from which cataloguers must choose an option.</li>
+ <li>( ! significa 'no visible' o en el caso de colapsado  'no colapsado')</li>
+ <li>Si 'Is a url' se revisa, el subcampo es una url y puede ser seleccionado</li>
+ <li>'Valor autorizado' permite al biblioteario seleccionar una lista de valor autorizado en la que los catalogadores deberán elegir una opción.</li>
 </ul>
 </li>
 </ul>
 <ul>
- <li>The 'Thesaurus' chooses the authority file to which the field should be linked.</li>
+ <li>Los 'Tesauros' cambian el  fichero de autoridad a la que se debe el campo relaionado.</li>
 </ul>
 <ul>
- <li>'Plugin' allows the librarian to choose a plugin to calculate or manage a subfield. Plugins can do almost anything. For example, in UNIMARC there are plugins for all 1xx fields that are coded fields. There are also two plugins (unimarc_plugin_210c and unimarc_plugin_225a) that can find the editor from an ISBN, as well as the collection list for the editor.</li>
+ <li>'Plugin'  permite al bibliotecario elegir un plugin para calcular o gestionar los subcampos. Los plugins pueden hacer varias opciones. Por ejemplo, en UNIMARC hay plugins para cada 1xx que son campos codificados.  Hay también dos plugins (unimarc_plugin_210c y unimarc_plugin_225a) que pueden encontrar el editor desde un ISBN, así como la colección de lista para el editor. </li>
 </ul>
- <li>To save your changes, click the 'Save Changes' button at the top of the screen.</li>
+ <li>Para guardar sus cambios seleccione el botón 'Guardar cambios' en la parte superior de la pantalla.</li>
 </ul>
 
-<p><strong>See the full documentation for Authorities in the <a href="http://manual.koha-community.org/3.8/en/catadmin.html#authoritiesadmin">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Autoridades en la <a href="http://manual.koha-community.org/3.10/en/catadmin.html#authoritiesadmin">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

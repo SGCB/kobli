@@ -3,12 +3,12 @@
 <p>Las bibliotecas pueden definir los días que cierran y los feriados para calcular las fechas de devolución. Puede hacer uso del Calendario de Feriados habilitando la preferencia del sistema correspondiente</p>
 
 <ul>
- <li><em>Get there: </em>More &gt; Administration &gt; Global System Preferences &gt; Circulation &gt; <span class="link"><span class="link">useDaysMode</span></span>
+ <li><em>Hay que llegar:</em>More &gt; Administration &gt; Global System Preferences &gt; Circulation &gt; <span class="link"><span class="link">useDaysMode</span></span>
 <ul>
  <li>Seleccione el método de cálculo para la fecha de vencimiento - incluyendo los días que la biblioteca está cerrada en dicho cálculo, o no.</li>
 </ul>
 </li>
- <li><em>Llegar:</em> More &gt; Administration &gt; Global System Preferences &gt; Circulation &gt; <span class="link"><span class="link">finescalendar</span></span>
+ <li><em>Llegar:</em> More &gt; Administration &gt; Global System Preferences &gt; Circulation &gt; <span class="link"><span class="link">calendario</span></span>
 <ul>
  <li>Esto comprobará el calendario de feriados antes del cobro de multas</li>
 </ul>
@@ -17,27 +17,24 @@
 
 <h3>Agregando eventos</h3>
 
-<p>Before adding events, choose the library you would like to apply the closings to. When adding events you will be asked if you would like to apply the event to one branch or all branches. To add events, simply</p>
+<p>Antes de añadir eventos, seleccione la biblioteca que desea aplicar los feriados. Al añadir eventos se le preguntará si desea aplicar el evento a una biblioteca o a todas las bibliotecas. Para agregar eventos, simplemente</p>
 
 <ul>
  <li>Haga clic en la fecha del calendario en que desea aplicar el cierre de</li>
- <li>In the form that appears above the calendar, enter the closing information (for more info on each option click the question mark [?] to the right of the option)
-<ul>
+ <li>En el formulario que aparece sobre el calendario, ingrese la información de cierre (para más información sobre cada opción, haga clic en el signo de interrogación [?] a la derecha de la opción)<ul>
  <li>La biblioteca se asignará automáticamente. Puede elegir una biblioteca del menú desplegable en la parte superior de la página</li>
  <li>La información del día se rellenará automáticamente a partir de la fecha en la que hizo clic en el calendario</li>
  <li>En la descripción ingresar la razón por la cual la biblioteca está cerrada</li>
- <li>Next you can choose if this event is a one time event or if it is repeatable.
-<ul>
- <li>If this is a one day holiday choose 'Holiday only on this day'</li>
- <li>If this is a weekly closing (like a weekend day) then you can choose 'Holiday repeated every same day of the week'</li>
- <li>If this is an annual holiday closing choose 'Holiday repeated yearly on the same date'</li>
- <li>If the library is going to be closed for the week or a range of time choose 'Holiday on a range' and enter a 'To Date' at the top</li>
- <li>If the library is going to be closed for a range of time each year (such as summer holidays for schools) choose 'Holiday repeated yearly on a range' and enter a 'To Date' at the top</li>
+ <li>A continuación puede elegir si este evento es un acontecimiento único o si es repetible.<ul>
+ <li>Si es un día de vacaciones seleccionar 'Vacaciones sólo en este día'</li>
+ <li>Si se trata de un cierre semanal (como un día de fin de semana) entonces puedes elegir 'Vacaciones repetidas el mismos día cada semana' </li>
+ <li>El feriado se repite todos los años elegir 'Vacaciones repetidas anualmente en la misma fecha'</li>
+ <li>Si la biblioteca va a estar cerrado para la semana o un intervalo de tiempo, seleccionar 'Vacaciones en un rango'  e introducir en la parte superior ' Hasta la Fecha '</li>
+ <li>Si la biblioteca va a ser cerrado por un intervalo de tiempo cada año (como las vacaciones de verano para las escuelas), seleccionar 'Vacaciones repetidas cada año en un rango' e introducir en la parte superior  'Hata la fecha' </li>
 </ul>
 </li>
- <li>Finally decide if this event should be applied to all libraries or just the one you have originally selected
-<ul>
- <li>If you'd rather enter all the holidays and then copy them all to another branch all at once you can use the copy menu below the calendar</li>
+ <li>Por último decidir si este caso se debe aplicar a todas las bibliotecas o sólo la que están inicialmente seleccionadas<ul>
+ <li>Si prefiere entrar en todas las fiestas y luego copiar todos ellas a otra biblioteca,  puede usar el menú de copia a continuación el calendario</li>
 </ul>
 </li>
 </ul>
@@ -62,6 +59,6 @@
 
 <p>Al agregar o editar eventos se puede obtener ayuda adicional haciendo clic en el signo de interrogación al lado de distintas opciones en el formulario</p>
 
-<p><strong>Vea la documentación completa para Calendario en la <a href="http://manual.koha-community.org/3.8/en/calholidays.html">manual</a> (en línea).</strong></p>
+<p><strong>Vea la documentación completa para Calendario en la <a href="http://manual.koha-community.org/3.10/en/calholidays.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

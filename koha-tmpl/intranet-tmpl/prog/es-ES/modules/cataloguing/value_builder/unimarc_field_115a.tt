@@ -244,16 +244,16 @@
  <select name="f9" id="f9" size="1">
  [% IF ( f9pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
  [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f9a ) %] <option value="a" selected="selected">apertura estándar sonora (formato reducido)</option>
- [% ELSE %] <option value="a">apertura estándar sonora (formato reducido)</option>
+ [% END %] [% IF ( f9a ) %] <option value="a" selected="selected">sonido estándar de apertura (formato reducido)</option>
+ [% ELSE %] <option value="a">sonido estándar de apertura (formato reducido)</option>
  [% END %] [% IF ( f9b ) %] <option value="b" selected="selected">no anamórfico (pantalla ancha)</option>
  [% ELSE %] <option value="b">no anamórfico (pantalla ancha)</option>
  [% END %] [% IF ( f9c ) %] <option value="c" selected="selected">3D</option>
  [% ELSE %] <option value="c">3D</option>
  [% END %] [% IF ( f9d ) %] <option value="d" selected="selected">anamórfico (pantalla ancha)</option>
  [% ELSE %] <option value="d">anamórfico (pantalla ancha)</option>
- [% END %] [% IF ( f9e ) %] <option value="e" selected="selected">apertura silenciosa estándar</option>
- [% ELSE %] <option value="e">apertura silenciosa estándar</option>
+ [% END %] [% IF ( f9e ) %] <option value="e" selected="selected">silencio estándar de apertura</option>
+ [% ELSE %] <option value="e">silencio estándar de apertura</option>
  [% END %] [% IF ( f9f ) %] <option value="f" selected="selected">otro tipo de formato de pantalla ancha</option>
  [% ELSE %] <option value="f">otro tipo de formato de pantalla ancha</option>
  [% END %] [% IF ( f9x ) %] <option value="x" selected="selected">no es una película</option>
@@ -270,8 +270,8 @@
  <select name="f10" id="f10" size="1">
  [% IF ( f10pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
  [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f10a ) %] <option value="a" selected="selected">instantáneas</option>
- [% ELSE %] <option value="a">instantáneas</option>
+ [% END %] [% IF ( f10a ) %] <option value="a" selected="selected">fotogramas</option>
+ [% ELSE %] <option value="a">fotogramas</option>
  
  [% END %] [% IF ( f10b ) %] <option value="b" selected="selected">material de escritura</option>
  [% ELSE %] <option value="b">material de escritura</option>
@@ -302,8 +302,8 @@
  <select name="f11" id="f11" size="1">
  [% IF ( f11pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
  [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f11a ) %] <option value="a" selected="selected">instantáneas</option>
- [% ELSE %] <option value="a">instantáneas</option>
+ [% END %] [% IF ( f11a ) %] <option value="a" selected="selected">fotogramas</option>
+ [% ELSE %] <option value="a">fotogramas</option>
  [% END %] [% IF ( f11b ) %] <option value="b" selected="selected">material de escritura</option>
  [% ELSE %] <option value="b">material de escritura</option>
  [% END %] [% IF ( f11c ) %] <option value="c" selected="selected">posters</option>
@@ -333,8 +333,8 @@
  <select name="f12" id="f12" size="1">
  [% IF ( f12pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
  [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f12a ) %] <option value="a" selected="selected">instantáneas</option>
- [% ELSE %] <option value="a">instantáneas</option>
+ [% END %] [% IF ( f12a ) %] <option value="a" selected="selected">fotogramas</option>
+ [% ELSE %] <option value="a">fotogramas</option>
  [% END %] [% IF ( f12b ) %] <option value="b" selected="selected">material de escritura</option>
  [% ELSE %] <option value="b">material de escritura</option>
  [% END %] [% IF ( f12c ) %] <option value="c" selected="selected">posters</option>
@@ -363,8 +363,8 @@
  <select name="f13" id="f13" size="1">
  [% IF ( f13pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
  [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f13a ) %] <option value="a" selected="selected">instantáneas</option>
- [% ELSE %] <option value="a">instantáneas</option>
+ [% END %] [% IF ( f13a ) %] <option value="a" selected="selected">fotogramas</option>
+ [% ELSE %] <option value="a">fotogramas</option>
  [% END %] [% IF ( f13b ) %] <option value="b" selected="selected">material de escritura</option>
  [% ELSE %] <option value="b">material de escritura</option>
  [% END %] [% IF ( f13c ) %] <option value="c" selected="selected">posters</option>
@@ -403,8 +403,8 @@
  [% ELSE %] <option value="b">videodisco</option>
  [% END %] [% IF ( f14c ) %] <option value="c" selected="selected">casete de vídeo</option>
  [% ELSE %] <option value="c">casete de vídeo</option>
- [% END %] [% IF ( f14d ) %] <option value="d" selected="selected">carrete de vídeo</option>
- [% ELSE %] <option value="d">carrete de vídeo</option>
+ [% END %] [% IF ( f14d ) %] <option value="d" selected="selected">bobina de vídeo</option>
+ [% ELSE %] <option value="d">bobina de vídeo</option>
  [% END %] [% IF ( f14e ) %] <option value="e" selected="selected">grabación de vídeo electrónica (EVR)</option>
  [% ELSE %] <option value="e">grabación de vídeo electrónica (EVR)</option>
 
