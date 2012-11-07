@@ -378,10 +378,10 @@ function showLess() {
 function updateBasket(updated_value,target) {
 	if(target){
 	target.$('#basketcount').html(" <span>("+updated_value+")</span>");
-    target.$('#cartDetails').html(MSG_IN_YOUR_CART+updated_value);
+	target.$('#cartDetails').html(_("Tu cesta contiene ")+updated_value+_(" items"));
 	} else {
 	$('#basketcount').html(" <span>("+updated_value+")</span>");
-    $('#cartDetails').html(MSG_IN_YOUR_CART+updated_value);
+	$('#cartDetails').html(_("Tu cesta contiene ")+updated_value+_(" items"));
 	}
 	var basketcount = updated_value;
 }
