@@ -68,9 +68,9 @@
  </div>
 
  <div id="sysinfo">
- [% IF (warnIsRootUser) %] <h2>Warning regarding current user</h2>
- <p>It seems that you are logged in as database administrative user. A lot of things will not work with this account.</p>
- <p>Usually you need to log in with a regular staff account. To create a staff account, create a branch, a patron category 'Staff' and add a new patron. Then give this patron permissions from 'More' in the toolbar.</p>
+ [% IF (warnIsRootUser) %] <h2>Advertencias respecto al usuario actual</h2>
+ <p>Parece que ha iniciado la sesión como usuario de base de datos administrativa. Muchas cosas no funcionan con esta cuenta.</p>
+ <p>Por lo general, es necesario iniciar sesión con una cuenta personal de personal. Para crear una cuenta personal, crear una biblioteca, una categoría de «Personal»  y añadir un nuevo socio. A continuación, dar permisos de este socio de "Más" en la barra de herramientas.</p>
  [% END %] <h2>Advertencias respecto a la configuración del sistema</h2>
  [% IF ( (prefNoZebra) || (warnPrefBiblioAddsAuthorities) || warnPrefEasyAnalyticalRecords ) %] <table>
  <caption>Preferencias</caption>
@@ -82,7 +82,7 @@
  [% END %] </div>
 
  <div id="kobliteam">
- <h2>Kobli 1.8.1, distro developed by Ministerio de Cultura based on Koha 3.8</h2>
+ <h2>Kobli 1.8.1, distribución desarrollada por el Ministerio de Educación, Cultura y Deporte de España, basado en Koha 3.8 </h2>
  </div>
  <div id="team">
  <h2>Agradecimiento especial a las siguientes organizaciones</h2>
@@ -143,7 +143,7 @@
  <li>Gaetan Boisson</li>
  <li>Danny Bouman</li>
  <li>Stan Brinkerhoff</li>
- <li>Ivan Brown</li>
+ <li>Melia Meggs</li>
  <li>Roger Buck</li>
  <li>Steven Callender</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6620692376789">Jared Camins-Esakov</a></li>

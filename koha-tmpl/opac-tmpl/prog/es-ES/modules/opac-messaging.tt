@@ -20,7 +20,7 @@
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
  <div class="yui-b"><div class="yui-g" id="usermessaging">
 
-[% FOREACH BORROWER_INF IN BORROWER_INFO %] <h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% BORROWER_INF.firstname %] [% BORROWER_INF.surname %]</a> &#8674; Your messaging settings</h3>
+[% FOREACH BORROWER_INF IN BORROWER_INFO %] <h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% BORROWER_INF.firstname %] [% BORROWER_INF.surname %]</a> &#8674; Su configuración de mensajes</h3>
 [% END %] <form action="/cgi-bin/koha/opac-messaging.pl" method="get" name="opacmessaging">
 <input type="hidden" name="modify" value="yes" />
 

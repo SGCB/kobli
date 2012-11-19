@@ -51,11 +51,11 @@
 function validate_goto_page(){
     var page = $('#goto_page').val();
     if(isNaN(page)) {
-        alert(_("The page entered is not a number."));
+        alert(_("La página introducida no es un número."));
         return false;
     }
     else if(page < 1 || page > [% total_pages %] ) {
-        alert(_("The page should be a number between 1 and ") + [% total_pages %] + ".");
+        alert(_("La págna debería ser un número entre 1 y  ") + [% total_pages %] + ".");
         return false;
     }
     else {
@@ -166,12 +166,9 @@ tr.selected { background-color : #FFFFCC; } tr.selected td { background-color : 
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
 
  [% FOREACH server IN servers %] <input type="hidden" name="id" id="z3950_[% server.id %]" value="[% server.id %]" />
- [% END %] [% IF ( show_prevbutton ) %] <input type="button" name="changepage_prev" value="Previous Page" onclick="$('#current_page').val([% current_page %]-1);$('#page_form').submit();" />
- [% END %]
- Page [% current_page %] / [% total_pages %]
- [% IF ( show_nextbutton ) %]
- <input type="button" name="changepage_next" value="Next Page" onclick="$('#current_page').val([% current_page %]+1);$('#page_form').submit();" />
- [% END %] <br />Go to page : <input id="goto_page" name="goto_page" value="[% current_page %]" size="4" /><input value="Ir" name="changepage_goto" type="submit" onclick="return validate_goto_page();" />
+ [% END %] [% IF ( show_prevbutton ) %] <input value="Página anterior" name="changepage_prev" type="button" onclick="$('#current_page').val([% current_page %]-1);$('#page_form').submit();" />
+ [% END %] Página [% current_page %] / [% total_pages %] [% IF ( show_nextbutton ) %] <input value="Siguiente página" name="changepage_next" type="button" onclick="$('#current_page').val([% current_page %]+1);$('#page_form').submit();" />
+ [% END %] <br />Ir a la página, <input id="goto_page" name="goto_page" value="[% current_page %]" size="4" /><input value="Ir" name="changepage_goto" type="submit" onclick="return validate_goto_page();" />
  </form>
 
  [% ELSE %] [% IF ( emptyserverlist ) %] <div class="dialog alert">No ha seleccionado ningún servidor Z39.50.</div>

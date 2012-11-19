@@ -102,7 +102,7 @@ li.list2 {
  <input type="text" name="basketname" id="basketname" size="40" maxlength="80" value="[% basketname %]" />
  </li>
  <li>
- <label for="billingplace">Billing Place:</label>
+ <label for="billingplace">Lugar de facturación: </label>
  <select name="billingplace" id="billingplace">
  <option value="">--</option>
  [% FOREACH billingplace IN billingplaceloop %] [% IF ( billingplace.selected ) %] <option value="[% billingplace.value %]" selected="selected">
@@ -111,7 +111,7 @@ li.list2 {
  [% END %] </select>
  </li>
  <li>
- <label for="deliveryplace">Delivery Place:</label>
+ <label for="deliveryplace">Lugar de entrega: </label>
  <select name="deliveryplace" id="deliveryplace">
  <option value="">--</option>
  [% FOREACH deliveryplace IN deliveryplaceloop %] [% IF ( deliveryplace.selected ) %] <option value="[% deliveryplace.value %]" selected="selected">

@@ -34,13 +34,7 @@
 <div id="bd">
 <div class="yui-g">
 
-<h3>Search for budget
- [% IF (type == 'owner') %]
- owner
- [% ELSE %]
- user
- [% END %]
-</h3>
+<h3>Buscar por el presupuesto [% IF (type == 'owner') %] propietario [% ELSE %] usuario[% END %] </h3>
 <form action="/cgi-bin/koha/admin/aqbudget_user_search.pl" method="post">
  <fieldset>
  <input type="text" name="member" id="member" value="[% member %]"

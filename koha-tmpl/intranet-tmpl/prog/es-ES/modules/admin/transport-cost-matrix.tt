@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administration &rsaquo; Transport cost matrix</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Coste de transporte</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 function check_transport_cost(e) {
@@ -45,7 +45,7 @@ function form_submit (f) {
 
 </head>
 <body>
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; Transport cost matrix</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; Transfererir coste</div>
 
 <div id="doc3" class="yui-t1">
 
@@ -53,11 +53,10 @@ function form_submit (f) {
  <div id="yui-main">
  <div class="yui-b">
  <h1 class="parameters">
- Defining transport costs between libraries
- </h1>
-[% IF ( WARNING_transport_cost_matrix_off ) %] <div class="dialog message">Because the "UseTransportCostMatrix" system preference is currently not enabled, the transport cost matrix is not being used. Go <a href="/cgi-bin/koha/admin/preferences.pl?op=search&amp;searchfield=UseTransportCostMatrix">aquí</a> si desea habilitar esta característica.</div>
+ Definir los costos de transporte entre las bibliotecas</h1>
+[% IF ( WARNING_transport_cost_matrix_off ) %] <div class="dialog message">Debido a que la preferencia del sistema 'ExtendedPatronAttributes' no está habilitada, no se pueden dar atributos adicionales a los registros de socios. Vaya a  <a href="/cgi-bin/koha/admin/preferences.pl?op=search&amp;searchfield=UseTransportCostMatrix">aquí</a> si desea habilitar esta característica.</div>
 [% END %] [% IF ( errors ) %]<div class="dialog alert">
- <h4>There were problems with your submission</h4>
+ <h4>Hy un problema con su suscripción</h4>
  <ul>
  [% FOR e IN errors %] <li>[% e %]</li>
  [% END %] </ul>
@@ -65,14 +64,14 @@ function form_submit (f) {
  <input type="hidden" name="op" value="set-cost-matrix" />
  <fieldset id="transport-cost-matrix">
  <div class="help">
- <p>Costs are decimal values between some arbitrary maximum value (e.g. 1 or 100) and 0 which is the minimum (no) cost.</p>
- <p>Red cells signify no transfer allowed.</p>
- <p>Click on individual cells to edit.</p>
+ <p>Los costos son valores decimales entre un valor máximo arbitrario (por ejemplo 1 o 100) y 0 que es el mínimo (no) el costo.</p>
+ <p>Las células rojas significan ninguna transferencia permitido.</p>
+ <p>Haga clic en celdas individuales para editar.</p>
  </div>
 
  <table>
  <tr>
- <th>From \ To</th>
+ <th>Desde \\  A</th>
  [% FOR b IN branchloop %] <th>[% b.name %]</th>
  [% END %] </tr>
  [% FOR bf IN branchfromloop %] <tr>

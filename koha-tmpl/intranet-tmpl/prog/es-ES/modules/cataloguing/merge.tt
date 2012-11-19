@@ -178,13 +178,7 @@ function changeFramework(fw) {
 <h1>Combinando registros</h1>
 [% IF ( result ) %] [% IF ( errors ) %] [% FOREACH error IN errors %] <div class="dialog alert">
 
- [% IF error.code == 'CANNOT_MOVE' %]
- The following items could not be moved from the old record to the new one: [% error.value %]
- [% ELSE %]
- [% error %]
- [% END %]
-
- <br />Por lo tanto, el registro que se fusionará no se ha eliminado.</div>
+ [% IF error.code == 'CANNOT_MOVE' %] Los siguientes ítem no se han podido mover desde el antiguo registro al nuevo:[% error.value %] [% ELSE %] [% error %] [% END %] <br />Por lo tanto, el registro que se fusionará no se ha eliminado.</div>
  [% END %] [% ELSE %] <script type="text/javascript">window.location.href="/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% biblio1 %]"</script>
  <p>La fusión se ha realizado correctamente. <a href="/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% biblio1 %]">Haga clic aquí para ver el registro combinado.</a></p>
  [% END %] [% ELSE %] [% IF ( choosereference ) %] <p>Por favor elija cual registro será la referencia para la combinación .El registro elegido como referencia se mantendrá y el otro será eliminado.</p>
@@ -211,13 +205,7 @@ function changeFramework(fw) {
 </form>
 [% ELSE %] [% IF ( errors ) %] <div class="dialog alert">
  [% FOREACH error IN errors %] <p>
- [% IF error.code == 'WRONG_COUNT' %]
- Number of records provided for merging: [% error.value %]. Currently only 2 records can be merged at a time.
- [% ELSE %]
- [% error %]
- [% END %]
-
- </p>
+ [% IF error.code == 'WRONG_COUNT' %] Número de registros previsto para la incorporación: [% error.value %].Normalmente 2 registros pueden incorporarse a la vez. [% ELSE %] [% error %] [% END %] </p>
  [% END %] </div>
 [% ELSE %] <form id="mergeform" action="/cgi-bin/koha/cataloguing/merge.pl" method="post" onsubmit="return mergeformsubmit()">
 

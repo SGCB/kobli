@@ -192,8 +192,7 @@ tinyMCE.init({
  </tr>
  [% END %] </tbody>
  </table>
- [% ELSE %]
- No [% IF ( branchcategorie.properties ) %]properties[% ELSIF ( branchcategorie.searchdomain ) %]search domain[% END %] defined. <a href="/cgi-bin/koha/admin/branches.pl?op=editcategory">Agregar nuevo grupo </a>. [% END %] [% END %] [% ELSE %] <p>No hay grupos definidos.</p>
+ [% ELSE %] No [% IF ( branchcategorie.properties ) %]propiedades[% ELSIF ( branchcategorie.searchdomain ) %]sdominio de búsqueda[% END %] definedo. <a href="/cgi-bin/koha/admin/branches.pl?op=editcategory">Agregar nuevo grupo </a>. [% END %] [% END %] [% ELSE %] <p>No hay grupos definidos.</p>
  [% END %] <!-- NAME="branchcategories" -->
 [% END %]
 

@@ -332,30 +332,18 @@ $(document).ready(function()
  [% IF ( uncertainprice ) %] <input type="checkbox" name="uncertainprice"  id="uncertainprice" value="1" checked="checked" />
  [% ELSE %] <input type="checkbox" name="uncertainprice" id="uncertainprice" value="1" />
  [% END %] </li>
- [% END %] <li>
+ [% END %] [% IF ( gst_values ) %] <li>
  [% IF ( close ) %] <span class="label">Tasa de impuesto: </span>
- <input type="hidden" size="20" name="gstrate" id="gstrate" value="[% gstrate %]" />[% gstrate %]%
- [% ELSE %]
- <label for="gst">Tasa de impuesto: </label>
+ <input type="hidden" size="20" name="gstrate" id="gstrate" value="[% gstrate %]" />[% gstrate %]% [% ELSE %] <label for="gst">Tasa de impuesto: </label>
  <select name="gstrate" id="gstrate" onchange="updateCosts();">
  [% FOREACH gst IN gst_values %] [% IF ( gst.option == gstrate ) %] <option value="[% gst.option %]" selected="selected">[% gst.option * 100 | format("%.1f") %]%</option>
  [% ELSE %] <option value="[% gst.option %]">[% gst.option * 100 | format("%.1f") %]%</option>
  [% END %] [% END %] </select>
- [% END %] </li>
- <li>
- <label for="discount">Descuento: </label>
- [% IF ( close ) %] [% IF ( orderdiscount ) %] <input type="hidden" name="discount" id="discount" value="[% orderdiscount %]" />[% orderdiscount_2dp %]%
- [% ELSE %]
- <input type="hidden" name="discount" id="discount" value="[% discount %]" />[% discount_2dp %]%
- [% END %]
- [% ELSE %]
- [% IF ( orderdiscount ) %]
- <input type="text" size="6" name="discount" id="discount" value="[% orderdiscount %]" onchange="updateCosts();" />%
- [% ELSE %]
- <input type="text" size="6" name="discount" id="discount" value="[% discount %]" onchange="updateCosts();" />%
- [% END %]
- [% END %]
+ [% END %] [% ELSE %] <input type="hidden" name="gstrate" value="0" />
  </li>
+ [% END %] <li>
+ <label for="discount">Descuento: </label>
+ [% IF ( close ) %] [% IF ( orderdiscount ) %] <input type="hidden" name="discount" id="discount" value="[% orderdiscount %]" />[% orderdiscount_2dp %]% [% ELSE %] <input type="hidden" name="discount" id="discount" value="[% discount %]" />[% discount_2dp %]% [% END %] [% ELSE %] [% IF ( orderdiscount ) %] <input type="text" size="6" name="discount" id="discount" value="[% orderdiscount %]" onchange="updateCosts();" />% [% ELSE %] <input type="text" size="6" name="discount" id="discount" value="[% discount %]" onchange="updateCosts();" />% [% END %] [% END %] </li>
  <li>
  [% IF ( close ) %] <span class="label">Costo de reposición: </span>
  <input type="hidden" size="20" name="rrp" id="rrp" value="[% rrp %]" />[% rrp %] [% ELSE %] <label for="rrp">Costo de reposición: </label>

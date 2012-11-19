@@ -3,7 +3,7 @@
  [% END %] [% END %] [% BLOCK match_link %] [% IF ( record_lis.match_id ) %] <tr>
  <td />
  [% IF ( record.record_type == 'biblio' ) %] <td class="highlight" colspan="4">Coincide con registro [% record_lis.match_id %] (puntaje= [% record_lis.match_score %]): <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% record_lis.match_id %]">[% record_lis.match_citation %]</a></td>
- [% ELSIF ( record.record_type == 'auth' ) %] <td class="highlight" colspan="4">Matches authority [% record_lis.match_id %] (score = [% record_lis.match_score %]): <a href="/cgi-bin/koha/authorities/detail.pl?authid=[% record_lis.match_id %]">[% record_lis.match_citation %]</a></td>
+ [% ELSIF ( record.record_type == 'auth' ) %] <td class="highlight" colspan="4">Coincide ccon autoridad [% record_lis.match_id %] (puntaje= [% record_lis.match_score %]): <a href="/cgi-bin/koha/authorities/detail.pl?authid=[% record_lis.match_id %]">[% record_lis.match_citation %]</a></td>
  [% END %] </tr>
  [% END %] [% END %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Administrar registros MARC preparados[% IF ( import_batch_id ) %] &rsaquo; Lote [% import_batch_id %] [% END %] </title>
 [% INCLUDE 'greybox.inc' %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/background-job-progressbar.js"></script>
@@ -61,8 +61,8 @@ $(document).ready(function(){
  [% END %] <fieldset class="rows" id="staged-record-matching-rules">
  <ol>
  <li><span class="label">Nombre de archivo:</span> [% file_name %]</li>
- <li><span class="label">Comentarios:</span> [% IF ( comments ) %][% comments %][% ELSE %](none)[% END %]</li>
- <li><span class="label">Tipo:</span> [% IF ( record_type == 'auth' ) %]Authority records[% ELSE %]Bibliographic records[% END %]</li>
+ <li><span class="label">Comentarios:</span> [% IF ( comments ) %][% comments %][% ELSE %](ninguno)[% END %]</li>
+ <li><span class="label">Tipo:</span> [% IF ( record_type == 'auth' ) %]Registros autoridad[% ELSE %]BRegistros bibliográficos[% END %]</li>
  <li><span class="label">Preparado:</span> [% upload_timestamp %]</li>
  <li><span class="label">Estado:</span> [% import_status %]</li>
  <li> 
@@ -144,14 +144,14 @@ Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %] <span class="
  <th>Tipo</th>
  <th>Estado</th>
  <th>Preparado</th>
- <th># Records</th>
+ <th># Registros</th>
  <th># Ítems</th>
  <th>Acción</th>
  </tr>
  [% FOREACH batch_lis IN batch_list %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td>[% batch_lis.import_batch_id %]</td>
  <td><a href="[% batch_lis.script_name %]?import_batch_id=[% batch_lis.import_batch_id %]">[% batch_lis.file_name %]</a></td>
  <td>[% batch_lis.comments %]</td>
- <td>[% IF ( batch_lis.record_type == 'auth' ) %]Authority[% ELSE %]Bibliographic[% END %]</td>
+ <td>[% IF ( batch_lis.record_type == 'auth' ) %]Authoridad[% ELSE %]Bibliografico[% END %]</td>
  <td>[% batch_lis.import_status %]</td>
  <td>[% batch_lis.upload_timestamp %]</td>
  <td>[% batch_lis.num_records %]</td>
@@ -178,7 +178,7 @@ Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %] <span class="
  <th>Citación</th>
  <th>Estado</th>
  <th>¿Coincide?</th>
- <th>Record</th>
+ <th>Registro</th>
 
  </tr>
  [% FOREACH record_lis IN record_list %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td>[% record_lis.record_sequence %]</td>

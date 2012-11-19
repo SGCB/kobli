@@ -104,7 +104,7 @@ function finderjumpfull(page)
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="intranet" />
  <input type="hidden" name="index" value="[% index %]" />
- <fieldset class="rows"><legend>Search options</legend>
+ <fieldset class="rows"><legend>Buscar opciones</legend>
  <ol><li>
  <span class="label">Tipo de autoridad</span>
  [% authtypecode %] <input type="hidden" name="authtypecode" value="[% authtypecode %]" />
@@ -170,23 +170,22 @@ function finderjumpfull(page)
  <option value="HeadingDsc">Descendente por cabecera</option>
  </select>
  </li></ol></fieldset>
- [% IF source == 'auth' %] <fieldset class="rows"><legend>Relationship information</legend>
+ [% IF source == 'auth' %] <fieldset class="rows"><legend>Información relacionada</legend>
  <ol>
  <li>
- <label for="relationship">Special relationship: </label>
+ <label for="relationship">Especial relación: </label>
  <select name="relationship" id="relationship">
- [% selected=relationship %]
- [% PROCESS selectoptionopen value='' %]None specified</option>
- [% PROCESS selectoptionopen value='a' %]a - Earlier heading</option>
+ [% selected=relationship %] [% PROCESS selectoptionopen value='' %]Sin especificación</option>
+ [% PROCESS selectoptionopen value='a' %]a- Cabecera establecida</option>
  [% PROCESS selectoptionopen value='b' %]b - Later heading</option>
- [% PROCESS selectoptionopen value='d' %]d - Acronym</option>
- [% PROCESS selectoptionopen value='f' %]f - Musical composition</option>
- [% PROCESS selectoptionopen value='g' %]g - Broader term</option>
- [% PROCESS selectoptionopen value='h' %]h - Narrower term</option>
- [% PROCESS selectoptionopen value='i' %]i - Reference instruction phrase in subfield $i</option>
- [% PROCESS selectoptionopen value='n' %]n - Not applicable</option>
- [% PROCESS selectoptionopen value='r' %]r - Relationship designation in $i or $4</option>
- [% PROCESS selectoptionopen value='t' %]t - Immediate parent body</option>
+ [% PROCESS selectoptionopen value='d' %]d - Acrónimo</option>
+ [% PROCESS selectoptionopen value='f' %]f - Composición musical</option>
+ [% PROCESS selectoptionopen value='g' %]g - Término amplio</option>
+ [% PROCESS selectoptionopen value='h' %]h - Términos específicos</option>
+ [% PROCESS selectoptionopen value='i' %]i - frase de referencia de instrucción ene el subcampo $i</option>
+ [% PROCESS selectoptionopen value='n' %]n- No aplicable</option>
+ [% PROCESS selectoptionopen value='r' %]r -Relación designada en $i o $4</option>
+ [% PROCESS selectoptionopen value='t' %]t - Órgano superior inmediato</option>
  </select>
  </li>
  </ol>

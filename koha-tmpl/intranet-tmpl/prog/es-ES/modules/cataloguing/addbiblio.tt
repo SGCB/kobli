@@ -870,7 +870,7 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
             type: "button",
             label: _("Búsqueda Z39.50"),
             container: "z3950searchc",
-            onclick: {fn:function(){if (confirm(_("Please note that this Z39.50 search could replace the current record."))) PopupZ3950()}}
+            onclick: {fn:function(){if (confirm(_("Tenga en cuenta que esta búsqueda Z39.50 podría reemplazar el registro actual."))) PopupZ3950()}}
         });
 	}
 
@@ -923,31 +923,10 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
                         size="1"
                         maxlength="1"
                         value="[% innerloo.indicator2 %]" />
- [% ELSE %]
-<<<<<<< HEAD:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
- <input type="text"
-                        tabindex="1"
-                        class="indicator flat"
-                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
-                        size="1"
-                        maxlength="1"
-                        value="[% innerloo.indicator1 %]" />
- <input type="text"
-                        tabindex="1"
-                        class="indicator flat"
-                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
-                        size="1"
-                        maxlength="1"
-                        value="[% innerloo.indicator2 %]" />
-======= <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator1 %]" />
+ [% ELSE %] <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator1 %]" />
  [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1" onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Mostrar plug in con los valores permitidos para el indicador 1 en el campo [% innerloo.tag %]">...</a>[% END %] <input tabindex="1" class="indicator flat" type="text" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" size="1" maxlength="1" value="[% innerloo.indicator2 %]" />
  [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
-onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %]
->>>>>>> Bug 4888 - pre-set of field indicators value:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
- [% END %] -
- [% ELSE %]
- [% IF ( innerloo.fixedfield ) %]
- <input type="hidden"
+onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %] [% END %] - [% ELSE %] [% IF ( innerloo.fixedfield ) %] <input type="hidden"
                         tabindex="1"
                         name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
                         value="[% innerloo.indicator1 %]" />
@@ -955,26 +934,10 @@ onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerlo
                         tabindex="1"
                         name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
                         value="[% innerloo.indicator2 %]" />
- [% ELSE %]
-<<<<<<< HEAD:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
- <input type="hidden"
-                        tabindex="1"
-                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
-                        value="[% innerloo.indicator1 %]" />
- <input type="hidden"
-                        tabindex="1"
-                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
-                        value="[% innerloo.indicator2 %]" />
-======= <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator1 %]" />
+ [% ELSE %] <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator1 %]" />
  [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1" onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Mostrar plug in con los valores permitidos para el indicador 1 en el campo [% innerloo.tag %]">...</a>[% END %] <input tabindex="1" type="hidden" name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]" value="[% innerloo.indicator2 %]" />
  [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
-onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %]
->>>>>>> Bug 4888 - pre-set of field indicators value:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
- [% END %]
- [% END %]
-
- [% UNLESS advancedMARCEditor %]
- <a tabindex="1" href="#" class="expandfield" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Haga clic en 'Expandir' esta etiqueta">[% innerloo.tag_lib %]</a>
+onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( biblionumber ) %],[% biblionumber %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %] [% END %] [% END %] [% UNLESS advancedMARCEditor %] <a tabindex="1" href="#" class="expandfield" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Haga clic en 'Expandir' esta etiqueta">[% innerloo.tag_lib %]</a>
  [% END %] <span class="field_controls">
  [% IF ( innerloo.repeatable ) %] <a tabindex="1" href="#" class="buttonPlus" onclick="CloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]','[% hide_marc %]','[% advancedMARCEditor %]'); return false;" title="Repetir esta etiqueta">
  <img alt="Repetir esta etiqueta" src="/intranet-tmpl/prog/img/repeat-tag.png" />

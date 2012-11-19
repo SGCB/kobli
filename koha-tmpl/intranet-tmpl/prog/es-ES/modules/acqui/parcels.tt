@@ -20,7 +20,7 @@
  <div class="yui-b">
 
 [% IF ( error_failed_to_create_invoice ) %] <div id="error" class="dialog error">
- <p>An error has occured. Invoice cannot be created.</p>
+ <p>Un error ha ocurrido. La factura no ha sido creada.</p>
  </div>
 [% END %] <h1>Recibir envío del proveedor <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% name %]</a></h1>
 
@@ -98,7 +98,7 @@
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
  <li>
- <label for="shipmentcost">Shipment cost: </label>
+ <label for="shipmentcost">Coste del envío: </label>
  <input type="text" id="shipmentcost" name="shipmentcost" size="10" />
  </li>
  <li>
@@ -126,8 +126,8 @@
  <label for="dateto">Hasta:</label><input type="text" size="9" id="dateto" name="dateto" value="[% dateto %]" /></li>
  <li><label for="orderby">Ordenar por :</label><select name="orderby" id="orderby">
  <option value="invoicenumber">Número de factura</option>
- <option value="shipmentdate">Shipment date</option>
- <option value="shipmentdate desc">Shipment date reverse</option>
+ <option value="shipmentdate">Fecha del envío</option>
+ <option value="shipmentdate desc">Fecha de la reserva del envío</option>
  <option value="invoicenumber desc">Número de factura reverso</option>
  </select><br />
  <label for="resultsperpage">Resultados por página :</label><select name="resultsperpage" id="resultsperpage">

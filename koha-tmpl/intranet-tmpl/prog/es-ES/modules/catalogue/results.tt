@@ -392,11 +392,7 @@ YAHOO.util.Event.onContentReady("searchheader", function () {
  <td>
  [% IF ( SEARCH_RESULT.XSLTResultsRecord ) %] [% SEARCH_RESULT.result_number %]. [% SEARCH_RESULT.XSLTResultsRecord %] [% ELSE %] <p>[% SEARCH_RESULT.result_number %]. [% biblionumber = SEARCH_RESULT.biblionumber %] [% INCLUDE 'biblio-default-view.inc' %] <b>[% IF ( SEARCH_RESULT.title ) %][% SEARCH_RESULT.title |html %][% ELSE %]Ningún título[% END %]</b>
  </a>
- [% FOREACH subtitl IN SEARCH_RESULT.subtitle %], [% subtitl.subfield %][% END %]
- [% IF ( SEARCH_RESULT.seriestitle ) %][% SEARCH_RESULT.seriestitle %][% END %]
- [% IF ( SEARCH_RESULT.volume ) %][% SEARCH_RESULT.volume %][% END %] [% IF ( SEARCH_RESULT.volumeddesc ) %], [% SEARCH_RESULT.volumeddesc %][% END %]
- [% IF ( SEARCH_RESULT.volumedesc ) %], [% SEARCH_RESULT.volumedesc %][% END %]
- </p>
+ [% FOREACH subtitl IN SEARCH_RESULT.subtitle %], [% subtitl.subfield %][% END %] [% IF ( SEARCH_RESULT.seriestitle ) %][% SEARCH_RESULT.seriestitle %][% END %] [% IF ( SEARCH_RESULT.volume ) %][% SEARCH_RESULT.volume %][% END %] [% IF ( SEARCH_RESULT.volumeddesc ) %], [% SEARCH_RESULT.volumeddesc %][% END %] [% IF ( SEARCH_RESULT.volumedesc ) %], [% SEARCH_RESULT.volumedesc %][% END %] </p>
  [% IF ( SEARCH_RESULT.summary ) %] [% IF ( SEARCH_RESULT.author ) %] <a href="/cgi-bin/koha/catalogue/search.pl?idx=au&q=[% SEARCH_RESULT.author |url %]" title="Busque este autor">[% SEARCH_RESULT.author %]</a>
  [% ELSE %] &nbsp; [% END %] <p>
  [% UNLESS ( item_level_itypes ) %] [% IF !noItemTypeImages && SEARCH_RESULT.imageurl %] <img src="[% SEARCH_RESULT.imageurl %]" title="[% SEARCH_RESULT.description %]" style="float: left; margin: .1em;" alt="[% SEARCH_RESULT.description %]" />

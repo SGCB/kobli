@@ -1,6 +1,7 @@
 [% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; [% IF ( unknowuser ) %] El socio no existe [% ELSE %] Detalles de socio para [% INCLUDE 'patron-title.inc' %] [% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery-ui-timepicker-addon.js"></script>
 <script type="text/JavaScript" language="JavaScript">
 //<![CDATA[
 $.tablesorter.addParser({
@@ -74,7 +75,11 @@ $(document).ready(function() {
 		}
 	});
     $("#suspend_until").datepicker({ minDate: 1 }); // require that hold suspended until date is after today
-    $("#newduedate").datepicker({ minDate: 1 }); // require that renewal date is after today
+    $("#newduedate").datetimepicker({
+        minDate: 1, // require that renewal date is after today
+        hour: 23,
+        minute: 59
+    });
  });
 function uncheck_sibling(me){
 nodename=me.getAttribute("name");
@@ -319,7 +324,7 @@ function validate1(date) {
  [% IF ( issueloo.red ) %] <input type="checkbox" name="items[]" value="[% issueloo.itemnumber %]" checked="checked" onclick="uncheck_sibling(this);" />
  [% ELSE %] <input type="checkbox" name="items[]" value="[% issueloo.itemnumber %]" onclick="uncheck_sibling(this);" />
  [% END %] [% END %] </td>
- [% END %] [% IF ( issueloo.return_failed ) %] <td class="problem">Check-in failed</td>
+ [% END %] [% IF ( issueloo.return_failed ) %] <td class="problem">Falló la devolución </td>
  [% ELSE %] [% IF ( issueloo.norenew_reason_on_reserve ) %] <td><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% issueloo.biblionumber %]">Reservado</a></td>
  [% ELSE %] <td><input type="checkbox" name="barcodes[]"  value="[% issueloo.barcode %]" onclick="uncheck_sibling(this);" />
  <input type="checkbox" name="all_barcodes[]" value="[% issueloo.barcode %]" checked="checked" style="display: none;" />

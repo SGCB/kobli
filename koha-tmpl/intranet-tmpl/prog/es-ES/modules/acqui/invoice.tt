@@ -1,4 +1,4 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Acquisitions &rsaquo; Invoice</title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; Factura</title>
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-[% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/invoices.pl">Invoices</a> &rsaquo; <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoiceid %]">[% invoicenumber %]</a></div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/invoices.pl">Facturas</a> &rsaquo; <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoiceid %]">[% invoicenumber %]</a></div>
 
 <div id="doc3" class="yui-t2">
 
@@ -25,20 +25,20 @@
  <div id="yui-main">
  <div class="yui-b">
  [% IF ( modified ) %] <div class="dialog">
- <p>Invoice has been modified</p>
+ <p>La factura ha sido modificado</p>
  </div>
- [% END %] <h1>Invoice: [% invoicenumber %]</h1>
+ [% END %] <h1>Factura: [% invoicenumber %]</h1>
 
- <p>Supplier: [% suppliername %]</p>
+ <p>Proveedor: [% suppliername %]</p>
  <form action="" method="post">
  <fieldset>
- <label for="shipmentdate">Shipment date:</label>
+ <label for="shipmentdate">Fecha del envío:  </label>
  <input type="text" size="10" id="shipmentdate" name="shipmentdate" value="[% shipmentdate | $KohaDates %]" readonly="readonly" class="datepicker" />
  <p></p>
- <label for="billingdate">Billing date:</label>
+ <label for="billingdate">Fecha de facturación:</label>
  <input type="text" size="10" id="billingdate" name="billingdate" value="[% billingdate | $KohaDates %]" readonly="readonly" class="datepicker" />
  <p></p>
- <label for="shipmentcost">Shipment cost:</label>
+ <label for="shipmentcost">Coste del envío: </label>
  <input type="text" size="10" id="shipmentcost" name="shipmentcost" value="[% shipmentcost %]" />
  <label for="shipment_budget_id">Presupuesto:</label>
  <select id="shipment_budget_id" name="shipment_budget_id">
@@ -49,14 +49,10 @@
  [% END %] </select>
  <p></p>
  <label>Estado:</label>
- [% IF ( invoiceclosedate ) %]
- Closed on [% invoiceclosedate | $KohaDates %].
- <p></p>
+ [% IF ( invoiceclosedate ) %] cerrada el [% invoiceclosedate | $KohaDates %].<p></p>
  <input type="checkbox" name="reopen" id="reopen" />
  <label for="reopen">Reabrir</label>
- [% ELSE %]
- Open.
- <p></p>
+ [% ELSE %] Abierto. <p></p>
  <input type="checkbox" name="close" id="close" />
  <label for="close">Cerrar</label>
  [% END %] <input type="hidden" name="op" value="mod" />
@@ -67,9 +63,9 @@
  </fieldset>
  </form>
  <p>
- <a href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% invoiceid %]">Go to receipt page</a>
+ <a href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% invoiceid %]">Ir a la página de recibo</a>
  </p>
- <h2>Invoice details</h2>
+ <h2>Detalles del factura</h2>
  [% IF orders_loop.size %] <table id="orderst">
  <thead>
  <tr>
@@ -100,7 +96,7 @@
  [% END %] </tbody>
  <tfoot>
  <tr>
- <th colspan="3">Total Tax Exc.</th>
+ <th colspan="3">Total impuesto Exc.</th>
  <th>[% total_rrp_gste %]</th>
  <th>&nbsp;</th>
  <th>[% total_quantity %]</th>
@@ -108,7 +104,7 @@
  <th>&nbsp;</th>
  </tr>
  <tr>
- <th colspan='3'>Tax ([% gist %]%)</th>
+ <th colspan='3'>Impuesto ([% gist %]%)</th>
  <th>[% gist_rrp %]</th>
  <th>&nbsp;</th>
  <th>&nbsp;</th>
@@ -116,7 +112,7 @@
  <th>&nbsp;</th>
  </tr>
  <tr>
- <th colspan='3'>Total Tax Inc. ([% currency %])</th>
+ <th colspan='3'>Total  impuesto inc. ([% currency %])</th>
  <th>[% total_rrp_gsti %]</th>
  <th>&nbsp;</th>
  <th>[% total_quantity %]</th>
@@ -133,7 +129,7 @@
  </tr>
  </tfoot>
  </table>
- [% ELSE %] <p>No orders yet</p>
+ [% ELSE %] <p>No hay pedidotodavía</p>
  [% END %] </div>
  </div>
  <div class="yui-b">

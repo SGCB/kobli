@@ -52,9 +52,7 @@
  [% issue.issuedate | $KohaDates %]</td>
  <td>
  [% issue.issuingbranch %]</td>
- <td>[% IF issue.date_due %]
- [% issue.date_due | $KohaDates %]
- [% ELSE %]&nbsp;[% END %]</td>
+ <td>[% IF issue.date_due %] [% issue.date_due | $KohaDates %] [% ELSE %]&nbsp;[% END %]</td>
  <td>
  [% IF  issue.returndate %] [% issue.returndate | $KohaDates %] [% ELSE %] Prestado [% END %] </td>
 </tr>

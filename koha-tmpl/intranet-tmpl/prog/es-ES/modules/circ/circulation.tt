@@ -1,8 +1,4 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulation
-[% IF borrowernumber %]
- &rsaquo; Checking out to [% INCLUDE 'patron-title.inc' invert_name = 1 %]
-[% END %]
-</title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación [% IF borrowernumber %] &rsaquo; Prestando a [% INCLUDE 'patron-title.inc' invert_name = 1 %] [% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] [% IF ( UseTablesortForCirc ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>[% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript">
@@ -155,24 +151,28 @@ var allcheckboxes = $(".checkboxed");
     $("#exportmenuc").empty();
     initExportButton();
 
-    $("#newduedate").datepicker({ minDate: 1 }); // require that renewal date is after today
-    $("#duedatespec").datetimepicker({
-        onSelect: function(dateText, inst) { $("#barcode").focus(); },
+    $("#newduedate").datetimepicker({
+        minDate: 1, // require that renewal date is after today
         hour: 23,
-        minute: 59,
+        minute: 59
+    });
+    $("#duedatespec").datetimepicker({
+        onClose: function(dateText, inst) { $("#barcode").focus(); },
+        hour: 23,
+        minute: 59
     });
 
  });
 
 function initExportButton() {
     var exportmenu = [
-        { text: _("ISO2709 with items"), onclick: {fn: function(){export_submit("iso2709_995")}} },
-        { text: _("ISO2709 without items"), onclick: {fn: function(){export_submit("iso2709")}} },
+        { text: _("ISO2709 con ñitems"), onclick: {fn: function(){export_submit("iso2709_995")}} },
+        { text: _("ISO2709 sin ítems"), onclick: {fn: function(){export_submit("iso2709")}} },
         { text: _("CSV"), onclick: {fn: function(){export_submit("csv")}} },
     ];
     new YAHOO.widget.Button({
         type: "menu",
-        label: _("Export checkouts"),
+        label: _("Total de préstamos"),
         name: "exportmenubutton",
         menu: exportmenu,
         container: "exportmenuc"
@@ -181,7 +181,7 @@ function initExportButton() {
 
 function export_submit(format) {
     if ($("input:checkbox[name='biblionumbers'][checked]").length < 1){
-        alert(_("You must select a checkout to export"));
+        alert(_("Usted debe seleccionar una salida para exportar"));
         return;
     }
 
@@ -201,7 +201,7 @@ function export_submit(format) {
         $("#dont_export_item").val(1);
     } else {
         [% UNLESS ( export_with_csv_profile ) %]
-            alert(_("You must define a csv profile for export (in tools>CSV export profiles) and fill the ExportWithCsvProfile system preference"));
+            alert(_("Debe definir un perfil csv para la exportación (en Herramientas> Perfiles CSV a la exportación) y llenar la preferencia del sistema ExportWithCsvProfile"));
             return false;
         [% END %]
     }
@@ -288,7 +288,7 @@ function validate1(date) {
 <h3>Por favor confirme el préstamo</h3>
 
 <ul>
-[%IF ( AGE_RESTRICTION ) %] <li>Age restriction [% AGE_RESTRICTION %]. Check out anyway?</li>
+[%IF ( AGE_RESTRICTION ) %] <li>Restricción de edad [% AGE_RESTRICTION %]. ¿Prestar de todas maneras?</li>
 [% END %] [% IF ( DEBT ) %] <li>El socio tiene una deuda de [% DEBT %]</li>
 [% END %] [% IF ( RENEW_ISSUE ) %] <li>Ítem <i>[% getTitleMessageIteminfo %]</i> ([% getBarcodeMessageIteminfo %]) está prestado actualmente a este socio. ¿Renovar?</li>
 [% END %] [% IF ( RESERVE_WAITING ) %] <li>Ítem <i>[% getTitleMessageIteminfo %]</i> ([% getBarcodeMessageIteminfo %]) lo esta esperando <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% resborrowernumber %]">[% resfirstname %] [% ressurname %]</a> ([% rescardnumber %]) de [% resbranchname %] desde [% reswaitingdate %]</li>
@@ -300,7 +300,7 @@ function validate1(date) {
 [% END %] [% IF ( NOT_FOR_LOAN_FORCING ) %] <li>El ítem normalmente no es para préstamo. ¿Prestar de todas maneras?</li>
 [% END %] [% IF ( USERBLOCKEDOVERDUE ) %] <li>El socio tiene [% USERBLOCKEDOVERDUE %] ítem(s) retrasados. Prestar de todos modos?</li>
 [% END %] [% IF ( ITEM_LOST ) %] <li>Este ítem se ha perdido con estado de "[% ITEM_LOST %]". Lo presta igualmente?</li>
-[% END %] [% IF  HIGHHOLDS %] <li>High demand item. Loan period shortened to [% HIGHHOLDS.duration %] days (due [% HIGHHOLDS.returndate %]). Check out anyway?</li>
+[% END %] [% IF  HIGHHOLDS %] <li>Artículo de gran demanda. Tiempo de préstamo reducido a [% HIGHHOLDS.duration %] días (debido [% HIGHHOLDS.returndate %]). ¿todos modos desea revisar?</li>
 [% END %] </ul>
 
 [% IF HIGHHOLDS %] <script language="JavaScript" type="text/javascript">
@@ -322,7 +322,7 @@ function validate1(date) {
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
  <input type="hidden" name="issueconfirmed" value="1" />
  [% IF ( DEBT ) %]<input type="hidden" name="debt_confirmed" value="1" />[% END %] [% IF ( INVALID_DATE ) %] <p>
- <input type="text" size="13" id="duedatespec" name="duedatespec" value="[% duedatespec %]" />
+ <input type="text" size="13" id="duedatespec" name="duedatespec" readonly="readonly" value="[% duedatespec %]" />
  <label for="duedatespec">Fecha de devolución</label>
  </p>
  [% ELSE %] <input type="hidden" name="duedatespec" value="[% duedatespec %]" />
@@ -362,7 +362,7 @@ function validate1(date) {
  [% END %] [% IF ( CARD_LOST ) %] <li>El carnet de de socio se ha perdido</li>
  [% END %] [% IF ( DEBARRED ) %] <li>El socio está excluido.</li>
  [% END %] [% IF ( NO_MORE_RENEWALS ) %] <li>No es posible una nueva renovación</li>
- [% END %] [%IF ( AGE_RESTRICTION ) %] <li>Age restriction [% AGE_RESTRICTION %].</li>
+ [% END %] [%IF ( AGE_RESTRICTION ) %] <li>Restricción de edad [% AGE_RESTRICTION %].</li>
  [% END %] [% IF ( EXPIRED ) %] <li>El carnet de socio se ha vencido.</li>
  [% END %] [% IF ( ITEMNOTSAMEBRANCH ) %] <li>Este ítem es de la biblioteca [% itemhomebranch %] y no pueden ser prestado desde esta ubicación.</li>
  [% END %] [% IF ( USERBLOCKEDREMAINING ) %] <li>El socio tiene ítems retrasados y está bloqueado por [% USERBLOCKEDREMAINING %] día(s).</li>
@@ -417,7 +417,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
 
  [% IF ( SpecifyDueDate ) %]<div class="date-select">
  <div class="hint">Especifique la fecha de vencimiento [% INCLUDE 'date-format.inc' %]: </div>
- [% IF ( duedatespec ) %]<input type="text" size="13" id="duedatespec" name="duedatespec" value="[% duedatespec %]" />[% ELSE %]<input type="text" size="13" id="duedatespec" name="duedatespec" value="" />
+ [% IF ( duedatespec ) %]<input type="text" size="13" id="duedatespec" name="duedatespec" value="[% duedatespec %]" readonly="readonly" />[% ELSE %]<input type="text" size="13" id="duedatespec" name="duedatespec" value="" readonly="readonly" />
 [% END %] <label for="stickyduedate"> Recordar por la sesión:</label>
 [% IF ( stickyduedate ) %] <input type="checkbox" id="stickyduedate" onclick="this.form.barcode.focus();" name="stickyduedate" checked="checked" />
 [% ELSE %] <input type="checkbox" id="stickyduedate" onclick="this.form.barcode.focus();" name="stickyduedate" />
@@ -534,7 +534,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  <th scope="col">Precio</th>
  <th scope="col">Renovar <p class="column-tool"><a href="#" id="CheckAllitems">seleccionar todo</a> | <a href="#" id="CheckNoitems">ninguno</a></p></th>
  <th scope="col">Devolución <p class="column-tool"><a href="#" id="CheckAllreturns">seleccionar todo</a> | <a href="#" id="CheckNoreturns">ninguno</a></p></th>
- [% IF export_remove_fields OR export_with_csv_profile %] <th scope="col">Export <p class="column-tool"><a href="#" id="CheckAllexports">seleccionar todo</a> | <a href="#" id="CheckNoexports">ninguno</a></p></th>
+ [% IF export_remove_fields OR export_with_csv_profile %] <th scope="col">Exportar <p class="column-tool"><a href="#" id="CheckAllexports">seleccionar todo</a> | <a href="#" id="CheckNoexports">ninguno</a></p></th>
  [% END %] </tr>
 [% IF ( todayissues ) %]</thead>
 [% INCLUDE 'checkouts-table-footer.inc' %] <tbody>
@@ -605,7 +605,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  [% END %] [% IF ( previssue.renew_error_on_reserve ) %] <a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% previssue.biblionumber %]">Reservado</a>
  [% END %] [% IF ( previssue.renew_error_too_many ) %] No renovable [% END %] [% IF ( previssue.can_confirm ) %] </span>
  [% END %] [% END %] </td>
- [% END %] [% IF ( previssue.return_failed ) %] <td class="problem">Check-in failed</td>
+ [% END %] [% IF ( previssue.return_failed ) %] <td class="problem">Falló la devolución </td>
  [% ELSE %] [% IF ( previssue.renew_error_on_reserve ) %] <td><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% previssue.biblionumber %]">Reservado</a>
  <input type="checkbox" name="all_barcodes[]" value="[% previssue.barcode %]" checked="checked" style="display: none;" />
  </td>
@@ -627,7 +627,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  [% END %] [% END %] <input value="Renovar o regresar ítems seleccionados" name="renew_checked" type="submit" />
  <input value="Renovar todos" name="renew_all" type="submit" id="renew_all" />
  [% IF export_remove_fields OR export_with_csv_profile %] <br/><br/>
- Don't export fields : <input type="text" id="export_remove_fields" name="export_remove_fields" value="[% export_remove_fields %]" title="Use for iso2709 exports" />
+ No exporte campos:<input value="[% export_remove_fields %]" name="export_remove_fields" type="text" id="export_remove_fields" title="Usar  ISO2709 para las exportaciones" />
  <span id="exportmenuc">Exportar</span>
  <input type="hidden" name="op" value="export" />
  <input type="hidden" id="export_format" name="format" value="iso2709" />

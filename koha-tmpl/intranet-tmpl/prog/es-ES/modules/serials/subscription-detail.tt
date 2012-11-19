@@ -102,28 +102,28 @@ $(document).ready(function() {
 </div>
 </div>
  [% IF ( show_acquisition_details ) %] <div id="acquisition_details">
- <h2>Acquisition details</h2>
+ <h2>Detalles de adquisición</h2>
  <table>
  <thead>
- <tr><th></th><th>Price exc. taxes</th><th>Price inc. taxes</th><th>fund</th><th></th></tr>
+ <tr><th></th><th>Precio exc. impuestos</th><th>Precio inc. impuestos</th><th>fondo</th><th></th></tr>
  </thead>
  <tbody>
  <tr>
- <td>Ordered amount</td>
+ <td>Costo del pedido </td>
  <td>[% valuegste_ordered %]</td>
  <td>[% valuegsti_ordered %]</td>
  <td>[% budget_name_ordered %]</td>
  <td>
- [% IF ( ordered_exists ) %] <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">See basket informations</a>
+ [% IF ( ordered_exists ) %] <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Información de la cesta</a>
  [% END %] </td>
  </tr>
  <tr>
- <td>Spent amount</td>
+ <td>Monto de pago </td>
  <td>[% valuegste_spent %]</td>
  <td>[% valuegsti_spent %]</td>
  <td>[% budget_name_spent %]</td>
  <td>
- [% IF ( spent_exists ) %] <a href="/cgi-bin/koha/acqui/invoice.pl?invoicenumber=[% invoicenumber %]">See invoice informations</a>
+ [% IF ( spent_exists ) %] <a href="/cgi-bin/koha/acqui/invoice.pl?invoicenumber=[% invoicenumber %]">Ver información factura</a>
  [% END %] </td>
  </tr>
  </tbody>

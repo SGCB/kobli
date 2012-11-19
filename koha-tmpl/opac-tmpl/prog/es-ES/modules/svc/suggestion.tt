@@ -1,5 +1,4 @@
-[% IF (render=='standalone') %]
-[% INCLUDE 'doc-head-open.inc' %]Search suggestions</title>
+[% IF (render=='standalone') %][% INCLUDE 'doc-head-open.inc' %]Burcar sugerencias</title>
  [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-suggestion">
  [% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %] <div id="bd">
@@ -7,12 +6,12 @@
  <div class="yui-b">
  <div class="yui-ge">
  <div class="container">
- <h1 class="title">Suggestions</h1>
+ <h1 class="title">Sugerencias</h1>
 [% END %] [% IF suggestions && suggestions.size %] <div>
- <span class='suggestionlabel'>Did you mean:</span>
+ <span class='suggestionlabel'>Quizá quiso decir: </span>
  [% FOREACH suggestion IN suggestions %] <span class='searchsuggestion'><a href='/cgi-bin/koha/opac-search.pl?q=[% suggestion.search | uri %]'>[% suggestion.label %]</a></span>
  [% END %] </div>
-[% ELSE %] <span class='nosuggestions'>Sorry, no suggestions.</span>
+[% ELSE %] <span class='nosuggestions'>Lo lamentamos, no hay sugerencias.</span>
 [% END %] [% IF (render=='standalone') %] </div>
  </div>
  </div>

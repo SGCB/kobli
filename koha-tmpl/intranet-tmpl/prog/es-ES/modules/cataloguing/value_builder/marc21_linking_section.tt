@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Cataloguing &rsaquo; plugin for links</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; plugin para enlaces</title>
 [% INCLUDE 'doc-head-close.inc' %] [% IF ( fillinput ) %] <script language="javascript" type="text/javascript">
 
             function go() {
@@ -82,7 +82,7 @@
 
 </head>
 <body style="padding:1em;">
-<h3>MARC21 Plugin to build links between records</h3>
+<h3>MARC21 API para establecer vínculos entre los registros</h3>
 [% ELSE %] <script type="text/javascript">
 //<![CDATA[
 // 			document.getElementById('searchbox').focus();
@@ -105,9 +105,9 @@
 
 </head>
 <body style="padding:1em;">
-<h3>Plugin to build links between records</h3>
+<h3>Plugin para construir enlaces entre registros</h3>
  [% IF ( Search ) %] <div id="MARC21_Linking_section_search">
- <h2>Search for</h2>
+ <h2>Buscar por  </h2>
  <form name="f" method="post" action="/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=marc21_linking_section.pl">
 
  <p>
@@ -119,7 +119,7 @@
  <input type="text" name="search" id="searchbox" size="35" /><br />
  <label for="itypeloop">Tipo de ítem</label>
  <select name="itype" id="itypeloop">
- <option value="">All Item Types</option>
+ <option value="">Todos los tipos de ítem </option>
  [% FOREACH itypeloo IN itypeloop %] [% IF ( itypeloo.selected ) %] <option value="[% itypeloo.itemtype %]" selected="selected">[% itypeloo.description %]</option>
  [% ELSE %] <option value="[% itypeloo.itemtype %]">[% itypeloo.description %]</option>
  [% END %] [% END %] </select>
@@ -142,7 +142,7 @@
  <div id="resultlist">
  <table>
  <tr>
- <th>Concise description</th>
+ <th>Descripción concisa:</th>
  <th>&nbsp;</th>
  </tr>
  [% FOREACH resul IN result %] [% IF ( resul.title ) %] <tr>

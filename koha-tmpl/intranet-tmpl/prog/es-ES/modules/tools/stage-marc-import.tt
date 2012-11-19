@@ -40,8 +40,8 @@ function CheckForm(f) {
 <h1>Registros preparados MARC para importar</h1>
 [% IF ( uploadmarc ) %] <p>Resultados de preparación MARC:</p>
 <ul>
- [% SWITCH (record_type) %] [% CASE 'biblio' %] <li>Processing bibliographic records</li>
- [% CASE 'auth' %] <li>Processing authority records</li>
+ [% SWITCH (record_type) %] [% CASE 'biblio' %] <li>Procesando registro bibliográfico</li>
+ [% CASE 'auth' %] <li>Procesando registros de autoridad</li>
  [% END %] <li>[% total %] registros en el archivo</li>
  <li>[% import_errors %] registros no preparados debido a error MARC</li>
  <li>[% staged %] registros preparados</li>
@@ -55,7 +55,7 @@ function CheckForm(f) {
 </ul>
 [% ELSE %] <ul>
  <li>Seleccione un archivo MARC para preparar en el depósito. Será procesado y cada registro válido será preparado para su posterior uso en el catálogo.</li>
- <li>You can enter a name for this import. It may be useful, when creating a record, to remember where the suggested MARC data comes from!</li>
+ <li>Puede introducir un nombre para esta importación. Puede ser útil, cuando se crea un registro, para recordar de dónde vienen los datos de MARC sugeridos! </li>
 </ul>
 <form method="post" action="[% SCRIPT_NAME %]" id="uploadfile" enctype="multipart/form-data">
 <fieldset class="rows" id="uploadform">
@@ -85,10 +85,10 @@ function CheckForm(f) {
  
  </li>
  <li>
- <label for='record_type'>Record type:</label>
+ <label for='record_type'>Tipo de registro:</label>
  <select name='record_type' id='record_type'>
  <option value='biblio' selected='selected'>Bibliographic</option>
- <option value='auth'>Authority</option>
+ <option value='auth'>Autoridad</option>
  </select>
  </li>
  <li>
@@ -104,7 +104,7 @@ function CheckForm(f) {
  [% FOREACH available_matcher IN available_matchers %] <option value="[% available_matcher.matcher_id %]">[% available_matcher.code %] ([% available_matcher.description %]) </option>
  [% END %] </select>
  </li>
- <li><label for="overlay_action">Action if matching record found: </label>
+ <li><label for="overlay_action">Acción en caso de registro coincidente encontrado: </label>
  [% INCLUDE 'tools-overlay-action.inc' %] </li>
  <li><label for="nomatch_action">Acción si no se encontró coincidencia: </label>
  [% INCLUDE 'tools-nomatch-action.inc' %] </li>

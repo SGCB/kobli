@@ -13,16 +13,4 @@
  </div>
  [% END %] [% END %] [% END %] [% END %] [% BLOCK authheadingdisplay %] [% IF authid %]<a href="/cgi-bin/koha/opac-authoritiesdetail.pl?authid=[% authid %]">[% heading %]</a>
  [% ELSIF search %]<a href="/cgi-bin/koha/opac-authorities-home.pl?op=do_search&type=opac&operator=contains&marclist=mainentry&and_ora=and&orderby=HeadingAsc&value=[% search %]">[% heading %]</a>
- [% ELSE %][% heading %]
- [% END %]
-[% END %]
-[% BLOCK language %]
- [% SWITCH lang %]
- [% CASE ['en', 'eng'] %]English
- [% CASE ['fr', 'fre'] %]French
- [% CASE ['it', 'ita'] %]Italian
- [% CASE ['de', 'ger', 'deu'] %]German
- [% CASE ['es', 'spa'] %]Spanish
- [% CASE %][% lang %]
- [% END %]
-[% END %]
+ [% ELSE %][% heading %] [% END %] [% END %] [% BLOCK language %] [% SWITCH lang %] [% CASE ['en', 'eng'] %]Inglés [% CASE ['fr', 'fre'] %]Francés [% CASE ['it', 'ita'] %]Italiano [% CASE ['de', 'ger', 'deu'] %]Aleman [% CASE ['es', 'spa'] %]Español [% CASE %][% lang %] [% END %] [% END %] 

@@ -136,12 +136,7 @@
  [% FOREACH notfoundcardnumber IN notfoundcardnumbers %] <tr><td>[% notfoundcardnumber.cardnumber %]</td></tr>
  [% END %] </tbody>
  </table>
- [% END %]
-
- [% IF ( op == 'show_results' ) %]
- [% IF ( errors ) %]
- Errors occured :
- <ul class="warnings">
+ [% END %] [% IF ( op == 'show_results' ) %] [% IF ( errors ) %] HAn ocurrido errores : <ul class="warnings">
  [% FOREACH error IN errors %] [% IF ( error.error == 'can_not_update' ) %] <li>No se puede actualizar el prestatario con número de prestatario [% error.borrowernumber %]</li>
  [% ELSE %] <li>[% error.error %]</li>
  [% END %] [% END %] </ul>
@@ -192,31 +187,7 @@
  <ol>
  [% FOREACH field IN fields %] <li>
  <label style="width:20em;">
- [% SWITCH ( field.name ) %]
- [% CASE 'surname' %]
- Surname:
- [% CASE 'firstname' %]
- First name:
- [% CASE 'branchcode' %]
- Library:
- [% CASE 'categorycode' %]
- Category
- [% CASE 'sort1' %]
- Sort 1:
- [% CASE 'sort2' %]
- Sort 2:
- [% CASE 'dateenrolled' %]
- Registration date:
- [% CASE 'dateexpiry' %]
- Expiry date:
- [% CASE 'debarred' %]
- Restricted:
- [% CASE 'debarredcomment' %]
- Restriction comment:
- [% CASE 'borrowernotes' %]
- Circulation note:
- [% END %]
- </label>
+ [% SWITCH ( field.name ) %] [% CASE 'surname' %] Apellido: [% CASE 'firstname' %] Nombre: [% CASE 'branchcode' %] Biblioteca: [% CASE 'categorycode' %] Categoría [% CASE 'sort1' %] Tipo 1: [% CASE 'sort2' %] Tipo 2: [% CASE 'dateenrolled' %]  fecha de registro: [% CASE 'dateexpiry' %] Fecha de caducidad: [% CASE 'debarred' %] Restringido: [% CASE 'debarredcomment' %] Comentario restringido: [% CASE 'borrowernotes' %] Nota de circulación: [% END %] </label>
  [% IF field.mandatory %] <input readonly="readonly" value="[% field.name %]" name="disable_input" type="checkbox" title="Este campo es obligatorio" onclick="return false;" />
  [% ELSE %] <input value="[% field.name %]" name="disable_input" type="checkbox" title="Revisar para borrar este campo" />
  [% END %] [% IF ( field.type == 'text' ) %] <input type="text" name="[% field.name %]" value="" />
@@ -227,8 +198,7 @@
  <a href="#" onclick="clearDate('[% field.name %]');return false;">X</a>
  [% END %] </li>
  [% END %] [% IF ( patron_attributes_codes ) %] <li class="attributes">
- <label style="width:20em;">Attribute:
- <select name="patron_attributes">
+ <label style="width:20em;">Atributo:<select name="patron_attributes">
  [% FOREACH pac IN patron_attributes_codes %] <option value="[% pac.attribute_code %]" data-type="[% pac.type %]" data-category="[% pac.category_lib %]">[% pac.attribute_lib %]</option>
  [% END %] </select>
  </label>

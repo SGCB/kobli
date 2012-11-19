@@ -1,23 +1,22 @@
-[% INCLUDE 'help-top.inc' %] <h1>Offline Circulation</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Circulación fuera de línea </h1>
 
-<p>From this page you can manage offline circulation actions tracked in the Firefox plugin found at: <a class="ulink" href="https://addons.mozilla.org/en/firefox/addon/koct/" target="_top">https://addons.mozilla.org/en/firefox/addon/koct/</a></p>
+<p>Desde esta página se puede gestionar acciones offline circulación seguimiento en el plugin de Firefox en:<a class="ulink" href="https://addons.mozilla.org/en/firefox/addon/koct/" target="_top">https://addons.mozilla.org/en/firefox/addon/koct/</a></p>
 
-<p>When you use the 'Commit to Koha' option in the offline circulation plugin you will come to this page to manage the data.</p>
+<p>Cuando se utiliza el "Comprometerse a Koha 'en el plugin de circulación fuera de línea se llega a esta página para administrar los datos.</p>
 
-<p>Once all of the logs from all of the circulation computers are loaded you will be able to check them all or select just those you want to process into Koha.</p>
+<p>Una vez que todos los registros de todos los equipos de circulación se cargan usted será capaz de verificar todos o seleccionar sólo aquellos que desee procesar en Koha.</p>
 
 <ul>
- <li>Click on the Process button and Koha will record every stored transaction one by one. For each transaction, the status will change to:
-<ul>
- <li>"Success." if the transaction was processed correctly</li>
- <li>"Borrower not found." if the borrower card number is incorrect</li>
- <li>"Item not found." if the item barcode is wrong</li>
- <li>"Item not issued." if you checked in an available item</li>
+ <li>Haga clic en el botón Procesar y Koha registrará todas las transacciones almacenadas una por una. Para cada transacción, el estado cambiará a:<ul>
+ <li>"Success."si la transacción se proceso correctamente</li>
+ <li>"Borrower not found."si el número de tarjeta de prestatario es incorrecta</li>
+ <li>"Item not found." si el código de barras es incorrecto</li>
+ <li>"Item not issued." si ha marcado un ítem como disponible</li>
 </ul>
 </li>
- <li>Once finished you will have a summary of all of your transactions</li>
+ <li>Una vez terminado tendrá un resumen de todas sus transacciones</li>
 </ul>
 
-<p><strong>See the full documentation for Offline Circulation in the <a href="http://manual.koha-community.org/3.10/en/offlinecirc.html#firefoxofflinecirc">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Circulación en la  <a href="http://manual.koha-community.org/3.10/en/offlinecirc.html#firefoxofflinecirc">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

@@ -287,8 +287,8 @@
 
  [% INCLUDE 'budgets-active-currency.inc' %] <div id="budgetsTabs" class="toptabs">
  <ul>
- <li><a href="#active">Active Budgets</a></li>
- <li><a href="#inactive">Inactive Budgets</a></li>
+ <li><a href="#active">Presupuestos activos</a></li>
+ <li><a href="#inactive">Inactivo Presupuestos</a></li>
  </ul>
 
  <div id="active">
@@ -305,7 +305,7 @@
  </thead>
  <tbody>
  [% FOREACH period_active IN period_active_loop %] <tr>
- <td><a href="/cgi-bin/koha/admin/aqbudgets.pl?budget_period_id=[% period_active.budget_period_id %]" title="View funds for [% period_active.budget_period_description %]">[% period_active.budget_period_description %]</a></td>
+ <td><a href="/cgi-bin/koha/admin/aqbudgets.pl?budget_period_id=[% period_active.budget_period_id %]" title="Ver los fondos para [% period_loo.budget_period_description %] ">[% period_active.budget_period_description %]</a></td>
  <td>[% period_active.budget_period_startdate | $KohaDates %]</td>
  <td>[% period_active.budget_period_enddate | $KohaDates %]</td>
  <td>
@@ -314,15 +314,12 @@
  <td>
  <a href="[% script_name %]?op=add_form&amp;budget_period_id=[% period_active.budget_period_id |html %]">Editar</a>
  <a href="[% script_name %]?op=delete_confirm&amp;budget_period_id=[% period_active.budget_period_id %]">Eliminar</a>
- <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_period_id=[% period_active.budget_period_id %]">Add Fund</a>
+ <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_period_id=[% period_active.budget_period_id %]">Agregar un fondo  </a>
  </td>
  </tr>
  [% END %] </tbody>
  </table>
- [% ELSE %]
- No active budgets
- [% END %]
- <div class="paginationBar">[% active_pagination_bar %]</div>
+ [% ELSE %] No activo presupuesto [% END %] <div class="paginationBar">[% active_pagination_bar %]</div>
  </div>
  <div id="inactive">
  [% IF ( period_inactive_loop ) %] <table id="inactiveperiodst">
@@ -352,10 +349,7 @@
  </tr>
  [% END %] </tbody>
  </table>
- [% ELSE %]
- No inactive budgets
- [% END %]
- <div class="pages">[% inactive_pagination_bar %]</div>
+ [% ELSE %] No activo nuevo presupuesto [% END %] <div class="pages">[% inactive_pagination_bar %]</div>
  </div>
  </div>
 [% END %] </div>

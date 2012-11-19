@@ -292,8 +292,7 @@ function enableCheckboxActions(){
  [% IF ( BIBLIO_RESULT.publicationyear ) %] [% BIBLIO_RESULT.publicationyear %] [% ELSE %] [% BIBLIO_RESULT.copyrightdate %] [% END %] </td>
  <td>[% IF ( BIBLIO_RESULT.ITEM_RESULTS ) %]<ul>[% FOREACH ITEM_RESULT IN BIBLIO_RESULT.ITEM_RESULTS %] <li>
  [% ITEM_RESULT.branchname %][% IF ( ITEM_RESULT.location_opac ) %], [% ITEM_RESULT.location_opac %][% END %] [% IF ( ITEM_RESULT.itemcallnumber ) %] ([% ITEM_RESULT.itemcallnumber %]) [% END %] ([% INCLUDE 'item-status.inc' item = ITEM_RESULT %]) </li>
- [% END %]</ul>[% ELSE %]This record has no items.[% END %]
- </td>
+ [% END %]</ul>[% ELSE %]Este registro no tiene ítems.[% END %] </td>
  </tr>
  [% END %] </table></form>
 [% END %] [% UNLESS ( print_basket ) %] <form name="myform" action="opac-basket.pl" method="get">

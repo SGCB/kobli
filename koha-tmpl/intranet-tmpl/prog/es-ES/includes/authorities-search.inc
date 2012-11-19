@@ -19,7 +19,7 @@
 </script>
 <div id="header_search" class="residentsearch">
  <div id="main_heading" class="residentsearch">
- <p class="tip">Enter authorized heading:</p>
+ <p class="tip">Ingrese encabezamiento autorizado:</p>
  <form action="/cgi-bin/koha/authorities/authorities-home.pl" method="get">
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="intranet" />
@@ -51,7 +51,7 @@
  </form>
  </div>
  <div id="matchheading_search" class="residentsearch">
- <p class="tip">Enter any heading:</p>
+ <p class="tip">Ingrese algún encabezamiento:</p>
  <form action="/cgi-bin/koha/authorities/authorities-home.pl" method="get">
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="intranet" />
@@ -115,7 +115,7 @@
  <ul>
  <li><a href="#main_heading">Buscar encabezamiento principal</a></li>
  <li><a href="#matchheading_search">Buscar en todos los encabezamientos</a></li>
- <li><a href="#all_headings">Keyword search</a></li>
+ <li><a href="#all_headings">Búsqueda de palabra clave</a></li>
  </ul>
 </div><!-- /header_search -->
 </div><!-- /gradient -->

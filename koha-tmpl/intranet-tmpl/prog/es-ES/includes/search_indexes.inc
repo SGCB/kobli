@@ -13,9 +13,9 @@
  <option value="se">&nbsp;&nbsp;&nbsp;&nbsp; Título de la serie</option>
  <option value="su">Tema</option>
  <option value="su,phr">&nbsp;&nbsp;&nbsp;&nbsp; Tema como frase</option>
- [% IF ( expanded_options ) %] <option value="su-br">&nbsp;&nbsp;&nbsp;&nbsp; Subject and broader terms</option>
- <option value="su-na">&nbsp;&nbsp;&nbsp;&nbsp; Subject and narrower terms</option>
- <option value="su-rl">&nbsp;&nbsp;&nbsp;&nbsp; Subject and related terms</option>
+ [% IF ( expanded_options ) %] <option value="su-br">&nbsp;&nbsp;&nbsp;&nbsp; Tema y téminos generales </option>
+ <option value="su-na">&nbsp;&nbsp;&nbsp;&nbsp; Tema y términos específicos</option>
+ <option value="su-rl">&nbsp;&nbsp;&nbsp;&nbsp; Temas y términos relacionados</option>
  [% END %] <option value="bc">Código de barras</option>
  <option value="location">Ubicación en estantería</option>
  <option value="sn">Numero estándar</option>

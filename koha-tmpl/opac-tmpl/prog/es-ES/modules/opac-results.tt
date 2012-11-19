@@ -113,7 +113,7 @@ $(document).ready(function(){
     [% END %]
     param1 += "<\/select> <input type=\"submit\" class=\"submit\" value=\""+_("Guardar")+"\" />";
     [% ELSE %]
-        var param1 = "<a id=\"addto\" class=\"addtocart\" href=\"#\">Add to cart<\/a>";
+        var param1 = "<a id=\"addto\" class=\"addtocart\" href=\"#\">" + _("Agregar a la cesta") + "<\/a>";
     [% END %]
 [% ELSE %]
         var param1 = "<label for=\"addto\">"+_("Agregar a la lista: ")+"<\/label><select name=\"addto\" id=\"addto\"><option value=\"\"><\/option>";
@@ -284,7 +284,7 @@ $(document).ready(function(){
  [% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %] [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink" class=""><i></i><span><i></i><span></span>Listas </span></a>[% END %] </div>
  [% END %] <div class="yui-b">
  <div id="userresults" class="container">
- [% IF ( DidYouMean ) %] <div id='didyoumean'>Not what you expected? Check for <a href='/cgi-bin/koha/svc/suggestion?render=standalone&amp;q=[% querystring | uri %]'>suggestions</a></div>
+ [% IF ( DidYouMean ) %] <div id='didyoumean'>¿no era lo que esperaba? Compruebe<a href='/cgi-bin/koha/svc/suggestion?render=standalone&amp;q=[% querystring | uri %]'>sugerencias </a></div>
  [% END %] <div id="top-pages">[% INCLUDE 'page-numbers.inc' %]</div>
  [% IF ( koha_spsuggest ) %] Quizá quiso decir: <ul style="list-style: none;">
  [% FOREACH SPELL_SUGGES IN SPELL_SUGGEST %] <li>
@@ -411,16 +411,7 @@ $(document).ready(function(){
  [% END %] [% IF ( SEARCH_RESULT.copyrightdate ) %]<span class="results_summary"><span class="label">Fecha:</span>[% SEARCH_RESULT.copyrightdate %]</span>[% END %] <span class="results_summary">
  <span class="label">Disponibilidad:</span>
  [% IF ( SEARCH_RESULT.available_items_loop.size() ) %] <span class="available"><strong>Copias disponibles:</strong>
- [% FOREACH available_items_loo IN SEARCH_RESULT.available_items_loop %]
- [% IF ( singleBranchMode ) %]
- [% available_items_loo.location %]
- [% ELSE %]
- [% available_items_loo.branchname %]
- [% END %]
-
- [% IF ( OPACItemsResultsDisplay ) %]
- [% UNLESS ( singleBranchMode ) %][% available_items_loo.location %][% END %]
- [% IF ( available_items_loo.itemcallnumber ) %][<a href="/cgi-bin/koha/opac-search.pl?q=callnum:[% available_items_loo.itemcallnumber |url %]">[% available_items_loo.itemcallnumber %]</a>][% END %] [% END %] ([% available_items_loo.count %]), [% END %] </span>
+ [% FOREACH available_items_loo IN SEARCH_RESULT.available_items_loop %] [% IF ( singleBranchMode ) %] [% available_items_loo.location %] [% ELSE %] [% available_items_loo.branchname %] [% END %] [% IF ( OPACItemsResultsDisplay ) %] [% UNLESS ( singleBranchMode ) %][% available_items_loo.location %][% END %] [% IF ( available_items_loo.itemcallnumber ) %][<a href="/cgi-bin/koha/opac-search.pl?q=callnum:[% available_items_loo.itemcallnumber |url %]">[% available_items_loo.itemcallnumber %]</a>][% END %] [% END %] ([% available_items_loo.count %]), [% END %] </span>
  [% ELSE %] [% IF ( SEARCH_RESULT.ALTERNATEHOLDINGS ) %] [% FOREACH ALTERNATEHOLDING IN SEARCH_RESULT.ALTERNATEHOLDINGS %] &nbsp;<span id="alternateholdings">[% ALTERNATEHOLDING.holding %]</span>, [% END %] [% ELSE %] <span class="unavailable">No hay ítems disponibles:</span>
  [% END %] [% END %] <span class="unavailable">
  [% IF ( SEARCH_RESULT.onloancount ) %] Prestados ([% SEARCH_RESULT.onloancount %]), [% END %] [% IF ( SEARCH_RESULT.wthdrawncount ) %] Retirados ([% SEARCH_RESULT.wthdrawncount %]), [% END %] [% UNLESS ( SEARCH_RESULT.hidelostitems ) %][% IF ( SEARCH_RESULT.itemlostcount ) %] Perdidos ([% SEARCH_RESULT.itemlostcount %]),[% END %][% END %] [% IF ( SEARCH_RESULT.damagedcount ) %] Dañados ([% SEARCH_RESULT.damagedcount %]),[% END %] [% IF ( SEARCH_RESULT.orderedcount ) %] Pedidos ([% SEARCH_RESULT.orderedcount %]),[% END %] [% IF ( SEARCH_RESULT.onholdcount ) %] Reservados ([% SEARCH_RESULT.onholdcount %]),[% END %] [% IF ( SEARCH_RESULT.intransitcount ) %] En ruta ([% SEARCH_RESULT.intransitcount %]),[% END %] </span>
@@ -473,13 +464,7 @@ $(document).ready(function(){
  [% ELSE %][% IF ( SEARCH_RESULT.coverLR ) %]<img alt="" src="[% SEARCH_RESULT.coverLR |html %]" width="90" height="124" class="thumbnail" border="0" />[% END %]
  [% END %]-->
  <a class="p1" href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% SEARCH_RESULT.biblionumber %]">
- [% IF ( OPACLocalCoverImages ) %]<span title="[% SEARCH_RESULT.biblionumber |url %]" class="[% SEARCH_RESULT.biblionumber %]" id="local-thumbnail[% loop.count %]"></span>[% END %] [% IF ( OPACAmazonCoverImages ) %][% IF ( SEARCH_RESULT.normalized_isbn ) %]<img src="http://images.amazon.com/images/P/[% SEARCH_RESULT.normalized_isbn %].01.TZZZZZZZ.jpg" alt="" class="thumbnail" />[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %]
-
- [% IF ( SyndeticsEnabled ) %]
- [% IF ( SyndeticsCoverImages ) %]
- [% IF SEARCH_RESULT.normalized_isbn %]
- [% IF ( using_https ) %]
- <img src="https://secure.syndetics.com/index.aspx?isbn=[% SEARCH_RESULT.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% SEARCH_RESULT.normalized_upc %]&amp;oclc=[% SEARCH_RESULT.normalized_oclc %]" alt="" class="thumbnail" />
+ [% IF ( OPACLocalCoverImages ) %]<span title="[% SEARCH_RESULT.biblionumber |url %]" class="[% SEARCH_RESULT.biblionumber %]" id="local-thumbnail[% loop.count %]"></span>[% END %] [% IF ( OPACAmazonCoverImages ) %][% IF ( SEARCH_RESULT.normalized_isbn ) %]<img src="http://images.amazon.com/images/P/[% SEARCH_RESULT.normalized_isbn %].01.TZZZZZZZ.jpg" alt="" class="thumbnail" />[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %] [% END %] [% IF ( SyndeticsEnabled ) %] [% IF ( SyndeticsCoverImages ) %] [% IF SEARCH_RESULT.normalized_isbn %] [% IF ( using_https ) %]  <img src="https://secure.syndetics.com/index.aspx?isbn=[% SEARCH_RESULT.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% SEARCH_RESULT.normalized_upc %]&amp;oclc=[% SEARCH_RESULT.normalized_oclc %]" alt="" class="thumbnail" />
  [% ELSE %] <img src="http://www.syndetics.com/index.aspx?isbn=[% SEARCH_RESULT.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% SEARCH_RESULT.normalized_upc %]&amp;oclc=[% SEARCH_RESULT.normalized_oclc %]" alt="" class="thumbnail" />
  [% END %] [% ELSE %] <span class="no-image">No hay imagen de portada disponible</span>
  [% END %] [% END %] [% END %] [% IF ( GoogleJackets ) %][% IF ( SEARCH_RESULT.normalized_isbn ) %]<span style="block" title="[% SEARCH_RESULT.biblionumber |url %]" class="[% SEARCH_RESULT.normalized_isbn %]" id="gbs-thumbnail[% loop.count %]"></span>[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %] [% IF OpenLibraryCovers %][% IF SEARCH_RESULT.normalized_isbn %]<span style="block" title="[% SEARCH_RESULT.biblionumber %]" class="[% SEARCH_RESULT.normalized_isbn %]" id="openlibrary-thumbnail[% loop.count %]"></span>[% ELSE %]<span class="no-image">No hay imagen de portada disponible</span>[% END %][% END %] </a>

@@ -43,9 +43,9 @@
  <option value="kw">Palabra clave</option>
  <option value="su,wrdl">Tema</option>
 [% IF ( expanded_options ) %] <option value="su,phr">&nbsp;&nbsp;&nbsp;&nbsp; Frase de materia</option>
- <option value="su-br">&nbsp;&nbsp;&nbsp;&nbsp; Subject and broader terms</option>
- <option value="su-na">&nbsp;&nbsp;&nbsp;&nbsp; Subject and narrower terms</option>
- <option value="su-rl">&nbsp;&nbsp;&nbsp;&nbsp; Subject and related terms</option>
+ <option value="su-br">&nbsp;&nbsp;&nbsp;&nbsp; Materia y términos más amplios</option>
+ <option value="su-na">&nbsp;&nbsp;&nbsp;&nbsp; materia y términos limitados</option>
+ <option value="su-rl">&nbsp;&nbsp;&nbsp;&nbsp; Materia y términos relacionados</option>
 [% END %] <option value="ti">Título</option>
 [% IF ( expanded_options ) %] <option value="ti,phr">&nbsp;&nbsp;&nbsp;&nbsp; Frase de título</option>
  <option value="se,wrdl">Título de la serie</option>
@@ -218,8 +218,8 @@
 </div>
 <div class="yui-u">
 <!-- RANK LIMITS -->
- <div id="sortby" class="container"><fieldset><legend>Sorting: </legend>
- <label for="sort_by">Sort by:</label> <select id="sort_by" name="sort_by">
+ <div id="sortby" class="container"><fieldset><legend>Clasificación:</legend>
+ <label for="sort_by">Clasificar por:  </label> <select id="sort_by" name="sort_by">
 [% INCLUDE 'resort_form.inc' %] </select></fieldset></div>
 <!-- RANK LIMITS -->
 </div>

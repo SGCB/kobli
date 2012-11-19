@@ -1,8 +1,4 @@
-[% PROCESS 'opac-authorities.inc' %]
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Entry
-[% INCLUDE 'doc-head-close.inc' %]
-[% IF ( displayhierarchy ) %]
-<script language="javascript" type="text/javascript" src="/opac-tmpl/lib/jquery/plugins/jquery.jstree.js"></script>
+[% PROCESS 'opac-authorities.inc' %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha En línea[% END %] catálogo &rsaquo; Entrada [% INCLUDE 'doc-head-close.inc' %] [% IF ( displayhierarchy ) %]  <script language="javascript" type="text/javascript" src="/opac-tmpl/lib/jquery/plugins/jquery.jstree.js"></script>
 [% END %] <script language="javascript" type="text/javascript">
 //<![CDATA[
 $(document).ready(function() {
@@ -36,7 +32,7 @@ $(document).ready(function() {
 
 [% IF ( displayhierarchy ) %] <div id="hierarchies">
 [% PROCESS showhierarchy trees = loophierarchies %] </div>
-[% END %] <h1>[% summary.mainentry %][% IF authtypetext %] ([% authtypetext %])[% END %]</h1>
+[% END %] <h1>[% summary.mainentry %][% IF authtypetext %]([% authtypetext %])[% END %] </h1>
 <div class="usedin">Utilizado en <a href="opac-search.pl?type=opac&amp;q=[% authid %]&amp;idx=an,phr">[% count %] registros</a></div>
 <div class="authstanza">
 [% FOREACH authorize IN summary.authorized %] <div class="heading authorized auth[% seefro.field %]"><span class="label">Forma prefereida: </span><span class="authorized">[% authorize.heading %]</span></div>
@@ -55,11 +51,10 @@ $(document).ready(function() {
  </li>
  [% END %] [% PROCESS otherscript headings=summary.otherscript wantcategory='seealso' %] </div>
 [% END %] [% IF marcflavour == 'UNIMARC' && summary.otherscript %] <div class="authstanza">
- <div class="authstanzaheading">Other forms:</div>
+ <div class="authstanzaheading">Otras formas:</div>
  <ul>
  [% FOREACH otherscrip IN summary.otherscript %] <li>
- [% PROCESS language lang=otherscrip.lang | trim %]:
- <span class="otherscript">[% otherscrip.term %]</span>
+ [% PROCESS language lang=otherscrip.lang | trim %]:<span class="otherscript">[% otherscrip.term %]</span>
  </li>
  [% END %] </ul>
  </div>
