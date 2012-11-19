@@ -148,18 +148,11 @@
  [% ELSE %] [% IF ( error_delitem ) %] <div class="dialog alert">El pedido ha sido cancelado, aunque uno o más ítems no podrían haber sido eliminados.</div>
  [% END %] [% IF ( error_delbiblio ) %] <div class="dialog alert">El pedido ha sido cancelado, aunque el registro no se ha eliminado.</div>
  [% END %] [% END %] [% IF (error_cancelling_receipt) %] <div class="error">
- Cannot cancel receipt. Possible reasons :
- <ul>
+ No se puede cancelar el recibo. Posibles razones:<ul>
  <li>
- The order line you trying to cancel was created from a partial receipt
- of another order line which is already received. Try to cancel this
- one first and retry.
- </li>
+ La línea de orden que tratar de cancelar se creó a partir de una recepción parcial de otra línea de pedido que ya recibió. Trate de cancelar este primero y vuelva a intentarlo.</li>
  <li>
- The order line you trying to cancel was created from a partial receipt
- of another order line which has been deleted. Cancellation is not
- possible.
- </li>
+ La línea de orden que trata de cancelar se creó a partir de una recepción parcial de otra línea de la orden que se ha suprimido. La cancelación no es posible.</li>
  </ul>
  </div>
  [% END %] <div id="acqui_receive_summary">
@@ -223,8 +216,7 @@
  [% END %] </div>
  </div>
 [% ELSE %] <p>
- Invoice is closed, so you can't receive orders anymore.
- <a href="/cgi-bin/koha/acqui/invoice.pl?op=reopen&invoiceid=[% invoiceid %]&referer=/cgi-bin/koha/acqui/parcel.pl%3Finvoiceid=[% invoiceid %]">Reopen it</a>. </p>
+ Factura está cerrado, por lo que no puede recibir más órdenes.<a href="/cgi-bin/koha/acqui/invoice.pl?op=reopen&invoiceid=[% invoiceid %]&referer=/cgi-bin/koha/acqui/parcel.pl%3Finvoiceid=[% invoiceid %]">Reabrir </a>. </p>
 [% END %] <div id="acqui_receive_receivelist">
  <h3>Ya recibido</h3>
 
@@ -256,7 +248,7 @@
  <th></th>
  </tr>
  [% END %] <tr>
- <th colspan="7" class="total">Total tax inc.</th>
+ <th colspan="7" class="total">Total impuesto inc.</th>
  <th>[% total_gsti %]</th>
  <th></th>
  </tr>
@@ -274,18 +266,9 @@
  <td>[% loop_receive.unitprice %]</td>
  <td>[% loop_receive.total %]</td>
  <td>
- [% IF (loop_receive.cannot_cancel) %]
- [% span_title = BLOCK %]
- Cannot cancel receipt of this order line because it
- was created from a partial receipt of order line no.
- [% loop_receive.parent_ordernumber %], which is
- already received. Try cancelling this one first and
- retry.
- [% END %]
- <span title="[% span_title | collapse %]">
- Can't cancel receipt
- </span>
- [% ELSE %] <a href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% invoiceid %]&op=cancelreceipt&ordernumber=[% loop_receive.ordernumber %]">Cancel receipt</a>
+ [% IF (loop_receive.cannot_cancel) %] [% span_title = BLOCK %] No se puede cancelar la recepción de esta orden de  línea  porque fue creado a partir de una recepción parcial de la línea de no. de la orden [% loop_receive.parent_ordernumber %], que está ya recibido. Intentar cancelar este una primera vez y reintentar. [% END %] <span title="[% span_title | collapse %]">
+ No se puede cancelar recibo</span>
+ [% ELSE %] <a href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% invoiceid %]&op=cancelreceipt&ordernumber=[% loop_receive.ordernumber %]">Recibo cancelado</a>
  [% END %] </td>
  </tr>
  [% END %] </tbody>
@@ -295,7 +278,7 @@
 
 <!--<form action="/cgi-bin/koha/acqui/parcels.pl?booksellerid=[% booksellerid %]" method="post">-->
 [% IF (invoiceclosedate) %]
- <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoiceid %]">View invoice</a>
+ <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoiceid %]">Ver factura</a>
 [% ELSE %] <form action="/cgi-bin/koha/acqui/invoice.pl" method="get">
  <input type="hidden" name="invoiceid" value="[% invoiceid %]" />
  <fieldset class="action">

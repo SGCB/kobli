@@ -71,7 +71,7 @@ $(document).ready(function () {
  <h3>[% holdsfirstname %] [% holdssurname %] tiene [% waiting_holds %] reserva(s) a la espera de ser retirada(s).</h3>
  <p><a href="/cgi-bin/koha/circ/circulation.pl?borrowernumber=[% holdsborrowernumber %]">Prestado a este socio</a>.</p>
  </div>
-[% END %] [% IF ( wrongbranch ) %] <div class="dialog alert"><h3>Cannot check in</h3><p>Este ítem debe ser devuelto en la biblioteca de origen. <strong>NO DEVUELTO</strong></p>
+[% END %] [% IF ( wrongbranch ) %] <div class="dialog alert"><h3>No se puede devolver </h3><p>Este ítem debe ser devuelto en la biblioteca de origen. <strong>NO DEVUELTO</strong></p>
 </div>
 [% END %]
 <!-- case of a mistake in transfer loop -->
@@ -247,7 +247,7 @@ $(document).ready(function () {
  [% END %] [% IF ( errmsgloo.localuse) %] <p class="problem">Uso local almacenado</p>
  [% END %] [% IF ( errmsgloo.waslost ) %] <p class="problem">El ítem estaba perdido, se ha encontrado.</p>
  [% END %] [% IF ( errmsgloo.withdrawn ) %] [% IF BlockReturnOfWithdrawnItems %] <h3>No se puede devolver</h3>
- <p class="problem">Item is withdrawn. <strong>NO DEVUELTO</strong></p>
+ <p class="problem">Ítem retirado. <strong>NO DEVUELTO</strong></p>
  [% ELSE %] <p class="problem">Ítem retirado.</p>
  [% END %] [% END %] [% IF ( errmsgloo.debarred ) %] <p class="problem"><a href="/cgi-bin/koha/circ/circulation.pl?borrowernumber=[% errmsgloo.debarborrowernumber %]">[% errmsgloo.debarname %]([% errmsgloo.debarcardnumber %])</a> está ahora congelado hasta [% errmsgloo.debarred | $KohaDates %] </p>
  [% END %] [% END %] [% IF ( soundon ) %] <audio src="/intranet-tmpl/prog/sound/critical.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>

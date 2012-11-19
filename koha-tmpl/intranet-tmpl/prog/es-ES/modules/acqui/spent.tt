@@ -69,12 +69,12 @@
  </tr>
 [% END %] <tfoot>
  [% IF shipmentcosts.size %] <tr valign="top">
- <td colspan="9"> Sub total </td>
+ <td colspan="9"> Subtotal  </td>
  <td align="right"> [% subtotal %] </td>
  </tr>
  [% FOREACH shipmentcost IN shipmentcosts %] <tr>
  <td></td>
- <td colspan="8">Shipment cost for invoice [% shipmentcost.invoicenumber %]</td>
+ <td colspan="8">Factura del coste de envío [% shipmentcost.invoicenumber %]</td>
  <td class="total">[% shipmentcost.shipmentcost %]</td>
  </tr>
  [% END %] [% END %] <tr>

@@ -292,8 +292,8 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <thead>
  <tr><th>&nbsp;</th>
  <th>Sugerencia</th>
- <th>Suggested by - on</th>
- <th>Managed by - on</th>
+ <th>Sugerido por </th>
+ <th>Administrado por </th>
  <th>Biblioteca</th>
  <th>Presupuesto</th>
  <th>Estado</th></tr>
@@ -308,13 +308,9 @@ $(document).ready(function() { calcNewsuggTotal(); });
  [<a href="suggestion.pl?suggestionid=[% suggestions_loo.suggestionid %]&op=edit" title="sugerencia">editar </a>] <br />
  [% IF ( suggestions_loo.copyrightdate ) %]&copia; [% suggestions_loo.copyrightdate %] [% END %] [% IF ( suggestions_loo.volumedesc ) %]; Volumen:<i>[% suggestions_loo.volumedesc %]</i> [% END %] [% IF ( suggestions_loo.isbn ) %]; ISBN:<i>[% suggestions_loo.isbn %]</i> [% END %][% IF ( suggestions_loo.publishercode ) %]; Publicado por [% suggestions_loo.publishercode %] [% END %][% IF ( suggestions_loo.publicationyear ) %] en <i>[% suggestions_loo.publicationyear %]</i> [% END %][% IF ( suggestions_loo.place ) %] en <i>[% suggestions_loo.place %]</i> [% END %][% IF ( suggestions_loo.collectiontitle ) %]; [% suggestions_loo.collectiontitle %] [% END %][% IF ( suggestions_loo.itemtype ) %]; [% suggestions_loo.itemtype %] [% END %]<br />[% IF ( suggestions_loo.note ) %]<span class="note">[% suggestions_loo.note %]</span>[% END %] </td>
  <td>
- [% IF ( suggestions_loo.emailsuggestedby ) %]<a href="mailto:[% suggestions_loo.emailsuggestedby %]">[% END %][% suggestions_loo.surnamesuggestedby %][% IF ( suggestions_loo.firstnamesuggestedby ) %], [% suggestions_loo.firstnamesuggestedby %][% END %] [% IF ( suggestions_loo.emailsuggestedby ) %]</a>[% END %]
- [% IF ( suggestions_loo.suggesteddate ) %] - [% suggestions_loo.suggesteddate %][% END %]
- </td>
+ [% IF ( suggestions_loo.emailsuggestedby ) %]<a href="mailto:[% suggestions_loo.emailsuggestedby %]">[% END %][% suggestions_loo.surnamesuggestedby %][% IF ( suggestions_loo.firstnamesuggestedby ) %], [% suggestions_loo.firstnamesuggestedby %][% END %] [% IF ( suggestions_loo.emailsuggestedby ) %]</a>[% END %] [% IF ( suggestions_loo.suggesteddate ) %] - [% suggestions_loo.suggesteddate %][% END %] </td>
  <td>
- [% IF ( suggestions_loo.emailmanagedby ) %]<a href="mailto:[% suggestions_loo.emailmanagedby %]">[% END %][% suggestions_loo.surnamemanagedby %][% IF ( suggestions_loo.firstnamemanagedby ) %], [% suggestions_loo.firstnamemanagedby %][% END %] [% IF ( suggestions_loo.emailmanagedby ) %]</a>[% END %]
- [% IF ( suggestions_loo.manageddate ) %] - [% suggestions_loo.manageddate %][% END %]
- </td>
+ [% IF ( suggestions_loo.emailmanagedby ) %]<a href="mailto:[% suggestions_loo.emailmanagedby %]">[% END %][% suggestions_loo.surnamemanagedby %][% IF ( suggestions_loo.firstnamemanagedby ) %], [% suggestions_loo.firstnamemanagedby %][% END %] [% IF ( suggestions_loo.emailmanagedby ) %]</a>[% END %] [% IF ( suggestions_loo.manageddate ) %] - [% suggestions_loo.manageddate %][% END %] </td>
  <td>
  [% suggestions_loo.branchcode %] </td>
  <td>

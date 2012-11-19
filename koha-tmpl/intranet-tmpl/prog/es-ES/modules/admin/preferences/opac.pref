@@ -146,7 +146,7 @@ opac.pref:
           "": No resaltar
           1: Resaltar
         pref: OpacHighlightedWords
-      - words the patron searched for in their search results and detail pages.
+      - "opac.pref#OpacHighlightedWords# palabras buscadas por el socio para su p\xE2\xA8\xA9na de resultados y detalles de b\xF2\xB3\xB1\xB5eda."
     - 
       - 
         choices: 
@@ -207,7 +207,7 @@ opac.pref:
         pref: OPACUserCSS
         type: textarea
     - 
-      - "Include the following CSS for the mobile view on all pages in the OPAC:"
+      - "opac.pref#OPACMobileUserCSS# incluir las siguiente CSS en todas las p\xE2\xA8\xA9nas del OPAC para la vista de m\xF3\xB6\xA9\xAC:"
       - 
         class: code
         pref: OPACMobileUserCSS
@@ -219,7 +219,7 @@ opac.pref:
         pref: OpacMainUserBlock
         type: textarea
     - 
-      - "Show the following HTML in its own column on the main page of the OPAC (mobile version):"
+      - "opac.pref#OpacMainUserBlockMobile# Mostrar el siguiente HTML en su propia columna de la p\xE2\xA8\xA9na principal del OPAC (versi\xF3\xAE\xA0\xAD\xF3\xB6\xA9\xAC)"
       - 
         class: code
         pref: OpacMainUserBlockMobile
@@ -227,17 +227,17 @@ opac.pref:
     - 
       - 
         choices: 
-          "": Don't show
-          1: Show
+          "": opac.pref#OpacShowLibrariesPulldownMobile# No mostrar
+          1: opac.pref#OpacShowLibrariesPulldownMobile# mostrar
         pref: OpacShowLibrariesPulldownMobile
-      - the libraries pulldown on the mobile version of the OPAC.
+      - "opac.pref#OpacShowLibrariesPulldownMobile# los bibliotecarios desplegaran la version de m\xF3\xB6\xA9\xAC del OPAC.  "
     - 
       - 
         choices: 
-          "": Don't show
-          1: Show
+          "": opac.pref#OpacShowFiltersPulldownMobile# No mostrar
+          1: opac.pref#OpacShowFiltersPulldownMobile# Mostrar
         pref: OpacShowFiltersPulldownMobile
-      - the search filters pulldown on the mobile version of the OPAC.
+      - "opac.pref#OpacShowFiltersPulldownMobile# desplegar los filtros de b\xF2\xB3\xB1\xB5eda en la versi\xF3\xAE\xA0\xAD\xF3\xB6\xA9\xAC del OPAC."
     - 
       - "Mostrar el siguiente HTML en la columna izquierda de la p\xC3\xA1gina principal y en la cuenta de socio en el OPAC (generalmente enlaces de navegaci\xC3\xB3n):"
       - 
@@ -276,7 +276,7 @@ opac.pref:
         pref: OPACSearchForTitleIn
         type: textarea
     - 
-      - "Include a \"Links\" column on the \"my summary\" and \"my reading history\" tabs when a user is logged in to the OPAC, with the following HTML (leave blank to disable):"
+      - "opac.pref#OPACMySummaryHTML# incluir una \"Enlaces\" columna en \"mi resumen\" y \"mi historia de lectura\" etiquestas cuando un usuario est\xE1\xA1\xACogado en el OPAC, con el siguiente HTML (dejar en blanco para desactivar):"
       - "<br />Note: Los marcadores {BIBLIONUMBER}, {TITLE}, {ISBN} y {AUTHOR} ser\xC3\xA1n reemplazados con informaci\xC3\xB3n del registro mostrado."
       - 
         class: code
@@ -365,10 +365,10 @@ opac.pref:
     - 
       - 
         choices: 
-          "": Don't show
-          1: Show
+          "": opac.pref#OpacCloud# No mostrar
+          1: opac.pref#OpacCloud# Mostrar
         pref: OpacCloud
-      - a subject cloud on OPAC (run misc/cronjobs/build_browser_and_cloud.pl to build)
+      - opac.pref#OpacCloud# una materia en la nube del  OPAC (run misc/cronjobs/build_browser_and_cloud.pl to build)
     - 
       - 
         choices: 
@@ -500,7 +500,7 @@ opac.pref:
           1: No permitir
         default: 0
         pref: singleBranchMode
-      - patrons to select their branch on the OPAC or show branch names with callnumbers.
+      - "opac.pref#singleBranchMode# los socios seleccionar\xE2\xAE\xA0su biblioteca en el OPAC o mostrar la biblioteca en el nombre de la signatura."
     - 
       - 
         choices: 

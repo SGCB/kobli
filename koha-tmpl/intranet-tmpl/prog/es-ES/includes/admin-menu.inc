@@ -30,7 +30,7 @@
  <li><a href="/cgi-bin/koha/admin/smart-rules.pl">Reglas de circulación y multas</a></li>
  <li><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a></li>
  <li><a href="/cgi-bin/koha/admin/branch_transfer_limits.pl">Límites de transferencia de la biblioteca</a></li>
- <li><a href="/cgi-bin/koha/admin/transport-cost-matrix.pl">Transport cost matrix</a></li>
+ <li><a href="/cgi-bin/koha/admin/transport-cost-matrix.pl">Transporte matriz de costos</a></li>
  <li><a href="/cgi-bin/koha/admin/item_circulation_alerts.pl">Alertas de circulación de ítems</a></li>
  <li><a href="/cgi-bin/koha/admin/cities.pl">Ciudades y pueblos</a></li>
  <li><a href="/cgi-bin/koha/admin/roadtype.pl">Tipos de camino</a></li>
@@ -63,7 +63,7 @@
  [% IF ( NoZebra ) %]<li><a href="/cgi-bin/koha/admin/stopwords.pl">Palabras eliminadas</a></li>[% END %]
  <!-- <li><a href="/cgi-bin/koha/admin/printers.pl">Network Printers</a></li> -->
  <li><a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a></li>
- <li><a href="/cgi-bin/koha/admin/didyoumean.pl">Did you mean?</a></li>
+ <li><a href="/cgi-bin/koha/admin/didyoumean.pl">Usted quiere decir:  </a></li>
 </ul>
 </div>
 </div>

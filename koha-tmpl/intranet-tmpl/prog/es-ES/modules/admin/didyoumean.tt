@@ -3,17 +3,10 @@
  <div class="pluginname">
  [% IF plugin.enabled %]<input type="checkbox" checked="checked" id="checkbox_[% type %][% plugin.name %]">[% ELSE %]<input type="checkbox" id="checkbox_[% type %][% plugin.name %]">[% END %] <label class='pluginlabel' for="checkbox_[% type %][% plugin.name %]">[% plugin.name %]</label></div>
  <div class="plugindesc">
- [% SWITCH plugin.name %]
- [% CASE 'AuthorityFile' %]
- Suggest authorities which are relevant to the term the user searched for.
- [% CASE 'ExplodedTerms' %]
- Suggest that patrons expand their searches to include
- broader/narrower/related terms.
- [% END %]
- </div>
+ [% SWITCH plugin.name %] [% CASE 'AuthorityFile' %] Sugerir autoridades que son relevantes para el término que el usuario buscado.  [% CASE 'ExplodedTerms' %] Sugiera a los clientes expandir sus búsquedas para incluir términos más amplio / específicos / relacionados. [% END %] </div>
  </div>
 [% END %] </div>
-[% END %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administration &rsaquo; Did you mean?</title>
+[% END %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administration &rsaquo; ¿Ha querido decir?</title>
 [% INCLUDE 'doc-head-close.inc' %] <script>
     $(document).ready(function() {
         $( ".pluginlist" ).sortable();
@@ -54,27 +47,18 @@
 </script>
 </head>
 <body id="admin_didyoumean" class="admin">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; Did you mean?</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; ¿Usted quiere decir?</div>
 
 <div id="doc3" class="yui-t2">
 
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- <h3>Did you mean?</h3>
- <noscript><div class="dialog alert"><strong>Please enable Javascript:</strong>
- Configuring <em>Did you mean?</em> plugins requires Javascript. If
- you are unable to use Javascript, you may be able to enter the
- configuration (which is stored in JSON in the OPACdidyoumean and
- INTRAdidyoumean system preferences) in the Local Preferences tab in
- the system preference editor, but this is unsupported, not
- recommended, and likely will not work.</div></noscript>
+ <h3>Usted quiere decir:  </h3>
+ <noscript><div class="dialog alert"><strong>Por favor, activa Javascript:</strong>
+ Configuración<em>Usted quiere decir:  </em> plugins requiere Javascript. Si usted no puede usar Javascript, puede ser capaz de entrar en la configuración (que se almacena en JSON en el OPACdidyoumean y preferencias INTRAdidyoumean del sistema) en la ficha Preferencias Local en el editor de preferencias del sistema, pero esto no es compatible, no se recomienda, y probablemente no va a funcionar.</div></noscript>
  <div id="didyoumeanlegend">
- Please put the <em>Did you mean?</em> plugins in order by significance, from
- most significant to least significant, and check the box to enable those
- plugins that you want to use. (NOTE: <em>Did you mean?</em> functionality
- is not yet enabled on the staff client)
- </div>
+ Por favor, devolver <em>Usted quiere decir:  </em> plugins en orden de importancia, desde el más significativo al menos significativo, y marque la casilla para activar los plugins que desea utilizar. (NOTA:<em>Usted quiere decir:  </em> funcionalidad aún no está habilitado en el usuario del personal)</div>
  <form action="/cgi-bin/koha/admin/didyoumean.pl" method="post">
  <fieldset id="didyoumeanopac">
  <legend>OPAC</legend>
@@ -82,7 +66,7 @@
  <fieldset id="didyoumeanintranet">
  <legend>Intranet</legend>
  [% PROCESS pluginlist plugins=INTRApluginlist type='intranet' %] </fieldset>
- <fieldset class="action"><button class="save-all submit" onclick="yesimeant();return false;" type="submit">Save configuration</button> <a href="#" onclick="window.location.reload(true);" class="cancel">Cancelar</a></fieldset>
+ <fieldset class="action"><button class="save-all submit" onclick="yesimeant();return false;" type="submit">Salvar configuración</button> <a href="#" onclick="window.location.reload(true);" class="cancel">Cancelar</a></fieldset>
  </form>
 
  </div>

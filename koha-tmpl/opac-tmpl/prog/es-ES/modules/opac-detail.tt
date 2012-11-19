@@ -398,14 +398,11 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  [% IF ( OPACXSLTDetailsDisplay ) %] [% XSLTBloc %] [% ELSE %] <h1 class="title">[% title |html %][% IF ( subtitle ) %] <span class="subtitle">[% FOREACH subtitl IN subtitle %][% subtitl.subfield |html %] [% END %]</span>[% END %]</h1>
  [% IF ( author ) %]<h5 class="author">por <a href="/cgi-bin/koha/opac-search.pl?q=au:[% author |url %]">[% author |html %]</a></h5>[% END %] <span class="results_summary">[% UNLESS ( item_level_itypes ) %] [ [% IF ( description ) %] [% description %] [% ELSE %] [% itemtype %] [% END %] ] [% END %] [% IF ( unititle ) %], [% unititle %][% END %] </span>
 
- [% IF ( MARCAUTHORS ) %] <span class="results_summary"><span class="label">Additional authors:</span>
+ [% IF ( MARCAUTHORS ) %] <span class="results_summary"><span class="label">Autores adicionales:</span>
  [% FOREACH MARCAUTHOR IN MARCAUTHORS %] [% FOREACH MARCAUTHOR_SUBFIELDS_LOO IN MARCAUTHOR.MARCAUTHOR_SUBFIELDS_LOOP %] [% MARCAUTHOR_SUBFIELDS_LOO.separator %] <a title="‡[% MARCAUTHOR_SUBFIELDS_LOO.code %] [% MARCAUTHOR_SUBFIELDS_LOO.value %]"
                     href="/cgi-bin/koha/opac-search.pl?q=[% FOREACH link_loo IN MARCAUTHOR_SUBFIELDS_LOO.link_loop %][% link_loo.operator |url %][% link_loo.limit |url %]:[% link_loo.link |url %][% END %]">[% MARCAUTHOR_SUBFIELDS_LOO.value %]</a>
  [% END %] [% IF (MARCAUTHOR.authoritylink) %] <a class='authlink' href="/cgi-bin/koha/opac-authoritiesdetail.pl?authid=[% MARCAUTHOR.authoritylink %]"><img style="vertical-align:middle" height="15" width="15" src="/opac-tmpl/prog/images/filefind.png"></a>
- [% END %]
- [% UNLESS ( loop.last ) %]|[% END %]
- [% END %]
- </span>
+ [% END %] [% UNLESS ( loop.last ) %]| [% END %] [% END %]  </span>
  [% END %] [% IF ( MARCSERIES ) %] <span class="results_summary"><span class="label">Series:</span>
  [% FOREACH MARCSERIE IN MARCSERIES %] [% FOREACH MARCSERIES_SUBFIELDS_LOO IN MARCSERIE.MARCSERIES_SUBFIELDS_LOOP %] [% IF ( MARCSERIES_SUBFIELDS_LOO.value ) %]<a href="/cgi-bin/koha/opac-search.pl?q=se:[% MARCSERIES_SUBFIELDS_LOO.value |url %]">[% MARCSERIES_SUBFIELDS_LOO.value %]</a>[% END %][% IF ( MARCSERIES_SUBFIELDS_LOO.volumenum ) %]. [% MARCSERIES_SUBFIELDS_LOO.volumenum %][% END %] [% END %] [% UNLESS ( loop.last ) %]|[% END %] [% END %] </span>
  [% END %] [% IF ( editionstatement ) %] <span class="results_summary"><span class="label">Mención de edición:</span>[% editionstatement %][% IF ( editionresponsibility ) %]/[% editionresponsibility %][% END %]</span>
@@ -421,12 +418,9 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  [% FOREACH unititle IN unititles %] [% unititle.unititle %] ; [% END %] </span>
  [% END %] [% IF ( MARCSUBJCTS ) %] <span class="results_summary">
  <span class="label">Tema(s):</span>
- [% FOREACH MARCSUBJCT IN MARCSUBJCTS %] [% subjectsloop = loop %] [% FOREACH SUBFIELD IN MARCSUBJCT.MARCSUBJECT_SUBFIELDS_LOOP %] [% SUBFIELD.separator %] <a title="$[% SUBFIELD.code %] [% SUBFIELD.value %]" href="/cgi-bin/koha/opac-search.pl?q=[% FOREACH link_loo IN SUBFIELD.link_loop %][% link_loo.operator |url %][% link_loo.limit |url %]:[% link_loo.link |url %][% END %]" onclick="showSubjects(this, [% subjectsloop.count %], [% loop.count %]); return false;">[% SUBFIELD.value %]</a>
+ [% FOREACH MARCSUBJCT IN MARCSUBJCTS %] [% subjectsloop = loop %] [% FOREACH SUBFIELD IN MARCSUBJCT.MARCSUBJECT_SUBFIELDS_LOOP %] [% SUBFIELD.separator %] <a href="/cgi-bin/koha/opac-search.pl?q=[% FOREACH link_loo IN SUBFIELD.link_loop %][% link_loo.operator |url %][% link_loo.limit |url %]:[% link_loo.link |url %][% END %]" title="$[% SUBCAMPO.código %] [% SUBCAMPO.valor %]" onclick="showSubjects(this, [% subjectsloop.count %], [% loop.count %]); return false;">[% SUBFIELD.value %]</a>
  [% END %] [% IF (MARCSUBJCT.authoritylink) %] <a class="authlink" href="/cgi-bin/koha/opac-authoritiesdetail.pl?authid=[% MARCSUBJCT.authoritylink %]"><img style="vertical-align:middle" height="15" width="15" src="/opac-tmpl/prog/images/filefind.png" /></a>
- [% END %]
- [% UNLESS ( loop.last ) %] | [% END %]
- [% END %]
- </span>
+ [% END %] [% UNLESS ( loop.last ) %] | [% END %] [% END %] </span>
  [% ELSE %] [% IF ( subjects ) %]<span class="results_summary"><span class="label">Tema(s):</span> [% FOREACH subject IN subjects %]<a href="/cgi-bin/koha/opac-search.pl?q=su:[% subject.subject |url %]">[% subject.subject %]</a> | [% END %]</span>[% END %] [% END %] [% IF ( copyrightdate ) %] <span class="results_summary"><span class="label">Año: </span>[% copyrightdate %]</span>
  [% END %] [% UNLESS ( item_level_itypes ) %]<img src="[% imageurl %]" alt="[% description %]" title="[% description %]" />
  <span class="results_summary"><span class="label">Tipo de ítem:</span>
@@ -572,7 +566,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  <tr>
  <th id="serial_library">Biblioteca</th>
  <th id="serial_collection">Colección de publicaciones periódicas</th>
- <th id="serial_itemcallnumber">Item callnumber</th>
+ <th id="serial_itemcallnumber">Signatura del ítem</th>
  </tr>
  </thead>
  <tbody>
@@ -820,7 +814,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  </div>
 [% END %] [% IF ( SocialNetworks ) %] <div id="social_networks">
  <span>Compartir</span>
- <div><a href="http://www.facebook.com/sharer.php?u=[% current_url |url %]&t=[% title |url %]" id="facebook" title="Compartir en Facebook">Facebook</a></div>
+ <div><a href="http://www.facebook.com/sharer.php?u=[% current_url |url %]&t=[% title |url %]" id="facebook" title="Compartir en Facebook">Facebook </a></div>
  <div><a href="http://twitter.com/share" id="twitter" title="Compartir en Twitter">Twitter</a></div>
  <div><a href="http://www.linkedin.com/shareArticle?mini=true&url=[% current_url |url %]&title=[% title |url %]" id="linkedin" title="Compartir en LinkedIn">LinkedIn</a></div>
  <div><a href="http://www.delicious.com/save?url=[% current_url |url %]&title=[% title |url %]" id="delicious" title="Compartir en Delicious">Delicious</a></div>

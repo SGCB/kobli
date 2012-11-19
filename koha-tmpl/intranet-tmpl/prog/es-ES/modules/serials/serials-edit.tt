@@ -4,7 +4,7 @@
 //<![CDATA[
 function generateReceive() {
     var subscriptionid =  document.getElementsByName("subscriptionid")[0].value;
-    if(nbissues=prompt(_("How many issues do you want to receive ?"))){
+    if(nbissues=prompt(_("¿Cuántos números quiere recibir?"))){
         document.location = 'serials-collection.pl?op=gennext&subscriptionid='+subscriptionid+'&nbissues='+nbissues;
     }
 }
@@ -117,7 +117,7 @@ $(document).ready(function() {
 
 <h1>Edición de publicación periódica <i>[% bibliotitle %]</i>
  [% IF location %] ( [% location %] ) [% END %] [% IF ( callnumber ) %] signatura topográfica: [% callnumber %][% END %]</h1>
-[% IF internalnotes %]<p>Nonpublic note: [% internalnotes %]</p>[% END %] <form method="post" name="f" action="serials-edit.pl" id="serials_edit">
+[% IF internalnotes %]<p>Nota no pública: [% internalnotes %]</p>[% END %] <form method="post" name="f" action="serials-edit.pl" id="serials_edit">
 <!--onsubmit="return barcode_check()">-->
 
 [% IF ( Errors ) %]
@@ -289,7 +289,7 @@ $(document).ready(function() {
  </tr>
  [% END %] [% END %] [% END %] </table>
  <fieldset class="action"><input accesskey="w" value="Guardar" type="submit" class="button" />
- [% UNLESS ( serialsadditems ) %]&nbsp;&nbsp;<input type="button" onclick="javascript:generateReceive()" value="Multi receiving">[% END %] </form>
+ [% UNLESS ( serialsadditems ) %]&nbsp;&nbsp;<input value="Completar recepción " type="button" onclick="javascript:generateReceive()">[% END %] </form>
 
 </div>
 </div>

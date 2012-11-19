@@ -6,7 +6,7 @@
 
 <p>Koha se inatala con valores predefinidos que es probable que use su biblioteca, por ejemplo 'Perdido'.</p>
 
-<p>By default, this includes:</p>
+<p>Por defecto, este incluye: </p>
 
 <ul>
  <li>'Asort1,' para propósitos de estadísticas de adquisiciones</li>
@@ -23,16 +23,15 @@
  <li>'HINGS_RD' es para Existencias generales: Designador de retención, un elemento de datos que especifica  la política de retención para la unidad en el  momento del informe de existencias.</li>
  <li>'HINGS_UT' es para Existencias generales: Tipo de Designador de Unidad</li>
  <li>'LOC' es para ubicación en estantería y por lo general aparece cuando se edita o agrega un ítem.</li>
- <li>'LOST' is for descriptions for items marked as lost. It appears when adding or editing an item. Values given to lost statuses should be numeric (not alphabetical) in order for statuses to appear properly.
-<ul>
- <li style="color: #990000;">Important: Values given to lost statuses should be numeric and not alphabetical in order for statuses to appear properly</li>
+ <li>'LOST' es para las descripciones que los estados aparezcan correctamente, los valores dados a los estados de pérdida deben ser numéricos y no alfabéticos <ul>
+ <li style="color: #990000;">Importante: Para que los estados aparezcan correctamente, los valores dados a los estados de pérdida deben ser numéricos y no alfabéticos</li>
 </ul>
 </li>
  <li>'MANUAL_INV' incluye valores para los manuales de facturas.</li>
  <li>'NOT_LOAN' se usa para listar razones  por las que un título no es para préstamo.</li>
  <li>'PROC' es para la ubicación que se utilizará para NewItemsDefaultLocation (cambiar descripción si lo desea), también la ubicación esperada de InProcessingToShelvingCart.</li>
- <li>'REPORT_GROUP' provides a way to sort and filter your reports, the default values in this category include the Koha modules (Accounts, Acquitisions, Catalog, Circulation, Patrons)</li>
- <li>'REPORT_SUBGROUP' can be used to further sort and filter your reports. This category is empty by default. Values here need to include the authorized value code from REPORT_GROUP in the Description (OPAC) field to link the subgroup to the appropriate group.</li>
+ <li>REPORT_GROUP 'proporciona una manera de ordenar y filtrar los informes, los valores por defecto en esta categoría incluyen los módulos Koha (cuentas, Acquitisions, Catálogo, Circulación, patrones)</li>
+ <li>'REPORT_SUBGROUP' se puede utilizar para ordenar y filtrar aún más los informes. Esta categoría está vacía por defecto. Los valores deben incluir el código de valor autorizado de REPORT_GROUP en la descripción (OPAC) Campo para vincular el subgrupo al grupo apropiado.</li>
  <li>'RESTRICTED' se utiliza para el estado restringido de un ítem</li>
  <li>'SUGGEST' se utiliza para una lista de razones para aceptar o rechazar las sugerencias de los socios.  Este aparece cuando  se administran las sugerencias.</li>
  <li>'WITHDRAWN'  es para una descripción  de un ítem retirado. Este aparece cuando  se agrega o edita un ítem.</li>

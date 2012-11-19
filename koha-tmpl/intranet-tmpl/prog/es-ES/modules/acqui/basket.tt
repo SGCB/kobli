@@ -201,25 +201,24 @@
  <input value="Cambiar grupo de bolsas" type="submit" /></p>
 
  </form>
- [% IF ( basketgroupdeliveryplace ) %]<p>Basket group delivery place: [% basketgroupdeliveryplace %]</p>[% END %] [% IF ( basketgroupbillingplace ) %]<p>Basket group billing place: [% basketgroupbillingplace %]</p>[% END %] </div>
+ [% IF ( basketgroupdeliveryplace ) %]<p>Nombre del lugar de entrega de cestas:[% basketgroupdeliveryplace %]</p>[% END %] [% IF ( basketgroupbillingplace ) %]<p>Nombre del grupo de cestas: [% basketgroupbillingplace %]</p>[% END %] </div>
  [% END %] </div>
  </div>
  [% END %] [% UNLESS ( delete_confirm ) %] <div id="acqui_basket_content" class="yui-g">
  [% IF ( books_loop ) %] <h2>Pedidos</h2>
  <label for="show_all_details">
  <input type="checkbox" style="vertical-align: middle;" id="show_all_details" />
- Show all details
- </label>
+ Mostrar todos los detalles</label>
  <table id="orders">
  <thead>
  <tr>
  <th>Pedido</th>
- <th class="gste">RRP tax exc.</th>
- <th class="gste">ecost tax exc.</th>
- <th class="gsti">RRP tax inc.</th>
- <th class="gsti">ecost tax inc.</th>
+ <th class="gste">RRP impuesto exc.</th>
+ <th class="gste">ecost  impuesto exce. </th>
+ <th class="gsti">RRP impuesto inc.</th>
+ <th class="gsti">ecost impuesto inc.</th>
  <th>Cantidad</th>
- <th class="gste">Total tax exc. ([% currency %])</th>
+ <th class="gste">Total impuesto exc. ([% currency %])</th>
  <th class="gsti">Total del impuesto inc. ([% currency %])</th>
  <th>GST %</th>
  <th>GST</th>
@@ -295,12 +294,12 @@
  <thead>
  <tr>
  <th>Pedido</th>
- <th class="gste">RRP tax exc.</th>
- <th class="gste">ecost tax exc.</th>
- <th class="gsti">RRP tax inc.</th>
- <th class="gsti">ecost tax inc.</th>
+ <th class="gste">RRP impuesto exc.</th>
+ <th class="gste">ecost  impuesto exce. </th>
+ <th class="gsti">RRP impuesto inc.</th>
+ <th class="gsti">ecost impuesto inc.</th>
  <th>Cantidad</th>
- <th class="gste">Total tax exc. ([% currency %])</th>
+ <th class="gste">Total impuesto exc. ([% currency %])</th>
  <th class="gsti">Total del impuesto inc. ([% currency %])</th>
  <th>GST %</th>
  <th>GST</th>
@@ -350,8 +349,8 @@
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  <input type="hidden" name="confirm" value="1" />
  <input type="hidden" name="basketgroupname" value="[% basketgroupname %]" />
- <input type="submit" class="approve" value="Yes, close (Y)" accesskey="y" />
- <input type="submit" class="deny" value="No, don't close (N)" accesskey="n" onclick="javascript:window.location='/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]';return false;" />
+ <input accesskey="y" value="Sí, cerrar (Y) " type="submit" class="approve" />
+ <input accesskey="n" value="No, no cerrar(N) " type="submit" class="deny" onclick="javascript:window.location='/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]';return false;" />
  </form>
  </div>
  [% END %] </div>

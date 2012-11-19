@@ -107,7 +107,7 @@ if (f.company.value == "") {
  </li>
  </ol>
  <ol class="radio">
- <li><label for="gstyes" class="radio">Tax number registered:</label>
+ <li><label for="gstyes" class="radio">Número de impuesto registrado:  </label>
  [% IF ( gstreg ) %] <label for="gstyes">Sí</label> <input type="radio" name="gst" id="gstyes" value="1" checked="checked" />
  <label for="gstno">No</label> <input type="radio" name="gst" id="gstno" value="0" />
  [% ELSE %] <label for="gstyes">Sí</label> <input type="radio" name="gst" id="gstyes" value="1" />
@@ -128,7 +128,7 @@ if (f.company.value == "") {
  <label for="invoice_gstno">No incluir impuesto</label> <input type="radio" id="invoice_gstno" name="invoice_gst" value="0" checked="checked" />
  [% END %]</li>
  </ol>
- <ol>
+ [% IF gst_values %] <ol>
  <li>
  <label for="gst">Tasa de impuesto</label>
  <select name="gstrate" id="gstrate">
@@ -137,7 +137,8 @@ if (f.company.value == "") {
  [% END %] [% END %] </select>
  </li>
  </ol>
- <ol>
+ [% ELSE %] <input type="hidden" name="gstrate" value="0" />
+ [% END %] <ol>
  <li><label for="discount">Descuento</label>
  <input type="text" size="6" id="discount" name="discount" value="[% discount %]" />%</li>
  <li>

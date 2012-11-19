@@ -267,7 +267,7 @@ td.repeatableyearly a.ui-state-default, .repeatableyearly {  background:  #FFFF9
  <input type="hidden" id="showBranchName" name="showBranchName" />
  </li>
  <li>
- <strong>From Date:</strong>
+ <strong>Desde fecha: </strong>
  <span id="showDaynameOutput"></span>, [% IF ( dateformat_us ) %]<span id="showMonthOutput"></span>/<span id="showDayOutput"></span>/<span id="showYearOutput"></span>[% ELSIF ( dateformat_metric ) %]<span id="showDayOutput"></span>/<span id="showMonthOutput"></span>/<span id="showYearOutput"></span>[% ELSE %]<span id="showYearOutput"></span>/<span id="showMonthOutput"></span>/<span id="showDayOutput"></span>[% END %] <input type="hidden" id="showDayname" name="showDayname" />
  <input type="hidden" id="showWeekday" name="showWeekday" />
  <input type="hidden" id="showDay" name="showDay" />
@@ -275,7 +275,7 @@ td.repeatableyearly a.ui-state-default, .repeatableyearly {  background:  #FFFF9
  <input type="hidden" id="showYear" name="showYear" />
  </li>
  <li class="dateinsert">
- <b>To Date : </b>
+ <b>Hasta fecha:  </b>
  <input type="text" id="datecancelrange" name="datecancelrange" size="20" value="[% datecancelrange %]" class="datepicker"/>
  </li>
  <li><label for="showTitle">Título: </label><input type="text" name="showTitle" id="showTitle" size="35" /></li>
@@ -289,21 +289,21 @@ td.repeatableyearly a.ui-state-default, .repeatableyearly {  background:  #FFFF9
  <div class="hint">Usted puede hacer una excepción para esta regla de feriado. Esto significa que usted será capaz de decir que para un feriado repetible hay un día que va a ser una excepción.</div>
  </div></li>
  <li class="radio"><input type="radio" name="showOperation" id="showOperationExcRange" value="exceptionrange" />
- <label for="newOperationFieldException">Generate exceptions on a range of dates.</label>
+ <label for="newOperationFieldException">Generar una excepción para este feriado repetible. </label>
  <a href="#" class="helptext">[?]</a>
- <div class="hint">You can make an exception on a range of dates repeated yearly.</div>
+ <div class="hint">Generar una excepción para este feriado repetible. </div>
  </li>
  <li class="radio"><input type="radio" name="showOperation" id="showOperationDel" value="delete" /> <label for="showOperationDel" id="showOperationDelLabel">Eliminar este feriado</label>
  <a href="#" class="helptext">[?]</a>
- <div class="hint">This will delete this holiday rule. If it is a repeatable holiday, this option checks for possible exceptions. If an exception exists, this option will remove the exception and set the date to a regular holiday.</div></li>
- <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRange" value="deleterange" /> <label for="showOperationDelRange" id="showOperationDelLabelRange">Delete the single holidays on a range</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">This will delete the single holidays rules only. The repeatable holidays and exceptions will not be deleted.</div>
+ <div class="hint">Este eliminará esta regla de feriado. Si es un feriado repetible, esta opción revisa  posibles excepciones. Si existe una excepción, esta opción eliminará la excepción y establecerá la fecha a un feriado normal.</div></li>
+ <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRange" value="deleterange" /> <label for="showOperationDelRange" id="showOperationDelLabelRange">Eliminar este feriado en un rango</label>. <a href="#" class="helptext">[?]</a>
+ <div class="hint">esto borrará solamente las reglas festivos individuales. Las vacaciones repetibles y excepciones no se eliminarán.</div>
  </li>
- <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRangeRepeat" value="deleterangerepeat" /> <label for="showOperationDelRangeRepeat" id="showOperationDelLabelRangeRepeat">Delete the repeated holidays on a range</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">This will delete the repeated holidays rules only. The repeatable holidays will be deleted but not the exceptions.</div>
+ <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRangeRepeat" value="deleterangerepeat" /> <label for="showOperationDelRangeRepeat" id="showOperationDelLabelRangeRepeat">Eliminar feriados de repetición anual en un rango</label>. <a href="#" class="helptext">[?]</a>
+ <div class="hint">Esto eliminará las reglas vacaciones repetidas solamente. Las vacaciones repetibles serán borrados pero no las excepciones.</div>
  </li>
- <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRangeRepeatExcept" value="deleterangerepeatexcept" /> <label for="showOperationDelRangeRepeatExcept" id="showOperationDelLabelRangeRepeatExcept">Delete the exceptions on a range</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">This will delete the exceptions inside a given range. Be careful about your scope range if it is oversized you could slow down Koha.</div>
+ <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRangeRepeatExcept" value="deleterangerepeatexcept" /> <label for="showOperationDelRangeRepeatExcept" id="showOperationDelLabelRangeRepeatExcept">Eliminar esta excepción en un rango</label>. <a href="#" class="helptext">[?]</a>
+ <div class="hint">Esto eliminará las excepciones dentro de un rango dado. Tenga cuidado con su rango de alcance, si es de gran tamaño se puede ralentizar Koha.</div>
  </li>
  <li class="radio"><input type="radio" name="showOperation" id="showOperationEdit" value="edit" checked="checked" /> <label for="showOperationEdit">Editar este feriado</label>
  <a href="#" class="helptext">[?]</a>
@@ -359,11 +359,11 @@ td.repeatableyearly a.ui-state-default, .repeatableyearly {  background:  #FFFF9
  </li>
  <li class="radio"><input type="radio" name="newOperation" id="newOperationField" value="holidayrange" />
  <label for="newOperationField">Feriados en un rango</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">Make a single holiday on a range. For example, selecting August 1st, 2012 and August 10st, 2012 will make all days between 1st and 10st holiday, but will not affect August 1-10 in other years.</div>
+ <div class="hint">Definir un feriado único en un rango. Por ejemplo, seleccionando el 1ro de Agosto, 2012 y 10 de Agosto, 2012 hará todos los días entre el 1ro y el 10 feriados, pero no afectarán a 1-10 de Agosto en otros años. </div>
  </li>
  <li class="radio"><input type="radio" name="newOperation" id="newOperationFieldyear" value="holidayrangerepeat" />
  <label for="newOperationFieldyear">Feriados de repetición anual en un rango</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">Make a single holiday on a range repeated yearly. For example, selecting August 1st, 2012 and August 10st, 2012 will make all days between 1st and 10st holiday, and will affect August 1-10 in other years.</div>
+ <div class="hint">Definir un feriado único en un rango repetido anualmente. Por ejemplo, seleccionando el 1ro de Agosto, 2012 y 10 de Agosto, 2012 hará todos los días entre el 1ro y el 10 feriados, y afectará a 1-10 de Agosto en otros años. </div>
  </li>
  <li class="radio">
  <input type="checkbox" name="allBranches" id="allBranches" />

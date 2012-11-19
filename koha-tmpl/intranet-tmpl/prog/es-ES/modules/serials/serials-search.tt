@@ -47,11 +47,11 @@
  <input type="text" id="publisher" name="publisher_filter" value="[% publisher_filter %]" />
  </li>
  <li>
- <label for="bookseller">Bookseller:</label>
+ <label for="bookseller">Librero.</label>
  <input type="text" id="bookseller" name="bookseller_filter" value="[% bookseller_filter %]" />
  </li>
  <li>
- <label for="branch">Branch:</label>
+ <label for="branch">Biblioteca:</label>
  <select id="branch" name="branch_filter">
  <option value="">Todo</option>
  [% FOREACH branch IN branches_loop %] [% IF ( branch.selected ) %] <option selected="selected" value="[% branch.branchcode %]">[% branch.branchname %]</option>
@@ -116,11 +116,7 @@
  </tr>
  [% END %] </tbody>
  </table>
- [% ELSE %]
- There is no subscription for your search.
- [% END %]
- [% END %]
- </div>
+ [% ELSE %]  No hay sbscripción para su búsqueda. [% END %] [% END %] </div>
  </div>
 
  <div class="yui-b">
@@ -146,11 +142,11 @@
  <input type="text" id="publisher" name="publisher_filter" value="[% publisher_filter %]" />
  </li>
  <li>
- <label for="bookseller">Bookseller:</label>
+ <label for="bookseller">Librero.</label>
  <input type="text" id="bookseller" name="bookseller_filter" value="[% bookseller_filter %]" />
  </li>
  <li>
- <label for="branch">Branch:</label>
+ <label for="branch">Biblioteca:</label>
  <select id="branch" name="branch_filter">
  <option value="">Todo</option>
  [% FOREACH branch IN branches_loop %] [% IF ( branch.selected ) %] <option selected="selected" value="[% branch.branchcode %]">[% branch.branchname %]</option>

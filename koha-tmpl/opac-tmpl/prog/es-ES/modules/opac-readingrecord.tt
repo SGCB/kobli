@@ -18,7 +18,7 @@ $(document).ready(function(){
  [% INCLUDE 'search.inc' %] <div class="yui-b"><div class="yui-g">
 <div id="userreadingrecord" class="container">
 <!--CONTENT-->
-<h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% firstname %] [% surname %]</a> &#8674; Checkout history</h3>
+<h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% firstname %] [% surname %]</a> &#8674; Historial de préstamos</h3>
 
 [% IF READING_RECORD.size() == 0 %] No ha tenido préstamos con esta biblioteca. [% ELSE %] <div id="opac-user-readingrec" class="statictabs">
 
@@ -45,7 +45,7 @@ $(document).ready(function(){
 [% FOREACH issue IN READING_RECORD %] [% IF  loop.even  %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td>
 [% IF  OPACAmazonCoverImages %] [% IF  issue.normalized_isbn %] <a href="http://www.amazon.com/gp/reader/[% issue.normalized_isbn %]/ref=sib_dp_pt/002-7879865-0184864#reader-link"><img alt="Imagen de portada" src="http://images.amazon.com/images/P/[% issue.normalized_isbn %].01.THUMBZZZ.jpg" border="0" /></a>
  [% ELSE %] <span class="no-image">No hay imagen de portada disponible</span>
- [% END %] [% END %] [% IF GoogleJackets %] [% IF  issue.normalized_isbn %] <div style="block" title="[% issue.biblionumber |url %]" class="[% issue.normalized_isbn %]" id="gbs-thumbnail[% loop.count %]"></div>
+ [% END %] [% END %] [% IF GoogleJackets %] [% IF  issue.normalized_isbn %] <div style="block" title="[%  issue.biblionumber |url %]" class="[% issue.normalized_isbn %]" id="gbs-thumbnail[% loop.count %]"></div>
  [% ELSE %] <span class="no-image">No hay imagen de portada disponible</span>
  [% END %] [% END %] [% IF BakerTaylorEnabled %] [% IF issue.normalized_isbn %] <a href="https://[% BakerTaylorBookstoreURL |html %][% issue.normalized_isbn %]"><img alt="Ver Baker & Taylor" src="[% BakerTaylorImageURL |html %][% issue.normalized_isbn %]" /></a>
  [% ELSE %] <span class="no-image">No hay imagen de portada disponible</span>

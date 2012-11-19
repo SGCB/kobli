@@ -27,10 +27,10 @@ $(document).ready(function() {
  <li>misma biblioteca, mismo tipo de socio, todos los tipos de ítem</li>
  <li>misma biblioteca, todos los tipos de socios, mismo tipo de ítem</li>
  <li>misma biblioteca, todos los tipos de socio, todos los tipos de ítem</li>
- <li>default (all libraries), same patron type, same item type</li>
- <li>default (all libraries), same patron type, all item types</li>
- <li>default (all libraries), all patron types, same item type</li>
- <li>default (all libraries), all patron types, all item types</li>
+ <li>prederterminado(todas las bibliotecas), mismo tipo de socio, mismo tipo de ítem</li>
+ <li>predeterminada (todas las bibliotecas), mismo tipo de socio, todos los tipos de ítem</li>
+ <li>prederteminada (todas las bibliotecas9, todos los tipos de socio, mismo tipo de ítem</li>
+ <li>predeterminada (todas las bibliotecas), todos los tipos de socio, todos los tipos de ítem</li>
  </ul>
  <p>Para modificar una regla, cree una nueva con el mismo tipo de socio y tipo de ítem.</p>
  </div>
@@ -131,7 +131,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  </form>
  </div>
  <div id="defaults-for-this-library" class="container">
- <h3>Default checkout, hold and return policy[% IF ( humanbranch ) %] for [% humanbranch %][% END %]</h3>
+ <h3>Políticas predeterminadas de préstamo, reserva y devolución[% IF ( humanbranch ) %] para [% humanbranch %][% END %]</h3>
  <p>Usted puede establecer un número máximo predeterminado de préstamos, política de reservas y devoluciones que se utilizará si no se definen debajo para un tipo de ítem determinado o categoría.</p>
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
  <input type="hidden" name="op" value="set-branch-defaults" />
@@ -183,7 +183,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  </form>
  </div>
  [% IF ( show_branch_cat_rule_form ) %] <div id="holds-policy-by-patron-category" class="container">
- <h3>[% IF humanbranch %]Checkout limit by patron category for [% humanbranch %][% ELSE %]Default checkout limit by patron category[% END %]</h3>
+ <h3>[% IF humanbranch %]Límite de préstamos por categoría de socio para [% humanbranch %][% ELSE %]Predeterminado el limite de préstamo por categoría de socio[% END %]</h3>
  <p>Para esta biblioteca, puede especificar el número máximo de préstamos que un socio de una determinada categoría puede recibir, independientemente del tipo de ítem. </p>
  <p>Si la cantidad total de préstamos a una dada categoría de socio se deja en blanco, no tendrá límites, a menos que defina un límite específico para un dado tipo de ítem. </p>
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
@@ -217,7 +217,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  </form>
  </div>
  [% END %] <div id="holds-policy-by-item-type" class="container">
- <h3>[% IF humanbranch %]Holds policy by item type for [% humanbranch %][% ELSE %]Default holds policy by item type[% END %]</h3>
+ <h3>[% IF humanbranch %]Política de reservas por tipo de ítem para [% humanbranch %][% ELSE %]Predeterminada política de reserva por tipo de ejemplar[% END %]</h3>
  <p>
  Para esta biblioteca, podrá editar las reglas para los tipos de ítem, independientemente de las categorías de socios. </p>
  <p>

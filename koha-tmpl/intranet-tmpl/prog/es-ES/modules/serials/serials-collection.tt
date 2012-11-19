@@ -2,7 +2,7 @@
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 function generateReceive(subscriptionid) {
-    if(nbissues=prompt(_("How many issues do you want to receive ?"))){
+    if(nbissues=prompt(_("¿Cuántos números quiere recibir?"))){
         document.location = 'serials-collection.pl?op=gennext&subscriptionid='+subscriptionid+'&nbissues='+nbissues;
     }
 }
@@ -102,7 +102,7 @@ $(document).ready(function() {
  [% IF ( CAN_user_serials_receive_serials ) %] <p>
  <input value="Editar publicación periódica" type="submit" />&nbsp;
  <input value="Generar siguiente" type="button" onclick="javascript:generateNext([% subscriptionidlist %])" />
- [% IF ( subscriptions.size == 1 and !serialsadditems ) %]&nbsp;<input type="button" value="Multi receiving" onclick="javascript:generateReceive([% subscriptionidlist %])" />[% END %] </p>
+ [% IF ( subscriptions.size == 1 and !serialsadditems ) %]&nbsp;<input value="Completar recepción " type="button" onclick="javascript:generateReceive([% subscriptionidlist %])" />[% END %] </p>
  [% END %] <table>
  <tr>
 [% IF ( subscriptions.size > 1 ) %] <th># Subs</th>

@@ -8,7 +8,7 @@
 <script type="text/javascript">
 //<![CDATA[
 var group_subgroups = {};
-var no_subgroup_label = _( "(None)" );
+var no_subgroup_label = _( "(Ninguno)" );
 function load_group_subgroups () {
     var group = $("#group").val();
     var sg = $("#subgroup");
@@ -111,7 +111,7 @@ $(document).ready(function(){
  <th>Tipo</th>
  <th>Área</th>
  <th>Grupo</th>
- <th>Subgroup</th>
+ <th>Subgrupo</th>
  <th>Notas</th>
  <th>Autor</th>
  <th>Fecha de creación</th>
@@ -369,7 +369,7 @@ $(document).ready(function(){
 <legend>Guardar su informe personalizado</legend>
 <ol>
  <li><label for="reportname">Nombre de informe: </label><input type="text" id="reportname" name="reportname" /></li>
- [% IF groups_with_subgroups %] <li><label for="group">Report group: </label><select name="group" id="group" onChange="load_group_subgroups();">
+ [% IF groups_with_subgroups %] <li><label for="group">Informar grupo:</label><select name="group" id="group" onChange="load_group_subgroups();">
  [% FOR g IN groups_with_subgroups %] [% IF g.selected %] <option value="[% g.id %]" selected>[% g.name %]</option>
  [% ELSE %] <option value="[% g.id %]">[% g.name %]</option>
  [% END %] <script type="text/javascript">
@@ -385,7 +385,7 @@ $(document).ready(function(){
         group_subgroups["[% g.id %]"] = g_sg;
     </script>
  [% END %] </select></li>
- <li><label for="subgroup">Report subgroup: </label><select name="subgroup" id="subgroup">
+ <li><label for="subgroup">Informe subgrupo:</label><select name="subgroup" id="subgroup">
  </select></li>
  [% END %] <li><label for="notes">Notas:</label> <textarea name="notes" id="notes"></textarea></li>
 </ol></fieldset>
@@ -438,7 +438,7 @@ $(document).ready(function() {
  <li><label for="reportname">Nombre de informe:</label>
  [% IF ( reportname ) %]<input type="text" id="reportname" name="reportname" value="[% reportname %]" />
  [% ELSE %]<input type="text" id="reportname" name="reportname" />[% END %] </li>
- [% IF groups_with_subgroups %] <li><label for="group">Report group: </label><select name="group" id="group" onChange="load_group_subgroups();">
+ [% IF groups_with_subgroups %] <li><label for="group">Informar grupo:</label><select name="group" id="group" onChange="load_group_subgroups();">
  [% FOR g IN groups_with_subgroups %] [% IF g.selected %] <option value="[% g.id %]" selected>[% g.name %]</option>
  [% ELSE %] <option value="[% g.id %]">[% g.name %]</option>
  [% END %] <script type="text/javascript">
@@ -454,7 +454,7 @@ $(document).ready(function() {
         group_subgroups["[% g.id %]"] = g_sg;
     </script>
  [% END %] </select></li>
- <li><label for="subgroup">Report subgroup: </label><select name="subgroup" id="subgroup">
+ <li><label for="subgroup">Informe subgrupo:</label><select name="subgroup" id="subgroup">
  </select></li>
  [% END %] [% IF (public) %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0">No (predeterminado)</option> <option value="1" selected="selected">Sí</public> </select></li>
 [% ELSE %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0" selected="selected">No (predeterminado)</option> <option value="1">Sí</public> </select></li>
@@ -522,7 +522,7 @@ $(document).ready(function() {
 <legend>Editar informe SQL </legend>
 <ol>
 <li><label for="reportname">Nombre de informe:</label><input type="text" id="reportname" name="reportname" value="[% reportname %]" size="50" /></li>
- [% IF groups_with_subgroups %] <li><label for="group">Report group: </label><select name="group" id="group" onChange="load_group_subgroups();">
+ [% IF groups_with_subgroups %] <li><label for="group">Informar grupo:</label><select name="group" id="group" onChange="load_group_subgroups();">
  [% FOR g IN groups_with_subgroups %] [% IF g.selected %] <option value="[% g.id %]" selected>[% g.name %]</option>
  [% ELSE %] <option value="[% g.id %]">[% g.name %]</option>
  [% END %] <script type="text/javascript">
@@ -538,7 +538,7 @@ $(document).ready(function() {
         group_subgroups["[% g.id %]"] = g_sg;
     </script>
  [% END %] </select></li>
- <li><label for="subgroup">Report subgroup: </label><select name="subgroup" id="subgroup">
+ <li><label for="subgroup">Informe subgrupo:</label><select name="subgroup" id="subgroup">
  </select></li>
  [% END %] [% IF (public) %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0">No (predeterminado)</option> <option value="1" selected="selected">Sí</public> </select></li>
 [% ELSE %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0" selected="selelcted">No (predeterminado)</option> <option value="1">Sí</public> </select></li>
@@ -593,7 +593,7 @@ $(document).ready(function() {
  <fieldset class="brief">
  <h3>Filtro</h3>
  <ol>
- <li><label for="group">Choose Group and Subgroup: </label>
+ <li><label for="group">Elegir grupo o subgrupo:</label>
  <select name="group" id="group" onChange="load_group_subgroups();">
  <option value="">-- Todos --</option>
  [% FOR g IN groups_with_subgroups %] [% IF g.selected %] <option value="[% g.id %]" selected>[% g.name %]</option>

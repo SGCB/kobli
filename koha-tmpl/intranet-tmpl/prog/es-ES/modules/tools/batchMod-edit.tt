@@ -32,7 +32,7 @@ $(document).ready(function(){
       if ($(this).is(":checked")){
           $(this).val($(this).siblings("[name='subfield']").val());
           $(subfield).attr('disabled',true);
-          $("#"+row).html(_("This subfield will be deleted"));
+          $("#"+row).html(_("Dichos subcampos no se eliminarán"));
       } else {
           $(subfield).removeAttr('disabled');
           $("#"+row).html("");
@@ -116,14 +116,14 @@ $(document).ready(function(){
 
 <div id="cataloguing_additem_newitem">
  <h2>Editar ítems</h2>
- <div class="hint">Checking the box right next the subfield label will disable the entry and delete the subfield on all selected items. Leave fields blank to make no change.</div>
+ <div class="hint">Marcar el recuadro próximo a la derecha de la etiqueta del subcampo deshabilita la entrada y borra los valores de ese subcampo en todos los ítems seleccionados.</div>
  <fieldset class="rows">
  <ol>
  [% FOREACH ite IN item %] <li><div class="subfield_line" style="[% ite.visibility %]" id="subfield[% ite.tag %][% ite.subfield %][% ite.random %]">
  [% IF ( ite.mandatory ) %] <label class="required" for="tag_[% ite.tag %]_subfield_[% ite.subfield %]_[% ite.random %]">
  [% ELSE %] <label for="tag_[% ite.tag %]_subfield_[% ite.subfield %]_[% ite.random %]">
  [% END %] [% ite.subfield %] - [% ite.marc_lib %] </label>
- [% UNLESS ( ite.mandatory ) %]<input type="checkbox" id="row[% ite.tag %][% ite.subfield %][% ite.random %]" title="Check to delete subfield [% ite.subfield %]" name="disable_input" value="[% ite.subfield %]" />[% ELSE %]<span class="required">Requerido</span>[% END %] [% ite.marc_value %] <input type="hidden" name="tag"       value="[% ite.tag %]" />
+ [% UNLESS ( ite.mandatory ) %]<input value="[% ite.subfield %]" name="disable_input" type="checkbox" id="row[% ite.tag %][% ite.subfield %][% ite.random %]" title="Marcar para eliminar subcampo [% ite.subfield %] " />[% ELSE %]<span class="required">Requerido</span>[% END %] [% ite.marc_value %] <input type="hidden" name="tag"       value="[% ite.tag %]" />
  <input type="hidden" name="subfield"       value="[% ite.subfield %]" />
  <input type="hidden" name="mandatory"       value="[% ite.mandatory %]" />
  [% IF ( ite.repeatable ) %] <a href="#" class="buttonPlus" onclick="CloneItemSubfield(this.parentNode); return false;">

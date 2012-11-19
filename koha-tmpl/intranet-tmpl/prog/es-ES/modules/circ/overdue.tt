@@ -73,8 +73,7 @@
 
 <p>Por favor, elija uno o más filtros para continuar.</p>
 
-[% ELSE %] <h2>[% nnoverdue %] [% IF ( noverdue_is_plural ) %]Items[% ELSE %]Item[% END %]
-overdue as of [% todaysdate %][% IF ( isfiltered ) %] <span style="font-size:70%;">(Filtrado por.<a href="/cgi-bin/koha/circ/overdue.pl">Reajustar filtro</a>)</span>[% END %]</h2>
+[% ELSE %] <h2>[% nnoverdue %] [% IF ( noverdue_is_plural ) %]Items[% ELSE %]Item[% END %] fecha de vencimiento [% todaysdate %][% IF ( isfiltered ) %] <span style="font-size:70%;">(Filtrado por.<a href="/cgi-bin/koha/circ/overdue.pl">Reajustar filtro</a>)</span>[% END %]</h2>
 
 <p>
  [% IF ( isfiltered ) %] <a href="overdue.pl?op=csv&amp;[% csv_param_string |html %]">Bajar archivo de los retrasos mostrados</a>

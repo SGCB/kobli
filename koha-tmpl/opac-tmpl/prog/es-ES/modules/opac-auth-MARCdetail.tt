@@ -1,7 +1,4 @@
-[% PROCESS 'opac-authorities.inc' %]
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Entry
-[% INCLUDE 'doc-head-close.inc' %]
-<script language="javascript" type="text/javascript" src="/opac-tmpl/lib/jquery/plugins/jquery.jstree.js"></script>
+[% PROCESS 'opac-authorities.inc' %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha En línea[% END %] catálogo &rsaquo; Entrada [% INCLUDE 'doc-head-close.inc' %] <script language="javascript" type="text/javascript" src="/opac-tmpl/lib/jquery/plugins/jquery.jstree.js"></script>
 <script language="javascript" type="text/javascript">
 //<![CDATA[
 $(document).ready(function() {

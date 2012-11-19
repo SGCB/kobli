@@ -220,7 +220,7 @@ function verify_images() {
 <div id="catalogue_detail_subscriptions">
  <h2>Esta es una suscripción a una publicación periódica</h2>
  <p> (Hay [% subscriptionsnumber %] subscripciones asociadas con este título).</p> 
- [% FOREACH subscription IN subscriptions %] [% IF ( subscription.branchname ) %]<h3>En la biblioteca: [% subscription.branchname %]</h3>[% ELSE %] [% IF ( subscription.branchcode ) %]<h3>En la biblioteca: [% subscription.branchcode %]</h3>[% END %][% END %] [% IF ( subscription.subscriptionnotes ) %]<p>[% subscription.subscriptionnotes FILTER html_line_break %] </p>[% END %] [% IF ( subscription.missinglist ) %]<p>Missing issues: [% subscription.missinglist %] </p>[% END %] [% IF ( subscription.librariannote ) %]<p>([% subscription.librariannote %])</p>[% END %] [% IF ( subscription.latestserials ) %] <p> Los [% subscription.staffdisplaycount %] últimos ejemplares relacionados con esta suscripción:</p>
+ [% FOREACH subscription IN subscriptions %] [% IF ( subscription.branchname ) %]<h3>En la biblioteca: [% subscription.branchname %]</h3>[% ELSE %] [% IF ( subscription.branchcode ) %]<h3>En la biblioteca: [% subscription.branchcode %]</h3>[% END %][% END %] [% IF ( subscription.subscriptionnotes ) %]<p>[% subscription.subscriptionnotes FILTER html_line_break %] </p>[% END %] [% IF ( subscription.missinglist ) %]<p>Ejemplares perdidos: [% subscription.missinglist %]</p>[% END %] [% IF ( subscription.librariannote ) %]<p>([% subscription.librariannote %])</p>[% END %] [% IF ( subscription.latestserials ) %] <p> Los [% subscription.staffdisplaycount %] últimos ejemplares relacionados con esta suscripción:</p>
  <table>
  <tr>
  <th>Préstamo #</th>

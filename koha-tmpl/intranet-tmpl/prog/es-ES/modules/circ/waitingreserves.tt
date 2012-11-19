@@ -37,19 +37,15 @@ $.tablesorter.addParser({
  Ver todas las bibliotecas</a></span>
  [% END %] </h2>
  [% IF ( cancel_result ) %] [% FOREACH cancel_result %] [% IF ( messagetransfert ) %] <div class="dialog message">
- <h2>This item is on hold for pick-up at [% branchname %]</h2>
- <p><strong>[% nextreservtitle %]</strong> is on hold for <strong> [% nextreservsurname %], [% nextreservfirstname %]</strong>.
- Please retain this item and check it in to process the hold.
- </p>
+ <h2>Este ítem está reservado para recoger en [% branchname %]</h2>
+ <p><strong>[% nextreservtitle %]</strong> está en reserva para<strong> [% nextreservsurname %], [% nextreservfirstname %]</strong>. Por favor, guarde este ítem y registrar en el proceso de reserva.</p>
  <form name="cancelReservewithtransfert" action="waitingreserves.pl" method="post">
  <input type="submit" class="submit" value="OK" />
  </form>
  </div>
  [% END %] [% IF ( waiting ) %] <div class="dialog message">
- <h2>This item is on hold for pick-up at your library</h2>
- <p><strong>[% nextreservtitle %]</strong> is on hold for <strong>[% nextreservsurname %], [% nextreservfirstname %]</strong>.
- Please retain this item and check it in to process the hold.
- </p>
+ <h2>Este´ítem está reservado àra recoger en su biblioteca</h2>
+ <p><strong>[% nextreservtitle %]</strong> está en reserva para<strong>[% nextreservsurname %], [% nextreservfirstname %]</strong>. Por favor, guarde este ítem y registrar en el proceso de reserva.</p>
  <form name="cancelReservewithwaiting" action="waitingreserves.pl" method="post">
  <input type="submit" class="submit" value="OK"/>
  </form>

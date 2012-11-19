@@ -184,12 +184,12 @@ function CheckRuleForm(f) {
  <input type="text" id="threshold" name="threshold" size="5" maxlength="5" 
                   value="[% threshold |html %]" /> <span class="required">Requerido</span>
  </li>
- <li><label for="record_type" class="required">Record type: </label>
+ <li><label for="record_type" class="required">Tipo de registro: </label>
  <select id="record_type" name="record_type">
- [% IF ( record_type == "authority" ) %] <option value="biblio">Bibliographic record</option>
- <option value="authority" selected="selected">Authority record</option>
- [% ELSE %] <option value="biblio" selected="selected">Bibliographic record</option>
- <option value="authority">Authority record</option>
+ [% IF ( record_type == "authority" ) %] <option value="biblio">Registro bibliográfico</option>
+ <option value="authority" selected="selected">Registros de Autoridad</option>
+ [% ELSE %] <option value="biblio" selected="selected">Registro bibliográfico</option>
+ <option value="authority">Registros de Autoridad</option>
  [% END %] </select><span class="required">Requerido</span>
  </li>
  </ol>

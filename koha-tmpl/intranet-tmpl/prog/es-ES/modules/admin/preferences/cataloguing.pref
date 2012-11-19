@@ -69,14 +69,14 @@ cataloguing.pref:
           incremental: son generados con la forma 1, 2, 3.
         pref: autoBarcode
     - 
-      - When a new item is added,
+      - "cataloguing.pref#PrefillItem# Cuando un nuevo \xEE\xB5\xA5m es a\xF1\xA1\xA4\xA9do,"
       - 
         choices: 
-          "": the new item is not prefilled with last created item values.
-          1: the new item is prefilled with last created item values.
+          "": "cataloguing.pref#PrefillItem# el nuevo \xEE\xB5\xA5m no se rellena autom\xE2\xB5\xA9camente con los \xF2\xAC\xB4\xA9mos valores de \xEE\xB5\xA5m creados."
+          1: "cataloguing.pref#PrefillItem# el nuevo \xEE\xB5\xA5m se rellena autom\xE2\xB5\xA9camente con los \xF2\xAC\xB4\xA9mos valores de \xEE\xB5\xA5m creados."
         pref: PrefillItem
     - 
-      - Define a list of subfields to use when prefilling items (separated by space)
+      - "cataloguing.pref#SubfieldsToUseWhenPrefill# Definir una lista de subcampos para usar cuando rellenen los \xEE\xB5\xA5ms (separado por espacio)"
       - 
         pref: SubfieldsToUseWhenPrefill
     - 
@@ -162,11 +162,11 @@ cataloguing.pref:
           1: Ocultar
         pref: OpacSuppression
       - "\xC3\xADtems marcados como suprimidos en el resultado de una b\xC3\xBAsqueda OPAC. Note que debe tener el \xC3\xADndice <code>Suprimido</code> configurado en Zebra y por lo menos un \xC3\xADtem suprimido, o no funcionar\xC3\xA1n sus b\xC3\xBAsquedas."
-      - Restrict the suppression to IP adresses outside of the IP range
+      - "cataloguing.pref#OpacSuppression# Restringir la supresi\xF3\xAE\xA0\xA4e direcciones IP fuera del rango de IP"
       - 
         class: short
         pref: OpacSuppressionByIPRange
-      - (Leave blank if not used. Define a range like <code>192.168.</code>.)
+      - cataloguing.pref#OpacSuppression# (Dejar en blanco sino se utiliza. Definir un rango como <code>192.168.</code>.)
     - 
       - 
         choices: 
