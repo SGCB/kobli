@@ -48,8 +48,9 @@ $(document).ready(function() {
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% INCLUDE 'serials-toolbar.inc' %] <h1>Suscripción para [% bibliotitle %] </h1>
- [% IF ( abouttoexpire ) %]<div class="dialog message">Suscripción expirará [% enddate %]. <a href="#" id="renewsub">Renovar esta suscripción</a>.</div>[% END %] [% IF ( NEEDSCONFIRMATION ) %] <div id="circ_needsconfirmation" class="dialog alert">
+ [% INCLUDE 'serials-toolbar.inc' %] <h1>Subscription for [% bibliotitle%] [% IF closed %](closed)[% END %]</h1>
+ [% IF ( abouttoexpire ) %] [% UNLESS closed %] <div class="dialog message">Suscripción expirará [% enddate %]. <a href="#" id="renewsub">Renovar esta suscripción</a>.</div>
+ [% END %] [% END %] [% IF ( NEEDSCONFIRMATION ) %] <div id="circ_needsconfirmation" class="dialog alert">
  <h3>Por favor confirme eliminación de suscripción</h3>
 
  <ul>
@@ -232,7 +233,20 @@ $(document).ready(function() {
  <td>
  [% serialslis.publisheddate %] </td>
  <td>
- [% IF ( serialslis.status1 ) %] Esperado [% END %] [% IF ( serialslis.status2 ) %] Arribado[% END %] [% IF ( serialslis.status3 ) %] Demorado [% END %] [% IF ( serialslis.status4 ) %] Perdido [% END %] [% IF ( serialslis.status5 ) %] No disponible [% END %] [% IF ( serialslis.status7 ) %] Reclamado [% IF ( serialslis.claimdate ) %] [% serialslis.claimdate %] [% END %] [% END %] </td>
+ [% IF ( serialslis.status1 ) %]Expected[% END %]
+ [% IF ( serialslis.status2 ) %]Arrived[% END %]
+ [% IF ( serialslis.status3 ) %]Late[% END %]
+ [% IF ( serialslis.status4 ) %]Missing[% END %]
+ [% IF ( serialslis.status5 ) %]Not issued[% END %]
+ [% IF ( serialslis.status6 ) %]Delete[% END %]
+ [% IF ( serialslis.status7 ) %]
+ Claimed
+ [% IF ( serialslis.claimdate ) %]
+ [% serialslis.claimdate %]
+ [% END %]
+ [% END %]
+ [% IF ( serialslis.status8 ) %]Stopped[% END %]
+ </td>
  </tr>
  [% END %] </table>
  </div>

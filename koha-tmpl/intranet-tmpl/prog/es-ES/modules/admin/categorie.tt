@@ -8,6 +8,10 @@
 		headers: { 11: { sorter: false}}
 	}).tablesorterPager({container: $("#pagertable_categorie"),positionFixed: false,size: 20});
     $( "#enrolmentperioddate" ).datepicker({ minDate: 1 }); // Require that "until date" be in the future
+
+    if ( $("#branches option:selected").length < 1 ) {
+        $("#branches option:first").attr("selected", "selected");
+    }
 }); </script>
 <script type="text/javascript">
 //<![CDATA[
@@ -141,7 +145,17 @@
  <li><label for="reservefee">Costo de reserva: </label><input type="text" name="reservefee" id="reservefee" size="6" value="[% reservefee %]" /></li>
  <li><label for="category_type">Tipo de categoría: </label> <select name="category_type" id="category_type">
  [% IF ( type_n ) %]<option value="" selected="selected">Seleccionar un tipo de categoría</option>[% ELSE %]<option value="">Seleccionar un tipo de categoría</option>[% END %] [% IF ( type_A ) %]<option value="A" selected="selected">Adulto</option>[% ELSE %]<option value="A">Adulto</option>[% END %] [% IF ( type_C ) %]<option value="C" selected="selected">Niño</option>[% ELSE %]<option value="C">Niño</option>[% END %] [% IF ( type_S ) %]<option value="S" selected="selected">Administrativo</option>[% ELSE %]<option value="S">Administrativo</option>[% END %] [% IF ( type_I ) %]<option value="I" selected="selected">Institución</option>[% ELSE %]<option value="I">Institución</option>[% END %] [% IF ( type_P ) %]<option value="P" selected="selected">Profesional</option>[% ELSE %]<option value="P">Profesional</option>[% END %] [% IF ( type_X ) %]<option value="X" selected="selected">Estadístico</option>[% ELSE %]<option value="X">Estadístico</option>[% END %] </select>
- </li></ol>
+ </li>
+ <li><label for="branches">Branches limitation: </label>
+ <select id="branches" name="branches" multiple size="10">
+ <option value="">All branches</option>
+ [% FOREACH branch IN branches_loop %] [% IF ( branch.selected ) %] <option selected="selected" value="[% branch.branchcode %]">[% branch.branchname %]</option>
+ [% ELSE %] <option value="[% branch.branchcode %]">[% branch.branchname %]</option>
+ [% END %] [% END %] </select>
+ <span>Select All if this category type must to be displayed all the time. Otherwise select librairies you want to associate with this value.
+ </span>
+ </li>
+ </ol>
 </fieldset>
 
  [% IF ( EnhancedMessagingPreferences ) %] <fieldset class="rows">
@@ -221,7 +235,8 @@
  <th scope="col">Ítems perdidos</th>
  <th scope="col">Costo de reserva</th>
  [% IF ( EnhancedMessagingPreferences ) %] <th scope="col">Mensajería</th>
- [% END %] <th scope="col" colspan="2">&nbsp; </th>
+ [% END %] <th scope="col">Branches limitations</th>
+ <th scope="col" colspan="2">&nbsp; </th>
  </thead>
  [% FOREACH loo IN loop %] <tr>
  <td>[% loo.categorycode |html %]</td>
@@ -241,7 +256,19 @@
  [% IF ( EnhancedMessagingPreferences ) %] <td style="white-space: nowrap; font-size:80%;">
  [% IF ( loo.messaging_prefs ) %] [% FOREACH prefs IN loo.messaging_prefs %] [% FOREACH transport IN prefs.transports %] [% IF ( transport.transport ) %] [% IF ( prefs.Item_Due ) %]Ítem vence [% ELSIF ( prefs.Advance_Notice ) %]Aviso previo [% ELSIF ( prefs.Upcoming_Events ) %]Eventos próximos [% ELSIF ( prefs.Hold_Filled ) %]Reserva completada [% ELSIF ( prefs.Item_Check_in ) %]Ítem devuelto [% ELSIF ( prefs.Item_Checkout ) %]Ítem prestado [% ELSE %]Desconocido [% END %]: <strong>[% transport.transport %]</strong><br />
  [% ELSE %]Ninguno<br />[% END %] [% END %] [% END %] [% ELSE %] Ninguno [% END %] </td>
- [% END %] <td><a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |uri %]">Editar</a></td>
+ [% END %] <td>
+ [% IF loo.branches.size > 0 %] [% branches_str = "" %] [% FOREACH branch IN loo.branches %] [% branches_str = branches_str _ " " _ branch.branchname _ "(" _ branch.branchcode _ ")" %] [% END %] <span title="[% branches_str %]">
+ [% IF loo.branches.size > 1 %]
+ [% loo.branches.size %] branches limitations
+ [% ELSE %]
+ [% loo.branches.size %] branch limitation
+ [% END %]
+ </span>
+ [% ELSE %]
+ No limitation
+ [% END %]
+ </td>
+ <td><a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |uri %]">Editar</a></td>
  <td><a href="[% loo.script_name %]?op=delete_confirm&amp;categorycode=[% loo.categorycode |uri %]">Eliminar</a></td>
  </tr>
  [% END %] </table>

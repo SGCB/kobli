@@ -213,7 +213,7 @@
  <xsl:text>). </xsl:text>
  </span>
  </xsl:if>
- <xsl:if test="count(key('item-by-status', 'On Orangemanr'))>0">
+ <xsl:if test="count(key('item-by-status', 'On order'))>0">
  <span class="unavailable">
  <xsl:text>Pedido (</xsl:text>
  <xsl:value-of select="count(key('item-by-status', 'On order'))"/>

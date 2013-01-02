@@ -1,4 +1,8 @@
-[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Su cesta [% IF ( print_basket ) %]</title>
+[% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnList ) %]
+
+[% INCLUDE 'doc-head-open.inc' %]
+[% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Your cart
+ [% IF ( print_basket ) %]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="[% themelang %]/includes/favicon.ico" type="image/x-icon" />
 <meta http-equiv="Content-Language" content="es-us" />
@@ -18,8 +22,6 @@
  <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
  <script type="text/javascript">
     //<![CDATA[
-
-var MSG_NO_RECORD_SELECTED = _("Por favor, seleccione uno o más ítems");
 
 $.tablesorter.addParser({
     // set a unique id
@@ -46,12 +48,11 @@ $(document).ready(function()
     $(".cb").click(function(){
       enableCheckboxActions();
     });
+    enableCheckboxActions();
     }
 );
 
-[% IF ( opacuserlogin ) %][% IF ( loggedinusername ) %][% IF ( TagsEnabled ) %]
-var MSG_NO_TAG_SPECIFIED = _("No se especificó etiqueta.");
-
+[% IF ( TagsInputEnabled && loggedinusername ) %]
 function tagSelected() {
     var bibs = document.getElementById('records').value;
     if (bibs) {
@@ -67,6 +68,8 @@ function tagCanceled() {
     $("#tagsel_form").hide();
     $("#tagsel_tag").show();
     $("#tag_hides").show();
+    $("#tagsel_new").val("");
+    $(".tagstatus").empty().hide();
 }
 
 function tagAdded() {
@@ -91,7 +94,7 @@ function tagAdded() {
     KOHA.Tags.add_multitags_button(bibs, tag);
     return false;
 }
-[% END %][% END %][% END %]
+[% END %]
     $(document).ready(function(){
         $("#CheckAll").click(function(){
             var checked = [];
@@ -114,23 +117,8 @@ function tagAdded() {
             return false;
         });
 
-[% IF ( opacuserlogin ) %][% IF ( loggedinusername ) %][% IF ( TagsEnabled ) %]
-          $("#tagsel_button").click(function(){
-              tagAdded();
-              return false;
-          });
-[% END %][% END %][% END %]
     });
-[% IF ( opacuserlogin ) %][% IF ( RequestOnOpac ) %]
-    function holdSel() {
-        var items = document.getElementById('records').value;
-        if (items) {
-            document.location = "/cgi-bin/koha/opac-reserve.pl?biblionumbers=" + items;
-        } else {
-            alert(MSG_NO_RECORD_SELECTED);
-        }
-    }
-[% END %][% END %]
+
 function enableCheckboxActions(){
     // Enable/disable controls if checkboxes are checked
     var checkedBoxes = $(".checkboxed input:checkbox:checked");
@@ -160,19 +148,24 @@ function enableCheckboxActions(){
  <li><a class="hide close" href="opac-basket.pl">Ocultar Ventana</a></li>
 </ul>
 </div>
- [% END %] [% IF ( verbose ) %] [% UNLESS ( print_basket ) %]<div id="selections-toolbar"><a id="CheckAll" href="#">Seleccionar todo</a> <a id="CheckNone" href="#">Limpiar todo</a> <span class="sep">|</span> <span class="links"><span id="selections">Títulos seleccionados para:</span>
-<span id="tag_hides">
-<a href="#" class="deleteshelf disabled" onclick="delSelRecords(); return false;">Borrar</a>
-[% IF ( opacuserlogin ) %] [% IF ( virtualshelves ) %][% IF ( loggedinusername ) %] | <a href="#" class="newshelf disabled" onclick="addSelToShelf(); return false;">Agregar a la lista</a>
- [% END %][% END %] [% IF ( RequestOnOpac ) %]| <a href="#" class="hold disabled" onclick="holdSel(); return false;">Hacer reserva</a>[% END %] [% IF ( loggedinusername ) %][% IF ( TagsEnabled ) %] | <a href="#" id="tagsel_tag" class="disabled" onclick="tagSelected(); return false;">Etiqueta</a>[% END %][% END %] [% END %] </span>
- <span id="tagsel_form" style="display:none">
- <label for="tagsel_new" style="display:inline">Nueva etiqueta:</label>
- <input name="tagsel_new" id="tagsel_new" maxlength="100" style="display:inline"/>
- <input value="Agregar" name="tagsel_button" style="display:inline" type="submit" title="tagsel_button" class="input tagsel_button" id="tagsel_button" />
- <a href="#" id="tagsel_cancel" onclick="tagCanceled(); return false;" style="display:inline">Cancelar</a>
+[% END %] [% UNLESS ( print_basket ) %] <div id="selections-toolbar">
+ <a id="CheckAll" href="#">Seleccionar todo</a>
+ <a id="CheckNone" href="#">Limpiar todo</a>
+ <span class="sep">|</span>
+ <span class="links" id="tag_hides">
+ <span id="selections">Títulos seleccionados para:</span>
+ <a href="#" class="deleteshelf disabled" onclick="delSelRecords(); return false;">Borrar</a>
+ [% IF ( opacuserlogin ) %] [% IF ( virtualshelves ) %][% IF ( loggedinusername ) %] <a href="#" class="newshelf disabled" onclick="addSelToShelf(); return false;">Agregar a la lista</a>
+ [% END %][% END %] [% IF ( RequestOnOpac ) %]<a href="#" class="hold disabled" onclick="holdSel(); return false;">Hacer reserva</a>[% END %] [% IF ( TagsInputEnabled && loggedinusername ) %] <a href="#" id="tagsel_tag" class="disabled" onclick="tagSelected(); return false;">Etiqueta</a>
+ [% END %] [% END %] </span>
+ [% IF ( TagsInputEnabled && loggedinusername ) %] <span id="tagsel_form" style="display:none">
+ <label for="tagsel_new">Nueva etiqueta:</label>
+ <input name="tagsel_new" id="tagsel_new" maxlength="100" />
+ <input value="Agregar" name="tagsel_button" onclick="tagAdded(); return false;" type="submit" title="Agregar" class="input tagsel_button" id="tagsel_button" />
+ <a href="#" id="tagsel_cancel" onclick="tagCanceled(); return false;">Cancelar</a>
  </span>
- </span>
-</div>[% END %] <form action="opac-basket.pl" method="get" name="bookbag_form" id="bookbag_form" class="checkboxed">
+ [% END %] </div>
+[% END %] [% IF ( verbose ) %] <form action="opac-basket.pl" method="get" name="bookbag_form" id="bookbag_form" class="checkboxed">
  [% FOREACH BIBLIO_RESULT IN BIBLIO_RESULTS %] <h3>
  [% IF ( print_basket ) %] [% BIBLIO_RESULT.title |html %] [% IF ( BIBLIO_RESULT.subtitle ) %] [% FOREACH subtitl IN BIBLIO_RESULT.subtitle %] [% subtitl.subfield |html %] [% END %][% END %] [% IF ( BIBLIO_RESULT.author ) %] [% BIBLIO_RESULT.author |html %][% END %] [% ELSE %] <input type="checkbox" class="cb" value="[% BIBLIO_RESULT.biblionumber %]" name="bib[% BIBLIO_RESULT.biblionumber %]" id="bib[% BIBLIO_RESULT.biblionumber %]" onclick="selRecord(value,checked)" />
  [% BIBLIO_RESULT.title |html %] [% IF ( BIBLIO_RESULT.subtitle ) %] [% FOREACH subtitl IN BIBLIO_RESULT.subtitle %] [% subtitl.subfield |html %] [% END %][% END %] [% IF ( BIBLIO_RESULT.author ) %] [% BIBLIO_RESULT.author |html %][% END %] [% END %] </h3>
@@ -252,22 +245,8 @@ function enableCheckboxActions(){
  </table>
  [% END %] </form>
 
-[% ELSE %] [% UNLESS ( print_basket ) %] <form action="/cgi-bin/koha/opac-basket.pl" method="get" name="bookbag_form" id="bookbag_form" class="checkboxed">
-<div id="selections-toolbar">
- <a id="CheckAll" href="#">Seleccionar todo</a>
- <a id="CheckNone" href="#">Limpiar todo</a>
- <span class="sep">|</span> <span class="links"><span id="selections">Títulos seleccionados para:</span>
- <a href="#" class="deleteshelf disabled" onclick="delSelRecords(); return false;">Borrar</a>
- [% IF ( opacuserlogin ) %] [% IF ( virtualshelves ) %][% IF ( loggedinusername ) %] <a href="#" class="newshelf disabled" onclick="addSelToShelf(); return false;">Agregar a la lista</a>
- [% END %][% END %] [% IF ( RequestOnOpac ) %] <a href="#" class="hold disabled" onclick="holdSel(); return false;">Hacer reserva</a>[% END %] [% IF ( loggedinusername ) %][% IF ( TagsEnabled ) %] <a href="#" class="disabled" id="tagsel_tag" onclick="tagSelected(); return false;">Etiqueta</a>[% END %][% END %] [% END %] </span>
- [% IF ( opacuserlogin ) %][% IF ( loggedinusername ) %][% IF ( TagsEnabled ) %]<span id="tagsel_form" style="display:none">
- <label for="tagsel_new" style="display:inline">Nueva etiqueta:</label>
- <input name="tagsel_new" id="tagsel_new" maxlength="100"  style="display:inline"/>
- <input value="Agregar" name="tagsel_button" style="display:inline" type="submit" title="tagsel_button" class="input tagsel_button" id="tagsel_button" />
- <a href="#" id="tagsel_cancel" onclick="tagCanceled(); return false;" style="display:inline">Cancelar</a>
- </span>[% END %][% END %][% END %]</span>
-</div>
-[% END %] <table id="itemst">
+[% ELSE %] <form action="/cgi-bin/koha/opac-basket.pl" method="get" name="bookbag_form" id="bookbag_form" class="checkboxed">
+ <table id="itemst">
  <thead>
  <tr>
  [% UNLESS ( print_basket ) %]<th>&nbsp;</th>[% END %] <th>Título</th>
@@ -286,7 +265,8 @@ function enableCheckboxActions(){
  <a href="#" onclick="openBiblio('[% BIBLIO_RESULT.dest %]',[% BIBLIO_RESULT.biblionumber %])">[% BIBLIO_RESULT.title |html %][% IF ( BIBLIO_RESULT.subtitle ) %] [% FOREACH subtitl IN BIBLIO_RESULT.subtitle %][% subtitl.subfield |html %][% END %][% END %]</a>
  <!-- COinS / Openurl -->
  <span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.au=[% BIBLIO_RESULT.author %]&amp;rft.btitle=[% BIBLIO_RESULT.title |url %]&amp;rft.date=[% BIBLIO_RESULT.publicationyear %]&amp;rft.tpages=[% BIBLIO_RESULT.size %]&amp;rft.isbn=[% BIBLIO_RESULT.isbn |url %]&amp;rft.aucorp=&amp;rft.place=[% BIBLIO_RESULT.place %]&amp;rft.pub=[% BIBLIO_RESULT.publisher |url %]&amp;rft.edition=[% BIBLIO_RESULT.edition %]&amp;rft.series=[% BIBLIO_RESULT.series %]&amp;rft.genre="></span>
- [% IF ( opacuserlogin ) %][% IF ( loggedinusername ) %][% IF ( TagsEnabled ) %]<div id="newtag[% BIBLIO_RESULT.biblionumber %]_status" class="tagstatus results_summary" style="display:none">Estado de etiqueta aquí.</div>[% END %][% END %][% END %] </td>
+ [% IF ( TagsInputEnabled && loggedinusername ) %] <span id="newtag[% BIBLIO_RESULT.biblionumber %]_status" class="tagstatus results_summary" style="display:none">Estado de etiqueta aquí.</span>
+ [% END %] </td>
  <td>[% BIBLIO_RESULT.author %]</td>
  <td>
  [% IF ( BIBLIO_RESULT.publicationyear ) %] [% BIBLIO_RESULT.publicationyear %] [% ELSE %] [% BIBLIO_RESULT.copyrightdate %] [% END %] </td>

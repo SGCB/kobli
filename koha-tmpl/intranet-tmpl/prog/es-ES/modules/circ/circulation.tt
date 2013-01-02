@@ -311,13 +311,15 @@ function validate1(date) {
 [% END %] <form method="post" action="/cgi-bin/koha/circ/circulation.pl" autocomplete="off">
 
 [% IF ( RESERVED ) %] <p>
- <input type="checkbox" id="cancelreserve" name="cancelreserve" value="1" />
+ <input type="checkbox" id="cancelreserve" name="cancelreserve" value="cancel" />
  <label for="cancelreserve">Cancelar reserva</label>
  </p>
 [% END %] [% IF ( RESERVE_WAITING ) %] <p>
- <input type="checkbox" id="cancelreserve" name="cancelreserve" value="1" />
  <label for="cancelreserve">Cancelar reserva</label>
- </p>
+ <input type="radio" value="cancel" name="cancelreserve" id="cancelreserve" /><br />
+ <label for="revertreserve">Revert waiting status</label>
+ <input type="radio" value="revert" name="cancelreserve" id="revertreserve" checked="checked"/>
+</p>
 [% END %] <input type="hidden" name="barcode" value="[% barcode %]" />
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
  <input type="hidden" name="issueconfirmed" value="1" />

@@ -1,24 +1,30 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc'%] <title>Koha &rsaquo; Herramientas &rsaquo; [% IF ( del ) %]Borrado de ítems en lote[% ELSE %]Modificación de ítems en lote[% END %] </title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc'%] <title>Koha &rsaquo; Tools &rsaquo; Batch patron modification</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/JavaScript" language="JavaScript">
+<script type="text/JavaScript">
 //<![CDATA[
         var patron_attributes_lib = new Array();
         var patron_attributes_values = new Array();
         $(document).ready(function() {
-            $("#borrowerst").tablesorter();
+            [% IF borrowers %]
+                $("#borrowerst").tablesorter({
+                    headers: { 0: { sorter: false}},
+                    widgets : ['zebra'],
+                    sortList: [[1,0]]
+                });
 
-            $("#selectallbutton").click(function() {
-                $("#borrowerst").find("input:checkbox").each(function() {
-                    $(this).attr("checked", true);
+                $("#selectallbutton").click(function() {
+                    $("#borrowerst").find("input:checkbox").each(function() {
+                        $(this).attr("checked", true);
+                    });
+                    return false;
                 });
-                return false;
-            });
-            $("#clearallbutton").click(function() {
-                $("#borrowerst").find("input:checkbox").each(function() {
-                    $(this).attr("checked", false);
+                $("#clearallbutton").click(function() {
+                    $("#borrowerst").find("input:checkbox").each(function() {
+                        $(this).attr("checked", false);
+                    });
+                    return false;
                 });
-                return false;
-            });
+            [% END %]
 
             var values = new Array();
             var lib = new Array();
@@ -49,7 +55,7 @@
             var information_category_node = $(select_attr).parent().parent().find('span.information_category');
             information_category_node.html("");
             if ( category.length > 0 ) {
-                information_category_node.html('This attribute will be only applied to the borrower\'s category "' + category + '"');
+                information_category_node.html(_("This attribute will be only applied to the patron\'s category") +' "' + category + '"');
             }
             if ( type == 'select' ) {
                 var options = '<option value = ""></option>';
@@ -66,7 +72,7 @@
             var li_node = $("li.attributes:last");
             var li_clone = $(li_node).clone();
             if ( $(li_clone).find("a.delete").length == 0 ) {
-                $(li_clone).append('[<a href="#" title="Delete" class="delete" onclick="del_attributes(this);return false;">X</a>]');
+                $(li_clone).append('<a href="#" title="Delete" class="delete clear-field" onclick="del_attributes(this);return false;">Delete</a>');
             }
             $(li_clone).find('select[name="patron_attributes"]').change(function() {
                 updateAttrValues(this);
@@ -97,7 +103,7 @@
 </head>
 <body>
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
- <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/tools/modborrowers.pl">Modificación de socios: </a>
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/tools/modborrowers.pl">Lote modificaciones de socio</a>
 </div>
 
 <div id="doc3" class="yui-t2">
@@ -108,13 +114,15 @@
  <form method="post" enctype="multipart/form-data" action="/cgi-bin/koha/tools/modborrowers.pl">
  <fieldset class="rows">
  <legend>Use un archivo</legend>
- <label for="uploadfile">Archivo: </label> <input type="file" id="uploadfile" name="uploadfile" />
+ <ol>
+ <li><label for="uploadfile">Archivo: </label> <input type="file" id="uploadfile" name="uploadfile" /></li>
+ </ol>
  </fieldset>
  <fieldset class="rows">
  <legend>O listar los números de tarjeta uno por uno</legend>
  <ol>
  <li>
- <label for="cardnumberlist">Lista de número de tarjeta (uno por cada línea): </label>
+ <label for="cardnumberlist">Card number list (one cardnumber per line): </label>
  <textarea rows="10" cols="30" id="cardnumberlist" name="cardnumberlist">[% cardnumberlist %]</textarea>
  </li>
  </ol>
@@ -136,39 +144,41 @@
  [% FOREACH notfoundcardnumber IN notfoundcardnumbers %] <tr><td>[% notfoundcardnumber.cardnumber %]</td></tr>
  [% END %] </tbody>
  </table>
- [% END %] [% IF ( op == 'show_results' ) %] [% IF ( errors ) %] HAn ocurrido errores : <ul class="warnings">
- [% FOREACH error IN errors %] [% IF ( error.error == 'can_not_update' ) %] <li>No se puede actualizar el prestatario con número de prestatario [% error.borrowernumber %]</li>
+ [% END %] [% IF ( op == 'show_results' ) %] [% IF ( errors ) %] <div class="dialog alert">
+ <h4>Errors occured:</h4>
+ <ul class="warnings">
+ [% FOREACH error IN errors %] [% IF ( error.error == 'can_not_update' ) %] <li>Can not update patron with borrowernumber [% error.borrowernumber %]</li>
  [% ELSE %] <li>[% error.error %]</li>
  [% END %] [% END %] </ul>
- [% END %] <br/>
- [% END %] [% IF ( op == 'show' ) %] <form name="f" action="modborrowers.pl" method="post">
+ </div>
+ [% END %] [% END %] [% IF ( op == 'show' ) %] <form name="f" action="modborrowers.pl" method="post">
  <input type="hidden" name="op" value="do" />
  [% IF ( borrowers ) %] <div id="toolbar"><a id="selectallbutton" href="#">Seleccionar todo</a> | <a id="clearallbutton" href="#">Limpiar todos los campos</a></div>
- [% END %] [% END %] <div id="cataloguing_additem_itemlist">
+ [% END %] [% END %] [% IF borrowers %] <div id="cataloguing_additem_itemlist">
  <div style="overflow:auto">
  <table id="borrowerst">
  <thead>
  <tr>
  [% IF ( op == 'show' ) %] <th>&nbsp;</th>
- [% END %] <th>Apellidos</th>
+ [% END %] <th>Número de Carnet</th>
+ <th>Apellidos</th>
  <th>Nombre </th>
- <th>Biblioteca </th>
- <th>Código de categoría</th>
- <th>Número de Carnet</th>
- <th>fecha de inscricpión</th>
- <th>fecha de expiración:</th>
- <th>excluido</th>
+ <th>Biblioteca</th>
+ <th>Categoría</th>
+ <th>Registration date</th>
+ <th>Expiry date</th>
+ <th>Suspendido:</th>
  [% FOREACH attrh IN attributes_header %] <th>[% attrh.attribute %]</th>
  [% END %] </tr>
  </thead>
  <tbody>
  [% FOREACH borrower IN borrowers %] <tr>
  [% IF ( op == 'show' ) %] <td><input type="checkbox" name="borrowernumber" value="[% borrower.borrowernumber %]" checked="checked" /></td>
- [% END %] <td>[% borrower.surname %]</td>
+ [% END %] <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrower.borrowernumber %]">[% borrower.cardnumber %]</a></td>
+ <td>[% borrower.surname %]</td>
  <td>[% borrower.firstname %]</td>
  <td>[% borrower.branchname %]</td>
  <td>[% borrower.categorycode %]</td>
- <td>[% borrower.cardnumber %]</td>
  <td>[% borrower.dateenrolled | $KohaDates %]</td>
  <td>[% borrower.dateexpiry | $KohaDates %]</td>
  <td>[% borrower.debarred | $KohaDates %]</td>
@@ -186,8 +196,34 @@
  <fieldset class="rows" id="fields_list">
  <ol>
  [% FOREACH field IN fields %] <li>
- <label style="width:20em;">
- [% SWITCH ( field.name ) %] [% CASE 'surname' %] Apellido: [% CASE 'firstname' %] Nombre: [% CASE 'branchcode' %] Biblioteca: [% CASE 'categorycode' %] Categoría [% CASE 'sort1' %] Tipo 1: [% CASE 'sort2' %] Tipo 2: [% CASE 'dateenrolled' %]  fecha de registro: [% CASE 'dateexpiry' %] Fecha de caducidad: [% CASE 'debarred' %] Restringido: [% CASE 'debarredcomment' %] Comentario restringido: [% CASE 'borrowernotes' %] Nota de circulación: [% END %] </label>
+ [% IF ( field.mandatory ) %] <label for="[% field.name %]" class="required">
+ [% ELSE %] <label for="[% field.name %]">
+ [% END %]
+ [% SWITCH ( field.name ) %]
+ [% CASE 'surname' %]
+ Surname:
+ [% CASE 'firstname' %]
+ First name:
+ [% CASE 'branchcode' %]
+ Library:
+ [% CASE 'categorycode' %]
+ Category
+ [% CASE 'sort1' %]
+ Sort 1:
+ [% CASE 'sort2' %]
+ Sort 2:
+ [% CASE 'dateenrolled' %]
+ Registration date:
+ [% CASE 'dateexpiry' %]
+ Expiry date:
+ [% CASE 'debarred' %]
+ Restricted:
+ [% CASE 'debarredcomment' %]
+ Restriction comment:
+ [% CASE 'borrowernotes' %]
+ Circulation note:
+ [% END %]
+ </label>
  [% IF field.mandatory %] <input readonly="readonly" value="[% field.name %]" name="disable_input" type="checkbox" title="Este campo es obligatorio" onclick="return false;" />
  [% ELSE %] <input value="[% field.name %]" name="disable_input" type="checkbox" title="Revisar para borrar este campo" />
  [% END %] [% IF ( field.type == 'text' ) %] <input type="text" name="[% field.name %]" value="" />
@@ -195,17 +231,17 @@
  [% FOREACH opt IN field.option %] <option value="[% opt.value %]">[% opt.lib %]</option>
  [% END %] </select>
  [% ELSE %]  No hay valores definidos para  [% field.name %] [% END %] [% END %] [% IF ( field.type == 'date' ) %] <input type="text" name="[% field.name %]" id="[% field.name %]" value="" size="10" maxlength="10" readonly="readonly" class="datepicker" />
- <a href="#" onclick="clearDate('[% field.name %]');return false;">X</a>
+ <a href="#" class="clear-field" onclick="clearDate('[% field.name %]');return false;">Limpiar</a>
  [% END %] </li>
  [% END %] [% IF ( patron_attributes_codes ) %] <li class="attributes">
- <label style="width:20em;">Atributo:<select name="patron_attributes">
+ <label style="width:auto;">Atributo:<select name="patron_attributes">
  [% FOREACH pac IN patron_attributes_codes %] <option value="[% pac.attribute_code %]" data-type="[% pac.type %]" data-category="[% pac.category_lib %]">[% pac.attribute_lib %]</option>
  [% END %] </select>
  </label>
  <input value="attr0_value" name="disable_input" type="checkbox" title="para eliminar este campo seleccionar" />
  <span class="patron_attributes_value"></span>
- <a href="#" title="Agregando un atributo " onclick="add_attributes(); return false;">+</a>
- <span class="information_category"></span>
+ <a href="#" class="clone-field" title="Agregando un atributo " onclick="add_attributes(); return false;">Nuevo</a>
+ <span class="information_category hint" style="width:25%;float:right;"></span>
  </li>
  [% END %] </ol>
  </fieldset>
@@ -215,8 +251,9 @@
  </fieldset>
  </div>
  </form>
- [% END %] [% END %] [% IF ( op == 'show_results' ) %] <br/>
- <a href="/cgi-bin/koha/tools/modborrowers.pl" title="nueva modificación de Lote de socios">nueva modificación de Lote de socios</a>
+ [% END %] [% END %] [% END %] [% IF ( op == 'show_results' ) %] <p>
+ <a href="/cgi-bin/koha/tools/modborrowers.pl" title="New batch patrons modification">New batch patron modification</a>
+ </p>
  [% END %] </div>
  </div>
  <div class="yui-b">

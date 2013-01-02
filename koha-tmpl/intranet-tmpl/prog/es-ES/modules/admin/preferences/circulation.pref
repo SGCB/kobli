@@ -216,6 +216,13 @@ circulation.pref:
         pref: finesMode
         type: choice
       - "multas (cuando <code>misc/cronjobs/fines.pl</code> se est\xC3\xA1 ejecutando)."
+    - 
+      - 
+        choices: 
+          "": Don't refund
+          1: Refund
+        pref: RefundLostItemFeeOnReturn
+      - lost item fees charged to a borrower when the lost item is returned.
   "Pol\xC3\xADtica de pr\xC3\xA9stamo": 
     - 
       - 
@@ -335,6 +342,13 @@ circulation.pref:
           date_due: "la antigua fecha de pr\xC3\xA9stamo."
           now: la fecha actual.
         pref: RenewalPeriodBase
+    - 
+      - 
+        choices: 
+          "": Don't send
+          1: Send
+        pref: RenewalSendNotice
+      - a renewal notice according to patron checkout alert preferences.
     - 
       - "Limita a los socios hacer reservas en el OPAC si deben m\xC3\xA1s de"
       - 

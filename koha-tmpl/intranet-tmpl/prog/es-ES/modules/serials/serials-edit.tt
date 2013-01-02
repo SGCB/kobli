@@ -151,7 +151,7 @@ $(document).ready(function() {
  <input type="text" id="expecteddate" name="planneddate" value="[% serialslis.planneddate %]" size="10" maxlength="15" />
  </td>
  <td>
- [% IF ( serialslis.editdisable ) %] <input type="hidden" name="status" id="status[% serialslis.serialid %]" value="1">
+ [% IF ( serialslis.editdisable ) %] <input type="hidden" name="status" id="status[% serialslis.serialid %]" value="[% serialslis.serstatus %]">
  <select name="status" size="1"  disabled="disabled">
  [% ELSE %] [% IF ( serialslis.serialsadditems ) %] <select name="status" size="1" id="status[% serialslis.serialid %]" onchange="if (this.value==2){unHideItems('items'+[% serialslis.subscriptionid %][% serialslis.serialid %],'label[% serialslis.subscriptionid %][% serialslis.serialid %]','[% serialslis.serialid %]'); changeDate(this, '[% serialslis.arriveddate %]')} else if (this.value==7){changeDate(this, '[% serialslis.arriveddate %]')} else { HideItems('items'+[% serialslis.subscriptionid %]+[% serialslis.serialid %],'label[% serialslis.subscriptionid %][% serialslis.serialid %]'); changeDate(this, '[% serialslis.planneddate %]')}" >
  [% ELSE %] <select name="status" size="1" id="status[% serialslis.serialid %]" onchange="if (this.value==2 || this.value==7){changeDate(this, '[% serialslis.arriveddate %]')} else {changeDate(this, '[% serialslis.planneddate %]')}" >
@@ -168,6 +168,7 @@ $(document).ready(function() {
  [% ELSE %] <option value="5">No disponible</option>
  [% END %] [% IF ( serialslis.status6 ) %] <option value="6" selected="selected">Eliminar</option>
  [% ELSE %] <option value="6">Eliminar</option>
+ [% END %] [% IF serialslis.status8 %] <option value="8" selected="selected">Stopped</option>
  [% END %] </select>
 
  </td>
@@ -243,6 +244,7 @@ $(document).ready(function() {
  [% ELSE %] <option value="5">No disponible</option>
  [% END %] [% IF ( newserialloo.status6 ) %] <option value="6" selected="selected">Eliminar</option>
  [% ELSE %] <option value="6">Eliminar</option>
+ [% END %] [% IF newserialloo.status8 %] <option value="8" selected="selected">Stopped</option>
  [% END %] </select>
 
  </td>
@@ -288,8 +290,11 @@ $(document).ready(function() {
  </td>
  </tr>
  [% END %] [% END %] [% END %] </table>
- <fieldset class="action"><input accesskey="w" value="Guardar" type="submit" class="button" />
- [% UNLESS ( serialsadditems ) %]&nbsp;&nbsp;<input value="Completar recepción " type="button" onclick="javascript:generateReceive()">[% END %] </form>
+ <fieldset class="action">
+ <input type="submit" onclick="return false;" style="display: none;" id="phony_submit" value="phony_submit" name="phony_submit" />
+ <input accesskey="w" value="Guardar" type="submit" class="button" />
+ [% UNLESS ( serialsadditems ) %]&nbsp;&nbsp;<input value="Completar recepción " type="button" onclick="javascript:generateReceive()">[% END %] </fieldset>
+</form>
 
 </div>
 </div>
@@ -298,8 +303,8 @@ $(document).ready(function() {
 [% INCLUDE 'serials-menu.inc' %] <ul>
  [% FOREACH subscription IN subscriptions %] <li><a href="serials-collection.pl?subscriptionid=[% subscription.subscriptionid %]" title="colección periódica para [% subscription.bibliotitle %]">Colección de publicaciones periódicas $[% subscription.subscriptionid %]</a></li>
  <li><a href="subscription-detail.pl?subscriptionid=[% subscription.subscriptionid %]" title="detalle de la suscripción">Suscripción #[% subscription.subscriptionid %]</a></li>
- [% IF ( subscription.abouttoexpire ) %] <li><a href="#" onclick="javascript:popup([% subscription.subscriptionid %])">Renovar #[% subscription.subscriptionid %]</a></li>
- [% END %] [% END %] <li><a href="/cgi-bin/koha/catalogue/[% default_bib_view %].pl?biblionumber=[% biblionumber %]" title="ir a [% bibliotitle %]">Mostrar biblio</a></li></ul>
+ [% IF ( subscription.abouttoexpire ) %] [% UNLESS subscription.closed %] <li><a href="#" onclick="javascript:popup([% subscription.subscriptionid %])">Renovar #[% subscription.subscriptionid %]</a></li>
+ [% END %] [% END %] [% END %] <li><a href="/cgi-bin/koha/catalogue/[% default_bib_view %].pl?biblionumber=[% biblionumber %]" title="ir a [% bibliotitle %]">Mostrar biblio</a></li></ul>
 </div>
 </div>
 [% INCLUDE 'intranet-bottom.inc' %] 

@@ -46,7 +46,6 @@ function check(form) {
  [% END %] <h2>Pedidos con precios inciertos</h2>
  <form action="[% scriptname %]" method="post" name="uncertainprices">
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
- <input type="hidden" name="op" value="validate" />
  Pedidos de: <select name="owner">
  [% IF ( owner ) %] <option value="0">Todos</option>
  <option value="1" selected="selected">yo</option>

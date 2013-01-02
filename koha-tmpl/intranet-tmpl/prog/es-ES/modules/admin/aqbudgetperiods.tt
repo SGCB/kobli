@@ -287,8 +287,8 @@
 
  [% INCLUDE 'budgets-active-currency.inc' %] <div id="budgetsTabs" class="toptabs">
  <ul>
- <li><a href="#active">Presupuestos activos</a></li>
- <li><a href="#inactive">Inactivo Presupuestos</a></li>
+ <li><a href="#active">Active budgets</a></li>
+ <li><a href="#inactive">Inactive budgets</a></li>
  </ul>
 
  <div id="active">
@@ -314,7 +314,7 @@
  <td>
  <a href="[% script_name %]?op=add_form&amp;budget_period_id=[% period_active.budget_period_id |html %]">Editar</a>
  <a href="[% script_name %]?op=delete_confirm&amp;budget_period_id=[% period_active.budget_period_id %]">Eliminar</a>
- <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_period_id=[% period_active.budget_period_id %]">Agregar un fondo  </a>
+ <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_period_id=[% period_active.budget_period_id %]">Agregar fondo</a>
  </td>
  </tr>
  [% END %] </tbody>

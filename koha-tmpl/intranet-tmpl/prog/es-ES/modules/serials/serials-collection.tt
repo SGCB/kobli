@@ -1,5 +1,10 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Información de colección para [% bibliotitle %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
+<link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
+
+<script type="text/javascript">
 //<![CDATA[
 function generateReceive(subscriptionid) {
     if(nbissues=prompt(_("¿Cuántos números quiere recibir?"))){
@@ -42,10 +47,31 @@ function generateNext(subscriptionid) {
 	}
 }
 
+function CheckAll( node ) {
+    $("#"+node).checkCheckboxes();
+    return false;
+}
+function CheckNone( node ) {
+    $("#"+node).unCheckCheckboxes();
+    return false;
+}
 $(document).ready(function() {
     $('#subscription_years').tabs();
+    [% IF dateformatmetric %]
+      dt_add_type_uk_date();
+    [% END %]
+
+    $(".subscription-year-table").dataTable($.extend(true, {}, dataTablesDefaults, {
+        "aoColumnDefs": [
+            { "aTargets": [ 0 ], "bSortable": false, "bSearchable": false },
+        ],
+        "aaSorting": [[0, 'desc']],
+        "bAutoWidth": false,
+        "bPaginate": false,
+        "bInfo": false,
+        "bFilter": false,
+    } ));
 });
- 
 
 //]]>
 </script>
@@ -80,15 +106,18 @@ $(document).ready(function() {
  [% IF ( subscription.numberpattern1 ) %] Número [% END %] [% IF ( subscription.numberpattern2 ) %] Volumen, número, ejemplar [% END %] [% IF ( subscription.numberpattern3 ) %] Volumen, número [% END %] [% IF ( subscription.numberpattern4 ) %] Volumen, ejemplar [% END %] [% IF ( subscription.numberpattern5 ) %] Número, ejemplar [% END %] [% IF ( subscription.numberpattern6 ) %] Estacional solamente [% END %] [% IF ( subscription.numberpattern7 ) %] Ninguno de los anteriores [% END %]</td>
  <td> [% subscription.branchcode %]</td>
  <td> [% subscription.callnumber %]</td>
- <td> [% subscription.notes %] [% IF ( subscription.subscriptionexpired ) %]<br /><span class="problem"> Suscripción expirada</span>
- [% END %] </td>
- [% IF ( routing && CAN_user_serials_routing ) %] <td>
- <a href="/cgi-bin/koha/serials/routing.pl?subscriptionid=[% subscription.subscriptionid %]">Editar lista de enrutamiento</a>
+ <td> [% subscription.notes %] [% UNLESS subscription.closed %] [% IF ( subscription.subscriptionexpired ) %] <br /><span class="problem"> Suscripción expirada</span>
+ [% END %] [% ELSE %] <br /> Subscription closed
+ [% END %]
  </td>
- [% END %] [% IF ( subscription.abouttoexpire ) %]<td class="problem"> <a href="/cgi-bin/koha/serials/subscription-renew.pl?subscriptionid=[% subscription.subscriptionid %]" onclick="popup([% subscription.subscriptionid %]); return false;">Renovar</a></td>
+ [% IF ( routing && CAN_user_serials_routing ) %] <td>
+ [% UNLESS subscription.closed %] <a href="/cgi-bin/koha/serials/routing.pl?subscriptionid=[% subscription.subscriptionid %]">Editar lista de enrutamiento</a>
+ [% END %] </td>
+ [% END %] [% UNLESS subscription.closed %] [% IF ( subscription.abouttoexpire ) %]<td class="problem"> <a href="/cgi-bin/koha/serials/subscription-renew.pl?subscriptionid=[% subscription.subscriptionid %]" onclick="popup([% subscription.subscriptionid %]); return false;">Renovar</a></td>
  [% ELSE %] [% IF ( subscription.subscriptionexpired ) %]<td class="problem"> <a href="/cgi-bin/koha/serials/subscription-renew.pl?subscriptionid=[% subscription.subscriptionid %]" onclick="popup([% subscription.subscriptionid %]); return false;">Renovar</a></td>
  [% ELSE %] <td> &nbsp;</td>
- [% END %] [% END %] </tr>
+ [% END %] [% END %] [% ELSE %] <td> &nbsp;</td>
+ [% END %] </tr>
 [% END %] [% IF ( subscr ) %] [% IF ( subscriptioncount > 1 ) %] <tr ><td colspan="8"> <a href="serials-collection.pl?biblionumber=[% biblionumber %]">Ver todas las suscripciones adjuntas a este registro</a></td>
 </tr>
 [% END %] [% END %] </table>
@@ -100,20 +129,32 @@ $(document).ready(function() {
 
  [% FOREACH year IN years %] <div id="subscription-year-[% year.year %]">
  [% IF ( CAN_user_serials_receive_serials ) %] <p>
- <input value="Editar publicación periódica" type="submit" />&nbsp;
- <input value="Generar siguiente" type="button" onclick="javascript:generateNext([% subscriptionidlist %])" />
- [% IF ( subscriptions.size == 1 and !serialsadditems ) %]&nbsp;<input value="Completar recepción " type="button" onclick="javascript:generateReceive([% subscriptionidlist %])" />[% END %] </p>
- [% END %] <table>
+ <input value="Editar publicación periódica" type="submit" />&nbsp; [% UNLESS subscription.closed %] <input value="Generar siguiente" type="button" onclick="javascript:generateNext([% subscriptionidlist %])" />
+ [% IF ( subscriptions.size == 1 and !serialsadditems ) %]&nbsp;<input value="Completar recepción " type="button" onclick="javascript:generateReceive([% subscriptionidlist %])" />[% END %] [% END %] </p>
+ [% END %] <span class="checkall">
+ <a class="CheckAll" href="#" onclick="CheckAll('subscription-year-[% year.year %]'); return false;">Seleccionar todo</a>
+ </span> | <span class="clearall">
+ <a class="CheckNone" href="#" onclick="CheckNone('subscription-year-[% year.year %]'); return false;">Limpiar todo</a>
+ </span>
+ <table class="subscription-year-table">
+ <thead>
  <tr>
-[% IF ( subscriptions.size > 1 ) %] <th># Subs</th>
+ [% IF ( CAN_user_serials_receive_serials ) %]<th>Editar</th>[% END %] [% IF ( subscriptions.size > 1 ) %] <th># Subs</th>
 [% END %] <th>Fecha de publicación </th>
  <th>Fecha de recepción </th>
  <th>Número </th>
  <th>Estado : </th>
  <th>Notas </th>
  <th>Biblioteca</th>
- [% IF ( routing ) %]<th>Ruteo</th>[% END %] [% IF ( CAN_user_serials_receive_serials ) %]<th>Editar</th>[% END %] </tr>
- [% FOREACH serial IN year.serials %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] [% IF ( subscriptions.size > 1 ) %] <td><a href="serials-collection.pl?subscriptionid=[% serial.subscriptionid %]">[% serial.subscriptionid %]</a></td>
+ [% IF ( routing ) %]<th>Ruteo</th>[% END %] </tr>
+ </thead>
+ <tbody>
+ [% FOREACH serial IN year.serials %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] [% IF ( CAN_user_serials_receive_serials ) %] <td>
+ [% IF ( serial.cannotedit ) %] desactivado [% ELSE %] [% IF ( serial.subscriptionexpired ) %] <input type="checkbox" name="serialid" value="[% serial.serialid %]" disabled="disabled" />
+ [% ELSE %] [% IF ( serial.checked ) %] <input type="checkbox" class="checkboxed" name="serialid" checked="checked" value="[% serial.serialid %]" />
+ [% ELSE %] <input type="checkbox" class="checkboxed" name="serialid" value="[% serial.serialid %]" />
+ [% END %] [% END %] [% END %] </td>
+ [% END %] [% IF ( subscriptions.size > 1 ) %] <td><a href="serials-collection.pl?subscriptionid=[% serial.subscriptionid %]">[% serial.subscriptionid %]</a></td>
 [% END %] <td>
  [% serial.publisheddate %] </td>
  <td>
@@ -121,7 +162,15 @@ $(document).ready(function() {
  <td>
  [% serial.serialseq %] </td>
  <td>
- [% IF ( serial.status1 ) %]Esperado [% END %][% IF ( serial.status2 ) %]Ya arribado[% END %][% IF ( serial.status3 ) %]Demorado[% END %][% IF ( serial.status4 ) %]Desaparecido[% END %][% IF ( serial.status5 ) %]No disponible[% END %][% IF ( serial.status7 ) %]Reclamado[% END %] </td>
+ [% IF ( latestserial.status1 ) %]Expected[% END %]
+ [% IF ( latestserial.status2 ) %]Arrived[% END %]
+ [% IF ( latestserial.status3 ) %]Late[% END %]
+ [% IF ( latestserial.status4 ) %]Missing[% END %]
+ [% IF ( latestserial.status5 ) %]Not issued[% END %]
+ [% IF ( latestserial.status6 ) %]Delete[% END %]
+ [% IF ( latestserial.status7 ) %]Claimed[% END %]
+ [% IF ( latestserial.status8 ) %]Stopped[% END %]
+ </td>
  <td>
  [% serial.notes %] </td>
  <td>
@@ -129,13 +178,9 @@ $(document).ready(function() {
  [% IF ( routing ) %] <td>
  <a href="" onclick="print_slip([% serial.subscriptionid |html %], '[% serial.serialseq |html %] ([% serial.planneddate %])'); return false" >Imprimir lista</a>
  </td>
- [% END %] [% IF ( CAN_user_serials_receive_serials ) %] <td>
- [% IF ( serial.cannotedit ) %] desactivado [% ELSE %] [% IF ( serial.subscriptionexpired ) %] <input type="checkbox" name="serialid" value="[% serial.serialid %]" disabled="disabled" />
- [% ELSE %] [% IF ( serial.checked ) %] <input type="checkbox" name="serialid" checked="checked" value="[% serial.serialid %]" />
- [% ELSE %] <input type="checkbox" name="serialid" value="[% serial.serialid %]" />
- [% END %] [% END %] [% END %] </td>
  [% END %] </tr>
- [% END %] </table>
+ [% END %] </tbody>
+ </table>
  </div>
  [% END %] <input type="hidden" name="subscriptionid" value="[% subscriptionidlist %]" />
 

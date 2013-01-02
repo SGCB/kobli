@@ -2,7 +2,7 @@
 <ul>
  [% IF ( userview ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/opac-user.pl">mi resumen</a></li>
  [% IF ( OPACFinesTab ) %] [% IF ( accountview ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/opac-account.pl">mis multas</a></li>
- [% END %] [% IF ( userupdateview ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/opac-userupdate.pl">mis detalles personales</a></li>
+ [% END %] [% IF ( userupdateview ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/opac-memberentry.pl">mis detalles personales</a></li>
  [% IF ( TagsEnabled ) %] [% IF ( tagsview ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/opac-tags.pl?mine=1">mis etiquetas</a></li>
  [% END %] [% IF ( OpacPasswordChange ) %] [% IF ( passwdview ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/opac-passwd.pl">cambiar mi contraseña</a></li>
  [% END %] [% IF ( ShowOpacRecentSearchLink ) %] [% IF ( searchhistoryview ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/opac-search-history.pl">mi historial de búsqueda</a></li>

@@ -231,6 +231,7 @@ This number is equal to the version in kohaversion.pl
 
 sub final_linear_version {
     return KOHAVERSION;
+}
 
 =head2 KOBLIVERSION
 

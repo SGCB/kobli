@@ -23,8 +23,7 @@
 	function addToCart() { addRecord('[% biblionumber %]'); }
 	function addToShelf() {	window.open('/cgi-bin/koha/virtualshelves/addbybiblionumber.pl?biblionumber=[% biblionumber %]','Add_to_virtualshelf','width=500,height=400,toolbar=false,scrollbars=yes');
 	}
-	function printBiblio() {window.open('/cgi-bin/koha/catalogue/detailprint.pl?biblionumber=[% biblionumber %]','Print_Biblio','width=700,height=500,toolbar=false,scrollbars=yes');
-	}
+    function printBiblio() {window.print(); }
 [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]
 function confirm_deletion() {
 		var count = [% count %];
@@ -219,7 +218,7 @@ function confirm_items_deletion() {
  [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="duplicatebiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=[% current_framework %]&amp;op=duplicate">Registro duplicado</a></li>
  [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="deletebiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?op=delete&amp;biblionumber=[% biblionumber %]">Eliminar</a></li>
  [% END %] <li><a id="addtoshelf" href="/cgi-bin/koha/virtualshelves/addbybiblionumber.pl?biblionumber=[% biblionumber %]">Agregar al estante</a></li>
- <li><a id="printbiblio" href="/cgi-bin/koha/catalogue/detailprint.pl?biblionumber=[% biblionumber %]">Imprimir</a></li>
+ <li><span id="printbiblio"></span></li>
  [% IF ( CAN_user_reserveforothers ) %] [% UNLESS ( norequests ) %]<li><a id="placehold" href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>[% END %] [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]<li id="z3950searchc"><input value="Búsqueda Z39.50" type="button" id="z3950search" onclick="if (confirm(_('Please note that this Z39.50 search could replace the current record.'))){ PopupZ3950(); } return false;" /></li>[% END %] </ul>
 </form>
 </div>

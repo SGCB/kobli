@@ -85,8 +85,8 @@ function confirm_deletion(biblionumber,itemnumber) {
 
 $(document).ready(function() {
     $("#cataloguing_additem_itemlist  tr").hover(
-        function () {$(this).attr("class","highlight");},
-        function () {$(this).attr("class",""         );}
+        function () {$(this).addClass("highlight");},
+        function () {$(this).removeClass("highlight");}
     );
 });
 //]]>
@@ -116,8 +116,9 @@ $(document).ready(function() {
  [% FOREACH item_header_loo IN item_header_loop %] <th>
  [% item_header_loo.header_value %] </th>
  [% END %] </tr>
- [% FOREACH item_loo IN item_loop %] <tr id="row[% item_loo.itemnumber %]">
- [% IF ( item_loo.nomod ) %] <td colspan="2">&nbsp;</td>[% ELSE %][% IF ( item_loo.hostitemflag ) %]<td><a href="additem.pl?op=edititem&amp;biblionumber=[% item_loo.hostbiblionumber %]&amp;itemnumber=[% item_loo.itemnumber %]#edititem">Editar en servidor</a></td>
+ [% FOREACH item_loo IN item_loop %] [% IF ( item_loo.itemnumber == itemnumber) %] <tr id="row[% item_loo.itemnumber %]" class="active">
+ [% ELSE %] <tr id="row[% item_loo.itemnumber %]">
+ [% END %] [% IF ( item_loo.nomod ) %] <td colspan="2">&nbsp;</td>[% ELSE %][% IF ( item_loo.hostitemflag ) %]<td><a href="additem.pl?op=edititem&amp;biblionumber=[% item_loo.hostbiblionumber %]&amp;itemnumber=[% item_loo.itemnumber %]#edititem">Editar en servidor</a></td>
 <td><a class="delete" href="/cgi-bin/koha/cataloguing/additem.pl?op=delinkitem&amp;biblionumber=[% biblionumber %]&amp;hostitemnumber=[% item_loo.itemnumber %]">Desvincular</a></td>
 [% ELSE %]<td><a href="additem.pl?op=edititem&amp;biblionumber=[% biblionumber %]&amp;itemnumber=[% item_loo.itemnumber %]#edititem">Editar</a></td>
  <td>[% IF ( item_loo.countanalytics ) %]<a href="/cgi-bin/koha/catalogue/search.pl?idx=hi&amp;q=% item_loo.itemnumber %]">Ver analíticas</a>[% ELSE %]<a class="delete" href="/cgi-bin/koha/cataloguing/additem.pl?op=delitem&amp;biblionumber=[% biblionumber %]&amp;itemnumber=[% item_loo.itemnumber %]" onclick="confirm_deletion([% biblionumber %],[% item_loo.itemnumber %]); return false;">Eliminar</a>[% END %]</td>[% END %][% END %] [% FOREACH item_valu IN item_loo.item_value %] <td>[% item_valu.field |html %]</td>
@@ -160,8 +161,8 @@ $(document).ready(function() {
  -->
 
  <input value="Agregar ítem" name="add_submit" type="submit" onclick="return Check(this.form)" />
- <input value="Agregar y duplicar" name="add_duplicate_submit" type="submit" onclick="return Check(this.form)" />
- <input value="Agregar múltiples copias" name="add_multiple_copies" type="submit" onclick="javascript:this.nextSibling.style.visibility='visible';document.f.number_of_copies.focus(); return false;" /><span id="add_multiple_copies_span" style="visibility:hidden">
+ <input type="submit" name="add_duplicate_submit" value="Add &amp; duplicate" onclick="return Check(this.form)" />
+ <input type="submit" name="add_multiple_copies" value="Add multiple copies" onclick="javascript:this.nextSibling.style.visibility='visible';document.f.number_of_copies.focus(); return false;" /><span id="add_multiple_copies_span" style="visibility:hidden">
  <label for="number_of_copies">Número de copias a agregar: </label>
  <input type="text" id="number_of_copies" name="number_of_copies" value="" size="2" />
  <input value="Agregar" name="add_multiple_copies_submit" type="submit" id="add_multiple_copies_submit" onclick="javascript:return Check(this.form) && CheckMultipleAdd(this.form.number_of_copies.value);" />

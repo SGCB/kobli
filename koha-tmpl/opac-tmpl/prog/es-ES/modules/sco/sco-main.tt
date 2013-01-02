@@ -7,6 +7,7 @@
 <script type="text/javascript" src="[% yuipath %]/container/container-min.js"></script>
 <script type="text/javascript" src="[% yuipath %]/menu/menu-min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/jquery.js"></script>
+<script type="text/javascript" src="[% themelang %]/lib/jquery/jquery-ui.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript">//<![CDATA[
 function sco_init(valid_session) {
@@ -18,7 +19,12 @@ function dofocus() {    // named function req'd for body onload event by some FF
     // alert("dofocus called");
     $(".focus:last").select();
 }
+var slip_re = /slip/;
+function printx_window(print_type) {
+  var handler = print_type.match(slip_re) ? "printslip" : "moremember";
 
+  return false;
+}
 function checkout_confirm(patronid) {
     var   barcode = $("#barcode").val();
     // alert("checkout_confirm('" + patronid + "') called for barcode '" + barcode + "'");
@@ -91,7 +97,14 @@ $(document).ready(function() {
     });
 });
 //]]>
-
+$(document).ready(function(){
+    $("#logout_form").submit(function(){
+        if(confirm("Would you like to print a receipt?")){
+            window.open("/cgi-bin/koha/sco/printslip.pl?borrowernumber=[% borrowernumber %]&amp;print=qslip");
+        }
+        return true;
+    });
+});
 </script>
 [% IF ( opacuserjs ) %]<script type="text/javascript">[% opacuserjs %]</script>[% END %] <link rel="stylesheet" type="text/css" href="[% yuipath %]/reset-fonts-grids.css" />
 <link rel="stylesheet" type="text/css" href="[% yuipath %]/skin.css" />
@@ -164,7 +177,7 @@ Lo sentimos, esta máquina de autopréstamo ha perdido la identificación. Por f
  <input type="hidden" name="valid_session" value="1" />
  <input value="Enviar" type="submit" class="submit" /></fieldset>
  </form>
- <div><form method="post" action="/cgi-bin/koha/sco/sco-main.pl?op=logout" ><input value="Finalizar" type="submit" class="finish" /></form></div>
+ <div><form method="post" action="#" id="logout_form"><input value="Finalizar" type="submit" class="finish" /></form></div>
  </div> <!-- sco_entry --> <!-- newcheckout -->
  [% IF ( display_patron_image ) %]</div> <!-- /yui-u first -->[% END %]
  [% IF ( display_patron_image ) %]

@@ -182,6 +182,7 @@
  <option>Atrasado</option>
  <option>Faltante</option>
  <option>Reclamado</option>
+ <option>Stopped</option>
  </select>
  </li>
  
@@ -240,7 +241,13 @@
  <td>
  [% missingissue.serialseq %] </td>
  <td>
- [% IF ( missingissue.status1 ) %]Esperado [% END %] [% IF ( missingissue.status2 ) %]Ya arribado[% END %] [% IF ( missingissue.status3 ) %]Demorado[% END %] [% IF ( missingissue.status4 ) %]Desaparecido[% END %] [% IF ( missingissue.status7 ) %]Reclamado[% END %] </td>
+ [% IF ( missingissue.status1 ) %]Expected[% END %]
+ [% IF ( missingissue.status2 ) %]Arrived[% END %]
+ [% IF ( missingissue.status3 ) %]Late[% END %]
+ [% IF ( missingissue.status4 ) %]Missing[% END %]
+ [% IF ( missingissue.status7 ) %]Claimed[% END %]
+ [% IF ( missingissue.status8 ) %]Stopped[% END %]
+ </td>
  <td class="planneddate">
  [% missingissue.planneddate %] </td>
  <td>

@@ -1,6 +1,11 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Tipos de atributo de socios [% IF ( attribute_type_form ) %] [% IF ( edit_attribute_type ) %] &rsaquo; Modificar tipo de atributo de socio [% ELSE %] &rsaquo; Agregar tipo de atributo de socio [% END %] [% END %] [% IF ( delete_attribute_type_form ) %] &rsaquo; Confirmar eliminación de tipo de atributo de socio &quot;[% code |html %]&quot; [% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
+$(document).ready(function() {
+    if ( $("#branches option:selected").length < 1 ) {
+        $("#branches option:first").attr("selected", "selected");
+    }
+} );
 
 function DoCancel(f) {
   f.op.value='';
@@ -102,6 +107,15 @@ function CheckAttributeTypeForm(f) {
  [% END %] [% END %] </select>
  <span>Categoría de valor autorizado; si se selecciona alguno, la página de ingreso de socios sólo permitirá seleccionar valores de la lista de valores autorizados. Sin embargo, una lista de valores autorizados no se aplica durante la importación de socios en lotes.</span>
  </li>
+ <li><label for="branches">Branches limitation: </label>
+ <select id="branches" name="branches" multiple size="10">
+ <option value="">All branches</option>
+ [% FOREACH branch IN branches_loop %] [% IF ( branch.selected ) %] <option selected="selected" value="[% branch.branchcode %]">[% branch.branchname %]</option>
+ [% ELSE %] <option value="[% branch.branchcode %]">[% branch.branchname %]</option>
+ [% END %] [% END %] </select>
+ <span>Select All if this attribute type must to be displayed all the time. Otherwise select librairies you want to associate with this value.
+ </span>
+ </li>
  <li>
  <label for="category">Categoría: </label>
  <select name="category_code" id="category">
@@ -164,6 +178,7 @@ function CheckAttributeTypeForm(f) {
  <tr>
  <th>Código</th>
  <th>Descripción</th>
+ <th>Branches limitation</th>
  <th>Acciones</th>
  </tr>
  </thead>
@@ -171,6 +186,18 @@ function CheckAttributeTypeForm(f) {
  [% FOREACH item IN attribute.items %] <tr>
  <td>[% item.code |html %]</td>
  <td>[% item.description %]</td>
+ <td>
+ [% IF item.branches.size > 0 %] [% branches_str = "" %] [% FOREACH branch IN item.branches %] [% branches_str = branches_str _ " " _ branch.branchname _ "(" _ branch.branchcode _ ")" %] [% END %] <span title="[% branches_str %]">
+ [% IF item.branches.size > 1 %]
+ [% item.branches.size %] branches limitations
+ [% ELSE %]
+ [% item.branches.size %] branch limitation
+ [% END %]
+ </span>
+ [% ELSE %]
+ No limitation
+ [% END %]
+ </td>
  <td>
  <a href="[% item.script_name %]?op=edit_attribute_type&amp;code=[% item.code |html %]">Editar</a>
  <a href="[% item.script_name %]?op=delete_attribute_type&amp;code=[% item.code |html %]">Eliminar</a>
