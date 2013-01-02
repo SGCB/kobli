@@ -48,7 +48,15 @@ function active(numlayer)
  <td>
  [% serial.serialseq %] </td>
  <td>
- [% IF ( serial.status1 ) %]Arribado[% END %] [% IF ( serial.status2 ) %]Esperado[% END %] [% IF ( serial.status3 ) %]Demorado[% END %] [% IF ( serial.status4 ) %]Perdido[% END %] [% IF ( serial.status5 ) %]No disponible[% END %] [% IF ( serial.status7 ) %]Reclamado[% END %] </td>
+ [% IF ( serial.status1 ) %]Expected[% END %]
+ [% IF ( serial.status2 ) %]Arrived[% END %]
+ [% IF ( serial.status3 ) %]Late[% END %]
+ [% IF ( serial.status4 ) %]Missing[% END %]
+ [% IF ( serial.status5 ) %]Not issued[% END %]
+ [% IF ( serial.status6 ) %]Delete[% END %]
+ [% IF ( serial.status7 ) %]Claimed[% END %]
+ [% IF ( serial.status8 ) %]Stopped[% END %]
+ </td>
  </tr>
  [% END %] </table>
  </div>

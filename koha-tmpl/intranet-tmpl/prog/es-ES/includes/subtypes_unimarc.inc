@@ -6,21 +6,21 @@
  <p>
  <label>Audiencia</label>
  <select name="limit" class="subtype">
- <option value="" SELECTED="selected" >Cualquiera</option>
+ <option value="" selected="selected" >Cualquiera</option>
  <option value="aud:a">juvenil, general</option>
  <option value="aud:b">pre-primaria (0-5)</option>
- <option value="aud:c">Primaria (5-8)</option>
+ <option value="aud:c">primary (5-8)</option>
  <option value="aud:d">niños (9-14)</option>
- <option value="aud:e">Adulto joven</option>
- <option value="aud:k">Adulto, Serio</option>
- <option value="aud:m">Adulto, General</option>
- <option value="aud:u">Desconocido</option>
+ <option value="aud:e">young Adult</option>
+ <option value="aud:k">adult, serious</option>
+ <option value="aud:m">adult, general</option>
+ <option value="aud:u">desconocido</option>
  </select>
  </p>
  <p>
  <label>Imprimir</label>
  <select name="limit" class="subtype">
- <option value="" selected="selected" >cualquiera</option>
+ <option value="" selected="selected" >Cualquiera</option>
  <option value="Material-type:r">impresión normal</option>
  <option value="Material-type:d">impresión grande</option>
  <option value="Material-type:e">formato de periódico</option>
@@ -29,11 +29,13 @@
  <option value="Material-type:h">manuscrito</option>
  <option value="Material-type:i">multimedia</option>
  <option value="Material-type:j">mini-impresión</option>
+ <option value="Material-type:s">electronic ressource</option>
+ <option value="Material-type:t">microforma</option>
  <option value="Material-type:z">otra forma de material textual</option>
  </select>
  </p>
  <p>
- <label>Feschrift Ind.</label>
+ <label>Literary genre</label>
  <select name="limit" class="subtype">
  <option value="" selected="selected" >Cualquiera</option>
  <option value="Literature-Code:a">ficción</option>
@@ -44,19 +46,20 @@
  <option value="Literature-Code:f">historias breves</option>
  <option value="Literature-Code:g">poesía</option>
  <option value="Literature-Code:h">discursos, oratoria</option>
+ <option value="Literature-Code:i">libreto</option>
  <option value="Literature-Code:y">no es un texto literario</option>
- <option value="Literature-Code:z">múltiples/otras formas literarias</option>
+ <option value="Literature-Code:z">multiple/other literary forms</option>
  </select>
  </p>
  <p>
  <label>Biografía</label>
  <select name="limit" class="subtype" size="1">
  <option value="">Cualquiera</option>
- <option value="Biography-code:y">No es una biografía</option>
+ <option value="Biography-code:y">not a biography</option>
  <option value="Biography-code:a">autobiografía</option>
  <option value="Biography-code:b">biografía individual</option>
  <option value="Biography-code:c">biografía colectiva</option>
- <option value="Biography-code:d">contiene datos biográficos</option>
+ <option value="Biography-code:d">contains biographical data</option>
  </select>
  </p>
  <p>
@@ -105,6 +108,8 @@
  <option value="ctype:r" >compendios/revisiones en literatura</option>
  <option value="ctype:s" >tratados</option>
  <option value="ctype:t" >historietas o cómics</option>
+ <option value="ctype:v" >dissertation or thesis (revised)</option>v
+ <option value="ctype:w" >religious text</option>
  <option value="ctype:z" >otro</option>
  </select>
  </p>
@@ -125,8 +130,11 @@
  <select name="limit" class="subtype">
  <option value="">Cualquier tipo</option>
  <option value="Type-Of-Serial:a">Periódica</option>
- <option value="Type-Of-Serial:b">Series monográficas</option>
+ <option value="Type-Of-Serial:b">Monographic series</option>
  <option value="Type-Of-Serial:c">Periódico</option>
+ <option value="Type-Of-Serial:e">Updating loose-leaf</option>
+ <option value="Type-Of-Serial:f">Base de Datos</option>
+ <option value="Type-Of-Serial:g">Updating website</option>
  <option value="Type-Of-Serial:z">Otro</option>
  </select>
  </p>
@@ -145,23 +153,23 @@
  <option value="Frequency-code:i">Tres veces al año</option>
  <option value="Frequency-code:j">Semestral</option>
  <option value="Frequency-code:k">Anual</option>
- <option value="Frequency-code:l">Bianual</option>
+ <option value="Frequency-code:l">Biennial</option>
  <option value="Frequency-code:m">Trienio</option>
  <option value="Frequency-code:n">Tres veces a la semana</option>
  <option value="Frequency-code:o">Tres veces al mes</option>
- <option value="Frequency-code:u">Desconocido</option>
  <option value="Frequency-code:y">Sin periodicidad</option>
- <option value="Frequency-code:i">Otro</option>
+ <option value="Frequency-code:u">Desconocido</option>
+ <option value="Frequency-code:z">Otro</option>
  </select>
  </p>
  <p>
  <label>Regularidad</label>
  <select name="limit" class="subtype">
  <option value="">Cualquier regularidad</option>
- <option value="Regularity-code:u">Desconocido</option>
- <option value="Regularity-code:a">Regular</option>
- <option value="Regularity-code:b">Normalizado irregular</option>
+ <option value="Regularity-code:a">normal</option>
+ <option value="Regularity-code:b">normalizado irregular</option>
  <option value="Regularity-code:y">irregular</option>
+ <option value="Regularity-code:u">desconocido</option>
  </select>
  </p>
 
@@ -182,7 +190,7 @@
  <option value="Graphics-type:z">otros tipos de gráficos no proyectados</option>
  </select>
  <select name="limit" class="subtype">
- <option value="">cualquiera</option>
+ <option value="">Cualquiera</option>
  <option value="Graphics-support:a">lienzo</option>
  <option value="Graphics-support:b">cartulina</option>
  <option value="Graphics-support:c">cartulina/cartón</option>
@@ -192,7 +200,6 @@
  <option value="Graphics-support:l">porcelana</option>
  <option value="Graphics-support:m">piedra</option>
  <option value="Graphics-support:n">madera</option>
- <option value="Graphics-support:u">desconocido</option>
  <option value="Graphics-support:v">colección mixta</option>
  <option value="Graphics-support:e">sintéticos</option>
  <option value="Graphics-support:f">piel</option>
@@ -200,8 +207,8 @@
  <option value="Graphics-support:h">metal</option>
  <option value="Graphics-support:i">papel</option>
  <option value="Graphics-support:z">otros</option>
+ <option value="Graphics-support:u">desconocido</option>
  </select>
  </p>
-
 </fieldset>
 </div>

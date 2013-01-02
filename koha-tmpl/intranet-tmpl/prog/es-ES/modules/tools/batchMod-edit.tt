@@ -65,7 +65,8 @@ $(document).ready(function(){
  [% FOREACH notfoundbarcode IN notfoundbarcodes %] <tr><td>[% notfoundbarcode.barcode %]</td></td>
  [% END %] </tbody>
  </table>
- [% UNLESS ( too_many_items ) %] <h4>Se encontraron los siguientes códigos de barras: </h4>
+ [% IF ( item_loop ) %] [% UNLESS ( too_many_items ) %] <h4>Se encontraron los siguientes códigos de barras: </h4>
+ [% END %]
  [% END %]
  [% END %] <!-- /notfoundbarcodes -->
 
@@ -114,6 +115,7 @@ $(document).ready(function(){
  [% END %]
 [% END %]<!-- /too_many_items -->
 
+[% IF ( item_loop ) %]
 <div id="cataloguing_additem_newitem">
  <h2>Editar ítems</h2>
  <div class="hint">Marcar el recuadro próximo a la derecha de la etiqueta del subcampo deshabilita la entrada y borra los valores de ese subcampo en todos los ítems seleccionados.</div>
@@ -142,6 +144,8 @@ $(document).ready(function(){
  <a href="/cgi-bin/koha/tools/batchMod.pl" class="cancel" onclick="history.back();return false;">Cancelar</a>
  </fieldset>
 </div>
+[% ELSE %] <p><a href="/cgi-bin/koha/tools/batchMod.pl">Return to batch item modification</a></p>
+[% END %]
 [% ELSE %] <!-- // show -->
 <fieldset class="action">
 [% IF ( src == 'CATALOGUING') %] <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% item_loo.biblionumber %]">Hecho</a>

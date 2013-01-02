@@ -159,6 +159,7 @@ function placeHold () {
  [% IF ( itemsloop ) %]<th class="checkall">&nbsp;</th>[% END %] [% UNLESS ( item_level_itypes ) %]<th>Tipo de ítem</th>[% END %] <th>Título</th>
  <th>Autor</th>
  <th>Fecha de agregado</th>
+ <th>Signatura</th>
  <th>&nbsp;</th>
  </tr>
  [% FOREACH itemsloo IN itemsloop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
@@ -174,6 +175,9 @@ function placeHold () {
  </td>
  <td>[% itemsloo.author %]</td>
  <td>[% itemsloo.dateadded %]</td>
+ <td>
+ [% FOREACH result IN itemsloo.ITEM_RESULTS %][% result.itemcallnumber %][% UNLESS loop.last %], [% END %][% END %]
+ </td>
  <td>
  [% UNLESS ( itemsloo.notforloan ) %] <a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% itemsloo.biblionumber %]">Reservas</a>
  [% END %] </td>
@@ -221,7 +225,11 @@ function placeHold () {
  <li><span class="label">Propietario: </span><input type="hidden" name="owner" id="owner" value="[% loggedinuser %]" />[% loggedinusername %]</li>
  <li><label for="sortfield" >Ordenar esta lista por: </label>
  <select name="sortfield" id="sortfield">
- [% IF ( sort_title ) %]<option value="title" selected="selected">Título</option>[% ELSE %]<option value="title">Título</option>[% END %] [% IF ( sort_author ) %]<option value="author" selected="selected">Autor</option>[% ELSE %]<option value="author">Autor</option>[% END %] [% IF ( sort_copyrightdate ) %]<option value="copyrightdate" selected="selected">Fecha de Copyright</option>[% ELSE %]<option value="copyrightdate">Fecha de Copyright</option>[% END %] </select></li>
+ <option value="title">Título</option>
+ <option value="author">Autor</option>
+ <option value="copyrightdate">Fecha de Copyright</option>
+ <option value="itemcallnumber">Signatura</option>
+ </select></li>
  <li><label for="category">Categoría: </label>
  <select name="category" id="category">
  <option value="1">Privado</option>
@@ -236,7 +244,7 @@ function placeHold () {
  <li><label for="owner">Propietario: </label><input type="hidden" id="owner" name="owner" value="[% IF ( owner ) %][% ownername %][% ELSE %][% loggedinusername %][% END %]" />[% IF ( owner ) %][% ownername %][% ELSE %][% loggedinusername %][% END %]</li>
  <li><label for="sortfield" >Ordenar esta lista por: </label>
  <select name="sortfield">
- [% IF ( sort_title ) %]<option value="title" selected="selected">Título</option>[% ELSE %]<option value="title">Título</option>[% END %] [% IF ( sort_author ) %]<option value="author" selected="selected">Autor</option>[% ELSE %]<option value="author">Autor</option>[% END %] [% IF ( sort_copyrightdate ) %]<option value="copyrightdate" selected="selected">Fecha de Copyright</option>[% ELSE %]<option value="copyrightdate">Fecha de Copyright</option>[% END %] </select></li>
+ [% IF ( sortfield == "title" ) %]<option value="title" selected="selected">Título</option>[% ELSE %]<option value="title">Título</option>[% END %] [% IF ( sortfield == "author" ) %]<option value="author" selected="selected">Autor</option>[% ELSE %]<option value="author">Autor</option>[% END %] [% IF ( sortfield == "copyrightdate" ) %]<option value="copyrightdate" selected="selected">Fecha de Copyright</option>[% ELSE %]<option value="copyrightdate">Fecha de Copyright</option>[% END %] [% IF ( sortfield == "itemcallnumber" ) %]<option value="itemcallnumber" selected="selected">Signatura</option>[% ELSE %]<option value="itemcallnumber">Signatura</option>[% END %] </select></li>
  <li><label for="category">Categoría: </label>
  <select id="category" name="category">
  [% IF ( category1 ) %] <option value="1" selected="selected">Privado</option>
@@ -278,7 +286,7 @@ function placeHold () {
  <tr><th>Nombre de la lista</th><th>Contenidos</th><th>Ordenar por</th><th>Tipo</th><th>Opciones</th></tr>
  [% FOREACH shelveslooppri IN shelveslooppriv %] [% IF ( shelveslooppri.toggle ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td><a href="shelves.pl?[% IF ( shelveslooppri.showprivateshelves ) %]display=privateshelves&amp;[% END %]viewshelf=[% shelveslooppri.shelf %]&amp;shelfoff=[% shelfoff %]">[% shelveslooppri.shelfname |html %]</a></td>
  <td>[% shelveslooppri.count %] ítem(s)</td>
- <td>[% IF ( shelveslooppri.authorsort ) %]Autor[% ELSIF ( shelveslooppri.yearsort ) %]Año[% ELSE %]Título[% END %]</td>
+ <td>[% IF ( shelveslooppri.sortfield == "author" ) %]Author[% ELSIF ( shelveslooppri.sortfield == "copyrightdate" ) %]Year[% ELSIF (shelveslooppri.sortfield == "itemcallnumber") %]Call number[% ELSE %]Title[% END %]</td>
  <td>[% IF ( shelveslooppri.viewcategory1 ) %]Privada[% END %] [% IF ( shelveslooppri.viewcategory2 ) %]Pública [% END %] </td>
  <td>
  [% IF ( shelveslooppri.mine ) %] <form action="merge.pl" method="get">
@@ -315,7 +323,7 @@ function placeHold () {
  [% FOREACH shelvesloo IN shelvesloop %] [% IF ( shelvesloo.toggle ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td><a href="shelves.pl?viewshelf=[% shelvesloo.shelf %]">[% shelvesloo.shelfname |html %]</a></td>
  <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% shelvesloo.owner %]">[% shelvesloo.ownername %]</td>
  <td>[% shelvesloo.count %] ítem(s)</td>
- <td>[% IF ( shelvesloo.authorsort ) %]Autor[% ELSIF ( shelvesloo.yearsort ) %]Año[% ELSE %]Título[% END %]</td>
+ <td>[% IF ( shelvesloo.sortfield == "author" ) %]Author[% ELSIF ( shelvesloo.sortfield == "copyrightdate" ) %]Year[% ELSIF (shelvesloo.sortfield == "itemcallnumber") %]Call number[% ELSE %]Title[% END %]</td>
  <td>[% IF ( shelvesloo.viewcategory1 ) %]Privada[% END %] [% IF ( shelvesloo.viewcategory2 ) %]Pública [% END %] </td>
  <td>
  [% IF ( shelvesloo.manageshelf ) %] <form action="shelves.pl" method="get">

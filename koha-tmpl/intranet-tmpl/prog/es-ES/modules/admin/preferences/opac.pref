@@ -70,13 +70,13 @@ opac.pref:
       - 
         class: file
         pref: OPACXSLTResultsDisplay
-      - "<br />Opciones:<br />- salir en blanco para \"no xslt\"<br />- introducir \"default\" para el predeterminado<br />- indicar una ruta de acceso para definir un archivo XSLT <br />- indicar una URL para una hoja de estilo espec\xC3\xADfica externa. <br />{langcode}ser\xC3\xA1 reemplazado con el lenguaje actual de la interfaz"
+      - <br />Options:<ul><li><a href="#" class="set_syspref" data-syspref="OPACXSLTResultsDisplay" data-value="">Leave empty</a> for "no xslt"</li><li>enter "<a href="#" class="set_syspref" data-syspref="OPACXSLTResultsDisplay" data-value="default">default</a>" for the default one</li><li> put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language
     - 
       - "Mostrar detalles en OPAC utilizando la hoja de estilo XSLT en: "
       - 
         class: file
         pref: OPACXSLTDetailsDisplay
-      - "<br />Opcioens:<br />- dejar en blanco para \"sin xslt\"<br />- introducir \"default\" para el predeterminado<br />- ingrese una ruta para definir un archivo xslt<br />- ingrese una URL para una hoja de estilo externa espec\xC3\xADfica<br />{langcode} ser\xC3\xA1 reemplazado con el lenguaje actual de la interfaz"
+      - <br />Options:<ul><li><a href="#" class="set_syspref" data-syspref="OPACXSLTDetailsDisplay" data-value="">Leave empty</a> for "no xslt"</li><li>enter "<a href="#" class="set_syspref" data-syspref="OPACXSLTDetailsDisplay" data-value="default">default</a>" for the default one</li><li>put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language
     - 
       - "En las p\xC3\xA1ginas que se muestran con hojas de estilo XSLT en el OPAC,"
       - 
@@ -319,6 +319,19 @@ opac.pref:
       - "<br />Nota: Las opciones disponibles son: BIBTEX (<code>bibtex</code>), Dublin Core (<code>dc</code>),"
       - MARCXML (<code>marcxml</code>), MARC codificado en MARC-8 (<code>marc8</code>), MARC codificado en Unicode/UTF-8 (<code>utf8</code>),
       - MARC codificado en Unicode/UTF-8 sin campos y subcampos de uso local -9xx, x9x, xx9-  (<code>marcstd</code>), MODS (<code>mods</code>), RIS (<code>ris</code>)
+    - 
+      - 
+        choices: 
+          "": Don't separate
+          1: Separate
+        pref: OpacSeparateHoldings
+      - items display into two tabs. First tab contains items whose
+      - 
+        choices: 
+          holdingbranch: holding branch
+          homebranch: home branch
+        pref: OpacSeparateHoldingsBranch
+      - is the branch of user logged in. The other tab contains other items.
   "Caracter\xC3\xADsticas": 
     - 
       - 
@@ -613,3 +626,42 @@ opac.pref:
         class: integer
         pref: AnonymousPatron
       - "como el Socio An\xC3\xB3nimo (para sugerencias an\xC3\xB3nimas y historial de lectura)"
+  Self Registration: 
+    - 
+      - 
+        choices: 
+          "": Don't allow
+          1: Allow
+        pref: PatronSelfRegistration
+      - library patrons to register an account via the OPAC.
+    - 
+      - 
+        choices: 
+          "": Don't require
+          1: Require
+        pref: PatronSelfRegistrationVerifyByEmail
+      - that a self-registering patron verify his or herself via email.
+    - 
+      - Use the patron category code
+      - 
+        class: short
+        pref: PatronSelfRegistrationDefaultCategory
+      - as the default patron category for patrons registered via the OPAC.
+    - 
+      - Delete patrons registered via the OPAC, but not yet verified after
+      - 
+        class: integer
+        pref: PatronSelfRegistrationExpireTemporaryAccountsDelay
+      - days.
+    - 
+      - "The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> must be filled in on the patron entry screen:"
+      - 
+        class: multi
+        pref: PatronSelfRegistrationBorrowerMandatoryField
+      - (separate columns with |)
+    - 
+      - "The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> will not appear on the patron entry screen:"
+      - 
+        class: multi
+        pref: PatronSelfRegistrationBorrowerUnwantedField
+      - (separate columns with |)

@@ -15,13 +15,13 @@
  <li>todas las bibliotecas, todos los tipos de socio, todos los tipos de ítem</li>
 </ul>
 
-<p>Sugerencia: si usted está configurando una sola biblioteca debe elegir el nombre de la sede antes de la creación de las reglas (a veces las reglas aplicadas a la opción 'todas las bibliotecas' puede causar problemas con las reservas)  </p>
+<p>Tip: If you are a single library system choose your library name before creating rules (sometimes having only rules for the 'all libraries' option can cause issues with holds)</p>
 
 <p style="color: #990000;">Importante: Por lo menos tendrá que establecer una regla de circulación predeterminada. Esta regla se debe establecer para todos los tipos de ítems, todas las bibliotecas y tipos de socio. Esto encuentra todos los casos que no coinciden con una regla específica. Al hacer un préstamo si usted no tiene una regla para todas las bibliotecas, todos los tipos de ítems y todo tipo de socio, verá socios bloqueados hacer reservas. Usted también podrá poner una regla para una biblioteca específica, fijada para todos los tipos de ítems y todos los tipos de socio para evitar el problema de las reservas. Koha necesita saber qué regla usar. </p>
 
 <h4>Reglas de Circulación Predeterminadas</h4>
 
-<p>Usando la matriz de reglas de circulación, puede definir reglas que dependen de combos de tipo de ítem/socio. Para establecer sus reglas, seleccione una biblioteca de la lista desplegable (o 'todas las bibliotecas' si quiere aplicar estas reglas a todas las sedes) </p>
+<p>Using the issuing rules matrix you can define rules that depend on patron/item typecombos. To set your rules, choose a library from the pull down (or 'all libraries' if you want to apply these rules to all libraries)</p>
 
 <p>De la matriz usted puede seleccionar cualquier combinación de categorías de socios y tipos de ítem a los cuales aplicar la regla</p>
 
@@ -76,7 +76,7 @@
 </li>
  <li>Controlar donde el ítem se devuelve una vez es revisado<ul>
  <li>Sede de devolución de ítem</li>
- <li>Ítem retorna a la biblioteca de préstamo</li>
+ <li>Item returns to issuing library</li>
  <li>Fluctuación de ítem <ul>
  <li>Cuando un ítem flota éste está  ha sido registrado y nunca volvió a 'home'</li>
 </ul>
@@ -106,7 +106,7 @@
 
 <p style="color: #990000;">Importante: Note que si la preferencia del sistema AllowHoldPolicyOverride está establecida en 'permitir', estas políticas pueden ser ignoradas por el personal de circulación. </p>
 
-<p style="color: #990000;">Importante: Estas políticas están basadas en la biblioteca de la que es socio el usuario, no de la biblioteca a la cual pertenece el bibliotecario que realiza la reserva. </p>
+<p style="color: #990000;">Important: These policies are based on the patron's home library, not the library that the reserving staff member is from.</p>
 
 <p>Las diferentes Políticas de Devolución tienen los siguientes efectos:</p>
 
@@ -115,11 +115,12 @@
  <li style="color: #990000;">Importante: Si la preferencia AutomaticItemReturn está configurada automáticamente transfiere los ítems home, entonces el indicador no aparecerá </li>
 </ul>
 </li>
- <li>Ïtem vuelve a la biblioteca editada: El ítem solicitará transferencia  al bibliotecario para que el ítem regrese a la librería donde fue  verificado<ul>
+ <li>Item returns to issuing library: The item will prompt the librarian to transfer the item back to the library where it was checked out
+<ul>
  <li style="color: #990000;">Importante: Si la preferencia AutomaticItemReturn está configurada automáticamente transfiere los ítems home, entonces el indicador no aparecerá </li>
 </ul>
 </li>
- <li>Item flotante: El ítem que no puede ser tansferido desde la biblioteca en la que ha sido registrado, en su lugar permanecerá allí hasa que sea transferido manualmente or registrado por otra biblioteca</li>
+ <li>Item floats: The item will not be transferred from the library it was checked in at, instead it will remain there until transferred manually or checked in at another library</li>
 </ul>
 
 <p><strong>Ver la documentación completa para Reglas de Circulación y Multas en la <a href="http://manual.koha-community.org/3.10/en/patscirc.html#circfinerules">manual</a> (en línea).</strong></p>

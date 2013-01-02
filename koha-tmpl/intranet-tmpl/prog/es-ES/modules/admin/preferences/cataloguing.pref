@@ -170,10 +170,22 @@ cataloguing.pref:
     - 
       - 
         choices: 
-          "": Ocultar
-          1: No ocultar
+          "": Don't separate
+          1: Separate
+        pref: SeparateHoldings
+      - items display into two tabs. First tab contains items whose
+      - 
+        choices: 
+          holdingbranch: holding branch
+          homebranch: home branch
+        pref: SeparateHoldingsBranch
+      - is the branch of user logged in. The other tab contains other items.
+      - 
+        choices: 
+          "": Hide
+          1: Don't hide
         pref: DisplayPluginValueIndicators
-      - "el enlace junto al campo del indicador para abrir un plugin que muestra los valores correctos del indicador para este campo y hoja de trabajo. Si CheckValueIndicators est\xC3\xA1 deshabilitado y esta variable est\xC3\xA1 habilitada, se validar\xC3\xA1n los valores tambi\xC3\xA9n, i.e., se incluye la funcionalidad de CheckValueIndicators."
+      - the link next to the indicator field to open a plugin to show the correct values of the indicator for this field and framework. If CheckValueIndicators is disabled and this variable is enabled it will check the values as well, i.e., it includes the CheckValueIndicators functionality.
   Tejuelos: 
     - 
       - "Cuando utilice la impresi\xC3\xB3n r\xC3\xA1pida de tejuelos,"

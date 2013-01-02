@@ -1,0 +1,108 @@
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Patrons &rsaquo; Update patron records</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
+    $(function() {
+        $( "#pending_updates" ).accordion();
+    });
+</script>
+</head>
+<body id="pat_update" class="pat">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'patron-search.inc' %]
+
+[%
+ SET field_display_names = {
+ surname => "Surname"
+ firstname => "First name"
+ title => "Title"
+ othernames => "Other names"
+ initials => "Initials"
+ streetnumber => "Street number"
+ streettype => "Street type"
+ address => "Address"
+ address2 => "Address 2"
+ city => "City"
+ state => "State"
+ zipcode => "Zip code"
+ country => "Country"
+ email => "Email"
+ phone => "Primary Phone"
+ mobile => "Primary Mobile Phone"
+ fax => "Fax"
+ emailpro => "Secondary email"
+ phonepro => "Secondary phone"
+ B_streetnumber => "Alternate address - street number"
+ B_streettype => "Alternate address - street type"
+ B_address => "Alternate address"
+ B_address2 => "Alternate address 2"
+ B_city => "Alternate address - city"
+ B_state => "Alternate address - state"
+ B_zipcode => "Alternate address - zip code"
+ B_email => "Alternate address - email"
+ B_phone => "Alertnate address - phone"
+ dateofbirth => "Date of birth"
+ contactname => "Contact - last name"
+ contactfirstname=> "Contact - first name"
+ contacttitle => "Contact - title"
+ relationship => "Contact - relationship"
+ ethnicity => "Ethnicity"
+ ethnotes => "Ethnicity notes"
+ sex => "Sex"
+ altcontactfirstname => "Alternate contact - first name"
+ altcontactsurname => "Alternate contact - surname"
+ altcontactaddress1 => "Alternate contact - address"
+ altcontactaddress2 => "Alternate contact - address 2"
+ altcontactaddress3 => "Alternate contact - city"
+ altcontactstate => "Alternate contact - state"
+ altcontactzipcode => "Alternate contact - zip code"
+ altcontactcounty => "Alternate contact - county"
+ altcontactphone => "Alternate contact - phone"
+ smsalertnumber => "SMS alert number"
+ }
+%]
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Update patron records</div>
+
+<div id="doc2" class="yui-t7">
+
+ <div id="bd">
+ <div id="yui-main">
+
+ [% IF PendingModifications %] <h2>Update patron records</h2>
+ <form method="post" action="members-update-do.pl">
+ <div id="pending_updates">
+ [% FOREACH pm IN PendingModifications %] [% SET borrowernumber = pm.borrowernumber %] <h3><a href="#panel_modify_[% pm.borrowernumber %]">[% borrowers.$borrowernumber.surname %], [% borrowers.$borrowernumber.firstname %]</a></h3>
+ <div id="panel_modify_[% pm.borrowernumber %]">
+ <div style="background-color:#E6F0F2;padding:.5em;margin:.3em 0;">
+ <input type="radio" id="approve_modify_[% pm.borrowernumber %]" name="modify_[% pm.borrowernumber %]" value="approve" />
+ <label for="approve_modify_[% pm.borrowernumber %]">Aprobar</label>
+
+ <input type="radio" id="deny_modify_[% pm.borrowernumber %]" name="modify_[% pm.borrowernumber %]" value="deny" />
+ <label for="deny_modify_[% pm.borrowernumber %]">Deny</label>
+
+ <input type="radio" id="ignore_modify_[% pm.borrowernumber %]" name="modify_[% pm.borrowernumber %]" value="ignore" checked="checked"/>
+ <label for="ignore_modify_[% pm.borrowernumber %]">Ignorar</label>
+ </div>
+ <table>
+ <tr>
+ <th>Campo</th>
+ <th>Desde</th>
+ <th>A</th>
+ </tr>
+
+
+ [% FOREACH key IN pm.keys %] [% IF field_display_names.$key %] [% IF ( ( pm.$key OR borrowers.$borrowernumber.$key ) && ( pm.$key != borrowers.$borrowernumber.$key ) ) %] <tr>
+ <td>[% field_display_names.$key %]</td>
+ <td>[% borrowers.$borrowernumber.$key %]</td>
+ <td>[% pm.$key %]</td>
+ </tr>
+ [% END %] [% END %] [% END %] </table>
+ </div>
+ [% END %] </div>
+ <fieldset class="action"><input value="Enviar" type="submit" /></fieldset>
+
+ </form>
+ [% ELSE %] <div class="dialog message">
+ <p>There are no pending patron modifications.</p>
+ </div>
+ [% END %] </div>
+ </div>
+[% INCLUDE 'intranet-bottom.inc' %] 

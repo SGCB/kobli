@@ -3,8 +3,6 @@
 <meta name="generator" content="Koha [% Version %]" /> <!-- leave this for stats -->
 <link rel="shortcut icon" href="[% IF ( OpacFavicon ) %][% OpacFavicon %][% ELSE %][% themelang %]/includes/favicon.ico[% END %]" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="[% themelang %]/lib/jquery/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" href="/opac-tmpl/lib/yui/reset-fonts-grids.css" />
-<link rel="stylesheet" type="text/css" href="/opac-tmpl/lib/yui/skin.css" />
 [% SET opaclayoutstylesheet='opac.css' UNLESS opaclayoutstylesheet %] [% IF (opaclayoutstylesheet.match('^https?:|^\/')) %] <link rel="stylesheet" type="text/css" href="[% opaclayoutstylesheet %]" />
 [% ELSE %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/[% opaclayoutstylesheet %]" />
 [% END %] [% IF ( opaccolorstylesheet ) %] [% IF (opaccolorstylesheet.match('^https?:|^\/')) %] <link rel="stylesheet" type="text/css" href="[% opaccolorstylesheet %]" />
@@ -63,7 +61,8 @@
     var MSG_TAGS_ADDED = _("Etiquetas agregadas: ");
     var MSG_TAGS_DELETED = _("Etiquetas agregadas: ");
     var MSG_TAGS_ERRORS = _("Errores: ");
-    var MSG_MULTI_ADD_TAG_FAILED = _("No se pudo agregar una o más etiquetas.");[% END %][% END %]
+    var MSG_MULTI_ADD_TAG_FAILED = _("No se pudo agregar una o más etiquetas.");
+    var MSG_NO_TAG_SPECIFIED = _("No se especificó etiqueta.");[% END %][% END %]
 	[% IF ( OPACAmazonCoverImages ) %]$(window).load(function() {
 		 	verify_images();
 		 });[% END %]

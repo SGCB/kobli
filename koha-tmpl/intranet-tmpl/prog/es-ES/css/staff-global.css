@@ -36,8 +36,6 @@ a.yuimenuitemlabel {
         color: #000000;
 }
 
-
-a.overdue,
 .overdue,
 .debit {
 	color : #cc0000;
@@ -211,39 +209,6 @@ ol li {
 .clearfix {display: block;}
 /* End hide from IE-mac */
 
-#sitetitle {
-/*	background-image : url("../../img/koha-logo-black.png");
-	background-position : 5px 2px;
-	background-repeat : no-repeat;
-	float : left;
-	height : 54px;
-	padding-left : 50px;*/
-	border-bottom : 1px solid #E8E8E8;
-}
-
-#sitetitle h1 {
-	display : inline;
-	line-height : 54px;
-}
-
-#sitetitle h1 a {
-	text-decoration : none;
-}
-
-#submenu {
-	margin : 0 0 .5em 0;
-	padding : 0;
-}
-
-#submenu ul {
-	margin : 0;
-	padding : 0;	
-}
-
-#submenu ul li {
-	padding-left : 0;
-}
-
 table {
 	border-collapse : collapse;
 	border-top : 1px solid #BCBCBC;
@@ -378,10 +343,6 @@ legend {
 	margin-top : 1em;
 }
 
-#commonsearch {
-	display : inline;
-}
-
 div.justify {
     text-align: justify;
 }
@@ -395,17 +356,6 @@ div#header_search {
 
 div#header_search input {
 	font-size : 1.3em;
-}
-
-div#header_search ul.link-tabs {
-	font-family : Arial, Geneva, sans-serif;
-	margin-bottom : -4px;
-}
-
-div#header_search ul.link-tabs li.on a,
-div#header_search ul.link-tabs li a,
-div#header_search ul.link-tabs li.off a {
-	padding : 0.1em .5em .2em .5em;
 }
 
 div#header_search div.residentsearch {
@@ -516,7 +466,7 @@ div.patroninfo ul li {
 	margin : 0;
 }
 
-div.patroninfo ul li, div.patronviews ul li {
+div.patroninfo ul li {
 	list-style-type : none;
 }
 
@@ -525,6 +475,7 @@ div.patronviews {
 	border-top : 1px solid #000;
 	margin-bottom : .5em;
 	padding : .5em 0 .5em 0;
+}
 }
 
 .column-tool {
@@ -994,10 +945,6 @@ tr.highlight th[scope=row] {
 	border-color : #BCBCBC;
 }
 
-tr.confirm td, tr.highlight.confirm td {
-	background-color : #ffbfbf;
-}
-
 #circ_circulation_issue label {
 	font-size: 105%;
 	font-weight : bold;
@@ -1210,7 +1157,7 @@ div.message {
 	background: -webkit-linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* Opera11.10+ */
 	background: -ms-linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* IE10+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cddbf2',GradientType=0 ); /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeef5', endColorstr='#cddbf2',GradientType=0 ); /* IE6-9 */
 	background: linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* W3C */
   	border : 1px solid #bcbcbc;
   	text-align: center;
@@ -1305,7 +1252,6 @@ div#menu li a {
     background: -webkit-linear-gradient(left, #e8f0f6 0%,#e8f0f6 96%,#c1c1c1 100%); /* Chrome10+,Safari5.1+ */
      background: -o-linear-gradient(left, #e8f0f6 0%,#e8f0f6 96%,#c1c1c1 100%); /* Opera11.10+ */
    background: -ms-linear-gradient(left, #e8f0f6 0%,#e8f0f6 96%,#c1c1c1 100%); /* IE10+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e8f0f6', endColorstr='#c1c1c1',GradientType=1 ); /* IE6-9 */
        background: linear-gradient(left, #e8f0f6 0%,#e8f0f6 96%,#c1c1c1 100%); /* W3C */
 	-moz-border-top-left-radius: 5px;
 	border-top-left-radius: 5px;
@@ -1319,15 +1265,12 @@ div#menu li a {
 }
 
 div#menu li a:hover {
-
-
      background: #fff; /* Old browsers */
    background: -moz-linear-gradient(left, #FAFAFA 0%, #FAFAFA 96%, #e6e6e6 97%, #cccccc 99%, #c1c1c1 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#FAFAFA), color-stop(96%,#FAFAFA), color-stop(97%,#e6e6e6), color-stop(99%,#cccccc), color-stop(100%,#c1c1c1)); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(left, #FAFAFA 0%,#FAFAFA 96%,#e6e6e6 97%,#cccccc 99%,#c1c1c1 100%); /* Chrome10+,Safari5.1+ */
      background: -o-linear-gradient(left, #FAFAFA 0%,#FAFAFA 96%,#e6e6e6 97%,#cccccc 99%,#c1c1c1 100%); /* Opera11.10+ */
    background: -ms-linear-gradient(left, #FAFAFA 0%,#FAFAFA 96%,#e6e6e6 97%,#cccccc 99%,#c1c1c1 100%); /* IE10+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#c1c1c1',GradientType=1 ); /* IE6-9 */
        background: linear-gradient(left, #FAFAFA 0%,#fff 96%,#e6e6e6 97%,#cccccc 99%,#c1c1c1 100%); /* W3C */
     border-left: 1px solid #85CA11;
     border-top: 1px solid #85CA11;
@@ -1352,14 +1295,6 @@ div#menu li.active a:hover {
     border-top: 1px solid #85CA11;
     border-bottom: 1px solid #85CA11;
     border-right: 0;
-}
-
-ul.error {
-	background : #ffffcc;
-	border : 1px solid #ff9090;
-	margin : .5em;
-	padding : .5em .5em .5em 1.5em;
-	width : 75%
 }
 
 h1#logo {
@@ -1712,14 +1647,14 @@ ul#toplevelmenu li.more ul li a.yuimenuitemlabel {
 	padding: .2em 20px .2em 20px;
 }
 		
-ul#menu li a, ul#toplevelmenu li a {
+ul#toplevelmenu li a {
 	text-decoration : none;
 }
-ul#menu li ul li, ul#toplevelmenu li ul li {
+ul#toplevelmenu li ul li {
 	display :block;
 	padding :0;
 }
-ul#menu li ul li a, ul#toplevelmenu li ul li a {
+ul#toplevelmenu li ul li a {
 	text-decoration : none;
 }
 
@@ -1894,20 +1829,6 @@ span.permissiondesc {
 	color: black;
 }
 
-.hintsClass {
-    font-family: tahoma, verdana, arial;
-    font-size: 12px;
-    background-color: #f0f0f0;
-    color: #000000;
-    border: 1px solid #808080;
-    padding: 5px;
-}
-.hintSource {
-    color: green;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
 #cartDetails {
 	background-color : #FFF;
 	border: 1px solid #739acf;
@@ -2055,26 +1976,6 @@ fieldset.rows+h3 {clear:both;padding-top:.5em;}
     margin: 0;
 }
 
-.advsearch fieldset {
-    border : 1px solid #EEE;
-    -moz-border-radius : 3px;
-    border-radius : 3px;
-}
-
-.advsearch fieldset.action {
-    border : 0;
-}
-
-.advsearch fieldset fieldset {
-    border : 1px solid #EEE;
-    margin : 0;
-    padding : .3em .5em;
-    -moz-border-radius : 0;
-    border-radius : 0;
-}
-.advsearch fieldset fieldset+fieldset {
-    border-top : 0;
-}
 .advsearch table {
     border-spacing : 5px;
     border-collapse : separate;
@@ -2498,6 +2399,8 @@ div.authorizedheading {
 .ui-timepicker-div td { font-size: 90%; }
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
 
+/* jQuery UI Accordion */
+.ui-accordion-header { font-weight: bold; font-size : 110%; }
 ul.doc-biblio{}
 ul.doc-biblio li{
     list-style:none;

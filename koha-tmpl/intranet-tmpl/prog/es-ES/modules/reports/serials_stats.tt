@@ -32,6 +32,7 @@
  <th>Signatura</th>
  <th>Suscripción comienza</th>
  <th>Suscripción termina</th>
+ <th>Expired? / Closed?</th>
  </tr>
  </thead>
  <tbody>
@@ -43,6 +44,13 @@
  <td>[% data.callnumber %]</td>
  <td>[% data.startdate %]</td>
  <td>[% data.enddate %]</td>
+ <td>
+ [% IF data.closed %]
+ Closed
+ [% ELSIF data.expired %]
+ Expired
+ [% END %]
+ </td>
  </tr>
  [% END %] </tr>
  </tbody>

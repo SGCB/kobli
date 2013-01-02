@@ -246,7 +246,9 @@ $(document).ready(function () {
  [% END %] [% IF ( errmsgloo.notissued ) %] <p class="problem">No prestado.</p>
  [% END %] [% IF ( errmsgloo.localuse) %] <p class="problem">Uso local almacenado</p>
  [% END %] [% IF ( errmsgloo.waslost ) %] <p class="problem">El ítem estaba perdido, se ha encontrado.</p>
- [% END %] [% IF ( errmsgloo.withdrawn ) %] [% IF BlockReturnOfWithdrawnItems %] <h3>No se puede devolver</h3>
+ [% IF ( LostItemFeeRefunded ) %] <p class="problem">A refund has been applied to the borrowing patron's account.</p>
+ [% ELSE %] <p class="problem">Any lost item fees for this item will remain on the patron's account</p>
+ [% END %] [% END %] [% IF ( errmsgloo.withdrawn ) %] [% IF BlockReturnOfWithdrawnItems %] <h3>No se puede devolver</h3>
  <p class="problem">Ítem retirado. <strong>NO DEVUELTO</strong></p>
  [% ELSE %] <p class="problem">Ítem retirado.</p>
  [% END %] [% END %] [% IF ( errmsgloo.debarred ) %] <p class="problem"><a href="/cgi-bin/koha/circ/circulation.pl?borrowernumber=[% errmsgloo.debarborrowernumber %]">[% errmsgloo.debarname %]([% errmsgloo.debarcardnumber %])</a> está ahora congelado hasta [% errmsgloo.debarred | $KohaDates %] </p>
@@ -294,18 +296,9 @@ $(document).ready(function () {
  </form>
 </div>
 
-[% IF ( returned ) %] <div class="yui-g"> <table>
- <tr><th>Información del ítem</th><th>Información de socio</th></tr>
- <tr>
- <td>[% title |html %]</td>
- <td>
-
- <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% riborrowernumber %]">[% riborsurname %], [% ribortitle %] [% riborfirstname %]</a> ([% riborcnum %]) [% IF ( flagset ) %] ([% FOREACH flagloo IN flagloop %] [% flagloo.flag %] [% IF ( flagloo.charges ) %] de [% flagloo.chargeamount %] [% END %] , [% END %])[% END %] </td>
- </tr>
- </table>
-[% END %] [% IF ( riloop ) %] <h2>Ítems devueltos</h2>
+[% IF ( riloop ) %] <h2>Ítems devueltos</h2>
  <table>
- <tr><th>Fecha de devolución</th><th>Título</th> <th>Autor</th> <th>Código de barras</th><th>Biblioteca de origen</th><th>Biblioteca de la reserva</th><th>Ubicación en estantería</th><th>Signatura</th><th>Tipo</th> <th>Socio</th><th>Nota</th></tr>
+ <tr><th>Fecha de devolución</th><th>Título</th> <th>Autor</th> <th>Código de barras</th><th>Biblioteca de origen</th><th>Biblioteca de existencia</th><th>Ubicación en estantería</th><th>Signatura</th><th>Tipo</th> <th>Socio</th><th>Nota</th></tr>
 
  [% FOREACH riloo IN riloop %] <tr>
  <td>[% IF ( riloo.duedate ) %] [% IF ( riloo.return_overdue ) %] <span class="overdue">[% riloo.duedate %] (retraso)</span>

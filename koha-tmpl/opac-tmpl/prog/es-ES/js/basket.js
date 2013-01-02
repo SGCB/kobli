@@ -80,7 +80,7 @@ function openBasket() {
     if ( strCookie ) {
         var iW = 820;
         var iH = 450;
-        var optWin = "dependant=yes,status=yes,scrollbars=yes,resizable=yes,toolbar=no,location=yes,height="+iH+",width="+iW;
+        var optWin = "status=yes,scrollbars=yes,resizable=yes,toolbar=no,location=yes,height="+iH+",width="+iW;
         var loc = CGIBIN + "opac-basket.pl?" + strCookie;
         var basket = open(loc, "basket", optWin);
         if (window.focus) {basket.focus()}
@@ -354,7 +354,7 @@ function sendBasket() {
 
     var loc = CGIBIN + "opac-sendbasket.pl?" + strCookie;
 
-    var optWin="dependant=yes,scrollbars=no,resizable=no,height=300,width=450,top=50,left=100";
+    var optWin="scrollbars=yes,resizable=yes,height=600,width=900,top=50,left=100";
     var win_form = open(loc,"win_form",optWin);
 }
 
@@ -365,7 +365,7 @@ function downloadBasket() {
 
     var loc = CGIBIN + "opac-downloadcart.pl?" + strCookie;
 
-    open(loc,"win_form",'dependant=yes,scrollbars=no,resizable=no,height=300,width=450,top=50,left=100');
+    open(loc,"win_form",'scrollbars=no,resizable=no,height=300,width=450,top=50,left=100');
 }
 
 function printBasket() {
@@ -395,6 +395,16 @@ function showLess() {
     }
     var loc = CGIBIN + "opac-basket.pl?" + strCookie + "&verbose=0";
     document.location = loc;
+}
+
+function holdSel() {
+    var items = document.getElementById('records').value;
+    if (items) {
+        parent.opener.document.location = "/cgi-bin/koha/opac-reserve.pl?biblionumbers=" + items;
+        window.close();
+    } else {
+        alert(MSG_NO_RECORD_SELECTED);
+    }
 }
 
 function updateBasket(updated_value,target) {

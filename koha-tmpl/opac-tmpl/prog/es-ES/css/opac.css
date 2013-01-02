@@ -1,5 +1,9 @@
-@import url("../../en/lib/yui/reset-fonts-grids.css");
-@import url("../../en/lib/yui/skin.css");
+@import url("/opac-tmpl/lib/yui/reset-fonts-grids.css");
+@import url("/opac-tmpl/lib/yui/skin.css");
+
+a {
+	font-weight : bold;
+}
 
 body {
 	font:normal 12px/1.2 arial, sans;
@@ -538,20 +542,26 @@ a.send {
 
 #toolbar input.editshelf,
 input.editshelf {
-	background : transparent url("../../images/shelf-edit.gif") 10px 50% no-repeat;
+    background : transparent url("../../images/sprite.png") 2px -732px no-repeat;
 	border : 0;
 	color : #006699;
 	cursor : pointer;
+    filter: none;
 	font-size : 100%;
 	padding-left : 29px;
 	text-decoration : none;
 }
 
-#toolbar input.newshelf {
-	background : transparent url("../../images/shelf-new.gif") center left no-repeat;
+#toolbar input.newshelf,
+#toolbar a.newshelf,
+a.newshelf {
+    background-image: url("../../images/sprite.png"); /* add to list icon */
+    background-position: -4px -764px;
+    background-repeat: no-repeat;
 	border : 0;
 	color : #006699;
 	cursor : pointer;
+    filter: none;
 	font-size : 100%;
 	margin: 0 0.5em;
 	padding-left : 15px;
@@ -560,10 +570,11 @@ input.editshelf {
 
 #toolbar input.deleteshelf,
 input.deleteshelf {
-	background : transparent url("../../images/shelf-delete.gif") 7px 50% no-repeat;
+    background : transparent url("../../images/sprite.png") 2px -685px no-repeat;
 	border : 0;
 	color : #006699;
 	cursor : pointer;
+    filter: none;
 	font-size : 100%;
 	padding-left : 20px;
 }
@@ -590,6 +601,29 @@ input.deleteshelf:active {
 }
 
 #tagslist li { display : inline; }
+
+a.tag_add {
+    background-image: url(../../images/tag-small.png);
+    background-position : -1px center;
+    background-repeat : no-repeat;
+    padding-left : 13px;
+    text-decoration: none;
+}
+
+#login4tags {
+    background-image: url(../../images/tag-small-disabled.png);
+    background-position : -1px center;
+    background-repeat : no-repeat;
+    padding-left : 13px;
+    text-decoration: none;
+    margin-left: 1em;
+}
+
+.tag_results_input {
+    background-color: #EEE;
+    margin-left: 1em;
+    padding: 0.3em;
+}
 
 #placehold input.submit:hover,
 #tagsel_span input.submit:hover {
@@ -1290,9 +1324,19 @@ padding-left : .4em;
 	padding-bottom:10px;
 }
 
-.searchresults .tagstatus {
-	display: block;
-	color: #707070;
+.tagstatus {
+    color: #707070;
+    padding: 0 4px 0 4px;
+    margin-left: 5px;
+    border: 1px solid #bcbcbc;
+    background-color: #ffffcc;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.results_summary.tagstatus {
+    display: inline;
 }
 
 #login4tags {
@@ -1307,8 +1351,12 @@ padding-left : .4em;
 	font-weight: normal;
 }
 
-.actions a {
-	margin-left : 0.3em;
+.actions a.hold,
+.actions a.addtocart,
+.actions a.addtoshelf,
+.actions a.addtolist,
+.actions a.tag_add {
+	margin-left : 1em;
 	text-decoration : none;
 }
 
@@ -1349,8 +1397,16 @@ div.alert strong {
 }
 
 div.message {
-	margin: 20px 0;
-    width: 55%;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, #f4f6fa 2%, #eaeef5 23%, #e8edf6 94%, #cddbf2 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(2%,#f4f6fa), color-stop(23%,#eaeef5), color-stop(94%,#e8edf6), color-stop(100%,#cddbf2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeef5', endColorstr='#cddbf2',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* W3C */
+	border : 1px solid #bcbcbc;
+	width : 55%;
 }
 
 #moresearches {
@@ -1390,7 +1446,15 @@ div.message {
 }
 
 #opac-main-search #listsmenu .bd {
-	padding : 4px 10px;
+	background: #eef4fe; /* Old browsers */
+	background: -moz-linear-gradient(left, #eef4fe 0%, #eef4fe 88%, #f6f9fe 98%, #ffffff 99%, #a5c2f6 99%, #e6eefe 100%, #cbdefe 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#eef4fe), color-stop(88%,#eef4fe), color-stop(98%,#f6f9fe), color-stop(99%,#ffffff), color-stop(99%,#a5c2f6), color-stop(100%,#e6eefe), color-stop(100%,#cbdefe)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #eef4fe 0%,#eef4fe 88%,#f6f9fe 98%,#ffffff 99%,#a5c2f6 99%,#e6eefe 100%,#cbdefe 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #eef4fe 0%,#eef4fe 88%,#f6f9fe 98%,#ffffff 99%,#a5c2f6 99%,#e6eefe 100%,#cbdefe 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(left, #eef4fe 0%,#eef4fe 88%,#f6f9fe 98%,#ffffff 99%,#a5c2f6 99%,#e6eefe 100%,#cbdefe 100%); /* IE10+ */
+	background: linear-gradient(left, #eef4fe 0%,#eef4fe 88%,#f6f9fe 98%,#ffffff 99%,#a5c2f6 99%,#e6eefe 100%,#cbdefe 100%); /* W3C */
+	border : 1px solid #739acf;
+	padding : .3em 1em 0 0;
 }
 
 #opac-main-search #listsmenu .yuimenuitemlabel.selected {
@@ -1491,11 +1555,25 @@ div#menu {
 }
 
 div#menu li a {
+	background: #eeeeee; /* Old browsers */
+	background: -moz-linear-gradient(left, #eeeeee 0%, #eeeeee 96%, #e6e6e6 97%, #cccccc 99%, #c1c1c1 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#eeeeee), color-stop(96%,#eeeeee), color-stop(97%,#e6e6e6), color-stop(99%,#cccccc), color-stop(100%,#c1c1c1)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #eeeeee 0%,#eeeeee 96%,#e6e6e6 97%,#cccccc 99%,#c1c1c1 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #eeeeee 0%,#eeeeee 96%,#e6e6e6 97%,#cccccc 99%,#c1c1c1 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #eeeeee 0%,#eeeeee 96%,#e6e6e6 97%,#cccccc 99%,#c1c1c1 100%); /* IE10+ */
+	background: linear-gradient(left, #eeeeee 0%,#eeeeee 96%,#e6e6e6 97%,#cccccc 99%,#c1c1c1 100%); /* W3C */
 	text-decoration : none;
 	display : block;
 }
 
 div#menu li a:hover {
+	background: #eaeef5; /* Old browsers */
+	background: -moz-linear-gradient(left, #eaeef5 0%, #dee6f4 96%, #c4d5ef 98%, #a2bee8 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#eaeef5), color-stop(96%,#dee6f4), color-stop(98%,#c4d5ef), color-stop(100%,#a2bee8)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #eaeef5 0%,#dee6f4 96%,#c4d5ef 98%,#a2bee8 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #eaeef5 0%,#dee6f4 96%,#c4d5ef 98%,#a2bee8 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #eaeef5 0%,#dee6f4 96%,#c4d5ef 98%,#a2bee8 100%); /* IE10+ */
+	background: linear-gradient(left, #eaeef5 0%,#dee6f4 96%,#c4d5ef 98%,#a2bee8 100%); /* W3C */
 }
 
 div#menu li.active a:hover {
@@ -2988,6 +3066,22 @@ body#opac-main #opacmainuserblockmobile {
 .tagweight9 {
     font-size: 30px;
 }
+<<<<<<< HEAD:koha-tmpl/opac-tmpl/prog/en/css/opac.css
+
+#patronregistration {
+    background-color: #F7F7F7;
+    border : 1px solid #EAEAEA;
+    -moz-border-radius: 3px;
+    border-radius : 3px;
+    font-size : 90%;
+    margin : .7em 0;
+    padding : .5em;
+    text-align: center;
+}
+#patronregistration a {
+    display: block;
+}
+=======
 /* ## BABELTHEQUE ## */
 /* Uncomment if babeltheque configuration no contains these lines */
 /*
@@ -3146,3 +3240,4 @@ body#opac-main #opacmainuserblockmobile {
 #opac-holds div#bd {background:none;}
 #opac-holds div#bd #opac_search {padding:20px 0px; float: left; border-bottom: 1px solid #E4E4E4; /*background:#FCFCFC;*/ width:100%;}
 #opac-holds div#bd .yui-b #leftmenus {display:none;}
+>>>>>>> Disenyo de Kobli en ingles:koha-tmpl/opac-tmpl/prog/en/css/opac.css

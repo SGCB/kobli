@@ -118,11 +118,12 @@ function Check(f) {
  <span class="label">Tipo de ítem</span> <input type="hidden" name="itemtype" value="[% itemtype %]" />
  [% itemtype %] </li>
  [% ELSE %] <li>
- <label for="itemtype">Tipo de ítem</label> <input type="text" id="itemtype" name="itemtype" size="10" maxlength="10" onblur="toUC(this)" />
+ <label for="itemtype">Tipo de ítem</label> <input type="text" id="itemtype" name="itemtype" size="10" maxlength="10" onblur="toUC(this)" class="focus" />
  </li>
  [% END %] <li>
- <label for="description">Descripción</label><input type="text" id="description" name="description" size="48" value="[% description |html %]" /> </li>
- [% IF ( noItemTypeImages ) %] <li><span class="label">Imagen: </span>Las imágenes de tipos de ítems están deshabilitadas. Para habilitarlas, apague la <a href="/cgi-bin/koha/admin/preferences.pl?op=search&amp;searchfield=noItemTypeImages">preferencia del sistema noItemTypeImages</a></li></ol>
+ [% IF ( itemtype ) %] <label for="description">Descripción</label><input type="text" id="description" name="description" size="48" value="[% description |html %]" class="focus" /></li>
+ [% ELSE %] <label for="description">Descripción</label><input type="text" id="description" name="description" size="48" value="[% description |html %]" /></li>
+ [% END %] [% IF ( noItemTypeImages ) %] <li><span class="label">Imagen: </span>Las imágenes de tipos de ítems están deshabilitadas. Para habilitarlas, apague la <a href="/cgi-bin/koha/admin/preferences.pl?op=search&amp;searchfield=noItemTypeImages">preferencia del sistema noItemTypeImages</a></li></ol>
  [% ELSE %]</ol>
  <div id="icons" class="toptabs" style="clear:both">
  <h5 style="margin-left:10px;">Seleccione un ícono:</h5>

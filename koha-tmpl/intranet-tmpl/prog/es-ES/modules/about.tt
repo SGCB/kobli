@@ -69,8 +69,8 @@
 
  <div id="sysinfo">
  [% IF (warnIsRootUser) %] <h2>Advertencias respecto al usuario actual</h2>
- <p>Parece que ha iniciado la sesión como usuario de base de datos administrativa. Muchas cosas no funcionan con esta cuenta.</p>
- <p>Por lo general, es necesario iniciar sesión con una cuenta personal de personal. Para crear una cuenta personal, crear una biblioteca, una categoría de «Personal»  y añadir un nuevo socio. A continuación, dar permisos de este socio de "Más" en la barra de herramientas.</p>
+ <p>You are logged in as the database administrative user. This is not recommended because some parts of Koha will not function as expected when using this account.</p>
+ <p>Please log in instead with a regular staff account. To create a staff account, create a library, a patron category 'Staff' and add a new patron. Then give this patron permissions from 'More' in the toolbar.</p>
  [% END %] <h2>Advertencias respecto a la configuración del sistema</h2>
  [% IF ( (prefNoZebra) || (warnPrefBiblioAddsAuthorities) || warnPrefEasyAnalyticalRecords ) %] <table>
  <caption>Preferencias</caption>
@@ -100,22 +100,34 @@
  <li><a href="http://www.ashs.school.nz/">Albany Senior High School</a>, Auckland, New Zealand (OPAC 'star-ratings' patrocinio)</li>
  </ul>
 
- <h2>Equipo de publicación Koha</h2>
+ <h2>Release team for Koha 3.12</h2>
  <ul>
- <li>Colin Campbell (Koha 3.4 QA Manager)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6618544614260">Galen Charlton</a> (Koha 3.2 Release Manager)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609030">Chris Cormack</a> (Koha 1.x, 3.4, 3.6 Release Manager, Koha 3.2 Translation Manager)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6620692210484">Frédéric Demians</a>(Koha 3.4, 3.6 Translation Manager)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6618544646984">Nicole C. Engard</a> (Koha 3.x Documentation Manager)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609053">Joshua Ferraro</a> (Koha 3.0 Release Manager &amp; Translation Manager)</li>
- <li>Rachel Hamilton-Williams (Kaitiaki desde 2004 al presente)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6618544614275">Henri-Damien Laurent</a> (Koha 3.0 Release Maintainer)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609147">Owen Leonard</a> (Diseño de la interfaz Koha 3.x)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6618544615991">Chris Nighswonger</a> (Koha 3.2, 3.4 Release Maintainer, Koha 3.6 Release Maintainer)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6618544612249">Paul Poulain</a> (Koha 2.0 Release Manager, Koha 2.2 Release Manager/Maintainer, Koha 3.8 Release Manager,  Koha 3.10 Release Manager)</li>
- <li><a href="http://www.ohloh.net/p/koha/contributors/6620692116417">MJ Ray</a> (Koha 2.0 Release Maintainer)</li>
- <li>Ian Walls Koha 3.6 QA Manager, Koha 3.8 QA Manager, Koha 3.10 QA Manager</li>
+ <li>D Ruth Bavousett (Translation Manager)</li>
+ <li>Jared Camins-Esakov (Release Manager)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609030">Chris Cormack</a> (3.8, 3.10 Release Maintainer)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544646984">Nicole C. Engard</a> (Documentation Manager)</li>
+ <li>Katrin Fischer (QA Manager)</li>
+ <li>Liz Rea (3.6 Release Maintainer)</li>
  </ul>
+
+ <h2>Former Koha release team members</h2>
+ <ul>
+ <li>Jared Camins-Esakov (3.6 Release Maintainer)</li>
+ <li>Colin Campbell (3.4 QA Manager)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544614260">Galen Charlton</a> (3.2 Release Manager)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609030">Chris Cormack</a> (1.x, 3.4, 3.6 Release Manager, 3.2 Translation Manager, 3.8 Release Maintainer)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6620692210484">Frédéric Demians</a> (3.4, 3.6, 3.8, 3.10 Translation Manager)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544646984">Nicole C. Engard</a> (3.x Documentation Manager)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609053">Joshua Ferraro</a> (3.0 Release Manager &amp; Translation Manager)</li>
+ <li>Rachel Hamilton-Williams (Kaitiaki desde 2004 al presente)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544614275">Henri-Damien Laurent</a> (3.0 Release Maintainer)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609147">Owen Leonard</a> (3.x Interface Design)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544615991">Chris Nighswonger</a> (3.2, 3.4, 3.6 Release Maintainer)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544612249">Paul Poulain</a> (2.0 Release Manager, 2.2 Release Manager/Maintainer, 3.8, 3.10 Release Manager)</li>
+ <li><a href="http://www.ohloh.net/p/koha/contributors/6620692116417">MJ Ray</a> (2.0 Release Maintainer)</li>
+ <li>Ian Walls (3.6, 3.8, 3.10 QA Manager)</li>
+ </ul>
+
  <h2>Equipo de desarrollo Koha</h2>
  <ul>
  <li>Md. Aftabuddin</li>
@@ -182,6 +194,7 @@
  <li>Shaun Evans</li>
  <li>Pat Eyler (Kaitiaki desde 2002 a 2004)</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609865">Antoine Farnault</a></li>
+ <li>Vitor Fernandes</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6618544670742">Katrin Fischer</a></li>
  <li>Clay Fouts</li>
  <li>Claudia Forsman</li>
@@ -240,6 +253,7 @@
  <li>Sharon Moreland</li>
  <li>Nicolas Morin</li>
  <li>Mike Mylonas</li>
+ <li>Nadia Nicolaides</li>
  <li>Joy Nelson</li>
  <li><a href="https://www.ohloh.net/accounts/cnighswonger">Chris Nighswonger</a></li>
  <li>Albert Oller</li>
@@ -249,7 +263,7 @@
  <li>Maxime Pelletier</li>
  <li>Universidad Politécnica</li>
  <li>Shari Perkins</li>
- <li>Meenakshi.R</li>
+ <li>Romina Racca</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6620692116417">MJ Ray</a></li>
  <li>Liz Rea</li>
  <li>Thatcher Rea</li>
@@ -357,6 +371,13 @@
  por el Consorcio Bridge de la Universidad de Carleton y la Universidad de San Olaf.</li>
  </ul>
 
+ <h2>The Sudoc Icon Set</h2>
+ <ul>
+ <li><a href="http://www.abes.fr/Sudoc/Boite-a-outils-Sudoc-public/Les-icones-Sudoc">Les icones Sudoc</a></li>
+ <li>The Sudoc Icon Set is licensed under a
+ <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License</a>
+ by Agence Bibliographique de l'Enseignement Supérieur</li>
+ </ul>
  <h2>Iconos del Nombre del Proyecto</h2>
  <ul>
  <li>Todas las imágenes vienen desde<a href="http://thenounproject.com/">El Nombre del Proyecto</a> colección</li>

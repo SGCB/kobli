@@ -102,6 +102,7 @@ function barcode_check(){
  [% ELSE %] <option value="5">No disponible</option>
  [% END %] [% IF ( serialslis.status6 ) %] <option value="6" selected="selected">Eliminar</option>
  [% ELSE %] <option value="6">Eliminar</option>
+ [% END %] [% IF serialslis.status8 %] <option value="8" selected="selected">Stopped</option>
  [% END %] </select>
  [% IF ( serialslis.serialadditems ) %] <br /><br />
  [% IF ( serialslis.itemstatus ) %] [% IF ( serialslis.choice ) %] [% FOREACH itemstatusloo IN serialslis.itemstatusloop %] [% itemstatusloo.itemlib %]: [% IF ( itemstatusloo.selected ) %] <input type="checkbox" name="itemstatus" value="[% itemstatusloo.itemval %]" checked="checked" />

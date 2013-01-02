@@ -13,11 +13,13 @@
  [% INCLUDE 'patron-toolbar.inc' %] [% IF ( no_add ) %]<div class="dialog alert"><h3>No se puede agregar socio</h3>
  [% IF ( no_branches ) %]<p>Hay <strong>o hay bibliotecas definidas</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/branches.pl">agregar una biblioteca</a>.[% ELSE %]Un administrador debe definir al menos una biblioteca.[% END %]</p>[% END %] [% IF ( no_categories ) %]<p>Hay <strong>no hay definidas categorías de socios</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/categorie.pl">agregar una categoría de socio</a>.[% ELSE %]Un administrador debe definir al menos una categoría de socio.[% END %]</p>[% END %]</div>
  [% END %] <div class="browse">
- Búsqueda por apellido: [% FOREACH letter IN letters %] <a href="/cgi-bin/koha/members/member.pl?quicksearch=1&amp;surname=[% letter.letter %]">[% letter.letter %]</a>
+ Búsqueda por apellido: [% FOREACH letter IN alphabet.split(' ') %] <a href="/cgi-bin/koha/members/member.pl?quicksearch=1&amp;surname=[% letter %]">[% letter %]</a>
  [% END %] </div>
 
-
- [% IF ( resultsloop ) %] <div id="searchheader"> <h3>Resultados [% from %] a [% to %] de [% numresults %] encontrados para [% IF ( member ) %]'<span class="ex">[% member %]</span>'[% END %][% IF ( surname ) %]'<span class="ex">[% surname %]</span>'[% END %]'</h3></div>
+ [% IF ( CAN_user_borrowers && pending_borrower_modifications ) %] <div class="pending-info" id="patron_updates_pending">
+ <a href="/cgi-bin/koha/members/members-update.pl">Patrons requesting modifications</a>: <span class="holdcount"><a href="/cgi-bin/koha/members/members-update.pl">[% pending_borrower_modifications %]</a></span>
+ </div>
+ [% END %] [% IF ( resultsloop ) %] <div id="searchheader"> <h3>Resultados [% from %] a [% to %] de [% numresults %] encontrados para [% IF ( member ) %]'<span class="ex">[% member %]</span>'[% END %][% IF ( surname ) %]'<span class="ex">[% surname %]</span>'[% END %]'</h3></div>
  <div class="searchresults">
 
  <table id="memberresultst">
