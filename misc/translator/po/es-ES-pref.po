@@ -1,4 +1,4 @@
-﻿# Acquisitions
+# Acquisitions
 msgid "acquisitions.pref"
 msgstr "acquisitions.pref"
 
@@ -522,18 +522,6 @@ msgstr "cataloguing.pref#DefaultLanguageField008# Por defecto vacío para eng."
 msgid "cataloguing.pref#DefaultLanguageField008# Fill in the default language for field 008 Range 35-37 (e.g. eng, nor, ger, see <a href=\"http://www.loc.gov/marc/languages/language_code.html\">MARC Code List for Languages</a>)"
 msgstr "cataloguing.pref#DefaultLanguageField008# Rellenar en el idioma por defecto para el campo 008 Rango 35-37 (e.g. eng, nor, ger, see <a href=\"http://www.loc.gov/marc/languages/language_code.html\">MARC Code List for Languages</a>)"
 
-# Cataloging > Display
-msgid "cataloguing.pref#DisplayPluginValueIndicators# Don't hide"
-msgstr "No ocultar"
-
-# Cataloging > Display
-msgid "cataloguing.pref#DisplayPluginValueIndicators# Hide"
-msgstr "Ocultar"
-
-# Cataloging > Display
-msgid "cataloguing.pref#DisplayPluginValueIndicators# the link next to the indicator field to open a plugin to show the correct values of the indicator for this field and framework. If CheckValueIndicators is disabled and this variable is enabled it will check the values as well, i.e., it includes the CheckValueIndicators functionality."
-msgstr "el enlace junto al campo del indicador para abrir un plugin que muestra los valores correctos del indicador para este campo y hoja de trabajo. Si CheckValueIndicators está deshabilitado y esta variable está habilitada, se validarán los valores también, i.e., se incluye la funcionalidad de CheckValueIndicators."
-
 # Cataloging > Interface
 msgid "cataloguing.pref#EasyAnalyticalRecords# Display"
 msgstr "Mostrar"
@@ -629,6 +617,42 @@ msgstr "cataloguing.pref#PrefillItem# el nuevo m no se rellena autom⵩cament
 # Cataloging > Record Structure
 msgid "cataloguing.pref#PrefillItem# the new item is prefilled with last created item values."
 msgstr "cataloguing.pref#PrefillItem# el nuevo m se rellena autom⵩camente con los 򬴩mos valores de m creados."
+
+# Cataloging > Display
+msgid "cataloguing.pref#SeparateHoldings# Don't hide"
+msgstr ""
+
+# Cataloging > Display
+msgid "cataloguing.pref#SeparateHoldings# Don't separate"
+msgstr ""
+
+# Cataloging > Display
+msgid "cataloguing.pref#SeparateHoldings# Hide"
+msgstr ""
+
+# Cataloging > Display
+msgid "cataloguing.pref#SeparateHoldings# Separate"
+msgstr ""
+
+# Cataloging > Display
+msgid "cataloguing.pref#SeparateHoldings# holding branch"
+msgstr ""
+
+# Cataloging > Display
+msgid "cataloguing.pref#SeparateHoldings# home branch"
+msgstr ""
+
+# Cataloging > Display
+msgid "cataloguing.pref#SeparateHoldings# is the branch of user logged in. The other tab contains other items."
+msgstr ""
+
+# Cataloging > Display
+msgid "cataloguing.pref#SeparateHoldings# items display into two tabs. First tab contains items whose"
+msgstr ""
+
+# Cataloging > Display
+msgid "cataloguing.pref#SeparateHoldings# the link next to the indicator field to open a plugin to show the correct values of the indicator for this field and framework. If CheckValueIndicators is disabled and this variable is enabled it will check the values as well, i.e., it includes the CheckValueIndicators functionality."
+msgstr ""
 
 # Cataloging > Spine Labels
 msgid "cataloguing.pref#SpineLabelAutoPrint# When using the quick spine label printer,"
@@ -1338,6 +1362,18 @@ msgstr "Registrar"
 msgid "circulation.pref#RecordLocalUseOnReturn# local use when an unissued item is checked in."
 msgstr "De uso local cuando un ítem no prestado es devuelto."
 
+# Circulation > Fines Policy
+msgid "circulation.pref#RefundLostItemFeeOnReturn# Don't refund"
+msgstr ""
+
+# Circulation > Fines Policy
+msgid "circulation.pref#RefundLostItemFeeOnReturn# Refund"
+msgstr ""
+
+# Circulation > Fines Policy
+msgid "circulation.pref#RefundLostItemFeeOnReturn# lost item fees charged to a borrower when the lost item is returned."
+msgstr ""
+
 # Circulation > Checkout Policy
 msgid "circulation.pref#RenewalPeriodBase# When renewing checkouts, base the new due date on"
 msgstr "Cuando se renueven préstamos, basar la fecha de devolución en"
@@ -1349,6 +1385,18 @@ msgstr "la fecha actual."
 # Circulation > Checkout Policy
 msgid "circulation.pref#RenewalPeriodBase# the old due date of the checkout."
 msgstr "la antigua fecha de préstamo."
+
+# Circulation > Checkout Policy
+msgid "circulation.pref#RenewalSendNotice# Don't send"
+msgstr ""
+
+# Circulation > Checkout Policy
+msgid "circulation.pref#RenewalSendNotice# Send"
+msgstr ""
+
+# Circulation > Checkout Policy
+msgid "circulation.pref#RenewalSendNotice# a renewal notice according to patron checkout alert preferences."
+msgstr ""
 
 # Circulation > Holds Policy
 msgid "circulation.pref#ReservesControlBranch# Check the"
@@ -2435,6 +2483,14 @@ msgid "i18n_l10n.pref#CalendarFirstDayOfWeek# as the first day of week in the ca
 msgstr "como el primer día de la semana en el calendario."
 
 # I18N/L10N
+msgid "i18n_l10n.pref#alphabet# Use the alphabet"
+msgstr ""
+
+# I18N/L10N
+msgid "i18n_l10n.pref#alphabet# for lists of browsable letters. This should be a space separated list of uppercase letters."
+msgstr ""
+
+# I18N/L10N
 msgid "i18n_l10n.pref#dateformat# ."
 msgstr "."
 
@@ -2597,6 +2653,10 @@ msgstr "Política"
 # OPAC > Privacy
 msgid "opac.pref Privacy"
 msgstr "Privacidad"
+
+# OPAC > Self Registration
+msgid "opac.pref Self Registration"
+msgstr ""
 
 # OPAC > Shelf Browser
 msgid "opac.pref Shelf Browser"
@@ -2927,16 +2987,16 @@ msgid "opac.pref#OPACViewOthersSuggestions# purchase suggestions from other patr
 msgstr "sugerencias de compra de otros socios en el OPAC."
 
 # OPAC > Appearance
-msgid "opac.pref#OPACXSLTDetailsDisplay# <br />Options:<br />- leave empty for \"no xslt\"<br />- enter \"default\" for the default one<br />- put a path to define a xslt file<br />- put an URL for an external specific stylesheet.<br />{langcode} will be replaced with current interface language"
-msgstr "<br />Opcioens:<br />- dejar en blanco para \"sin xslt\"<br />- introducir \"default\" para el predeterminado<br />- ingrese una ruta para definir un archivo xslt<br />- ingrese una URL para una hoja de estilo externa específica<br />{langcode} será reemplazado con el lenguaje actual de la interfaz"
+msgid "opac.pref#OPACXSLTDetailsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
+msgstr ""
 
 # OPAC > Appearance
 msgid "opac.pref#OPACXSLTDetailsDisplay# Display OPAC details using XSLT stylesheet at: "
 msgstr "Mostrar detalles en OPAC utilizando la hoja de estilo XSLT en: "
 
 # OPAC > Appearance
-msgid "opac.pref#OPACXSLTResultsDisplay# <br />Options:<br />- leave empty for \"no xslt\"<br />- enter \"default\" for the default one<br />- put a path to define a xslt file<br />- put an URL for an external specific stylesheet.<br />{langcode} will be replaced with current interface language"
-msgstr "<br />Opciones:<br />- salir en blanco para \"no xslt\"<br />- introducir \"default\" para el predeterminado<br />- indicar una ruta de acceso para definir un archivo XSLT <br />- indicar una URL para una hoja de estilo específica externa. <br />{langcode}será reemplazado con el lenguaje actual de la interfaz"
+msgid "opac.pref#OPACXSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
+msgstr ""
 
 # OPAC > Appearance
 msgid "opac.pref#OPACXSLTResultsDisplay# Display OPAC results using XSLT stylesheet at: "
@@ -3187,6 +3247,30 @@ msgid "opac.pref#OpacRenewalBranch# the patron's home library"
 msgstr "la sede de origen del socio"
 
 # OPAC > Appearance
+msgid "opac.pref#OpacSeparateHoldings# Don't separate"
+msgstr ""
+
+# OPAC > Appearance
+msgid "opac.pref#OpacSeparateHoldings# Separate"
+msgstr ""
+
+# OPAC > Appearance
+msgid "opac.pref#OpacSeparateHoldings# holding branch"
+msgstr ""
+
+# OPAC > Appearance
+msgid "opac.pref#OpacSeparateHoldings# home branch"
+msgstr ""
+
+# OPAC > Appearance
+msgid "opac.pref#OpacSeparateHoldings# is the branch of user logged in. The other tab contains other items."
+msgstr ""
+
+# OPAC > Appearance
+msgid "opac.pref#OpacSeparateHoldings# items display into two tabs. First tab contains items whose"
+msgstr ""
+
+# OPAC > Appearance
 msgid "opac.pref#OpacShowFiltersPulldownMobile# Don't show"
 msgstr "opac.pref#OpacShowFiltersPulldownMobile# No mostrar"
 
@@ -3253,6 +3337,62 @@ msgstr "No permitir"
 # OPAC > Features
 msgid "opac.pref#OpacTopissue# patrons to access a list of the most checked out items on the OPAC. Note that this is somewhat experimental, and should be avoided if your collection has a large number of items."
 msgstr "a los socios acceder a una lista de los ítems más prestados en el OPAC. Tenga en cuenta que esto es algo experimental, y se debe evitar si su colección tiene un gran número de ítems."
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistration# Allow"
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistration# Don't allow"
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistration# library patrons to register an account via the OPAC."
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationBorrowerMandatoryField# (separate columns with |)"
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationBorrowerMandatoryField# The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> must be filled in on the patron entry screen:"
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationBorrowerUnwantedField# (separate columns with |)"
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationBorrowerUnwantedField# The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> will not appear on the patron entry screen:"
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationDefaultCategory# Use the patron category code"
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationDefaultCategory# as the default patron category for patrons registered via the OPAC."
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationExpireTemporaryAccountsDelay# Delete patrons registered via the OPAC, but not yet verified after"
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationExpireTemporaryAccountsDelay# days."
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationVerifyByEmail# Don't require"
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationVerifyByEmail# Require"
+msgstr ""
+
+# OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationVerifyByEmail# that a self-registering patron verify his or herself via email."
+msgstr ""
 
 # OPAC > Features
 msgid "opac.pref#QuoteOfTheDay# Disable"
@@ -3850,30 +3990,6 @@ msgstr "Mostrar etiquetas en OPAC y en la parte de búsquedas avanzadas del admi
 msgid "searching.pref#AdvancedSearchTypes# fields (separate values with |). Tabs appear in the order listed.<br/>"
 msgstr "campos (separar valores con |). Las etiquetas aparecen en el orden listado.<br/>"
 
-# Searching > Features
-msgid "searching.pref#DidYouMeanFromAuthorities# <i>see from</i> (non-preferred form) headings in bibliographic searches. Please note: you will need to reindex your bibliographic database when changing this preference."
-msgstr "searching.pref#DidYouMeanFromAuthorities# <i>see from</i> (non-preferred form)encabezamientos en  b򳱵edas bibliogr⧩cas. Nota: tendrᡱue indexar la base de datos bibliogr⧩ca cuando cambie esta preferencia."
-
-# Searching > Features
-msgid "searching.pref#DidYouMeanFromAuthorities# Don't include"
-msgstr "searching.pref#DidYouMeanFromAuthorities# No incluir"
-
-# Searching > Features
-msgid "searching.pref#DidYouMeanFromAuthorities# Don't suggest"
-msgstr "searching.pref#DidYouMeanFromAuthorities# No sugerir"
-
-# Searching > Features
-msgid "searching.pref#DidYouMeanFromAuthorities# Include"
-msgstr "searching.pref#DidYouMeanFromAuthorities# Incluir"
-
-# Searching > Features
-msgid "searching.pref#DidYouMeanFromAuthorities# Suggest"
-msgstr "searching.pref#DidYouMeanFromAuthorities# Sugerir"
-
-# Searching > Features
-msgid "searching.pref#DidYouMeanFromAuthorities# alternate searches based on data in the authority file."
-msgstr "searching.pref#DidYouMeanFromAuthorities# b򳱵edas alternativas en funci󮠤e los datos en el fichero de autoridad."
-
 # Searching > Results Display
 msgid "searching.pref#FacetLabelTruncationLength# Truncate facets length to"
 msgstr "Truncar longitud de facetas a"
@@ -3881,6 +3997,18 @@ msgstr "Truncar longitud de facetas a"
 # Searching > Results Display
 msgid "searching.pref#FacetLabelTruncationLength# characters, in OPAC/staff interface."
 msgstr "caracteres, en OPAC/Interfaz Administrativa."
+
+# Searching > Features
+msgid "searching.pref#IncludeSeeFromInSearches# <i>see from</i> (non-preferred form) headings in bibliographic searches. Please note: you will need to reindex your bibliographic database when changing this preference."
+msgstr ""
+
+# Searching > Features
+msgid "searching.pref#IncludeSeeFromInSearches# Don't include"
+msgstr ""
+
+# Searching > Features
+msgid "searching.pref#IncludeSeeFromInSearches# Include"
+msgstr ""
 
 # Searching > Results Display
 msgid "searching.pref#OPACItemsResultsDisplay# Don't show"
@@ -4375,16 +4503,16 @@ msgid "staff_client.pref#UseImportMarcHoldings# Use"
 msgstr "Usar"
 
 # Staff Client > Appearance
-msgid "staff_client.pref#XSLTDetailsDisplay# <br />Options:<br />- leave empty for \"no xslt\"<br />- enter \"default\" for the default one<br />- put a path to define a xslt file<br />- put an URL for an external specific stylesheet.<br />{langcode} will be replaced with current interface language"
-msgstr " <br />Opciones:<br />-dejar vacío para\"no xslt\"<br />- introducir \"default\" para el predeterminado<br />- poner una ruta para dedinir un archivo xslt<br />- poner una URL para una hoja de estilo externa específica.<br />{langcode} será reemplazado por un lenguaje común"
+msgid "staff_client.pref#XSLTDetailsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
+msgstr ""
 
 # Staff Client > Appearance
 msgid "staff_client.pref#XSLTDetailsDisplay# Display details in the staff client using XSLT stylesheet at: "
 msgstr "Mostrar detalles en el clietne administrador utilizando la hoja de estilo XSLT en:"
 
 # Staff Client > Appearance
-msgid "staff_client.pref#XSLTResultsDisplay# <br />Options:<br />- leave empty for \"no xslt\"<br />- enter \"default\" for the default one<br />- put a path to define a xslt file<br />- put an URL for an external specific stylesheet.<br />{langcode} will be replaced with current interface language"
-msgstr "<br />Opciones:<br />-dejar vacio para \"no xslt\"<br />- introducir \"default\" para el predeterminado<br />- poner una ruta para dedinir un archivo xslt<br />- poner una URL para una hoja de estilo externa específica.<br />{langcode} será reemplazado por un lenguaje común"
+msgid "staff_client.pref#XSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
+msgstr ""
 
 # Staff Client > Appearance
 msgid "staff_client.pref#XSLTResultsDisplay# Display results in the staff client using XSLT stylesheet at: "
