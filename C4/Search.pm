@@ -1359,14 +1359,14 @@ sub buildQuery {
                 # Add index-specific attributes
                 # Date of Publication
                 if ( $index eq 'yr' ) {
-                    $index .= ",st-numeric";
+                    $operand = "$index,st-numeric=$operand";
                     $indexes_set++;
 					$stemming = $auto_truncation = $weight_fields = $fuzzy_enabled = $remove_stopwords = 0;
                 }
 
                 # Date of Acquisition
                 elsif ( $index eq 'acqdate' ) {
-                    $index .= ",st-date-normalized";
+                    $operand = "$index,st-date-normalized=$operand";
                     $indexes_set++;
 					$stemming = $auto_truncation = $weight_fields = $fuzzy_enabled = $remove_stopwords = 0;
                 }
