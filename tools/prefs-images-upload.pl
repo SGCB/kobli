@@ -36,7 +36,6 @@ my $dbh=C4::Context->dbh;
 
 my $upload_dir = C4::Context->config('opachtdocs')."/prog/imgs/"; 
 my $intra_dir = C4::Context->config('intrahtdocs')."/prog/imgs/"; 
-# my $upload_dir = C4::Context->preference('OPACBaseURL')."/opac-tmpl/prog/imgs/"; 
 
 my ($template, $loggedinuser, $cookie) = get_template_and_user({
                     template_name       => "tools/prefs-images-upload.tt",
@@ -45,8 +44,6 @@ my ($template, $loggedinuser, $cookie) = get_template_and_user({
                     authnotrequired     => 0,
                     debug               => 0,
                     });
-                      # print $_ . $cgi->param($_);
-
 
 for ($cgi->param()) {
     my $file_name = $cgi->param($_) || '';
@@ -83,9 +80,6 @@ for ($cgi->param()) {
                 IMPORT_SUCCESSFUL => 1,
                 SOURCE_FILE => $source_file,
             );  
-            # my $favicon = '';
-            # my $smallimage = '';
-            # my $imageright = '';
             my $height = 100;
             my $name ="";
             my $width = ($image->Get('width')/$image->Get('height'))*$height;
@@ -93,7 +87,6 @@ for ($cgi->param()) {
               $pref = "'opacsmallimage'";
               $file_name =~ m/(\w+)$/;
               $name = "opacsmallimage.".$1;
-              # $smallimage = "/intranet-tmpl/prog/imgs/".$name;
               if($image->Get('width')>$width || $image->Get('height')>$height){
                 $image->Resize(width=>$width, height=>$height, blur=>1);
               }if($image->Get('width')>300){
@@ -106,7 +99,6 @@ for ($cgi->param()) {
               $pref = "'opacsmallimageright'";
               $file_name =~ m/(\w+)$/;
               $name = "opacsmallimageright.".$1;
-              # $imageright = "/intranet-tmpl/prog/imgs/".$name;
               if($image->Get('width')>$width || $image->Get('height')>$height){
                 $image->Resize(width=>$width, height=>$height, blur=>1);
               }if($image->Get('width')>445){
@@ -119,7 +111,6 @@ for ($cgi->param()) {
               $pref = "'OpacFavicon'";
               $file_name =~ m/(\w+)$/;
               $name = "OpacFavicon.".$1;
-              # $favicon = "/intranet-tmpl/prog/imgs/".$name;
               if($image->Get('width')>25 || $image->Get('height')>25){
                 $image->Resize(width=>25, height=>25, blur=>1);
               }
@@ -139,7 +130,7 @@ for ($cgi->param()) {
                           SET value = ? 
                           WHERE variable = ".$pref.";";
             my $sth = $dbh->prepare($query);
-            $sth->execute(C4::Context->preference('OPACBaseURL')."/opac-tmpl/prog/imgs/".$name);
+            $sth->execute("/opac-tmpl/prog/imgs/".$name);
         }
       }
     }
