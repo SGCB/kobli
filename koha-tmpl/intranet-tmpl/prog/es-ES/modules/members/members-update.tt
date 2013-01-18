@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Patrons &rsaquo; Update patron records</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Actualización registros de socios</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
     $(function() {
         $( "#pending_updates" ).accordion();
@@ -6,67 +6,14 @@
 </script>
 </head>
 <body id="pat_update" class="pat">
-[% INCLUDE 'header.inc' %]
-[% INCLUDE 'patron-search.inc' %]
-
-[%
- SET field_display_names = {
- surname => "Surname"
- firstname => "First name"
- title => "Title"
- othernames => "Other names"
- initials => "Initials"
- streetnumber => "Street number"
- streettype => "Street type"
- address => "Address"
- address2 => "Address 2"
- city => "City"
- state => "State"
- zipcode => "Zip code"
- country => "Country"
- email => "Email"
- phone => "Primary Phone"
- mobile => "Primary Mobile Phone"
- fax => "Fax"
- emailpro => "Secondary email"
- phonepro => "Secondary phone"
- B_streetnumber => "Alternate address - street number"
- B_streettype => "Alternate address - street type"
- B_address => "Alternate address"
- B_address2 => "Alternate address 2"
- B_city => "Alternate address - city"
- B_state => "Alternate address - state"
- B_zipcode => "Alternate address - zip code"
- B_email => "Alternate address - email"
- B_phone => "Alertnate address - phone"
- dateofbirth => "Date of birth"
- contactname => "Contact - last name"
- contactfirstname=> "Contact - first name"
- contacttitle => "Contact - title"
- relationship => "Contact - relationship"
- ethnicity => "Ethnicity"
- ethnotes => "Ethnicity notes"
- sex => "Sex"
- altcontactfirstname => "Alternate contact - first name"
- altcontactsurname => "Alternate contact - surname"
- altcontactaddress1 => "Alternate contact - address"
- altcontactaddress2 => "Alternate contact - address 2"
- altcontactaddress3 => "Alternate contact - city"
- altcontactstate => "Alternate contact - state"
- altcontactzipcode => "Alternate contact - zip code"
- altcontactcounty => "Alternate contact - county"
- altcontactphone => "Alternate contact - phone"
- smsalertnumber => "SMS alert number"
- }
-%]
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Update patron records</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] [% SET field_display_names = { surname => "Surname" firstname => "First name" title => "Title" othernames => "Other names" initials => "Initials" streetnumber => "Street number" streettype => "Street type" address => "Address" address2 => "Address 2" city => "Ciudad" state => "Provincia" zipcode => "Código postal" country => "País" email => "Email" phone => "Teléfono fijo" mobile => "Teléfono móvil" fax => "Fax" emailpro => "Email secundario" phonepro => "Teléfono secundario" B_streetnumber => "Dirección alternativa calle-número" B_streettype => "Dirección alternativa - tipo de calle" B_address => "Dirección alternativa" B_address2 => "Dirección alternativa 2" B_city => "Dirección alternativa - ciudad" B_state => "Dirección alternativa - provincia" B_zipcode => "Dirección alternativa - código postal" B_email => "Dirección alternativa - email" B_phone => "Dirección alternativa - teléfono" dateofbirth => "Fecha de nacimiento" contactname => "Contacto - apellido" contactfirstname=> "Contacto - nombre" contacttitle => "Contacto - t´tulo" relationship => "Contacto - relación" ethnicity => "Raza" ethnotes => "ENotas de raza" sex => "Sexo" altcontactfirstname => "Contacto altenativo - nombre" altcontactsurname => "Contacto Alternativo - apellido" altcontactaddress1 => "Contacto alternativo - dirección" altcontactaddress2 => "Contacto alternativo - dirección 2" altcontactaddress3 => "Contacto alternativo - ciudad" altcontactstate => "Contacto alternativo - provincia" altcontactzipcode => "Contacto alternativo - código postal" altcontactcounty => "Contacto alternativo - país" altcontactphone => "Contacto alternativo  - teléfono" smsalertnumber => "SMS número de alerta" } %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Actualización registros de socio</div>
 
 <div id="doc2" class="yui-t7">
 
  <div id="bd">
  <div id="yui-main">
 
- [% IF PendingModifications %] <h2>Update patron records</h2>
+ [% IF PendingModifications %] <h2>Actualizando registros de socios</h2>
  <form method="post" action="members-update-do.pl">
  <div id="pending_updates">
  [% FOREACH pm IN PendingModifications %] [% SET borrowernumber = pm.borrowernumber %] <h3><a href="#panel_modify_[% pm.borrowernumber %]">[% borrowers.$borrowernumber.surname %], [% borrowers.$borrowernumber.firstname %]</a></h3>
@@ -76,7 +23,7 @@
  <label for="approve_modify_[% pm.borrowernumber %]">Aprobar</label>
 
  <input type="radio" id="deny_modify_[% pm.borrowernumber %]" name="modify_[% pm.borrowernumber %]" value="deny" />
- <label for="deny_modify_[% pm.borrowernumber %]">Deny</label>
+ <label for="deny_modify_[% pm.borrowernumber %]">Denegar</label>
 
  <input type="radio" id="ignore_modify_[% pm.borrowernumber %]" name="modify_[% pm.borrowernumber %]" value="ignore" checked="checked"/>
  <label for="ignore_modify_[% pm.borrowernumber %]">Ignorar</label>
@@ -101,7 +48,7 @@
 
  </form>
  [% ELSE %] <div class="dialog message">
- <p>There are no pending patron modifications.</p>
+ <p>No hay modificaciones de socios pendientes.</p>
  </div>
  [% END %] </div>
  </div>

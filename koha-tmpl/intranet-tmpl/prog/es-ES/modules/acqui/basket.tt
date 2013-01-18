@@ -189,16 +189,13 @@
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="post">
  <p>
  <label for="basketgroupid"><strong>Bolsa de grupo:</strong></label>
- [% IF basketgroup.closed %]
- [% basketgroup.name %] (closed)
- [% ELSE %]
- </p>
+ [% IF basketgroup.closed %] [% basketgroup.name %] (cerrrado) [% ELSE %] </p>
  <p>
  <select id="basketgroupid" name="basketgroupid">
  <option value="new">Agregar nuevo grupo</option>
  [% FOREACH bg IN basketgroups %] [% IF ( bg.default ) %] <option value="[% bg.id %]" selected="selected">[% bg.name %]</option>
  [% ELSE %] [% UNLESS bg.closed %] <option value="[% bg.id %]">[% bg.name %]</option>
- [% ELSE %] <option value="[% bg.id %]" disabled="disabled">[% bg.name %] (closed)</option>
+ [% ELSE %] <option value="[% bg.id %]" disabled="disabled">[% bg.name %] (cerrado)</option>
  [% END %] [% END %] [% END %] </select>
  [% END %] </p>
 

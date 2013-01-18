@@ -107,9 +107,7 @@ $(document).ready(function() {
  <td> [% subscription.branchcode %]</td>
  <td> [% subscription.callnumber %]</td>
  <td> [% subscription.notes %] [% UNLESS subscription.closed %] [% IF ( subscription.subscriptionexpired ) %] <br /><span class="problem"> Suscripción expirada</span>
- [% END %] [% ELSE %] <br /> Subscription closed
- [% END %]
- </td>
+ [% END %] [% ELSE %] <br /> Suscripción cerrada [% END %] </td>
  [% IF ( routing && CAN_user_serials_routing ) %] <td>
  [% UNLESS subscription.closed %] <a href="/cgi-bin/koha/serials/routing.pl?subscriptionid=[% subscription.subscriptionid %]">Editar lista de enrutamiento</a>
  [% END %] </td>
@@ -129,7 +127,7 @@ $(document).ready(function() {
 
  [% FOREACH year IN years %] <div id="subscription-year-[% year.year %]">
  [% IF ( CAN_user_serials_receive_serials ) %] <p>
- <input value="Editar publicación periódica" type="submit" />&nbsp; [% UNLESS subscription.closed %] <input value="Generar siguiente" type="button" onclick="javascript:generateNext([% subscriptionidlist %])" />
+ <input value="Editar publicación periódica" type="submit" />&nbsp; [% UNLESS subscription.closed %] <input type="button" value="Generate next" onclick="javascript:generateNext([% subscriptionidlist %])" />
  [% IF ( subscriptions.size == 1 and !serialsadditems ) %]&nbsp;<input value="Completar recepción " type="button" onclick="javascript:generateReceive([% subscriptionidlist %])" />[% END %] [% END %] </p>
  [% END %] <span class="checkall">
  <a class="CheckAll" href="#" onclick="CheckAll('subscription-year-[% year.year %]'); return false;">Seleccionar todo</a>
@@ -162,15 +160,7 @@ $(document).ready(function() {
  <td>
  [% serial.serialseq %] </td>
  <td>
- [% IF ( latestserial.status1 ) %]Expected[% END %]
- [% IF ( latestserial.status2 ) %]Arrived[% END %]
- [% IF ( latestserial.status3 ) %]Late[% END %]
- [% IF ( latestserial.status4 ) %]Missing[% END %]
- [% IF ( latestserial.status5 ) %]Not issued[% END %]
- [% IF ( latestserial.status6 ) %]Delete[% END %]
- [% IF ( latestserial.status7 ) %]Claimed[% END %]
- [% IF ( latestserial.status8 ) %]Stopped[% END %]
- </td>
+ [% IF ( latestserial.status1 ) %]Esperado [% END %] [% IF ( latestserial.status2 ) %]recibido [% END %] [% IF ( latestserial.status3 ) %]Demorado [% END %] [% IF ( latestserial.status4 ) %]Perdido [% END %] [% IF ( latestserial.status5 ) %]No prestado [% END %] [% IF ( latestserial.status6 ) %]Borrado[% END %] [% IF ( latestserial.status7 ) %]Reclamado[% END %] [% IF ( latestserial.status8 ) %]Parado[% END %] </td>
  <td>
  [% serial.notes %] </td>
  <td>

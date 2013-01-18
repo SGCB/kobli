@@ -1,6 +1,24 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Edición de publicación periódica [% bibliotitle %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/cataloging.js"></script>
 <script language="JavaScript" type="text/javascript">
+var nav = window.Event ? true : false;
+if (nav) {
+	window.captureEvents(Event.KEYDOWN);
+	window.onkeydown = NetscapeEventHandler_KeyDown;
+} else {
+	document.onkeydown = IEEventHandler_KeyDown;
+}
+
+function NetscapeEventHandler_KeyDown(e) {
+	if (e.which == 13 && e.target.type != 'textarea' && e.target.type != 'submit') { return false; }
+	return true;
+}
+
+function IEEventHandler_KeyDown() {
+	if (event.keyCode == 13 && event.srcElement.type != 'textarea' && event.srcElement.type != 'submit')
+		return false;
+	return true;
+}
 //<![CDATA[
 function generateReceive() {
     var subscriptionid =  document.getElementsByName("subscriptionid")[0].value;
@@ -168,7 +186,7 @@ $(document).ready(function() {
  [% ELSE %] <option value="5">No disponible</option>
  [% END %] [% IF ( serialslis.status6 ) %] <option value="6" selected="selected">Eliminar</option>
  [% ELSE %] <option value="6">Eliminar</option>
- [% END %] [% IF serialslis.status8 %] <option value="8" selected="selected">Stopped</option>
+ [% END %] [% IF serialslis.status8 %] <option value="8" selected="selected">Parado</option>
  [% END %] </select>
 
  </td>
@@ -244,7 +262,7 @@ $(document).ready(function() {
  [% ELSE %] <option value="5">No disponible</option>
  [% END %] [% IF ( newserialloo.status6 ) %] <option value="6" selected="selected">Eliminar</option>
  [% ELSE %] <option value="6">Eliminar</option>
- [% END %] [% IF newserialloo.status8 %] <option value="8" selected="selected">Stopped</option>
+ [% END %] [% IF newserialloo.status8 %] <option value="8" selected="selected">Parado</option>
  [% END %] </select>
 
  </td>
@@ -291,7 +309,6 @@ $(document).ready(function() {
  </tr>
  [% END %] [% END %] [% END %] </table>
  <fieldset class="action">
- <input type="submit" onclick="return false;" style="display: none;" id="phony_submit" value="phony_submit" name="phony_submit" />
  <input accesskey="w" value="Guardar" type="submit" class="button" />
  [% UNLESS ( serialsadditems ) %]&nbsp;&nbsp;<input value="Completar recepción " type="button" onclick="javascript:generateReceive()">[% END %] </fieldset>
 </form>

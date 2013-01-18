@@ -1,4 +1,4 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación [% IF borrowernumber %] &rsaquo; Prestando a [% INCLUDE 'patron-title.inc' invert_name = 1 %] [% END %]</title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] [% SET destination = "circ" %] <title>Koha &rsaquo; Circulación [% IF borrowernumber %] &rsaquo; Prestando a [% INCLUDE 'patron-title.inc' invert_name = 1 %] [% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] [% IF ( UseTablesortForCirc ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>[% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript">
@@ -121,7 +121,7 @@ var allcheckboxes = $(".checkboxed");
                     $(this).removeAttr("checked");
                 } else {
                     $(this).attr("checked","checked");
-                  //  radioCheckBox($(this));
+                    radioCheckBox($(this));
                 }
            });
         }
@@ -242,7 +242,7 @@ function validate1(date) {
 [% END %]
 
 [% IF ( borrowernumber ) %]
-[% INCLUDE 'circ-toolbar.inc' %]
+[% INCLUDE 'members-toolbar.inc' %]
 [% END %]
 
 <!-- INITIAL BLOC : PARAMETERS & BORROWER INFO -->
@@ -317,7 +317,7 @@ function validate1(date) {
 [% END %] [% IF ( RESERVE_WAITING ) %] <p>
  <label for="cancelreserve">Cancelar reserva</label>
  <input type="radio" value="cancel" name="cancelreserve" id="cancelreserve" /><br />
- <label for="revertreserve">Revert waiting status</label>
+ <label for="revertreserve">Revertir el estado de espera</label>
  <input type="radio" value="revert" name="cancelreserve" id="revertreserve" checked="checked"/>
 </p>
 [% END %] <input type="hidden" name="barcode" value="[% barcode %]" />

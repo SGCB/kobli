@@ -169,6 +169,7 @@ function checkMultiHold() {
  [% IF ( maxreserves ) %] <li><strong>Demasiadas reservas: </strong> <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %] </a> tiene demasiadas reservas.</li>
  [% END %] [% IF ( alreadyreserved ) %] <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a> <strong>tiene una reserva</strong> en este ítem </li>
  [% END %] [% IF ( none_available ) %] <li> <strong>No hay copias disponibles</strong> para ser reservado</li>
+ [% END %] [% IF ( alreadypossession ) %] <li> <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a> <strong>is already in possesion</strong> of one item</li>
  [% END %] </ul>
  [% ELSE %] <h3>No se pueden reservar algunos ítems</h3>
  [% END %] </div>

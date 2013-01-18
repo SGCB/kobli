@@ -168,9 +168,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  [% END %] Ítem regresa a sede origen </option>
  [% IF ( default_returnbranch == 'holdingbranch' ) %] <option value="holdingbranch" selected="selected">
  [% ELSE %] <option value="holdingbranch">
- [% END %]
- Item returns to issuing library
- </option>
+ [% END %] Ítem regresa a sede de préstamo  </option>
  [% IF ( default_returnbranch == 'noreturn' ) %] <option value="noreturn" selected="selected">
  [% ELSE %] <option value="noreturn">
  [% END %] Ítem permanece en sede de retorno </option>
@@ -268,7 +266,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <td>
  <select name="returnbranch">
  <option value="homebranch">Sede de devolución de ítem</option>
- <option value="holdingbranch">Item returns to issuing library</option>
+ <option value="holdingbranch">Ítem vuelve a la biblioteca de préstamo</option>
  <option value="noreturn">Fluctuación de ítem</option>
  </select>
  </td>

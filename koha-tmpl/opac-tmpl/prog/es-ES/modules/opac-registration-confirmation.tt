@@ -5,17 +5,15 @@
  <div class="yui-b">
  <div id="loggedin" class="yui-ge">
  <div class="yui-u first">
- <h1>Registration Complete!</h1>
+ <h1>¡Registro completado!</h1>
 
- <p>You have successfully registered your new account. To log in, use the following credentials:</p>
+ <p>Ha registrado correctamente su nueva cuenta. Para iniciar sesión, utilice las siguientes credenciales:</p>
 
  <p>
- Username: [% borrower.userid %]
- <br/>
- Password: [% password_cleartext %]
- </p>
+ Nombre de usuario:  [% borrower.userid %] <br/>
+ Contraseña: [% password_cleartext %] </p>
 
- <p>For your convenience, the login box on this page has been pre-filled with this data. Please log in[% IF OpacPasswordChange %] and change your password[% END %].</p>
+ <p>Para su comodidad, el cuadro de inicio de sesión en esta página ha sido pre-rellenado con estos datos. Por favor identifiquese[% IF OpacPasswordChange %] y cambie su contraseña[% END %].</p>
 
  <div id="PatronSelfRegistrationAdditionalInstructions">[% PatronSelfRegistrationAdditionalInstructions %]</div>
  </div>
@@ -26,7 +24,7 @@
  <input type="hidden" name="koha_login_context" value="opac" />
 
  <fieldset class="brief">
- <legend>Log in to your account:</legend>
+ <legend>Inicie sesión en su cuenta:</legend>
 
  <ol>
  <li><label for="userid">Login:</label><input type="text" id="userid" size="10" name="userid" value="[% borrower.userid %]" /></li>

@@ -1,15 +1,4 @@
-[% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnList ) %]
-[% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnList ) %]
-
-[% INCLUDE 'doc-head-open.inc' %]
-[% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo;
-[% IF ( searchdesc ) %]
- Results of search [% IF ( query_desc ) %]for '[% query_desc | html%]'[% END %][% IF ( limit_desc ) %]&nbsp;with limit(s):&nbsp;'[% limit_desc | html %]'[% END %]
-[% ELSE %]
- You did not specify any search criteria.
-[% END %]
-[% INCLUDE 'doc-head-close.inc' %]
-<link rel="alternate" href="[% OPACBaseURL %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&count=[% countrss |html %]&sort_by=acqdate_dsc&format=rss2" type="application/rss+xml" title="[% PREVIOUS_SHELF_BROWS.biblionumber |url %]" />
+[% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnList ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnList ) %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; [% IF ( searchdesc ) %] Resultados de la búsqueda [% IF ( query_desc ) %]para '[% query_desc | html%]'[% END %][% IF ( limit_desc ) %]&nbsp;with limit(s):&nbsp;'[% limit_desc | html %]'[% END %] [% ELSE %] s No ha especificado ningún criterio de búsqueda. [% END %] [% INCLUDE 'doc-head-close.inc' %] <link rel="alternate" href="[% OPACBaseURL %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&count=[% countrss |html %]&sort_by=acqdate_dsc&format=rss2" type="application/rss+xml" title="[% PREVIOUS_SHELF_BROWS.biblionumber |url %]" />
 [% IF ( OpacStarRatings == 'all' ) %]<script type="text/javascript" src="/opac-tmpl/prog/en/lib/jquery/plugins/jquery.rating.js"></script>
 <link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/jquery.rating.css" />[% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 [% IF ( OpacHighlightedWords ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.highlight-3.js"></script>
@@ -389,7 +378,7 @@ $(document).ready(function(){
  <label for="tagsel_new">Nueva etiqueta:</label>
  <input name="tagsel_new" id="tagsel_new" maxlength="100" />
  <input value="Agregar" name="tagsel_button" id="tagsel_button" class="input tagsel_button" title="Agregar" type="submit" />
- <a href="#" id="tagsel_cancel">(done)</a>
+ <a href="#" id="tagsel_cancel">(hecho)</a>
  </span>
  <span id="tagsel_status" class="tagsel_tatus" style="display:none;">
  Estado de etiqueta aquí. </span>
@@ -408,9 +397,9 @@ $(document).ready(function(){
  [% IF ( SEARCH_RESULT.imageurl ) %] <img src="[% SEARCH_RESULT.imageurl %]" title="[% SEARCH_RESULT.description %]" alt="[% SEARCH_RESULT.description %]" />
  [% END %] [% IF ( SEARCH_RESULT.score_avg ) %] <img src="[% themelang %]/../images/bonus.png" style="max-height: 35px;" title="incentivos" />
  [% END %] </td>
- [% END %] [% END %] [% IF ( SEARCH_RESULT.AuthorisedValueImages ) %] <td class="itypecol">
- [% FOREACH authorised_value_image IN SEARCH_RESULT.authorised_value_images %] <img src="[% authorised_value_image.imageurl %]" alt="[% authorised_value_image.label %]" title="[% authorised_value_image.label %]">
- [% END %] </td>
+ [% END %] [% END %] [% IF ( AuthorisedValueImages ) %] <td class="itypecol">
+ [% FOREACH authorised_value_image IN SEARCH_RESULT.authorised_value_images %] [% IF ( authorised_value_image.imageurl ) %] <img src="[% authorised_value_image.imageurl %]" alt="[% authorised_value_image.label %]" title="[% authorised_value_image.label %]">
+ [% END %] [% END %] </td>
  [% END %] <td>
  [% IF ( COinSinOPACResults ) %]
  [% IF ( SEARCH_RESULT.coins ) %]
@@ -471,7 +460,7 @@ $(document).ready(function(){
  <label for="newtag[% SEARCH_RESULT.biblionumber %]">Nueva etiqueta:</label>
  <input name="newtag[% SEARCH_RESULT.biblionumber %]" id="newtag[% SEARCH_RESULT.biblionumber %]" maxlength="100" />
  <input value="Agregar" name="tagbutton" class="tagbutton" title="[% SEARCH_RESULT.biblionumber %]" type="submit" />
- <a class="cancel_tag_add" id="cancel[% SEARCH_RESULT.biblionumber %]" href="#">(done)</a>
+ <a class="cancel_tag_add" id="cancel[% SEARCH_RESULT.biblionumber %]" href="#">(hecho)</a>
  </span>
  <span id="newtag[% SEARCH_RESULT.biblionumber %]_status" class="tagstatus" style="display:none;">
  Estado de etiqueta aquí. </span>

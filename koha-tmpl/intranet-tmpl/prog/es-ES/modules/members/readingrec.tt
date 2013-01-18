@@ -2,13 +2,18 @@
 [% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="/intranet-tmpl/prog/en/css/datatables.css" />
 <script type="text/javascript" src="/intranet-tmpl/prog/en/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="/intranet-tmpl/prog/en/js/datatables.js"></script>
-<script type="text/javascript" id="js">$(document).ready(function() {
+<script type="text/javascript" id="js">
+//<![CDATA[
  $(document).ready(function() {
+    [% IF (dateformat == 'metric') %]
+        dt_add_type_uk_date();
+    [% END %]
     $("#table_readingrec").dataTable($.extend(true, {}, dataTablesDefaults, {
         "sPaginationType": "four_button",
     }));
  });
-}); </script>
+//]]>
+</script>
 </head>
 <body id="pat_readingrec" class="pat">
 [% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Historial de circulación de [% INCLUDE 'patron-title.inc' %] </div>
@@ -18,7 +23,7 @@
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
-[% INCLUDE 'circ-toolbar.inc' %] <h1>Historial de circulación</h1>
+[% INCLUDE 'members-toolbar.inc' %] <h1>Historial de circulación</h1>
 [% IF loop_reading %] <form action="/cgi-bin/koha/members/readingrec.pl" method="get"><input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" /></form>
 
 

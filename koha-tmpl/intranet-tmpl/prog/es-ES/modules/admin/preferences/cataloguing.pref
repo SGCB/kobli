@@ -42,7 +42,7 @@ cataloguing.pref:
         pref: MARCOrgCode
       - por defecto en nuevos registros MARC (deje en blanco para deshabilitar).
     - 
-      - "Cuando se crean los \xC3\xADtems, asignarles ubicaci\xC3\xB3n temporal en"
+      - Cuando se crean los ?tems, asignarles ubicaci??emporal en
       - 
         class: short
         pref: NewItemsDefaultLocation
@@ -69,14 +69,14 @@ cataloguing.pref:
           incremental: son generados con la forma 1, 2, 3.
         pref: autoBarcode
     - 
-      - "cataloguing.pref#PrefillItem# Cuando un nuevo \xEE\xB5\xA5m es a\xF1\xA1\xA4\xA9do,"
+      - "Cuando un nuevo \xC3\xADtem es a\xC3\xB1adido"
       - 
         choices: 
-          "": "cataloguing.pref#PrefillItem# el nuevo \xEE\xB5\xA5m no se rellena autom\xE2\xB5\xA9camente con los \xF2\xAC\xB4\xA9mos valores de \xEE\xB5\xA5m creados."
-          1: "cataloguing.pref#PrefillItem# el nuevo \xEE\xB5\xA5m se rellena autom\xE2\xB5\xA9camente con los \xF2\xAC\xB4\xA9mos valores de \xEE\xB5\xA5m creados."
+          "": "el nuevo \xC3\xADtem no se rellena autom\xC3\xA1ticamente con los \xC3\xBAltimos valores de \xC3\xADtem creados."
+          1: "el nuevo \xC3\xADtem se rellena autom\xC3\xA1ticamente con los \xC3\xBAltimos valores de \xC3\xADtem creados."
         pref: PrefillItem
     - 
-      - "cataloguing.pref#SubfieldsToUseWhenPrefill# Definir una lista de subcampos para usar cuando rellenen los \xEE\xB5\xA5ms (separado por espacio)"
+      - cataloguing.pref#SubfieldsToUseWhenPrefill# Definir una lista de subcampos para usar cuando rellenen los ?ms (separado por espacio)
       - 
         pref: SubfieldsToUseWhenPrefill
     - 
@@ -161,8 +161,8 @@ cataloguing.pref:
           "": No ocultar
           1: Ocultar
         pref: OpacSuppression
-      - "\xC3\xADtems marcados como suprimidos en el resultado de una b\xC3\xBAsqueda OPAC. Note que debe tener el \xC3\xADndice <code>Suprimido</code> configurado en Zebra y por lo menos un \xC3\xADtem suprimido, o no funcionar\xC3\xA1n sus b\xC3\xBAsquedas."
-      - "cataloguing.pref#OpacSuppression# Restringir la supresi\xF3\xAE\xA0\xA4e direcciones IP fuera del rango de IP"
+      - "dems marcados como suprimidos en el resultado de una b??eda OPAC. Note que debe tener el \xC3\xADndice <code>Suprimido</code> configurado en Zebra y por lo menos un ?tem suprimido, o no funcionar?sus b??edas."
+      - "Restringir la supresi\xC3\xB3n de direcciones IP fuera del rango de IP"
       - 
         class: short
         pref: OpacSuppressionByIPRange
@@ -170,16 +170,22 @@ cataloguing.pref:
     - 
       - 
         choices: 
-          "": Don't separate
-          1: Separate
+          "": No separar
+          1: Separar
         pref: SeparateHoldings
-      - items display into two tabs. First tab contains items whose
+      - items display into two tabs, where the first tab contains items whose
       - 
         choices: 
-          holdingbranch: holding branch
-          homebranch: home branch
+          holdingbranch: holding library
+          homebranch: home library
         pref: SeparateHoldingsBranch
-      - is the branch of user logged in. The other tab contains other items.
+      - is the logged in user's library. The second tab will contain all other items.
+    - 
+      - Don't show these
+      - 
+        class: multi
+        pref: NotesBlacklist
+      - note fields in title notes separator (OPAC record details) and in the description separator (Staff client record details). The fields should appear separated with commas and according with the Koha MARC format (eg 3.. for UNIMARC, 5.. for MARC21)
       - 
         choices: 
           "": Hide

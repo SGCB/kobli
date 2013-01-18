@@ -1,8 +1,4 @@
-[% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnList ) %]
-[% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnList ) %]
-
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; [% IF ( viewshelf ) %]Contents of [% shelfname |html %][% ELSE %]Your lists[% END %][% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
+[% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnList ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnList ) %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; [% IF ( viewshelf ) %]Contenidos de [% shelfname |html %][% ELSE %]Sus listas[% END %][% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript">
 //<![CDATA[
@@ -302,7 +298,7 @@ $(function() {
  <label for="newtag[% itemsloo.biblionumber %]">Nueva etiqueta:</label>
  <input name="newtag[% itemsloo.biblionumber %]" id="newtag[% itemsloo.biblionumber %]" maxlength="100" />
  <input value="Agregar" name="tagbutton" class="tagbutton" title="[% itemsloo.biblionumber %]" type="submit" />
- <a class="cancel_tag_add" id="cancel[% itemsloo.biblionumber %]" href="#">(done)</a>
+ <a class="cancel_tag_add" id="cancel[% itemsloo.biblionumber %]" href="#">(hecho)</a>
  </span>
  <span id="newtag[% itemsloo.biblionumber %]_status" class="tagstatus" style="display:none;">
  Estado de etiqueta aquí. </span>

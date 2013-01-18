@@ -25,8 +25,8 @@ function Date_from_syspref(dstring) {
    jQueryUI we expose the localization strings in the default configuration */
 jQuery(function($){
     $.datepicker.regional[''] = {
-        closeText: _('Done'),
-        prevText: _('Prev'),
+        closeText: _('Hecho'),
+        prevText: _('Anteriores '),
         nextText: _('Siguiente'),
         currentText: _('Hoy'),
         monthNames: [_('Enero'),_('Febrero'),_('Marzo'),_('Abril'),_('Mayo'),_('Junio'),
@@ -35,8 +35,8 @@ jQuery(function($){
         _('Jul'), _('Ag'), _('Septiembre'), _('Oct'), _('Nov'), _('Diciembre')],
         dayNames: [_('Domingo'), _('Lunes'), _('Martes'), _('Miércoles'), _('Jueves'), _('Viernes'), _('Sábado')],
         dayNamesShort: [_('Domingo'), _('Lun'), _('Martes'), _('Wed'), _('Jueves'), _('Viernes'), _('Sábado')],
-        dayNamesMin: [_('Su'),_('Mo'),_('Tu'),_('We'),_('Th'),_('Fr'),_('Sa')],
-        weekHeader: _('Wk'),
+        dayNamesMin: [_('Domingo '),_('Lunes '),_('Martes'),_('Nosotros'),_('Jueves '),_('Viernes '),_('Sábado ')],
+        weekHeader: _('Sm'),
         dateFormat: '[% IF ( dateformat_us ) %]mm/dd/yy[% ELSIF ( dateformat_metric ) %]dd/mm/yy[% ELSE %]yy-mm-dd[% END %]',
         firstDay: [% CalendarFirstDayOfWeek %],
         isRTL: [% IF ( bidi ) %]true[% ELSE %]false[% END %],

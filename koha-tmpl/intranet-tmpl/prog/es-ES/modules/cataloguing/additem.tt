@@ -161,8 +161,8 @@ $(document).ready(function() {
  -->
 
  <input value="Agregar ítem" name="add_submit" type="submit" onclick="return Check(this.form)" />
- <input type="submit" name="add_duplicate_submit" value="Add &amp; duplicate" onclick="return Check(this.form)" />
- <input type="submit" name="add_multiple_copies" value="Add multiple copies" onclick="javascript:this.nextSibling.style.visibility='visible';document.f.number_of_copies.focus(); return false;" /><span id="add_multiple_copies_span" style="visibility:hidden">
+ <input value="Agregar y duplicar " name="add_duplicate_submit" type="submit" onclick="return Check(this.form)" />
+ <input value="Agregar múltiples copias " name="add_multiple_copies" type="submit" onclick="javascript:this.nextSibling.style.visibility='visible';document.f.number_of_copies.focus(); return false;" /><span id="add_multiple_copies_span" style="visibility:hidden">
  <label for="number_of_copies">Número de copias a agregar: </label>
  <input type="text" id="number_of_copies" name="number_of_copies" value="" size="2" />
  <input value="Agregar" name="add_multiple_copies_submit" type="submit" id="add_multiple_copies_submit" onclick="javascript:return Check(this.form) && CheckMultipleAdd(this.form.number_of_copies.value);" />

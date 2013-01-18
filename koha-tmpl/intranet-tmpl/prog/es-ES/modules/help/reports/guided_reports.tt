@@ -68,7 +68,7 @@
  <li>Si considera que su informe requiere demasiados recursos del sistema, puede considerar el uso de parámetros de ejecución de su consulta. Básicamente parámetros de ejecución, supone que  aparece un filtro antes de que el  informe se ejecute para proteger los recursos del sistema. <ul>
  <li>Los &lt;&lt; y &gt;&gt; son solo delimitadores. Usted debe poner &lt;&lt; al principio y &gt;&gt; al final de su parámetro</li>
  <li> La ' Duda para preguntar' se aplicará en la parte izquierda de la fila de entrada.</li>
- <li>The authorized_value can be omitted if not applicable. If it contains an authorized value category, or libraries or itemtype or categorycode, a list with the Koha authorized values will be displayed instead of a free field Note that you can have more than one parameter in a given SQL Note that entering nothing at run time won't probably work as you expect. It will be considered as "value empty" not as "ignore this parameter". For example entering nothing for : "title=&lt;&lt;Enter title&gt;&gt;" will display results with title='' (no title). If you want to have to have something not mandatory, use "title like &lt;&lt;Enter title&gt;&gt;" and enter a % at run time instead of nothing</li>
+ <li>El authorized_value puede ser omitido y no aplicable. Si este contiene un valor autorizado de categoría, biblioteca o categorycode, se mostrará una lista con los valores autorizados de Koha en lugar de un campo de Nota libre que pueda tener más de un parámetro en la Nota SQL dada, que no introduciendo datos en la ejecución probablemente no funcionará como usted espera. Este es considerado como "valor vacío" no como "ignorar este parametro". Por ejemplo para:  "title=&lt;&lt;Enter title&gt;&gt;" mostrará resultado ='' (no title). Si quiere tener algo como no obligatorio, utilizar "title like &lt;&lt;Enter title&gt;&gt;"  e introducir % en lugar de nada en el momento de la ejecución </li>
 </ul>
 <p>Ejemplos:</p>
 <ul>
@@ -82,7 +82,7 @@ WHERE homebranch = &lt;&lt;Pick your library|branches&gt;&gt; AND barcode like &
 </li>
  <li>Consejo: Para generar un selector de fechas en el calendario a la derecha del campo cuando se ejecuta el informe, se puede utilizar la palabra clave 'fecha' como en este ejemplo: &lt;&lt;Introduzca Fecha|date&gt;&gt;</li>
  <li>Consejo: Tienes que poner "% " en un cuadro de texto para 'dejarlo en blanco'. De lo contrario, literalmente, busca "" (empty string) como el valor para el campo.</li>
- <li style="color: #990000">Important: In addition to using any authorized value code to generate a dropdown, you can use the following values as well: Libraries (branches), Item Types (itemtypes) and Patron Categories (categorycode). For example a library pull down would be generated like this &lt;&lt;Library|branches&gt;&gt;</li>
+ <li style="color: #990000">Importante: Además de usar cualquier código de valores autorizado para generar una lista desplegable, puede utilizar los siguientes valores así: Branches (branches), Item Types (itemtypes) and Patron Categories (categorycode). Por ejemplo, una biblioteca desctivada debería ser generada como &lt;&lt;Branch|branches&gt;&g </li>
 </ul>
 
 <p>Nota: Hay un límite de 10.000 registros  en las instrucciones SQL introducidos en Koha. Para modificar este valor si quiere añadir 'LIMIT 100000' hasta el final de la instrucción SQL (o cualquier otro número por encima de 10.000.</p>

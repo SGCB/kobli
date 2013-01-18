@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Detalles de suscripción #[% subscriptionid %]</title>
+[% USE KohaBranchName %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Detalles de suscripción #[% subscriptionid %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 // the english words used in display purposes
@@ -48,7 +48,7 @@ $(document).ready(function() {
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% INCLUDE 'serials-toolbar.inc' %] <h1>Subscription for [% bibliotitle%] [% IF closed %](closed)[% END %]</h1>
+ [% INCLUDE 'serials-toolbar.inc' %] <h1>Subscripción para [% bibliotitle%] [% IF closed %](cerrada)[% END %]</h1>
  [% IF ( abouttoexpire ) %] [% UNLESS closed %] <div class="dialog message">Suscripción expirará [% enddate %]. <a href="#" id="renewsub">Renovar esta suscripción</a>.</div>
  [% END %] [% END %] [% IF ( NEEDSCONFIRMATION ) %] <div id="circ_needsconfirmation" class="dialog alert">
  <h3>Por favor confirme eliminación de suscripción</h3>
@@ -86,7 +86,7 @@ $(document).ready(function() {
  <li><span class="label">Identidad del bibliotecario :</span> [% librarian %]</li>
  <li><span class="label">Proveedor:</span> <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% aqbooksellerid %]">[% aqbooksellername %]</a></li>
  <li><span class="label">Registro:</span> <a href="/cgi-bin/koha/catalogue/[% default_bib_view %].pl?biblionumber=[% bibnum %]">[% bibliotitle %]</a> <i>([% bibnum %])</i></li>
-[% IF ( branchcode ) %]<li><span class="label">Biblioteca:</span> [% branchcode %]</li>[% END %] [% IF ( serialsadditems ) %] <li><span class="label">Ítems:</span> La recepción de una publicaciones periódica crea un registro de ítem.</li>
+[% IF ( branchcode ) %]<li><span class="label">Biblioteca:</span> [% branchcode | $KohaBranchName %]</li>[% END %] [% IF ( serialsadditems ) %] <li><span class="label">Ítems:</span> La recepción de una publicaciones periódica crea un registro de ítem.</li>
  [% ELSE %] <li><span class="label">Ítems:</span> La recepción de una publicaciones periódica no crea un registro de ítem.</li>
  [% END %] <li><span class="label">Período de gracia:</span> [% graceperiod %]</li>
  </ol>
@@ -233,20 +233,7 @@ $(document).ready(function() {
  <td>
  [% serialslis.publisheddate %] </td>
  <td>
- [% IF ( serialslis.status1 ) %]Expected[% END %]
- [% IF ( serialslis.status2 ) %]Arrived[% END %]
- [% IF ( serialslis.status3 ) %]Late[% END %]
- [% IF ( serialslis.status4 ) %]Missing[% END %]
- [% IF ( serialslis.status5 ) %]Not issued[% END %]
- [% IF ( serialslis.status6 ) %]Delete[% END %]
- [% IF ( serialslis.status7 ) %]
- Claimed
- [% IF ( serialslis.claimdate ) %]
- [% serialslis.claimdate %]
- [% END %]
- [% END %]
- [% IF ( serialslis.status8 ) %]Stopped[% END %]
- </td>
+ [% IF ( serialslis.status1 ) %] Esperado [% END %] [% IF ( serialslis.status2 ) %] Recibido[% END %] [% IF ( serialslis.status3 ) %] Demorado [% END %] [% IF ( serialslis.status4 ) %] Perdido [% END %] [% IF ( serialslis.status5 ) %] No disponible[% END %] [% IF ( serialslis.status6 ) %]Borrado [% END %] [% IF ( serialslis.status7 ) %] Reclamado[% IF ( serialslis.claimdate ) %] [% serialslis.claimdate %] [% END %] [% END %] [% IF ( serialslis.status8 ) %]Parado[% END %] </td>
  </tr>
  [% END %] </table>
  </div>

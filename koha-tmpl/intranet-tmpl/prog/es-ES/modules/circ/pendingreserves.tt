@@ -8,6 +8,9 @@
 <script type="text/JavaScript" language="JavaScript">
 //<![CDATA[
 $(document).ready(function() {
+  [% IF (dateformat == 'metric') %]
+      dt_add_type_uk_date();
+  [% END %]
   var holdst = $("#holdst").dataTable($.extend(true, {}, dataTablesDefaults, {
   }));
   holdst.fnAddFilters("filter");
@@ -98,11 +101,11 @@ $(document).ready(function() {
  <tr>
  <td><input style="width:95%" type="text" class="filter" data-column_num="0" placeholder="Retirar estos muchos ítems " /></td>
  <td><input style="width:95%" type="text" class="filter" data-column_num="1" placeholder="Ítems disponibles " /></td>
- <td><input type="text" class="filter" data-column_num="2" placeholder="Patron holds" style="width:95%"/></td>
+ <td><input style="width:95%" type="text" class="filter" data-column_num="2" placeholder="Socios con reservas  " /></td>
  <td><input style="width:95%" type="text" class="filter" data-column_num="3" placeholder="Título" /></td>
  <td id="homebranchfilter"></td>
  <td><input style="width:95%" type="text" class="filter" data-column_num="5" placeholder="Signatura" /></td>
- <td><input type="text" class="filter" data-column_num="6" placeholder="Available copy" style="width:95%"/></td>
+ <td><input style="width:95%" type="text" class="filter" data-column_num="6" placeholder="Copia disponible " /></td>
  <td><input style="width:95%" type="text" class="filter" data-column_num="7" placeholder="Enumeración disponible " /></td>
  <td id="itypefilter"></td>
  <td id="locationfilter"></td>

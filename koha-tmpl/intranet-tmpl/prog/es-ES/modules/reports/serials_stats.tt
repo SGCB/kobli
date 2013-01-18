@@ -32,7 +32,7 @@
  <th>Signatura</th>
  <th>Suscripción comienza</th>
  <th>Suscripción termina</th>
- <th>Expired? / Closed?</th>
+ <th>¿Expeirado?/¿Cerrado?</th>
  </tr>
  </thead>
  <tbody>
@@ -45,12 +45,7 @@
  <td>[% data.startdate %]</td>
  <td>[% data.enddate %]</td>
  <td>
- [% IF data.closed %]
- Closed
- [% ELSIF data.expired %]
- Expired
- [% END %]
- </td>
+ [% IF data.closed %] Cerrado [% ELSIF data.expired %] Expirado [% END %] </td>
  </tr>
  [% END %] </tr>
  </tbody>

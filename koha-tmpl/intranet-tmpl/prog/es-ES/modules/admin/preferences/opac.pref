@@ -64,7 +64,7 @@ opac.pref:
           "": Mostrar
           1: No mostrar
         pref: hidelostitems
-      - "\xC3\xADtems perdidos en la b\xC3\xBAsqueda y p\xC3\xA1gina de detalles."
+      - "\xC3\xADtems perdidos en la b\xC3\xBAsqueda y la p\xC3\xA1gina de detalles."
     - 
       - "Mostrar resultados en OPAC utilizando la hoja de estilo XSLT en: "
       - 
@@ -95,19 +95,19 @@ opac.pref:
     - 
       - 
         choices: 
-          "": opac.pref#OPACShowUnusedAuthorities# No mostrar
-          1: opac.pref#OPACShowUnusedAuthorities# Mostrar
+          "": No mostrar
+          1: Mostrar
         pref: OPACShowUnusedAuthorities
-      - opac.pref#OPACShowUnusedAuthorities# autoridades no utilizados en el navegador de autoridad OPAC.
+      - autoridades no utilizados en el navegador de autoridad OPAC.
     - 
       - 
         choices: 
-          holds: opac.pref#OPACShowHoldQueueDetails# Nostrar reservas
-          holds_priority: opac.pref#OPACShowHoldQueueDetails# Mostrar reservas y su nivel de prioridad
-          none: "opac.pref#OPACShowHoldQueueDetails# No mostrar ning\xC3\xBAn detalle de reserva"
-          priority: opac.pref#OPACShowHoldQueueDetails# Mostrar nivel de prioridad
+          holds: Nostrar reservas
+          holds_priority: Mostrar reservas y su nivel de prioridad
+          none: "No mostrar ning\xC3\xBAn detalle de reserva"
+          priority: Mostrar nivel de prioridad
         pref: OPACShowHoldQueueDetails
-      - opac.pref#OPACShowHoldQueueDetails# para socios en el OPAC.
+      - para socios en el OPAC.
     - 
       - 
         choices: 
@@ -135,18 +135,18 @@ opac.pref:
     - 
       - 
         choices: 
-          "": opac.pref#OPACShowBarcode# No mostrar
-          1: opac.pref#OPACShowBarcode# Mostrar
+          "": No mostrar
+          1: Mostrar
         default: 0
         pref: OPACShowBarcode
-      - "opac.pref#OPACShowBarcode# el c\xC3\xB3digo de barras del \xC3\xADtemen la tab de reservas."
+      - "el c\xC3\xB3digo de barras del \xC3\xADtemen la tab de reservas."
     - 
       - 
         choices: 
           "": No resaltar
           1: Resaltar
         pref: OpacHighlightedWords
-      - "opac.pref#OpacHighlightedWords# palabras buscadas por el socio para su p\xE2\xA8\xA9na de resultados y detalles de b\xF2\xB3\xB1\xB5eda."
+      - palabras buscadas por el socio para su p?na de resultados y detalles de b??eda.
     - 
       - 
         choices: 
@@ -207,7 +207,7 @@ opac.pref:
         pref: OPACUserCSS
         type: textarea
     - 
-      - "opac.pref#OPACMobileUserCSS# incluir las siguiente CSS en todas las p\xE2\xA8\xA9nas del OPAC para la vista de m\xF3\xB6\xA9\xAC:"
+      - "incluir las siguiente CSS en todas las p\xC3\xA1ginas del OPAC para la vista de m\xC3\xB3vil:"
       - 
         class: code
         pref: OPACMobileUserCSS
@@ -219,7 +219,7 @@ opac.pref:
         pref: OpacMainUserBlock
         type: textarea
     - 
-      - "opac.pref#OpacMainUserBlockMobile# Mostrar el siguiente HTML en su propia columna de la p\xE2\xA8\xA9na principal del OPAC (versi\xF3\xAE\xA0\xAD\xF3\xB6\xA9\xAC)"
+      - opac.pref#OpacMainUserBlockMobile# Mostrar el siguiente HTML en su propia columna de la p?na principal del OPAC (versi????)
       - 
         class: code
         pref: OpacMainUserBlockMobile
@@ -227,17 +227,17 @@ opac.pref:
     - 
       - 
         choices: 
-          "": opac.pref#OpacShowLibrariesPulldownMobile# No mostrar
-          1: opac.pref#OpacShowLibrariesPulldownMobile# mostrar
+          "": No mostrar
+          1: Mostrar
         pref: OpacShowLibrariesPulldownMobile
-      - "opac.pref#OpacShowLibrariesPulldownMobile# los bibliotecarios desplegaran la version de m\xF3\xB6\xA9\xAC del OPAC.  "
+      - "los bibliotecarios desplegaran la version de m\xC3\xB3vil del OPAC.  "
     - 
       - 
         choices: 
-          "": opac.pref#OpacShowFiltersPulldownMobile# No mostrar
-          1: opac.pref#OpacShowFiltersPulldownMobile# Mostrar
+          "": No mostrar
+          1: Mostrar
         pref: OpacShowFiltersPulldownMobile
-      - "opac.pref#OpacShowFiltersPulldownMobile# desplegar los filtros de b\xF2\xB3\xB1\xB5eda en la versi\xF3\xAE\xA0\xAD\xF3\xB6\xA9\xAC del OPAC."
+      - "desplegar los filtros de b\xC3\xBAsqueda en la versi\xC3\xB3n m\xC3\xB3vil del OPAC."
     - 
       - "Mostrar el siguiente HTML en la columna izquierda de la p\xC3\xA1gina principal y en la cuenta de socio en el OPAC (generalmente enlaces de navegaci\xC3\xB3n):"
       - 
@@ -245,7 +245,7 @@ opac.pref:
         pref: OpacNav
         type: textarea
     - 
-      - "opac.pref#OpacNavRight# Mostrar el siguiente HTML en la columna de la derecha de la p\xC3\xA1gina principal debajo del formulario de inicio de sesi\xC3\xB3n:"
+      - "Mostrar el siguiente HTML en la columna de la derecha de la p\xC3\xA1gina principal debajo del formulario de inicio de sesi\xC3\xB3n:"
       - 
         class: code
         pref: OpacNavRight
@@ -276,7 +276,7 @@ opac.pref:
         pref: OPACSearchForTitleIn
         type: textarea
     - 
-      - "opac.pref#OPACMySummaryHTML# incluir una \"Enlaces\" columna en \"mi resumen\" y \"mi historia de lectura\" etiquestas cuando un usuario est\xE1\xA1\xACogado en el OPAC, con el siguiente HTML (dejar en blanco para desactivar):"
+      - "incluir una \"Enlaces\" columna en \"mi resumen\" y \"mi historia de lectura\" etiquestas cuando un usuario est?ogado en el OPAC, con el siguiente HTML (dejar en blanco para desactivar):"
       - "<br />Note: Los marcadores {BIBLIONUMBER}, {TITLE}, {ISBN} y {AUTHOR} ser\xC3\xA1n reemplazados con informaci\xC3\xB3n del registro mostrado."
       - 
         class: code
@@ -297,6 +297,7 @@ opac.pref:
       - "un men\xC3\xBA desplegable de selecci\xC3\xB3n de biblioteca en la cabecera OPAC."
     - 
       - "Mostrar este HTML cuando no se encuentran resultados para un b\xC3\xBAsqueda en el OPAC:"
+      - "<br />Note: You can insert placeholders {QUERY_KW} that will be replaced with the keywords of the query."
       - 
         class: code
         pref: OPACNoResultsFound
@@ -322,16 +323,16 @@ opac.pref:
     - 
       - 
         choices: 
-          "": Don't separate
-          1: Separate
+          "": No separar
+          1: Separar
         pref: OpacSeparateHoldings
-      - items display into two tabs. First tab contains items whose
+      - items display into two tabs, where the first tab contains items whose
       - 
         choices: 
-          holdingbranch: holding branch
-          homebranch: home branch
+          holdingbranch: holding library
+          homebranch: home library
         pref: OpacSeparateHoldingsBranch
-      - is the branch of user logged in. The other tab contains other items.
+      - is the logged in user's library. The second tab will contain all other items.
   "Caracter\xC3\xADsticas": 
     - 
       - 
@@ -378,10 +379,10 @@ opac.pref:
     - 
       - 
         choices: 
-          "": opac.pref#OpacCloud# No mostrar
-          1: opac.pref#OpacCloud# Mostrar
+          "": No mostrar
+          1: Mostrar
         pref: OpacCloud
-      - opac.pref#OpacCloud# una materia en la nube del  OPAC (run misc/cronjobs/build_browser_and_cloud.pl to build)
+      - una materia en la nube del  OPAC (run misc/cronjobs/build_browser_and_cloud.pl to build)
     - 
       - 
         choices: 
@@ -395,7 +396,7 @@ opac.pref:
           "": No permitir
           1: Permitir
         pref: opacbookbag
-      - "a los socios almacenar \xC3\xADtems en un \"Cesta\" temporal en el OPAC."
+      - a los socios almacenar ?ems en un "Cesta" temporal en el OPAC.
     - 
       - 
         choices: 
@@ -416,7 +417,7 @@ opac.pref:
           "": No permitir
           1: Permitir
         pref: reviewson
-      - "a los socios hacer comentarios sobre los \xC3\xADtems del OPAC."
+      - a los socios hacer comentarios sobre los ?ems del OPAC.
     - 
       - Mostrar
       - 
@@ -468,11 +469,11 @@ opac.pref:
     - 
       - 
         choices: 
-          "": opac.pref#QuoteOfTheDay# Invalidar
-          1: opac.pref#QuoteOfTheDay# permitir
+          "": Invalidar
+          1: Permitir
         default: 0
         pref: QuoteOfTheDay
-      - "opac.pref#QuoteOfTheDay# Cuota del d\xC3\xADa aplicable en la p\xC3\xA1gina principal en el  OPAC "
+      - "Cuota del d\xC3\xADa aplicable en la p\xC3\xA1gina principal en el  OPAC "
   "Navegador de estanter\xC3\xADa": 
     - 
       - 
@@ -480,7 +481,7 @@ opac.pref:
           "": No mostrar
           1: Mostrar
         pref: OPACShelfBrowser
-      - "navegaci\xC3\xB3n por estanter\xC3\xADa en las p\xC3\xA1ginas de detalles del \xC3\xADtem, permitiendo a los socios ver lo que est\xC3\xA1 cerca de ese \xC3\xADtem en el estante. Tener en cuenta esta utilidad utiliza una cantidad bastante grande de recursos en el servidor, y debe ser evitada si su colecci\xC3\xB3n tiene un gran n\xC3\xBAmero de \xC3\xADtems."
+      - navegaci??or estanter?n las p?nas de detalles del ?em, permitiendo a los socios ver lo que est?erca de ese ?em en el estante. Tener en cuenta esta utilidad utiliza una cantidad bastante grande de recursos en el servidor, y debe ser evitada si su colecci??iene un gran n??o de ?ems.
     - 
       - 
         choices: 
@@ -488,7 +489,7 @@ opac.pref:
           1: Utilizar
         default: 1
         pref: ShelfBrowserUsesLocation
-      - "la ubicaci\xC3\xB3n del \xC3\xADtem cuando encuentre \xC3\xADtems para el navegador de estanter\xC3\xADa."
+      - "la ubicaci\xC3\xB3n del \xC3\xADtem cuando encuentre \xC3\xADtems para el navegador de estanter\xC3\xADas."
     - 
       - 
         choices: 
@@ -496,7 +497,7 @@ opac.pref:
           1: Utilizar
         default: 1
         pref: ShelfBrowserUsesHomeBranch
-      - "la sede del \xC3\xADtem cuando encuentre \xC3\xADtems para el navegador de estanter\xC3\xADa. "
+      - "la sede del \xC3\xADtem cuando encuentre \xC3\xADtems para el navegador de estanter\xC3\xADas. "
     - 
       - 
         choices: 
@@ -504,7 +505,7 @@ opac.pref:
           1: Utilizar
         default: 0
         pref: ShelfBrowserUsesCcode
-      - "el c\xC3\xB3digo de colecci\xC3\xB3n del \xC3\xADtem cuando encuentre \xC3\xADtems para el navegador de estanter\xC3\xADa."
+      - "el c\xC3\xB3digo de colecci\xC3\xB3n del \xC3\xADtem cuando encuentre \xC3\xADtems para el navegador de estanter\xC3\xADas."
   "Pol\xC3\xADtica": 
     - 
       - 
@@ -513,7 +514,7 @@ opac.pref:
           1: No permitir
         default: 0
         pref: singleBranchMode
-      - "opac.pref#singleBranchMode# los socios seleccionar\xE2\xAE\xA0su biblioteca en el OPAC o mostrar la biblioteca en el nombre de la signatura."
+      - opac.pref#singleBranchMode# los socios seleccionar?u biblioteca en el OPAC o mostrar la biblioteca en el nombre de la signatura.
     - 
       - 
         choices: 
@@ -527,7 +528,7 @@ opac.pref:
           "": No permitir
           1: Permitir
         pref: OPACItemHolds
-      - "a los socios hacer reservas sobre \xC3\xADtems espec\xC3\xADficos en el OPAC. Si no est\xC3\xA1 habilitado, los usuarios s\xC3\xB3lo pueden poner una reserva en el siguiente \xC3\xADtem disponible."
+      - a los socios hacer reservas sobre ?ems espec?icos en el OPAC. Si no est?abilitado, los usuarios s??pueden poner una reserva en el siguiente ?em disponible.
     - 
       - 
         choices: 
@@ -545,7 +546,7 @@ opac.pref:
           opacrenew: "'OPACRenew'"
           patronhomebranch: la sede de origen del socio
         pref: OpacRenewalBranch
-      - "como c\xC3\xB3digo de biblioteca para almacenar en las tablas est\xC3\xA1ticas"
+      - "como c\xC3\xB3digo de biblioteca para almacenar en las tablas estad\xC3\xADsticas"
     - 
       - "S\xC3\xB3lo se permitir\xC3\xA1 a los socios renovar sus propios libros en el OPAC si tienen menos de"
       - 
@@ -572,7 +573,7 @@ opac.pref:
         class: code
         pref: OpacHiddenItems
         type: textarea
-      - "Permite definir reglas a medida para ocultar \xC3\xADtems espec\xC3\xADficos en el OPAC. Vea docs/opac/OpacHiddenItems.txt para m\xC3\xA1s informaci\xC3\xB3n."
+      - Permite definir reglas a medida para ocultar ?ems espec?icos en el OPAC. Vea docs/opac/OpacHiddenItems.txt para m?informaci?
     - 
       - 
         choices: 
@@ -626,42 +627,42 @@ opac.pref:
         class: integer
         pref: AnonymousPatron
       - "como el Socio An\xC3\xB3nimo (para sugerencias an\xC3\xB3nimas y historial de lectura)"
-  Self Registration: 
+  opac.pref Self Registration: 
     - 
       - 
         choices: 
-          "": Don't allow
-          1: Allow
+          "": No permitir
+          1: Permitir
         pref: PatronSelfRegistration
-      - library patrons to register an account via the OPAC.
+      - para los socios de la biblioteca que quieren registrar una cuenta desde el OPAC.
     - 
       - 
         choices: 
-          "": Don't require
-          1: Require
+          "": No requerir
+          1: Requerir
         pref: PatronSelfRegistrationVerifyByEmail
-      - that a self-registering patron verify his or herself via email.
+      - "que el socio verifique el autoregistro a trav\xC3\xA9s del correo electr\xC3\xB3nico."
     - 
-      - Use the patron category code
+      - "Utilizar el c\xC3\xB3digo de categor\xC3\xADa de socio"
       - 
         class: short
         pref: PatronSelfRegistrationDefaultCategory
-      - as the default patron category for patrons registered via the OPAC.
+      - "como predeterminada la categor\xC3\xADa de socio para los socios registrados desde el OPAC."
     - 
-      - Delete patrons registered via the OPAC, but not yet verified after
+      - Borrar los socios registrados desde el OPAC, pero que no han sido verificados todav
       - 
         class: integer
         pref: PatronSelfRegistrationExpireTemporaryAccountsDelay
-      - days.
+      - d?.
     - 
-      - "The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> must be filled in on the patron entry screen:"
+      - "El siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a> deber?er rellenado en la pantalla de entrada del socio:"
       - 
         class: multi
         pref: PatronSelfRegistrationBorrowerMandatoryField
-      - (separate columns with |)
+      - (separar columnas con |)
     - 
-      - "The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> will not appear on the patron entry screen:"
+      - "La siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a>no aparecer?n la pantalla de entrada del socio:"
       - 
         class: multi
         pref: PatronSelfRegistrationBorrowerUnwantedField
-      - (separate columns with |)
+      - "(separar columnas con  |) "

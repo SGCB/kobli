@@ -4,6 +4,9 @@
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript">
 //<![CDATA[
+[% IF (dateformat == 'metric') %]
+    dt_add_type_uk_date();
+[% END %]
  $(document).ready(function() {
     var histsearcht = $("#histsearcht").dataTable($.extend(true, {}, dataTablesDefaults, {
         "sPaginationType": "four_button"

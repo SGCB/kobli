@@ -61,14 +61,13 @@
  <label for="lib_opac">Descripción (OPAC)</label>
  <input type="text" name="lib_opac" id="lib_opac" value="[% lib_opac %]" maxlength="200" />
  </li>
- <li><label for="branches">Branches limitation: </label>
+ <li><label for="branches">Limitación sedes:</label>
  <select id="branches" name="branches" multiple size="10">
- <option value="">All branches</option>
+ <option value="">Todas las sedes</option>
  [% FOREACH branch IN branches_loop %] [% IF ( branch.selected ) %] <option selected="selected" value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% ELSE %] <option value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% END %] [% END %] </select>
- <span>Select All if this authorised value must to be displayed all the time. Otherwise select librairies you want to associate with this value.
- </span>
+ <span>Seleccionar Todo si este valor autorizado debe ser visualizado todo el tiempo. De lo contrario, seleccione las bibliotecas que desea asociar con este valor.</span>
  </li>
 
  </ol>
@@ -175,7 +174,7 @@
  <th>Descripción</th>
  <th>Descripción (OPAC)</th>
  <th>Icono</th>
- <th>Branches limitations</th>
+ <th>Limitaciones sedes</th>
  <th>Editar</th>
  <th>Eliminar</th>
  </tr>
@@ -188,15 +187,7 @@
  <td>[% IF ( loo.imageurl ) %]<img src="[% loo.imageurl %]" alt=""/>[% ELSE %]&nbsp;[% END %]</td>
  <td>
  [% IF loo.branches.size > 0 %] [% branches_str = "" %] [% FOREACH branch IN loo.branches %] [% branches_str = branches_str _ " " _ branch.branchname _ "(" _ branch.branchcode _ ")" %] [% END %] <span href="#" title="[% branches_str %]">
- [% IF loo.branches.size > 1 %]
- [% loo.branches.size %] branches limitations
- [% ELSE %]
- [% loo.branches.size %] branch limitation
- [% END %]
- [% ELSE %]
- No limitation
- [% END %]
- </td>
+ [% IF loo.branches.size > 1 %] [% loo.branches.size %] limitaciones sede [% ELSE %] [% loo.branches.size %] limitacion sede [% END %] [% ELSE %] No limitatción [% END %] </td>
  <td><a href="[% loo.edit %]">Editar</a></td>
  <td><a href="[% loo.delete %]">Eliminar</a></td>
 </tr>

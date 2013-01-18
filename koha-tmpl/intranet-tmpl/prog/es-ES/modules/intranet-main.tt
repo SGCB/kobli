@@ -12,8 +12,8 @@
  <div id="yui-main">
  <div class="yui-b"><div class="yui-g">
  [% IF adminWarning %] <div id="adminwarning" class="dialog alert">
- <p><strong>Advertencia:</strong> You're logged in with the database administrator account. This a bad idea, and you are likely to encounter problems.</p>
- <p>You should <a href="/cgi-bin/koha/members/memberentry.pl?op=add">create a patron</a> to use when administering Koha and give it superlibrarian permissions.</p>
+ <p><strong>Advertencia:</strong> Está logado con la cuenta de administrador en la base de datos. Esta es una mala idea, y es probable que encuentres problemas.</p>
+ <p>Debería<a href="/cgi-bin/koha/members/memberentry.pl?op=add">crear un socio</a> a utilizar  la administración de Koha y darle permisos superlibrarian.</p>
  </div>
  [% END %] <div class="yui-u first">
 
@@ -69,11 +69,7 @@
  </div><!-- /yui-u -->
 </div><!-- /yui-g -->
 <div class="yui-g">
- [% IF ( ( CAN_user_tools_moderate_comments && pendingcomments ) 
- || ( CAN_user_tools_moderate_tags && pendingtags )
- || ( CAN_user_borrowers && pending_borrower_modifications )
- || ( CAN_user_acquisition && pendingsuggestions ) ) %]
- <div id="area-pending">
+ [% IF ( ( CAN_user_tools_moderate_comments && pendingcomments ) || ( CAN_user_tools_moderate_tags && pendingtags ) || ( CAN_user_borrowers && pending_borrower_modifications ) || ( CAN_user_acquisition && pendingsuggestions ) ) %] <div id="area-pending">
  [% IF ( CAN_user_acquisition && pendingsuggestions ) %] <div class="pending-info" id="suggestions_pending">
 
  <a href="/cgi-bin/koha/suggestion/suggestion.pl">Sugerencias con aprobación pendiente</a>: <span class="pending-number-link">[% pendingsuggestions %]</span>
@@ -85,7 +81,7 @@
  <a href="/cgi-bin/koha/tags/review.pl">Etiquetas con aprobación pendiente</a>: <span class="pending-number-link">[% pendingtags %]</span>
  </div>
  [% END %] [% IF ( CAN_user_borrowers && pending_borrower_modifications ) %] <div class="pending-info" id="patron_updates_pending">
- <a href="/cgi-bin/koha/members/members-update.pl">Patrons requesting modifications</a>: <span class="pending-number-link">[% pending_borrower_modifications %]</span>
+ <a href="/cgi-bin/koha/members/members-update.pl">Los clientes que soliciten modificaciones</a>: <span class="pending-number-link">[% pending_borrower_modifications %]</span>
  </div>
  [% END %] </div>
 

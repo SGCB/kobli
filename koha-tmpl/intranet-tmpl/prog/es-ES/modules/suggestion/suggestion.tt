@@ -370,7 +370,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <li><label for="author"> Autor:</label><input type="text" id="author" name="author" value="[% author %]" /></li>
  <li><label for="isbn"> ISBN:</label><input type="text" id="isbn"  name="isbn" value="[% isbn %]" /></li>
  <li><label for="publishercode"> Editor:</label><input type="text" id="publishercode" name="publishercode" value="[% publishercode %]" /></li>
- <li><label for="publicationyear"> Año de publicación:</label><input type="text" id="publicationyear" name="publicationyear" value="[% publicationyear %]" /></li>
+ <li><label for="copyrightdate_filter"> Fecha de Copyright:</label><input type="text" id="copyrightdate_filter" name="copyrightdate" value="[% copyrightdate %]" /></li>
  <li><label for="collectiontitle"> Título de colección:</label><input type="text" id="collectiontitle" name="collectiontitle" value="[% collectiontitle %]" /></li><li><input value="Ir" type="submit" /></li></ol>
  </fieldset>
  <fieldset class="brief"><h4 class="collapse"><a href="#">Información de la sugerencia</a></h4>
@@ -383,34 +383,37 @@ $(document).ready(function() { calcNewsuggTotal(); });
  [% ELSE %]<option value="REJECTED">Rechazado</option>[% END %] </select></li>
  <li><label for="suggestedby"> Sugerido por: </label><select id="suggestedby" name="suggestedby"><option value="">Cualquiera</option>
 [% FOREACH suggestedby_loo IN suggestedby_loop %][% IF ( suggestedby_loo.selected ) %]<option value="[% suggestedby_loo.code %]" selected="selected">[% suggestedby_loo.desc %]</option>[% ELSE %]<option value="[% suggestedby_loo.code %]">[% suggestedby_loo.desc %]</option>[% END %][% END %] </select></li>
- <li><label for="suggesteddate_from"> Sugerido sobre:</label>[% suggesteddate %] <table class="invis">
+ <li><label for="suggesteddate_from"> Sugerido sobre:</label>
+ <table class="invis">
  <tr>
- <td><label for="suggesteddate_from">de:</label></td><td><input type="text" id="suggesteddate_from" name="suggesteddate_from" style="width:80px;" /></td>
+ <td><label for="suggesteddate_from">de:</label></td><td><input type="text" id="suggesteddate_from" name="suggesteddate_from" value="[% suggesteddate_from %]" style="width:76px;" /></td>
  </tr>
  <tr>
- <td><label for="suggesteddate_to">en:</label></td><td><input type="text" id="suggesteddate_to" name="suggesteddate_to" style="width:80px;" /></td>
+ <td><label for="suggesteddate_to">en:</label></td><td><input type="text" id="suggesteddate_to" name="suggesteddate_to" value="[% suggesteddate_to %]" style="width:76px;" /></td>
  </tr>
  </table>
  </li>
  <li><label for="managedby"> Administrado por:</label><select id="managedby" name="managedby"><option value="">Cualquiera</option>
 [% FOREACH managedby_loo IN managedby_loop %][% IF ( managedby_loo.selected ) %]<option value="[% managedby_loo.code %]" selected="selected">[% managedby_loo.desc %]</option>[% ELSE %]<option value="[% managedby_loo.code %]">[% managedby_loo.desc %]</option>[% END %][% END %] </select></li>
- <li><label for="manageddate_from"> Fecha de administración:</label>[% manageddate %] <table class="invis">
+ <li><label for="manageddate_from"> Fecha de administración:</label>
+ <table class="invis">
  <tr>
- <td><label for="manageddate_from">de:</label></td><td><input type="text" id="manageddate_from" name="manageddate_from" style="width:80px;" /></td>
+ <td><label for="manageddate_from">de:</label></td><td><input type="text" id="manageddate_from" name="manageddate_from" value="[% manageddate_from %]" style="width:76px;" /></td>
  </tr>
  <tr>
- <td><label for="manageddate_to">en:</label></td><td><input type="text" id="manageddate_to" name="manageddate_to" style="width:80px;" /></td>
+ <td><label for="manageddate_to">en:</label></td><td><input type="text" id="manageddate_to" name="manageddate_to" value="[% manageddate_to %]" style="width:76px;" /></td>
  </tr>
  </table>
  </li>
  <li><label for="acceptedby"> Aceptado por:</label><select id="acceptedby" name="acceptedby"><option value="">Cualquiera</option>
 [% FOREACH acceptedby_loo IN acceptedby_loop %][% IF ( acceptedby_loo.selected ) %] <option value="[% acceptedby_loo.code %]" selected="selected">[% acceptedby_loo.desc %]</option>[% ELSE %]<option value="[% acceptedby_loo.code %]">[% acceptedby_loo.desc %]</option>[% END %][% END %] </select></li>
- <li><label for="accepteddate_from"> Aceptado en:</label>[% accepteddate %] <table class="invis">
+ <li><label for="accepteddate_from"> Aceptado en:</label>
+ <table class="invis">
  <tr>
- <td><label for="accepteddate_from">de:</label></td><td><input type="text" id="accepteddate_from" name="accepteddate_from" style="width:80px;" /></td>
+ <td><label for="accepteddate_from">de:</label></td><td><input type="text" id="accepteddate_from" name="accepteddate_from" value="[% accepteddate_from %]" style="width:76px;" /></td>
  </tr>
  <tr>
- <td><label for="accepteddate_to">en:</label></td><td><input type="text" id="accepteddate_to" name="accepteddate_to" style="width:80px;" /></td>
+ <td><label for="accepteddate_to">en:</label></td><td><input type="text" id="accepteddate_to" name="accepteddate_to" value="[% accepteddate_to %]" style="width:76px;" /></td>
  </tr>
  </table>
  </li>

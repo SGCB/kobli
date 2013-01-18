@@ -80,8 +80,9 @@ function moneyFormat(textObj) {
  </li>
 </ul>
 <div class="tabs-container">
-[% IF ( error ) %] <div id="error_message" class="dialog alert">
- [% error %] </div>
+[% IF ( error_over ) %] <div id="error_message" class="dialog alert">
+ You must pay a value less than or equal to [% total_due | format('%.2f') %].
+ </div>
 [% END %] [% IF ( pay_individual ) %] <form name="payindivfine" onsubmit="return validatePayment(this);" method="post" action="/cgi-bin/koha/members/paycollect.pl">
  <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrower.borrowernumber %]" />
  <input type="hidden" name="pay_individual" id="pay_individual" value="[% pay_individual %]" />
