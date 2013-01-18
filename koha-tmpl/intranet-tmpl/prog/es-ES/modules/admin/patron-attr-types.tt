@@ -107,14 +107,13 @@ function CheckAttributeTypeForm(f) {
  [% END %] [% END %] </select>
  <span>Categoría de valor autorizado; si se selecciona alguno, la página de ingreso de socios sólo permitirá seleccionar valores de la lista de valores autorizados. Sin embargo, una lista de valores autorizados no se aplica durante la importación de socios en lotes.</span>
  </li>
- <li><label for="branches">Branches limitation: </label>
+ <li><label for="branches">Limitación sedes:</label>
  <select id="branches" name="branches" multiple size="10">
- <option value="">All branches</option>
+ <option value="">Todas las sedes</option>
  [% FOREACH branch IN branches_loop %] [% IF ( branch.selected ) %] <option selected="selected" value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% ELSE %] <option value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% END %] [% END %] </select>
- <span>Select All if this attribute type must to be displayed all the time. Otherwise select librairies you want to associate with this value.
- </span>
+ <span>Seleccionar Todo si este tipo de atributo debe ser visualizado todo el tiempo. De lo contrario, seleccione las bibliotecas que desea asociar con este valor.</span>
  </li>
  <li>
  <label for="category">Categoría: </label>
@@ -178,7 +177,7 @@ function CheckAttributeTypeForm(f) {
  <tr>
  <th>Código</th>
  <th>Descripción</th>
- <th>Branches limitation</th>
+ <th>Limitación sedes</th>
  <th>Acciones</th>
  </tr>
  </thead>
@@ -188,16 +187,8 @@ function CheckAttributeTypeForm(f) {
  <td>[% item.description %]</td>
  <td>
  [% IF item.branches.size > 0 %] [% branches_str = "" %] [% FOREACH branch IN item.branches %] [% branches_str = branches_str _ " " _ branch.branchname _ "(" _ branch.branchcode _ ")" %] [% END %] <span title="[% branches_str %]">
- [% IF item.branches.size > 1 %]
- [% item.branches.size %] branches limitations
- [% ELSE %]
- [% item.branches.size %] branch limitation
- [% END %]
- </span>
- [% ELSE %]
- No limitation
- [% END %]
- </td>
+ [% IF item.branches.size > 1 %] [% item.branches.size %] limitaciones de sede [% ELSE %] [% item.branches.size %] limitación de sede [% END %] </span>
+ [% ELSE %] No slimitación [% END %] </td>
  <td>
  <a href="[% item.script_name %]?op=edit_attribute_type&amp;code=[% item.code |html %]">Editar</a>
  <a href="[% item.script_name %]?op=delete_attribute_type&amp;code=[% item.code |html %]">Eliminar</a>

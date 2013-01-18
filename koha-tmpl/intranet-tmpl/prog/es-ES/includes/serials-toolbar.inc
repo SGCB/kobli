@@ -2,13 +2,13 @@
 	//<![CDATA[
 
     function confirm_close() {
-        var is_confirmed = confirm(_("Are you sure you want to close this subscription?"));
+        var is_confirmed = confirm(_("¿Está seguro de querer cerrar esta suscripción?"));
         if (is_confirmed) {
             window.location="subscription-detail.pl?subscriptionid=[% subscriptionid %]&op=close";
         }
     }
     function confirm_reopen() {
-        var is_confirmed = confirm(_("Are you sure you want to reopen this subscription?"));
+        var is_confirmed = confirm(_("¿Está seguro de querer reabrir esta suscripción?"));
         if (is_confirmed) {
             window.location="subscription-detail.pl?subscriptionid=[% subscriptionid %]&op=reopen";
         }

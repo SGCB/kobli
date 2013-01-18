@@ -26,8 +26,7 @@ function closeNow()
 }
 </script> 
 
-
-</head>
+[% IF ( SCOUserCSS ) %]<style type="text/css">[% SCOUserCSS %]</style>[% END %] [% IF ( SCOUserJS ) %]<script type="text/javascript">[% SCOUserJS %]</script>[% END %] </head>
 
 <body onLoad="callPrint(); closeNow();"> 
 

@@ -8,7 +8,7 @@
 
 <p>Si no se desea que todas las bibliotecas a participar en el  proceso de cumplimiento de la reserva, deberá incluir las bibliotecas de las que *do* participar en el proceso aquí introduciendo todos códigos de barras de la biblioteca participante, separados por comas (por ejemplo "MPL, CPL, SPL, BML"etc.).</p>
 
-<p>By default, the holds queue will be generated such that the system will first attempt to hold fulfillment using items already at the pickup library if possible. If there are no items available at the pickup library to fill a hold, build_holds_queue.pl will then use the list of libraries defined in StaticHoldsQueueWeight. If RandomizeHoldsQueueWeight is disabled ( which it is by default ), the script will assign fulfillment requests in the order the libraries are placed in the StaticHoldsQueueWeight system preference.</p>
+<p>Por defecto, la cola de reservas se generará de manera que el sistema primero intentará mantener el cumplimiento con los ejemplares ya en la biblioteca de recogida si es posible. Si no hay elementos disponibles en la biblioteca de recogida para llenar una reserva, build_holds_queue.pl usará la lista de bibliotecas definidas en StaticHoldsQueueWeight. Si RandomizeHoldsQueueWeight está desactivado (el que está por defecto), el script asignar solicitudes de cumplimiento en el orden de las bibliotecas que se colocan en la preferencia del sistema StaticHoldsQueueWeight. </p>
 
 <p>Por ejemplo, si su sistema cuenta con tres bibliotecas, de diferentes tamaños (pequeño, mediano y grande) y desea que la carga de cumplimiento tiene que estar en las bibliotecas más grandes antes de las bibliotecas más pequeñas, usted quiere StaticHoldsQueueWeight a ser algo como "LRG, MED , SML ".</p>
 

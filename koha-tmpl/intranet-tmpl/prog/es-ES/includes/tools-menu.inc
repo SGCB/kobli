@@ -22,7 +22,7 @@
  [% END %] [% IF ( CAN_user_tools_edit_notices ) %] <li><a href="/cgi-bin/koha/tools/letter.pl">Avisos &amp; Recibos</a></li>
  [% END %] [% IF ( CAN_user_tools_edit_notice_status_triggers ) %] <li><a href="/cgi-bin/koha/tools/overduerules.pl">Disparadores de avisos de retraso/estado</a></li>
  [% END %] [% IF ( CAN_user_tools_label_creator ) %] <li><a href="/cgi-bin/koha/patroncards/home.pl">Creador de carnet de socio</a></li>
- [% END %] [% IF ( CAN_user_tools_delete_anonymize_patrons ) %] <li><a href="/cgi-bin/koha/tools/cleanborrowers.pl">Socios (anonimizar, borrar en bloque)</a></li>
+ [% END %] [% IF ( CAN_user_tools_delete_anonymize_patrons ) %] <li><a href="/cgi-bin/koha/tools/cleanborrowers.pl">Batch patron deletion/anonymization</a></li>
  [% END %] [% IF ( CAN_user_tools_edit_patrons ) %] <li><a href="/cgi-bin/koha/tools/modborrowers.pl">Lote modificaciones de socio</a></li>
  [% END %] [% IF ( CAN_user_tools_moderate_tags ) %] <li><a href="/cgi-bin/koha/tags/review.pl">Moderación de etiquetas</a></li>
  [% END %] [% IF ( CAN_user_tools_batch_upload_patron_images ) %] <li><a href="/cgi-bin/koha/tools/picture-upload.pl">Subir imágenes de socios</a></li>

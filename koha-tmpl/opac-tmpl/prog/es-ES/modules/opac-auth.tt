@@ -67,7 +67,7 @@
 <input value="Iniciar sesión" type="submit" class="submit" />
 <div id="nologininstructions">
  <h5>¿Todavía no tiene una contraseña?</h5><p> Si no tiene contraseña, pase por la administración de la biblioteca la próxima vez que venga. Se le proporcionará una.</p>
- <h5>¿No tiene carné de la biblioteca?</h5><p> If you don't have a library card, stop by your local library to sign up[% IF PatronSelfRegistration && PatronSelfRegistrationDefaultCategory %]<span id="registrationinstructions"> or <a href="/cgi-bin/koha/opac-memberentry.pl">register here</a></span>[% END %]. </p>
+ <h5>¿No tiene carné de la biblioteca?</h5><p> Si no tiene carné de la biblioteca, pase por la administración de ésta e inscríbase[% IF PatronSelfRegistration && PatronSelfRegistrationDefaultCategory %]<span id="registrationinstructions"> o <a href="/cgi-bin/koha/opac-memberentry.pl">registrar aquí</a></span>[% END %].</p>
 </div>
 </form>
 

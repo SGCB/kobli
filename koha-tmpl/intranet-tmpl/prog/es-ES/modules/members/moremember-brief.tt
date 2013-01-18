@@ -36,7 +36,7 @@
  <li><span class="label">Categoría: </span>[% description %] ([% categorycode %])</li>
  <li><span class="label">Fecha de registro: </span>[% dateenrolled %]</li>
  <li><span class="label">Fecha de vencimiento: </span>
- [% IF ( reregistration ) %] <strong class="reregistrinfo">[% dateexpiry %]</span>
+ [% IF ( reregistration ) %] <strong class="reregistrinfo">[% dateexpiry %]</strong>
  [% ELSE %] [% dateexpiry %] [% END %] </li>
  <li><span class="label">Biblioteca: </span>[% branchname %]</li>
 

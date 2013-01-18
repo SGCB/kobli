@@ -6,11 +6,11 @@
  <option value="" selected="selected" >Cualquier</option>
  <option value="aud:a">juvenil, general</option>
  <option value="aud:b">pre-escolar (0-5)</option>
- <option value="aud:c">primary (5-8)</option>
+ <option value="aud:c">primaria (5-8)</option>
  <option value="aud:d">niños (9-14)</option>
- <option value="aud:e">young Adult</option>
- <option value="aud:k">adult, serious</option>
- <option value="aud:m">adult, General</option>
+ <option value="aud:e">Adulto joven </option>
+ <option value="aud:k">adulto</option>
+ <option value="aud:m">adulto, General</option>
  <option value="aud:u">desconocido</option>
  </select>
  </p>
@@ -26,13 +26,13 @@
  <option value="Material-type:h">escrito a mano</option>
  <option value="Material-type:i">multimedia</option>
  <option value="Material-type:j">mini-impreso</option>
- <option value="Material-type:s">electronic ressource</option>
- <option value="Material-type:t">microform</option>
+ <option value="Material-type:s">recursos electrónico</option>
+ <option value="Material-type:t">microforma</option>
  <option value="Material-type:z">otra forma de material textual</option>
  </select>
  </p>
  <p>
- <label>Literary genre</label>
+ <label>Género literario</label>
  <select name="limit" class="subtype">
  <option value="" selected="selected" >Cualquier</option>
  <option value="Literature-Code:a">ficción</option>
@@ -43,20 +43,20 @@
  <option value="Literature-Code:f">historias cortas</option>
  <option value="Literature-Code:g">poesía</option>
  <option value="Literature-Code:h">discursos, oratoria</option>
- <option value="Literature-Code:i">libretto</option>
+ <option value="Literature-Code:i">libreto</option>
  <option value="Literature-Code:y">no es un texto literario</option>
- <option value="Literature-Code:z">multiple/other literary forms</option>
+ <option value="Literature-Code:z">múltiple/otras formas literarias </option>
  </select>
  </p>
  <p>
  <label>Biografía</label>
  <select name="limit" class="subtype" size="1">
  <option value="">Cualquier</option>
- <option value="Biography-code:y">not a biography</option>
+ <option value="Biography-code:y">no es una biografía</option>
  <option value="Biography-code:a">autobiografía</option>
  <option value="Biography-code:b">biografía individual</option>
  <option value="Biography-code:c">biografía colectiva</option>
- <option value="Biography-code:d">contains biographical data</option>
+ <option value="Biography-code:d">contiene datos biográficos </option>
  </select>
  </p>
  <p>
@@ -105,8 +105,7 @@
  <option value="ctype:r" >repasos/críticas literiarias</option>
  <option value="ctype:s" >tratados</option>
  <option value="ctype:t" >historietas o cómics</option>
- <option value="ctype:v" >dissertation or thesis (revised)</option>v
- <option value="ctype:w" >religious text</option>
+ <option value="ctype:v" >disertación o tesis (revisada)</option>v<option value="ctype:w" >texto religioso</option>
  <option value="ctype:z" >otro</option>
  </select>
  </p>
@@ -127,11 +126,11 @@
  <select name="limit" class="subtype">
  <option value="">Cualquier tipo</option>
  <option value="Type-Of-Serial:a">Publicación periódica</option>
- <option value="Type-Of-Serial:b">Monographic series</option>
+ <option value="Type-Of-Serial:b">Series monográficas </option>
  <option value="Type-Of-Serial:c">Periódico</option>
- <option value="Type-Of-Serial:e">Updating loose-leaf</option>
- <option value="Type-Of-Serial:f">Database</option>
- <option value="Type-Of-Serial:g">Updating website</option>
+ <option value="Type-Of-Serial:e">Actualización hojas perdidas</option>
+ <option value="Type-Of-Serial:f">Base de datos</option>
+ <option value="Type-Of-Serial:g">Actualización de la página web</option>
  <option value="Type-Of-Serial:z">Otro</option>
  </select>
  </p>
@@ -150,7 +149,7 @@
  <option value="Frequency-code:i">Tres veces al año</option>
  <option value="Frequency-code:j">Semestral</option>
  <option value="Frequency-code:k">Anual</option>
- <option value="Frequency-code:l">Biennial</option>
+ <option value="Frequency-code:l">Bienal</option>
  <option value="Frequency-code:m">Trienal</option>
  <option value="Frequency-code:n">Tres veces a la semana</option>
  <option value="Frequency-code:o">Tres veces al mes</option>
@@ -163,8 +162,8 @@
  <label>Regularidad</label>
  <select name="limit" class="subtype">
  <option value="">Cualquier regularidad</option>
- <option value="Regularity-code:a">regular</option>
- <option value="Regularity-code:b">normalised irregular</option>
+ <option value="Regularity-code:a">rregular</option>
+ <option value="Regularity-code:b">irregular normalizado</option>
  <option value="Regularity-code:y">irregular</option>
  <option value="Regularity-code:u">desconocido</option>
  </select>

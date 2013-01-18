@@ -120,6 +120,7 @@ $(document).ready(function()
                 alert(_("No se puede agregar un ítem nuevo, por favor, crear un nuevo pedido"));
                 // and we replace the original value
                 $(this).val([% quantityrec %])
+                updateCosts(); // blur is invoked after change which updated values
                 return false;
             }
         });
@@ -141,7 +142,7 @@ $(document).ready(function()
 //]]>
 </script>
 </head>
-<body id="acq_neworderempty" class="acq" onload="updateCosts()">
+<body id="acq_neworderempty" class="acq">
 
 [% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% name %]</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Bolsa [% basketno %]</a> &rsaquo; [% IF ( ordernumber ) %]Modificar detalles de pedido (línea #[% ordernumber %])[% ELSE %]Nuevo pedido[% END %]</div>
 
@@ -194,9 +195,9 @@ $(document).ready(function()
  <input type="hidden" name="invoiceincgst" id="invoiceincgst" value="[% invoiceincgst %]" />
  <input type="hidden" name="suggestionid" value="[% suggestionid %]" />
  <input type="hidden" name="import_batch_id" value="[% import_batch_id %]" />
- <input type="hidden" name="currency_rate" id="currency_rate" value="[% currency_rate %]" />
 
- <ol><li>
+ [% FOREACH loop_currencie IN loop_currencies %] <input type="hidden" id="currency_rate_[% loop_currencie.currcode %]"  name="[% loop_currencie.currcode %]" value="[% loop_currencie.rate %]" />
+ [% END %] <ol><li>
  [% IF ( biblionumber ) %] <span class="label">Título</span>
  <input type="hidden" size="50" name="title" value="[% title |html %]" /> <span class="title">[% title |html %]</span>
  [% ELSE %] <label for="entertitle" class="required">Título: </label>

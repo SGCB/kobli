@@ -69,8 +69,8 @@
 
  <div id="sysinfo">
  [% IF (warnIsRootUser) %] <h2>Advertencias respecto al usuario actual</h2>
- <p>You are logged in as the database administrative user. This is not recommended because some parts of Koha will not function as expected when using this account.</p>
- <p>Please log in instead with a regular staff account. To create a staff account, create a library, a patron category 'Staff' and add a new patron. Then give this patron permissions from 'More' in the toolbar.</p>
+ <p>Parece que ha iniciado la sesión como usuario de base de datos administrativa. Esta opción o se recomienda porque algunas partes de Kobli no funcionarán como se esperaba cuando se utiliza esta cuenta.</p>
+ <p>Por favor,  es necesario iniciar sesión con una cuenta personal de personal. Para crear una cuenta personal, crear una biblioteca, una categoría de «Personal»  y añadir un nuevo socio. A continuación, dar permisos de este socio de "Más" en la barra de herramientas.</p>
  [% END %] <h2>Advertencias respecto a la configuración del sistema</h2>
  [% IF ( (prefNoZebra) || (warnPrefBiblioAddsAuthorities) || warnPrefEasyAnalyticalRecords ) %] <table>
  <caption>Preferencias</caption>
@@ -110,7 +110,7 @@
  <li>Liz Rea (3.6 Release Maintainer)</li>
  </ul>
 
- <h2>Former Koha release team members</h2>
+ <h2>Equipo de publicación Koha </h2>
  <ul>
  <li>Jared Camins-Esakov (3.6 Release Maintainer)</li>
  <li>Colin Campbell (3.4 QA Manager)</li>
@@ -174,6 +174,7 @@
  <li>Christophe Croullebois</li>
  <li>Nate Curulla</li>
  <li>Vincent Danjean</li>
+ <li>Hugh Davenport</li>
  <li>Elliott Davis</li>
  <li>Doug Dearden</li>
  <li>Kip DeGraaf</li>
@@ -198,6 +199,7 @@
  <li><a href="https://www.ohloh.net/p/koha/contributors/6618544670742">Katrin Fischer</a></li>
  <li>Clay Fouts</li>
  <li>Claudia Forsman</li>
+ <li>Corey Fuimaono</li>
  <li>Marco Gaiarin</li>
  <li>Pierrick Le Gall</li>
  <li>Brendan A. Gallagher</li>
@@ -206,6 +208,7 @@
  <li>Mark Gavillet</li>
  <li>Daniel Kahn Gillmor</li>
  <li>David Goldfein</li>
+ <li>Bernardo Gonzalez Kriegel</li>
  <li>Daniel Grobani</li>
  <li>Amit Gupta</li>
  <li>Michael Hafen</li>
@@ -261,8 +264,9 @@
  <li>H. Passini</li>
  <li>Dobrica Pavlinusic</li>
  <li>Maxime Pelletier</li>
- <li>Universidad Politécnica</li>
  <li>Shari Perkins</li>
+ <li>Fred Pierre</li>
+ <li>Universidad Politécnica</li>
  <li>Romina Racca</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6620692116417">MJ Ray</a></li>
  <li>Liz Rea</li>
@@ -371,12 +375,11 @@
  por el Consorcio Bridge de la Universidad de Carleton y la Universidad de San Olaf.</li>
  </ul>
 
- <h2>The Sudoc Icon Set</h2>
+ <h2>La configuarción Sudoc Icon</h2>
  <ul>
  <li><a href="http://www.abes.fr/Sudoc/Boite-a-outils-Sudoc-public/Les-icones-Sudoc">Les icones Sudoc</a></li>
- <li>The Sudoc Icon Set is licensed under a
- <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License</a>
- by Agence Bibliographique de l'Enseignement Supérieur</li>
+ <li>El Sudoc Icon Set está licenciado bajo<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License</a>
+ por Agence Bibliographique de l'Enseignement Supérieur</li>
  </ul>
  <h2>Iconos del Nombre del Proyecto</h2>
  <ul>
@@ -412,7 +415,7 @@
 <li>Français (Francés) <a href="http://www.koha-fr.org/category/tags/association">Kohala</a>, Pascale Nalon (ENSMP), y muchos más </li>
 <li>Gallego (Galician) Ignacio Javier</li>
 <li>Deutsch (Aelmán) Friedrich zur Hellen, Robert Hillig, Katrin Fischer  Beda Szukics, Mirko Tietgen y  Marc Véron</li>
-<li>&#949;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Griego, Moderno [1453- ])Georgia Katsarou, Panoraia Gaitanou</li>
+<li>&#949;&#955;&#955;&#951;&#957;&#953;&#954;&#940; (Greek, Modern [1453- ]) Georgia Katsarou, Panoraia Gaitanou and Kiriaki Roditi</li>
 <li>&#1506;&#1489;&#1512;&#1497;&#1514; (Hebreo)</li>
 <li>&#2361;&#2367;&#2344;&#2381;&#2342;&#2368; (Hindi)</li>
 <li>Magyar (Húngaro) Agnes Imecs</li>

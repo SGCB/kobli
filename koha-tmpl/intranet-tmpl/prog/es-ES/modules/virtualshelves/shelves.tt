@@ -176,8 +176,7 @@ function placeHold () {
  <td>[% itemsloo.author %]</td>
  <td>[% itemsloo.dateadded %]</td>
  <td>
- [% FOREACH result IN itemsloo.ITEM_RESULTS %][% result.itemcallnumber %][% UNLESS loop.last %], [% END %][% END %]
- </td>
+ [% FOREACH result IN itemsloo.ITEM_RESULTS %][% result.itemcallnumber %][% UNLESS loop.last %], [% END %][% END %] </td>
  <td>
  [% UNLESS ( itemsloo.notforloan ) %] <a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% itemsloo.biblionumber %]">Reservas</a>
  [% END %] </td>
@@ -286,7 +285,7 @@ function placeHold () {
  <tr><th>Nombre de la lista</th><th>Contenidos</th><th>Ordenar por</th><th>Tipo</th><th>Opciones</th></tr>
  [% FOREACH shelveslooppri IN shelveslooppriv %] [% IF ( shelveslooppri.toggle ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td><a href="shelves.pl?[% IF ( shelveslooppri.showprivateshelves ) %]display=privateshelves&amp;[% END %]viewshelf=[% shelveslooppri.shelf %]&amp;shelfoff=[% shelfoff %]">[% shelveslooppri.shelfname |html %]</a></td>
  <td>[% shelveslooppri.count %] ítem(s)</td>
- <td>[% IF ( shelveslooppri.sortfield == "author" ) %]Author[% ELSIF ( shelveslooppri.sortfield == "copyrightdate" ) %]Year[% ELSIF (shelveslooppri.sortfield == "itemcallnumber") %]Call number[% ELSE %]Title[% END %]</td>
+ <td>[% IF ( shelveslooppri.sortfield == "author" ) %]Autor[% ELSIF ( shelveslooppri.sortfield == "copyrightdate" ) %]Año[% ELSIF (shelveslooppri.sortfield == "itemcallnumber") %]Signatura[% ELSE %]Título[% END %]</td>
  <td>[% IF ( shelveslooppri.viewcategory1 ) %]Privada[% END %] [% IF ( shelveslooppri.viewcategory2 ) %]Pública [% END %] </td>
  <td>
  [% IF ( shelveslooppri.mine ) %] <form action="merge.pl" method="get">
@@ -323,7 +322,7 @@ function placeHold () {
  [% FOREACH shelvesloo IN shelvesloop %] [% IF ( shelvesloo.toggle ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td><a href="shelves.pl?viewshelf=[% shelvesloo.shelf %]">[% shelvesloo.shelfname |html %]</a></td>
  <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% shelvesloo.owner %]">[% shelvesloo.ownername %]</td>
  <td>[% shelvesloo.count %] ítem(s)</td>
- <td>[% IF ( shelvesloo.sortfield == "author" ) %]Author[% ELSIF ( shelvesloo.sortfield == "copyrightdate" ) %]Year[% ELSIF (shelvesloo.sortfield == "itemcallnumber") %]Call number[% ELSE %]Title[% END %]</td>
+ <td>[% IF ( shelvesloo.sortfield == "author" ) %]Autor[% ELSIF ( shelvesloo.sortfield == "copyrightdate" ) %]Año[% ELSIF (shelvesloo.sortfield == "itemcallnumber") %]Signatura[% ELSE %]Título[% END %]</td>
  <td>[% IF ( shelvesloo.viewcategory1 ) %]Privada[% END %] [% IF ( shelvesloo.viewcategory2 ) %]Pública [% END %] </td>
  <td>
  [% IF ( shelvesloo.manageshelf ) %] <form action="shelves.pl" method="get">

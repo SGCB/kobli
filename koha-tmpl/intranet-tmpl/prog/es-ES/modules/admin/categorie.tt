@@ -146,14 +146,13 @@
  <li><label for="category_type">Tipo de categoría: </label> <select name="category_type" id="category_type">
  [% IF ( type_n ) %]<option value="" selected="selected">Seleccionar un tipo de categoría</option>[% ELSE %]<option value="">Seleccionar un tipo de categoría</option>[% END %] [% IF ( type_A ) %]<option value="A" selected="selected">Adulto</option>[% ELSE %]<option value="A">Adulto</option>[% END %] [% IF ( type_C ) %]<option value="C" selected="selected">Niño</option>[% ELSE %]<option value="C">Niño</option>[% END %] [% IF ( type_S ) %]<option value="S" selected="selected">Administrativo</option>[% ELSE %]<option value="S">Administrativo</option>[% END %] [% IF ( type_I ) %]<option value="I" selected="selected">Institución</option>[% ELSE %]<option value="I">Institución</option>[% END %] [% IF ( type_P ) %]<option value="P" selected="selected">Profesional</option>[% ELSE %]<option value="P">Profesional</option>[% END %] [% IF ( type_X ) %]<option value="X" selected="selected">Estadístico</option>[% ELSE %]<option value="X">Estadístico</option>[% END %] </select>
  </li>
- <li><label for="branches">Branches limitation: </label>
+ <li><label for="branches">Limitación sedes:</label>
  <select id="branches" name="branches" multiple size="10">
- <option value="">All branches</option>
+ <option value="">Todas las sedes</option>
  [% FOREACH branch IN branches_loop %] [% IF ( branch.selected ) %] <option selected="selected" value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% ELSE %] <option value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% END %] [% END %] </select>
- <span>Select All if this category type must to be displayed all the time. Otherwise select librairies you want to associate with this value.
- </span>
+ <span>Seleccionar Todo si este tipo de categoría debe de mostrarse todo el tiempo. De lo contrario, seleccione las bibliotecas que desea asociar con este valor.</span>
  </li>
  </ol>
 </fieldset>
@@ -235,7 +234,7 @@
  <th scope="col">Ítems perdidos</th>
  <th scope="col">Costo de reserva</th>
  [% IF ( EnhancedMessagingPreferences ) %] <th scope="col">Mensajería</th>
- [% END %] <th scope="col">Branches limitations</th>
+ [% END %] <th scope="col">Limitaciones sedes</th>
  <th scope="col" colspan="2">&nbsp; </th>
  </thead>
  [% FOREACH loo IN loop %] <tr>
@@ -258,16 +257,8 @@
  [% ELSE %]Ninguno<br />[% END %] [% END %] [% END %] [% ELSE %] Ninguno [% END %] </td>
  [% END %] <td>
  [% IF loo.branches.size > 0 %] [% branches_str = "" %] [% FOREACH branch IN loo.branches %] [% branches_str = branches_str _ " " _ branch.branchname _ "(" _ branch.branchcode _ ")" %] [% END %] <span title="[% branches_str %]">
- [% IF loo.branches.size > 1 %]
- [% loo.branches.size %] branches limitations
- [% ELSE %]
- [% loo.branches.size %] branch limitation
- [% END %]
- </span>
- [% ELSE %]
- No limitation
- [% END %]
- </td>
+ [% IF loo.branches.size > 1 %] [% loo.branches.size %] limitaciones de sede [% ELSE %] [% loo.branches.size %] limitación de sede [% END %] </span>
+ [% ELSE %] No slimitación [% END %] </td>
  <td><a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |uri %]">Editar</a></td>
  <td><a href="[% loo.script_name %]?op=delete_confirm&amp;categorycode=[% loo.categorycode |uri %]">Eliminar</a></td>
  </tr>

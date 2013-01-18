@@ -1,19 +1,11 @@
-[% USE KohaDates %]
-[% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnDetail ) %]
-[% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnDetail ) %]
-
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Details for: [% title |html %][% FOREACH subtitl IN subtitle %], [% subtitl.subfield |html %][% END %]
-[% INCLUDE 'doc-head-close.inc' %]
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% USE KohaDates %] [% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnDetail ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnDetail ) %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Detalles para: [% title |html %][% FOREACH subtitl IN subtitle %], [% subtitl.subfield |html %][% END %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tools.min.js"></script>
 [% IF ( SocialNetworks ) %] <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
       {lang: '[% lang %]'}
     </script>
  <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 [% END %] [% IF ( OpacStarRatings != 'disable' ) %]<script type="text/javascript" src="/opac-tmpl/prog/en/lib/jquery/plugins/jquery.rating.js"></script>
-<link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/jquery.rating.css" />[% END %] <link href="[% themelang %]/css/thumbnailviewer.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="[% themelang %]/js/thumbnailviewer.js"></script>
-<script type="text/JavaScript" language="JavaScript">
+<link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/jquery.rating.css" />[% END %] [% IF ( OpacHighlightedWords ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.highlight-3.js"></script>[% END %] <script type="text/JavaScript" language="JavaScript">
 //<![CDATA[
 
     [% IF ( OpacBrowseResults && busc ) %]
@@ -450,7 +442,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  <ul> [% FOREACH MARCurl IN MARCURLS %] <li>[% IF ( MARCurl.part ) %][% MARCurl.part %] <br />[% END %] 
  <!-- here you might do a tmpl_if name="toc" and use greybox or equivalent for table of contents -->
  
- [% IF ( MARCurl.OPACurlOpenInNewWindow ) %]<a href="[% MARCurl.MARCURL %]" title="[% MARCurl.MARCURL %]" target="_blank">[% ELSE %]<a href="[% MARCurl.MARCURL %]" title="[% MARCurl.MARCURL %]">[% END %] [% MARCurl.linktext %]</a>
+ [% IF ( OPACURLOpenInNewWindow ) %]<a href="[% MARCurl.MARCURL %]" title="[% MARCurl.MARCURL %]" target="_blank">[% ELSE %]<a href="[% MARCurl.MARCURL %]" title="[% MARCurl.MARCURL %]">[% END %] [% MARCurl.linktext %]</a>
  [% IF ( MARCurl.notes ) %]<ul>[% FOREACH note IN MARCurl.notes %]<li>[% note.note %]</li>[% END %]</ul>[% END %]</li>
  [% END %]</ul>
  </div>
@@ -488,7 +480,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  <label for="newtag[% biblionumber %]">Nueva etiqueta:</label>
  <input name="newtag[% biblionumber %]" id="newtag[% biblionumber %]" maxlength="100" type="text"/>
  <input value="Agregar" name="tagbutton" class="input tagbutton" title="[% biblionumber %]" type="submit" />
- <a class="cancel_tag_add" id="cancel[% biblionumber %]" href="#">(done)</a>
+ <a class="cancel_tag_add" id="cancel[% biblionumber %]" href="#">(hecho)</a>
  </form>
  <span id="newtag[% biblionumber %]_status" class="tagstatus" style="display:none;">
  Estado de etiqueta aquí. </span>
@@ -557,9 +549,9 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 <div id="bibliodescriptions" class="toptabs">
 
 <ul> 
- [% IF ( defaulttab == 'holdings' ) %]<li id="tab_holdings" class="ui-tabs-selected">[% ELSE %]<li id="tab_holdings">[% END %] <a href="#holdings">[% IF SeparateHoldings %][% LoginBranchname %] holdings[% ELSE %]Holdings[% END %] ( [% itemloop.size || 0 %] )</a>
+ [% IF ( defaulttab == 'holdings' ) %]<li id="tab_holdings" class="ui-tabs-selected">[% ELSE %]<li id="tab_holdings">[% END %] <a href="#holdings">[% IF SeparateHoldings %][% LoginBranchname %] ejemplares[% ELSE %]Ejemplares[% END %] ( [% itemloop.size || 0 %] )</a>
  </li>
- [% IF (SeparateHoldings) %] <li><a href="#otherholdings">Other holdings ( [% otheritemloop.size || 0 %] )</a></li>
+ [% IF (SeparateHoldings) %] <li><a href="#otherholdings">Otros ejemplares ( [% otheritemloop.size || 0 %] )</a></li>
  [% END %] <li id="tab_descriptions"> <a href="#descriptions">Notas de título</a></li>
 [% IF ( SYNDETICS_TOC ) %] <li id="tab_toc"> <a href="#toc">TOC</a></li>
 [% END %] [% IF ( SyndeticsEnabled ) %] [% IF ( SyndeticsExcerpt ) %][% IF ( SYNDETICS_EXCERPT ) %] <li id="tab_excerpt"> <a href="#excerpt">Extracto</a></li>
@@ -581,7 +573,8 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 [% END %][% END %] [% IF ( serialcollection ) %] [% IF ( defaulttab == 'serialcollection' ) %]<li id="tab_serialcollection" class="ui-tabs-selected">[% ELSE %]<li id="tab_serialcollection">[% END %] <a href="#serialcollection">Colección de publicaciones periódicas</a>
  </li>
 [% END %] [% IF ( OPACLocalCoverImages && localimages.size ) %] <li id="tab_images"><a href="#images">Imágenes</a></li>
-[% END %] </ul>
+[% END %] [% IF ( HTML5MediaEnabled ) %][% IF ( HTML5MediaSets ) %] <li id="tab_html5media"><a href="#html5media">Play media</a></li>
+[% END %][% END %] </ul>
 
 [% IF ( serialcollection ) %] <div id="serialcollection">
  <table id="serialcollectiont">
@@ -611,13 +604,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 </div>
 
 [% IF (SeparateHoldings) %] <div id="otherholdings">
- [% IF (otheritemloop.size) %]
- [% INCLUDE items_table items=otheritemloop tab="otherholdings" %]
- [% ELSE %]
- No other items.
- [% END %]
- [% INCLUDE shelfbrowser tab='otherholdings' %]
- </div>
+ [% IF (otheritemloop.size) %] [% INCLUDE items_table items=otheritemloop tab="otherholdings" %] [% ELSE %] No otros ítems. [% END %] [% INCLUDE shelfbrowser tab='otherholdings' %] </div>
 [% END %] <div id="descriptions">
 <div class="content_set">
 
@@ -664,7 +651,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 [% END %] [% END %] [% IF ( subscriptionsnumber ) %] <div id="subscriptions">
  <h2>Ésta es una publicación periódica</h2>
  <p>Hay [% subscriptionsnumber %] suscripción(es) asociadas a este título.</p>
- [% FOREACH subscription IN subscriptions %] [% IF ( subscription.branchname ) %]<h3>En biblioteca: [% subscription.branchname %]</h3>[% ELSE %] [% IF ( subscription.branchcode ) %]<h3>En biblioteca: [% subscription.branchcode %]</h3>[% END %][% END %] [% IF ( subscription.closed ) %]<p>This subscription is closed.</p>[% END %] <span style="display:none;"> [% IF ( subscription.callnumber ) %]<p>Callnumber: [% subscription.callnumber %]</p>[% END %]</span>
+ [% FOREACH subscription IN subscriptions %] [% IF ( subscription.branchname ) %]<h3>En biblioteca: [% subscription.branchname %]</h3>[% ELSE %] [% IF ( subscription.branchcode ) %]<h3>En biblioteca: [% subscription.branchcode %]</h3>[% END %][% END %] [% IF ( subscription.closed ) %]<p>Esta suscripción está cerrada.</p>[% END %] <span style="display:none;"> [% IF ( subscription.callnumber ) %]<p>Signatura topográfica: [% subscription.callnumber %]</p>[% END %]</span>
  [% IF ( subscription.subscriptionnotes ) %]<p>[% subscription.subscriptionnotes FILTER html_line_break %] </p>[% END %] <p>Subscripción desde: [% subscription.histstartdate | $KohaDates %] hasta:[% IF ( subscription.histenddate ) %] [% subscription.histenddate | $KohaDates %] [% ELSE %] ahora (actual)[% END %]</p>
  [% IF ( subscription.missinglist ) %]<p>Ejemplares perdidos: [% subscription.missinglist %] </p>[% END %] [% IF ( subscription.opacnote ) %]<p>[% subscription.opacnote FILTER html_line_break %]</p>[% END %] [% IF ( subscription.latestserials ) %] <p> Los [% subscription.opacdisplaycount %] últimos números para esta suscripción:</p>
  <table>
@@ -748,7 +735,17 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 [% UNLESS ( item_level_itypes ) %]<td>[% XISBN.description %]</td>[% END %]<td><a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% XISBN.biblionumber %]">[% XISBN.title |html %]</a>[% IF ( XISBN.author ) %] por [% XISBN.author |html %][% END %][% IF ( XISBN.copyrightdate ) %] &copy;[% XISBN.copyrightdate %][% END %][% IF ( XISBN.publishercode ) %] <p>[% XISBN.publishercode |html %] [% IF ( XISBN.place ) %]([% XISBN.place %])[% END %] [% IF ( XISBN.publicationyear ) %], [% XISBN.publicationyear %][% END %] [% IF ( XISBN.pages ) %][% XISBN.pages %] [% XISBN.illus %] [% XISBN.size %]</p>[% END %] [% END %]</td>
 </tr>
 [% END %] </table>
-</div>[% END %][% END %] [% IF ( OPACLocalCoverImages && localimages.size ) %] <div id="images">
+</div>[% END %][% END %] [% IF ( HTML5MediaEnabled ) %] <div id="html5media">
+ <p>
+ <[% HTML5MediaParent %] controls preload=none>
+ [% FOREACH HTML5MediaSet IN HTML5MediaSets %]
+ <[% HTML5MediaSet.child  %] src="[% HTML5MediaSet.srcblock %]"[% HTML5MediaSet.typeblock %] />
+ [% END %]
+ [[% HTML5MediaParent %] tag not supported by your browser.]
+ </[% HTML5MediaParent %]>
+ </p>
+</div>
+[% END %] [% IF ( OPACLocalCoverImages && localimages.size ) %] <div id="images">
 <p>Clique en la imagen para verla en un tamaño mayor</p>
 [% FOREACH image IN localimages %] [% IF image %] <a class="localimage" href="/cgi-bin/koha/opac-imageviewer.pl?biblionumber=[% biblionumber %]&amp;imagenumber=[% image %]"><img alt="" src="/cgi-bin/koha/opac-image.pl?thumbnail=1&amp;imagenumber=[% image %]" /></a>
 [% END %] [% END %] </div>
@@ -846,10 +843,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  </table>
 [% END %][%# end of items_table block %] [% BLOCK shelfbrowser %] [% IF ( OpenOPACShelfBrowser and shelfbrowser_tab == tab) %] <div id="shelfbrowser">
  <h5 style="text-align: center;">
- [% IF ( starting_homebranch ) %]Browsing [% starting_homebranch %] Shelves[% END %]
- [% IF ( starting_location ) %], Shelving location: [% starting_location %][% END %]
- [% IF ( starting_ccode ) %], Collection code: [% starting_ccode %][% END %]
- <a style="font-size: 75%;" href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% biblionumber %]">Cerrar la búsqueda por estanterías</a>
+ [% IF ( starting_homebranch ) %]Navegando [% starting_homebranch %] Estanterías[% END %][% IF ( starting_location ) %], Ubicación: [% starting_location %][% END %] [% IF ( starting_ccode ) %], Código de colección: [% starting_ccode %][% END %] <a style="font-size: 75%;" href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% biblionumber %]">Cerrar la búsqueda por estanterías</a>
  </h5>
 
  <table>

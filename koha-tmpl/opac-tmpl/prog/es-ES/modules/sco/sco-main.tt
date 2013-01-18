@@ -10,10 +10,8 @@
 <script type="text/javascript" src="[% themelang %]/lib/jquery/jquery-ui.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript">//<![CDATA[
-function sco_init(valid_session) {
-    if (valid_session == 1) {
-        setTimeout("location.href='/cgi-bin/koha/sco/sco-main.pl?op=logout';",[% SelfCheckTimeout %]); 
-    }
+function sco_init() {
+    setTimeout("location.href='/cgi-bin/koha/sco/sco-main.pl?op=logout';",[% SelfCheckTimeout %]);
 }
 function dofocus() {    // named function req'd for body onload event by some FF and IE7 security models
     // alert("dofocus called");
@@ -32,13 +30,6 @@ function checkout_confirm(patronid) {
     if (barcode == "__KOHA_NEW_CIRC__") {   // magic barcode 
         window.location.href='/cgi-bin/koha/sco/sco-main.pl?op=logout';
         return false;
-    }
-    if (this.valid_session == 0) {
-        // probably should force logout like above ? --atz 6/09
-        if (confirm('Session has expired.  Click \'OK\' to continue processing this item.  Click Cancel if you are not ' + patronid)){
-            this.op.value='logout';
-            this.patronid.value='';
-        }
     }
     return true;
 }
@@ -80,9 +71,8 @@ $.tablesorter.addParser({
 });
 
 $(document).ready(function() {
-    [% IF ( patronid ) %] sco_init(1);
-    [% ELSIF ( timedout ) %] sco_init(1);
-    [% END %]
+    dofocus();
+    [% IF ( patronid ) %]sco_init();[% END %]
     $("#loanTable").tablesorter({
         [% IF ( dateformat_metric ) %]
             dateFormat: 'uk',
@@ -106,10 +96,8 @@ $(document).ready(function(){
     });
 });
 </script>
-[% IF ( opacuserjs ) %]<script type="text/javascript">[% opacuserjs %]</script>[% END %] <link rel="stylesheet" type="text/css" href="[% yuipath %]/reset-fonts-grids.css" />
-<link rel="stylesheet" type="text/css" href="[% yuipath %]/skin.css" />
-<link rel="stylesheet" type="text/css" href="[% themelang %]/css/sco.css" />
-[% IF ( OPACUserCSS ) %]<style type="text/css">[% OPACUserCSS %]</style>[% END %] </head>
+[% IF ( opacuserjs ) %]<script type="text/javascript">[% opacuserjs %]</script>[% END %] [% IF ( SCOUserJS ) %]<script type="text/javascript">[% SCOUserJS %]</script>[% END %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/sco.css" />
+[% IF ( OPACUserCSS ) %]<style type="text/css">[% OPACUserCSS %]</style>[% END %] [% IF ( SCOUserCSS ) %]<style type="text/css">[% SCOUserCSS %]</style>[% END %] </head>
 <body onload="dofocus();">
 
 <div id="doc" class="yui-t7">
@@ -118,42 +106,68 @@ $(document).ready(function(){
 <div id="bd">
 
 [% IF ( impossible ) %]<!-- We tried to issue, but failed. -->
-<div class="dialog alert"><h3>El ítem no puede ser prestado.</h3><p>Lo sentimos, no se puede prestar este ítem en esta máquina. </p>
+<div class="dialog alert"><h3>El ítem no puede ser prestado.</h3><p>Sorry, this item cannot be checked out at this station. </p>
 [% IF ( title ) %]<p>Título:<em>[% title |html %]</em> </p>[% END %] <p>
- [% IF ( circ_error_UNKNOWN_BARCODE ) %] <em>MENSAJE 1:</em> El sistema no reconoce este código de barras. [% ELSIF ( circ_error_TOO_MANY ) %] <em>MENSAJE 2:</em> Tiene muchos préstamos activos y no se le puede prestar más.  [% ELSIF ( circ_error_ISSUED_TO_ANOTHER ) %] <em>MENSAJE 3:</em> Este ítem ha sido prestado a otra persona. [% ELSIF ( circ_error_NO_MORE_RENEWALS ) %] <em>MENSAJE 4:</em> No puede renovar este ítem otra vez. [% ELSIF ( circ_error_NOT_FOR_LOAN ) %] <em>MENSAJE 5:</em> Este ítem no está disponible para préstamo. [% ELSIF ( circ_error_DEBT ) %] <em>MENSAJE 6:</em> Debes a la biblioteca [% amount %] y no puedes realizar préstamos. [% ELSIF ( circ_error_WTHDRAWN ) %] <em>MENSAJE 7:</em> Este ítem ha sido retirado de la colección. [% ELSIF ( circ_error_RESTRICTED ) %] <em>MENSAJE 8:</em>
- [% ELSIF ( circ_error_RESERVED ) %] <em>MENSAJE 9:</em> Este ítems está reservado para otro socio. [% ELSIF ( circ_error_ITEMNOTSAMEBRANCH ) %] <em>MENSAJE 10:</em>
+ [% IF ( circ_error_UNKNOWN_BARCODE ) %] <em>MENSAJE 1:</em> El sistema no reconoce este código de barras. [% ELSIF ( circ_error_max_loans_allowed ) %] <em>MENSAJE 2:</em> You have checked out too many items and can't check out any more.
+ [% ELSIF ( circ_error_ISSUED_TO_ANOTHER ) %]
+ <em>MENSAJE 3:</em> Este ítem ha sido prestado a otra persona. [% ELSIF ( circ_error_NO_MORE_RENEWALS ) %] <em>MENSAJE 4:</em> No puede renovar este ítem otra vez. [% ELSIF ( circ_error_NOT_FOR_LOAN ) %] <em>MENSAJE 5:</em> Este ítem no está disponible para préstamo. [% ELSIF ( circ_error_DEBT ) %] <em>MENSAJE 6:</em> You owe the library [% amount %] and cannot check out.
+ [% ELSIF ( circ_error_WTHDRAWN ) %]
+ <em>MENSAJE 7:</em> Este ítem ha sido retirado de la colección. [% ELSIF ( circ_error_RESTRICTED ) %] <em>MENSAJE 8:</em>
+ [% ELSIF ( circ_error_RESERVED ) %] <em>MENSAJE 9:</em> This item is on hold for another patron.
+ [% ELSIF ( circ_error_ITEMNOTSAMEBRANCH ) %]
+ <em>MENSAJE 10:</em>
  [% ELSIF ( circ_error_EXPIRED ) %] <em>MENSAJE 11:</em> Su cuenta ha expirado. [% ELSIF ( circ_error_DEBARRED ) %] <em>MENSAJE 12:</em> Su cuenta ha sido suspendida. [% ELSIF ( circ_error_CARD_LOST ) %] <em>MENSAJE 13:</em> Este carné consta como perdido. [% ELSIF ( circ_error_GNA ) %] <em>MENSAJE 14:</em>
  [% ELSIF ( circ_error_INVALID_DATE ) %] <em>MENSAJE 15:</em>
  [% END %] Por favor, consulte a un miembro del personal de la biblioteca. </p>
-<form action="/cgi-bin/koha/sco/sco-main.pl" name="errorForm" method="post">
-<input type="hidden" name="op" value="login" />
-<input type="hidden" name="patronid" value="[% patronid %]" />
-[% IF ( returnitem ) %] [% IF ( AllowSelfCheckReturns ) %] <input type="hidden" name="barcode" value="[% barcode %]" />
-<input value="Devolver este ítem" name="returnbook" type="button" class="return" onclick="this.form.op.value='returnbook';this.form.submit();" />
-[% END %] [% END %] <input value="Volver al resumen de cuenta" name="confirm" type="submit" class="back focus" />
+[% IF ( returnitem ) %] [% IF ( AllowSelfCheckReturns ) %] <form action="/cgi-bin/koha/sco/sco-main.pl" name="errorForm" class="inline" method="post">
+ <input type="hidden" name="op" value="returnbook" />
+ <input type="hidden" name="patronid" value="[% patronid %]" />
+ <input type="hidden" name="barcode" value="[% barcode %]" />
+ <input value="Devolver este ítem" name="returnbook" type="submit" class="return" />
+</form>
+[% END %] [% END %] <form action="/cgi-bin/koha/sco/sco-main.pl" name="errorForm" class="inline" method="post">
+ <input type="hidden" name="op" value="" />
+ <input type="hidden" name="patronid" value="[% patronid %]" />
+ <input type="hidden" name="barcode" value="[% barcode %]" />
+ <input type="submit" name= "confirm" value="Return to account summary" class="back focus" />
 </form>
 [% END %]
 [% IF ( confirm ) %]<!-- We need to confirm the issue.. -->
 <div class="dialog alert"><h3>Por favor confirma el préstamo:</h3>
 <p>[% IF ( confirm_renew_issue ) %]Este ítem ya le ha sido prestado.[% END %]</p>
 
-<form action="/cgi-bin/koha/sco/sco-main.pl" name="confirmForm" method="post">
-<input type="hidden" name="op" value="checkout" />
-<input type="hidden" name="patronid" value="[% patronid %]" />
-<input type="hidden" name="barcode" value="[% barcode %]" />
-<input type="hidden" name="confirmed" value="" />
-[% IF ( renew ) %] [% IF ( AllowSelfCheckReturns ) %] <input value="Devolver ítem" name="confirm" type="button" class="return" onclick="this.form.op.value='returnbook';this.form.submit();" />
-[% END %] [% END %] [% UNLESS ( renew ) %]<input value="Renovar ítem" name="confirm" type="button" class="renew" onclick="this.form.confirmed.value='1';this.form.submit();" />
-[% ELSE %]<input value="Renovar ítem" type="button" class="renew" onclick="this.form.confirmed.value='1';this.form.submit();" />[% END %] <input value="Cancelar" type="button" class="cancel" onclick="this.form.op.value='';this.form.submit();return true;" />
-</form>
+[% IF ( renew ) %] [% IF ( AllowSelfCheckReturns ) %] <form action="/cgi-bin/koha/sco/sco-main.pl" name="confirmForm" class="inline" method="post">
+ <input type="hidden" name="op" value="returnbook" />
+ <input type="hidden" name="patronid" value="[% patronid %]" />
+ <input type="hidden" name="barcode" value="[% barcode %]" />
+ <input type="hidden" name="confirmed" value="" />
+ <input value="Devolver ítem" name="confirm" type="submit" class="return" />
+ </form>
+[% END %] [% END %] [% UNLESS ( renew ) %] <form action="/cgi-bin/koha/sco/sco-main.pl" name="confirmForm" class="inline" method="post">
+ <input type="hidden" name="op" value="checkout" />
+ <input type="hidden" name="patronid" value="[% patronid %]" />
+ <input type="hidden" name="barcode" value="[% barcode %]" />
+ <input type="hidden" name="confirmed" value="1" />
+ <input value="Renovar ítem" name="confirm" type="submit" class="renew" />
+ </form>
+[% ELSE %] <form action="/cgi-bin/koha/sco/sco-main.pl" name="confirmForm" class="inline" method="post">
+ <input type="hidden" name="op" value="checkout" />
+ <input type="hidden" name="patronid" value="[% patronid %]" />
+ <input type="hidden" name="barcode" value="[% barcode %]" />
+ <input type="hidden" name="confirmed" value="1" />
+ <input value="Renovar ítem" type="submit" class="renew" />
+ </form>
+[% END %] <form action="/cgi-bin/koha/sco/sco-main.pl" name="confirmForm" class="inline" method="post">
+ <input type="hidden" name="op" value="" />
+ <input type="hidden" name="patronid" value="[% patronid %]" />
+ <input value="Cancelar" type="submit" class="cancel" />
+ </form>
 </div>
 [% END %]
 
 [% IF ( nopermission ) %]<!-- This is what is displayed if user doesnt have permission --><div class="dialog alert"><h3>Acceso denegado</h3>
 Lo sentimos, esta máquina de autopréstamo ha perdido la identificación. Por favor, póngase en contacto con el administrador para resolver este problema. </div>
 [% END %]
-[% IF ( timed_out ) %]<!-- This is what is displayed if login has timed out -->
-<div class="dialog alert"><h3>Sesión vencida</h3>Lo sentimos, tu sesión ha expirado, por favor, inicia sesión de nuevo.</div>[% END %]
 [% IF ( different_ip ) %]<!-- This is what is displayed if user doesnt have permission --><div class="dialog alert"><h3>Se ha perdido la sesión</h3>¡Está accediendo al autopréstamo desde una direccion IP diferente! Por favor, inicie sesión de nuevo.</div>[% END %]
 [% IF ( invalid_username_or_password ) %]
 <!-- This is what is displayed if user doesnt have permission --><div class="dialog alert"><h3>Registro no encontrado</h3><p>No se ha encontrado tu nombre de usuaruio en la base de datos. Por favor, intenténtelo de nuevo.</p></div>[% END %] [% UNLESS ( hide_main ) %] <div class="sco_head">
@@ -165,16 +179,13 @@ Lo sentimos, esta máquina de autopréstamo ha perdido la identificación. Por f
  [% END %] </div>
  [% IF ( nouser ) %] <div class="dialog alert"><h4>Lo sentimos</h4><p>El identificador del usuario<strong>[% patronid %]</strong> no se ha encontrado en la base de datos. Por favor, inténtelo de nuevo.</p></div>
  <br />
- [% END %] [% END %] [% IF ( timedout ) %] <div class="dialog message"><h4>Lo sentimos</h4><p>Su sesión ha caducado por inactividad. Por favor, inicie sesión de nuevo</p></div>
- <br />
- [% END %] [% IF ( validuser ) %] [% IF ( display_patron_image ) %]<div class="yui-ge"><div class="yui-u first">[% END %] <div id="newcheckout" class="sco_entry">
+ [% END %] [% END %] [% IF ( validuser ) %] [% IF ( display_patron_image ) %]<div class="yui-ge"><div class="yui-u first">[% END %] <div id="newcheckout" class="sco_entry">
  <form id="scan_form" name="scan_form" method="post" action="/cgi-bin/koha/sco/sco-main.pl" onsubmit="return checkout_confirm('[% patronid %]');">
  <fieldset><legend> Prestar[% IF ( AllowSelfCheckReturns ) %], devolver[% END %] o renovar un ítem: </legend>
  <label for="barcode">Escanee un nuevo ítem o introduzca el código de barras:</label>
- <input id="barcode" name="barcode" size="20" class="focus" />
+ <input id="barcode" name="barcode" size="20" class="focus" autocomplete="off" />
  <input type="hidden" name="op" value="checkout" />
  <input type="hidden" name="patronid" value="[% patronid %]" />
- <input type="hidden" name="valid_session" value="1" />
  <input value="Enviar" type="submit" class="submit" /></fieldset>
  </form>
  <div><form method="post" action="#" id="logout_form"><input value="Finalizar" type="submit" class="finish" /></form></div>
@@ -201,14 +212,16 @@ Lo sentimos, esta máquina de autopréstamo ha perdido la identificación. Por f
  <td>[% ISSUE.itemcallnumber %]</td>
  [% IF ( ISSUE.overdue ) %]<td class="overdue">[% ISSUE.date_due | $KohaDates %]</td>[% ELSE %]<td>[% ISSUE.date_due | $KohaDates %]</td>[% END %] <td>
  <form action="/cgi-bin/koha/sco/sco-main.pl" method="post">
- <input type="hidden" name="op" value="checkout" />
  <input type="hidden" name="patronid" value="[% patronid %]" />
  <input type="hidden" name="barcode" value="[% ISSUE.barcode %]" />
+ [% IF ( ISSUE.norenew ) %] [% IF ( AllowSelfCheckReturns ) %] <input type="submit" value="Check in item" name="confirm" class="return" />
+ <input type="hidden" name="op" value="returnbook" />
  <input type="hidden" name="confirmed" value=""  />
- [% IF ( ISSUE.norenew ) %] [% IF ( ISSUE.AllowSelfCheckReturns ) %] <input value="Devolver ítem" name="confirm" type="button" class="return" onclick="this.form.op.value='returnbook';this.form.submit();" />
  [% ELSE %] <span>No se permiten renovaciones</span>
- [% END %] [% ELSE %] [% UNLESS ( ISSUE.renew ) %]<input value="Renovar ítem" name="confirm" type="button" class="renew" onclick="this.form.confirmed.value='1';this.form.submit();" />
- [% ELSE %]<input value="Renovar ítem" type="button" class="renew" onclick="this.form.confirmed.value='1';this.form.submit();" />[% END %] [% END %] </form>
+ [% END %] [% ELSE %] <input type="hidden" name="op" value="checkout" />
+ <input type="hidden" name="confirmed" value="1" />
+ [% UNLESS ( ISSUE.renew ) %]<input value="Renovar ítem" name="confirm" type="submit" class="renew" />
+ [% ELSE %]<input value="Renovar ítem" type="submit" class="renew" />[% END %] [% END %] </form>
  </td>
  [% UNLESS ( nofines ) %]<td>[% IF ( ISSUE.charges ) %]Sí[% ELSE %]No[% END %]</td>[% END %]</tr>
  [% END %] </tbody>
@@ -226,7 +239,7 @@ Lo sentimos, esta máquina de autopréstamo ha perdido la identificación. Por f
  <label for="patronpw">Contraseña:</label>
  <input type="password" id="patronpw" size="20" name="patronpw" />
  [% ELSE %] <fieldset class="checkout"><label for="patronid">Introduczca su número de usuario:</label> 
- <input type="text" id="patronid" class="focus" size="20" name="patronid" />
+ <input type="text" id="patronid" class="focus" size="20" name="patronid" autocomplete="off" />
  [% END %] [% FOREACH INPUT IN INPUTS %]<input type="hidden" name="[% INPUT.name |html %]" value="[% INPUT.value |html %]">[% END %] <input type="hidden" name="op" value="login" />
  <input value="Enviar" type="submit" class="submit" /></fieldset></form>
  </div>

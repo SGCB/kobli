@@ -140,7 +140,7 @@ if (f.company.value == "") {
  [% ELSE %] <input type="hidden" name="gstrate" value="0" />
  [% END %] <ol>
  <li><label for="discount">Descuento</label>
- <input type="text" size="6" id="discount" name="discount" value="[% discount %]" />%</li>
+ <input type="text" size="6" id="discount" name="discount" value="[% discount | format ("%.1f") %]" />%</li>
  <li>
  <label for="deliverytime">Hora de entrega </label>
  <input type="text" size="2" id="deliverytime" name="deliverytime" value="[% deliverytime %]" /> días </li>
@@ -186,9 +186,9 @@ if (f.company.value == "") {
  [% IF ( listincgst ) %]Si[% ELSE %]No[% END %]</p>
  <p><strong>Precio de ítem en factura incluye impuesto: </strong>
  [% IF ( invoiceincgst ) %]Si[% ELSE %]No[% END %]</p>[% END %] <p><strong>Descuento: </strong>
- [% discount %] %</p>
+ [% discount | format("%.1f") %] %</p>
  <p><strong>Tasa de impuesto: </strong>
- [% 0 + gstrate * 100 | format("%.1f") %]%</p>
+ [% 0 + gstrate * 100 | format("%.1f") %] %</p>
  [% IF deliverytime.defined %] <p><strong>Hora de entrega: </strong>
  [% deliverytime %] días </p>
  [% END %] [% IF ( notes ) %]<p><strong>Notas: </strong>

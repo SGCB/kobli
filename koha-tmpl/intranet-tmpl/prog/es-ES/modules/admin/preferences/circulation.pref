@@ -2,6 +2,18 @@
 circulation.pref: 
   "Auto pr\xC3\xA9stamo": 
     - 
+      - "Include the following JavaScript on all pages in the web-based self checkout:"
+      - 
+        class: code
+        pref: SCOUserJS
+        type: textarea
+    - 
+      - "Include the following CSS on all pages in the web-based self checkout:"
+      - 
+        class: code
+        pref: SCOUserCSS
+        type: textarea
+    - 
       - 
         choices: 
           "": No mostrar
@@ -97,7 +109,7 @@ circulation.pref:
           "": No habilitar
           1: Habilitar
         pref: UseTablesortForCirc
-      - "el ordenamiento de los pr\xC3\xA9stamos del socio actual en la pantalla de circulaci\xC3\xB3n. <br/>NOTA: Habilitar esta funci\xC3\xB3n puede hacer m\xC3\xA1s lento el proceso para socios con muchos \xC3\xADtems prestados."
+      - "el ordenamiento de los pr?amos del socio actual en la pantalla de circulaci??<br/>NOTA: Habilitar esta funci??uede hacer m?lento el proceso para socios con muchos ?ems prestados."
     - 
       - 
         choices: 
@@ -113,11 +125,11 @@ circulation.pref:
         pref: SpecifyDueDate
       - "al personal especificar la fecha de devoluci\xC3\xB3n de un pr\xC3\xA9stamo."
     - 
-      - "circulation.pref#HoldsToPullStartDate# Establecer la fecha de inicio por defecto para sacar las listas de las Reservas "
+      - "Establecer la fecha de inicio por defecto para sacar las listas de las Reservas "
       - 
         class: integer
         pref: HoldsToPullStartDate
-      - "circulation.pref#HoldsToPullStartDate# d\xEE\xA1\xA8s) pasados."
+      - "d\xC3\xADas(s) pasados."
     - 
       - 
         choices: 
@@ -130,14 +142,14 @@ circulation.pref:
       - 
         class: integer
         pref: numReturnedItemsToShow
-      - "\xC3\xBAltimos \xC3\xADtems devueltos en la pantalla de comprobaci\xC3\xB3n."
+      - "\xC3\xBAltimos \xC3\xADems devueltos en la pantalla de comprobaci\xC3\xB3n"
     - 
       - 
         choices: 
           "": No notificar
           1: Notificar
         pref: FineNotifyAtCheckin
-      - "al personal las multas por retrasos en los \xC3\xADtems que est\xC3\xA1n devolviendo."
+      - al personal las multas por retrasos en los dems que est?devolviendo.
     - 
       - 
         choices: 
@@ -183,20 +195,20 @@ circulation.pref:
     - 
       - 
         choices: 
-          "": circulation.pref#UpdateTotalIssuesOnCirc# No hacer
-          1: circulation.pref#UpdateTotalIssuesOnCirc# Hacer
+          "": No hacer
+          1: Hacer
         pref: UpdateTotalIssuesOnCirc
-      - circulation.pref#UpdateTotalIssuesOnCirc# update a bibliographic record's total issues count whenever an item is issued (WARNING! This increases server load significantly; if performance is a concern, use the update_totalissues.pl cron job to update the total issues count).
+      - update a bibliographic record's total issues count whenever an item is issued (WARNING! This increases server load significantly; if performance is a concern, use the update_totalissues.pl cron job to update the total issues count).
     - 
-      - circulation.pref#ExportWithCsvProfile# Usar la
+      - Usar la
       - 
         pref: ExportWithCsvProfile
-      - "circulation.pref#ExportWithCsvProfile# perfil CSV cuando el socio exporta el hist\xF3\xB2\xA9\xA3o de pr\xEA\xB4\xB4amo  (introducir nombre de perfil CSV)              "
+      - "perfil CSV cuando el socio exporta el hist\xC3\xB3rico de pr\xC3\xA9stamo  (introducir nombre de perfil CSV)              "
     - 
-      - "circulation.pref#ExportRemoveFields# Los siguientes campos deber\xEE\xA2\xAE ser exclu\xEE\xA5\xAFs del CSV hist\xF3\xB2\xA9\xA3o de pr\xEA\xB4\xB4amos del socio o exportar en iso2709"
+      - "Los siguientes campos deber\xC3\xADan ser exclu\xC3\xADdos del CSV hist\xC3\xB3rico de pr\xC3\xA9stamos del socio o exportar en iso2709"
       - 
         pref: ExportRemoveFields
-      - circulation.pref#ExportRemoveFields# (separar campos con espacio, e.j. 100a 200b 300c)
+      - (separar campos con espacio, e.j. 100a 200b 300c)
   "Pol\xC3\xADtica de multas": 
     - 
       - "Calcular las multas sobre la base de d\xC3\xADas de atraso"
@@ -219,10 +231,10 @@ circulation.pref:
     - 
       - 
         choices: 
-          "": Don't refund
-          1: Refund
+          "": No devolver
+          1: Devolver
         pref: RefundLostItemFeeOnReturn
-      - lost item fees charged to a borrower when the lost item is returned.
+      - "las tasas por \xC3\xADtem perdido se cargaran a el prestatario cunado el \xC3\xADtem perdido es devuleto."
   "Pol\xC3\xADtica de pr\xC3\xA9stamo": 
     - 
       - 
@@ -244,7 +256,7 @@ circulation.pref:
           "": No permitir
           1: Permitir
         pref: AllowItemsOnHoldCheckout
-      - "circulation.pref#AllowItemsOnHoldCheckout# pr\xEA\xB4\xB4amos de \xEE\xB5\xA5ms reservados a cualquier persona. Si se permite que no genere RESERVE_WAITING y RESERVED advertir. Esto permite auto pr\xEA\xB4\xB4amos para esos \xEE\xB5\xA5ms."
+      - "pr\xC3\xA9stamos de \xC3\xADtems reservados a cualquier persona. Si se permite que no genere RESERVE_WAITING y RESERVED advertir. Esto permite auto pr\xC3\xA9stamos para esos \xC3\xADtems."
     - 
       - 
         choices: 
@@ -279,7 +291,7 @@ circulation.pref:
           "": No hacer
           1: Hacer
         pref: AutomaticItemReturn
-      - "transferir \xC3\xADtems autom\xC3\xA1ticamente a su biblioteca de origen cuando est\xC3\xA9n devueltos."
+      - "transferir \xC3\xADtems autom\xC3\xA1ticamente a su biblioteca de origen cuando est\xC3\xA1n devueltos."
     - 
       - 
         choices: 
@@ -296,10 +308,10 @@ circulation.pref:
     - 
       - 
         choices: 
-          "": circulation.pref#UseTransportCostMatrix# No utilizar
-          1: circulation.pref#UseTransportCostMatrix# Utilizar
+          "": No utilizar
+          1: Utilizar
         pref: UseTransportCostMatrix
-      - "circulation.pref#UseTransportCostMatrix# Transporte Matriz de Coste para el c\xE2\xAD\xA3ulo \xF3\xB0\xB4\xA9mo de reservas solicitadas entre bibliotecas."
+      - "Transporte Matriz de Coste para el c\xC3\xA1lculo \xC3\xB3ptimo de reservas solicitadas entre bibliotecas."
     - 
       - "Utilice las reglas de pr\xC3\xA9stamo y multas de"
       - 
@@ -318,13 +330,13 @@ circulation.pref:
         pref: HomeOrHoldingBranch
         type: choice
     - 
-      - circulation.pref#AllowReturnToBranch# Permitir  materiales para ser devueltos a
+      - Permitir  materiales para ser devueltos a
       - 
         choices: 
-          anywhere: circulation.pref#AllowReturnToBranch# para cualquier biblioteca.
-          holdingbranch: "circulation.pref#AllowReturnToBranch# s\xF3\xAC\xAF\xA0 la biblioteca de donde el \xEE\xB5\xA5m fue prestado"
-          homebranch: "circulation.pref#AllowReturnToBranch# s\xF3\xAC\xAF\xA0la biblioteca de donde sea el \xEE\xB5\xA5m"
-          homeorholdingbranch: "circulation.pref#AllowReturnToBranch# ya sea de la biblioteca de la que es el \xEE\xB5\xA5m o de la que el \xEE\xB5\xA5m fue prestado."
+          anywhere: para cualquier biblioteca.
+          holdingbranch: "s\xC3\xB3lo la biblioteca de donde el \xC3\xADtem fue prestado"
+          homebranch: "s\xC3\xB3lo la biblioteca de donde sea el \xC3\xADtem"
+          homeorholdingbranch: "ya sea de la biblioteca de la que es el \xC3\xADtem o de la que el \xC3\xADtem fue prestado."
         pref: AllowReturnToBranch
         type: choice
     - 
@@ -345,10 +357,10 @@ circulation.pref:
     - 
       - 
         choices: 
-          "": Don't send
-          1: Send
+          "": No enviar
+          1: Enviar
         pref: RenewalSendNotice
-      - a renewal notice according to patron checkout alert preferences.
+      - "el aviso de renovaci\xC3\xB3n de socio se verificar\xC3\xA1n con las preferencias de alerta."
     - 
       - "Limita a los socios hacer reservas en el OPAC si deben m\xC3\xA1s de"
       - 
@@ -369,17 +381,17 @@ circulation.pref:
         pref: IssuingInProcess
       - "a los socios pedir prestado un \xC3\xADtem cuyo valor de alquiler los lleve sobre el l\xC3\xADmite."
     - 
-      - "circulation.pref#AgeRestrictionMarker# Restringir los socios con los valores siguientes de p\xF2\xA2\xAC\xA9co objetivo desde la salida inapropiada de materiales:"
+      - "Restringir los socios con los valores siguientes de p\xC3\xBAblico objetivo desde la salida inapropiada de materiales:"
       - 
         pref: AgeRestrictionMarker
-      - "circulation.pref#AgeRestrictionMarker# E.j. introducir palabras clave p\xF2\xA2\xAC\xA9co objetivo dividido por | (bar) FSK|PEGI|Age| (No hay espacio blanco cerca |). Asefurese de mapear a agerestriction de Koha a mapeo MARC  (e.j. 521$a). Un valor de campo MARC  FSK 12 o PEGI 12 deber\xEE\xA1\xA0siginificar: Prestatario debe ser mayor de 12 a\xF1\xAF\xB3\xAE Dejar vac\xEE\xAF\xA0sino aplica ninguna restricci\xF3\xAE\xA0\xA4e edad. "
+      - "E.j. introducir palabras clave objetivo dividido por | (bar) FSK|PEGI|Age| (No hay espacio blanco cerca |). Asefurese de mapear a agerestriction de Koha a mapeo MARC  (e.j. 521$a). Un valor de campo MARC  FSK 12 o PEGI 12 deber?siginificar: Prestatario debe ser mayor de 12 a\xC3\xB1os Dejar vac\xC3\xADo sino aplica ninguna restricci\xC3\xB3n de edad. "
     - 
       - 
         choices: 
-          "": circulation.pref#AgeRestrictionOverride# No permitir
-          1: circulation.pref#AgeRestrictionOverride# Permitir
+          "": No permitir
+          1: Permitir
         pref: AgeRestrictionOverride
-      - "circulation.pref#AgeRestrictionOverride# bibliotecarios registrar un \xEE\xB5\xA5m con restricci\xF3\xAE\xA0\xA4e edad."
+      - "bibliotecarios registrar un \xC3\xADtem con restricci\xC3\xB3n de edad."
     - 
       - "Evitar a los usuarios sacar libros si tienen m\xC3\xA1s de"
       - 
@@ -402,7 +414,7 @@ circulation.pref:
       - 
         class: integer
         pref: PrintNoticesMaxLines
-      - "l\xC3\xADneas de \xC3\xADtems en un aviso de retraso impreso. Si el n\xC3\xBAmero de \xC3\xADtems es mayor que este n\xC3\xBAmero, el aviso finalizar\xC3\xA1 con una advertencia pidiendo al socio consultar su cuenta en l\xC3\xADnea por la lista completa de \xC3\xADtems retrasados. Poner en 0 para incluir todos los \xC3\xADtems retrasados en el aviso, independientemente de cuantos sean."
+      - "l\xC3\xADneas de \xC3\xADtems en un aviso de retraso impreso. Si el n\xC3\xBAmero de \xC3\xADtems es mayor que este n\xC3\xBAmero, el aviso finalizar\xC3\xA1 con una advertencia pidiendo al socio consultar su cuenta en linea por la lista completa de \xC3\xADtems retrasados. Poner en 0 para incluir todos los \xC3\xADtems retrasados en el aviso, independientemente de cuantos sean."
     - 
       - 
         choices: 
@@ -420,14 +432,14 @@ circulation.pref:
         pref: HomeOrHoldingBranchReturn
         type: choice
     - 
-      - "circulation.pref#IssueLostItem# Cuando est\xC3\xA1s utilizando un \xC3\xADteem que ha sido marcado como perdido, "
+      - "Cuando est\xC3\xA1s utilizando un \xC3\xADteem que ha sido marcado como perdido, "
       - 
         choices: 
-          alert: circulation.pref#IssueLostItem# mostrar un mensaje
-          confirm: "circulation.pref#IssueLostItem# require confirmaci\xC3\xB3n"
-          nothing: circulation.pref#IssueLostItem# no hacer nada
+          alert: mostrar un mensaje
+          confirm: "require confirmaci\xC3\xB3n"
+          nothing: no hacer nada
         pref: IssueLostItem
-      - circulation.pref#IssueLostItem# .
+      - .
   "Pol\xC3\xADtica de reservas": 
     - 
       - 
@@ -560,37 +572,44 @@ circulation.pref:
     - 
       - 
         choices: 
-          "": circulation.pref#SuspendHoldsIntranet# No permitir
-          1: circulation.pref#SuspendHoldsIntranet# Permitir
+          "": No permitir
+          1: Permitir
         pref: SuspendHoldsIntranet
-      - circulation.pref#SuspendHoldsIntranet# reservar para posponer desde la intranet.
+      - reservar para posponer desde la intranet.
     - 
       - 
         choices: 
-          "": circulation.pref#SuspendHoldsOpac# No permitir
-          1: circulation.pref#SuspendHoldsOpac# Permitir
+          "": No permitir
+          1: Permitir
         pref: SuspendHoldsOpac
-      - circulation.pref#SuspendHoldsOpac# reservar para posponer desde el OPAC.
+      - reservar para posponer desde el OPAC.
     - 
       - 
         choices: 
-          "": circulation.pref#decreaseLoanHighHolds# No permitir
-          1: circulation.pref#decreaseLoanHighHolds# Permitir
+          "": No permitir
+          1: Permitir
         pref: decreaseLoanHighHolds
-      - "circulation.pref#decreaseLoanHighHolds# la reducci\xF3\xAE\xA0\xA4el per\xEE\xB0\xA4o de pr\xEA\xB4\xB4amo a"
+      - "la reducci\xC3\xB3n del periodo de pr\xC3\xA9stamo a"
       - 
         class: integer
         pref: decreaseLoanHighHoldsDuration
-      - "circulation.pref#decreaseLoanHighHolds# d\xEE\xA2\xB3 para \xEE\xB5\xA5mscon m\xE2\xB3\xA0de "
+      - "d\xC3\xADas para \xC3\xADtems con m\xC3\xA1s de "
       - 
         class: integer
         pref: decreaseLoanHighHoldsValue
-      - circulation.pref#decreaseLoanHighHolds#reservas.
+      - reservas.
+    - 
+      - 
+        choices: 
+          "": Don't allow
+          1: Allow
+        pref: AllowHoldsOnPatronsPossessions
+      - a patron to place a hold on a record where the patron already has one or more items attached to that record checked out.
   circulation.pref Checkin Policy: 
     - 
       - 
         choices: 
-          "": circulation.pref#BlockReturnOfWithdrawnItems# No bloquear
-          1: circulation.pref#BlockReturnOfWithdrawnItems# Bloquear
+          "": No bloquear
+          1: Bloquear
         pref: BlockReturnOfWithdrawnItems
-      - "circulation.pref#BlockReturnOfWithdrawnItems# devolver \xEE\xB5\xA5ms que han sido retirados."
+      - "devolver \xC3\xADtems que han sido retirados."

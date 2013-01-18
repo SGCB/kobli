@@ -1,4 +1,4 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc'%] <title>Koha &rsaquo; Tools &rsaquo; Batch patron modification</title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc'%] <title>Koha &rsaquo; Herramientas &rsaquo; Modificación en la sede del socio</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/JavaScript">
 //<![CDATA[
@@ -55,7 +55,7 @@
             var information_category_node = $(select_attr).parent().parent().find('span.information_category');
             information_category_node.html("");
             if ( category.length > 0 ) {
-                information_category_node.html(_("This attribute will be only applied to the patron\'s category") +' "' + category + '"');
+                information_category_node.html(_("Este atributo sólo se aplicará a la categoría de socio") +' "' + category + '"');
             }
             if ( type == 'select' ) {
                 var options = '<option value = ""></option>';
@@ -122,7 +122,7 @@
  <legend>O listar los números de tarjeta uno por uno</legend>
  <ol>
  <li>
- <label for="cardnumberlist">Card number list (one cardnumber per line): </label>
+ <label for="cardnumberlist">Lista de número de tarjeta (uno por cada línea):  </label>
  <textarea rows="10" cols="30" id="cardnumberlist" name="cardnumberlist">[% cardnumberlist %]</textarea>
  </li>
  </ol>
@@ -145,9 +145,9 @@
  [% END %] </tbody>
  </table>
  [% END %] [% IF ( op == 'show_results' ) %] [% IF ( errors ) %] <div class="dialog alert">
- <h4>Errors occured:</h4>
+ <h4>Han ocurrido errores:</h4>
  <ul class="warnings">
- [% FOREACH error IN errors %] [% IF ( error.error == 'can_not_update' ) %] <li>Can not update patron with borrowernumber [% error.borrowernumber %]</li>
+ [% FOREACH error IN errors %] [% IF ( error.error == 'can_not_update' ) %] <li>No se puede actualizar el socio con número de prestatario [% error.borrowernumber %]</li>
  [% ELSE %] <li>[% error.error %]</li>
  [% END %] [% END %] </ul>
  </div>
@@ -165,8 +165,8 @@
  <th>Nombre </th>
  <th>Biblioteca</th>
  <th>Categoría</th>
- <th>Registration date</th>
- <th>Expiry date</th>
+ <th>Fecha de registro</th>
+ <th>Fecha de vencimiento </th>
  <th>Suspendido:</th>
  [% FOREACH attrh IN attributes_header %] <th>[% attrh.attribute %]</th>
  [% END %] </tr>
@@ -198,32 +198,7 @@
  [% FOREACH field IN fields %] <li>
  [% IF ( field.mandatory ) %] <label for="[% field.name %]" class="required">
  [% ELSE %] <label for="[% field.name %]">
- [% END %]
- [% SWITCH ( field.name ) %]
- [% CASE 'surname' %]
- Surname:
- [% CASE 'firstname' %]
- First name:
- [% CASE 'branchcode' %]
- Library:
- [% CASE 'categorycode' %]
- Category
- [% CASE 'sort1' %]
- Sort 1:
- [% CASE 'sort2' %]
- Sort 2:
- [% CASE 'dateenrolled' %]
- Registration date:
- [% CASE 'dateexpiry' %]
- Expiry date:
- [% CASE 'debarred' %]
- Restricted:
- [% CASE 'debarredcomment' %]
- Restriction comment:
- [% CASE 'borrowernotes' %]
- Circulation note:
- [% END %]
- </label>
+ [% END %] [% SWITCH ( field.name ) %] [% CASE 'surname' %] Apellido: [% CASE 'firstname' %] Nombre: [% CASE 'branchcode' %] Biblioteca: [% CASE 'categorycode' %] Categoría [% CASE 'sort1' %] Tipo 1: [% CASE 'sort2' %] Tipo 2: [% CASE 'dateenrolled' %]  Fecha de registro: [% CASE 'dateexpiry' %] Fecha de caducidad: [% CASE 'debarred' %] Restringido: [% CASE 'debarredcomment' %] Comentario restringido: [% CASE 'borrowernotes' %] Nota de circulación: [% END %] </label>
  [% IF field.mandatory %] <input readonly="readonly" value="[% field.name %]" name="disable_input" type="checkbox" title="Este campo es obligatorio" onclick="return false;" />
  [% ELSE %] <input value="[% field.name %]" name="disable_input" type="checkbox" title="Revisar para borrar este campo" />
  [% END %] [% IF ( field.type == 'text' ) %] <input type="text" name="[% field.name %]" value="" />
@@ -252,7 +227,7 @@
  </div>
  </form>
  [% END %] [% END %] [% END %] [% IF ( op == 'show_results' ) %] <p>
- <a href="/cgi-bin/koha/tools/modborrowers.pl" title="New batch patrons modification">New batch patron modification</a>
+ <a href="/cgi-bin/koha/tools/modborrowers.pl" title="Nueva modificación de sede de socio">Nueva modificación de sede de  socio</a>
  </p>
  [% END %] </div>
  </div>

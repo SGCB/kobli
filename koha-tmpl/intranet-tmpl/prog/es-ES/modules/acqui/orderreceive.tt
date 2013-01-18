@@ -1,6 +1,25 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; Resumen de recepción para: [% name %] [% IF ( invoice ) %]factura, [% invoice %][% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'additem.js.inc' %] <script type="text/javascript" src="[% themelang %]/js/additem.js"> </script>
 <script type="text/javascript">
+
+var nav = window.Event ? true : false;
+if (nav) {
+	window.captureEvents(Event.KEYDOWN);
+	window.onkeydown = NetscapeEventHandler_KeyDown;
+} else {
+	document.onkeydown = IEEventHandler_KeyDown;
+}
+
+function NetscapeEventHandler_KeyDown(e) {
+	if (e.which == 13 && e.target.type != 'textarea' && e.target.type != 'submit') { return false; }
+	return true;
+}
+
+function IEEventHandler_KeyDown() {
+	if (event.keyCode == 13 && event.srcElement.type != 'textarea' && event.srcElement.type != 'submit')
+		return false;
+	return true;
+}
 //<![CDATA[
     function Check(form) {
         [% IF (AcqCreateItemReceiving) %]
@@ -15,16 +34,18 @@
                 }
             });
 
-            var alertString;
-            if (total_errors==0) {
-                return true;
-            } else {
-                alertString  = _("El formulario no fue procesado debido a los siguientes problemas");
+            if (total_errors != 0) {
+                var alertString = _("El formulario no fue procesado debido a los siguientes problemas");
                 alertString += "\n------------------------------------------------------------------------------------\n";
                 alertString += "\n- "+ total_errors+_(" campos obligatorios vacíos (resaltados)");
                 alert(alertString);
                 return false;
             }
+
+            if(check_additem('[% UniqueItemFields %]') == false){
+                alert(_('Valores duplicados detectados. Por favor corrija estos errores y reenvíe.') );
+                return false;
+            };
 
             // Remove last itemblock if it is not in items_list
             var lastitemblock = $("#outeritemblock > div:last");
@@ -38,14 +59,6 @@
             if(tobedeleted){
                 $(lastitemblock).remove();
             }
-
-            if(check_additem('[% UniqueItemFields %]') == false){
-                alert(_('Valores duplicados detectados. Por favor corrija estos errores y reenvíe.') );
-                if(tobedeleted) {
-                    $(lastitemblock).appendTo("#outeritemblock");
-                }
-                return false;
-            };
         [% END %]
 
         return true;
@@ -278,15 +291,10 @@
 
 </div>
 </div><div class="yui-g"><fieldset class="action">
- <input type="submit" onclick="return false;" style="display: none;" id="phony_submit" value="phony_submit" name="phony_submit" />
  <input accesskey="w" value="Guardar" type="submit" class="button" />
  <a class="cancel" href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% invoiceid %]">Cancelar</a>
 </fieldset></div> </form>
-[% ELSE %]
- This ordernumber does not exist.
-[% END %]
-
-</div>
+[% ELSE %] Este número  no existe. [% END %] </div>
 </div>
 <div class="yui-b">
 [% INCLUDE 'acquisitions-menu.inc' %] </div>

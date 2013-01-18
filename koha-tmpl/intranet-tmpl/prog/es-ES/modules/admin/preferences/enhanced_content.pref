@@ -129,6 +129,22 @@ enhanced_content.pref:
           1: Agregar
         pref: GoogleJackets
       - "cubiertas de libros desde Google Books en los resultados de b\xC3\xBAsqueda y p\xC3\xA1ginas de detalles en el OPAC."
+  HTML5 Media: 
+    - 
+      - Show a tab with a HTML5 media player for files catalogued in field 856
+      - 
+        choices: 
+          both: in OPAC and staff client.
+          not: not at all.
+          opac: in the OPAC.
+          staff: in the staff client.
+        pref: HTML5MediaEnabled
+    - 
+      - Media file extensions
+      - 
+        class: multi
+        pref: HTML5MediaExtensions
+      - (separated with |).
   Library Thing: 
     - 
       - 
