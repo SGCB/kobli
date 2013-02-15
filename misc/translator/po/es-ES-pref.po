@@ -76,15 +76,15 @@ msgstr "cuando imprima grupos de cestas."
 
 # Acquisitions > Policy
 msgid "acquisitions.pref#UniqueItemFields# (space-separated list of fields that should be unique for items, must be valid SQL fields of items table)"
-msgstr "(lista separada por espacios de campos que debere?n ser ??os para ?tems, debe ser v?do para la tabla de campos de ?tems de SQL)"
+msgstr "(lista separada por espacios de campos que deberían ser únicos para ítems, debe ser válido para la tabla de campos de ítems de SQL)"
 
 # Acquisitions > Policy
 msgid "acquisitions.pref#gist# (enter in numeric form, 0.12 for 12%. First is the default. If you want more than 1 value, please separate with |)"
-msgstr "acquisitions.pref#gist# (introducir en forma numérica, 0.12 para 12%. Primero por defecto.Si quieres m?de 1 valor, por favor separar con |)"
+msgstr "(introducir en forma numérica, 0.12 para 12%. Primero por defecto.Si quieres más de 1 valor, por favor separar con |)"
 
 # Acquisitions > Policy
 msgid "acquisitions.pref#gist# Default tax rates are"
-msgstr "acquisitions.pref#gist# Las tasas de incumplimiento de impuestos son"
+msgstr "Las tasas de incumplimiento de impuestos son"
 
 # Administration
 msgid "admin.pref"
@@ -180,15 +180,15 @@ msgstr "como dirección de email para el administrador de Koha. (Esta dirección
 
 # Administration > Search Engine
 msgid "admin.pref#SearchEngine# Solr"
-msgstr "admin.pref#SearchEngine# Solr"
+msgstr "Solr"
 
 # Administration > Search Engine
 msgid "admin.pref#SearchEngine# Zebra"
-msgstr "admin.pref#SearchEngine# Zebra"
+msgstr "Zebra"
 
 # Administration > Search Engine
 msgid "admin.pref#SearchEngine# is the search engine used."
-msgstr "admin.pref#SearchEngine# es el motor de búsqueda usado."
+msgstr "es el motor de búsqueda usado."
 
 # Administration > Login options
 msgid "admin.pref#SessionStorage# Store login session information"
@@ -516,11 +516,11 @@ msgstr "como la fuente de clasificación por defecto."
 
 # Cataloging > Record Structure
 msgid "cataloguing.pref#DefaultLanguageField008#  Empty defaults to eng."
-msgstr "cataloguing.pref#DefaultLanguageField008# Por defecto vacío para eng."
+msgstr "Por defecto vacío para eng."
 
 # Cataloging > Record Structure
 msgid "cataloguing.pref#DefaultLanguageField008# Fill in the default language for field 008 Range 35-37 (e.g. eng, nor, ger, see <a href=\"http://www.loc.gov/marc/languages/language_code.html\">MARC Code List for Languages</a>)"
-msgstr "cataloguing.pref#DefaultLanguageField008# Rellenar en el idioma por defecto para el campo 008 Rango 35-37 (e.g. eng, nor, ger, see <a href=\"http://www.loc.gov/marc/languages/language_code.html\">MARC Code List for Languages</a>)"
+msgstr "Rellenar en el idioma por defecto para el campo 008 Rango 35-37 (e.g. eng, nor, ger, see <a href=\"http://www.loc.gov/marc/languages/language_code.html\">MARC Code List for Languages</a>)"
 
 # Cataloging > Interface
 msgid "cataloguing.pref#EasyAnalyticalRecords# Display"
@@ -588,19 +588,19 @@ msgstr "Cuando se crean los ?tems, asignarles ubicaci??emporal en"
 
 # Cataloging > Display
 msgid "cataloguing.pref#NotesBlacklist# Don't hide"
-msgstr ""
+msgstr "No ocultar"
 
 # Cataloging > Display
 msgid "cataloguing.pref#NotesBlacklist# Don't show these"
-msgstr ""
+msgstr "No mostrar este"
 
 # Cataloging > Display
 msgid "cataloguing.pref#NotesBlacklist# Hide"
-msgstr ""
+msgstr "Ocultar"
 
 # Cataloging > Display
 msgid "cataloguing.pref#NotesBlacklist# note fields in title notes separator (OPAC record details) and in the description separator (Staff client record details). The fields should appear separated with commas and according with the Koha MARC format (eg 3.. for UNIMARC, 5.. for MARC21)"
-msgstr ""
+msgstr "nota lde os campos de título separador de notas (OPAC detalles de registro) y en el separador de descripción (detalles del registro del cliente de Personal ). Los campos deben aparecer separados por comas y de acuerdo con el formato MARC Koha (por ejemplo, 3 .. para UNIMARC, 5 .. por MARC21)"
 
 # Cataloging > Display
 msgid "cataloguing.pref#NotesBlacklist# the link next to the indicator field to open a plugin to show the correct values of the indicator for this field and framework. If CheckValueIndicators is disabled and this variable is enabled it will check the values as well, i.e., it includes the CheckValueIndicators functionality."
@@ -608,7 +608,7 @@ msgstr ""
 
 # Cataloging > Display
 msgid "cataloguing.pref#OpacSuppression# (Leave blank if not used. Define a range like <code>192.168.</code>.)"
-msgstr "cataloguing.pref#OpacSuppression# (Dejar en blanco sino se utiliza. Definir un rango como <code>192.168.</code>.)"
+msgstr "(Dejar en blanco sino se utiliza. Definir un rango como <code>192.168.</code>.)"
 
 # Cataloging > Display
 msgid "cataloguing.pref#OpacSuppression# Don't hide"
@@ -964,11 +964,11 @@ msgstr ""
 
 # Circulation > Holds Policy
 msgid "circulation.pref#AllowHoldsOnPatronsPossessions# Don't allow"
-msgstr ""
+msgstr "circulation.pref#AllowHoldsOnPatronsPossessions# No permitir"
 
 # Circulation > Holds Policy
 msgid "circulation.pref#AllowHoldsOnPatronsPossessions# a patron to place a hold on a record where the patron already has one or more items attached to that record checked out."
-msgstr ""
+msgstr "circulation.pref#AllowHoldsOnPatronsPossessions# un socio para hacer una reserva de un registro cuando el socio ya tiene uno o más elementos conectados a ese registro préstado."
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#AllowItemsOnHoldCheckout# Allow"
@@ -1310,6 +1310,18 @@ msgstr "Impidir"
 msgid "circulation.pref#IssuingInProcess# patrons from checking out an item whose rental charge would take them over the limit."
 msgstr "a los socios pedir prestado un ítem cuyo valor de alquiler los lleve sobre el límite."
 
+# Circulation > Checkout Policy
+msgid "circulation.pref#ManInvInNoissuesCharge# Don't include"
+msgstr "No incluir"
+
+# Circulation > Checkout Policy
+msgid "circulation.pref#ManInvInNoissuesCharge# Include"
+msgstr "Incluir"
+
+# Circulation > Checkout Policy
+msgid "circulation.pref#ManInvInNoissuesCharge# MANUAL_INV charges when summing up charges for noissuescharge."
+msgstr "MANUAL_INV cargos cuando se resumen los cargos por noissuescharge."
+
 # Circulation > Interface
 msgid "circulation.pref#NoticeCSS# Include the stylesheet at"
 msgstr "Incluir hoja de estilo en"
@@ -1418,6 +1430,18 @@ msgstr "Enviar"
 msgid "circulation.pref#RenewalSendNotice# a renewal notice according to patron checkout alert preferences."
 msgstr "el aviso de renovación de socio se verificarán con las preferencias de alerta."
 
+# Circulation > Checkout Policy
+msgid "circulation.pref#RentalsInNoissuesCharge# Don't include"
+msgstr "No incluir"
+
+# Circulation > Checkout Policy
+msgid "circulation.pref#RentalsInNoissuesCharge# Include"
+msgstr "Incluir"
+
+# Circulation > Checkout Policy
+msgid "circulation.pref#RentalsInNoissuesCharge# rental charges when summing up charges for noissuescharge."
+msgstr "gastos de alquiler cuando se resumen los cargos por noissuescharge."
+
 # Circulation > Holds Policy
 msgid "circulation.pref#ReservesControlBranch# Check the"
 msgstr "Verificar la"
@@ -1480,11 +1504,11 @@ msgstr "todos los ítems en la CART de ubicación cuando se han devuelto."
 
 # Circulation > Self Checkout
 msgid "circulation.pref#SCOUserCSS# Include the following CSS on all pages in the web-based self checkout:"
-msgstr ""
+msgstr "Incluye el siguiente CSS en todas las páginas en la caja de autoservicio web-based:"
 
 # Circulation > Self Checkout
 msgid "circulation.pref#SCOUserJS# Include the following JavaScript on all pages in the web-based self checkout:"
-msgstr ""
+msgstr "Incluya el siguiente JavaScript en todas las páginas en la caja de autoservicio web-based:"
 
 # Circulation > Self Checkout
 msgid "circulation.pref#SelfCheckHelpMessage# Include the following HTML in the Help page of the web-based self checkout system:"
@@ -1912,6 +1936,10 @@ msgstr "Google"
 
 # Enhanced Content > HTML5 Media
 msgid "enhanced_content.pref HTML5 Media"
+msgstr "enhanced_content.pref HTML5 Media"
+
+# Enhanced Content > IDreamLibraries
+msgid "enhanced_content.pref IDreamLibraries"
 msgstr ""
 
 # Enhanced Content > Library Thing
@@ -2088,30 +2116,66 @@ msgstr "cubiertas de libros desde Google Books en los resultados de búsqueda y 
 
 # Enhanced Content > HTML5 Media
 msgid "enhanced_content.pref#HTML5MediaEnabled# Show a tab with a HTML5 media player for files catalogued in field 856"
-msgstr ""
+msgstr "enhanced_content.pref#HTML5MediaEnabled# Mostrar etiquetas con un  media player HTML5 para ficheros catalogados en el campo 856"
 
 # Enhanced Content > HTML5 Media
 msgid "enhanced_content.pref#HTML5MediaEnabled# in OPAC and staff client."
-msgstr ""
+msgstr "enhanced_content.pref#HTML5MediaEnabled# en OPAC y cliente personal."
 
 # Enhanced Content > HTML5 Media
 msgid "enhanced_content.pref#HTML5MediaEnabled# in the OPAC."
-msgstr ""
+msgstr "enhanced_content.pref#HTML5MediaEnabled# en el OPAC."
 
 # Enhanced Content > HTML5 Media
 msgid "enhanced_content.pref#HTML5MediaEnabled# in the staff client."
-msgstr ""
+msgstr "enhanced_content.pref#HTML5MediaEnabled# en el cliente de personal."
 
 # Enhanced Content > HTML5 Media
 msgid "enhanced_content.pref#HTML5MediaEnabled# not at all."
-msgstr ""
+msgstr "enhanced_content.pref#HTML5MediaEnabled# en absoluto."
 
 # Enhanced Content > HTML5 Media
 msgid "enhanced_content.pref#HTML5MediaExtensions# (separated with |)."
-msgstr ""
+msgstr "enhanced_content.pref#HTML5MediaExtensions# (separado con |)."
 
 # Enhanced Content > HTML5 Media
 msgid "enhanced_content.pref#HTML5MediaExtensions# Media file extensions"
+msgstr "enhanced_content.pref#HTML5MediaExtensions# Extensiones de ficheros de media"
+
+# Enhanced Content > IDreamLibraries
+msgid "enhanced_content.pref#IDreamBooksReadometer# Add"
+msgstr ""
+
+# Enhanced Content > IDreamLibraries
+msgid "enhanced_content.pref#IDreamBooksReadometer# Don't add"
+msgstr ""
+
+# Enhanced Content > IDreamLibraries
+msgid "enhanced_content.pref#IDreamBooksReadometer# a \"Readometer\" that summarizes the reviews gathered by <a href='http://idreambooks.com/'>IDreamBooks.com</a> to the OPAC details page."
+msgstr ""
+
+# Enhanced Content > IDreamLibraries
+msgid "enhanced_content.pref#IDreamBooksResults# Add"
+msgstr ""
+
+# Enhanced Content > IDreamLibraries
+msgid "enhanced_content.pref#IDreamBooksResults# Don't add"
+msgstr ""
+
+# Enhanced Content > IDreamLibraries
+msgid "enhanced_content.pref#IDreamBooksResults# the rating from <a href='http://idreambooks.com/'>IDreamBooks.com</a> to OPAC search results."
+msgstr ""
+
+# Enhanced Content > IDreamLibraries
+msgid "enhanced_content.pref#IDreamBooksReviews# Add"
+msgstr ""
+
+# Enhanced Content > IDreamLibraries
+msgid "enhanced_content.pref#IDreamBooksReviews# Don't add"
+msgstr ""
+
+# Enhanced Content > IDreamLibraries
+msgid "enhanced_content.pref#IDreamBooksReviews# a tab on the OPAC details with book reviews from critics aggregated by <a href='http://idreambooks.com/'>IDreamBooks.com</a>."
 msgstr ""
 
 # Enhanced Content > Library Thing
@@ -2908,7 +2972,7 @@ msgstr "incluir una \"Enlaces\" columna en \"mi resumen\" y \"mi historia de lec
 
 # OPAC > Appearance
 msgid "opac.pref#OPACNoResultsFound# <br />Note: You can insert placeholders {QUERY_KW} that will be replaced with the keywords of the query."
-msgstr ""
+msgstr "opac.pref#OPACNoResultsFound# <br />Nota: Puede insertar lugar de reseva {QUERY_KW} que será reemplazado con las palabras clave de la consulta."
 
 # OPAC > Appearance
 msgid "opac.pref#OPACNoResultsFound# Display this HTML when no results are found for a search in the OPAC:"
@@ -3052,7 +3116,7 @@ msgstr "sugerencias de compra de otros socios en el OPAC."
 
 # OPAC > Appearance
 msgid "opac.pref#OPACXSLTDetailsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
-msgstr ""
+msgstr "opac.pref#OPACXSLTDetailsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo específica externa.</li></ul>{langcode} será reemplazado con una interfaz de idioma habitual"
 
 # OPAC > Appearance
 msgid "opac.pref#OPACXSLTDetailsDisplay# Display OPAC details using XSLT stylesheet at: "
@@ -3060,7 +3124,7 @@ msgstr "Mostrar detalles en OPAC utilizando la hoja de estilo XSLT en: "
 
 # OPAC > Appearance
 msgid "opac.pref#OPACXSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
-msgstr ""
+msgstr "opac.pref#OPACXSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo específica externa.</li></ul>{langcode} será reemplazado con una interfaz de idioma habitual"
 
 # OPAC > Appearance
 msgid "opac.pref#OPACXSLTResultsDisplay# Display OPAC results using XSLT stylesheet at: "
@@ -3320,19 +3384,19 @@ msgstr "Separar"
 
 # OPAC > Appearance
 msgid "opac.pref#OpacSeparateHoldings# holding library"
-msgstr ""
+msgstr "opac.pref#OpacSeparateHoldings#biblioteca de reserva"
 
 # OPAC > Appearance
 msgid "opac.pref#OpacSeparateHoldings# home library"
-msgstr ""
+msgstr "opac.pref#OpacSeparateHoldings# biblioteca principal"
 
 # OPAC > Appearance
 msgid "opac.pref#OpacSeparateHoldings# is the logged in user's library. The second tab will contain all other items."
-msgstr ""
+msgstr "opac.pref#OpacSeparateHoldings#se ha iniciado la sesión en la biblioteca del usuario. La segunda ficha contendrá todos los demás elementos."
 
 # OPAC > Appearance
 msgid "opac.pref#OpacSeparateHoldings# items display into two tabs, where the first tab contains items whose"
-msgstr ""
+msgstr "opac.pref#OpacSeparateHoldings# elementos que se mostrarán en dos pestañas, en la primera pestaña contiene ítems cuyo"
 
 # OPAC > Appearance
 msgid "opac.pref#OpacShowFiltersPulldownMobile# Don't show"
@@ -4064,7 +4128,7 @@ msgstr "caracteres, en OPAC/Interfaz Administrativa."
 
 # Searching > Features
 msgid "searching.pref#IncludeSeeFromInSearches# <i>see from</i> (non-preferred form) headings in bibliographic searches. Please note: you will need to reindex your bibliographic database when changing this preference."
-msgstr ""
+msgstr "searching.pref#IncludeSeeFromInSearches# <i>see from</i> (non-preferred form) encabezamientos en busquedas de bibliográfico. Por favor: tendrá que volver a indexar la base de datos bibliográfica al cambiar esta preferencia."
 
 # Searching > Features
 msgid "searching.pref#IncludeSeeFromInSearches# Don't include"
@@ -4568,7 +4632,7 @@ msgstr "Usar"
 
 # Staff Client > Appearance
 msgid "staff_client.pref#XSLTDetailsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
-msgstr ""
+msgstr "taff_client.pref#XSLTDetailsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
 
 # Staff Client > Appearance
 msgid "staff_client.pref#XSLTDetailsDisplay# Display details in the staff client using XSLT stylesheet at: "
@@ -4576,7 +4640,7 @@ msgstr "Mostrar detalles en el clietne administrador utilizando la hoja de estil
 
 # Staff Client > Appearance
 msgid "staff_client.pref#XSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
-msgstr ""
+msgstr "staff_client.pref#XSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language "
 
 # Staff Client > Appearance
 msgid "staff_client.pref#XSLTResultsDisplay# Display results in the staff client using XSLT stylesheet at: "
