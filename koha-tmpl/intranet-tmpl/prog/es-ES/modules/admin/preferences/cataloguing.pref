@@ -2,10 +2,10 @@
 cataloguing.pref: 
   Estructura de registro: 
     - 
-      - cataloguing.pref#DefaultLanguageField008# Rellenar en el idioma por defecto para el campo 008 Rango 35-37 (e.g. eng, nor, ger, see <a href="http://www.loc.gov/marc/languages/language_code.html">MARC Code List for Languages</a>)
+      - Rellenar en el idioma por defecto para el campo 008 Rango 35-37 (e.g. eng, nor, ger, see <a href="http://www.loc.gov/marc/languages/language_code.html">MARC Code List for Languages</a>)
       - 
         pref: DefaultLanguageField008
-      - "cataloguing.pref#DefaultLanguageField008# Por defecto vac\xC3\xADo para eng."
+      - "Por defecto vac\xC3\xADo para eng."
     - 
       - Interpreta y almacena registros MARC en formato
       - 
@@ -166,7 +166,7 @@ cataloguing.pref:
       - 
         class: short
         pref: OpacSuppressionByIPRange
-      - cataloguing.pref#OpacSuppression# (Dejar en blanco sino se utiliza. Definir un rango como <code>192.168.</code>.)
+      - (Dejar en blanco sino se utiliza. Definir un rango como <code>192.168.</code>.)
     - 
       - 
         choices: 
@@ -181,15 +181,15 @@ cataloguing.pref:
         pref: SeparateHoldingsBranch
       - is the logged in user's library. The second tab will contain all other items.
     - 
-      - Don't show these
+      - No mostrar este
       - 
         class: multi
         pref: NotesBlacklist
-      - note fields in title notes separator (OPAC record details) and in the description separator (Staff client record details). The fields should appear separated with commas and according with the Koha MARC format (eg 3.. for UNIMARC, 5.. for MARC21)
+      - "nota lde os campos de t\xC3\xADtulo separador de notas (OPAC detalles de registro) y en el separador de descripci\xC3\xB3n (detalles del registro del cliente de Personal ). Los campos deben aparecer separados por comas y de acuerdo con el formato MARC Koha (por ejemplo, 3 .. para UNIMARC, 5 .. por MARC21)"
       - 
         choices: 
-          "": Hide
-          1: Don't hide
+          "": Ocultar
+          1: No ocultar
         pref: DisplayPluginValueIndicators
       - the link next to the indicator field to open a plugin to show the correct values of the indicator for this field and framework. If CheckValueIndicators is disabled and this variable is enabled it will check the values as well, i.e., it includes the CheckValueIndicators functionality.
   Tejuelos: 

@@ -70,13 +70,13 @@ opac.pref:
       - 
         class: file
         pref: OPACXSLTResultsDisplay
-      - <br />Options:<ul><li><a href="#" class="set_syspref" data-syspref="OPACXSLTResultsDisplay" data-value="">Leave empty</a> for "no xslt"</li><li>enter "<a href="#" class="set_syspref" data-syspref="OPACXSLTResultsDisplay" data-value="default">default</a>" for the default one</li><li> put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language
+      - "opac.pref#OPACXSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con una interfaz de idioma habitual"
     - 
       - "Mostrar detalles en OPAC utilizando la hoja de estilo XSLT en: "
       - 
         class: file
         pref: OPACXSLTDetailsDisplay
-      - <br />Options:<ul><li><a href="#" class="set_syspref" data-syspref="OPACXSLTDetailsDisplay" data-value="">Leave empty</a> for "no xslt"</li><li>enter "<a href="#" class="set_syspref" data-syspref="OPACXSLTDetailsDisplay" data-value="default">default</a>" for the default one</li><li>put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language
+      - "opac.pref#OPACXSLTDetailsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con una interfaz de idioma habitual"
     - 
       - "En las p\xC3\xA1ginas que se muestran con hojas de estilo XSLT en el OPAC,"
       - 
@@ -297,7 +297,7 @@ opac.pref:
       - "un men\xC3\xBA desplegable de selecci\xC3\xB3n de biblioteca en la cabecera OPAC."
     - 
       - "Mostrar este HTML cuando no se encuentran resultados para un b\xC3\xBAsqueda en el OPAC:"
-      - "<br />Note: You can insert placeholders {QUERY_KW} that will be replaced with the keywords of the query."
+      - "opac.pref#OPACNoResultsFound# <br />Nota: Puede insertar lugar de reseva {QUERY_KW} que ser\xC3\xA1 reemplazado con las palabras clave de la consulta."
       - 
         class: code
         pref: OPACNoResultsFound
@@ -326,13 +326,13 @@ opac.pref:
           "": No separar
           1: Separar
         pref: OpacSeparateHoldings
-      - items display into two tabs, where the first tab contains items whose
+      - "opac.pref#OpacSeparateHoldings# elementos que se mostrar\xC3\xA1n en dos pesta\xC3\xB1as, en la primera pesta\xC3\xB1a contiene \xC3\xADtems cuyo"
       - 
         choices: 
-          holdingbranch: holding library
-          homebranch: home library
+          holdingbranch: opac.pref#OpacSeparateHoldings#biblioteca de reserva
+          homebranch: opac.pref#OpacSeparateHoldings# biblioteca principal
         pref: OpacSeparateHoldingsBranch
-      - is the logged in user's library. The second tab will contain all other items.
+      - "opac.pref#OpacSeparateHoldings#se ha iniciado la sesi\xC3\xB3n en la biblioteca del usuario. La segunda ficha contendr\xC3\xA1 todos los dem\xC3\xA1s elementos."
   "Caracter\xC3\xADsticas": 
     - 
       - 

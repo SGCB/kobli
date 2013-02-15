@@ -106,16 +106,10 @@ $(document).ready(function(){
 <div id="bd">
 
 [% IF ( impossible ) %]<!-- We tried to issue, but failed. -->
-<div class="dialog alert"><h3>El ítem no puede ser prestado.</h3><p>Sorry, this item cannot be checked out at this station. </p>
+<div class="dialog alert"><h3>El ítem no puede ser prestado.</h3><p>Lo sentimos, no se puede prestar este ítem en esta sede. </p>
 [% IF ( title ) %]<p>Título:<em>[% title |html %]</em> </p>[% END %] <p>
- [% IF ( circ_error_UNKNOWN_BARCODE ) %] <em>MENSAJE 1:</em> El sistema no reconoce este código de barras. [% ELSIF ( circ_error_max_loans_allowed ) %] <em>MENSAJE 2:</em> You have checked out too many items and can't check out any more.
- [% ELSIF ( circ_error_ISSUED_TO_ANOTHER ) %]
- <em>MENSAJE 3:</em> Este ítem ha sido prestado a otra persona. [% ELSIF ( circ_error_NO_MORE_RENEWALS ) %] <em>MENSAJE 4:</em> No puede renovar este ítem otra vez. [% ELSIF ( circ_error_NOT_FOR_LOAN ) %] <em>MENSAJE 5:</em> Este ítem no está disponible para préstamo. [% ELSIF ( circ_error_DEBT ) %] <em>MENSAJE 6:</em> You owe the library [% amount %] and cannot check out.
- [% ELSIF ( circ_error_WTHDRAWN ) %]
- <em>MENSAJE 7:</em> Este ítem ha sido retirado de la colección. [% ELSIF ( circ_error_RESTRICTED ) %] <em>MENSAJE 8:</em>
- [% ELSIF ( circ_error_RESERVED ) %] <em>MENSAJE 9:</em> This item is on hold for another patron.
- [% ELSIF ( circ_error_ITEMNOTSAMEBRANCH ) %]
- <em>MENSAJE 10:</em>
+ [% IF ( circ_error_UNKNOWN_BARCODE ) %] <em>MENSAJE 1:</em> El sistema no reconoce este código de barras. [% ELSIF ( circ_error_max_loans_allowed ) %] <em>MENSAJE 2:</em> Tiene muchos préstamos activos y no se le puede prestar más.  [% ELSIF ( circ_error_ISSUED_TO_ANOTHER ) %]  <em>MENSAJE 3:</em> Este ítem ha sido prestado a otra persona. [% ELSIF ( circ_error_NO_MORE_RENEWALS ) %] <em>MENSAJE 4:</em> No puede renovar este ítem otra vez. [% ELSIF ( circ_error_NOT_FOR_LOAN ) %] <em>MENSAJE 5:</em> Este ítem no está disponible para préstamo. [% ELSIF ( circ_error_DEBT ) %] <em>MENSAJE 6:</em> Debes a la biblioteca [% amount %] y no puedes realizar préstamos. [% ELSIF ( circ_error_WTHDRAWN ) %]  <em>MENSAJE 7:</em> Este ítem ha sido retirado de la colección. [% ELSIF ( circ_error_RESTRICTED ) %] <em>MENSAJE 8:</em>
+ [% ELSIF ( circ_error_RESERVED ) %] <em>MENSAJE 9:</em> Este ítems está reservado para otro socio. [% ELSIF ( circ_error_ITEMNOTSAMEBRANCH ) %]  <em>MENSAJE 10:</em>
  [% ELSIF ( circ_error_EXPIRED ) %] <em>MENSAJE 11:</em> Su cuenta ha expirado. [% ELSIF ( circ_error_DEBARRED ) %] <em>MENSAJE 12:</em> Su cuenta ha sido suspendida. [% ELSIF ( circ_error_CARD_LOST ) %] <em>MENSAJE 13:</em> Este carné consta como perdido. [% ELSIF ( circ_error_GNA ) %] <em>MENSAJE 14:</em>
  [% ELSIF ( circ_error_INVALID_DATE ) %] <em>MENSAJE 15:</em>
  [% END %] Por favor, consulte a un miembro del personal de la biblioteca. </p>
@@ -129,7 +123,7 @@ $(document).ready(function(){
  <input type="hidden" name="op" value="" />
  <input type="hidden" name="patronid" value="[% patronid %]" />
  <input type="hidden" name="barcode" value="[% barcode %]" />
- <input type="submit" name= "confirm" value="Return to account summary" class="back focus" />
+ <input value="Volver al resumen de cuenta " name="confirm" type="submit" class="back focus" />
 </form>
 [% END %]
 [% IF ( confirm ) %]<!-- We need to confirm the issue.. -->
@@ -214,7 +208,7 @@ Lo sentimos, esta máquina de autopréstamo ha perdido la identificación. Por f
  <form action="/cgi-bin/koha/sco/sco-main.pl" method="post">
  <input type="hidden" name="patronid" value="[% patronid %]" />
  <input type="hidden" name="barcode" value="[% ISSUE.barcode %]" />
- [% IF ( ISSUE.norenew ) %] [% IF ( AllowSelfCheckReturns ) %] <input type="submit" value="Check in item" name="confirm" class="return" />
+ [% IF ( ISSUE.norenew ) %] [% IF ( AllowSelfCheckReturns ) %] <input value="Renovar ítem " name="confirm" type="submit" class="return" />
  <input type="hidden" name="op" value="returnbook" />
  <input type="hidden" name="confirmed" value=""  />
  [% ELSE %] <span>No se permiten renovaciones</span>

@@ -2,7 +2,10 @@
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/JavaScript">
 //<![CDATA[
-var MSG_CONFIRM_DELETE_HOLD = _("¿Está seguro de que quiere cancelar esta reserva?");
+var MSG_CONFIRM_DELETE_HOLD   = _("¿Está seguro de que quiere cancelar esta reserva?");
+var MSG_CONFIRM_SUSPEND_HOLDS = _("Are you sure you want to suspend all holds?");
+var MSG_CONFIRM_RESUME_HOLDS  = _("Are you sure you want to resume all suspended holds?");
+
 $.tablesorter.addParser({
     id: 'articles', 
     is: function(s) {return false;  }, 
@@ -65,6 +68,9 @@ $.tablesorter.addParser({
  [% IF ( patronupdate ) %]<div class="dialog message"><h3>¡Gracias!</h3><p>Sus correcciones han sido enviadas a la biblioteca y un miembro de la misma actualizará su registro lo antes posible.</p></div>[% END %] [% IF ( BORROWER_INF.warndeparture ) %] <div class="dialog alert" id="warndeparture">
  <strong>Por favor, observe:</strong><span> Su carné expira en<span id="warndeparture_date">[% BORROWER_INF.warndeparture | $KohaDates %]</span>. Por favor, contacte con la biblioteca para más información.</span>
  [% IF ( BORROWER_INF.returnbeforeexpiry ) %]<span id="warndeparture_returnbeforeexpiry"> Tenga en cuenta que debe devolver todos los ítems prestado antes de que su carné caduque.</span>[% END %] </div>
+ [% END %] [% IF ( BORROWER_INF.warnexpired ) %] <div class="dialog alert" id="warnexpired">
+ <strong>Por favor, observe:</strong><span> Your card has expired. Please contact the library for more information.</span>
+ </div>
  [% END %] [% IF ( patron_flagged ) %] <div class="dialog alert">
  <ul>
  [% IF ( userdebarred ) %] <span id="userdebarred"><li><strong>Por favor, observe:</strong> Su cuenta ha sido suspendida [% IF ( BORROWER_INF.userdebarreddate ) %]  hasta<span id="userdebarred_date">[% BORROWER_INF.userdebarreddate | $KohaDates %]</span>[% END %][% IF ( BORROWER_INF.debarredcomment ) %] con el comentario<span id="userdebarred_comment">"[% BORROWER_INF.debarredcomment %]"</span>[% END %]. Normalmente, las razones para congelar una cuenta son los retrasos o multas por daños. Si <a href="/cgi-bin/koha/opac-user.pl">tu página personal</a> muestra que su cuenta está limpia, por favor consulte al bibliotecario.</li></span>
@@ -231,7 +237,7 @@ $.tablesorter.addParser({
  [% IF ( RESERVE.cancelable ) %] <form action="/cgi-bin/koha/opac-modrequest.pl" method="post">
  <input type="hidden" name="biblionumber" value="[% RESERVE.biblionumber %]" />
  <input type="hidden" name="reservenumber" value="[% RESERVE.reservenumber %]" />
- <input value="Cancelar" name="submit" type="submit" class="icon delete cancel" onclick="return confirmDelete('Are you sure you want to cancel this hold?');" /></form>
+ <input value="Cancelar" name="submit" type="submit" class="icon delete cancel" onclick="return confirmDelete(MSG_CONFIRM_DELETE_HOLD);" /></form>
  [% ELSE %] [% END %] </td>
 
 
@@ -241,7 +247,7 @@ $.tablesorter.addParser({
 
  [% IF SuspendHoldsOpac %] <div>
  <form action="/cgi-bin/koha/opac-modrequest-suspend.pl" method="post">
- <input value="Suspender todas las reservas" name="submit" type="submit" class="icon delete cancel" onclick="return confirmDelete('Are you sure you want to suspend all holds?');" />
+ <input value="Suspender todas las reservas" name="submit" type="submit" class="icon delete cancel" onclick="return confirmDelete(MSG_CONFIRM_SUSPEND_HOLDS);" />
  <input type="hidden" name="suspend" value="1" />
 
  [% IF AutoResumeSuspendedHolds %] <label for="suspend_until"> hasta</label>
@@ -251,7 +257,7 @@ $.tablesorter.addParser({
  </div>
  <div>
  <form action="/cgi-bin/koha/opac-modrequest-suspend.pl" method="post">
- <input value="Reanudar todas las reservas suspendidas" name="submit" type="submit" class="icon delete cancel" onclick="return confirmDelete('Are you sure you want to resume all suspended holds?');" />
+ <input value="Reanudar todas las reservas suspendidas" name="submit" type="submit" class="icon delete cancel" onclick="return confirmDelete(MSG_CONFIRM_RESUME_HOLDS);" />
  <input type="hidden" name="suspend" value="0" />
  </form>
  </div>

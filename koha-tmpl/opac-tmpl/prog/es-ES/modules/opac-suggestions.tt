@@ -1,6 +1,6 @@
 [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; [% IF ( op_add ) %]Realice una nueva sugerencia de compra[% END %] [% IF ( op_else ) %]Sugerencias de compra[% END %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/JavaScript" language="JavaScript">
+<script type="text/javascript">
 //<![CDATA[
 $.tablesorter.addParser({
     id: 'articles', 
@@ -40,8 +40,8 @@ $.tablesorter.addParser({
 				[% END %]
 				}
             });
-            [% IF ( loggedinusername ) %]$("span.clearall").html("<a id=\"CheckNone\" href=\"#\">"+_('Limpiar todo')+"<\/a>");
-            $("span.checkall").html("<a id=\"CheckAll\" href=\"#\">"+_('Seleccionar todo')+"<\/a>");
+            [% IF ( loggedinusername ) %]$("span.clearall").html("<a id=\"CheckNone\" href=\"#\">"+_("Limpiar todo")+"<\/a>");
+            $("span.checkall").html("<a id=\"CheckAll\" href=\"#\">"+_("Seleccionar todo")+"<\/a>");
             $("#CheckAll").click(function(){
                 $(".checkboxed").checkCheckboxes();
                 enableCheckboxActions();

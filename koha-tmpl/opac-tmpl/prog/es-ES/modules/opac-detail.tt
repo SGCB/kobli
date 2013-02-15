@@ -1,11 +1,13 @@
 [% USE KohaDates %] [% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnDetail ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnDetail ) %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Detalles para: [% title |html %][% FOREACH subtitl IN subtitle %], [% subtitl.subfield |html %][% END %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tools.min.js"></script>
 [% IF ( SocialNetworks ) %] <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+    //<![CDATA[
       {lang: '[% lang %]'}
+    //]]>
     </script>
  <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 [% END %] [% IF ( OpacStarRatings != 'disable' ) %]<script type="text/javascript" src="/opac-tmpl/prog/en/lib/jquery/plugins/jquery.rating.js"></script>
-<link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/jquery.rating.css" />[% END %] [% IF ( OpacHighlightedWords ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.highlight-3.js"></script>[% END %] <script type="text/JavaScript" language="JavaScript">
+<link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/jquery.rating.css" />[% END %] [% IF ( OpacHighlightedWords ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.highlight-3.js"></script>[% END %] <script type="text/javascript">
 //<![CDATA[
 
     [% IF ( OpacBrowseResults && busc ) %]
@@ -169,7 +171,62 @@ $(function () {
 });
 // -----------------------------------------------------
 [% END %]
+[% IF ( IDreamBooksReviews || IDreamBooksReadometer ) %]
+        var isbn = $(".isbn:last").text().split(" ")[1];
+        if (isbn) {
+        isbn = isbn.replace(/\W*$/, '');
+        isbn = isbn.replace(/-/, '');
+
+        if ($.browser.msie && parseInt($.browser.version, 10) >= 8 && window.XDomainRequest) {
+        // Use Microsoft XDR for IE version 8 or above
+            var xdr = new XDomainRequest();
+            xdr.open("get", "http://idreambooks.com/newbooks/api.json?q="+encodeURIComponent(isbn)+"&key=8bf66516232d1b72f3e47df939653e1e");
+            xdr.onload = function() {
+                json = 'json = '+xdr.responseText; // the string now looks like..  json = { ... };
+                eval(json); // json is now a regular JSON object
+                parseIDBJSON(json); // parse using same function as for jQuery's success event
+            }
+            xdr.send();
+        } else {
+            $.getJSON("http://idreambooks.com/newbooks/api.json?q="+encodeURIComponent(isbn)+"&key=8bf66516232d1b72f3e47df939653e1e", function(json){
+                parseIDBJSON(json);
+            });
+        }
+    }
+
+[% END %]
 });
+[% IF ( IDreamBooksReviews || IDreamBooksReadometer ) %]
+function parseIDBJSON( json ) {
+    if(json.total_results > 0 && json.book.rating > 0){
+        var isbn = $(".isbn:last").text().split(" ")[1];
+        isbn = isbn.replace(/-/, '');
+
+[% IF ( IDreamBooksReadometer ) %]
+        $(".title").append('<a href="'+json.book.detail_link+'" id="idreambooksreadometer"><img src="http://idreambooks.com/remotereadometer/'+isbn+'.jpg" alt="'+json.book.title+' by '+json.book.author+'" title="Rating based on reviews of '+json.book.title+'"></a>');
+[% END %]
+
+
+[% IF ( IDreamBooksReviews ) %]
+        //build new tab for critic reviews
+        $("#tab_idb_critic_reviews a").text($("#tab_idb_critic_reviews a").text().replace('XXX', json.book.review_count));
+
+        //append happy-sad cloud review
+
+        $("#catalogue_detail_biblio").append("<span class='idreambookssummary results_summary'><a href='"+json.book.detail_link+"'><img src='"+json.book.to_read_or_not_small+"' alt='"+json.book.title+" by "+json.book.author+"' title='Rating based on reviews of "+json.book.title+"'>"+json.book.rating+"%</a> <a href='http://www.idreambooks.com/'>rating based on reviews at iDreamBooks.com</a></span>");
+
+        //insert data into Book reviews tab
+        $.each(json.book.critic_reviews, function(){
+                $("#idb_review_snippets").append("<div class='review'><div><a href='"+this.review_link+"'>"+this.source+"</a></div><div>\"..."+this.snippet+"...\"</div><div>Review date: "+this.review_date+"</div><div><a class='reviewlink' href='"+json.book.detail_link+"'>Review result: "+this.pos_or_neg+" <img src='"+this.smiley_or_sad_small+"' alt='iDreamBooks.com rating' title='"+this.pos_or_neg+"' /></a></div></div>");
+                });
+        $("#seemoreidb").attr('href', json.book.detail_link);
+        $("#tab_idb_critic_reviews").show();
+[% END %]
+
+    }
+
+}
+[% END %]
 
 [% IF ( OpacBrowseResults && busc ) %]
 var timeoutRFW;
@@ -423,8 +480,8 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  [% END %] [% IF ( publishercode ) %] <span class="results_summary"><span class="label">Publicado por :</span>
  <a href="/cgi-bin/koha/opac-search.pl?q=pb:[% publishercode |url %] ">
  [% publishercode |html %] </a> [% IF ( place ) %]([% place %])[% END %] [% IF ( publicationyear ) %], [% publicationyear %][% END %] </span>
- [% END %] [% IF ( pages ) %]<span class="results_summary"><span class="label">Detalles físicos:</span> [% pages %] [% illus %] [% size %]</span>[% END %] [% IF ( MARCISBNS ) %] <span class="results_summary"><span class="label">ISBN:</span>[% FOREACH MARCISBN IN MARCISBNS %][% MARCISBN.marcisbn %][% IF ( loop.last ) %].[% ELSE %]; [% END %][% END %]</span>
- [% ELSE %] [% IF ( normalized_isbn ) %] <span class="results_summary"><span class="label">ISBN: </span>[% normalized_isbn %]</span>
+ [% END %] [% IF ( pages ) %]<span class="results_summary"><span class="label">Detalles físicos:</span> [% pages %] [% illus %] [% size %]</span>[% END %] [% IF ( MARCISBNS ) %] <span class="results_summary isbn"><span class="label">ISBN:</span>[% FOREACH MARCISBN IN MARCISBNS %][% MARCISBN.marcisbn %][% IF ( loop.last ) %].[% ELSE %]; [% END %][% END %]</span>
+ [% ELSE %] [% IF ( normalized_isbn ) %] <span class="results_summary isbn"><span class="label">ISBN: </span>[% normalized_isbn %]</span>
  [% END %] [% END %] [% IF ( issn ) %] <span class="results_summary"><span class="label">ISSN:</span>[% issn %]</span>
  [% END %] [% IF ( collectiontitle ) %] <span class="results_summary"><span class="label">Colección: </span>
  [% collectiontitle %] [% IF ( collectionissn ) %], ISSN [% collectionissn %] [% END %] [% IF ( collectionvolume ) %]; [% collectionvolume %] [% END %] </span>
@@ -573,8 +630,9 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 [% END %][% END %] [% IF ( serialcollection ) %] [% IF ( defaulttab == 'serialcollection' ) %]<li id="tab_serialcollection" class="ui-tabs-selected">[% ELSE %]<li id="tab_serialcollection">[% END %] <a href="#serialcollection">Colección de publicaciones periódicas</a>
  </li>
 [% END %] [% IF ( OPACLocalCoverImages && localimages.size ) %] <li id="tab_images"><a href="#images">Imágenes</a></li>
-[% END %] [% IF ( HTML5MediaEnabled ) %][% IF ( HTML5MediaSets ) %] <li id="tab_html5media"><a href="#html5media">Play media</a></li>
-[% END %][% END %] </ul>
+[% END %] [% IF ( HTML5MediaEnabled ) %][% IF ( HTML5MediaSets ) %] <li id="tab_html5media"><a href="#html5media">Multimedia </a></li>
+[% END %][% END %] [% IF ( IDreamBooksReviews ) %] <li id='tab_idb_critic_reviews' style="display:none;"><a href='#idb_critic_reviews'>Book reviews by critics ( XXX )</a></li>
+[% END %] </ul>
 
 [% IF ( serialcollection ) %] <div id="serialcollection">
  <table id="serialcollectiont">
@@ -737,18 +795,18 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 [% END %] </table>
 </div>[% END %][% END %] [% IF ( HTML5MediaEnabled ) %] <div id="html5media">
  <p>
- <[% HTML5MediaParent %] controls preload=none>
- [% FOREACH HTML5MediaSet IN HTML5MediaSets %]
- <[% HTML5MediaSet.child  %] src="[% HTML5MediaSet.srcblock %]"[% HTML5MediaSet.typeblock %] />
- [% END %]
- [[% HTML5MediaParent %] tag not supported by your browser.]
- </[% HTML5MediaParent %]>
+ <[% HTML5MediaParent %] controls preload=none> [% FOREACH HTML5MediaSet IN HTML5MediaSets %] <[% HTML5MediaSet.child  %] src="[% HTML5MediaSet.srcblock %]"[% HTML5MediaSet.typeblock %] /> [% END %] [[% HTML5MediaParent %] tag not supported by your browser.] </[% HTML5MediaParent %]>
  </p>
 </div>
 [% END %] [% IF ( OPACLocalCoverImages && localimages.size ) %] <div id="images">
 <p>Clique en la imagen para verla en un tamaño mayor</p>
 [% FOREACH image IN localimages %] [% IF image %] <a class="localimage" href="/cgi-bin/koha/opac-imageviewer.pl?biblionumber=[% biblionumber %]&amp;imagenumber=[% image %]"><img alt="" src="/cgi-bin/koha/opac-image.pl?thumbnail=1&amp;imagenumber=[% image %]" /></a>
 [% END %] [% END %] </div>
+[% END %] [% IF ( IDreamBooksReviews ) %] <div id="idb_critic_reviews">
+ <div id="idb_review_snippets">
+ </div>
+ <span><a id="seemoreidb">More book reviews at iDreamBooks.com</a></span>
+ </div>
 [% END %] </div>
 [% IF ( NovelistSelectProfile ) %][% IF ( NovelistSelectView == 'below' ) %] <div id="NovelistSelect">
 <h3>Novelist Select</h3>

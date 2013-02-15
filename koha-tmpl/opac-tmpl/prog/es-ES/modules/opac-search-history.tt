@@ -1,5 +1,5 @@
 [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Su historial de búsqueda [% INCLUDE 'doc-head-close.inc' %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/JavaScript" language="JavaScript">
+<script type="text/javascript">
 //<![CDATA[
 	var MSG_CONFIRM_DELETE_HISTORY = _("¿Está seguro de que quiere borrar su historial de búsqueda?");
          $(document).ready(function() {

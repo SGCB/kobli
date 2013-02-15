@@ -396,7 +396,7 @@ a .term {
 }
 
 #action a.highlight_toggle {
-    background-image: url("../../images/sprite.png"); /* place hold icon */
+    background-image: url("../../images/sprite.png"); /* Highlight */
     background-position: -5px -841px;
     background-repeat: no-repeat;
     display: none;
@@ -421,6 +421,20 @@ a .term {
 .searchresults a.reserve {
 	background-image:url(../../images/placereserve.gif);
 	background-position: 7px center;
+}
+
+#action a.cartRemove, .actions a.cartRemove {
+	color: #cc3333;
+	font-size : 90%;
+	margin : 0;
+	padding: 0;
+}
+
+#action a.incart {
+  background-image: url("../../images/sprite.png"); /* Cart */
+  background-position: -5px -265px;
+  background-repeat: no-repeat;
+  color : #666;
 }
 
 #action a.addtoshelf, #toolbar a.addtoshelf {
@@ -512,6 +526,29 @@ vertical-align:middle;
 	padding-left : 23px;
 }
 
+#selections-toolbar a.hold.disabled {
+    background-image: url("../../images/sprite.png"); /* Place hold disabled */
+    background-position : -5px -621px;
+    background-repeat: no-repeat;
+}
+
+#selections-toolbar a.removeitems,
+#selections-toolbar a.deleteshelf {
+    background-image : url("../../images/sprite.png"); /* Delete */
+    background-position : 2px -690px;
+    background-repeat: no-repeat;
+	text-decoration : none;
+	padding-left : 25px;
+}
+
+
+#selections-toolbar a.removeitems.disabled,
+#selections-toolbar a.deleteshelf.disabled {
+    background-image: url("../../images/sprite.png"); /* Delete disabled */
+    background-position : 2px -712px;
+    background-repeat: no-repeat;
+}
+
 #toolbar a.newshelf {
 	background : transparent url("../../images/shelf-new.gif") 5px 50% no-repeat;
 	padding-left : 23px;
@@ -542,7 +579,9 @@ a.send {
 
 #toolbar input.editshelf,
 input.editshelf {
-    background : transparent url("../../images/sprite.png") 2px -732px no-repeat;
+    background-image : url("../../images/sprite.png"); /* List edit */
+    background-position : 2px -732px;
+    background-repeat: no-repeat;
 	border : 0;
 	color : #006699;
 	cursor : pointer;
@@ -555,7 +594,7 @@ input.editshelf {
 #toolbar input.newshelf,
 #toolbar a.newshelf,
 a.newshelf {
-    background-image: url("../../images/sprite.png"); /* add to list icon */
+    background-image: url("../../images/sprite.png"); /* List new */
     background-position: -4px -764px;
     background-repeat: no-repeat;
 	border : 0;
@@ -568,9 +607,18 @@ a.newshelf {
 	text-decoration : none;
 }
 
+a.newshelf.disabled {
+    background-image: url("../../images/sprite.png"); /* List new disabled */
+    background-position: -4px -791px;
+    background-repeat: no-repeat;
+}
+
+
 #toolbar input.deleteshelf,
 input.deleteshelf {
-    background : transparent url("../../images/sprite.png") 2px -685px no-repeat;
+    background-image : url("../../images/sprite.png"); /* Delete */
+    background-position : 2px -685px;
+    background-repeat: no-repeat;
 	border : 0;
 	color : #006699;
 	cursor : pointer;
@@ -603,17 +651,17 @@ input.deleteshelf:active {
 #tagslist li { display : inline; }
 
 a.tag_add {
-    background-image: url(../../images/tag-small.png);
-    background-position : -1px center;
-    background-repeat : no-repeat;
+    background-image: url("../../images/sprite.png"); /* Tag results */
+    background-position: -10px -1104px;
+    background-repeat: no-repeat;
     padding-left : 13px;
     text-decoration: none;
 }
 
 #login4tags {
-    background-image: url(../../images/tag-small-disabled.png);
-    background-position : -1px center;
-    background-repeat : no-repeat;
+    background-image: url("../../images/sprite.png"); /* Tag results disabled */
+    background-position: -10px -1124px;
+    background-repeat: no-repeat;
     padding-left : 13px;
     text-decoration: none;
     margin-left: 1em;
@@ -1507,6 +1555,47 @@ div#changelanguage li.yuimenuitem {
 
 div#changelanguage li.yuimenuitem a.yuimenuitemlabel {
 	padding : 0;
+}
+
+ul#i18nMenu {
+	margin : 0;
+	padding : .2em 0;
+ }
+
+ul#i18nMenu li {
+	border-left : 1px solid #CCC;
+	display : inline;
+	list-style : none;
+	padding : 0 .4em;
+ }
+
+ul#i18nMenu li:first-child {
+	border-left : 0;
+ }
+
+ul#i18nMenu li ul li {
+	border : 0;
+	display : block;
+	padding : 0;
+ }
+
+
+ul#i18nMenu li.more a {
+    background-image : url("../../images/sprite.png"); /* Arrow up */
+    background-position : 37px -940px;
+	background-repeat:no-repeat;
+	padding-right: 1.3em;
+}
+
+ul#i18nMenu li.more ul li a {
+	background-image : none;
+	padding: 0 1.3em;
+}
+
+span.lang{
+	float:left;
+	border-right : 1px solid black;
+	padding : 0 .5em;
 }
 
 #cartDetails,#cartUpdate,#holdDetails,#listsDetails {
@@ -3084,6 +3173,56 @@ body#opac-main #opacmainuserblockmobile {
 video {
     width: 480px;
 }
+
+.review {
+    margin-bottom: 20px;
+}
+
+#idreambooksreadometer {
+    float: right;
+}
+a.idreambooksrating {
+    font-size: 30px;
+    color: #29ADE4;
+    padding-left: 85px;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+.idreambookslegend {
+    font-size: small;
+}
+
+a.reviewlink,a.reviewlink:visited {
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+}
+
+.idreambookssummary a {
+    color: #707070;
+    text-decoration: none;
+}
+
+.idreambookssummary img, .idbresult img {
+    vertical-align: middle;
+}
+
+.idbresult {
+    color: #29ADE4;
+    text-align: center;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+.idbresult a, .idbresult a:visited {
+    text-decoration: none;
+    color: #29ADE4;
+}
+
+.idbresult img {
+    padding-right: 6px;
+}
 /* ## BABELTHEQUE ## */
 /* Uncomment if babeltheque configuration no contains these lines */
 /*
@@ -3242,3 +3381,4 @@ video {
 #opac-holds div#bd {background:none;}
 #opac-holds div#bd #opac_search {padding:20px 0px; float: left; border-bottom: 1px solid #E4E4E4; /*background:#FCFCFC;*/ width:100%;}
 #opac-holds div#bd .yui-b #leftmenus {display:none;}
+>>>>>>> Disenyo de Kobli en ingles:koha-tmpl/opac-tmpl/prog/en/css/opac.css

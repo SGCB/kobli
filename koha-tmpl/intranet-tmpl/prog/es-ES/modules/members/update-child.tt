@@ -18,7 +18,7 @@
 <div id="custom-doc" class="yui-t7">
 <div id="bd">
 
-[% IF ( CONFIRM ) %] <script language="javascript" type="text/javascript">
+[% IF ( CONFIRM ) %] <script type="text/javascript">
 function confirm_updatechild() {
     var is_confirmed = window.confirm('Are you sure you want to update this child to an Adult category?  This cannot be undone.');
    
@@ -29,7 +29,7 @@ function confirm_updatechild() {
 
 confirm_updatechild([% borrowernumber %]);
 </script>
-[% END %] [% IF ( SUCCESS ) %] <script language="javascript" type="text/javascript">
+[% END %] [% IF ( SUCCESS ) %] <script type="text/javascript">
 self.opener.location.href='/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]';
 window.close();
 </script>

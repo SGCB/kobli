@@ -105,7 +105,8 @@
  <option value="ctype:r" >repasos/críticas literiarias</option>
  <option value="ctype:s" >tratados</option>
  <option value="ctype:t" >historietas o cómics</option>
- <option value="ctype:v" >disertación o tesis (revisada)</option>v<option value="ctype:w" >texto religioso</option>
+ <option value="ctype:v" >disertación o tesis (revisada)</option>
+ <option value="ctype:w" >texto religioso</option>
  <option value="ctype:z" >otro</option>
  </select>
  </p>
