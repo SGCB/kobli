@@ -222,7 +222,7 @@
  [% ELSE %] [% UNLESS ( none_available ) %]<td class="hold">&nbsp;</td>[% END %] [% END %] [% IF ( bibitemloo.holdable ) %]<td class="title">[% ELSE %]<td class="title" colspan="5">[% END %] <a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% bibitemloo.biblionumber %]">[% bibitemloo.title |html %][% IF ( bibitemloo.subtitle ) %] [% FOREACH subtitl IN bibitemloo.subtitle %][% subtitl.subfield %][% END %][% END %]</a>
  [% IF ( bibitemloo.author ) %], por [% bibitemloo.author %][% END %] [% UNLESS ( bibitemloo.holdable ) %] [% IF ( bibitemloo.already_reserved ) %] <div class="bibmessage">Ya ha solicitado este título.</div>
  [% ELSE %] [% UNLESS ( bibitemloo.bib_available ) %] <div class="bibmessage">No hay ítems disponibles.</div>
- [% ELSE %] [% IF ( bibitemloo.already_patron_possession ) %] <div class="bibmessage">This title cannot be requested because it's already in your possession.</div>
+ [% ELSE %] [% IF ( bibitemloo.already_patron_possession ) %] <div class="bibmessage">Este título no se puede solicitar porque ya está en su posesión.</div>
  [% ELSE %] <div class="bibmessage">Este título no se puede solicitar.</div>
  [% END %] [% END %] [% END %] [% END %] </td>
  [% IF ( bibitemloo.holdable ) %]
@@ -234,7 +234,7 @@
  [% IF showpriority %] [% bibitemloo.rank %] [% END %] [% IF showholds && showpriority %] fuera de [% END %] [% IF showholds %] [% bibitemloo.reservecount %] [% END %] </td>
  [% END %] [% IF ( reserve_in_future ) %] <td class="reserve_date">
  <input name="reserve_date_[% bibitemloo.biblionumber %]" id="from" size="10" class="datepickerfrom"/>
- <script language="JavaScript" type="text/javascript">
+ <script type="text/javascript">
               //<![CDATA[
               $("#reserve_date_[% bibitemloo.biblionumber %]").attr( 'readonly', 'readonly' );
               //]]>

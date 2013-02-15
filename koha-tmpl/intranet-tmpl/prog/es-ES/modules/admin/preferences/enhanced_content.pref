@@ -129,22 +129,28 @@ enhanced_content.pref:
           1: Agregar
         pref: GoogleJackets
       - "cubiertas de libros desde Google Books en los resultados de b\xC3\xBAsqueda y p\xC3\xA1ginas de detalles en el OPAC."
-  HTML5 Media: 
+  IDreamLibraries: 
     - 
-      - Show a tab with a HTML5 media player for files catalogued in field 856
       - 
         choices: 
-          both: in OPAC and staff client.
-          not: not at all.
-          opac: in the OPAC.
-          staff: in the staff client.
-        pref: HTML5MediaEnabled
+          "": Don't add
+          1: Add
+        pref: IDreamBooksReviews
+      - a tab on the OPAC details with book reviews from critics aggregated by <a href='http://idreambooks.com/'>IDreamBooks.com</a>.
     - 
-      - Media file extensions
       - 
-        class: multi
-        pref: HTML5MediaExtensions
-      - (separated with |).
+        choices: 
+          "": Don't add
+          1: Add
+        pref: IDreamBooksReadometer
+      - a "Readometer" that summarizes the reviews gathered by <a href='http://idreambooks.com/'>IDreamBooks.com</a> to the OPAC details page.
+    - 
+      - 
+        choices: 
+          "": Don't add
+          1: Add
+        pref: IDreamBooksResults
+      - the rating from <a href='http://idreambooks.com/'>IDreamBooks.com</a> to OPAC search results.
   Library Thing: 
     - 
       - 
@@ -365,3 +371,19 @@ enhanced_content.pref:
         default: 0
         pref: OPACFRBRizeEditions
       - "otras ediciones de un \xC3\xADtem en el OPAC."
+  enhanced_content.pref HTML5 Media: 
+    - 
+      - enhanced_content.pref#HTML5MediaEnabled# Mostrar etiquetas con un  media player HTML5 para ficheros catalogados en el campo 856
+      - 
+        choices: 
+          both: enhanced_content.pref#HTML5MediaEnabled# en OPAC y cliente personal.
+          not: enhanced_content.pref#HTML5MediaEnabled# en absoluto.
+          opac: enhanced_content.pref#HTML5MediaEnabled# en el OPAC.
+          staff: enhanced_content.pref#HTML5MediaEnabled# en el cliente de personal.
+        pref: HTML5MediaEnabled
+    - 
+      - enhanced_content.pref#HTML5MediaExtensions# Extensiones de ficheros de media
+      - 
+        class: multi
+        pref: HTML5MediaExtensions
+      - enhanced_content.pref#HTML5MediaExtensions# (separado con |).

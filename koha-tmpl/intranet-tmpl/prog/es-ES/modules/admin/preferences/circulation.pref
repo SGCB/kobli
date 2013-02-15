@@ -2,13 +2,13 @@
 circulation.pref: 
   "Auto pr\xC3\xA9stamo": 
     - 
-      - "Include the following JavaScript on all pages in the web-based self checkout:"
+      - "Incluya el siguiente JavaScript en todas las p\xC3\xA1ginas en la caja de autoservicio web-based:"
       - 
         class: code
         pref: SCOUserJS
         type: textarea
     - 
-      - "Include the following CSS on all pages in the web-based self checkout:"
+      - "Incluye el siguiente CSS en todas las p\xC3\xA1ginas en la caja de autoservicio web-based:"
       - 
         class: code
         pref: SCOUserCSS
@@ -401,6 +401,20 @@ circulation.pref:
     - 
       - 
         choices: 
+          "": No incluir
+          1: Incluir
+        pref: RentalsInNoissuesCharge
+      - gastos de alquiler cuando se resumen los cargos por noissuescharge.
+    - 
+      - 
+        choices: 
+          "": No incluir
+          1: Incluir
+        pref: ManInvInNoissuesCharge
+      - MANUAL_INV cargos cuando se resumen los cargos por noissuescharge.
+    - 
+      - 
+        choices: 
           "": No requerir
           1: Requerir
         pref: ReturnBeforeExpiry
@@ -601,10 +615,10 @@ circulation.pref:
     - 
       - 
         choices: 
-          "": Don't allow
+          "": circulation.pref#AllowHoldsOnPatronsPossessions# No permitir
           1: Allow
         pref: AllowHoldsOnPatronsPossessions
-      - a patron to place a hold on a record where the patron already has one or more items attached to that record checked out.
+      - "circulation.pref#AllowHoldsOnPatronsPossessions# un socio para hacer una reserva de un registro cuando el socio ya tiene uno o m\xC3\xA1s elementos conectados a ese registro pr\xC3\xA9stado."
   circulation.pref Checkin Policy: 
     - 
       - 

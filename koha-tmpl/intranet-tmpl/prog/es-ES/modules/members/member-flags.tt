@@ -1,10 +1,41 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Configurar privilegios para [% surname %], [% firstname %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Configurar privilegios para [% surname %], [% firstname %] </title>
 [% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/treeview/jquery.treeview.css"/>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.treeview.pack.js"></script>
 <!-- set up tree -->
 <script type="text/javascript">
     $(document).ready(function() {
         $("#permissionstree").treeview({animated: "fast", collapsed: true});
+
+        // Enforce Superlibrarian Privilege Mutual Exclusivity
+        if($('input[id="flag-0"]:checked').length){
+            if ($('input[name="flag"]:checked').length > 1){
+                alert('Inconsistency Detected!\n\nThe superlibrarian privilege is mutually exclusive of other privileges, as it includes them all.\n\nThis patron\'s privileges will now be reset to include only superlibrarian.');
+            }
+
+            $('input[name="flag"]').each(function() {
+                if($(this).attr('id') != "flag-0"){
+                    $(this).attr('disabled', 'disabled');
+                    $(this).removeAttr('checked', 'checked');
+                }
+            });
+        }
+
+        $('input#flag-0').click(function() {
+            if($('input[id="flag-0"]:checked').length){
+                $('input[name="flag"]').each(function() {
+                    if($(this).attr('id') != "flag-0"){
+                        $(this).attr('disabled', 'disabled');
+                        $(this).removeAttr('checked', 'checked');
+                    }
+                });
+            }
+            else {
+                $('input[name="flag"]').each(function() {
+                    $(this).removeAttr('disabled', 'disabled');
+                });
+            }
+        });
+
     });
 </script>
 <!-- manage checking/unchecking parent permissions -->
@@ -67,7 +98,7 @@
 </script>
 </head>
 <body id="pat_member-flags" class="pat">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Establecer privilegios para [% surname %], [% firstname %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Establecer privilegios para [% surname %], [% firstname %] </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -77,7 +108,7 @@
 [% INCLUDE 'members-toolbar.inc' %] <form method="post" action="/cgi-bin/koha/members/member-flags.pl">
  <input type="hidden" name="member" id="borrowernumber" value="[% borrowernumber %]" />
  <input type="hidden" name="newflags" value="1" />
- <h1>Establecer privilegios para [% surname %] [% firstname %]</h1>
+ <h1>Establecer privilegios para [% surname %], [% firstname %]</h1>
  <!-- <ul id="permissionstree"><li class="root">All privileges<ul> -->
  <ul id="permissionstree" class="treeview-grey">
  <!-- <li class="folder-close">One level down<ul> -->
@@ -105,7 +136,7 @@
  <!-- </ul></li></ul> -->
  </ul>
 
-<fieldset class="action"><input value="Establecer indicadores" type="submit" /> <a class="cancel" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">Cancelar</a></fieldset>
+<fieldset class="action"><input value="Guardar" type="submit" /> <a class="cancel" href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">Cancelar</a></fieldset>
 
 </form>
 </div>

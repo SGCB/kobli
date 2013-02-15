@@ -2,7 +2,7 @@
  [% IF ( opacuserlogin ) %] <ul>
 [% UNLESS ( loggedinusername ) %] <li><a href="/cgi-bin/koha/opac-user.pl">Inicie sesión en su cuenta</a></li>[% END %] [% IF ( loggedinusername ) %] <li><span class="members">Bienvenido, <a href="/cgi-bin/koha/opac-user.pl"><span class="loggedinusername">[% FOREACH USER_INF IN USER_INFO %][% USER_INF.title %] [% USER_INF.firstname %] [% USER_INF.surname %][% END %]</span></a></span></li>
 
- [% END %] [% IF ( ShowOpacRecentSearchLink ) %] <li><a href="/cgi-bin/koha/opac-search-history.pl" title="Ver su historial de búsqueda">Historial de búsqueda</a> [<a href="/cgi-bin/koha/opac-search-history.pl?action=delete" class="logout" title="Borrar el historial de búsqueda" onclick="return confirm(_('Are you sure you want to delete your search history?'));">x</a>]</li>
+ [% END %] [% IF ( ShowOpacRecentSearchLink ) %] <li><a href="/cgi-bin/koha/opac-search-history.pl" title="Ver su historial de búsqueda">Historial de búsqueda</a> [<a href="/cgi-bin/koha/opac-search-history.pl?action=delete" class="logout" title="Borrar el historial de búsqueda" onclick="return confirm(MSG_DELETE_SEARCH_HISTORY);">x</a>]</li>
  [% END %] [% IF ( loggedinusername ) %]<li><a class="logout" id="logout" href="/cgi-bin/koha/opac-main.pl?logout.x=1">Cerrar sesión</a></li>[% END %] </ul> 
  [% END %] </div>
  [% IF ( opacheader ) %] [% opacheader %] [% END %] [% IF ( opaclanguagesdisplay ) %] [% IF ( languages_loop && opaclanguagesdisplay ) %] [% UNLESS ( one_language_enabled ) %] <div id="changelanguage" class="ft">
