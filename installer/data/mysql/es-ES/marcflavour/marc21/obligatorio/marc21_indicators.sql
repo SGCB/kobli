@@ -2,7 +2,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 /*Table structure for table `marc_indicators` */
 
-CREATE TABLE `marc_indicators` (
+CREATE TABLE IF NOT EXISTS`marc_indicators` (
   `id_indicator` int(11) unsigned NOT NULL auto_increment,
   `frameworkcode` varchar(4) default NULL,
   `tagfield` varchar(3) NOT NULL default '',
@@ -20,7 +20,7 @@ insert  into `marc_indicators`(`id_indicator`,`frameworkcode`,`tagfield`,`authty
 
 /*Table structure for table `marc_indicators_desc` */
 
-CREATE TABLE `marc_indicators_desc` (
+CREATE TABLE IF NOT EXISTS`marc_indicators_desc` (
   `id_indicator_value` int(11) unsigned NOT NULL,
   `lang` varchar(25) NOT NULL default 'en',
   `ind_desc` mediumtext,
@@ -36,7 +36,7 @@ insert  into `marc_indicators_desc`(`id_indicator_value`,`lang`,`ind_desc`) valu
 
 /*Table structure for table `marc_indicators_value` */
 
-CREATE TABLE `marc_indicators_value` (
+CREATE TABLE IF NOT EXISTS`marc_indicators_value` (
   `id_indicator_value` int(11) unsigned NOT NULL auto_increment,
   `id_indicator` int(11) unsigned NOT NULL,
   `ind` enum('1','2') NOT NULL,
@@ -54,16 +54,11 @@ insert  into `marc_indicators_value`(`id_indicator_value`,`id_indicator`,`ind`,`
 
 /*Table structure for table `marc_indicators_values` */
 
-CREATE TABLE `marc_indicators_values` (
+CREATE TABLE IF NOT EXISTS`marc_indicators_values` (
   `ind_value` char(1) NOT NULL default '',
   PRIMARY KEY  (`ind_value`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `marc_indicators_values` */
 
-insert  into `marc_indicators_values`(`ind_value`) values (''),('0'),('1'),('2'),('3'),('4'),('5'),('6'),('7'),('8'),('9'),('a'),('b'),('c'),('d'),('e'),('f'),('g'),('h'),('i'),('j'),('k'),('l'),('m'),('n'),('o'),('p'),('q'),('r'),('s'),('t'),('u'),('v'),('w'),('x'),('y'),('z');
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+insert ignore into `marc_indicators_values`(`ind_value`) values (''),('0'),('1'),('2'),('3'),('4'),('5'),('6'),('7'),('8'),('9'),('a'),('b'),('c'),('d'),('e'),('f'),('g'),('h'),('i'),('j'),('k'),('l'),('m'),('n'),('o'),('p'),('q'),('r'),('s'),('t'),('u'),('v'),('w'),('x'),('y'),('z');
