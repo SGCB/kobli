@@ -13,14 +13,14 @@
 
 
 INSERT IGNORE INTO `biblio_framework` (`frameworkcode`,`frameworktext`) VALUES
-		('BKS', 'Books, Booklets, Workbooks'),
-		('CF', 'CD-ROMs, DVD-ROMs, General Online Resources'),
-		('SR', 'Audio Cassettes, CDs'),
+		('BKS', 'Libros, Folletos, Cuadernos de Trabajo'),
+		('CF', 'CD-ROMs, DVD-ROMs, Recursos Generales Online'),
+		('SR', 'Cintas de Audio, CDs'),
 		('VR', 'DVDs, VHS'),
-		('AR', 'Models'),
+		('AR', 'Modelos'),
 		('KT', 'Kits'),
-		('IR', 'Binders'),
-		('SER', 'Serials');
+		('IR', 'Carpetas'),
+		('SER', 'Publicaciones Periódicas');
         
 /*Data for the table `marc_subfield_structure` */
 
