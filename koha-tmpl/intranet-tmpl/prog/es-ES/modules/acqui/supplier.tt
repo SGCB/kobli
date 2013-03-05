@@ -40,10 +40,11 @@ if (f.company.value == "") {
 <body id="acq_supplier" class="acq">
 [% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; [% IF ( enter ) %][% IF ( booksellerid ) %] <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% name %]</a> &rsaquo; Actualizar: [% name %][% ELSE %]Agregar proveedor[% END %] [% ELSE %][% name %][% END %]</div>
 
-<div id="doc" class="yui-t7">
+<div id="doc3" class="yui-t2">
 
 <div id="bd">
  <div id="yui-main">
+ <div class="yui-b">
  [% IF ( enter ) %] [% IF ( booksellerid ) %] <h1>Actualizar: [% name %]</h1>
  [% ELSE %] <h1>Agregar proveedor</h1>
  [% END %] [% END %] [% UNLESS ( enter ) %][% INCLUDE 'acquisitions-toolbar.inc' %][% END %] [% IF ( enter ) %] <form action="updatesupplier.pl" name="updatesupplier" method="post">
@@ -220,5 +221,8 @@ if (f.company.value == "") {
  </table>
  </div>
  [% END %] [% END %] </div>
+</div>
+<div class="yui-b">
+[% INCLUDE 'vendor-menu.inc' %] </div>
 </div>
 [% INCLUDE 'intranet-bottom.inc' %] 

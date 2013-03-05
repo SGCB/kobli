@@ -43,7 +43,7 @@ function IEEventHandler_KeyDown() {
             }
 
             if(check_additem('[% UniqueItemFields %]') == false){
-                alert(_('Valores duplicados detectados. Por favor corrija estos errores y reenvíe.') );
+                alert(_("Valores duplicados detectados. Por favor corrija estos errores y reenvíe.") );
                 return false;
             };
 
@@ -59,6 +59,14 @@ function IEEventHandler_KeyDown() {
             if(tobedeleted){
                 $(lastitemblock).remove();
             }
+
+            if(check_additem('[% UniqueItemFields %]') == false){
+                alert(_("Valores duplicados detectados. Por favor corrija estos errores y reenvíe.") );
+                if(tobedeleted) {
+                    $(lastitemblock).appendTo("#outeritemblock");
+                }
+                return false;
+            };
         [% END %]
 
         return true;

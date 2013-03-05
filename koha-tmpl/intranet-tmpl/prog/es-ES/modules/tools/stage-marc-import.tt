@@ -18,7 +18,7 @@ $(document).ready(function(){
 });
 function CheckForm(f) {
     if ($("#fileToUpload").value == '') {
-        alert(_('Por favor, suba un archivo primero'));
+        alert(_("Por favor, suba un archivo primero"));
     } else {
         return submitBackgroundJob(f);
     }

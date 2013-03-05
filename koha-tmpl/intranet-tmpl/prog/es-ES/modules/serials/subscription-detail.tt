@@ -139,7 +139,7 @@ $(document).ready(function() {
  [% IF ( periodicity16 ) %] Sin regularidad [% END %] [% IF ( periodicity32 ) %] Irregular [% END %] [% IF ( periodicity0 ) %] Desconocida [% END %] [% IF ( periodicity12 ) %] 2/día [% END %] [% IF ( periodicity1 ) %] 1/día [% END %] [% IF ( periodicity13 ) %] 1/4 meses (3/año) [% END %] [% IF ( periodicity2 ) %] 1/semana [% END %] [% IF ( periodicity3 ) %] 1/2 semanas [% END %] [% IF ( periodicity4 ) %] 1/3 semanas [% END %] [% IF ( periodicity5 ) %] 1/mes [% END %] [% IF ( periodicity6 ) %] 1/2 meses (6/año) [% END %] [% IF ( periodicity7 ) %] 1/trimestre [% END %] [% IF ( periodicity8 ) %] 1/trimestre [% END %] [% IF ( periodicity9 ) %] 2/año [% END %] [% IF ( periodicity10 ) %] 1/año [% END %] [% IF ( periodicity11 ) %] 1/2 años [% END %] </li>
  <li>
  <span class="label">Historial manual: </span>
- [% IF ( manualhistory ) %] inhabilitado [% ELSE %] Habilitado [% END %] </li>
+ [% IF ( manualhistory ) %] Habilitado [% ELSE %] Deshabilitado [% END %] </li>
  <li><span class="label">Patrón numérico:</span>
  [% IF ( numberpattern1 ) %] Número solamente [% END %] [% IF ( numberpattern2 ) %] Volumen, número, ejemplar [% END %] [% IF ( numberpattern3 ) %] Volumen, número [% END %] [% IF ( numberpattern4 ) %] Volumen, ejemplar [% END %] [% IF ( numberpattern5 ) %] Número, ejemplar [% END %] [% IF ( numberpattern8 ) %] Año/Número [% END %] [% IF ( numberpattern6 ) %] Estacional solamente [% END %] [% IF ( numberpattern7 ) %] Ninguno de los anteriores [% END %] </li>
  <li><table>

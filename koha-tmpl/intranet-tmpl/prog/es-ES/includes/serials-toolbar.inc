@@ -1,4 +1,4 @@
-<div id="toolbar"><script type="text/javascript">
+<script type="text/javascript">
 	//<![CDATA[
 
     function confirm_close() {
@@ -13,71 +13,40 @@
             window.location="subscription-detail.pl?subscriptionid=[% subscriptionid %]&op=reopen";
         }
     }
-	// prepare DOM for YUI Toolbar
 
 	 $(document).ready(function() {
-	    $("#editmenuc").empty();
-	    $("#duplicate").parent().remove();
-		$("#delete").parent().remove();
-	 	$("#renewc").empty();
-	    yuiToolbar();
+        $("#deletesub").click(function(){
+            confirm_deletion();
+            return false;
+        });
+        $("#reopen").click(function(){
+            confirm_reopen();
+            return false;
+        });
+        $("#close").click(function(){
+            confirm_close();
+            return false;
+        });
+        $("#renew").click(function(){
+            popup([% subscriptionid %]);
+            return false;
+        })
 	 });
-
-	// YUI Toolbar Functions
-
-	function yuiToolbar() {
-	
-    [% IF ( subscriptionid ) %]
-	    var editmenu = [
-	        [% IF ( CAN_user_serials_edit_subscription ) %]
-            { text: _("Editar suscripción"),  [% IF ( cannotedit ) %]disabled: true, [% END %] url: "/cgi-bin/koha/serials/subscription-add.pl?op=modify&amp;subscriptionid=[% subscriptionid %]" },
-		[% END %]
-	        [% IF ( CAN_user_serials_create_subscription ) %]
-            { text: _("Editar como nuevo (duplicar)"), [% IF ( cannotedit ) %]disabled: true, [% END %] url: "/cgi-bin/koha/serials/subscription-add.pl?op=dup&amp;subscriptionid=[% subscriptionid %]" },
-		[% END %]
-	        [% IF ( CAN_user_serials_delete_subscription ) %]
-            { text: _("Eliminar suscripción"), [% IF ( cannotedit ) %]disabled: true, [% END %] onclick: {fn: confirm_deletion }}
-		[% END %]
-	    ];
-	 [% END %]
-	    new YAHOO.widget.Button("newsubscription");
-	    [% IF ( subscriptionid ) %]		
-		new YAHOO.widget.Button({
-              id: "renew", 
-              type: "link", 
-			  href: "#",
-              label: _("Renovar"), 
-              container: "renewc",
-onclick: {fn:function(){popup([% subscriptionid %])}}
-          });
-	[% IF ( subscriptionid ) %]	  
-	new YAHOO.widget.Button({
-	        type: "menu",
-	        label: _("Editar"),
-	        name: "editmenubutton",
-	        menu: editmenu,
-	        container: "editmenuc"
-			
-	    });
-		[% END %]
-	    new YAHOO.widget.Button("renew");
-	    new YAHOO.widget.Button("receive");
-        new YAHOO.widget.Button("close");
-        new YAHOO.widget.Button("reopen");
-		[% END %]
-	}
-
 	//]]>
 	</script>
-<ul class="toolbar">
- [% IF ( CAN_user_serials_create_subscription ) %] [% IF ( biblionumber_for_new_subscription ) %] <li><a id="newsubscription" href="/cgi-bin/koha/serials/subscription-add.pl?biblionumber_for_new_subscription=[% biblionumber_for_new_subscription %]">Nueva suscripción</a></li>
- [% ELSE %] <li><a id="newsubscription" href="/cgi-bin/koha/serials/subscription-add.pl">Nueva suscripción</a></li>
- [% END %] [% END %] [% IF ( CAN_user_serials_edit_subscription || CAN_user_serials_create_subscription || CAN_user_serials_delete_subscription ) %] [% IF ( subscriptionid ) %] [% IF ( CAN_user_serials_edit_subscription || CAN_user_serials_create_subscription || CAN_user_serials_delete_subscription ) %] [% UNLESS ( cannotedit ) %] <li id="editmenuc"><a id="edit" href="/cgi-bin/koha/serials/subscription-add.pl?op=modify&amp;subscriptionid=[% subscriptionid %]">Editar</a></li>
- [% END %] [% END %] [% IF ( CAN_user_serials_create_subscription ) %] <li><a id="duplicate" href="/cgi-bin/koha/serials/subscription-add.pl?op=dup&amp;subscriptionid=[% subscriptionid %]">Duplicar </a></li>
- [% END %] [% UNLESS ( cannotedit ) %] [% UNLESS closed %] [% IF ( CAN_user_serials_renew_subscription ) %] <li id="renewc"><a id="renew" href="#" onclick="popup([% subscriptionid %])">Renovar </a></li>
- [% END %] [% END %] [% IF ( CAN_user_serials_receive_serials ) %] [% UNLESS closed %] <li><a id="receive" href="/cgi-bin/koha/serials/serials-edit.pl?subscriptionid=[% subscriptionid %]&amp;serstatus=1,3">Recibir</a></li>
- [% END %] [% END %] [% IF CAN_user_serials_edit_subscription %] [% IF closed %] <li><a id="reopen" href="javascript:confirm_reopen();">Reabrir</a></li>
- [% ELSE %] <li><a id="close" href="javascript:confirm_close();">Cerrar</a></li>
- [% END %] [% END %] [% IF ( CAN_user_serials_delete_subscription ) %] <li><a id="delete" href="javascript:confirm_deletion()">Eliminar</a></li>
- [% END %] [% END %] [% END %] [% END %] </ul>
-</div>
+<div id="toolbar" class="btn-toolbar">
+
+ [% IF ( CAN_user_serials_create_subscription ) %] [% IF ( biblionumber_for_new_subscription ) %] <div class="btn-group"><a id="newsubscription" class="btn btn-small" href="/cgi-bin/koha/serials/subscription-add.pl?biblionumber_for_new_subscription=[% biblionumber_for_new_subscription %]"><i class="icon-plus"></i> Nueva suscripción</a></div>
+ [% ELSE %] <div class="btn-group"><a id="newsubscription" class="btn btn-small" href="/cgi-bin/koha/serials/subscription-add.pl"><i class="icon-plus"></i> Nueva suscripción</a></div>
+ [% END %] [% END %] [% IF ( CAN_user_serials_edit_subscription || CAN_user_serials_create_subscription || CAN_user_serials_delete_subscription ) %] [% IF ( subscriptionid ) %] [% IF ( CAN_user_serials_edit_subscription || CAN_user_serials_create_subscription || CAN_user_serials_delete_subscription ) %] [% UNLESS ( cannotedit ) %] <div class="btn-group">
+ <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><i class="icon-pencil"></i> Editar <span class="caret"></span></button>
+ <ul class="dropdown-menu">
+ [% IF ( cannotedit ) %] <li class="disabled"> [% ELSE %] <li> [% END %] <a href="/cgi-bin/koha/serials/subscription-add.pl?op=modify&amp;subscriptionid=[% subscriptionid %]">Editar suscripción</a></li>
+ [% IF ( cannotedit ) %] <li class="disabled"> [% ELSE %] <li> [% END %] <a href="/cgi-bin/koha/serials/subscription-add.pl?op=dup&amp;subscriptionid=[% subscriptionid %]">Editar como nuevo (duplicar)</a></li>
+ [% IF ( CAN_user_serials_delete_subscription ) %] [% IF ( cannotedit ) %] <li class="disabled"> [% ELSE %] <li> [% END %] <a href="#" id="deletesub">Eliminar suscripción</a></li>[% END %] </ul>
+ </div>
+ [% END %] [% END %] [% UNLESS ( cannotedit ) %] [% UNLESS closed %] [% IF ( CAN_user_serials_renew_subscription ) %] <div class="btn-group"><a id="renew" class="btn btn-small" href="#" onclick="popup([% subscriptionid %])"><i class="icon-refresh"></i> Renovar</a></div>
+ [% END %] [% END %] [% IF ( CAN_user_serials_receive_serials ) %] [% UNLESS closed %] <div class="btn-group"><a id="receive" class="btn btn-small" href="/cgi-bin/koha/serials/serials-edit.pl?subscriptionid=[% subscriptionid %]&amp;serstatus=1,3"><i class="icon-inbox"></i> Recibir</a></div>
+ [% END %] [% END %] [% IF CAN_user_serials_edit_subscription %] [% IF closed %] <div class="btn-group"><a id="reopen" class="btn btn-small" href="#">Reabrir</a></div>
+ [% ELSE %] <div class="btn-group"><a id="close" class="btn btn-small" href="#"><i class="icon-remove-circle"></i> Cerrar</a></div>
+ [% END %] [% END %] [% END %] [% END %] [% END %] </div>

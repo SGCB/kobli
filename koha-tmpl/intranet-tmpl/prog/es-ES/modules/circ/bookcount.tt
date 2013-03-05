@@ -23,7 +23,7 @@ $(document).ready(function(){
  
  <tr><td>[% homebranch %]</td>
  <td>[% holdingbranch %]</td>
- <td>[% IF ( lastdate ) %][% lastdate %][% ELSE %]Item has no transfer record[% END %]</td>
+ <td>[% IF ( lastdate ) %][% lastdate %][% ELSE %]El ítem no está siendo transferido[% END %]</td>
  <td>[% count %]</td>
  </tr>
 </table>
@@ -41,7 +41,7 @@ $(document).ready(function(){
  <!-- invisible span for eventual use by tablesorter -->
  [% branchloo.seen %] [% branchloo.seentime %]
  [% ELSE %]
- <span>Never</span>
+ <span>nunca</span>
  [% END %] </td>
  </tr>
  [% END %] </table>

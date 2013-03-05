@@ -144,8 +144,10 @@
  [% ELSE %] <option value=" ">No-ISDB</option>
  [% END %] [% IF ( f18a ) %] <option value="a" selected="selected">a- AACR 2</option>
  [% ELSE %] <option value="a">a- AACR 2</option>
- [% END %] [% IF ( f18i ) %] <option value="i" selected="selected">i- ISBD</option>
- [% ELSE %] <option value="i">i- ISBD</option>
+ [% END %] [% IF ( f18c ) %] <option value="c" selected="selected">c- ISBD puntuación omitida</option>
+ [% ELSE %] <option value="c">c- ISBD puntuación omitida</option>
+ [% END %] [% IF ( f18i ) %] <option value="i" selected="selected">i- ISBD puntuación incluida</option>
+ [% ELSE %] <option value="i">i- ISBD puntuación incluida</option>
  [% END %] [% IF ( f18u ) %] <option value="u" selected="selected">u- Desconocido</option>
  [% ELSE %] <option value="u">u- Desconocido</option>
  [% END %] </select>

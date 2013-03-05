@@ -15,7 +15,7 @@ function CheckUpload(f){
 }
 function CheckForm(f) {
     if (f.uploadedfileid.value == '') {
-        alert(_('Por favor, suba un archivo primero'));
+        alert(_("Por favor, suba un archivo primero"));
     } else {
 		$("#fileuploadstatus").hide();
 		$("#fileuploadform").slideUp();

@@ -19,7 +19,7 @@ $(document).ready(function() {
  <div id="yui-main">
  <div class="yui-b">
  <h2>Correspondencia palabras clave a MARC</h2>
- [% UNLESS ( fields ) %] <div class="dialog message"><p>No hay correspondencias para [% IF ( frameworktext ) %]<em>[% frameworktext %]</em>[% ELSE %]por defecto[% END %] hoja de trabajo. </p></div>
+ [% UNLESS ( fields ) %] <div class="dialog message"><p>No hay correspondencias para [% IF ( frameworktext ) %]<em>[% frameworktext %]</em>[% ELSE %]predeterminado[% END %] plantilla de catalogación.</p></div>
  [% END %] <form method="get" action="/cgi-bin/koha/admin/fieldmapping.pl" id="selectframework">
  <label for="framework">Hoja de trabajo:</label>
  <select name="framework" id="framework" style="width:20em;">
@@ -47,7 +47,7 @@ $(document).ready(function() {
  </form>
 
  [% IF ( fields ) %]<table>
- <caption>Correspondencias para el [% IF ( frameworktext ) %]<em>[% frameworktext %]</em>[% ELSE %]por defecto[% END %] hoja de trabajo</caption>
+ <caption>Correspondencias para el [% IF ( frameworktext ) %]<em>[% frameworktext %]</em>[% ELSE %]predeterminado[% END %] plantilla de catalogación</caption>
  <tr>
  <th>Campo</th>
  <th>Campo MARC </th>

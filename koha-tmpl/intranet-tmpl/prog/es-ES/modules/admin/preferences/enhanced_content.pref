@@ -129,28 +129,6 @@ enhanced_content.pref:
           1: Agregar
         pref: GoogleJackets
       - "cubiertas de libros desde Google Books en los resultados de b\xC3\xBAsqueda y p\xC3\xA1ginas de detalles en el OPAC."
-  IDreamLibraries: 
-    - 
-      - 
-        choices: 
-          "": Don't add
-          1: Add
-        pref: IDreamBooksReviews
-      - a tab on the OPAC details with book reviews from critics aggregated by <a href='http://idreambooks.com/'>IDreamBooks.com</a>.
-    - 
-      - 
-        choices: 
-          "": Don't add
-          1: Add
-        pref: IDreamBooksReadometer
-      - a "Readometer" that summarizes the reviews gathered by <a href='http://idreambooks.com/'>IDreamBooks.com</a> to the OPAC details page.
-    - 
-      - 
-        choices: 
-          "": Don't add
-          1: Add
-        pref: IDreamBooksResults
-      - the rating from <a href='http://idreambooks.com/'>IDreamBooks.com</a> to OPAC search results.
   Library Thing: 
     - 
       - 
@@ -387,3 +365,25 @@ enhanced_content.pref:
         class: multi
         pref: HTML5MediaExtensions
       - enhanced_content.pref#HTML5MediaExtensions# (separado con |).
+  enhanced_content.pref IDreamLibraries: 
+    - 
+      - 
+        choices: 
+          "": "No a\xC3\xB1adir"
+          1: "A\xC3\xB1adir"
+        pref: IDreamBooksReviews
+      - "una etiqueta en la p\xC3\xA1gina de detalles del OPAC con revisiones bibliogr\xC3\xA1ficas de cr\xC3\xADticos agregadas por <a href='http://idreambooks.com/'>IDreamBooks.com</a>."
+    - 
+      - 
+        choices: 
+          "": "No a\xC3\xB1adir"
+          1: "A\xC3\xB1adir"
+        pref: IDreamBooksReadometer
+      - "un \"Readometer\" que resuma las revisiones de <a href='http://idreambooks.com/'>IDreamBooks.com</a> a la p\xC3\xA1gina de detalles del OPAC"
+    - 
+      - 
+        choices: 
+          "": "No a\xC3\xB1adir"
+          1: "A\xC3\xB1adir"
+        pref: IDreamBooksResults
+      - "la clasificaci\xC3\xB3n de <a href='http://idreambooks.com/'>IDreamBooks.com</a> a los resultados de b\xC3\xBAsqueda del OPAC"

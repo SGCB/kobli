@@ -29,7 +29,7 @@
  </div>
  [% END %] <h1>Factura: [% invoicenumber %]</h1>
 
- <p>Proveedor: [% suppliername %]</p>
+ <p>Proveedor:<a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% suppliername %]</a></p>
  <form action="" method="post">
  <fieldset>
  <label for="shipmentdate">Fecha del envío:  </label>

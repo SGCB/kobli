@@ -49,8 +49,9 @@
 [% END %] <option value="ti">Título</option>
 [% IF ( expanded_options ) %] <option value="ti,phr">&nbsp;&nbsp;&nbsp;&nbsp; Frase de título</option>
  <option value="se,wrdl">Título de la serie</option>
- <option value="callnum">Signatura topográfica</option>
- <option value="location">Ubicación en estantería</option>
+ [% IF ( numbersphr) %] <option value="callnum,phr">Signatura topográfica</option>
+ [% ELSE %] <option value="callnum">Signatura topográfica</option>
+ [% END %] <option value="location">Ubicación en estantería</option>
 [% END %] <option value="au,wrdl">Autor</option>
  
 [% IF ( expanded_options ) %] <option value="au,phr">&nbsp;&nbsp;&nbsp;&nbsp; Autor como frase</option>
@@ -63,11 +64,14 @@
  [% IF (marcflavour != 'UNIMARC') %] <option value="curriculum">Currículo</option>
  [% END %] [% END %] <option value="pb,wrdl">Editor</option>
  <option value="pl,wrdl">Lugar de edición</option>
-[% IF ( expanded_options ) %] <option value="sn">Número estandarizado</option>
+[% IF ( expanded_options ) %] [% IF ( numbersphr) %] <option value="sn,phr">Número estandarizado</option>
+ [% ELSE %] <option value="sn">Número estandarizado</option>
+ [% END %] <option value="sn">Número estandarizado</option>
  <option value="nb">&nbsp;&nbsp;&nbsp;&nbsp; ISBN</option>
  <option value="ns">&nbsp;&nbsp;&nbsp;&nbsp; ISSN</option>
- <option value="lcn,phr">&nbsp;&nbsp;&nbsp;&nbsp; Signatura topográfica</option>
-[% ELSE %] <option value="nb">ISBN</option>
+ [% IF ( numbersphr) %] <option value="lcn,phr">&nbsp;&nbsp;&nbsp;&nbsp; Signatura topográfica</option>
+ [% ELSE %] <option value="lcn">&nbsp;&nbsp;&nbsp;&nbsp; Signatura topográfica</option>
+ [% END %] [% ELSE %] <option value="nb">ISBN</option>
 [% END %] <option value="bc">Código de barras</option>
  </select>
  <input value="" name="q" type="text" title="Introduzca los términos de búsqueda" size="30" />
@@ -133,12 +137,12 @@
  <div id="subtypes" class="container"><fieldset>
  <legend>Límites de subtipo</legend><select name="limit" class="subtype">
  <option value="" selected="selected" class="menuheader">Cualquier audiencia</option>
- <option value="aud:a">Preschool</option>
- <option value="aud:b">Primary</option>
- <option value="aud:c">Pre-adolescent</option>
- <option value="aud:d">Adolescent</option>
+ <option value="aud:a">Preescolar </option>
+ <option value="aud:b">Primaria</option>
+ <option value="aud:c">Preadolescente</option>
+ <option value="aud:d">Adolescente</option>
  <option value="aud:e">Adulto</option>
- <option value="aud:f">Specialized</option>
+ <option value="aud:f">Especializado </option>
  <option value="aud:g">General</option>
  <option value="aud:j">Juvenil</option>
  </select>

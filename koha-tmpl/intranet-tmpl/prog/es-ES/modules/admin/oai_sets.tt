@@ -1,11 +1,11 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Conjuntos OAI</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; [% IF ( op_new ) %]Configuración de lotes OAI&rsaquo; Añadir un nuevo lote de OAI[% ELSE %]Configuración de lotes OAI[% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 function newDescField() {
-    $("#descriptionlist").append(
-        '<li>' +
-        '<textarea style="vertical-align:middle" name="description"></textarea>' +
-        '<a style="cursor:pointer" onclick="delDescField(this)">&nbsp;&times;</a>' +
+    $("#adddescription").before(
+        '<li><label>setDescription: </label>' +
+        '<textarea style="vertical-align:middle" rows="2" cols="30" name="description"></textarea>' +
+        '<a onclick="delDescField(this); return false;" class="clear-field" href="#">Remove</a>' +
         '</li>'
     );
 }
@@ -16,66 +16,56 @@ function delDescField(minusButton) {
 }
 
 $(document).ready(function() {
-    // Some JS
+    new YAHOO.widget.Button("newoaiset");
 });
 //]]>
 </script>
 </head>
 
 <body id="admin_oai_sets" class="admin">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administrador</a> &rsaquo; Conjuntos OAI </div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( op_new ) %]<a href="/cgi-bin/koha/admin/oai_sets.pl">Configuración de conjunto OAI</a> &rsaquo; Lotes OAI [% ELSIF ( op_mod ) %]<a href="/cgi-bin/koha/admin/oai_sets.pl">Configuración de conjunto OAI</a> &rsaquo; Modificar lote OAI '[% spec %]'[% ELSE %] configuración de lotes OAI[% END %]</div>
 
 <div id="doc3" class="yui-t2">
 
 <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- <h1>Configuración de conjunto OAI</h1>
-
- [% IF op_new %] <h2>Agregar un nuevo conjunto</h2>
- <form method="post" action="/cgi-bin/koha/admin/oai_sets.pl">
+ [% IF ( op_new || op_mod ) %] <form method="post" action="/cgi-bin/koha/admin/oai_sets.pl">
+ [% IF ( op_new ) %] <h2>Agregar un nuevo lote de OAI</h2>
  <input type="hidden" name="op" value="savenew" />
- <fieldset>
- <label for="spec">setSpec</label>
- <input type="text" id="spec" name="spec" />
- <br />
- <label for="name">setName</label>
- <input type="text" id="name" name="name" />
- <br />
- <label>setDescriptions</label>
- <ul id="descriptionlist">
- </ul>
- <a style="cursor:pointer" onclick='newDescField()'>Agregar descripción</a>
- </fieldset>
- <input value="Guardar" type="submit" />
- <input value="Cancelar" type="button" onclick="window.location.href = '/cgi-bin/koha/admin/oai_sets.pl'" />
- </form>
- [% ELSE %][% IF op_mod %] <h2>Modificar conjunto '[% spec %]' </h2>
- <form method="post" action="/cgi-bin/koha/admin/oai_sets.pl">
+ [% ELSIF ( op_mod ) %] <h2>Modificar lote de OAI '[% spec %]' </h2>
  <input type="hidden" name="op" value="savemod" />
  <input type="hidden" name="id" value="[% id %]" />
- <fieldset>
- <label for="spec">setSpec</label>
+ [% END %] <fieldset id="oaidetails" class="rows">
+ <ol>
+ <li>
+ <label for="spec" class="required">setSpec:</label>
  <input type="text" id="spec" name="spec" value="[% spec %]" />
- <br />
- <label for="name">setName</label>
- <input type="text" id="name" name="name" value="[% name %]" />
- <br />
- <label>setDescriptions</label>
- <ul id="descriptionlist">
- [% FOREACH desc IN descriptions %] <li>
- <textarea style="vertical-align:middle" name="description">[% desc.description %]</textarea>
- <a style="cursor:pointer" onclick="delDescField(this)">&nbsp;&times;</a>
  </li>
- [% END %] </ul>
- <a style="cursor:pointer" onclick='newDescField()'>Agregar descripción</a>
+ <li>
+ <label for="name" class="required">setName:</label>
+ <input type="text" id="name" name="name" value="[% name %]" />
+ </li>
+ [% FOREACH desc IN descriptions %] <li>
+ <label>setDescription:</label>
+ <textarea style="vertical-align:middle" rows="2" cols="30" name="description">[% desc.description %]</textarea>
+ <a onclick="delDescField(this); return false;" class="clear-field" href="#">Eliminar</a>
+ </li>
+ [% END %] <li id="adddescription"><span class="label">&nbsp;</span><a class="clone-field" href="#" onclick='newDescField(); return false;'>Agregar descripción</a></li>
+
+ </ol>
  </fieldset>
- <input value="Guardar" type="submit" />
- <input value="Cancelar" type="button" onclick="window.location.href = '/cgi-bin/koha/admin/oai_sets.pl'" />
+ <fieldset class="action">
+ <input value="Guardar" type="submit" /> <a class="cancel" href="/cgi-bin/koha/admin/oai_sets.pl">Cancelar</a>
+ </fieldset>
  </form>
- [% END %] [% END %] <h2>Lista de conjuntos </h2>
- [% UNLESS ( op_new ) %] <a href="/cgi-bin/koha/admin/oai_sets.pl?op=new">Agregar un nuevo conjunto</a>
- [% END %] [% IF sets_loop %] <table>
+ [% ELSE %] <div id="toolbar">
+ <ul class="toolbar">
+ <li><a id="newoaiset" href="/cgi-bin/koha/admin/oai_sets.pl?op=new">Nuevo lote</a></li>
+ </ul></div>
+
+ <h2>Lotes OAI</h2>
+ [% IF sets_loop %] <table>
  <thead>
  <tr>
  <th>setSpec</th>
@@ -102,8 +92,8 @@ $(document).ready(function() {
  </tr>
  [% END %] </tbody>
  </table>
- [% ELSE %] <p>No hay conjuntos definidos.</p>
- [% END %] </div>
+ [% ELSE %] <div class="dialog message"><p>No hay lotes definidos.</p></div>
+ [% END %] [% END %] </div>
  </div>
  <div class="yui-b">
  [% INCLUDE 'admin-menu.inc' %] </div>

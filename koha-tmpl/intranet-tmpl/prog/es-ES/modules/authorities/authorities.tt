@@ -304,38 +304,36 @@ function searchauthority() {
  <div class="tag_title" id="div_indicator_tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
  [% UNLESS hide_marc %] [% IF advancedMARCEditor %] <a tabindex="1" href="#" class="tagnum" title="[% innerloo.tag_lib %] - Haga clic par expandir esta etiqueta" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;">[% innerloo.tag %]</a>
  [% ELSE %] <span title="[% innerloo.tag_lib %]">[% innerloo.tag %]</span>
- [% END %] [% FOREACH innerloo IN BIG_LOO.innerloop %] [% IF ( innerloo.tag ) %] <div class="tag" id="tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
- <div class="tag_title" name="div_indicator">
- [% UNLESS ( innerloo.hide_marc ) %] [% IF ( innerloo.advancedMARCEditor ) %] <a class="tagnum" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">[% innerloo.tag %]</a>
- [% ELSE %] <span title="[% innerloo.tag_lib %]">[% innerloo.tag %]</span>
- [% END %] [% IF ( innerloo.fixedfield ) %] <input class="indicator flat"
-                                type="text"
-                                style="display:none;"
-                                name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
-                                size="1"
-                                maxlength="1"
-                                value="[% innerloo.indicator1 %]" />
- <input class="indicator flat"
-                                type="text"
-                                style="display:none;"
-                                name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
-                                size="1"
-                                maxlength="1"
-                                value="[% innerloo.indicator2 %]" />
+ [% END %] [% IF ( innerloo.fixedfield ) %] <input type="text"
+                        tabindex="1"
+                        class="indicator flat"
+                        style="display:none;"
+                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
+                        size="1"
+                        maxlength="1"
+                        value="[% innerloo.indicator1 %]" />
+ <input type="text"
+                        tabindex="1"
+                        class="indicator flat"
+                        style="display:none;"
+                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
+                        size="1"
+                        maxlength="1"
+                    value="[% innerloo.indicator2 %]" />
  [% ELSE %] <input class="indicator flat"
-                                type="text"
-                                name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
-                                size="1"
-                                maxlength="1"
-                                value="[% innerloo.indicator1 %]" />
+                        type="text"
+                        name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %][% innerloo.random %]"
+                        size="1"
+                        maxlength="1"
+                        value="[% innerloo.indicator1 %]" />
  [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind1" onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Mostrar plug in con los valores permitidos para el indicador 1 en el campo [% innerloo.tag %]">...</a>[% END %] <input class="indicator flat"
-                                type="text"
-                                name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
-                                size="1"
-                                maxlength="1"
-                                value="[% innerloo.indicator2 %]" />
+                        type="text"
+                        name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %][% innerloo.random %]"
+                        size="1"
+                        maxlength="1"
+                        value="[% innerloo.indicator2 %]" />
  [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
-onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %] [% END %] - [% ELSE %] [% IF ( innerloo.fixedfield ) %] <input type="hidden"
+					onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %] [% END %] - [% ELSE %] [% IF ( innerloo.fixedfield ) %] <input type="hidden"
                             name="tag_[% innerloo.tag %]_indicator1_[% innerloo.index %]"
                             value="[% innerloo.indicator1 %][% innerloo.random %]" />
  <input type="hidden"
@@ -348,7 +346,7 @@ onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.t
                             name="tag_[% innerloo.tag %]_indicator2_[% innerloo.index %]"
                             value="[% innerloo.indicator2 %][% innerloo.random %]" />
  [% IF ( DisplayPluginValueIndicators ) %]<a href="javascript:void(0)" name="a_ind2"
-onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %] [% END %] [% END %] [% UNLESS ( innerloo.advancedMARCEditor ) %] <a onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">[% innerloo.tag_lib %]</a>
+onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.tag %]', '[% innerloo.index %]', '[% innerloo.random %]'[% IF ( authid ) %],[% authid %][% END %])" title="Show plugin with allowed values for indicator 2 on field [% innerloo.tag %]">...</a>[% END %] [% END %] [% UNLESS ( innerloo.advancedMARCEditor ) %] <a onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]')">[% innerloo.tag_lib %]</a>
  [% END %] [% END %] [% UNLESS advancedMARCEditor %] <a tabindex="1" href="#" class="expandfield" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Haga clic en 'Expandir' esta etiqueta">[% innerloo.tag_lib %]</a>
  [% END %] <span class="field_controls">
  [% IF ( innerloo.repeatable ) %] <a tabindex="1" href="#" class="buttonPlus" onclick="CloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]','[% hide_marc %]','[% advancedMARCEditor %]'); return false;" title="Repetir esta etiqueta">

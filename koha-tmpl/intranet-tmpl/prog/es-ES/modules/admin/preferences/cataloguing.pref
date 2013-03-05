@@ -80,12 +80,11 @@ cataloguing.pref:
       - 
         pref: SubfieldsToUseWhenPrefill
     - 
+      - Usar el idioma (ISO 690-2)
       - 
-        choices: 
-          "": No validar
-          1: Validar
-        pref: CheckValueIndicators
-      - los valores de los indicadores definidos en las hojas de trabajo cuando se cataloga un registro.
+        class: short
+        pref: UNIMARCField100Language
+      - como idioma por defecto en el campo 100 de UNIMARC cuando se cree un nuevo registro o en el plugin del campo.
   Interfaz: 
     - 
       - Usar
@@ -173,13 +172,13 @@ cataloguing.pref:
           "": No separar
           1: Separar
         pref: SeparateHoldings
-      - items display into two tabs, where the first tab contains items whose
+      - "items mostrados en dos pesta\xC3\xB1as, la primera pesta\xC3\xB1a contiene los \xC3\xADtems que"
       - 
         choices: 
-          holdingbranch: holding library
-          homebranch: home library
+          holdingbranch: cataloguing.pref#SeparateHoldings# biblioteca de transferencia
+          homebranch: cataloguing.pref#SeparateHoldings# biblioteca de origen
         pref: SeparateHoldingsBranch
-      - is the logged in user's library. The second tab will contain all other items.
+      - "cataloguing.pref#SeparateHoldings#es el que ha accedido a la biblioteca del usuario. La segunda pesta\xC3\xB1a contendr\xC3\xA1 los otros \xC3\xADtems"
     - 
       - No mostrar este
       - 
@@ -191,7 +190,7 @@ cataloguing.pref:
           "": Ocultar
           1: No ocultar
         pref: DisplayPluginValueIndicators
-      - the link next to the indicator field to open a plugin to show the correct values of the indicator for this field and framework. If CheckValueIndicators is disabled and this variable is enabled it will check the values as well, i.e., it includes the CheckValueIndicators functionality.
+      - "el enlace al lado del campo del indicador abre un plugin que muestra los valores correctos para este campo. Si CheckValueIndicators est\xC3\xA1 deshabilitado y su variable est\xC3\xA1 habilitada tambi\xC3\xA9n se seleccionar\xC3\xA1 el valor, por ejemplo, si este incluye la funcionalidad  CheckValueIndicators."
   Tejuelos: 
     - 
       - "Cuando utilice la impresi\xC3\xB3n r\xC3\xA1pida de tejuelos,"

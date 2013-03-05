@@ -1,12 +1,12 @@
  [% INCLUDE "doc-head-open.inc" %] <title>Koha &rsaquo; Circulación &rsaquo; Circulación fuera de línea</title>
  [% INCLUDE "doc-head-close.inc" %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
  <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
- <script type="text/javascript" language="javascript">
+ <script type="text/javascript">
     //<![CDATA[
         $(document).ready(function() {
 
-        $("span.clearall").html("<a id=\"CheckNone\" href=\"/cgi-bin/koha/offline_circ/list.pl\">"+_('De-seleccionar todo')+"<\/a>");
-        $("span.checkall").html("<a id=\"CheckAll\" href=\"/cgi-bin/koha/offline_circ/list.pl\">"+_('Verificar todo ')+"<\/a>");
+        $("span.clearall").html("<a id=\"CheckNone\" href=\"/cgi-bin/koha/offline_circ/list.pl\">"+_("De-seleccionar todo")+"<\/a>");
+        $("span.checkall").html("<a id=\"CheckAll\" href=\"/cgi-bin/koha/offline_circ/list.pl\">"+_("Verificar todo ")+"<\/a>");
             $('#CheckNone').click(function() {
                 $("#operations").unCheckCheckboxes();
                 return false;

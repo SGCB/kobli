@@ -1,13 +1,18 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes &rsaquo; Catálogo por tipo de ítems</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-close.inc' %] [% IF ( do_it ) %] <link rel="stylesheet" type="text/css" href="/intranet-tmpl/prog/en/css/datatables.css" />
+<script type="text/javascript" src="/intranet-tmpl/prog/en/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="/intranet-tmpl/prog/en/js/datatables.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-$(document).ready(function() {
-	$("#itemtypest").tablesorter();
+$(document).ready(function(){
+    $("#itemtypest").dataTable($.extend(true, {}, dataTablesDefaults, {
+        "sDom": 't',
+        "bPaginate": false
+    }));
 });
 //]]>
 </script>
-</head>
+[% END %] </head>
 <body id="rep_itemtypes" class="rep">
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a>[% IF ( do_it ) %] &rsaquo; <a href="/cgi-bin/koha/reports/manager.pl?report_name=itemtypes">Catálogo por tipo de ítem</a> &rsaquo; Resultados[% ELSE %] &rsaquo; Catálogo por tipo de ítem[% END %]</div>
 

@@ -73,7 +73,7 @@
  <td>[% suggestions_loo.basketname %] (<a href="basket.pl?basketno=[% suggestions_loo.basketno %]">[% suggestions_loo.basketno %]</a>)</td>
  <td>
  [% IF ( suggestions_loo.basketgroupid ) %] [% suggestions_loo.groupname %] ( <a href="basketgroup.pl?booksellerid=[% suggestions_loo.id %]">[% suggestions_loo.basketgroupid %]</a>) [% ELSE %] &nbsp; [% END %] </td>
- <td>[% IF ( suggestions_loo.invoicenumber ) %] <a href="/cgi-bin/koha/acqui/parcel.pl?invoice=[% suggestions_loo.invoicenumber %]&amp;booksellerid=[% suggestions_loo.id %]&amp;datereceived=[% suggestions_loo.datereceived %]">[% suggestions_loo.invoicenumber %]</a>
+ <td>[% IF ( suggestions_loo.invoicenumber ) %] <a href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% suggestions_loo.invoicenumber %]">[% suggestions_loo.invoicenumber %]</a>
  [% ELSE %] &nbsp; [% END %] </td>
  <td>[% suggestions_loo.ordernumber %]</td>
  <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% suggestions_loo.biblionumber %]">[% suggestions_loo.title |html %]</a>

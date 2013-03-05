@@ -88,27 +88,9 @@
  <input type="hidden" name="op" value="delete_confirmed" />
  <input type="hidden" name="roadtypeid" value="[% roadtypeid %]" /><input value="Sí, eliminar" type="submit" class="approve" /></form> <form action="[% script_name %]" method="post">
  <input value="No, no eliminar" type="submit" class="deny" /></form></div>
-[% END %] [% IF ( else ) %] <div id="toolbar">
- <script type="text/javascript">
-	//<![CDATA[
-
-	// prepare DOM for YUI Toolbar
-
-	 $(document).ready(function() {
-	    yuiToolbar();
-	 });
-
-	// YUI Toolbar Functions
-
-	function yuiToolbar() {
-	    new YAHOO.widget.Button("addroad");
-	}
-
-	//]]>
-	</script>
- <ul class="toolbar">
- <li><a id="addroad" href="/cgi-bin/koha/admin/roadtype.pl?op=add_form">Nuevo tipo de vía</a></li>
-</ul></div>
+[% END %] [% IF ( else ) %] <div id="toolbar" class="btn-toolbar">
+ <a class="btn btn-small" id="addroad" href="/cgi-bin/koha/admin/roadtype.pl?op=add_form"><i class="icon-plus"></i> Nuevo tipo de vía</a>
+</div>
 
  <h2>Tipo de camino</h2>
  [% IF ( searchfield ) %] Buscar en [% searchfield %] [% END %] [% IF ( loop ) %] <table>

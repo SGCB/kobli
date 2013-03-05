@@ -360,8 +360,6 @@ function Changefwk(FwkList) {
     f.submit();
 }
 
-<<<<<<< HEAD:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
-=======
 // returns the subfieldcode based upon subfieldid writing
 function getSubfieldcode(tagsubfieldid){
     // 3 : tag +3 : tagnumber +4 : number of _ +8 subfield -1 begins at 0  
@@ -750,7 +748,7 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
     label = document.getElementById(labelindex);
     label.style.display='none';	
 }
->>>>>>> Bug 4888 - pre-set of field indicators value:koha-tmpl/intranet-tmpl/prog/en/modules/cataloguing/addbiblio.tt
+
 //]]>
 </script>
 <link type="text/css" rel="stylesheet" href="[% themelang %]/css/addbiblio.css" />
@@ -779,7 +777,10 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
  <div id="yui-main">
  <div class="yui-g">
 
-<h1>[% IF ( biblionumber ) %]Edición <em>[% title |html %]</em> (Número de registro [% biblionumber %])</h1>[% ELSE %]Agregar registro MARC </h1>[% END %] [% IF marcflavour != 'NORMARC' %] <div><input type="checkbox" name="marcDocsSelect" id="marcDocsSelect" checked="true" /> Mostrar documentación de campos MARC<br/></div>
+<h1>
+[% IF ( biblionumber ) %]Edición <em>[% title |html %]</em> (Número de registro [% biblionumber %])[% ELSE %]Agregar registro MARC[% IF (circborrowernumber) %]<em>(catalogación rápida)</em>[% END %] [% END %] </h1>
+
+[% IF marcflavour != 'NORMARC' %] <div><input type="checkbox" name="marcDocsSelect" id="marcDocsSelect" checked="true" /> Mostrar documentación de campos MARC<br/></div>
 [% END %]
 
 [% UNLESS ( number ) %]
@@ -846,6 +847,15 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
 
 	function yuiToolbar() {
 [% IF ( CAN_user_editcatalogue_edit_items ) %]
+    [% IF (circborrowernumber) %][%# fast cataloging must lead to items %]
+        new YAHOO.widget.Button({
+            id: "addbiblio",
+            type: "button",
+            label: _("Guardar"),
+            container: "savebutton",
+            onclick: {fn:function(){redirect("items");}}
+        });
+    [% ELSE %]
         var savesplitmenu = new YAHOO.widget.Button({
             type: "split",
             label: _("Guardar"),
@@ -854,8 +864,8 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
             menu: savemenu,
             container: "savebutton"
          });
-
-        savesplitmenu.on("click", onOption); 
+        savesplitmenu.on("click", onOption);
+    [% END %]
 [% ELSE %]
         new YAHOO.widget.Button({
             id: "addbiblio",
@@ -879,7 +889,7 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
 
  <ul class="toolbar">
  <li id="savebutton"><input value="Guardar" id="addbiblio" type="submit" /></li>
- <li id="z3950searchc"><input value="Búsqueda Z39.50" type="button" id="z3950search" onclick="PopupZ3950(); return false;" /></li>
+ [% UNLESS (circborrowernumber) %][%# Hide in fast cataloging %] <li id="z3950searchc"><input value="Búsqueda Z39.50" type="button" id="z3950search" onclick="PopupZ3950(); return false;" /></li>
  <li id="changeframework"><label for="Frameworks">Modificar hoja de trabajo: </label>
  <select name="frameworkcode" id="Frameworks" onchange="Changefwk(this);">
  <option value="Default">Predeterminado</option>
@@ -887,12 +897,13 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
  [% ELSE %] <option value="[% frameworkcodeloo.value %]">
  [% END %] [% frameworkcodeloo.frameworktext %] </option> 
  [% END %] </select> 
-<input type="hidden" name="op" value="addbiblio" /></li>
- </ul>
+ </li>
+ [% END %] </ul>
  [% IF ( showFilesLocalRepository ) %] [% INCLUDE 'cataloguing-attach-files.inc' %] [% END %] </div>
 
 [% IF ( popup ) %] <input type="hidden" name="mode" value="popup" />
-[% END %] <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
+[% END %] <input type="hidden" name="op" value="addbiblio" />
+ <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
  <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
  <input type="hidden" name="breedingid" value="[% breedingid %]" />
 
@@ -994,15 +1005,13 @@ onclick="launchPopupValueIndicators('[% frameworkcode %]', 'biblio', '[% innerlo
 
 </div><!-- tabs -->
 
-<!-- Fields for fast add cataloguing -->
+[%# Fields for fast cataloging %]
 <input type="hidden" name="barcode" value="[% barcode %]" />
 <input type="hidden" name="branch" value="[% branch %]" />
 <input type="hidden" name="circborrowernumber" value="[% circborrowernumber %]" />
 <input type="hidden" name="stickyduedate" value="[% stickyduedate %]" />
 <input type="hidden" name="duedatespec" value="[% duedatespec %]" />
-<!-- /End of fast add fields -->
-
-</form>
+[%# End of fields for fast cataloging %] </form>
 
 </div>
 </div>

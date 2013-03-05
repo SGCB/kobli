@@ -408,6 +408,20 @@ $(document).ready(function(){
  </form>
 [% END %] [% IF ( execute ) %] <h1>[% name %]</h1>
 [% IF ( notes ) %]<p>[% notes %]</p>[% END %] [% IF ( unlimited_total ) %]<p>En número total de filas que coinciden con la búsqueda (no limitada) es [% unlimited_total %].</p>[% END %] <pre id="sql_output">[% sql |html %]</pre>
+
+<form>
+ <input type="hidden" name="phase" value="Run this report"/>
+ <input type="hidden" name="reports" value="[% report_id %]"/>
+
+ <label for="limit">Resultados por página :</label>
+ <select name="limit">
+ [% limits = [ 10, 20, 50, 100, 200, 300, 400, 500, 1000 ] %] [% FOREACH l IN limits %] [% IF l == limit %] <option value="[% l %]" selected="selected">[% l %]</option>
+ [% ELSE %] <option value="[% l %]">[% l %]</option>
+ [% END %] [% END %] </select>
+
+ <input value="Actualizar" type="submit" />
+</form>
+
 <div class="pages">[% pagination_bar %]</div>
 [% UNLESS ( errors ) %] <table>
 <tr>[% FOREACH header_ro IN header_row %]<th>[% header_ro.cell %]</th>[% END %]</tr>

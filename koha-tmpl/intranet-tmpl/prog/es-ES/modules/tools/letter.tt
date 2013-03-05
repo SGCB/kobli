@@ -1,14 +1,17 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Avisos[% IF ( add_form ) %][% IF ( modify ) %] &rsaquo; Modificar aviso[% ELSE %] &rsaquo; Agregar aviso[% END %][% END %][% IF ( add_validate ) %] &rsaquo; Aviso agregado[% END %][% IF ( delete_confirm ) %] &rsaquo; Confirmar eliminación[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
- <script type="text/javascript">
-	//<![CDATA[
+[% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="/intranet-tmpl/prog/en/css/datatables.css" />
+<script type="text/javascript" src="/intranet-tmpl/prog/en/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="/intranet-tmpl/prog/en/js/datatables.js"></script>
+<script type="text/javascript">
+//<![CDATA[
 $(document).ready(function() {
-	$("#lettert:has(tbody tr)").tablesorter({
-		widgets : ['zebra'],
-		sortList: [[0,0]],
-        headers: { 4: {sorter:false},5: { sorter: false },6: { sorter: false }}
-	}); 
-
+    $("#lettert:has(tbody tr)").dataTable($.extend(true, {}, dataTablesDefaults, {
+        "sDom": 't',
+        "aoColumnDefs": [
+            { "aTargets": [ -1,-2, -3 ], "bSortable": false, "bSearchable": false }
+        ],
+        "bPaginate": false
+    }));
     $('#branch').change(function() {
             $('#op').val("");
             $('#selectlibrary').submit();
@@ -140,7 +143,7 @@ $(document).ready(function() {
  [% END %] [% IF ( letter && !independant_branch) %] [% select_for_copy = BLOCK %] <select name="branchcode">
  [% FOREACH branchloo IN branchloop %] <option value="[% branchloo.value %]">Copia a [% branchloo.branchname %]</option>
  [% END %] </select>
- [% END %] [% END %] <table id="lettert">
+ [% END %] [% END %] [% IF ( letter ) %] <table id="lettert">
  <thead><tr>
  <th>Biblioteca</th>
  <th>Módulo</th>
@@ -157,7 +160,7 @@ $(document).ready(function() {
  <td>[% lette.module %]</td>
  <td>[% lette.code %]</td>
  <td>[% lette.name %]</td>
- <td>
+ <td style="white-space: nowrap">
  [% IF !independant_branch || !lette.branchcode %] <form method="post" action="/cgi-bin/koha/tools/letter.pl">
  <input type="hidden" name="op" value="copy" />
  <input type="hidden" name="oldbranchcode" value="[% lette.branchcode %]" />
@@ -176,7 +179,11 @@ $(document).ready(function() {
  </tr>
  [% END %] </tbody>
  </table>
-[% END %] [% IF ( add_form ) %] <h1>[% IF ( modify ) %]Modificar aviso[% ELSE %]Agregar aviso[% END %]</h1>
+[% ELSE %] <div class="dialog message">
+ [% IF ( branchcode ) %] <p>No hay noticias en esta biblioteca.</p>
+ [% ELSE %] <p>No hay noticias.</p>
+ [% END %] </div>
+[% END %] [% END %] [% IF ( add_form ) %] <h1>[% IF ( modify ) %]Modificar aviso[% ELSE %]Agregar aviso[% END %]</h1>
  <form action="?" name="Aform" method="post">
  <input type="hidden" name="op" id="op" value="add_validate" />
  <input type="hidden" name="checked" value="0" />

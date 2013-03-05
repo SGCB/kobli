@@ -45,12 +45,6 @@ function CheckRuleForm(f) {
         alert(alertString2);
     }
 }
-
-$(document).ready(function() {
-    new YAHOO.widget.Button("newsource");
-    new YAHOO.widget.Button("newrule");
-});
-
 //]]>
 </script>
 </head>
@@ -155,11 +149,10 @@ $(document).ready(function() {
  <input type="submit" value="OK" class="approve" />
  </form>
 </div>
-[% END %] [% IF ( display_lists ) %] <div id="toolbar">
- <ul class="toolbar">
- <li><a id="newsource" href="[% script_name %]?op=add_source">Nueva fuente de clasificación</a></li>
- <li><a id="newrule" href="[% script_name %]?op=add_sort_rule">Nueva regla de alfabetización</a></li>
-</ul></div>
+[% END %] [% IF ( display_lists ) %] <div id="toolbar" class="btn-toolbar">
+ <a class="btn btn-small" id="newsource" href="[% script_name %]?op=add_source"><i class="icon-plus"></i> Nueva fuente de clasificación</a>
+ <a class="btn btn-small" id="newrule" href="[% script_name %]?op=add_sort_rule"><i class="icon-plus"></i> Nueva regla de alfabetización</a>
+</div>
 
 <h2>Fuentes de clasificación</h2>
 [% IF ( added_source ) %] <div class="dialog message">Origen de clasificación [% added_source %] agregado</div>

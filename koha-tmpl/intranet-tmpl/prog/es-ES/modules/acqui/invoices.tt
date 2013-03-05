@@ -45,8 +45,8 @@ $(document).ready(function() {
  </thead>
  <tbody>
  [% FOREACH result IN results_loop %] <tr>
- <td>[% result.invoicenumber %]</td>
- <td>[% result.suppliername %]</td>
+ <td><a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% result.invoiceid %]">[% result.invoicenumber %]</a></td>
+ <td><a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% result.booksellerid %]">[% result.suppliername %]</a></td>
  <td>
  [% IF (result.billingdate) %] [% result.billingdate | $KohaDates %] [% END %] </td>
  <td>[% result.receivedbiblios %]</td>
@@ -54,8 +54,8 @@ $(document).ready(function() {
  <td>
  [% IF ( result.closedate ) %] Cerrado en [% result.closedate | $KohaDates %] [% ELSE %] Abierto [% END %] </td>
  <td>
- <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% result.invoiceid %]">Detalle</a> / [% IF ( result.closedate ) %] <a href="invoice.pl?op=reopen&invoiceid=[% result.invoiceid %]&referer=/cgi-bin/koha/acqui/invoices.pl%3Fop=do_search%26invoicenumber=[% invoicenumber %]%26supplier=[% supplier %]%26billingdatefrom=[% billingdatefrom %]%26billingdateto=[% billingdateto %]%26isbneanissn=[% isbneanissn %]%26title=[% title %]%26author=[% author %]%26publisher=[% publisher %]%26publicationyear=[% publicationyear %]%26branch=[% branch %]">Reabrir</a>
- [% ELSE %] <a href="invoice.pl?op=close&invoiceid=[% result.invoiceid %]&referer=/cgi-bin/koha/acqui/invoices.pl%3Fop=do_search%26invoicenumber=[% invoicenumber %]%26supplier=[% supplier %]%26billingdatefrom=[% billingdatefrom %]%26billingdateto=[% billingdateto %]%26isbneanissn=[% isbneanissn %]%26title=[% title %]%26author=[% author %]%26publisher=[% publisher %]%26publicationyear=[% publicationyear %]%26branch=[% branch %]">Cerrar</a>
+ <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% result.invoiceid %]">Detalle</a> / [% IF ( result.closedate ) %] <a href="invoice.pl?op=reopen&amp;invoiceid=[% result.invoiceid %]&amp;referer=/cgi-bin/koha/acqui/invoices.pl%3Fop=do_search%26invoicenumber=[% invoicenumber %]%26supplier=[% supplier %]%26billingdatefrom=[% billingdatefrom %]%26billingdateto=[% billingdateto %]%26isbneanissn=[% isbneanissn %]%26title=[% title %]%26author=[% author %]%26publisher=[% publisher %]%26publicationyear=[% publicationyear %]%26branch=[% branch %]">Reabrir</a>
+ [% ELSE %] <a href="invoice.pl?op=close&amp;invoiceid=[% result.invoiceid %]&amp;referer=/cgi-bin/koha/acqui/invoices.pl%3Fop=do_search%26invoicenumber=[% invoicenumber %]%26supplier=[% supplier %]%26billingdatefrom=[% billingdatefrom %]%26billingdateto=[% billingdateto %]%26isbneanissn=[% isbneanissn %]%26title=[% title %]%26author=[% author %]%26publisher=[% publisher %]%26publicationyear=[% publicationyear %]%26branch=[% branch %]">Cerrar</a>
  [% END %] </td>
  </tr>
  [% END %] </tbody>
@@ -91,10 +91,10 @@ $(document).ready(function() {
  </li>
  <li>
  <label for="supplier">Proveedor:</label>
- <select id="supplier" name="supplier">
+ <select id="supplier" name="supplierid">
  <option value="">Todo</option>
- [% FOREACH supplier IN suppliers_loop %] [% IF ( supplier.selected ) %] <option selected="selected" value="[% supplier.supplierid %]">[% supplier.suppliername %]</option>
- [% ELSE %] <option value="[% supplier.supplierid %]">[% supplier.suppliername %]</option>
+ [% FOREACH supplier IN suppliers_loop %] [% IF ( supplier.selected ) %] <option selected="selected" value="[% supplier.booksellerid %]">[% supplier.suppliername %]</option>
+ [% ELSE %] <option value="[% supplier.booksellerid %]">[% supplier.suppliername %]</option>
  [% END %] [% END %] </select>
  </li>
  <li>

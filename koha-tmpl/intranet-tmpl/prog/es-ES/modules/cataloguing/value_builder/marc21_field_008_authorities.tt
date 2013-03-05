@@ -57,8 +57,8 @@
  <td><label for="f8">08- Idioma del catálogo</label></td>
  <td>
  <select name="f8" id="f8" size="1">
- [% IF ( f8 ) %] <option value=" " selected="selected">#- No hay información proporcionada</option>
- [% ELSE %] <option value=" ">#- No hay información proporcionada</option>
+ [% IF ( f8 ) %] <option value=" " selected="selected">#- No se proporciona información</option>
+ [% ELSE %] <option value=" ">#- No se proporciona información</option>
  [% END %] [% IF ( f8b ) %] <option value="b" selected="selected">b- Inglés y francés</option>
  [% ELSE %] <option value="b">b- Inglés y francés</option>
  [% END %] [% IF ( f8e ) %] <option value="e" selected="selected">e- Solo inglés</option>
