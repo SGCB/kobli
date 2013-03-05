@@ -1,5 +1,5 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Resultados de búsqueda Z39.50</title>
-[% INCLUDE 'doc-head-close.inc' %] <script language="javascript" type="text/javascript">
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
     function Import(GetThisOne) {
         opener.document.location= "../cataloguing/addbiblio.pl?z3950=1&oldbiblionumber=[% oldbiblionumber %]&breedingid="+GetThisOne;

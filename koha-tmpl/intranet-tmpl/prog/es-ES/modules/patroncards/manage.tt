@@ -35,7 +35,7 @@
                         }
                     }
                     if (batches.length < 1) {
-                        alert(_('Por favor, seleccione al menos un lote para exportar.'));
+                        alert(_("Por favor, seleccione al menos un lote para exportar."));
                         return;     // no batch selected
                     }
                     getstr = batches.join("&");
@@ -44,7 +44,7 @@
                     getstr = "batch_id="+document.layouts.action.value;
                 }
                 else {
-                    alert(_('Por favor, seleccione al menos un lote para exportar.'));
+                    alert(_("Por favor, seleccione al menos un lote para exportar."));
                     return;     // no batch selected
                 }
                 return GB_showCenter('Export Patron Cards', "/cgi-bin/koha/patroncards/print.pl?" + getstr, 700, 800);
@@ -61,7 +61,7 @@
                         return(document.layouts.action[selected[0]].value);
                     }
                     else {
-                        alert(_('Por favor, elija solo uno ')+'[% card_element %]'+_(' to ') + op + '.');
+                        alert(_("Por favor, elija solo uno ")+"[% card_element %]"+_(" to ") + op + ".");
                         return (-1);
                     }
                 }
@@ -70,7 +70,7 @@
                         return(document.layouts.action.value);
                     }
                 };
-                alert(_('Por favor, seleccione un ')+'[% card_element %].');
+                alert(_("Por favor, seleccione un ")+"[% card_element %].");
                 return (-1);
             };
         //]]>

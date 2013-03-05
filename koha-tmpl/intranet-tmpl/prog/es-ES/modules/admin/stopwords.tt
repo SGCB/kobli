@@ -1,5 +1,5 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración del sistema &rsaquo; Palabras eliminadas [% IF ( add_form ) %]&rsaquo; [% IF ( searchfield ) %]Modificar[% ELSE %]Nueva[% END %] palabra eliminada [% ELSIF ( add_validate ) %]&rsaquo; Datos guardados [% ELSIF ( delete_confirm ) %]&rsaquo; Eliminar palabra eliminada '[% searchfield %]' ? [% ELSIF ( delete_confirmed ) %]&rsaquo; Datos eliminados [% END %] </title>
-[% INCLUDE 'doc-head-close.inc' %] <script language="javascript" type="text/javascript">
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function() {
         new YAHOO.widget.Button("newstopword");

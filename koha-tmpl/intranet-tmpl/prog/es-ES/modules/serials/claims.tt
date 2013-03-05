@@ -1,24 +1,23 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Reclamaciones</title>
- [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.uitablefilter.js"></script>
-<script type="text/JavaScript" language="JavaScript">
+ [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <link rel="stylesheet" type="text/css" href="/intranet-tmpl/prog/en/css/datatables.css" />
+<script type="text/javascript" src="/intranet-tmpl/prog/en/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="/intranet-tmpl/prog/en/js/datatables.js"></script>
+<script type="text/javascript">
 //<![CDATA[
+    [% IF (dateformat == 'metric') %]dt_add_type_uk_date();[% END %]
 	 $(document).ready(function() {
-		[% UNLESS ( preview ) %]$("#claimst").tablesorter({[% IF ( dateformat == 'metric' ) %]
-			dateFormat: 'uk',[% END %]
-			headers: { 0: { sorter: false },1:{sorter:false}}
-		});[% END %]
+        [% UNLESS ( preview ) %]
+         var sTable = $("#claimst").dataTable($.extend(true, {}, dataTablesDefaults, {
+            "sDom": 't',
+            "aoColumnDefs": [
+                { "aTargets": [ 0,1,-1 ], "bSortable": false, "bSearchable": false }
+            ],
+            "bPaginate": false
+        }));
+        [% END %]
 	    $('#supplierid').change(function() {
     	    $('#claims').submit();
 	    });
-
-	    // Case-insensitive version of jquery's contains function
-	    jQuery.extend(
-		jQuery.expr[':'], { 
-		    icontains : "jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase())>=0" 
-		}
-	    );
-
 
 	    // Checkboxes : Select All / None
 	    $("span.checkall").html("<input type=\"checkbox\" name=\"CheckAll\"> "+_("Seleccionar todos")+"</input>");
@@ -35,7 +34,7 @@
 		var selected = $("input:checked");
 
 		if (selected.length == 0) {
-			alert(_('Por favor, seleccione al menos un ítem para exportar.'));
+			alert(_("Por favor, seleccione al menos un ítem para exportar."));
 			return false;
 		}
 		
@@ -49,19 +48,19 @@
 		return false;
 	    });	
 
-        $("#titlefilter").keyup(function() {
-            $.uiTableFilter($("#claimst"), $("#titlefilter").val())
-	    });
+        $("#titlefilter").keyup( function () {
+            sTable.fnFilter( this.value, 3 ); // 3 is position of title column
+        } );
 
         $("#branchfilter").keyup(function() {
-            $.uiTableFilter($("#claimst"), $("#branchfilter").val())
+            sTable.fnFilter( this.value, 2 ); // 2 is the position of the author column
 	    });
 	 });
 
 	// Checks if the form can be sent (at least one checkbox must be checked)
 	function checkForm() {
 	    if ($("input:checked").length == 0) {
-		alert(_('Por favor, seleccione al menos un ítem.'));
+		alert(_("Por favor, seleccione al menos un ítem."));
 		return false;
 	    }
 	}
@@ -94,13 +93,13 @@
 	    
 	    // Checks if the beginning date is valid
 	    if (!parseInt(beginDate)) {
-		alert(_('La fecha de inicio falta o es inválida.'));
+		alert(_("La fecha de inicio falta o es inválida."));
 		return false;
 	    }
 
 	    // Checks if the ending date is valid
 	    if (!parseInt(endDate)) {
-		alert(_('Falta la fecha de finalización o es inválida.'));
+		alert(_("Falta la fecha de finalización o es inválida."));
 		return false;
 	    }
 
@@ -189,6 +188,8 @@
  <li>
  <label for="titlefilter">Título: </label>
  <input id="titlefilter" type="text" />
+ </li>
+ <li>
  <label for="branchfilter">Biblioteca: </label>
  <select id="branchfilter" onchange="filterByBranch();">
  [% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>
@@ -197,9 +198,9 @@
  </li>
  
  <li>
- <label for="from">Desde</label>
+ <label for="from">Desde:</label>
  <input type="text" name="begindate" id="from" value="[% begindate %]" size="10" maxlength="10" class="datepickerfrom" />
- <label for="to" style="float:none;">A</label>
+ <label for="to" style="float:none;">Hasta:</label>
  <input type="text" name="enddate" id="to" value="[% enddate %]" size="10" maxlength="10" class="datepickerto" />
  <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
  <input type="button" value="OK" onclick="filterByDate();" />

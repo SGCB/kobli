@@ -70,7 +70,7 @@ $(document).ready(function(){
 	    }
 	    // If the field is not repeatable, we check if it already exists in the result table
 	    if (canbeadded == false) {
-		alert(_('El campo no es repetible y ya existe en el registro destino. Por lo tanto, no se puede añadir.'));
+		alert(_("El campo no es repetible y ya existe en el registro destino. Por lo tanto, no se puede añadir."));
 		pField.checked = 0;
 	    } else {
 
@@ -110,7 +110,7 @@ $(document).ready(function(){
 			    // We select the whole field and removing non-selected subfields, instead of...
 
 			    // Alerting the user 
-			    alert(_('This subfield cannot be added: there is no ' + field + ' field in the destination record.'));
+			    alert(_("Este subcampo no se añadirá: no hay") + " " + field + " " + _("campo en el registro destino."));
 			    pField.checked = false;
 
 			} else {

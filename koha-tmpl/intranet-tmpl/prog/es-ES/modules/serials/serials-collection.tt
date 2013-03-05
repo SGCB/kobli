@@ -127,7 +127,7 @@ $(document).ready(function() {
 
  [% FOREACH year IN years %] <div id="subscription-year-[% year.year %]">
  [% IF ( CAN_user_serials_receive_serials ) %] <p>
- <input value="Editar publicación periódica" type="submit" />&nbsp; [% UNLESS subscription.closed %] <input type="button" value="Generate next" onclick="javascript:generateNext([% subscriptionidlist %])" />
+ <input value="Editar publicación periódica" type="submit" />&nbsp; [% UNLESS subscription.closed %] <input value="Generar siguiente " type="button" onclick="javascript:generateNext([% subscriptionidlist %])" />
  [% IF ( subscriptions.size == 1 and !serialsadditems ) %]&nbsp;<input value="Completar recepción " type="button" onclick="javascript:generateReceive([% subscriptionidlist %])" />[% END %] [% END %] </p>
  [% END %] <span class="checkall">
  <a class="CheckAll" href="#" onclick="CheckAll('subscription-year-[% year.year %]'); return false;">Seleccionar todo</a>
@@ -160,7 +160,7 @@ $(document).ready(function() {
  <td>
  [% serial.serialseq %] </td>
  <td>
- [% IF ( latestserial.status1 ) %]Esperado [% END %] [% IF ( latestserial.status2 ) %]recibido [% END %] [% IF ( latestserial.status3 ) %]Demorado [% END %] [% IF ( latestserial.status4 ) %]Perdido [% END %] [% IF ( latestserial.status5 ) %]No prestado [% END %] [% IF ( latestserial.status6 ) %]Borrado[% END %] [% IF ( latestserial.status7 ) %]Reclamado[% END %] [% IF ( latestserial.status8 ) %]Parado[% END %] </td>
+ [% IF ( serial.status1 ) %]Esperado [% END %] [% IF ( serial.status2 ) %]recibido [% END %] [% IF ( serial.status3 ) %]Demorado [% END %] [% IF ( serial.status4 ) %]Perdido [% END %] [% IF ( serial.status5 ) %]No prestado [% END %] [% IF ( serial.status6 ) %]Borrado[% END %] [% IF ( serial.status7 ) %]Reclamado[% END %] [% IF ( serial.status8 ) %]Parado[% END %] </td>
  <td>
  [% serial.notes %] </td>
  <td>

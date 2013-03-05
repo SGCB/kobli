@@ -61,18 +61,18 @@ return false;
 </script>
 </head>
 <body id="admin_auth_tag_structure" class="admin">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; <a href="/cgi-bin/koha/admin/authtypes.pl">Tipos de autoridad</a> &rsaquo; [% IF ( add_form ) %] [% IF ( use_heading_flags_p ) %] [% IF ( heading_modify_tag_p ) %] [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] Hoja de trabajo</a>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; <a href="/cgi-bin/koha/admin/authtypes.pl">Tipos de autoridad</a> &rsaquo; [% IF ( add_form ) %] [% IF ( use_heading_flags_p ) %] [% IF ( heading_modify_tag_p ) %] [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] Plantilla de catalogación</a>
  [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a>
- [% END %] &rsaquo; Modificar etiqueta [% END %] [% IF ( heading_add_tag_p ) %] [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] hoja de trabajo</a>
+ [% END %] &rsaquo; Modificar etiqueta [% END %] [% IF ( heading_add_tag_p ) %] [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] plantilla de catalogación</a>
  [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a>
- [% END %] &rsaquo; Nueva etiqueta [% END %] [% ELSE %] [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] Hoja de trabajo</a>
+ [% END %] &rsaquo; Nueva etiqueta [% END %] [% ELSE %] [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] Plantilla de catalogación</a>
  [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a>
- [% END %] &rsaquo; [% action %] [% END %] [% ELSE %] [% IF ( delete_confirm ) %] [% IF ( authtypecode ) %] <a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] hoja de trabajo</a>
+ [% END %] &rsaquo; [% action %] [% END %] [% ELSE %] [% IF ( delete_confirm ) %] [% IF ( authtypecode ) %] <a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] plantilla de catalogación</a>
  [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a>
- [% END %] &rsaquo; Confirmar eliminación [% ELSE %] [% IF ( delete_confirmed ) %] [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] hoja de trabajo</a>
+ [% END %] &rsaquo; Confirmar eliminación [% ELSE %] [% IF ( delete_confirmed ) %] [% IF ( authtypecode ) %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% authtypecode %]">[% authtypecode %] plantilla de catalogación</a>
  [% ELSE %]<a href="/cgi-bin/koha/admin/auth_tag_structure.pl">Plantilla predeterminada</a>
- [% END %] &rsaquo; Datos eliminados [% ELSE %] [% IF ( authtypecode ) %][% authtypecode %] Hoja de trabajo</a>
- [% ELSE %]Determinada hoja de trabajo [% END %] [% END %] [% END %] [% END %] </div>
+ [% END %] &rsaquo; Datos eliminados [% ELSE %] [% IF ( authtypecode ) %][% authtypecode %] Plantilla de catalogación</a>
+ [% ELSE %]Plantilla de catalogación predeterminada[% END %] [% END %] [% END %] [% END %] </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -80,7 +80,7 @@ return false;
  <div id="yui-main">
  <div class="yui-b">
 
-<h1>Hoja de trabajo de Autoridades MARC para [% IF ( authtypecode ) %][% authtypecode %][% ELSE %]hoja de trabajo por defecto[% END %]</h1>
+<h1>Plantilla de catalogación de Autoridades MARC para [% IF ( authtypecode ) %][% authtypecode %][% ELSE %]plantilla de catalogación predeterminada[% END %]</h1>
 
 
 [% IF ( add_form ) %] <h2>

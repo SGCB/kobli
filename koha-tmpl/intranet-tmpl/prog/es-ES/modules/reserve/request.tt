@@ -90,16 +90,16 @@ function checkMultiHold() {
         var msg = '';
 
         switch (override_items[itemnumber].holdallowed) {
-            case 0: msg = _( 'Este ítem no puede normalmente se reservado.' ); break;
-            case 1: msg = _( 'Este ítem no puede normalmente ser reservado excepto para socios de ' ) + override_items[itemnumber].homebranch + '.'; break;
+            case 0: msg = _("Este ítem no puede normalmente se reservado."); break;
+            case 1: msg = _("Este ítem no puede normalmente ser reservado excepto para socios de ") + override_items[itemnumber].homebranch + "."; break;
         }
 
-        msg += "\n\n" + _( '¿Reservar este ítem?' );
+        msg += "\n\n" + _("¿Reservar este ítem?");
 
         return confirm(msg);
     });
     $("input.warning").click(function() {
-        return confirm( _( 'Ninguno de estos ítems pueden normalmente ser reservados por este socio.' ) + "\n\n" + _( '¿Reservar?' ) );
+        return confirm( _("Ninguno de estos ítems pueden normalmente ser reservados por este socio.") + "\n\n" + _("¿Reservar?") );
     });
  	$("#requestany").click(function() {
 		if(this.checked){
@@ -169,7 +169,7 @@ function checkMultiHold() {
  [% IF ( maxreserves ) %] <li><strong>Demasiadas reservas: </strong> <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %] </a> tiene demasiadas reservas.</li>
  [% END %] [% IF ( alreadyreserved ) %] <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a> <strong>tiene una reserva</strong> en este ítem </li>
  [% END %] [% IF ( none_available ) %] <li> <strong>No hay copias disponibles</strong> para ser reservado</li>
- [% END %] [% IF ( alreadypossession ) %] <li> <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a> <strong>is already in possesion</strong> of one item</li>
+ [% END %] [% IF ( alreadypossession ) %] <li> <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a> <strong>está ya en posesión</strong> de un ítem</li>
  [% END %] </ul>
  [% ELSE %] <h3>No se pueden reservar algunos ítems</h3>
  [% END %] </div>

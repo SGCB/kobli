@@ -69,7 +69,7 @@
  <xsl:when test="$leader7='c' or $leader7='d' or $leader7='m'">Libro</xsl:when>
  <xsl:when test="$leader7='i' or $leader7='s'">
  <xsl:choose>
- <xsl:when test="substring($controlField008,22,1)!='m'">Recursos continuados</xsl:when>
+ <xsl:when test="substring($controlField008,22,1)!='m'">Recursos continuos</xsl:when>
  <xsl:otherwise>Series</xsl:otherwise>
  </xsl:choose>
  </xsl:when>
@@ -457,6 +457,31 @@
  </span>
  </xsl:if>
 
+ <xsl:if test="marc:datafield[@tag=013]">
+ <span class="results_summary patent_info">
+ <span class="label">Información de socio:</span>
+ <xsl:for-each select="marc:datafield[@tag=013]">
+ <xsl:call-template name="subfieldSelect">
+ <xsl:with-param name="codes">acdef</xsl:with-param>
+ <xsl:with-param name="delimeter">, </xsl:with-param>
+ </xsl:call-template>
+ <xsl:choose><xsl:when test="position()=last()"><xsl:text></xsl:text></xsl:when><xsl:otherwise><xsl:text>; </xsl:text></xsl:otherwise></xsl:choose>
+ </xsl:for-each>
+ </span>
+ </xsl:if>
+
+ <xsl:if test="marc:datafield[@tag=088]">
+ <span class="results_summary report_number">
+ <span class="label">Número de informe: </span>
+ <xsl:for-each select="marc:datafield[@tag=088]">
+ <xsl:call-template name="subfieldSelect">
+ <xsl:with-param name="codes">a</xsl:with-param>
+ </xsl:call-template>
+ <xsl:choose><xsl:when test="position()=last()"><xsl:text></xsl:text></xsl:when><xsl:otherwise><xsl:text>; </xsl:text></xsl:otherwise></xsl:choose>
+ </xsl:for-each>
+ </span>
+ </xsl:if>
+
  <!-- Other Title Statement: Alternate Graphic Representation (MARC 880) -->
  <xsl:if test="$display880">
  <xsl:call-template name="m880Select">
@@ -570,7 +595,7 @@
  </xsl:if>
 
  <xsl:if test="marc:datafield[@tag=856]">
- <span class="results_summary online_resources"><span class="label">Recursos en línea: </span>
+ <span class="results_summary online_resources"><span class="label">Recursos en línea:</span>
  <xsl:for-each select="marc:datafield[@tag=856]">
  <xsl:variable name="SubqText"><xsl:value-of select="marc:subfield[@code='q']"/></xsl:variable>
  <a><xsl:attribute name="href"><xsl:value-of select="marc:subfield[@code='u']"/></xsl:attribute>
@@ -704,6 +729,18 @@
 
  </xsl:if>
  </xsl:for-each>
+ </xsl:if>
+
+ <xsl:if test="marc:datafield[@tag=502]">
+ <span class="results_summary diss_note">
+ <span class="label">Nota de tesis:</span>
+ <xsl:for-each select="marc:datafield[@tag=502]">
+ <xsl:call-template name="subfieldSelect">
+ <xsl:with-param name="codes">abcdgo</xsl:with-param>
+ </xsl:call-template>
+ </xsl:for-each>
+ <xsl:choose><xsl:when test="position()=last()"><xsl:text></xsl:text></xsl:when><xsl:otherwise><xsl:text> </xsl:text></xsl:otherwise></xsl:choose>
+ </span>
  </xsl:if>
 
  <!-- 866 textual holdings -->

@@ -2,7 +2,7 @@
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
 <script type="text/javascript" src="[% themelang %]/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 tinyMCE.init({
     mode : "textareas",
     theme : "advanced",
@@ -33,33 +33,10 @@ tinyMCE.init({
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% IF ( else ) %] <div id="toolbar">
- <script type="text/javascript">
-	//<![CDATA[
-
-	// prepare DOM for YUI Toolbar
-
-	 $(document).ready(function() {
-	    yuiToolbar();
-		$.tablesorter.defaults.widgets = ['zebra']; 
-		$("#branchest").tablesorter({
-			sortList: [[0,0]],
-			headers: { 3:{sorter:false},4:{sorter:false},5:{sorter:false},6:{sorter:false}}
-		}).tablesorterPager({container: $("#pagerbranchest"),positionFixed: false,size: 10}); 
-		}); 
-	// YUI Toolbar Functions
-
-	function yuiToolbar() {
-	    new YAHOO.widget.Button("newbranch");
-		new YAHOO.widget.Button("newcategory");
-	}
-
-	//]]>
-	</script>
- <ul class="toolbar">
- <li><a id="newbranch" href="/cgi-bin/koha/admin/branches.pl?op=add">Nueva biblioteca</a></li>
- <li><a id="newcategory" href="/cgi-bin/koha/admin/branches.pl?op=editcategory">Nuevo grupo</a></li>
-</ul></div>
+ [% IF ( else ) %] <div id="toolbar" class="btn-toolbar">
+ <a class="btn btn-small" id="newbranch" href="/cgi-bin/koha/admin/branches.pl?op=add"><i class="icon-plus"></i> Nueva biblioteca</a>
+ <a class="btn btn-small" id="newcategory" href="/cgi-bin/koha/admin/branches.pl?op=editcategory"><i class="icon-plus"></i> Nuevo grupo</a>
+ </div>
 [% END %] [% IF ( add ) %] [% IF ( ERROR1 ) %]<div class="dialog message">Una biblioteca con ese código ya existe - Por favor, introduzca un código único</div>[% END %] <h3>[% IF ( heading_branches_add_branch_p ) %]Nueva biblioteca[% ELSE %]Modificar biblioteca[% END %]</h3>
  <form action="[% action %]" name="Aform" method="post">
  <fieldset class="rows">

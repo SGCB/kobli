@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; [% IF ( unknowuser ) %] El socio no existe [% ELSE %] Detalles de socio para [% INCLUDE 'patron-title.inc' %] [% END %] </title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; [% IF ( unknowuser ) %] El socio no existe [% ELSE %] Estadísticos para[% INCLUDE 'patron-title.inc' %] [% END %] </title>
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
@@ -18,19 +18,19 @@
 [% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs">
  <a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
 &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a>
-&rsaquo; [% IF ( unknowuser ) %]El socio no existe[% ELSE %]Detalles de socio para [% firstname %][% surname %] ([% cardnumber %])[% END %] </div>
+&rsaquo; [% IF ( unknowuser ) %]El socio no existe[% ELSE %]Detalles de socio para [% firstname %][% surname %] ([% cardnumber %])[% END %]  </div>
 
 <div id="doc3" class="yui-t1">
 
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- <div class="yui-g">
- <h2>Estadísticas</h2>
- <table id="statistics">
+ [% INCLUDE 'members-toolbar.inc' %] <h3>Estadísticas por [% UNLESS ( I ) %][% title %] [% firstname %] [% END %] [% surname %] ([% cardnumber %])</h3>
+ [% IF ( datas.size ) %] <table id="statistics">
  <thead>
  <tr>
- [% FOREACH cn IN column_names %] <th>[% cn %]</th>
+ [% FOREACH cn IN column_names %] <th>
+ [% SWITCH cn %][% CASE 'itype' %]Tipo de ítem [% CASE 'ccode' %]Código Colección [% CASE 'location' %]Ubicación en estante [% CASE 'homebranch' %] Biblioteca Origen [% CASE 'holdingbranch' %] Biblioteca propietaria [% CASE %] [% cn %] [% END %] </th>
  [% END %] <th>Total de préstamos a fecha de ayer</th>
  <th>Préstamos de hoy</th>
  <th>Notificaciones de hoy </th>
@@ -53,8 +53,8 @@
  </tr>
  </tfoot>
  </table>
- </div>
- </div>
+ [% ELSE %] <div class="dialog message">No hay estadísticas para este registro.</div>
+ [% END %] </div>
  </div>
 <div class="yui-b">
 [% INCLUDE 'circ-menu.inc' %] </div>

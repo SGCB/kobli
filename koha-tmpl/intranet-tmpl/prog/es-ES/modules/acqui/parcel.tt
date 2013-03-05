@@ -73,16 +73,16 @@
 <script type="text/javascript">
 //<![CDATA[
             function confirm_delete_item(ordernumber, basketno, biblionumber) {
-                var is_confirmed = confirm(_('¿Está seguro de querer borrar este pedido?'));
+                var is_confirmed = confirm(_("¿Está seguro de querer borrar este pedido?"));
                 if (is_confirmed) {
-                    window.location = "addorder.pl?ordernumber="+ordernumber+"&basketno="+basketno+"&quantity=0&biblionumber="+biblionumber;
+                    window.location = "addorder.pl?ordernumber="+ordernumber+"&basketno="+basketno+"&quantity=0&biblionumber="+biblionumber+"&invoiceid=[% invoiceid %]";
                 }
             }
             
             function confirm_delete_biblio(ordernumber, basketno, biblionumber) {
-                var is_confirmed = confirm(_('¿Está seguro de querer borrar este registro bibliográfico y pedido?'));
+                var is_confirmed = confirm(_("¿Está seguro de querer borrar este registro bibliográfico y pedido?"));
                 if (is_confirmed) {
-                    window.location = "addorder.pl?ordernumber="+ordernumber+"&basketno="+basketno+"&quantity=0&biblionumber="+biblionumber+"&delbiblio=1";
+                    window.location = "addorder.pl?ordernumber="+ordernumber+"&basketno="+basketno+"&quantity=0&biblionumber="+biblionumber+"&delbiblio=1&invoiceid=[% invoiceid %]";
                     }
             }
 //]]>
@@ -161,8 +161,8 @@
  </td>
  <td>
  [% IF ( loop_order.left_holds_on_order ) %] <span class="button" title="No se puede eliminar la orden de compra, ([% loop_order.holds_on_order %])reservas han sido enlazadas con esta orden, cancele las reservas primero.">No se puede eliminar la orden de compra</span><br>
- [% ELSE %] <a href="javascript:confirm_delete_item([% loop_order.ordernumber %],[% loop_order.biblionumber %])" class="button">Eliminar orden</a><br>
- [% END %] [% IF ( loop_order.can_del_bib ) %] <a href="javascript:confirm_delete_biblio([% loop_order.ordernumber %],[% loop_order.biblionumber %])" class="button">Elimina orden y cataloga registro</a><br>
+ [% ELSE %] <a href="javascript:confirm_delete_item([% loop_order.ordernumber %], [% loop_order.basketno %], [% loop_order.biblionumber %])" class="button">Eliminar orden</a><br>
+ [% END %] [% IF ( loop_order.can_del_bib ) %] <a href="javascript:confirm_delete_biblio([% loop_order.ordernumber %], [% loop_order.basketno %], [% loop_order.biblionumber %])" class="button">Elimina orden y cataloga registro</a><br>
  [% ELSE %] <span class="button" title="No se puede borrar el registro bibliográfico, vea las limitaciones en la parte inferior">No se puede eliminar la orden de compra y el registro bibliográfico</span><br>
  [% END %] [% IF ( loop_order.left_item ) %] <b title="No se puede borrar el registro bibliográfico, porque [% loop_order.items %] posee ítem(s) en su existencia">[% loop_order.items %] ítem(s) restantes</b><br>
  [% END %] [% IF ( loop_order.left_biblio ) %] <b title="No se puede borrar el registro bibliográfico, borre las ordenes de compra enlazadas con el primero">[% loop_order.biblios %] órdenes restantes</b><br>

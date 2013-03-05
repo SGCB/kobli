@@ -31,26 +31,26 @@
 [% UNLESS ( closedate ) %] <script type="text/javascript">
 //<![CDATA[
             function confirm_close() {
-                var is_confirmed = confirm(_('¿Está seguro de querer borrar esta cesta?'));
+                var is_confirmed = confirm(_("¿Está seguro de querer borrar esta cesta?"));
                 if (is_confirmed) {
                     window.location = "[% script_name %]?op=close&basketno=[% basketno %]";
                 }
             }
             function confirm_deletion() {
-                var is_confirmed = confirm(_('¿Está seguro de querer eliminar esta cesta?'));
+                var is_confirmed = confirm(_("¿Está seguro de querer eliminar esta cesta?"));
                 if (is_confirmed) {
                     window.location = "[% script_name %]?op=delete_confirm&basketno=[% basketno %]&booksellerid=[% booksellerid %]";
                 }
             }
             function confirm_delete_item(ordernumber, biblionumber) {
-                var is_confirmed = confirm(_('¿Está seguro de querer borrar este pedido?'));
+                var is_confirmed = confirm(_("¿Está seguro de querer borrar este pedido?"));
                 if (is_confirmed) {
                     window.location = "addorder.pl?ordernumber="+ordernumber+"&basketno=[% basketno %]&quantity=0&biblionumber="+biblionumber;
                 }
             }
             
             function confirm_delete_biblio(ordernumber, biblionumber) {
-                var is_confirmed = confirm(_('¿Está seguro de querer borrar este registro bibliográfico y pedido?'));
+                var is_confirmed = confirm(_("¿Está seguro de querer borrar este registro bibliográfico y pedido?"));
                 if (is_confirmed) {
                     window.location = "addorder.pl?ordernumber="+ordernumber+"&basketno=[% basketno %]&quantity=0&biblionumber="+biblionumber+"&delbiblio=1";
                     }
@@ -72,7 +72,7 @@
 [% UNLESS ( grouped ) %] <script type="text/javascript">
 //<![CDATA[
             function confirm_reopen(skip) {
-                var is_confirmed = skip || confirm(_('¿Está seguro de querer abrir nuevamente esta cesta?'));
+                var is_confirmed = skip || confirm(_("¿Está seguro de querer abrir nuevamente esta cesta?"));
                 if (is_confirmed) {
                     window.location = "[% script_name %]?op=reopen&basketno=[% basketno %]";
                 }

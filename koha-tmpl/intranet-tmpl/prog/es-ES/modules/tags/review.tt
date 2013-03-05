@@ -45,13 +45,13 @@ td input,td input[type="submit"] { font-size: 85%; padding: 1px; }
 		}
 	}
 	var success_approve = function(tag){
-		// window.alert(_('AJAX approved tag: ') + tag);
+		// window.alert(_("AJAX approved tag: ") + tag);
 	};
 	var failure_approve = function(tag){
 		window.alert(_("AJAX no pudo aprobar la etiqueta: ") + tag);
 	};
 	var success_reject  = function(tag){
-		// window.alert(_('AJAX rejected tag: ') + tag);
+		// window.alert(_("AJAX rejected tag: ") + tag);
 	};
 	var failure_reject  = function(tag){
 		window.alert(_("AJAX no pudo rechazar la etiqueta: ") + tag);
@@ -70,16 +70,6 @@ td input,td input[type="submit"] { font-size: 85%; padding: 1px; }
 		$('#test_button').removeAttr("disabled");
 		$('#test_button').attr("value","test");
 	};
-	function readCookie(name) { // from http://www.quirksmode.org/js/cookies.html
-		var nameEQ = name + "=";
-		var ca = document.cookie.split(';');
-			for(var i=0;i < ca.length;i++) {
-				var c = ca[i];
-				while (c.charAt(0)==' '){ c = c.substring(1,c.length); }
-				if (c.indexOf(nameEQ) == 0){ return c.substring(nameEQ.length,c.length); }
-			}
-		return null;
-	}
 	$(document).ready(function() {
 		$('.ajax_buttons' ).css({visibility:"visible"});
 		$("p.check").html("<strong>"+_("Seleccionar:")+" <\/strong><a id=\"CheckAll\" href=\"/cgi-bin/koha/tags/review.pl\">"+_("Todo")+"<\/a> <a id=\"CheckPending\" href=\"/cgi-bin/koha/tags/review.pl\">"+_("Pendiente")+"<\/a> <a id=\"CheckNone\" href=\"/cgi-bin/koha/tags/review.pl\">"+_("Ninguno")+"<\/a>");
@@ -100,7 +90,7 @@ td input,td input[type="submit"] { font-size: 85%; padding: 1px; }
 			// window.alert(_("Click detected on ") + event.target + ": " + $(event.target).html);
 			if ($(event.target).is('.ok')) {
 				$.ajax({
-					"data": {ok: $(event.target).attr("title"), CGISESSID: readCookie('CGISESSID')},
+                    "data": {ok: $(event.target).attr("title")},
 					"success": count_approve // success_approve
 				});
 				$(event.target).next(".rej").removeAttr("disabled").attr("value","Reject").css("color","#000");
@@ -109,7 +99,7 @@ td input,td input[type="submit"] { font-size: 85%; padding: 1px; }
 			}
 			if ($(event.target).is('.rej')) {
 				$.ajax({
-					"data": {rej: $(event.target).attr("title"), CGISESSID: readCookie('CGISESSID')},
+                    "data": {rej: $(event.target).attr("title")},
 					"success": count_reject // success_reject
 				});
 				$(event.target).prev(".ok").removeAttr("disabled").attr("value","Approve").css("color","#000");

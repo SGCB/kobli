@@ -1,14 +1,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="[% IF ( IntranetFavicon ) %][% IntranetFavicon %][% ELSE %][% themelang %]/includes/favicon.ico[% END %]" type="image/x-icon" />
-<link rel="stylesheet" type="text/css" href="[% themelang %]/lib/jquery/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="[% interface %]/lib/jquery/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="[% interface %]/lib/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" media="print" href="[% themelang %]/css/print.css" />
 [% IF ( intranetstylesheet ) %] <link rel="stylesheet" type="text/css" href="[% intranetstylesheet %]" />
 [% ELSE %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/staff-global.css" />
-[% END %] [% IF ( IntranetUserCSS ) %]<style type="text/css">[% IntranetUserCSS %]</style>[% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/jquery.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/jquery-ui.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.hotkeys.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.cookie.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.highlight-3.js"></script>
+[% END %] [% IF ( IntranetUserCSS ) %]<style type="text/css">[% IntranetUserCSS %]</style>[% END %] <script type="text/javascript" src="[% interface %]/lib/jquery/jquery.js"></script>
+<script type="text/javascript" src="[% interface %]/lib/jquery/jquery-ui.js"></script>
+<script type="text/javascript" src="[% interface %]/lib/jquery/plugins/jquery.hotkeys.min.js"></script>
+<script type="text/javascript" src="[% interface %]/lib/jquery/plugins/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="[% interface %]/lib/jquery/plugins/jquery.highlight-3.js"></script>
+<script type="text/javascript" src="[% interface %]/lib/bootstrap/bootstrap.min.js"></script>
+
 [% IF ( login ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/login.css" />
 [% END %] [% IF ( wizard ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/wizard.css" />
 [% END %]
@@ -31,7 +34,7 @@
     [% intranetuserjs %]
     //]]>
     </script>
-[% END %] <script type="text/javascript" language="javascript">
+[% END %] <script type="text/javascript">
     //<![CDATA[
     [% IF ( intranetbookbag ) %]var MSG_BASKET_EMPTY = _("Su cesta está vacía");
         var MSG_RECORD_IN_BASKET = _("Este ítem ya está en su cesta");
@@ -47,9 +50,9 @@
     [% END %]
     //]]>
     </script>
- [% IF ( virtualshelves || intranetbookbag ) %] <script type="text/javascript" language="javascript" src="[% themelang %]/js/basket.js"></script>
- [% END %] [% IF LocalCoverImages %] <script type="text/javascript" language="javascript" src="[% themelang %]/js/localcovers.js"></script>
-<script type="text/javascript" language="javascript">
+ [% IF ( virtualshelves || intranetbookbag ) %] <script type="text/javascript" src="[% themelang %]/js/basket.js"></script>
+ [% END %] [% IF LocalCoverImages %] <script type="text/javascript" src="[% themelang %]/js/localcovers.js"></script>
+<script type="text/javascript">
 //<![CDATA[
 var NO_LOCAL_JACKET = _("No hay imagen de cubierta disponible ");
 //]]>

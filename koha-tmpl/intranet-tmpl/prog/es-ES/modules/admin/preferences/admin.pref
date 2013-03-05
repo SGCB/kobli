@@ -126,3 +126,12 @@ admin.pref:
         default: Zebra
         pref: SearchEngine
       - "es el motor de b\xC3\xBAsqueda usado."
+  admin.pref Mozilla Persona: 
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        default: 0
+        pref: Persona
+      - admin.pref#Persona# Mozilla persona para acceder

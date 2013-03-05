@@ -8,14 +8,19 @@
 [% ELSIF ( step_3 ) %] &rsaquo; <a href="/cgi-bin/koha/reports/dictionary.pl">Diccionario</a> &rsaquo; <strong>Paso 3: Seleccione columnas </strong> 
 [% ELSIF ( step_4 ) %] &rsaquo; <a href="/cgi-bin/koha/reports/dictionary.pl">Diccionario</a> &rsaquo; <strong>Paso 4: Especifique un valor </strong> 
 [% ELSIF ( step_5 ) %] &rsaquo; <a href="/cgi-bin/koha/reports/dictionary.pl">Diccionario</a> &rsaquo; <strong>Paso 5: Confirme definición</strong> 
-[% ELSE %]<strong> Diccionario </strong>[% END %]</div>
+[% ELSE %] &rsaquo; <strong> Diccionario </strong>[% END %]</div>
 
 <div id="doc3" class="yui-t2">
 
 <div id="bd">
 <div id="yui-main">
 <div class="yui-b">
-[% IF ( start_dictionary ) %] [% INCLUDE 'dictionary-toolbar.inc' %] [% END %] <h1>Diccionario</h1>
+[% IF ( start_dictionary ) %] <div id="toolbar">
+ <ul class="toolbar">
+ <li><a id="newdictionary" class="btn btn-small" href="/cgi-bin/koha/reports/dictionary.pl?phase=Add%20New%20Definition"><i class="icon-plus"></i> Nueva definición</a></li>
+ </ul>
+ </div>
+[% END %] <h1>Diccionario</h1>
 [% IF ( start_dictionary ) %] <p>Use el diccionario para definir criterios personalizados para la presentación de informes.</p>
 
  [% IF ( definitions ) %] <h2>Términos actuales</h2>

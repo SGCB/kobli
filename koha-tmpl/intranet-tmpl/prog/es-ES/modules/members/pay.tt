@@ -1,5 +1,6 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Pagar multas de [% borrower.firstname %] [% borrower.surname %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type= "text/javascript">
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
+<script type= "text/javascript">
 //<![CDATA[
     $(document).ready(function(){
         $("#woall").click(function(event){
@@ -8,6 +9,8 @@
                     event.preventDefault();
                 }
         });
+        $('#CheckAll').click(function(){ $("#finest").checkCheckboxes(); return false;});
+        $('#CheckNone').click(function(){ $("#finest").unCheckCheckboxes(); return false;});
     });
 //]]>
 </script>
@@ -34,12 +37,12 @@
 
 [% IF ( accounts ) %] <form action="/cgi-bin/koha/members/pay.pl" method="post">
  <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrower.borrowernumber %]" />
-
-<table>
+<p><span class="checkall"><a id="CheckAll" href="#">Seleccionar todo</a></span> | <span class="clearall"><a id="CheckNone" href="#">Limpiar todo</a></span></p>
+<table id="finest">
 <thead>
 <tr>
+ <th>&nbsp;</th>
  <th>Multas y costos</th>
- <th>Seleccionar</th>
  <th>Descripción</th>
  <th>Tipo de cuenta</th>
  <th>Id de la notificación</th>
@@ -57,6 +60,9 @@
 <tbody>
 [% FOREACH account_grp IN accounts %] [% FOREACH line IN account_grp.accountlines %] <tr>
  <td>
+ [% IF ( line.amountoutstanding > 0 ) %] <input type="checkbox" checked="checked" name="incl_par_[% line.accountno %]" />
+ [% END %] </td>
+ <td>
  [% IF ( line.amountoutstanding > 0 ) %] <input value="Pagar" name="pay_indiv_[% line.accountno %]" type="submit" />
  <input value="Cancelar" name="wo_indiv_[% line.accountno %]" type="submit" />
  [% END %] <input type="hidden" name="itemnumber[% line.accountno %]" value="[% line.itemnumber %]" />
@@ -71,9 +77,6 @@
  <input type="hidden" name="notify_level[% line.accountno %]" value="[% line.notify_level %]" />
  <input type="hidden" name="totals[% line.accountno %]" value="[% line.totals %]" />
  </td>
- <td>
- [% IF ( line.amountoutstanding > 0 ) %] <input type="checkbox" checked="checked" name="incl_par_[% line.accountno %]" />
- [% END %] </td>
  <td>[% line.description %] ([% line.title |html_entity %])</td>
  <td>[% line.accounttype %]</td>
  <td>[% line.notify_id %]</td>

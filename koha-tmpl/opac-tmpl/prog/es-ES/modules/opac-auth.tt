@@ -77,7 +77,8 @@
  <li>Para informar de este error, puede<a href="mailto:[% admin %]">escribir al administrador de Koha</a>.</li>
  <li>Usar la barra de menú superior para navegar por Kobli.</li>
 </ul>
-[% END %]</div>
+[% END %] [% IF persona %] <a href="#" class="persona-button" id="browserid" ><span>Acceder con tu email</span></a>
+[% END %] </div>
 </div>
 </div>
 </div>

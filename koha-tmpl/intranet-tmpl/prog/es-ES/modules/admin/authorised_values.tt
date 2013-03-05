@@ -20,7 +20,17 @@
      });
 //]]>
 </script>
-<style type="text/css">
+[% IF ( else ) %] <script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+    $('#category').find("input:submit").hide();
+    $('#searchfield').change(function() {
+        $('#category').submit();
+    });
+});
+//]]>
+</script>
+[% END %] <style type="text/css">
 	fieldset.rows div.toptabs li { clear:none;margin-right:.5em;padding-bottom:0;width:auto; }
     fieldset.rows div.toptabs .ui-tabs-nav li.ui-tabs-selected {background-color : #F4F8F9; }
 	fieldset.rows .ui-tabs-panel { margin-right : 10px; margin-left : 10px;margin-bottom:10px;}
@@ -120,33 +130,10 @@
  <input type="hidden" name="searchfield" value="[% searchfield %]" /><fieldset class="action"><input value="Sí, eliminar" type="submit" class="approve" /></form>
 <form action="[% script_name %]" method="get"><input type="hidden" name="searchfield" value="[% searchfield %]" /><input value="No, no eliminar" type="submit" class="deny" /></form>
 </div>
-[% END %] [% IF ( else ) %] <div id="toolbar">
- <script type="text/javascript">
-	//<![CDATA[
-
-	// prepare DOM for YUI Toolbar
-
-	 $(document).ready(function() {
-	    yuiToolbar();
-		$('#category').find("input:submit").hide();
-		$('#searchfield').change(function() {
-		$('#category').submit();
-		});
-	 });
-
-	// YUI Toolbar Functions
-
-	function yuiToolbar() {
-	    new YAHOO.widget.Button("addauth");
-	    new YAHOO.widget.Button("addcat");
-	}
-
-	//]]>
-	</script>
- <ul class="toolbar">
- <li><a id="addauth" href= "/cgi-bin/koha/admin/authorised_values.pl?op=add_form&amp;category=[% category %]">Nuevo valor autorizado para [% category %]</a></li>
- <li><a id="addcat" href= "/cgi-bin/koha/admin/authorised_values.pl?op=add_form">Nueva categoría</a></li>
-</ul></div>
+[% END %] [% IF ( else ) %] <div id="toolbar" class="btn-toolbar">
+ <a id="addauth" class="btn btn-small" href= "/cgi-bin/koha/admin/authorised_values.pl?op=add_form&amp;category=[% category %]">Nuevo valor autorizado para [% category %]</a>
+ <a id="addcat" class="btn btn-small" href= "/cgi-bin/koha/admin/authorised_values.pl?op=add_form">Nueva categoría</a>
+</div>
 
 <h1>Valores autorizados</h1>
 <div class="note"><strong>NOTA:</strong> Si cambia un valor autorizado, los registros existentes que lo utilicen no se actualizarán.</div>

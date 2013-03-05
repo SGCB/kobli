@@ -50,10 +50,13 @@ function Check(ff) {
  &rsaquo; Datos grabados [% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/aqcontract.pl?booksellerid=[% booksellerid %]">Contratos</a>
  &rsaquo; Confirmar eliminación del contrato [% contractnumber %] [% END %] [% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/aqcontract.pl?booksellerid=[% booksellerid %]">Contratos</a> &rsaquo; Confirmar eliminación [% END %] [% IF ( else ) %]Contratos[% END %] </div>
 
-<div id="doc" class="yui-t7">
+<div id="doc3" class="yui-t2">
+
  <div id="bd">
  <div id="yui-main">
- [% IF ( add_form ) %] <form name="Aform" action="[% script_name %]" method="post">
+ <div class="yui-b">
+
+[% INCLUDE 'acquisitions-toolbar.inc' %] [% IF ( add_form ) %] <form name="Aform" action="[% script_name %]" method="post">
  <input type="hidden" name="op" value="add_validate" />
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  <input type="hidden" name="checked" value="0" />
@@ -113,24 +116,7 @@ function Check(ff) {
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  <input type="submit" value="OK" />
  </form>
- [% END %] [% IF ( else ) %] <div id="toolbar">
- <script type="text/javascript">
-                        //<![CDATA[
-                        // prepare DOM for YUI Toolbar
-                        $(document).ready(function() {
-                        yuiToolbar();
-                        });
-                        // YUI Toolbar Functions
-                        function yuiToolbar() {
-                        new YAHOO.widget.Button("newcontract");
-                        }
-                        //]]>
-                    </script>
- <ul class="toolbar">
- <li><a id="newcontract" href="/cgi-bin/koha/admin/aqcontract.pl?op=add_form&amp;booksellerid=[% booksellerid %]">Nuevo contrato</a></li>
- </ul>
- </div>
- <h2>Contrato(s) de [% booksellername %]</h2>
+ [% END %] [% IF ( else ) %] <h2>Contrato(s) de [% booksellername %]</h2>
  [% IF ( loop ) %] <table>
  <tr>
  <th scope="col">Nombre</th>
@@ -149,7 +135,10 @@ function Check(ff) {
  <td><a href="[% loo.script_name %]?op=delete_confirm&amp;contractnumber=[% loo.contractnumber %]&amp;booksellerid=[% loo.booksellerid %]">Eliminar</a></td>
  </tr>
  [% END %] </table>
- [% ELSE %] <div class="dialog message">No hay contratos con este vendedor.</div>
+ [% ELSE %] <div class="dialog message">No hay contratos con este proveedor.<a href="/cgi-bin/koha/admin/aqcontract.pl?op=add_form&amp;booksellerid=[% booksellerid %]">Agregar un contrato</a>.</div>
  [% END %] [% END %] </div>
+</div>
+<div class="yui-b">
+[% INCLUDE 'vendor-menu.inc' %] </div>
 </div>
 [% INCLUDE 'intranet-bottom.inc' %] 

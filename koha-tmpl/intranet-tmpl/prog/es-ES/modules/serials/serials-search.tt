@@ -27,7 +27,9 @@
     csrlt.fnAddFilters("filter", 750);
 
     $('#serialstabs').tabs();
-
+    $("#reopensub").click(function(){
+      return confirm(_("¿Está seguro de querer reabrir esta suscripción?"));
+    });
  });
  //]]>
 </script>
@@ -176,7 +178,7 @@
  <td>
  [% IF ( subscription.callnumber ) %][% subscription.callnumber %][% END %] </td>
  <td>
- [% UNLESS subscription.cannotedit %] <a href="/cgi-bin/koha/serials/serials-search.pl?subscriptionid=[% subscription.subscriptionid %]&amp;op=reopen&routing=[% subscription.routing %]&amp;searched=1&amp;title_filter=[% title_filter %]&amp;ISSN_filter=[% ISSN_filter %]&amp;EAN_filter=[% EAN_filter %]&amp;published_filter=[% publisher_filter %]&amp;bookseller_filter=[% bookseller_filter %]&amp;branch_filter=[% branch_filter %]" onclick="return confirm(_('Are you sure you want to reopen this subscription?'));">Reabrir</a>
+ [% UNLESS subscription.cannotedit %] <a href="/cgi-bin/koha/serials/serials-search.pl?subscriptionid=[% subscription.subscriptionid %]&amp;op=reopen&amp;routing=[% subscription.routing %]&amp;searched=1&amp;title_filter=[% title_filter %]&amp;ISSN_filter=[% ISSN_filter %]&amp;EAN_filter=[% EAN_filter %]&amp;published_filter=[% publisher_filter %]&amp;bookseller_filter=[% bookseller_filter %]&amp;branch_filter=[% branch_filter %]" id="reopensub">Reabrir</a>
  [% ELSE %]No se puede modificar [% END %] </td>
  <td>
  <a href="/cgi-bin/koha/serials/serials-collection.pl?subscriptionid=[% subscription.subscriptionid %]">Historial de fascículo</a>

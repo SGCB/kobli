@@ -53,16 +53,16 @@
 		$('#showHolidayType').val(holidayType);
 
 		if (holidayType == 'exception') {
-			$("#showOperationDelLabel").html(_('Eliminar esta excepción.'));
+			$("#showOperationDelLabel").html(_("Eliminar esta excepción."));
 			$("#holtype").attr("class","key exception").html(_("Excepción por feriado"));
 		} else if(holidayType == 'weekday') {
-			$("#showOperationDelLabel").html(_('Eliminar este feriado.'));
+			$("#showOperationDelLabel").html(_("Eliminar este feriado."));
 			$("#holtype").attr("class","key repeatableweekly").html(_("Feriado de repetición semanal"));
 		} else if(holidayType == 'daymonth') {
-			$("#showOperationDelLabel").html(_('Eliminar este feriado.'));
+			$("#showOperationDelLabel").html(_("Eliminar este feriado."));
 			$("#holtype").attr("class","key repeatableyearly").html(_("Feriado de repetición anual"));
 		} else {
-			$("#showOperationDelLabel").html(_('Eliminar este feriado.'));
+			$("#showOperationDelLabel").html(_("Eliminar este feriado."));
 			$("#holtype").attr("class","key holiday").html(_("Feriado único"));
 		}
 		

@@ -21,6 +21,10 @@
     var progress = document.querySelector('.percent');
     $("#server_response").hide();
 
+    function yuiGetData() {
+        fnGetData(document.getElementById('quotes_editor'));
+    }
+
     function fnAbortRead() {
         reader.abort();
     }
@@ -145,8 +149,8 @@
         $('#file_uploader').css("position","absolute");
         $('#file_uploader').css("top","-150px");
         $('#quotes_editor').css("visibility","visible");
-        oSaveButton.on("click", yuiGetData);
-        oDeleteButton.on("click", fnClickDeleteRow);
+        $("#save_quotes").on("click", yuiGetData);
+        $("#delete_quote").on("click", fnClickDeleteRow);
 
 
 
@@ -234,12 +238,12 @@
         var fileSizeInK = Math.round(evt.target.files[0].size/1024);
 
         if (!fileType.match(/comma-separated-values|csv|excel/i)) {
-            alert(_('Cargar limitada para cvs. Tipo de fichero incorrecto:')+fileType);
+            alert(_("Cargar limitada para cvs. Tipo de fichero incorrecto:")+fileType);
             parent.location='quotes-upload.pl';
             return;
         }
         if (fileSizeInK > 512) {
-            if (!confirm(evt.target.files[0].name+' '+fileSizeInK+_(' ¿Está seguro de que querer subir este fichero?'))) {
+            if (!confirm(evt.target.files[0].name+' '+fileSizeInK+_(" ¿Está seguro de que querer subir este fichero?"))) {
                 parent.location='quotes-upload.pl';
                 return;
             }
@@ -265,11 +269,11 @@
             success     : function(){
                             var response = JSON.parse(jqXHR.responseText);
                             if (response.success) {
-                                alert(response.records+_(' indicaciones guardadas.'));
+                                alert(response.records+_(" indicaciones guardadas."));
                                 window.location.reload(true);   // is this the best route?
                             }
                             else {
-                                alert(response.records+_(' citas guardadas, pero ha ocurrido un error. Por favor, pedir al administrador del sistema que verifique el registro de errores para ver más detalles. '));
+                                alert(response.records+_(" citas guardadas, pero ha ocurrido un error. Por favor, pedir al administrador del sistema que verifique el registro de errores para ver más detalles. "));
                                 window.location.reload(true);   // is this the best route?
                             }
                           },
@@ -281,9 +285,9 @@
               return this.id;
         }).get().join(', ');
         if (!idsToDelete) {
-            alert(_('Por favor, seleccione un quote(s) haciendo clic en quote (s) que desea eliminar.'));
+            alert(_("Por favor, seleccione un quote(s) haciendo clic en quote (s) que desea eliminar."));
         }
-        else if (confirm(_('¿Está seguro de desea borrar este pedido(s)?')+idsToDelete+'?')) {
+        else if (confirm(_("¿Está seguro de desea borrar este pedido(s)?")+idsToDelete+"?")) {
             oTable.$('.selected').each(function(){
                 oTable.fnDeleteRow(this);
             });

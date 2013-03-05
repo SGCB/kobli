@@ -1,5 +1,5 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; [% IF ( opadd ) %]Agregar[% ELSIF ( opduplicate ) %]Duplicar[% ELSE %] Modificar[% END %] [% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio del personal[% END %][% END %][% UNLESS ( opadd ) %] [% surname %], [% firstname %][% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/JavaScript">
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function() {
 		$("fieldset.rows input").keydown(function(e){ return checkEnter(e); });
@@ -672,7 +672,7 @@
  <!-- handle changing prefs if creating new patron and changing
  the patron category
  -->
- <script language="javascript" type="text/javascript">//<![CDATA[
+ <script type="text/javascript">//<![CDATA[
        $(document).ready(function(){
             var message_prefs_dirty = false;
             $('#memberentry_messaging_prefs > *').change(function() {
@@ -691,8 +691,8 @@
                             var attrid = item.message_attribute_id;
                             var transports = ['email', 'rss', 'sms'];
                             $.each(transports, function(j, transport) {
-                                if (item['transport-' + transport] != ' ') {
-                                    $('#' + transport + attrid).attr('checked', item['transport-' + transport]);
+                                if (item['transports_' + transport] == 1) {
+                                    $('#' + transport + attrid).attr('checked', 'checked');
                                 } else {
                                     $('#' + transport + attrid).removeAttr('checked');
                                 }

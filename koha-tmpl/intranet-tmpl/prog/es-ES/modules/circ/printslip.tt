@@ -3,7 +3,7 @@
 <link rel="shortcut icon" href="[% IF ( IntranetFavicon ) %][% IntranetFavicon %][% ELSE %][% themelang %]/includes/favicon.ico[% END %]" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/print.css" />
 [% IF stylesheet %] <link rel="stylesheet" type="text/css" href="[% stylesheet %]" />
-[% END %] <script language="javascript">
+[% END %] <script type="text/javascript">
 [% IF ( IntranetSlipPrinterJS ) %]
     [% IntranetSlipPrinterJS %]
 [% ELSE %]

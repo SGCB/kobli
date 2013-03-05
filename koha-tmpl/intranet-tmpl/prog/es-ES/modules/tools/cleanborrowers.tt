@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Tools &rsaquo; Batch patron deletion/anonymization [% IF ( step2 ) %]&rsaquo; Confirm[% END %][% IF ( step3 ) %]&rsaquo; Finished[% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Limpiar registros de socios [% IF ( step2 ) %]&rsaquo; Confirmar[% END %][% IF ( step3 ) %]&rsaquo; Finalizado[% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
 // <![CDATA[
         /**
@@ -8,7 +8,7 @@
           function checkForm(form) {
               if((form.checkbox[0].checked)){
                   if ( (!form.date1.value) && (!form.borrower_dateexpiry.value) && (!form.borrower_categorycode.value) ){
-                    alert(_("Please enter at least one criterion for deletion!"));
+                    alert(_("Por favor, seleccione al menos un ítem para borrar."));
                     return false;
                   }
               }
@@ -41,32 +41,32 @@
  <div id="yui-main">
  <div class="yui-b">
 
-<h1>Batch patron deletion/anonymization</h1>
+<h1>Lote  socio texto borrado/anonimato</h1>
 <div class="help">
- <p>This tool allows you to delete patrons and anonymize checkout history. For deleting patrons, any combination of limits can be used.</p>
+ <p>Esta herramienta le permite borrar los socios  y anominizar el historial de pago y envío. Para eliminar usuarios, cualquier combinación de límites pueden ser utilizados.</p>
 </div>
 [% IF ( step1 ) %]
 <!-- step 1 START -->
 <div id="step1">
  <form name="f1" onsubmit="return checkForm(this);" action="/cgi-bin/koha/tools/cleanborrowers.pl" method="post">
  <fieldset>
- <legend>Delete patrons</legend>
- <h3><input id="checkborrower" type="checkbox" name="checkbox" value="borrower" /><label for="checkborrower"> Verify you want to delete patrons</label></h3>
+ <legend>Borrar socios</legend>
+ <h3><input id="checkborrower" type="checkbox" name="checkbox" value="borrower" /><label for="checkborrower"> Confirmar que quiere borrar los socios</label></h3>
  <br />
- <h5>Delete patrons who meet the following criteria:</h5>
+ <h5>Eliminar los socios que cumplan con los siguientes criterios:</h5>
  <ul>
  <li>
- <label for="date1">who have not borrowed since:</label>
+ <label for="date1">quien no se le ha prestado desde:</label>
  <input size="10" id="date1" name="filterdate1" type="text" class="datepicker" />
  <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
  </li>
  <li>
- <label for="borrower_dateexpiry">whose expiration date is before:</label>
+ <label for="borrower_dateexpiry">cuya fecha de vencimiento es antes de:</label>
  <input size="10" id="borrower_dateexpiry" name="borrower_dateexpiry" type="text" class="datepicker" />
  <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
  </li>
  <li>
- <label for="borrower_categorycode">whose patron category is:</label>
+ <label for="borrower_categorycode">categoría de socio es:</label>
  <select id="borrower_categorycode" name="borrower_categorycode">
  <option value="" selected="selected">Cualquiera</option>
  [% FOREACH bc IN borrower_categorycodes %] [% UNLESS bc.categorycode == 'S' %] <option value="[% bc.categorycode %]">[% bc.description %]</option>
@@ -75,12 +75,12 @@
  </ul>
  </fieldset>
  <fieldset>
- <legend>Anonymize checkout history</legend>
- <h3><input id="checkissue" type="checkbox" name="checkbox" value="issue" /><label for="checkissue"> Verify you want to anonymize patron checkout history</label></h3>
+ <legend>Hacer anónimo el historial de préstamo</legend>
+ <h3><input id="checkissue" type="checkbox" name="checkbox" value="issue" /><label for="checkissue"> Verifique que deseas anonimizar historia de salidas de socio</label></h3>
  <br />
  <ul>
  <li>
- <label for="date2">Permanently delete checkout history older than</label>
+ <label for="date2">Hacer anónimo el historial de préstamos anterior a </label>
  <input size="10" id="date2" name="filterdate2" type="text" class="datepicker" />
  <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
  </li>
@@ -103,7 +103,7 @@
  <legend>Advertencias</legend>
  <ul>
  <li>[% IF ( totalToDelete ) %][% totalToDelete %] [% ELSE %]0 [% END %] los socios serán eliminados</li>
- <li>[% IF ( totalToAnonymize ) %][% totalToAnonymize %] [% ELSE %]0 [% END %] checkout history will be anonymized</li>
+ <li>[% IF ( totalToAnonymize ) %][% totalToAnonymize %] [% ELSE %]0 [% END %] el historial de préstamos será anonimizado </li>
  </ul>
 
  <br />
@@ -115,10 +115,7 @@
  <input id="trash" type="radio" name="radio" value="trash" />
  <input type="hidden" name="do_delete" value="[% totalToDelete %]" /></fieldset>
 
- [% END %]
- [% IF ( totalToAnonymize ) %]
- Checkout history for [% totalToAnonymize %] patrons will be anonymized
- <input type="hidden" name="do_anonym" value="[% totalToAnonymize %]" />
+ [% END %] [% IF ( totalToAnonymize ) %] El historial de préstamos de [% totalToAnonymize %] socios se anonimizará  <input type="hidden" name="do_anonym" value="[% totalToAnonymize %]" />
  [% END %] <input type="hidden" name="step3" value="1" />
  <input type="hidden" name="filterdate1" value="[% filterdate1 %]" />
  <input type="hidden" name="filterdate2" value="[% filterdate2 %]" />

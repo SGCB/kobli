@@ -40,10 +40,10 @@ var $branch = "[% branch %]";
 $(function(){
     $('#alerttabs').tabs();
 
-    var blocked            = _('Bloqueado!');
-    var saving             = _('Guardando...');
-    var disabledForAll     = _('Deshabilitado para todos');
-    var disabledForCurrent = _('Deshabilitado para') + ' ' + $branch;
+    var blocked            = _("Bloqueado!");
+    var saving             = _("Guardando...");
+    var disabledForAll     = _("Deshabilitado para todos");
+    var disabledForCurrent = _("Deshabilitado para") + ' ' + $branch;
 
     $('#branch_selector input:submit').hide();
     $('#branch').change(function(){

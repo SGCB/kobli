@@ -135,7 +135,7 @@ $(document).ready(function() {
  <input type="hidden" name="op" value="[% op %]" />
  [% IF (popup) %] <input type="hidden" name="popup" value="1" />
  [% END %] <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
- [% IF ( opisadd ) %] <h2 id="additema">Agregar ítem</h2>
+ [% IF ( opisadd ) %] <h2 id="additema">Agregar ítem [% IF (circborrowernumber) %]<em>(catalogación rápida)</em>[% END %]</h2>
  [% ELSE %] <h2 id="edititem">Editar ítem #[% itemnumber %][% IF ( barcode ) %] / Código de barras [% barcode %][% END %]</h2>
  [% END %] <fieldset class="rows">
  <ol>
@@ -174,13 +174,11 @@ $(document).ready(function() {
  <input value="Guardar cambios" type="submit" onclick="return Check(this.form)" />
  [% END %]</fieldset>
  
- <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
+ [%# Fields for fast cataloging %] <input type="hidden" name="circborrowernumber" value="[% circborrowernumber %]" />
  <input type="hidden" name="stickyduedate" value="[% stickyduedate %]" />
  <input type="hidden" name="barcode" value="[% barcode %]" />
  <input type="hidden" name="duedatespec" value="[% duedatespec %]" />
-
-
- </form>
+ [%# End fields for fast cataloging %] </form>
 </div>
 </div><!-- /yui-u -->
 </div><!-- /yui-gf -->

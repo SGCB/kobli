@@ -10,6 +10,11 @@
 			window.open("/cgi-bin/koha/cataloguing/z3950_search.pl?biblionumber=[% biblionumber %]"+strQuery,"z3950search",'width=740,height=450,location=yes,toolbar=no,scrollbars=yes,resize=yes');
 		} 
 	}
+    function PopupZ3950Confirmed() {
+        if (confirm(_("Tenga en cuenta que esta búsqueda Z39.50 podría reemplazar el registro actual."))){
+            PopupZ3950();
+        }
+    }
 
 	/* provide Z3950 search points */
 	function GetZ3950Terms(){
@@ -25,40 +30,49 @@
 	}
     function printBiblio() {window.print(); }
 [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]
-function confirm_deletion() {
-		var count = [% count %];
-        var is_confirmed;
-	if (count>0){
-		    is_confirmed= alert(_('There are [ '+ count +' ] item(s) attached to this record \n You must delete all items before deleting this record.'));
-		    } else{
-		    is_confirmed= confirm(_('¿Está seguro de querer borrar este registro? '));
-	}
-
-     if (is_confirmed) {
-        if (count>0){
-	// 	window.location="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblionumber %]";
-		} else {
-			window.location="/cgi-bin/koha/cataloguing/addbiblio.pl?op=delete&amp;biblionumber=[% biblionumber %]";
-		}
-	} else {
-		return false;
-	}
-}
-[% END %]
-[% IF ( CAN_user_editcatalogue_edit_items ) %]
-function confirm_items_deletion() {
+    function confirm_deletion() {
         var count = [% count %];
-        if(count > 0){
-            if(confirm(_('Are you sure you want to delete the ' + count + ' attached items? '))){
+        var holdcount = [% holdcount %];
+
+        var is_confirmed;
+	if (count > 0){
+            is_confirmed = alert( count + " " +_("ítem(s) se adjuntan a este registro. \\nUsted debe eliminar todos los elementos antes de eliminar este registro.") );
+        } else if ( holdcount > 0 ) {
+            is_confirmed = confirm( holdcount + " " + _("reserva(s) en este registro \\n¿Está seguro de querer borrar este registro? "));
+        } else {
+            is_confirmed = confirm(_("¿Está seguro de querer borrar este registro? "));
+        }
+
+        if (is_confirmed) {
+            if ( count > 0 || holdcount > 0 ){
+                return false;
+            } else {
+                window.location="/cgi-bin/koha/cataloguing/addbiblio.pl?op=delete&amp;biblionumber=[% biblionumber %]";
+            }
+	} else {
+            return false;
+	}
+    }
+[% END %]
+
+[% IF ( CAN_user_editcatalogue_edit_items ) %]
+    function confirm_items_deletion() {
+        var count = [% count %];
+        var holdcount = [% holdcount %];
+
+        if ( holdcount > 0 ) {
+            alert( holdcount + " " + _("reserva(s) en este registro \\nDebe cancelar todas las reservas antes de eliminar este registro.") );
+        } else if ( count > 0 ) {
+            if( confirm( _("¿Está seguro de querer borrar el") + " " + count + " " + _("Adjuntar ítems?") ) ) {
                 window.location="/cgi-bin/koha/cataloguing/additem.pl?op=delallitems&amp;biblionumber=[% biblionumber %]";
-            }else{
+            } else {
                 return false;
             }
-		} else {
-			alert(_("Este registro no tiene ítems."));
-			return false;
-		}
-}
+        } else {
+            alert(_("Este registro no tiene ítems."));
+            return false;
+        }
+    }
 [% END %]
 	// prepare DOM for YUI Toolbar
 
@@ -116,8 +130,8 @@ function confirm_items_deletion() {
             [% IF ( LocalCoverImages || OPACLocalCoverImages) %][% IF ( CAN_user_tools_upload_local_cover_images ) %]{ text: _("Cargar imagen"), url: "/cgi-bin/koha/tools/upload-cover-image.pl?biblionumber=[% biblionumber %]&filetype=image" },[% END %][% END %]
             [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]{ text: _("Editar como nuevo (duplicar)"), url: "/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=&amp;op=duplicate" },[% END %]
             [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]{ text: _("Reemplazar registro vía Z39.50"), onclick: {fn: PopupZ3950 } },[% END %]
-            [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]{ text: _("Eliminar registro"), onclick: {fn: confirm_deletion }[% IF ( count ) %],id:'disabled'[% END %] },[% END %]
-            [% IF ( CAN_user_editcatalogue_edit_items ) %]{ text: _("Eliminar todos los ítems"), onclick: {fn: confirm_items_deletion }[% UNLESS ( count ) %],id:'disabled'[% END %] }[% END %]
+            [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]{ text: _("Eliminar registro"), onclick: {fn: confirm_deletion }[% IF ( count || holdcount ) %],id:'disabled'[% END %] },[% END %]
+            [% IF ( CAN_user_editcatalogue_edit_items ) %]{ text: _("Eliminar todos los ítems"), onclick: {fn: confirm_items_deletion }[% IF ( count < 1 || holdcount ) %],id:'disabled2'[% END %] },[% END %]
 	    ];
 		if(editmenu.length){
 			new YAHOO.widget.Button({
@@ -219,7 +233,7 @@ function confirm_items_deletion() {
  [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="deletebiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?op=delete&amp;biblionumber=[% biblionumber %]">Eliminar</a></li>
  [% END %] <li><a id="addtoshelf" href="/cgi-bin/koha/virtualshelves/addbybiblionumber.pl?biblionumber=[% biblionumber %]">Agregar al estante</a></li>
  <li><span id="printbiblio"></span></li>
- [% IF ( CAN_user_reserveforothers ) %] [% UNLESS ( norequests ) %]<li><a id="placehold" href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>[% END %] [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]<li id="z3950searchc"><input value="Búsqueda Z39.50" type="button" id="z3950search" onclick="if (confirm(_('Please note that this Z39.50 search could replace the current record.'))){ PopupZ3950(); } return false;" /></li>[% END %] </ul>
+ [% IF ( CAN_user_reserveforothers ) %] [% UNLESS ( norequests ) %]<li><a id="placehold" href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>[% END %] [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]<li id="z3950searchc"><input value="Búsqueda Z39.50" type="button" id="z3950search" onclick="PopupZ3950Confirmed(); return false;" /></li>[% END %] </ul>
 </form>
 </div>
 

@@ -34,9 +34,6 @@ function Check(f) {
 	}
 }
 
-$(document).ready(function() {
-    new YAHOO.widget.Button("authtype");
-});
 //]]>
 </script>
 </head>
@@ -93,10 +90,9 @@ $(document).ready(function() {
  </form>
  <form action="[% script_name %]" method="get"><input value="No, no eliminar" type="submit" class="deny" /></form>
  </div>
-[% END %] [% IF ( else ) %] <div id="toolbar">
- <ul class="toolbar">
- <li><a id="authtype" href="[% script_name %]?op=add_form">Nuevo tipo de autoridad</a></li>
-</ul></div>
+[% END %] [% IF ( else ) %] <div id="toolbar" class="btn-toolbar">
+ <a id="authtype" class="btn btn-small" href="[% script_name %]?op=add_form"><i class="icon-plus"></i> Nuevo tipo de autoridad</a>
+</div>
 
 <h1>Tipos de autoridad</h1>
 <p>Defina primero tipos de autoridades, y a continuación la estructura MARC de las autoridades, de la misma forma en la que se definen tipos de ítems y estructura de campos MARC. Los valores de las autoridades se administran a través de plugins</p>

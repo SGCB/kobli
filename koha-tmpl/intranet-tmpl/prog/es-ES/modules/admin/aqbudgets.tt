@@ -404,11 +404,11 @@
  <input type="hidden" name="op" value="delete_confirmed" />
  <input type="hidden" name="budget_id" value="[% budget_id %]" />
  <input type="hidden" name="budget_period_id" value="[% budget_period_id %]" />
- <input value="Eliminar este presupuesto" type="submit" class="approve" />
+ <input value="Eliminar" type="submit" class="approve" />
 </form>
 
 <form action="[% action %]" method="get">
- <input value="No, no eliminar" type="submit" class="deny" />
+ <input value="Cancelar" type="submit" class="deny" />
 </form>
 </div>
 [% END %] </div>

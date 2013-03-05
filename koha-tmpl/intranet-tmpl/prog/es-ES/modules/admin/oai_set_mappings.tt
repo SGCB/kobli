@@ -1,8 +1,17 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Correspondencia de conjuntos OAI</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Correspondencia de lotes OAI</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function() {
-    // Some JS
+    $("#mappingform").submit(function(){
+      hideDialogBox();
+    });
+    $("#ORbutton").live("click", function(){
+       newCondition();
+       return false;
+    });
+    $(".clear-field").live("click",function(e){
+        clearRow(e.target);
+    });
 });
 
 function newCondition() {
@@ -11,33 +20,37 @@ function newCondition() {
     $("#ORbutton").parent('td').replaceWith('<td style="text-align:center">OR</td>');
     $(tr).parent('tbody').append(clone);
 }
-
+function clearRow(link){
+    var tr = $(link).parent().parent();
+    var found = tr.find('#ORbutton');
+    if( found.length ){
+      tr.find('input[type="text"]').attr("value","");
+    } else {
+      tr.find('input[type="text"]').attr("value","").end().hide();
+    }
+}
 function hideDialogBox() {
     $('div.dialog').remove();
-}
-
-function returnToSetsPage() {
-    window.location.href = "/cgi-bin/koha/admin/oai_sets.pl";
 }
 //]]>
 </script>
 </head>
 
 <body id="admin_oai_set_mappings" class="admin">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administrador</a> &rsaquo; <a href="/cgi-bin/koha/admin/oai_set_mappings.pl?id=[% id %]">Correspondencia de conjunto OAI</a></div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; <a href="/cgi-bin/koha/admin/oai_sets.pl">Configuración de conjunto OAI</a> &rsaquo; <a href="/cgi-bin/koha/admin/oai_set_mappings.pl?id=[% id %]">Correspondencia de conjunto OAI</a></div>
 
 <div id="doc3" class="yui-t2">
 
 <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% IF ( mappings_saved ) %] <div class="dialog">
- <p>Se han grabado correspondencias</p>
+ [% IF ( mappings_saved ) %] <div class="dialog message">
+ <h4>Se han grabado correspondencias</h4>
  <p><a href="/cgi-bin/koha/admin/oai_sets.pl">Regresar a administración de conjuntos</a></p>
  </div>
  [% END %] <h1>Correspondencias para el conjunto '[% setName %]' ([% setSpec %])</h1>
- [% UNLESS ( mappings ) %] <p class="warning">Atención: no hay correspondencias definidas para este conjunto</p>
- [% END %] <form action="/cgi-bin/koha/admin/oai_set_mappings.pl" method="post" onsubmit="hideDialogBox();">
+ [% UNLESS ( mappings ) %] <div class="dialog alert"><p><strong>Advertencia:</strong> No hay correspondencias definidas para este conjunto</p></div>
+ [% END %] <form action="/cgi-bin/koha/admin/oai_set_mappings.pl" method="post" id="mappingform">
  <table id="mappings">
  <thead>
  <tr>
@@ -45,6 +58,7 @@ function returnToSetsPage() {
  <th>Subcampo</th>
  <th>&nbsp;</th>
  <th>Valor</th>
+ <th>&nbsp;</th>
  <th>&nbsp;</th>
  </tr>
  </thead>
@@ -55,24 +69,24 @@ function returnToSetsPage() {
  <td>es igual a </td>
  <td><input type="text" name="marcvalue" value="[% mapping.marcvalue %]" /></td>
  <td style="text-align:center">
- [% IF ( loop.last ) %] <input type="button" id="ORbutton" value="OR" onclick="newCondition()"/>
+ [% IF ( loop.last ) %] <input value="OR" type="button" id="ORbutton" title="Agregar otra condición" />
  [% ELSE %] OR [% END %] </td>
+ <td><a class="clear-field" href="#">Eliminar</a></td>
  </tr>
  [% END %] [% ELSE %] <tr>
  <td><input type="text" name="marcfield" size="3" /></td>
  <td style="text-align:center"><input type="text" name="marcsubfield" size="1" /></td>
  <td>es igual a </td>
  <td><input type="text" name="marcvalue" /></td>
- <td><input type="button" id="ORbutton" value="OR" onclick="newCondition()"/></td>
+ <td><input type="button" id="ORbutton" value="OR" /></td>
+ <td><a class="clear-field" href="#">Eliminar</a></td>
  </tr>
  [% END %] </tbody>
  </table>
- <p class="hint">Ayuda: para eliminar una línea, vacíe al menos uno de los campos de texto de esta línea</p>
  <input type="hidden" name="id" value="[% id %]" />
  <input type="hidden" name="op" value="save" />
  <fieldset class="action">
- <input value="Guardar" type="submit" />
- <input value="Cancelar" type="button" onclick="returnToSetsPage();" />
+ <input value="Guardar" type="submit" /> <a class="cancel" href="/cgi-bin/koha/admin/oai_sets.pl">Cancelar</a>
  </fieldset>
  </form>
 

@@ -18,11 +18,13 @@
  <option value="su-rl">&nbsp;&nbsp;&nbsp;&nbsp; Temas y términos relacionados</option>
  [% END %] <option value="bc">Código de barras</option>
  <option value="location">Ubicación en estantería</option>
- <option value="sn">Numero estándar</option>
- <option value="nb">&nbsp;&nbsp;&nbsp;&nbsp; ISBN</option>
+ [% IF (numbersphr) %] <option value="sn,phr">Numero estándar</option>
+ [% ELSE %] <option value="sn">Numero estándar</option>
+ [% END %] <option value="nb">&nbsp;&nbsp;&nbsp;&nbsp; ISBN</option>
  <option value="ns">&nbsp;&nbsp;&nbsp;&nbsp; ISSN</option>
- <option value="callnum">&nbsp;&nbsp;&nbsp;&nbsp; Número de clasificación</option>
- <option value="ln,rtrn">Idioma</option>
+ [% IF (numbersphr) %] <option value="callnum,phr">&nbsp;&nbsp;&nbsp;&nbsp; Número de clasificación</option>
+ [% ELSE %] <option value="callnum">&nbsp;&nbsp;&nbsp;&nbsp; Número de clasificación</option>
+ [% END %] <option value="ln,rtrn">Idioma</option>
  <option value="nt">Notas/comentarios</option>
  [% IF (marcflavour != 'UNIMARC' ) %] <option value="curriculum">Currículum</option>
  [% END %] <option value="pb">Editor</option>

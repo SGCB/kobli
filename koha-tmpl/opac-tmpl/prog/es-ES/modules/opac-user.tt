@@ -3,8 +3,8 @@
 <script type="text/JavaScript">
 //<![CDATA[
 var MSG_CONFIRM_DELETE_HOLD   = _("¿Está seguro de que quiere cancelar esta reserva?");
-var MSG_CONFIRM_SUSPEND_HOLDS = _("Are you sure you want to suspend all holds?");
-var MSG_CONFIRM_RESUME_HOLDS  = _("Are you sure you want to resume all suspended holds?");
+var MSG_CONFIRM_SUSPEND_HOLDS = _("¿Está seguro de que quiere cancelar todas las reservas?");
+var MSG_CONFIRM_RESUME_HOLDS  = _("¿Está seguro de que quiere cancelar esta reserva?");
 
 $.tablesorter.addParser({
     id: 'articles', 
@@ -69,7 +69,7 @@ $.tablesorter.addParser({
  <strong>Por favor, observe:</strong><span> Su carné expira en<span id="warndeparture_date">[% BORROWER_INF.warndeparture | $KohaDates %]</span>. Por favor, contacte con la biblioteca para más información.</span>
  [% IF ( BORROWER_INF.returnbeforeexpiry ) %]<span id="warndeparture_returnbeforeexpiry"> Tenga en cuenta que debe devolver todos los ítems prestado antes de que su carné caduque.</span>[% END %] </div>
  [% END %] [% IF ( BORROWER_INF.warnexpired ) %] <div class="dialog alert" id="warnexpired">
- <strong>Por favor, observe:</strong><span> Your card has expired. Please contact the library for more information.</span>
+ <strong>Por favor, observe:</strong><span> Su carné ha caducado. Por favor, contacte con la biblioteca para más información.</span>
  </div>
  [% END %] [% IF ( patron_flagged ) %] <div class="dialog alert">
  <ul>

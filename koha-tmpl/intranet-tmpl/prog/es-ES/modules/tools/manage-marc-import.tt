@@ -9,6 +9,8 @@
 [% INCLUDE 'greybox.inc' %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/background-job-progressbar.js"></script>
 <script type="text/JavaScript" language="JavaScript">
 //<![CDATA[
+var MSG_CONFIRM_CLEAN = _("¿Borrar todos los registros de depósito efectuado en este lote? Esto no puede deshacerse.");
+
 $(document).ready(function(){
   $("#staged-record-matching-rules select").change(function(){
       var str = $(this).attr("id");
@@ -65,22 +67,7 @@ $(document).ready(function(){
  <li><span class="label">Tipo:</span> [% IF ( record_type == 'auth' ) %]Registros autoridad[% ELSE %]BRegistros bibliográficos[% END %]</li>
  <li><span class="label">Preparado:</span> [% upload_timestamp %]</li>
  <li><span class="label">Estado:</span>
- [% IF ( import_status == 'cleaned' ) %]
- Cleaned
- [% ELSIF ( import_status == 'imported' ) %]
- Imported
- [% ELSIF ( import_status == 'importing' ) %]
- Importing
- [% ELSIF ( import_status == 'reverted' ) %]
- Reverted
- [% ELSIF ( import_status == 'reverting' ) %]
- Reverting
- [% ELSIF ( import_status == 'staged' ) %]
- Staged
- [% ELSE %]
- [% import_status %]
- [% END %]
- </li>
+ [% IF ( import_status == 'cleaned' ) %] Limpio [% ELSIF ( import_status == 'imported' ) %] Importado [% ELSIF ( import_status == 'importing' ) %] Importando [% ELSIF ( import_status == 'reverted' ) %] Revertido [% ELSIF ( import_status == 'reverting' ) %] Revirtiendo [% ELSIF ( import_status == 'staged' ) %] Manipulado [% ELSE %] [% import_status %] [% END %] </li>
  <li>
 [% IF ( can_commit ) %]<label for="new_matcher_id">Regla de coincidencia aplicada:</label><select name="new_matcher_id" id="new_matcher_id">
  <option value="">No busca de registros coincidentes</option> 
@@ -110,7 +97,7 @@ $(document).ready(function(){
  <fieldset class="action">
  <input value="Importar este lote en el catálogo" name="mainformsubmit" type="submit" class="button" onclick="return submitBackgroundJob(this.form);" />
  <br/>
- Agregar un nuevo registro bibliográfico en esta hoja de trabajo: <select name="framework" id="frameworks">
+ Agregar un nuevo registro bibliográfico con esta plantilla de catalogación:<select name="framework" id="frameworks">
  <option value="">Predeterminado</option>
  [% FOREACH framework IN frameworks %] <option value="[% framework.value %]">[% framework.label %]</option>
  [% END %] </select>
@@ -169,29 +156,14 @@ Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %] <span class="
  <td>[% batch_lis.comments %]</td>
  <td>[% IF ( batch_lis.record_type == 'auth' ) %]Authoridad[% ELSE %]Bibliografico[% END %]</td>
  <td>
- [% IF ( batch_lis.import_status == 'cleaned' ) %]
- Cleaned
- [% ELSIF ( batch_lis.import_status == 'imported' ) %]
- Imported
- [% ELSIF ( batch_lis.import_status == 'importing' ) %]
- Importing
- [% ELSIF ( batch_lis.import_status == 'reverted' ) %]
- Reverted
- [% ELSIF ( batch_lis.import_status == 'reverting' ) %]
- Reverting
- [% ELSIF ( batch_lis.import_status == 'staged' ) %]
- Staged
- [% ELSE %]
- [% batch_lis.import_status %]
- [% END %]
- </td>
+ [% IF ( batch_lis.import_status == 'cleaned' ) %] Limpio [% ELSIF ( batch_lis.import_status == 'imported' ) %] Importado [% ELSIF ( batch_lis.import_status == 'importing' ) %] Importando [% ELSIF ( batch_lis.import_status == 'reverted' ) %] Revertido [% ELSIF ( batch_lis.import_status == 'reverting' ) %] Revirtiendo [% ELSIF ( batch_lis.import_status == 'staged' ) %] Manipulado [% ELSE %] [% batch_lis.import_status %] [% END %] </td>
  <td>[% batch_lis.upload_timestamp %]</td>
  <td>[% batch_lis.num_records %]</td>
  <td>[% batch_lis.num_items %][% IF ( batch_lis.num_items ) %] <a href="[% batch_lis.script_name %]?import_batch_id=[% batch_lis.import_batch_id %]&amp;op=create_labels">(Crear lote de etiquetas)</a>[% END %]</td>
  <td>[% IF ( batch_lis.can_clean ) %] <form method="post" action="[% batch_lis.script_name %]" name="clean_batch_[% batch_lis.import_batch_id %]" id="clean_batch_[% batch_lis.import_batch_id %]" >
  <input type="hidden" name="import_batch_id" value="[% batch_lis.import_batch_id %]" />
  <input type="hidden" name="op" value="clean-batch" />
- <input value="Limpiar" type="submit" class="button" onclick="return confirm(_('Clear all reservoir records staged in this batch?  This cannot be undone.'));" />
+ <input value="Limpiar" type="submit" class="button" onclick="return confirm(MSG_CONFIRM_CLEAN);" />
  </form>
  [% END %] </td>
  </tr>

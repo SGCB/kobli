@@ -7,8 +7,10 @@
  <script type="text/javascript" src="[% themelang %]/js/jquery.jeditable.mini.js"></script>
  <script type="text/javascript">
     //<![CDATA[
+    var MSG_ID_HELP = _("Haga clic en Identificación de  la cita para seleccionar o anular la selección de la cita. Multiples citas pueden ser seleccionadas.");
+
     var oTable; /* oTable needs to be global */
-    var sEmptyTable = _('Quotes no disponibles. Por favor usar el botón "Add quote" par añadir una quote.'); /* override the default message in datatables-strings.inc */
+    var sEmptyTable = _("Quotes no disponibles. Por favor usar el botón \\"Add quote\\" par añadir una quote."); /* override the default message in datatables-strings.inc */
     $(document).ready(function() {
         /* NOTE: This is an ajax-source datatable and *not* a server-side sourced datatable. */
         /* See the datatable docs if you don't understand this difference. */
@@ -78,6 +80,14 @@
                         });
                    },
         });
+        $("#add_quote").click(function(){
+            fnClickAddRow();
+            return false;
+        });
+        $("#delete_quote").click(function(){
+            fnClickDeleteRow();
+            return false;
+        });
     });
 
         function fnClickAddQuote(e, node) {
@@ -113,11 +123,11 @@
                     });
                 }
                 else {
-                    alert(_('Por favor facilite el texto y la fuente antes de guardar la quote.'));
+                    alert(_("Por favor facilite el texto y la fuente antes de guardar la quote."));
                 }
             }
             else if (e.keyCode == 27) {
-                if (confirm(_('¿Está seguro de desea cancelar este pedido?'))) {
+                if (confirm(_("¿Está seguro de desea cancelar este pedido?"))) {
                     oTable.fnDeleteRow(node);
                 }
                 else {
@@ -146,9 +156,9 @@
                   return this.id;
             }).get().join(', ');
             if (!idsToDelete) {
-                alert(_('Por favor, seleccione un quote(s) haciendo clic en quote (s) que desea eliminar.'));
+                alert(_("Por favor, seleccione un quote(s) haciendo clic en quote (s) que desea eliminar."));
             }
-            else if (confirm(_('¿Está seguro de desea borrar este pedido(s)?')+idsToDelete+'?')) {
+            else if (confirm(_("¿Está seguro de desea borrar este pedido(s)?")+idsToDelete+"?")) {
                 oTable.$('.selected').each(function(){
                         var quoteID = $(this).attr('id');
                             $.ajax({
@@ -197,7 +207,7 @@
  <table id="quotes_editor">
  <thead>
  <tr>
- <th><span style="cursor: help" onclick="event.stopPropagation();alert(_('Click on the quote\'s id to select or deselect the quote. Multiple quotes may be selected.'));">ID</span></th>
+ <th><span style="cursor: help" onclick="event.stopPropagation();alert(MSG_ID_HELP);">ID</span></th>
  <th>Fuente</th>
  <th>Texto</th>
  <th>Última actualización </th>

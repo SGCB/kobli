@@ -11,7 +11,7 @@
  <option value="aud:b">pre-primaria (0-5)</option>
  <option value="aud:c">primaria (5-8)</option>
  <option value="aud:d">niños (9-14)</option>
- <option value="aud:e">Adulto joven  </option>
+ <option value="aud:e">Adulto joven   </option>
  <option value="aud:k">adulto, serio</option>
  <option value="aud:m">adulto, general</option>
  <option value="aud:u">desconocido</option>
@@ -108,7 +108,8 @@
  <option value="ctype:r" >compendios/revisiones en literatura</option>
  <option value="ctype:s" >tratados</option>
  <option value="ctype:t" >historietas o cómics</option>
- <option value="ctype:v" >disertación o tesis (revisada)</option>v<option value="ctype:w" >texto religioso</option>
+ <option value="ctype:v" >disertación o tesis (revisada)</option>
+ <option value="ctype:w" >texto religioso</option>
  <option value="ctype:z" >otro</option>
  </select>
  </p>
