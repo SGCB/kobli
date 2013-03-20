@@ -1,9 +1,9 @@
-
-/*Data for the table `permissions` */
-
-INSERT  INTO `permissions`(`module_bit`,`code`,`description`) VALUES
+INSERT INTO permissions (module_bit, code, description) VALUES
 (1,'circulate_remaining_permissions','Resto de permisos de circulaci&oacute;n'),
 (1,'override_renewals','Anular las renovaciones bloqueadas'),
+(1, 'overdues_report', 'Execute overdue items report'),
+(3, 'parameters_remaining_permissions', 'Remaining system parameters permissions'),
+(3, 'manage_circ_rules', 'manage circulation rules'),
 (6,'modify_holds_priority','Modificar la prioridad de las reservas'),
 (6,'place_holds','Reservar ejemplares para usuarios'),
 (9,'edit_catalogue','Editar cat&aacute;logo (modificar datos bibliogr&aacute;ficos/holdings'),
@@ -26,7 +26,7 @@ INSERT  INTO `permissions`(`module_bit`,`code`,`description`) VALUES
 (13,'edit_news','Escribir noticias para las interfaces del OPAC y del personal'),
 (13,'edit_notices','Definir avisos'),
 (13,'edit_notice_status_triggers','Configurar avisos / estado de los programadores de avisos (triggers) para pr&eacute;stamos vencidos'),
-(13,'edit_quotes', 'Editar cuotas para la caracterÌstica cuota-del-dÌa'),
+(13,'edit_quotes', 'Editar cuotas para la caracter√≠stica cuota-del-d√≠a'),
 (13,'export_catalog','Exportar datos bibliogr&aacute;ficos y de los ejemplares'),
 (13,'import_patrons','Importar datos de usuarios'),
 (13,'edit_patrons', 'Realizar modificaciones masivas de socios'),
@@ -42,8 +42,8 @@ INSERT  INTO `permissions`(`module_bit`,`code`,`description`) VALUES
 (13,'schedule_tasks','Planificar tareas para ejecutar'),
 (13,'stage_marc_import','Organizar los registros MARC en el repositorio'),
 (13,'view_system_logs','Navegar por los logs del sistema'),
-(13,'upload_local_cover_images', 'Subir im·genes de portada locales'),
-(13, 'upload_prefs_images', 'Subir im·genes opcionales de las preferencias del sistema'),
+(13,'upload_local_cover_images', 'Subir im√°genes de portada locales'),
+(13, 'upload_prefs_images', 'Subir im√°genes opcionales de las preferencias del sistema'),
 (15,'check_expiration','Comprobar la expiraci&oacute;n de una publicaci&oacute;n peri&oacute;dica'),
 (15,'claim_serials','Reclamar las publicaciones peri&oacute;dicas perdidas'),
 (15,'create_subscription','Crear una nueva suscripci&oacute;n'),
@@ -54,3 +54,8 @@ INSERT  INTO `permissions`(`module_bit`,`code`,`description`) VALUES
 (15,'routing','Rotaci&oacute;n de publicaciones peri&oacute;dicas'),
 (16,'create_reports','Crear informes SQL'),
 (16,'execute_reports','Ejecutar informes SQL');
+(19, 'manage', 'Administrar plugins ( instalar / desinstalar )'),
+(19, 'tool', 'Usar herramienta de plugins'),
+(19, 'report', 'Usar informes de plugins'),
+(19, 'configure', 'Configurar plugins')
+;
