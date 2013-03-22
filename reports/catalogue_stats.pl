@@ -234,7 +234,7 @@ sub calculate {
     my @loopfilter;
     for ( my $i = 0 ; $i <= @$filters ; $i++ ) {
         my %cell;
-        if ( defined @$filters[$i] and @$filters[$i] ne '' ) {
+        if ( defined @$filters[$i] and @$filters[$i] ne '' and $i != 16 ) {
             if ( ( ( $i == 1 ) or ( $i == 3 ) or ( $i == 5 ) or ( $i == 9 ) ) and ( @$filters[ $i - 1 ] ) ) {
                 $cell{err} = 1 if ( @$filters[$i] < @$filters[ $i - 1 ] );
             }
@@ -256,11 +256,14 @@ sub calculate {
               : ( $i == 13 ) ? "Status"
               : ( $i == 14 ) ? "Materials"
               : ( $i == 15 ) ? "Statistic value"
+              : ( $i == 17 and $filters->[16] == 0 ) ? "Barcode (not like)"
+              : ( $i == 17 and $filters->[16] == 1 ) ? "Barcode (like)"
               : ( $i == 18 ) ? "Acquired date from"
               : ( $i == 19 ) ? "Acquired date to"
               : ( $i == 20 ) ? "Removed date from"
               : ( $i == 21 ) ? "Removed date to"
               :                '';
+
             push @loopfilter, \%cell;
         }
     }
