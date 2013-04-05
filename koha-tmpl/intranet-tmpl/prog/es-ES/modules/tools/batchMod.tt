@@ -1,14 +1,5 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; [% IF ( del ) %]Borrado de ítems en lote[% ELSE %]Modificación de ítems en lote[% END %] </title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/JavaScript" language="JavaScript">
-//<![CDATA[
-         $(document).ready(function() {
-	    $("#itemst").tablesorter();
-
-	 });
-//]]>
-</script>
-</head>
+[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="tools_batchMod" class="tools">
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
  <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; [% IF ( del ) %] <a href="/cgi-bin/koha/tools/batchMod.pl?del=1">Eliminar ítems en lote</a>
@@ -25,9 +16,9 @@
  <legend>Use un archivo</legend>
  <ol>
  <li>
- <label for="barcode_file">Archivo de código de barras</label><input type="radio" name="filecontent" value="barcode_file" id="barcode_file" checked="checked" /></li>
+ <label for="barcode_file">Archivo de código de barras: </label><input type="radio" name="filecontent" value="barcode_file" id="barcode_file" checked="checked" /></li>
  <li>
- <label for="itemid_file">Archivo de número de ítem</label><input type="radio" name="filecontent" value="itemid_file" id="itemid_file" />
+ <label for="itemid_file">Item number file: </label><input type="radio" name="filecontent" value="itemid_file" id="itemid_file" />
  </li>
  <li><label for="uploadfile">Archivo: </label> <input type="file" id="uploadfile" name="uploadfile" /></li>
  </ol>

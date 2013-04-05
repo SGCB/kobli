@@ -275,7 +275,7 @@ $(document).ready(function()
  [% surnamesuggestedby %][% IF ( firstnamesuggestedby ) %], [% firstnamesuggestedby %][% END %] (<a href="/cgi-bin/koha/suggestion/suggestion.pl?suggestionid=[% suggestionid %]&amp;op=show">sugerencia #[% suggestionid %]</a>) </li>
  </ol>
  </fieldset>
- [% END %] [% IF (AcqCreateItemOrdering) %] <div id="items_list" style="display:none">
+ [% END %] [% UNLESS subscriptionid %][% # it is a suggestion, we have not items %] [% IF (AcqCreateItemOrdering) %] <div id="items_list" style="display:none">
  <p><b>Lista de ítems</b></p>
  <div style="width:100%;overflow:auto;">
  <table>
@@ -310,14 +310,17 @@ $(document).ready(function()
  [% END %] <div id="outeritemblock"></div>
 
  </fieldset>
- [% END %][%# IF (AcqCreateItemOrdering) %] <fieldset class="rows">
+ [% END %][%# UNLESS subscriptionid %] [% END %][%# IF (AcqCreateItemOrdering) %] <fieldset class="rows">
  <legend>Detalles contables</legend>
  <ol>
  <li>
  [% IF ( close ) %] <span class="label required">Cantidad: </span>
  <input type="hidden" size="20" name="quantity" value="[% quantity %]" />[% quantity %] [% ELSE %] <label class="required" for="quantity">Cantidad: </label>
- [% IF (AcqCreateItemOrdering) %] <input type="text" readonly="readonly" size="20" id="quantity" name="quantity" value="0" />
+ [% IF (AcqCreateItemOrdering) %] [% IF subscriptionid %] <input type="text" readonly="readonly" size="20" id="quantity" name="quantity" value="1" />
+ [% ELSE %] <input type="text" readonly="readonly" size="20" id="quantity" name="quantity" value="0" />
+ [% END %] [% ELSE %] [% IF subscriptionid %] <input type="text" readonly="readonly" size="20" id="quantity" name="quantity" value="1" />
  [% ELSE %] <input type="text" size="20" id="quantity" name="quantity" value="[% quantityrec %]" onchange="updateCosts();" />
+ [% END %]
  [% END %]
  [% END %]
  <!-- origquantityrec only here for javascript compatibility (additem.js needs it, useless here, usefull when receiveing an order -->
@@ -386,7 +389,7 @@ $(document).ready(function()
  [% END %] </li>
  <li>
  <label for="notes">Notas: </label>
- <textarea id="notes" cols="30" rows="3" name="notes" >[% notes %]</textarea>
+ <textarea id="notes" cols="30" rows="3" name="notes" >[% IF ( notes ) %][% notes %][% END %]</textarea>
  </li>
  <li><div class="hint">Los siguientes 2 campos están disponibles para su propio uso. Ellos pueden ser útiles para propósitos estadísticos</div>
  <label for="sort1">Estadística 1: </label>
@@ -408,13 +411,15 @@ $(document).ready(function()
  [% ELSE %] <input type="text" id="sort2" size="20" name="sort2" value="[% sort2 %]" />
  [% END %] </span>
  </li>
-</ol>
+ </ol>
  </fieldset>
  <fieldset class="action">
+ <input type="hidden" name="subscriptionid" value="[% subscriptionid %]" />
  <input value="Guardar" type="submit" />
  [% IF (suggestionid) %] <a class="cancel" href="/cgi-bin/koha/acqui/newordersuggestion.pl?booksellerid=[% booksellerid %]&amp;basketno=[% basketno %]">Cancelar</a>
+ [% ELSE %] [% IF subscriptionid %] <a class="cancel" href="/cgi-bin/koha/acqui/newordersubscription.pl?booksellerid=[% booksellerid %]&amp;basketno=[% basketno %]">Cancelar</a>
  [% ELSE %] <a class="cancel" href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Cancelar</a>
- [% END %] </fieldset>
+ [% END %] [% END %] </fieldset>
 </form>
 </div>
 </div>

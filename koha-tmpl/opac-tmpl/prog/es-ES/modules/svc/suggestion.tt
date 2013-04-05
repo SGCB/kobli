@@ -8,10 +8,10 @@
  <div class="container">
  <h1 class="title">Sugerencias</h1>
 [% END %] [% IF suggestions && suggestions.size %] <div>
- <span class='suggestionlabel'>Quizá quiso decir: </span>
- [% FOREACH suggestion IN suggestions %] <span class='searchsuggestion'><a href='/cgi-bin/koha/opac-search.pl?q=[% suggestion.search | uri %]'>[% suggestion.label %]</a></span>
+ <span class="suggestionlabel">Quizá quiso decir: </span>
+ [% FOREACH suggestion IN suggestions %] <span class="searchsuggestion"><a href="/cgi-bin/koha/opac-search.pl?q=[% suggestion.search |uri %]">[% suggestion.label |html %]</a></span>
  [% END %] </div>
-[% ELSE %] <span class='nosuggestions'>Lo lamentamos, no hay sugerencias.</span>
+[% ELSE %] <span class="nosuggestions">Lo lamentamos, no hay sugerencias.</span>
 [% END %] [% IF (render=='standalone') %] </div>
  </div>
  </div>

@@ -106,7 +106,7 @@ $(document).ready(function() {
  <h2>Detalles de adquisición</h2>
  <table>
  <thead>
- <tr><th></th><th>Precio exc. impuestos</th><th>Precio inc. impuestos</th><th>fondo</th><th></th></tr>
+ <tr><th></th><th>Precio exc. impuestos</th><th>Precio inc. impuestos</th><th>Fondo</th><th></th></tr>
  </thead>
  <tbody>
  <tr>
@@ -115,7 +115,7 @@ $(document).ready(function() {
  <td>[% valuegsti_ordered %]</td>
  <td>[% budget_name_ordered %]</td>
  <td>
- [% IF ( ordered_exists ) %] <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Información de la cesta</a>
+ [% IF ( ordered_exists ) %] <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">See basket information</a>
  [% END %] </td>
  </tr>
  <tr>
@@ -124,7 +124,7 @@ $(document).ready(function() {
  <td>[% valuegsti_spent %]</td>
  <td>[% budget_name_spent %]</td>
  <td>
- [% IF ( spent_exists ) %] <a href="/cgi-bin/koha/acqui/invoice.pl?invoicenumber=[% invoicenumber %]">Ver información factura</a>
+ [% IF ( spent_exists ) %] <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoiceid %]">See invoice information</a>
  [% END %] </td>
  </tr>
  </tbody>
@@ -249,8 +249,8 @@ $(document).ready(function() {
  <li><span class="label">Ejemplares faltantes:</span>[% missinglist %]</li>
  <li><span class="label">Nota no pública</span>[% internalnotes FILTER html_line_break %]</li>
  <li><span class="label">Nota pública:</span>[% notes FILTER html_line_break %]</li>
- <li><span class="label">Nota administrativa del historial</span>[% librariannote FILTER html_line_break %]</li>
- <li><span class="label">Historia de nota de OPAC</span>[% opacnote FILTER html_line_break %]</li>
+ <li><span class="label">History staff note:</span>[% librariannote FILTER html_line_break %]</li>
+ <li><span class="label">History OPAC note:</span>[% opacnote FILTER html_line_break %]</li>
  </ol>
  </div>
  </div>

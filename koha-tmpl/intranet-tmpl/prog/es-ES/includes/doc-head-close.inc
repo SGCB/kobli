@@ -11,6 +11,7 @@
 <script type="text/javascript" src="[% interface %]/lib/jquery/plugins/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="[% interface %]/lib/jquery/plugins/jquery.highlight-3.js"></script>
 <script type="text/javascript" src="[% interface %]/lib/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="[% interface %]/lib/jquery/plugins/jquery.validate.min.js"></script>
 
 [% IF ( login ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/login.css" />
 [% END %] [% IF ( wizard ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/wizard.css" />
@@ -29,14 +30,14 @@
 
 <!-- koha core js -->
 <script type="text/javascript" src="[% themelang %]/js/staff-global.js"></script>
-[% IF ( intranetuserjs ) %] <script type="text/javascript">
+[% INCLUDE 'validator-strings.inc' %] [% IF ( intranetuserjs ) %] <script type="text/javascript">
     //<![CDATA[
     [% intranetuserjs %]
     //]]>
     </script>
-[% END %] <script type="text/javascript">
+[% END %] [% IF ( virtualshelves || intranetbookbag ) %] <script type="text/javascript">
     //<![CDATA[
-    [% IF ( intranetbookbag ) %]var MSG_BASKET_EMPTY = _("Su cesta está vacía");
+        var MSG_BASKET_EMPTY = _("Su cesta está vacía");
         var MSG_RECORD_IN_BASKET = _("Este ítem ya está en su cesta");
         var MSG_RECORD_ADDED = _("Este ítem ha sido añadido a su cesta");
         var MSG_NRECORDS_ADDED = _(" ítem(s) incluidos en su bolsa");
@@ -47,11 +48,10 @@
         var MSG_CONFIRM_DEL_RECORDS = _("¿Está seguro de querer eliminar los ítems seleccionados?");
         var MSG_IN_YOUR_CART = _("Items en su cesta:");
         var MSG_NON_RESERVES_SELECTED = _("Uno o más ítems seleccionados no se pueden reservar.");
-    [% END %]
     //]]>
     </script>
- [% IF ( virtualshelves || intranetbookbag ) %] <script type="text/javascript" src="[% themelang %]/js/basket.js"></script>
- [% END %] [% IF LocalCoverImages %] <script type="text/javascript" src="[% themelang %]/js/localcovers.js"></script>
+<script type="text/javascript" src="[% themelang %]/js/basket.js"></script>
+[% END %] [% IF LocalCoverImages %] <script type="text/javascript" src="[% themelang %]/js/localcovers.js"></script>
 <script type="text/javascript">
 //<![CDATA[
 var NO_LOCAL_JACKET = _("No hay imagen de cubierta disponible ");

@@ -69,6 +69,14 @@ searching.pref:
     - 
       - 
         choices: 
+          "": No intentar
+          1: Intentar
+        default: 1
+        pref: UseQueryParser
+      - "utilizar el m\xC3\xB3dulo QueryPaser para b\xC3\xBAsquedas. Nota: deshabilitar esta preferencia no tendr\xC3\xA1 impacto si no se tiene instalado la QueryParser y todo funcionar\xC3\xA1 como comunmente hac\xC3\xADa."
+    - 
+      - 
+        choices: 
           "": No incluir
           1: Incluir
         default: 0
@@ -201,3 +209,8 @@ searching.pref:
         class: integer
         pref: FacetLabelTruncationLength
       - caracteres, en OPAC/Interfaz Administrativa.
+    - 
+      - Utilizar el siguiente texto como separador de las facetas de autoridad UNIMARC
+      - 
+        class: short
+        pref: UNIMARCAuthorsFacetsSeparator

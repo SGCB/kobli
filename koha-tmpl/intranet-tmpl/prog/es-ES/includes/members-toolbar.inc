@@ -113,7 +113,7 @@ function searchToHold(){
  <div class="btn-group">
  <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">Más<span class="caret"></span></button>
  <ul class="dropdown-menu">
- [% IF ( CAN_user_borrowers ) %] <li><a id="renewpatron" href="/cgi-bin/koha/members/moremember.pl?reregistration=y&amp;borrowernumber=[% borrowernumber %]">Renovar socio</a></li>
+ [% IF ( CAN_user_borrowers ) %] <li><a id="renewpatron" href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=[% destination %]&amp;reregistration=y">Renovar socio</a></li>
  [% ELSE %] <li class="disabled"><a id="renewpatron" href="#">Renovar socio</a></li>
  [% END %] [% IF ( CAN_user_permissions ) %] <li><a id="patronflags" href="/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]">Establecer permisos</a></li>
  [% ELSE %] <li class="disabled"><a id="patronflags" href="#">Establecer permisos</a></li>

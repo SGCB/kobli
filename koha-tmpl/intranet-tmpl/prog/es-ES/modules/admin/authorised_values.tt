@@ -1,25 +1,28 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Valores autorizados [% IF ( add_form ) %] &rsaquo; [% IF ( action_modify ) %]Modificar valor autorizado[% END %] [% IF ( action_add_value ) %] &rsaquo; Nuevo valor autorizado[% END %] [% IF ( action_add_category ) %] &rsaquo; Nueva categoría[% END %][% END %] [% IF ( delete_confirm ) %] &rsaquo; Confirmar eliminación[% END %] [% IF ( else ) %]Valores autorizados[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
-<script type="text/javascript" id="js">$(document).ready(function() {
-	// call the tablesorter plugin
-	$("#table_authorized_values").tablesorter({
-		sortList: [[1,0]],
-		headers: { 4: { sorter: false}, 5: { sorter: false}}
-		   		}).tablesorterPager({container: $("#pagertable_authorized_values"),positionFixed: false,size: 50});
+[% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+ $(document).ready(function() {
+    $("#table_authorized_values").dataTable($.extend(true, {}, dataTablesDefaults, {
+        "aoColumnDefs": [
+            { "aTargets": [ -1, -2 ], "bSortable": false, "bSearchable": false },
+        ],
+        "aaSorting": [[ 1, "asc" ]],
+        "iDisplayLength": 20,
+        "aLengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+        "sPaginationType": "four_button"
+    }));
 
     if ( $("#branches option:selected").length < 1 ) {
         $("#branches option:first").attr("selected", "selected");
     }
-}); </script>
-
-<script type="text/JavaScript" language="JavaScript">
-//<![CDATA[
-     $(document).ready(function() {
-        $('#icons').tabs();
-     });
+    $('#icons').tabs();
+});
 //]]>
 </script>
+
 [% IF ( else ) %] <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function() {
@@ -54,30 +57,31 @@ $(document).ready(function() {
  <input type="hidden" name="offset" value="[% offset %]" />
  <fieldset class="rows"><ol>
  <li>
- [% IF ( action_add_category ) %]<label for="category">Categoría</label>
+ [% IF ( action_add_category ) %]<label for="category">Categoría: </label>
  <input type="text" name="category"  id="category" size="10" maxlength="10" class="focus" />
  [% ELSE %]<span class="label">Categoría</span>
  <input type="hidden" name="category" value="[% category %]" /> [% category %] [% END %] </li>
  <li>
- <label for="authorised_value">Valor autorizado</label>
+ <label for="authorised_value">Valor autorizado: </label>
  [% IF ( action_modify ) %]<input type="hidden" id="id" name="id" value="[% id %]" />[% END %] [% IF ( action_add_category ) %] <input type="text" id="authorised_value" name="authorised_value" value="[% authorised_value %]" maxlength="80" />
  [% ELSE %] <input type="text" id="authorised_value" name="authorised_value" value="[% authorised_value %]" maxlength="80" class="focus" />
  [% END %] </li>
  <li>
- <label for="lib">Descripción</label>
+ <label for="lib">Descripción: </label>
  <input type="text" name="lib" id="lib" value="[% lib %]" maxlength="200" />
  </li>
  <li>
- <label for="lib_opac">Descripción (OPAC)</label>
+ <label for="lib_opac">Description (OPAC): </label>
  <input type="text" name="lib_opac" id="lib_opac" value="[% lib_opac %]" maxlength="200" />
  </li>
- <li><label for="branches">Limitación sedes:</label>
+ <li><label for="branches">Libraries limitation: </label>
  <select id="branches" name="branches" multiple size="10">
- <option value="">Todas las sedes</option>
+ <option value="">Todas las bibliotecas</option>
  [% FOREACH branch IN branches_loop %] [% IF ( branch.selected ) %] <option selected="selected" value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% ELSE %] <option value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% END %] [% END %] </select>
- <span>Seleccionar Todo si este valor autorizado debe ser visualizado todo el tiempo. De lo contrario, seleccione las bibliotecas que desea asociar con este valor.</span>
+ <span>Select All if this authorised value must to be displayed all the time. Otherwise select libraries you want to associate with this value.
+ </span>
  </li>
 
  </ol>
@@ -92,7 +96,7 @@ $(document).ready(function() {
  </ul>
  <br class="clear" /></div>
  [% FOREACH imageset IN imagesets %] <div id="[% imageset.imagesetname %]"><ul>
- [% FOREACH image IN imageset.images %] <li style="float: none; display: inline; clear : none; width: auto;">
+ [% FOREACH image IN imageset.images %] <li style="float: none; display: inline-block; clear : none; width: auto;">
  <label> [% IF ( image.StaffImageUrl ) %] <img src="[% image.StaffImageUrl %]" alt="[% image.StaffImageUrl %]" title="[% image.StaffImageUrl %]" />
  [% ELSE %] [% END %] [% IF ( image.checked ) %] <input type="radio" name="imageurl" value="[% image.KohaImage %]" checked="checked" />
  [% ELSE %]
@@ -155,7 +159,7 @@ $(document).ready(function() {
  [% END %] <h3>Valores autorizados para la categoría [% category %]:</h3>
 
 [% IF ( loop ) %]<div id="pagertable_authorized_values">
-[% INCLUDE 'table-pager.inc' perpage='50' %] </div>[% END %] [% IF ( loop ) %]<table id="table_authorized_values" class="tablesorter">
+</div>[% END %] [% IF ( loop ) %]<table id="table_authorized_values" class="tablesorter">
 <thead><tr>
  <th>Valor autorizado</th>
  <th>Descripción</th>

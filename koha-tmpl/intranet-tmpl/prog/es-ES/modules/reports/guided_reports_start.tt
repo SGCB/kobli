@@ -2,31 +2,107 @@
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <style type="text/css">
     #sql { width: 90%; height: 9em;}
 </style>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
-
-<script type="text/javascript">
+[% IF ( saved1 ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+[% END %] <script type="text/javascript">
 //<![CDATA[
+[% IF (dateformat == 'metric' && saved1) %]
+dt_add_type_uk_date();
+[% END %]
 var group_subgroups = {};
-var no_subgroup_label = _( "(Ninguno)" );
+[% FOREACH group IN groups_with_subgroups %]
+    var gid = "[% group.id %]"
+    group_subgroups[gid] = new Array();
+    [% FOREACH subgroup IN group.subgroups %]
+        var sgid = "[% subgroup.id %]";
+        var sgname = "[% subgroup.name %]";
+        group_subgroups[gid].push([sgid, sgname]);
+    [% END %]
+[% END %]
+
 function load_group_subgroups () {
-    var group = $("#group").val();
+    var group = $("#group_select").val();
     var sg = $("#subgroup");
-    var has_subgroups = false;
-    $(sg).empty().append('<option value="">' + no_subgroup_label + '</option>');
+    $(sg).find('option[value!=""]').each(function() {
+        $(this).remove();
+    });
+    $(sg).hide();
     if (group) {
+        var select = $(sg).find('select')[0];
         $.each( group_subgroups[group], function(index, value) {
-                has_subgroups = true;
-            $('<option value="' + value[0] + '">' + value[1] + '</option>').appendTo(sg);
+            $('<option value="' + value[0] + '">' + value[1] + '</option>').appendTo(select);
         } );
-    }
-    if (has_subgroups) {
-        $(sg).show();
-    } else {
-        $(sg).hide();
+        $("#subgroup, #subgroup *").show();
     }
 }
+
 $(document).ready(function(){
+
+[% IF (saved1) %]
+    [% IF (dateformat == "metric") %]
+        dt_add_type_uk_date();
+    [% END %]
+    var rtable = $("#table_reports").dataTable($.extend(true, {}, dataTablesDefaults, {
+        'bAutoWidth': false,
+        'sDom': 't<"bottom pager"ilpf>',
+        'sPaginationType': 'four_button',
+        'aLengthMenu': [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+        'iDisplayLength': 20,
+        'aaSorting': [[ 1, "asc" ]],
+        'aoColumnDefs': [
+            { 'bSortable': false, 'bSearchable':false, 'aTargets': [-1, -2, -3, -4] },
+            { 'bSearchable': false, 'aTargets': [3, 4] }
+        ],
+        'oLanguage': {
+            'sZeroRecords': _("No se encontraron registros coincidentes")
+        }
+    }));
+
+    var rtabs = $("#tabs").tabs();
+    rtabs.bind("tabsshow", function(e, ui) {
+        $("#subgroup_filter option").each(function() {
+            if($(this).val().length > 0) {
+                $(this).remove();
+            }
+        });
+        rtable.fnFilter('', 3);
+        rtable.fnFilter('', 4);
+        rtable.fnSetColumnVis(3, true);
+        rtable.fnSetColumnVis(4, true);
+
+        var g_id = $(ui.tab).attr('id')
+        var g_name = $(ui.tab).text();
+        if (g_id && g_id.length > 0) {
+            rtable.fnFilter('^' + g_name + '$', 3, true, true, true, false);
+            rtable.fnSetColumnVis(3, false);
+            for(var i in group_subgroups[g_id]) {
+                $("#subgroup_filter").append(
+                    '<option value="' + group_subgroups[g_id][i][0] + '">'
+                    + group_subgroups[g_id][i][1] + '</option>'
+                );
+            }
+            $("#subgroup_filter_block").show();
+        } else {
+            $("#subgroup_filter_block").hide();
+        }
+    });
+    $("#subgroup_filter_block").hide();
+
+    $("#subgroup_filter").change(function() {
+        var selected = $(this).find('option:selected');
+        var sg_id = $(selected).val();
+        var sg_name = $(selected).text();
+        if (sg_id.length > 0) {
+            rtable.fnFilter('^' + sg_name + '$', 4, true, true, true, false);
+            rtable.fnSetColumnVis(4, false);
+        } else {
+            rtable.fnFilter('', 4);
+            rtable.fnSetColumnVis(4, true);
+        }
+    });
+[% END %]
+
 [% IF ( showsql ) %]
     $("#sql").focus(function() {
         $(this).select();
@@ -43,24 +119,56 @@ $(document).ready(function(){
         }
     });
 [% END %]
-  // call the tablesorter plugin
-  $("#table_reports").tablesorter({
-    widgets : ['zebra'],
-    sortList: [[1,0]],
-    headers: {
-        10: { sorter: false},
-        11: { sorter: false},
-        12: { sorter: false},
-        13: { sorter: false}
-    }
-  }).tablesorterPager({
-    container:     $("#pagertable_reports"),
-    positionFixed: false,
-    size:          20
-  });
   // redefine the datepicker's default because reports require ISO
   // http://jqueryui.com/demos/datepicker/#option-dateFormat
   $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+
+[% IF (create || editsql || save) %]
+    $("#select_group").change(function() {
+        if($(this).attr('checked')) {
+            $("#group_input").attr('disabled', 'disabled');
+            $("#groupdesc_input").attr('disabled', 'disabled');
+            $("#group_select").attr('disabled', false);
+            if ($("#group_select").val().length > 0) {
+                $("#select_subgroup").attr('checked', 'checked');
+                $("#select_subgroup").change();
+                $("#subgroup, #subgroup *").show();
+            } else {
+                $("#subgroup").hide();
+            }
+        }
+    });
+    $("#create_group").change(function() {
+        if($(this).attr('checked')) {
+            $("#group_input").attr('disabled', false);
+            $("#groupdesc_input").attr('disabled', false);
+            $("#group_select").attr('disabled', 'disabled');
+            $("#create_subgroup").attr('checked', 'checked').change();
+            $("#subgroup_select").hide();
+            $("#subgroup input[type='radio']").hide();
+            $("#subgroup label[for]").hide();
+            $("#subgroup_input").show();
+            $("#subgroupdesc_input").show();
+            $("#subgroup").show();
+        }
+    });
+    $("#select_subgroup").change(function() {
+        if($(this).attr('checked')) {
+            $("#subgroup_select").attr('disabled', false);
+            $("#subgroup_input").attr('disabled', 'disabled');
+            $("#subgroupdesc_input").attr('disabled', 'disabled');
+        }
+    });
+    $("#create_subgroup").change(function() {
+        if($(this).attr('checked')) {
+            $("#subgroup_input").attr('disabled', false);
+            $("#subgroupdesc_input").attr('disabled', false);
+            $("#subgroup_select").attr('disabled', 'disabled');
+        }
+    });
+    $("#select_group").change();
+    $("#select_subgroup").change();
+[% END %]
 });
 //]]>
 </script>
@@ -99,16 +207,24 @@ $(document).ready(function(){
 </form>
 [% END %] [% IF ( saved1 ) %] [% IF ( savedreports ) %]<h1>Informes guardados</h1>
 
-<div id="pagertable_reports">
-[% INCLUDE 'table-pager.inc' perpage='20' %] </div>
-
-<table id="table_reports" class="tablesorter">
-<thead>
+<div id="tabs" class="toptabs">
+ <ul>
+ <li><a href="#reports">Todo</a></li>
+ [% FOREACH group IN groups_with_subgroups %] <li><a id="[% group.id %]" href="#reports">[% group.name %]</a></li>
+ [% END %] </ul>
+ <div id="reports">
+ <div id="subgroup_filter_block">
+ <label for="subgroup_filter">Subgrupo:</label>
+ <select id="subgroup_filter">
+ <option value="">Todo</option>
+ </select>
+ </div>
+ <table id="table_reports">
+ <thead>
  <tr>
  <th>ID</th>
  <th>Nombre de informe</th>
  <th>Tipo</th>
- <th>Área</th>
  <th>Grupo</th>
  <th>Subgrupo</th>
  <th>Notas</th>
@@ -118,32 +234,36 @@ $(document).ready(function(){
  [% IF (usecache) %] <th>Caché expira (sergundos)</th> [% END %] <th>Resultados guardados</th>
  <th>SQL guardado</th>
  <th>&nbsp;</th>
- <th>&nbsp;</th>
- </tr>
-</thead>
-<tbody>
-[% FOREACH savedreport IN savedreports %] [% UNLESS ( loop.odd ) %]<tr class="odd">[% ELSE %]<tr>[% END %] <td>[% savedreport.id %]</td>
-<td>[% savedreport.report_name %]</td>
-<td>[% savedreport.type %]</td>
-<td>[% savedreport.areaname %]</td>
-<td>[% savedreport.groupname %]</td>
-<td>[% savedreport.subgroupname %]</td>
-<td>[% savedreport.notes %]</td>
-<td>[% savedreport.borrowersurname %][% IF ( savedreport.borrowerfirstname ) %], [% savedreport.borrowerfirstname %][% END %] ([% savedreport.borrowernumber %])</td>
-<td>[% savedreport.date_created %]</td>
-[% IF (savedreport.public) %] <td>Sí</td>
-[% ELSE %] <td>No</td>
-[% END %] [% IF (usecache) %] <td>[% savedreport.cache_expiry %]</td> [% END %] <td>[% IF ( savedreport.date_run ) %]<a href="/cgi-bin/koha/reports/guided_reports.pl?phase=retrieve%20results&amp;id=[% savedreport.id %]">[% savedreport.date_run %]</a>[% END %] </td>
+ [% IF ( CAN_user_reports_create_reports ) %] <th>&nbsp;</th>
+ [% END %] </tr>
+ </thead>
+ <tbody>
+ [% FOREACH savedreport IN savedreports %] [% UNLESS ( loop.odd ) %]<tr class="odd">[% ELSE %]<tr>[% END %] <td>[% savedreport.id %]</td>
+ <td>[% savedreport.report_name %]</td>
+ <td>[% savedreport.type %]</td>
+ <td>[% savedreport.groupname %]</td>
+ <td>[% savedreport.subgroupname %]</td>
+ <td>[% savedreport.notes %]</td>
+ <td>[% savedreport.borrowersurname %][% IF ( savedreport.borrowerfirstname ) %], [% savedreport.borrowerfirstname %][% END %] ([% savedreport.borrowernumber %])</td>
+ <td>[% savedreport.date_created %]</td>
+ [% IF (savedreport.public) %] <td>Sí</td>
+ [% ELSE %] <td>No</td>
+ [% END %] [% IF (usecache) %] <td>[% savedreport.cache_expiry %]</td> [% END %] <td>[% IF ( savedreport.date_run ) %]<a href="/cgi-bin/koha/reports/guided_reports.pl?phase=retrieve%20results&amp;id=[% savedreport.id %]">[% savedreport.date_run %]</a>[% END %] </td>
  <td>
- <a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Show%20SQL">Mostrar</a> 
- [% IF ( CAN_user_reports_create_reports ) %] &nbsp; <a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Edit%20SQL">Editar</a>
+ <a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Show%20SQL">Mostrar</a>
+ [% IF ( CAN_user_reports_create_reports ) %] <a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Edit%20SQL">Editar</a>
+ <a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Create report from SQL&sql=[% savedreport.savedsql |uri %]&reportname=[% savedreport.report_name |uri %]&notes=[% savedreport.notes |uri %]" title="Duplicar este informe guardado">Duplicado</a>
  [% END %] </td>
-<td><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Run%20this%20report">Ejecutar</a>
-<a href="/cgi-bin/koha/tools/scheduler.pl?id=[% savedreport.id %]">Planificación</a></td>
+ <td>
+ <a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Run%20this%20report">Ejecutar</a>
+ <a href="/cgi-bin/koha/tools/scheduler.pl?id=[% savedreport.id %]">Planificación</a>
+ </td>
  [% IF ( CAN_user_reports_create_reports ) %] <td><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&phase=Delete%20Saved" class="confirmdelete" title="Borrar este informe guardado">Eliminar</a></td>
  [% END %] </tr>
-[% END %] </tbody>
-</table>
+ [% END %] </tbody>
+ </table>
+ </div>
+</div>
 [% ELSE %]<div class="dialog message">
  [% IF (filter_set) %] <h4>Ningún reporte guardado coincide con su criterio. </h4>
  [% IF ( CAN_user_reports_create_reports ) %] <form action="/cgi-bin/koha/reports/guided_reports.pl" method="get">
@@ -171,8 +291,8 @@ $(document).ready(function(){
 <ol><li><label for="area">Seleccione: </label><select name="area" id="area">
 [% FOREACH area IN areas %] <option value="[% area.id %]">[% area.name %]</option>
 [% END %] </select></li>
-[% IF (public) %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0">No (predeterminado)</option> <option value="1" selected="selected">Sí</public> </select></li>
-[% ELSE %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0" selected="selected">No (predeterminado)</option> <option value="1">Sí</public> </select></li>
+[% IF (public) %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0">No (predeterminado)</option> <option value="1" selected="selected">Sí</option> </select></li>
+[% ELSE %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0" selected="selected">No (predeterminado)</option> <option value="1">Sí</option> </select></li>
 [% END %] [% IF (usecache) %] <li>
 <label for="cache_expiry">Caché de caducidad: </label><input type="text" id="cache_expiry" name="cache_expiry" value="[% cache_expiry %]"></input>
 <select id="cache_expiry_units" name="cache_expiry_units">
@@ -182,7 +302,7 @@ $(document).ready(function(){
 <option value="days">Días</option>
 </select>
 </li>[% END %] </ol>
-<ofieldset>
+</fieldset>
 <fieldset class="action">
 <input type="hidden" name="phase" value="Report on this Area" />
 <input value="Siguiente >>" name="submit" type="submit" />
@@ -291,9 +411,11 @@ $(document).ready(function(){
  [% END %] [% END %] [% END %] [% END %] </table>
  </fieldset>
 
-[% IF ( definitions ) %] <fieldset><legend>Definiciones de diccionario</legend><table>
+[% IF ( definitions ) %] <fieldset><legend>Definiciones de diccionario</legend>
+<table>
 [% FOREACH definition IN definitions %] <tr><td><input type="checkbox" name="definition" value="[% definition.id %]" /> [% definition.name %]</td></tr>
 [% END %] </table>
+</fieldset>
 [% END %] <fieldset class="action"><input type="hidden" name="phase" value="Choose these criteria" />
  <input value="<< Volver" name="back" type="button" onclick="javascript:history.back()" />
  <input value="Siguiente >>" name="submit" type="submit" /> </fieldset>
@@ -368,25 +490,7 @@ $(document).ready(function(){
 <legend>Guardar su informe personalizado</legend>
 <ol>
  <li><label for="reportname">Nombre de informe: </label><input type="text" id="reportname" name="reportname" /></li>
- [% IF groups_with_subgroups %] <li><label for="group">Informar grupo:</label><select name="group" id="group" onChange="load_group_subgroups();">
- [% FOR g IN groups_with_subgroups %] [% IF g.selected %] <option value="[% g.id %]" selected>[% g.name %]</option>
- [% ELSE %] <option value="[% g.id %]">[% g.name %]</option>
- [% END %] <script type="text/javascript">
-        var g_sg = new Array();
-            [% FOR sg IN g.subgroups %]
-        g_sg.push(["[% sg.id %]", "[% sg.name %]"]);
-                [% IF sg.selected %]
-        $(document).ready(function() {
-            $("#subgroup").val("[% sg.id %]");
-        });
-                [% END %]
-            [% END %]
-        group_subgroups["[% g.id %]"] = g_sg;
-    </script>
- [% END %] </select></li>
- <li><label for="subgroup">Informe subgrupo:</label><select name="subgroup" id="subgroup">
- </select></li>
- [% END %] <li><label for="notes">Notas:</label> <textarea name="notes" id="notes"></textarea></li>
+ [% PROCESS group_and_subgroup_selection %] <li><label for="notes">Notas:</label> <textarea name="notes" id="notes"></textarea></li>
 </ol></fieldset>
 <fieldset class="action"><input type="hidden" name="phase" value="Save Report" />
 <input value="Guardar reporte" name="submit" type="submit" /></fieldset>
@@ -451,26 +555,8 @@ $(document).ready(function() {
  <li><label for="reportname">Nombre de informe:</label>
  [% IF ( reportname ) %]<input type="text" id="reportname" name="reportname" value="[% reportname %]" />
  [% ELSE %]<input type="text" id="reportname" name="reportname" />[% END %] </li>
- [% IF groups_with_subgroups %] <li><label for="group">Informar grupo:</label><select name="group" id="group" onChange="load_group_subgroups();">
- [% FOR g IN groups_with_subgroups %] [% IF g.selected %] <option value="[% g.id %]" selected>[% g.name %]</option>
- [% ELSE %] <option value="[% g.id %]">[% g.name %]</option>
- [% END %] <script type="text/javascript">
-        var g_sg = new Array();
-            [% FOR sg IN g.subgroups %]
-        g_sg.push(["[% sg.id %]", "[% sg.name %]"]);
-                [% IF sg.selected %]
-        $(document).ready(function() {
-            $("#subgroup").val("[% sg.id %]");
-        });
-                [% END %]
-            [% END %]
-        group_subgroups["[% g.id %]"] = g_sg;
-    </script>
- [% END %] </select></li>
- <li><label for="subgroup">Informe subgrupo:</label><select name="subgroup" id="subgroup">
- </select></li>
- [% END %] [% IF (public) %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0">No (predeterminado)</option> <option value="1" selected="selected">Sí</public> </select></li>
-[% ELSE %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0" selected="selected">No (predeterminado)</option> <option value="1">Sí</public> </select></li>
+ [% PROCESS group_and_subgroup_selection %] [% IF (public) %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0">No (predeterminado)</option> <option value="1" selected="selected">Sí</option> </select></li>
+[% ELSE %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0" selected="selected">No (predeterminado)</option> <option value="1">Sí</option> </select></li>
 [% END %] [% IF (usecache) %] <li>
 <label for="cache_expiry">Caché de caducidad: </label><input type="text" id="cache_expiry" name="cache_expiry" value="[% cache_expiry %]"></input>
 <select id="cache_expiry_units" name="cache_expiry_units">
@@ -523,38 +609,15 @@ Master: <select name="master">
  [% IF ( notes ) %]<li><span class="label">Notas:</span> [% notes %]</li>[% ELSE %][% END %] <li><textarea id="sql">[% sql %]</textarea></li>
  </ol>
 </fieldset>
-[% END %] [% IF ( editsql ) %] <script type="text/javascript">
-$(document).ready(function() {
-    load_group_subgroups();
-});
-</script>
-<form action="/cgi-bin/koha/reports/guided_reports.pl" method="post">
+[% END %] [% IF ( editsql ) %] <form action="/cgi-bin/koha/reports/guided_reports.pl" method="post">
 <input type="hidden" name="phase" value="Update SQL" />
 <input type="hidden" name="id" value="[% id %]"/>
 <fieldset class="rows">
 <legend>Editar informe SQL </legend>
 <ol>
 <li><label for="reportname">Nombre de informe:</label><input type="text" id="reportname" name="reportname" value="[% reportname %]" size="50" /></li>
- [% IF groups_with_subgroups %] <li><label for="group">Informar grupo:</label><select name="group" id="group" onChange="load_group_subgroups();">
- [% FOR g IN groups_with_subgroups %] [% IF g.selected %] <option value="[% g.id %]" selected>[% g.name %]</option>
- [% ELSE %] <option value="[% g.id %]">[% g.name %]</option>
- [% END %] <script type="text/javascript">
-        var g_sg = new Array();
-            [% FOR sg IN g.subgroups %]
-        g_sg.push(["[% sg.id %]", "[% sg.name %]"]);
-                [% IF sg.selected %]
-        $(document).ready(function() {
-            $("#subgroup").val("[% sg.id %]");
-        });
-                [% END %]
-            [% END %]
-        group_subgroups["[% g.id %]"] = g_sg;
-    </script>
- [% END %] </select></li>
- <li><label for="subgroup">Informe subgrupo:</label><select name="subgroup" id="subgroup">
- </select></li>
- [% END %] [% IF (public) %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0">No (predeterminado)</option> <option value="1" selected="selected">Sí</public> </select></li>
-[% ELSE %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0" selected="selelcted">No (predeterminado)</option> <option value="1">Sí</public> </select></li>
+[% PROCESS group_and_subgroup_selection %] [% IF (public) %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0">No (predeterminado)</option> <option value="1" selected="selected">Sí</option> </select></li>
+[% ELSE %] <li><label for="public">Informe es público:</label><select id="public" name="public"> <option value="0" selected="selected">No (predeterminado)</option> <option value="1">Sí</option> </select></li>
 [% END %] [% IF (usecache) %] <li>
 <label for="cache_expiry">Caché de caducidad: </label><input type="text" id="cache_expiry" name="cache_expiry" value="[% cache_expiry %]"></input>
 <select id="cache_expiry_units" name="cache_expiry_units">
@@ -594,38 +657,12 @@ $(document).ready(function() {
 <div class="yui-b">
 
 [% IF ( saved1 ) %] <div id="saved-reports-filter">
-<script type="text/javascript">
-$(document).ready(function() {
-    no_subgroup_label = _( "-- Todos --" );
-    load_group_subgroups();
-});
-</script>
 <form action="/cgi-bin/koha/reports/guided_reports.pl" method="get">
  <input type="hidden" name="phase" value="Use saved" />
  <input type="hidden" name="filter_set" value="1" />
  <fieldset class="brief">
  <h3>Filtro</h3>
  <ol>
- <li><label for="group">Elegir grupo o subgrupo:</label>
- <select name="group" id="group" onChange="load_group_subgroups();">
- <option value="">-- Todos --</option>
- [% FOR g IN groups_with_subgroups %] [% IF g.selected %] <option value="[% g.id %]" selected>[% g.name %]</option>
- [% ELSE %] <option value="[% g.id %]">[% g.name %]</option>
- [% END %] <script type="text/javascript">
-            var g_sg = new Array();
-        [% FOR sg IN g.subgroups %]
-            g_sg.push(["[% sg.id %]", "[% sg.name %]"]);
-            [% IF sg.selected %]
-            $(document).ready(function() {
-                $("#subgroup").val("[% sg.id %]");
-            });
-            [% END %]
-        [% END %]
-            group_subgroups["[% g.id %]"] = g_sg;
-        </script>
- [% END %] </select>
- <select name="subgroup" id="subgroup"></select>
- </li>
  <li><label for="filter_date">Fecha:</label> <input type="text" id="filter_date" name="filter_date" size="10" value="[% filter_date %]" class="datepicker" />
  <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
 
@@ -633,6 +670,7 @@ $(document).ready(function() {
  <li><label for="filter_author">Autor:</label> <input type="text" id="filter_author" name="filter_author" value="[% filter_author %]" /></li>
  <li><label for="filter_keyword">Palabra clave:</label> <input type="text" id="filter_keyword" name="filter_keyword" value="[% filter_keyword %]" /></li>
  </ol>
+ </fieldset>
  <fieldset class="action"><input value="Aplicar filtro" type="submit" /></fieldset>
 </form>
 </div>
@@ -656,4 +694,37 @@ $("#column_submit").submit(function() {
 });
 //]]>
 </script>
-[% INCLUDE 'intranet-bottom.inc' %] 
+[% INCLUDE 'intranet-bottom.inc' %] [% BLOCK group_and_subgroup_selection %] <li id="group">
+ <label>Informe de grupo</label>
+ <input type="radio" name="select_or_create_group"
+            id="select_group" checked="checked" />
+ <label for="select_group" style="float:none">Seleccionar</label>
+ <select name="group" onChange="load_group_subgroups();" id="group_select">
+ <option value="">(Ninguno)</option>
+ [% FOREACH group IN groups_with_subgroups %] [% IF (group.selected) %] <option value="[% group.id %]" selected="selected">
+ [% ELSE %] <option value="[% group.id %]">
+ [% END %] [% group.name %] </option>
+ [% END %] </select>
+ <input type="radio" name="select_or_create_group" id="create_group" />
+ <label for="create_group" style="float:none">o creado</label>
+ <input name="group" type="text" id="group_input" title="Coódigo de grupo" placeholder="Código" />
+ <input name="groupdesc" type="text" id="groupdesc_input" title="Nombre del grupo" placeholder="Nombre" />
+ </li>
+ <li id="subgroup">
+ <label>Informe de subgrupo:</label>
+ <input type="radio" name="select_or_create_subgroup"
+            id="select_subgroup" checked="checked" />
+ <label for="select_subgroup" style="float:none">Seleccionar</label>
+ <select name="subgroup" id="subgroup_select">
+ <option value="">(Ninguno)</option>
+ [% FOREACH group IN groups_with_subgroups %] [% IF (group.selected) %] [% FOREACH subgroup IN group.subgroups %] [% IF (subgroup.selected) %] <option value="[% subgroup.id %]" selected="selected">
+ [% ELSE %] <option value="[% subgroup.id %]">
+ [% END %] [% subgroup.name %] </option>
+ [% END %] [% END %] [% END %] </select>
+ <input type="radio" name="select_or_create_subgroup"
+            id="create_subgroup" />
+ <label for="create_subgroup" style="float:none">o creado</label>
+ <input name="subgroup" type="text" id="subgroup_input" title="Código de subgrupo" placeholder="Código" />
+ <input name="subgroupdesc" type="text" id="subgroupdesc_input" title="Nombre de subgrupo" placeholder="Nombre" />
+ </li>
+[% END %] 

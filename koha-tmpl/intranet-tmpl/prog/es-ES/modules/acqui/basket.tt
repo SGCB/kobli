@@ -71,7 +71,8 @@
 </script>
 [% UNLESS ( grouped ) %] <script type="text/javascript">
 //<![CDATA[
-            function confirm_reopen(skip) {
+            function confirm_reopen() {
+                var skip = [% IF ( skip_confirm_reopen ) %] 1 [% ELSE %] 0 [% END %];
                 var is_confirmed = skip || confirm(_("¿Está seguro de querer abrir nuevamente esta cesta?"));
                 if (is_confirmed) {
                     window.location = "[% script_name %]?op=reopen&basketno=[% basketno %]";
@@ -95,7 +96,15 @@
         var cancelledorderst = $("#cancelledorderst").dataTable($.extend(true, {}, dataTablesDefaults, {
             "sPaginationType": "four_button"
         } ) );
-    } );
+        $("#delbasketbutton").on("click",function(e){
+            e.preventDefault();
+            confirm_deletion();
+        });
+        $("#reopenbutton").on("click",function(e){
+            e.preventDefault();
+            confirm_reopen();
+        });
+    });
 //]]>
 </script>
 
@@ -111,56 +120,19 @@
 <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% UNLESS ( confirm_close ) %] [% UNLESS ( selectbasketg ) %] [% UNLESS ( closedate ) %] <div id="toolbar">
- <script type="text/javascript">
-                        //<![CDATA[
-                        // prepare DOM for YUI Toolbar
-                        $(document).ready(function() {
-                            yuiToolbar();
-                        });
-                        // YUI Toolbar Functions
-                        function yuiToolbar() {
-                            [% IF ( unclosable ) %]
-                                new YAHOO.widget.Button("closebutton", {disabled:true});
-                            [% ELSIF ( uncertainprices ) %]
-                                new YAHOO.widget.Button("uncertpricesbutton");
-                            [% ELSE %]
-                                new YAHOO.widget.Button("closebutton");
-                            [% END %]
-                            new YAHOO.widget.Button("basketheadbutton");
-                            new YAHOO.widget.Button("exportbutton");
-                            new YAHOO.widget.Button("delbasketbutton");
-                        }
-                        //]]>
-                    </script>
-
- <ul id="toolbar-list" class="toolbar">
- <li><a href="basketheader.pl?booksellerid=[% booksellerid %]&amp;basketno=[% basketno %]&amp;op=add_form" class="button" id="basketheadbutton">Editar cesta</a></li>
- <li><a href="javascript:confirm_deletion();" class="button" id="delbasketbutton">Eliminar esta bolsa</a></li>
- [% IF ( unclosable ) %] [% ELSIF ( uncertainprices ) %] <li><a href="/cgi-bin/koha/acqui/uncertainprice.pl?booksellerid=[% booksellerid %]&amp;owner=1" class="button" id="uncertpricesbutton">Precios inciertos</a></li>
- [% ELSE %] <li><a href="[% script_name %]?op=close&amp;basketno=[% basketno %]&amp;booksellerid=[% booksellerid %]" class="button" id="closebutton">Cerrar la cesta</a></li>
- [% END %] <li><a href="[% script_name %]?op=export&amp;basketno=[% basketno %]&amp;booksellerid=[% booksellerid %]" class="button" id="exportbutton">Exportar esta bolsa como CSV</a></li>
- </ul>
+ [% UNLESS ( confirm_close ) %] [% UNLESS ( selectbasketg ) %] [% UNLESS ( closedate ) %] <div id="toolbar" class="btn-toolbar">
+ <div class="btn-group"><a href="basketheader.pl?booksellerid=[% booksellerid %]&amp;basketno=[% basketno %]&amp;op=add_form" class="btn btn-small" id="basketheadbutton"><i class="icon-pencil"></i> Editar cesta</a></div>
+ <div class="btn-group"><a href="#" class="btn btn-small" id="delbasketbutton"><i class="icon-remove"></i> Eliminar esta bolsa</a></div>
+ [% IF ( unclosable ) %] [% ELSIF ( uncertainprices ) %] <div class="btn-group"><a href="/cgi-bin/koha/acqui/uncertainprice.pl?booksellerid=[% booksellerid %]&amp;owner=1" class="btn btn-small" id="uncertpricesbutton">Precios inciertos</a></div>
+ [% ELSE %] <div class="btn-group">
+ <a href="[% script_name %]?op=close&amp;basketno=[% basketno %]&amp;booksellerid=[% booksellerid %]" class="btn btn-small" id="closebutton"><i class="icon-remove-sign"></i> Cerrar la cesta</a>
+ </div>
+ [% END %] <div class="btn-group"><a href="[% script_name %]?op=export&amp;basketno=[% basketno %]&amp;booksellerid=[% booksellerid %]" class="btn btn-small" id="exportbutton"><i class="icon-download"></i> Exportar esta bolsa como CSV</a></div>
 
  </div>
- [% ELSE %] [% UNLESS ( grouped ) %] <div id="toolbar">
- <script type="text/javascript">
-                        //<![CDATA[
-                        // prepare DOM for YUI Toolbar
-                        $(document).ready(function() {
-                            yuiToolbar();
-                        });
-                        // YUI Toolbar Functions
-                        function yuiToolbar() {
-                            new YAHOO.widget.Button("reopenbutton");
-                            new YAHOO.widget.Button("exportbutton");
-                        }
-                        //]]>
-                    </script>
- <ul id="toolbar-list" class="toolbar">
- <li><a href="javascript:confirm_reopen([% skip_confirm_reopen %]);" class="button" id="reopenbutton">Reabrir esta cesta</a></li>
- <li><a href="[% script_name %]?op=export&amp;basketno=[% basketno %]&amp;booksellerid=[% booksellerid %]" class="button" id="exportbutton">Exportar esta bolsa como CSV</a></li>
- </ul>
+ [% ELSE %] [% UNLESS ( grouped ) %] <div id="toolbar" class="btn-toolbar">
+ <div class="btn-group"><a href="#" class="btn btn-small" id="reopenbutton"><i class="icon-refresh"></i> Reabrir esta cesta</a></div>
+ <div class="btn-group"><a href="[% script_name %]?op=export&amp;basketno=[% basketno %]&amp;booksellerid=[% booksellerid %]" class="btn btn-small" id="exportbutton"><i class="icon-download"></i> Exportar esta bolsa como CSV</a></div>
  </div>
  [% END %] [% END %] [% END %] [% IF ( NO_BOOKSELLER ) %] <h2>No se encuentra el vendedor</h2>
  [% ELSE %] [% IF ( delete_confirmed ) %] <h3>Bolsa eliminada</h3>
@@ -235,25 +207,31 @@
  <tfoot>
  [% FOREACH foot_loo IN book_foot_loop %] <tr>
  <th>Total (GST [% foot_loo.gstgsti %])</th>
- <th class="gste"/><th class="gste"/><th class="gsti"/><th class="gsti"/>
+ <th class="gste">&nbsp;</th>
+ <th class="gste">&nbsp;</th>
+ <th class="gsti">&nbsp;</th>
+ <th class="gsti">&nbsp;</th>
  <th>[% foot_loo.quantity %]</th>
  <th class="gste">[% foot_loo.totalgste %]</th>
  <th class="gsti">[% foot_loo.totalgsti %]</th>
- <th/>
+ <th>&nbsp;</th>
  <th>[% foot_loo.gstvalue %]</th>
- <th/>
+ <th>&nbsp;</th>
  [% IF ( active ) %] [% UNLESS ( closedate ) %] <th>&nbsp;</th>
  <th>&nbsp;</th>
  [% END %] [% END %] </tr>
  [% END %] <tr>
  <th>Total ([% currency %])</th>
- <th class="gste"/><th class="gste"/><th class="gsti"/><th class="gsti"/>
+ <th class="gste">&nbsp;</th>
+ <th class="gste">&nbsp;</th>
+ <th class="gsti">&nbsp;</th>
+ <th class="gsti">&nbsp;</th>
  <th>[% total_quantity %]</th>
  <th class="gste">[% total_gste %]</th>
  <th class="gsti">[% total_gsti %]</th>
- <th/>
+ <th>&nbsp;</th>
  <th>[% total_gstvalue %]</th>
- <th/>
+ <th>&nbsp;</th>
  [% IF ( active ) %] [% UNLESS ( closedate ) %] <th>&nbsp;</th>
  <th>&nbsp;</th>
  [% END %] [% END %] </tr>
@@ -262,9 +240,10 @@
  [% FOREACH books_loo IN books_loop %] [% IF ( books_loo.order_received ) %]<tr class="disabled">[% ELSE %][% IF ( books_loo.toggle ) %]<tr class="highlight">[% ELSE %]<tr>[% END %][% END %] <td>
  <p>[% IF ( books_loo.order_received ) %] (rcvd)[% END %] <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% books_loo.biblionumber %]">[% books_loo.title |html %]</a> por [% books_loo.author %]<br />
  [% IF ( books_loo.isbn ) %] - [% books_loo.isbn %][% END %] [% IF ( books_loo.issn ) %] - [% books_loo.issn %][% END %] [% IF ( books_loo.publishercode ) %], [% books_loo.publishercode %][% END %] [% IF ( books_loo.publicationyear ) %], [% books_loo.publicationyear %][% END %] [% IF ( books_loo.editionstatement ) %], [% books_loo.editionstatement %][% END %] [% IF ( books_loo.suggestionid ) %] <br/>
- Sugerido por: [% books_loo.surnamesuggestedby %][% IF ( books_loo.firstnamesuggestedby ) %], [% books_loo.firstnamesuggestedby %] [% END %] (<a href="/cgi-bin/koha/suggestion/suggestion.pl?suggestionid=[% books_loo.suggestionid %]&amp;op=show">sugerencia #[% books_loo.suggestionid %]</a>) [% END %] [% IF ( books_loo.notes ) %] <p class="ordernote"><strong>Nota: </strong>[% books_loo.notes|html %] [ <a href="/cgi-bin/koha/acqui/modordernotes.pl?ordernumber=[% books_loo.ordernumber %]">Cambiar nota</a>]</p>
- [% ELSE %] [ <a href="/cgi-bin/koha/acqui/modordernotes.pl?ordernumber=[% books_loo.ordernumber %]">Agregar nota </a>] [% END %] </p>
- </td>
+ Sugerido por: [% books_loo.surnamesuggestedby %][% IF ( books_loo.firstnamesuggestedby ) %], [% books_loo.firstnamesuggestedby %] [% END %] (<a href="/cgi-bin/koha/suggestion/suggestion.pl?suggestionid=[% books_loo.suggestionid %]&amp;op=show">sugerencia #[% books_loo.suggestionid %]</a>) [% END %] </p>
+ [% IF ( books_loo.notes ) %] <p class="ordernote"><strong>Nota: </strong>[% books_loo.notes|html %] [ <a href="/cgi-bin/koha/acqui/modordernotes.pl?ordernumber=[% books_loo.ordernumber %]">Cambiar nota</a>]</p>
+ [% ELSE %] <p>[<a href="/cgi-bin/koha/acqui/modordernotes.pl?ordernumber=[% books_loo.ordernumber %]">Agregar nota </a>]</p>
+ [% END %] </td>
  <td class="number gste [% IF books_loo.rrpgste.search('^0') %]error[% END %]">[% books_loo.rrpgste %]</td>
  <td class="number gste [% IF books_loo.ecostgste.search('^0') %]error[% END %]">[% books_loo.ecostgste %]</td>
  <td class="number gsti [% IF books_loo.rrpgsti.search('^0') %]error[% END %]">[% books_loo.rrpgsti %]</td>

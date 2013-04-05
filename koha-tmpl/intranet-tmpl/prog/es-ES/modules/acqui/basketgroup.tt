@@ -17,7 +17,9 @@ body {
 	margin:0;
 	padding:0;
 }
-
+#basketgroupcolumns {
+    width: 58em;
+}
 #ungrouped {
 	overflow: auto;
 	height: 400px;
@@ -93,11 +95,8 @@ function submitForm(form) {
 	form.appendChild(input);
     }
 }
-// prepare DOM for YUI Toolbar
 
  $(document).ready(function() {
-  //  $("#toolbar").empty();
-    yuiToolbar();
     $("#basket_groups").tabs();
 
     $("table").dataTable($.extend(true, {}, dataTablesDefaults, {
@@ -112,50 +111,20 @@ function submitForm(form) {
 
  });
 
-// YUI Toolbar Functions
 
-function yuiToolbar() {
-	var booksellermenu = [
-		{ text: _("Proveedor"), url: "/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]" },
-		{ text: _("Editar proveedor"), url: "/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]&op=enter"},
-	]
-	var ordersbutton = [
-	         { text: _("Administrar pedidos"), url: "/cgi-bin/koha/acqui/booksellers.pl?booksellerid=[% booksellerid %]" },
-	         { text: _("Editar precios no determinados"), url: "/cgi-bin/koha/acqui/uncertainprice.pl?booksellerid=[% booksellerid %]&owner=1" },
-	]
-	new YAHOO.widget.Button("newbasketgroup");
-    new YAHOO.widget.Button({
-        type: "menu",
-        label: _("Proveedor"),
-        name: "booksellerbutton",
-        menu: booksellermenu,
-        container: "toolbar"
-    });
-
-    new YAHOO.widget.Button({
-        type: "menu",
-        label: _("Pedidos"),
-        name: "ordersbutton",
-        menu: ordersbutton,
-        container: "toolbar"
-    });
-}
 //]]>
 </script>
 </head>
 <body id="acq_basketgroup" class="acq">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername |html %]</a> &rsaquo; Agrupamiento de cestas</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; [% IF ( grouping ) %] <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername |html %]</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basketgroup.pl?booksellerid=[% booksellerid %]">Grupo de bolsas</a> Koha &rsaquo; Añadir grupo de bolsas para [% booksellername |html %]</div>
+[% ELSE %] <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername |html %]</a> &rsaquo; Agrupamiento de cestas</div>
+[% END %] <div id="doc3" class="yui-t2">
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
 
-<div id="doc" class="yui-t7">
- 
- <div class="yui-b"> 
- <div id="toolbar">
- <a href="?op=add&amp;booksellerid=[% booksellerid %]" name="newbasketgroup" id="newbasketgroup">Nuevo grupo de bolsas</a>
- </div>
- <h1>Agrupación de bolsas por <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername |html %]</a></h1>
- </div>
-[% IF ( grouping ) %] <div id="bd"> 
- <div class="yui-g"> 
+[% IF ( grouping ) %] <h1>Añadir grupo de bolsas para<a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername |html %]</a></h1>
+ <div id="basketgroupcolumns" class="yui-g">
  <div class="yui-u">
 
  <form action="[% scriptname %]" method="post" name="basketgroups" id="basketgroups">
@@ -215,13 +184,16 @@ function yuiToolbar() {
  <fieldset class="action"><input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  [% IF ( basketgroupid ) %] <input type="hidden" name="basketgroupid" value="[% basketgroupid %]" />
  [% END %] <input type="hidden" name="op" value="attachbasket" />
- <input value="Guardar" type="submit" />
+ <input value="Guardar" type="submit" /> <a href="/cgi-bin/koha/acqui/basketgroup.pl?booksellerid=[% booksellerid %]" class="cancel">Cancelar</a>
  </fieldset>
  </form>
  </div> 
  </div> 
- </div> 
-[% ELSE %] <div class="yui-g">
+[% ELSE %] <div id="toolbar" class="btn-toolbar">
+ <div class="btn-group"><a href="/cgi-bin/koha/acqui/basketgroup.pl?op=add&amp;booksellerid=[% booksellerid %]" class="btn btn-small" id="newbasketgroup"><i class="icon-plus"></i> Nuevo grupo de bolsas</a></div>
+ </div>
+ <h1>Agrupación de bolsas por <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername |html %]</a></h1>
+
  <div id="basket_groups" class="toptabs">
  <ul class="ui-tabs-nav">
  [% UNLESS ( closed ) %]<li class="ui-tabs-selected"><a href="#opened">Abierto</a></li>
@@ -236,14 +208,11 @@ function yuiToolbar() {
  </thead>
  <tbody>
  [% FOREACH basketgroup IN basketgroups %] [% UNLESS ( basketgroup.closed ) %] <tr>
- <td><a href="/cgi-bin/koha/acqui/basketgroup.pl?op=add&amp;booksellerid=[% basketgroup.booksellerid %]&amp;basketgroupid=[% basketgroup.id %]">[% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de bolsas nro. [% basketgroup.id %] [% END %]</a>
- </td>
+ <td>[% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de bolsas nº. [% basketgroup.id %] [% END %]</td>
  <td>
- <span>
  <input value="Cerrar e imprimir" type="button" onclick="closeandprint([% basketgroup.id %])" />
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="add" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Editar" type="submit" /></form>
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="delete" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Eliminar" type="submit" /></form>
- </span>
  </td>
  </tr>
  [% END %] [% END %] </tbody>
@@ -259,8 +228,7 @@ function yuiToolbar() {
  <tbody>
  [% FOREACH basketgroup IN basketgroups %] [% IF ( basketgroup.closed ) %] <tr>
  <td>
- <a href="/cgi-bin/koha/acqui/basketgroup.pl?op=reopen&amp;booksellerid=[% basketgroup.booksellerid %]&amp;basketgroupid=[% basketgroup.id %]">[% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de bolsas nro. [% basketgroup.id %] [% END %]</a>
- </td>
+ [% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de bolsas nº. [% basketgroup.id %] [% END %]</td>
  <td>
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="reopen" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Reabrir" type="submit" /></form>
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="print" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Imprimir" type="submit" /></form>
@@ -271,5 +239,9 @@ function yuiToolbar() {
  </table>
  </div>
  </div>
- </div>
-[% END %] [% INCLUDE 'intranet-bottom.inc' %] 
+[% END %] </div>
+</div>
+<div class="yui-b">
+[% IF ( booksellerid ) %] [% INCLUDE 'vendor-menu.inc' %] [% END %] [% INCLUDE 'acquisitions-menu.inc' %] </div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %] 

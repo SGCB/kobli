@@ -12,7 +12,7 @@
  <div class="yui-b">
 
 [% IF ( do_it ) %] <h1>Ítems nunca prestados</h1>
- [% FOREACH mainloo IN mainloop %] [% IF ( mainloo.loopfilter ) %] <p>Filtrado por</p>
+ [% FOREACH mainloo IN mainloop %] [% IF ( mainloo.loopfilter ) %] <p>Filtrado en:</p>
  [% FOREACH loopfilte IN mainloo.loopfilter %] [% IF ( loopfilte.err ) %]<p class="error">Error: [% ELSE %]<p>
  [% END %] [% IF ( loopfilte.sql ) %]<span class="sql">[% END %] [% loopfilte.crit %] = [% loopfilte.filter %] [% IF ( loopfilte.sql ) %]</span>[% END %] </p>
  [% END %] [% END %] [% IF ( mainloo.looptables ) %] <h3><a name="summary" id="summary"></a>Resumen</h3>

@@ -116,7 +116,7 @@
  [% ELSE %] [% IF ( module == 'AUTHORITIES' ) %] <a href="/cgi-bin/koha/authorities/detail.pl?authid=[% loopro.object %]" title="Muestra detalles para esta autoridad">autorizado [% loopro.object %]</a>
  [% ELSE %] [% loopro.object %] [% END %] [% END %] [% END %] [% END %] [% END %] </td>
  <td>
- [% IF ( loopro.CIRCULATION ) %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?item=[% loopro.info %]&biblionumber=[% loopro.biblionumber %]&bi=[% loopro.biblioitemnumber %]#item[% loopro.object %]" title="Mostrar detalles de este registro">Ítem [% loopro.barcode |html %]</a>
+ [% IF ( loopro.CIRCULATION ) %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?itemnumber=[% loopro.info %]&biblionumber=[% loopro.biblionumber %]&bi=[% loopro.biblioitemnumber %]#item[% loopro.info %]" title="Mostrar detalles de este ítem">Ítem [% loopro.barcode |html %]</a>
  [% ELSE %] [% loopro.info |html %] [% END %] </td>
  </tr>
  [% END %] </table>

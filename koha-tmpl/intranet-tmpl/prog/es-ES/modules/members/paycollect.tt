@@ -1,6 +1,13 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Recaudar pago de multas para [% borrower.firstname %] [% borrower.surname %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type= "text/javascript">
 //<![CDATA[
+$(document).ready(function() {
+    $('#payindivfine, #woindivfine, #payfine').preventDoubleFormSubmit();
+});
+//]]>
+</script>
+<script type= "text/javascript">
+//<![CDATA[
 function moneyFormat(textObj) {
     var newValue = textObj.value;
     var decAmount = "";
@@ -82,7 +89,7 @@ function moneyFormat(textObj) {
 <div class="tabs-container">
 [% IF ( error_over ) %] <div id="error_message" class="dialog alert">
  Debe pagar un valor menor o igual a [% total_due | format('%.2f') %].</div>
-[% END %] [% IF ( pay_individual ) %] <form name="payindivfine" onsubmit="return validatePayment(this);" method="post" action="/cgi-bin/koha/members/paycollect.pl">
+[% END %] [% IF ( pay_individual ) %] <form name="payindivfine" id="payindivfine" onsubmit="return validatePayment(this);" method="post" action="/cgi-bin/koha/members/paycollect.pl">
  <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrower.borrowernumber %]" />
  <input type="hidden" name="pay_individual" id="pay_individual" value="[% pay_individual %]" />
  <input type="hidden" name="itemnumber" id="itemnumber" value="[% itemnumber %]" />
@@ -134,7 +141,7 @@ function moneyFormat(textObj) {
  <div class="action"><input value="Confirmar" name="submitbutton" type="submit" />
  <a class="cancel" href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrower.borrowernumber %]">Cancelar</a></div>
  </form>
-[% ELSIF ( writeoff_individual ) %] <form name="woindivfine" action="/cgi-bin/koha/members/pay.pl" method="post" >
+[% ELSIF ( writeoff_individual ) %] <form name="woindivfine" id="woindivfine" action="/cgi-bin/koha/members/pay.pl" method="post" >
  <fieldset class="rows">
  <legend>Cancelar una multa individual</legend>
  <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrower.borrowernumber %]" />
@@ -172,7 +179,7 @@ function moneyFormat(textObj) {
  <div class="action"><input value="Cancelar este cargo" name="confirm_writeoff" type="submit" id="confirm_writeoff" />
  <a class="cancel" href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrower.borrowernumber %]">Cancelar</a></div>
  </form>
-[% ELSE %] <form name="payfine" onsubmit="return validatePayment(this);" method="post" action="/cgi-bin/koha/members/paycollect.pl">
+[% ELSE %] <form name="payfine" id="payfine" onsubmit="return validatePayment(this);" method="post" action="/cgi-bin/koha/members/paycollect.pl">
  <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrower.borrowernumber %]" />
  <input type="hidden" name="selected_accts" id="selected_accts" value="[% selected_accts %]" />
  <input type="hidden" name="total" id="total" value="[% total %]" />

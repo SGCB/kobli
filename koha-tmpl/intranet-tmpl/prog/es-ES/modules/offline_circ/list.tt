@@ -1,6 +1,5 @@
  [% INCLUDE "doc-head-open.inc" %] <title>Koha &rsaquo; Circulación &rsaquo; Circulación fuera de línea</title>
- [% INCLUDE "doc-head-close.inc" %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
- <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
+ [% INCLUDE "doc-head-close.inc" %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
  <script type="text/javascript">
     //<![CDATA[
         $(document).ready(function() {
@@ -71,6 +70,7 @@
  <th>Acción</th>
  <th>Código de barras</th>
  <th>Número de Carnet</th>
+ <th>Monto</th>
  </tr>
  </thead>
  <tbody>
@@ -83,9 +83,10 @@
  [% ELSE %] <span class="error">[% operation.barcode %]</span>
  [% END %] </td>
  <td>
- [% IF ( operation.actionissue ) %] [% IF ( operation.borrowernumber ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% operation.borrowernumber %]" title="[% operation.borrower %]">[% operation.cardnumber %]</a>
+ [% IF ( operation.actionissue || operation.actionpayment) %] [% IF ( operation.borrowernumber ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% operation.borrowernumber %]" title="[% operation.borrower %]">[% operation.cardnumber %]</a>
  [% ELSE %] <span class="error">[% operation.cardnumber %]</span>
  [% END %] [% END %] </td>
+ <td>[% operation.amount %]</td>
  </tr>
  [% END %] </tbody>
  </table>

@@ -3,22 +3,25 @@
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
-	$("#processfile").hide();
+    $("#enqueuefile").hide();
+    $("#processfile").hide();
 });
+
 function CheckUpload(f){
-	if(f.fileToUpload.value == ""){
-		alert(_("Seleccione el archivo a subir"));
-	} else {
-		return ajaxFileUpload()
-	}
-		return false;
+    if (f.fileToUpload.value == ""){
+        alert(_("Seleccione el archivo a subir"));
+    } else {
+        return ajaxFileUpload()
+    }
+    return false;
 }
+
 function CheckForm(f) {
     if (f.uploadedfileid.value == '') {
         alert(_("Por favor, suba un archivo primero"));
     } else {
-		$("#fileuploadstatus").hide();
-		$("#fileuploadform").slideUp();
+        $("#fileuploadstatus").hide();
+        $("#fileuploadform").slideUp();
         return submitBackgroundJob(f);
     }
     return false;
@@ -43,6 +46,7 @@ function CheckForm(f) {
  [% FOREACH message IN messages %] [% IF ( message.message ) %] <div class="dialog alert">
  [% IF ( message.ERROR_file_version ) %]<p>Advertencia: Este archivo es de la versión [% message.upload_version %], pero solo sé como importar de la versión [% message.current_version %]. Haré lo posible.</p>[% END %] </div>
  [% END %] [% IF ( message.ERROR_no_borrower_from_item ) %]<p>Advertencia: imposible determinar el socio a partir del código de barras ([% message.badbarcode %]). No se puede devolver.</p>[% END %] [% IF ( message.issue ) %]<p>Prestado <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% message.biblionumber %]">[% message.title |html %]</a> ([% message.barcode %]) a <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %] [% IF ( message.renew ) %]<p>Renovado <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% message.biblionumber %]">[% message.title |html %]</a> ([% message.barcode %]) de <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %] [% IF ( message.return ) %]<p>Devuelto <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% message.biblionumber %]">[% message.title |html %]</a> ([% message.barcode %]) de <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %] [% IF ( message.payment ) %]<p>Pago aceptado ([% message.amount %]) de <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% message.borrowernumber %]">[% message.firstname %] [% message.surname %]</a> ([% message.cardnumber %]): [% message.datetime %]</p>[% END %] [% END %] [% ELSE %] <h2>Cargar datos de circulación fuera de línea</h2>
+
  <div id="fileuploadform">
  <form method="post" action="[% SCRIPT_NAME %]" enctype="multipart/form-data">
  <fieldset class="brief">
@@ -54,11 +58,17 @@ function CheckForm(f) {
  <div id="fileuploadstatus" style="display:none">Porcentaje subido: <div id="fileuploadprogress"></div> <span id="fileuploadpercent"></span>%</div>
  <div id="fileuploadfailed" style="display:none"></div>
  </div>
- <form action="process_koc.pl" id="processfile" method="post" enctype="multipart/form-data">
+
+ <form action="enqueue_koc.pl" id="processfile" method="post" enctype="multipart/form-data">
+ <input type="hidden" name="uploadedfileid" id="uploadedfileid" value="" />
+ <input value="Añadir a una cola de circulación offline" type="submit" onclick="return CheckForm(this.form);" id="queueformsubmit" />
+ </form>
+
+ <form action="process_koc.pl" id="enqueuefile" method="post" enctype="multipart/form-data">
  <input type="hidden" name="uploadedfileid" id="uploadedfileid" value="" />
  <input type="hidden" name="runinbackground" id="runinbackground" value="" />
  <input type="hidden" name="completedJobID" id="completedJobID" value="" />
- <input value="Procesar archivo de circulación fuera de linea" type="submit" onclick="return CheckForm(this.form);" id="mainformsubmit" />
+ <input value="Aplicar directamente" type="submit" onclick="return CheckForm(this.form);" id="mainformsubmit" />
  <div id="jobstatus" style="display:none">Avance del trabajo: <div id="jobprogress"></div> <span id="jobprogresspercent"></span>%</div>
  <div id="jobfailed" style="display:none"></div>
  </form>

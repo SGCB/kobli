@@ -1,4 +1,4 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] [% SET destination = "circ" %] <title>Koha &rsaquo; Circulación [% IF borrowernumber %] &rsaquo; Prestando a [% INCLUDE 'patron-title.inc' invert_name = 1 %] [% END %]</title>
+[% USE KohaDates %] [% USE KohaAuthorisedValues %] [% INCLUDE 'doc-head-open.inc' %] [% SET destination = "circ" %] <title>Koha &rsaquo; Circulación [% IF borrowernumber %] &rsaquo; Prestando a [% INCLUDE 'patron-title.inc' invert_name = 1 %] [% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] [% IF ( UseTablesortForCirc ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>[% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript">
@@ -266,7 +266,7 @@ function validate1(date) {
 </form>
 </div>
 
-[% IF ( dateexpiry ) %]<div class="dialog message">La cuenta del socio se ha renovado hasta [% dateexpiry %]</div>[% END %] [% IF additional_materials %] <div id="materials" class="dialog message">Nota sobre los materiales adjuntos: <br />
+[% IF ( was_renewed ) %]<div class="dialog message">La cuenta del socio se ha renovado hasta [% expiry %]</div>[% END %] [% IF additional_materials %] <div id="materials" class="dialog message">Nota sobre los materiales adjuntos: <br />
  [% additional_materials %] </div>
 [% END %] [% IF ( alert.ITEM_LOST ) %] <div class="dialog message">Este ítem se ha perdido con estado de "[% alert.ITEM_LOST %]". </div>
 [% END %] [% IF ( alert.OTHER_CHARGES ) %] <div class="dialog message">El patrono tiene cargos pendientes de pago para las reservas, alquileres, etc de [% alert.OTHER_CHARGES %]</div>
@@ -285,7 +285,8 @@ function validate1(date) {
 [% END %] [% IF ( TOO_MANY ) %] <li>Demasiados préstamos. [% current_loan_count %] prestados, solo [% max_loans_allowed %] permitidos.</li>
 [% END %] [% IF ( BORRNOTSAMEBRANCH ) %] <li>Estos socios son de una biblioteca diferente ([% BORRNOTSAMEBRANCH %])</li>
 [% END %] [% IF ( PATRON_CANT ) %] <li>Este socio no puede retirar este ítem debido a las políticas de circulación de la biblioteca</li>
-[% END %] [% IF ( NOT_FOR_LOAN_FORCING ) %] <li>El ítem normalmente no es para préstamo. ¿Prestar de todas maneras?</li>
+[% END %] [% IF ( NOT_FOR_LOAN_FORCING ) %] <li>
+ [% IF ( itemtype_notforloan ) %] Los ítems de este tipo no están disponibles para préstamo. [% ELSIF ( item_notforloan ) %] [% item_notforloan_lib = KohaAuthorisedValues.GetByCode( authvalcode_notforloan, item_notforloan, 0 ) %] Este ítem no está disponible para préstamo [% IF (item_notforloan_lib) %]([% item_notforloan_lib %])[% END %]. [% END %] ¿Prestar igualmente?</li>
 [% END %] [% IF ( USERBLOCKEDOVERDUE ) %] <li>El socio tiene [% USERBLOCKEDOVERDUE %] ítem(s) retrasados. Prestar de todos modos?</li>
 [% END %] [% IF ( ITEM_LOST ) %] <li>Este ítem se ha perdido con estado de "[% ITEM_LOST %]". Lo presta igualmente?</li>
 [% END %] [% IF  HIGHHOLDS %] <li>Artículo de gran demanda. Tiempo de préstamo reducido a [% HIGHHOLDS.duration %] días (debido [% HIGHHOLDS.returndate %]). ¿todos modos desea revisar?</li>
@@ -345,7 +346,8 @@ function validate1(date) {
  [% END %] [% IF ( INVALID_DATE ) %] <li>La fecha de devolución &quot;[% INVALID_DATE %]&quot; es inválida</li>
  [% END %] [% IF ( UNKNOWN_BARCODE ) %] <li>El código de barras [% barcode |html %] no se ha encontrado</li>
  [% IF ( fast_cataloging ) %] [% IF ( CAN_user_editcatalogue_fast_cataloging ) %] <a href="/cgi-bin/koha/cataloguing/addbiblio.pl?frameworkcode=FA&amp;barcode=[% barcode |uri %]&amp;circborrowernumber=[% borrowernumber %]&amp;branch=[% branch %]&amp;duedatespec=[% duedatespec %]&amp;stickyduedate=[% stickyduedate %]">Catalogación rápida</a>
- [% END %] [% END %] [% END %] [% IF ( NOT_FOR_LOAN ) %] <li>El ítem no puede prestarse</li>
+ [% END %] [% END %] [% END %] [% IF ( NOT_FOR_LOAN ) %] <li>
+ [% IF ( itemtype_notforloan ) %] Tipo de ítem no disponible para el préstamo. [% ELSIF ( item_notforloan ) %] [% item_notforloan_lib = KohaAuthorisedValues.GetByCode( authvalcode_notforloan, item_notforloan, 0 ) %] Item no disponible para préstamo [% IF (item_notforloan_lib) %]([% item_notforloan_lib %])[% END %]. [% END %] </li>
  [% END %] [% IF ( WTHDRAWN ) %] <li>Ítem ha sido retirado</li>
  [% END %] [% IF ( RESTRICTED ) %] <li>El ítem está restringido</li>
  [% END %] [% IF ( GNA ) %] <li>Dirección de socio dudosa</li>

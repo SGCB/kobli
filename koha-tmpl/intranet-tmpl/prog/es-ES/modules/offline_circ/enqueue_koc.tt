@@ -1,0 +1,19 @@
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación &rsaquo; Añadir la circulación on line a la cola</title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
+<body>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; <a href="/cgi-bin/koha/offline_circ/process_koc.pl">Poner las circulaciones offline en cola</a></div>
+
+<div id="doc" class="yui-t7">
+
+ <div id="bd">
+
+ <h2>Circulación fuera de línea Koha</h2>
+ <p>Su archivo fue procesado</p>
+
+[% FOREACH message IN messages %] [% IF ( message.message ) %] [% IF ( message.ERROR_file_version ) %] <div class="dialog alert"><p>Advertencia: Este archivo es de la versión [% message.upload_version %], pero solo sé como importar de la versión [% message.current_version %]. Haré lo posible.</p>
+ [% END %] [% END %] [% END %] <p><a href="process_koc.pl">cargar otro archivo KOC</a></p>
+
+<p><a href="list.pl">Ver acciones pendientes de la circulación offline</a></p>
+
+</div>
+[% INCLUDE 'intranet-bottom.inc' %] 

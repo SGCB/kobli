@@ -33,58 +33,12 @@
                 alert(_("Por favor, seleccione imagen(es) ") + op + ".");
                 return (-1);
             };
-            function showHideLayers(element, time, action) {
-                setTimeout("changeVisibility('" + element + "','" + action + "')", time)
-            }
-            function changeVisibility(element, action) {
-                document.getElementById(element).style.display=action;
-            }
-    </script>
- <script type="text/javascript">
-        //<![CDATA[
         $(document).ready(function() {
-            $("#upload_cancel").empty();
-            $("#delete_cancel").empty();
-            $("#upload").empty();
-            $("#delete").empty();
-            buildButtons();
-            showHideLayers('dialog', 5000, 'none')
+            $("#delete").click(function(){
+                return DeleteConfirm();
+            });
          });
-
-        function buildButtons() {
-            new YAHOO.widget.Button({
-                type: "link",
-                label: _("Cancelar"),
-                id: "cancelul",
-                href: "/cgi-bin/koha/patroncards/home.pl",
-                container: "upload_cancel"
-            });
-
-            new YAHOO.widget.Button({
-                type: "link",
-                label: _("Cancelar"),
-                id: "canceldel",
-                href: "/cgi-bin/koha/patroncards/home.pl",
-                container: "delete_cancel"
-            });
-
-            new YAHOO.widget.Button({
-                type: "submit",
-                label: _("Subir"),
-                id: "uploadsb",
-                value: "upload",
-                container: "upload"
-            });
-
-            var deleteButton = new YAHOO.widget.Button({
-                type: "link",
-                onclick: {fn: DeleteConfirm},
-                label: _("Eliminar"),
-                id: "deletesb",
-                value: "delete",
-                container: "delete",
-            });
-        }
+        //]]>
     </script>
 </head>
 <body id="pcard_image-manage" class="tools pcard">
@@ -98,14 +52,15 @@
  <div class="yui-u first">
  <h1>Subir Imágenes</h1>
  [% IF ( IMPORT_SUCCESSFUL ) %] <div id="dialog" class="dialog message">
- <li><h3>Imagen subida con éxito.</h3></li>
- <li>Archivo: [% SOURCE_FILE %]</li>
- <li>Nombre de la imagen: [% IMAGE_NAME %]</li>
+ <h3>Imagen subida con éxito</h3>
+ <ul><li>Archivo: [% SOURCE_FILE %]</li>
+ <li>Nombre de la imagen: [% IMAGE_NAME %]</li></ul>
  </div>
  [% END %] <form name="upload_images" method="post" action="/cgi-bin/koha/patroncards/image-manage.pl" enctype="multipart/form-data">
  <fieldset class="brief">
  <div class="hint">
  <b>NOTA:</b> Sólo son soportados los formatos PNG, GIF, JPEG, XPM <b>debe</b> ser menos de 500KB. </div>
+ <ol>
  <li>
  <label for="uploadfile">Seleccione el archivo a subir: </label>
  <input type="file" id="uploadfile" name="uploadfile" />
@@ -117,24 +72,24 @@
  Este será el nombre con el que se hará referencia a esta imagen en el editor de diseño de carnet de socio. </div>
  <input type="text" id="image_name" name="image_name" size="20" />
  </li>
+ </ol>
  </fieldset>
  <fieldset class="action">
  <input type="hidden" name="op" value="upload" />
- <span id="upload"><input value="subir" id="uploadsu" type="submit" class="submit" /></span>
- <span id="upload_cancel"><a id="cancelul" href="/cgi-bin/koha/patroncards/home.pl" class="cancel">Cancelar</a></span>
+ <input value="Subir" id="uploadsu" type="submit" />
+ <a id="cancelul" href="/cgi-bin/koha/patroncards/home.pl" class="cancel">Cancelar</a>
  </fieldset>
  </form>
  </div>
  <div class="yui-u">
  <h1>Eliminar imágenes</h1>
  [% IF ( DELETE_SUCCESSFULL ) %] <div id="dialog" class="dialog message">
- <li><h3>Imagen(es) eliminada(s) satisfactoriamente</h3></li>
+ <h3>Imagen(es) eliminada(s) con éxito</h3>
  </div>
  [% END %] [% IF ( TABLE ) %] <form name="delete_images" method="post" action="/cgi-bin/koha/patroncards/image-manage.pl" enctype="multipart/form-data">
  <fieldset class="brief">
  <div class="hint">
  Seleccione una o más imágenes para eliminar. </div>
- <li>
  <table>
  [% FOREACH TABL IN TABLE %] [% IF ( TABL.header_fields ) %] <tr>
  [% FOREACH header_field IN TABL.header_fields %] <th>[% header_field.field_label %]</th>
@@ -145,12 +100,11 @@
  [% ELSE %] <td>&nbsp;</td>
  [% END %] [% END %] </tr>
  [% END %] [% END %] </table>
- </li>
  </fieldset>
  <fieldset class="action">
  <input type="hidden" name="op" value="delete" />
- <span id="delete"><input value="Eliminar imagen(es)" id="deletesu" type="button" onclick="DeleteConfirm()" /></span>
- <span id="delete_cancel"><a id="canceldel" href="/cgi-bin/koha/patroncards/home.pl" class="cancel">Cancelar</a></span>
+ <input value="Eliminar" type="button" id="delete" />
+ <a id="canceldel" href="/cgi-bin/koha/patroncards/home.pl" class="cancel">Cancelar</a>
  </fieldset>
  </form>
  [% ELSE %] <fieldset class="brief">

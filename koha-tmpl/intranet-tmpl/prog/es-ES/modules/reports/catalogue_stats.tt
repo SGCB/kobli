@@ -43,7 +43,7 @@
  <div class="yui-b">
 
 [% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Estadísticas del catálogo</h1>
- [% IF ( mainloo.loopfilter ) %] <p>Filtrado por</p>
+ [% IF ( mainloo.loopfilter ) %] <p>Filtrado en:</p>
  [% FOREACH loopfilte IN mainloo.loopfilter %] <p>[% loopfilte.crit %] =[% loopfilte.filter %]</p>
  [% END %] [% END %] <table>
  <tr>

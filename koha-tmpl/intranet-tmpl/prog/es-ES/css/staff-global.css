@@ -48,7 +48,7 @@ a.popup {
 
 body {
 	text-align : left;
-  	padding:0 0 2.5em 0;
+    padding:0 0 4em 0;
   font-family: arial, verdana, helvetica, sans-serif;
 }
 
@@ -254,6 +254,7 @@ table+table {
 	border : 0;
 }
 
+.highlighted-row { background-color: orange !important }
 
 tr.highlight td, tr.highlight th, tr.odd td {
 	background-color : #F3F3F3;
@@ -653,6 +654,12 @@ fieldset.rows td label {
 fieldset.rows label.yesno {
 	float : none;
 	width : auto;
+}
+
+fieldset.rows label.error {
+	float: none;
+	margin-left: 1em;
+	width: auto;
 }
 
 fieldset.action, div.action {
@@ -1195,7 +1202,8 @@ div.note {
  	text-decoration : underline;
  }
  
-.required {
+label.required,
+span.required {
     color : #C00;
 }
 
@@ -1428,9 +1436,8 @@ li.email {
    border : 1px solid #B9D8D9;
 }
 
-/* Hack just for Firefox */
-html>/**/body #searchheader button, x:-moz-any-link, x:default {
-	padding-bottom : 3px;
+#searchheader .btn-group > .btn:first-child {
+    margin-left : .7em;
 }
 
 #searchheader form {
@@ -2549,6 +2556,14 @@ a.disabled {
 .modal-header .closebtn{margin-top:2px;}
 .closebtn{float:right;font-size:20px;font-weight:bold;line-height:20px;color:#000000;text-shadow:0 1px 0 #ffffff;opacity:0.2;filter:alpha(opacity=20);}.closebtn:hover{color:#000000;text-decoration:none;cursor:pointer;opacity:0.4;filter:alpha(opacity=40);}
 button.closebtn{padding:0;cursor:pointer;background:transparent;border:0;-webkit-appearance:none;}
+.btn-group label,
+.btn-group select {
+    font-size: 13px;
+}
+
+.waiting {
+    cursor: wait;
+}
 ul.doc-biblio{}
 ul.doc-biblio li{
     list-style:none;

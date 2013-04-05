@@ -32,7 +32,7 @@
  [% END %] [% END %] </select>
  </td>
  [% ELSE %] <td>-</td>
- [% END %] [% IF ( messaging_preference.transport_sms ) %] [% IF ( SMSSendDriver ) %]<td>
+ [% END %] [% IF ( SMSSendDriver ) %]<td>
  [% IF ( messaging_form_inactive ) %] [% IF ( messaging_preference.transports_sms ) %] <input type="checkbox"
                  id="sms[% messaging_preference.message_attribute_id %]"
                  name="[% messaging_preference.message_attribute_id %]"
@@ -49,8 +49,7 @@
                  id="sms[% messaging_preference.message_attribute_id %]"
                  name="[% messaging_preference.message_attribute_id %]"
                  value="sms" onclick = "$('#none'+'[% messaging_preference.message_attribute_id %]').removeAttr('checked');" />
- [% END %] [% END %] </td>[% END %] [% ELSE %] <td>-</td>
- [% END %] [% IF ( TalkingTechItivaPhone ) %]<td>
+ [% END %] [% END %] </td>[% END %] [% IF ( TalkingTechItivaPhone ) %]<td>
  [% IF ( messaging_form_inactive ) %] [% IF ( messaging_preference.transports_phone ) %] <input type="checkbox"
                  id="phone[% messaging_preference.message_attribute_id %]"
                  name="[% messaging_preference.message_attribute_id %]"

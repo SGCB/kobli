@@ -1,36 +1,24 @@
-<div id="toolbar"><script type="text/javascript">
-    //<![CDATA[
-
-    // prepare DOM for YUI Toolbar
-
-    $(document).ready(function() {
-        yuiToolbar();
-    });
-
-    // YUI Toolbar Functions
-
-    function yuiToolbar() {
-        new YAHOO.widget.Button("editsupplier");
-        new YAHOO.widget.Button("deletesupplier");
-        new YAHOO.widget.Button("receive");
-        [% UNLESS ( booksellerid ) %]new YAHOO.widget.Button("newvendor");[% END %]
-
-        var newmenu = [
-            [% IF ( CAN_user_acquisition_order_manage ) %]
-                { text: _("Bolsa"), url: "/cgi-bin/koha/acqui/basketheader.pl?booksellerid=[% booksellerid %]&op=add_form"},
-            [% END %]
-            [% IF ( CAN_user_acquisition_contracts_manage ) %]{ text: _("Contrato"), url: "/cgi-bin/koha/admin/aqcontract.pl?op=add_form&amp;booksellerid=[% booksellerid %]"},[% END %]
-            { text: _("Proveedor"), url: "/cgi-bin/koha/acqui/supplier.pl?op=enter"}
-        ]
-        new YAHOO.widget.Button({type: "menu", label: _("Nuevo"), name: "newmenu", menu: newmenu, container: "newmenuc"});
+<script type="text/javascript">
+//<![CDATA[
+function confirm_deletion() {
+    if (confirm(_("¿Está seguro de querer borrar este proveedor? "))) {
+        window.location="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]&op=delete";
     }
-
-    //]]>
-    </script>
- <ul id="toolbar-list" class="toolbar">
- [% IF ( booksellerid ) %] [% IF ( CAN_user_acquisition_vendors_manage ) %] <li id="newmenuc"></li>
- <li><a id="editsupplier" href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]&amp;op=enter">Editar proveedor</a></li>
- [% UNLESS ( basketcount OR subscriptioncount ) %] <li><a id="deletesupplier" href="javascript:confirm_deletion()">Eliminar proveedor</a></li>
- [% END %] [% END %] [% IF ( CAN_user_acquisition_order_receive && basketcount ) %]<li><a id="receive" href="/cgi-bin/koha/acqui/parcels.pl?booksellerid=[% booksellerid %]">Recibir envíos</a></li>[% END %] [% ELSE %] <li><a id="newvendor" href="/cgi-bin/koha/acqui/supplier.pl?op=enter">Nuevo proveedor</a></li>
+}
+//]]>
+</script>
+<div id="toolbar" class="btn-toolbar">
+ [% IF ( booksellerid ) %] <div class="btn-group">
+ <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-plus"></i> Nuevo: <span class="caret"></span>
+ </a>
+ <ul class="dropdown-menu">
+ [% IF ( CAN_user_acquisition_order_manage ) %] <li><a href="/cgi-bin/koha/acqui/basketheader.pl?booksellerid=[% booksellerid %]&amp;op=add_form">Bolsa</a></li>
+ [% END %] [% IF ( CAN_user_acquisition_contracts_manage ) %] <li><a href="/cgi-bin/koha/admin/aqcontract.pl?op=add_form&amp;booksellerid=[% booksellerid %]">Contrato</a></li>
+ [% END %] [% IF ( CAN_user_acquisition_vendors_manage ) %] <li><a href="/cgi-bin/koha/acqui/supplier.pl?op=enter">Proveedor</a></li>
  [% END %] </ul>
-</div>
+ </div>
+ [% IF ( CAN_user_acquisition_vendors_manage ) %] <div class="btn-group"><a class="btn btn-small" id="editsupplier" href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]&amp;op=enter"><i class="icon-pencil"></i> Editar proveedor</a></div>
+ [% UNLESS ( basketcount OR subscriptioncount ) %] <div class="btn-group"><a class="btn btn-small" id="deletesupplier" href="javascript:confirm_deletion()"><i class="icon-remove"></i> Eliminar proveedor</a></div>
+ [% END %] [% END %] [% IF ( CAN_user_acquisition_order_receive && basketcount ) %] <div class="btn-group"><a class="btn btn-small" id="receive" href="/cgi-bin/koha/acqui/parcels.pl?booksellerid=[% booksellerid %]"><i class="icon-inbox"></i> Recibir envíos</a></div>
+ [% END %] [% ELSE %] <div class="btn-group"><a class="btn btn-small" href="/cgi-bin/koha/acqui/supplier.pl?op=enter"><i class="icon-plus"></i> Nuevo proveedor</a></div>
+ [% END %] </div>

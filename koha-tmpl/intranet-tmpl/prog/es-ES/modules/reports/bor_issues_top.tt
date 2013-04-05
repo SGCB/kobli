@@ -50,7 +50,7 @@ function Dopop(link) {
 
 
  [% FOREACH mainloo IN mainloop %] <h1>Principales [% mainloo.limit %] socios en préstamos</h1>
- [% IF ( mainloo.loopfilter ) %] <p>Filtrado por</p>
+ [% IF ( mainloo.loopfilter ) %] <p>Filtrado en:</p>
  [% FOREACH loopfilte IN mainloo.loopfilter %] <p>[% IF ( loopfilte.err ) %] [% END %] [% loopfilte.crit %] =[% loopfilte.filter %][% IF ( loopfilte.err ) %] [% END %]</p>
  [% END %] [% END %] <table>
  <tr>

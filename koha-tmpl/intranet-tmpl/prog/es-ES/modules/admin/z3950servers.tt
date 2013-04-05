@@ -1,5 +1,8 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; [% IF ( else ) %]Servidores Z39.50[% END %] [% IF ( add_form ) %] Servidores Z39.50 &rsaquo; [% IF ( searchfield ) %]Modificar servidor Z39.50 [% searchfield %][% ELSE %]Nuevo servidor Z39.50[% END %][% END %] [% IF ( delete_confirm ) %]Servidores Z39.50 &rsaquo; Confirmar eliminación[% END %] [% IF ( add_validate ) %]Servidores Z39.50 &rsaquo; Servidor Z39.50 agregado[% END %] [% IF ( delete_confirmed ) %]Servidores Z39.50 &rsaquo; Servidor Z39.50 eliminado[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %] [% IF ( add_form ) %] <script type="text/javascript">
+[% INCLUDE 'doc-head-close.inc' %] [% IF ( else ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+[% END %] [% IF ( add_form ) %] <script type="text/javascript">
 //<![CDATA[
         //
         function isNotNull(f,noalert) {
@@ -55,7 +58,21 @@
         }
         //]]>
 </script>
- [% END %] </head>
+[% END %] [% IF ( else ) %] <script type="text/javascript">
+    //<![CDATA[
+     $(document).ready(function() {
+        [% IF ( loop ) %]$("#serverst").dataTable($.extend(true, {}, dataTablesDefaults, {
+            "aoColumnDefs": [
+                { "aTargets": [ 2,3,4,7,8,9,10,11 ], "bSortable": false, "bSearchable": false },
+            ],
+            "iDisplayLength": 20,
+            "aLengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+            "sPaginationType": "four_button"
+        }));[% END %]
+     });
+    //]]>
+    </script>
+[% END %] </head>
 <body id="admin_z3950servers" class="admin">
 [% INCLUDE 'header.inc' %] [% INCLUDE 'z3950-admin-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( else ) %]Servidores Z39.50[% END %] [% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; [% IF ( searchfield ) %]Modificar servidor Z39.50 [% searchfield %][% ELSE %]Nuevo servidor Z39.50[% END %][% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; Confirmar eliminación[% END %] [% IF ( add_validate ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; Servidor Z39.50 agregado[% END %] [% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; Servidor Z39.50 eliminado[% END %]</div>
 
@@ -163,32 +180,14 @@
 <form action="[% script_name %]" method="post">
  <input type="submit" value="OK" />
 </form>
-[% END %] [% IF ( else ) %] <div id="toolbar">
- <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
- <script type="text/javascript">
-	//<![CDATA[
-	// prepare DOM for YUI Toolbar
-	 $(document).ready(function() {
-	    yuiToolbar();
-		[% IF ( loop ) %]$.tablesorter.defaults.widgets = ['zebra'];
-		$("#serverst").tablesorter({
-			sortList: [[0,0]],
-			headers: { 2: {sorter:false},3: { sorter: false },4: { sorter: false },7: { sorter: false },8: { sorter: false },9: { sorter: false },10: { sorter: false }}
-		});[% END %]
-	 });
-	// YUI Toolbar Functions
-	function yuiToolbar() {
-	    new YAHOO.widget.Button("newserver");
-	}	//]]>
-	</script>
- <ul class="toolbar">
- <li><a id="newserver" href="/cgi-bin/koha/admin/z3950servers.pl?op=add_form">Nuevo servidor Z39.50</a></li>
-</ul></div>
+[% END %] [% IF ( else ) %] <div id="toolbar" class="btn-toolbar">
+ <a id="newserver" class="btn btn-small" href="/cgi-bin/koha/admin/z3950servers.pl?op=add_form"><i class="icon-plus"></i> Nuevo servidor Z39.50</a>
+</div>
 
 <h3>Administración de Servidores Z39.50</h3>
 
  [% IF ( searchfield ) %] Usted buscó sobre [% searchfield %] [% END %] <table id="serverst">
- <thead><tr><th>Objetivo</th><th>Hostname/puerto</th><th>Base de Datos</th><th>ID de usuario</th><th>Contraseña</th><th>Marcado</th><th>Orden</th> <th>Sintaxis</th><th>Codificación</th><th>Timeout</th><th colspan="2">&nbsp;</th>
+ <thead><tr><th>Objetivo</th><th>Hostname/puerto</th><th>Base de Datos</th><th>ID de usuario</th><th>Contraseña</th><th>Marcado</th><th>Orden</th><th>Sintaxis</th><th>Codificación</th><th>Timeout</th><th>&nbsp;</th><th>&nbsp;</th>
  </tr></thead>
  <tbody>[% FOREACH loo IN loop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
  [% ELSE %] <tr>

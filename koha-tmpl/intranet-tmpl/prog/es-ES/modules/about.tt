@@ -72,10 +72,9 @@
  <p>Parece que ha iniciado la sesión como usuario de base de datos administrativa. Esta opción o se recomienda porque algunas partes de Kobli no funcionarán como se esperaba cuando se utiliza esta cuenta.</p>
  <p>Por favor,  es necesario iniciar sesión con una cuenta personal de personal. Para crear una cuenta personal, crear una biblioteca, una categoría de «Personal»  y añadir un nuevo socio. A continuación, dar permisos de este socio de "Más" en la barra de herramientas.</p>
  [% END %] <h2>Advertencias respecto a la configuración del sistema</h2>
- [% IF ( (prefNoZebra) || (warnPrefBiblioAddsAuthorities) || warnPrefEasyAnalyticalRecords ) %] <table>
+ [% IF ( (warnPrefBiblioAddsAuthorities) || warnPrefEasyAnalyticalRecords ) %] <table>
  <caption>Preferencias</caption>
- [% IF (prefNoZebra) %] <tr><th scope="row"><b>Advertencia</b> </th><td>Preferencias de Sistemas 'nozebra' set.¡Desaprobado!</td></tr>
- [% END %] [% IF (warnPrefBiblioAddsAuthorities) %] <tr><th scope="row"><b>Advertencia</b> </th><td>Configuración de la preferencia de Sistema  'AutoCreateAuthorities', pero es necesario configurar también  'BiblioAddsAuthorities'.</td></tr>
+ [% IF (warnPrefBiblioAddsAuthorities) %] <tr><th scope="row"><b>Advertencia</b> </th><td>Configuración de la preferencia de Sistema  'AutoCreateAuthorities', pero es necesario configurar también  'BiblioAddsAuthorities'.</td></tr>
  [% END %] [% IF (warnPrefEasyAnalyticalRecords) %] <tr><th scope="row"><b>Advertencia</b> </th><td>Configuración preferencias del Sistema, pero la preferencia  'EasyAnalyticalRecords' se configura en 'Use'. Configurelo en 'Don't use' o lo contrario los enlaces  'Show analytics'  en el usuario personal y el OPAC se roperán.</td></tr>
  [% END %] </table>
  [% ELSE %] <p>Ninguna advertencia</p>
@@ -359,11 +358,15 @@
  <div id="licenses">
  <h2>Koha</h2>
  <p>
- <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">Koha es un software libre, puede redistribuirlo y/o modificarlo bajo los términos de la GNU General Public License publicada por la Free Software Foundation, versión 2 de la Licencia, o (a su elección) cualquier versión posterior.</a>
+ <a href="http://www.gnu.org/licenses/gpl-3.0.html">Koha is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.</a>
  </p>
+ <h2>jQuery y jQueryUI</h2>
+ <p><a href="http://jquery.com/">jQuery</a> y <a href="http://jqueryui.com/">jQueryUI</a> está registrado bajo la licencia<a href="http://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt">Licencia MIT</a></p>
+ <h2>Bootstrap</h2>
+ <p><a href="http://twitter.github.com/bootstrap/">Bootstrap</a> código y<a href="http://glyphicons.com">Iconos gratis</a> registrado bajo la licencia<a href="http://www.apache.org/licenses/LICENSE-2.0">Licencia en Apache v2.0</a>.</p>
  <h2>YUI</h2>
  <p>
- <a href="http://developer.yahoo.com/auth/license.txt">Licencia BSD</a>
+ <a href="http://yuilibrary.com/license/">Licencia BSD</a>
  </p>
  <h2>Conjunto de iconos Famfamfam</h2>
  <ul>
@@ -377,12 +380,6 @@
  por el Consorcio Bridge de la Universidad de Carleton y la Universidad de San Olaf.</li>
  </ul>
 
- <h2>La configuarción Sudoc Icon</h2>
- <ul>
- <li><a href="http://www.abes.fr/Sudoc/Boite-a-outils-Sudoc-public/Les-icones-Sudoc">Les icones Sudoc</a></li>
- <li>El Sudoc Icon Set está licenciado bajo<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License</a>
- por Agence Bibliographique de l'Enseignement Supérieur</li>
- </ul>
  <h2>Iconos del Nombre del Proyecto</h2>
  <ul>
  <li>Todas las imágenes vienen desde<a href="http://thenounproject.com/">El Nombre del Proyecto</a> colección</li>
@@ -400,7 +397,7 @@
  <div id="translations">
  <h2>Traducción</h2>
  <ul>
-<li>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; (Árabe)</li>
+<li>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; (Arabic) Karam Qubsi, Kouider Bounama, Sham Bajaa, Ghofran Alshami, Chrestian Aboud and others from <a href="http://wikibrary.org/wiki/Arabic_Koha_Support_Team">the Arabic Koha support team</a></li>
 <li>&#4768;&#4635;&#4653;&#4763; (Amharic) Getway II Ethiopia Co. (Yohannes Mulugeta (Team Leader), Tegene Assefa, Abiyot Bayou)</li>
 <li>Armenio Tigran Zargaryan</li>
 <li>&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080; (Búlgaro) Radoslav Kolev</li>

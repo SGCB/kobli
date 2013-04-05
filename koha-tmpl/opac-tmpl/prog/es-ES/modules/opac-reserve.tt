@@ -156,8 +156,8 @@
 
 <body id="opac-holds">
  <div id="doc3" class="yui-t7">
- [% INCLUDE 'masthead.inc' %] <div id="bd">
- <div id="yui-g">
+ <div id="bd">
+ [% INCLUDE 'masthead.inc' %] <div id="yui-g">
  [% INCLUDE 'search.inc' %] <div id="holds" class="container">
  [% IF ( message ) %] [% IF ( GNA ) %] <div id="gna" class="dialog alert">
  <p><strong>Lo sentimos</strong>, no puede hacer reservas porque la biblioteca no está actualizada <a href="/cgi-bin/koha/opac-userupdate.pl">información de contacto</a> en archivo.</p>
@@ -286,12 +286,12 @@
  </td>
  [% END %][% END %] [% UNLESS ( singleBranchMode ) %] [% IF ( bibitemloo.holdable ) %] [% IF ( choose_branch ) %] <td class="branch">
  [% UNLESS ( bibitemloo.holdable ) %] <select name="branch" id="branch_[% bibitemloo.biblionumber %]" disabled="disabled">
- [% FOREACH branchChoicesLoo IN bibitemloo.branchChoicesLoop %] [% IF ( branchChoicesLoo.selected ) %] <option value="[% branchChoicesLoo.value %]" selected="selected">[% branchChoicesLoo.branchname %]</option>
- [% ELSE %] <option value="[% branchChoicesLoo.value %]">[% branchChoicesLoo.branchname %]</option>
+ [% FOREACH branchloo IN bibitemloo.branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.branchcode %]" selected="selected">[% branchloo.branchname %]</option>
+ [% ELSE %] <option value="[% branchloo.branchcode %]">[% branchloo.branchname %]</option>
  [% END %] [% END %] </select>
  [% ELSE %] <select name="branch" id="branch_[% bibitemloo.biblionumber %]">
- [% FOREACH branchChoicesLoo IN bibitemloo.branchChoicesLoop %] [% IF ( branchChoicesLoo.selected ) %] <option value="[% branchChoicesLoo.value %]" selected="selected">[% branchChoicesLoo.branchname %]</option>
- [% ELSE %] <option value="[% branchChoicesLoo.value %]">[% branchChoicesLoo.branchname %]</option>
+ [% FOREACH branchloo IN bibitemloo.branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.branchcode %]" selected="selected">[% branchloo.branchname %]</option>
+ [% ELSE %] <option value="[% branchloo.branchcode %]">[% branchloo.branchname %]</option>
  [% END %] [% END %] </select>
  [% END %] </td>
  [% END %] [% END %] [% END %] </tr>

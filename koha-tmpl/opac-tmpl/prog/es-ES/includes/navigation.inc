@@ -13,4 +13,4 @@
  </form>
  </div>
  </div>
- [% END %] [% END %] [% END %] [% OpacNav %]
+ [% END %] [% END %] [% END %] [% OpacNav %] [% IF IsPatronPage %] [% INCLUDE usermenu.inc %] [% END %] 

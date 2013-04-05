@@ -1,12 +1,8 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; [% IF ( add_form ) %]Hojas de trabajo MARC &rsaquo; [% action %] [% searchfield %][% END %] [% IF ( delete_confirm ) %]Hojas de trabajo MARC &rsaquo; Confirmar eliminación de campo '[% searchfield %]'[% END %] [% IF ( delete_confirmed ) %]Hojas de trabajo MARC &rsaquo; Datos eliminados[% END %] [% IF ( else ) %]Hojas de trabajo MARC[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
-<script type="text/javascript" id="js">$(document).ready(function() {
-	$("#table_marctagstructure").tablesorter({
-		sortList: [[0,0]],
-		headers: { 5: { sorter: false},6: { sorter: false},7: { sorter: false}}
-	}).tablesorterPager({container: $("#pagertable_marctagstructure"),positionFixed: false,size: 20});
-}); </script>
+[% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+
 <script type="text/javascript">
 //<![CDATA[
 function Check(f) {
@@ -24,6 +20,18 @@ function Check(f) {
         alert(alertString2);
     }
 }
+
+$(document).ready(function() {
+    $("#table_marctagstructure").dataTable($.extend(true, {}, dataTablesDefaults, {
+        "aoColumnDefs": [
+            { "aTargets": [ -1, -2, -3 ], "bSortable": false, "bSearchable": false },
+        ],
+        "aLengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+        "iDisplayLength": 20,
+        "sPaginationType": "four_button"
+    }));
+});
+
 //]]>
 </script>
 </head>
@@ -106,10 +114,10 @@ function Check(f) {
  [% END %]</p>
 </fieldset>
 </form>
-<div id="pagertable_marctagstructure">
-[% INCLUDE 'table-pager.inc' perpage='20' %] </div>
+
  <table id="table_marctagstructure">
  <thead>
+ <tr>
  <th>Campo</th>
  <th>Lib</th>
  <th>Repetible</th>
@@ -119,8 +127,9 @@ function Check(f) {
  <th>Indicadores</th>
  <th>Editar</th>
  <th>Eliminar</th>
+ </tr>
  </thead>
-
+ <tbody>
  [% IF ( select_display ) %] [% FOREACH loo IN loop %] [% IF ( loop.odd ) %]<tr>[% ELSE %]<tr class="highlight">[% END %] <td>[% loo.tagfield %]</td>
  <td>[% loo.liblibrarian %]</td>
  <td>[% IF ( loo.repeatable ) %]Si[% ELSE %]No[% END %]</td>
@@ -146,7 +155,8 @@ function Check(f) {
  <td><a href="[% loo.edit %]">Editar</a></td>
  <td><a href="[% loo.delete %]">Eliminar</a></td>
  </tr>
- [% END %] [% END %] </table>
+ [% END %] [% END %] </tbody>
+ </table>
 
 
 

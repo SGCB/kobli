@@ -2,11 +2,14 @@
 //<![CDATA[
 
 $(document).ready(function(){
-
-    var searchButton = new YAHOO.widget.Button("search");
-    var cancelButton = new YAHOO.widget.Button("cancel");
-    var clearButton = new YAHOO.widget.Button("clear");
-    var newButton = new YAHOO.widget.Button("createnew");
+    $("#clear").on("click",function(e){
+        e.preventDefault();
+        finderjumpfull('blinddetail-biblio-search.pl?authid=0&index=[% index %]');
+    });
+    $("#createnew").on("click",function(e){
+        e.preventDefault();
+        finderjumpfull('authorities.pl?index=[% index %]&authtypecode=[% authtypecode %]');
+    });
     // marclist
     $( "#value_any" ).autocomplete({
         source: function(request, response) {
@@ -98,7 +101,10 @@ function finderjumpfull(page)
 //]]>
 </script>
 
-
+<div id="toolbar" class="btn-toolbar">
+ <div class="btn-group"><a href="#" id="clear" class="btn btn-small"><i class="icon-remove-sign"></i> Limpiar campo</a></div>
+ <div class="btn-group"><a href="#" id="createnew" class="btn btn-small"><i class="icon-plus"></i> Crear una nueva autoridad</a></div>
+</div>
 <form name="f" method="get" action="auth_finder.pl">
  <input type="hidden" name="source" value="[% source %]" />
  <input type="hidden" name="op" value="do_search" />
@@ -106,11 +112,11 @@ function finderjumpfull(page)
  <input type="hidden" name="index" value="[% index %]" />
  <fieldset class="rows"><legend>Buscar opciones</legend>
  <ol><li>
- <span class="label">Tipo de autoridad</span>
+ <span class="label">Tipo de autoridad: </span>
  [% authtypecode %] <input type="hidden" name="authtypecode" value="[% authtypecode %]" />
  </li>
  <li>
- <label for="mainmainentry">Entrada Principal (sólo $a)</label>
+ <label for="mainmainentry">Main entry ($a only): </label>
  <input type="hidden" name="marclist" value="mainmainentry" />
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
@@ -124,7 +130,7 @@ function finderjumpfull(page)
  </li>
 
  <li>
- <label for="mainentry">Entrada Principal</label>
+ <label for="mainentry">Main entry: </label>
  <input type="hidden" name="marclist" value="mainentry" />
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
@@ -138,7 +144,7 @@ function finderjumpfull(page)
  </li>
 
  <li>
- <label for="marclistanywhere">En cualquier parte</label>
+ <label for="marclistanywhere">Anywhere: </label>
  <input type="hidden" name="marclist" value="any" />
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
@@ -151,7 +157,7 @@ function finderjumpfull(page)
  <div id="yvaluecontainermarclist"></div>
  </li>
  <li>
- <label for="marclistheading">Coincidencia de cabecera</label>
+ <label for="marclistheading">Heading match: </label>
  <input type="hidden" name="marclist" value="match" />
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
@@ -163,7 +169,7 @@ function finderjumpfull(page)
  <input type="text" name="value_match" value="[% value_match |html %]" />
  </li>
  <li>
- <label for="orderby">Ordenar por </label>
+ <label for="orderby">Ordenar por : </label>
  <select name="orderby" id="orderby">
  <option value="">No hay pedido</option>
  <option value="HeadingAsc" selected="selected">Ascendente por cabecera</option>
@@ -190,10 +196,6 @@ function finderjumpfull(page)
  </li>
  </ol>
  </fieldset>
- [% END %] <fieldset class="action"> <input value="Comenzar búsqueda" type="submit" class="submit" id="search" /> <a id="cancel" class="cancel close" href="#">Cancelar</a>
- <span id="authfinderops">
- <a href="javascript:finderjumpfull('blinddetail-biblio-search.pl?authid=0&amp;index=[% index %]')" id="clear" class="button">Limpiar campo</a>
- <a href="javascript:finderjumpfull('authorities.pl?index=[% index %]&authtypecode=[% authtypecode %]')" id="createnew" class="button">Crear nuevo </a>
- </span>
+ [% END %] <fieldset class="action"> <input value="Buscar" type="submit" class="submit" id="search" /> <a id="cancel" class="cancel close" href="#">Cancelar</a>
  </fieldset>
 </form>

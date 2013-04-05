@@ -1,0 +1,42 @@
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Plugins &rsaquo; Cargar plugin</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] </head>
+
+<body>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
+&rsaquo; <a href="/cgi-bin/koha/plugins/plugins-home.pl">Plugins</a>
+&rsaquo; Subir plugins</div>
+
+<div id="doc3" class="yui-t2">
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+ <div class="yui-g">
+ <div class="yui-u first">
+ <h1>Cargar plugin de Koha</h1>
+ [% IF ( ERRORS ) %] <div class="dialog alert">
+ [% FOREACH ERROR IN ERRORS %] [% IF ( ERROR.NOTKPZ ) %]<li><b>El archivo subido no parece ser un archivo kpz. La extensión no es ".kpz".</b></li>
+ [% ELSIF ( ERROR.NOWRITETEMP ) %]<li><b>Este script no puede crear/escribir en el directorio temporal.</b></li>
+ [% ELSIF ( ERROR.EMPTYUPLOAD ) %]<li><b>El archivo subido parece estar vacío.</b></li>
+ [% ELSIF ( ERROR.UZIPFAIL ) %]<li><b>[% ERROR.UZIPFAIL %] falló al descomprimir.<br />Por favor verifique la integridad del archivo ZIP y vuelva a intentarlo.</b></li>
+ [% ELSIF ( ERROR.NOWRITEPLUGINS ) %]<li><b>No se pueden el archivo del directorio de plugins<br />Por favor verifique su usuario de Pacahe tiene derechos de escritura en el directorio de plugins.</b></li>
+ [% ELSE %]<li><b>[% ERROR.CORERR %] Ha ocurrido un error desconocido.<br />Por favor, revise el registro de errores para obtener más detalles.</b></li>[% END %] [% END %] </div>
+ [% END %] <form method="post" action="/cgi-bin/koha/plugins/plugins-upload.pl" enctype="multipart/form-data">
+ <fieldset class="brief">
+ <div class="hint"><b>NOTA:</b> Sólo son soportados formatos de imagen KPZ.</div>
+ <ol>
+ <li>
+ <label for="uploadfile">Seleccione el archivo a subir: </label><input type="file" id="uploadfile" name="uploadfile" />
+ </li>
+ </ol>
+ </fieldset>
+ <fieldset class="action">
+ <input type="hidden" name="op" value="Upload" />
+ <input value="Subir" type="submit" class="submit" />
+ </fieldset>
+ </form>
+
+ </div>
+ </div>
+ </div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %] 

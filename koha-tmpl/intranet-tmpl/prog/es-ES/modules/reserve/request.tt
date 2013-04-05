@@ -207,7 +207,11 @@ function checkMultiHold() {
  </li>
  <li>
  <label for="pickup">Retirar en:</label>
- [% CGIbranch %] </li>
+ <select name="pickup" size="1" id="pickup">
+ [%- FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) -%] <option value="[% branchloo.branchcode %]" selected="selected">[% branchloo.branchname %]</option>
+ [%- ELSE -%] <option value="[% branchloo.branchcode %]">[% branchloo.branchname %]</option>
+ [%- END -%] [%- END %] </select>
+ </li>
 
  [% IF ( reserve_in_future ) %] <li>
  <label for="from">La reserva comienza el día:</label>
@@ -388,8 +392,8 @@ function checkMultiHold() {
  [% ELSE %] A la espera de ser retirado <input type="hidden" name="pickup" value="[% reserveloo.wbrcode %]" />
  [% END %] [% ELSE %] El ítem esta siendo transferido a <b> [% reserveloo.wbrname %]</b> <input type="hidden" name="pickup" value="[% reserveloo.wbrcode %]" />
  [% END %] [% ELSE %] <select name="pickup">
- [% FOREACH branchloo IN reserveloo.branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">
- [% ELSE %] <option value="[% branchloo.value %]">
+ [% FOREACH branchloo IN reserveloo.branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.branchcode %]" selected="selected">
+ [% ELSE %] <option value="[% branchloo.branchcode %]">
  [% END %] [% branchloo.branchname %] </option>
  [% END %] </select>
  [% END %] </td>

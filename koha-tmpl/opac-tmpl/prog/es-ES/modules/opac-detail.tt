@@ -1,5 +1,4 @@
 [% USE KohaDates %] [% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnDetail ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnDetail ) %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Detalles para: [% title |html %][% FOREACH subtitl IN subtitle %], [% subtitl.subfield |html %][% END %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tools.min.js"></script>
 [% IF ( SocialNetworks ) %] <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
     //<![CDATA[
       {lang: '[% lang %]'}
@@ -40,7 +39,15 @@
 
      $(document).ready(function() { 
         $('#bibliodescriptions').tabs();
-
+        $(".branch-info-tooltip-trigger").tooltip({
+            position: { my: "left+15 center", at: "right center" },
+            show: 50,
+            hide: 50,
+            content: function(){
+                var element = $(this).next("div");
+                return element.html();
+            }
+        });
 [% IF ( TagsInputEnabled && loggedinusername ) %]
         $(".tag_add").click(function(){
             var thisid = $(this).attr("id");
@@ -122,7 +129,6 @@
         });
     [% END %]
 
-        $(".branch-info-tooltip-trigger").tooltip({delay: 100, position: "top right"});
 [% IF ( OpacStarRatings != 'disable' ) %]
 // -----------------------------------------------------
 // star-ratings code
@@ -461,16 +467,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 
 //]]>
 </script>
-[% END %] <style type="text/css">
-.branch-info-tooltip {
-  display: none;
-  padding: 20px;
-  background: #fff;
-  border: 1px solid black;
-}
-</style>
-
-</head>
+[% END %] </head>
 <body id="opac-detail">
 <div id="doc3" class="yui-t7">
  <div id="bd">
@@ -652,8 +649,14 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  [% IF ( description ) %] [% description %] [% ELSE %] [% itemtype %] [% END %] </span>[% END %] [% IF ( MARCURLS ) %] <div class="results_summary"><span class="label">Recursos en línea:</span>
  <ul> [% FOREACH MARCurl IN MARCURLS %] <li>[% IF ( MARCurl.part ) %][% MARCurl.part %] <br />[% END %] 
  <!-- here you might do a tmpl_if name="toc" and use greybox or equivalent for table of contents -->
- 
- [% IF ( OPACURLOpenInNewWindow ) %]<a href="[% MARCurl.MARCURL %]" title="[% MARCurl.MARCURL %]" target="_blank">[% ELSE %]<a href="[% MARCurl.MARCURL %]" title="[% MARCurl.MARCURL %]">[% END %] [% MARCurl.linktext %]</a>
+
+ [% IF ( OPACurlOpenInNewWindow ) %]
+ [% IF trackclicks == 'track' || trackclicks == 'anonymous' %]
+ <a href="/cgi-bin/koha/tracklinks.pl?uri=[% MARCurl.MARCURL |url%]&biblionumber=[% biblionumber | url %]" title="[% MARCurl.MARCURL %]" target="_blank">
+ [% ELSE %] <a href="[% MARCurl.MARCURL %]" title="[% MARCurl.MARCURL %]" target="_blank">
+ [% END %] [% ELSE %] [% IF trackclicks == 'track' || trackclicks == 'anonymous' %] <a href="/cgi-bin/koha/tracklinks.pl?uri=[% MARCurl.MARCURL |url%]&biblionumber=[% biblionumber | url %]" title="[% MARCurl.MARCURL %]">
+ [% ELSE %] <a href="[% MARCurl.MARCURL %]" title="[% MARCurl.MARCURL %]">
+ [% END %] [% END %] [% MARCurl.linktext %]</a>
  [% IF ( MARCurl.notes ) %]<ul>[% FOREACH note IN MARCurl.notes %]<li>[% note.note %]</li>[% END %]</ul>[% END %]</li>
  [% END %]</ul>
  </div>
@@ -973,7 +976,13 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  <div id="BW_suggestions"></div>
  </div>
  <div class="clearfix"></div>
+ <div>
+ <div id="BW_podcasts"></div>
+ </div>
+ <div class="clearfix"></div>
+ <div>
  <div id="BW_videos"></div>
+ </div>
 [% END %] </div>
 
 
@@ -1038,15 +1047,20 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  [% IF ( OPACShowBarcode ) %]<th>Código de barras</th>[% END %] [% IF holds_count.defined %] <th>Ítem reservado</th>
  [% ELSIF show_priority %] <th>Cola de prioridades de ítem reservado</th>
  [% END %] </tr></thead>
- <tbody>[% FOREACH ITEM_RESULT IN items %] <tr>[% IF ( item_level_itypes ) %]<td class="itype">[% UNLESS ( noItemTypeImages ) %][% IF ( ITEM_RESULT.imageurl ) %]<img src="[% ITEM_RESULT.imageurl %]" title="[% ITEM_RESULT.description %]" alt="[% ITEM_RESULT.description %]" />[% END %][% END %] [% ITEM_RESULT.description %]</td>[% END %] <td class="location">
- [% UNLESS ( singleBranchMode ) %] <span class="[% ITEM_RESULT.branch_opac_info ? 'branch-info-tooltip-trigger' : '' %]">
- [% IF ( ITEM_RESULT.branchurl ) %] <a href="[% ITEM_RESULT.branchurl %]">[% ITEM_RESULT.branchname %]</a>
- [% ELSE %] [% ITEM_RESULT.branchname %] [% END %] </span>
- <div class="branch-info-tooltip">[% ITEM_RESULT.branch_opac_info %]</div>
+ <tbody>[% FOREACH ITEM_RESULT IN items %] [% IF ITEM_RESULT.this_branch %]<tr class="highlight-row-detail">[% ELSE %]<tr>[% END %] [% IF ( item_level_itypes ) %]<td class="itype">[% UNLESS ( noItemTypeImages ) %][% IF ( ITEM_RESULT.imageurl ) %]<img src="[% ITEM_RESULT.imageurl %]" title="[% ITEM_RESULT.description %]" alt="[% ITEM_RESULT.description %]" />[% END %][% END %] [% ITEM_RESULT.description %]</td>[% END %] <td class="location">
+ [% UNLESS ( singleBranchMode ) %] <div class="[% ITEM_RESULT.branch_opac_info ? 'branch-info-tooltip-trigger' : '' %]">
+ [% IF ( ITEM_RESULT.branchurl ) %] <a href="[% ITEM_RESULT.branchurl %]" title="">[% ITEM_RESULT.branchname %]</a>
+ [% ELSE %] <span title="">[% ITEM_RESULT.branchname %]</span>
+ [% END %] <div class="branch-info-tooltip">[% ITEM_RESULT.branch_opac_info %]</div>
+ </div>
  [% END %] <span class="shelvingloc">[% ITEM_RESULT.location_description %]</span>
  </td>
  [% IF ( itemdata_ccode ) %]<td class="collection">[% ITEM_RESULT.ccode %]</td>[% END %] <td class="call_no">[% IF ( ITEM_RESULT.itemcallnumber ) %] [% ITEM_RESULT.itemcallnumber %][% IF ( OPACShelfBrowser ) %] (<a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% ITEM_RESULT.biblionumber %]&amp;shelfbrowse_itemnumber=[% ITEM_RESULT.itemnumber %]#[% tab %]">Buscar estantería</a>)[% END %][% END %]</td>
- [% IF ( itemdata_enumchron ) %]<td class="vol_info">[% ITEM_RESULT.enumchron %]</td>[% END %] [% IF ( itemdata_uri ) %]<td class="url"><a href="[% ITEM_RESULT.uri %]">[% ITEM_RESULT.uri %]</a></td>[% END %] [% IF ( itemdata_copynumber ) %]<td class="copynumber">[% ITEM_RESULT.copynumber %]</td>[% END %] <td class="status">[% INCLUDE 'item-status.inc' item = ITEM_RESULT %]</td>
+ [% IF ( itemdata_enumchron ) %]<td class="vol_info">[% ITEM_RESULT.enumchron %]</td>[% END %] [% IF ( itemdata_uri ) %]<td class="url">
+ [% IF ITEM_RESULT.uri %] [% IF trackclicks == 'track' || trackclicks == 'anonymous' %] <a href="/cgi-bin/koha/tracklinks.pl?uri=[% ITEM_RESULT.uri | url %]&biblionumber=[% biblionumber |url %]&itemnumber=[% ITEM_RESULT.itemnumber | url %]"> Enlace al recurso</a>
+ [% ELSE %] <a href="[% ITEM_RESULT.uri %]">[% ITEM_RESULT.uri %]</a>
+ [% END %] [% END %] </td>
+ [% END %] [% IF ( itemdata_copynumber ) %]<td class="copynumber">[% ITEM_RESULT.copynumber %]</td>[% END %] <td class="status">[% INCLUDE 'item-status.inc' item = ITEM_RESULT %]</td>
  [% IF ( itemdata_itemnotes ) %]<td class="notes">[% ITEM_RESULT.itemnotes %]</td>[% END %] <td class="date_due">[% ITEM_RESULT.datedue | $KohaDates %]</td>
  [% IF ( OPACShowBarcode ) %]<td class="barcode">[% ITEM_RESULT.barcode %]</td>[% END %] [% IF holds_count.defined || show_priority %] <td class="holds_count">
  [% IF holds_count.defined %] [% ITEM_RESULT.holds_count %] [% END %] [% IF ITEM_RESULT.priority %] [% IF holds_count.defined %] (prioridad [% ITEM_RESULT.priority %]) [% ELSE %] [% ITEM_RESULT.priority %] [% END %] [% END %] </td>

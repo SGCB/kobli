@@ -155,13 +155,25 @@ function placeHold () {
  <legend>Contenidos de <i>[% shelfname | html %]</i></legend>
  
  [% IF ( itemsloop ) %] <p><span class="checkall"></span> | <span class="clearall"></span></p>
- [% END %] <div class="pages">[% pagination_bar %]</div>
+ [% END %] [% IF direction == 'asc' %] [% SET new_direction = 'desc' %] [% ELSE %] [% SET direction = 'desc' %] [% SET new_direction = 'asc' %] [% END %] <div class="pages">[% pagination_bar %]</div>
  <table>
  <tr>
- [% IF ( itemsloop ) %]<th class="checkall">&nbsp;</th>[% END %] [% UNLESS ( item_level_itypes ) %]<th>Tipo de ítem</th>[% END %] <th>Título</th>
- <th>Autor</th>
+ [% IF ( itemsloop ) %]<th class="checkall">&nbsp;</th>[% END %] [% UNLESS ( item_level_itypes ) %]<th>Tipo de ítem</th>[% END %] <th>
+ <a href="/cgi-bin/koha/virtualshelves/shelves.pl?viewshelf=[% shelfnumber %]&sort=title&direction=[% IF sort != 'title' %]asc[% ELSE %][% new_direction %][% END %]">Título</a>
+ [% IF sort == 'title' %] <img src="/intranet-tmpl/prog/img/[% direction %].gif" />
+ [% ELSE %] <img src="/intranet-tmpl/prog/img/ascdesc.gif" />
+ [% END %] </th>
+ <th>
+ <a href="/cgi-bin/koha/virtualshelves/shelves.pl?viewshelf=[% shelfnumber %]&sort=author&direction=[% IF sort != 'author' %]asc[% ELSE %][% new_direction %][% END %]">Autor</a>
+ [% IF sort == 'author' %] <img src="/intranet-tmpl/prog/img/[% direction %].gif" />
+ [% ELSE %] <img src="/intranet-tmpl/prog/img/ascdesc.gif" />
+ [% END %] </th>
  <th>Fecha de agregado</th>
- <th>Signatura</th>
+ <th>
+ <a href="/cgi-bin/koha/virtualshelves/shelves.pl?viewshelf=[% shelfnumber %]&sort=itemcallnumber&direction=[% IF sort != 'itemcallnumber' %]asc[% ELSE %][% new_direction %][% END %]">Signatura</a>
+ [% IF sort == 'itemcallnumber' %] <img src="/intranet-tmpl/prog/img/[% direction %].gif" />
+ [% ELSE %] <img src="/intranet-tmpl/prog/img/ascdesc.gif" />
+ [% END %] </th>
  <th>&nbsp;</th>
  </tr>
  [% FOREACH itemsloo IN itemsloop %] [% UNLESS ( loop.odd ) %] <tr class="highlight">

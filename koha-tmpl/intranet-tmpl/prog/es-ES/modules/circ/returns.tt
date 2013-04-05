@@ -241,6 +241,7 @@ $(document).ready(function () {
  </form>
  </div>
  [% END %] [% ELSE %] [% IF ( errmsgloop ) %] <div class="dialog alert">
+ <h5>No se puede devolver </h5>
  [% FOREACH errmsgloo IN errmsgloop %] [% IF ( errmsgloo.badbarcode ) %] <p class="problem">No hay un ítem con código de barras: [% errmsgloo.msg %]</p>
  [% END %] [% IF ( errmsgloo.ispermanent ) %] <p class="problem">Por favor, devolver a [% errmsgloo.msg %]</p>
  [% END %] [% IF ( errmsgloo.notissued ) %] <p class="problem">No prestado.</p>
@@ -248,8 +249,7 @@ $(document).ready(function () {
  [% END %] [% IF ( errmsgloo.waslost ) %] <p class="problem">El ítem estaba perdido, se ha encontrado.</p>
  [% IF ( LostItemFeeRefunded ) %] <p class="problem">Un reembolso se ha aplicado a la cuenta del socio prestatario.</p>
  [% ELSE %] <p class="problem">Los cargos de ítem perdido para este ítem se recordarán en la cuenta del socio </p>
- [% END %] [% END %] [% IF ( errmsgloo.withdrawn ) %] [% IF BlockReturnOfWithdrawnItems %] <h3>No se puede devolver</h3>
- <p class="problem">Ítem retirado. <strong>NO DEVUELTO</strong></p>
+ [% END %] [% END %] [% IF ( errmsgloo.withdrawn ) %] [% IF BlockReturnOfWithdrawnItems %] <p class="problem">Ítem retirado. <strong>NO DEVUELTO</strong></p>
  [% ELSE %] <p class="problem">Ítem retirado.</p>
  [% END %] [% END %] [% IF ( errmsgloo.debarred ) %] <p class="problem"><a href="/cgi-bin/koha/circ/circulation.pl?borrowernumber=[% errmsgloo.debarborrowernumber %]">[% errmsgloo.debarname %]([% errmsgloo.debarcardnumber %])</a> está ahora congelado hasta [% errmsgloo.debarred | $KohaDates %] </p>
  [% END %] [% END %] [% IF ( soundon ) %] <audio src="/intranet-tmpl/prog/sound/critical.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>

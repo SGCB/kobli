@@ -85,7 +85,7 @@
  <div class="yui-b">
 
 [% IF ( do_it ) %] [% IF ( mainloop ) %] <h1>Estadísticas de reservas</h1>
- [% IF ( loopfilter ) %] <p>Filtrado por</p>
+ [% IF ( loopfilter ) %] <p>Filtrado en:</p>
  <ul>
  [% FOREACH loopfilte IN loopfilter %] [% IF ( loopfilte.err ) %]<li class="error">Error: [% ELSIF ( loopfilte.sql ) %]<li class="sql">
  [% ELSE %]<li>

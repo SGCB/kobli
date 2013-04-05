@@ -132,11 +132,12 @@
     }
 //]]>
 </script>
-[% ELSE %] <link href="[% themelang %]/lib/jquery/plugins/treetable/stylesheets/jquery.treeTable.css" rel="stylesheet" type="text/css" />
-
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/treetable/jquery.treeTable.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.qtip.js"></script>
+[% ELSE %] [% IF ( notree ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+ <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+ [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+ [% ELSE %] <link href="[% themelang %]/lib/jquery/plugins/treetable/stylesheets/jquery.treeTable.css" rel="stylesheet" type="text/css" />
+ <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/treetable/jquery.treeTable.min.js"></script>
+ [% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.qtip.js"></script>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -170,11 +171,14 @@
             }
         });
         [% IF ( notree ) %]
-        $("#budgeth").tablesorter({
-            widgets : ['zebra'],
-            sortList: [[0,0]],
-            headers: { 7: { sorter: false }}
-        });
+            $("#budgeth").dataTable($.extend(true, {}, dataTablesDefaults, {
+                "aoColumnDefs": [
+                    { "aTargets": [ -1 ], "bSortable": false, "bSearchable": false },
+                ],
+                "aLengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+                "iDisplayLength": 20,
+                "sPaginationType": "four_button"
+            }));
         [% ELSE %]
         $("#budgeth").treeTable();
         [% END %]
@@ -200,7 +204,7 @@
  </div>
 [% END %] [% IF ( else ) %] <h1>Fondos para '[% budget_period_description %]'</h1>
 
-[% INCLUDE 'budgets-active-currency.inc' %] <table id="budgeth">
+[% INCLUDE 'budgets-active-currency.inc' %] [% IF ( budget ) %] <table id="budgeth">
  <thead>
  <tr>
  <th>Código del fondo</th>
@@ -227,7 +231,7 @@
  </tr>
  </tfoot>
  <tbody>
- [% IF ( budget ) %] [% FOREACH budge IN budget %] [% IF ( budge.toggle ) %] <tr id="node-[% budge.budget_id %]" class="highlight[% IF ( budge.budget_parent_id ) %] child-of-node-[% budge.budget_parent_id %][% END %] tooltiped">
+ [% FOREACH budge IN budget %] [% IF ( budge.toggle ) %] <tr id="node-[% budge.budget_id %]" class="highlight[% IF ( budge.budget_parent_id ) %] child-of-node-[% budge.budget_parent_id %][% END %] tooltiped">
  [% ELSE %] <tr id="node-[% budge.budget_id %]" class="tooltiped [% IF ( budge.budget_parent_id ) %] child-of-node-[% budge.budget_parent_id %][% END %]">
  [% END %] <td>[% budge.budget_code_indent %]</td>
  <td>[% budge.budget_name %]</td>
@@ -251,9 +255,12 @@
  <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_parent_id=[% budge.budget_id %]&amp;budget_period_id=[% budge.budget_period_id %]">Agregar un fondo infantil</a>
  </td>
  [% END %] </tr>
- [% END %] [% ELSE %] <tr><td colspan="12">No se encontraron fondos</td></tr>
  [% END %] </tbody>
 </table>
+
+[% ELSE %]
+ No fund found
+[% END %]
 
 [% IF ( pagination_bar ) %]<div class="pages">[% pagination_bar %]</div>[% END %]
 [% END %] <!-- else -->
@@ -287,12 +294,12 @@
  <input type="text" name="budget_amount" id="budget_amount" value="[% budget_amount %]" size="8" />
  </li>
 
- <li>
+ <li style="display:none;">
  <label for="budget_encumb">Gravamen: </label>
  <input type="text" name="budget_encumb" id="budget_encumb" value="[% budget_encumb %]" size="8" />
  </li>
 
- <li>
+ <li style="display:none;">
  <label for="budget_expend">Gasto: </label>
  <input type="text" name="budget_expend" id="budget_expend" value="[% budget_expend %]" size="8" />
  </li>

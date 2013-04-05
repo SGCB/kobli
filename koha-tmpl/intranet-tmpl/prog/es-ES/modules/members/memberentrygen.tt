@@ -29,6 +29,7 @@
             }
         [% END %]
         $("#dateofbirth").datepicker({ maxDate: "-1D" });
+        $("#entryform").preventDoubleFormSubmit();
     });
 
     function clear_entry(node) {
@@ -103,9 +104,6 @@
  <form name="form_double" action="/cgi-bin/koha/members/memberentry.pl" method="post" autocomplete="off">
  <input type="hidden" name="nodouble" value="1" />
  <input value="No es un duplicado. Guardar como nuevo registro" class="new" type="submit" />
- </div>
- [% END %] [% IF ( debug ) %] <div id="debug">
- <div>Nivel de depuración activado (nivel [% debug %])</div>
  </div>
  [% END %] [% IF ( nok ) %] <div class="dialog alert">
  <p>Los campos siguientes son incorrectos. Por favor corríjalos.</p>
@@ -498,10 +496,16 @@
  <input type="text" id="cardnumber" name="cardnumber" size="20" value="[% cardnumber %]" />
  [% IF ( mandatorycardnumber ) %]<span class="required">Requerido</span>[% END %]</li>
  [% END %] [% UNLESS nobranchcode %] <li>
- [% IF ( mandatorybranchcode ) %] <label for="branchcode" class="required">
- [% ELSE %] <label for="branchcode">
- [% END %] Biblioteca: </label>
- [% CGIbranch %] [% IF ( mandatorybranchcode ) %]<span class="required">Requerido</span>[% END %] </li>
+ [%- IF ( mandatorybranchcode ) -%] <label for="branchcode" class="required">
+ [%- ELSE -%] <label for="branchcode">
+ [%- END -%] Biblioteca: </label>
+ <select name="branchcode" size="1" id="branchcode">
+ <option value=""></option>
+ [%- FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) -%] <option value="[% branchloo.branchcode %]" selected="selected">[% branchloo.branchname %]</option>
+ [%- ELSE -%] <option value="[% branchloo.branchcode %]">[% branchloo.branchname %]</option>
+ [%- END -%] [%- END %] </select>
+ [% IF ( mandatorybranchcode ) -%] <span class="required">Requerido</span>
+ [%- END %] </li>
  [% END %] <li>
  <label for="categorycode">Categoría: </label>
  <select id="categorycode" name="categorycode" onchange="update_category_code(this);">
@@ -514,8 +518,9 @@
  [% IF ( mandatorysort1 ) %] <label for="sort1" class="required">
  [% ELSE %] <label for="sort1">
  [% END %] Orden 1: </label>
- [% IF ( CGIsort1 ) %] [% CGIsort1 %] [% ELSE %] <input  type="text" id="sort1" name="sort1" size="20"  value="[% sort1 %]" />
- [% IF ( mandatorysort1 ) %]<span class="required">Requerido</span>[% END %] [% END %] </li>
+ [% IF ( CGIsort1 ) %] [% CGIsort1 %] [% ELSE %] [% IF ( opduplicate ) %] <input  type="text" id="sort1" name="sort1" size="20"  value="[% sort1 %]" onclick="this.value=''" />
+ [% ELSE %] <input  type="text" id="sort1" name="sort1" size="20"  value="[% sort1 %]" />
+ [% END %] [% IF ( mandatorysort1 ) %]<span class="required">Requerido</span>[% END %] [% END %] </li>
  [% END %] [% UNLESS nosort2 %] <li>
  [% IF ( mandatorysort2 ) %] <label for="sort2" class="required">
  [% ELSE %] <label for="sort2">

@@ -4,7 +4,7 @@
             function DeleteConfirm() {
                 var element_id = selected_layout("delete");
                 if (element_id>-1) {
-                    var msg = "Are you sure you want to delete [% card_element %] " + element_id + "?"
+                    var msg = _("¿Está seguro de querer borrar el") + " [% card_element %] " + element_id + "?"
                     var answer = confirm(msg);
                     if (answer) {
                         window.location = "/cgi-bin/koha/patroncards/manage.pl?op=delete&card_element=[% card_element %]&element_id=" + element_id;
@@ -47,7 +47,7 @@
                     alert(_("Por favor, seleccione al menos un lote para exportar."));
                     return;     // no batch selected
                 }
-                return GB_showCenter('Export Patron Cards', "/cgi-bin/koha/patroncards/print.pl?" + getstr, 700, 800);
+                return GB_showCenter(_("Exportar carnés de socio"), "/cgi-bin/koha/patroncards/print.pl?" + getstr, 700, 800);
             };
             function selected_layout(op) {
                 var selected = new Array;
@@ -73,45 +73,23 @@
                 alert(_("Por favor, seleccione un ")+"[% card_element %].");
                 return (-1);
             };
-        //]]>
-    </script>
- <script type="text/javascript">
-        //<![CDATA[
-        $(document).ready(function() {
-            $("#edit").empty();
-            $("#delete").empty();
-            [% IF ( print ) %]
-            $("#xport").empty();
-            [% END %]
-            buildButtons();
-         });
 
-        function buildButtons() {
-            var editButton = new YAHOO.widget.Button({
-                type: "link",
-                onclick: {fn: Edit},
-                label: _("Editar"),
-                id: "edit",
-                container: "edit"
+        $(document).ready(function() {
+            $("#edit").click(function(){
+                Edit();
+                return false;
             });
-            var deleteButton = new YAHOO.widget.Button({
-                type: "link",
-                onclick: {fn: DeleteConfirm},
-                label: _("Eliminar"),
-                id: "delete",
-                container: "delete",
+            $("#delete").click(function(){
+                DeleteConfirm();
+                return false;
             });
-            [% IF ( print ) %]
-            var xportButton = new YAHOO.widget.Button({
-                type: "link",
-                onclick: {fn: Xport},
-                label: _("Exportar"),
-                id: "xport",
-                container: "xport",
+            $("#print").click(function(){
+                Xport();
+                return false;
             });
-            [% END %]
-        };
-    </script>
+         });
+//]]>
+</script>
 </head>
 <body id="pcard_manage" class="tools pcard">
  [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
@@ -136,9 +114,9 @@
  [% END %] [% END %] </tr>
  [% END %] [% END %] </table>
  <fieldset class="action">
- <span id="edit"><input value="Editar" type="button" id="edit" onclick="Edit()" /></span>
- <span id="delete"><input value="Eliminar" type="button" id="delete" onclick="DeleteConfirm()" /></span>
- [% IF ( print ) %]<span id="xport"><input value="Exportar" type="button" id="print" onclick="Xport()" /></span>[% END %] </fieldset>
+ <input value="Editar" type="button" id="edit" />
+ <input value="Eliminar" type="button" id="delete" />
+ [% IF ( print ) %]<input value="Exportar" type="button" id="print" />[% END %] </fieldset>
  </form>
  [% ELSE %] <div class="dialog message">
  <h4>Actualmente no hay [% card_element_title %] disponibles.</h4>
