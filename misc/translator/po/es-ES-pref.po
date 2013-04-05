@@ -286,18 +286,6 @@ msgstr "barras"
 msgid "admin.pref#delimiter# tabs"
 msgstr "tabulaciones"
 
-# Administration > Login options
-msgid "admin.pref#insecure# Allow"
-msgstr "Permitir"
-
-# Administration > Login options
-msgid "admin.pref#insecure# Don't allow"
-msgstr "No permitir"
-
-# Administration > Login options
-msgid "admin.pref#insecure# staff to access the staff client without logging in. Enabling this is dangerous, and should not be done in production environments."
-msgstr "al personal acceder la interfaz administrativa sin autenticarse. Habilitar esta opción es peligrosa, y no debe hacerse en un entorno de producción."
-
 # Administration > Interface options
 msgid "admin.pref#noItemTypeImages# Don't show"
 msgstr "No mostrar"
@@ -1250,6 +1238,18 @@ msgstr "Notificar"
 msgid "circulation.pref#FineNotifyAtCheckin# librarians of overdue fines on the items they are checking in."
 msgstr "al personal las multas por retrasos en los dems que est?devolviendo."
 
+# Circulation > Fines Policy
+msgid "circulation.pref#FinesIncludeGracePeriod# Don't include"
+msgstr "No incluir"
+
+# Circulation > Fines Policy
+msgid "circulation.pref#FinesIncludeGracePeriod# Include"
+msgstr "Incluir"
+
+# Circulation > Fines Policy
+msgid "circulation.pref#FinesIncludeGracePeriod# the grace period when calculating the fine for an overdue item."
+msgstr "el periodo de gracia cuando se calcula la multa para un ítem retrasado"
+
 # Circulation > Interface
 msgid "circulation.pref#HoldsToPullStartDate# Set the default start date for the Holds to pull list to"
 msgstr "Establecer la fecha de inicio por defecto para sacar las listas de las Reservas "
@@ -1982,6 +1982,10 @@ msgstr "OCLC"
 msgid "enhanced_content.pref Open Library"
 msgstr "Open Library"
 
+# Enhanced Content > Plugins
+msgid "enhanced_content.pref Plugins"
+msgstr "Plugins"
+
 # Enhanced Content > Syndetics
 msgid "enhanced_content.pref Syndetics"
 msgstr "Syndetics"
@@ -2574,6 +2578,18 @@ msgstr "Use"
 msgid "enhanced_content.pref#ThingISBN# the ThingISBN service to show other editions of a title (when either FRBRizeEditions or OPACFRBRizeEditions is on). This is separate from Library Thing for Libraries."
 msgstr "el servicio ThingISBN para mostrar otras ediciones de un título (cuando ambas FRBRizeEditions o OPACFRBRizeEditions están habilitadas). Esto es separado de Library Thing for Libraries."
 
+# Enhanced Content > Plugins
+msgid "enhanced_content.pref#UseKohaPlugins# Don't enable"
+msgstr "No habilitar"
+
+# Enhanced Content > Plugins
+msgid "enhanced_content.pref#UseKohaPlugins# Enable"
+msgstr "Habilitar"
+
+# Enhanced Content > Plugins
+msgid "enhanced_content.pref#UseKohaPlugins# the ability to use Koha Plugins. Note, the plugin system must also be enabled in the Koha configuration file to be fully enabled."
+msgstr "la habilitación para usar los plugins de Koha. Nota, los plugins del sistema deben estar también deshabilitados en el archivo de configuración para estar completamente inhabilitados."
+
 # Enhanced Content > OCLC
 msgid "enhanced_content.pref#XISBN# Don't use"
 msgstr "No utilice"
@@ -2621,6 +2637,22 @@ msgstr "Usar"
 # I18N/L10N
 msgid "i18n_l10n.pref#CalendarFirstDayOfWeek# as the first day of week in the calendar."
 msgstr "como el primer día de la semana en el calendario."
+
+# I18N/L10N
+msgid "i18n_l10n.pref#TimeFormat# ."
+msgstr "."
+
+# I18N/L10N
+msgid "i18n_l10n.pref#TimeFormat# 12 hour format ( e.g. \"02:18 PM\" )"
+msgstr "Formato 12 horas ( ej.  \"02:18 PM\" )"
+
+# I18N/L10N
+msgid "i18n_l10n.pref#TimeFormat# 24 hour format ( e.g. \"14:18\" )"
+msgstr "Formato 24 horas ( ej. \"14:18\" )"
+
+# I18N/L10N
+msgid "i18n_l10n.pref#TimeFormat# Format times in"
+msgstr "i18n_l10n.pref#TimeFormat# Format times in"
 
 # I18N/L10N
 msgid "i18n_l10n.pref#alphabet# Use the alphabet"
@@ -2723,8 +2755,8 @@ msgid "logs.pref#FinesLog# Log"
 msgstr "Registrar"
 
 # Logging
-msgid "logs.pref#FinesLog# when overdue fines are charged or automatically forgiven."
-msgstr "cuando las multas por devolución tardía se cobran o se perdonan automáticamente."
+msgid "logs.pref#FinesLog# when fines are charged, paid, or forgiven."
+msgstr "cuando las multas estén cargadas, pagadas o resueltas."
 
 # Logging
 msgid "logs.pref#IssueLog# Don't log"
@@ -2875,20 +2907,16 @@ msgid "opac.pref#COinSinOPACResults# Include"
 msgstr "Incluir"
 
 # OPAC > Appearance
-msgid "opac.pref#DisplayOPACiconsXSLT# On pages displayed with XSLT stylesheets on the OPAC,"
-msgstr "En las páginas que se muestran con hojas de estilo XSLT en el OPAC,"
+msgid "opac.pref#DisplayOPACiconsXSLT# Don't show"
+msgstr "No mostrar"
 
 # OPAC > Appearance
-msgid "opac.pref#DisplayOPACiconsXSLT# don't show"
-msgstr "no mostrar"
+msgid "opac.pref#DisplayOPACiconsXSLT# Show"
+msgstr "Mostrar"
 
 # OPAC > Appearance
-msgid "opac.pref#DisplayOPACiconsXSLT# icons for itemtype and authorized values."
-msgstr "los iconos para tipos de ítem y valores autorizados."
-
-# OPAC > Appearance
-msgid "opac.pref#DisplayOPACiconsXSLT# show"
-msgstr "mostrar"
+msgid "opac.pref#DisplayOPACiconsXSLT# the format, audience, and material type icons in XSLT MARC21 results and detail pages in the OPAC."
+msgstr "el formato, audiencia, y los iconos del tipo de material en los resultados XSLT MARC 21 y las páginas de detalle en el OPAC."
 
 # OPAC > Privacy
 msgid "opac.pref#EnableOpacSearchHistory# Don't keep"
@@ -2901,6 +2929,30 @@ msgstr "Mantener"
 # OPAC > Privacy
 msgid "opac.pref#EnableOpacSearchHistory# patron search history in the OPAC."
 msgstr "historial de búsquedas del socio en el OPAC."
+
+# OPAC > Appearance
+msgid "opac.pref#HighlightOwnItemsOnOPAC#  by moving the results to the front and increasing the size or highlighting the rows for those results. (Non-XSLT Only)"
+msgstr ""
+
+# OPAC > Appearance
+msgid "opac.pref#HighlightOwnItemsOnOPAC# Don't emphasize"
+msgstr ""
+
+# OPAC > Appearance
+msgid "opac.pref#HighlightOwnItemsOnOPAC# Emphasize"
+msgstr ""
+
+# OPAC > Appearance
+msgid "opac.pref#HighlightOwnItemsOnOPAC# OPAC's branch via the URL"
+msgstr ""
+
+# OPAC > Appearance
+msgid "opac.pref#HighlightOwnItemsOnOPAC# patron's home branch"
+msgstr ""
+
+# OPAC > Appearance
+msgid "opac.pref#HighlightOwnItemsOnOPAC# results from the "
+msgstr ""
 
 # OPAC > Appearance
 msgid "opac.pref#LibraryName# Show"
@@ -3294,6 +3346,26 @@ msgstr "Resaltar"
 msgid "opac.pref#OpacHighlightedWords# words the patron searched for in their search results and detail pages."
 msgstr "palabras buscadas por el socio para su p?na de resultados y detalles de b??eda."
 
+# OPAC > Features
+msgid "opac.pref#OpacItemLocation# Show"
+msgstr "Mostrar"
+
+# OPAC > Features
+msgid "opac.pref#OpacItemLocation# call number only"
+msgstr "sólo signatura"
+
+# OPAC > Features
+msgid "opac.pref#OpacItemLocation# collection code"
+msgstr "código de colección"
+
+# OPAC > Features
+msgid "opac.pref#OpacItemLocation# for items on the OPAC search results."
+msgstr "para los ítems en la página de resultados del OPAC."
+
+# OPAC > Features
+msgid "opac.pref#OpacItemLocation# location"
+msgstr "localización."
+
 # OPAC > Appearance
 msgid "opac.pref#OpacKohaUrl# 'Powered by Koha' text on OPAC footer."
 msgstr "el texto 'Powered by Koha' en el pié del OPAC."
@@ -3507,6 +3579,10 @@ msgid "opac.pref#PatronSelfRegistration# library patrons to register an account 
 msgstr "para los socios de la biblioteca que quieren registrar una cuenta desde el OPAC."
 
 # OPAC > Self Registration
+msgid "opac.pref#PatronSelfRegistrationAdditionalInstructions# Display the following additional instructions for patrons who self register via the OPAC ( HTML is allowed ):"
+msgstr "Mostrar las siguientes instrucciones adicionales para los socios que se autorregistran en el OPAC (se permite HTML):"
+
+# OPAC > Self Registration
 msgid "opac.pref#PatronSelfRegistrationBorrowerMandatoryField# (separate columns with |)"
 msgstr "(separar columnas con |)"
 
@@ -3677,6 +3753,22 @@ msgstr "Habilitar"
 # OPAC > Features
 msgid "opac.pref#SocialNetworks# social network links in opac detail pages"
 msgstr "enlace de redes sociales en las páginas de detalle del opac"
+
+# OPAC > Privacy
+msgid "opac.pref#TrackClicks# Don't track"
+msgstr "No seguir"
+
+# OPAC > Privacy
+msgid "opac.pref#TrackClicks# Track"
+msgstr "Seguir"
+
+# OPAC > Privacy
+msgid "opac.pref#TrackClicks# Track anonymously"
+msgstr "Seguir anónimamente"
+
+# OPAC > Privacy
+msgid "opac.pref#TrackClicks# links that patrons click on"
+msgstr "enlaces en los que han clicado los socios"
 
 # OPAC > Appearance
 msgid "opac.pref#hidelostitems# Don't show"
@@ -4358,6 +4450,10 @@ msgstr "Incluya"
 msgid "searching.pref#TraceSubjectSubdivisions# subdivisions for searches generated by clicking on subject tracings."
 msgstr "subdivisiones para búsquedas generadas al hacer clic en trazas de temas."
 
+# Searching > Results Display
+msgid "searching.pref#UNIMARCAuthorsFacetsSeparator# Use the following text as separator for UNIMARC authors facets"
+msgstr "Utilizar el siguiente texto como separador de las facetas de autoridad UNIMARC"
+
 # Searching > Features
 msgid "searching.pref#UseICU# ICU Zebra indexing. Please note: This setting will not affect Zebra indexing, it should only be used to tell Koha that you have activated ICU indexing if you have actually done so, since there is no way for Koha to figure this out on its own."
 msgstr "Note por favor: Este valor no afectará la indexación Zebra, solo debe ser utilizado para indicar a Koha que ha activado la indexación ICU si es que lo ha hecho, ya que Koha no tiene forma de saberlo por su cuenta."
@@ -4369,6 +4465,18 @@ msgstr "No usar"
 # Searching > Features
 msgid "searching.pref#UseICU# Using"
 msgstr "Usar"
+
+# Searching > Features
+msgid "searching.pref#UseQueryParser# Do not try"
+msgstr "No intentar"
+
+# Searching > Features
+msgid "searching.pref#UseQueryParser# Try"
+msgstr "Intentar"
+
+# Searching > Features
+msgid "searching.pref#UseQueryParser# to use the QueryParser module for parsing queries. Please note: enabling this will have no impact if you do not have QueryParser installed, and everything will continue to work as usual."
+msgstr "utilizar el módulo QueryPaser para búsquedas. Nota: deshabilitar esta preferencia no tendrá impacto si no se tiene instalado la QueryParser y todo funcionará como comunmente hacía."
 
 # Searching > Results Display
 msgid "searching.pref#defaultSortField# ,"
@@ -4609,6 +4717,18 @@ msgstr "Nota: La opción XSLT correspondiente debe estar activa."
 # Staff Client > Appearance
 msgid "staff_client.pref#Display856uAsImage# Results page (for future use, Results XSLT not functional at this time)."
 msgstr "Página de resultados (de uso futuro, el XSLT de Resultados no es funcional en este momento)."
+
+# Staff Client > Appearance
+msgid "staff_client.pref#DisplayIconsXSLT# Don't show"
+msgstr "No mostrar"
+
+# Staff Client > Appearance
+msgid "staff_client.pref#DisplayIconsXSLT# Show"
+msgstr "Mostrar"
+
+# Staff Client > Appearance
+msgid "staff_client.pref#DisplayIconsXSLT# the format, audience, and material type icons in XSLT MARC21 results and detail pages in the staff client."
+msgstr "el formato, la audiencia, los iconos del tipo de material en los resultados en XSLT MARC21 y en las páginas de detalle en la intranet."
 
 # Staff Client > Options
 msgid "staff_client.pref#HidePatronName# Don't show"
