@@ -184,6 +184,11 @@ $(function() {
 			alert(alertString2);
 		}
 	}
+
+$(document).ready(function() {
+  $('#sort-submit').hide();
+});
+
 //]]>
 </script>
 </head>
@@ -237,6 +242,33 @@ $(function() {
  <a href="/cgi-bin/koha/opac-downloadshelf.pl?shelfid=[% shelfnumber %]" class="download" onclick="open(CGIBIN+'opac-downloadshelf.pl?shelfid=[% shelfnumber %]','win_form','scrollbars=no,resizable=no,height=300,width=450,top=50,left=100'); return false;">Descargar lista:</a>
 
 [% IF ( opacuserlogin ) %]<span class="sendlist"><a href="/cgi-bin/koha/opac-sendshelf.pl?shelfid=[% shelfnumber %]" class="send" onclick="open(CGIBIN+'opac-sendshelf.pl?shelfid=[% shelfnumber %]','win_form','scrollbars=no,resizable=no,height=300,width=450,top=50,left=100'); return false; ">Enviar lista</a></span>[% END %] <a class="print" href="opac-shelves.pl" onclick="print(); return false;">Imprimir lista</a>
+
+<form action="/cgi-bin/koha/opac-shelves.pl" id="sorting-form">
+ <input type="hidden" name="viewshelf" value="[% shelfnumber %]" />
+
+ <label for="sort">Ordenar por:  </label>
+ <select name="sort" onchange="$('#sorting-form').submit()">
+ <option value="">Orden predeterminado</option>
+
+ [% IF sort == 'author' %] <option value="author" selected="selected">Autor</option>
+ [% ELSE %] <option value="author">Autor</option>
+ [% END %] [% IF sort == 'title' %] <option value="title" selected="selected">Título</option>
+ [% ELSE %] <option value="title">Título</option>
+ [% END %] [% IF sort == 'itemcallnumber' %] <option value="itemcallnumber" selected="selected">Signatura topográfica</option>
+ [% ELSE %] <option value="itemcallnumber">Signatura topográfica</option>
+ [% END %] [% IF sort == 'copyrightdate' %] <option value="copyrightdate" selected="selected">Fecha de copyright:</option>
+ [% ELSE %] <option value="copyrightdate">Fecha de copyright:</option>
+ [% END %] </select>
+
+ <select name="direction" onchange="$('#sorting-form').submit()">
+ [% IF direction == 'asc' %] <option value="asc" selected="selected">Ascendente</option>
+ [% ELSE %] <option value="asc">Ascendente</option>
+ [% END %] [% IF direction == 'desc' %] <option value="desc" selected="selected">Descendiente</option>
+ [% ELSE %] <option value="desc">Descendiente</option>
+ [% END %] </select>
+
+ <input value="Lista ordenada" type="submit" id="sort-submit" />
+</form>
 
  [% IF ( manageshelf ) %] <span class="sep">|</span> <form method="get" action="opac-shelves.pl"><input type="hidden" name="op" value="modif" />
  <input type="hidden" name="display" value="viewshelf" />

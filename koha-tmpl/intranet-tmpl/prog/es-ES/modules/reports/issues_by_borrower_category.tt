@@ -31,13 +31,27 @@
 [% END %] [% ELSE %] <form method="post" action="/cgi-bin/koha/reports/manager.pl">
  <fieldset class="rows">
  <legend>Préstamos por categoría de socio</legend>
- <ol><li><label for="borrowercategory">Seleccionar una categoría de socio</label><select name="value" id="borrowercategory"><option value="" > Cualquier código de categoría</option>
- [% FOREACH loopcategorie IN loopcategories %] <option value="[% loopcategorie.value %]" >[% loopcategorie.description %] </option> 
- [% END %] </select></li>
- <li><label for="branch">Seleccionar una sede:</label> [% CGIbranch %]</li></ol></fieldset>
+ <ol>
+ <li>
+ <label for="borrowercategory">Seleccionar una categoría de socio</label>
+ <select name="value" id="borrowercategory">
+ <option value="">Cualquier código de categoría</option>
+ [%- FOREACH loopcategorie IN loopcategories %] <option value="[% loopcategorie.value %]" >[% loopcategorie.description %]</option>
+ [%- END %] </select>
+ </li>
+ <li>
+ <label for="branch">Seleccionar una sede:</label>
+ <select name="value" size="1" id="branch">
+ <option value=""></option>
+ [%- FOREACH branchloo IN branchloop %] <option value="[% branchloo.branchcode %]">[% branchloo.branchname %]</option>
+ [%- END %] </select>
+ </li>
+ </ol>
+ </fieldset>
  <fieldset class="action"><input value="Enviar" type="submit" />
  <input type="hidden" name="report_name" value="[% report_name %]" />
- <input type="hidden" name="do_it" value="1" /></fieldset>
+ <input type="hidden" name="do_it" value="1" />
+ </fieldset>
  </form>
 [% END %] </div>
 </div>

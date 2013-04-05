@@ -33,33 +33,6 @@
         });
         //]]>
     </script>
- <script type="text/javascript">
-        //<![CDATA[
-        $(document).ready(function() {
-            $("#save").empty();
-            $("#cancel").empty();
-            buildButtons();
-         });
-        function submitForm() {
-            document.input.submit();
-        };
-        function buildButtons() {
-            var saveButton = new YAHOO.widget.Button({
-                type: "link",
-                onclick: {fn: submitForm},
-                label: _("Guardar"),
-                id: "save",
-                container: "save"
-            });
-            var cancelButton = new YAHOO.widget.Button({
-                type: "link",
-                href: "/cgi-bin/koha/patroncards/manage.pl?card_element=profile",
-                label: _("Cancelar"),
-                id: "cancel",
-                container: "cancel",
-            });
-        };
-    </script>
 </head>
 <body id="pcard_edit-profile" class="tools pcard">
  [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
@@ -117,8 +90,8 @@
  </ol>
  </fieldset>
  <fieldset class="action">
- <span id="save"><input value="Guardar" type="submit" /></span>
- <span id ="cancel"><a href="/cgi-bin/koha/patroncards/manage.pl?card_element=profile" class="cancel">Cancelar</a></span>
+ <input value="Guardar" type="submit" />
+ <a href="/cgi-bin/koha/patroncards/manage.pl?card_element=profile" class="cancel">Cancelar</a>
  <input type="hidden" name="op" value="save" />
  <input type="hidden" name="profile_id" value="[% profile_id %]" />
  </fieldset>

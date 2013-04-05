@@ -1,5 +1,3 @@
-<div id="toolbar">
- 
  <script type="text/javascript">
 	//<![CDATA[
 	[% IF ( CAN_user_editcatalogue_edit_catalogue ) %]
@@ -74,166 +72,101 @@
         }
     }
 [% END %]
-	// prepare DOM for YUI Toolbar
-
 	 $(document).ready(function() {
-	    [% IF ( CAN_user_editcatalogue_edit_items ) %]$("#edititems").parent().remove();
-		$("#newitem").parent().remove();[% END %]
-	    [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]$("#duplicatebiblio").parent().remove();
-		$("#deletebiblio").parent().remove();
-		$("#z3950searchc").empty();[% END %]
-		[% IF ( CAN_user_serials_create_subscription ) %]$("#newsub").parent().remove();[% END %]
-	    $("#newbiblio").parent().remove();
-		$("#editbiblio").parent().remove();
-		$("#addtoshelf").parent().remove();
-		$("#printbiblio").parent().remove();
-		$("#placehold").parent().remove();
-		$("#export").remove();
+        $("#z3950copy").click(function(){
+            PopupZ3950();
+            return false;
+        });
+        $("#deletebiblio").click(function(){
+            confirm_deletion();
+            return false;
+        });
+        $("#deleteallitems").click(function(){
+            confirm_items_deletion();
+            return false;
+        });
+        $("#printbiblio").click(function(){
+            printBiblio();
+            return false;
+        });
+        $("#addtocart").click(function(){
+            addToCart();
+            $(".btn-group").removeClass("open");
+            return false;
+        });
+        $("#addtoshelf").click(function(){
+            addToShelf();
+            $(".btn-group").removeClass("open");
+            return false;
+        });
+        $("#export").remove(); // Hide embedded export form if JS menus available
 	 });
-
-	YAHOO.util.Event.onContentReady("cattoolbar", function () {
-		//	Menu for new record, new item, new subscription
-		var newmenu = [
-			[% IF CAN_user_editcatalogue_edit_catalogue %]
-            {text: _("Nuevo registro"), url: "/cgi-bin/koha/cataloguing/addbiblio.pl" },
-            [% END %]
-			[% IF ( CAN_user_editcatalogue_edit_items ) %]
-            {text: _("Nuevo ítem"), url: "/cgi-bin/koha/cataloguing/additem.pl?biblionumber=[% biblionumber %]#additema" },
-            [% END %]
-            [% IF ( CAN_user_serials_create_subscription ) %]
-                {text: _("Nueva suscripción"), url: "/cgi-bin/koha/serials/subscription-add.pl?biblionumber_for_new_subscription=[% biblionumber %]"},
-            [% END %]
-            [% IF ( EasyAnalyticalRecords && CAN_user_editcatalogue_edit_catalogue ) %]
-                {text: _("Analizar ítems"), url: "/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblionumber %]&analyze=1" },
-            [% END %]
-            [% IF CAN_user_editcatalogue_edit_catalogue %]
-                {text: _("Nuevo registro de infante"), url: "/cgi-bin/koha/cataloguing/addbiblio.pl?parentbiblionumber=[% biblionumber %]" },
-            [% END %]
-		];
-		if(newmenu.length){
-			new YAHOO.widget.Button({
-				type: "menu",
-				label: _("Nuevo"),
-				id: "newmenuc",
-				name: "newmenubutton",
-				menu: newmenu,
-				container: this
-			 });
-		 }
-	    var editmenu = [
-            [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]{ text: _("Editar registro"), url: "/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=&amp;op=" },[% END %]
-            [% IF ( CAN_user_editcatalogue_edit_items ) %]{ text: _("Editar ítems"), url: "/cgi-bin/koha/cataloguing/additem.pl?biblionumber=[% biblionumber %]" },[% END %]
-            [% IF ( CAN_user_tools_items_batchmod ) %]{ text: _("Editar ítems en un lote"), url: "/cgi-bin/koha/tools/batchMod.pl?op=show&biblionumber=[% biblionumber %]&src=CATALOGUING" },[% END %]
-            [% IF ( CAN_user_tools_items_batchdel ) %]{ text: _("Borrar ítems en una biblioteca"), url: "/cgi-bin/koha/tools/batchMod.pl?del=1&op=show&biblionumber=[% biblionumber %]&src=CATALOGUING" },[% END %]
-            [% IF ( CAN_user_editcatalogue_edit_items ) %]{ text: _("Adjuntar ítem"), url: "/cgi-bin/koha/cataloguing/moveitem.pl?biblionumber=[% biblionumber %]" },[% END %]
-            [% IF ( EasyAnalyticalRecords ) %][% IF ( CAN_user_editcatalogue_edit_items ) %]{ text: _("Enlace a ítem"), url: "/cgi-bin/koha/cataloguing/linkitem.pl?biblionumber=[% biblionumber %]" },[% END %][% END %]
-            [% IF ( LocalCoverImages || OPACLocalCoverImages) %][% IF ( CAN_user_tools_upload_local_cover_images ) %]{ text: _("Cargar imagen"), url: "/cgi-bin/koha/tools/upload-cover-image.pl?biblionumber=[% biblionumber %]&filetype=image" },[% END %][% END %]
-            [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]{ text: _("Editar como nuevo (duplicar)"), url: "/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=&amp;op=duplicate" },[% END %]
-            [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]{ text: _("Reemplazar registro vía Z39.50"), onclick: {fn: PopupZ3950 } },[% END %]
-            [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]{ text: _("Eliminar registro"), onclick: {fn: confirm_deletion }[% IF ( count || holdcount ) %],id:'disabled'[% END %] },[% END %]
-            [% IF ( CAN_user_editcatalogue_edit_items ) %]{ text: _("Eliminar todos los ítems"), onclick: {fn: confirm_items_deletion }[% IF ( count < 1 || holdcount ) %],id:'disabled2'[% END %] },[% END %]
-	    ];
-		if(editmenu.length){
-			new YAHOO.widget.Button({
-				type: "menu",
-				label: _("Editar"),
-				id: "editmenuc",
-				name: "editmenubutton",
-				menu: editmenu,
-				container: this
-			 });
-		}
-		var savemenu = [
-			{ text: _("MODS (XML)"), url: "/cgi-bin/koha/catalogue/export.pl?format=mods&op=export&bib=[% biblionumber %]" },
-			{ text: _("Dublin Core (XML)"), url: "/cgi-bin/koha/catalogue/export.pl?format=dc&op=export&bib=[% biblionumber %]" },
-			{ text: _("MARCXML"), url: "/cgi-bin/koha/catalogue/export.pl?format=marcxml&op=export&bib=[% biblionumber %]" },
-			{ text: _("MARC (non-Unicode/MARC-8)"), url: "/cgi-bin/koha/catalogue/export.pl?format=marc8&op=export&bib=[% biblionumber %]" },
-            { text: _("MARC (Unicode/UTF-8)"), url: "/cgi-bin/koha/catalogue/export.pl?format=utf8&op=export&bib=[% biblionumber %]" },
-            { text: _("MARC (Unicode/UTF-8, Standard)"), url: "/cgi-bin/koha/catalogue/export.pl?format=marcstd&op=export&bib=[% biblionumber %]" }
-		];
-
-	    new YAHOO.widget.Button({
-	        type: "menu",
-	        label: _("Guardar"),
-	        id: "savemenuc",
-	        name: "savemenubutton",
-	        menu: savemenu,
-	        container: this
-	    });
-
-	    var addtomenu = [
-			{ text: _("Cesta"), onclick: { fn: addToCart } },
-			{ text: _("Lista"),  onclick: { fn: addToShelf } }
-		];
-
-		new YAHOO.widget.Button({
-	        type: "menu",
-	        label: _("Agregar a"),
-	        name: "addtomenubutton",
-	        menu: addtomenu,
-	        container: this
-	    });
-
-		new YAHOO.widget.Button({
-	        id: "printbiblio",
-	        type: "button",
-	        label: _("Imprimir"),
-	        container: this,
-			onclick: {fn: printBiblio }
-		});
-		[% IF ( CAN_user_reserveforothers ) %][% UNLESS ( norequests ) %]
-		[% IF ( holdfor ) %]
-		//	Create an array of YAHOO.widget.MenuItem configuration properties
-		var onButtonClick = function () { 
-			location.href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]";
-		}
-		var HoldForButtonMenu = [
-			{ text: _("Hacer reserva"), url: "/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]" },
-			{ text: _("Hacer reserva para")+ " [% holdfor_firstname %] [% holdfor_surname %] ([% holdfor_cardnumber %])", url: "/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]&findborrower=[% holdfor_cardnumber %]" }
-		];
-
-		//	Instantiate a Split Button using the array of YAHOO.widget.MenuItem 
-		//	configuration properties as the value for the "menu" 
-		//	configuration attribute.
-
-		var HoldForButton = new YAHOO.widget.Button({
-				id: "holdfor",
-				type: "split",
-				label: _("Hacer reserva"),
-				name: "holdfor",
-				menu: HoldForButtonMenu,
-				container: this,
-				onclick: { fn: onButtonClick }
-		});
-	    [% ELSE %]
-	    new YAHOO.widget.Button({
-			id: "placehold",
-			type: "link",
-			label: _("Hacer reserva"),
-			container: this,
-			href: "/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]"
-	     });
-	    [% END %]
-	    [% END %][% END %]
-
-	});
 	//]]>
 	</script>
- 
+
+<div id="toolbar" class="btn-toolbar">
+
 <form method="post" name="f" id="f" action="/cgi-bin/koha/cataloguing/addbiblio.pl" onsubmit="return Check();">
 
-<ul class="toolbar" id="cattoolbar">
-
+[% IF ( CAN_user_editcatalogue_edit_catalogue || CAN_user_editcatalogue_edit_items || CAN_user_serials_create_subscription ) %] <div class="btn-group">
+ <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><i class="icon-plus"></i> Nuevo: <span class="caret"></span></button>
+ <ul class="dropdown-menu">
  [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="newbiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl">Nuevo registro</a></li>
- [% END %] [% IF ( CAN_user_editcatalogue_edit_items ) %] <li><a id="newitem" href="/cgi-bin/koha/cataloguing/additem.pl?biblionumber=[% biblionumber %]">Nuevo ítem</a></li>
+ [% END %] [% IF ( CAN_user_editcatalogue_edit_items ) %] <li><a id="newitem" href="/cgi-bin/koha/cataloguing/additem.pl?biblionumber=[% biblionumber %]#additema">Nuevo ítem</a></li>
  [% END %] [% IF ( CAN_user_serials_create_subscription ) %] <li><a id="newsub" href="/cgi-bin/koha/serials/subscription-add.pl?biblionumber_for_new_subscription=[% biblionumber %]">Nueva suscripción</a></li>
- [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="editbiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=[% current_framework %]&amp;op=">Editar registro</a></li>
+ [% END %] [% IF ( EasyAnalyticalRecords && CAN_user_editcatalogue_edit_catalogue ) %] <li><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblionumber %]&amp;analyze=1">Analizar ítems</a></li>
+ [% END %] [% IF CAN_user_editcatalogue_edit_catalogue %] <li><a href="/cgi-bin/koha/cataloguing/addbiblio.pl?parentbiblionumber=[% biblionumber %]">Nuevo registro de infante</a></li>
+ [% END %] </ul>
+ </div>
+[% END %] <div class="btn-group">
+ <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><i class="icon-pencil"></i> Editar <span class="caret"></span></button>
+ <ul class="dropdown-menu">
+ [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="editbiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=[% current_framework %]&amp;op=">Editar registro</a></li>
  [% END %] [% IF ( CAN_user_editcatalogue_edit_items ) %] <li><a id="edititems" href="/cgi-bin/koha/cataloguing/additem.pl?biblionumber=[% biblionumber %]">Editar ítems</a></li>
- [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="duplicatebiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=[% current_framework %]&amp;op=duplicate">Registro duplicado</a></li>
- [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="deletebiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?op=delete&amp;biblionumber=[% biblionumber %]">Eliminar</a></li>
- [% END %] <li><a id="addtoshelf" href="/cgi-bin/koha/virtualshelves/addbybiblionumber.pl?biblionumber=[% biblionumber %]">Agregar al estante</a></li>
- <li><span id="printbiblio"></span></li>
- [% IF ( CAN_user_reserveforothers ) %] [% UNLESS ( norequests ) %]<li><a id="placehold" href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>[% END %] [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]<li id="z3950searchc"><input value="Búsqueda Z39.50" type="button" id="z3950search" onclick="PopupZ3950Confirmed(); return false;" /></li>[% END %] </ul>
-</form>
+ [% END %] [% IF ( CAN_user_tools_items_batchmod ) %]<li><a href="/cgi-bin/koha/tools/batchMod.pl?op=show&amp;biblionumber=[% biblionumber %]&amp;src=CATALOGUING">Editar ítems en un lote</a></li>[% END %] [% IF ( CAN_user_tools_items_batchdel ) %]<li><a href="/cgi-bin/koha/tools/batchMod.pl?del=1&amp;op=show&amp;biblionumber=[% biblionumber %]&amp;src=CATALOGUING">Borrar ítems en lote</a></li>[% END %] [% IF ( CAN_user_editcatalogue_edit_items ) %]<li><a href="/cgi-bin/koha/cataloguing/moveitem.pl?biblionumber=[% biblionumber %]">Adjuntar ítem</a></li>[% END %] [% IF ( EasyAnalyticalRecords ) %][% IF ( CAN_user_editcatalogue_edit_items ) %]<li><a href="/cgi-bin/koha/cataloguing/linkitem.pl?biblionumber=[% biblionumber %]">Enlace a ítem</a>[% END %][% END %] [% IF ( LocalCoverImages || OPACLocalCoverImages) %][% IF ( CAN_user_tools_upload_local_cover_images ) %]<li><a href="/cgi-bin/koha/tools/upload-cover-image.pl?biblionumber=[% biblionumber %]&amp;filetype=image">Cargar imagen</a>[% END %][% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <li><a id="duplicatebiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]&amp;frameworkcode=[% current_framework %]&amp;op=duplicate">Editar como nuevo (duplicar)</a></li>
+ <li><a href="#" id="z3950copy">Reemplazar registro vía Z39.50</a></li>
+
+ [% IF ( count ) %]<li class="disabled">[% ELSE %]<li>[% END %] <a id="deletebiblio" href="/cgi-bin/koha/cataloguing/addbiblio.pl?op=delete&amp;biblionumber=[% biblionumber %]">Eliminar registro</a></li>
+ [% END %] [% IF ( CAN_user_editcatalogue_edit_items ) %] [% UNLESS ( count ) %]<li class="disabled">[% ELSE %]<li>[% END %]<li>
+ <a href="#" id="deleteallitems">Eliminar todos los ítems</a></li>
+ [% END %] </ul>
+ </div>
+
+ <div class="btn-group">
+ <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><i class="icon-download-alt"></i> Guardar<span class="caret"></span></button>
+ <ul class="dropdown-menu">
+ <li><a href="/cgi-bin/koha/catalogue/export.pl?format=mods&amp;op=export&amp;bib=[% biblionumber %]">MODS (XML)</a></li>
+ <li><a href="/cgi-bin/koha/catalogue/export.pl?format=dc&amp;op=export&amp;bib=[% biblionumber %]
+">Dublin Core (XML)</a></li>
+ <li><a href="/cgi-bin/koha/catalogue/export.pl?format=marcxml&amp;op=export&amp;bib=[% biblionumber %]">MARCXML</a></li>
+ <li><a href="/cgi-bin/koha/catalogue/export.pl?format=marc8&amp;op=export&amp;bib=[% biblionumber %]">MARC (non-Unicode/MARC-8)</a></li>
+ <li><a href="/cgi-bin/koha/catalogue/export.pl?format=utf8&amp;op=export&amp;bib=[% biblionumber %]">MARC (Unicode/UTF-8)</a></li>
+ <li><a href="/cgi-bin/koha/catalogue/export.pl?format=marcstd&amp;op=export&amp;bib=[% biblionumber %]">MARC (Unicode/UTF-8, Standard)</a></li>
+ </ul>
+ </div>
+
+[% IF ( virtualshelves && intranetbookbag ) %] <div class="btn-group">
+ <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">Agregar a<span class="caret"></span></button>
+ <ul class="dropdown-menu">
+ <li><a href="#" id="addtocart">Cesta</a></li>
+ <li><a id="addtoshelf" href="/cgi-bin/koha/virtualshelves/addbybiblionumber.pl?biblionumber=[% biblionumber %]">Lista</a></li>
+ </ul>
+ </div>
+[% ELSIF ( virtualshelves ) %] <div class="btn-group"><a id="addtoshelf" class="btn btn-small" href="/cgi-bin/koha/virtualshelves/addbybiblionumber.pl?biblionumber=[% biblionumber %]"><i class="icon-list"></i> Agregar a una lista</a> </div>
+[% ELSIF ( intranetbookbag ) %] <div class="btn-group"><a id="addtocart" class="btn btn-small"><i class="icon-shopping-cart"></i> Agregar a un carrito</a> </div>
+[% END %] <div class="btn-group"><a id="printbiblio" class="btn btn-small"><i class="icon-print"></i> Imprimir</a></div>
+
+[% IF ( CAN_user_reserveforothers ) %] [% UNLESS ( norequests ) %] [% IF ( holdfor ) %] <div class="btn-group">
+ <button class="btn btn-small"><i class="icon-hold"></i> Hacer reserva</button>
+ <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+ <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu">
+ <li><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>
+ <li><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]&amp;findborrower=[% holdfor_cardnumber %]">Hacer reserva para [% holdfor_firstname %] [% holdfor_surname %] ([% holdfor_cardnumber %])</a></li>
+ </ul>
+ </div>
+ [% ELSE %] <div class="btn-group"><a id="placehold" class="btn btn-small" href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]"><i class="icon-hold"></i> Hacer reserva</a></div>
+ [% END %] [% END %] [% END %] </form>
 </div>
 

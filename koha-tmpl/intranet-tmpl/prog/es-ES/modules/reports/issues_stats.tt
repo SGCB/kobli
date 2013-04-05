@@ -13,7 +13,7 @@
  <div class="yui-b">
 
 [% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Estadísticas de circulación</h1>
- [% IF ( mainloo.loopfilter ) %] <p>Filtrado por</p>
+ [% IF ( mainloo.loopfilter ) %] <p>Filtrado en:</p>
  <ul>
  [% FOREACH loopfilte IN mainloo.loopfilter %] [% IF ( loopfilte.err ) %]<li class="error">Error: [% ELSIF ( loopfilte.sql ) %]<li class="sql">
  [% ELSE %]<li>

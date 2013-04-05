@@ -66,13 +66,13 @@ function unHideItems(index,labelindex, serialId) {
 	label = document.getElementById(labelindex);
 	label.style.display='none';	
 
-	// Prefilling 995$h with serial enumeration/issue number
-	// Getting item id
-	itemid = $("fieldset#" + index + " div.cataloguing_additem_itemlist div.items").attr("id");
-	// Getting subfield id
-	subfieldid = "subfield" + itemid.substr(4) + "h";
-	// Setting text field 
-	$("#" + subfieldid + " input[type='text']").val($("#serialseq" + serialId).val());
+    // Prefilling enumcron subfield with serial enumeration/issue number
+    // Getting item div
+    item_div = $("fieldset#" + index + " div.cataloguing_additem_itemlist div.items");
+    // Getting subfield with enumcron mapping
+    subfield_div = $(item_div).find("input[name='kohafield'][value='items.enumchron']").parent();
+    // Setting text field
+    $(subfield_div).children("input[type='text'][name='field_value']").val($("#serialseq" + serialId).val());
 
 }
 function HideItems(index,labelindex) {
@@ -174,6 +174,7 @@ $(document).ready(function() {
  [% ELSE %] [% IF ( serialslis.serialsadditems ) %] <select name="status" size="1" id="status[% serialslis.serialid %]" onchange="if (this.value==2){unHideItems('items'+[% serialslis.subscriptionid %][% serialslis.serialid %],'label[% serialslis.subscriptionid %][% serialslis.serialid %]','[% serialslis.serialid %]'); changeDate(this, '[% serialslis.arriveddate %]')} else if (this.value==7){changeDate(this, '[% serialslis.arriveddate %]')} else { HideItems('items'+[% serialslis.subscriptionid %]+[% serialslis.serialid %],'label[% serialslis.subscriptionid %][% serialslis.serialid %]'); changeDate(this, '[% serialslis.planneddate %]')}" >
  [% ELSE %] <select name="status" size="1" id="status[% serialslis.serialid %]" onchange="if (this.value==2 || this.value==7){changeDate(this, '[% serialslis.arriveddate %]')} else {changeDate(this, '[% serialslis.planneddate %]')}" >
  [% END %] [% END %] [% IF ( serialslis.status1 ) %] <option value="1" selected="selected">Esperado</option>
+ [% ELSE %] <option value="1">Esperado</option>
  [% END %] [% IF ( serialslis.status2 ) %] <option value="2" selected="selected">Disponible</option>
  [% ELSE %] <option value="2">Disponible</option>
  [% END %] [% IF ( serialslis.status3 ) %] <option value="3" selected="selected">Atrasado</option>

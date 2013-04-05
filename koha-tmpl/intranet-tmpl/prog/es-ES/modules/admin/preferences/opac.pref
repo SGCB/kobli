@@ -27,6 +27,19 @@ opac.pref:
         pref: OpacPublic
       - "el OPAC de Koha como p\xC3\xBAblico. El OPAC privado requiere autenticaci\xC3\xB3n antes de acceder al mismo."
     - 
+      - 
+        choices: 
+          "": Don't emphasize
+          1: Emphasize
+        pref: HighlightOwnItemsOnOPAC
+      - "results from the "
+      - 
+        choices: 
+          OpacURLBranch: OPAC's branch via the URL
+          PatronBranch: patron's home branch
+        pref: HighlightOwnItemsOnOPACWhich
+      - " by moving the results to the front and increasing the size or highlighting the rows for those results. (Non-XSLT Only)"
+    - 
       - Mostrar clasificados en
       - 
         choices: 
@@ -78,13 +91,12 @@ opac.pref:
         pref: OPACXSLTDetailsDisplay
       - "opac.pref#OPACXSLTDetailsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con una interfaz de idioma habitual"
     - 
-      - "En las p\xC3\xA1ginas que se muestran con hojas de estilo XSLT en el OPAC,"
       - 
         choices: 
-          "": no mostrar
-          1: mostrar
+          "": No mostrar
+          1: Mostrar
         pref: DisplayOPACiconsXSLT
-      - "los iconos para tipos de \xC3\xADtem y valores autorizados."
+      - "el formato, audiencia, y los iconos del tipo de material en los resultados XSLT MARC 21 y las p\xC3\xA1ginas de detalle en el OPAC."
     - 
       - 
         choices: 
@@ -341,6 +353,15 @@ opac.pref:
           1: Permitir
         pref: opacuserlogin
       - a los socios acceder a sus cuentas en el OPAC.
+    - 
+      - Mostrar
+      - 
+        choices: 
+          callnum: "s\xC3\xB3lo signatura"
+          ccode: "c\xC3\xB3digo de colecci\xC3\xB3n"
+          location: "localizaci\xC3\xB3n."
+        pref: OpacItemLocation
+      - "para los \xC3\xADtems en la p\xC3\xA1gina de resultados del OPAC."
     - 
       - 
         choices: 
@@ -635,6 +656,15 @@ opac.pref:
         class: integer
         pref: AnonymousPatron
       - "como el Socio An\xC3\xB3nimo (para sugerencias an\xC3\xB3nimas y historial de lectura)"
+    - 
+      - 
+        choices: 
+          "": No seguir
+          anonymous: "Seguir an\xC3\xB3nimamente"
+          track: Seguir
+        default: 0
+        pref: TrackClicks
+      - enlaces en los que han clicado los socios
   opac.pref Self Registration: 
     - 
       - 
@@ -674,3 +704,9 @@ opac.pref:
         class: multi
         pref: PatronSelfRegistrationBorrowerUnwantedField
       - "(separar columnas con  |) "
+    - 
+      - "Mostrar las siguientes instrucciones adicionales para los socios que se autorregistran en el OPAC (se permite HTML):"
+      - 
+        class: html
+        pref: PatronSelfRegistrationAdditionalInstructions
+        type: textarea

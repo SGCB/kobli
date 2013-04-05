@@ -60,7 +60,6 @@
 <h5>Parámetros adicionales</h5>
 
 <ul>
- [% IF ( NoZebra ) %]<li><a href="/cgi-bin/koha/admin/stopwords.pl">Palabras eliminadas</a></li>[% END %]
  <!-- <li><a href="/cgi-bin/koha/admin/printers.pl">Network Printers</a></li> -->
  <li><a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a></li>
  <li><a href="/cgi-bin/koha/admin/didyoumean.pl">Usted quiere decir:  </a></li>

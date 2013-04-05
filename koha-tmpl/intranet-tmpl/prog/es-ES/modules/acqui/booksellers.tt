@@ -14,9 +14,11 @@ $(document).ready(function() {
         dt_add_type_uk_date();
     [% END %]
     $("table.baskets").dataTable($.extend(true, {}, dataTablesDefaults, {
+        'sDom': 't',
         'bPaginate': false,
         'bFilter': false,
         'bInfo': false,
+        "aaSorting": [[ 1, "asc" ]],
         'aoColumnDefs': [
             { 'aTargets': [-1], 'bSortable': false }
         ]
@@ -58,7 +60,8 @@ $(document).ready(function() {
  [% IF ( supplier.loop_basket.size ) %] <table class="baskets">
  <thead>
  <tr>
- <th>Bolsa (#)</th>
+ <th>N°</th>
+ <th>Nombre</th>
  <th>Conteo de ítems</th>
  <th>Cantidad de registros</th>
  <th>Ítems esperados</th>
@@ -70,7 +73,8 @@ $(document).ready(function() {
  <tbody>
  [% FOREACH basket IN supplier.loop_basket %] [% IF ( basket.uncertainprices ) %] <tr class="problem">
  [% ELSE %] <tr>
- [% END %] <td>[% basket.basketname %] (#[% basket.basketno %])</td>
+ [% END %] <td>[% basket.basketno %]</td>
+ <td>[% basket.basketname %]</td>
  <td>[% basket.total_items %]</td>
  <td>[% basket.total_biblios %]</td>
  <td>[% basket.expected_items %]</td>

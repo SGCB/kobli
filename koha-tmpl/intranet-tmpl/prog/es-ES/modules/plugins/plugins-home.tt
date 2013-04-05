@@ -1,0 +1,68 @@
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Plugins</title>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] </head>
+
+<body>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
+&rsaquo; Plugins </div>
+
+<div id="doc3" class="yui-t1">
+ <div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+ <div class="details">
+ <h1>Plugins</h1>
+
+ [% UNLESS ( plugins ) %] [% UNLESS ( method ) %] <h3>No hay plugins instalados</h3>
+ [% ELSE %] [% IF method == 'tool' %] <h3>No hay ningún plugin instalado que pueda ser usado como una herramienta</h3>
+ [% ELSIF method == 'report' %] <h3>No hay ningún plugin instalado que pueda crear un informe</h3>
+ [% ELSE %] <h3>Tipo de plugin desconocido<i>[% method %]</i>
+ [% END %] [% END %] [% ELSE %] <table>
+ <tr>
+ <th>Nombre</th>
+ <th>&nbsp;</th>
+ <th>Descripción</th>
+ <th>Autor</th>
+ <th>Versión del Plugin</th>
+ <th>Versión mínima de Koha: </th>
+ <th>Versión máxima de Koha: </th>
+ <th>Última actualización</th>
+ [% IF ( CAN_user_plugins_configure ) %]<th>Configuración</th>[% END %] [% IF ( CAN_user_plugins_manage ) %]<th>Desinstalar</th>[% END %] </tr>
+
+ [% FOREACH plugin IN plugins %] <tr>
+ <td><strong>[% plugin.metadata.name %]</strong></td>
+ <td>
+ [% IF ( CAN_user_plugins_report ) %] [% IF plugin.can('report') %] <p style="white-space:nowrap"><a href="/cgi-bin/koha/plugins/run.pl?class=[% plugin.class %]&method=report">Ejecutar informe</a></p>
+ [% END %] [% END %] [% IF ( CAN_user_plugins_tool ) %] [% IF plugin.can('tool') %] <p style="white-space:nowrap"><a href="/cgi-bin/koha/plugins/run.pl?class=[% plugin.class %]&method=tool">Eejecutar la herramienta</a></p>
+ [% END %] [% END %] </td>
+ <td>
+ [% plugin.metadata.description %] [% IF ( plugin.metadata.minimum_version && koha_version < plugin.metadata.minimum_version ) %] <div class="error">Aviso: Este informe fue elaborado con una versión más reciente de Koha. Ejecútalo bajo tu responsabilidad.</div>
+ [% END %] [% IF ( plugin.metadata.maximum_version && koha_version > plugin.metadata.maximum_version ) %] <div class="error">Aviso: Este informe fue elaborado con una versión más antigua de Koha. Ejecútalo bajo tu responsabilidad</div>
+ [% END %] </td>
+ <td>[% plugin.metadata.author %]</td>
+ <td>[% plugin.metadata.version %]</td>
+ <td>[% plugin.metadata.minimum_version %]</td>
+ <td>[% plugin.metadata.maximum_version %]</td>
+ <td>[% plugin.metadata.date_updated | $KohaDates %]</td>
+ [% IF ( CAN_user_plugins_configure ) %] <td>
+ [% IF plugin.can('configure') %] <a href="/cgi-bin/koha/plugins/run.pl?class=[% plugin.class %]&method=configure">Configuración</a>
+ [% END %] </td>
+ [% END %] [% IF ( CAN_user_plugins_manage ) %] <td>
+ [% IF plugin.can('uninstall') %] <a href="/cgi-bin/koha/plugins/plugins-uninstall.pl?class=[% plugin.class %]" onclick="return confirm('Are you sure you want to uninstall the plugin [% plugin.metadata.name %]?')">Desinstalar</a>
+ [% END %] </td>
+ [% END %] [% END %] </table>
+ [% END %] </div>
+ </div>
+ </div>
+
+ <div class="yui-b noprint">
+ <div id="navmenu">
+ <ul id="navmenulist">
+ [% IF ( CAN_user_plugins_manage ) %] <li><a href="plugins-upload.pl">Cargar un plugin</a></li>
+ [% END %] </ul>
+ </div>
+ </div>
+ </div>
+</div>
+
+
+[% INCLUDE 'intranet-bottom.inc' %] 

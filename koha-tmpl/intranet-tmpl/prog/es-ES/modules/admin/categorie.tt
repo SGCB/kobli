@@ -1,21 +1,27 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Categorías de socios &rsaquo; [% IF ( add_form ) %][% IF ( categorycode ) %]Modificar categoría '[% categorycode |html %]'[% ELSE %]Nueva categoría[% END %][% END %] [% IF ( add_validate ) %]Datos guardados[% END %] [% IF ( delete_confirm ) %][% IF ( totalgtzero ) %]No es posible borrar: categoría [% categorycode |html %] en uso[% ELSE %]Confirmar eliminación de categoría '[% categorycode |html %]'[% END %][% END %] [% IF ( delete_confirmed ) %]Categoría eliminada[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
-<script type="text/javascript" id="js">$(document).ready(function() {
-	$("#table_categorie").tablesorter({
-		sortList: [[0,0]],
-		widgets: ['zebra'],
-		headers: { 11: { sorter: false}}
-	}).tablesorterPager({container: $("#pagertable_categorie"),positionFixed: false,size: 20});
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+<script type="text/javascript" id="js">
+//<![CDATA[
+    $(document).ready(function() {
+        $("#table_categorie").dataTable($.extend(true, {}, dataTablesDefaults, {
+            "aoColumnDefs": [
+                { "aTargets": [ -1, -2 ], "bSortable": false, "bSearchable": false },
+                { "aTargets": [ 3,4,5 ], "sType": "natural" },
+            ],
+            "aaSorting": [[ 1, "asc" ]],
+            "aLengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+            "iDisplayLength": 20,
+            "sPaginationType": "four_button"
+        }));
+
     $( "#enrolmentperioddate" ).datepicker({ minDate: 1 }); // Require that "until date" be in the future
 
     if ( $("#branches option:selected").length < 1 ) {
         $("#branches option:first").attr("selected", "selected");
     }
-}); </script>
-<script type="text/javascript">
-//<![CDATA[
-	//
+});
 	function isNotNull(f,noalert) {
 		if (f.value.length ==0) {
    return false;
@@ -111,7 +117,7 @@
 [% IF ( categorycode ) %] <h1>Modificar categoría [% categorycode |html %]</h1>
  [% ELSE %] <h1>Nueva categoría</h1>
  [% END %] <fieldset class="rows">
- <ol>[% IF ( categorycode ) %] <li><span class="label">Código de categoría</span>[% categorycode |html %] <input type="hidden" name="categorycode" value="[% categorycode |html %]" /><input type="hidden" name="is_a_modif" value="1" /></li>
+ <ol>[% IF ( categorycode ) %] <li><span class="label">Código de categoría: </span>[% categorycode |html %] <input type="hidden" name="categorycode" value="[% categorycode |html %]" /><input type="hidden" name="is_a_modif" value="1" /></li>
  [% ELSE %] <li><label for="categorycode">Código de categoría: </label> <input type="text" name="categorycode" id="categorycode" size="10" maxlength="10" onblur="toUC(this)" /></li>
  [% END %] <li><label for="description">Descripción: </label> <input type="text" name="description" id="description" size="40" maxlength="80" value="[% description |html %]" /></li>
  <li><label for="enrolmentperiod">Período de asociación: </label>
@@ -136,7 +142,7 @@
  [% ELSE %] <option value="0" selected="selected">No</option>
  <option value="1">Sí</option>
  [% END %] </select></li>
- <li><label for="hidelostitems">Ítems perdidos en la interfaz administrativa</label> <select name="hidelostitems" id="hidelostitems">
+ <li><label for="hidelostitems">Lost items in staff client: </label> <select name="hidelostitems" id="hidelostitems">
  [% IF ( hidelostitems ) %] <option value="0">Mostrado</option>
  <option value="1" selected="selected">Oculto por defecto</option>
  [% ELSE %] <option value="0" selected="selected">Mostrado</option>
@@ -202,9 +208,10 @@
 <h2>Administración de categoría de socio</h2>
 [% IF ( searchfield ) %] Usted buscó [% searchfield %]</span>
  [% END %] [% IF ( loop ) %] <div id="pagertable_categorie">
-[% INCLUDE 'table-pager.inc' perpage='20' %] </div>
+</div>
  <table id="table_categorie">
  <thead>
+ <tr>
  <th scope="col">Código</th>
  <th scope="col">Nombre de la categoría</th>
  <th scope="col">Tipo</th>
@@ -217,8 +224,11 @@
  <th scope="col">Costo de reserva</th>
  [% IF ( EnhancedMessagingPreferences ) %] <th scope="col">Mensajería</th>
  [% END %] <th scope="col">Limitaciones sedes</th>
- <th scope="col" colspan="2">&nbsp; </th>
+ <th scope="col">&nbsp; </th>
+ <th scope="col">&nbsp; </th>
+ </tr>
  </thead>
+ <tbody>
  [% FOREACH loo IN loop %] <tr>
  <td>[% loo.categorycode |html %]</td>
  <td>
@@ -244,7 +254,8 @@
  <td><a href="[% loo.script_name %]?op=add_form&amp;categorycode=[% loo.categorycode |uri %]">Editar</a></td>
  <td><a href="[% loo.script_name %]?op=delete_confirm&amp;categorycode=[% loo.categorycode |uri %]">Eliminar</a></td>
  </tr>
- [% END %] </table>
+ [% END %] </tbody>
+ </table>
 [% ELSE %] <div class="dialog alert">No se han definido categorías. <a href="/cgi-bin/koha/admin/categorie.pl?op=add_form">Crear una nueva categoría</a>.</div>
 [% END %] [% END %] </div>
 </div>

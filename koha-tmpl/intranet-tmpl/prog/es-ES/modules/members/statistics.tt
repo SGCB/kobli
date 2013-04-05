@@ -2,14 +2,12 @@
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
-[% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript">
+[% INCLUDE 'calendar.inc' %] <script type="text/javascript">
     $(document).ready(function() {
         $("#statistics").dataTable($.extend(true, {}, dataTablesDefaults, {
-            'bPaginate': false,
-            'bFilter': false,
-            'bInfo': false,
-        } ));
+            "sDom": 't',
+            "bPaginate": false
+        }));
     });
 </script>
 </head>

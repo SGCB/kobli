@@ -1,8 +1,20 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Bibliotecas y grupos [% IF ( editcategory ) %] &rsaquo;[% IF ( categorycode ) %]Editar grupo [% categorycode %][% ELSE %]Nuevo grupo[% END %] [% ELSIF ( delete_category ) %] &rsaquo; Confirmar eliminación de grupo [% categorycode %] [% ELSIF ( add ) %] &rsaquo;[% IF ( heading_branches_add_branch_p ) %]Nueva biblioteca[% ELSE %]Modificar biblioteca [% branchcode %][% END %] [% ELSIF ( delete_confirm ) %] &rsaquo; Confirmar eliminación de biblioteca '[% branchcode %]' [% END %] </title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
+[% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript" src="[% themelang %]/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
+//<![CDATA[
+    $(document).ready(function() {
+        $("#branchest").dataTable($.extend(true, {}, dataTablesDefaults, {
+            "aoColumnDefs": [
+                { "aTargets": [ -1, -2 ], "bSortable": false, "bSearchable": false },
+            ],
+            "iDisplayLength": 10,
+            "aLengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+            "sPaginationType": "four_button"
+        }));
+    });
 tinyMCE.init({
     mode : "textareas",
     theme : "advanced",
@@ -19,6 +31,7 @@ tinyMCE.init({
     height : "300",
     width : "700"
 });
+//]]>
 </script>
 </head>
 <body id="admin_branches" class="admin">
@@ -38,26 +51,26 @@ tinyMCE.init({
  <a class="btn btn-small" id="newcategory" href="/cgi-bin/koha/admin/branches.pl?op=editcategory"><i class="icon-plus"></i> Nuevo grupo</a>
  </div>
 [% END %] [% IF ( add ) %] [% IF ( ERROR1 ) %]<div class="dialog message">Una biblioteca con ese código ya existe - Por favor, introduzca un código único</div>[% END %] <h3>[% IF ( heading_branches_add_branch_p ) %]Nueva biblioteca[% ELSE %]Modificar biblioteca[% END %]</h3>
- <form action="[% action %]" name="Aform" method="post">
+ <form action="[% action %]" id="Aform" name="Aform" class="validated" method="post">
  <fieldset class="rows">
  <input type="hidden" name="op" value="add_validate" />
  [% IF ( heading_branches_add_branch_p ) %] <input type="hidden" name="add" value="1" />
  [% ELSE %] <input type="hidden" name="add" value="0" />
  [% END %] <ol><li>
- [% IF ( heading_branches_add_branch_p ) %] <label for="branchcode">Código de biblioteca</label>
- <input type="text" name="branchcode" id="branchcode" size="10" maxlength="10" value="[% branchcode |html %]" />
- [% ELSE %] <label for="branchcode">Código de biblioteca</label>
+ [% IF ( heading_branches_add_branch_p ) %] <label for="branchcode" class="required">Library code: </label>
+ <input type="text" name="branchcode" id="branchcode" size="10" maxlength="10" value="[% branchcode |html %]" class="required" required="required" /> <span class="required">Requerido</span>
+ [% ELSE %] <label for="branchcode" class="required">Library code: </label>
  <input type="hidden" name="branchcode" value="[% branchcode |html %]" />
  [% branchcode %] [% END %] </li>
  <li>
- <label for="branchname">Nombre</label>
- <input type="text" name="branchname" id="branchname" size="80" value="[% branch_name |html %]" />&nbsp;
+ <label for="branchname" class="required">Nombre: </label>
+ <input type="text" name="branchname" id="branchname" size="80" value="[% branch_name |html %]" class="required" required="required" /> <span class="required">Requerido</span>
  </li>
  </ol>
  </fieldset>
  [% IF ( categoryloop ) %]<fieldset class="rows"><legend>Grupo(s):</legend>
  <ol>
- [% FOREACH categoryloo IN categoryloop %] <li><label for="[% categoryloo.categorycode %]">[% categoryloo.categoryname %]</label>
+ [% FOREACH categoryloo IN categoryloop %] <li><label for="[% categoryloo.categorycode %]">[% categoryloo.categoryname %]: </label>
  [% IF ( categoryloo.checked ) %] <input type="checkbox" id="[% categoryloo.categorycode %]" name="[% categoryloo.categorycode %]" checked="checked" />
  [% ELSE %] <input type="checkbox" id="[% categoryloo.categorycode %]" name="[% categoryloo.categorycode %]" />
  [% END %] <span class="hint">[% categoryloo.codedescription %]</span>
@@ -65,21 +78,21 @@ tinyMCE.init({
  [% END %] </ol>
 </fieldset>[% END %] <fieldset class="rows">
  <ol>
- <li><label for="branchaddress1">Dirección línea 1</label><input type="text" name="branchaddress1" id="branchaddress1" value="[% branchaddress1 |html %]" /></li>
- <li><label for="branchaddress2">Dirección línea 2</label><input type="text" name="branchaddress2" id="branchaddress2" value="[% branchaddress2 |html %]" /></li>
- <li><label for="branchaddress3">Dirección línea 3</label><input type="text" name="branchaddress3" id="branchaddress3" value="[% branchaddress3 |html %]" /></li>
- <li><label for="branchcity">Ciudad</label><input type="text" name="branchcity" id="branchcity" value="[% branchcity |html %]" /></li>
- <li><label for="branchstate">Estado</label><input type="text" name="branchstate" id="branchstate" value="[% branchstate |html %]" /></li>
- <li><label for="branchzip">Código Postal</label><input type="text" name="branchzip" id="branchzip" value="[% branchzip |html %]" /></li>
- <li><label for="branchcountry">País</label><input type="text" name="branchcountry" id="branchcountry" value="[% branchcountry |html %]" /></li>
- <li><label for="branchphone">Teléfono</label><input type="text" name="branchphone" id="branchphone" value="[% branchphone |html %]" /></li>
- <li><label for="branchfax">Fax</label><input type="text" name="branchfax" id="branchfax" value="[% branchfax |html %]" /></li>
- <li><label for="branchemail">Correo electrónico</label><input type="text" name="branchemail" id="branchemail" value="[% branchemail |html %]" /></li>
- <li><label for="branchurl">URL</label><input type="text" name="branchurl" id="branchurl" value="[% branchurl |html %]" /></li>
- <li><label for="opac_info">Información de OPAC</label><textarea name="opac_info" id="opac_info">[% opac_info |html %]</textarea></li>
- <li><label for="branchip">IP</label><input type="text" name="branchip" id="branchip" value="[% branchip |html %]" /> <span class="hint">Puede ingresarse como IP específica, o subred tal como 192.168.1.*</span></li>
+ <li><label for="branchaddress1">Address line 1: </label><input type="text" name="branchaddress1" id="branchaddress1" value="[% branchaddress1 |html %]" /></li>
+ <li><label for="branchaddress2">Address line 2: </label><input type="text" name="branchaddress2" id="branchaddress2" value="[% branchaddress2 |html %]" /></li>
+ <li><label for="branchaddress3">Address line 3: </label><input type="text" name="branchaddress3" id="branchaddress3" value="[% branchaddress3 |html %]" /></li>
+ <li><label for="branchcity">Ciudad: </label><input type="text" name="branchcity" id="branchcity" value="[% branchcity |html %]" /></li>
+ <li><label for="branchstate">Estado: </label><input type="text" name="branchstate" id="branchstate" value="[% branchstate |html %]" /></li>
+ <li><label for="branchzip">Código Postal: </label><input type="text" name="branchzip" id="branchzip" value="[% branchzip |html %]" /></li>
+ <li><label for="branchcountry">País: </label><input type="text" name="branchcountry" id="branchcountry" value="[% branchcountry |html %]" /></li>
+ <li><label for="branchphone">Teléfono: </label><input type="text" name="branchphone" id="branchphone" value="[% branchphone |html %]" /></li>
+ <li><label for="branchfax">Fax: </label><input type="text" name="branchfax" id="branchfax" value="[% branchfax |html %]" /></li>
+ <li><label for="branchemail">EMail: </label><input type="text" name="branchemail" id="branchemail" class="email" value="[% branchemail |html %]" /></li>
+ <li><label for="branchurl">URL: </label><input type="text" name="branchurl" id="branchurl" value="[% branchurl |html %]" class="url" /></li>
+ <li><label for="opac_info">OPAC info: </label><textarea name="opac_info" id="opac_info">[% opac_info |html %]</textarea></li>
+ <li><label for="branchip">IP: </label><input type="text" name="branchip" id="branchip" value="[% branchip |html %]" /> <span class="hint">Puede ingresarse como IP específica, o subred tal como 192.168.1.*</span></li>
  <!--
- <li><label for="branchprinter">Library Printer</label>
+ <li><label for="branchprinter">Library Printer: </label>
  <select id="branchprinter" name="branchprinter">
  <option value="">None</option>
  [% FOREACH printerloo IN printerloop %]
@@ -91,7 +104,7 @@ tinyMCE.init({
  [% END %]
  </select></li>
  -->
- <li><label for="branchnotes">Notas</label><input type="text" name="branchnotes" id="branchnotes" value="[% branchnotes |html %]" /></li>
+ <li><label for="branchnotes">Notas: </label><input type="text" name="branchnotes" id="branchnotes" value="[% branchnotes |html %]" /></li>
  <li>
  <label for="notforloan">No mostrar en OPAC</label> [% IF ( notforopac ) %] <input type="checkbox" id="notforopac" name="notforopac" checked="checked" value="1" />
  [% ELSE %] <input type="checkbox" id="notforopac" name="notforopac" value="1" />
@@ -108,9 +121,7 @@ tinyMCE.init({
 </fieldset></form>
 [% END %] [% IF ( else ) %] <h3>Bibliotecas</h3>
  [% IF ( message ) %]<div class="dialog message">
- [% message %]</div>[% END %] [% IF ( MESSAGE1 ) %]<div class="dialog message">Biblioteca no guardada &mdash; falta el código y/o el nombre</div>[% END %] [% IF ( MESSAGE2 ) %]<div class="dialog message">Biblioteca grabada</div>[% END %] [% IF ( MESSAGE3 ) %]<div class="dialog message">Biblioteca eliminada</div>[% END %] [% IF ( MESSAGE4 ) %]<div class="dialog message">Categoría de biblioteca añadida</div>[% END %] [% IF ( MESSAGE5 ) %]<div class="dialog message">Categoría de biblioteca modificada</div>[% END %] [% IF ( MESSAGE6 ) %]<div class="dialog message">La categoría de biblioteca ha sido eliminada</div>[% END %] [% IF ( MESSAGE7 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen socios e ítems en esa sede</div>[% END %] [% IF ( MESSAGE8 ) %]<div class="dialog message">Esta categoría no puede ser eliminada debido a que hay bibliotecas que la tienen en uso</div>[% END %] [% IF ( MESSAGE9 ) %]<div class="dialog message">La categoría no se puede agregar, el código de la categoría ya existe</div>[% END %] [% IF ( MESSAGE10 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen ítems en esa sede</div>[% END %] [% IF ( MESSAGE11 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen socios registrados en esa sede</div>[% END %] [% IF ( branches ) %] <div id="pagerbranchest">
-[% INCLUDE 'table-pager.inc' perpage='10' %] </div>
- <table id="branchest">
+ [% message %]</div>[% END %] [% IF ( MESSAGE1 ) %]<div class="dialog message">Biblioteca no guardada &mdash; falta el código y/o el nombre</div>[% END %] [% IF ( MESSAGE2 ) %]<div class="dialog message">Biblioteca grabada</div>[% END %] [% IF ( MESSAGE3 ) %]<div class="dialog message">Biblioteca eliminada</div>[% END %] [% IF ( MESSAGE4 ) %]<div class="dialog message">Categoría de biblioteca añadida</div>[% END %] [% IF ( MESSAGE5 ) %]<div class="dialog message">Categoría de biblioteca modificada</div>[% END %] [% IF ( MESSAGE6 ) %]<div class="dialog message">La categoría de biblioteca ha sido eliminada</div>[% END %] [% IF ( MESSAGE7 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen socios e ítems en esa sede</div>[% END %] [% IF ( MESSAGE8 ) %]<div class="dialog message">Esta categoría no puede ser eliminada debido a que hay bibliotecas que la tienen en uso</div>[% END %] [% IF ( MESSAGE9 ) %]<div class="dialog message">La categoría no se puede agregar, el código de la categoría ya existe</div>[% END %] [% IF ( MESSAGE10 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen ítems en esa sede</div>[% END %] [% IF ( MESSAGE11 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen socios registrados en esa sede</div>[% END %] [% IF ( branches ) %] <table id="branchest">
 <thead><tr>
  <th>Nombre</th>
  <th>Código</th>
@@ -118,7 +129,8 @@ tinyMCE.init({
  <th>Propiedades</th>
  <th>IP</th>
  <!-- <th>Printer</th> -->
- <th colspan="2">&nbsp;</th>
+ <th>&nbsp;</th>
+ <th>&nbsp;</th>
  </tr></thead><tbody>
  [% FOREACH branche IN branches %] [% IF ( loop.odd ) %] <tr>
  [% ELSE %] <tr class="highlight">
@@ -203,6 +215,11 @@ tinyMCE.init({
  [% END %] [% categorytyp.type %]</option>
  [% END %] </select>
  </li>
+ <li>
+ <label for="show_in_pulldown">Show in search pulldown: </label>
+ [% IF ( show_in_pulldown ) %] <input type="checkbox" name="show_in_pulldown" id="show_in_pulldown" checked="checked"/>
+ [% ELSE %] <input type="checkbox" name="show_in_pulldown" id="show_in_pulldown" />
+ [% END %] </li>
  </ol>
  </fieldset>
  <fieldset class="action"><input value="Actualizar" type="submit" /></fieldset>

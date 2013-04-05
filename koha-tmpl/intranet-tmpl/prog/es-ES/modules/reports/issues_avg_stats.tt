@@ -43,7 +43,7 @@
  <div class="yui-b">
 
 [% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Período promedio de préstamo</h1>
- [% IF ( mainloo.loopfilter ) %] <p>Filtrado por</p>
+ [% IF ( mainloo.loopfilter ) %] <p>Filtrado en:</p>
  [% FOREACH loopfilte IN mainloo.loopfilter %] <p>[% IF ( loopfilte.err ) %] [% END %] [% loopfilte.crit %] =[% loopfilte.filter %][% IF ( loopfilte.err ) %] [% END %]</p>
  [% END %] [% END %] <table>
  <tr>
@@ -134,7 +134,11 @@
  <td>Biblioteca</td>
  <td><input type="radio" name="Line" value="branchcode" /></td>
  <td><input type="radio" name="Column" value="branchcode" /></td>
- <td>[% CGIBranch %]</td>
+ <td><select name="Filter" size="1" id="branch">
+ <option value=""></option>
+ [%- FOREACH branchloo IN branchloop %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>
+ [%- END %] </select>
+ </td>
  </tr>
 <!-- Modified according to statistics table
  <tr>

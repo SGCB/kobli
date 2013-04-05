@@ -1,15 +1,19 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Autoridades &rsaquo; [% IF ( authid ) %]Modificar autoridad #[% authid %] ([% authtypetext %])[% ELSE %]Agregar autoridad ([% authtypetext %])[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/yui/plugins/bubbling-min.js"></script>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.fixFloat.js"></script>
 <script type="text/javascript" src="[% themelang %]/js/cataloging.js"></script>
 [% IF ( CheckValueIndicators ) %] <script type="text/javascript" src='[% themelang %]/js/indicators.js'></script>
 [% END %] <script type="text/javascript">
 //<![CDATA[
-
+    $(window).load(function(){
+        $("#loading").hide();
+    });
 	 $(document).ready(function() {
         $('#authoritytabs').tabs();
-
-		$("#f").submit(function(){
-			return $(this).Check();
+        $('#toolbar').fixFloat();
+        $("#addauth").click(function(){
+            if(Check()){
+                $("#f").submit();
+            }
 		});
 	 });
 
@@ -84,7 +88,6 @@ function AreMandatoriesNotOk(){
     }
     return false;
 }
-
 
 // Get XML Document with values of indicators.
 // Check if we come from an authorities operation with wrong values
@@ -214,51 +217,20 @@ function searchauthority() {
     Y = document.forms[0].value.value;
     window.location="/cgi-bin/koha/authorities/authorities-home.pl?op=do_search&type=intranet&authtypecode="+X+"&value="+Y+"&marclist=&and_or=and&excluding=&operator=contains";
 }
+function confirmnotdup(redirect){
+    $("#confirm_not_duplicate").attr("value","1");
+    Check();
+}
 //]]>
 </script>
 <link type="text/css" rel="stylesheet" href="[% themelang %]/css/addbiblio.css" />
 </head>
 <body id="auth_authorities" class="auth">
-<div id="yui-cms-loading">
- <div id="yui-cms-float">
- Cargando, por favor espere ... </div>
- </div>
-<script type="text/javascript" src="[% themelang %]/lib/yui/plugins/loading-min.js"></script>
-<script type="text/javascript">
-//<![CDATA[
-(function() {
-	// configuring the loading mask
-	YAHOO.widget.Loading.config({
-		opacity: 0.8
-	});
-})();
-     $(document).ready(function() {
-        yuiToolbar();
-        $("#addauthc,#action").empty();
-     });
-    // YUI Toolbar Functions
-    function yuiToolbar() {
-    var addauthButton = new YAHOO.widget.Button({
-                                            id: "addauth",
-                                            type: "button",
-                                            label: _("Guardar"),
-                                            container: "addauthc",
-                                            onclick: {fn: Check }
-                                        });
-    var addauthButton2 = new YAHOO.widget.Button({
-                                            id: "addauth2",
-                                            type: "button",
-                                            label: _("Guardar"),
-                                            container: "action",
-                                            onclick: {fn: Check }
-                                        });
-    }
-    function confirmnotdup(redirect){
-        $("#confirm_not_duplicate").attr("value","1");
-        Check();
-    }
-//]]>
-</script>
+
+<div id="loading">
+ <div>Cargando, por favor espere ... </div>
+</div>
+
 [% INCLUDE 'header.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/authorities/authorities-home.pl">Autoridades</a> &rsaquo; [% IF ( authid ) %]Modificar autoridad #[% authid %] ([% authtypetext %])[% ELSE %]Agregar autoridad [% authtypetext %][% END %] </div>
 
 <div id="doc" class="yui-t7">
@@ -290,8 +262,9 @@ function searchauthority() {
  <input type="hidden" name="index" value="[% index %]" />
  <input type="hidden" value="0" id="confirm_not_duplicate" name="confirm_not_duplicate" />
 
- <div id="toolbar">
- <ul class="toolbar"><li id="addauthc"><input accesskey="w" value="Guardar" id="addauth" type="submit" /></li></ul></div>
+ <div id="toolbar" class="btn-toolbar">
+ <div class="btn-group"><a href="#" id="addauth" class="btn btn-small" accesskey="w"><i class="icon-hdd"></i> Guardar</a></div>
+ </div>
 
 <div id="authoritytabs" class="toptabs numbered">
  <ul>
@@ -300,7 +273,7 @@ function searchauthority() {
 
 [% FOREACH BIG_LOO IN BIG_LOOP %] <div id="tab[% BIG_LOO.number %]XX">
 
- [% FOREACH innerloo IN BIG_LOO.innerloop %] [% IF ( innerloo.tag ) %] <div class="tag" id="tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
+ [% FOREACH innerloo IN BIG_LOO.innerloop %] [% IF ( innerloo.tag ) %] <div class="tag clearfix" id="tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
  <div class="tag_title" id="div_indicator_tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]">
  [% UNLESS hide_marc %] [% IF advancedMARCEditor %] <a tabindex="1" href="#" class="tagnum" title="[% innerloo.tag_lib %] - Haga clic par expandir esta etiqueta" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;">[% innerloo.tag %]</a>
  [% ELSE %] <span title="[% innerloo.tag_lib %]">[% innerloo.tag %]</span>

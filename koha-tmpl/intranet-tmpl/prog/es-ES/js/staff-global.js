@@ -10,7 +10,9 @@ function _(s) { return s; } // dummy function for gettext
     if($("#header_search #circ_search").length > 0){ $(document).bind('keydown','Alt+u',function (){ $("#header_search").tabs("select","#circ_search"); $("#findborrower").focus(); }); } else { $(document).bind('keydown','Alt+u',function(){ location.href="/cgi-bin/koha/circ/circulation.pl"; }); }
     if($("#header_search #catalog_search").length > 0){ $(document).bind('keydown','Alt+q',function (){ $("#header_search").tabs("select","#catalog_search"); $("#search-form").focus(); }); } else { $(document).bind('keydown','Alt+q',function(){ location.href="/cgi-bin/koha/catalogue/search.pl"; }); }
     $(".focus").focus();
+    $(".validated").validate();
 });
+
 
 
 // http://jennifermadden.com/javascript/stringEnterKeyDetector.html
@@ -37,6 +39,7 @@ function clearHoldFor(){
 
 jQuery.fn.preventDoubleFormSubmit = function() {
     jQuery(this).submit(function() {
+    $("body, form input[type='submit'], form button[type='submit'], form a").addClass('waiting');
         if (this.beenSubmitted)
             return false;
         else

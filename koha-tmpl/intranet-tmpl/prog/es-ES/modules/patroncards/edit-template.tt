@@ -33,33 +33,6 @@
         });
         //]]>
     </script>
- <script type="text/javascript">
-        //<![CDATA[
-        $(document).ready(function() {
-            $("#save").empty();
-            $("#cancel").empty();
-            buildButtons();
-         });
-        function submitForm() {
-            document.input.submit();
-        };
-        function buildButtons() {
-            var saveButton = new YAHOO.widget.Button({
-                type: "link",
-                onclick: {fn: submitForm},
-                label: _("Guardar"),
-                id: "save",
-                container: "save"
-            });
-            var cancelButton = new YAHOO.widget.Button({
-                type: "link",
-                href: "/cgi-bin/koha/patroncards/manage.pl?card_element=template",
-                label: _("Cancelar"),
-                id: "cancel",
-                container: "cancel",
-            });
-        };
-    </script>
 </head>
 <body id="pcard_edit-template" class="tools pcard">
  [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
@@ -154,8 +127,8 @@
  </div>
  <div class="yui-g">
  <fieldset class="action">
- <span id="save"><input value="Guardar" type="submit" class="submit" /></span>
- <span id="cancel"><a class="cancel" href="/cgi-bin/koha/patroncards/manage.pl?card_element=template">Cancelar</a></span>
+ <input value="Guardar" type="submit" class="submit" />
+ <a class="cancel" href="/cgi-bin/koha/patroncards/manage.pl?card_element=template">Cancelar</a>
  <input type="hidden" name="op" value="save" />
  [% IF ( template_id ) %] <input type="hidden" name="template_id" value="[% template_id %]" />
  [% END %] </fieldset>

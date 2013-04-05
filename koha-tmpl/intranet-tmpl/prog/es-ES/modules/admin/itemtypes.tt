@@ -1,14 +1,7 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Tipos de ítems [% IF ( add_form ) %]&rsaquo; [% IF ( itemtype ) %] Modificar tipo de ítem '[% itemtype %]' [% ELSE %] Agregar tipo de ítem [% END %] [% END %] [% IF ( delete_confirm ) %]&rsaquo; [% IF ( total ) %] No se puede eliminar tipo de ítem '[% itemtype %]' [% ELSE %] Eliminar tipo de ítem '[% itemtype %]'? [% END %] [% END %] [% IF ( delete_confirmed ) %]&rsaquo; Datos eliminados [% END %] </title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.pager.js"></script>
-<script type="text/javascript" id="js">$(document).ready(function() {
-	// call the tablesorter plugin
-	$("#table_item_type").tablesorter({
-		sortList: [[1,0]],
-		headers: { 0: { sorter: false},5: { sorter: false}}
-		   		}).tablesorterPager({container: $("#pagertable_item_type"),positionFixed: false,size: 10});
-	
-}); </script>
+[% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript">
 //<![CDATA[
 
@@ -67,6 +60,14 @@ function Check(f) {
 }
      $(document).ready(function() {
         $('#icons').tabs();
+        $("#table_item_type").dataTable($.extend(true, {}, dataTablesDefaults, {
+            "aoColumnDefs": [
+                { "aTargets": [ -1 ], "bSortable": false, "bSearchable": false },
+            ],
+            "aLengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+            "aaSorting": [[ 2, "asc" ]],
+            "iDisplayLength": 10
+        }));
      });
 //]]>
 </script>
@@ -97,14 +98,14 @@ function Check(f) {
  <fieldset class="rows">
  <ol>
  [% IF ( itemtype ) %] <li>
- <span class="label">Tipo de ítem</span> <input type="hidden" name="itemtype" value="[% itemtype %]" />
+ <span class="label">Tipo de ítem: </span> <input type="hidden" name="itemtype" value="[% itemtype %]" />
  [% itemtype %] </li>
  [% ELSE %] <li>
- <label for="itemtype">Tipo de ítem</label> <input type="text" id="itemtype" name="itemtype" size="10" maxlength="10" onblur="toUC(this)" class="focus" />
+ <label for="itemtype">Tipo de ítem: </label> <input type="text" id="itemtype" name="itemtype" size="10" maxlength="10" onblur="toUC(this)" class="focus" />
  </li>
  [% END %] <li>
- [% IF ( itemtype ) %] <label for="description">Descripción</label><input type="text" id="description" name="description" size="48" value="[% description |html %]" class="focus" /></li>
- [% ELSE %] <label for="description">Descripción</label><input type="text" id="description" name="description" size="48" value="[% description |html %]" /></li>
+ [% IF ( itemtype ) %] <label for="description">Descripción: </label><input type="text" id="description" name="description" size="48" value="[% description |html %]" class="focus" /></li>
+ [% ELSE %] <label for="description">Descripción: </label><input type="text" id="description" name="description" size="48" value="[% description |html %]" /></li>
  [% END %] [% IF ( noItemTypeImages ) %] <li><span class="label">Imagen: </span>Las imágenes de tipos de ítems están deshabilitadas. Para habilitarlas, apague la <a href="/cgi-bin/koha/admin/preferences.pl?op=search&amp;searchfield=noItemTypeImages">preferencia del sistema noItemTypeImages</a></li></ol>
  [% ELSE %]</ol>
  <div id="icons" class="toptabs" style="clear:both">
@@ -120,7 +121,7 @@ function Check(f) {
  <br class="clear" /></div>
 
  [% FOREACH imageset IN imagesets %] <div id="[% imageset.imagesetname %]"><ul>
- [% FOREACH image IN imageset.images %] <li style="float: none; display: inline; clear : none; width: auto;">
+ [% FOREACH image IN imageset.images %] <li style="float: none; display: inline-block; clear : none; width: auto;">
  <label> [% IF ( image.StaffImageUrl ) %] <img src="[% image.StaffImageUrl %]" alt="[% image.StaffImageUrl %]" title="[% image.StaffImageUrl %]" />
  [% ELSE %] [% END %] [% IF ( image.checked ) %] <input type="radio" name="image" value="[% image.KohaImage %]" checked="checked" />
  [% ELSE %]
@@ -143,7 +144,7 @@ function Check(f) {
 [% END %] </div>
 <ol>
  <li>
- <label for="notforloan">No para préstamo</label> [% IF ( notforloan ) %] <input type="checkbox" id="notforloan" name="notforloan" checked="checked" value="1" />
+ <label for="notforloan">Not for loan: </label> [% IF ( notforloan ) %] <input type="checkbox" id="notforloan" name="notforloan" checked="checked" value="1" />
  [% ELSE %] <input type="checkbox" id="notforloan" name="notforloan" value="1" />
  [% END %] (si está seleccionado, ningún ítem de este tipo podrá ser prestado. Si no está seleccionado, todos los ítems de este tipo podrán ser prestados, a menos que se establezca que un ítem en particular no se presta) </li>
  <li>
@@ -186,9 +187,7 @@ function Check(f) {
  [% END %] </div>
  
 [% END %] [% IF ( else ) %] <h2>Administración de tipos de ítem</h2>
-[% IF ( loop ) %]<div id="pagertable_item_type">
-[% INCLUDE 'table-pager.inc' perpage='10' %] </div>
-<table id="table_item_type">
+[% IF ( loop ) %] <table id="table_item_type">
  <thead>
  [% UNLESS ( noItemTypeImages ) %]<th>Imagen</th>[% END %] <th>Código</th>
  <th>Descripción</th>

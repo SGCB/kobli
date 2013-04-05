@@ -50,16 +50,35 @@ function cartList(){
         return false;
     }
 }
-$(window).load(function() {
-        new YAHOO.widget.Button("cartsubmit", { onclick: { fn: cartList }});
-});
 $(document).ready(function() {
-$("#placeholdc").empty();
+$("#cartsubmit").click(function(){
+    cartList();
+    return false;
+});
+$("#z3950submit").click(function(){
+    PopupZ3950();
+    return false;
+});
+
+$("#searchheader").on("click",".placehold", function(){
+    placeHold();
+    $(".btn-group").removeClass("open");
+    return false;
+});
+$(".placeholdfor").click(function(){
+    holdForPatron();
+    $(".btn-group").removeClass("open");
+    return false;
+});
+$("#forgetholdfor").click(function(){
+    forgetPatron();
+    $(".btn-group").removeClass("open");
+    return false;
+});
 $('#sortbyform').find("input:submit").hide();
 $('#sort_by').change(function() {
         $('#sortbyform').submit();
     });
-$(".addtocart").show();
         var param1 = "<label for=\"addto\">"+_("Agregar a:")+"<\/label><select name=\"addto\" id=\"addto\"><option value=\"\"><\/option>";
         [% IF ( intranetbookbag ) %]     param1 += "<option value=\"addtocart\">"+_("Cesta")+"<\/option>"; [% END %]
         [% IF ( virtualshelves ) %][% IF ( addbarshelves ) %]
@@ -113,7 +132,9 @@ $(".addtocart").show();
 function highlightOn() {
     var x;
     for (x in q_array) {
-        toHighlight.highlight(q_array[x]);
+        if ( q_array[x].length > 0 ) {
+            toHighlight.highlight(q_array[x]);
+        }
     }
     $(".highlight_toggle").toggle();
 }[% END %]
@@ -152,14 +173,7 @@ function placeHold () {
 function forgetPatron(){
     $.cookie("holdfor",null, { path: "/", expires: 0 });
     $(".holdforlink").remove();
-    $("#placeholdc").empty();
-    new YAHOO.widget.Button({
-    id: "placehold",
-    type: "button",
-    label: _("Hacer reserva"),
-    container: "placeholdc",
-    onclick: { fn: placeHold }
- });
+    $("#placeholdc").html("<a class=\"btn btn-mini placehold\" href=\"#\"><i class=\"icon-hold\"></i> "+_("Hacer reserva")+"</a>");
 }
 
 function addToList () {
@@ -194,40 +208,14 @@ function GetZ3950Terms(){
 	return strQuery;
 }
 
-YAHOO.util.Event.onContentReady("searchheader", function () {
-        new YAHOO.widget.Button( "z3950submit", { onclick: { fn: PopupZ3950 }});
-        [% IF ( holdfor ) %]
-        var holdFor = function (){
-            $("#holdFor").val("");
-            placeHold();
-        }
-        var holdForPatron = function () {
-            $("#holdFor").val("[% holdfor_cardnumber %]");
-            placeHold();
-        }
-        var HoldForButtonMenu = [
-            { text: _("Hacer reserva"), onclick: { fn: holdFor }},
-            { text: _("Hacer reserva para") + " [% holdfor_firstname %] [% holdfor_surname %] ([% holdfor_cardnumber %])", onclick: { fn: holdForPatron }},
-            { text: _("Olvidar") + " [% holdfor_firstname %] [% holdfor_surname %] ([% holdfor_cardnumber %])", onclick: { fn: forgetPatron }}];
-
-        var HoldForButton = new YAHOO.widget.Button({
-                type: "split",
-                label: _("Hacer reserva"),
-                name: "holdfor",
-                menu: HoldForButtonMenu,
-                container: "placeholdc",
-                onclick: { fn: holdFor }
-        });
-        [% ELSE %]
-        new YAHOO.widget.Button({
-            id: "placehold",
-            type: "button",
-            label: _("Hacer reserva"),
-            container: "placeholdc",
-            onclick: { fn: placeHold }
-         });
-        [% END %]
-}); // YAHOO onContentReady
+var holdFor = function (){
+    $("#holdFor").val("");
+    placeHold();
+}
+var holdForPatron = function () {
+    $("#holdFor").val("[% holdfor_cardnumber %]");
+    placeHold();
+}
 //]]>
 </script>
 </head>
@@ -272,8 +260,20 @@ YAHOO.util.Event.onContentReady("searchheader", function () {
  | <a href="#" class="highlight_toggle" id="highlight_toggle_off">De-resaltar</a>
  <a href="#" class="highlight_toggle" id="highlight_toggle_on">Resaltar</a>
  | <span class="addto"></span>
- [% IF ( CAN_user_reserveforothers ) %] [% IF ( DisplayMultiPlaceHold ) %] | <span id="placeholdc"><input value="Ingrese reserva" type="button" id="placehold" onclick="placeHold(); return false;" /></span>
- [% END %] [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] | <input value="Búsqueda Z39.50" type="button" id="z3950submit" onclick="PopupZ3950(); return false;" />[% END %] </div>
+ [% IF ( CAN_user_reserveforothers && DisplayMultiPlaceHold ) %] [% IF ( holdfor ) %] <div id="placeholdc" class="btn-group">
+ <button class="btn btn-mini placehold"><i class="icon-hold"></i> Hacer reserva</button>
+ <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+ <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu">
+ <li><a href="#" class="placehold">Hacer reserva</a></li>
+ <li><a href="#" class="placeholdfor">Hacer reserva para [% holdfor_firstname %] [% holdfor_surname %] ([% holdfor_cardnumber %])</a></li>
+ <li class="divider"></li>
+ <li><a href="#" id="forgetholdfor">Olvida [% holdfor_firstname %] [% holdfor_surname %] ([% holdfor_cardnumber %])</a></li>
+ </ul>
+ </div>
+ [% ELSE %] <div id="placeholdc" class="btn-group"><a class="btn btn-mini placehold" href="#"><i class="icon-hold"></i> Hacer reserva</a></div>
+ [% END %] [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %] <div class="btn-group"><a class="btn btn-mini" id="z3950submit" href="#"><i class="icon-search"></i> Búsqueda Z39.50</a></div>[% END %] </div>
  </div>
  [% IF ( stopwords_removed ) %]<div><p class="tip">Ignoradas las siguientes palabras comunes: "[% stopwords_removed %]"<p></div>[% END %] [% ELSE %] <div id="searchheader">
  <form method="post" name="fz3950" class="fz3950bigrpad">
@@ -335,38 +335,7 @@ YAHOO.util.Event.onContentReady("searchheader", function () {
  </tr>
  [% END %] </table>
  </form>
- [% ELSE %]
-
- [% IF ( NoZebra ) %]
- <!-- ######### -->
- <div id="facets">
- <dl>
- <!-- FACETS START -->
- [% IF ( opacfacets ) %]
- <dt id="facets1" onclick="var Elt=document.getElementById('facets_list');if (Elt.style.display!='block'){Elt.style.display='block';} else {Elt.style.display='none';}">
- Refinar su búsqueda </dt>
- <dd id="facets_list" style="display:none;">
- <ul>
- [% FOREACH facets_loo IN facets_loop %] <li id="[% facets_loo.type_id %]">[% facets_loo.type_label %] <ul>
- [% FOREACH facet IN facets_loo.facets %] <li>
- <a href="/cgi-bin/koha/catalogue/search.pl?q=[% facet.searchdesc %] and [% facet.type_link_value %]:[% facet.facet_link_value %]" title="[% facet.facet_title_value %]">
- [% facet.facet_label_value %] </a> ([% facet.facet_count %]) </li>
- [% END %] [% IF ( facets_loo.expandable ) %] <li class="showmore">
- <a href="/cgi-bin/koha/catalogue/search.pl?q=[% facets_loo.searchdesc %][% IF ( offset ) %]&amp;offset=[% offset %][% END %]&amp;expand=[% facets_loo.expand %]#[% facets_loo.type_id %]">
- Mostrar más </a>
- </li>
- [% END %] </ul>
- </li>
- [% END %] </ul>
- </dd>
- [% END %]
- <!-- FACETS END -->
- </dl>
- </div>
- <!-- ######### -->
- <!-- NoZebra -->[% END %]
-
- <div id="searchresults">
+ [% ELSE %] <div id="searchresults">
  <form action="/cgi-bin/koha/catalogue/search.pl" method="get" name="bookbag_form" id="bookbag_form">
  [% IF ( searchdesc ) %] [% FOREACH QUERY_INPUT IN QUERY_INPUTS %] <input type="hidden" name="[% QUERY_INPUT.input_name |html %]" value="[% QUERY_INPUT.input_value |html %]"/>
  [% END %] [% FOREACH LIMIT_INPUT IN LIMIT_INPUTS %] <input type="hidden" name="[% LIMIT_INPUT.input_name |html %]" value="[% LIMIT_INPUT.input_value |html %]"/>

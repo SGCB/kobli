@@ -46,7 +46,7 @@
  <div class="yui-b">
 
 [% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Principales [% mainloo.limit %] ítem más circulados</h1>
- [% IF ( mainloo.loopfilter ) %] <p>Filtrado por</p>
+ [% IF ( mainloo.loopfilter ) %] <p>Filtrado en:</p>
  [% FOREACH loopfilte IN mainloo.loopfilter %] <p>[% IF ( loopfilte.err ) %] [% END %] [% loopfilte.crit %] =[% loopfilte.filter %][% IF ( loopfilte.err ) %] [% END %]</p>
  [% END %] [% END %] <table>
 <tr> <th>Orden/Número de ítem</th>

@@ -153,13 +153,15 @@ function validate1(date) {
 [% END %] <div class="yui-g">
 
 [% IF ( unknowuser ) %] <div class="dialog message">Este socio no existe.</div>
-[% ELSE %] [% IF ( reregistration ) %]<div class="dialog message">La cuenta del socio se ha renovado hasta [% dateexpiry %]</div>[% END %] [% IF ( flagged ) %] <ul>
- [% IF ( userdebarred ) %] <li>El socio está restringido[% IF ( userdebarreddate ) %] hasta [% userdebarreddate%] [% IF (debarredcomment ) %]([% debarredcomment %])[% END %][% END %]<form class="inline compact" action="/cgi-bin/koha/members/setdebar.pl" method="post">
+[% ELSE %] [% IF ( was_renewed ) %]<div class="dialog message">La cuenta del socio se ha renovado hasta [% dateexpiry %]</div>[% END %] [% IF ( flagged ) %] <div id="circmessages" class="circmessage attention">
+ <ul>
+ [% IF ( userdebarred ) %] <li class="blocker">El socio está restringido[% IF ( userdebarreddate ) %] hasta [% userdebarreddate%] [% IF (debarredcomment ) %]([% debarredcomment %])[% END %][% END %]<form class="inline compact" action="/cgi-bin/koha/members/setdebar.pl" method="post">
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
  <input value="Levantar restricción" type="submit" />
  </form>
  </li>
- [% END %] [% IF ( gonenoaddress ) %]<li>Dirección de socio dudosa</li>[% END %] [% IF ( lost ) %]<li>El carné del socio ha sido reportado como perdido.</li>[% END %] </ul>
+ [% END %] [% IF ( gonenoaddress ) %]<li class="blocker">Dirección de socio dudosa</li>[% END %] [% IF ( lost ) %]<li class="blocker">El carné del socio ha sido reportado como perdido.</li>[% END %] </ul>
+ </div>
  [% END %] <h3>[% UNLESS ( I ) %] [% title %] [% firstname %] [% END %] [% surname %] ([% cardnumber %])</h3>
  <div class="yui-u first">
 <div id="patron-information" style="padding : .5em;">
@@ -241,7 +243,7 @@ function validate1(date) {
  <li><span class="label">Fecha de registro: </span>[% dateenrolled %]</li>
  
  <li><span class="label">Fecha de vencimiento: </span>
- [% IF ( reregistration ) %] <strong class="reregistrinfo">[% dateexpiry %]</strong>
+ [% IF ( was_renewed ) %] <strong class="reregistrinfo">[% dateexpiry %]</strong>
  [% ELSE %] [% dateexpiry %] [% END %] </li>
  
  <li><span class="label">Biblioteca: </span>[% branchname %]</li>

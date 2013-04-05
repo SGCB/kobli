@@ -14,10 +14,6 @@ function delDescField(minusButton) {
     var li = $(minusButton).parent('li');
     $(li).remove();
 }
-
-$(document).ready(function() {
-    new YAHOO.widget.Button("newoaiset");
-});
 //]]>
 </script>
 </head>
@@ -59,10 +55,9 @@ $(document).ready(function() {
  <input value="Guardar" type="submit" /> <a class="cancel" href="/cgi-bin/koha/admin/oai_sets.pl">Cancelar</a>
  </fieldset>
  </form>
- [% ELSE %] <div id="toolbar">
- <ul class="toolbar">
- <li><a id="newoaiset" href="/cgi-bin/koha/admin/oai_sets.pl?op=new">Nuevo lote</a></li>
- </ul></div>
+ [% ELSE %] <div id="toolbar" class="btn-toolbar">
+ <a class="btn btn-small" id="newoaiset" href="/cgi-bin/koha/admin/oai_sets.pl?op=new"><i class="icon-plus"></i> Nuevo lote</a>
+ </div>
 
  <h2>Lotes OAI</h2>
  [% IF sets_loop %] <table>

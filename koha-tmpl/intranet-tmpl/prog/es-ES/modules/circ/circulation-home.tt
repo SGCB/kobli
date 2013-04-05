@@ -28,7 +28,7 @@
  <li> <a href="/cgi-bin/koha/circ/waitingreserves.pl" title="reservas a la espera de ser retiradas">Reservas a retirar</a></li>
  <li> <a href="/cgi-bin/koha/circ/reserveratios.pl">Proporción de reservas</a></li>
  <li> <a href="/cgi-bin/koha/circ/transferstoreceive.pl" title="transferencias a recibir en su biblioteca">Transferencias a recibir</a></li>
- [% IF ( CAN_user_reports_execute_reports ) %]<li> <a href="/cgi-bin/koha/circ/overdue.pl">Retrasos</a>
+ [% IF ( CAN_user_circulate_overdues_report ) %]<li> <a href="/cgi-bin/koha/circ/overdue.pl">Retrasos</a>
  - <b>Advertencia:</b> Este informe consume muchos recursos en sistema con gran cantidad de ejemplares retrasados.</li>[% END %] <li> <a href="/cgi-bin/koha/circ/branchoverdues.pl">Retrasos con multas</a> - Limitados a su biblioteca. Vea la ayuda del informe para más detalles.</li>
 <!-- <li> <a href="/cgi-bin/koha/circ/stats.pl?time=yesterday">Daily reconciliation</a></li> -->
 </ul>
@@ -39,8 +39,12 @@
  <div class="yui-u">
  <h5>Circulación fuera de línea</h5>
  <ul>
- <li><a href="/cgi-bin/koha/offline_circ/process_koc.pl">Cargador del archivo de circulación fuera de línea (.koc)</a></li>
- <li><a href="/cgi-bin/koha/offline_circ/list.pl">Circulación fuera de línea</a> (<a href="https://addons.mozilla.org/[% lang %]/firefox/addon/koct/">Firefox add-on</a>)</li>
+ <li><a href="/cgi-bin/koha/offline_circ/process_koc.pl">Cargar archivo de circulación offline (.koc)</a></li>
+ <li><a href="/cgi-bin/koha/offline_circ/list.pl">Hay acciones de circulación offline pendientes</a>
+ <ul>
+ <li><a href="http://kylehall.info/index.php/projects/koha/koha-offline-circulation/">Conseguir la aplicación de escritorio</a></li>
+ <li><a href="https://addons.mozilla.org/[% lang %]/firefox/addon/koct/">Conseguir el add-on de Firefox</a></li>
+ </ul>
  </ul>
  </div>
 </div>

@@ -1,5 +1,7 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Preferencias del sistema</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/preferences.css" />
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.fixFloat.js"></script>
 <script type="text/javascript">
@@ -12,14 +14,15 @@
     var search_jumped = [% IF ( search_jumped ) %]true[% ELSE %]false[% END %];
     var MSG_NOTHING_TO_SAVE = _("Nada que guardar");
     var MSG_SAVING = _("Guardando...");
+    var MSG_SAVED_PREFERENCE = _("Preferencia guardada");
     var MSG_MODIFIED = _("modificado");
     var MSG_MADE_CHANGES = _("Usted ha realizado cambios a las preferencias el sistema");
     var MSG_CLICK_TO_EXPAND = _("Haga clic para expandir esta sección");
     var MSG_CLICK_TO_COLLAPSE = _("Haga clic para colapsar esta sección");
     var MSG_INTERNAL_SERVER_ERROR = _( "Error interno del servidor, por favor, vuelva a cargar la página" );
-    var MSG_SESSION_TIMED_OUT = _( 'Es necesario volver a iniciar sesión, su sesión ha caducado' );
-    var MSG_DATA_NOT_SAVED = _( 'Error, sus datos no han podido ser salvados' );
-    var MSG_LOADING = _( 'Cargando...' );
+    var MSG_SESSION_TIMED_OUT = _( "Es necesario volver a iniciar sesión, su sesión ha caducado" );
+    var MSG_DATA_NOT_SAVED = _( "Error, sus datos no han podido ser salvados" );
+    var MSG_LOADING = _( "Cargando..." );
 
 //]]>
 </script>

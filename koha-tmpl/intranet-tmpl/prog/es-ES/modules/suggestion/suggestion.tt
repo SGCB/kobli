@@ -1,14 +1,10 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; [% IF ( op_save ) %] [% IF ( suggestionid) %] [% IF ( op == 'show' ) %] Mostrar sugerencia de compra #[% suggestionid %] [% ELSE %] Editar sugerencia de compra #[% suggestionid %] [% END %] [% ELSE %] Ingresar una nueva sugerencia de compra [% END %] [% ELSE %] Administración de sugerencias [% END %] </title>
-[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] [% IF ( op_else ) %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] [% IF ( op_else ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 <script type="text/javascript">
 // <![CDATA[
-$.tablesorter.addParser({
-    id: 'articles',
-    is: function(s) {return false;  },
-    format: function(s) { return s.toLowerCase().replace(/^(the|an|a) /,''); },
-    type: 'text'
-});
 /**
 *  displayOther.
 *  This function display the select or an textaera to write a reason.
@@ -19,26 +15,32 @@ function displayOther(id,show,hide){
 }
 $(document).ready(function() {
     $('#suggestiontabs').tabs({
-        select: function(ui) {
-            $("#loadingtab").show();
-        },
-        show: function(ui) {
-            $("#loadingtab").hide();
+        // Correct table sizing for tables hidden in tabs
+        // http://www.datatables.net/examples/api/tabs_and_scrolling.html
+        "show": function(event, ui) {
+            var oTable = $('div.dataTables_wrapper>table', ui.panel).dataTable();
+            if ( oTable.length > 0 ) {
+                oTable.fnAdjustColumnSizing();
+            }
         }
-        });
-    $.tablesorter.defaults.widgets = ['zebra'];
-
+    });
+    $(".sorted").dataTable($.extend(true, {}, dataTablesDefaults, {
+        "aoColumnDefs": [
+            { "aTargets": [ 0, -1, -2 ], "bSortable": false, "bSearchable": false },
+        ],
+        "aLengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+        "iDisplayLength": 20,
+        "sPaginationType": "four_button"
+    }));
 [% FOREACH suggestion IN suggestions %]
 // functions for [% suggestion.suggestiontype %] interactions
-    $("#[% suggestion.suggestiontype %]t").tablesorter({[% IF ( dateformat == 'metric' ) %]
-    dateFormat: 'uk',[% END %]
-    headers: {0:{sorter: false}, 1: { sorter: 'articles' },5:{sorter: false},6:{sorter: false},7:{sorter: false}, 8:{sorter: false},9:{sorter: false},10:{sorter: false}}
-    });
-    $("#CheckAll[% suggestion.suggestiontype %]").click(function(){
+    $("#CheckAll[% suggestion.suggestiontype %]").click(function(e){
 		$("#[% suggestion.suggestiontype %]t").checkCheckboxes();
+        e.preventDefault();
     });
-    $("#UncheckAll[% suggestion.suggestiontype %]").click(function(){
+    $("#UncheckAll[% suggestion.suggestiontype %]").click(function(e){
 		$("#[% suggestion.suggestiontype %]t").unCheckCheckboxes();
+        e.preventDefault();
 	});
 	$("#other_reason[% suggestion.suggestiontype %]").hide();
     $("input[name*=other_reason[% suggestion.suggestiontype %]]").focus(function(){ $(this).val(""); });
@@ -62,8 +64,9 @@ $(document).ready(function() {
 	    $("#reason"+sid).show().find("option[value='']").attr("selected","selected");
 		$("#other_reason"+sid).hide();
     });
-	$("h4.collapse a").click(function(){
-		$(this).parent().parent().find("ol").toggle();
+    $("h4.local_collapse a").click(function(){
+        $(this).parent().parent().find("ol").toggle();
+        return false;
     });
     // http://jqueryui.com/demos/datepicker/#date-range
     var dates = $( "#suggesteddate_from, #suggesteddate_to" ).datepicker({
@@ -109,7 +112,7 @@ $(document).ready(function() {
 // ]]>
 </script>
 <style type="text/css">
-h4.collapse a { font-size : 80%; text-decoration: none; } fieldset.brief ol { display : none; }
+h4.local_collapse a { font-size : 80%; text-decoration: none; } fieldset.brief ol { display : none; }
 .overlay { top: 180px; left: 50%; position: absolute; margin-left: -100px; width: 200px; text-align: center; display: none; margin-top: -10px; background: #eeffd4; padding: .5em; color: #000; } .note { -moz-border-radius: 3px; border-radius:3px; background: transparent url("/intranet-tmpl/prog/img/famfamfam/silk/comment.png") top left no-repeat; padding : 1px 3px 1px 18px; font-size : 90%; }
 </style>[% ELSE %] <script type="text/javascript">
 // <![CDATA[
@@ -247,7 +250,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <fieldset class="rows"> <legend>Información de la adquisición</legend><ol>
  <li><label for="branchcode">Biblioteca:</label>
  <select name="branchcode" id="branchcode">
- <option value="">Cualquiera</option>[% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %]<option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %]<option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %][% END %] </select>
+ <option value="__ANY__">Cualquiera</option>[% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %]<option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %]<option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %][% END %] </select>
  </li>
  <li><label for="budgetid">Presupuesto:</label>
  <select name="budgetid" id="budgetid">
@@ -260,7 +263,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  [% FOREACH loop_currenc IN loop_currency %] [% IF ( loop_currenc.selected ) %]<option value="[% loop_currenc.currcode %]" selected="selected">[% loop_currenc.currcode %]</option>[% ELSE %]<option value="[% loop_currenc.currcode %]">[% loop_currenc.currcode %]</option>[% END %][% END %] </select>
  </li><li><label for="price">Precio:</label>
  <input type="text" size="20" name="price" id="price" value="[% price %]" onchange="calcNewsuggTotal();" />
- </li><li><label for="total">Total</label>
+ </li><li><label for="total">Total: </label>
  <input type="text" readonly="readonly" id="total" name="total" size="10" value="[% total %]"/>
  </li></ol>
  </fieldset><input type="hidden" id="returnsuggested" name="returnsuggested" value="[% IF ( returnsuggestedby ) %][% returnsuggestedby %][% ELSE %]noone[% END %]"/>
@@ -272,9 +275,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
 
 <h1>Administración de sugerencias</h1>
 
-[% UNLESS ( notabs ) %] <div id="sorting" class="overlay">Ordenando...</div>
-<div id="loadingtab" class="overlay">Cargando pestaña...</div>
-<div id="suggestiontabs" class="toptabs">
+[% UNLESS ( notabs ) %] <div id="suggestiontabs" class="toptabs">
 <ul class="ui-tabs-nav">
 [% FOREACH suggestion IN suggestions %] [% IF ( suggestion.first ) %]<li class="ui-tabs-selected">[% ELSE %]<li>[% END %]<a href="#[% suggestion.suggestiontype %]">[% IF ( suggestion.suggestiontypelabel ) %] [% IF (suggestion.suggestiontypelabel == "Pending") %]Pendiente [% ELSIF (suggestion.suggestiontypelabel == "Accepted") %]Aceptado [% ELSIF (suggestion.suggestiontypelabel == "Checked") %]Verificado [% ELSIF (suggestion.suggestiontypelabel == "Rejected") %]Rechazado [% ELSIF (suggestion.suggestiontypelabel == "Available") %]Disponible [% ELSIF (suggestion.suggestiontypelabel == "Ordered") %]Ordenado[% ELSE %] [% suggestion.suggestiontypelabel %][% END %] [% ELSE %]Sin nombre[% END %] ([% suggestion.suggestionscount %])</a></li>
 [% END %] </ul>
@@ -282,7 +283,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
 <form name="f[% suggestion.suggestiontype %]" method="post" action="/cgi-bin/koha/suggestion/suggestion.pl#[% suggestion.suggestiontype %]">
 
 [% IF ( suggestion.suggestions_loop ) %] <p><a id="CheckAll[% suggestion.suggestiontype %]" href="#">Verificar todo </a> | <a id="UncheckAll[% suggestion.suggestiontype %]" href="#">De-seleccionar todo</a></p>
- <table id="[% suggestion.suggestiontype %]t">
+ <table id="[% suggestion.suggestiontype %]t" class="sorted">
  <thead>
  <tr><th>&nbsp;</th>
  <th>Sugerencia</th>
@@ -359,7 +360,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
 <h4>Filtrar por: <a style="font-size:80%;font-weight:normal;" href="/cgi-bin/koha/suggestion/suggestion.pl">[limpiar]</a></h4>
  <div style="display:block;" id="limits">
 
- <fieldset class="brief"><h4 class="collapse"><a href="#">Información bibliográfica</a></h4>
+ <fieldset class="brief"><h4 class="local_collapse"><a href="#">Información bibliográfica</a></h4>
  <ol> <li><label for="title"> Título:</label><input type="text" id="title" name="title" value="[% title |html %]" /></li>
  <li><label for="author"> Autor:</label><input type="text" id="author" name="author" value="[% author %]" /></li>
  <li><label for="isbn"> ISBN:</label><input type="text" id="isbn"  name="isbn" value="[% isbn %]" /></li>
@@ -367,7 +368,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <li><label for="copyrightdate_filter"> Fecha de Copyright:</label><input type="text" id="copyrightdate_filter" name="copyrightdate" value="[% copyrightdate %]" /></li>
  <li><label for="collectiontitle"> Título de colección:</label><input type="text" id="collectiontitle" name="collectiontitle" value="[% collectiontitle %]" /></li><li><input value="Ir" type="submit" /></li></ol>
  </fieldset>
- <fieldset class="brief"><h4 class="collapse"><a href="#">Información de la sugerencia</a></h4>
+ <fieldset class="brief"><h4 class="local_collapse"><a href="#">Información de la sugerencia</a></h4>
  <ol>
  <li><label for="STATUS"> Estado:</label><select name="STATUS" id="STATUS"><option value="">Cualquiera</option>
  [% IF (statusselected_ASKED ) %]<option value="ASKED" selected="selected">Pendiente</option> 
@@ -414,12 +415,12 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <li><input value="Ir" type="submit" /></li></ol>
  </fieldset>
 
- <fieldset class="brief"><h4 class="collapse"><a href="#">Información de la adquisición</a></h4>
+ <fieldset class="brief"><h4 class="local_collapse"><a href="#">Información de la adquisición</a></h4>
  <ol><li><label for="budgetid"> Fondo de libros:</label>
  <select name="budgetid" id="budgetid"><option value="">Cualquiera</option>[% FOREACH budgetid_loo IN budgetid_loop %] [% IF ( budgetid_loo.selected ) %] <option value="[% budgetid_loo.code %]" selected="selected">[% budgetid_loo.desc %]</option>[% ELSE %]<option value="[% budgetid_loo.code %]">[% budgetid_loo.desc %]</option>[% END %] [% END %] </select></li>
  <li><label for="branchcode"> Para</label>
  <select name="branchcode" id="branchcode">
- <option value="">Cualquiera</option>[% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %] [% END %] </select></li><li><input value="Ir" type="submit" /></li></ol>
+ <option value="__ANY__">Cualquiera</option>[% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %] [% END %] </select></li><li><input value="Ir" type="submit" /></li></ol>
  </fieldset>
  </div>
  </form>

@@ -82,9 +82,11 @@ function highlightOff() {
 function highlightOn() {
     var x;
     for (x in q_array) {
-        $(".title").highlight(q_array[x]);
-        $(".author").highlight(q_array[x]);
-        $(".results_summary").highlight(q_array[x]);
+        if ( q_array[x].length > 0 ) {
+            $(".title").highlight(q_array[x]);
+            $(".author").highlight(q_array[x]);
+            $(".results_summary").highlight(q_array[x]);
+        }
     }
     $(".highlight_toggle").toggle();
 }
@@ -92,7 +94,7 @@ function highlightOn() {
 $(document).ready(function(){
     [% IF ( OpacHighlightedWords ) %]
         $('a.title').each(function() {
-            $(this).attr('href', $(this).attr('href') + '&query_desc=[% query_desc | url %]');
+            $(this).attr("href", $(this).attr("href") + "&query_desc=[% query_desc | uri %]");
         });
     [% END %]
 
@@ -290,12 +292,16 @@ $(document).ready(function(){
     [% IF OPACLocalCoverImages %]KOHA.LocalCover.GetCoverFromBibnumber(false);[% END %]
     [% IF ( GoogleJackets ) %]KOHA.Google.GetCoverFromIsbn();[% END %]
 
-    $('#didyoumean').load('/cgi-bin/koha/svc/suggestion?render=stub&q=[% querystring | uri %]',
+[% IF ( DidYouMean ) %]
+    $("#didyoumean").load("/cgi-bin/koha/svc/suggestion?render=stub&q=[% querystring |uri %]",
         function() {
-            $('.searchsuggestion').parent().parent().css({
-                'border-color': '#F4ECBE',
-                'background-color': '#FFFBEA'});
-            } );
+            $(".searchsuggestion").parent().parent().css({
+                "border-color": "#F4ECBE",
+                "background-color": "#FFFBEA"
+            });
+        });
+[% END %]
+
 });
 
 //]]>
@@ -320,7 +326,7 @@ $(document).ready(function(){
  [% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %] [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink" class=""><i></i><span><i></i><span></span>Listas </span></a>[% END %] </div>
  [% END %] <div class="yui-b">
  <div id="userresults" class="container">
- [% IF ( DidYouMean ) %] <div id='didyoumean'>¿no era lo que esperaba? Compruebe<a href='/cgi-bin/koha/svc/suggestion?render=standalone&amp;q=[% querystring | uri %]'>sugerencias </a></div>
+ [% IF ( DidYouMean ) %] <div id="didyoumean">¿no era lo que esperaba? Compruebe<a href="/cgi-bin/koha/svc/suggestion?render=standalone&amp;q=[% querystring |uri %]">sugerencias </a></div>
  [% END %] <div id="top-pages">[% INCLUDE 'page-numbers.inc' %]</div>
  [% IF ( koha_spsuggest ) %] Quizá quiso decir: <ul style="list-style: none;">
  [% FOREACH SPELL_SUGGES IN SPELL_SUGGEST %] <li>
@@ -449,7 +455,11 @@ $(document).ready(function(){
  [% END %] [% IF ( SEARCH_RESULT.copyrightdate ) %]<span class="results_summary"><span class="label">Fecha:</span>[% SEARCH_RESULT.copyrightdate %]</span>[% END %] <span class="results_summary">
  <span class="label">Disponibilidad:</span>
  [% IF ( SEARCH_RESULT.available_items_loop.size() ) %] <span class="available"><strong>Copias disponibles:</strong>
- [% FOREACH available_items_loo IN SEARCH_RESULT.available_items_loop %] [% IF ( singleBranchMode ) %] [% available_items_loo.location %] [% ELSE %] [% available_items_loo.branchname %] [% END %] [% IF ( OPACItemsResultsDisplay ) %] [% UNLESS ( singleBranchMode ) %][% available_items_loo.location %][% END %] [% IF ( available_items_loo.itemcallnumber ) %][<a href="/cgi-bin/koha/opac-search.pl?q=callnum:[% available_items_loo.itemcallnumber |url %]">[% available_items_loo.itemcallnumber %]</a>][% END %] [% END %] ([% available_items_loo.count %]), [% END %] </span>
+ [% FOREACH available_items_loo IN SEARCH_RESULT.available_items_loop %] [% IF available_items_loo.this_branch %]<span class="highlight-row-results">[% ELSE %]<span>[% END %] [% IF ( singleBranchMode ) %] [% available_items_loo.location %] [% ELSE %] [% available_items_loo.branchname %] [% END %] [% IF ( OPACItemsResultsDisplay ) %] [% UNLESS ( singleBranchMode ) %][% available_items_loo.location %][% END %] [% IF ( available_items_loo.itemcallnumber ) %][<a href="/cgi-bin/koha/opac-search.pl?q=callnum:[% available_items_loo.itemcallnumber |url %]">[% available_items_loo.itemcallnumber %]</a>][% END %]
+ [% END %]
+ ([% available_items_loo.count %]),
+ </span>
+ [% END %] </span>
  [% ELSE %] [% IF ( SEARCH_RESULT.ALTERNATEHOLDINGS ) %] [% FOREACH ALTERNATEHOLDING IN SEARCH_RESULT.ALTERNATEHOLDINGS %] &nbsp;<span id="alternateholdings">[% ALTERNATEHOLDING.holding %]</span>, [% END %] [% ELSE %] <span class="unavailable">No hay ítems disponibles:</span>
  [% END %] [% END %] <span class="unavailable">
  [% IF ( SEARCH_RESULT.onloancount ) %] Prestados ([% SEARCH_RESULT.onloancount %]), [% END %] [% IF ( SEARCH_RESULT.wthdrawncount ) %] Retirados ([% SEARCH_RESULT.wthdrawncount %]), [% END %] [% UNLESS ( SEARCH_RESULT.hidelostitems ) %][% IF ( SEARCH_RESULT.itemlostcount ) %] Perdidos ([% SEARCH_RESULT.itemlostcount %]),[% END %][% END %] [% IF ( SEARCH_RESULT.damagedcount ) %] Dañados ([% SEARCH_RESULT.damagedcount %]),[% END %] [% IF ( SEARCH_RESULT.orderedcount ) %] Pedidos ([% SEARCH_RESULT.orderedcount %]),[% END %] [% IF ( SEARCH_RESULT.onholdcount ) %] Reservados ([% SEARCH_RESULT.onholdcount %]),[% END %] [% IF ( SEARCH_RESULT.intransitcount ) %] En ruta ([% SEARCH_RESULT.intransitcount %]),[% END %] </span>
@@ -469,8 +479,8 @@ $(document).ready(function(){
 
 [% FOREACH i  IN [ 1 2 3 4 5  ] %] [% IF ( SEARCH_RESULT.rating_avg == i ) %] <input class="star" type="radio"  name="rating-[% SEARCH_RESULT.biblionumber %]" value="[% i %]" checked="checked" disabled="disabled"   />
 [% ELSE   %] <input class="star" type="radio"  name="rating-[% SEARCH_RESULT.biblionumber %]" value="[% i %]" disabled="disabled"   />
-[% END %] [% END %] <input type="hidden" name='biblionumber'  value="[% SEARCH_RESULT.biblionumber %]" />
- <input type="hidden" name='loggedinuser'  value="[% loggedinuser %]" />
+[% END %] [% END %] <input type="hidden" name="biblionumber"  value="[% SEARCH_RESULT.biblionumber %]" />
+ <input type="hidden" name="loggedinuser"  value="[% loggedinuser %]" />
 
  [% IF (  SEARCH_RESULT.rating_total ) > 0  %] <span id="rating_total_[% SEARCH_RESULT.biblionumber %]">&nbsp;&nbsp;([% SEARCH_RESULT.rating_total %] votos)</span>
  [% ELSE %] <br />
