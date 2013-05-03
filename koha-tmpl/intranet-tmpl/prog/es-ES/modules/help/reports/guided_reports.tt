@@ -1,99 +1,185 @@
 [% INCLUDE 'help-top.inc' %] <h1>Agregar un informe personalizado</h1>
 
-<h2>Asistente de Informe Guiado</h2>
+<h3>Asistente de informes guiados</h3>
 
-<p>Si el informe que usted necesita no está disponible, el asistente de 'Reportes guiadas' le guiará para hacer un informe personalizado.</p>
+<p>El asistente de informes guiados muestra seis pasos para generar el informe.</p>
 
+<p><strong>Paso 1:</strong> Elija el módulo sobre el que quiere hacer el informe. Esta opción determinará las tablas y campos que estarán disponibles para la consulta.</p>
+
+<p>Se debe dejar 'No' por defecto en 'El informe es público'  en la mayoría de los casos. Un informe se puede hacer público cuando se quiere permitir el acceso desde la interfaz JSON. Este es un sistema que se usa por desarrolladores para personalizar los datos de un informe como  por ejemplo para mostrarlos utilizando API. Para saber más consulte a su desarrollador.</p>
 <ul>
-<li>Ir al módulo de 'Informes' (por lo general en 'Más' en su navegación global)</li>
-<li>Seleccione 'Informes guiados' bajo 'Asistente de informes guiados'</li>
+ <li>Un informe público será accesible a través de una dirección URL como esta: http://MYOPAC/cgi-bin/koha/svc/report?id=REPORTID</li>
 </ul>
+<p><strong>Paso 2:</strong> Elija un tipo de informe. Por ahora, "Tabular" es la única opción disponible.</p>
 
-<p>Responda a las 6 preguntas presentadas, en orden, para crear el informe.</p>
+<p><strong>Paso 3:</strong> Elija los campos que quiere en su informe. Puede seleccionar varios campos y añadirlos de una vez usando CTRL+Click en cada ítem que quira agregar antes de darl el botón de añadir.</p>
 
-<p><strong>Paso 1: elegir un módulo para ser informado</strong></p>
+<p><strong>Paso 4:</strong> Elija los límites que podría querer aplicar a su registro (como tipos de ítem o bibliotecas). Si no desea aplicar ningún límite, pulse "Siguiente".</p>
 
-<ul>
-<li>Elija un módulo de Koha sobre el cual construir un informe (socios, circulación, catalogación, etc.)</li>
-<li>Haga clic en 'Siguiente'</li>
-</ul>
+<p><strong>Paso 5:</strong> Realizar funciones matemáticas. Si no se desea hacer cálculos, simplemente hacer click en "Siguiente" en lugar de elegir una opción.</p>
 
-<p><strong>Paso 2: elegir un tipo de informe</strong></p>
+<p><strong>Paso 6:</strong> Elija una fecha de orden. Si desea la fecha a imprimir fuera de la orden encontrada en la base de datos dele a "Finalizar".</p>
 
-<ul><li style="color: #990000">IMPORTANTE: Sólo tabular debe ser elegido con esta opción</li></ul>
+<p>Cuando termine esta operación se mostrará el SQL generado por el asistente de informes. Entonces se podrá guardar el informe o copiar la consulta SQL y editarla a mano.</p>
 
-<p><strong>Paso 3: elegir columnas para mostrar</strong></p>
+<p>Si se guarda el informe se preguntará el nombre del informe, si se quiere ordenar en grupos y subgrupos y si se quieren añadir notas.</p>
 
-<p><strong>Paso 4: elegir un criterio para límite</strong></p>
+<p>Una vez que el informe se ha grabado aparecerá en la página de "Utilizar Guardados" con los otros informes guardados</p>
 
-<ul><li>Esto es opcional, si usted no desea limitar los resultados por cualquier campo, deje esta sección en blanco.</li></ul>
+<p>Desde aquí puede editar, ejecutar un informe o ver el tiempo que cuesta ejecutarlo. Para encontrar el informe creado se puede ordenar cualquier columna haciendo click en la cabecera de la columna (la fecha de creación es la mejor manera de encontrar el último informe creado). También se pueden filtrar resultados usando el menú de filtros de la izquierda o utilizando  las prestañas para encontrar informes basados en grupos.</p>
 
-<p><strong>Paso 5: Elija en que columnas realizará funciones matemáticas</strong></p>
+<h3>Informar desde SQL</h3>
 
-<ul><li>Esto es opcional, si no quiere hacer ninguna cuenta con los resultados, deje esta sección en blanco.</li></ul>
+<p>Además de los informes de asistente, usted tiene la opción de escribir sus propias consultas utilizando SQL. Para encontrar los informes escritos por los otros usuarios de Koha, visite Wiki de Koha:<a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library" target="blank">http://wiki.koha-community.org/wiki/SQL_Reports_Library</a>. También podrá encontrar la estrructura de su base de datos en /installer/data/mysql/kohastructure.sql u online en: <a href="http://schema.koha-community.org" target="blank">http://schema.koha-community.org</a>.</p>
 
-<p><strong>Paso 6: elegir como desea que esté ordenado el informe</strong></p>
-
-<ul><li>Esto es opcional, si desea que los resultados salgan como están en la tabla, deje esta sección en blanco.</li></ul>
-
-<h2>Editar informes</h2>
-
-<p>Los informes personalizados se pueden editar en su totalidad en la página 'Informes guiados guardados'.</p>
-
-<ul><li><em>Llegar:</em> Más &gt; Informes &gt; Informes guiados &gt; Usar Guardado</li></ul>
-
-<ul>
-<li>Para editar un informe haga clic en 'Editar SQL' al lado del informe</li>
-<li>Una página con campos editables se abrirá para que pueda cambiar el título, notas y SQL relacionados con el informe</li>
-</ul>
-
-<h2>Informar desde SQL</h2>
-
-<p>Además de los informes de asistente, usted tiene la opción de escribir sus propias consultas utilizando SQL. Para encontrar los informes escritos por los otros usuarios de Koha, visite Wiki de Koha:<a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library" target="_top">http://wiki.koha-community.org/wiki/SQL_Reports_Library</a>. También podrá encontrar la estrructura de su base de datos en /installer/data/mysql/kohastructure.sql u online en: <a href="http://schema.koha-community.org/" target="_top">http://schema.koha-community.org</a>.</p>
-
-<p>Para añadir su consulta,seleccione en el enlace "Crear a partir desde SQL" en el módulo principal de informes  o en el botón Nuevo en la parte superior de la página Informes Guardados.</p>
+<p>Para añadir su consulta,seleccione en el enlace "Crear a partir desde SQL" en el módulo principal de informes  o en el botón Nuevo en la parte superior de la página de Informes Guardados.</p>
 
 <p>Rellenar en el formulario presentado</p>
 <ul>
  <li>El nombre es lo que aparecerá en la página del Informe Guardado para ayudar a identificar el informe después.  También se podrán realizar búsquedas utilizando los filtros que se encuentran a la izquierda de la página Informes Guardados. </li>
- <li>Usted puede utilizar el "grupo de informe" para organizar sus informes por lo que fácilmente puede filtrar los informes de los grupos. Grupos de informes se encuentran en la categoría de valor REPORT_GROUP autorizado.</li>
- <li>Usted puede utilizar 'subgrupo informe "para mejorar la organización de sus informes por lo que fácilmente puede filtrar los informes de los grupos y subgrupos. Subgrupos de informe se encuentra en la categoría de valor REPORT_SUBGROUP autorizado.</li>
+ <li>Se pueden utilizar los 'Grupos de informes' para organizar los informes y así poder filtrarlos fácilmente por grupos. Los grupos de informes están en el valor autorizado REPORT_GROUP y también pueden crearse sobre la marcha cuando se crean los informes seleccionando'o crear' en el botón de radio.<ul>
+ <li style="background-color: #ffe599;">Apunte: Si se añade un grupo de informes sobre la marcha el código debe contener menos de 10 caracteres y no debe incluir ni caracteres especiales ni espacios.</li>
+</ul>
+</li>
+ <li>Se puede utilizar 'Subgrupos de informes' para organizar los informes y así poder filtrarlos fácilmente por grupos y subgrupos. Los subgrupos de informes están en el valor autorizado REPORT_SUBGROUP y también pueden crearse sobre la marcha cuando se crean los informes seleccionando 'o crear' en el botón de radio.<ul>
+ <li style="background-color: #ffe599;">Apunte: Si se añade un subgrupo de informes sobre la marcha el código debe contener menos de 10 caracteres y no debe incluir ni caracteres especiales ni espacios.</li>
+</ul>
+</li>
  <li>'Informe es público' debe dejars el valor predeterminado de" No "en la mayoría de los casos. Un informe se puede hacer público si tiene intención de permitir el acceso al mismo a través de la interfaz de servicio web JSON. Este es un sistema que puede ser utilizado por los desarrolladores para hacer presentaciones personalizadas de los datos del informe, por ejemplo utilizando una API gráfica. Para obtener más información hable con su promotor local.<ul>
  <li>Un informe público será accesible a través de una dirección URL como esta: http://MYOPAC/cgi-bin/koha/svc/report?id=REPORTID</li>
 </ul>
 </li>
  <li>'Notas' observa también aparecerá en la página de Informes guardados, esto puede ser usado para proporcionar más detalles sobre el informe o consejos sobre cómo introducir los valores cuando se ejecuta</li>
- <li>El tipo debe ser siempre 'Tabular', en este momento los otros formatos no se han implementado </li>
+ <li>El tipo debe ser siempre 'Tabular', al mismo tiempo los otros formatos no han sido implementados</li>
  <li>En el cuadro de SQL que se escriba o pegue el código SQL para el informe </li>
- <li>Si considera que su informe requiere demasiados recursos del sistema, puede considerar el uso de parámetros de ejecución de su consulta. Básicamente parámetros de ejecución, supone que  aparece un filtro antes de que el  informe se ejecute para proteger los recursos del sistema. <ul>
+ <li>Si se cree que un informe puede ser también un recurso intensivo puede considerarlo así utilizando los parámetros del tiempo de ejecución de su consulta. Los parámetros del tiempo de ejecución hacen que aparezca un filtro antes de ejecutar el informe para preservar los recursos del sistema.  Hay un sintaxos especial para que Koha entienda "consultar los valores cuando se ejecute el informe". La sintaxis es &lt;&lt;Question to ask authorized_value&gt;&gt;. <ul>
  <li>Los &lt;&lt; y &gt;&gt; son solo delimitadores. Usted debe poner &lt;&lt; al principio y &gt;&gt; al final de su parámetro</li>
  <li> La ' Duda para preguntar' se aplicará en la parte izquierda de la fila de entrada.</li>
- <li>El authorized_value puede ser omitido y no aplicable. Si este contiene un valor autorizado de categoría, biblioteca o categorycode, se mostrará una lista con los valores autorizados de Koha en lugar de un campo de Nota libre que pueda tener más de un parámetro en la Nota SQL dada, que no introduciendo datos en la ejecución probablemente no funcionará como usted espera. Este es considerado como "valor vacío" no como "ignorar este parametro". Por ejemplo para:  "title=&lt;&lt;Enter title&gt;&gt;" mostrará resultado ='' (no title). Si quiere tener algo como no obligatorio, utilizar "title like &lt;&lt;Enter title&gt;&gt;"  e introducir % en lugar de nada en el momento de la ejecución </li>
-</ul>
-<p>Ejemplos:</p>
-<ul>
- <li>SELEECIONAR, apellido, nombre<br />
-DESDE prestadores <br />
-WHERE branchcode=&lt;&lt;Introducir socios del al biblioteca|branches&gt;&gt; AND surname like &lt;&lt;Introducir filtro para apellido del socio (% if none)&gt;&gt;</li>
- <li>SELECT * <br />
-DESDE ítems <br />
-WHERE homebranch = &lt;&lt;Pick your library|branches&gt;&gt; AND barcode like &lt;&lt;Partial barcode value here&gt;&gt;</li>
+ <li>Los valores autorizados se pueden omitir si no se quieren utilizar. Si contiene una lista de valores autorizados, bibliotecas, tipos de ítem o código de categoría, se mostrará una lista con los valores autorizados de Koha  y no un campo de notas vacío.  Se puede tener más de un parámetro en una nota SQL concreta pero si no se define el tiempo de ejecución puede no funcionar sobre lo esperado. Se considerará como "value empty" y no como "ignore this parameter". Por ejemplo, si no se introduce nada para: "title=&lt;&lt;Enter title&gt;&gt;" se mostrarán resultados con el título='' (no title). Si se quiere que algo no sea obligatorio, se debe utilizar "title like &lt;&lt;Enter title&gt;&gt;" e introducir % en el tiempo de ejecución en lugar de dejarlo vacío.</li>
 </ul>
 </li>
- <li>Consejo: Para generar un selector de fechas en el calendario a la derecha del campo cuando se ejecuta el informe, se puede utilizar la palabra clave 'fecha' como en este ejemplo: &lt;&lt;Introduzca Fecha|date&gt;&gt;</li>
- <li>Consejo: Tienes que poner "% " en un cuadro de texto para 'dejarlo en blanco'. De lo contrario, literalmente, busca "" (empty string) como el valor para el campo.</li>
- <li style="color: #990000">Importante: Además de usar cualquier código de valores autorizado para generar una lista desplegable, puede utilizar los siguientes valores así: Branches (branches), Item Types (itemtypes) and Patron Categories (categorycode). Por ejemplo, una biblioteca desctivada debería ser generada como &lt;&lt;Branch|branches&gt;&g </li>
+ <li>Ejemplos:<ul>
+ <li>SELECT surname,firstname FROM borrowers WHERE branchcode=&lt;&lt;Introducir usuarios o bibliotecas&gt;&gt; AND apellido igual a &lt;&lt;Introducir un filtro para el apellido del socio (% if none)&gt;&gt;</li>
+ <li>SELECT * FROM items WHERE homebranch = &lt;&lt;coge de la biblioteca o bibliotecass&gt;&gt; y el código de barras igual a &lt;&lt;Introducir parte del código de barras aquí&gt;&gt;</li>
+</ul>
+</li>
+ <li style="background-color: #ffe599;">Consejo: Para generar un selector de fechas en el calendario a la derecha del campo cuando se ejecuta el informe, se puede utilizar la palabra clave 'fecha' como en este ejemplo: &lt;&lt;Introduzca Fecha|date&gt;&gt;</li>
+ <li style="background-color: #ffe599;">Consejo: Tienes que poner "% " en un cuadro de texto para 'dejarlo en blanco'. De lo contrario, literalmente, busca "" (empty string) como el valor para el campo.</li>
+ <li style="color: #990000;">Importante: Además de usar cualquier código de valores autorizado para generar una lista desplegable, puede utilizar los siguientes valores así: Bibliotecas (branches),Tipos de ítem (itemtypes) y tipos de socio(categorycode). Por ejemplo, una biblioteca desctivada debería ser generada como &lt;&lt;Branch|branches&gt;&gt;</li>
 </ul>
 
-<p>Nota: Hay un límite de 10.000 registros  en las instrucciones SQL introducidos en Koha. Para modificar este valor si quiere añadir 'LIMIT 100000' hasta el final de la instrucción SQL (o cualquier otro número por encima de 10.000.</p>
+<p><strong>Nota</strong>: Hay un límite de 10.000 registros en la configuración del SQL introducida en Koha. Para solucionar esto se puede añadir 'LIMIT 100000' al final de la consulta SQL (o cualquier otro número por debano de 10.000)</p>
 
 <p>Una vez que todo los datos están introducidos seleccionar el botón "Guardar informe" y se le presentará con opciones para ejecutarlo. Una vez que se guarda un informe que no tiene que volver a crearlo, simplemente lo puede encontrar en la página de Informes guardados y ejecutar o editarlo.</p>
 
-<p><strong>¿Hay un depósito de informes?</strong></p>
+<h3>Duplicar informe</h3>
 
-<p>Hay una página en la wiki de Koha <a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library" target="_new">http://wiki.koha-community.org/wiki/SQL_Reports_Library</a> con los informes escritos por las bibliotecas Koha en todo el mundo.</p>
+<p>Pueden añadirse informes duplicando uno existente. Se debe ir a la página de "Informes guardados" para ver todos los informes que ya han sido guardados.</p>
 
-<p>NEKLS tiene también una buena página (<a href="http://www.nexpresslibrary.org/training/reports-training/" target="_new">http://www.nexpresslibrary.org/training/reports-training/</a>) con una lista de informes que han escrito.</p>
+<p>A la derecha de cada informe hay un enlace "Duplicar" en la columna de "SQL guardados". Hacer click en "Duplicar" para usar un informe existente para basar un informe nuevo. Esto permite rellenar el formulario del nuevo informe con el SQL existente para facilitar la edición.</p>
+
+<h3>Editar informes personalizados </h3>
+
+<p>Todos los informes pueden ser editados desde la lista de informes. Para ver la lista de informes guardados en Kobli, haga click en "Guardados".</p>
+
+<p>Para encontrar el informe que se quiere editar se puede ordenar cualquiera de las columnas haciendo click en su cabecera. Se pueden filtrar resultados en el menú de filtros de la izquierda o utilizar las pestañas para buscar informes basados en los grupos.</p>
+
+<p>Desde esta lista se puede editar cualquier informe haciendo click en "Editar" en la columna "SQL guardados".</p>
+
+<h3>Ejecutar informes personalizados</h3>
+
+<p>Una vez se han grabado en Koha los informes personalizados, se pueden ejecutar yendo a Informes Guardados y haciendo click en "Ejecutar" ala derecho del informe</p>
+
+<p>Cuando se ejecuta un informe se pedirá algún valor y si no se introduce se verán los resultados a continuación</p>
+
+<p>Desde los resultados se puede volver al informe haciendo click en "Ejecutar informe"; editar el informe haciendo click en "Editar" o crear un nuevo informe con haciendo click en "Nuevo". Se pueden descargar los resultados eligiendo un tipo de archivo al final de resultados en el botón "Descargar" cercano a "Descargar el informe".</p>
+
+<p style="background-color: #ffe599;">Apunte: Una archivo "Comma Separated Text" es un archivo CSV y puedo ser abierto por cualquier aplicación de hojas de cálculo.</p>
+
+<h3>Tabla de valores para los informes</h3>
+
+<p><strong>Pregunta:</strong> ¿Que función cumplen los códigos en el campo de tipo de cuenta en tabla de líneas de cuenta?</p>
+
+<p><strong>Respuesta:</strong></p>
+
+<ul>
+ <li>A = Costo de administración de cuenta</li>
+ <li>C = Crédito</li>
+ <li>F = Multa por retraso</li>
+ <li>FOR = Forgiven</li>
+ <li>FU = Con retraso, acumulando multa.</li>
+ <li>L = Ítem perdido</li>
+ <li>LR = Ítems perdidos que han sido devueltos o respuestos</li>
+ <li>M = Diversos</li>
+ <li>N = Nuevo carnet</li>
+ <li>PAY = Pago</li>
+ <li>W = Borrar</li>
+</ul>
+
+<p><strong>Pregunta:</strong> ¿Cuáles son los códigos posibles para el típo de campo en la tabla de estadísticas?</p>
+
+<p><strong>Respuesta:</strong></p>
+
+<ul>
+ <li>uso local<ul>
+ <li>Registra si un ítem ha sido prestado en las estadísticas de socio (categoría = 'X') es devuelto. </li>
+</ul>
+</li>
+ <li>ítem</li>
+ <li>devolver</li>
+ <li>renovar</li>
+ <li>borrar</li>
+ <li>pago</li>
+ <li>CréditoXXX<ul>
+ <li>mostrar los diferentes tipos de créditos de pago, una consulta para capturarlaos todos debe incluir una cláusula como  "type LIKE 'Credit%'"</li>
+</ul>
+</li>
+</ul>
+
+<p><strong>Pregunta</strong>: ¿Cuáles son los códigos posibles para el campo encontrado en las reservas y en las tablas old_reserves?</p>
+
+<p><strong>Respuesta</strong>:</p>
+
+<ul>
+ <li>NULL: significa que el socio ha buscado el primero disponible y no hemos elegido este ítem.</li>
+ <li>T = Transferencia: la reserva se enlaza a un ítem pero en transferencia con la biblioteca que la recibe.</li>
+ <li>W: Esperando: la reserva de un ítem está disponible para ser recogido en su correspondiente biblioteca.</li>
+ <li>F = Terminado: la reserva ha sido completada y es efectiva.</li>
+</ul>
+
+<p><strong>Pregunta</strong>: ¿Cuáles son los códigos posibles para el campo de área en la tabla reports_dictionary?</p>
+
+<p><strong>Respuesta</strong>:</p>
+
+<ul>
+ <li>1 = Circulación</li>
+ <li>2 = Catálogo</li>
+ <li>3 = Socios</li>
+ <li>4 = Adquisiciones</li>
+ <li>5 = Cuentas</li>
+</ul>
+
+<p><strong>Pregunta</strong>: ¿Cuáles son los códigos posibles para el message_type en la tabla de mensajes?</p>
+
+<p><strong>Respuesta</strong>:</p>
+
+<ul>
+ <li>L = Para bibliotecarios</li>
+ <li>B = Para socios</li>
+</ul>
+
+<p><strong>Pregunta</strong>: ¿Cuáles son los códigos posibles para el campo de estado en la tabla de series"?</p>
+
+<p><strong>Respuesta</strong>:</p>
+
+<ul>
+ <li>1 = Esperado</li>
+ <li>2 = Disponible</li>
+ <li>3 = Atrasado</li>
+ <li>4 = Perdido</li>
+ <li>5 = No disponible</li>
+ <li>6 = Eliminado</li>
+</ul>
 
 <p><strong>Vea la documentación completa para Informes manuales en la <a href="http://manual.koha-community.org/3.10/en/reports.html#customreports">manual</a> (en línea).</strong></p>
 

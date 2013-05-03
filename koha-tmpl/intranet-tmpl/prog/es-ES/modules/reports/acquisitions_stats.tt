@@ -45,7 +45,22 @@
 [% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Estadística de adquisiciones </h1>
  [% IF ( mainloo.loopfilter.size ) %] <p><b>Filtrado en:</b></p>
  [% FOREACH loopfilte IN mainloo.loopfilter %] <p>
- [% SWITCH loopfilte.crit %] [% CASE '0' %] Ubicado en (desde) [% CASE '1' %] Ubicado en (a) [% CASE '2' %] Receivido en (desde) [% CASE '3' %] Recivido en (a) [% CASE '4' %] Proveedor [% CASE '5' %] Sede principal [% CASE '6' %] Collección [% CASE '7' %]Tipo de ítem [% CASE '8' %] Presupuesto [% CASE '9' %] Tipo1 [% CASE '10' %] Tipo2 [% CASE %] Filtro desconocido [% END %] : [% loopfilte.filter %] </p>
+ [% SWITCH loopfilte.crit %]
+ [% CASE '0' %] Placed on (from)
+ [% CASE '1' %] Placed on (to)
+ [% CASE '2' %] Received on (from)
+ [% CASE '3' %] Received on (to)
+ [% CASE '4' %] Vendor
+ [% CASE '5' %] Home library
+ [% CASE '6' %] Collection
+ [% CASE '7' %] Item type
+ [% CASE '8' %] Fund
+ [% CASE '9' %] Sort1
+ [% CASE '10' %] Sort2
+ [% CASE %] Unknown filter
+ [% END %]
+ : [% loopfilte.filter %]
+ </p>
  [% END %] [% END %] <table>
  <tr >
  <th>[% mainloo.line %] / [% mainloo.column %]</th>
@@ -127,7 +142,7 @@
  <td><input type="radio" name="Column" value="aqbooksellers.name" /></td>
  <td>
  <select name="Filter">
- <option value="">Todos proveedores</option>
+ <option value="">All vendors</option>
  [% FOREACH bookseller IN booksellers %] <option value="[% bookseller.name %]">[% bookseller.name %]</option>
  [% END %] </select>
  </td>
@@ -138,7 +153,7 @@
  <td><input type="radio" name="Column" value="items.homebranch" /></td>
  <td>
  <select name="Filter">
- <option value="" selected="selected">Todas las sedes</option>
+ <option value="" selected="selected">Todas las bibliotecas</option>
  [% FOREACH branch IN branches %] <option value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% END %] </select>
  </td>
@@ -164,7 +179,7 @@
  </tr>
 
  <tr>
- <td>Presupuesto</td>
+ <td>Fondo</td>
  <td><input type="radio" name="Line" value="aqbudgets.budget_code" /></td>
  <td><input type="radio" name="Column" value="aqbudgets.budget_code" /></td>
  <td>[% CGIBudget %]</td>

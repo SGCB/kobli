@@ -116,7 +116,7 @@ function finderjumpfull(page)
  [% authtypecode %] <input type="hidden" name="authtypecode" value="[% authtypecode %]" />
  </li>
  <li>
- <label for="mainmainentry">Main entry ($a only): </label>
+ <label for="mainmainentry">Entrada Principal (sólo $a):</label>
  <input type="hidden" name="marclist" value="mainmainentry" />
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
@@ -130,7 +130,7 @@ function finderjumpfull(page)
  </li>
 
  <li>
- <label for="mainentry">Main entry: </label>
+ <label for="mainentry">Entrada principal:</label>
  <input type="hidden" name="marclist" value="mainentry" />
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
@@ -144,7 +144,7 @@ function finderjumpfull(page)
  </li>
 
  <li>
- <label for="marclistanywhere">Anywhere: </label>
+ <label for="marclistanywhere">En cualquier parte:</label>
  <input type="hidden" name="marclist" value="any" />
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
@@ -157,7 +157,7 @@ function finderjumpfull(page)
  <div id="yvaluecontainermarclist"></div>
  </li>
  <li>
- <label for="marclistheading">Heading match: </label>
+ <label for="marclistheading">Coincidencia de cabecera:</label>
  <input type="hidden" name="marclist" value="match" />
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />

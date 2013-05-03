@@ -1,10 +1,8 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Presupuestos &rsaquo; Fondos &rsaquo; Planeado [% budget_period_description %] por [% authcat %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
+<script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-// ---------------------------------------------------------------------
-// Javascript
-// ---------------------------------------------------------------------
     function Check(f) {
             var ok=1;
             var _alertString="";
@@ -36,29 +34,32 @@
                     alert(alertString2);
             }
     }
-
-
-YAHOO.util.Event.onAvailable("popmenu", function () {
-
-    var itemData  = new Array();
-    table = document.getElementById('plan') 
-    tableTmp =  table.cloneNode(true); 
-    tableTmp.id = 'planTmp';
-
-    [% FOREACH authvals_ro IN authvals_row %]
-        itemData.push( {   text: "[% authvals_ro.val %]",  onclick: { fn: addColumn, obj:  ["[% authvals_ro.colnum %]",  "[% authvals_ro.code %]"]    }    }     );
-
-    [% END %]
-    oMenu = new YAHOO.widget.Menu("basicmenu",
-            {  position: "dynamic", itemdata: itemData , clicktohide  : "true" , context:["popmenu","tl","tr"] }
-    );
-
-   oMenu.render("popmenu");
-   YAHOO.util.Event.addListener("add_popmenu_item", "click", oMenu.show, null, oMenu);
-
-// oMenu.removeItem(2);   // TODO.....
-
-});
+    $(document).ready(function() {
+        $("#selectallbutton").on("click",function(e){
+            $("#itemst").checkCheckboxes();
+            e.preventDefault();
+        });
+        $("#clearallbutton").on("click",function(e){
+            $("#itemst").unCheckCheckboxes();
+            e.preventDefault();
+        });
+        $("#selections input").on("change",function(e){
+            var num = $(this).attr("id");
+            if(num == 'showall'){
+                showAllColumns();
+                e.stopPropagation();
+            } else if(num == 'hideall'){
+                hideAllColumns();
+                e.stopPropagation();
+            } else {
+                if($(this).attr("checked")){
+                    showColumn(num);
+                } else {
+                    hideColumn(num);
+                }
+            }
+        });
+    });
 //]]>
 </script>
 <style type="text/css">td.locked { background-image: url('/intranet-tmpl/prog/img/locked.png'); padding-left : 20px; background-repeat: no-repeat; background-position: 4% 50%; } a.control { font-size:85%;text-decoration:none; }</style>
@@ -72,7 +73,6 @@ YAHOO.util.Event.onAvailable("popmenu", function () {
 <div id="yui-main">
 <div class="yui-b">
 
-
 [% INCLUDE 'budgets-admin-toolbar.inc' %] <form method="post" id="Aform" name="Aform"  action="/cgi-bin/koha/admin/aqplan.pl">
 <h3>La planificación de [% budget_period_description %] por [% authcat %]</h3>
 <input type="hidden" name="authcat" value="[% authcat %]" />
@@ -85,7 +85,11 @@ YAHOO.util.Event.onAvailable("popmenu", function () {
  [% END %] </p>[% ELSE %]<div class="dialog alert"><h3>No hay monedas actualmente activas</h3><p>Por favor <a href="/cgi-bin/koha/admin/currency.pl">especifique una moneda activa</a>.</p></div>
 [% IF ( show_actual ) %] <p><b>Cada célula contiene valores tanto reales como estimados.</b></p>
  [% ELSE %] <p><b>Las células contienen valores estimados solamente.</b></p>
- [% END %] [% END %] <table id="plan" width="100%">
+ [% END %] [% END %] <p id="selections">
+ <strong>Mostrar/ocultar columnas</strong> <span class="selected"><input type="checkbox" checked="checked" id="showall"/><label for="showall">Mostrar todas las columnas:</label></span> <span><input type="checkbox" id="hideall"/><label for="hideall">Ocultar toda las columnas</label></span>
+ [% FOREACH authvals_ro IN authvals_row %] <span class="selected"><label><input type="checkbox" checked="checked" id="col[% authvals_ro.colnum %]">[% authvals_ro.code %]</label></span>
+ [% END %] </p>
+ <table id="plan">
  <thead>
  <tr>
  <th>Nombre del fondo</th>
@@ -94,22 +98,13 @@ YAHOO.util.Event.onAvailable("popmenu", function () {
  [% FOREACH authvals_ro IN authvals_row %] [% IF ( authvals_ro.display ) %] <th id="col[% authvals_ro.code %]" class="[% authvals_ro.colnum %]">
  [% ELSE %] <th id="col[% authvals_ro.code %]" style="display:none;" class="[% authvals_ro.colnum %]">
  [% END %] [% authvals_ro.code %]</th>
- [% END %] <th>Fondo remanente</th><th>&nbsp;</th>
+ [% END %] <th class="remaining">Fondo remanente</th><th>&nbsp;</th>
  </tr>
- <tr>
- <th>&nbsp;</th><th>&nbsp;</th>
- [% FOREACH authvals_ro IN authvals_row %] [% IF ( authvals_ro.display ) %] <th class="[% authvals_ro.colnum %]">
- [% ELSE %] <th style="display:none;" class="[% authvals_ro.colnum %]">
- [% END %] <a href="#" class="control" onclick="delColumn('[% authvals_ro.colnum %]', 'col[% authvals_ro.code %]')" title="Ocultar esta columna">[ ocultar ]</a></th>
-
- [% END %] <th id="popmenu"><a href="#" style="font-size:85%;text-decoration:none;" id="add_popmenu_item" title="Mostrar una columna oculta">[mostrar una columna]</a></th><th>&nbsp;</th>
- </tr>
-
  </thead>
 
  <tbody>
- [% FOREACH budget_line IN budget_lines %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] [% IF ( budget_line.budget_lock ) %] <td align="left" class="locked" title="Fondo bloqueado">
- [% ELSE %] <td align="left">
+ [% FOREACH budget_line IN budget_lines %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] [% IF ( budget_line.budget_lock ) %] <td class="locked" title="Fondo bloqueado">
+ [% ELSE %] <td>
  [% END %] <a href="/cgi-bin/koha/admin/aqbudgets.pl?op=add_form&amp;budget_id=[% budget_line.budget_id %]&amp;budget_period_id=[% budget_line.budget_period_id %]">[% budget_line.budget_name_indent %]</a></td>
  <td><span id="budget_tot_formatted_[% budget_line.budget_id %]">[% budget_line.budget_amount_formatted %]&nbsp;</span>
 
@@ -119,9 +114,9 @@ YAHOO.util.Event.onAvailable("popmenu", function () {
 
  [% FOREACH line IN budget_line.lines %] [% IF ( line.display ) %] <td class="[% line.colnum %]">
  [% ELSE %] <td style="display:none;" class="[% line.colnum %]">
- [% END %] <table class="invis" width="100%">
+ [% END %] <table class="invis">
  <tr>
- [% IF ( line.show_actual ) %] <td   width="50%"  >[% line.actual_amount %]</td>
+ [% IF ( line.show_actual ) %] <td    >[% line.actual_amount %]</td>
  [% END %] <td>
 
  [% IF ( line.budget_lock ) %] [% line.estimated_amount %]&nbsp; <input type="hidden" style="text-align: right;"  name="[% line.cell_name %]" value="[% line.estimated_amount %]"   />
@@ -130,15 +125,15 @@ YAHOO.util.Event.onAvailable("popmenu", function () {
  </table>
  </td>
  [% END %] <td>
- <table class="invis" width="100%">
+ <table class="invis">
  <tr>
- [% IF ( budget_line.show_actual ) %] [% IF ( budget_line.act_negative ) %] <td width="50%" style="color: red;">
- [% ELSIF ( budget_line.act_positive ) %] <td width="50%" style="color: green;">
- [% ELSE %] <td width="50%">
+ [% IF ( budget_line.show_actual ) %] [% IF ( budget_line.act_negative ) %] <td style="color: red;">
+ [% ELSIF ( budget_line.act_positive ) %] <td style="color: green;">
+ [% ELSE %] <td>
  [% END %] [% budget_line.budget_act_remain %] </td>
- [% END %] [% IF ( budget_line.est_negative ) %] <td width="50%" style="color: red;" id="budget_est_[% budget_line.budget_id %]">
- [% ELSIF ( budget_line.est_positive ) %] <td width="50%" style="color: green;" id="budget_est_[% budget_line.budget_id %]">
- [% ELSE %] <td width="50%" id="budget_est_[% budget_line.budget_id %]">
+ [% END %] [% IF ( budget_line.est_negative ) %] <td style="color: red;" id="budget_est_[% budget_line.budget_id %]">
+ [% ELSIF ( budget_line.est_positive ) %] <td style="color: green;" id="budget_est_[% budget_line.budget_id %]">
+ [% ELSE %] <td id="budget_est_[% budget_line.budget_id %]">
  [% END %] [% budget_line.budget_est_remain %]&nbsp; </td>
  </tr>
  </table>

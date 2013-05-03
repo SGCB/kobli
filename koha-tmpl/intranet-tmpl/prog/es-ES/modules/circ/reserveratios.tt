@@ -1,28 +1,26 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación &rsaquo; Tasa de reservas</title>
-[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-$.tablesorter.addParser({
-    id: 'articles', 
-    is: function(s) {return false;  }, 
-    format: function(s) { return s.toLowerCase().replace(/^(the|an|a) /,''); }, 
-    type: 'text' 
-});
-	 $(document).ready(function() {
-	 	$("th a").hide();
-	 	$(".ratiolimit").click(function () {
+     $(document).ready(function() {
+        $(".ratiolimit").click(function () {
             $("#ratio").val($(this).html());
         });
-	 	$(".ratiolimit").hover(
+        $(".ratiolimit").hover(
             function () { $(this).toggleClass("ulined") },
             function () { $(this).toggleClass("ulined") }
         );
-		$.tablesorter.defaults.widgets = ['zebra']; 
-		$("#holdst:has(tbody tr)").tablesorter({    // only add sort if the table has a body and rows
-			sortList: [[0,1]],
-			headers: { 1: { sorter: 'articles' }}
-        });
-	 });
+        $("#holdst").dataTable($.extend(true, {}, dataTablesDefaults, {
+            "aoColumnDefs": [
+                { "aTargets": [ 8 ], "sType": "natural" }
+            ],
+            "aLengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+            "iDisplayLength": 20,
+            "sPaginationType": "four_button"
+        }));
+     });
 //]]>
 </script>
 <style type="text/css">
@@ -35,7 +33,6 @@ $.tablesorter.addParser({
 [% INCLUDE 'header.inc' %] [% INCLUDE 'circ-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a> &rsaquo; Tasa de reservas </div>
 
 <div id="doc3" class="yui-t2">
- 
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
@@ -45,26 +42,21 @@ $.tablesorter.addParser({
 <div class="sql">[% sql %]</div>
 
 [% IF ( reserveloop ) %] <table id="holdst">
-<thead> <tr>
- <th>Reservas <a href="/cgi-bin/koha/circ/reserveratios.pl?ratio=[% ratio %]&amp;order=reservecount&amp;from=[% from %]&amp;to=[% to %]">Ordenar</a>
- </th>
- <th>Ítems <a href="/cgi-bin/koha/circ/reserveratios.pl?ratio=[% ratio %]&amp;order=itemcount&amp;from=[% from %]&amp;to=[% to %]">Ordenar</a>
- </th>
+ <thead>
+ <tr>
+ <th>Reservas</th>
+ <th>Ítems</th>
  <th>Tasa de reservas</th>
- <th>Título: <a href="/cgi-bin/koha/circ/reserveratios.pl?ratio=[% ratio %]&amp;order=biblio&amp;from=[% from %]&amp;to=[% to %]">Ordenar</a>
- </th>
- <th>Bibliotecas de la reserva <a href="/cgi-bin/koha/circ/reserveratios.pl?ratio=[% ratio %]&amp;order=branch&amp;from=[% from %]&amp;to=[% to %]">Ordenar</a>
- </th>
- <th>Ubicación <a href="/cgi-bin/koha/circ/reserveratios.pl?ratio=[% ratio %]&amp;order=location&amp;from=[% from %]&amp;to=[% to %]">Ordenar</a>
- </th>
- <th>Tipo de ítem <a href="/cgi-bin/koha/circ/reserveratios.pl?ratio=[% ratio %]&amp;order=itype&amp;from=[% from %]&amp;to=[% to %]">Ordenar</a>
- </th>
- <th>Signatura topográfica <a href="/cgi-bin/koha/circ/reserveratios.pl?ratio=[% ratio %]&amp;order=callnumber&amp;from=[% from %]&amp;to=[% to %]">Ordenar</a>
- </th>
- <th>Ítems necesarios </th>
- </tr></thead>
- 
- <tbody>[% FOREACH reserveloo IN reserveloop %] <tr>
+ <th>Título</th>
+ <th>Holding libraries</th>
+ <th>Ubicación</th>
+ <th>Itype</th>
+ <th>Call numbers</th>
+ <th>Items needed</th>
+ </tr>
+ </thead>
+ <tbody>
+ [% FOREACH reserveloo IN reserveloop %] <tr>
  <td><p>[% reserveloo.reservecount %]</p></td>
  <td><p>[% reserveloo.itemcount %]</p></td>
  <td><p class="ratiolimit">[% reserveloo.thisratio %]</p></td>
@@ -75,7 +67,7 @@ $.tablesorter.addParser({
  <td><p>[% reserveloo.listcall %]</p></td>
  <td>[% IF ( reserveloo.thisratio_atleast1 ) %]<p><b>[% reserveloo.ratiocalc %] a ordenar</b></p>[% END %]</td>
  </tr>
- [% END %]</tbody>
+ [% END %] </tbody>
  </table>
  [% ELSE %] <b>No se encontraron ítems</b>
  [% END %] </div>

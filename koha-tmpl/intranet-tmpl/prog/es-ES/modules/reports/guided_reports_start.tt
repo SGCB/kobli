@@ -495,9 +495,62 @@ $(document).ready(function(){
 <fieldset class="action"><input type="hidden" name="phase" value="Save Report" />
 <input value="Guardar reporte" name="submit" type="submit" /></fieldset>
 </form>
+[% END %] [% IF ( warn_authval_problem ) %] <form action='/cgi-bin/koha/reports/guided_reports.pl'>
+ <!--Every parameter the user issued is provided as a hidden field for recovery-->
+ <input type='hidden' name='id' value='[% id %]' />
+ <input type='hidden' name='sql' value='[% sql %]' />
+ <input type='hidden' name='reportname' value='[% reportname %]' />
+ <input type='hidden' name='group' value='[% group %]' />
+ <input type='hidden' name='subgroup' value='[% subgroup %]' />
+ <input type='hidden' name='notes' value='[% notes %]' />
+ <input type='hidden' name='cache_expiry' value='[% cache_expiry %]' />
+ <input type='hidden' name='cache_expiry_units' value='[% cache_expiry_units %]' />
+ <input type='hidden' name='public' value='[% public %]' />
+
+ <div class="dialog alert">
+ <h3>Errors found when processing parameters for report: [% name %]</h3>
+ [% FOREACH problematic_authval IN problematic_authvals %] <p>
+ <strong>[% problematic_authval.name %]:</strong> The authorised value category (<strong>[% problematic_authval.authval %]</strong>)
+ you selected does not exist.
+ </p>
+ [% END %]
+ <!-- Save Anyway Form -->
+ <form action='/cgi-bin/koha/reports/guided_reports.pl'>
+ <!--Every parameter the user issued is provided as a hidden field for recovery-->
+ <input type='hidden' name='id' value='[% id %]' />
+ <input type='hidden' name='sql' value='[% sql %]' />
+ <input type='hidden' name='reportname' value='[% reportname %]' />
+ <input type='hidden' name='group' value='[% group %]' />
+ <input type='hidden' name='subgroup' value='[% subgroup %]' />
+ <input type='hidden' name='notes' value='[% notes %]' />
+ <input type='hidden' name='cache_expiry' value='[% cache_expiry %]' />
+ <input type='hidden' name='cache_expiry_units' value='[% cache_expiry_units %]' />
+ <input type='hidden' name='public' value='[% public %]' />
+ [% IF ( phase_update) %] <input type='hidden' name='phase' value='Update SQL' />
+ <input type="submit" name="save_anyway" class="approve" value="Save anyway" />
+ [% ELSIF ( phase_save) %] <input type='hidden' name='area' value='[% area %]' />
+ <input type='hidden' name='phase' value='Save Report' />
+ <input type="submit" name="save_anyway" class="approve" value="Save anyway" />
+ [% END %] </form>
+ <!-- Go back to editing -->
+ <form action='/cgi-bin/koha/reports/guided_reports.pl'>
+ <input type="button" name='back' class="deny" value="Edit SQL"
+                                    onclick="javascript:history.back()" />
+ </form>
+ </div>
+ </form>
 [% END %] [% IF ( enter_params ) %] <form action='/cgi-bin/koha/reports/guided_reports.pl'>
- <input type='hidden' name='phase' value='Run this report' />
  <input type='hidden' name='reports' value="[% reports %]" />
+ [% IF ( auth_val_error ) %] <input type='hidden' name='phase' value='Edit SQL' />
+ <div class="dialog alert">
+ <h3>Errors found when processing parameters for report: [% name %]</h3>
+ [% FOREACH auth_val_error IN auth_val_errors %] <p>
+ <strong>[% auth_val_error.entry %]:</strong> The authorised value category (<strong>[% auth_val_error.auth_val %]</strong>)
+ you selected does not exist.
+ </p>
+ [% END %] </div>
+ <fieldset class="action"><input type="submit" value="Edit SQL" /></fieldset>
+ [% ELSE %] <input type='hidden' name='phase' value='Run this report' />
  <h1>Introduzca los parámetros para el informe [% name %]:</h1>
  [% IF ( notes ) %]<p>[% notes %]</p>[% END %] <fieldset class="rows">
  <ol>
@@ -509,15 +562,16 @@ $(document).ready(function(){
  [% END %] [% END %] </ol>
  </fieldset>
  <fieldset class="action"><input value="Ejecutar el informe" type="submit" /></fieldset>
- </form>
+ [% END %] </form>
 [% END %] [% IF ( execute ) %] <h1>[% name %]</h1>
 [% IF ( notes ) %]<p>[% notes %]</p>[% END %] [% IF ( unlimited_total ) %]<p>En número total de filas que coinciden con la búsqueda (no limitada) es [% unlimited_total %].</p>[% END %] <pre id="sql_output">[% sql |html %]</pre>
 
-<form>
+<form action="/cgi-bin/koha/reports/guided_reports.pl" method="get">
  <input type="hidden" name="phase" value="Run this report"/>
  <input type="hidden" name="reports" value="[% report_id %]"/>
 
- <label for="limit">Resultados por página :</label>
+ [% FOREACH p IN sql_params %] <input type="hidden" name="sql_params" value="[% p %]"/>
+ [% END %] <label for="limit">Resultados por página :</label>
  <select name="limit">
  [% limits = [ 10, 20, 50, 100, 200, 300, 400, 500, 1000 ] %] [% FOREACH l IN limits %] [% IF l == limit %] <option value="[% l %]" selected="selected">[% l %]</option>
  [% ELSE %] <option value="[% l %]">[% l %]</option>

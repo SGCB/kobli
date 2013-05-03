@@ -2,7 +2,7 @@
 [% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
-<script type="text/javascript" src="[% themelang %]/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="[% interface %]/lib/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function() {
@@ -19,17 +19,15 @@ tinyMCE.init({
     mode : "textareas",
     theme : "advanced",
     content_css : "[% themelang %]/css/tinymce.css",
-    plugins : "table,save,advhr,advlink,iespell,contextmenu",
+    plugins : "table,save,advhr,advlink,contextmenu",
     theme_advanced_buttons1 : "save,|,bold,italic,|,cut,copy,paste,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,|,link,unlink,anchor,cleanup,help,code,advhr,",
     theme_advanced_buttons2 : "tablecontrols,|,bullist,numlist,|,outdent,indent,|,undo,redo,|,removeformat,|,visualaid,|,sub,sup,|,charmap",
-    theme_advanced_buttons3 : "",
+    // theme_advanced_buttons3 : "",
     theme_advanced_toolbar_location : "top",
     theme_advanced_toolbar_align : "left",
     theme_advanced_path_location : "bottom",
     theme_advanced_resizing : true,
-    apply_source_formatting : true,
-    height : "300",
-    width : "700"
+    apply_source_formatting : true
 });
 //]]>
 </script>
@@ -57,9 +55,9 @@ tinyMCE.init({
  [% IF ( heading_branches_add_branch_p ) %] <input type="hidden" name="add" value="1" />
  [% ELSE %] <input type="hidden" name="add" value="0" />
  [% END %] <ol><li>
- [% IF ( heading_branches_add_branch_p ) %] <label for="branchcode" class="required">Library code: </label>
+ [% IF ( heading_branches_add_branch_p ) %] <label for="branchcode" class="required">Código de biblioteca:</label>
  <input type="text" name="branchcode" id="branchcode" size="10" maxlength="10" value="[% branchcode |html %]" class="required" required="required" /> <span class="required">Requerido</span>
- [% ELSE %] <label for="branchcode" class="required">Library code: </label>
+ [% ELSE %] <label for="branchcode" class="required">Código de biblioteca:</label>
  <input type="hidden" name="branchcode" value="[% branchcode |html %]" />
  [% branchcode %] [% END %] </li>
  <li>
@@ -78,9 +76,9 @@ tinyMCE.init({
  [% END %] </ol>
 </fieldset>[% END %] <fieldset class="rows">
  <ol>
- <li><label for="branchaddress1">Address line 1: </label><input type="text" name="branchaddress1" id="branchaddress1" value="[% branchaddress1 |html %]" /></li>
- <li><label for="branchaddress2">Address line 2: </label><input type="text" name="branchaddress2" id="branchaddress2" value="[% branchaddress2 |html %]" /></li>
- <li><label for="branchaddress3">Address line 3: </label><input type="text" name="branchaddress3" id="branchaddress3" value="[% branchaddress3 |html %]" /></li>
+ <li><label for="branchaddress1">Dirección línea 1:</label><input type="text" name="branchaddress1" id="branchaddress1" value="[% branchaddress1 |html %]" /></li>
+ <li><label for="branchaddress2">Dirección línea 2:</label><input type="text" name="branchaddress2" id="branchaddress2" value="[% branchaddress2 |html %]" /></li>
+ <li><label for="branchaddress3">Dirección línea 3:</label><input type="text" name="branchaddress3" id="branchaddress3" value="[% branchaddress3 |html %]" /></li>
  <li><label for="branchcity">Ciudad: </label><input type="text" name="branchcity" id="branchcity" value="[% branchcity |html %]" /></li>
  <li><label for="branchstate">Estado: </label><input type="text" name="branchstate" id="branchstate" value="[% branchstate |html %]" /></li>
  <li><label for="branchzip">Código Postal: </label><input type="text" name="branchzip" id="branchzip" value="[% branchzip |html %]" /></li>
@@ -89,8 +87,8 @@ tinyMCE.init({
  <li><label for="branchfax">Fax: </label><input type="text" name="branchfax" id="branchfax" value="[% branchfax |html %]" /></li>
  <li><label for="branchemail">EMail: </label><input type="text" name="branchemail" id="branchemail" class="email" value="[% branchemail |html %]" /></li>
  <li><label for="branchurl">URL: </label><input type="text" name="branchurl" id="branchurl" value="[% branchurl |html %]" class="url" /></li>
- <li><label for="opac_info">OPAC info: </label><textarea name="opac_info" id="opac_info">[% opac_info |html %]</textarea></li>
- <li><label for="branchip">IP: </label><input type="text" name="branchip" id="branchip" value="[% branchip |html %]" /> <span class="hint">Puede ingresarse como IP específica, o subred tal como 192.168.1.*</span></li>
+ <li><label for="opac_info">Infromación de OPAC:</label><textarea name="opac_info" id="opac_info">[% opac_info |html %]</textarea></li>
+ <li><label for="branchip">IP:</label><input type="text" name="branchip" id="branchip" value="[% branchip |html %]" /> <span class="hint">Puede ingresarse como IP específica, o subred tal como 192.168.1.*</span></li>
  <!--
  <li><label for="branchprinter">Library Printer: </label>
  <select id="branchprinter" name="branchprinter">
@@ -216,7 +214,7 @@ tinyMCE.init({
  [% END %] </select>
  </li>
  <li>
- <label for="show_in_pulldown">Show in search pulldown: </label>
+ <label for="show_in_pulldown">Mostrar en una búsqueda desplegable:</label>
  [% IF ( show_in_pulldown ) %] <input type="checkbox" name="show_in_pulldown" id="show_in_pulldown" checked="checked"/>
  [% ELSE %] <input type="checkbox" name="show_in_pulldown" id="show_in_pulldown" />
  [% END %] </li>

@@ -1,11 +1,12 @@
 [% INCLUDE 'help-top.inc' %] <h1>Importación MARC</h1>
 
-<p>Importar registros en Koha incluye dos pasos. La primera fase consiste en preparar los registros para importación.</p>
+<p>Esta herramienta puede usarse tanto para importar registros bibliográficos como de autoridad en formato MARC. La importación a Koha tiene dos pasos. El primero consiste en preparar los registros para la importación</p>
 
 <ul>
  <li>Primero encuentre el archivo MARC en su equipo</li>
  <li>A continuación se le presentarán opciones de coincidencia de registros e importación de ítems <ul>
  <li>Escriba 'Comentarios acerca de este archivo' para identificar lo cargado cuando se va a la herramienta 'Administrar los registros MARC preparados'</li>
+ <li>Decir a Koha qué tipo de archvio es, bibliográfico o de autoridad</li>
  <li>Seleccionar la codificación de caracteres </li>
  <li>Seleccione si desea o no buscar registros coincidentes <ul>
  <li>Puede configurar reglas de coincidencia de registro a través del área de administración</li>
@@ -13,7 +14,7 @@
 </li>
  <li>A continuación elija qué hacer con los registros coincidentes si se encuentran</li>
  <li>Por último elegir qué hacer con los registros que son únicos</li>
- <li>A continuación puede elegir si desea o no importar los datos del ítem encontrado en los registros MARC</li>
+ <li>A continuación puede elegir si desea o no importar los datos del ítem encontrado en los registros MARC (si el registro que se importa es un registro bibliográfico)</li>
 </ul>
 </li>
  <li>Haga clic en 'Preparar para importación'</li>
@@ -21,6 +22,6 @@
  <li>Para completar el proceso continúe con la herramienta Gestión de registros MARC preparados</li>
 </ul>
 
-<p><strong>Vea la documentación completa para Importación MARC en la <a href="http://manual.koha-community.org/3.10/en/stagemarc.html">manual</a> (en línea).</strong></p>
+<p><strong>Vea la documentación completa para Importación MARC en la <a href="http://manual.koha-community.org/3.12/en/stagemarc.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

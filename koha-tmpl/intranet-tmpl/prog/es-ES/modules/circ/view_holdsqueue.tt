@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 <h1>Cola de reservas</h1>
 
-[% IF ( run_report ) %] [% IF ( total ) %] <div class="results">[% total %] ítems encontrados para [% IF ( branch ) %][% branch %][% ELSE %]TODAS las bibliotecas[% END %] </div>
+[% IF ( run_report ) %] [% IF ( total ) %] <div class="results">[% total %] ítems encontrados para [% IF ( branchlimit ) %][% branchlimit %][% ELSE %]TODAS las bibliotecas[% END %] </div>
  [% ELSE %] <div class="dialog message">No se encontraron ítems</div>
  [% END %] [% IF ( itemsloop ) %] <table id="holdst">
  <thead>

@@ -139,7 +139,10 @@
  </tr>
  [% END %] </tbody>
  </table>
- [% ELSE %]  No hay subscripción abierta para su búsqueda. [% END %] </div>
+ [% ELSE %] <div class="dialog message">
+ <p>La búsqueda devolvió suscripciones cerradas.</p>
+ </div>
+ [% END %] </div>
  <div id="closed">
  [% IF closedsubscriptions %] <table id="csrlt">
  <thead>
@@ -186,7 +189,13 @@
  </tr>
  [% END %] </tbody>
  </table>
- [% ELSE %]  No hay subscripción cerrada para su búsqueda. [% END %]</div>
+ [% ELSE %] <div class="dialog message">
+ <p>La búsqueda devolvió suscripciones abiertas.</p>
+ </div>
+ [% END %] </div>
+ </div>
+ [% ELSE %] <div class="dialog message">
+ <p>La búsqueda no devolvió resultados-</p>
  </div>
  [% END %] [% END %] </div>
  </div>

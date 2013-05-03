@@ -34,9 +34,9 @@
 
         var is_confirmed;
 	if (count > 0){
-            is_confirmed = alert( count + " " +_("ítem(s) se adjuntan a este registro. \\nUsted debe eliminar todos los elementos antes de eliminar este registro.") );
+            is_confirmed = alert( count + " " +_("ítem(s) adjuntado(s) a este registro. Se deben borrar todos los ítems antes de borrarlo.") );
         } else if ( holdcount > 0 ) {
-            is_confirmed = confirm( holdcount + " " + _("reserva(s) en este registro \\n¿Está seguro de querer borrar este registro? "));
+            is_confirmed = confirm( holdcount + " " + _("reservar(s) encontrada(s) en este registro. ¿Estás seguro de querer borrarlo?"));
         } else {
             is_confirmed = confirm(_("¿Está seguro de querer borrar este registro? "));
         }
@@ -59,7 +59,7 @@
         var holdcount = [% holdcount %];
 
         if ( holdcount > 0 ) {
-            alert( holdcount + " " + _("reserva(s) en este registro \\nDebe cancelar todas las reservas antes de eliminar este registro.") );
+            alert( holdcount + " " + _("reserva(s) en este registro. Se deben borrar todas las rservas antes de borrar los items.") );
         } else if ( count > 0 ) {
             if( confirm( _("¿Está seguro de querer borrar el") + " " + count + " " + _("Adjuntar ítems?") ) ) {
                 window.location="/cgi-bin/koha/cataloguing/additem.pl?op=delallitems&amp;biblionumber=[% biblionumber %]";

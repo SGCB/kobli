@@ -1,17 +1,21 @@
 [% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Enviar noticias para [% INCLUDE 'patron-title.inc' %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function() {
-	$("#noticestable").tablesorter({
-	    [% IF ( dateformat == 'metric' ) %]
-		dateFormat: 'uk'
-	    [% END %]
-	});
+    $("#noticestable").dataTable($.extend(true, {}, dataTablesDefaults, {
+        "aaSorting": [[ 3, "desc" ]],
+        "aoColumns": [ null,null,null,{ "sType": "title-string" } ],
+        "aLengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+        "iDisplayLength": 20,
+        "sPaginationType": "four_button"
+    }));
 
-    $(".message").hide();
-    $(".message-title").click(function(e){
-        $(this).next(".message").toggle();
+    $(".notice").hide();
+    $(".notice-title").click(function(e){
+        $(this).next(".notice").toggle();
         e.preventDefault();
     });
     
@@ -19,8 +23,8 @@
 //]]>
 </script>
 <style type="text/css">
-    p.message { display: none; }
-    a.message-title { font-weight: bold; display: block; }
+    p.notice { display: none; }
+    a.notice-title { font-weight: bold; display: block; }
 </style>
 </head>
 <body id="pat_notices" class="pat">
@@ -32,8 +36,7 @@
  <div class="yui-b">
 [% INCLUDE 'members-toolbar.inc' %] <h1>Enviar noticias para [% INCLUDE 'patron-title.inc' %]</h1>
 
-
- <table id="noticestable">
+[% IF ( QUEUED_MESSAGES ) %] <table id="noticestable">
  <thead>
  <tr>
  <th>Aviso</th>
@@ -42,24 +45,23 @@
  <th>Tiempo</th>
  </tr>
  </thead>
-[% IF ( QUEUED_MESSAGES ) %] <tbody>
+ <tbody>
  [% FOREACH QUEUED_MESSAGE IN QUEUED_MESSAGES %] <tr>
  <td>
- <a class="message-title" href="#">[% QUEUED_MESSAGE.subject %]</a>
- <p class="message">
+ <a class="notice-title" href="#">[% QUEUED_MESSAGE.subject %]</a>
+ <p class="notice">
  [% QUEUED_MESSAGE.content FILTER html_line_break %] </p>
  </td>
  <td>
  [% IF ( QUEUED_MESSAGE.message_transport_type == 'email' ) %]email [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'print' ) %]Impresión[% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'feed' ) %]feed [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'sms' ) %]sms [% ELSE %][% QUEUED_MESSAGE.message_transport_type %][% END %] </td>
  <td>
  [% IF ( QUEUED_MESSAGE.status == 'sent' ) %]enviado [% ELSIF ( QUEUED_MESSAGE.status == 'pending' ) %]pendiente [% ELSIF ( QUEUED_MESSAGE.status == 'failed' ) %]fallado [% ELSIF ( QUEUED_MESSAGE.status == 'deleted' ) %]borrado [% ELSE %][% QUEUED_MESSAGE.status %][% END %] </td>
- <td>[% QUEUED_MESSAGE.time_queued | $KohaDates with_hours => 1 %]</td>
+ <td><span title="[% QUEUED_MESSAGE.time_queued %]">[% QUEUED_MESSAGE.time_queued | $KohaDates with_hours => 1 %]</span></td>
  </tr>
  [% END %] </tbody>
- [% ELSE %] <tr><td colspan="4">No hay registro de los mensajes que han sido enviados a este socio.</td></tr>
- [% END %] </table>
-
-</div>
+ </table>
+[% ELSE %] <div class="dialog message">No hay registro de los mensajes que han sido enviados a este socio.</div>
+[% END %] </div>
 </div>
 
 <div class="yui-b">

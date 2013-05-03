@@ -258,11 +258,7 @@
  [% END %] </tbody>
 </table>
 
-[% ELSE %]
- No fund found
-[% END %]
-
-[% IF ( pagination_bar ) %]<div class="pages">[% pagination_bar %]</div>[% END %]
+[% ELSE %] No se ha econtrado el fondo [% END %] [% IF ( pagination_bar ) %]<div class="pages">[% pagination_bar %]</div>[% END %]
 [% END %] <!-- else -->
 
 <!-- ********************************************************************************************** -->

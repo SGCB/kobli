@@ -6,7 +6,8 @@
     </script>
  <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 [% END %] [% IF ( OpacStarRatings != 'disable' ) %]<script type="text/javascript" src="/opac-tmpl/prog/en/lib/jquery/plugins/jquery.rating.js"></script>
-<link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/jquery.rating.css" />[% END %] [% IF ( OpacHighlightedWords ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.highlight-3.js"></script>[% END %] <script type="text/javascript">
+<link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/jquery.rating.css" />[% END %] [% IF ( OpacHighlightedWords ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.highlight-3.js"></script>[% END %] [% IF ( bidi ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/right-to-left.css" />
+[% END %] <script type="text/javascript">
 //<![CDATA[
 
     [% IF ( OpacBrowseResults && busc ) %]
@@ -781,7 +782,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  <li id="tab_LTFLTagBrowse"> <a href="#LTFLTagBrowse">Navegador de etiquetas</a></li>
 [% END %] [% END %] [% IF ( subscriptionsnumber ) %] [% IF ( defaulttab == 'subscriptions' ) %]<li id="tab_subscriptions" class="ui-tabs-selected">[% ELSE %]<li id="tab_subscriptions">[% END %] <a href="#subscriptions">Suscripciones</a>
  </li>
-[% END %] [% IF ( reviewson ) %] <li id="tab_comments"><a href="#comments">Comentarios ( [% IF reviews.defined %][% reviews.size %][% ELSE %][% END %] )</a></li>
+[% END %] [% IF ( reviewson ) %] <li id="tab_comments"><a href="#comments">Comments ( [% reviews.size || 0 %] )</a></li>
 [% END %] [% IF ( NovelistSelectProfile ) %] [% IF ( NovelistSelectView == 'tab') %] <li id="tab_NovelistSelect"> <a href="#NovelistSelect">Novelist Select</a></li>
  [% END %] [% END %] [% IF ( OPACFRBRizeEditions ) %][% IF ( XISBNS ) %] <li id="tab_editions"><a href="#editions">Ediciones</a></li>
 [% END %][% END %] [% IF ( serialcollection ) %] [% IF ( defaulttab == 'serialcollection' ) %]<li id="tab_serialcollection" class="ui-tabs-selected">[% ELSE %]<li id="tab_serialcollection">[% END %] <a href="#serialcollection">Colección de publicaciones periódicas</a>

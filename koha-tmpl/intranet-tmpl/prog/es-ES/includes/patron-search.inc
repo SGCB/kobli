@@ -5,35 +5,38 @@
  <p class="tip">Inserte el número de carnet del socio o parte de su apellido</p>
  <form action="/cgi-bin/koha/members/member.pl" method="post">
  <input id="searchmember" size="25" class="focus" name="member" type="text" value="[% member %]"/>
- [% IF ( branchloop ) %] <span class="filteraction" id="filteraction_off"> <a href="#" onclick="$('#filters').toggle();$('.filteraction').toggle();">[-]</a></span>
+ <span class="filteraction" id="filteraction_off"> <a href="#" onclick="$('#filters').toggle();$('.filteraction').toggle();">[-]</a></span>
  <span class="filteraction" id="filteraction_on"> <a href="#" onclick="$('#filters').toggle();$('.filteraction').toggle();">[+]</a></span>
- [% END %] <label for="searchfields">Buscar campos:</label>
+
+
+ <input value="Buscar" class="submit" type="submit" />
+
+ <div id="filters">
+ <p><label for="searchfields">Buscar campos:</label>
  <select name="searchfields" id="searchfields">
  <option selected="selected" value=''>Estándar</option>
  <option value='email,emailpro,B_email,'>Correo electrónico</option>
  <option value='borrowernumber'>Número de socio </option>
  <option value='phone,phonepro,B_phone,altcontactphone,mobile'>Número de teléfono</option>
  <option value='streettype,address,address2,city,state,zipcode,country'>Dirección </option>
- </select>
-
- <label for="searchtype">Buscar tipo:</label>
+ </select></p>
+ <p><label for="searchtype">Buscar tipo:</label>
  <select name="searchtype" id="searchtype">
  <option selected="selected" value=''>Empezar con</option>
  <option value='contain'>Contiene</option>
- </select>
+ </select></p>
 
- <label for="orderby">Ordenado por: </label>
+ <p><label for="searchorderby">Ordenado por: </label>
  <select name="orderby" id="searchorderby">
  <option value="">Apellido, Nombre</option>
  <option value="cardnumber,0">Número de Carnet</option>
- </select>
- <input value="Buscar" class="submit" type="submit" />
- [% IF ( branchloop ) %] <p id="filters"> <label for="branchcode">Biblioteca: </label><select name="branchcode" id="branchcode">
- <option value="">Cualquiera</option>[% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %] [% END %]</select>
- <label for="categorycode">Categoría: </label><select name="categorycode" id="categorycode">
- <option value="">Cualquiera</option>[% FOREACH categorie IN categories %] [% IF ( categorie.selected ) %] <option value="[% categorie.categorycode %]" selected="selected">[% categorie.description %]</option>[% ELSE %] <option value="[% categorie.categorycode %]">[% categorie.description %]</option>[% END %] [% END %]</select>
- </p>
- [% END %] </form>
+ </select></p>
+ [% IF ( branchloop ) %] <p><label for="branchcode">Biblioteca: </label><select name="branchcode" id="branchcode">
+ <option value="">Cualquiera</option>[% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %] [% END %]</select></p>
+ [% END %] [% IF ( categories ) %] <p><label for="categorycode">Categoría: </label><select name="categorycode" id="categorycode">
+ <option value="">Cualquiera</option>[% FOREACH categorie IN categories %] [% IF ( categorie.selected ) %] <option value="[% categorie.categorycode %]" selected="selected">[% categorie.description %]</option>[% ELSE %] <option value="[% categorie.categorycode %]">[% categorie.description %]</option>[% END %] [% END %]</select></p>
+ [% END %] </div>
+</form>
  </div>
 
  [% INCLUDE 'patron-search-box.inc' %] [% IF ( CAN_user_catalogue ) %] <div id="catalog_search" class="residentsearch">

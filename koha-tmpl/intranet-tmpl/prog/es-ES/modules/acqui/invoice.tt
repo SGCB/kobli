@@ -24,42 +24,46 @@
 <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% IF ( modified ) %] <div class="dialog">
+ [% IF ( modified ) %] <div class="dialog message">
  <p>La factura ha sido modificado</p>
  </div>
  [% END %] <h1>Factura: [% invoicenumber %]</h1>
 
- <p>Proveedor:<a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% suppliername %]</a></p>
- <form action="" method="post">
- <fieldset>
- <label for="shipmentdate">Fecha del envío:  </label>
- <input type="text" size="10" id="shipmentdate" name="shipmentdate" value="[% shipmentdate | $KohaDates %]" readonly="readonly" class="datepicker" />
- <p></p>
- <label for="billingdate">Fecha de facturación:</label>
- <input type="text" size="10" id="billingdate" name="billingdate" value="[% billingdate | $KohaDates %]" readonly="readonly" class="datepicker" />
- <p></p>
- <label for="shipmentcost">Coste del envío: </label>
- <input type="text" size="10" id="shipmentcost" name="shipmentcost" value="[% shipmentcost %]" />
- <label for="shipment_budget_id">Presupuesto:</label>
+ <p>Proveedor: <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% suppliername %]</a></p>
+ <form action="/cgi-bin/koha/acqui/invoice.pl" method="post">
+ <fieldset class="rows">
+ <ol>
+ <li><label for="shipmentdate">Fecha del envío:  </label>
+ <input type="text" size="10" id="shipmentdate" name="shipmentdate" value="[% shipmentdate | $KohaDates %]" readonly="readonly" class="datepicker" /></li>
+
+ <li><label for="billingdate">Fecha de facturación:</label>
+ <input type="text" size="10" id="billingdate" name="billingdate" value="[% billingdate | $KohaDates %]" readonly="readonly" class="datepicker" /></li>
+
+ <li><label for="shipmentcost">Coste del envío: </label>
+ <input type="text" size="10" id="shipmentcost" name="shipmentcost" value="[% shipmentcost %]" /></li>
+ <li><label for="shipment_budget_id">Fund:</label>
  <select id="shipment_budget_id" name="shipment_budget_id">
- <option value="">Sin presupuesto</option>
+ <option value="">No fund</option>
  [% FOREACH budget IN budgets_loop %] [% IF ( budget.selected ) %] <option selected="selected" value="[% budget.budget_id %]">
  [% ELSE %] <option value="[% budget.budget_id %]">
  [% END %] [% budget.budget_name %] </option>
- [% END %] </select>
- <p></p>
- <label>Estado:</label>
- [% IF ( invoiceclosedate ) %] cerrada el [% invoiceclosedate | $KohaDates %].<p></p>
- <input type="checkbox" name="reopen" id="reopen" />
- <label for="reopen">Reabrir</label>
- [% ELSE %] Abierto. <p></p>
- <input type="checkbox" name="close" id="close" />
- <label for="close">Cerrar</label>
- [% END %] <input type="hidden" name="op" value="mod" />
+ [% END %] </select></li>
+
+ [% IF ( invoiceclosedate ) %] <li><span class="label">Estado:</span>
+ Closed on [% invoiceclosedate | $KohaDates %].</li>
+
+ <li><label for="reopen">Reopen: </label> <input type="checkbox" name="reopen" id="reopen" /></li>
+ [% ELSE %] <li><span class="label">Estado:</span>
+ Open.</li>
+
+ <li><label for="close">Close: </label> <input type="checkbox" name="close" id="close" />
+ </li>
+ [% END %] </ol>
+ <input type="hidden" name="op" value="mod" />
  <input type="hidden" name="invoiceid" value="[% invoiceid %]" />
- <fieldset class="action">
- <input value="Guardar" type="submit">
  </fieldset>
+ <fieldset class="action">
+ <input value="Guardar" type="submit" />
  </fieldset>
  </form>
  <p>
@@ -96,7 +100,7 @@
  [% END %] </tbody>
  <tfoot>
  <tr>
- <th colspan="3">Total impuesto Exc.</th>
+ <th colspan="3">Total exce. imp.</th>
  <th>[% total_rrp_gste %]</th>
  <th>&nbsp;</th>
  <th>[% total_quantity %]</th>
@@ -112,7 +116,7 @@
  <th>&nbsp;</th>
  </tr>
  <tr>
- <th colspan='3'>Total  impuesto inc. ([% currency %])</th>
+ <th colspan='3'>Total del impuesto inc. ([% currency %])</th>
  <th>[% total_rrp_gsti %]</th>
  <th>&nbsp;</th>
  <th>[% total_quantity %]</th>
@@ -120,7 +124,7 @@
  <th>&nbsp;</th>
  </tr>
  <tr>
- <th colspan="3">Total + Shipment cost ([% currency %])</th>
+ <th colspan="3">Total + shipment cost ([% currency %])</th>
  <th>&nbsp;</th>
  <th>&nbsp;</th>
  <th>[% total_quantity %]</th>
@@ -129,7 +133,7 @@
  </tr>
  </tfoot>
  </table>
- [% ELSE %] <p>No hay pedidotodavía</p>
+ [% ELSE %] <div class="dialog message"><p>No hay pedidotodavía</p></div>
  [% END %] </div>
  </div>
  <div class="yui-b">

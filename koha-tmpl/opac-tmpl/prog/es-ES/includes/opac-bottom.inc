@@ -1,6 +1,7 @@
 [% IF ( opaccredits ) %] <div class="ft">
  [% opaccredits %] </div>
 [% END %] </div>
+
 [% IF ( Babeltheque ) %] <script type="text/javascript" src="http://www.babeltheque.com/bw_30.js"></script>
 [% END %] [% IF persona %] <script src="https://login.persona.org/include.js"></script>
 <script type="text/javascript" language="javascript">

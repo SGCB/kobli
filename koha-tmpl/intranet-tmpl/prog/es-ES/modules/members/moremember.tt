@@ -22,12 +22,15 @@ $(document).ready(function() {
         "aoColumnDefs": [
             { "aTargets": [ -1,-2 ], "bSortable": false, "bSearchable": false }
         ],
+        "aoColumns": [
+            { "sType": "title-string" },null,null,{ "sType": "title-string" },null,null,null,null,null,null
+        ],
         "bPaginate": false
     }));
     $("#relissuest").dataTable($.extend(true, {}, dataTablesDefaults, {
         "sDom": 't',
-        "aoColumnDefs": [
-            { "aTargets": [ 0,8 ], "bSortable": false, "bSearchable": false }
+        "aoColumns": [
+            { "sType": "title-string" },null,null,{ "sType": "title-string" },null,null,null,null,null
         ],
         "bPaginate": false
     }));
@@ -35,6 +38,9 @@ $(document).ready(function() {
         "sDom": 't',
         "aoColumnDefs": [
             { "aTargets": [ -1,-2 ], "bSortable": false, "bSearchable": false }
+        ],
+        "aoColumns": [
+            { "sType": "title-string" },null,null,null,null,null,null
         ],
         "bPaginate": false
     }));
@@ -314,12 +320,13 @@ function validate1(date) {
  [% ELSE %] <tr>
  [% END %] [% IF ( issueloo.red ) %] <td class="od">
  [% ELSE %] <td>
- [% END %] [% issueloo.date_due %] [% IF ( issueloo.itemlost ) %] <span class="lost">[% issueloo.itemlost %]</span>
+ [% END %] <span title="[% issueloo.date_due %]">[% issueloo.date_due | $KohaDates %]</span>
+ [% IF ( issueloo.itemlost ) %] <span class="lost">[% issueloo.itemlost %]</span>
  [% END %] [% IF ( issueloo.damaged ) %] <span class="dmg">[% issueloo.itemdamaged %]</span>
  [% END %] </td>
  <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% issueloo.biblionumber %]"><strong>[% issueloo.title |html %]</strong></a>[% IF ( issueloo.author ) %], por [% issueloo.author %][% END %] [% IF ( issueloo.publishercode ) %]; [% issueloo.publishercode %] [% END %] [% IF ( issueloo.publicationyear ) %], [% issueloo.publicationyear %][% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% issueloo.biblionumber %]&amp;itemnumber=[% issueloo.itemnumber %]#item[% issueloo.itemnumber %]">[% issueloo.barcode %]</a></td>
 <td>[% UNLESS ( noItemTypeImages ) %] [% IF ( issueloo.itemtype_image ) %]<img src="[% issueloo.itemtype_image %]" alt="" />[% END %][% END %][% issueloo.itemtype_description %]</td>
- <td>[% issueloo.issuedate %]</td>
+ <td><span title="[% issueloo.issuedate %]">[% issueloo.issuedate | $KohaDates%]</span></td>
  <td>[% issueloo.issuingbranchname %]</td>
  <td>[% issueloo.itemcallnumber %]</td>
  <td>[% issueloo.charge %]</td>
@@ -376,12 +383,13 @@ function validate1(date) {
  [% ELSE %] <tr>
  [% END %] [% IF ( relissueloo.red ) %] <td class="od">
  [% ELSE %] <td>
- [% END %] [% relissueloo.date_due %] [% IF ( relissueloo.itemlost ) %] <span class="lost">[% relissueloo.itemlost %]</span>
+ [% END %] <span title="[% relissueloo.date_due %]">[% relissueloo.date_due | $KohaDates %]</span>
+ [% IF ( relissueloo.itemlost ) %] <span class="lost">[% relissueloo.itemlost %]</span>
  [% END %] [% IF ( relissueloo.damaged ) %] <span class="dmg">[% relissueloo.itemdamaged %]</span>
  [% END %] </td>
  <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% relissueloo.biblionumber %]"><strong>[% relissueloo.title |html %]</strong></a>[% IF relissueloo.author %], por [% relissueloo.author %][% END %] [% IF relissueloo.publishercode %]; [% relissueloo.publishercode %] [% END %] [% IF relissueloo.publicationyear %], [% relissueloo.publicationyear %][% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% relissueloo.biblionumber %]&amp;itemnumber=[% relissueloo.itemnumber %]#item[% relissueloo.itemnumber %]">[% relissueloo.barcode %]</a></td>
 <td>[% UNLESS ( noItemTypeImages ) %] [% IF ( relissueloo.itemtype_image ) %]<img src="[% relissueloo.itemtype_image %]" alt="" />[% END %][% END %][% relissueloo.itemtype_description %]</td>
- <td>[% relissueloo.issuedate %]</td>
+ <td><span title="[% relissueloo.issuedate %]">[% relissueloo.issuedate | $KohaDates %]</span></td>
  <td>[% relissueloo.issuingbranchname %]</td>
  <td>[% relissueloo.itemcallnumber %]</td>
  <td>[% relissueloo.charge %]</td>
@@ -412,7 +420,7 @@ function validate1(date) {
  <th>&nbsp;</th>
  </tr></thead>
  <tbody>[% FOREACH reservloo IN reservloop %] <tr class="[% reservloo.color %]">
- <td>[% reservloo.reservedate %]</td>
+ <td><span title="[% reservloo.reservedate %]">[% reservloo.reservedate | $KohaDates %]</span></td>
  <td>
  <a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% reservloo.biblionumber %]">[% reservloo.title |html %]</a>[% IF ( reservloo.author ) %], por [% reservloo.author %][% END %] </td>
  <td>[% reservloo.itemcallnumber %]</td>

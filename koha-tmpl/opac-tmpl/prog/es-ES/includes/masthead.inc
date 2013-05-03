@@ -6,20 +6,21 @@
  [% END %] [% IF ( loggedinusername ) %]<li>[% IF persona %]<a class="logout" id="logout" href="/cgi-bin/koha/opac-main.pl?logout.x=1" onclick='navigator.id.logout();'>[% ELSE %]<a class="logout" id="logout" href="/cgi-bin/koha/opac-main.pl?logout.x=1">[% END %]Cerrar sesión</a></li>[% END %] </ul> 
  [% END %] </div>
  [% IF ( opacheader ) %] [% opacheader %] [% END %] [% IF ( opaclanguagesdisplay ) %] [% IF ( languages_loop && opaclanguagesdisplay ) %] [% UNLESS ( one_language_enabled ) %] <div id="changelanguage" class="ft">
- <div class="lang" style="float:left;padding: 0.1em 0;"><strong>Idiomas: </strong></div>
+ <div class="lang"><strong>Idiomas: </strong></div>
  <ul id="i18nMenu" class="footermenu">
- [% FOREACH languages_loo IN languages_loop %] [% IF ( languages_loo.group_enabled ) %] [% IF ( languages_loo.plural ) %] <li class="more" style="float:left;"><a class="sublangs" id="show[% languages_loo.rfc4646_subtag %]" href="#">[% IF ( languages_loo.native_description ) %][% languages_loo.native_description %][% ELSE %][% languages_loo.rfc4646_subtag %][% END %]</a><div id="sub[% languages_loo.rfc4646_subtag %]">
+ [% FOREACH languages_loo IN languages_loop %] [% IF ( languages_loo.group_enabled ) %] [% IF ( languages_loo.plural ) %] <li class="more"><a class="sublangs" id="show[% languages_loo.rfc4646_subtag %]" href="#">[% IF ( languages_loo.native_description ) %][% languages_loo.native_description %][% ELSE %][% languages_loo.rfc4646_subtag %][% END %]</a><div id="sub[% languages_loo.rfc4646_subtag %]">
  <div class="bd"><ul>
  [% FOREACH sublanguages_loo IN languages_loo.sublanguages_loop %] [% IF ( sublanguages_loo.enabled ) %] [% IF ( sublanguages_loo.sublanguage_current ) %] <li> [% sublanguages_loo.native_description %] [% sublanguages_loo.script_description %] [% sublanguages_loo.region_description %] [% sublanguages_loo.variant_description %] ([% sublanguages_loo.rfc4646_subtag %])</li>
- [% ELSE %] <li><a href="/cgi-bin/koha/changelanguage.pl?language=[% sublanguages_loo.rfc4646_subtag %]"> [% sublanguages_loo.native_description %] [% sublanguages_loo.script_description %] [% sublanguages_loo.region_description %] [% sublanguages_loo.variant_description %] ([% sublanguages_loo.rfc4646_subtag %])</a></li>
+ [% ELSE %] <li><a href="/cgi-bin/koha/opac-changelanguage.pl?language=[% sublanguages_loo.rfc4646_subtag %]"> [% sublanguages_loo.native_description %] [% sublanguages_loo.script_description %] [% sublanguages_loo.region_description %] [% sublanguages_loo.variant_description %] ([% sublanguages_loo.rfc4646_subtag %])</a></li>
  [% END %] [% END %] [% END %] </ul></div></div></li>
 
- [% ELSE %] [% IF ( languages_loo.group_enabled ) %] [% IF ( languages_loo.current ) %] <li style="float:left;">[% IF ( languages_loo.native_description ) %][% languages_loo.native_description %][% ELSE %][% languages_loo.rfc4646_subtag %][% END %]</li>
- [% ELSE %] <li style="float:left;"><a href="/cgi-bin/koha/changelanguage.pl?language=[% languages_loo.rfc4646_subtag %]">[% IF ( languages_loo.native_description ) %][% languages_loo.native_description %][% ELSE %][% languages_loo.rfc4646_subtag %][% END %]</a></li>
+ [% ELSE %] [% IF ( languages_loo.group_enabled ) %] [% IF ( languages_loo.current ) %] <li class="morelang">[% IF ( languages_loo.native_description ) %][% languages_loo.native_description %][% ELSE %][% languages_loo.rfc4646_subtag %][% END %]</li>
+ [% ELSE %] <li class="morelang"><a href="/cgi-bin/koha/opac-changelanguage.pl?language=[% languages_loo.rfc4646_subtag %]">[% IF ( languages_loo.native_description ) %][% languages_loo.native_description %][% ELSE %][% languages_loo.rfc4646_subtag %][% END %]</a></li>
  [% END %] [% END %] [% END %] [% END %] [% END %] </ul>
  </div>
  [% END %]
  [% END %]
+
 [% END %]
 
  <!-- TMPL_IF NAME="opacheader" -->
@@ -36,7 +37,7 @@
 
 <div id="moresearches">
 <a href="/cgi-bin/koha/opac-search.pl">Búsqueda avanzada</a>
-[% IF ( OpacBrowser ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-browser.pl">Navegar por jerarquía</a>[% END %] [% IF ( OpacAuthorities ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-authorities-home.pl">Authority search</a>[% END %] [% IF ( opacuserlogin && reviewson && OpacShowRecentComments ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-showreviews.pl">Comentarios recientes</a>[% END %] [% IF ( TagsEnabled ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-tags.pl">Nube de etiquetas</a>[% END %] [% IF ( OpacCloud ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-tags_subject.pl">Nube de temas</a>[% END %] [% IF ( OpacTopissue ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-topissues.pl">Más populares</a>[% END %] [% IF ( suggestion ) %] [% IF ( AnonSuggestions ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-suggestions.pl">Sugerencias de compra</a>
+[% IF ( OpacBrowser ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-browser.pl">Navegar por jerarquía</a>[% END %] [% IF ( OpacAuthorities ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-authorities-home.pl">Resultados de búsqueda por autoridad</a>[% END %] [% IF ( opacuserlogin && reviewson && OpacShowRecentComments ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-showreviews.pl">Comentarios recientes</a>[% END %] [% IF ( TagsEnabled ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-tags.pl">Nube de etiquetas</a>[% END %] [% IF ( OpacCloud ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-tags_subject.pl">Nube de temas</a>[% END %] [% IF ( OpacTopissue ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-topissues.pl">Más populares</a>[% END %] [% IF ( suggestion ) %] [% IF ( AnonSuggestions ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-suggestions.pl">Sugerencias de compra</a>
  [% ELSIF ( OPACViewOthersSuggestions ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-suggestions.pl">Sugerencias de compra</a>
  [% END %] [% END %] </div>
  </div>

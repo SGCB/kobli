@@ -93,7 +93,7 @@ td input,td input[type="submit"] { font-size: 85%; padding: 1px; }
                     "data": {ok: $(event.target).attr("title")},
 					"success": count_approve // success_approve
 				});
-				$(event.target).next(".rej").removeAttr("disabled").attr("value","Reject").css("color","#000");
+                $(event.target).next(".rej").removeAttr("disabled").attr("value",_("Rechazar")).css("color","#000");
 				$(event.target).attr(   "value",_("Aprobado")).attr("disabled","disabled").css("color","#666");
 				return false;	// cancel submit
 			}
@@ -102,7 +102,7 @@ td input,td input[type="submit"] { font-size: 85%; padding: 1px; }
                     "data": {rej: $(event.target).attr("title")},
 					"success": count_reject // success_reject
 				});
-				$(event.target).prev(".ok").removeAttr("disabled").attr("value","Approve").css("color","#000");
+                $(event.target).prev(".ok").removeAttr("disabled").attr("value",_("Aprobar")).css("color","#000");
 				$(event.target).attr(   "value",_("Rechazado")).attr("disabled","disabled").css("color","#666");
 				return false;	// cancel submit
 			}
@@ -181,8 +181,8 @@ td input,td input[type="submit"] { font-size: 85%; padding: 1px; }
  </tr>
  [% END %] </table>
  [% END %] [% IF ( tagloop ) %]<fieldset class="action">
- <input value="Aprobar" name="op" type="submit" id="approve_button" />
- <input value="Rechazar" name="op" type="submit" id="reject_button" />
+ <input value="Aprobar" name="op-approve" type="submit" id="approve_button" />
+ <input value="Rechazar" name="op-reject" type="submit" id="reject_button" />
  </fieldset>[% END %] </form>
 </div>
 <div class="yui-u">
@@ -205,7 +205,7 @@ td input,td input[type="submit"] { font-size: 85%; padding: 1px; }
  <div class="description">Introduzca una palabra o frase para contrastarla con las listas aprobadas/rechazadas: </div>
  <form method="post" action="/cgi-bin/koha/tags/review.pl">
  <input type="text" size="14" name="test" id="test" />
- <fieldset class="action"><input value="Probar" name="op" type="submit" id="test_button" /></fieldset>
+ <fieldset class="action"><input value="Probar" name="op-test" type="submit" id="test_button" /></fieldset>
  <div id="verdict">
  [% IF ( test_term ) %] [% IF ( verdict_ok ) %] &quot;[% test_term %]&quot; está permitido. [% ELSIF ( verdict_rej ) %] &quot;[% test_term %]&quot; está prohibido. [% ELSIF ( verdict_indeterminate ) %] &quot;[% test_term %]&quot; no está ni permitido ni prohibido. [% END %] [% END %] </div>
  </form>
