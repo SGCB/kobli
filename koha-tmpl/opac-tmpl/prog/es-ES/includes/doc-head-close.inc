@@ -10,7 +10,8 @@
  [% END %] [% END %] [% IF ( opac_css_override ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/[% opac_css_override %]" />
 [% END %] <link rel="stylesheet" type="text/css" media="print" href="[% themelang %]/css/print.css" />
 [% IF persona %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/persona-buttons.css" />
-[% END %] [% IF ( OPACMobileUserCSS ) %]<style type="text/css" media="screen and (max-width:700px)">[% OPACMobileUserCSS %]</style>[% END %] [% IF ( OPACUserCSS ) %]<style type="text/css">[% OPACUserCSS %]</style>[% END %]
+[% END %] [% IF ( OPACMobileUserCSS ) %]<style type="text/css" media="screen and (max-width:700px)">[% OPACMobileUserCSS %]</style>[% END %] [% IF ( bidi ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/right-to-left.css" />
+[% END %] [% IF ( OPACUserCSS ) %]<style type="text/css">[% OPACUserCSS %]</style>[% END %]
 <!-- yui js --> 
 <script type="text/javascript" src="[% yuipath %]/utilities/utilities.js"></script> 
 <script type="text/javascript" src="[% yuipath %]/container/container-min.js"></script> 

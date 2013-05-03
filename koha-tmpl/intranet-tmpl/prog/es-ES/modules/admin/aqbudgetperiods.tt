@@ -221,7 +221,7 @@
  <li>
  <!-- TOTAL -->
  <!-- ############################## -->
- <label for="budget_period_total">Total amount: </label>
+ <label for="budget_period_total">Suma total:</label>
  <input type="text" id="budget_period_total" name="budget_period_total"
         size="10" maxlength="80" value="[% budget_period_total %]" />
  </li>
@@ -229,13 +229,13 @@
  <li>
  <!-- ACTIVE -->
  <!-- ############################## -->
- <label for="budget_period_active">Make budget active: </label>
+ <label for="budget_period_active">Activar presupuesto:</label>
  [% IF ( budget_period_active ) %]<input type="checkbox" checked="checked" id="budget_period_active" name="budget_period_active" value="1" />[% ELSE %] <input type="checkbox" id="budget_period_active" name="budget_period_active" value="1"/> [% END %] </li>
 
  <li>
  <!-- LOCK -->
  <!-- ############################## -->
- <label for="budget_period_locked">Lock budget: </label>
+ <label for="budget_period_locked">Bloquear presupuesto:</label>
  [% IF ( budget_period_locked ) %]<input type="checkbox" checked="checked" id="budget_period_locked" name="budget_period_locked" value="1" />[% ELSE %] <input type="checkbox" id="budget_period_locked" name="budget_period_locked" value="1"/> [% END %] </li>
  </ol>
  </fieldset>

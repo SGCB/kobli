@@ -1,12 +1,4 @@
-[% USE KohaDates %]
-[% SET userupdateview = 1 %]
-
- [% INCLUDE 'doc-head-open.inc' %]
- [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; [% IF action == 'edit' %]Update your personal details[% ELSE %]Register a new account[% END %]
- [% INCLUDE 'doc-head-close.inc' %]
- [% INCLUDE 'calendar.inc' %]
-
- <script type="text/javascript">
+[% USE KohaDates %] [% SET userupdateview = 1 %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; [% IF action == 'edit' %]Actualice sus detalles personales[% ELSE %]Registrar una cuenta nueva[% END %] [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
         //<![CDATA[
         $(document).ready(function() {
             [% IF action == 'edit' && !OPACPatronDetails %]

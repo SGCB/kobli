@@ -36,7 +36,7 @@
 </script>
 </head>
 <body>
-[% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?supplierid=[% supplierid %]">[% booksellername %]</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Shopping Basket [% basketno %]</a> &rsaquo; Add order from a subscription</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; <a href="/cgi-bin/koha/acqui/supplier.pl?supplierid=[% supplierid %]">[% booksellername %]</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Bolsa [% basketno %]</a> &rsaquo; Agregar pedido desde una suscripción</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
@@ -45,8 +45,7 @@
  <h2>Suscripciones a series</h2>
  [% IF (done_searched) %] <label for="show_only_renewed">
  <input type="checkbox" style="vertical-align: middle;" id="show_only_renewed" />
- Show only renewed
- </label>
+ Mostrar sólo los renovados</label>
  [% IF (subs_loop) %] <table id="srlt">
  <thead>
  <tr>
@@ -62,13 +61,9 @@
  <tbody>
  [% FOREACH sub IN subs_loop %] <tr data-reneweddate="[% sub.reneweddate %]" >
  <td>[% sub.issn %]</td>
- <td><a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% sub.subscriptionid %]" class="button" title="suscripción de detalles">[% IF (sub.title) %][% sub.title |html %][% ELSE %]
- ---
- [% END %][% IF (sub.unititle) %], [% sub.unititle %][% END %]</a>
+ <td><a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% sub.subscriptionid %]" class="button" title="suscripción de detalles">[% IF (sub.title) %][% sub.title |html %][% ELSE %] --- [% END %][% IF (sub.unititle) %], [% sub.unititle %][% END %]</a>
  </td>
- <td>[% notes %]
- [% IF (sub.internalnotes) %]([% sub.internalnotes %])[% END %]
- </td>
+ <td>[% notes %] [% IF (sub.internalnotes) %]([% sub.internalnotes %])[% END %] </td>
  <td>
  [% IF (sub.branchcode) %][% sub.branchcode %][% END %] </td>
  <td>
@@ -76,18 +71,15 @@
  <td>
  [% IF (sub.enddate) %][% sub.enddate | $KohaDates %][% END %] </td>
  <td>
- [% IF (sub.alreadyOnOrder) %]
- Outstanding order (only one order per subscription is allowed)
- [% ELSIF not sub.aqbooksellerid || booksellerid == sub.aqbooksellerid%]
- <a href="/cgi-bin/koha/acqui/neworderempty.pl?booksellerid=[% booksellerid %]&basketno=[% basketno %]&biblionumber=[% sub.biblionumber %]&subscriptionid=[% sub.subscriptionid %]" title="Pedir este">
+ [% IF (sub.alreadyOnOrder) %] Sólo se permite una orden por suscripción [% ELSIF not sub.aqbooksellerid || booksellerid == sub.aqbooksellerid%] <a href="/cgi-bin/koha/acqui/neworderempty.pl?booksellerid=[% booksellerid %]&basketno=[% basketno %]&biblionumber=[% sub.biblionumber %]&subscriptionid=[% sub.subscriptionid %]" title="Pedir este">
  Pedido </a>
- [% ELSE %] <a title="This subscription depends on another supplier" style="cursor:help">Cannot be ordered</a>
+ [% ELSE %] <a style="cursor:help" title="Esta suscricpión depende de otro proveedor">No puede realizarse el pedido</a>
  [% END %] </td>
  </tr>
  [% END %] </tbody>
  </table>
- [% ELSE %] <p>Sorry, there is no result for your search.</p>
- [% END %] [% ELSE %] <p>Use the search form on the left to find subscriptions.</p>
+ [% ELSE %] <p>Lo sentimos,  no hay resultados para la búsqueda.</p>
+ [% END %] [% ELSE %] <p>Utilizar el buscador de la izquierda para encontrar suscripciones.</p>
  [% END %] </div>
  </div>
 

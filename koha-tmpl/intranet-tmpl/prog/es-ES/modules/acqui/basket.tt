@@ -159,26 +159,25 @@
  </div>
  [% IF ( closedate ) %] <div class="yui-u">
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="post">
- <p>
- <label for="basketgroupid"><strong>Bolsa de grupo:</strong></label>
- [% IF basketgroup.closed %] [% basketgroup.name %] (cerrrado) [% ELSE %] </p>
- <p>
+ <ol>
+ <li>
+ <span class="label">Bolsa de grupo:</span>
+ [% IF basketgroup.closed %] [% basketgroup.name %] (cerrrado) [% ELSE %] </li>
+ <li>
  <select id="basketgroupid" name="basketgroupid">
  <option value="new">Agregar nuevo grupo</option>
  [% FOREACH bg IN basketgroups %] [% IF ( bg.default ) %] <option value="[% bg.id %]" selected="selected">[% bg.name %]</option>
  [% ELSE %] [% UNLESS bg.closed %] <option value="[% bg.id %]">[% bg.name %]</option>
  [% ELSE %] <option value="[% bg.id %]" disabled="disabled">[% bg.name %] (cerrado)</option>
  [% END %] [% END %] [% END %] </select>
- [% END %] </p>
-
- [% UNLESS basketgroup.closed %] <p>
  <input type="hidden" id="basketno" value="[% basketno %]" name="basketno" />
  <input type="hidden" value="mod_basket" name="op" />
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  <input value="Cambiar grupo de bolsas" type="submit" />
- </p>
- [% END %] </form>
- [% IF ( basketgroupdeliveryplace ) %]<p>Nombre del lugar de entrega de cestas:[% basketgroupdeliveryplace %]</p>[% END %] [% IF ( basketgroupbillingplace ) %]<p>Nombre del grupo de cestas: [% basketgroupbillingplace %]</p>[% END %] </div>
+ [% END %] </li>
+ [% IF ( basketgroupdeliveryplace ) %]<li><span class="label">Basket group delivery place:</span> [% basketgroupdeliveryplace %]</li>[% END %] [% IF ( basketgroupbillingplace ) %]<li><span class="label">Basket group billing place:</span> [% basketgroupbillingplace %]</li>[% END %] </ol>
+ </form>
+ </div>
  [% END %] </div>
  </div>
  [% END %] [% UNLESS ( delete_confirm ) %] <div id="acqui_basket_content" class="yui-g">

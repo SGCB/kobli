@@ -171,15 +171,8 @@
  [% END %] </td>
  </tr>
  [% END %] </tbody>
- </table>[% ELSE %]No hay órdenes pendientes.[% END %] <div id="resultnumber">
- <!-- Row of numbers corresponding to search result pages -->
- [% IF ( displayprev ) %]
- <a href="parcel.pl?invoiceid=[% invoiceid %]&amp;startfrom=[% prevstartfrom %][% IF ( resultsperpage ) %]&amp;resultsperpage=[% resultsperpage %][% END %]#resultnumber">&lt;&lt; Anterior</a>
- [% END %] [% FOREACH number IN numbers %] [% IF ( number.highlight ) %] <span class="current">[% number.number %]</span>
- [% ELSE %] <a href="parcel.pl?invoiceid=[% invoiceid %]&amp;startfrom=[% number.startfrom %][% IF ( resultsperpage ) %]&amp;resultsperpage=[% resultsperpage %][% END %]#resultnumber">[% number.number %]</a>
- [% END %] [% END %] [% IF ( displaynext ) %] <a href="parcel.pl?invoiceid=[% invoiceid %]&amp;startfrom=[% nextstartfrom %][% IF ( resultsperpage ) %]&amp;resultsperpage=[% resultsperpage %][% END %]#resultnumber">Siguiente &gt;&gt;</a>
- [% END %] </div>
- </div>
+ </table>
+ [% ELSE %]No hay órdenes pendientes.[% END %] </div>
 [% ELSE %] <p>
  Factura está cerrado, por lo que no puede recibir más órdenes.<a href="/cgi-bin/koha/acqui/invoice.pl?op=reopen&invoiceid=[% invoiceid %]&referer=/cgi-bin/koha/acqui/parcel.pl%3Finvoiceid=[% invoiceid %]">Reabrir </a>. </p>
 [% END %] <div id="acqui_receive_receivelist">

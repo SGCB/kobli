@@ -95,7 +95,7 @@ $.tablesorter.addParser({
  <p>Sólo se requiere el título, pero mientras más información proporciones, más fácil le resultará a los bibliotecarios encontrar el ejemplar requerido. El campo "Notas" puede utilizarse para proporcionar información adicional.</p>
  <form action="/cgi-bin/koha/opac-suggestions.pl" method="post">
  <fieldset class="rows"> <ol>
- <li><label class="required" for="title">Título:</label><input type="text" id="title" name="title" size="50" maxlength="80" /></li>
+ <li><label class="required" for="title">Título:</label><input type="text" id="title" name="title" size="80" maxlength="255" /></li>
  <li><label for="author">Autor:</label><input type="text" id="author" name="author" size="50" maxlength="80" /></li>
  <li><label for="copyrightdate">Fecha de publicación:</label><input type="text" id="copyrightdate" name="copyrightdate" size="4" maxlength="4" /></li>
  <li><label for="isbn">Número estandarizado (ISBN, ISSN u otro):</label><input type="text" id="isbn" name="isbn" size="50" maxlength="80" /></li>

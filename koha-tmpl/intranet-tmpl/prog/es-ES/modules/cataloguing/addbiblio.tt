@@ -791,7 +791,8 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
 //]]>
 </script>
 <link type="text/css" rel="stylesheet" href="[% themelang %]/css/addbiblio.css" />
-</head>
+[% IF ( bidi ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/right-to-left.css" />
+[% END %] </head>
 <body id="cat_addbiblio" class="cat">
 
  <div id="loading">

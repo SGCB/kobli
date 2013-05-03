@@ -97,11 +97,13 @@ $(document).ready(function(){
  <fieldset class="action">
  <input value="Importar este lote en el catálogo" name="mainformsubmit" type="submit" class="button" onclick="return submitBackgroundJob(this.form);" />
  <br/>
- Agregar un nuevo registro bibliográfico con esta plantilla de catalogación:<select name="framework" id="frameworks">
+ [% IF ( record_type != 'auth' ) %]
+ Add new bibliographic records into this framework:
+ <select name="framework" id="frameworks">
  <option value="">Predeterminado</option>
  [% FOREACH framework IN frameworks %] <option value="[% framework.value %]">[% framework.label %]</option>
  [% END %] </select>
- </fieldset>
+ [% END %] </fieldset>
  </form>
  <div id="jobpanel"><div id="jobstatus">Avance del trabajo: <div id="jobprogress"></div> <span id="jobprogresspercent"></span>%</div>
  <div id="jobfailed"></div></div>

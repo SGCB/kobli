@@ -308,7 +308,7 @@
  [% UNLESS ( singleBranchMode ) %] <th>Biblioteca de origen:</th>
  <th>Última ubicación</th>
  [% END %] <th>Signatura topográfica</th>
- [% IF ( bibitemloo.itemdata_enumchron ) %] <th>Información de volumen</th>
+ [% IF ( itemdata_enumchron ) %] <th>Información de volumen</th>
  [% END %] <th>Información</th>
  </tr>
 
@@ -325,8 +325,7 @@
  [% UNLESS ( singleBranchMode ) %] <td class="homebranch">[% itemLoo.homeBranchName %]</td>
  <td class="holdingbranch">[% itemLoo.holdingBranchName %]</td>
  [% END %] <td class="call_no">[% itemLoo.callNumber %]</td>
- [% IF ( itemLoo.itemdata_enumchron ) %]<!-- test -->
- <td class="vol_info">[% itemLoo.enumchron %]</td>
+ [% IF ( itemdata_enumchron ) %] <td class="vol_info">[% itemLoo.enumchron %]</td>
  [% END %] <td class="information">
  [% IF ( itemLoo.dateDue ) %] <span class="checkedout">Devolución [% itemLoo.dateDue %]</span>
  [% ELSIF ( itemLoo.transfertwhen ) %] <span class="intransit">En ruta desde [% itemLoo.transfertfrom %] a [% itemLoo.transfertto %], desde [% itemLoo.transfertwhen %]</span>

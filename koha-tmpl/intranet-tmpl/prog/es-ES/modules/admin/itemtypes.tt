@@ -144,7 +144,7 @@ function Check(f) {
 [% END %] </div>
 <ol>
  <li>
- <label for="notforloan">Not for loan: </label> [% IF ( notforloan ) %] <input type="checkbox" id="notforloan" name="notforloan" checked="checked" value="1" />
+ <label for="notforloan">No disponible para préstamo:</label> [% IF ( notforloan ) %] <input type="checkbox" id="notforloan" name="notforloan" checked="checked" value="1" />
  [% ELSE %] <input type="checkbox" id="notforloan" name="notforloan" value="1" />
  [% END %] (si está seleccionado, ningún ítem de este tipo podrá ser prestado. Si no está seleccionado, todos los ítems de este tipo podrán ser prestados, a menos que se establezca que un ítem en particular no se presta) </li>
  <li>

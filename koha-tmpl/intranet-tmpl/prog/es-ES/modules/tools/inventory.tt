@@ -61,7 +61,7 @@ $(document).ready(function(){
  [% END %] [% END %] </select>
  </li>
  [% IF ( authorised_values ) %] <li>
- <label for="locationloop">Shelving location (items.location) is: </label>
+ <label for="locationloop">La ubicación en las estanterías (items.location) es:</label>
  <select id="locationloop" name="location">
  <option value="">Ubicación del filtro</option>
  [% FOREACH authorised_value IN authorised_values %] [% IF ( authorised_value.selected ) %] <option value="[% authorised_value.authorised_value %]" selected="selected">[% authorised_value.lib %]</option>
@@ -76,7 +76,7 @@ $(document).ready(function(){
  [% IF ( statuses ) %] </ol>
  </fieldset>
  <fieldset class="rows">
- <legend>Item statuses</legend>
+ <legend>Estados del ítem:</legend>
  <div name="statuses" style="display: block;">
  [% FOREACH statuse IN statuses %] [% IF ( statuse.values ) %] <fieldset style="float: left; padding: 5px; margin: 5px;text-align:right">
  <legend>[% statuse.fieldname %]</legend>
@@ -104,11 +104,11 @@ $(document).ready(function(){
  <input type="text" id="offset" name="offset" value="[% offset %]" size="5" maxlength="5" />
  </li>
  <li>
- <label for="CSVexport">Export to CSV file: </label>
+ <label for="CSVexport">Exportar a archivo CSV:</label>
  <input type="checkbox" name="CSVexport" id="CSVexport" />
  </li>
  <li>
- <label for="compareinv2barcd">Compare barcodes list to results: </label>
+ <label for="compareinv2barcd">Comparar los códigos de barras a los resultados:</label>
  <input type="checkbox" name="compareinv2barcd" id="compareinv2barcd" />
  </li>
  </ol>

@@ -26,10 +26,10 @@
 <p>Hay varios mensajes que pueden aparecer cuando devuelva ítems:</p>
 
 <ul>
- <li>Si usted recibe la devolución de un ítem en una biblioteca que no es la biblioteca de origen, aparecerá un mensaje pidiendo que transfiera el libro a la biblioteca original  <ul>
+ <li>Si se devuelve un ítem en una biblioteca diferente a la que el corresponde al ítem, un mensaje aparecerá un mensaje preguntando si si quiere transferir a ésta<ul>
  <li>Después que este ítem sea devuelto el estado del ítem se cambiará en el catálogo a 'en tránsito'</li>
- <li>Para marcar un ítem como devuelto a la biblioteca de origen, registrar el ítem en la biblioteca de origen <ul>
- <li>Aparecerá un mensaje indicando que el ítem no está prestado, pero el estado indicará disponiblilidad en el catálogo. Este paso es necesario para marcar los ítems como recibidos por la biblioteca de origen. </li>
+ <li>Para marcar un ítem como devuelto en la biblioteca de origen, se debe registrar el ítem en ésta<ul>
+ <li>Un mensaje aparecerá para avisar de que el ítem no está prestado y en el catálogo se mostrará como disponible. Este paso es necesario para marcar los ítems como recibidos en la biblioteca.</li>
 </ul>
 </li>
 </ul>
@@ -41,12 +41,13 @@
  <li>Ignorando la reserva dejará en suspenso el ítem, pero permanecerá su condición de disponible (no se cancelará la reserva)</li>
 </ul>
 </li>
- <li>Si está recibiendo un ítem que está reservado en otra biblioteca se le pedirá que confirme la reserva y lo transfiera a la otra biblioteca <ul>
+ <li>Si se devuelve un ítem correspondiente a otra biblioteca se requerirá confirmación y transferencia del ítem.<ul>
  <li>Seleccionando el botón  'Confirmar reserva y transferir' marcará el ítem como en tránsito a la biblioteca donde se realizó la reserva</li>
  <li>Seleccionando el botón 'Imprimir recibo, Transferir y Confirmar' se marcará el ítem como en tránsito a la biblioteca donde se hizo la reserva e imprimirá un recibo con la información del socio para ser colocado en el libro</li>
  <li>Ignorando la reserva dejará en suspenso el ítem, pero permanecerá su condición de disponible (no se cancelará la reserva)</li>
 </ul>
 </li>
+ <li>Si el sistema muestra las multas en el momento de la devolución (FineNotifyAtCheckin) se verá un mensaje con información sobre la multa y una enlace para el pago de ésta por parte del socio.</li>
 </ul>
 
 <h2>Recepción de Reservas</h2>
@@ -65,6 +66,6 @@
 
 <p>Desde aquí puede prestar el ítem al socio en mostrador y cancelar la reserva del socio.</p>
 
-<p><strong>Ver la documentación completa para Devolución en la <a href="http://manual.koha-community.org/3.10/en/checkingin.html">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Devolución en la <a href="http://manual.koha-community.org/3.12/en/checkingin.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

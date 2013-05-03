@@ -43,30 +43,14 @@
 </li>
 </ul>
 <ul>
- <li>oculto <ul>
- <li>le permite seleccionar entre 19 condiciones posibles de visibilidad, 17 de las cuales están implementadas. Son las siguientes: <ul>
- <li>-9 =&gt; Uso futuro</li>
- <li>-8 =&gt; Marca</li>
- <li>-7 =&gt; OPAC !Intranet !Editor Colapsado</li>
- <li>-6 =&gt; OPAC Intranet !Editor !Colapsado</li>
- <li>-5 =&gt; OPAC Intranet !Editor Colapsado</li>
- <li>-4 =&gt; OPAC !Intranet !Editor !Colapsado</li>
- <li>-3 =&gt; OPAC !Intranet Editor Colapsado</li>
- <li>-2 =&gt; OPAC !Intranet Editor !Colapsado</li>
- <li>-1 =&gt; OPAC Intranet Editor Colapsado</li>
- <li>0 =&gt; OPAC Intranet Editor !Colapsado</li>
- <li>1 =&gt; !OPAC Intranet Editor Colapsado</li>
- <li>2 =&gt; !OPAC !Intranet Editor !Colapsado</li>
- <li>3 =&gt; !OPAC !Intranet Editor Colapsado</li>
- <li>4 =&gt; !OPAC Intranet Editor !Colapsado</li>
- <li>5 =&gt; !OPAC !Intranet !Editor Colapsado</li>
- <li>6 =&gt; !OPAC Intranet !Editor !Colapsado</li>
- <li>7 =&gt; !OPAC Intranet !Editor Colapsado</li>
- <li>8 =&gt; !OPAC !Intranet !Editor !Colapsado</li>
- <li>9 =&gt; Uso futuro</li>
-</ul>
-</li>
- <li>( ! significa 'no visible' o en el caso de colapsado 'no colapsado')</li>
+ <li>Visibilidad<ul>
+ <li>Permite editar las opciones de visibilidad para un campo MARC.</li>
+ <ul>
+ <li><strong>OPAC</strong> - Marcando esta opción el contenido del campo estará  visible en la interfaz pública. Si se deja desmarcada el campo se ocultará en la interfaz pública.</li>
+ <li><strong>Intranet</strong> - Marcando esta opción el subcampo estará visible en la intranet. Dejándolo desmarcado estará oculto en la intranet.</li>
+ <li><strong>Editor</strong> - Marcando esta opción el subcampo estará disponible en el editor de MARC. Desmarcándolo el subcampo no se mostrará en el editor.</li>
+ <li><strong>Contraído</strong> - Marcando esta opción el subcampo se pliega y  despliega en el editor de MARC; el subcampo aparecerá como un enlace para desplegar y editar el subcampo. No marcando esta opción ek campo saldrá desplegado por defecto.</li>
+ <li><strong>Preparado</strong> - Esta opción es exclusiva de todas las otras opciones de visibilidad. </li>
 </ul>
 </li>
 </ul>
@@ -123,6 +107,6 @@
  <li>Para guardar sus cambios seleccione  el botón 'Guardar cambios' en la parte superior de la pantalla</li>
 </ul>
 
-<p><strong>Ver la documentación completa para Hojas de trabajo MARC en la <a href="http://manual.koha-community.org/3.10/en/catadmin.html#marcbibframeworks">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Hojas de trabajo MARC en la <a href="http://manual.koha-community.org/3.12/en/catadmin.html#marcbibframeworks">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

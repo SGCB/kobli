@@ -2,7 +2,7 @@
  [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'greybox.inc' %] <script type="text/javascript">
         //<![CDATA[
            function DeleteConfirm() {
-                var msg = _("Are you sure you want to delete batch") + " [% batch_id %]?";
+                var msg = _("¿Está seguro de querer borrar el lote?") + " [% batch_id %]?";
                 var answer = confirm(msg);
                 if (answer) {
                     window.location = "/cgi-bin/koha/patroncards/manage.pl?op=delete&amp;card_element=batch&amp;element_id=[% batch_id %]";
@@ -69,10 +69,10 @@
                         alert(_("Por favor, seleccione al menos un carnet para exportar."));
                         return;     // no batch selected
                     }
-                    return GB_showCenter(_("Export labels"), "/cgi-bin/koha/patroncards/print.pl?batch_id=[% batch_id %]&" + getstr, 700, 800);
+                    return GB_showCenter(_("Exportar etiquetas"), "/cgi-bin/koha/patroncards/print.pl?batch_id=[% batch_id %]&" + getstr, 700, 800);
                 }
                 else if (mode == 'batch') {
-                    return GB_showCenter(_("Export labels"), "/cgi-bin/koha/patroncards/print.pl?batch_id=[% batch_id %]", 700, 800);
+                    return GB_showCenter(_("Exportar etiquetas"), "/cgi-bin/koha/patroncards/print.pl?batch_id=[% batch_id %]", 700, 800);
                 }
                 else {
                     // some pass-thru error trapping just in case...

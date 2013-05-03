@@ -248,17 +248,8 @@ function verify_images() {
  [% IF ( item.datedue ) %] <span class="datedue">Ha sido prestado [% UNLESS ( item.NOTSAMEBRANCH ) %] a <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% item.borrowernumber %]">
  [% IF ( item.hidepatronname ) %] [% item.cardnumber %] [% ELSE %] [% item.firstname %] [% item.surname %] [% END %] </a>
  [% END %] : vencimiento [% item.datedue %] </span>
- [% ELSIF ( item.transfertwhen ) %]
- In transit from [% item.transfertfrom %],
- to [% item.transfertto %], since [% item.transfertwhen %]
- <!-- FIXME: the "since" clause is redundant w/ lastseen field -->
- [% END %]
-
- [% IF ( item.itemlost ) %]
- [% IF ( item.itemlostloop ) %]
- [% FOREACH itemlostloo IN item.itemlostloop %]
- [% IF ( itemlostloo.selected ) %]
- <span class="lost">[% itemlostloo.lib %]</span>
+ [% ELSIF ( item.transfertwhen ) %] <span class="intransit">In transit from [% itemloo.transfertfrom %] to [% itemloo.transfertto %] since [% itemloo.transfertwhen %]</span>
+ [% END %] [% IF ( item.itemlost ) %] [% IF ( item.itemlostloop ) %] [% FOREACH itemlostloo IN item.itemlostloop %] [% IF ( itemlostloo.selected ) %] <span class="lost">[% itemlostloo.lib %]</span>
  [% END %] [% END %] [% ELSE %] <span class="lost">No disponible (perdido o faltante)</span>
  [% END %] [% END %] [% IF ( item.wthdrawn ) %] <span class="wdn">Retirado</span>
  [% END %] [% IF ( item.damaged ) %] [% IF ( item.itemdamagedloop ) %] [% FOREACH itemdamagedloo IN item.itemdamagedloop %] [% IF ( itemdamagedloo.selected ) %] <span class="dmg">[% itemdamagedloo.lib %]</span>

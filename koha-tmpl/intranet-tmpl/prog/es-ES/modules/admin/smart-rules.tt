@@ -116,7 +116,7 @@ $(document).ready(function() {
 for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidden" name="frombranch" value="[% current_branch %]" />
  <select name="tobranch" id="tobranch">[% FOREACH branchloo IN branchloop %]<option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %]</select> <input value="Clonar" type="submit" /></form>[% END %] <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
  <input type="hidden" name="op" value="add" />
- <input type="hidden" name="branch" value="[% branch %]"/>
+ <input type="hidden" name="branch" value="[% current_branch %]"/>
  <table id="default-circulation-rules">
  <thead>
  <tr>
@@ -129,10 +129,10 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <th>Monto de la multa</th>
  <th>Intervalo de costo de multa</th>
  <th>Período de gracia de la multa (día)</th>
- <th>Vencimiento con sanción ($)</th>
+ <th>Overdue fines cap (amount)</th>
  <th>Suspensión en días (día)</th>
  <th>Renovaciones permitidas (conteo)</th>
- <th>Renewal period</th>
+ <th>Periodo de renovación</th>
  <th>Reservas permitidas (recuento)</th>
  <th>Descuento en alquiler (%)</th>
  <th colspan="2">&nbsp;</th>

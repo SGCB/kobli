@@ -315,6 +315,15 @@ function RedrawChoices(typ){
                                   _("g- Textiles") +
                               '</option> \
                              [% END %] \
+                             [% IF ( f4i ) %] \
+                              <option value="i" selected="selected">' +
+                                  _("i- Plastic") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="i">' +
+                                  _("i- Plastic") +
+                              '</option> \
+                             [% END %] \
 			     [% IF ( f4j ) %] \
                               <option value="j" selected="selected">' +
                                   _("j- Vidrio") +
@@ -322,6 +331,24 @@ function RedrawChoices(typ){
                              [% ELSE %] \
                               <option value="j">' +
                                   _("j- Vidrio") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4l ) %] \
+                              <option value="l" selected="selected">' +
+                                  _("l- Vinyl") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="l">' +
+                                  _("l- Vinyl") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4n ) %] \
+                              <option value="n" selected="selected">' +
+                                  _("n- Vellum") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="n">' +
+                                  _("n- Vellum") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4p ) %] \
@@ -376,6 +403,24 @@ function RedrawChoices(typ){
                              [% ELSE %] \
                               <option value="u">' +
                                   _("u- Desconocido") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4v ) %] \
+                              <option value="v" selected="selected">' +
+                                  _("v- Leather") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="v">' +
+                                  _("v- Leather") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4w ) %] \
+                              <option value="w" selected="selected">' +
+                                  _("w- Parchment") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="w">' +
+                                  _("w- Parchment") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4y ) %] \
@@ -633,6 +678,24 @@ function RedrawChoices(typ){
                                   _("c- Cartucho de discos ópticos de computadora") +
                               '</option> \
                              [% END %] \
+                             [% IF ( f1d ) %] \
+                              <option value="d" selected="selected">' +
+                                  _("d- Computer disc, type unspecified") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="d">' +
+                                  _("d- Computer disc, type unspecified") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f1e ) %] \
+                              <option value="e" selected="selected">' +
+                                  _("e- Computer disc cartridge, type unspecified") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="e">' +
+                                  _("e- Computer disc cartridge, type unspecified") +
+                              '</option> \
+                             [% END %] \
 			     [% IF ( f1f ) %] \
                               <option value="f" selected="selected">' +
                                   _("f- Casete de cinta") +
@@ -658,6 +721,15 @@ function RedrawChoices(typ){
                              [% ELSE %] \
                               <option value="j">' +
                                   _("j- Disco magnético") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f1k ) %] \
+                              <option value="k" selected="selected">' +
+                                  _("k- Computer card") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="k">' +
+                                  _("k- Computer card") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1m ) %] \
@@ -1539,6 +1611,33 @@ function RedrawChoices(typ){
                                   _("g- Textil") +
                               '</option> \
                              [% END %] \
+                             [% IF ( f4i ) %] \
+                              <option value="i" selected="selected">' +
+                                  _("i- Plastic") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="i">' +
+                                  _("i- Plastic") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4l ) %] \
+                              <option value="l" selected="selected">' +
+                                  _("l- Vinyl") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="l">' +
+                                  _("l- Vinyl") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4n ) %] \
+                              <option value="n" selected="selected">' +
+                                  _("n- Vellum") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="n">' +
+                                  _("n- Vellum") +
+                              '</option> \
+                             [% END %] \
 			     [% IF ( f4p ) %] \
                               <option value="p" selected="selected">' +
                                   _("p- Yeso") +
@@ -1555,6 +1654,24 @@ function RedrawChoices(typ){
                              [% ELSE %] \
                               <option value="u">' +
                                   _("u- Desconocido") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4v ) %] \
+                              <option value="v" selected="selected">' +
+                                  _("v- Leather") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="v">' +
+                                  _("v- Leather") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4w ) %] \
+                              <option value="w" selected="selected">' +
+                                  _("w- Parchment") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="w">' +
+                                  _("w- Parchment") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4z ) %] \
@@ -2607,11 +2724,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1f ) %] \
                               <option value="f" selected="selected">' +
-                                  _("f- Otro tipo de tira de película") +
+                                  _("f- Filmstrip, type unspecified") +
                               '</option> \
                              [% ELSE %] \
                               <option value="f">' +
-                                  _("f- Otro tipo de tira de película") +
+                                  _("f- Filmstrip, type unspecified") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1o ) %] \
@@ -3409,6 +3526,24 @@ function RedrawChoices(typ){
                                   _("g- Microopaco") +
                               '</option> \
                              [% END %] \
+                             [% IF ( f1h ) %] \
+                              <option value="h" selected="selected">' +
+                                  _("h- Microfilm slip") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="h">' +
+                                  _("h- Microfilm slip") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f1j ) %] \
+                              <option value="j" selected="selected">' +
+                                  _("j- Microfilm roll") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="j">' +
+                                  _("j- Microfilm roll") +
+                              '</option> \
+                             [% END %] \
 			     [% IF ( f1u ) %] \
                               <option value="u" selected="selected">' +
                                   _("u- No especificado") +
@@ -4058,6 +4193,15 @@ function RedrawChoices(typ){
                            '</label></td> \
                            <td> \
                             <select name="f1" id="f1" size="1"> \
+                             [% IF ( f1a ) %] \
+                              <option value="a" selected="selected">' +
+                                  _("a- Activity card") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="a">' +
+                                  _("a- Activity card") +
+                              '</option> \
+                             [% END %] \
 			     [% IF ( f1c ) %] \
                               <option value="c" selected="selected">' +
                                   _("c- Colage") +
@@ -4130,6 +4274,15 @@ function RedrawChoices(typ){
                                   _("j- Impresión") +
                               '</option> \
                              [% END %] \
+                             [% IF ( f1k ) %] \
+                              <option value="k" selected="selected">' +
+                                  _("k- Poster") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="k">' +
+                                  _("k- Poster") +
+                              '</option> \
+                             [% END %] \
                              [% IF ( f1l ) %] \
                               <option value="l" selected="selected">' +
                                   _("l- Dibujo técnico") +
@@ -4157,6 +4310,42 @@ function RedrawChoices(typ){
                                   _("o- Tarjeta flash") +
                               '</option> \
                              [% END %] \
+                             [% IF ( f1p ) %] \
+                              <option value="p" selected="selected">' +
+                                  _("p- Postcard") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="p">' +
+                                  _("p- Postcard") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f1q ) %] \
+                              <option value="q" selected="selected">' +
+                                  _("q- Icon") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="q">' +
+                                  _("q- Icon") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f1r ) %] \
+                              <option value="r" selected="selected">' +
+                                  _("r- Radiograph") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="r">' +
+                                  _("r- Radiograph") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f1s ) %] \
+                              <option value="s" selected="selected">' +
+                                  _("s- Study print") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="s">' +
+                                  _("s- Study print") +
+                              '</option> \
+                             [% END %] \
 			     [% IF ( f1u ) %] \
                               <option value="u" selected="selected">' +
                                   _("u- No especificado") +
@@ -4164,6 +4353,15 @@ function RedrawChoices(typ){
                              [% ELSE %] \
                               <option value="u">' +
                                   _("u- No especificado") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f1v ) %] \
+                              <option value="v" selected="selected">' +
+                                  _("v- Photograph, type unspecified") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="v">' +
+                                  _("v- Photograph, type unspecified") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1z ) %] \
@@ -4364,6 +4562,24 @@ function RedrawChoices(typ){
                                   _("h- Metal") +
                               '</option> \
                              [% END %] \
+                             [% IF ( f4i ) %] \
+                              <option value="i" selected="selected">' +
+                                  _("i- Plastic") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="i">' +
+                                  _("i- Plastic") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4l ) %] \
+                              <option value="l" selected="selected">' +
+                                  _("l- Vinyl") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="l">' +
+                                  _("l- Vinyl") +
+                              '</option> \
+                             [% END %] \
 			     [% IF ( f4m ) %] \
                               <option value="m" selected="selected">' +
                                   _("m- Colección mixta") +
@@ -4371,6 +4587,15 @@ function RedrawChoices(typ){
                              [% ELSE %] \
                               <option value="m">' +
                                   _("m- Colección mixta") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4n ) %] \
+                              <option value="n" selected="selected">' +
+                                  _("n- Vellum") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="n">' +
+                                  _("n- Vellum") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4o ) %] \
@@ -4434,6 +4659,24 @@ function RedrawChoices(typ){
                              [% ELSE %] \
                               <option value="u">' +
                                   _("u- Desconocido") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4v ) %] \
+                              <option value="v" selected="selected">' +
+                                  _("v- Leather") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="v">' +
+                                  _("v- Leather") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f4w ) %] \
+                              <option value="w" selected="selected">' +
+                                  _("w- Parchment") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="w">' +
+                                  _("w- Parchment") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4z ) %] \
@@ -4544,6 +4787,24 @@ function RedrawChoices(typ){
                                   _("h- Metal") +
                               '</option> \
                              [% END %] \
+                             [% IF ( f5i ) %] \
+                              <option value="i" selected="selected">' +
+                                  _("i- Plastic") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="i">' +
+                                  _("i- Plastic") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f5l ) %] \
+                              <option value="l" selected="selected">' +
+                                  _("l- Vinyl") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="l">' +
+                                  _("l- Vinyl") +
+                              '</option> \
+                             [% END %] \
 			     [% IF ( f5m ) %] \
                               <option value="m" selected="selected">' +
                                   _("m- Colección mixta") +
@@ -4551,6 +4812,15 @@ function RedrawChoices(typ){
                              [% ELSE %] \
                               <option value="m">' +
                                   _("m- Colección mixta") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f5n ) %] \
+                              <option value="n" selected="selected">' +
+                                  _("n- Vellum") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="n">' +
+                                  _("n- Vellum") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5o ) %] \
@@ -4616,6 +4886,24 @@ function RedrawChoices(typ){
                                   _("u- Desconocido") +
                               '</option> \
                              [% END %] \
+                             [% IF ( f5v ) %] \
+                              <option value="v" selected="selected">' +
+                                  _("v- Leather") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="v">' +
+                                  _("v- Leather") +
+                              '</option> \
+                             [% END %] \
+                              [% IF ( f5w ) %] \
+                              <option value="w" selected="selected">' +
+                                  _("w- Parchment") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="w">' +
+                                  _("w- Parchment") +
+                              '</option> \
+                             [% END %] \
 			     [% IF ( f5z ) %] \
                               <option value="z" selected="selected">' +
                                   _("z- Otro") +
@@ -4671,6 +4959,15 @@ function RedrawChoices(typ){
                              [% ELSE %] \
                               <option value="f">' +
                                   _("f- Casete de película") +
+                              '</option> \
+                             [% END %] \
+                             [% IF ( f1o ) %] \
+                              <option value="o" selected="selected">' +
+                                  _("o- Film roll") +
+                              '</option> \
+                             [% ELSE %] \
+                              <option value="o">' +
+                                  _("o- Film roll") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1r ) %] \

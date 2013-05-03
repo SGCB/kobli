@@ -102,35 +102,8 @@ $(document).ready(function() {
  </div>
 </div>
 </div>
- [% IF ( show_acquisition_details ) %] <div id="acquisition_details">
- <h2>Detalles de adquisición</h2>
- <table>
- <thead>
- <tr><th></th><th>Precio exc. impuestos</th><th>Precio inc. impuestos</th><th>Fondo</th><th></th></tr>
- </thead>
- <tbody>
- <tr>
- <td>Costo del pedido </td>
- <td>[% valuegste_ordered %]</td>
- <td>[% valuegsti_ordered %]</td>
- <td>[% budget_name_ordered %]</td>
- <td>
- [% IF ( ordered_exists ) %] <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">See basket information</a>
- [% END %] </td>
- </tr>
- <tr>
- <td>Monto de pago </td>
- <td>[% valuegste_spent %]</td>
- <td>[% valuegsti_spent %]</td>
- <td>[% budget_name_spent %]</td>
- <td>
- [% IF ( spent_exists ) %] <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoiceid %]">See invoice information</a>
- [% END %] </td>
- </tr>
- </tbody>
- </table>
- </div>
- [% END %] <div id="subscription_planning">
+
+ <div id="subscription_planning">
  <div class="yui-g">
  <div class="rows">
  <ol>
@@ -249,14 +222,43 @@ $(document).ready(function() {
  <li><span class="label">Ejemplares faltantes:</span>[% missinglist %]</li>
  <li><span class="label">Nota no pública</span>[% internalnotes FILTER html_line_break %]</li>
  <li><span class="label">Nota pública:</span>[% notes FILTER html_line_break %]</li>
- <li><span class="label">History staff note:</span>[% librariannote FILTER html_line_break %]</li>
- <li><span class="label">History OPAC note:</span>[% opacnote FILTER html_line_break %]</li>
+ <li><span class="label">Nota administrativa del historial:</span>[% librariannote FILTER html_line_break %]</li>
+ <li><span class="label">Historia de nota de OPAC:</span>[% opacnote FILTER html_line_break %]</li>
  </ol>
  </div>
  </div>
  </div>
  </div>
-</div>
+
+ [% IF ( show_acquisition_details ) %] <div id="acquisition_details">
+ <h2>Detalles de adquisición</h2>
+ <table>
+ <thead>
+ <tr><th></th><th>Precio exc. impuestos</th><th>Precio inc. impuestos</th><th>Fondo</th><th></th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>Costo del pedido </td>
+ <td>[% valuegste_ordered %]</td>
+ <td>[% valuegsti_ordered %]</td>
+ <td>[% budget_name_ordered %]</td>
+ <td>
+ [% IF ( ordered_exists ) %] <a href="/cgi-bin/koha/acqui/basket.pl?basketno=[% basketno %]">Ver la información de la cesta</a>
+ [% END %] </td>
+ </tr>
+ <tr>
+ <td>Monto de pago </td>
+ <td>[% valuegste_spent %]</td>
+ <td>[% valuegsti_spent %]</td>
+ <td>[% budget_name_spent %]</td>
+ <td>
+ [% IF ( spent_exists ) %] <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoiceid %]">Ver información de la factura</a>
+ [% END %] </td>
+ </tr>
+ </tbody>
+ </table>
+ </div>
+ [% END %] </div>
 </div>
 
 <div class="yui-b">

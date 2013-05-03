@@ -1,4 +1,4 @@
-[% INCLUDE 'help-top.inc' %] <h1>Avisos &amp; Recibos</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Avisos y  recibos</h1>
 
 <p>Todas los avisos y recibos de circulacióngenerados por Koha pueden ser personalizados usando la herramienta de Notices &amp; Slips Tool. El sistema viene con varias plantillaspredefinidas que aparecerán cuando visite por primera vez esta la herramienta.</p>
 
@@ -22,7 +22,7 @@
  <li>En avisos de retraso asegúrese de utilizar &lt;&lt;items.content&gt;&gt; etiquetas para imprimir los datos relacionados con todos los  ítems que están atrasados.</li>
 </ul>
 <ul>
- <li>La otra opción, sólo para los avisos de vencimiento, es utilizar el &lt;item&gt;&lt;/item&gt; Etiquetas para abarcar la línea de lo que va a imprimir varias líneas Un ejemplo para la  &lt;item&gt;&lt;/item&gt; tag option is:&lt;item&gt;"&lt;&lt;biblio.title&gt;&gt;" by &lt;&lt;biblio.author&gt;&gt;, &lt;&lt;items.itemcallnumber&gt;&gt;, Barcode: &lt;&lt;items.barcode&gt;&gt; , Checkout date: &lt;&lt;issues.issuedate&gt;&gt;, Due date: &lt;&lt;issues.date_due&gt;&gt; Fine: &lt;fine&gt;USD&lt;/fine&gt; Due date: &lt;&lt;issues.date_due&gt;&gt; &lt;/item&gt;</li>
+ <li>Otra opción, solo para las notificaciones de vencimiento de préstamo, es usar las etiquetas de &lt;item&gt;&lt;/item&gt; para separar las lineas para que se imprima en varias filas . Un ejemplo de esta opción &lt;item&gt;&lt;/item&gt; is:&lt;item&gt;"&lt;&lt;biblio.title&gt;&gt;" by &lt;&lt;biblio.author&gt;&gt;, &lt;&lt;items.itemcallnumber&gt;&gt;, Barcode: &lt;&lt;items.barcode&gt;&gt; , Fecha de préstamo: &lt;&lt;issues.issuedate&gt;&gt;, Fecha de fin de la multa: &lt;&lt;issues.date_due&gt;&gt; Multa: &lt;&lt;items.fine&gt;&gt; Fecha de fin de la multa: &lt;&lt;issues.date_due&gt;&gt; &lt;/item&gt;</li>
 </ul>
 </ul>
 </li>
@@ -45,7 +45,7 @@
 
 <p>Un ejemplo del uso de estas dos etiquetas en una plantilla de noticias podría ser como: </p>
 
-<pre>Los siguientes ítems están retrasados: &lt;item&gt;"&lt;&lt;biblio.title&gt;&gt;" by &lt;&lt;biblio.author&gt;&gt;, &lt;&lt;items.itemcallnumber&gt;&gt;, Barcode: &lt;&lt;items.barcode&gt;&gt; Fine: &lt;fine&gt;GBP&lt;/fine&gt;&lt;/item&gt;</pre>
+<pre>Los siguientes ítems tienen actualmente multas por retraso :&lt;item&gt;"&lt;&lt;biblio.title&gt;&gt;" by &lt;&lt;biblio.author&gt;&gt;, &lt;&lt;items.itemcallnumber&gt;&gt;, Código de barras: &lt;&lt;items.barcode&gt;&gt; Multa: &lt;&lt;items.fine&gt;&gt; &lt;/item&gt;</pre>
 
 <p>Lo cual, asumiendo dos retrasos, resultará en un aviso como: </p>
 
@@ -66,7 +66,7 @@
 </ul>
 </li>
  <li>RESERVA (Reserva disponible para retiro) <ul>
- <li>Este aviso se utiliza si se cumplen dos criterios: <ol type="1">
+ <li>Este aviso se utiliza si se cumplen dos criterios: <ol>
  <li>EnhancedMessagingPreferences esta configurado para 'Permitir'</li>
  <li>El socio a requerido recibir este aviso <ul>
  <li><em>Hay que llegar:</em>OPAC &gt; Login &gt; mi mensaje</li>
@@ -127,11 +127,11 @@
 </li>
  <li>TRANSFERSLIP <ul>
  <li>Utilizar para imprimir un recibo de transfernecia</li>
- <li>El recibo de transferencia se imprime cuando se confirma una transferencia desde una biblioteca a otra en su sistema </li>
+ <li>El recibo de transferencia se imprime cuando se confirmala transferencia desde una biblioteca a otra en el sistema </li>
 </ul>
 </li>
 </ul>
 
-<p><strong>Vea la documentación completa para Avisos en la <a href="http://manual.koha-community.org/3.10/en/notices.html">manual</a> (en línea).</strong></p>
+<p><strong>Vea la documentación completa para Avisos en la <a href="http://manual.koha-community.org/3.12/en/notices.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

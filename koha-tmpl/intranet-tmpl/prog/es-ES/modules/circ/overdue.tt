@@ -156,14 +156,14 @@
  </li>
 
  <li>
- <label>Item home library:</label>
+ <label>Biblioteca de origen del ítem:</label>
  <select name="homebranch" id="homebranch">
  <option value="">Cualquiera</option>
  [% FOREACH homebranchloo IN homebranchloop %][% IF ( homebranchloo.selected ) %] <option value="[% homebranchloo.value |html %]" selected="selected">[% homebranchloo.branchname %]</option>[% ELSE %] <option value="[% homebranchloo.value |html %]">[% homebranchloo.branchname %]</option>[% END %] [% END %] </select>
  </li>
 
  <li>
- <label>Item holding library:</label>
+ <label>Biblioteca de préstamo:</label>
  <select name="holdingbranch" id="holdingbranch">
  <option value="">Cualquiera</option>
  [% FOREACH holdingbranchloo IN holdingbranchloop %][% IF ( holdingbranchloo.selected ) %] <option value="[% holdingbranchloo.value |html %]" selected="selected">[% holdingbranchloo.branchname %]</option>[% ELSE %] <option value="[% holdingbranchloo.value |html %]">[% holdingbranchloo.branchname %]</option>[% END %] [% END %] </select>
