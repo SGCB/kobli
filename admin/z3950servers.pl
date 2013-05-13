@@ -40,7 +40,7 @@ sub StringSearch  {
         $searchstring = '';
     }
 
-    my $query    = "SELECT host,port,db,userid,password,name,id,checked,rank,syntax,encoding,timeout";
+    my $query    = "SELECT host,port,db,userid,password,name,id,checked,rank,syntax,encoding,timeout,recordtype";
     $query      .= " FROM z3950servers";
     if ( $searchstring ne '' ) { $query .= " WHERE (name like ?)" }
     $query      .= " ORDER BY rank,name";
@@ -91,7 +91,7 @@ if ($op eq 'add_form') {
 	my $data;
 	if ($searchfield) {
 		my $dbh = C4::Context->dbh;
-		my $sth=$dbh->prepare("select host,port,db,userid,password,name,id,checked,rank,syntax,encoding,timeout from z3950servers where (name = ?) order by rank,name");
+		my $sth=$dbh->prepare("select host,port,db,userid,password,name,id,checked,rank,syntax,encoding,timeout,recordtype from z3950servers where (name = ?) order by rank,name");
 		$sth->execute($searchfield);
 		$data=$sth->fetchrow_hashref;
 		$sth->finish;
@@ -99,7 +99,7 @@ if ($op eq 'add_form') {
     $template->param( $_ => $data->{$_} ) 
         for ( qw( host port db userid password checked rank timeout encoding ) );
     $template->param( $_ . $data->{$_} => 1)
-        for ( qw( syntax ) );
+        for ( qw( syntax recordtype ) );
 													# END $OP eq ADD_FORM
 ################## ADD_VALIDATE ##################################
 # called by add_form, used to insert/modify data in DB
@@ -110,7 +110,7 @@ if ($op eq 'add_form') {
 	my $checked = $input->param('checked') ? 1 : 0;
 	if ($sth->rows) {
         $template->param(confirm_update => 1);
-		$sth=$dbh->prepare("update z3950servers set host=?, port=?, db=?, userid=?, password=?, name=?, checked=?, rank=?,syntax=?,encoding=?,timeout=? where name=?");
+		$sth=$dbh->prepare("update z3950servers set host=?, port=?, db=?, userid=?, password=?, name=?, checked=?, rank=?,syntax=?,encoding=?,timeout=?,recordtype=? where name=?");
 		$sth->execute($input->param('host'),
 		      $input->param('port'),
 		      $input->param('db'),
@@ -122,6 +122,7 @@ if ($op eq 'add_form') {
 			  $input->param('syntax'),
               $input->param('encoding'),
               $input->param('timeout'),
+              $input->param('recordtype'),
 		      $input->param('searchfield'),
 		      );
 	} 
@@ -129,8 +130,8 @@ if ($op eq 'add_form') {
         $template->param(confirm_add => 1);
 		$sth=$dbh->prepare(
 		  "INSERT INTO z3950servers " .
-		  "(host,port,db,userid,password,name,checked,rank,syntax,encoding,timeout) " .
-		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" );
+		  "(host,port,db,userid,password,name,checked,rank,syntax,encoding,timeout,recordtype) " .
+		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" );
         $sth->execute(
             $input->param( 'host' ),
             $input->param( 'port' ),
@@ -142,7 +143,8 @@ if ($op eq 'add_form') {
             $input->param( 'rank' ),
             $input->param( 'syntax' ),
             $input->param( 'encoding' ),
-            $input->param( 'timeout' ) );
+            $input->param( 'timeout' ),
+            $input->param( 'recordtype' ) );
 	}
 	$sth->finish;
 													# END $OP eq ADD_VALIDATE
@@ -152,7 +154,7 @@ if ($op eq 'add_form') {
 	$template->param(delete_confirm => 1);
 	my $dbh = C4::Context->dbh;
 
-	my $sth2=$dbh->prepare("select host,port,db,userid,password,name,id,checked,rank,syntax,encoding,timeout from z3950servers where (name = ?) order by rank,name");
+	my $sth2=$dbh->prepare("select host,port,db,userid,password,name,id,checked,rank,syntax,encoding,timeout,recordtype from z3950servers where (name = ?) order by rank,name");
 	$sth2->execute($searchfield);
 	my $data=$sth2->fetchrow_hashref;
 	$sth2->finish;
@@ -166,6 +168,7 @@ if ($op eq 'add_form') {
                          rank => $data->{'rank'},
                          syntax => $data->{'syntax'},
                          timeout => $data->{'timeout'},
+                         recordtype => $data->{'recordtype'},
                          encoding => $data->{'encoding'}            );
 
 													# END $OP eq DELETE_CONFIRM
@@ -197,7 +200,8 @@ if ($op eq 'add_form') {
 			rank => $results->[$i]{'rank'},
 			syntax => $results->[$i]{'syntax'},
 			encoding => $results->[$i]{'encoding'},
-      timeout => $results->[$i]{'timeout'});
+      timeout => $results->[$i]{'timeout'},
+            recordtype => $results->[$i]{'recordtype'});
 		push @loop, \%row;
 
 	}
