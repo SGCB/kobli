@@ -303,11 +303,17 @@ sub SendAlerts {
             ) or return;
 
             # ... then send mail
+            unless(utf8::is_utf8($letter->{'title'})){
+                $letter->{'title'} = Encode::encode( "utf8", $letter->{'title'} );
+            }
+            unless(utf8::is_utf8($letter->{'content'})){
+                $letter->{'content'} = Encode::encode( "utf8", $letter->{'content'} );
+            }
             my %mail = (
                 To      => $email,
-                From    => $branchdetails->{'branchemail'} || C4::Context->preference("KohaAdminEmailAddress"),
-                Subject => Encode::encode( "utf8", "" . $letter->{title} ),
-                Message => Encode::encode( "utf8", "" . $letter->{content} ),
+                From    => $branchdetails->{'branchemail'} || C4::Context->preference("KohaAdminEmailAddress"),      
+                Subject => $letter->{title},
+                Message => $letter->{content},
                 'Content-Type' => 'text/plain; charset="utf8"',
                 );
             sendmail(%mail) or carp $Mail::Sendmail::error;
@@ -369,11 +375,17 @@ sub SendAlerts {
         ) or return;
 
         # ... then send mail
+        unless(utf8::is_utf8($letter->{'title'})){
+            $letter->{'title'} = Encode::encode( "utf8", $letter->{'title'} );
+        }
+        unless(utf8::is_utf8($letter->{'content'})){
+            $letter->{'content'} = Encode::encode( "utf8", $letter->{'content'} );
+        }
         my %mail = (
             To => join( ',', @email),
             From           => $userenv->{emailaddress},
-            Subject        => Encode::encode( "utf8", "" . $letter->{title} ),
-            Message        => Encode::encode( "utf8", "" . $letter->{content} ),
+            Subject => $letter->{'title'},
+            Message => $letter->{'content'},
             'Content-Type' => 'text/plain; charset="utf8"',
         );
         sendmail(%mail) or carp $Mail::Sendmail::error;
@@ -406,11 +418,17 @@ sub SendAlerts {
         ) or return;
 
         return { error => "no_email" } unless $externalid->{'emailaddr'};
+        unless(utf8::is_utf8($letter->{'title'})){
+            $letter->{'title'} = Encode::encode( "utf8", $letter->{'title'} );
+        }
+        unless(utf8::is_utf8($letter->{'content'})){
+            $letter->{'content'} = Encode::encode( "utf8", $letter->{'content'} );
+        }
         my %mail = (
                 To      =>     $externalid->{'emailaddr'},
                 From    =>  $branchdetails->{'branchemail'} || C4::Context->preference("KohaAdminEmailAddress"),
-                Subject => Encode::encode( "utf8", $letter->{'title'} ),
-                Message => Encode::encode( "utf8", $letter->{'content'} ),
+                Subject => $letter->{'title'},
+                Message => $letter->{'content'},
                 'Content-Type' => 'text/plain; charset="utf8"',
         );
         sendmail(%mail) or carp $Mail::Sendmail::error;
