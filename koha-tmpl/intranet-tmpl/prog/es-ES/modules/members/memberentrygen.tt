@@ -2,7 +2,7 @@
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function() {
-		$("fieldset.rows input").keydown(function(e){ return checkEnter(e); });
+         $("fieldset.rows input").addClass("noEnterSubmit");
         $("#guarantordelete").click(function() {
             $("#contact-details").hide().find('a').remove();
             $("#guarantorid, #contactname, #contactfirstname").each(function () { this.value = "" });
@@ -162,10 +162,10 @@
  [% IF ( mandatorydateofbirth ) %] <label for="dateofbirth" class="required">
  [% ELSE %] <label for="dateofbirth">
  [% END %] Fecha de nacimiento: </label>
- 
- [% IF ( metric ) %] <input type="text" id="dateofbirth" name="dateofbirth" size="20" onchange="CheckDate(document.form.dateofbirth);" value="[% IF ( opduplicate ) %][% ELSE %][% dateofbirth %][% END %]" />
-[% ELSE %] <input type="text" id="dateofbirth" name="dateofbirth" size="20" value="[% IF ( opduplicate ) %][% ELSE %][% dateofbirth %][% END %]" />
-[% END %] [% IF ( mandatorydateofbirth ) %]<span class="required">Requerido</span>[% END %] [% IF ( ERROR_dateofbirth ) %]<span class="required">(Error)</span>[% END %] <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
+
+ [% IF ( dateformat == "metric" ) %] <input type="text" id="dateofbirth" name="dateofbirth" size="20" onchange="CheckDate(document.form.dateofbirth);" value="[% IF ( opduplicate ) %][% ELSE %][% dateofbirth %][% END %]" />
+ [% ELSE %] <input type="text" id="dateofbirth" name="dateofbirth" size="20" value="[% IF ( opduplicate ) %][% ELSE %][% dateofbirth %][% END %]" />
+ [% END %] [% IF ( mandatorydateofbirth ) %]<span class="required">Requerido</span>[% END %] [% IF ( ERROR_dateofbirth ) %]<span class="required">(Error)</span>[% END %] <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
  [% END %] [% UNLESS noinitials %] <li>
  [% IF ( mandatoryinitials ) %] <label for="initials" class="required">
@@ -535,7 +535,7 @@
  [% IF ( mandatorydateenrolled ) %] <label for="from" class="required">
  [% ELSE %] <label for="from">
  [% END %] Fecha de registro: </label>
- [% IF ( metric ) %] <input type="text" id="from" name="dateenrolled"  maxlength="10" size="10" onchange="CheckDate(document.form.dateenrolled);check_manip_date('verify');" value="[% dateenrolled %]" class="datepickerfrom" />
+ [% IF ( dateformat == "metric" ) %] <input type="text" id="from" name="dateenrolled"  maxlength="10" size="10" onchange="CheckDate(document.form.dateenrolled);check_manip_date('verify');" value="[% dateenrolled %]" class="datepickerfrom" />
  [% ELSE %] <input type="text" id="from" name="dateenrolled"  maxlength="10" size="10" value="[% dateenrolled %]" class="datepickerfrom" />
  [% END %] [% IF ( mandatorydateenrolled ) %]<span class="required">Requerido</span>[% END %] [% IF ( ERROR_dateenrolled ) %]<span class="required">(Error)</span>[% END %] <div class="hint">[% INCLUDE 'date-format.inc' %]</div>
  </li>
@@ -544,7 +544,7 @@
  [% END %] [% IF ( mandatorydateexpiry ) %] <label for="to" class="required">
  [% ELSE %] <label for="to">
  [% END %] Fecha de vencimiento (dejar en blanco para auto-calcular) </label>
- [% IF ( metric ) %] [% UNLESS ( opadd ) %] <input type="text" id="to" name="dateexpiry" maxlength="10"  size="10" onchange="CheckDate(document.form.dateexpiry);check_manip_date('verify');" value="[% dateexpiry %]" class="datepickerto" />
+ [% IF ( dateformat == "metric" ) %] [% UNLESS ( opadd ) %] <input type="text" id="to" name="dateexpiry" maxlength="10"  size="10" onchange="CheckDate(document.form.dateexpiry);check_manip_date('verify');" value="[% dateexpiry %]" class="datepickerto" />
  [% ELSE %] <input type="text" id="to" name="dateexpiry" maxlength="10"  size="10" onchange="CheckDate(document.form.dateexpiry);check_manip_date('verify');" class="datepickerto" />
  [% END %] [% ELSE %] [% UNLESS ( opadd ) %] <input type="text" id="to" name="dateexpiry" maxlength="10"  size="10" value="[% dateexpiry %]" class="datepickerto" />
  [% ELSE %] <input type="text" id="to" name="dateexpiry" maxlength="10"  size="10" class="datepickerto" />

@@ -1,4 +1,21 @@
-[% INCLUDE 'doc-head-open.inc' %] [% INCLUDE 'greybox.inc' %] <title>Koha &rsaquo; Catálogo &rsaquo; [% IF ( unknownbiblionumber ) %] Registro desconocido [% ELSE %] Detalles para [% title |html %] [% FOREACH subtitl IN subtitle %] [% subtitl.subfield %][% END %] [% END %] </title>
+[% USE AuthorisedValues %]
+
+[% ShowCourseReserves = 0 %]
+[% IF UseCourseReserves %]
+ [% FOREACH item IN itemloop %]
+ [% IF item.course_reserves %]
+ [% FOREACH r IN item.course_reserves %]
+ [% IF r.course.enabled == 'yes' %]
+ [% ShowCourseReserves = 1 %]
+ [% END %]
+ [% END %]
+ [% END %]
+ [% END %]
+[% END %]
+
+[% INCLUDE 'doc-head-open.inc' %]
+[% INCLUDE 'greybox.inc' %]
+<title>Koha &rsaquo; Catálogo &rsaquo; [% IF ( unknownbiblionumber ) %] Registro desconocido [% ELSE %] Detalles para [% title |html %] [% FOREACH subtitl IN subtitle %] [% subtitl.subfield %][% END %] [% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %]<script type="text/JavaScript" language="JavaScript">
 //<![CDATA[
 // http://www.oreillynet.com/pub/a/javascript/2003/10/21/amazonhacks.html
@@ -233,7 +250,7 @@ function verify_images() {
  <th>Estado</th>
  <th>Última vez visto</th>
  <th>Código de barras</th>
- [% IF ( volinfo ) %]<th>Detalles de publicación</th>[% END %] [% IF ( itemdata_uri ) %]<th>url</th>[% END %] [% IF ( itemdata_copynumber ) %]<th>Copia Nro.</th>[% END %] [% IF materials %]<th>Materiales especificados</th>[% END %] [% IF ( itemdata_itemnotes ) %]<th>Notas públicas</th>[% END %] [% IF ( SpineLabelShowPrintOnBibDetails ) %]<th>Etiqueta de lomo</th>[% END %] [% IF ( hostrecords ) %]<th>Registros locales</th>[% END %] [% IF ( analyze ) %]<th>Usado en</th><th></th>[% END %] </tr>
+ [% IF ( volinfo ) %]<th>Detalles de publicación</th>[% END %] [% IF ( itemdata_uri ) %]<th>url</th>[% END %] [% IF ( itemdata_copynumber ) %]<th>Copia Nro.</th>[% END %] [% IF materials %]<th>Materiales especificados</th>[% END %] [% IF ( itemdata_itemnotes ) %]<th>Notas públicas</th>[% END %] [% IF ( SpineLabelShowPrintOnBibDetails ) %]<th>Etiqueta de lomo</th>[% END %] [% IF ( hostrecords ) %]<th>Registros locales</th>[% END %] [% IF ( analyze ) %]<th>Usado en</th><th></th>[% END %] [% IF ( ShowCourseReserves ) %]<th>Course Reserves</th>[% END %] </tr>
  </thead>
  <tbody>
  [% FOREACH item IN items %] <tr>
@@ -248,7 +265,7 @@ function verify_images() {
  [% IF ( item.datedue ) %] <span class="datedue">Ha sido prestado [% UNLESS ( item.NOTSAMEBRANCH ) %] a <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% item.borrowernumber %]">
  [% IF ( item.hidepatronname ) %] [% item.cardnumber %] [% ELSE %] [% item.firstname %] [% item.surname %] [% END %] </a>
  [% END %] : vencimiento [% item.datedue %] </span>
- [% ELSIF ( item.transfertwhen ) %] <span class="intransit">In transit from [% itemloo.transfertfrom %] to [% itemloo.transfertto %] since [% itemloo.transfertwhen %]</span>
+ [% ELSIF ( item.transfertwhen ) %] <span class="intransit">En cuarso desde [% itemloo.transfertfrom %] a [% itemloo.transfertto %] hasta [% itemloo.transfertwhen %]</span>
  [% END %] [% IF ( item.itemlost ) %] [% IF ( item.itemlostloop ) %] [% FOREACH itemlostloo IN item.itemlostloop %] [% IF ( itemlostloo.selected ) %] <span class="lost">[% itemlostloo.lib %]</span>
  [% END %] [% END %] [% ELSE %] <span class="lost">No disponible (perdido o faltante)</span>
  [% END %] [% END %] [% IF ( item.wthdrawn ) %] <span class="wdn">Retirado</span>
@@ -272,6 +289,16 @@ function verify_images() {
  [% IF ( item.countanalytics ) %] <a href="/cgi-bin/koha/catalogue/search.pl?idx=hi&amp;q=[% item.itemnumber %]">[% item.countanalytics %] analíticas</a>
  [% END %] </td>
  [% END %] [% IF ( analyze ) %] <td><a href="/cgi-bin/koha/cataloguing/addbiblio.pl?hostbiblionumber=[% item.biblionumber %]&amp;hostitemnumber=[% item.itemnumber %]">Crear analítica</a></td>
+ [% END %] [% IF ShowCourseReserves %] <td>
+ [% IF item.course_reserves %] [% FOREACH r IN item.course_reserves %] [% IF r.course.enabled == 'yes' %] <p>
+ <a href="/cgi-bin/koha/course_reserves/course-details.pl?course_id=[% r.course.course_id %]">
+ [% r.course.course_name %]
+ <!--[% IF r.course.course_number %] [% r.course.course_number %] [% END %]-->
+ [% IF r.course.section %] [% r.course.section %] [% END %]
+ [% IF r.course.term %] [% AuthorisedValues.GetByCode( 'TERM', r.course.term ) %] [% END %]
+ </a>
+ </p>
+ [% END %] [% END %] [% END %] </td>
  [% END %] </tr>
  [% END %] </tbody>
  </table>

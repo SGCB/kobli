@@ -66,6 +66,14 @@ circulation.pref:
       - 
         pref: AutoSelfCheckPass
       - .
+  Course Reserves: 
+    - 
+      - 
+        choices: 
+          "": Don't use
+          1: Use
+        pref: UseCourseReserves
+      - course reserves
   Interfaz: 
     - 
       - 
@@ -634,3 +642,11 @@ circulation.pref:
           1: Bloquear
         pref: BlockReturnOfWithdrawnItems
       - "devolver \xC3\xADtems que han sido retirados."
+    - 
+      - 
+        choices: 
+          "": Don't
+          1: Do
+        pref: CalculateFinesOnReturn
+      - calculate and update overdue charges when an item is returned.
+      - <br /><b>NOTE If you are doing hourly loans then you should have this on.</b>

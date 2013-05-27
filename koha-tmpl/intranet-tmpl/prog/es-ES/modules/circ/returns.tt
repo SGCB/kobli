@@ -100,7 +100,7 @@ $(document).ready(function () {
  <!-- waiting -->
 
 [% IF ( soundon ) %]
-<audio src="/intranet-tmpl/prog/sound/ending.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
+<audio src="[% interface %]/[% theme %]/sound/ending.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
 [% END %] <div id="hold-found1" class="dialog message">
  <h3>Reserva encontrada (el ítem está en espera): <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% itembiblionumber %]">[% title |html %]</a></h3>
  [% IF ( reservenotes ) %]<h4>Notas: [% reservenotes %]</h4>[% END %] <h4>Reservado por:</h4>
@@ -131,7 +131,7 @@ $(document).ready(function () {
  [% IF ( diffbranch ) %]
  <!-- diffbranch -->
  [% IF ( soundon ) %]
- <audio src="/intranet-tmpl/prog/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
+ <audio src="[% interface %]/[% theme %]/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
  [% END %] <div id="transfer-needed" class="dialog message">
  <h3>Se encontró reserva a transferir: <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% itembiblionumber %]">[% title |html %]</a></h3>
  <h4>Reservado por: </h4>
@@ -161,14 +161,14 @@ $(document).ready(function () {
  <div id="return1" class="dialog message">
  <h3>Por favor, devolver <a href="/cgi-bin/koha/catalogue/detail.pl?type=intra&amp;biblionumber=[% itembiblionumber %]">[% title or "item" |html %]</a> a [% homebranchname %]<br/>( <a href="#" onclick="Dopop('transfer-slip.pl?transferitem=[% itemnumber %]&amp;branchcode=[% homebranch %]&amp;op=slip'); return true;">Imprimir recibo</a> )</h3>
  </div>
- [% IF ( soundon ) %] <audio src="/intranet-tmpl/prog/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
+ [% IF ( soundon ) %] <audio src="[% interface %]/[% theme %]/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
  [% END %]
  [% END %]
 
  [% IF ( needstransfer ) %]
  <!-- needstransfer -->
  [% IF ( soundon ) %]
- <audio src="/intranet-tmpl/prog/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
+ <audio src="[% interface %]/[% theme %]/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
  [% END %] <div id="item-transfer" class="dialog message"><h3> Este ítem necesita ser transferido a [% homebranchname %]</h3>
  Transferir ahora?<br />
  <form method="post" action="returns.pl" name="mainform" id="mainform">
@@ -189,7 +189,7 @@ $(document).ready(function () {
  [% IF ( diffbranch ) %]
  <!-- diffbranch -->
  [% IF ( soundon ) %]
- <audio src="/intranet-tmpl/prog/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
+ <audio src="[% interface %]/[% theme %]/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
  [% END %] <h3>Ítem consignado:</h3>
  <table>
  <caption><a href="/cgi-bin/koha/catalogue/detail.pl?type=intra&amp;biblionumber=[% itembiblionumber %]">[% title |html %]</a></caption>
@@ -212,7 +212,7 @@ $(document).ready(function () {
  <!-- reserved -->
 
  [% IF ( soundon ) %]
- <audio src="/intranet-tmpl/prog/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
+ <audio src="[% interface %]/[% theme %]/sound/opening.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
  [% END %] <div id="hold-found2" class="dialog message">
  <h3>Reserva encontrada: <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% itembiblionumber %]">[% title |html %]</a></h3>
  [% IF ( reservenotes ) %]<h4>Notas: [% reservenotes %]</h4>[% END %] <h5>Reservado por:</h5>
@@ -241,7 +241,7 @@ $(document).ready(function () {
  </form>
  </div>
  [% END %] [% ELSE %] [% IF ( errmsgloop ) %] <div class="dialog alert">
- <h3>Check in message</h3>
+ <h3>Mensaje de devolución</h3>
  [% FOREACH errmsgloo IN errmsgloop %] [% IF ( errmsgloo.badbarcode ) %] <p class="problem">No hay un ítem con código de barras: [% errmsgloo.msg %]</p>
  [% END %] [% IF ( errmsgloo.ispermanent ) %] <p class="problem">Por favor, devolver a [% errmsgloo.msg %]</p>
  [% END %] [% IF ( errmsgloo.notissued ) %] <p class="problem">No prestado.</p>
@@ -253,8 +253,8 @@ $(document).ready(function () {
  <p class="problem">Ítem retirado. <strong>NO DEVUELTO</strong></p>
  [% ELSE %] <p class="problem">Ítem retirado.</p>
  [% END %] [% END %] [% IF ( errmsgloo.debarred ) %] <p class="problem"><a href="/cgi-bin/koha/circ/circulation.pl?borrowernumber=[% errmsgloo.debarborrowernumber %]">[% errmsgloo.debarname %]([% errmsgloo.debarcardnumber %])</a> está ahora congelado hasta [% errmsgloo.debarred | $KohaDates %] </p>
- [% END %] [% END %] [% IF ( soundon ) %] <audio src="/intranet-tmpl/prog/sound/critical.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
-[% END %] [% ELSE %] [% IF ( soundon ) %] <audio src="/intranet-tmpl/prog/sound/beep.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
+ [% END %] [% END %] [% IF ( soundon ) %] <audio src="[% interface %]/[% theme %]/sound/critical.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
+[% END %] [% ELSE %] [% IF ( soundon ) %] <audio src="[% interface %]/[% theme %]/sound/beep.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
 [% END %] [% END %] </div>
 [% END %] <div id="exemptfines" class="dialog message" style="display:none;">
  <p>Se perdonan las multas por ítems devueltos.</p>

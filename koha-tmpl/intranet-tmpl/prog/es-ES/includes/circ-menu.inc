@@ -5,7 +5,7 @@
 <![endif]-->
 <ul>
 [% IF ( patronimages ) %] [% IF ( picture ) %] <li><img src="/cgi-bin/koha/members/patronimage.pl?crdnum=[% cardnumber | uri %]" id="patronimage" alt="[% firstname %] [% surname %] ([% cardnumber %])" border="0" style="max-width : 140px; margin: .3em 0 .3em .3em; padding: .2em; border: 1px solid #CCCCCC; width:auto !important; width:130px;" /></li>
-[% ELSE %] <li><img src="/intranet-tmpl/prog/img/patron-blank.png" alt="[% firstname %] [% surname %] ([% cardnumber %])" border="0" style="margin: .3em 0 .3em .3em; padding: .2em; border: 1px solid #CCCCCC;" /></li>
+[% ELSE %] <li><img src="[% interface %]/[% theme %]/img/patron-blank.png" alt="[% firstname %] [% surname %] ([% cardnumber %])" border="0" style="margin: .3em 0 .3em .3em; padding: .2em; border: 1px solid #CCCCCC;" /></li>
 [% END %] [% END %] [% IF ( address or address2 ) %] [% IF ( address ) %] <li>[% address %]</li>
  [% END %] [% IF ( address2 ) %] <li>[% address2 %]</li>
  [% END %] [% ELSE %] <li><span class="empty" id="noadressstored">Ninguna dirección guardada.</span></li>

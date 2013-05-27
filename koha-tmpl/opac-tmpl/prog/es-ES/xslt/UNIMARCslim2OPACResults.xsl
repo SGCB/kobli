@@ -136,7 +136,7 @@
  <xsl:if test="items:itemcallnumber != '' and items:itemcallnumber"> [<xsl:value-of select="items:itemcallnumber"/>]</xsl:if>
  <xsl:text> (</xsl:text>
  <xsl:value-of select="count(key('item-by-status-and-branch', concat(items:status, ' ', items:homebranch)))"/>
- <xsl:text>)</xsl:text>
+ <xsl:text>) </xsl:text>
  <xsl:choose><xsl:when test="position()=last()"><xsl:text>. </xsl:text></xsl:when><xsl:otherwise><xsl:text>, </xsl:text></xsl:otherwise></xsl:choose>
  </xsl:for-each>
  </xsl:when>
@@ -146,7 +146,7 @@
  <xsl:if test="items:itemcallnumber != '' and items:itemcallnumber">[<xsl:value-of select="items:itemcallnumber"/>] </xsl:if>
  <xsl:text> (</xsl:text>
  <xsl:value-of select="count(key('item-by-status-and-branch', concat(items:status, ' ', items:homebranch)))"/>
- <xsl:text>)</xsl:text>
+ <xsl:text>) </xsl:text>
  <xsl:choose>
  <xsl:when test="position()=last()">
  <xsl:text>. </xsl:text>
@@ -172,7 +172,7 @@
  <xsl:if test="items:itemcallnumber != '' and items:itemcallnumber">[<xsl:value-of select="items:itemcallnumber"/>]</xsl:if>
  <xsl:text> (</xsl:text>
  <xsl:value-of select="count(key('item-by-status-and-branch', concat(items:status, ' ', items:homebranch)))"/>
- <xsl:text>)</xsl:text>
+ <xsl:text>) </xsl:text>
  <xsl:choose>
  <xsl:when test="position()=last()">
  <xsl:text>. </xsl:text>

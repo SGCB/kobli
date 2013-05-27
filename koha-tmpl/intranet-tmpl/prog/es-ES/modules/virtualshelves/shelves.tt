@@ -160,19 +160,19 @@ function placeHold () {
  <tr>
  [% IF ( itemsloop ) %]<th class="checkall">&nbsp;</th>[% END %] [% UNLESS ( item_level_itypes ) %]<th>Tipo de ítem</th>[% END %] <th>
  <a href="/cgi-bin/koha/virtualshelves/shelves.pl?viewshelf=[% shelfnumber %]&sort=title&direction=[% IF sort != 'title' %]asc[% ELSE %][% new_direction %][% END %]">Título</a>
- [% IF sort == 'title' %] <img src="/intranet-tmpl/prog/img/[% direction %].gif" />
- [% ELSE %] <img src="/intranet-tmpl/prog/img/ascdesc.gif" />
+ [% IF sort == 'title' %] <img src="[% interface %]/[% theme %]/img/[% direction %].gif" />
+ [% ELSE %] <img src="[% interface %]/[% theme %]/img/ascdesc.gif" />
  [% END %] </th>
  <th>
  <a href="/cgi-bin/koha/virtualshelves/shelves.pl?viewshelf=[% shelfnumber %]&sort=author&direction=[% IF sort != 'author' %]asc[% ELSE %][% new_direction %][% END %]">Autor</a>
- [% IF sort == 'author' %] <img src="/intranet-tmpl/prog/img/[% direction %].gif" />
- [% ELSE %] <img src="/intranet-tmpl/prog/img/ascdesc.gif" />
+ [% IF sort == 'author' %] <img src="[% interface %]/[% theme %]/img/[% direction %].gif" />
+ [% ELSE %] <img src="[% interface %]/[% theme %]/img/ascdesc.gif" />
  [% END %] </th>
  <th>Fecha de agregado</th>
  <th>
  <a href="/cgi-bin/koha/virtualshelves/shelves.pl?viewshelf=[% shelfnumber %]&sort=itemcallnumber&direction=[% IF sort != 'itemcallnumber' %]asc[% ELSE %][% new_direction %][% END %]">Signatura</a>
- [% IF sort == 'itemcallnumber' %] <img src="/intranet-tmpl/prog/img/[% direction %].gif" />
- [% ELSE %] <img src="/intranet-tmpl/prog/img/ascdesc.gif" />
+ [% IF sort == 'itemcallnumber' %] <img src="[% interface %]/[% theme %]/img/[% direction %].gif" />
+ [% ELSE %] <img src="[% interface %]/[% theme %]/img/ascdesc.gif" />
  [% END %] </th>
  <th>&nbsp;</th>
  </tr>

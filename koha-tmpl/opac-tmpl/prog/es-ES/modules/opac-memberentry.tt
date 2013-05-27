@@ -21,17 +21,22 @@
  <div id="bd">
  [% INCLUDE 'masthead.inc' %] <div id="yui-main">
  <div class="yui-b">
- <div class="yui-g">
+ <form method="post" action="/cgi-bin/koha/opac-memberentry.pl" id="memberentry-form">
  [% IF action == 'edit' %] <div id="update-account" class="container">
  [% ELSE %] <div id="add-account" class="container">
- [% END %] [% IF action == 'edit' %] <h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% borrower.firstname %] [% borrower.surname %]</a> &#8674; Detalles personales</h3>
+ [% END %] <div class="yui-g">
+ [% IF action == 'edit' %] <h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% borrower.firstname %] [% borrower.surname %]</a> &#8674; Detalles personales</h3>
  [% ELSE %] <h3>Registre una nueva cuenta</h3>
  [% END %] [% IF action == 'edit' %] [% UNLESS OPACPatronDetails %] <div class="dialog message">Para hacer cambios en tu registro, por favor, ponte en contacto con la biblioteca.</div>
  [% END %] [% END %] [% IF empty_mandatory_fields %] <div class="dialog alert">No ha rellenado todos los campos requeridos. Por favor, rellene todos los campos que faltan y vuelva a enviarlo.</div>
  [% END %] [% IF failed_captcha %] <div class="dialog alert">Ha escrito caracteres incorrectos en el cuadro antes de enviar. Por favor, inténtelo de nuevo.</div>
- [% END %] <form method="post" action="/cgi-bin/koha/opac-memberentry.pl" id="memberentry-form">
+ [% END %]
 
- [% UNLESS hidden.defined('branchcode') %] <fieldset class="rows" id="memberentry_library">
+ [% UNLESS
+ hidden.defined('branchcode')
+ %]
+
+ <fieldset class="rows" id="memberentry_library">
 
  <legend id="library_legend">Biblioteca</legend>
  <ol>
@@ -47,7 +52,15 @@
  </li>
  [% END %] </ol>
  </fieldset>
- [% END %] [% UNLESS hidden.defined('title') && hidden.defined('surname') && hidden.defined('firstname') && hidden.defined('dateofbirth') && hidden.defined('initials') && hidden.defined('othernames') && hidden.defined('sex') %] <fieldset class="rows" id="memberentry_identity">
+ [% END %] </div>
+ [% UNLESS
+ hidden.defined('title') && hidden.defined('surname') && hidden.defined('firstname') &&
+ hidden.defined('dateofbirth') && hidden.defined('initials') && hidden.defined('othernames') &&
+ hidden.defined('sex')
+ %]
+ <div class="yui-g">
+ [% IF ( display_patron_image ) %] <div class="yui-u first">
+ [% END %] <fieldset class="rows" id="memberentry_identity">
  <legend id="identity_legend">Identificación</legend>
 
  <ol>
@@ -112,7 +125,20 @@
  [% END %] [% IF mandatory.defined('sex') %]<span class="required">Requerido</span>[% END %] </li>
  [% END %] </ol>
  </fieldset>
- [% END %] [% UNLESS hidden.defined('streetnumber') && hidden.defined('address') && hidden.defined('address2') && hidden.defined('city') && hidden.defined('state') && hidden.defined('zipcode') && hidden.defined('country') %] <fieldset class="rows" id="memberentry_mainaddress">
+ [% IF ( display_patron_image ) %] </div>
+ <div class="yui-u">
+ <p class="patronimage">
+ <img src="/cgi-bin/koha/opac-patron-image.pl" alt="" />
+ </p>
+ </div>
+ [% END %] </div>
+ [% END %] <div class="yui-g">
+ [% UNLESS
+ hidden.defined('streetnumber') && hidden.defined('address') && hidden.defined('address2') &&
+ hidden.defined('city') && hidden.defined('state') && hidden.defined('zipcode') &&
+ hidden.defined('country')
+ %]
+ <fieldset class="rows" id="memberentry_mainaddress">
  <legend id="mainaddress_legend">Dirección de correo: </legend>
 
  <ol>
@@ -373,10 +399,9 @@
  <input type="hidden" name="action" value="create" />
  <input value="Enviar" type="submit" />
  </fieldset>
- [% END %] </form>
-
+ [% END %] </div>
  </div><!--/div id="update-account" -->
- </div>
+ </form>
  </div>
  </div>
 

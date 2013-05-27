@@ -57,7 +57,7 @@ function CheckNone( node ) {
 }
 $(document).ready(function() {
     $('#subscription_years').tabs();
-    [% IF dateformatmetric %]
+    [% IF dateformat == "metric" %]
       dt_add_type_uk_date();
     [% END %]
 
@@ -66,6 +66,7 @@ $(document).ready(function() {
             { "aTargets": [ 0 ], "bSortable": false, "bSearchable": false },
         ],
         "aaSorting": [[0, 'desc']],
+        "sDom": 't',
         "bAutoWidth": false,
         "bPaginate": false,
         "bInfo": false,

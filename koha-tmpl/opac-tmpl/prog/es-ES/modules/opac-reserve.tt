@@ -1,6 +1,9 @@
 [% INCLUDE 'doc-head-open.inc' %][% LibraryNameTitle or "Koha online" %] catálogo &rsaquo; Reservando [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
 // <![CDATA[
  var MSG_NO_COPY_SELECTED = _("Esperando la selección de una copia específica.");
+ var ForceHoldNotesReasons=new Array(
+    _("This title consists of multiple volumes/parts. Please indicate which part you need. Clicking on specific copy information may be helpful."),
+    "*** Add a new reason above this line ***" ); // NOTE: Do not renumber reasons; this will affect use of existing ones.
 
  function prefixOf (s, tok) {
      var index = s.indexOf(tok);
@@ -26,6 +29,16 @@
 	});
     // Hides all 'specific copy' table rows on load.
     $(".copiesrow").hide();
+    $(".notesrow").hide();
+
+    // Insert reasons for forced hold notes
+    $(".forcenotesreason").each(function(){
+        biblioNum = suffixOf($(this).attr("id"), "_");
+        var j=$("#notesmandatory_"+biblioNum).val();
+        if(j>0) {
+            $(this).html(ForceHoldNotesReasons[j-1]);
+        }
+    });
 
     $("#place_on_hdr").show();
     $(".place_on_type").show();
@@ -98,6 +111,17 @@
         $(".copiesrow").hide();
     });
 
+    // Show or hide holds notes
+    $(".shownotes").click(function(){
+        biblioNum = suffixOf($(this).attr("id"), "_");
+        if( $("#notesrow_"+biblioNum).is(":visible") ) {
+            $("#notesrow_"+biblioNum).hide();
+        }
+        else {
+            $("#notesrow_"+biblioNum).show();
+        }
+    });
+
     // When 'Place Hold' button is clicked
     $(".placehold").click(function(){
         var biblionumbers = "";
@@ -160,8 +184,8 @@
  [% INCLUDE 'masthead.inc' %] <div id="yui-g">
  [% INCLUDE 'search.inc' %] <div id="holds" class="container">
  [% IF ( message ) %] [% IF ( GNA ) %] <div id="gna" class="dialog alert">
- <p><strong>Lo sentimos</strong>, no puede hacer reservas porque la biblioteca no está actualizada <a href="/cgi-bin/koha/opac-userupdate.pl">información de contacto</a> en archivo.</p>
- <p>Por favor, contacta con tu bibliotecario, o utiliza<a href="/cgi-bin/koha/opac-userupdate.pl">formulario de actualización online</a> enviar información actual (<em>Por favor, observe:</em> puede haber un retraso en el restablecimiento de tu cuenta si te registras en línea)</p>
+ <p><strong>Lo sentimos</strong>, no puede hacer reservas porque la biblioteca no está actualizada <a href="/cgi-bin/koha/opac-memberentry.pl">información de contacto</a> en archivo.</p>
+ <p>Por favor, contacta con tu bibliotecario, o utiliza<a href="/cgi-bin/koha/opac-memberentry.pl">formulario de actualización online</a> enviar información actual (<em>Por favor, observe:</em> puede haber un retraso en el restablecimiento de tu cuenta si te registras en línea)</p>
  </div>
  [% END %] [% IF ( lost ) %] <div id="lost" class="dialog alert">
  <p><strong>Lo sentimos</strong>, no puede hacer reservas porque su carné consta como perdido o robado.</p>
@@ -204,9 +228,9 @@
  [% ELSIF showpriority %] <th>Prioridad</th>
  [% END %] [% IF ( reserve_in_future ) %] <th>La reserva comienza en la fecha</th>
  [% END %] <th>Anular reserva si no está disponible antes de</th>
- [% IF ( OPACItemHolds ) %] <th id="place_on_hdr" style="display:none">Poner en</th>
+ [% IF ( OPACShowHoldNotes ) %]<th>Notas</th>[% END %] [% IF ( OPACItemHolds ) %] <th id="place_on_hdr" style="display:none">Poner en</th>
  [% END %] [% UNLESS ( singleBranchMode ) %] [% IF ( choose_branch ) %] <th>Lugar de recogida</th>
- [% END %] [% END %] </tr>[% ELSE %]<tr><th colspan="5">Título</th></tr>[% END %] [% FOREACH bibitemloo IN bibitemloop %] <tr>
+ [% END %] [% END %] </tr>[% ELSE %]<tr><th colspan="[% itemtable_colspan + 1 %]">Título</th></tr>[% END %] [% FOREACH bibitemloo IN bibitemloop %] <tr>
  [% IF ( bibitemloo.holdable ) %] <td class="hold">
  <input class="reserve_mode" name="reserve_mode" type="hidden" value="single"/>
  <input class="single_bib" name="single_bib" type="hidden" value="[% bibitemloo.biblionumber %]"/>
@@ -219,7 +243,7 @@
  <label class="confirm_label" for="[% bibitemloo.checkitem_bib %]">Siguiente copia disponible</label>
  </span>
  </td>
- [% ELSE %] [% UNLESS ( none_available ) %]<td class="hold">&nbsp;</td>[% END %] [% END %] [% IF ( bibitemloo.holdable ) %]<td class="title">[% ELSE %]<td class="title" colspan="5">[% END %] <a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% bibitemloo.biblionumber %]">[% bibitemloo.title |html %][% IF ( bibitemloo.subtitle ) %] [% FOREACH subtitl IN bibitemloo.subtitle %][% subtitl.subfield %][% END %][% END %]</a>
+ [% ELSE %] [% UNLESS ( none_available ) %]<td class="hold">&nbsp;</td>[% END %] [% END %] [% IF ( bibitemloo.holdable ) %]<td class="title">[% ELSE %]<td class="title" colspan="[% itemtable_colspan + 1 %]">[% END %] <a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% bibitemloo.biblionumber %]">[% bibitemloo.title |html %][% IF ( bibitemloo.subtitle ) %] [% FOREACH subtitl IN bibitemloo.subtitle %][% subtitl.subfield %][% END %][% END %]</a>
  [% IF ( bibitemloo.author ) %], por [% bibitemloo.author %][% END %] [% UNLESS ( bibitemloo.holdable ) %] [% IF ( bibitemloo.already_reserved ) %] <div class="bibmessage">Ya ha solicitado este título.</div>
  [% ELSE %] [% UNLESS ( bibitemloo.bib_available ) %] <div class="bibmessage">No hay ítems disponibles.</div>
  [% ELSE %] [% IF ( bibitemloo.already_patron_possession ) %] <div class="bibmessage">Este título no se puede solicitar porque ya está en su posesión.</div>
@@ -245,7 +269,7 @@
  <input name="expiration_date_[% bibitemloo.biblionumber %]" id="to" size="10" readonly="readonly" class="datepickerto" />
  <p style="margin:.3em 2em;">
  <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('expiration_date_[% bibitemloo.biblionumber %]').value='';return false;">Limpiar fecha</a></p>
- </td>[% END %]
+ </td>[% END %] [% IF ( OPACShowHoldNotes ) %][% IF ( bibitemloo.holdable ) %]<td><input type="button" id="shownotes_[% bibitemloo.biblionumber %]" class="shownotes" value="Edit notes"/></td>[% END %][% END %]
 
  [% IF ( bibitemloo.holdable ) %]
  <!-- HOLD ABLE -->
@@ -296,7 +320,16 @@
  [% END %] </td>
  [% END %] [% END %] [% END %] </tr>
 
- [% IF ( OPACItemHolds ) %] [% IF ( bibitemloo.holdable ) %] <tr class="copiesrow" id="copiesrow_[% bibitemloo.biblionumber %]">
+ [% IF ( OPACShowHoldNotes ) %] [% IF ( bibitemloo.holdable ) %] <tr class="notesrow" id="notesrow_[% bibitemloo.biblionumber %]">
+ <td>&nbsp;</td>
+ <td colspan="[% itemtable_colspan %]">
+ <label for="holdnotes">Hold notes:</label>&nbsp;
+ <span id="forcenotesreason_[% bibitemloo.biblionumber %]" class="forcenotesreason"></span>
+ <textarea name="notes_[% bibitemloo.biblionumber %]">[% bibitemloo.holdnotes %]</textarea>
+ <input type="hidden" id="notesmandatory_[% bibitemloo.biblionumber %]" value="[% bibitemloo.mandatorynotes %]"/>
+ </td>
+ </tr>
+ [% END %] [% END %] [% IF ( OPACItemHolds ) %] [% IF ( bibitemloo.holdable ) %] <tr class="copiesrow" id="copiesrow_[% bibitemloo.biblionumber %]">
  <td>&nbsp;</td>
  <td colspan="[% itemtable_colspan %]">
  <table>

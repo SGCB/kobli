@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Agrupación de bolsas para [% booksellername |html %]</title>
+[% USE KohaBranchName %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Agrupación de bolsas para [% booksellername |html %]</title>
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
@@ -103,10 +103,8 @@ function submitForm(form) {
         "aoColumnDefs": [
             { "aTargets": [ -1 ], "bSortable": false, "bSearchable": false },
         ],
-        "bAutoWidth": false,
-        "bPaginate": false,
-        "bInfo": false,
-        "bFilter": false,
+        sDom: 't',
+        "bAutoWidth": false
     } ));
 
  });
@@ -203,12 +201,21 @@ function submitForm(form) {
  <table id="basket_group_opened">
  <thead>
  <tr>
- <th>Grupo de bolsa</th><th>Acción</th>
+ <th>Nombre</th>
+ <th>Número</th>
+ <th>Billing place</th>
+ <th>Delivery place</th>
+ <th>Number of baskets</th>
+ <th>Acción</th>
  </tr>
  </thead>
  <tbody>
  [% FOREACH basketgroup IN basketgroups %] [% UNLESS ( basketgroup.closed ) %] <tr>
  <td>[% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de bolsas nº. [% basketgroup.id %] [% END %]</td>
+ <td>[% basketgroup.id %]</td>
+ <td>[% basketgroup.billingplace | $KohaBranchName %]</td>
+ <td>[% IF (basketgroup.freedeliveryplace) %]Free delivery place[% ELSE %][% basketgroup.deliveryplace | $KohaBranchName %][% END %]</td>
+ <td>[% basketgroup.basketsqty %]</td>
  <td>
  <input value="Cerrar e imprimir" type="button" onclick="closeandprint([% basketgroup.id %])" />
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="add" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Editar" type="submit" /></form>
@@ -222,13 +229,22 @@ function submitForm(form) {
  <table id="basket_group_closed">
  <thead>
  <tr>
- <th>Grupo de bolsa</th><th>Acción</th>
+ <th>Nombre</th>
+ <th>Número</th>
+ <th>Billing place</th>
+ <th>Delivery place</th>
+ <th>Number of baskets</th>
+ <th>Acción</th>
  </tr>
  </thead>
  <tbody>
  [% FOREACH basketgroup IN basketgroups %] [% IF ( basketgroup.closed ) %] <tr>
  <td>
  [% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de bolsas nº. [% basketgroup.id %] [% END %]</td>
+ <td>[% basketgroup.id %]</td>
+ <td>[% basketgroup.billingplace | $KohaBranchName %]</td>
+ <td>[% IF (basketgroup.freedeliveryplace) %]Free delivery place[% ELSE %][% basketgroup.deliveryplace | $KohaBranchName %][% END %]</td>
+ <td>[% basketgroup.basketsqty %]</td>
  <td>
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="reopen" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Reabrir" type="submit" /></form>
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="print" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Imprimir" type="submit" /></form>

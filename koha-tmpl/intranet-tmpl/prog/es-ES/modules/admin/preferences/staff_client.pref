@@ -14,11 +14,11 @@ staff_client.pref:
         pref: staffClientBaseURL
       - .
     - 
-      - Incluya la hoja de estilo en la ruta
+      - Use the CSS stylesheet
       - 
         class: url
         pref: intranetstylesheet
-      - "en todas las p\xC3\xA1ginas de la interfaz administrativa, en lugar de la predeterminada. (Deber\xC3\xADa ser una URL completa, comenzando con <code>http://</code>.)"
+      - on all pages in the staff interface, instead of the default css (used when leaving this field blank). Enter just a filename, a full local path or a complete URL starting with <code>http://</code> (if the file lives on a remote server). Please note that if you just enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory. A full local path is expected to start from your HTTP document root.
     - 
       - "staff_client.pref#IntranetSlipPrinterJS# Usar el siguiente JavaScript pa imprimir recibos. Definir al menos la funci\xC3\xB3n printThenClose(). Para usar e.g. con Firefox PlugIn jsPrintSetup, ver http://jsprintsetup.mozdev.org/:"
       - 
@@ -32,11 +32,11 @@ staff_client.pref:
         pref: IntranetUserCSS
         type: textarea
     - 
-      - Incluya la hoja de estilo <code><!-- TMPL_VAR NAME="themelang" -->/css/</code>
+      - Include the additional CSS stylesheet
       - 
         class: file
         pref: intranetcolorstylesheet
-      - "para todas la p\xC3\xA1ginas de la interfaz administrativa. (Deje en blanco para deshabilitar.)"
+      - to override specified settings from the default stylesheet (leave blank to disable.) Enter just a filename, a full local path or a complete URL starting with <code>http://</code> (if the file lives on a remote server). Please note that if you just enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory. A full local path is expected to start from your HTTP document root.
     - 
       - Utilice archivos de tipo <code>includes/</code> desde el directorio
       - 

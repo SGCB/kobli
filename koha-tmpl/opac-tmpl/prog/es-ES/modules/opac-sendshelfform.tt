@@ -5,7 +5,7 @@
 //]]>
 </script>
 </head>
-<body style="padding: 1em;" id="sendshelf">
+<body id="sendshelf" class="popup">
 <div id="usersendshelfform" class="container">[% IF ( email ) %] [% IF ( SENT ) %] <h3>Mensaje enviado</h3>
  <p>La lista fue enviada a: [% email %]</p>
  <p><a class="focus close" href="/cgi-bin/koha/opac-shelves.pl">Volver a las listas</a></p>

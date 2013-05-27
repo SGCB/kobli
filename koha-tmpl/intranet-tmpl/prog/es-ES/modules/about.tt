@@ -76,7 +76,7 @@
  <caption>Preferencias</caption>
  [% IF (warnPrefBiblioAddsAuthorities) %] <tr><th scope="row"><b>Advertencia</b> </th><td>Configuración de la preferencia de Sistema  'AutoCreateAuthorities', pero es necesario configurar también  'BiblioAddsAuthorities'.</td></tr>
  [% END %] [% IF (warnPrefEasyAnalyticalRecords) %] <tr><th scope="row"><b>Advertencia</b> </th><td>Configuración preferencias del Sistema, pero la preferencia  'EasyAnalyticalRecords' se configura en 'Use'. Configurelo en 'Don't use' o lo contrario los enlaces  'Show analytics'  en el usuario personal y el OPAC se roperán.</td></tr>
- [% END %] [% IF warnPrefAnonymousPatron %] <tr><th scope="row"><b>Advertencia</b> </th><td>System preference 'OPACPrivacy' set, but AnonymousPatron preference is set to '0'. Set it to a valid borrower number if you want that this feature works correctly.</td></tr>
+ [% END %] [% IF warnPrefAnonymousPatron %] <tr><th scope="row"><b>Advertencia</b> </th><td>La preferencia del sistema  'OPACPrivacy' está activada pero la preferencia del sistema AnonymousPatron contiene un '0'. Se debe asignar un número de socio válido se si se desea que esta funcionalidad funcione prefectamente.</td></tr>
  [% END %] </table>
  [% ELSE %] <p>Ninguna advertencia</p>
  [% END %] </div>
@@ -460,7 +460,7 @@
 <li>Svenska (sueco)</li>
 <li>Tetun (Tetum) Karen Myers</li>
 <li>&#3616;&#3634;&#3625;&#3634;&#3652;&#3607;&#3618; (Thai)</li>
-<li>T&uuml;rk&ccedil;e (Turkish) pre-3.8: Selma Aslan; for 3.8+, Suleyman Demirel University (Ugur Bulgan, Onur Erdem, Kemal Caner Bayrakci, and Alper Tutunsatar)</li>
+<li>T&uuml;rk&ccedil;e (Turkish) pre-3.8: Selma Aslan; para la 3.8+, Universidad Suleyman Demirel (Ugur Bulgan, Onur Erdem, Kemal Caner Bayrakci, y Alper Tutunsatar)</li>
 <li>&#1575;&#1585;&#1583;&#1608;(Urdu) Ata ur Rehman</li>
 <li>&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072; (Ucraniano) Victor Titarchuk and Serhij Dubyk</li>
  </ul>

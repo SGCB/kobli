@@ -10,6 +10,7 @@
  [% END %] [% IF ( CAN_user_acquisition ) %] <li><a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a></li>
  [% END %] [% IF ( CAN_user_editauthorities ) %] <li><a href="/cgi-bin/koha/authorities/authorities-home.pl">Autoridades</a></li>
  [% END %] [% IF ( CAN_user_serials ) %] <li><a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a></li>
+ [% END %] [% IF ( CAN_user_coursereserves ) %] <li><a href="/cgi-bin/koha/course_reserves/course-reserves.pl">Course Reserves</a></li>
  [% END %] [% IF ( CAN_user_reports ) %] <li><a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a></li>
  [% END %] [% IF ( CAN_user_tools ) %] <li><a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a></li>
  [% END %] [% IF ( CAN_user_parameters ) %] <li><a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a></li>
@@ -30,7 +31,7 @@
  [% END %] <b class="caret"></b>
  </a>
  <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
- [% IF ( IndependantBranches ) %] [% IF ( CAN_user_management || CAN_user_editcatalogue_edit_catalogue ) %] <li>
+ [% IF ( IndependentBranches ) %] [% IF ( CAN_user_management || CAN_user_editcatalogue_edit_catalogue ) %] <li>
  <a class="toplinks" href="/cgi-bin/koha/circ/selectbranchprinter.pl">Seleccionar Biblioteca</a>
  </li>
  [% END %] [% ELSE %] <li>

@@ -1,5 +1,5 @@
 [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] CCatálogo &rsaquo; Enviando su cesta [% INCLUDE 'doc-head-close.inc' %] </head>
-<body style="padding: 1em;" id="sendbasket">
+<body id="sendbasket" class="popup">
 <div id="usersendbasket" class="container">[% IF ( email_add ) %] [% IF ( SENT ) %] <h3>Mensaje enviado</h3>
  <p>La cesta fue enviada a: [% email_add %]</p>
  <p><a class="focus close" href="#">Cerrar ventana</a></p>

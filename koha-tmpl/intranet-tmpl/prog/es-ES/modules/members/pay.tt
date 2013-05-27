@@ -45,6 +45,7 @@
  <th>&nbsp;</th>
  <th>Multas y costos</th>
  <th>Descripción</th>
+ <th>Payment note</th>
  <th>Tipo de cuenta</th>
  <th>Id de la notificación</th>
  <th>Nivel</th>
@@ -54,7 +55,7 @@
 </thead>
 <tfoot>
 <tr>
- <td class="total" colspan="7">Total adeudado:</td>
+ <td class="total" colspan="8">Total adeudado:</td>
  <td>[% total | format('%.2f') %]</td>
 </tr>
 </tfoot>
@@ -79,6 +80,7 @@
  <input type="hidden" name="totals[% line.accountno %]" value="[% line.totals %]" />
  </td>
  <td>[% line.description %] ([% line.title |html_entity %])</td>
+ <td><input type="text" name="payment_note_[% line.accountno %]" /></td>
  <td>[% line.accounttype %]</td>
  <td>[% line.notify_id %]</td>
  <td>[% line.notify_level %]</td>
@@ -87,7 +89,7 @@
 </tr>
 [% END %] [% IF ( account_grp.total ) %] <tr>
 
- <td class="total" colspan="7">Subtotal:</td>
+ <td class="total" colspan="8">Subtotal:</td>
  <td>[% account_grp.total | format('%.2f') %]</td>
 </tr>
 [% END %] [% END %] </tbody>

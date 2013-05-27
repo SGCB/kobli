@@ -1,6 +1,6 @@
 [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %]Catálogo [% ELSE %]Koha Online[% END %] &rsaquo; [% IF ( searchdesc ) %] Resultados de la búsqueda [% IF ( query_desc ) %]para '[% query_desc | html%]'[% END %][% IF ( limit_desc ) %]&nbsp;con límite(s):&nbsp;'[% limit_desc | html %]'[% END %] [% ELSE %] No ha especificado ningún criterio de búsqueda. [% END %] [% INCLUDE 'doc-head-close.inc' %] <link rel="alternate" href="[% OPACBaseURL %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&count=[% countrss |html %]&sort_by=acqdate_dsc&format=rss2" type="application/rss+xml" title="[% PREVIOUS_SHELF_BROWS.biblionumber |url %]" />
-<script type="text/javascript" src="/opac-tmpl/prog/en/lib/jquery/jquery.js"></script>
-<link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/jquery.rating.css" />
+<script type="text/javascript" src="[% themelang %]/lib/jquery/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="[% themelang %]/css/jquery.rating.css" />
 
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 

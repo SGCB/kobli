@@ -105,6 +105,7 @@ function moneyFormat(textObj) {
 
 <fieldset class="rows">
  <legend>Pagar una multa individual</legend>
+ <input type="hidden" name="payment_note" id="payment_note" value="[% payment_note %]" />
  <table>
  <thead><tr>
  <th>Descripción</th>
@@ -156,6 +157,7 @@ function moneyFormat(textObj) {
  <input type="hidden" name="accountno" id="accountno" value="[% accountno %]" />
  <input type="hidden" name="accountlines_id" id="accountlines_id" value="[% accountlines_id %]" />
  <input type="hidden" name="title" id="title" value="[% title %]" />
+ <input type="hidden" name="payment_note" id="payment_note" value="[% payment_note %]" />
  <table>
  <thead><tr>
  <th>Descripción</th>
@@ -194,6 +196,10 @@ function moneyFormat(textObj) {
  <label for="paid">Cobrar a socio: </label>
  <!-- default to paying all -->
  <input name="paid" id="paid" value="[% total | format('%.2f') %]" onchange="moneyFormat(document.payfine.paid)"/>
+ </li>
+ <li>
+ <label for="selected_accts_notes">Nota: </label>
+ <textarea name="selected_accts_notes" id="selected_accts_notes">[% selected_accts_notes %]</textarea>
  </li>
  </ol>
  </fieldset>

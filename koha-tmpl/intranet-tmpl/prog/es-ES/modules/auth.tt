@@ -25,7 +25,7 @@
 <input type="password" name="password" id="password" class="input" value="" size="20" tabindex="2" />
 </p>
 
-[% IF ( AutoLocation ) %][% ELSE %] [% IF ( IndependantBranches ) %][% ELSE %] <p><label for="branch">Biblioteca:</label>
+[% IF ( AutoLocation ) %][% ELSE %] [% IF ( IndependentBranches ) %][% ELSE %] <p><label for="branch">Biblioteca:</label>
  <select name="branch" id="branch" class="input" tabindex="3">
  <option value="">Mi biblioteca</option>
  [% FOREACH branchloo IN branchloop %] <option value="[% branchloo.branchcode %]">[% branchloo.branchname %]</option>

@@ -8,8 +8,8 @@
  <h3><a href="/cgi-bin/koha/opac-user.pl">cuenta de [% firstname %] [% surname %]</a> &#8674;  Política de privacidad </h3>
 
  [% IF ( deleted ) %] <div class="dialog message">Su historial de lectura ha sido eliminado.</div>
- [% ELSIF ( err_history_not_deleted ) %] <div class="dialog alert">The deletion of your reading history failed, because there is a problem with the configuration of this feature. Please help to fix the system by informing your library of this error.</div>
- [% END %] [% IF ( privacy_updated ) %] <div class="dialog message">Your privacy rules have been updated.</div>
+ [% ELSIF ( err_history_not_deleted ) %] <div class="dialog alert">El historial de lectura no puedo ser borrado por un problema con la configuración. Se puede ayudar a solucionar este problema informando al bibliotecario.</div>
+ [% END %] [% IF ( privacy_updated ) %] <div class="dialog message">Sus reglas de privacidad han sido actualizadas</div>
  [% END %] <h2>Reglamento de privacidad</h2>
  [% IF ( Ask_data ) %] <p>Nos preocupa proteger tu privacidad. En esta pantalla, puedes especificar durante cuánto tiempo quieres que guardemos tu historial de lectura.</p>
  <p>Sus opciones son: <p>

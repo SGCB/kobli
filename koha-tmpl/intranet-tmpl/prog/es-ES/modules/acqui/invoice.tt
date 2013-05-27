@@ -41,22 +41,22 @@
 
  <li><label for="shipmentcost">Coste del envío: </label>
  <input type="text" size="10" id="shipmentcost" name="shipmentcost" value="[% shipmentcost %]" /></li>
- <li><label for="shipment_budget_id">Fund:</label>
+ <li><label for="shipment_budget_id">Fondo: </label>
  <select id="shipment_budget_id" name="shipment_budget_id">
- <option value="">No fund</option>
+ <option value="">Sin fondo</option>
  [% FOREACH budget IN budgets_loop %] [% IF ( budget.selected ) %] <option selected="selected" value="[% budget.budget_id %]">
  [% ELSE %] <option value="[% budget.budget_id %]">
  [% END %] [% budget.budget_name %] </option>
  [% END %] </select></li>
 
  [% IF ( invoiceclosedate ) %] <li><span class="label">Estado:</span>
- Closed on [% invoiceclosedate | $KohaDates %].</li>
+ Cerrado el [% invoiceclosedate | $KohaDates %].</li>
 
- <li><label for="reopen">Reopen: </label> <input type="checkbox" name="reopen" id="reopen" /></li>
+ <li><label for="reopen">Reabrir</label> <input type="checkbox" name="reopen" id="reopen" /></li>
  [% ELSE %] <li><span class="label">Estado:</span>
- Open.</li>
+ Abierto.</li>
 
- <li><label for="close">Close: </label> <input type="checkbox" name="close" id="close" />
+ <li><label for="close">Cerrar:</label> <input type="checkbox" name="close" id="close" />
  </li>
  [% END %] </ol>
  <input type="hidden" name="op" value="mod" />
@@ -124,7 +124,7 @@
  <th>&nbsp;</th>
  </tr>
  <tr>
- <th colspan="3">Total + shipment cost ([% currency %])</th>
+ <th colspan="3">Total + coste de envío ([% currency %])</th>
  <th>&nbsp;</th>
  <th>&nbsp;</th>
  <th>[% total_quantity %]</th>
