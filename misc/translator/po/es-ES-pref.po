@@ -1,3 +1,18 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Koha 3.12\n"
+"POT-Creation-Date: 2013-05-27 12:22+0200\n"
+"PO-Revision-Date: 2013-04-28 19:25+0200\n"
+"Last-Translator: Bernardo <bgkriegel@gmail.com>\n"
+"Language-Team: Koha Translation Team <koha-translate@lists.koha.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.1.6\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
 # Acquisitions
 msgid "acquisitions.pref"
 msgstr "acquisitions.pref"
@@ -163,16 +178,16 @@ msgid "admin.pref#DebugLevel# some"
 msgstr "alguna"
 
 # Administration > Login options
-msgid "admin.pref#IndependantBranches# Don't prevent"
-msgstr "No prevenir"
+msgid "admin.pref#IndependentBranches# Don't prevent"
+msgstr ""
 
 # Administration > Login options
-msgid "admin.pref#IndependantBranches# Prevent"
-msgstr "Prevenir"
+msgid "admin.pref#IndependentBranches# Prevent"
+msgstr ""
 
 # Administration > Login options
-msgid "admin.pref#IndependantBranches# staff (but not superlibrarians) from modifying objects (holds, items, patrons, etc.) belonging to other libraries."
-msgstr "al personal (pero no superusuarios) de modificar objetos (reserva, dems, socios, etc.) pertenecientes a otras bibliotecas."
+msgid "admin.pref#IndependentBranches# staff (but not superlibrarians) from modifying objects (holds, items, patrons, etc.) belonging to other libraries."
+msgstr ""
 
 # Administration > Interface options
 msgid "admin.pref#KohaAdminEmailAddress# Use"
@@ -854,6 +869,10 @@ msgstr "circulation.pref Checkin Policy"
 msgid "circulation.pref Checkout Policy"
 msgstr "Política de préstamo"
 
+# Circulation > Course Reserves
+msgid "circulation.pref Course Reserves"
+msgstr ""
+
 # Circulation > Fines Policy
 msgid "circulation.pref Fines Policy"
 msgstr "Política de multas"
@@ -1109,6 +1128,22 @@ msgstr "No bloquear"
 # Circulation > Checkin Policy
 msgid "circulation.pref#BlockReturnOfWithdrawnItems# returning of items that have been withdrawn."
 msgstr "devolver ítems que han sido retirados."
+
+# Circulation > Checkin Policy
+msgid "circulation.pref#CalculateFinesOnReturn# <br /><b>NOTE If you are doing hourly loans then you should have this on.</b>"
+msgstr ""
+
+# Circulation > Checkin Policy
+msgid "circulation.pref#CalculateFinesOnReturn# Do"
+msgstr ""
+
+# Circulation > Checkin Policy
+msgid "circulation.pref#CalculateFinesOnReturn# Don't"
+msgstr ""
+
+# Circulation > Checkin Policy
+msgid "circulation.pref#CalculateFinesOnReturn# calculate and update overdue charges when an item is returned."
+msgstr ""
 
 # Circulation > Interface
 msgid "circulation.pref#CircAutoPrintQuickSlip# ."
@@ -1669,6 +1704,18 @@ msgstr "tipo de ítem"
 # Circulation > Checkout Policy
 msgid "circulation.pref#UseBranchTransferLimits# library transfer limits based on"
 msgstr "límites de transferencia basados en "
+
+# Circulation > Course Reserves
+msgid "circulation.pref#UseCourseReserves# Don't use"
+msgstr ""
+
+# Circulation > Course Reserves
+msgid "circulation.pref#UseCourseReserves# Use"
+msgstr ""
+
+# Circulation > Course Reserves
+msgid "circulation.pref#UseCourseReserves# course reserves"
+msgstr ""
 
 # Circulation > Interface
 msgid "circulation.pref#UseTablesortForCirc# Don't enable"
@@ -2932,7 +2979,7 @@ msgstr "historial de búsquedas del socio en el OPAC."
 
 # OPAC > Appearance
 msgid "opac.pref#HighlightOwnItemsOnOPAC#  by moving the results to the front and increasing the size or highlighting the rows for those results. (Non-XSLT Only)"
-msgstr "moviendo los resultados al frente y aumentando el tama�o o resaltando las lineas con estos resaltados (No s�lo para XSLT)"
+msgstr "moviendo los resultados al frente y aumentando el tama?? resaltando las lineas con estos resaltados (No s??para XSLT)"
 
 # OPAC > Appearance
 msgid "opac.pref#HighlightOwnItemsOnOPAC# Don't emphasize"
@@ -3509,6 +3556,18 @@ msgstr "Mostrar"
 # OPAC > Appearance
 msgid "opac.pref#OpacShowFiltersPulldownMobile# the search filters pulldown on the mobile version of the OPAC."
 msgstr "desplegar los filtros de búsqueda en la versión móvil del OPAC."
+
+# OPAC > Features
+msgid "opac.pref#OpacShowHoldNotes# Allow"
+msgstr ""
+
+# OPAC > Features
+msgid "opac.pref#OpacShowHoldNotes# Do not allow"
+msgstr ""
+
+# OPAC > Features
+msgid "opac.pref#OpacShowHoldNotes# users to add a note when placing a hold."
+msgstr ""
 
 # OPAC > Appearance
 msgid "opac.pref#OpacShowLibrariesPulldownMobile# Don't show"
@@ -4847,20 +4906,20 @@ msgid "staff_client.pref#intranetbookbag# the cart option in the staff client."
 msgstr "el cesta en el cliente administrativo."
 
 # Staff Client > Appearance
-msgid "staff_client.pref#intranetcolorstylesheet# Include the stylesheet <code><!-- TMPL_VAR NAME=\"themelang\" -->/css/</code>"
-msgstr "Incluya la hoja de estilo <code><!-- TMPL_VAR NAME=\"themelang\" -->/css/</code>"
+msgid "staff_client.pref#intranetcolorstylesheet# Include the additional CSS stylesheet"
+msgstr ""
 
 # Staff Client > Appearance
-msgid "staff_client.pref#intranetcolorstylesheet# on all pages in the staff interface. (Leave blank to disable.)"
-msgstr "para todas la páginas de la interfaz administrativa. (Deje en blanco para deshabilitar.)"
+msgid "staff_client.pref#intranetcolorstylesheet# to override specified settings from the default stylesheet (leave blank to disable.) Enter just a filename, a full local path or a complete URL starting with <code>http://</code> (if the file lives on a remote server). Please note that if you just enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory. A full local path is expected to start from your HTTP document root."
+msgstr ""
 
 # Staff Client > Appearance
-msgid "staff_client.pref#intranetstylesheet# Include the stylesheet at"
-msgstr "Incluya la hoja de estilo en la ruta"
+msgid "staff_client.pref#intranetstylesheet# Use the CSS stylesheet"
+msgstr ""
 
 # Staff Client > Appearance
-msgid "staff_client.pref#intranetstylesheet# on all pages in the staff interface, instead of the default. (This should be a complete URL, starting with <code>http://</code>.)"
-msgstr "en todas las páginas de la interfaz administrativa, en lugar de la predeterminada. (Debería ser una URL completa, comenzando con <code>http://</code>.)"
+msgid "staff_client.pref#intranetstylesheet# on all pages in the staff interface, instead of the default css (used when leaving this field blank). Enter just a filename, a full local path or a complete URL starting with <code>http://</code> (if the file lives on a remote server). Please note that if you just enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory. A full local path is expected to start from your HTTP document root."
+msgstr ""
 
 # Staff Client > Appearance
 msgid "staff_client.pref#intranetuserjs# Include the following JavaScript on all pages in the staff client:"
