@@ -508,11 +508,9 @@ $(document).ready(function(){
  <input type='hidden' name='public' value='[% public %]' />
 
  <div class="dialog alert">
- <h3>Errors found when processing parameters for report: [% name %]</h3>
+ <h3>Se han encontrado errores mientras se procesaba el informe [% name %]:</h3>
  [% FOREACH problematic_authval IN problematic_authvals %] <p>
- <strong>[% problematic_authval.name %]:</strong> The authorised value category (<strong>[% problematic_authval.authval %]</strong>)
- you selected does not exist.
- </p>
+ <strong>[% problematic_authval.name %]:</strong> Categoría de valor autorizado (<strong>[% problematic_authval.authval %]</strong>) que se ha seleccionado no existe.</p>
  [% END %]
  <!-- Save Anyway Form -->
  <form action='/cgi-bin/koha/reports/guided_reports.pl'>
@@ -527,15 +525,14 @@ $(document).ready(function(){
  <input type='hidden' name='cache_expiry_units' value='[% cache_expiry_units %]' />
  <input type='hidden' name='public' value='[% public %]' />
  [% IF ( phase_update) %] <input type='hidden' name='phase' value='Update SQL' />
- <input type="submit" name="save_anyway" class="approve" value="Save anyway" />
+ <input value="Guardar de todos modos" name="save_anyway" type="submit" class="approve" />
  [% ELSIF ( phase_save) %] <input type='hidden' name='area' value='[% area %]' />
  <input type='hidden' name='phase' value='Save Report' />
- <input type="submit" name="save_anyway" class="approve" value="Save anyway" />
+ <input value="Guardar de todos modos" name="save_anyway" type="submit" class="approve" />
  [% END %] </form>
  <!-- Go back to editing -->
  <form action='/cgi-bin/koha/reports/guided_reports.pl'>
- <input type="button" name='back' class="deny" value="Edit SQL"
-                                    onclick="javascript:history.back()" />
+ <input value="Editar SQL" name="back" type="button" class="deny" onclick="javascript:history.back()" />
  </form>
  </div>
  </form>
@@ -543,13 +540,11 @@ $(document).ready(function(){
  <input type='hidden' name='reports' value="[% reports %]" />
  [% IF ( auth_val_error ) %] <input type='hidden' name='phase' value='Edit SQL' />
  <div class="dialog alert">
- <h3>Errors found when processing parameters for report: [% name %]</h3>
+ <h3>Se han encontrado errores mientras se procesaba el informe [% name %]:</h3>
  [% FOREACH auth_val_error IN auth_val_errors %] <p>
- <strong>[% auth_val_error.entry %]:</strong> The authorised value category (<strong>[% auth_val_error.auth_val %]</strong>)
- you selected does not exist.
- </p>
+ <strong>[% auth_val_error.entry %]:</strong> Categoría de valor autorizado (<strong>[% auth_val_error.auth_val %]</strong>) que se ha seleccionado no existe.</p>
  [% END %] </div>
- <fieldset class="action"><input type="submit" value="Edit SQL" /></fieldset>
+ <fieldset class="action"><input value="Editar SQL" type="submit" /></fieldset>
  [% ELSE %] <input type='hidden' name='phase' value='Run this report' />
  <h1>Introduzca los parámetros para el informe [% name %]:</h1>
  [% IF ( notes ) %]<p>[% notes %]</p>[% END %] <fieldset class="rows">

@@ -107,7 +107,7 @@
  <li>
  <label for="shipmentcost_budgetid">Fondo: </label>
  <select id="shipmentcost_budgetid" name="shipmentcost_budgetid">
- <option value="">No fund</option>
+ <option value="">Sin fondo</option>
  [% FOREACH budget IN budgets %] <option value="[% budget.budget_id %]">[% budget.budget_name %]</option>
  [% END %] </select>
  </li>

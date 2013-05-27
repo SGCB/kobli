@@ -113,7 +113,7 @@ $(document).ready(function() {
 </script>
 <style type="text/css">
 h4.local_collapse a { font-size : 80%; text-decoration: none; } fieldset.brief ol { display : none; }
-.overlay { top: 180px; left: 50%; position: absolute; margin-left: -100px; width: 200px; text-align: center; display: none; margin-top: -10px; background: #eeffd4; padding: .5em; color: #000; } .note { -moz-border-radius: 3px; border-radius:3px; background: transparent url("/intranet-tmpl/prog/img/famfamfam/silk/comment.png") top left no-repeat; padding : 1px 3px 1px 18px; font-size : 90%; }
+.overlay { top: 180px; left: 50%; position: absolute; margin-left: -100px; width: 200px; text-align: center; display: none; margin-top: -10px; background: #eeffd4; padding: .5em; color: #000; } .note { -moz-border-radius: 3px; border-radius:3px; background: transparent url("[% interface %]/[% theme %]/img/famfamfam/silk/comment.png") top left no-repeat; padding : 1px 3px 1px 18px; font-size : 90%; }
 </style>[% ELSE %] <script type="text/javascript">
 // <![CDATA[
 $(document).ready(function() { calcNewsuggTotal(); });
@@ -179,7 +179,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <li>
  <span class="label">Biblioteca:</span> [% branchname %] </li>
  <li>
- <span class="label">Fund:</span> [% budgetname %] </li>
+ <span class="label">Fondo: </span> [% budgetname %] </li>
  <li>
  <span class="label">Copias:</span>[% quantity %] </li>
  <li>
@@ -252,7 +252,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <select name="branchcode" id="branchcode">
  <option value="__ANY__">Cualquiera</option>[% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %]<option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %]<option value="[% branchloo.value %]">[% branchloo.branchname %]</option>[% END %][% END %] </select>
  </li>
- <li><label for="budgetid">Fund:</label>
+ <li><label for="budgetid">Fondo: </label>
  <select name="budgetid" id="budgetid">
  <option value="">Cualquiera</option>[% FOREACH budgetsloo IN budgetsloop %] [% IF ( budgetsloo.selected ) %]<option value="[% budgetsloo.budget_id %]" selected="selected">[% budgetsloo.budget_name %]</option>[% ELSE %]<option value="[% budgetsloo.budget_id %]">[% budgetsloo.budget_name %]</option>[% END %][% END %] </select>
  </li><li><label for="quantity">Copias:</label>

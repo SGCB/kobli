@@ -324,10 +324,10 @@ onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.t
  [% END %] [% END %] [% UNLESS advancedMARCEditor %] <a tabindex="1" href="#" class="expandfield" onclick="ExpandField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Haga clic en 'Expandir' esta etiqueta">[% innerloo.tag_lib %]</a>
  [% END %] <span class="field_controls">
  [% IF ( innerloo.repeatable ) %] <a tabindex="1" href="#" class="buttonPlus" onclick="CloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]','[% hide_marc %]','[% advancedMARCEditor %]'); return false;" title="Repetir esta etiqueta">
- <img alt="Repetir esta etiqueta" src="/intranet-tmpl/prog/img/repeat-tag.png" />
+ <img alt="Repetir esta etiqueta" src="[% interface %]/[% theme %]/img/repeat-tag.png" />
  </a>
  [% END %] <a tabindex="1" href="#" class="buttonMinus" onclick="UnCloneField('tag_[% innerloo.tag %]_[% innerloo.index %][% innerloo.random %]'); return false;" title="Eliminar esta etiqueta">
- <img alt="Eliminar esta etiqueta" src="/intranet-tmpl/prog/img/delete-tag.png" />
+ <img alt="Eliminar esta etiqueta" src="[% interface %]/[% theme %]/img/delete-tag.png" />
  </a>
  </span>
 
@@ -340,8 +340,8 @@ onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.t
  [% UNLESS advancedMARCEditor %] [% IF ( subfield_loo.fixedfield ) %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" style="display:none;" class="labelsubfield">
  [% ELSE %]<label for="tag_[% subfield_loo.tag %]_subfield_[% subfield_loo.subfield %]_[% subfield_loo.index %]_[% subfield_loo.index_subfield %]" class="labelsubfield">
  [% END %] [% END %] [% UNLESS hide_marc %] <span class="subfieldcode">
- [% IF ( subfield_loo.fixedfield ) %] <img alt="Mover arriba" src="/intranet-tmpl/prog/img/up.png" style="display:none;" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
- [% ELSE %] <img alt="Mover arriba" src="/intranet-tmpl/prog/img/up.png" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
+ [% IF ( subfield_loo.fixedfield ) %] <img alt="Mover arriba" src="[% interface %]/[% theme %]/img/up.png" style="display:none;" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
+ [% ELSE %] <img alt="Mover arriba" src="[% interface %]/[% theme %]/img/up.png" class="buttonUp" onclick="upSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]')" title="Mover arriba" />
  [% END %] <input type="text"
                             title="[% subfield_loo.marc_lib_plain %]"
                             style=" [% IF ( subfield_loo.fixedfield ) %]display:none; [% END %]border:0;"
@@ -359,10 +359,10 @@ onclick="launchPopupValueIndicators('[% authtypecode %]', 'auth', '[% innerloo.t
  </label>
  [% END %] [% subfield_loo.marc_value %] <span class="subfield_controls">
  [% IF ( subfield_loo.repeatable ) %] <a href="#" class="buttonPlus" tabindex="1" onclick="CloneSubfield('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]','[% advancedMARCEditor %]'); return false;">
- <img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" />
+ <img alt="Clonar" src="[% interface %]/[% theme %]/img/clone-subfield.png" title="Clonar este subcampo" />
  </a>
  <a href="#" class="buttonMinus" tabindex="1" onclick="UnCloneField('subfield[% subfield_loo.tag %][% subfield_loo.subfield %][% subfield_loo.random %]'); return false;">
- <img alt="Eliminar" src="/intranet-tmpl/prog/img/delete-subfield.png" title="Eliminar este subcampo" />
+ <img alt="Eliminar" src="[% interface %]/[% theme %]/img/delete-subfield.png" title="Eliminar este subcampo" />
  </a>
  [% END %] </span>
  

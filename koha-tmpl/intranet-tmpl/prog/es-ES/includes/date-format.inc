@@ -1,1 +1,1 @@
-[% IF ( dateformat_us ) %](MM/DD/AAAA)[% ELSIF ( dateformat_metric ) %](DD/MM/AAAA)[% ELSE %](AAAA-MM-DD)[% END %]
+[% IF ( dateformat == "us" ) %](MM/DD/YYYY)[% ELSIF ( dateformat == "metric" ) %](DD/MM/YYYY)[% ELSE %](YYYY-MM-DD)[% END %]

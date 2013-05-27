@@ -8,10 +8,10 @@ $(document).ready(function(){
             window.close();
         [% END %]
     [% END %]
-		$("fieldset.rows input").keydown(function(e){ return checkEnter(e); });
+            $("fieldset.rows input").addClass("noEnterSubmit");
 		/* Inline edit/delete links */
 		var biblionumber = $("input[name='biblionumber']").attr("value");
-		$("td").click(function(event){
+        $("tr.editable td").click(function(event){
 			var $tgt = $(event.target);
 			if($tgt.is("a")||$tgt.is(":first-child")||$tgt.is(":nth-child(2)")){ return true; } else {
 			var rowid = $(this).parent().attr("id");
@@ -95,7 +95,7 @@ $(document).ready(function() {
 [% IF ( bidi ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/right-to-left.css" />
 [% END %] </head>
 <body id="cat_additem" class="cat">
-[% INCLUDE 'header.inc' %] <div id="breadcrumbs">
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cataloging-search.inc' %] <div id="breadcrumbs">
  <a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
  &rsaquo; <a href="/cgi-bin/koha/cataloguing/addbooks.pl">Catalogación</a>
  &rsaquo; Editar <a href="/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=[% biblionumber %]">[% title |html %] [% IF ( author ) %] por [% author %][% END %] (Registro #[% biblionumber %])</a>
@@ -117,9 +117,11 @@ $(document).ready(function() {
  [% FOREACH item_header_loo IN item_header_loop %] <th>
  [% item_header_loo.header_value %] </th>
  [% END %] </tr>
- [% FOREACH item_loo IN item_loop %] [% IF ( item_loo.itemnumber == itemnumber) %] <tr id="row[% item_loo.itemnumber %]" class="active">
- [% ELSE %] <tr id="row[% item_loo.itemnumber %]">
- [% END %] [% IF ( item_loo.nomod ) %] <td colspan="2">&nbsp;</td>[% ELSE %][% IF ( item_loo.hostitemflag ) %]<td><a href="additem.pl?op=edititem&amp;biblionumber=[% item_loo.hostbiblionumber %]&amp;itemnumber=[% item_loo.itemnumber %]#edititem">Editar en servidor</a></td>
+ [% FOREACH item_loo IN item_loop %] [% IF ( item_loo.itemnumber == itemnumber) %] [% IF item_loo.nomod %] <tr id="row[% item_loo.itemnumber %]" class="active">
+ [% ELSE %] <tr id="row[% item_loo.itemnumber %]" class="active editable">
+ [% END %] [% ELSE %] [% IF item_loo.nomod %] <tr id="row[% item_loo.itemnumber %]">
+ [% ELSE %] <tr id="row[% item_loo.itemnumber %]" class="editable">
+ [% END %] [% END %] [% IF ( item_loo.nomod ) %] <td colspan="2">&nbsp;</td>[% ELSE %][% IF ( item_loo.hostitemflag ) %]<td><a href="additem.pl?op=edititem&amp;biblionumber=[% item_loo.hostbiblionumber %]&amp;itemnumber=[% item_loo.itemnumber %]#edititem">Editar en servidor</a></td>
 <td><a class="delete" href="/cgi-bin/koha/cataloguing/additem.pl?op=delinkitem&amp;biblionumber=[% biblionumber %]&amp;hostitemnumber=[% item_loo.itemnumber %]">Desvincular</a></td>
 [% ELSE %]<td><a href="additem.pl?op=edititem&amp;biblionumber=[% biblionumber %]&amp;itemnumber=[% item_loo.itemnumber %]#edititem">Editar</a></td>
  <td>[% IF ( item_loo.countanalytics ) %]<a href="/cgi-bin/koha/catalogue/search.pl?idx=hi&amp;q=% item_loo.itemnumber %]">Ver analíticas</a>[% ELSE %]<a class="delete" href="/cgi-bin/koha/cataloguing/additem.pl?op=delitem&amp;biblionumber=[% biblionumber %]&amp;itemnumber=[% item_loo.itemnumber %]" onclick="confirm_deletion([% biblionumber %],[% item_loo.itemnumber %]); return false;">Eliminar</a>[% END %]</td>[% END %][% END %] [% FOREACH item_valu IN item_loo.item_value %] <td>[% item_valu.field |html %]</td>
@@ -147,7 +149,7 @@ $(document).ready(function() {
  <input type="hidden" name="subfield"  value="[% ite.subfield %]" />
  <input type="hidden" name="mandatory" value="[% ite.mandatory %]" />
  [% IF ( ite.repeatable ) %] <a href="#" class="buttonPlus" onclick="CloneItemSubfield(this.parentNode); return false;">
- <img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" />
+ <img alt="Clonar" src="[% interface %]/[% theme %]/img/clone-subfield.png" title="Clonar este subcampo" />
  </a>
  [% END %] [% IF ( ite.mandatory ) %] <span class="required">Requerido</span>[% END %] </div></li>
  [% END %] </ol>

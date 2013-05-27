@@ -5,7 +5,7 @@
 //]]>
 </script>
 </head>
-<body id="opac-downloadlist" style="padding:1em;">
+<body id="opac-downloadlist" class="popup">
 <div id="userdownloadshelf" class="container">
 [% UNLESS ( invalidlist ) %] [% IF ( format ) %] <p>La descarga debería comenzar automáticamente.</p>
  [% ELSE %] <form method="post" action="/cgi-bin/koha/opac-downloadshelf.pl">

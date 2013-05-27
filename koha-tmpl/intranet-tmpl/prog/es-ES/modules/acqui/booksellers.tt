@@ -43,10 +43,14 @@ $(document).ready(function() {
  
 [% INCLUDE 'acquisitions-toolbar.inc' %] [% UNLESS ( count == 1 ) %] <h1>Usted buscó <b>proveedor [% supplier %],</b> [% count %] resultados encontrados</h1>
 [% END %] [% IF ( loop_suppliers.size ) %] [% UNLESS (count == 1) %] <p>Elija un proveedor en la lista para saltar directamente al lugar correcto. <select id="supplierlist">
- [% FOREACH supplier IN loop_suppliers %] <option value="[% supplier.booksellerid %]">[% supplier.name %]</option>
+ [% FOREACH supplier1 IN loop_suppliers %] <option value="[% supplier1.booksellerid %]">[% supplier1.name %]</option>
  [% END %] </select>
  </p>
- [% END %] <div id="acqui_order_supplierlist">
+ [% END %] <p>
+ [% IF ( allbaskets ) %] <a href="/cgi-bin/koha/acqui/booksellers.pl?supplier=[% supplier %]&booksellerid=[% booksellerid %]">Aplicar filtro</a>
+ [% ELSE %] <a href="/cgi-bin/koha/acqui/booksellers.pl?supplier=[% supplier %]&booksellerid=[% booksellerid %]&allbaskets=1">Cancelar filtro</a>
+ [% END %] </p>
+ <div id="acqui_order_supplierlist">
  [% FOREACH supplier IN loop_suppliers %] <div class="supplier">
  <span class="suppliername">
  [% IF (supplier.name) %] <a name="[% supplier.booksellerid %]" href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% supplier.booksellerid %]">[% supplier.name %]</a>

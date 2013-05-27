@@ -1,4 +1,4 @@
-[% INCLUDE 'help-top.inc' %] <h2>Patron permissions</h2>
+[% INCLUDE 'help-top.inc' %] <h2>Permisos del socio</h2>
 
 <p>Lo permisos de socios se usan para permitir al personal acceder al cliente administrativo.</p>
 
@@ -17,92 +17,89 @@
 
 <ul>
  <li>superlibrarian<ul>
- <li>Access to all librarian functions
-<ul>
+ <li>Acceso a las funciones del bibliotecario<ul>
  <li style="background-color: #ffe599;">Consejo: Con esta selección no es necesario elegirotros permisos</li>
 </ul>
 </li>
 </ul>
 </li>
  <li>circular <ul>
- <li>Check out and check in items</li>
+ <li>Prestar y devolver ítems</li>
  <li>Esta sección se puede ampliar</li>
 </ul>
 </li>
  <li>catálogo <ul>
- <li><strong>Required for staff login.</strong> Staff access, allows viewing the catalogue in staff client
-<ul>
- <li style="color: #990000">Important: Must be given to all staff members to allow them to login to the staff client</li>
+ <li><strong>Obligatorio para acceder al sistema.</strong> Acceso al personal , permitir al personal consultar el catálogo en la intranet<ul>
+ <li style="color: #990000">Importante: Deben ser dados a todos los miembros del personal para que tengan permitido el acceso a al intranet.</li>
 </ul>
 </li>
 </ul>
 </li>
  <li>parámetros <ul>
- <li>Manage Koha system settings (Administration panel)</li>
- <li>This secton can be expanded</li>
+ <li>Gestionar configuraciones del sistema de Koha (panel de Administración)</li>
+ <li>Esta sección se puede ampliar </li>
 </ul>
 </li>
  <li>socios <ul>
- <li>Add or modify patrons</li>
+ <li>Añadir y modificar socios</li>
 </ul>
 </li>
  <li>permisos <ul>
- <li>Set user permissions</li>
+ <li>Establecer permisos</li>
 </ul>
 </li>
  <li>reserva para otros <ul>
- <li>Place and modify holds for patrons</li>
+ <li>Aplazar y modifcar reservas de usuarios</li>
  <li>Esta sección se puede ampliar</li>
 </ul>
 </li>
  <li>prestar <ul>
- <li>Borrow books</li>
+ <li>Prestar monografías</li>
 </ul>
 </li>
  <li>editcatalogue <ul>
- <li>Edit Catalog (Modify bibliographic/hodings data)</li>
+ <li>Editar el catálogo (modificar datos bibliográficos)</li>
  <li>Esta sección se puede ampliar</li>
 </ul>
 </li>
  <li>updatecharges <ul>
- <li>Manage patrons fines and fees</li>
+ <li>Gestionar socios. multas y deudas</li>
 </ul>
 </li>
  <li>adquisición <ul>
- <li>Acquisition and/or suggestion management</li>
+ <li>Gestión de adiquisiciones y sugerencias</li>
  <li>Esta sección se puede ampliar</li>
 </ul>
 </li>
  <li>administración <ul>
- <li>Set library management paraments (deprecated)
-<ul>
- <li style="color: #990000">Important: This permission level no longer controls anything.</li>
+ <li>configurar parámetros de gestión de la biblioteca <ul>
+ <li style="color: #990000">Importante: Este nivel de permisos no va a controlar nada más.</li>
 </ul>
 </li>
 </ul>
 </li>
  <li>herramientas <ul>
- <li>Use all tools</li>
+ <li>Utilizar todas las herramientas</li>
  <li>Esta sección se puede ampliar</li>
 </ul>
 </li>
  <li>editauthorities <ul>
- <li>Edit Authorities</li>
+ <li>Editar Autoridades</li>
 </ul>
 </li>
  <li>publicaciones periódicas <ul>
- <li>Manage serial subscriptions</li>
+ <li>Gestionar suscripciones</li>
  <li>Esta sección se puede ampliar</li>
 </ul>
 </li>
  <li>informes <ul>
- <li>Allow access to the reports module</li>
+ <li>Permitir el acceso al módulo de informes</li>
  <li>Los informes que se encuentran en la página de circulación no están controlados por este permiso</li>
  <li>Esta sección se puede ampliar</li>
 </ul>
 </li>
  <li>staffaccess <ul>
- <li>Allow staff members to modify permissions for other staff members</li>
+ <li>Permitir al personal modificar los permisos de otros miembros del equipo</li>
  <li style="color: #990000">Importante: a la tabla de préstamos: Requiere supervisión del  permiso de los prestatarios</li>
 </ul>
 </li>
@@ -114,14 +111,13 @@
 
 <ul>
  <li>circulate_remaining_permissions <ul>
- <li>Remaining circulation permissions</li>
+ <li>Mantener permisos de circulación</li>
  <li>Todos los derechos de circulación excepto la capacidad de anular las renovaciones</li>
 </ul>
 </li>
- <li>overdues_report
-<ul>
- <li>Execute overdue items report</li>
- <li>The permission to run the overdues reports found under Circulation</li>
+ <li>overdues_report<ul>
+ <li>Ejecutar el informe de ítems atrasados</li>
+ <li>El permiso para ejecutar los informes de retraso den las devoluciones está en el módulo de Circulación.</li>
 </ul>
 </li>
  <li>override_renewals <ul>
@@ -137,13 +133,13 @@
 
 <ul>
  <li>manage_circ_rules <ul>
- <li>Manage circulation rules</li>
- <li>The ability to access the Circulation and fines rules in the administration area</li>
+ <li>Gestionar reglas de circulación</li>
+ <li>La capacidad de acceder a las reglas de circulación y multas en el área de adminitración</li>
 </ul>
 </li>
  <li>circulate_remaining_permissions  <ul>
- <li>Remaining system parameters permissions</li>
- <li>The ability to access all areas in Administration (other than the Circulation and fine rules)</li>
+ <li>Mantener permisos sobre parámetros del sistema</li>
+ <li>La posibilidad de acceder a todas las áreas de Administración (además de reglas de circulación y multas)</li>
 </ul>
 </li>
 </ul>
@@ -154,12 +150,12 @@
 
 <ul>
  <li>modify_holds_priority <ul>
- <li>Modify holds priority</li>
+ <li>Modificar la prioridad de las reservas</li>
  <li>Permitir al personal alterar las prioridades de reservas (moviendo socios arriba y abajo de la cola)</li>
 </ul>
 </li>
  <li>place_holds <ul>
- <li>Place holds for patrons</li>
+ <li>Realizar reserva para los socios</li>
 </ul>
 </li>
 </ul>
@@ -170,13 +166,13 @@
 
 <ul>
  <li>edit_catalogue <ul>
- <li>Edit catalog (Modify bibliographic/holdings data)</li>
+ <li>Edit Catalog (Modify bibliographic/hodings data)</li>
  <li>Posibilidad de acceder a todas las funciones de catalogación a través de la página Catalogación</li>
 </ul>
 </li>
  <li>edit_items <ul>
  <li>Editar ítems</li>
- <li>Ability to make edits to item/holdings records, but not bibliographic records</li>
+ <li>Permiso para modificar registros de ítems, pero no registros bibliográficos</li>
 </ul>
 </li>
  <li>fast_cataloging <ul>
@@ -192,20 +188,19 @@
 
 <ul>
  <li>budget_add_del <ul>
- <li>Add and delete budgets (but can't modify them)</li>
+ <li>Añadir y borrar presupuestos (no se podrán modificar)</li>
 </ul>
 </li>
  <li>budget_manage <ul>
  <li>Administrar presupuestos</li>
 </ul>
 </li>
- <li>budget_manage_all
-<ul>
- <li>Manage all budgets</li>
+ <li>budget_manage_all<ul>
+ <li>Administrar todos los presupuestos</li>
 </ul>
 </li>
  <li>budget_modify <ul>
- <li>Modify budget (can't create lines, but can modify existing ones)</li>
+ <li>Modificar presupuesto (no se pueden crear lineas, pero se pueden modificar las existentes)</li>
 </ul>
 </li>
  <li>contracts_manage <ul>
@@ -248,7 +243,7 @@
 </ul>
 </li>
  <li>claim_serials <ul>
- <li>Claim missing serials via the Claims section</li>
+ <li>Reclamar publicaciones periódicas a traves de la sección de reclamaciones</li>
 </ul>
 </li>
  <li>create_subscription <ul>
@@ -260,17 +255,17 @@
 </ul>
 </li>
  <li>edit_subscription <ul>
- <li>Edit an existing subscription</li>
- <li>This permission does not include the ability to delete or create a subscription</li>
+ <li>Editar una suscripción existente</li>
+ <li>Con este permiso no es posible borrar o crear una suscripción.</li>
 </ul>
 </li>
  <li>receive_serials <ul>
- <li>Serials receiving</li>
+ <li>Recepción de publicaciones periódicas</li>
  <li>Recibe publicaciones periódicas en suscripciones existentes</li>
 </ul>
 </li>
  <li>renew_subscription <ul>
- <li>Renew a subscription</li>
+ <li>Renovar una suscripción</li>
 </ul>
 </li>
  <li>ruteo <ul>
@@ -287,103 +282,102 @@
 <ul>
  <li>batch_upload_patron_images <ul>
  <li>Subir imágenes de socios en lote o una a la vez</li>
- <li>Access to the Image Upload Tool</li>
+ <li>Acceso a la herramienta de carga de imágenes</li>
 </ul>
 </li>
  <li>delete_anonymize_patrons <ul>
- <li>Delete old borrowers and anonymize circulation/reading history (deletes borrower reading history)</li>
- <li>Access to the Anonymize Patron Tool</li>
+ <li>Eliminar socios antiguos y anonimizar historial de préstamos (borra historial de lectura del socio)</li>
+ <li>Acceso a la Herramienta para hacer socios anónimos</li>
 </ul>
 </li>
  <li>edit_calendar <ul>
  <li>Defina los días en los que la biblioteca permanece cerrada.</li>
- <li>Access to the Calendar/Holidays Tool</li>
+ <li>Acceso a la herramienta de edición del calendario y vacaciones</li>
 </ul>
 </li>
  <li>edit_news <ul>
  <li>Escriba novedades para el OPAC y la interfaz administrativa</li>
- <li>Access to the News Tool</li>
+ <li>Acceso  a la herramienta Avisos)</li>
 </ul>
 </li>
  <li>edit_notice_status_triggers <ul>
  <li>Establecer aviso o disparadores para ítem atrasados</li>
- <li>Access to the Overdue Notice Status/TriggersTool</li>
+ <li>Access to the Overdue Notice Status/Triggers Tool</li>
 </ul>
 </li>
  <li>edit_notices <ul>
- <li>Define notices</li>
- <li>Access to the Notices Tool</li>
+ <li>Definir noticias</li>
+ <li>Accesi a la herramienta de noticias</li>
 </ul>
 </li>
  <li>export_catalog <ul>
- <li>Export bibliographic, authorities and holdings data</li>
- <li>Access to the Export Data Tool</li>
+ <li>Exportar un registro bibliográfico y de existencias</li>
+ <li>Acceso a la herramienta de exportación de datos</li>
 </ul>
 </li>
  <li>import_patrons <ul>
  <li>Importar datos de socio</li>
- <li>Access to the Import Patrons Tool</li>
+ <li>Acceso a la herramienta de importación de socios</li>
 </ul>
 </li>
  <li>inventario <ul>
  <li>Realizar un balance (inventario) de su catálogo</li>
- <li>Access to the Inventory Tool</li>
+ <li>Acceso a la herramienta de inventario</li>
 </ul>
 </li>
  <li>items_batchdel <ul>
- <li>Perform batch deletion of items</li>
- <li>Access to the Batch Item Deletion Tool</li>
+ <li>Elaborar un lote de ítems para el borrado</li>
+ <li>Acceso a la herramienta de borrado de lotes de ítems</li>
 </ul>
 </li>
  <li>items_batchmod <ul>
- <li>Perform batch modification of items</li>
- <li>Access to the Batch Item Modification Tool</li>
+ <li>Elaborar un lote de ítems para la modificación</li>
+ <li>Acceso a la herramienta de modificación de lotes de ítems</li>
 </ul>
 </li>
  <li>label_creator <ul>
- <li>Create printable labels and barcodes from catalog and patron data</li>
- <li>Access to the Label Creator and Quick Label Creator Tools</li>
+ <li>Crear etiquetas y códigos de barras para imprimir a partir de los datos del catálogo</li>
+ <li>Acceso al Creador de etiquetas y a la herramienta Creador de Marbetes</li>
 </ul>
 </li>
  <li>manage_csv_profiles <ul>
  <li>Administrar perfiles de exportación CSV</li>
- <li>Access to the CSV Profiles Tool</li>
+ <li>Acceso a la herramienta de perfiles CSV</li>
 </ul>
 </li>
  <li>manage_staged_marc <ul>
  <li>Administrar registros MARC preparados, incluyendo completar y revertir importaciones</li>
- <li>Access to the Manage Staged MARC Records Tool</li>
+ <li>Acceso a la herramienta de gestión de registros MARC preparados</li>
 </ul>
 </li>
  <li>moderate_comments <ul>
- <li>Moderate patron comments</li>
- <li>Access to the Comments Tool</li>
+ <li>Moderar comentarios de socios</li>
+ <li>Acceso a la herramienta de comentarios</li>
 </ul>
 </li>
- <li>moderate_tags
-<ul>
+ <li>moderate_tags<ul>
  <li>Moderar pestañas de socio</li>
- <li>Acces to the Tags Tool</li>
+ <li>Access to the Tags Tool</li>
 </ul>
 </li>
  <li>schedule_tasks <ul>
  <li>Tareas programadas para ser ejecutadas</li>
- <li>Access to the Task Scheduler Tool</li>
+ <li>Acceso a la herramienta de gestor de tareas</li>
 </ul>
 </li>
  <li>stage_marc_import <ul>
- <li>Stage MARC records into the reservoir</li>
- <li>Access to the Stage MARC Records Tool</li>
+ <li>Subir registros MARC al depósito </li>
+ <li>Acceso a la herramienta de preparación y carga de registros MARC</li>
 </ul>
 </li>
  <li>upload_local_cover_images <ul>
- <li>Upload local cover images</li>
- <li>Access to the Upload Local Cover Image Tool</li>
+ <li>Cargar imágenes de cubierta locales </li>
+ <li>Acceso a la herramienta de carga de cubiertas en el repositorio local</li>
 </ul>
 </li>
  <li>view_system_logs <ul>
  <li>Revisar registros del sistema</li>
- <li>Access to the Log Viewer Tool</li>
+ <li>Acceso a la Herramienta de visor de registros</li>
 </ul>
 </li>
 </ul>
@@ -394,12 +388,12 @@
 
 <ul>
  <li>create_reports <ul>
- <li>Create SQL Reports</li>
+ <li>Nuevo informe SQL</li>
  <li>La capacidad de crear y editar pero no ejecutar informes de SQL</li>
 </ul>
 </li>
  <li>execute_reports <ul>
- <li>Execute SQL Reports</li>
+ <li>Ejecutar informes con SQL </li>
  <li>La capacidad de correr, pero no crear o editar los informes de SQL</li>
 </ul>
 </li>

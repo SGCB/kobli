@@ -34,7 +34,7 @@ Actualizado:<ul>
 <fieldset class="rows">
  <legend>Seleccionar Biblioteca</legend>
  <ol>
- [% IF ( singleBranchMode ) %] <li>SingleBranchMode está en ON.</li>
+ [% IF ( singleBranchMode && !CAN_user_superlibrarian ) %] <li>SingleBranchMode está en ON.</li>
  [% ELSE %] <li><label for="branch">Seleccione biblioteca:</label>
  <select name="branch" id="branch">
  [% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>

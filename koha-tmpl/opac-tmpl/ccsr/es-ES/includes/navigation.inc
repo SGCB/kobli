@@ -1,0 +1,1 @@
+[% IF IsPatronPage %] [% INCLUDE usermenu.inc %] [% END %] [% OpacNav %] [% OpacNavBottom %] 

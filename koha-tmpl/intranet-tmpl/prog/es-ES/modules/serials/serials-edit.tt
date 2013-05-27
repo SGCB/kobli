@@ -1,24 +1,7 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Edición de publicación periódica [% bibliotitle %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/cataloging.js"></script>
+<script type="text/javascript" src="[% themelang %]/js/prevent_submit.js"></script>
 <script language="JavaScript" type="text/javascript">
-var nav = window.Event ? true : false;
-if (nav) {
-	window.captureEvents(Event.KEYDOWN);
-	window.onkeydown = NetscapeEventHandler_KeyDown;
-} else {
-	document.onkeydown = IEEventHandler_KeyDown;
-}
-
-function NetscapeEventHandler_KeyDown(e) {
-	if (e.which == 13 && e.target.type != 'textarea' && e.target.type != 'submit') { return false; }
-	return true;
-}
-
-function IEEventHandler_KeyDown() {
-	if (event.keyCode == 13 && event.srcElement.type != 'textarea' && event.srcElement.type != 'submit')
-		return false;
-	return true;
-}
 //<![CDATA[
 function generateReceive() {
     var subscriptionid =  document.getElementsByName("subscriptionid")[0].value;
@@ -215,7 +198,7 @@ $(document).ready(function() {
  <input type="hidden" name="subfield" value="[% iteminformatio.subfield %]" />
  <input type="hidden" name="mandatory" value="[% iteminformatio.mandatory %]" />
  [% IF ( iteminformatio.repeatable ) %] <a href="#" class="buttonPlus" onclick="CloneItemSubfield(this.parentNode); return false;">
- <img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" />
+ <img alt="Clonar" src="[% interface %]/[% theme %]/img/clone-subfield.png" title="Clonar este subcampo" />
  </a>
  [% END %] </div></li>
  [% END %]</ol></div><!-- /iteminformation -->
@@ -291,7 +274,7 @@ $(document).ready(function() {
  <input type="hidden" name="subfield" value="[% iteminformatio.subfield %]" />
  <input type="hidden" name="mandatory" value="[% iteminformatio.mandatory %]" />
  [% IF ( iteminformatio.repeatable ) %] <a href="#" class="buttonPlus" onclick="CloneItemSubfield(this.parentNode); return false;">
- <img alt="Clonar" src="/intranet-tmpl/prog/img/clone-subfield.png" title="Clonar este subcampo" />
+ <img alt="Clonar" src="[% interface %]/[% theme %]/img/clone-subfield.png" title="Clonar este subcampo" />
  </a>
  [% END %] </div>
  </li>[% END %]</ol>
