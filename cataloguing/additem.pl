@@ -441,7 +441,11 @@ if ($op eq "additem") {
 
                 $cookie = [ $cookie, $itemcookie ];
             }
-
+            ## Additional document
+            if ($showFilesLocalRepository && $input->param('documentbibliofile')) {
+                uploadDocumentLR($input, $biblionumber . '_' . $oldbibitemnum, undef, $frameworkcode, 1);
+            }
+            ##
         }
         $nextop = "additem";
         if ($exist_itemnumber) {

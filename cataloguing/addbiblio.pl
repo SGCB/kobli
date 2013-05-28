@@ -939,7 +939,7 @@ if ( $op eq "addbiblio" ) {
 		exit;
 	    }
         }
-    elsif(($is_a_modif || $redirect eq "view") && $redirect ne "just_save"){
+    }elsif(($is_a_modif || $redirect eq "view") && $redirect ne "just_save"){
             my $defaultview = C4::Context->preference('IntranetBiblioDefaultView');
             my $views = { C4::Search::enabled_staff_search_views };
             if ($defaultview eq 'isbd' && $views->{can_view_ISBD}) {
