@@ -53,7 +53,7 @@ INSERT INTO permissions (module_bit, code, description) VALUES
 (15,'renew_subscription','Renovar una suscripción'),
 (15,'routing','Rotación de publicaciones periódicas'),
 (16,'create_reports','Crear informes SQL'),
-(16,'execute_reports','Ejecutar informes SQL');
+(16,'execute_reports','Ejecutar informes SQL'),
 (18, 'manage_courses', 'Añadir, editar y eliminar cursos'),
 (18, 'add_reserves', 'Añadir colección de préstamo restringido'),
 (18, 'delete_reserves', 'Eliminar colección de préstamo restringido'),
