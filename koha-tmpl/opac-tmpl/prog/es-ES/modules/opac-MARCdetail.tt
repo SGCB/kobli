@@ -198,7 +198,7 @@ $(document).ready(function(){
  [% END %] [% END %] </table>
  </div>
 [% IF ( item_header_loop ) %] <table id="items">
- <caption>Copias</caption>
+ <caption>Holdings</caption>
  <tr>
  [% FOREACH item_header_loo IN item_header_loop %] <th>
  [% item_header_loo.header_value %] </th>

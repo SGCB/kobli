@@ -1,4 +1,4 @@
-[% USE AuthorisedValues %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Course reserves</title>
+[% USE AuthorisedValues %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Colección de préstamo restringido</title>
 [% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="/intranet-tmpl/prog/en/css/datatables.css" />
 <script type="text/javascript" src="/intranet-tmpl/prog/en/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="/intranet-tmpl/prog/en/js/datatables.js"></script>
@@ -16,7 +16,7 @@
 </head>
 <body id="lists_shelves" class="lists">
 
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/course_reserves/course-reserves.pl">Course reserves</a></div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/course_reserves/course-reserves.pl">Colección de préstamo restringido</a></div>
 
 <div id="doc2" class="yui-t7">
  <div id="bd">
@@ -26,7 +26,7 @@
 
  <div id="toolbar">
  <ul class="toolbar">
- [% IF ( CAN_user_coursereserves_manage_courses ) %] <li><a class="btn" id="new_course" href="/cgi-bin/koha/course_reserves/course.pl">New course</a></li>
+ [% IF ( CAN_user_coursereserves_manage_courses ) %] <li><a class="btn" id="new_course" href="/cgi-bin/koha/course_reserves/course.pl">Nuevo curso / materia</a></li>
  [% END %] </ul>
  </div><!-- /toolbar -->
 
@@ -51,20 +51,20 @@
  </div>
  -->
 
- <h1>Courses</h1>
+ <h1>Cursos / materias</h1>
  <table id="course_reserves_table">
  <thead>
  <tr>
  <th>Nombre</th>
- <th>Dept.</th>
- <th>Course #</th>
- <th>Section</th>
+ <th>Depart.</th>
+ <th>Curso / Materia #</th>
+ <th>Sección</th>
  <th>Término</th>
- <th>Instructors</th>
- <th>Staff note</th>
- <th>Public note</th>
- <th># of Students</th>
- <th>Enabled</th>
+ <th>Formadores</th>
+ <th>Nota de staff</th>
+ <th>Nota pública</th>
+ <th># de estudiantes</th>
+ <th>Accesible</th>
  </tr>
  </thead>
 

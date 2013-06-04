@@ -2,7 +2,7 @@
 // <![CDATA[
  var MSG_NO_COPY_SELECTED = _("Esperando la selección de una copia específica.");
  var ForceHoldNotesReasons=new Array(
-    _("This title consists of multiple volumes/parts. Please indicate which part you need. Clicking on specific copy information may be helpful."),
+    _("Este título está formado por múltiple volúmenes / partes. Por favor, indique qué parte necesita. Clique en la copia específica para obtener mayor información."),
     "*** Add a new reason above this line ***" ); // NOTE: Do not renumber reasons; this will affect use of existing ones.
 
  function prefixOf (s, tok) {
@@ -269,7 +269,7 @@
  <input name="expiration_date_[% bibitemloo.biblionumber %]" id="to" size="10" readonly="readonly" class="datepickerto" />
  <p style="margin:.3em 2em;">
  <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('expiration_date_[% bibitemloo.biblionumber %]').value='';return false;">Limpiar fecha</a></p>
- </td>[% END %] [% IF ( OPACShowHoldNotes ) %][% IF ( bibitemloo.holdable ) %]<td><input type="button" id="shownotes_[% bibitemloo.biblionumber %]" class="shownotes" value="Edit notes"/></td>[% END %][% END %]
+ </td>[% END %] [% IF ( OPACShowHoldNotes ) %][% IF ( bibitemloo.holdable ) %]<td><input value="Editar notas" type="button" id="shownotes_[% bibitemloo.biblionumber %]" class="shownotes" /></td>[% END %][% END %]
 
  [% IF ( bibitemloo.holdable ) %]
  <!-- HOLD ABLE -->
@@ -323,7 +323,7 @@
  [% IF ( OPACShowHoldNotes ) %] [% IF ( bibitemloo.holdable ) %] <tr class="notesrow" id="notesrow_[% bibitemloo.biblionumber %]">
  <td>&nbsp;</td>
  <td colspan="[% itemtable_colspan %]">
- <label for="holdnotes">Hold notes:</label>&nbsp;
+ <label for="holdnotes">Nota de reserva:</label>&nbsp;
  <span id="forcenotesreason_[% bibitemloo.biblionumber %]" class="forcenotesreason"></span>
  <textarea name="notes_[% bibitemloo.biblionumber %]">[% bibitemloo.holdnotes %]</textarea>
  <input type="hidden" id="notesmandatory_[% bibitemloo.biblionumber %]" value="[% bibitemloo.mandatorynotes %]"/>

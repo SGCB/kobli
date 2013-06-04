@@ -10,7 +10,7 @@
  [% END %] [% IF ( CAN_user_acquisition ) %] <li><a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a></li>
  [% END %] [% IF ( CAN_user_editauthorities ) %] <li><a href="/cgi-bin/koha/authorities/authorities-home.pl">Autoridades</a></li>
  [% END %] [% IF ( CAN_user_serials ) %] <li><a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a></li>
- [% END %] [% IF ( CAN_user_coursereserves ) %] <li><a href="/cgi-bin/koha/course_reserves/course-reserves.pl">Course Reserves</a></li>
+ [% END %] [% IF ( CAN_user_coursereserves ) %] <li><a href="/cgi-bin/koha/course_reserves/course-reserves.pl">Colección de préstamo restringido</a></li>
  [% END %] [% IF ( CAN_user_reports ) %] <li><a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a></li>
  [% END %] [% IF ( CAN_user_tools ) %] <li><a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a></li>
  [% END %] [% IF ( CAN_user_parameters ) %] <li><a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a></li>
@@ -37,15 +37,15 @@
  [% END %] [% ELSE %] <li>
  <a class="toplinks" href="/cgi-bin/koha/circ/selectbranchprinter.pl">Seleccionar Biblioteca</a>
  </li>
- [% END %] [% IF ( intranetbookbag ) %] <li>
- <a class="toplinks" href="/cgi-bin/koha/mainpage.pl?logout.x=1" onclick="clearHoldFor(); delBasket('main', true);">Salir</a>
+ [% END %] <li>
+ <a id="logout" class="toplinks" href="/cgi-bin/koha/mainpage.pl?logout.x=1">Salir</a>
  </li>
- [% ELSE %] <li>
- <a class="toplinks" href="/cgi-bin/koha/mainpage.pl?logout.x=1" onclick="clearHoldFor();">Salir</a>
- </li>
- ) | [% END %] [% ELSE %] Debe acceder al sistema  | [% END %] </ul>
+ [% ELSE %]
+ You are not logged in |
+ [% END %]
+ </ul>
  <li>
- <a class="toplinks" href="/cgi-bin/koha/help.pl" id="helper" onclick="var link=window.open('','Koha_Help','width=600,height=600,toolbar=false,scrollbars=yes'); link.location='/cgi-bin/koha/help.pl'; return false;">Ayuda</a>
+ <a class="toplinks" href="/cgi-bin/koha/help.pl" id="helper">Ayuda</a>
  </li>
  </li>
  </ul>

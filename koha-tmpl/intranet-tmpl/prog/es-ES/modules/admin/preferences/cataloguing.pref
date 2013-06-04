@@ -85,6 +85,20 @@ cataloguing.pref:
         class: short
         pref: UNIMARCField100Language
       - como idioma por defecto en el campo 100 de UNIMARC cuando se cree un nuevo registro o en el plugin del campo.
+    - 
+      - "El N\xC3\xBAmero de control (001) es"
+      - 
+        choices: 
+          "OFF": "no generado autom\xC3\xA1ticamente."
+          biblionumber: generado igual que el biblionumber.
+          incremental: generado de la manera 1, 2, 3.
+        pref: autoControlNumber
+    - 
+      - "Usar el N\xC3\xBAmero de control (001)"
+      - 
+        class: integer
+        pref: incrementalControlNumber
+      - "como n\xC3\xBAmero incremental. Esto requiere la opci\xC3\xB3n incremental en autoControlNumber."
   Interfaz: 
     - 
       - Usar
@@ -178,7 +192,7 @@ cataloguing.pref:
           holdingbranch: cataloguing.pref#SeparateHoldings# biblioteca de transferencia
           homebranch: cataloguing.pref#SeparateHoldings# biblioteca de origen
         pref: SeparateHoldingsBranch
-      - "cataloguing.pref#SeparateHoldings#es el que ha accedido a la biblioteca del usuario. La segunda pesta\xC3\xB1a contendr\xC3\xA1 los otros \xC3\xADtems"
+      - "es el que ha accedido a la biblioteca del usuario. La segunda pesta\xC3\xB1a contendr\xC3\xA1 los otros \xC3\xADtems"
     - 
       - No mostrar este
       - 

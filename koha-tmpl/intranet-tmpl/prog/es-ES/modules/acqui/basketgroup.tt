@@ -203,9 +203,9 @@ function submitForm(form) {
  <tr>
  <th>Nombre</th>
  <th>Número</th>
- <th>Billing place</th>
- <th>Delivery place</th>
- <th>Number of baskets</th>
+ <th>Lugar de facturación:</th>
+ <th>Lugar de entrega:</th>
+ <th>Número de cestas</th>
  <th>Acción</th>
  </tr>
  </thead>
@@ -214,7 +214,7 @@ function submitForm(form) {
  <td>[% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de bolsas nº. [% basketgroup.id %] [% END %]</td>
  <td>[% basketgroup.id %]</td>
  <td>[% basketgroup.billingplace | $KohaBranchName %]</td>
- <td>[% IF (basketgroup.freedeliveryplace) %]Free delivery place[% ELSE %][% basketgroup.deliveryplace | $KohaBranchName %][% END %]</td>
+ <td>[% IF (basketgroup.freedeliveryplace) %]Lugar de entrega[% ELSE %][% basketgroup.deliveryplace | $KohaBranchName %][% END %]</td>
  <td>[% basketgroup.basketsqty %]</td>
  <td>
  <input value="Cerrar e imprimir" type="button" onclick="closeandprint([% basketgroup.id %])" />
@@ -231,9 +231,9 @@ function submitForm(form) {
  <tr>
  <th>Nombre</th>
  <th>Número</th>
- <th>Billing place</th>
- <th>Delivery place</th>
- <th>Number of baskets</th>
+ <th>Lugar de facturación:</th>
+ <th>Lugar de entrega:</th>
+ <th>Número de cestas</th>
  <th>Acción</th>
  </tr>
  </thead>
@@ -243,7 +243,7 @@ function submitForm(form) {
  [% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de bolsas nº. [% basketgroup.id %] [% END %]</td>
  <td>[% basketgroup.id %]</td>
  <td>[% basketgroup.billingplace | $KohaBranchName %]</td>
- <td>[% IF (basketgroup.freedeliveryplace) %]Free delivery place[% ELSE %][% basketgroup.deliveryplace | $KohaBranchName %][% END %]</td>
+ <td>[% IF (basketgroup.freedeliveryplace) %]Lugar de entrega[% ELSE %][% basketgroup.deliveryplace | $KohaBranchName %][% END %]</td>
  <td>[% basketgroup.basketsqty %]</td>
  <td>
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="reopen" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Reabrir" type="submit" /></form>

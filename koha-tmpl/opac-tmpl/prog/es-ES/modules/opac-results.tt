@@ -448,11 +448,11 @@ $(document).ready(function(){
  [% ELSE %]<a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% SEARCH_RESULT.biblionumber |url %]" class="title" title="Ver detalles para este título">
  [% END %] [% END %] [% IF ( SEARCH_RESULT.title ) %][% SEARCH_RESULT.title |html %][% ELSE %]Sin título[% END %] [% FOREACH subtitl IN SEARCH_RESULT.subtitle %], [% subtitl.subfield|html %][% END %]</a>
  [% IF ( SEARCH_RESULT.author ) %]por <a href="/cgi-bin/koha/opac-search.pl?q=au:[% SEARCH_RESULT.author |url %]" title="Buscar trabajos de este autor" class="author">[% SEARCH_RESULT.author %]</a>
- [% ELSE %]&nbsp; [% END %] <span class="results_summary"><span class="label">Publicación:</span>
+ [% ELSE %]&nbsp; [% END %] <span class="results_summary publisher"><span class="label">Publicación:</span>
  [% IF ( SEARCH_RESULT.place ) %][% SEARCH_RESULT.place %] [% END %][% IF ( SEARCH_RESULT.publishercode ) %][% SEARCH_RESULT.publishercode|html %][% END %][% IF ( SEARCH_RESULT.publicationyear ) %] [% SEARCH_RESULT.publicationyear %] [% ELSE %][% IF ( SEARCH_RESULT.copyrightdate ) %] [% SEARCH_RESULT.copyrightdate %][% END %][% END %] [% IF ( SEARCH_RESULT.pages ) %]. [% SEARCH_RESULT.pages %][% END %] [% IF ( SEARCH_RESULT.notes ) %], [% SEARCH_RESULT.notes|html %][% END %] [% IF ( SEARCH_RESULT.size ) %] [% SEARCH_RESULT.size %][% END %] [% IF ( SEARCH_RESULT.timestamp ) %] <i>(modificado en [% SEARCH_RESULT.timestamp %])</i>[% END %] </span>
  [% IF ( SEARCH_RESULT.summary ) %] <span class="result_summary">
  [% SEARCH_RESULT.summary %] </span>
- [% END %] [% IF ( SEARCH_RESULT.copyrightdate ) %]<span class="results_summary"><span class="label">Fecha:</span>[% SEARCH_RESULT.copyrightdate %]</span>[% END %] <span class="results_summary">
+ [% END %] [% IF ( SEARCH_RESULT.copyrightdate ) %]<span class="results_summary date"><span class="label">Fecha:</span>[% SEARCH_RESULT.copyrightdate %]</span>[% END %] <span class="results_summary availability">
  <span class="label">Disponibilidad:</span>
  [% IF ( SEARCH_RESULT.available_items_loop.size() ) %] <span class="available"><strong>Copias disponibles:</strong>
  [% FOREACH available_items_loo IN SEARCH_RESULT.available_items_loop %] [% IF available_items_loo.this_branch %]<span class="highlight-row-results">[% ELSE %]<span>[% END %] [% IF ( singleBranchMode ) %] [% available_items_loo.location %] [% ELSE %] [% available_items_loo.branchname %] [% END %] [% IF ( OPACItemsResultsDisplay ) %] [% UNLESS ( singleBranchMode ) %][% available_items_loo.location %][% END %] [% IF ( available_items_loo.itemcallnumber ) %][<a href="/cgi-bin/koha/opac-search.pl?q=callnum:[% available_items_loo.itemcallnumber |url %]">[% available_items_loo.itemcallnumber %]</a>][% END %] [% END %] ([% available_items_loo.count %]), </span>
@@ -468,11 +468,11 @@ $(document).ready(function(){
  [% END %] [% IF ( SEARCH_RESULT.num_videos ) %] <span class="social_data">[% SEARCH_RESULT.num_videos %] Extractos de vídeo </span>
  [% END %] [% IF ( SEARCH_RESULT.num_quotations ) %] <span class="social_data">[% SEARCH_RESULT.num_quotations %] Citas</span>
  [% END %] </span>
- [% END %] [% IF ( LibraryThingForLibrariesID ) %]<div class="ltfl_reviews"></div>[% END %] [% IF ( TagsShowEnabled ) %] [% IF ( SEARCH_RESULT.TagLoop.size ) %] <div class="results_summary"><span class="label">Etiquetas:</span>
+ [% END %] [% IF ( LibraryThingForLibrariesID ) %]<div class="ltfl_reviews"></div>[% END %] [% IF ( TagsShowEnabled ) %] [% IF ( SEARCH_RESULT.TagLoop.size ) %] <div class="results_summary tags"><span class="label">Etiquetas:</span>
  <ul style="display: inline; list-style: none;">[% FOREACH TagLoo IN SEARCH_RESULT.TagLoop %]<li style="display: inline; list-style: none;"><a href="/cgi-bin/koha/opac-search.pl?tag=[% TagLoo.term |url %]&amp;q=[% TagLoo.term |url %]">[% TagLoo.term %]</a> <span class="weight">([% TagLoo.weight_total %])</span></li>
  [% END %] </ul>
  </div>
- [% END %] [% END %] [% IF ( SEARCH_RESULT.searchhighlightblob ) %]<span class="results_summary"><span class="label">Coincidencia:</span> [% SEARCH_RESULT.searchhighlightblob %]</span>[% END %] [% IF ( OpacStarRatings == 'all' ) %] <div class="results_summary">
+ [% END %] [% END %] [% IF ( SEARCH_RESULT.searchhighlightblob ) %]<span class="results_summary"><span class="label">Coincidencia:</span> [% SEARCH_RESULT.searchhighlightblob %]</span>[% END %] [% IF ( OpacStarRatings == 'all' ) %] <div class="results_summary ratings">
 
 [% FOREACH i  IN [ 1 2 3 4 5  ] %] [% IF ( SEARCH_RESULT.rating_avg == i ) %] <input class="star" type="radio"  name="rating-[% SEARCH_RESULT.biblionumber %]" value="[% i %]" checked="checked" disabled="disabled"   />
 [% ELSE   %] <input class="star" type="radio"  name="rating-[% SEARCH_RESULT.biblionumber %]" value="[% i %]" disabled="disabled"   />
@@ -497,7 +497,7 @@ $(document).ready(function(){
  [% IF ( loggedinusername ) %]
  <a class="tag_add" id="tag_add[% SEARCH_RESULT.biblionumber %]" href="#">Añadir etiqueta</a>
  <span id="tagform[% SEARCH_RESULT.biblionumber %]" class="tag_results_input" style="display:none;">
- <label for="newtag[% SEARCH_RESULT.biblionumber %]">New tag(s), separated by a comma:</label>
+ <label for="newtag[% SEARCH_RESULT.biblionumber %]">Nueva(s) etiqueta(s), separadas por coma:</label>
  <input name="newtag[% SEARCH_RESULT.biblionumber %]" id="newtag[% SEARCH_RESULT.biblionumber %]" maxlength="100" />
  <input value="Agregar" name="tagbutton" class="tagbutton" title="[% SEARCH_RESULT.biblionumber %]" type="submit" />
  <a class="cancel_tag_add" id="cancel[% SEARCH_RESULT.biblionumber %]" href="#">(hecho)</a>

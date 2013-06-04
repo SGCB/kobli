@@ -823,6 +823,7 @@
  <span class="label">Separado desde:</span>
  </xsl:when>
  </xsl:choose>
+ <xsl:text> </xsl:text>
  <xsl:variable name="f780">
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">en</xsl:with-param>
@@ -882,8 +883,8 @@
  <xsl:when test="@ind2=8">
  <span class="label">Cambiado de nuevo a:</span>
  </xsl:when>
-
  </xsl:choose>
+ <xsl:text> </xsl:text>
  <xsl:variable name="f785">
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">en</xsl:with-param>
