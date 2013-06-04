@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Koha 3.12\n"
 "POT-Creation-Date: 2013-05-27 12:22+0200\n"
-"PO-Revision-Date: 2013-04-28 19:25+0200\n"
-"Last-Translator: Bernardo <bgkriegel@gmail.com>\n"
+"PO-Revision-Date: 2013-06-05 13:16+0100\n"
+"Last-Translator: Nuño López <nunyo@masmedios.com>\n"
 "Language-Team: Koha Translation Team <koha-translate@lists.koha.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.6\n"
+"X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 # Acquisitions
@@ -90,8 +90,12 @@ msgid "acquisitions.pref#OrderPdfFormat# when printing basket groups."
 msgstr "cuando imprima grupos de cestas."
 
 # Acquisitions > Policy
-msgid "acquisitions.pref#UniqueItemFields# (space-separated list of fields that should be unique for items, must be valid SQL fields of items table)"
-msgstr "(lista separada por espacios de campos que deberían ser únicos para ítems, debe ser válido para la tabla de campos de ítems de SQL)"
+msgid "acquisitions.pref#UniqueItemFields# (separated by a space)"
+msgstr ""
+
+# Acquisitions > Policy
+msgid "acquisitions.pref#UniqueItemFields# The following <a href='http://schema.koha-community.org/tables/items.html' target='blank'>database columns</a> should be unique in an item:"
+msgstr ""
 
 # Acquisitions > Policy
 msgid "acquisitions.pref#gist# (enter in numeric form, 0.12 for 12%. First is the default. If you want more than 1 value, please separate with |)"
@@ -179,15 +183,15 @@ msgstr "alguna"
 
 # Administration > Login options
 msgid "admin.pref#IndependentBranches# Don't prevent"
-msgstr ""
+msgstr "No prevenir"
 
 # Administration > Login options
 msgid "admin.pref#IndependentBranches# Prevent"
-msgstr ""
+msgstr "Prevenir"
 
 # Administration > Login options
 msgid "admin.pref#IndependentBranches# staff (but not superlibrarians) from modifying objects (holds, items, patrons, etc.) belonging to other libraries."
-msgstr ""
+msgstr "al personal (pero no superbibliotecarios) a la hora de modificar objetos (reservas, ítems, usuarios, etc.) que pertenecen a otra bibliotecas."
 
 # Administration > Interface options
 msgid "admin.pref#KohaAdminEmailAddress# Use"
@@ -667,7 +671,7 @@ msgstr "cataloguing.pref#SeparateHoldings# biblioteca de origen"
 
 # Cataloging > Display
 msgid "cataloguing.pref#SeparateHoldings# is the logged in user's library. The second tab will contain all other items."
-msgstr "cataloguing.pref#SeparateHoldings#es el que ha accedido a la biblioteca del usuario. La segunda pestaña contendrá los otros ítems"
+msgstr "es el que ha accedido a la biblioteca del usuario. La segunda pestaña contendrá los otros ítems"
 
 # Cataloging > Display
 msgid "cataloguing.pref#SeparateHoldings# items display into two tabs, where the first tab contains items whose"
@@ -785,6 +789,22 @@ msgstr "cataloguing.pref#autoBarcode# incremental EAN-13 código de barras"
 msgid "cataloguing.pref#autoBarcode# not generated automatically."
 msgstr "no son generados automáticamente."
 
+# Cataloging > Record Structure
+msgid "cataloguing.pref#autoControlNumber# Control Number (001) is"
+msgstr "El Número de control (001) es"
+
+# Cataloging > Record Structure
+msgid "cataloguing.pref#autoControlNumber# generated as biblionumber."
+msgstr "generado igual que el biblionumber."
+
+# Cataloging > Record Structure
+msgid "cataloguing.pref#autoControlNumber# generated in the form 1, 2, 3."
+msgstr "generado de la manera 1, 2, 3."
+
+# Cataloging > Record Structure
+msgid "cataloguing.pref#autoControlNumber# not generated automatically."
+msgstr "no generado automáticamente."
+
 # Cataloging > Display
 msgid "cataloguing.pref#hide_marc# Display"
 msgstr "Mostrar"
@@ -796,6 +816,14 @@ msgstr "No mostrar"
 # Cataloging > Display
 msgid "cataloguing.pref#hide_marc# MARC tag numbers, subfield codes and indicators in MARC views."
 msgstr "números de campos MARC, códigos de subcampos e indicadores en vista MARC."
+
+# Cataloging > Record Structure
+msgid "cataloguing.pref#incrementalControlNumber# Use Control Number (001)"
+msgstr "Usar el Número de control (001)"
+
+# Cataloging > Record Structure
+msgid "cataloguing.pref#incrementalControlNumber# as incremental number. This requires incremental option on autoControlNumber."
+msgstr "como número incremental. Esto requiere la opción incremental en autoControlNumber."
 
 # Cataloging > Record Structure
 msgid "cataloguing.pref#item-level_itypes# Use the item type of the"
@@ -871,7 +899,7 @@ msgstr "Política de préstamo"
 
 # Circulation > Course Reserves
 msgid "circulation.pref Course Reserves"
-msgstr ""
+msgstr "Colecciones de préstamo restringido"
 
 # Circulation > Fines Policy
 msgid "circulation.pref Fines Policy"
@@ -1131,19 +1159,19 @@ msgstr "devolver ítems que han sido retirados."
 
 # Circulation > Checkin Policy
 msgid "circulation.pref#CalculateFinesOnReturn# <br /><b>NOTE If you are doing hourly loans then you should have this on.</b>"
-msgstr ""
+msgstr "<br /><b>AVISO Si está realizando préstamos por horas, debe estar a on.</b>"
 
 # Circulation > Checkin Policy
 msgid "circulation.pref#CalculateFinesOnReturn# Do"
-msgstr ""
+msgstr "Sí"
 
 # Circulation > Checkin Policy
 msgid "circulation.pref#CalculateFinesOnReturn# Don't"
-msgstr ""
+msgstr "No"
 
 # Circulation > Checkin Policy
 msgid "circulation.pref#CalculateFinesOnReturn# calculate and update overdue charges when an item is returned."
-msgstr ""
+msgstr "calcular y actualizar las multas por préstamo vencido cuando un ítem es devuelto"
 
 # Circulation > Interface
 msgid "circulation.pref#CircAutoPrintQuickSlip# ."
@@ -1707,15 +1735,15 @@ msgstr "límites de transferencia basados en "
 
 # Circulation > Course Reserves
 msgid "circulation.pref#UseCourseReserves# Don't use"
-msgstr ""
+msgstr "No usar"
 
 # Circulation > Course Reserves
 msgid "circulation.pref#UseCourseReserves# Use"
-msgstr ""
+msgstr "Usar"
 
 # Circulation > Course Reserves
 msgid "circulation.pref#UseCourseReserves# course reserves"
-msgstr ""
+msgstr "las colecciones de préstamo restringido"
 
 # Circulation > Interface
 msgid "circulation.pref#UseTablesortForCirc# Don't enable"
@@ -3559,15 +3587,15 @@ msgstr "desplegar los filtros de búsqueda en la versión móvil del OPAC."
 
 # OPAC > Features
 msgid "opac.pref#OpacShowHoldNotes# Allow"
-msgstr ""
+msgstr "Permitir"
 
 # OPAC > Features
 msgid "opac.pref#OpacShowHoldNotes# Do not allow"
-msgstr ""
+msgstr "No permitir"
 
 # OPAC > Features
 msgid "opac.pref#OpacShowHoldNotes# users to add a note when placing a hold."
-msgstr ""
+msgstr "a los usuarios añadir una nota cuando hacen una reserva"
 
 # OPAC > Appearance
 msgid "opac.pref#OpacShowLibrariesPulldownMobile# Don't show"
@@ -4907,19 +4935,19 @@ msgstr "el cesta en el cliente administrativo."
 
 # Staff Client > Appearance
 msgid "staff_client.pref#intranetcolorstylesheet# Include the additional CSS stylesheet"
-msgstr ""
+msgstr "Incluir la hoja de estilo CSS adicional"
 
 # Staff Client > Appearance
 msgid "staff_client.pref#intranetcolorstylesheet# to override specified settings from the default stylesheet (leave blank to disable.) Enter just a filename, a full local path or a complete URL starting with <code>http://</code> (if the file lives on a remote server). Please note that if you just enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory. A full local path is expected to start from your HTTP document root."
-msgstr ""
+msgstr "para anular las características específicas de la hoja de estilo predetermianda (dejar en blanco para desactivar). Introduzca el nombre del fichero, un ruta local completa o un URL que empiece con <code>http://</code> (si el fichero está en un servidor remoto). Por favor, tenga en cuenta que si introduce el nombre del fichero, éste debe estar en el subdicterio css  para cada tema y lenguaje dentro del directorio templates de koha. Una ruta completa local debe empezar por documento HTTP."
 
 # Staff Client > Appearance
 msgid "staff_client.pref#intranetstylesheet# Use the CSS stylesheet"
-msgstr ""
+msgstr "Usar la hoja de estilo CSS"
 
 # Staff Client > Appearance
 msgid "staff_client.pref#intranetstylesheet# on all pages in the staff interface, instead of the default css (used when leaving this field blank). Enter just a filename, a full local path or a complete URL starting with <code>http://</code> (if the file lives on a remote server). Please note that if you just enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory. A full local path is expected to start from your HTTP document root."
-msgstr ""
+msgstr "en todas las páginas de la intranet, en vez de la css predeterminada (usado cuando se deja en blanco este campo). Introduzca el nombre del fichero, una ruta local completa o una URL que empiece con <code>http://</code> (si el fichero está en un servidor remoto). Por favor, tenga en cuenta que si introduce solamente el nombre del fichero, éste debe estar en el subdirectorio css de cada tema y lenguaje activo dentro del directorio templates de koha. Una ruta local completa debe empezar con un documento HTTP."
 
 # Staff Client > Appearance
 msgid "staff_client.pref#intranetuserjs# Include the following JavaScript on all pages in the staff client:"
