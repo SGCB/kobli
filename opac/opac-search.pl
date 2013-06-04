@@ -602,7 +602,6 @@ for (my $i=0;$i<@servers;$i++) {
                     });
                 }
             }
-        }
 
             if ( C4::Context->preference('OpacStarRatings') eq 'all' ) {
                 my $rating = GetRating( $res->{'biblionumber'}, $borrowernumber );
