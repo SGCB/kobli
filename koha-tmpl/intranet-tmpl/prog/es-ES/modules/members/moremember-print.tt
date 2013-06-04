@@ -27,6 +27,7 @@
  <tr>
  <th>Título</th>
  <th>Autor</th>
+ <th>Signatura</th>
  <th>Tipo de ítem</th>
  <th>Fecha de devolución</th>
  <th>Cargo</th>
@@ -39,6 +40,7 @@
  </a>
  </td>
  <td>[% issueloo.author %]</td>
+ <td>[% issueloo.itemcallnumber %]</td>
  <td>[% issueloo.itemtype_description %]</td>
  <td>[% issueloo.date_due %]</td>
  <td>[% issueloo.charge %]</td>
@@ -46,7 +48,7 @@
  <td>[% IF ( issueloo.red ) %]¡Atrasado![% ELSE %]&nbsp;[% END %]</td>
  </tr>
  [% END %] <tr>
- <td colspan="4" style="text-align: right; font-weight:bold;">Totales:</td>
+ <td colspan="5" style="text-align: right; font-weight:bold;">Totales:</td>
  <td>[% totaldue %]</td>
  <td>[% totalprice %]</td>
  <td colspan="2">&nbsp;</td>

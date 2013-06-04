@@ -1,4 +1,4 @@
-<div class="gradient">
+[% USE Koha %] <div class="gradient">
 <h1 id="logo"><a href="/cgi-bin/koha/mainpage.pl">[% LibraryName %]</a></h1><!-- Begin Patrons Resident Search Box -->
 <div id="header_search">
  <div id="patron_search" class="residentsearch">
@@ -7,7 +7,6 @@
  <input id="searchmember" size="25" class="focus" name="member" type="text" value="[% member %]"/>
  <span class="filteraction" id="filteraction_off"> <a href="#" onclick="$('#filters').toggle();$('.filteraction').toggle();">[-]</a></span>
  <span class="filteraction" id="filteraction_on"> <a href="#" onclick="$('#filters').toggle();$('.filteraction').toggle();">[+]</a></span>
-
 
  <input value="Buscar" class="submit" type="submit" />
 
@@ -19,7 +18,32 @@
  <option value='borrowernumber'>Número de socio </option>
  <option value='phone,phonepro,B_phone,altcontactphone,mobile'>Número de teléfono</option>
  <option value='streettype,address,address2,city,state,zipcode,country'>Dirección </option>
- </select></p>
+ <option value='dateofbirth'>Fecha de nacimiento</option>
+ </select>
+ <script type="text/javascript">
+                [% SET dateformat = Koha.Preference('dateformat') %]
+                $("#searchfields").change(function() {
+                    if ( $(this).val() == 'dateofbirth' ) {
+                        [% IF dateformat == 'us' %]
+                            [% SET format = 'MM/DD/YYYY' %]
+                        [% ELSIF dateformat == 'iso' %]
+                            [% SET format = 'YYYY-MM-DD' %]
+                        [% ELSIF dateformat == 'metric' %]
+                            [% SET format = 'DD/MM/YYYY' %]
+                        [% END %]
+
+                        $('#searchmember').qtip({
+                            content: 'Dates of birth should be entered in the format "[% format %]"',
+                            style: {
+                                tip: 'topLeft'
+                            }
+                        })
+                    } else {
+                        $('#searchmember').qtip('destroy');
+                    }
+                });
+            </script>
+ </p>
  <p><label for="searchtype">Buscar tipo:</label>
  <select name="searchtype" id="searchtype">
  <option selected="selected" value=''>Empezar con</option>

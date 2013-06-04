@@ -10,6 +10,7 @@
     [% END %]
     $("#table_readingrec").dataTable($.extend(true, {}, dataTablesDefaults, {
         "sPaginationType": "four_button",
+        "aaSorting": []
     }));
  });
 //]]>

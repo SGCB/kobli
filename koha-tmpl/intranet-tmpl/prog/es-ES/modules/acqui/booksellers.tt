@@ -46,11 +46,9 @@ $(document).ready(function() {
  [% FOREACH supplier1 IN loop_suppliers %] <option value="[% supplier1.booksellerid %]">[% supplier1.name %]</option>
  [% END %] </select>
  </p>
- [% END %] <p>
- [% IF ( allbaskets ) %] <a href="/cgi-bin/koha/acqui/booksellers.pl?supplier=[% supplier %]&booksellerid=[% booksellerid %]">Aplicar filtro</a>
- [% ELSE %] <a href="/cgi-bin/koha/acqui/booksellers.pl?supplier=[% supplier %]&booksellerid=[% booksellerid %]&allbaskets=1">Cancelar filtro</a>
- [% END %] </p>
- <div id="acqui_order_supplierlist">
+ [% END %] [% IF ( allbaskets ) %] <p><a href="/cgi-bin/koha/acqui/booksellers.pl?supplier=[% supplier %]&booksellerid=[% booksellerid %]">Show active baskets only</a></p>
+ [% ELSE %] <p><a href="/cgi-bin/koha/acqui/booksellers.pl?supplier=[% supplier %]&booksellerid=[% booksellerid %]&allbaskets=1">Show all baskets</a></p>
+ [% END %] <div id="acqui_order_supplierlist">
  [% FOREACH supplier IN loop_suppliers %] <div class="supplier">
  <span class="suppliername">
  [% IF (supplier.name) %] <a name="[% supplier.booksellerid %]" href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% supplier.booksellerid %]">[% supplier.name %]</a>

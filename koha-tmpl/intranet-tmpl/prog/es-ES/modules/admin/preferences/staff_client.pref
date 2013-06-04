@@ -14,11 +14,11 @@ staff_client.pref:
         pref: staffClientBaseURL
       - .
     - 
-      - Use the CSS stylesheet
+      - Usar la hoja de estilo CSS
       - 
         class: url
         pref: intranetstylesheet
-      - on all pages in the staff interface, instead of the default css (used when leaving this field blank). Enter just a filename, a full local path or a complete URL starting with <code>http://</code> (if the file lives on a remote server). Please note that if you just enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory. A full local path is expected to start from your HTTP document root.
+      - "en todas las p\xC3\xA1ginas de la intranet, en vez de la css predeterminada (usado cuando se deja en blanco este campo). Introduzca el nombre del fichero, una ruta local completa o una URL que empiece con <code>http://</code> (si el fichero est\xC3\xA1 en un servidor remoto). Por favor, tenga en cuenta que si introduce solamente el nombre del fichero, \xC3\xA9ste debe estar en el subdirectorio css de cada tema y lenguaje activo dentro del directorio templates de koha. Una ruta local completa debe empezar con un documento HTTP."
     - 
       - "staff_client.pref#IntranetSlipPrinterJS# Usar el siguiente JavaScript pa imprimir recibos. Definir al menos la funci\xC3\xB3n printThenClose(). Para usar e.g. con Firefox PlugIn jsPrintSetup, ver http://jsprintsetup.mozdev.org/:"
       - 
@@ -32,11 +32,11 @@ staff_client.pref:
         pref: IntranetUserCSS
         type: textarea
     - 
-      - Include the additional CSS stylesheet
+      - Incluir la hoja de estilo CSS adicional
       - 
         class: file
         pref: intranetcolorstylesheet
-      - to override specified settings from the default stylesheet (leave blank to disable.) Enter just a filename, a full local path or a complete URL starting with <code>http://</code> (if the file lives on a remote server). Please note that if you just enter a filename, the file should be in the css subdirectory for each active theme and language within the Koha templates directory. A full local path is expected to start from your HTTP document root.
+      - "para anular las caracter\xC3\xADsticas espec\xC3\xADficas de la hoja de estilo predetermianda (dejar en blanco para desactivar). Introduzca el nombre del fichero, un ruta local completa o un URL que empiece con <code>http://</code> (si el fichero est\xC3\xA1 en un servidor remoto). Por favor, tenga en cuenta que si introduce el nombre del fichero, \xC3\xA9ste debe estar en el subdicterio css  para cada tema y lenguaje dentro del directorio templates de koha. Una ruta completa local debe empezar por documento HTTP."
     - 
       - Utilice archivos de tipo <code>includes/</code> desde el directorio
       - 

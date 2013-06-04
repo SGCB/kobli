@@ -30,13 +30,7 @@
  [% END %] [% IF action == 'edit' %] [% UNLESS OPACPatronDetails %] <div class="dialog message">Para hacer cambios en tu registro, por favor, ponte en contacto con la biblioteca.</div>
  [% END %] [% END %] [% IF empty_mandatory_fields %] <div class="dialog alert">No ha rellenado todos los campos requeridos. Por favor, rellene todos los campos que faltan y vuelva a enviarlo.</div>
  [% END %] [% IF failed_captcha %] <div class="dialog alert">Ha escrito caracteres incorrectos en el cuadro antes de enviar. Por favor, inténtelo de nuevo.</div>
- [% END %]
-
- [% UNLESS
- hidden.defined('branchcode')
- %]
-
- <fieldset class="rows" id="memberentry_library">
+ [% END %] [% UNLESS hidden.defined('branchcode') %] <fieldset class="rows" id="memberentry_library">
 
  <legend id="library_legend">Biblioteca</legend>
  <ol>
@@ -53,12 +47,7 @@
  [% END %] </ol>
  </fieldset>
  [% END %] </div>
- [% UNLESS
- hidden.defined('title') && hidden.defined('surname') && hidden.defined('firstname') &&
- hidden.defined('dateofbirth') && hidden.defined('initials') && hidden.defined('othernames') &&
- hidden.defined('sex')
- %]
- <div class="yui-g">
+ [% UNLESS hidden.defined('title') && hidden.defined('surname') && hidden.defined('firstname') && hidden.defined('dateofbirth') && hidden.defined('initials') && hidden.defined('othernames') && hidden.defined('sex') %] <div class="yui-g">
  [% IF ( display_patron_image ) %] <div class="yui-u first">
  [% END %] <fieldset class="rows" id="memberentry_identity">
  <legend id="identity_legend">Identificación</legend>
@@ -133,12 +122,7 @@
  </div>
  [% END %] </div>
  [% END %] <div class="yui-g">
- [% UNLESS
- hidden.defined('streetnumber') && hidden.defined('address') && hidden.defined('address2') &&
- hidden.defined('city') && hidden.defined('state') && hidden.defined('zipcode') &&
- hidden.defined('country')
- %]
- <fieldset class="rows" id="memberentry_mainaddress">
+ [% UNLESS hidden.defined('streetnumber') && hidden.defined('address') && hidden.defined('address2') && hidden.defined('city') && hidden.defined('state') && hidden.defined('zipcode') && hidden.defined('country') %] <fieldset class="rows" id="memberentry_mainaddress">
  <legend id="mainaddress_legend">Dirección de correo: </legend>
 
  <ol>

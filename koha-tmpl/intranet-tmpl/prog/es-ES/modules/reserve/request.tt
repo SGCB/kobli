@@ -149,7 +149,7 @@ function checkMultiHold() {
  [% ELSE %] <h1>Confirmar reservas</h1>
  [% END %] [% UNLESS ( borrowernumber ) %] [% IF ( messageborrower ) %] <div class="dialog alert"><h3>Socio no encontrado</h3><p>No hay un socio con este nombre, por favor, pruebe con otro </p> </div>
  [% END %] <form action="request.pl?biblionumber=[% biblionumber %]" method="post">
- [% UNLESS ( CGIselectborrower ) %] <fieldset class="brief">
+ [% UNLESS borrower_list %] <fieldset class="brief">
  <label for="patron">Socio: </label>
  <div class="hint">Inserte el número de carnet del socio o parte de su apellido</div>
  <input type="text" size="20" id="patron" class="focus" name="findborrower" />
@@ -157,7 +157,14 @@ function checkMultiHold() {
  <input value="Buscar" type="submit" />
  </fieldset>
  [% ELSE %] <fieldset>
- [% CGIselectborrower %] <input type="hidden" name="biblionumber" value="[% biblionumber %]" /><fieldset class="action"><input value="Seleccionar" type="submit" /></fieldset></fieldset>
+ <select size="7" name="borrowernumber">
+ [% FOREACH borrower IN borrower_list %] <option value="[% borrower.borrowernumber %]">
+[% borrower.surname -%], [% borrower.firstname -%]
+ ... ( [% borrower.cardnumber -%] - [% borrower.categorycode -%]
+) ... [% borrower.address %]
+ </option>
+ [% END %] </select>
+ <input type="hidden" name="biblionumber" value="[% biblionumber %]" /><fieldset class="action"><input value="Seleccionar" type="submit" /></fieldset></fieldset>
 
  [% END %] [% IF ( multi_hold ) %] <input type="hidden" name="multi_hold" value="[% multi_hold %]"/>
  <input type="hidden" name="biblionumbers" value="[% biblionumbers %]"/>

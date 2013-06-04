@@ -31,7 +31,7 @@ $(document).ready(function() {
  <div id="yui-main">
  <div class="yui-b">
  <h1>Facturas</h1>
- [% IF ( do_search ) %] [% IF ( results_loop ) %] <table id="resultst">
+ [% IF ( do_search ) %] [% IF invoices %] <table id="resultst">
  <thead>
  <tr>
  <th>Factura Nro.:  </th>
@@ -44,18 +44,18 @@ $(document).ready(function() {
  </tr>
  </thead>
  <tbody>
- [% FOREACH result IN results_loop %] <tr>
- <td><a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% result.invoiceid %]">[% result.invoicenumber %]</a></td>
- <td><a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% result.booksellerid %]">[% result.suppliername %]</a></td>
+ [% FOREACH invoice IN invoices %] <tr>
+ <td><a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoice.invoiceid %]">[% invoice.invoicenumber %]</a></td>
+ <td><a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% invoice.booksellerid %]">[% invoice.suppliername %]</a></td>
  <td>
- [% IF (result.billingdate) %] [% result.billingdate | $KohaDates %] [% END %] </td>
- <td>[% result.receivedbiblios %]</td>
- <td>[% result.receiveditems %]</td>
+ [% IF invoice.billingdate %] [% invoice.billingdate | $KohaDates %] [% END %] </td>
+ <td>[% invoice.receivedbiblios %]</td>
+ <td>[% invoice.receiveditems %]</td>
  <td>
- [% IF ( result.closedate ) %] Cerrado en [% result.closedate | $KohaDates %] [% ELSE %] Abierto [% END %] </td>
+ [% IF invoice.closedate %] Cerrado en [% invoice.closedate | $KohaDates %] [% ELSE %] Abierto [% END %] </td>
  <td>
- <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% result.invoiceid %]">Detalle</a> / [% IF ( result.closedate ) %] <a href="invoice.pl?op=reopen&amp;invoiceid=[% result.invoiceid %]&amp;referer=/cgi-bin/koha/acqui/invoices.pl%3Fop=do_search%26invoicenumber=[% invoicenumber %]%26supplier=[% supplier %]%26billingdatefrom=[% billingdatefrom %]%26billingdateto=[% billingdateto %]%26isbneanissn=[% isbneanissn %]%26title=[% title %]%26author=[% author %]%26publisher=[% publisher %]%26publicationyear=[% publicationyear %]%26branch=[% branch %]">Reabrir</a>
- [% ELSE %] <a href="invoice.pl?op=close&amp;invoiceid=[% result.invoiceid %]&amp;referer=/cgi-bin/koha/acqui/invoices.pl%3Fop=do_search%26invoicenumber=[% invoicenumber %]%26supplier=[% supplier %]%26billingdatefrom=[% billingdatefrom %]%26billingdateto=[% billingdateto %]%26isbneanissn=[% isbneanissn %]%26title=[% title %]%26author=[% author %]%26publisher=[% publisher %]%26publicationyear=[% publicationyear %]%26branch=[% branch %]">Cerrar</a>
+ <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoice.invoiceid %]">Detalle</a> / [% IF invoice.closedate %] <a href="invoice.pl?op=reopen&amp;invoiceid=[% invoice.invoiceid %]&amp;referer=/cgi-bin/koha/acqui/invoices.pl%3Fop=do_search%26invoicenumber=[% invoicenumber %]%26supplier=[% booksellerid %]%26billingdatefrom=[% billingdatefrom %]%26billingdateto=[% billingdateto %]%26isbneanissn=[% isbneanissn %]%26title=[% title %]%26author=[% author %]%26publisher=[% publisher %]%26publicationyear=[% publicationyear %]%26branch=[% branch %]">Reabrir</a>
+ [% ELSE %] <a href="invoice.pl?op=close&amp;invoiceid=[% invoice.invoiceid %]&amp;referer=/cgi-bin/koha/acqui/invoices.pl%3Fop=do_search%26invoicenumber=[% invoicenumber %]%26supplier=[% booksellerid %]%26billingdatefrom=[% billingdatefrom %]%26billingdateto=[% billingdateto %]%26isbneanissn=[% isbneanissn %]%26title=[% title %]%26author=[% author %]%26publisher=[% publisher %]%26publicationyear=[% publicationyear %]%26branch=[% branch %]">Cerrar</a>
  [% END %] </td>
  </tr>
  [% END %] </tbody>
@@ -63,7 +63,7 @@ $(document).ready(function() {
  [% ELSE %] <p>Lo sentimos pero no hay resultados para tu búsqueda.</p>
  <p>Buscar era: <ul>
  [% IF ( invoicenumber ) %] <li>Factura Nro.: [% invoicenumber %]</li>
- [% END %] [% IF ( supplier ) %] <li>Proveedor: [% suppliername %]</li>
+ [% END %] [% IF booksellerid %] <li>Proveedor: [% suppliername %]</li>
  [% END %] [% IF ( billingdatefrom ) %] <li>Fecha factura: [% IF ( billingdateto ) %] Desde [% billingdatefrom %] A [% billingdateto %] [% ELSE %] Tdo desde [% billingdatefrom %] [% END %] </li>
  [% ELSE %] [% IF ( billingdateto ) %] <li>Fecha factura:Todo hasta [% billingdateto %] </li>
  [% END %] [% END %] [% IF ( isbneanissn ) %] <li>ISBN/EAN/ISSN: [% isbneanissn %]</li>
@@ -74,7 +74,7 @@ $(document).ready(function() {
  [% END %] [% IF ( branch ) %] <li>Biblioteca: [% branchname %]</li>
  [% END %] </ul>
  </p>
- [% END %]<!-- results_loop -->
+ [% END %]<!-- invoices -->
  [% ELSE %]
  <p>Utilice el buscador de la izquierda para encontrar facturas.</p>
  [% END %]<!-- do_search -->
