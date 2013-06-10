@@ -455,9 +455,9 @@ sub _isbn_replace {
 
 =head2 ImportBreedingAuth
 
-	ImportBreedingAuth($marcrecords,$overwrite_auth,$filename,$encoding,$z3950random,$batch_type);
+ImportBreedingAuth($marcrecords,$overwrite_auth,$filename,$encoding,$z3950random,$batch_type);
 
-	TODO description
+TODO description
 
 =cut
 

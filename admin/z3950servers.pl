@@ -85,24 +85,27 @@ $template->param(script_name => $script_name,
 
 ################## ADD_FORM ##################################
 # called by default. Used to create form to add or  modify a record
-if ($op eq 'add_form') {
-	$template->param(add_form => 1);
-	#---- if primkey exists, it's a modify action, so read values to modify...
-	my $data;
-	if ($searchfield) {
-		my $dbh = C4::Context->dbh;
-		my $sth=$dbh->prepare("select host,port,db,userid,password,name,id,checked,rank,syntax,encoding,timeout,recordtype from z3950servers where (name = ?) order by rank,name");
-		$sth->execute($searchfield);
-		$data=$sth->fetchrow_hashref;
-		$sth->finish;
-	}
-    $template->param( $_ => $data->{$_} ) 
-        for ( qw( host port db userid password checked rank timeout encoding ) );
-    $template->param( $_ . $data->{$_} => 1)
-        for ( qw( syntax recordtype ) );
-													# END $OP eq ADD_FORM
+if ( $op eq 'add_form' ) {
+    $template->param( add_form => 1 );
+
+    #---- if primkey exists, it's a modify action, so read values to modify...
+    my $data;
+    if ($searchfield) {
+        my $dbh = C4::Context->dbh;
+        my $sth = $dbh->prepare(
+"select host,port,db,userid,password,name,id,checked,rank,syntax,encoding,timeout,recordtype from z3950servers where (name = ?) order by rank,name"
+        );
+        $sth->execute($searchfield);
+        $data = $sth->fetchrow_hashref;
+        $sth->finish;
+    }
+    $template->param( $_ => $data->{$_} )
+      for (qw( host port db userid password checked rank timeout encoding ));
+    $template->param( $_ . $data->{$_} => 1 ) for (qw( syntax recordtype ));
+
+    # END $OP eq ADD_FORM
 ################## ADD_VALIDATE ##################################
-# called by add_form, used to insert/modify data in DB
+    # called by add_form, used to insert/modify data in DB
 } elsif ($op eq 'add_validate') {
 	my $dbh=C4::Context->dbh;
 	my $sth=$dbh->prepare("select * from z3950servers where name=?");
@@ -133,43 +136,43 @@ if ($op eq 'add_form') {
 		  "(host,port,db,userid,password,name,checked,rank,syntax,encoding,timeout,recordtype) " .
 		  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" );
         $sth->execute(
-            $input->param( 'host' ),
-            $input->param( 'port' ),
-            $input->param( 'db' ),
-            $input->param( 'userid' ),
-            $input->param( 'password' ),
-            $input->param( 'searchfield' ),
-            $checked,
-            $input->param( 'rank' ),
-            $input->param( 'syntax' ),
-            $input->param( 'encoding' ),
-            $input->param( 'timeout' ),
-            $input->param( 'recordtype' ) );
-	}
-	$sth->finish;
-													# END $OP eq ADD_VALIDATE
+            $input->param('host'),     $input->param('port'),
+            $input->param('db'),       $input->param('userid'),
+            $input->param('password'), $input->param('searchfield'),
+            $checked,                  $input->param('rank'),
+            $input->param('syntax'),   $input->param('encoding'),
+            $input->param('timeout'),  $input->param('recordtype')
+        );
+    }
+    $sth->finish;
+
+    # END $OP eq ADD_VALIDATE
 ################## DELETE_CONFIRM ##################################
 # called by default form, used to confirm deletion of data in DB
 } elsif ($op eq 'delete_confirm') {
-	$template->param(delete_confirm => 1);
-	my $dbh = C4::Context->dbh;
+    $template->param( delete_confirm => 1 );
+    my $dbh = C4::Context->dbh;
 
-	my $sth2=$dbh->prepare("select host,port,db,userid,password,name,id,checked,rank,syntax,encoding,timeout,recordtype from z3950servers where (name = ?) order by rank,name");
-	$sth2->execute($searchfield);
-	my $data=$sth2->fetchrow_hashref;
-	$sth2->finish;
+    my $sth2 = $dbh->prepare(
+"select host,port,db,userid,password,name,id,checked,rank,syntax,encoding,timeout,recordtype from z3950servers where (name = ?) order by rank,name"
+    );
+    $sth2->execute($searchfield);
+    my $data = $sth2->fetchrow_hashref;
+    $sth2->finish;
 
-        $template->param(host => $data->{'host'},
-                         port => $data->{'port'},
-                         db   => $data->{'db'},
-                         userid => $data->{'userid'},
-                         password => $data->{'password'},
-                         checked => $data->{'checked'},
-                         rank => $data->{'rank'},
-                         syntax => $data->{'syntax'},
-                         timeout => $data->{'timeout'},
-                         recordtype => $data->{'recordtype'},
-                         encoding => $data->{'encoding'}            );
+    $template->param(
+        host       => $data->{'host'},
+        port       => $data->{'port'},
+        db         => $data->{'db'},
+        userid     => $data->{'userid'},
+        password   => $data->{'password'},
+        checked    => $data->{'checked'},
+        rank       => $data->{'rank'},
+        syntax     => $data->{'syntax'},
+        timeout    => $data->{'timeout'},
+        recordtype => $data->{'recordtype'},
+        encoding   => $data->{'encoding'}
+    );
 
 													# END $OP eq DELETE_CONFIRM
 ################## DELETE_CONFIRMED ##################################
