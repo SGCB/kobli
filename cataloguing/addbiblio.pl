@@ -38,7 +38,6 @@ use C4::Charset;
 use C4::Indicators;
 use C4::FileLocalRepository;
 
-
 use Date::Calc qw(Today);
 use MARC::File::USMARC;
 use MARC::File::XML;
@@ -868,27 +867,14 @@ if ( $op eq "addbiblio" ) {
     $template->param(
         biblionumberdata => $biblionumber,
     );
-    my ($duplicatebiblionumber,$duplicatetitle);
-    my $retWrongInd; # variable to store the indicators with incorrect values
-    # Check whether the value of the indicators are correct or do not add/modify the biblio and show the form again
-    # Do not check if the record comes from a Z3959 Search or from an Import
-    if ((C4::Context->preference("CheckValueIndicators") || C4::Context->preference("DisplayPluginValueIndicators")) && !$z3950 && !$breedingid) {
-        $retWrongInd = CheckValueIndicatorsSub($input, $frameworkcode, 'biblio', $template->param('lang'));
-        if ($retWrongInd) {
-            $duplicatebiblionumber = 1; # modify the variable (even it's not a duplicate) to not enter the next if block
-            $is_a_modif = 1; # do not want FindDuplicate
-            $input->param('confirm_not_duplicate', '0'); # modify to not enter the next if clause
-            my @wrongInd = ();
-            map { push @wrongInd, {tagfield => $_, ind1 => $retWrongInd->{$_}->{1}, ind2 => $retWrongInd->{$_}->{2}}; } keys %$retWrongInd;
-            $template->param(wrongInd => \@wrongInd);
-        }
-    }
-    
     # getting html input
     my @params = $input->param();
     $record = TransformHtmlToMarc( $input );
     # check for a duplicate
-    ($duplicatebiblionumber,$duplicatetitle) = FindDuplicate($record) if (!$is_a_modif);
+    my ( $duplicatebiblionumber, $duplicatetitle );
+    if ( !$is_a_modif ) {
+        ( $duplicatebiblionumber, $duplicatetitle ) = FindDuplicate($record);
+    }
     my $confirm_not_duplicate = $input->param('confirm_not_duplicate');
     # it is not a duplicate (determined either by Koha itself or by user checking it's not a duplicate)
     if ( !$duplicatebiblionumber or $confirm_not_duplicate ) {
@@ -904,7 +890,6 @@ if ( $op eq "addbiblio" ) {
         else {
             ( $biblionumber, $oldbibitemnum ) = AddBiblio( $record, $frameworkcode );
         }
-        if ($redirect eq "items" || ($mode ne "popup" && !$is_a_modif && $redirect ne "view" && $redirect ne "just_save")){
         if ($biblionumber && $showFilesLocalRepository) {
             ## Add cover image
             # if ($input->param('coverimagefile')) {
@@ -916,9 +901,7 @@ if ( $op eq "addbiblio" ) {
             }
             ##
         }
-
-        #exit;
-        if ($redirect eq "items" || ($mode ne "popup" && !$is_a_modif && $redirect ne "view")){
+        if ($redirect eq "items" || ($mode ne "popup" && !$is_a_modif && $redirect ne "view" && $redirect ne "just_save")){
 	    if ($frameworkcode eq 'FA'){
 		print $input->redirect(
             '/cgi-bin/koha/cataloguing/additem.pl?'
@@ -939,7 +922,7 @@ if ( $op eq "addbiblio" ) {
 		exit;
 	    }
         }
-    }elsif(($is_a_modif || $redirect eq "view") && $redirect ne "just_save"){
+    elsif(($is_a_modif || $redirect eq "view") && $redirect ne "just_save"){
             my $defaultview = C4::Context->preference('IntranetBiblioDefaultView');
             my $views = { C4::Search::enabled_staff_search_views };
             if ($defaultview eq 'isbd' && $views->{can_view_ISBD}) {
@@ -975,7 +958,6 @@ if ( $op eq "addbiblio" ) {
         }
     } else {
     # it may be a duplicate, warn the user and do nothing
-        $duplicatebiblionumber = 0 if ($retWrongInd); # reset duplicatebiblionumber to the original value
         build_tabs ($template, $record, $dbh,$encoding,$input);
         $template->param(
             biblionumber             => $biblionumber,
