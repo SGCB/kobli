@@ -48,6 +48,10 @@ if ( C4::Context->preference('marcflavour') eq 'UNIMARC' ) {
 }
 
 our($tagslib,$authorised_values_sth,$is_a_modif,$usedTagsLib,$mandatory_z3950);
+our $building_plugin={};
+    #hashref { record => .., subfieldid => .., tabno => .., }
+    #used in building the new cataloging plugins (without redefinitions)
+    #plugin script should add function and javascript to hash
 
 =head1 FUNCTIONS
 
@@ -408,10 +412,8 @@ sub create_input {
             closedir( DIR );
         }
         my $plugin = $cgidir . "/" . $tagslib->{$tag}->{$subfield}->{'value_builder'};
-        if (do $plugin) {
-            my $extended_param = plugin_parameters( $dbh, $rec, $tagslib, $subfield_data{id}, $tabloop );
-            my ( $function_name, $javascript ) = plugin_javascript( $dbh, $rec, $tagslib, $subfield_data{id}, $tabloop );
-        
+        my ( $function_name, $javascript ) = _new_plugin_builder( $plugin, $rec, $subfield_data{id}, $tabloop );
+        if ($function_name) {
             $subfield_data{marc_value} =
                     "<input tabindex=\"1\"
                             type=\"text\"
@@ -493,6 +495,32 @@ sub create_input {
     return \%subfield_data;
 }
 
+sub _new_plugin_builder {
+    my ($plugin, $record, $subfieldid, $tabno) = @_;
+
+    $building_plugin = {
+        record     => $record,
+        subfieldid => $subfieldid,
+        tabno      => $tabno,
+    };
+    do $plugin || return;
+
+    #first, try the new way without redefines using building_plugin hash
+    if( defined $building_plugin->{function} &&
+            defined $building_plugin->{javascript} ) {
+        return ($building_plugin->{function},
+            $building_plugin->{javascript} );
+    }
+
+    #arriving here, we try the old way with redefines: we are PHASING this OUT
+    #next call is of no use, commented
+    #my $extended_param = plugin_parameters( $dbh, $rec, $tagslib, $subfield_data{id}, $tabloop );
+    my ( $function_name, $javascript ) = plugin_javascript( undef, $record, $tagslib, $subfieldid, $tabno );
+        #first param was dbh, not needed: use C4::Context->dbh in plugin
+        #note also that tagslib is global (so actually superfluous)
+    return ( $function_name, $javascript );
+        #caller tests if function_name is defined
+}
 
 =head2 format_indicator
 
