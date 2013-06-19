@@ -438,3 +438,5 @@ INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES
 INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('MaxSizeFileLocalRepository', '10', 'Max. size in MB to upload file in the Local Repository','','Integer');
 INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('UseExportMarcHoldings', '0', 'Marc Holdings into tools to export records','','YesNo');
 INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('UseImportMarcHoldings', '0', 'Marc Holdings into tools to import records','','YesNo');
+INSERT INTO systempreferences (variable, value, options, explanation, type) VALUES ('autoControlNumber','OFF','incremental|biblionumber|OFF','Used to autogenerate a Control Number: incremental will be of the form 1, 2, 3; biblionumber will be as biblionumber;','Choice');
+INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES('incrementalControlNumber', '1', 'Set the number (controlnumber) of the next bibliographic record.',NULL,'');

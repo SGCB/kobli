@@ -7142,6 +7142,33 @@ if ( CheckVersion($DBversion) ) {
     SetVersion($DBversion);
 }
 
+$DBversion = "3.13.00.XXX";
+if ( CheckVersion($DBversion) ) {
+    $dbh->do(
+        q{INSERT INTO systempreferences (variable, value, options, explanation, type) VALUES ('autoControlNumber','OFF','incremental|biblionumber|OFF',
+        'Used to autogenerate a Control Number: incremental will be of the form 1, 2, 3; biblionumber will be as biblionumber;','Choice');}
+    );
+    $dbh->do(
+        q{INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('incrementalControlNumber', '1', 'Set the number
+        (controlnumber) of the next bibliographic record.',NULL,'');}
+    );
+    if (C4::Context->preference("marcflavour") eq 'MARC21') {
+        my $sth = $dbh->prepare(
+            q{SELECT * FROM marc_subfield_structure WHERE tagfield = '001' AND tagsubfield = '@' 
+            AND (value_builder IS NOT NULL AND value_builder != '') LIMIT 1;}
+        );
+        $sth->execute;
+        unless($sth->fetchrow){
+            $dbh->do(
+                q{UPDATE marc_subfield_structure SET value_builder = 'marc21_field_001.pl' WHERE tagfield = '001' AND tagsubfield = '@';}
+            );
+            print "WARNING: Your frameworks have been updated, field 001 will filled in through marc21_field_001.pl plugin.\n";
+        }
+    }
+    print "Upgrade to $DBversion done (Bug 9921 - Make it possible to force 001 = biblionumber)\n";
+    SetVersion($DBversion);
+}
+
 =head1 FUNCTIONS
 
 =head2 TableExists($table)

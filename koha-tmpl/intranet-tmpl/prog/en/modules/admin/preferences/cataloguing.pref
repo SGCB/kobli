@@ -109,6 +109,19 @@ Cataloging:
             - pref: UNIMARCField100Language
               class: short
             - as default language in the UNIMARC field 100 when creating a new record or in the field plugin.
+        -
+            - Control Number (001) is
+            - pref: autoControlNumber
+              choices:
+                  biblionumber: generated as biblionumber.
+                  incremental: generated in the form 1, 2, 3.
+                  "OFF": not generated automatically.
+            - (You should fill in a value in incrementalControlNumber preference.)
+        -
+            - Use Control Number (001)
+            - pref: incrementalControlNumber
+              class: integer
+            - as incremental number. (This requires generated in the form 1, 2, 3 in autoControlNumber preference.)
     Display:
         -
             - pref: CheckValueIndicators

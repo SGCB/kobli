@@ -271,6 +271,27 @@ sub AddBiblio {
     # update MARC subfield that stores biblioitems.cn_sort
     _koha_marc_update_biblioitem_cn_sort( $record, $olddata, $frameworkcode );
 
+    # update the control number (001) in MARC
+    if(C4::Context->preference('autoControlNumber') eq 'biblionumber'){
+        unless($record->field('001')){
+            $record->insert_fields_ordered(MARC::Field->new('001', $biblionumber));
+        }elsif($record->field('001')->data() eq 'biblionumber'){
+            $record->field('001')->update($biblionumber);
+        }
+    }elsif(C4::Context->preference('autoControlNumber') eq 'incremental'){
+        if(!defined($record->field('001')) or (defined($record->field('001')) and $record->field('001')->data() eq 'incremental')){
+            my $sth = $dbh->prepare(q{UPDATE systempreferences SET value = value+1 WHERE variable = 'incrementalControlNumber'});
+            $sth->execute();
+            $sth->finish();
+            my $incrementalCN=C4::Context->preference('incrementalControlNumber')-1;
+            unless($record->field('001')){
+                $record->insert_fields_ordered(MARC::Field->new('001', $incrementalCN));
+            }else{
+                $record->field('001')->update($incrementalCN);
+            }
+        }
+    }
+
     # now add the record
     ModBiblioMarc( $record, $biblionumber, $frameworkcode ) unless $defer_marc_save;
 
@@ -343,6 +364,27 @@ sub ModBiblio {
 
     # update MARC subfield that stores biblioitems.cn_sort
     _koha_marc_update_biblioitem_cn_sort( $record, $oldbiblio, $frameworkcode );
+    
+    # update the control number (001) in MARC
+    if(C4::Context->preference('autoControlNumber') eq 'biblionumber'){
+        unless($record->field('001')){
+            $record->insert_fields_ordered(MARC::Field->new('001', $biblionumber));
+        }elsif($record->field('001')->data() eq 'biblionumber'){
+            $record->field('001')->update($biblionumber);
+        }
+    }elsif(C4::Context->preference('autoControlNumber') eq 'incremental'){
+        if(!defined($record->field('001')) or (defined($record->field('001')) and $record->field('001')->data() eq 'incremental')){
+            my $sth = $dbh->prepare(q{UPDATE systempreferences SET value = value+1 WHERE variable = 'incrementalControlNumber'});
+            $sth->execute();
+            $sth->finish();
+            my $incrementalCN=C4::Context->preference('incrementalControlNumber')-1;
+            unless($record->field('001')){
+                $record->insert_fields_ordered(MARC::Field->new('001', $incrementalCN));
+            }else{
+                $record->field('001')->update($incrementalCN);
+            }
+        }
+    }
 
     # update the MARC record (that now contains biblio and items) with the new record data
     &ModBiblioMarc( $record, $biblionumber, $frameworkcode );
