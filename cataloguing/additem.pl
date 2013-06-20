@@ -42,6 +42,10 @@ use MARC::File::XML;
 use URI::Escape;
 
 our $dbh = C4::Context->dbh;
+our $building_plugin={};
+    #hashref { record => .., subfieldid => .., }
+    #used in building the new cataloging plugins (without redefinitions)
+    #plugin script should add function and javascript to hash
 
 sub find_value {
     my ($tagfield,$insubfield,$record) = @_;
@@ -242,19 +246,19 @@ sub generate_subfield_form {
         elsif ( $subfieldlib->{value_builder} ) {
                 # opening plugin
                 my $plugin = C4::Context->intranetdir . "/cataloguing/value_builder/" . $subfieldlib->{'value_builder'};
-                if (do $plugin) {
-                    my $extended_param = plugin_parameters( $dbh, $temp, $tagslib, $subfield_data{id}, $loop_data );
-                    my ( $function_name, $javascript ) = plugin_javascript( $dbh, $temp, $tagslib, $subfield_data{id}, $loop_data );
-		    my $change = index($javascript, 'function Change') > -1 ?
-		        "return Change$function_name($subfield_data{random}, '$subfield_data{id}');" :
-		        'return 1;';
+                my ( $function_name, $javascript ) = _new_plugin_builder( $plugin, $temp, $subfield_data{id} ); #no tabno passed for items
+                if( $function_name ) {
+                    my $change = index($javascript, 'function Change') > -1 ?
+                        "return Change$function_name($subfield_data{random}, '$subfield_data{id}');" :
+                        'return 1;';
                     $subfield_data{marc_value} = qq[<input type="text" $attributes
                         onfocus="Focus$function_name($subfield_data{random}, '$subfield_data{id}');"
-			onchange=" $change"
-                         onblur=" Blur$function_name($subfield_data{random}, '$subfield_data{id}');" />
+                        onchange=" $change"
+                        onblur=" Blur$function_name($subfield_data{random}, '$subfield_data{id}');" />
                         <a href="#" class="buttonDot" onclick="Clic$function_name('$subfield_data{id}'); return false;" title="Tag Editor">...</a>
                         $javascript];
-                } else {
+                }
+                else {
                     warn "Plugin Failed: $plugin";
                     $subfield_data{marc_value} = "<input type=\"text\" $attributes />"; # supply default input form
                 }
@@ -279,6 +283,31 @@ sub generate_subfield_form {
         }
         
         return \%subfield_data;
+}
+
+sub _new_plugin_builder {
+    my ($plugin, $record, $subfieldid) = @_;
+
+    $building_plugin = {
+        record     => $record,
+        subfieldid => $subfieldid,
+    };
+    do $plugin || return;
+
+    #first, try the new way without redefines using building_plugin hash
+    if( defined $building_plugin->{function} &&
+            defined $building_plugin->{javascript} ) {
+        return ($building_plugin->{function},
+            $building_plugin->{javascript} );
+    }
+
+    #arriving here, we try the old way with redefines: we are PHASING this OUT
+    #next call is of no use, commented
+    #my $extended_param = plugin_parameters( $dbh, $rec, $tagslib, $subfield_data{id}, $tabloop );
+    my ( $function_name, $javascript ) = plugin_javascript( undef, $record, undef, $subfieldid ); #no tabno passed for items, same for tagslib
+        #first param was dbh, not needed: use C4::Context->dbh in plugin
+    return ( $function_name, $javascript );
+        #caller tests if function_name is defined
 }
 
 # Removes some subfields when prefilling items
