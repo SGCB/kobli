@@ -38,7 +38,7 @@ opac.pref:
           OpacURLBranch: Biblioteca en el OPAC via URL
           PatronBranch: biblioteca de origen del usuario
         pref: HighlightOwnItemsOnOPACWhich
-      - moviendo los resultados al frente y aumentando el tama?? resaltando las lineas con estos resaltados (No s??para XSLT)
+      - "moviendo los resultados al frente y aumentando el tama\xC3\xB1o resaltando las l\xC3\xADneas con estos resaltados (No funciona para XSLT)"
     - 
       - Mostrar clasificados en
       - 
@@ -64,7 +64,7 @@ opac.pref:
           normal: en forma sencilla.
         pref: BiblioDefaultView
     - 
-      - Cuando los socios hacen clic en un enlace de otro sitio Web desde su OPAC (como Amazon o OCLC),
+      - Cuando los usuarios hacen clic en un enlace de otro sitio Web desde su OPAC (como Amazon o OCLC),
       - 
         choices: 
           "": 'no'
@@ -83,13 +83,13 @@ opac.pref:
       - 
         class: file
         pref: OPACXSLTResultsDisplay
-      - "opac.pref#OPACXSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con una interfaz de idioma habitual"
+      - "<br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con una interfaz de idioma habitual"
     - 
       - "Mostrar detalles en OPAC utilizando la hoja de estilo XSLT en: "
       - 
         class: file
         pref: OPACXSLTDetailsDisplay
-      - "opac.pref#OPACXSLTDetailsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con una interfaz de idioma habitual"
+      - "<br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con una interfaz de idioma habitual"
     - 
       - 
         choices: 
@@ -119,7 +119,7 @@ opac.pref:
           none: "No mostrar ning\xC3\xBAn detalle de reserva"
           priority: Mostrar nivel de prioridad
         pref: OPACShowHoldQueueDetails
-      - para socios en el OPAC.
+      - para usuarios en el OPAC.
     - 
       - 
         choices: 
@@ -127,7 +127,7 @@ opac.pref:
           1: Mostrar
         default: 0
         pref: OPACShowCheckoutName
-      - "el nombre del socio que tiene un \xC3\xADtem prestado en las p\xC3\xA1ginas de detalles del \xC3\xADtem en el OPAC."
+      - "el nombre del usuario que tiene un \xC3\xADtem prestado en las p\xC3\xA1ginas de detalles del \xC3\xADtem en el OPAC."
     - 
       - 
         choices: 
@@ -158,7 +158,7 @@ opac.pref:
           "": No resaltar
           1: Resaltar
         pref: OpacHighlightedWords
-      - palabras buscadas por el socio para su p?na de resultados y detalles de b??eda.
+      - "palabras buscadas por el usuario para su p\xC3\xA1gina de resultados y detalles de b\xC3\xBAsqueda."
     - 
       - 
         choices: 
@@ -231,7 +231,7 @@ opac.pref:
         pref: OpacMainUserBlock
         type: textarea
     - 
-      - opac.pref#OpacMainUserBlockMobile# Mostrar el siguiente HTML en su propia columna de la p?na principal del OPAC (versi????)
+      - "Mostrar el siguiente HTML en su propia columna de la p\xC3\xA1gina principal del OPAC (versi\xC3\xB3n m\xC3\xB3vil):"
       - 
         class: code
         pref: OpacMainUserBlockMobile
@@ -251,7 +251,7 @@ opac.pref:
         pref: OpacShowFiltersPulldownMobile
       - "desplegar los filtros de b\xC3\xBAsqueda en la versi\xC3\xB3n m\xC3\xB3vil del OPAC."
     - 
-      - "Mostrar el siguiente HTML en la columna izquierda de la p\xC3\xA1gina principal y en la cuenta de socio en el OPAC (generalmente enlaces de navegaci\xC3\xB3n):"
+      - "Mostrar el siguiente HTML en la columna izquierda de la p\xC3\xA1gina principal y en la cuenta de usuario en el OPAC (generalmente enlaces de navegaci\xC3\xB3n):"
       - 
         class: code
         pref: OpacNav
@@ -263,7 +263,7 @@ opac.pref:
         pref: OpacNavRight
         type: textarea
     - 
-      - "Mostrar el siguiente HTML en la columna del lado izquierdo de la p\xC3\xA1gina principal y la cuenta del socio en el OPAC, luego del OpacNav, y antes que los enlaces de la cuenta:"
+      - "Mostrar el siguiente HTML en la columna del lado izquierdo de la p\xC3\xA1gina principal y la cuenta del usuario en el OPAC, luego del OpacNav, y antes que los enlaces de la cuenta:"
       - 
         class: code
         pref: OpacNavBottom
@@ -288,7 +288,7 @@ opac.pref:
         pref: OPACSearchForTitleIn
         type: textarea
     - 
-      - "incluir una \"Enlaces\" columna en \"mi resumen\" y \"mi historia de lectura\" etiquestas cuando un usuario est?ogado en el OPAC, con el siguiente HTML (dejar en blanco para desactivar):"
+      - "incluir una columna \"Enlaces\"  en las pesta\xC3\xB1as  \"mi resumen\" y \"mi historia de lectura\"  cuando un usuario est\xC3\xA1 identificado en el OPAC, con el siguiente HTML (dejar en blanco para desactivar):"
       - "<br />Note: Los marcadores {BIBLIONUMBER}, {TITLE}, {ISBN} y {AUTHOR} ser\xC3\xA1n reemplazados con informaci\xC3\xB3n del registro mostrado."
       - 
         class: code
@@ -309,7 +309,7 @@ opac.pref:
       - "un men\xC3\xBA desplegable de selecci\xC3\xB3n de biblioteca en la cabecera OPAC."
     - 
       - "Mostrar este HTML cuando no se encuentran resultados para un b\xC3\xBAsqueda en el OPAC:"
-      - "opac.pref#OPACNoResultsFound# <br />Nota: Puede insertar lugar de reseva {QUERY_KW} que ser\xC3\xA1 reemplazado con las palabras clave de la consulta."
+      - "<br />Nota: Puede insertar lugar de reseva {QUERY_KW} que ser\xC3\xA1 reemplazado con las palabras clave de la consulta."
       - 
         class: code
         pref: OPACNoResultsFound
@@ -338,13 +338,13 @@ opac.pref:
           "": No separar
           1: Separar
         pref: OpacSeparateHoldings
-      - "opac.pref#OpacSeparateHoldings# elementos que se mostrar\xC3\xA1n en dos pesta\xC3\xB1as, en la primera pesta\xC3\xB1a contiene \xC3\xADtems cuyo"
+      - "elementos que se mostrar\xC3\xA1n en dos pesta\xC3\xB1as, en la primera pesta\xC3\xB1a contiene \xC3\xADtems cuyo"
       - 
         choices: 
-          holdingbranch: opac.pref#OpacSeparateHoldings#biblioteca de reserva
-          homebranch: opac.pref#OpacSeparateHoldings# biblioteca principal
+          holdingbranch: biblioteca de reserva
+          homebranch: biblioteca principal
         pref: OpacSeparateHoldingsBranch
-      - "opac.pref#OpacSeparateHoldings#se ha iniciado la sesi\xC3\xB3n en la biblioteca del usuario. La segunda ficha contendr\xC3\xA1 todos los dem\xC3\xA1s elementos."
+      - "se ha iniciado la sesi\xC3\xB3n en la biblioteca del usuario. La segunda ficha contendr\xC3\xA1 todos los dem\xC3\xA1s elementos."
   "Caracter\xC3\xADsticas": 
     - 
       - 
@@ -352,7 +352,7 @@ opac.pref:
           "": No permitir
           1: Permitir
         pref: opacuserlogin
-      - a los socios acceder a sus cuentas en el OPAC.
+      - a los usuarios acceder a sus cuentas en el OPAC.
     - 
       - Mostrar
       - 
@@ -368,35 +368,35 @@ opac.pref:
           "": No permitir
           1: Permitir
         pref: OpacPasswordChange
-      - "a los socios a cambiar su propia contrase\xC3\xB1a en el OPAC. Tenga en cuenta que esto debe estar apagado para utilizar la autenticaci\xC3\xB3n LDAP."
+      - "a los usuarios a cambiar su propia contrase\xC3\xB1a en el OPAC. Tenga en cuenta que esto debe estar apagado para utilizar la autenticaci\xC3\xB3n LDAP."
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: OPACPatronDetails
-      - "a socios notificar a la biblioteca los cambios en su informaci\xC3\xB3n de contacto en el OPAC."
+      - "a usuarios notificar a la biblioteca los cambios en su informaci\xC3\xB3n de contacto en el OPAC."
     - 
       - 
         choices: 
           "": No mostrar
           1: Mostrar
         pref: OPACpatronimages
-      - "im\xC3\xA1genes de socio en la p\xC3\xA1gina de informaci\xC3\xB3n del socio del OPAC."
+      - "im\xC3\xA1genes de usuario en la p\xC3\xA1gina de informaci\xC3\xB3n del socio del OPAC."
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: OPACFinesTab
-      - "a socios acceder a la pesta\xC3\xB1a Multas en la p\xC3\xA1gina Mi cuenta en el OPAC."
+      - "a usuarios acceder a la pesta\xC3\xB1a Multas en la p\xC3\xA1gina Mi cuenta en el OPAC."
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: OpacBrowser
-      - "a los socios navegar por autoridades en el OPAC (ejecutar misc/cronjobs/build_browser_and_cloud.pl para crear la lista de navegaci\xC3\xB3n)"
+      - "a los usuarios navegar por autoridades en el OPAC (ejecutar misc/cronjobs/build_browser_and_cloud.pl para crear la lista de navegaci\xC3\xB3n)"
     - 
       - 
         choices: 
@@ -410,35 +410,35 @@ opac.pref:
           "": No permitir
           1: Permitir
         pref: OpacAuthorities
-      - socios para buscar en su registros de autoridad.
+      - usuarios para buscar en su registros de autoridad.
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: opacbookbag
-      - a los socios almacenar ?ems en un "Cesta" temporal en el OPAC.
+      - "a los usuarios almacenar \xC3\xADtems en un \"Cesta\" temporal en el OPAC."
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: OpacTopissue
-      - "a los socios acceder a una lista de los \xC3\xADtems m\xC3\xA1s prestados en el OPAC. Tenga en cuenta que esto es algo experimental, y se debe evitar si su colecci\xC3\xB3n tiene un gran n\xC3\xBAmero de \xC3\xADtems."
+      - "a los usuarios acceder a una lista de los \xC3\xADtems m\xC3\xA1s prestados en el OPAC. Tenga en cuenta que esto es algo experimental, y se debe evitar si su colecci\xC3\xB3n tiene un gran n\xC3\xBAmero de \xC3\xADtems."
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: suggestion
-      - a los socios hacer sugerencias de compra en el OPAC.
+      - a los usuarios hacer sugerencias de compra en el OPAC.
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: reviewson
-      - a los socios hacer comentarios sobre los ?ems del OPAC.
+      - "a los usuarios hacer comentarios sobre los \xC3\xADtems del OPAC."
     - 
       - Mostrar
       - 
@@ -464,7 +464,7 @@ opac.pref:
           "": No permitir
           1: Permitir
         pref: RequestOnOpac
-      - "a socios reservar \xC3\xADtems desde el OPAC."
+      - "a usuarios reservar \xC3\xADtems desde el OPAC."
     - 
       - Mostrar
       - 
@@ -494,7 +494,7 @@ opac.pref:
           1: Permitir
         default: 0
         pref: QuoteOfTheDay
-      - "Cuota del d\xC3\xADa aplicable en la p\xC3\xA1gina principal en el  OPAC "
+      - "Consejo del d\xC3\xADa aplicable en la p\xC3\xA1gina principal en el  OPAC "
     - 
       - 
         choices: 
@@ -506,11 +506,11 @@ opac.pref:
     - 
       - 
         choices: 
-          "": No permitir
-          1: Permitir
+          "": Do not allow
+          1: Allow
         default: 0
-        pref: OpacShowHoldNotes
-      - "a los usuarios a\xC3\xB1adir una nota cuando hacen una reserva"
+        pref: OpacHoldNotes
+      - users to add a note when placing a hold.
   "Navegador de estanter\xC3\xADa": 
     - 
       - 
@@ -518,7 +518,7 @@ opac.pref:
           "": No mostrar
           1: Mostrar
         pref: OPACShelfBrowser
-      - navegaci??or estanter?n las p?nas de detalles del ?em, permitiendo a los socios ver lo que est?erca de ese ?em en el estante. Tener en cuenta esta utilidad utiliza una cantidad bastante grande de recursos en el servidor, y debe ser evitada si su colecci??iene un gran n??o de ?ems.
+      - "navegaci\xC3\xB3n por estanter\xC3\xADas en las p\xC3\xA1ginas de detalles del \xC3\xADtem, permitiendo a los usuarios ver lo que est\xC3\xA1 cerca de ese \xC3\xADtem en el estante. Tener en cuenta esta utilidad utiliza una cantidad bastante grande de recursos en el servidor, y debe ser evitada si su colecci\xC3\xB3n tiene un gran n\xC3\xBAmero de \xC3\xADtems."
     - 
       - 
         choices: 
@@ -551,28 +551,28 @@ opac.pref:
           1: No permitir
         default: 0
         pref: singleBranchMode
-      - opac.pref#singleBranchMode# los socios seleccionar?u biblioteca en el OPAC o mostrar la biblioteca en el nombre de la signatura.
+      - los usuarios seleccionar su biblioteca en el OPAC o mostrar la biblioteca en el nombre de la signatura.
     - 
       - 
         choices: 
           "": No limite
           1: Limite
         pref: SearchMyLibraryFirst
-      - "las b\xC3\xBAsquedas de los socios a la biblioteca en que est\xC3\xA1n registrados."
+      - "las b\xC3\xBAsquedas de los usuarios a la biblioteca en que est\xC3\xA1n registrados."
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: OPACItemHolds
-      - a los socios hacer reservas sobre ?ems espec?icos en el OPAC. Si no est?abilitado, los usuarios s??pueden poner una reserva en el siguiente ?em disponible.
+      - "a los usuarios hacer reservas sobre \xC3\xADtems espec\xC3\xADficos en el OPAC. Si no est\xC3\xA1 habilitado, los usuarios s\xC3\xB3lo pueden poner una reserva en el siguiente \xC3\xADtem disponible."
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: OpacRenewalAllowed
-      - socios para renovar sus propios libros en el OPAC.
+      - usuarios para renovar sus propios libros en el OPAC.
     - 
       - Usar
       - 
@@ -581,11 +581,11 @@ opac.pref:
           checkoutbranch: "el \xC3\xADtem de la biblioteca ha sido prestado de"
           itemhomebranch: "la sede de origen del \xC3\xADtem"
           opacrenew: "'OPACRenew'"
-          patronhomebranch: la sede de origen del socio
+          patronhomebranch: la sede de origen del usuario
         pref: OpacRenewalBranch
       - "como c\xC3\xB3digo de biblioteca para almacenar en las tablas estad\xC3\xADsticas"
     - 
-      - "S\xC3\xB3lo se permitir\xC3\xA1 a los socios renovar sus propios libros en el OPAC si tienen menos de"
+      - "S\xC3\xB3lo se permitir\xC3\xA1 a los usuarios renovar sus propios libros en el OPAC si tienen menos de"
       - 
         class: currency
         pref: OPACFineNoRenewals
@@ -596,7 +596,7 @@ opac.pref:
           "": No mostrar
           1: Mostrar
         pref: OPACViewOthersSuggestions
-      - sugerencias de compra de otros socios en el OPAC.
+      - sugerencias de compra de otros usuarios en el OPAC.
     - 
       - 
         choices: 
@@ -604,13 +604,13 @@ opac.pref:
           1: Permitir
         default: 0
         pref: AllowPurchaseSuggestionBranchChoice
-      - a los socios seleccionar biblioteca cuando hagan una sugerencia de compra
+      - a los usuarios seleccionar biblioteca cuando hagan una sugerencia de compra
     - 
       - 
         class: code
         pref: OpacHiddenItems
         type: textarea
-      - Permite definir reglas a medida para ocultar ?ems espec?icos en el OPAC. Vea docs/opac/OpacHiddenItems.txt para m?informaci?
+      - "Permite definir reglas a medida para ocultar \xC3\xADtems espec\xC3\xADficos en el OPAC. Vea docs/opac/OpacHiddenItems.txt para m\xC3\xA1s informaci\xC3\xB3n"
     - 
       - 
         choices: 
@@ -626,7 +626,7 @@ opac.pref:
           1: Permitir
         default: 0
         pref: OpacAllowSharingPrivateLists
-      - "a usuarios del OPAC compartir listas privadas con otros socios. Esta caracter\xC3\xADstica no est\xC3\xA1 activa, se espera proximamente."
+      - "a usuarios del OPAC compartir listas privadas con otros usuarios. Esta caracter\xC3\xADstica no est\xC3\xA1 activa, se espera proximamente."
   Privacidad: 
     - 
       - 
@@ -634,14 +634,14 @@ opac.pref:
           "": No permitir
           1: Permitir
         pref: AnonSuggestions
-      - "hacer sugerencias de compra a socios que no hayan ingresado. Las sugerencias est\xC3\xA1n conectadas a la preferencia del sistema AnonymousPatron"
+      - "hacer sugerencias de compra a usuarios que no hayan ingresado. Las sugerencias est\xC3\xA1n conectadas a la preferencia del sistema AnonymousPatron"
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: opacreadinghistory
-      - "a los socios ver qu\xC3\xA9 libros tuvieron en pr\xC3\xA9stamo en el pasado."
+      - "a los usuarios ver qu\xC3\xA9 libros tuvieron en pr\xC3\xA9stamo en el pasado."
     - 
       - 
         choices: 
@@ -649,7 +649,7 @@ opac.pref:
           1: Mantener
         default: 0
         pref: EnableOpacSearchHistory
-      - "historial de b\xC3\xBAsquedas del socio en el OPAC."
+      - "historial de b\xC3\xBAsquedas del usuario en el OPAC."
     - 
       - 
         choices: 
@@ -657,13 +657,13 @@ opac.pref:
           1: Permitir
         default: 0
         pref: OPACPrivacy
-      - "a socios elegir su configuraci\xC3\xB3n de privacidad para su historial de lectura. Esto requiere opacreadinghistory y AnonymousPatron"
+      - "a usuarios elegir su configuraci\xC3\xB3n de privacidad para su historial de lectura. Esto requiere opacreadinghistory y AnonymousPatron"
     - 
       - Utilice el borrowernumber
       - 
         class: integer
         pref: AnonymousPatron
-      - "como el Socio An\xC3\xB3nimo (para sugerencias an\xC3\xB3nimas y historial de lectura)"
+      - "como el usuario An\xC3\xB3nimo (para sugerencias an\xC3\xB3nimas y historial de lectura)"
     - 
       - 
         choices: 
@@ -672,7 +672,7 @@ opac.pref:
           track: Seguir
         default: 0
         pref: TrackClicks
-      - enlaces en los que han clicado los socios
+      - enlaces en los que han clicado los usuarios
   opac.pref Self Registration: 
     - 
       - 
@@ -680,40 +680,40 @@ opac.pref:
           "": No permitir
           1: Permitir
         pref: PatronSelfRegistration
-      - para los socios de la biblioteca que quieren registrar una cuenta desde el OPAC.
+      - a los usuarios de la biblioteca  registrar una cuenta desde el OPAC.
     - 
       - 
         choices: 
           "": No requerir
           1: Requerir
         pref: PatronSelfRegistrationVerifyByEmail
-      - "que el socio verifique el autoregistro a trav\xC3\xA9s del correo electr\xC3\xB3nico."
+      - "que el usuario verifique el autoregistro a trav\xC3\xA9s del correo electr\xC3\xB3nico."
     - 
-      - "Utilizar el c\xC3\xB3digo de categor\xC3\xADa de socio"
+      - "Utilizar el c\xC3\xB3digo de categor\xC3\xADa de usuario"
       - 
         class: short
         pref: PatronSelfRegistrationDefaultCategory
-      - "como predeterminada la categor\xC3\xADa de socio para los socios registrados desde el OPAC."
+      - "como predeterminada la categor\xC3\xADa de usuario para los usuarios registrados desde el OPAC."
     - 
-      - Borrar los socios registrados desde el OPAC, pero que no han sido verificados todav
+      - "Borrar los usuarios registrados desde el OPAC, pero que no han sido verificados todav\xC3\xADa"
       - 
         class: integer
         pref: PatronSelfRegistrationExpireTemporaryAccountsDelay
-      - d?.
+      - "d\xC3\xADas."
     - 
-      - "El siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a> deber?er rellenado en la pantalla de entrada del socio:"
+      - "El siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a> deber\xC3\xA1 ser rellenado en la pantalla de entrada del usuario:"
       - 
         class: multi
         pref: PatronSelfRegistrationBorrowerMandatoryField
       - (separar columnas con |)
     - 
-      - "La siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a>no aparecer?n la pantalla de entrada del socio:"
+      - "La siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a>no aparecer\xC3\xA1n la pantalla de entrada del usuario:"
       - 
         class: multi
         pref: PatronSelfRegistrationBorrowerUnwantedField
       - "(separar columnas con  |) "
     - 
-      - "Mostrar las siguientes instrucciones adicionales para los socios que se autorregistran en el OPAC (se permite HTML):"
+      - "Mostrar las siguientes instrucciones adicionales para los usuarios que se autorregistran en el OPAC (se permite HTML):"
       - 
         class: html
         pref: PatronSelfRegistrationAdditionalInstructions

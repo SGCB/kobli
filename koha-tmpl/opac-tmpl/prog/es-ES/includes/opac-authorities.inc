@@ -4,7 +4,7 @@
  [% ELSE %] <a href="opac-authoritiesdetail.pl?authid=[% node.authid %]" title="Término">[% node.value | html %]</a>
  [% END %] [% IF ( node.children && node.children.size > 0 ) %] [% PROCESS showtree tree = node.children %] [% END %] </li>
  [% END %] </ul>
-[% END %] [% BLOCK authtypelabel %] [% UNLESS ( type=='seefrom' || type=='seealso' || type=='' ) %] <span class="type">[% FILTER trim %][% SWITCH type %] [% CASE 'earlier' %]Earlier heading [% CASE 'later' %]Later heading [% CASE 'acronym' %]Acronym [% CASE 'musical' %]Musical composition [% CASE 'broader' %]Broader heading [% CASE 'narrower' %]Narrower heading [% CASE %][% type %] [% END %][% END %]</span>
+[% END %] [% BLOCK authtypelabel %] [% UNLESS ( type=='seefrom' || type=='seealso' || type=='' ) %] <span class="type">[% FILTER trim %][% SWITCH type %] [% CASE 'earlier' %]Asiento anterior[% CASE 'later' %]Asiento posterior [% CASE 'acronym' %]Acrónimo [% CASE 'musical' %]Composición musical [% CASE 'broader' %]Término más general [% CASE 'narrower' %]Término más específico [% CASE %][% type %] [% END %][% END %]</span>
  [% END %] [% END %] [% BLOCK otherscript %] [% FOREACH heading IN headings %] [% IF heading.category == wantcategory %] [% IF heading.direction == 'ltr' %] <div class="heading otherscript [% heading.category %]">
  <span class="[% heading.category %]">[% heading.term %]</span>
  </div>

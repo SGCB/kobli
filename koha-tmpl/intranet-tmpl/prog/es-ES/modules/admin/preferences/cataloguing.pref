@@ -42,7 +42,7 @@ cataloguing.pref:
         pref: MARCOrgCode
       - por defecto en nuevos registros MARC (deje en blanco para deshabilitar).
     - 
-      - Cuando se crean los ?tems, asignarles ubicaci??emporal en
+      - "Cuando se crean los \xC3\xADtems, asignarles ubicaci\xC3\xB3n temporal en"
       - 
         class: short
         pref: NewItemsDefaultLocation
@@ -62,7 +62,7 @@ cataloguing.pref:
       - "Los c\xC3\xB3digos de barras"
       - 
         choices: 
-          EAN13: "cataloguing.pref#autoBarcode# incremental EAN-13 c\xC3\xB3digo de barras"
+          EAN13: "incremental EAN-13 c\xC3\xB3digo de barras"
           "OFF": "no son generados autom\xC3\xA1ticamente."
           annual: son generados con la forma &lt;year&gt;-0001, &lt;year&gt;-0002.
           hbyymmincr: son generados con la forma &lt;branchcode&gt;yymm0001.
@@ -76,7 +76,7 @@ cataloguing.pref:
           1: "el nuevo \xC3\xADtem se rellena autom\xC3\xA1ticamente con los \xC3\xBAltimos valores de \xC3\xADtem creados."
         pref: PrefillItem
     - 
-      - cataloguing.pref#SubfieldsToUseWhenPrefill# Definir una lista de subcampos para usar cuando rellenen los ?ms (separado por espacio)
+      - "Definir una lista de subcampos para usar cuando rellenen los \xC3\xADtems (separado por espacio)"
       - 
         pref: SubfieldsToUseWhenPrefill
     - 
@@ -93,12 +93,13 @@ cataloguing.pref:
           biblionumber: generado igual que el biblionumber.
           incremental: generado de la manera 1, 2, 3.
         pref: autoControlNumber
+      - (You should fill in a value in incrementalControlNumber preference.)
     - 
       - "Usar el N\xC3\xBAmero de control (001)"
       - 
         class: integer
         pref: incrementalControlNumber
-      - "como n\xC3\xBAmero incremental. Esto requiere la opci\xC3\xB3n incremental en autoControlNumber."
+      - as incremental number. (This requires generated in the form 1, 2, 3 in autoControlNumber preference.)
   Interfaz: 
     - 
       - Usar
@@ -174,7 +175,7 @@ cataloguing.pref:
           "": No ocultar
           1: Ocultar
         pref: OpacSuppression
-      - "dems marcados como suprimidos en el resultado de una b??eda OPAC. Note que debe tener el \xC3\xADndice <code>Suprimido</code> configurado en Zebra y por lo menos un ?tem suprimido, o no funcionar?sus b??edas."
+      - "\xC3\xADtems marcados como suprimidos en el resultado de una b\xC3\xBAsqueda OPAC. Note que debe tener el \xC3\xADndice <code>Suprimido</code> configurado en Zebra y por lo menos un \xC3\xADtem suprimido, o no funcionar\xC3\xA1n sus b\xC3\xBAsquedas."
       - "Restringir la supresi\xC3\xB3n de direcciones IP fuera del rango de IP"
       - 
         class: short
@@ -189,8 +190,8 @@ cataloguing.pref:
       - "items mostrados en dos pesta\xC3\xB1as, la primera pesta\xC3\xB1a contiene los \xC3\xADtems que"
       - 
         choices: 
-          holdingbranch: cataloguing.pref#SeparateHoldings# biblioteca de transferencia
-          homebranch: cataloguing.pref#SeparateHoldings# biblioteca de origen
+          holdingbranch: biblioteca de transferencia
+          homebranch: biblioteca de origen
         pref: SeparateHoldingsBranch
       - "es el que ha accedido a la biblioteca del usuario. La segunda pesta\xC3\xB1a contendr\xC3\xA1 los otros \xC3\xADtems"
     - 

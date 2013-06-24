@@ -19,7 +19,7 @@ circulation.pref:
           "": No mostrar
           1: Mostrar
         pref: ShowPatronImageInWebBasedSelfCheck
-      - "la imagen del socio (si hay una) cuando utiliza el sistema Web de auto-pr\xC3\xA9stamo."
+      - "la imagen del usuario (si hay una) cuando utiliza el sistema Web de auto-pr\xC3\xA9stamo."
     - 
       - 
         choices: 
@@ -28,7 +28,7 @@ circulation.pref:
         pref: WebBasedSelfCheck
       - "el sistema de auto pr\xC3\xA9stamo basado en Web. (Disponible en: /cgi-bin/koha/sco/sco-main.pl)"
     - 
-      - "Haga que los socios ingresen al sistema Web de auto-pr\xC3\xA9stamo con su"
+      - "Haga que los usuarios ingresen al sistema Web de auto-pr\xC3\xA9stamo con su"
       - 
         choices: 
           "": "c\xC3\xB3digo de barras"
@@ -46,7 +46,7 @@ circulation.pref:
           "": No permitir
           1: Permitir
         pref: AllowSelfCheckReturns
-      - "a los socios devolver \xC3\xADtems a utilizando el sistema web de auto pr\xC3\xA9stamo."
+      - "a los usuarios devolver \xC3\xADtems a utilizando el sistema web de auto pr\xC3\xA9stamo."
     - 
       - "Incluya el siguiente HTML en la p\xC3\xA1gina de ayuda del sistema Web de auto-pr\xC3\xA9stamo:"
       - 
@@ -81,13 +81,13 @@ circulation.pref:
           "": No intentar
           1: Intentar
         pref: CircAutocompl
-      - "adivinar el socio que est\xC3\xA1 siendo ingresado mientras se escribe en la b\xC3\xBAsqueda de socios de la pantalla de circulaci\xC3\xB3n."
+      - "adivinar el usuario que mientras se escribe en la b\xC3\xBAsqueda de usuarios de la pantalla de circulaci\xC3\xB3n."
       - "S\xC3\xB3lo devolver los primeros 10 resultados al mismo tiempo."
     - 
       - 
         choices: 
           "": No filtrar
-          EAN13: circulation.pref#itemBarcodeInputFilter# EAN-13 o zero-padded UPC-A desde
+          EAN13: EAN-13 o zero-padded UPC-A desde
           T-prefix: "Eliminar el primer n\xC3\xBAmero del estilo prefijo T"
           cuecat: Convertir de la forma CueCat
           libsuite8: Convierta desde la forma Libsuite8
@@ -117,7 +117,7 @@ circulation.pref:
           "": No habilitar
           1: Habilitar
         pref: UseTablesortForCirc
-      - "el ordenamiento de los pr?amos del socio actual en la pantalla de circulaci??<br/>NOTA: Habilitar esta funci??uede hacer m?lento el proceso para socios con muchos ?ems prestados."
+      - "el orden de los pr\xC3\xA9stamos actuales del usuario en la pantalla de circulaci\xC3\xB3n<br/>NOTA: Habilitar esta funci\xC3\xB3n uede hacer m\xC3\xA1s lento el proceso para usuarios con muchos \xC3\xADtems prestados."
     - 
       - 
         choices: 
@@ -157,14 +157,14 @@ circulation.pref:
           "": No notificar
           1: Notificar
         pref: FineNotifyAtCheckin
-      - al personal las multas por retrasos en los dems que est?devolviendo.
+      - "al personal las multas por retrasos en los \xC3\xADtems que est\xC3\xA1 devolviendo."
     - 
       - 
         choices: 
           "": No notificar
           1: Notificar
         pref: WaitingNotifyAtCheckin
-      - "a los bibliotecarios visualizar reservas en espera cuando el socio realiza una devoluci\xC3\xB3n"
+      - "a los bibliotecarios visualizar reservas en espera cuando el usuario realiza una devoluci\xC3\xB3n"
     - 
       - 
         choices: 
@@ -178,7 +178,7 @@ circulation.pref:
           "": No mostrar
           1: Mostrar
         pref: DisplayClearScreenButton
-      - "un bot\xC3\xB3n para limpiar el socio actual en la pantalla de circulaci\xC3\xB3n."
+      - "un bot\xC3\xB3n para limpiar el usuario actual en la pantalla de circulaci\xC3\xB3n."
     - 
       - 
         choices: 
@@ -211,9 +211,9 @@ circulation.pref:
       - Usar la
       - 
         pref: ExportWithCsvProfile
-      - "perfil CSV cuando el socio exporta el hist\xC3\xB3rico de pr\xC3\xA9stamo  (introducir nombre de perfil CSV)              "
+      - "perfil CSV cuando el usuario exporta el hist\xC3\xB3rico de pr\xC3\xA9stamo  (introducir nombre de perfil CSV)              "
     - 
-      - "Los siguientes campos deber\xC3\xADan ser exclu\xC3\xADdos del CSV hist\xC3\xB3rico de pr\xC3\xA9stamos del socio o exportar en iso2709"
+      - "Los siguientes campos deber\xC3\xADan ser exclu\xC3\xADdos del CSV hist\xC3\xB3rico de pr\xC3\xA9stamos del usuario o exportar en iso2709"
       - 
         pref: ExportRemoveFields
       - (separar campos con espacio, e.j. 100a 200b 300c)
@@ -285,7 +285,7 @@ circulation.pref:
           "": No permitir
           1: Permitir
         pref: AllowFineOverride
-      - "al personal anular manualmente y prestar \xC3\xADtems a socios que tienen sanciones superiores a la sanci\xC3\xB3n m\xC3\xA1xima."
+      - "al personal anular manualmente y prestar \xC3\xADtems a usuarios que tienen sanciones superiores a la sanci\xC3\xB3n m\xC3\xA1xima."
     - 
       - 
         choices: 
@@ -332,7 +332,7 @@ circulation.pref:
       - 
         choices: 
           ItemHomeLibrary: la biblioteca de origen del libro.
-          PatronLibrary: la biblioteca de origen del socio.
+          PatronLibrary: la biblioteca de origen del usuario.
           PickupLibrary: la biblioteca donde se ha registrado.
         pref: CircControl
         type: choice
@@ -375,9 +375,9 @@ circulation.pref:
           "": No enviar
           1: Enviar
         pref: RenewalSendNotice
-      - "el aviso de renovaci\xC3\xB3n de socio se verificar\xC3\xA1n con las preferencias de alerta."
+      - "el aviso de renovaci\xC3\xB3n de usuario se verificar\xC3\xA1n con las preferencias de alerta."
     - 
-      - "Limita a los socios hacer reservas en el OPAC si deben m\xC3\xA1s de"
+      - "Limita a los usuarios hacer reservas en el OPAC si deben m\xC3\xA1s de"
       - 
         class: currency
         pref: maxoutstanding
@@ -394,12 +394,12 @@ circulation.pref:
           "": Impidir
           1: No impidir
         pref: IssuingInProcess
-      - "a los socios pedir prestado un \xC3\xADtem cuyo valor de alquiler los lleve sobre el l\xC3\xADmite."
+      - "a los usuarios pedir prestado un \xC3\xADtem cuyo valor de alquiler los lleve sobre el l\xC3\xADmite."
     - 
-      - "Restringir los socios con los valores siguientes de p\xC3\xBAblico objetivo desde la salida inapropiada de materiales:"
+      - "Restringir los usuarios con los valores siguientes de p\xC3\xBAblico objetivo desde la salida inapropiada de materiales:"
       - 
         pref: AgeRestrictionMarker
-      - "E.j. introducir palabras clave objetivo dividido por | (bar) FSK|PEGI|Age| (No hay espacio blanco cerca |). Asefurese de mapear a agerestriction de Koha a mapeo MARC  (e.j. 521$a). Un valor de campo MARC  FSK 12 o PEGI 12 deber?siginificar: Prestatario debe ser mayor de 12 a\xC3\xB1os Dejar vac\xC3\xADo sino aplica ninguna restricci\xC3\xB3n de edad. "
+      - "E.j. introducir palabras clave objetivo dividido por | (bar) FSK|PEGI|Age| (No hay espacio blanco cerca |). Aseg\xC3\xBArese de mapear una restricci\xC3\xB3n de edad de Koha en el mapeo MARC  (e.j. 521$a). Un valor de campo MARC  FSK 12 o PEGI 12 deber\xC3\xADa siginificar: Prestatario debe ser mayor de 12 a\xC3\xB1os. Dejar vac\xC3\xADo sino aplica ninguna restricci\xC3\xB3n de edad. "
     - 
       - 
         choices: 
@@ -433,7 +433,7 @@ circulation.pref:
           "": No requerir
           1: Requerir
         pref: ReturnBeforeExpiry
-      - "a los socios la devoluci\xC3\xB3n de \xC3\xADtems antes del vencimiento de su carnet (asegurando que las fechas de devoluci\xC3\xB3n sean previas a la fecha de expiraci\xC3\xB3n de la membres\xC3\xADa)."
+      - "a los usuarios la devoluci\xC3\xB3n de \xC3\xADtems antes del vencimiento de su carnet (asegurando que las fechas de devoluci\xC3\xB3n sean previas a la fecha de expiraci\xC3\xB3n)."
     - 
       - "Enviar todos los avisos como BCC a esta direcci\xC3\xB3n de email"
       - 
@@ -443,7 +443,7 @@ circulation.pref:
       - 
         class: integer
         pref: PrintNoticesMaxLines
-      - "l\xC3\xADneas de \xC3\xADtems en un aviso de retraso impreso. Si el n\xC3\xBAmero de \xC3\xADtems es mayor que este n\xC3\xBAmero, el aviso finalizar\xC3\xA1 con una advertencia pidiendo al socio consultar su cuenta en linea por la lista completa de \xC3\xADtems retrasados. Poner en 0 para incluir todos los \xC3\xADtems retrasados en el aviso, independientemente de cuantos sean."
+      - "l\xC3\xADneas de \xC3\xADtems en un aviso de retraso impreso. Si el n\xC3\xBAmero de \xC3\xADtems es mayor que este n\xC3\xBAmero, el aviso finalizar\xC3\xA1 con una advertencia pidiendo al usuario consultar su cuenta en linea por la lista completa de \xC3\xADtems retrasados. Poner en 0 para incluir todos los \xC3\xADtems retrasados en el aviso, independientemente de cuantos sean."
     - 
       - 
         choices: 
@@ -451,7 +451,7 @@ circulation.pref:
           confirmation: "Pida confirmaci\xC3\xB3n"
           noblock: No bloquear
         pref: OverduesBlockCirc
-      - cuando intente prestar a un socio con retrasos pendientes
+      - cuando intente prestar a un usuario con retrasos pendientes
     - 
       - "Habilitar ruta de devoluci\xC3\xB3n del \xC3\xADtem devuelto a"
       - 
@@ -504,15 +504,15 @@ circulation.pref:
           "": No permitir
           1: Permitir
         pref: OPACAllowHoldDateInFuture
-      - "a los socios hacer reservas que no entran en lista de espera hasta una fecha futura. (AllowHoldDateInFuture tambi\xC3\xA9n debe ser habilitado)."
+      - "a los usuario hacer reservas que no entran en lista de espera hasta una fecha futura. (AllowHoldDateInFuture tambi\xC3\xA9n debe ser habilitado)."
     - 
       - Verificar la
       - 
         choices: 
           ItemHomeLibrary: "biblioteca de origen del \xC3\xADtem"
-          PatronLibrary: biblioteca de origen del socio
+          PatronLibrary: biblioteca de origen del usuario
         pref: ReservesControlBranch
-      - "para ver si el socio puede hacer una reserva del \xC3\xADtem."
+      - "para ver si el usuario puede hacer una reserva del \xC3\xADtem."
     - 
       - "Marcar una reserva como problem\xC3\xA1tica si ha estado en espera m\xC3\xA1s de"
       - 
@@ -527,7 +527,7 @@ circulation.pref:
         pref: ExpireReservesMaxPickUpDelay
       - "reservas que expiran autom\xC3\xA1ticamente si no han sido seleccionadas dentro del plazo especificado en ReservesMaxPickUpDelay"
     - 
-      - "Si utiliza ExpireReservesMaxPickUpDelay, aplique al socio que permiti\xC3\xB3 expirar su reserva una sanci\xC3\xB3n de "
+      - "Si utiliza ExpireReservesMaxPickUpDelay, aplique al usuario que permiti\xC3\xB3 expirar su reserva una sanci\xC3\xB3n de "
       - 
         class: currency
         pref: ExpireReservesMaxPickUpDelayCharge
@@ -565,7 +565,7 @@ circulation.pref:
         pref: ReservesNeedReturns
       - marcar reservas como encontradas y en espera cuando se pone una reserva en ellos y se han devuelto.
     - 
-      - "Los socios s\xC3\xB3lo pueden tener"
+      - "Los usuarios s\xC3\xB3lo pueden tener"
       - 
         class: integer
         pref: maxreserves
@@ -630,10 +630,10 @@ circulation.pref:
     - 
       - 
         choices: 
-          "": circulation.pref#AllowHoldsOnPatronsPossessions# No permitir
+          "": No permitir
           1: Permitir
         pref: AllowHoldsOnPatronsPossessions
-      - "circulation.pref#AllowHoldsOnPatronsPossessions# un socio para hacer una reserva de un registro cuando el socio ya tiene uno o m\xC3\xA1s elementos conectados a ese registro pr\xC3\xA9stado."
+      - " un usuario para hacer una reserva de un registro cuando el usuario ya tiene uno o m\xC3\xA1s elementos conectados a ese registro prestado."
   circulation.pref Checkin Policy: 
     - 
       - 

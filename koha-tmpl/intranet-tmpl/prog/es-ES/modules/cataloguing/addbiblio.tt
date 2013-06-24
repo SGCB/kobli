@@ -12,6 +12,10 @@
 			$("#"+ui.panel.id+" input:eq(0)").focus();
 		});
 
+        [% IF tab %]
+          $('#addbibliotabs').tabs('option', 'selected', "#[% tab %]");
+        [% END %]
+
 		/* check cookie to hide/show marcdocs*/
 		if($.cookie("marcdocs_[% borrowernumber %]") == 'false'){
 			hideMARCdocLinks();
@@ -54,7 +58,10 @@
         });
         $("#saveandcontinue").click(function(){
             $(".btn-group").removeClass("open");
-            redirect("just_save");
+            var tab = $("#addbibliotabs li.ui-tabs-selected:first a").attr('href');
+            tab = tab.replace('#', '');
+            $("#current_tab").val(tab);
+            redirect("just_save", tab);
             return false;
         });
 
@@ -841,6 +848,7 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
     </script>
 [% ELSE %] <form method="post" name="f" id="f" action="/cgi-bin/koha/cataloguing/addbiblio.pl" onsubmit="return Check();" enctype="multipart/form-data">
  <input type="hidden" value="[% IF ( biblionumber ) %]view[% ELSE %]items[% END %]" id="redirect" name="redirect" />
+ <input type="hidden" value="" id="current_tab" name="current_tab" />
  <input type="hidden" value="0" id="confirm_not_duplicate" name="confirm_not_duplicate" />
 [% END %] <div id="toolbar" class="btn-toolbar">
  [% IF ( CAN_user_editcatalogue_edit_items ) %]
@@ -864,25 +872,31 @@ function unHideSubfield(index,labelindex) { // FIXME :: is it used ?
  [% ELSE %]
  <!-- User cannot edit items - single button redirecting to view -->
  <div class="btn-group"><a href="#" id="saveandview" class="btn btn-small"><i class="icon-hdd"></i> Guardar</a></div>
- [% END %] </select>
+ [% END %] [% UNLESS (circborrowernumber) %][%# Hide in fast cataloging %] <div class="btn-group"><a class="btn btn-small" href="#" id="z3950search"><i class="icon-search"></i> Búsqueda Z39.50</a></div>
+ [% IF (biblionumber) %] [% IF ( BiblioDefaultViewmarc ) %] <div class="btn-group">
+ <a class="btn btn-small" id="cancel" href="/cgi-bin/koha/catalogue/MARCdetail.pl?biblionumber=[% biblionumber |url %]">Cancelar</a>
  </div>
- </script>
-
- <ul class="toolbar">
- <li id="savebutton"><input value="Guardar" id="addbiblio" type="submit" /></li>
- [% UNLESS (circborrowernumber) %][%# Hide in fast cataloging %] <li id="z3950searchc"><input value="Búsqueda Z39.50" type="button" id="z3950search" onclick="PopupZ3950(); return false;" /></li>
- <li id="changeframework"><label for="Frameworks">Modificar hoja de trabajo: </label>
+ [% ELSIF ( BiblioDefaultViewlabeled_marc ) %] <div class="btn-group">
+ <a class="btn btn-small" id="cancel" href="/cgi-bin/koha/catalogue/labeledMARCdetail.pl?biblionumber=[% biblionumber |url %]">Cancelar</a>
+ </div>
+ [% ELSIF ( BiblioDefaultViewisbd ) %] <div class="btn-group">
+ <a class="btn btn-small" id="cancel" href="/cgi-bin/koha/catalogue/ISBDdetail.pl?biblionumber=[% biblionumber |url %]">Cancelar</a>
+ </div>
+ [% ELSE %] <div class="btn-group">
+ <a class="btn btn-small" id="cancel" href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblionumber |url %]">Cancelar</a>
+ </div>
+ [% END %] [% ELSE %] <a class="btn btn-small" id="cancel" href="/cgi-bin/koha/cataloguing/addbooks.pl">Cancelar</a>
+ [% END %] [% END %] <div class="btn-group">
+ <label for="Frameworks">Modificar hoja de trabajo: </label>
  <select name="frameworkcode" id="Frameworks" onchange="Changefwk(this);">
  <option value="Default">Predeterminado</option>
  [% FOREACH frameworkcodeloo IN frameworkcodeloop %] [% IF ( frameworkcodeloo.selected ) %] <option value="[% frameworkcodeloo.value %]" selected="selected">
  [% ELSE %] <option value="[% frameworkcodeloo.value %]">
- [% END %] [% frameworkcodeloo.frameworktext %] </option> 
- [% END %] </select> 
- </li>
- [% END %] </ul>
- [% IF ( showFilesLocalRepository ) %] [% INCLUDE 'cataloguing-attach-files.inc' %] [% END %] </div>
-
-[% IF ( popup ) %] <input type="hidden" name="mode" value="popup" />
+ [% END %] [% frameworkcodeloo.frameworktext %] </option>
+ [% END %] </select>
+ </div>
+</div>
+ [% IF ( showFilesLocalRepository ) %] [% INCLUDE 'cataloguing-attach-files.inc' %] [% END %] [% IF ( popup ) %] <input type="hidden" name="mode" value="popup" />
 [% END %] <input type="hidden" name="op" value="addbiblio" />
  <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
  <input type="hidden" name="biblionumber" value="[% biblionumber %]" />

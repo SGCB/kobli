@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; [% IF ( op_save ) %] [% IF ( suggestionid) %] [% IF ( op == 'show' ) %] Mostrar sugerencia de compra #[% suggestionid %] [% ELSE %] Editar sugerencia de compra #[% suggestionid %] [% END %] [% ELSE %] Ingresar una nueva sugerencia de compra [% END %] [% ELSE %] Administración de sugerencias [% END %] </title>
+[% USE KohaAuthorisedValues %] [% USE KohaBranchName %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; [% IF ( op_save ) %] [% IF ( suggestionid) %] [% IF ( op == 'show' ) %] Mostrar sugerencia de compra #[% suggestionid %] [% ELSE %] Editar sugerencia de compra #[% suggestionid %] [% END %] [% ELSE %] Ingresar una nueva sugerencia de compra [% END %] [% ELSE %] Administración de sugerencias [% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] [% IF ( op_else ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
@@ -151,7 +151,29 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <ol>
  <li>
  <span class="label">Estado:</span>
- [% IF ( STATUS == 'ASKED' ) %]Pendiente [% ELSIF ( STATUS == 'ACCEPTED' ) %]Aceptada [% ELSIF ( STATUS == 'CHECKED' ) %]Revisada [% ELSIF ( STATUS == 'REJECTED' ) %]Rechazada [% ELSE %]Sin estado [% END %] </li>
+ [% SET status_found = 0 %]
+ [% IF ( STATUS == 'ASKED' ) %]
+ Pending
+ [% SET status_found = 1 %]
+ [% ELSIF ( STATUS == 'ACCEPTED' ) %]
+ Accepted
+ [% SET status_found = 1 %]
+ [% ELSIF ( STATUS == 'CHECKED' ) %]
+ Checked
+ [% SET status_found = 1 %]
+ [% ELSIF ( STATUS == 'REJECTED' ) %]
+ Rejected
+ [% SET status_found = 1 %]
+ [% ELSE %]
+ [% FOREACH s IN SuggestionStatuses %]
+ [% IF STATUS == s.authorised_value %]
+ [% s.lib %]
+ [% SET status_found = 1 %]
+ [% END %]
+ [% END %]
+ [% END %]
+
+ </li>
  <li>
  <table>
  <thead><tr><th>&nbsp;</th><th>Fecha</th><th>Por</th></tr></thead>
@@ -159,17 +181,17 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <tr>
  <th><span class="label">Creación de sugerencia</span> </th>
  <td>[% suggesteddate %]</td>
- <td>[% IF ( suggestedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% suggestedby_borrowernumber %]">[% suggestedby_surname %], [% suggestedby_firstname %]</a> [% suggestedby_branchcode %] ([% suggestedby_description %])[% END %] </td>
+ <td>[% IF ( suggestedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% suggestedby_borrowernumber %]">[% suggestedby_surname %], [% suggestedby_firstname %]</a> [% suggestedby_branchcode | $KohaBranchName %] ([% suggestedby_description %])[% END %] </td>
  </tr>
  <tr>
  <th><span class="label">Administración de sugerencias</span> </th>
  <td>[% manageddate %]</td>
- <td>[% IF ( managedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% managedby_borrowernumber %]">[% managedby_surname %], [% managedby_firstname %]</a> [% managedby_branchcode %] ([% managedby_description %])[% END %]</td>
+ <td>[% IF ( managedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% managedby_borrowernumber %]">[% managedby_surname %], [% managedby_firstname %]</a> [% managedby_branchcode | $KohaBranchName %] ([% managedby_description %])[% END %]</td>
  </tr>
  <tr>
  <th><span class="label">Sugerencia aceptada</span> </th>
  <td>[% accepteddate %]</td>
- <td>[% IF ( acceptedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% acceptedby_borrowernumber %]">[% acceptedby_surname %], [% acceptedby_firstname %]</a> [% acceptedby_branchcode %] ([% acceptedby_description %])[% END %]</td>
+ <td>[% IF ( acceptedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% acceptedby_borrowernumber %]">[% acceptedby_surname %], [% acceptedby_firstname %]</a> [% acceptedby_branchcode | $KohaBranchName %] ([% acceptedby_description %])[% END %]</td>
  </tr>
  </tbody>
  </table></li></ol>
@@ -221,28 +243,40 @@ $(document).ready(function() { calcNewsuggTotal(); });
  </fieldset>
  <fieldset class="rows"> <legend>Administración de sugerencias</legend>
  <ol>
- [% IF ( suggestionid ) %]<li><label for="status">Estado:</label><select id="STATUS" name="STATUS"><option value="">No hay estados</option>
- [% IF (statusselected_ASKED ) %]<option value="ASKED" selected="selected">Pendiente</option> 
- [% ELSE %]<option value="ASKED">Pendiente</option>[% END %] [% IF (statusselected_ACCEPTED ) %]<option value="ACCEPTED" selected="selected">Aceptado</option>
- [% ELSE %]<option value="ACCEPTED">Aceptado</option>[% END %] [% IF (statusselected_CHECKED ) %]<option value="CHECKED" selected="selected">Marcado</option>
- [% ELSE %]<option value="CHECKED">Marcado</option>[% END %] [% IF ( statusselected_REJECTED ) %]<option value="REJECTED" selected="selected">Rechazado</option>
- [% ELSE %]<option value="REJECTED">Rechazado</option>[% END %] </select></li>[% END %] <li><table>
+ [% IF ( suggestionid ) %] <li>
+ <label for="status">Estado:</label>
+ <select id="STATUS" name="STATUS">
+ <option value="">No hay estados</option>
+
+ [% IF (statusselected_ASKED ) %] <option value="ASKED" selected="selected">Pendiente</option>
+ [% ELSE %] <option value="ASKED">Pendiente</option>
+ [% END %] [% IF (statusselected_ACCEPTED ) %] <option value="ACCEPTED" selected="selected">Aceptado</option>
+ [% ELSE %] <option value="ACCEPTED">Aceptado</option>
+ [% END %] [% IF (statusselected_CHECKED ) %] <option value="CHECKED" selected="selected">Marcado</option>
+ [% ELSE %] <option value="CHECKED">Marcado</option>
+ [% END %] [% IF ( statusselected_REJECTED ) %] <option value="REJECTED" selected="selected">Rechazado</option>
+ [% ELSE %] <option value="REJECTED">Rechazado</option>
+ [% END %] [% FOREACH s IN SuggestionStatuses %] [% IF s.authorised_value == selected_status %] <option value="[% s.authorised_value %]" selected="selected">[% s.lib %]</option>
+ [% ELSE %] <option value="[% s.authorised_value %]">[% s.lib %]</option>
+ [% END %] [% END %] </select>
+ </li>
+ [% END %] <li><table>
  <thead><tr><th>&nbsp;</th><th>Fecha</th><th>Por</th></tr></thead>
  <tbody>
  <tr>
  <th><label for="suggesteddate">Creación de sugerencia</label> </th>
  <td><input type="text" id="suggesteddate" name="suggesteddate" size="10" maxlength="10" value="[% suggesteddate %]"/></td>
- <td><input type="hidden" id="suggestedby" name="suggestedby" value="[% suggestedby %]"/>[% IF ( suggestedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% suggestedby_borrowernumber %]">[% suggestedby_surname %], [% suggestedby_firstname %]</a> [% suggestedby_branchcode %] ([% suggestedby_description %])[% END %] </td>
+ <td><input type="hidden" id="suggestedby" name="suggestedby" value="[% suggestedby %]"/>[% IF ( suggestedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% suggestedby_borrowernumber %]">[% suggestedby_surname %], [% suggestedby_firstname %]</a> [% suggestedby_branchcode | $KohaBranchName %] ([% suggestedby_description %])[% END %] </td>
  </tr>
  <tr>
  <th><label for="managedon">Administración de sugerencias</label> </th>
  <td><input type="text" id="managedon" name="manageddate" size="10" maxlength="10" value="[% manageddate %]" /></td>
- <td><input type="hidden" id="managedby" name="managedby" value="[% managedby %]"/>[% IF ( managedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% managedby_borrowernumber %]">[% managedby_surname %], [% managedby_firstname %]</a> [% managedby_branchcode %] ([% managedby_description %])[% END %]</td>
+ <td><input type="hidden" id="managedby" name="managedby" value="[% managedby %]"/>[% IF ( managedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% managedby_borrowernumber %]">[% managedby_surname %], [% managedby_firstname %]</a> [% managedby_branchcode | $KohaBranchName %] ([% managedby_description %])[% END %]</td>
  </tr>
  <tr>
  <th><label for="accepteddate">Sugerencia aceptada</label> </th>
  <td><input type="text" id="accepteddate" name="accepteddate" size="10" maxlength="10" value="[% accepteddate %]" /></td>
- <td><input type="hidden" id="acceptedby" name="acceptedby" value="[% acceptedby %]"/>[% IF ( acceptedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% acceptedby_borrowernumber %]">[% acceptedby_surname %], [% acceptedby_firstname %]</a> [% acceptedby_branchcode %] ([% acceptedby_description %])[% END %]</td>
+ <td><input type="hidden" id="acceptedby" name="acceptedby" value="[% acceptedby %]"/>[% IF ( acceptedby_borrowernumber ) %]<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% acceptedby_borrowernumber %]">[% acceptedby_surname %], [% acceptedby_firstname %]</a> [% acceptedby_branchcode | $KohaBranchName %] ([% acceptedby_description %])[% END %]</td>
  </tr>
  </tbody>
  </table></li></ol>
@@ -276,9 +310,28 @@ $(document).ready(function() { calcNewsuggTotal(); });
 <h1>Administración de sugerencias</h1>
 
 [% UNLESS ( notabs ) %] <div id="suggestiontabs" class="toptabs">
-<ul class="ui-tabs-nav">
-[% FOREACH suggestion IN suggestions %] [% IF ( suggestion.first ) %]<li class="ui-tabs-selected">[% ELSE %]<li>[% END %]<a href="#[% suggestion.suggestiontype %]">[% IF ( suggestion.suggestiontypelabel ) %] [% IF (suggestion.suggestiontypelabel == "Pending") %]Pendiente [% ELSIF (suggestion.suggestiontypelabel == "Accepted") %]Aceptado [% ELSIF (suggestion.suggestiontypelabel == "Checked") %]Verificado [% ELSIF (suggestion.suggestiontypelabel == "Rejected") %]Rechazado [% ELSIF (suggestion.suggestiontypelabel == "Available") %]Disponible [% ELSIF (suggestion.suggestiontypelabel == "Ordered") %]Ordenado[% ELSE %] [% suggestion.suggestiontypelabel %][% END %] [% ELSE %]Sin nombre[% END %] ([% suggestion.suggestionscount %])</a></li>
-[% END %] </ul>
+ <ul class="ui-tabs-nav">
+ [% FOREACH suggestion IN suggestions %] [% IF ( suggestion.first ) %] <li class="ui-tabs-selected">
+ [% ELSE %] <li>
+ [% END %] <a href="#[% suggestion.suggestiontype %]">
+ [% IF ( suggestion.suggestiontypelabel ) %]
+ [% IF (suggestion.suggestiontypelabel == "Pending") %]Pending
+ [% ELSIF (suggestion.suggestiontypelabel == "Accepted") %]Accepted
+ [% ELSIF (suggestion.suggestiontypelabel == "Checked") %]Checked
+ [% ELSIF (suggestion.suggestiontypelabel == "Rejected") %]Rejected
+ [% ELSIF (suggestion.suggestiontypelabel == "Available") %]Available
+ [% ELSIF (suggestion.suggestiontypelabel == "Ordered") %]Ordered
+ [% ELSE %][% suggestion.suggestiontypelabel %][% END %]
+ [% ELSE %]
+ [% IF ( suggestion.suggestiontype ) %]
+ [% KohaAuthorisedValues.GetByCode( 'SUGGEST_STATUS', suggestion.suggestiontype ) %]
+ [% ELSE %]
+ No name
+ [% END %]
+ [% END %]
+ ([% suggestion.suggestions_loop.size %])</a></li>
+
+ [% END %] </ul>
 [% END %] [% FOREACH suggestion IN suggestions %] <div id="[% suggestion.suggestiontype %]">
 <form name="f[% suggestion.suggestiontype %]" method="post" action="/cgi-bin/koha/suggestion/suggestion.pl#[% suggestion.suggestiontype %]">
 
@@ -307,30 +360,62 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <td>
  [% IF ( suggestions_loo.emailmanagedby ) %]<a href="mailto:[% suggestions_loo.emailmanagedby %]">[% END %][% suggestions_loo.surnamemanagedby %][% IF ( suggestions_loo.firstnamemanagedby ) %], [% suggestions_loo.firstnamemanagedby %][% END %] [% IF ( suggestions_loo.emailmanagedby ) %]</a>[% END %] [% IF ( suggestions_loo.manageddate ) %] - [% suggestions_loo.manageddate %][% END %] </td>
  <td>
- [% suggestions_loo.branchcode %] </td>
+ [% suggestions_loo.branchcode | $KohaBranchName %] </td>
  <td>
  [% suggestions_loo.budget_name %] </td>
  <td>
- [% IF ( suggestions_loo.ASKED ) %]Pendiente[% END %] [% IF ( suggestions_loo.ACCEPTED ) %]Aceptado[% END %] [% IF ( suggestions_loo.ORDERED ) %]Ordenado[% END %] [% IF ( suggestions_loo.REJECTED ) %]Rechazado[% END %] [% IF ( suggestions_loo.CHECKED ) %]Verificado[% END %] [% IF ( suggestions_loo.reason ) %]<br />([% suggestions_loo.reason %])[% END %] </td>
+ [% IF ( suggestions_loo.ASKED ) %]
+ Pending
+ [% ELSIF ( suggestions_loo.ACCEPTED ) %]
+ Accepted
+ [% ELSIF ( suggestions_loo.ORDERED ) %]
+ Ordered
+ [% ELSIF ( suggestions_loo.REJECTED ) %]
+ Rejected
+ [% ELSIF ( suggestions_loo.CHECKED ) %]
+ Checked
+ [% ELSIF KohaAuthorisedValues.GetByCode( 'SUGGEST_STATUS', suggestions_loo.STATUS ) %]
+ [% KohaAuthorisedValues.GetByCode( 'SUGGEST_STATUS', suggestions_loo.STATUS ) %]
+ [% END %]
+
+ [% IF ( suggestions_loo.reason ) %]
+ <br />([% suggestions_loo.reason %])[% END %]  </td>
  </tr>
  [% END %]</tbody>
  </table> <fieldset>
  <div id="select-reason[% suggestion.suggestiontype %]">
  <div id="status[% suggestion.suggestiontype %]">
- <label for="STATUS[% suggestion.suggestiontype %]">Marcar seleccionado como: </label><select name="STATUS" id="STATUS[% suggestion.suggestiontype %]">
+ <label for="STATUS[% suggestion.suggestiontype %]">Marcar seleccionado como: </label>
+ <select name="STATUS" id="STATUS[% suggestion.suggestiontype %]">
  <option value=""> -- Elija un estado --</option>
- [% IF (statusselected_ASKED ) %]<option value="ASKED" selected="selected">Pendiente</option> 
- [% ELSE %]<option value="ASKED">Pendiente</option>[% END %] [% IF (statusselected_ACCEPTED ) %]<option value="ACCEPTED" selected="selected">Aceptado</option>
- [% ELSE %]<option value="ACCEPTED">Aceptado</option>[% END %] [% IF (statusselected_CHECKED ) %]<option value="CHECKED" selected="selected">Marcado</option>
- [% ELSE %]<option value="CHECKED">Marcado</option>[% END %] [% IF ( statusselected_REJECTED ) %]<option value="REJECTED" selected="selected">Rechazado</option>
- [% ELSE %]<option value="REJECTED">Rechazado</option>[% END %] </select>
- <label for="reason[% suggestion.suggestiontype %]">con este motivo:</label> <select id="reason[% suggestion.suggestiontype %]" name="reason[% suggestion.suggestiontype %]">
+
+ [% IF (statusselected_ASKED ) %] <option value="ASKED" selected="selected">Pendiente</option>
+ [% ELSE %] <option value="ASKED">Pendiente</option>
+ [% END %] [% IF (statusselected_ACCEPTED ) %] <option value="ACCEPTED" selected="selected">Aceptado</option>
+ [% ELSE %] <option value="ACCEPTED">Aceptado</option>
+ [% END %] [% IF (statusselected_CHECKED ) %] <option value="CHECKED" selected="selected">Marcado</option>
+ [% ELSE %] <option value="CHECKED">Marcado</option>
+ [% END %] [% IF ( statusselected_REJECTED ) %] <option value="REJECTED" selected="selected">Rechazado</option>
+ [% ELSE %] <option value="REJECTED">Rechazado</option>
+ [% END %] [% FOREACH s IN SuggestionStatuses %] <option value="[% s.authorised_value %]">[% s.lib %]</option>
+ [% END %] </select>
+
+ <label for="reason[% suggestion.suggestiontype %]">con este motivo:</label>
+ <select id="reason[% suggestion.suggestiontype %]" name="reason[% suggestion.suggestiontype %]">
  <option value=""> -- Elija una razón -- </option>
  [% FOREACH reasonsloo IN suggestion.reasonsloop %] <option value="[% reasonsloo.lib %]">[% reasonsloo.lib %]</option>
  [% END %] <option value="other">Otros...</option>
- </select> <span id="other_reason[% suggestion.suggestiontype %]">
- <input type="text" size="31" id="select-other_reason[% suggestion.suggestiontype %]" name="other_reason[% suggestion.suggestiontype %]" value="please note your reason here..." /> <a href="#back[% suggestion.suggestiontype %]">Cancelar</a>
- </span> <strong style="padding: 0 1em;">O:</strong> <label for="[% suggestion.suggestiontype %]delete">Eliminar seleccionados</label> <input type="checkbox" name="op" id="[% suggestion.suggestiontype %]delete" />
+ </select>
+
+ <span id="other_reason[% suggestion.suggestiontype %]">
+ <input type="text" size="31" id="select-other_reason[% suggestion.suggestiontype %]" name="other_reason[% suggestion.suggestiontype %]" value="please note your reason here..." />
+ <a href="#back[% suggestion.suggestiontype %]">Cancelar</a>
+ </span>
+
+ <strong style="padding: 0 1em;">O:</strong>
+
+ <label for="[% suggestion.suggestiontype %]delete">Eliminar seleccionados</label>
+ <input type="checkbox" name="op" id="[% suggestion.suggestiontype %]delete" />
  </div>
  </div>
 
@@ -370,12 +455,24 @@ $(document).ready(function() { calcNewsuggTotal(); });
  </fieldset>
  <fieldset class="brief"><h4 class="local_collapse"><a href="#">Información de la sugerencia</a></h4>
  <ol>
- <li><label for="STATUS"> Estado:</label><select name="STATUS" id="STATUS"><option value="">Cualquiera</option>
- [% IF (statusselected_ASKED ) %]<option value="ASKED" selected="selected">Pendiente</option> 
- [% ELSE %]<option value="ASKED">Pendiente</option>[% END %] [% IF (statusselected_ACCEPTED ) %]<option value="ACCEPTED" selected="selected">Aceptado</option>
- [% ELSE %]<option value="ACCEPTED">Aceptado</option>[% END %] [% IF (statusselected_CHECKED ) %]<option value="CHECKED" selected="selected">Marcado</option>
- [% ELSE %]<option value="CHECKED">Marcado</option>[% END %] [% IF ( statusselected_REJECTED ) %]<option value="REJECTED" selected="selected">Rechazado</option>
- [% ELSE %]<option value="REJECTED">Rechazado</option>[% END %] </select></li>
+ <li>
+ <label for="STATUS"> Estado:</label>
+ <select name="STATUS" id="STATUS">
+ <option value="">Cualquiera</option>
+
+ [% IF (statusselected_ASKED ) %] <option value="ASKED" selected="selected">Pendiente</option>
+ [% ELSE %] <option value="ASKED">Pendiente</option>
+ [% END %] [% IF (statusselected_ACCEPTED ) %] <option value="ACCEPTED" selected="selected">Aceptado</option>
+ [% ELSE %] <option value="ACCEPTED">Aceptado</option>
+ [% END %] [% IF (statusselected_CHECKED ) %] <option value="CHECKED" selected="selected">Marcado</option>
+ [% ELSE %] <option value="CHECKED">Marcado</option>
+ [% END %] [% IF ( statusselected_REJECTED ) %] <option value="REJECTED" selected="selected">Rechazado</option>
+ [% ELSE %] <option value="REJECTED">Rechazado</option>
+ [% END %] [% FOREACH s IN SuggestionStatuses %] [% IF s.authorised_value == selected_status %] <option value="[% s.authorised_value %]" selected="selected">[% s.lib %]</option>
+ [% ELSE %] <option value="[% s.authorised_value %]">[% s.lib %]</option>
+ [% END %] [% END %] </select>
+ </li>
+
  <li><label for="suggestedby"> Sugerido por: </label><select id="suggestedby" name="suggestedby"><option value="">Cualquiera</option>
 [% FOREACH suggestedby_loo IN suggestedby_loop %][% IF ( suggestedby_loo.selected ) %]<option value="[% suggestedby_loo.code %]" selected="selected">[% suggestedby_loo.desc %]</option>[% ELSE %]<option value="[% suggestedby_loo.code %]">[% suggestedby_loo.desc %]</option>[% END %][% END %] </select></li>
  <li><label for="suggesteddate_from"> Sugerido sobre:</label>

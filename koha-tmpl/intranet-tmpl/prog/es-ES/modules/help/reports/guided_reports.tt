@@ -131,7 +131,7 @@
  <li>borrar</li>
  <li>pago</li>
  <li>CréditoXXX<ul>
- <li>mostrar los diferentes tipos de créditos de pago, una consulta para capturarlaos todos debe incluir una cláusula como  "type LIKE 'Credit%'"</li>
+ <li>The XXX stores different types of fee credits, so a query to catch them all would include a clause like "type LIKE 'Credit%'"</li>
 </ul>
 </li>
 </ul>
@@ -143,7 +143,7 @@
 <ul>
  <li>NULL: significa que el socio ha buscado el primero disponible y no hemos elegido este ítem.</li>
  <li>T = Transferencia: la reserva se enlaza a un ítem pero en transferencia con la biblioteca que la recibe.</li>
- <li>W: Esperando: la reserva de un ítem está disponible para ser recogido en su correspondiente biblioteca.</li>
+ <li>W = Waiting: the reserve is linked to an item, is at the pickup branch, and is waiting on the hold shelf</li>
  <li>F = Terminado: la reserva ha sido completada y es efectiva.</li>
 </ul>
 
@@ -168,7 +168,7 @@
  <li>B = Para socios</li>
 </ul>
 
-<p><strong>Pregunta</strong>: ¿Cuáles son los códigos posibles para el campo de estado en la tabla de series"?</p>
+<p><strong>Pregunta</strong>: What are the possible codes for the status field in the serial table?</p>
 
 <p><strong>Respuesta</strong>:</p>
 
@@ -179,6 +179,8 @@
  <li>4 = Perdido</li>
  <li>5 = No disponible</li>
  <li>6 = Eliminado</li>
+ <li>7 = Claimed</li>
+ <li>8 = Stopped</li>
 </ul>
 
 <p><strong>Vea la documentación completa para Informes manuales en la <a href="http://manual.koha-community.org/3.10/en/reports.html#customreports">manual</a> (en línea).</strong></p>

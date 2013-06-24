@@ -40,10 +40,7 @@
  [% END %] <li>
  <a id="logout" class="toplinks" href="/cgi-bin/koha/mainpage.pl?logout.x=1">Salir</a>
  </li>
- [% ELSE %]
- You are not logged in |
- [% END %]
- </ul>
+ [% ELSE %] No está identificado | [% END %] </ul>
  <li>
  <a class="toplinks" href="/cgi-bin/koha/help.pl" id="helper">Ayuda</a>
  </li>

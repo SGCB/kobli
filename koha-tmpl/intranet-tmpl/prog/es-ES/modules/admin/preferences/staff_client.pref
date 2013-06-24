@@ -20,7 +20,7 @@ staff_client.pref:
         pref: intranetstylesheet
       - "en todas las p\xC3\xA1ginas de la intranet, en vez de la css predeterminada (usado cuando se deja en blanco este campo). Introduzca el nombre del fichero, una ruta local completa o una URL que empiece con <code>http://</code> (si el fichero est\xC3\xA1 en un servidor remoto). Por favor, tenga en cuenta que si introduce solamente el nombre del fichero, \xC3\xA9ste debe estar en el subdirectorio css de cada tema y lenguaje activo dentro del directorio templates de koha. Una ruta local completa debe empezar con un documento HTTP."
     - 
-      - "staff_client.pref#IntranetSlipPrinterJS# Usar el siguiente JavaScript pa imprimir recibos. Definir al menos la funci\xC3\xB3n printThenClose(). Para usar e.g. con Firefox PlugIn jsPrintSetup, ver http://jsprintsetup.mozdev.org/:"
+      - "Usar el siguiente JavaScript para imprimir recibos. Definir al menos la funci\xC3\xB3n printThenClose(). Para usar e.j. con Firefox PlugIn jsPrintSetup, ver http://jsprintsetup.mozdev.org/:"
       - 
         class: code
         pref: IntranetSlipPrinterJS
@@ -72,13 +72,13 @@ staff_client.pref:
       - 
         class: file
         pref: XSLTResultsDisplay
-      - "staff_client.pref#XSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language "
+      - "<br />Opciones:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"\">Dejar en blanco</a> for \"no xslt\"</li><li>poner \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"default\">default</a>\"para utilizar la predeterminada</li><li> poner la ruta de un archivo xslt</li><li>poner la URL de una hoja de estilo externa.</li></ul>{langcode} ser\xC3\xA1 reemplazada por la interfaz del lenguaje actual "
     - 
       - "Mostrar detalles en el clietne administrador utilizando la hoja de estilo XSLT en:"
       - 
         class: file
         pref: XSLTDetailsDisplay
-      - taff_client.pref#XSLTDetailsDisplay# <br />Options:<ul><li><a href="#" class="set_syspref" data-syspref="XSLTDetailsDisplay" data-value="">Leave empty</a> for "no xslt"</li><li>enter "<a href="#" class="set_syspref" data-syspref="XSLTDetailsDisplay" data-value="default">default</a>" for the default one</li><li>put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language
+      - " <br />Opciones:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTDetailsDisplay\" data-value=\"\">Dejar en blanco</a> for \"no xslt\"</li><li>introducir \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTDetailsDisplay\" data-value=\"default\">default</a>\" para la hoja predeterminada</li><li>poner la ruta de un archivo xslt</li><li>poner la URL para una hoja de estilo externa.</li></ul>{langcode} ser\xC3\xA1 reemplazada con la interfaz del lenguaje actual"
     - 
       - 
         choices: 
@@ -144,7 +144,7 @@ staff_client.pref:
           "": Mostrar
           1: No mostrar
         pref: HidePatronName
-      - los nombres de socios que tienen ?ems prestados o en reserva en las p?nas de detalles o la ventana "Reservar".
+      - "los nombres de usuarios que tienen \xC3\xADtems prestados o en reserva en las p\xC3\xA1ginas de detalles o la ventana \"Reservar\"."
     - 
       - 
         choices: 

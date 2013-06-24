@@ -35,10 +35,10 @@ $(document).ready(function() {
 [% END %] <h1>[% summary.mainentry %][% IF authtypetext %]([% authtypetext %])[% END %] </h1>
 <div class="usedin">Utilizado en <a href="opac-search.pl?type=opac&amp;q=[% authid %]&amp;idx=an,phr">[% count %] registros</a></div>
 <div class="authstanza">
-[% FOREACH authorize IN summary.authorized %] <div class="heading authorized auth[% seefro.field %]"><span class="label">Forma prefereida: </span><span class="authorized">[% authorize.heading %]</span></div>
+[% FOREACH authorize IN summary.authorized %] <div class="heading authorized auth[% seefro.field %]"><span class="label">Forma preferida: </span><span class="authorized">[% authorize.heading %]</span></div>
 [% END %] [% PROCESS otherscript headings=summary.otherscript wantcategory='preferred' %] </div>
 [% IF summary.seefrom.size %] <div class="authstanza seefrom">
- <div class="authstanzaheading">Se utiliza para/ ver a partir de:</div>
+ <div class="authstanzaheading">Usado por /  veáse:</div>
  <ul class="seefrom">
  [% FOREACH seefro IN summary.seefrom %] <li class="heading seefrom auth[% seefro.field %]">
  [% IF seefro.type && seefro.type != 'seefrom' %]<span class="label">[% PROCESS authtypelabel type=seefro.type | trim %]:</span>[% END %] <span class="seefrom">[% PROCESS authheadingdisplay heading=seefro.heading search=seefrosearch authid=seefro.authid %]</span>

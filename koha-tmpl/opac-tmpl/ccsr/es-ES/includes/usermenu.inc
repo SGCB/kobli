@@ -9,7 +9,7 @@
  [% END %] [% IF ( opacreadinghistory ) %] [% IF ( readingrecview ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/opac-readingrecord.pl">mi historial de lecturas</a></li>
  [% IF ( OPACPrivacy ) %] [% IF ( privacyview ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/opac-privacy.pl">mi privacidad</a></li>
  [% END %] [% END %] [% IF ( suggestion ) %] [% UNLESS ( AnonSuggestions ) %] [% IF ( suggestionsview ) %]<li class="active suggestions">[% ELSE %]<li class="suggestions">[% END %]<a href="/cgi-bin/koha/opac-suggestions.pl">mis sugerencias de compra</a></li>
- [% END %] [% END %] [% IF ( EnhancedMessagingPreferences ) %] [% IF ( messagingview ) %]<li class="active messaging">[% ELSE %]<li class="messaging">[% END %]<a href="/cgi-bin/koha/opac-messaging.pl">mi mensajería</a></li>
+ [% END %] [% END %] [% IF ( EnhancedMessagingPreferences ) %] [% IF ( messagingview ) %]<li class="active messaging">[% ELSE %]<li class="messaging">[% END %]<a href="/cgi-bin/koha/opac-messaging.pl">mis mensajes</a></li>
  [% END %] [% IF ( virtualshelves ) %] [% IF ( listsview ) %]<li class="active privateshelves">[% ELSE %]<li class="privateshelves">[% END %]<a href="/cgi-bin/koha/opac-shelves.pl?display=privateshelves">mis listas</a></li>
  [% END %] </ul>
 </div>

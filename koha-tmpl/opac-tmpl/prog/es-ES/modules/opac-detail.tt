@@ -157,17 +157,17 @@ $(function () {
           }, function (data) {
 
             if (data.auth_status != 'ok') {
-              window.alert(_("Your CGI session cookie is not current. Please refresh the page and try again."));
+              window.alert(_("Su cookie de sesión CGI no es actual. Por favor, actualice la página y vuelva a intertarlo."));
             } else {
               $("#rating_value").val(data.rating_value);
 
               if (data.rating_value) {
-                $("#rating_value_text").text(_("your rating:") + ' ' + data.rating_value + ', ');
+                $("#rating_value_text").text(_("su valoración:") + ' ' + data.rating_value + ', ');
               } else {
                 $("#rating_value_text").text('');
               }
 
-              $("#rating_text").text(_("average rating:") + " " + data.rating_avg_int + ' (' + data.rating_total + ' votes)');
+              $("#rating_text").text(_("valoración media: ") + " " + data.rating_avg_int + ' (' + data.rating_total + ' votes)');
 
             }
           }, "json");
@@ -290,7 +290,7 @@ function renderPagIndexList(index, ul)
     var ini = index - 1;
     var end = ini + totalPagItemList - 1;
     li = $("<li />");
-    html = (index > pag_index_ini)?"<a href='#' id='rew_list_index' onclick='rewindList()' title='" + _("Click to rewind the list to") + " " + ini + " - " + end + "'>&laquo;</a>":"&laquo;";
+    html = (index > pag_index_ini)?"<a href='#' id='rew_list_index' onclick='rewindList()' title='" + _("Haga clic para retroceder la lista a") + " " + ini + " - " + end + "'>&laquo;</a>":"&laquo;";
     li.html(html);
     ul.append(li);
     var title = "";
@@ -298,9 +298,9 @@ function renderPagIndexList(index, ul)
         if (arrPagination[i] == undefined) continue;
         var li = $("<li />");
         if (arrPagination[i].url != "") {
-            title = _("See biblio") + " &quot;" + arrPagination[i].title + "&quot; ";
-            if (arrPagination[i].author != "") title += " " + _("by") + "&quot;" + arrPagination[i].author + "&quot;";
-            title += " " + _("with biblionumber") + " " + arrPagination[i].biblionumber;
+            title = _("Ver biblio") + " &quot;" + arrPagination[i].title + "&quot; ";
+            if (arrPagination[i].author != "") title += " " + _("por ") + "&quot;" + arrPagination[i].author + "&quot;";
+            title += " " + _("con biblionumber") + " " + arrPagination[i].biblionumber;
             html = "<a href='" + arrPagination[i].url + "' title='" + title + "' class='a_pag' id='a_pag_" + i + "'";
             html += " onmouseover='renderPagination(" + i + ", " + (arrPagination.length - 1) + ", $(\"#ul_pagination_list\"), true)'";
             html += ">" + i + "</a>";
@@ -312,7 +312,7 @@ function renderPagIndexList(index, ul)
     li = $("<li />");
     ini = index + 1;
     end = (arrPagination.length > index + totalPagItemList)?index + totalPagItemList:arrPagination.length - 1;
-    html = (end <= arrPagination.length - 1 && (end - index) >= totalPagItemList)?"<a href='#' id='fw_list_index' onclick='forwardList()' title='" + _("Click to forward the list to") + " " + ini + " - " + end + "'>&raquo;</a>":"&raquo;";
+    html = (end <= arrPagination.length - 1 && (end - index) >= totalPagItemList)?"<a href='#' id='fw_list_index' onclick='forwardList()' title='" + _("Haga clic para adelantar la lista a") + " " + ini + " - " + end + "'>&raquo;</a>":"&raquo;";
     li.html(html);
     ul.append(li);
 }//renderPagIndexList
@@ -327,7 +327,7 @@ function renderPagination(index, total, ul, highlIndex)
     var j = 0;
     for (var i = index; i <= total && j < totalPagItemList; i++) {
         if (arrPagination[i] == undefined || arrPagination[i].url == "") continue;
-        var li = $("<li id='li_pag_" + i + "' " + ((j % 2 == 0)?"class='highlight'":"")  + " title='" + _("Go to detail") + "' />");
+        var li = $("<li id='li_pag_" + i + "' " + ((j % 2 == 0)?"class='highlight'":"")  + " title='" + _("Ver detalle") + "' />");
         var html = "<span class='li_pag_index'>" + i + "</span><a href='" + arrPagination[i].url + "'>" + arrPagination[i].title + "</a>";
         if (arrPagination[i].author) html += "<br /> by " + arrPagination[i].author;
         li.html(html);
@@ -338,9 +338,9 @@ function renderPagination(index, total, ul, highlIndex)
     for (i = pag_index_ini; i < index && j < totalPagItemList; i++) {
         if (arrPagination[i] == undefined || arrPagination[i].url == "") continue;
         $("#li_pag_" + i).remove();
-        var li = $("<li id='li_pag_" + i + "' " + ((j % 2 == 0)?"class='highlight'":"")  + " title='" + _("Go to detail") + "' />");
+        var li = $("<li id='li_pag_" + i + "' " + ((j % 2 == 0)?"class='highlight'":"")  + " title='" + _("Ver detalle") + "' />");
         var html = "<span class='li_pag_index'>" + i + "</span><a href='" + arrPagination[i].url + "'>" + arrPagination[i].title + "</a>";
-        if (arrPagination[i].author) html += "<br /> " + _("by") + " " + arrPagination[i].author;
+        if (arrPagination[i].author) html += "<br /> " + _("por ") + " " + arrPagination[i].author;
         li.html(html);
         ul.append(li);
         j++;
@@ -1041,11 +1041,11 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 [% END %] [% IF ( Babeltheque ) %] <script type="text/javascript" src="[% Babeltheque_url_js %]"></script>
 [% END %] [% INCLUDE 'opac-bottom.inc' %] [%# End of template %] [% BLOCK items_table %] <table class="holdingst">
  <thead><tr>
- [% IF ( item_level_itypes ) %]<th id="item_itemtype">Tipo de ítem:</th>[% END %] <th id="item_location">Ubicación</th>
- [% IF ( itemdata_ccode ) %]<th id="item_ccode">Colección</th>[% END %] <th id="item_callnumber">Signatura topográfica</th>
- [% IF ( itemdata_enumchron ) %]<th id="item_enumchron">Información de volumen</th>[% END %] [% IF ( itemdata_uri ) %]<th id="item_url">url</th>[% END %] [% IF ( itemdata_copynumber ) %]<th id="item_copy">Copia</th>[% END %] <th id="item_status">Estado</th>
- [% IF ( itemdata_itemnotes ) %]<th id="item_notes">Notas</th>[% END %] <th id="item_datedue">Fecha de devolución</th>
- [% IF ( OPACShowBarcode ) %]<th>Código de barras</th>[% END %] [% IF holds_count.defined %] <th>Ítem reservado</th>
+ [% IF ( item_level_itypes ) %]<th id="item_itemtype" class="itype">Tipo de ítem:</th>[% END %] <th id="item_location" class="location">Ubicación</th>
+ [% IF ( itemdata_ccode ) %]<th id="item_ccode" class="collection">Colección</th>[% END %] <th id="item_callnumber" class="call_no">Signatura topográfica</th>
+ [% IF ( itemdata_enumchron ) %]<th id="item_enumchron" class="vol_info">Información de volumen</th>[% END %] [% IF ( itemdata_uri ) %]<th id="item_url" class="url">url</th>[% END %] [% IF ( itemdata_copynumber ) %]<th id="item_copy" class="copynumber">Copia</th>[% END %] <th id="item_status" class="status">Estado</th>
+ [% IF ( itemdata_itemnotes ) %]<th id="item_notes" class="notes">Notas</th>[% END %] <th id="item_datedue" class="date_due">Fecha de devolución</th>
+ [% IF ( OPACShowBarcode ) %]<th id="item_barcode" class="barcode">Código de barras</th>[% END %] [% IF holds_count.defined %] <th>Ítem reservado</th>
  [% ELSIF show_priority %] <th>Cola de prioridades de ítem reservado</th>
  [% END %] [% IF ( ShowCourseReservesHeader ) %]<th id="item_coursereserves">Colección de préstamo restringido</th>[% END %] </tr></thead>
  <tbody>[% FOREACH ITEM_RESULT IN items %] [% IF ITEM_RESULT.this_branch %]<tr class="highlight-row-detail">[% ELSE %]<tr>[% END %] [% IF ( item_level_itypes ) %]<td class="itype">[% UNLESS ( noItemTypeImages ) %][% IF ( ITEM_RESULT.imageurl ) %]<img src="[% ITEM_RESULT.imageurl %]" title="[% ITEM_RESULT.description %]" alt="[% ITEM_RESULT.description %]" />[% END %][% END %] [% ITEM_RESULT.description %]</td>[% END %] <td class="location">

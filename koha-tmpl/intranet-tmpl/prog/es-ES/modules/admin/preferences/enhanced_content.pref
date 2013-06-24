@@ -17,7 +17,7 @@ enhanced_content.pref:
       - Ponga la etiqueta asociada
       - 
         pref: AmazonAssocTag
-      - "en enlaces de Amazon. Esto puede aportar a su monto por referencias si el socio decide comprar un \xC3\xADtem."
+      - "en enlaces de Amazon. Esto puede aportar a su monto por referencias si el usuario decide comprar un \xC3\xADtem."
     - 
       - 
         choices: 
@@ -81,14 +81,14 @@ enhanced_content.pref:
           "": No permitir
           1: Permitir
         pref: TagsEnabled
-      - "a socios y personal etiquetar \xC3\xADtems."
+      - "a usuarios y personal etiquetar \xC3\xADtems."
     - 
       - 
         choices: 
           "": No requiera
           1: Requiera
         pref: TagsModeration
-      - que las etiquetas enviadas por los socios sean revisadas por un miembro del personal antes de mostrarse.
+      - que las etiquetas enviadas por los usuarios sean revisadas por un miembro del personal antes de mostrarse.
     - 
       - Mostrar
       - 
@@ -101,7 +101,7 @@ enhanced_content.pref:
           "": No permitir
           1: Permitir
         pref: TagsInputOnList
-      - "a los socios etiquetar resultados de b\xC3\xBAsqueda en el OPAC."
+      - "a los usuarios etiquetar resultados de b\xC3\xBAsqueda en el OPAC."
     - 
       - Muestrar
       - 
@@ -114,7 +114,7 @@ enhanced_content.pref:
           "": No permitir
           1: Permitir
         pref: TagsInputOnDetail
-      - "a los socios etiquetar en las p\xC3\xA1ginas de detalles de \xC3\xADtem en el OPAC."
+      - "a los usuarios etiquetar en las p\xC3\xA1ginas de detalles de \xC3\xADtem en el OPAC."
     - 
       - Permitir etiquetas en el diccionario del ejecutable ispell
       - 
@@ -359,20 +359,20 @@ enhanced_content.pref:
       - "otras ediciones de un \xC3\xADtem en el OPAC."
   enhanced_content.pref HTML5 Media: 
     - 
-      - enhanced_content.pref#HTML5MediaEnabled# Mostrar etiquetas con un  media player HTML5 para ficheros catalogados en el campo 856
+      - Mostrar etiquetas con un  media player HTML5 para ficheros catalogados en el campo 856
       - 
         choices: 
-          both: enhanced_content.pref#HTML5MediaEnabled# en OPAC y cliente personal.
-          not: enhanced_content.pref#HTML5MediaEnabled# en absoluto.
-          opac: enhanced_content.pref#HTML5MediaEnabled# en el OPAC.
-          staff: enhanced_content.pref#HTML5MediaEnabled# en el cliente de personal.
+          both: en OPAC y cliente personal.
+          not: en absoluto.
+          opac: en el OPAC.
+          staff: en el cliente de personal.
         pref: HTML5MediaEnabled
     - 
-      - enhanced_content.pref#HTML5MediaExtensions# Extensiones de ficheros de media
+      - Extensiones de ficheros de media
       - 
         class: multi
         pref: HTML5MediaExtensions
-      - enhanced_content.pref#HTML5MediaExtensions# (separado con |).
+      - (separado con |).
   enhanced_content.pref IDreamLibraries: 
     - 
       - 

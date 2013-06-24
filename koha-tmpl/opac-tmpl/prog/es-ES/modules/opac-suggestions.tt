@@ -1,4 +1,9 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; [% IF ( op_add ) %]Realice una nueva sugerencia de compra[% END %] [% IF ( op_else ) %]Sugerencias de compra[% END %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
+[% USE KohaAuthorisedValues %]
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo;
+[% IF ( op_add ) %]Enter a new purchase suggestion[% END %]
+[% IF ( op_else ) %]Purchase Suggestions[% END %]
+[% INCLUDE 'doc-head-close.inc' %]
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript">
 //<![CDATA[
@@ -167,7 +172,16 @@ $.tablesorter.addParser({
  [% IF ( suggestions_loo.branchcodesuggestedby ) %][% suggestions_loo.branchcodesuggestedby %][% ELSE %]&nbsp;[% END %] </td>[% END %] <td>
  [% IF ( suggestions_loo.surnamemanagedby ) %][% suggestions_loo.surnamemanagedby %][% IF ( suggestions_loo.firstnamemanagedby ) %],[% END %] [% suggestions_loo.firstnamemanagedby %][% ELSE %]&nbsp;[% END %] </td>
  <td>
- [% IF ( suggestions_loo.ASKED ) %]Pedido[% END %] [% IF ( suggestions_loo.CHECKED ) %]Comprobado por la biblioteca[% END %] [% IF ( suggestions_loo.ACCEPTED ) %]Aceptado por la biblioteca[% END %] [% IF ( suggestions_loo.ORDERED ) %]Pedido por la biblioteca[% END %] [% IF ( suggestions_loo.REJECTED ) %]Sugerencia rechazada [% END %] [% IF ( suggestions_loo.AVAILABLE ) %]Disponible en la biblioteca[% END %] [% IF ( suggestions_loo.reason ) %]([% suggestions_loo.reason %])[% END %] </td>
+ [% IF    ( suggestions_loo.ASKED ) %]Requested
+ [% ELSIF ( suggestions_loo.CHECKED ) %]Checked by the library
+ [% ELSIF ( suggestions_loo.ACCEPTED ) %]Accepted by the library
+ [% ELSIF ( suggestions_loo.ORDERED ) %]Ordered by the library
+ [% ELSIF ( suggestions_loo.REJECTED ) %]Suggestion declined
+ [% ELSIF ( suggestions_loo.AVAILABLE ) %]Available in the library
+ [% ELSE %] [% KohaAuthorisedValues.GetByCode( 'SUGGEST_STATUS', suggestions_loo.STATUS, 1 ) %] [% END %]
+
+ [% IF ( suggestions_loo.reason ) %]([% suggestions_loo.reason %])[% END %]
+ </td>
  </tr>
  [% END %] </tbody>
  </table> [% IF ( loggedinusername ) %]<fieldset class="action">

@@ -30,6 +30,7 @@
  <th>Signatura</th>
  <th>Tipo de ítem</th>
  <th>Fecha de devolución</th>
+ <th>Código de barras</th>
  <th>Cargo</th>
  <th>Precio</th>
  <th>Estado</th>
@@ -43,15 +44,16 @@
  <td>[% issueloo.itemcallnumber %]</td>
  <td>[% issueloo.itemtype_description %]</td>
  <td>[% issueloo.date_due %]</td>
+ <td>[% issueloo.barcode %]</td>
  <td>[% issueloo.charge %]</td>
  <td>[% issueloo.replacementprice %]</td>
  <td>[% IF ( issueloo.red ) %]¡Atrasado![% ELSE %]&nbsp;[% END %]</td>
  </tr>
  [% END %] <tr>
- <td colspan="5" style="text-align: right; font-weight:bold;">Totales:</td>
+ <td colspan="6" style="text-align: right; font-weight:bold;">Totales:</td>
  <td>[% totaldue %]</td>
  <td>[% totalprice %]</td>
- <td colspan="2">&nbsp;</td>
+ <td colspan="3">&nbsp;</td>
  </tr>
  </table>
  [% END %] [% IF ( reserveloop ) %] <table>

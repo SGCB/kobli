@@ -123,6 +123,30 @@ function checkMultiHold() {
 	});
 
     $('#hold-request-form').preventDoubleFormSubmit();
+
+[% UNLESS ( borrowernumber || borrower_list ) %]
+    [% IF ( CircAutocompl ) %]
+    $( "#patron" ).autocomplete({
+        source: "/cgi-bin/koha/circ/ysearch.pl",
+        minLength: 3,
+        select: function( event, ui ) {
+            $( "#patron" ).val( ui.item.cardnumber );
+            $( "#holds_patronsearch" ).submit();
+            return false;
+        }
+    })
+    .data( "autocomplete" )._renderItem = function( ul, item ) {
+        return $( "<li></li>" )
+        .data( "item.autocomplete", item )
+        .append( "<a>" + item.surname + ", " + item.firstname +
+                 " (" + item.cardnumber + ") <small>" + item.address +
+                 " " + item.city + " " + item.zipcode + " " +
+                 item.country + "</small></a>" )
+        .appendTo( ul );
+    };
+    [% END %]
+[% END %]
+
  });
 
 // ]]>
@@ -148,21 +172,18 @@ function checkMultiHold() {
  [% END %] [% UNLESS ( multi_hold ) %] <h1>Reservar en [% INCLUDE 'biblio-default-view.inc' %][% title |html %]</a></h1>
  [% ELSE %] <h1>Confirmar reservas</h1>
  [% END %] [% UNLESS ( borrowernumber ) %] [% IF ( messageborrower ) %] <div class="dialog alert"><h3>Socio no encontrado</h3><p>No hay un socio con este nombre, por favor, pruebe con otro </p> </div>
- [% END %] <form action="request.pl?biblionumber=[% biblionumber %]" method="post">
+ [% END %] <form  id="holds_patronsearch" action="request.pl?biblionumber=[% biblionumber %]" method="post">
  [% UNLESS borrower_list %] <fieldset class="brief">
  <label for="patron">Socio: </label>
  <div class="hint">Inserte el número de carnet del socio o parte de su apellido</div>
- <input type="text" size="20" id="patron" class="focus" name="findborrower" />
- <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
+ <input type="text" size="40" id="patron" class="focus" name="findborrower" />
  <input value="Buscar" type="submit" />
+ <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
  </fieldset>
  [% ELSE %] <fieldset>
  <select size="7" name="borrowernumber">
  [% FOREACH borrower IN borrower_list %] <option value="[% borrower.borrowernumber %]">
-[% borrower.surname -%], [% borrower.firstname -%]
- ... ( [% borrower.cardnumber -%] - [% borrower.categorycode -%]
-) ... [% borrower.address %]
- </option>
+[% borrower.surname -%], [% borrower.firstname -%] ... ( [% borrower.cardnumber -%] - [% borrower.categorycode -%] ) ... [% borrower.address %] </option>
  [% END %] </select>
  <input type="hidden" name="biblionumber" value="[% biblionumber %]" /><fieldset class="action"><input value="Seleccionar" type="submit" /></fieldset></fieldset>
 

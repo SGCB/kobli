@@ -73,7 +73,7 @@ for( x=0; x<allColumns.length; x++ ){
  </li>
  [% END %] </ul>
 [% END %] [% IF ( show ) %] [% IF ( too_many_items ) %] <p>Demasiados ítems ([% too_many_items %]) para listar individualmente.</p>
- [% FOREACH itemnumbers_hashre IN itemnumbers_hashref %] <input type="hidden" name="itemnumber" value="[% itemnumbers_hashre.itemnumber %]" />
+ [% FOREACH itemnumber IN itemnumbers_array %] <input type="hidden" name="itemnumber" value="[% itemnumber %]" />
  [% END %] [% END %] [% IF ( itemresults ) %] <div id="cataloguing_additem_newitem">
  <input type="hidden" name="op" value="[% op %]" />
  <p>Esto borrará [% IF ( too_many_items ) %]todos los[% ELSE %]los seleccionados[% END %] ítems.</p>

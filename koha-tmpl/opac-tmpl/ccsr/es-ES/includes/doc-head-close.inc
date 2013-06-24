@@ -50,7 +50,7 @@
     var MSG_NO_RECORD_SELECTED = _("No se seleccionó ningún ítem");
     var MSG_NO_RECORD_ADDED = _("No se agregaron ítems a su bolsa");
     var MSG_CONFIRM_DEL_BASKET = _("¿Está seguro de querer vaciar su bolsa?");
-    var MSG_CONFIRM_DEL_RECORDS = _("¿Está seguro de querer remover los ítems seleccionados?");
+    var MSG_CONFIRM_DEL_RECORDS = _("¿Está seguro de querer borrar los ítems seleccionados?");
     var MSG_ITEM_IN_CART = _("En su carrito");
     var MSG_IN_YOUR_CART = _("Ejemplares en su carrito: ");
     var MSG_ITEM_NOT_IN_CART = _("Agregar a su carrito");
@@ -60,7 +60,7 @@
     [% IF ( opacuserlogin ) %][% IF ( TagsEnabled ) %]var MSG_TAGS_DISABLED = _("Lo sentimos, las etiquetas no están habilitadas en este sistema.");
     var MSG_TAG_ALL_BAD = _("¡Error! Su etiqueta tenía código ilegal. NO ha sido agregada. Intente nuevamente con texto simple.");
     var MSG_ILLEGAL_PARAMETER = _("¡Error! Parámetro ilegal");
-    var MSG_TAG_SCRUBBED = _("Nota: su etiqueta contenía código que fue removido. La etiqueta fue agregada como ");
+    var MSG_TAG_SCRUBBED = _("Nota: su etiqueta contenía código que fue borrado. La etiqueta fue agregada como ");
     var MSG_ADD_TAG_FAILED = _("¡Error! La operación add_tag falló en");
     var MSG_ADD_TAG_FAILED_NOTE = _("Nota: solo puede etiquetar un ítem con determinado término una vez. Vea 'Mis Etiquetas' para ver sus etiquetas actuales.");
     var MSG_DELETE_TAG_FAILED = _("¡Error! No puede borrar la etiqueta");
