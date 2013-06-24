@@ -496,22 +496,21 @@
  <input type="text" id="cardnumber" name="cardnumber" size="20" value="[% cardnumber %]" />
  [% IF ( mandatorycardnumber ) %]<span class="required">Requerido</span>[% END %]</li>
  [% END %] [% UNLESS nobranchcode %] <li>
- [%- IF ( mandatorybranchcode ) -%] <label for="branchcode" class="required">
- [%- ELSE -%] <label for="branchcode">
- [%- END -%] Biblioteca: </label>
+ <label for="branchcode" class="required">Biblioteca:</label>
  <select name="branchcode" size="1" id="branchcode">
  [%- FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) -%] <option value="[% branchloo.branchcode %]" selected="selected">[% branchloo.branchname %]</option>
  [%- ELSE -%] <option value="[% branchloo.branchcode %]">[% branchloo.branchname %]</option>
  [%- END -%] [%- END %] </select>
- [% IF ( mandatorybranchcode ) -%] <span class="required">Requerido</span>
- [%- END %] </li>
+ <span class="required">Requerido</span>
+ </li>
  [% END %] <li>
- <label for="categorycode">Categoría: </label>
+ <label for="categorycode" class="required">Categoría: </label>
  <select id="categorycode" name="categorycode" onchange="update_category_code(this);">
  [% FOREACH typeloo IN typeloop %] [% FOREACH categoryloo IN typeloo.categoryloop %] [% IF ( loop.first ) %] [% IF ( typeloo.typename_C ) %]<optgroup value="C" label="Niño">[% END %] [% IF ( typeloo.typename_A ) %]<optgroup value="A" label="Adulto">[% END %] [% IF ( typeloo.typename_S ) %]<optgroup value="S" label="Administrativo">[% END %] [% IF ( typeloo.typename_I ) %]<optgroup value="I" label="Institución">[% END %] [% IF ( typeloo.typename_P ) %]<optgroup value="P" label="Profesional">[% END %] [% IF ( typeloo.typename_X ) %]<optgroup value="X" label="Estadístico">[% END %] [% END %] [% IF ( categoryloo.categorycodeselected ) %] <option value="[% categoryloo.categorycode %]" selected="selected" data-typename="[% typeloo.typename %]">[% categoryloo.categoryname %]</option>
  [% ELSE %] <option value="[% categoryloo.categorycode %]" data-typename="[% typeloo.typename %]">[% categoryloo.categoryname %]</option>
  [% END %] [% IF ( loop.last ) %] </optgroup>
  [% END %] [% END %] [% END %] </select>
+ <span class="required">Requerido</span>
  </li>
  [% UNLESS nosort1 %] <li>
  [% IF ( mandatorysort1 ) %] <label for="sort1" class="required">

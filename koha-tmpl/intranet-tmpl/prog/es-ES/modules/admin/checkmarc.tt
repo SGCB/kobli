@@ -57,7 +57,7 @@
  <td>el tipo de ítem no está mapeado</td>
  <td>el biblioitems.itemtype DEBE :<br />
  <ul><li>tiene que ser mapeado a un subcampo MARC, </li>
- <li>el subcampo correspondiente MUST tener authorised_value=itemtype</li></ul></td>
+ <li>the corresponding subfield MUST have "Authorized value" set to "itemtype"</li></ul></td>
  </tr>
 [% ELSE %] <tr>
  <td>OK</td>
@@ -70,7 +70,7 @@
  <td>biblioteca central NO mapeada</td>
  <td>el items.homebranch campo DEBE:<br />
  <ul><li>tiene que ser mapeado a un subcampo MARC,</li>
- <li>el subcampo correspondiente MUST tener authorised_value=branches</li></ul></td>
+ <li>the corresponding subfield MUST have "Authorized value" set to "branches"</li></ul></td>
  </tr>
 [% ELSE %] <tr>
  <td>OK</td>
@@ -83,7 +83,7 @@
  <td>la biblioteca NO está mapeada</td>
  <td>el items.holdingbranch campo DEBE :<br />
  <ul><li>tiene que ser mapeado a un subcampo MARC, </li>
- <li>el subcampo correspondiente MUST tener authorised_value=branches</li></ul></td>
+ <li>the corresponding subfield MUST have "Authorized value" set to "branches"</li></ul></td>
  </tr>
 [% ELSE %] <tr>
  <td>OK</td>

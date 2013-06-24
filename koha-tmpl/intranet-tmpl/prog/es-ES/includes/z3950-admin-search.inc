@@ -17,7 +17,7 @@
  </form>
  </div>
  [% END %] <ul>
- <li><a href="#z3950_search">Search Z39.50 servers</a></li>
+ <li><a href="#z3950_search">Buscar servidores Z39.50</a></li>
  [% IF ( CAN_user_circulate ) %]<li><a href="#circ_search">Préstamo</a></li>[% END %] [% IF ( CAN_user_catalogue ) %]<li><a href="#catalog_search">Buscar en el catálogo</a></li>[% END %] </ul> 
 </div>
 </div>

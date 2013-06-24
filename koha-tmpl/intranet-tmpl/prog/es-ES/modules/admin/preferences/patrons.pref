@@ -4,17 +4,17 @@ patrons.pref:
     - Listar
     - 
       choices: 
-        category_type: tipos de socios generales
+        category_type: tipos de usuarios generales
         categorycode: "categor\xC3\xADas espec\xC3\xADficas"
       pref: AddPatronLists
-    - "en el men\xC3\xBA nuevo socio."
+    - "en el men\xC3\xBA nuevo usuario."
   - 
     - 
       choices: 
         "": No enviar
         1: Enviar
       pref: AutoEmailOpacUser
-    - "un correo electr\xC3\xB3nico a socios de nueva creaci\xC3\xB3n con la informaci\xC3\xB3n de sus cuentas."
+    - "un correo electr\xC3\xB3nico a usuarios de nueva creaci\xC3\xB3n con la informaci\xC3\xB3n de sus cuentas."
   - 
     - Usar
     - 
@@ -26,22 +26,22 @@ patrons.pref:
         emailpro: trabajo
       default: 'OFF'
       pref: AutoEmailPrimaryAddress
-    - "direccic\xC3\xB3n de correo electr\xC3\xB3nico del socio para enviar emails"
+    - "direccic\xC3\xB3n de correo electr\xC3\xB3nico del usuario para enviar emails"
   - 
     - 
       choices: 
         "": 'No'
         1: "S\xC3\xAD"
       pref: autoMemberNum
-    - "configurar por defecto el siguiente n\xC3\xBAmero de socio disponible (por ejemplo, si el mayor n\xC3\xBAmero de socio utilizado actualmente es 26345000012941, este campo valdr\xC3\xA1 de forma predeterminada 26345000012942)."
+    - "configurar por defecto el siguiente n\xC3\xBAmero de usuario disponible (por ejemplo, si el mayor n\xC3\xBAmero de usuario utilizado actualmente es 26345000012941, este campo valdr\xC3\xA1 de forma predeterminada 26345000012942)."
   - 
-    - "El siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de la base de datos</a> debe ser rellenado en la pantalla de entrada del socio:"
+    - "El siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de la base de datos</a> debe ser rellenado en la pantalla de entrada del usuario:"
     - 
       class: multi
       pref: BorrowerMandatoryField
     - (columnas separadas con |)
   - 
-    - "Las siguientes <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de la base de datos</a> no aparecer\xC3\xA1n en la pantalla de entrada de socio:"
+    - "Las siguientes <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de la base de datos</a> no aparecer\xC3\xA1n en la pantalla de entrada de usuario:"
     - 
       class: multi
       pref: BorrowerUnwantedField
@@ -53,7 +53,7 @@ patrons.pref:
       pref: borrowerRelationship
     - "(m\xC3\xBAltiples opciones de entrada separadas por |).Cuando est\xC3\xA9 desactivado salir vac\xC3\xADo"
   - 
-    - "Los socios pueden tener los siguientes t\xC3\xADtulos:"
+    - "Los usuarios pueden tener los siguientes t\xC3\xADtulos:"
     - 
       class: multi
       pref: BorrowersTitles
@@ -64,50 +64,50 @@ patrons.pref:
         katipo: "S\xC3\xAD"
         none: 'No'
       pref: checkdigit
-    - "controlar y construir un n\xC3\xBAmero de carnet de socio en el estilo Katipo. Si est\xC3\xA1 habilitado anula <code>autoMemberNum</code>"
+    - "controlar y construir un n\xC3\xBAmero de carnet de usuario en el estilo Katipo. Si est\xC3\xA1 habilitado anula <code>autoMemberNum</code>"
   - 
     - 
       choices: 
         "": No permitir
         1: Permitir
       pref: EnhancedMessagingPreferences
-    - "a los socios elegir cuales avisos recibir\xC3\xA1n y cuando los recibir\xC3\xA1n. Note que esto solo se aplica a ciertos tipos de avisos."
+    - "a los usuarios elegir cuales avisos recibir\xC3\xA1n y cuando los recibir\xC3\xA1n. Note que esto solo se aplica a ciertos tipos de avisos."
   - 
     - 
       choices: 
         "": No habilitar
         1: Habilitar
       pref: ExtendedPatronAttributes
-    - "b\xC3\xBAsqueda, edici\xC3\xB3n y visualizaci\xC3\xB3n de los atributos personalizados de los socios."
+    - "b\xC3\xBAsqueda, edici\xC3\xB3n y visualizaci\xC3\xB3n de los atributos personalizados de los usuarios."
   - 
     - 
       choices: 
         "": No permitir
         1: Permitir
       pref: intranetreadinghistory
-    - "personal para acceder a la historial de pr\xC3\xA9stamos de un socio (se almacena independientemente)."
+    - "personal para acceder a la historial de pr\xC3\xA9stamos de un usuario (se almacena independientemente)."
   - 
-    - patrons.pref#MaxFine# The late fine for all checkouts will only go up to
+    - The late fine for all checkouts will only go up to
     - 
       class: currency
       pref: MaxFine
     - "[% local_currency %]."
-    - "patrons.pref#MaxFine# Valor vac\xC3\xADo significa no l\xC3\xADmite. El tope del \xC3\xADtem se especifica en la matriz de normas de circulaci\xC3\xB3n. "
+    - "Valor vac\xC3\xADo significa no l\xC3\xADmite. El tope del \xC3\xADtem se especifica en la matriz de normas de circulaci\xC3\xB3n. "
   - 
     - 
       choices: 
         "": 'No'
         1: "S\xC3\xAD"
       pref: memberofinstitution
-    - permitir a los socios estar vinculados a instituciones (que deben crearse como socios institucionales).
+    - permitir a los usuarios estar vinculados a instituciones (que deben crearse como usuarios institucionales).
   - 
-    - "La contrase\xC3\xB1a para el personal y los socios deben tener al menos"
+    - "La contrase\xC3\xB1a para el personal y los usuarios deben tener al menos"
     - 
       class: integer
       pref: minPasswordLength
     - caracteres de longitud.
   - 
-    - "Mostrar un aviso cuando la afiliaci\xC3\xB3n de un socio est\xC3\xA9 a punto de caducar"
+    - "Mostrar un aviso cuando la afiliaci\xC3\xB3n de un usuario est\xC3\xA9 a punto de caducar"
     - 
       class: integer
       pref: NotifyBorrowerDeparture
@@ -118,7 +118,7 @@ patrons.pref:
         "": No permitir
         1: Permitir
       pref: patronimages
-    - "im\xC3\xA1genes para ser cargadas y mostradas a los socios en la interfaz administrativa."
+    - "im\xC3\xA1genes para ser cargadas y mostradas a los usuarios en la interfaz administrativa."
   - 
     - De forma predeterminada, mostrar
     - 
@@ -141,7 +141,7 @@ patrons.pref:
     - Al renovar al prestatario, basar la nueva fecha vigente en
     - 
       choices: 
-        dateexpiry: fecha vigente de vencimiento de socio
+        dateexpiry: fecha vigente de vencimiento de usuario
         now: fecha vigente.
       pref: BorrowerRenewalPeriodBase
   - 
@@ -150,9 +150,9 @@ patrons.pref:
         "": Invalidar
         1: Permitir
       pref: TalkingTechItivaPhoneNotification
-    - "notificaci\xC3\xB3n telef\xC3\xB3nica a los socios usando Talking Tech i-tiva (vencimientos, predues y noticias de reservas actualmente admitidas)."
+    - "notificaci\xC3\xB3n telef\xC3\xB3nica a los usuarios usando Talking Tech i-tiva (vencimientos, predues y noticias de reservas actualmente admitidas)."
   - 
-    - "los siguientes campos de las tablas de la base de datos de los ?ems como columnas en la pesta??e estad?ticas sobre el registro de usuario: "
+    - "los siguientes campos de las tablas de la base de datos de los \xC3\xADtems como columnas en la pesta\xC3\xB1a dee estad\xC3\xADsticas sobre el registro de usuario: "
     - 
       class: multi
       pref: StatisticsFields

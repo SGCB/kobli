@@ -1,9 +1,9 @@
-[% USE AuthorisedValues %] [% USE ItemTypes %] [% USE Branches %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Colección de préstamo restringido &rsaquo; Nuevo curso / materia</title>
+[% USE AuthorisedValues %] [% USE ItemTypes %] [% USE Branches %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Course reserves &rsaquo; Course details for [% course.course_name %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function(){
         $("a.delete_item").click(function(){
-            return confirm( _("¿Está seguro de querer borrar este ítem?"));
+            return confirm( _("Are you sure you want to remove this item from the course?"));
         });
 
         $("#delete_course").click(function(){
@@ -25,25 +25,26 @@
  <div id="yui-main">
  <div id="toolbar">
  <ul class="toolbar">
- [% IF CAN_user_coursereserves_add_reserves %]<li><a class="btn" id="add_items" href="/cgi-bin/koha/course_reserves/add_items.pl?course_id=[% course.course_id %]">Añadir reservas</a></li>[% END %] [% IF ( CAN_user_coursereserves_manage_courses ) %]<li><a class="btn" id="edit_course" href="/cgi-bin/koha/course_reserves/course.pl?course_id=[% course.course_id %]">Editar curso / materia</a></li>[% END %] [% IF ( CAN_user_coursereserves_manage_courses ) %]<li><a class="btn" id="delete_course" href="/cgi-bin/koha/course_reserves/mod_course.pl?course_id=[% course.course_id %]&action=del">Eliminar curso / materia</a></li>[% END %] </ul>
+ [% IF CAN_user_coursereserves_add_reserves %]<li><a class="btn" id="add_items" href="/cgi-bin/koha/course_reserves/add_items.pl?course_id=[% course.course_id %]"><i class="icon-plus"></i> Añadir reservas</a></li>[% END %] [% IF ( CAN_user_coursereserves_manage_courses ) %]<li><a class="btn" id="edit_course" href="/cgi-bin/koha/course_reserves/course.pl?course_id=[% course.course_id %]"><i class="icon-pencil"></i> Editar curso / materia</a></li>[% END %] [% IF ( CAN_user_coursereserves_manage_courses ) %]<li><a class="btn" id="delete_course" href="/cgi-bin/koha/course_reserves/mod_course.pl?course_id=[% course.course_id %]&amp;action=del"><i class="icon-remove"></i> Eliminar curso / materia</a></li>[% END %] </ul>
  </div><!-- /toolbar -->
 
- <table>
- <tbody>
- <tr><th>Nombre del curso / categoría</th><td>[% course.course_name %]</td></tr>
- <tr><th>Término</th><td>[% AuthorisedValues.GetByCode( 'TERM', course.term ) %]</td></tr>
- <tr><th>Departamento</th><td>[% AuthorisedValues.GetByCode( 'DEPARTMENT', course.department ) %]</td></tr>
- <tr><th>Número de curso / materia</th><td>[% course.course_number %]</td></tr>
- <tr><th>Sección</th><td>[% course.section %]</td></tr>
- <tr><th>Formadores</th><td>[% FOREACH i IN course.instructors %]<div class="instructor"><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% i.borrowernumber %]">[% i.firstname %] [% i.surname %]</a></div>[% END %]</td></tr>
- <tr><th>Nota de staff</th><td>[% course.staff_note %]</td></tr>
- <tr><th>Nota pública</th><td>[% course.public_note %]</td></tr>
- <tr><th>Número de estudiantes </th><td>[% course.students_count %]</td></tr>
- <tr><th>Estado</th><td>[% IF course.enabled == 'yes' %]Activo[% ELSE %]Inactivo[% END %]</td></tr>
- </tbody>
- </table>
+ <div class="rows">
+ <ol>
+ <li><span class="label">Nombre del curso / categoría</span> [% course.course_name %]</li>
+ <li><span class="label">Término</span> [% AuthorisedValues.GetByCode( 'TERM', course.term ) %]</li>
+ <li><span class="label">Departamento</span> [% AuthorisedValues.GetByCode( 'DEPARTMENT', course.department ) %]</li>
+ <li><span class="label">Número de curso / materia</span> [% course.course_number %]</li>
+ <li><span class="label">Sección</span> [% course.section %]</li>
+ <li><span class="label">Formadores</span> [% FOREACH i IN course.instructors %]<div class="instructor"><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% i.borrowernumber %]">[% i.firstname %] [% i.surname %]</a></div>[% END %]</li>
+ <li><span class="label">Nota de staff</span> [% course.staff_note %]</li>
+ <li><span class="label">Nota pública</span> [% course.public_note %]</li>
+ <li><span class="label">Student count</span> [% course.students_count %]</li>
+ <li><span class="label">Estado</span> [% IF course.enabled == 'yes' %]Activo[% ELSE %]Inactivo[% END %]</li>
+ </ol>
+ </div>
 
  [% IF course_reserves %] <table>
+ <caption>Reserves</caption>
  <thead>
  <tr>
  <th>Título</th>
@@ -61,7 +62,7 @@
  <tbody>
  [% FOREACH cr IN course_reserves %] <tr>
  <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% cr.item.biblionumber %]">[% cr.item.title %]</a></td>
- <td><a href="/cgi-bin/koha/catalogue/moredetail.pl?itemnumber=[% cr.item.itemnumber %]&biblionumber=[% cr.item.biblionumber %]&bi=[% cr.item.biblioitemnumber %]">[% cr.item.barcode %]</a></td>
+ <td><a href="/cgi-bin/koha/catalogue/moredetail.pl?itemnumber=[% cr.item.itemnumber %]&amp;biblionumber=[% cr.item.biblionumber %]&amp;bi=[% cr.item.biblioitemnumber %]">[% cr.item.barcode %]</a></td>
  <td>[% cr.item.itemcallnumber %]</td>
  [% IF item_level_itypes %] <td>
  [% IF cr.course_item.itype %] [% IF cr.course_item.enabled == 'yes' %] [% ItemTypes.GetDescription( cr.item.itype ) %] [% ELSE %] [% ItemTypes.GetDescription( cr.course_item.itype ) %] [% END %] [% ELSE %] <i>Sin cambios</i>
@@ -78,9 +79,9 @@
  <td>[% cr.staff_note %]</td>
  <td>[% cr.public_note %]</td>
 
- [% IF CAN_user_coursereserves_add_reserves %] <td><a href="add_items.pl?course_id=[% course.course_id %]&barcode=[% cr.item.barcode %]&action=lookup">Editar</a></td>
+ [% IF CAN_user_coursereserves_add_reserves %] <td><a href="add_items.pl?course_id=[% course.course_id %]&amp;barcode=[% cr.item.barcode %]&amp;action=lookup">Editar</a></td>
  [% END %] [% IF CAN_user_coursereserves_delete_reserves %] <td>
- [% IF cr.item.onloan %] Prestado [% ELSIF cr.item.itemlost %] Item perdido [% ELSE %] <a href="course-details.pl?course_id=[% course.course_id %]&action=del_reserve&cr_id=[% cr.cr_id %]" class="delete_item" >Eliminar</a>
+ [% IF cr.item.onloan %] Prestado [% ELSIF cr.item.itemlost %] Item perdido [% ELSE %] <a href="course-details.pl?course_id=[% course.course_id %]&amp;action=del_reserve&amp;cr_id=[% cr.cr_id %]" class="delete_item" >Eliminar</a>
  [% END %] </td>
  [% END %] <td>
  [% FOREACH course IN cr.courses %] [% UNLESS cr.course_id == course.course_id %] <p>
@@ -93,7 +94,5 @@
  </table>
  [% END %] </div>
  </div>
-</div>
-
 
 [% INCLUDE 'intranet-bottom.inc' %] 

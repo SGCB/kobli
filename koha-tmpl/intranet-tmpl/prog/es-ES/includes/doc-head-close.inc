@@ -17,12 +17,6 @@
 [% END %] [% IF ( wizard ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/wizard.css" />
 [% END %]
 
-<!-- yui js --> 
-<script type="text/javascript" src="[% yuipath %]/utilities/utilities.js"></script> 
-<script type="text/javascript" src="[% yuipath %]/button/button-min.js"></script> 
-<script type="text/javascript" src="[% yuipath %]/container/container_core-min.js"></script> 
-<script type="text/javascript" src="[% yuipath %]/menu/menu-min.js"></script> 
-
 <!-- koha core js -->
 <script type="text/javascript" src="[% themelang %]/js/staff-global.js"></script>
 [% INCLUDE 'validator-strings.inc' %] [% IF ( intranetuserjs ) %] <script type="text/javascript">

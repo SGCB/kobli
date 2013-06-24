@@ -334,9 +334,9 @@ $(document).ready(function(){
 
 <!--- Summary and Matrix reports have not yet been implemented-->
 <!--<div class="yui-u">Summary:
-<img src="/intranet-tmpl/prog/img/reports-summary-graphic.gif" /></div>
+<img src="[% interface %]/[% theme %]/img/reports-summary-graphic.gif" /></div>
 <div class="yui-u">Matrix:
-<img src="/intranet-tmpl/prog/img/reports-matrix-graphic.gif" /></div>-->
+<img src="[% interface %]/[% theme %]/img/reports-matrix-graphic.gif" /></div>-->
 
 [% END %]
 
@@ -510,7 +510,7 @@ $(document).ready(function(){
  <div class="dialog alert">
  <h3>Se han encontrado errores mientras se procesaba el informe [% name %]:</h3>
  [% FOREACH problematic_authval IN problematic_authvals %] <p>
- <strong>[% problematic_authval.name %]:</strong> Categoría de valor autorizado (<strong>[% problematic_authval.authval %]</strong>) que se ha seleccionado no existe.</p>
+ <strong>[% problematic_authval.name %]:</strong> The authorized value category (<strong>[% problematic_authval.authval %]</strong>) que se ha seleccionado no existe.</p>
  [% END %]
  <!-- Save Anyway Form -->
  <form action='/cgi-bin/koha/reports/guided_reports.pl'>
@@ -542,7 +542,7 @@ $(document).ready(function(){
  <div class="dialog alert">
  <h3>Se han encontrado errores mientras se procesaba el informe [% name %]:</h3>
  [% FOREACH auth_val_error IN auth_val_errors %] <p>
- <strong>[% auth_val_error.entry %]:</strong> Categoría de valor autorizado (<strong>[% auth_val_error.auth_val %]</strong>) que se ha seleccionado no existe.</p>
+ <strong>[% auth_val_error.entry %]:</strong> The authorized value category (<strong>[% auth_val_error.auth_val %]</strong>) que se ha seleccionado no existe.</p>
  [% END %] </div>
  <fieldset class="action"><input value="Editar SQL" type="submit" /></fieldset>
  [% ELSE %] <input type='hidden' name='phase' value='Run this report' />

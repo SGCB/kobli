@@ -89,6 +89,7 @@
  <th>Título</th>
  <th>Código de barras</th>
  <th>Signatura</th>
+ <th>Precio</th>
 </tr></thead>
 
 <tbody>[% FOREACH overdueloo IN overdueloop %] <tr>
@@ -99,6 +100,7 @@
  <td>[% INCLUDE 'biblio-default-view.inc' biblionumber = overdueloo.biblionumber %][% overdueloo.title |html %] [% overdueloo.subtitle %]</a> [% IF ( overdueloo.author ) %], por [% overdueloo.author %][% END %][% IF ( overdueloo.enumchron ) %], [% overdueloo.enumchron %][% END %] </td>
  <td><a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% overdueloo.biblionumber %]&amp;itemnumber=[% overdueloo.itemnum %]#item[% overdueloo.itemnum %]">[% overdueloo.barcode %]</a></td>
  <td>[% overdueloo.itemcallnumber %]</td>
+ <td>[% overdueloo.replacementprice %]</td>
  </tr>
 [% END %]</tbody>
 </table>

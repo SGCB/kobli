@@ -725,6 +725,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  <th>Título</th>
  <th>Signatura</th>
  <th>Código de barras</th>
+ <th>Vencimiento</th>
  <th>Prioridad</th>
  <th>¿Eliminar?</th>
  <th>&nbsp;</th>
@@ -737,6 +738,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  <td><em>[% IF ( reservloo.barcodereserv ) %]Ítem [% reservloo.barcodereserv %] [% END %][% IF ( reservloo.waiting ) %] <strong>esperando en [% reservloo.waitingat %]</strong>
  [% END %] [% IF ( reservloo.transfered ) %] <strong>en tránsito</strong> de [% reservloo.frombranch %] desde [% reservloo.datesent %] [% END %] [% IF ( reservloo.nottransfered ) %] ha sido transferido aun desde [% reservloo.nottransferedby %]</i>
  [% END %]</em></td>
+ <td>[% reservloo.expirationdate | $KohaDates %]</td>
  <td>
  [% IF ( reservloo.waitingposition ) %]<b> [% reservloo.waitingposition %] </b>[% END %] </td>
  <td><select name="rank-request">

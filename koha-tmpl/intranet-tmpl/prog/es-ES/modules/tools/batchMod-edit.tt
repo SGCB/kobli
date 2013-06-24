@@ -111,7 +111,7 @@ $(document).ready(function(){
 
 [% IF ( too_many_items ) %]
  <p>Demasiados ítems ([% too_many_items %]): no se mostrará cada uno individualmente.</p>
- [% FOREACH itemnumbers_hashre IN itemnumbers_hashref %] <input type="hidden" name="itemnumber" value="[% itemnumbers_hashre.itemnumber %]" />
+ [% FOREACH itemnumber IN itemnumbers_array %] <input type="hidden" name="itemnumber" value="[% itemnumber %]" />
  [% END %]
 [% END %]<!-- /too_many_items -->
 
