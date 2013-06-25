@@ -388,19 +388,19 @@ sub  BatchStageMarcRecords {
             # Normalize the record so it doesn't have separated diacritics
             SetUTF8Flag($marc_record);
 
-            if(C4::Context->preference("UseImportMarcHoldings")){
-                C4::Holdings_to_Koha->map($marc_record); #MAPEO DE HOLDINGS
-                if($marc_record->field("853")){
-                   my $dbh = C4::Context->dbh;
-                   $marc_record = C4::Holdings_to_Serial->map($dbh, $marc_record, $marc_records, $encoding); #MAPEO DE SERIALS
-                }
-            }
             $num_valid++;
             if ($record_type eq 'biblio') {
                 $import_record_id = AddBiblioToBatch($batch_id, $rec_num, $marc_record, $encoding, int(rand(99999)), 0);
                 if ($parse_items) {
                     my @import_items_ids = AddItemsToImportBiblio($batch_id, $import_record_id, $marc_record, 0);
                     $num_items += scalar(@import_items_ids);
+                }
+                if(C4::Context->preference("UseImportMarcHoldings")){
+                    C4::Holdings_to_Koha->map($marc_record); #MAPEO DE HOLDINGS
+                    if($marc_record->field("853")){
+                       my $dbh = C4::Context->dbh;
+                       $marc_record = C4::Holdings_to_Serial->map($dbh, $marc_record, $marc_records, $encoding); #MAPEO DE SERIALS
+                    }
                 }
             } elsif ($record_type eq 'auth') {
                 $import_record_id = AddAuthToBatch($batch_id, $rec_num, $marc_record, $encoding, int(rand(99999)), 0, $marc_type);
@@ -524,7 +524,7 @@ sub BatchFindDuplicates {
 =head2 BatchCommitRecords
 
   my ($num_added, $num_updated, $num_items_added, $num_items_errored_barcode, 
-      $num_ignored) = BatchCommitBibRecords($batch_id, $framework,
+      $num_ignored) = BatchCommitRecords($batch_id, $framework,
                       $progress_interval, $progress_callback);
 
 =cut

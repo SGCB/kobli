@@ -241,7 +241,7 @@ sub commit_batch {
         $callback = progress_callback($job, $dbh);
     }
     my ($num_added, $num_updated, $num_items_added, $num_items_errored_barcode, $num_items_errored_homebranch, $num_items_errored_holdingbranch, $num_ignored) = 
-        BatchCommitBibRecords($import_batch_id, $framework, 50, $callback);
+        BatchCommitRecords($import_batch_id, $framework, 50, $callback);
     $dbh->commit();
 
     my $results = {
