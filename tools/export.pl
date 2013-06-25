@@ -29,8 +29,6 @@ use C4::Csv;
 use C4::Koha;               # GetItemTypes
 use C4::Output;
 use C4::Record;
-use Getopt::Long;
-use Data::Dumper;
 use C4::Koha_to_Holdings;  # Holdings
 use C4::Serial_to_Holding;  # Serial Holdings
 
@@ -355,6 +353,12 @@ if ( $op eq "export" ) {
                                 $branch );
                         }
                     }
+                    if(C4::Context->preference("UseExportMarcHoldings")){
+                        C4::Koha_to_Holdings->map($record); #MAPEO DE ITEMS
+                        if($record->field('952') && $record->field('952')->subfield('h')){   
+                            my $serial = C4::Serial_to_Holding->map($dbh, $record, $record->field('999')->subfield('c')); #MAPEO DE SERIALS
+                        }
+                    }
                 }
                 elsif ( $record_type eq 'auths' ) {
                     $record = C4::AuthoritiesMarc::GetAuthority($recordid);
@@ -398,28 +402,6 @@ if ( $op eq "export" ) {
                     print $record->as_usmarc();
                 }
             }
-<<<<<<< HEAD:tools/export.pl
-=======
-<<<<<<< HEAD:tools/export.pl
-            else {
-                print $record->as_usmarc();
-=======
-        }
-        
-        if(C4::Context->preference("UseExportMarcHoldings")){
-            C4::Koha_to_Holdings->map($record); #MAPEO DE ITEMS
-            if($record->field('952') && $record->field('952')->subfield('h')){   
-                my $serial = C4::Serial_to_Holding->map($dbh, $record, $biblionumber); #MAPEO DE SERIALS
-            }
-        }
-        if ( $output_format eq "xml" ) {
-            if ($marcflavour eq 'UNIMARC' && $record_type eq 'auths') {
-                print $record->as_xml_record('UNIMARCAUTH');
-            } else {
-                print $record->as_xml_record($marcflavour);
->>>>>>> Herramienta para importar Holdings como items a Kobli y para exportar items como holdings.:tools/export.pl
-            }
->>>>>>> Herramienta para importar Holdings como items a Kobli y para exportar items como holdings.:tools/export.pl
         }
         if ($xml_header_written) {
             print MARC::File::XML::footer();
