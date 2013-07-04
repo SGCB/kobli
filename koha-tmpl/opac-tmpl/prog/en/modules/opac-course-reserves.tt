@@ -11,8 +11,9 @@
 [% INCLUDE 'masthead.inc' %]
 
 
-<div id="doc2" class="yui-t7">
+
         <div id="yui-main">
+            [% INCLUDE 'search.inc' %]
             <div class="yui-b">
                 <div class="yui-g">
 
@@ -59,7 +60,12 @@
                 </div>
             </div>
         </div>
+        
+[% IF ( OpacNav ) %]
+<div class="yui-b">
+<div id="leftmenus" class="container">
+[% INCLUDE 'navigation.inc' %]
 </div>
-</div>
+</div>[% END %]
 
 [% INCLUDE 'opac-bottom.inc' %]
