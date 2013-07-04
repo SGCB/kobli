@@ -12,7 +12,6 @@
    <div id="bd">
 [% INCLUDE 'masthead.inc' %]
 
-<div id="doc2" class="yui-t7">
     <div id="yui-main">
         <h2><a href="/cgi-bin/koha/opac-course-reserves.pl">Course reserves</a> &#8674; Course reserves for <i>[% course.course_name %]</i></h2>
         <div class="rows clearfix">
@@ -74,5 +73,12 @@
         [% END %]
     </div>
 </div>
+
+[% IF ( OpacNav ) %]
+<div class="yui-b">
+<div id="leftmenus" class="container">
+[% INCLUDE 'navigation.inc' %]
 </div>
+</div>[% END %]
+
 [% INCLUDE 'opac-bottom.inc' %]
