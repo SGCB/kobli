@@ -507,7 +507,8 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  [% END %] </div>
 <div class="yui-u">
 <div id="ulactioncontainer" class="container">
-[% IF ( busc ) %] <div class="nav_results">
+
+[% IF ( OpacBrowseResults && busc ) %] <div class="nav_results">
  <div class="l_Results">[% IF ( listResults ) %]<a href="#" id="a_listResults" title="Mostrar lista de paginación ([% indexPag %]-[% indexPagEnd %] / [% totalPag %])">Navegar por los resultados</a>[% ELSE %]<span>Navegar por los resultados</span>[% END %]</div>
  <ul class="pg_menu clearfix">
  <li class="left_results">[% IF ( previous ) %]<a href="[% previous %]" title="Ver: [% IF ( previousTitle ) %][% previousTitle |html %][% ELSE %]biblio anterior[% END %]">&laquo; Anterior</a>[% ELSE %]<span>Anteriores</span>[% END %]</li>
@@ -532,14 +533,14 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  <div id="BW_critiques_aj"></div>
  <div id="BW_citations_aj"></div>
  </div>
-[% END %] [% IF ( SocialNetworks ) %] <div class="social_networks">
+[% END %] [% IF ( SocialNetworks ) %] <div id="social_networks">
  <span>Compartir</span>
- <a href="http://www.facebook.com/sharer.php?u=[% current_url |url %]&t=[% title |url %]" title="Compartir en Facebook"><img alt="Compartir en Facebook" src="/opac-tmpl/prog/images/socnet/facebook16.png" /></a>
- <a href="http://twitter.com/share" title="Compartir en Twitter"><img alt="Compartir en Twitter" src="/opac-tmpl/prog/images/socnet/twitter16.png" /></a>
- <a href="http://www.linkedin.com/shareArticle?mini=true&url=[% current_url |url %]&title=[% title |url %]" title="Compartir en LinkedIn"><img alt="Compartir en LinkedIn" src="/opac-tmpl/prog/images/socnet/linkedin16.png" /></a>
- <a href="http://www.delicious.com/save?url=[% current_url |url %]&title=[% title |url %]" title="Compartir en Delicious"><img alt="Compartir en Delicious" src="/opac-tmpl/prog/images/socnet/delicious16.gif" /></a>
- <g:plusone size="small"></g:plusone>
- <a href="mailto:ADRESSE?subject=TO READ : [% title %]>&body=[% title %]> [% current_url |url %]" title="Compartir por email"><img alt="Compartir por email" src="/opac-tmpl/prog/images/socnet/mailto16.png" /></a>
+ <div><a href="http://www.facebook.com/sharer.php?u=[% current_url |url %]&t=[% title |url %]" id="facebook" title="Compartir en Facebook">Facebook </a></div>
+ <div><a href="http://www.linkedin.com/shareArticle?mini=true&url=[% current_url |url %]&title=[% title |url %]" id="linkedin" title="Compartir en LinkedIn">LinkedIn</a></div>
+ <div><a href="http://www.delicious.com/save?url=[% current_url |url %]&title=[% title |url %]" id="delicious" title="Compartir en Delicious">Delicious</a></div>
+ <div><a href="mailto:?subject=[% title |url %]&body=[% title |url %] ([% current_url |url %])" id="email" title="Compartir por email">Email</a></div>
+ <div><g:plusone size="small" annotation="none"></g:plusone></div>
+ <div><a id="twitter" href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-text="[% title %]" data-lang="[% lang %]">Tweet</a></div>
  </div>
 [% END %] </div>
 </div>
@@ -987,45 +988,6 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 [% END %] </div>
 
 
-<div class="yui-u">
-<div id="ulactioncontainer" class="container">
-
-[% IF ( OpacBrowseResults && busc ) %] <div class="nav_results">
- <div class="l_Results">[% IF ( listResults ) %]<a href="#" id="a_listResults" title="Mostrar lista de paginación ([% indexPag %]-[% indexPagEnd %] / [% totalPag %])">Navegar por los resultados</a>[% ELSE %]<span>Navegar por los resultados</span>[% END %]</div>
- <ul class="pg_menu clearfix">
- <li class="left_results">[% IF ( previous ) %]<a href="[% previous %]" title="Ver: [% IF ( previousTitle ) %][% previousTitle |html %][% ELSE %]biblio anterior[% END %]">&laquo; Anterior</a>[% ELSE %]<span>Anteriores</span>[% END %]</li>
- <li class="back_results"><a href="opac-search.pl?[% busc %]" title="Volver a la lista de resultados">Volver a los resultados</a></li>
- <li class="right_results">[% IF ( next ) %]<a href="[% next %]" title="Ver: [% IF ( previousTitle ) %][% previousTitle |html %][% ELSE %]siguiente biblio[% END %]">siguiente &raquo;</a>[% ELSE %]<span>Siguiente</span>[% END %]</li>
- </ul>
- [% IF ( listResults ) %] <div class="pagination">
- <div class="nav">
- <span class="close_pagination"><a href="#" id="close_pagination">Cerrar</a></span>
- <ul id="listResults"></ul>
- </div>
- <div class="pagination_list">
- <ul id="ul_pagination_list"></ul>
- </div>
- </div>
- [% END %] </div>
-[% END %] [% INCLUDE 'opac-detail-sidebar.inc' %] [% IF ( NovelistSelectProfile ) %] [% IF ( NovelistSelectView == 'right') %] <div id="NovelistSelect">
- <h4>Novelist Select</h4>
- <div data-novelist-novelistselect=[% normalized_isbn %]></div>
- </div>
- [% END %] [% END %] [% IF ( Babeltheque ) %] <div class="babeltheque_adds">
- <div id="BW_critiques_aj"></div>
- <div id="BW_citations_aj"></div>
- </div>
-[% END %] [% IF ( SocialNetworks ) %] <div id="social_networks">
- <span>Compartir</span>
- <div><a href="http://www.facebook.com/sharer.php?u=[% current_url |url %]&t=[% title |url %]" id="facebook" title="Compartir en Facebook">Facebook </a></div>
- <div><a href="http://www.linkedin.com/shareArticle?mini=true&url=[% current_url |url %]&title=[% title |url %]" id="linkedin" title="Compartir en LinkedIn">LinkedIn</a></div>
- <div><a href="http://www.delicious.com/save?url=[% current_url |url %]&title=[% title |url %]" id="delicious" title="Compartir en Delicious">Delicious</a></div>
- <div><a href="mailto:?subject=[% title |url %]&body=[% title |url %] ([% current_url |url %])" id="email" title="Compartir por email">Email</a></div>
- <div><g:plusone size="small" annotation="none"></g:plusone></div>
- <div><a id="twitter" href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-text="[% title %]" data-lang="[% lang %]">Tweet</a></div>
- </div>
-[% END %] </div>
-</div>
 </div>
 
 

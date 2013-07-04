@@ -54,7 +54,7 @@
  [% searchresult.datereceived %] </td>
  <td>
  [% IF ( searchresult.code ) %] <a href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% searchresult.invoiceid %]">[% searchresult.code %]</a>
- [% ELSE %] <acronym title="no disponible">no disponible</acronym>
+ [% ELSE %] <acronym title="No disponible">n/a</acronym>
  [% END %] </td>
  <td>
  [% searchresult.reccount %] </td>

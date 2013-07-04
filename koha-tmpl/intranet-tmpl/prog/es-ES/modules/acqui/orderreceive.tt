@@ -19,7 +19,7 @@
             if (total_errors != 0) {
                 var alertString = _("El formulario no fue procesado debido a los siguientes problemas");
                 alertString += "\n------------------------------------------------------------------------------------\n";
-                alertString += "\n- "+ total_errors+_(" campos obligatorios vacíos (resaltados)");
+                alertString += "\n- "+ total_errors+_(" campos obligatorios de ítem vacíos (subrayados)");
                 alert(alertString);
                 return false;
             }
@@ -156,7 +156,7 @@
  <ol>
  <li>
  <span class="label">Sugerido por: </span>
- [% surnamesuggestedby %][% IF ( firstnamesuggestedby ) %], [% firstnamesuggestedby %][% END %] (<a href="/cgi-bin/koha/suggestion/suggestion.pl?suggestionid=[% suggestionid %]&amp;op=show">sugerencia #[% suggestionid %]</a>) </li>
+ [% surnamesuggestedby %][% IF ( firstnamesuggestedby ) %], [% firstnamesuggestedby %][% END %] (<a href="/cgi-bin/koha/suggestion/suggestion.pl?suggestionid=[% suggestionid %]&amp;op=show">Sugerencias #[% suggestionid %]</a>) </li>
  </ol>
  </fieldset>
  [% END %] [% IF (AcqCreateItemReceiving) %] <div id="items_list" style="display:none">
@@ -240,7 +240,6 @@
  [% END %] [% END %] <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
  <input type="hidden" name="invoiceid" value="[% invoiceid %]" />
  <input type="hidden" name="ordernumber" value="[% ordernumber %]" />
- <input type="hidden" name="biblioitemnumber" value="[% biblioitemnumber %]" />
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  <input type="hidden" name="datereceived" value="[% datereceived_iso %]" />
  <input type="hidden" name="gstrate" value="[% gstrate %]" />

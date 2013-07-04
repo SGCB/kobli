@@ -192,7 +192,6 @@ $(document).ready(function()
  <input type="hidden" name="basketno" value="[% basketno %]" />
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
- <input type="hidden" name="biblioitemnumber" value="[% biblioitemnumber %]" />
  <input type="hidden" name="listinc" id="listinc" value="[% listincgst %]" />
  <input type="hidden" name="applygst" id="applygst" value="[% gstreg %]" />
  <input type="hidden" name="invoiceincgst" id="invoiceincgst" value="[% invoiceincgst %]" />
@@ -257,7 +256,7 @@ $(document).ready(function()
  <ol>
  <li>
  <span class="label">Sugerido por: </span>
- [% surnamesuggestedby %][% IF ( firstnamesuggestedby ) %], [% firstnamesuggestedby %][% END %] (<a href="/cgi-bin/koha/suggestion/suggestion.pl?suggestionid=[% suggestionid %]&amp;op=show">sugerencia #[% suggestionid %]</a>) </li>
+ [% surnamesuggestedby %][% IF ( firstnamesuggestedby ) %], [% firstnamesuggestedby %][% END %] (<a href="/cgi-bin/koha/suggestion/suggestion.pl?suggestionid=[% suggestionid %]&amp;op=show">Sugerencias #[% suggestionid %]</a>) </li>
  </ol>
  </fieldset>
  [% END %] [% UNLESS subscriptionid %][% # it is a suggestion, we have not items %] [% IF (AcqCreateItemOrdering) %] <div id="items_list" style="display:none">

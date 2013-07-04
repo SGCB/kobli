@@ -42,7 +42,7 @@ $(document).ready(function() {
  <ul>
  [% IF ( ERRORDELAY ) %] <li>La demora [% ERRORDELAY %] para categoría de socio [% BORERR %] tiene algunos caracteres no soportados. Debería incluir solamente caracteres numéricos. </li>
  [% END %] [% IF ( ERRORUSELESSDELAY ) %] <li>No hay carta o suspensión especificadas para demoras [% ERRORUSELESSDELAY %] para la categoría de socio [% BORERR %]. Si se especifica una demora, ya sea una carta, una suspensión, o ambas deberían ser especificadas.</li>
- [% END %] [% IF ( ERRORORDER ) %] <li>La demora del primer aviso debe ser menor que el segundo, que debe ser inferior a el tercera para el <strong>[% BORERR %]</strong> categoría de socio </li>
+ [% END %] [% IF ( ERRORORDER ) %] <li>La demora del primer aviso debe ser menor que el segundo, que debe ser inferior a el tercera para el <strong>[% BORERR %]</strong> Categoría de socio</li>
  [% END %] </ul>
  </div>
  [% END %] [% IF ( table ) %] <form method="post" action="/cgi-bin/koha/tools/overduerules.pl">
@@ -132,7 +132,7 @@ $(document).ready(function() {
  <fieldset class="action"><input value="Guardar cambios" type="submit" /></fieldset>
  </form>
  [% ELSE %] <div class="warning">Usted no tiene categorías de socio definidas, o las categorías de socio no están configuradas para recibir avisos de retraso.</div>
- <div class="warning">Si esto no es lo que esperaba, vaya a <a href="../admin/categorie.pl">categorías de socio</p></div>
+ <div class="warning">Si esto no es lo que esperaba, vaya a <a href="../admin/categorie.pl">Categorías de socio</p></div>
  [% END %] </div>
  </div>
  <div class="yui-b noprint">

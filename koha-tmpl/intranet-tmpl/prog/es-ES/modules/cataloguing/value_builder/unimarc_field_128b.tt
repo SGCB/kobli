@@ -8,8 +8,8 @@
  <td><label for="f1">Instrumentos o voces en un conjunto:</label></td>
  <td>
  <select name="f1" id="f1" size="1">
- [% IF ( f1dblpipe ) %] <option value="||" selected="selected">||- Carácter de relleno</option>
- [% ELSE %] <option value="||">||- Carácter de relleno</option>
+ [% IF ( f1dblpipe ) %] <option value="||" selected="selected">||- Caractères de remplissage</option>
+ [% ELSE %] <option value="||">||- Caractères de remplissage</option>
  [% END %] [% IF ( f1ba ) %] <option value="ba" selected="selected">Cuerno</option>
  [% ELSE %] <option value="ba">Cuerno</option>
  [% END %] [% IF ( f1bb ) %] <option value="bb" selected="selected">Trompeta</option>

@@ -7,7 +7,7 @@ patrons.pref:
         category_type: tipos de usuarios generales
         categorycode: "categor\xC3\xADas espec\xC3\xADficas"
       pref: AddPatronLists
-    - "en el men\xC3\xBA nuevo usuario."
+    - "en el men\xC3\xBA de nuevo usuario."
   - 
     - 
       choices: 
@@ -26,7 +26,7 @@ patrons.pref:
         emailpro: trabajo
       default: 'OFF'
       pref: AutoEmailPrimaryAddress
-    - "direccic\xC3\xB3n de correo electr\xC3\xB3nico del usuario para enviar emails"
+    - "direcci\xC3\xB3n de correo electr\xC3\xB3nico del usuario para enviar emails"
   - 
     - 
       choices: 
@@ -51,7 +51,7 @@ patrons.pref:
     - 
       class: multi
       pref: borrowerRelationship
-    - "(m\xC3\xBAltiples opciones de entrada separadas por |).Cuando est\xC3\xA9 desactivado salir vac\xC3\xADo"
+    - "(m\xC3\xBAltiples opciones de entrada separadas por |). Dejar vac\xC3\xADo para desactivar."
   - 
     - "Los usuarios pueden tener los siguientes t\xC3\xADtulos:"
     - 
@@ -87,7 +87,7 @@ patrons.pref:
       pref: intranetreadinghistory
     - "personal para acceder a la historial de pr\xC3\xA9stamos de un usuario (se almacena independientemente)."
   - 
-    - The late fine for all checkouts will only go up to
+    - "La \xC3\xBAltima multa para todos los pr\xC3\xA9stamos ascender\xC3\xA1 a "
     - 
       class: currency
       pref: MaxFine
@@ -152,7 +152,7 @@ patrons.pref:
       pref: TalkingTechItivaPhoneNotification
     - "notificaci\xC3\xB3n telef\xC3\xB3nica a los usuarios usando Talking Tech i-tiva (vencimientos, predues y noticias de reservas actualmente admitidas)."
   - 
-    - "los siguientes campos de las tablas de la base de datos de los \xC3\xADtems como columnas en la pesta\xC3\xB1a dee estad\xC3\xADsticas sobre el registro de usuario: "
+    - "Los siguientes campos de las tablas de la base de datos de los \xC3\xADtems como columnas en la pesta\xC3\xB1a de estad\xC3\xADsticas en el registro de usuario: "
     - 
       class: multi
       pref: StatisticsFields
@@ -160,7 +160,7 @@ patrons.pref:
   - 
     - 
       choices: 
-        "": No hacer
-        1: Hacer
+        "": 'No'
+        1: "S\xC3\xAD"
       pref: EnableBorrowerFiles
     - permitir la posibilidad para subir y adjuntar archivos arbitrarios a un registro prestado.

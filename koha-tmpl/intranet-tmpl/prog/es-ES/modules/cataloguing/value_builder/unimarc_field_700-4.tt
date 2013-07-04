@@ -7,16 +7,16 @@
 <table>
  <tr>
  <td><label for="f1">Fecha de publicación codificada </label></td><td><select name="f1" id="f1" size="1">
- [% IF ( f1_075 ) %] <option value="075 - postface" selected="selected">postfacio</option>
- [% ELSE %] <option value="075 - postface">postfacio</option>
+ [% IF ( f1_075 ) %] <option value="075 - postface" selected="selected">postface</option>
+ [% ELSE %] <option value="075 - postface">postface</option>
  [% END %] [% IF ( f1_651 ) %] <option value="651 - dir. de publication" selected="selected">dir. de publicación</option>
  [% ELSE %] <option value="651 - dir. de publication">dir. de publicación</option>
  [% END %] [% IF ( f1_440 ) %] <option value="440 - illustrateur" selected="selected">ilustrador</option>
  [% ELSE %] <option value="440 - illustrateur">ilustrador</option>
- [% END %] [% IF ( f1_080 ) %] <option value="080 - préface, notes" selected="selected">prefacio, notas</option>
- [% ELSE %] <option value="080 - préface, notes">prefacio, notas</option>
- [% END %] [% IF ( f1_730 ) %] <option value="730 - traducteur" selected="selected">traductor</option>
- [% ELSE %] <option value="730 - traducteur">traductor</option>
+ [% END %] [% IF ( f1_080 ) %] <option value="080 - préface, notes" selected="selected">préface, notes</option>
+ [% ELSE %] <option value="080 - préface, notes">préface, notes</option>
+ [% END %] [% IF ( f1_730 ) %] <option value="730 - traducteur" selected="selected">ilustrador  </option>
+ [% ELSE %] <option value="730 - traducteur">ilustrador  </option>
  [% END %] </select>
  </td>
  </tr>

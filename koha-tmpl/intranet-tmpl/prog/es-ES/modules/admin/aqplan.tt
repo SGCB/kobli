@@ -82,7 +82,7 @@
 
  [% IF ( currency ) %]<p><b>Moneda = [% currency %]</b>. [% IF ( show_actual ) %] <b>Cada célula contiene valores tanto reales como estimados.</b>
  [% ELSE %] <b>Las células contienen valores estimados solamente.</b>
- [% END %] </p>[% ELSE %]<div class="dialog alert"><h3>No hay monedas actualmente activas</h3><p>Por favor <a href="/cgi-bin/koha/admin/currency.pl">especifique una moneda activa</a>.</p></div>
+ [% END %] </p>[% ELSE %]<div class="dialog alert"><h3>No hay monedas actualmente activas</h3><p>Por favor <a href="/cgi-bin/koha/admin/currency.pl">especifique una moneda actva</a>.</p></div>
 [% IF ( show_actual ) %] <p><b>Cada célula contiene valores tanto reales como estimados.</b></p>
  [% ELSE %] <p><b>Las células contienen valores estimados solamente.</b></p>
  [% END %] [% END %] <p id="selections">
@@ -141,7 +141,7 @@
 
  <td>
  [% UNLESS ( budget_line.budget_lock ) %] <input value="Fila con autorrelleno" type="button" onclick="autoFillRow('[% budget_line.budget_id %]')" />
- [% ELSE %] <div style="color:red;">no poseído</div>
+ [% ELSE %] <div style="color:red;">sin propietario</div>
  [% END %] </td>
  </tr>
  [% END %] </tbody>

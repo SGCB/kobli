@@ -20,16 +20,16 @@ authorities.pref:
     - 
       - 
         choices: 
-          "": No hacer
-          1: Hacer
+          "": 'No'
+          1: "S\xC3\xAD"
         default: 1
         pref: LinkerRelink
       - reenlazar encabezamientos que previamente hayan sido enlazados a registros de autoridades
     - 
       - 
         choices: 
-          "": No hacer
-          1: Hacer
+          "": 'No'
+          1: "s\xC3\xAD"
         default: ''
         pref: LinkerKeepStale
       - mantener los enlaces existentes con los registros de autoridades para encabezamientos donde el enlace no encuentre coincidencia
@@ -71,8 +71,8 @@ authorities.pref:
     - 
       - 
         choices: 
-          "": Hacer
-          1: No hacer
+          "": "S\xC3\xAD"
+          1: 'No'
         default: 1
         pref: dontmerge
       - "actualizar autom\xC3\xA1ticamente los biblios adjuntos cuando se cambie un registro de autoridad. Si est\xC3\xA1 desactivado, por favor pedir a tu administrador habiltar la tarea progrmada merge_authority.pl"

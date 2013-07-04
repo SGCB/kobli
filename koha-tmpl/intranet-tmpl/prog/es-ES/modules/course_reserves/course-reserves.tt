@@ -81,12 +81,7 @@ $(document).ready(function() {
  <td>[% c.public_note %]</td>
  <td>[% c.students_count %]</td>
  <td>
- [% IF c.enabled == 'yes' %]
- Yes
- [% ELSE %]
- No
- [% END %]
- </td>
+ [% IF c.enabled == 'yes' %] Sí [% ELSE %] No [% END %] </td>
  [% END %] </tbody>
  </table>
  </div>

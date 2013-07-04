@@ -150,7 +150,7 @@ circulation.pref:
       - 
         class: integer
         pref: numReturnedItemsToShow
-      - "\xC3\xBAltimos \xC3\xADems devueltos en la pantalla de comprobaci\xC3\xB3n"
+      - "\xC3\xBAltimos \xC3\xADtems devueltos en la pantalla de circulaci\xC3\xB3n"
     - 
       - 
         choices: 
@@ -203,10 +203,10 @@ circulation.pref:
     - 
       - 
         choices: 
-          "": No hacer
-          1: Hacer
+          "": 'No'
+          1: "S\xC3\xAD"
         pref: UpdateTotalIssuesOnCirc
-      - update a bibliographic record's total issues count whenever an item is issued (WARNING! This increases server load significantly; if performance is a concern, use the update_totalissues.pl cron job to update the total issues count).
+      - "actualizar el total de pr\xC3\xA9stamo de un registro bibliogr\xC3\xA1fico cuando sea prestado (\xC2\xA1CUIDADO! Esto aumenta significativamente la carga del servidor; si el rendimiento es un problema, use el cron job update_totalissues.pl para actualizar el conteo total de pr\xC3\xA9stamos)."
     - 
       - Usar la
       - 
@@ -271,7 +271,7 @@ circulation.pref:
           "": No permitir
           1: Permitir
         pref: AllowItemsOnHoldCheckout
-      - "pr\xC3\xA9stamos de \xC3\xADtems reservados a cualquier persona. Si se permite que no genere RESERVE_WAITING y RESERVED advertir. Esto permite auto pr\xC3\xA9stamos para esos \xC3\xADtems."
+      - "pr\xC3\xA9stamos de \xC3\xADtems reservados a cualquier persona. Si se permite que se genera aviso de RESERVE_WAITING y RESERVED. Esto permite auto pr\xC3\xA9stamos para esos \xC3\xADtems."
     - 
       - 
         choices: 
@@ -326,7 +326,7 @@ circulation.pref:
           "": No utilizar
           1: Utilizar
         pref: UseTransportCostMatrix
-      - "Transporte Matriz de Coste para el c\xC3\xA1lculo \xC3\xB3ptimo de reservas solicitadas entre bibliotecas."
+      - "la matriz de coste de transporte para el c\xC3\xA1lculo \xC3\xB3ptimo de reservas solicitadas entre bibliotecas."
     - 
       - "Utilice las reglas de pr\xC3\xA9stamo y multas de"
       - 
@@ -391,15 +391,15 @@ circulation.pref:
     - 
       - 
         choices: 
-          "": Impidir
-          1: No impidir
+          "": Impedir
+          1: No impedir
         pref: IssuingInProcess
       - "a los usuarios pedir prestado un \xC3\xADtem cuyo valor de alquiler los lleve sobre el l\xC3\xADmite."
     - 
       - "Restringir los usuarios con los valores siguientes de p\xC3\xBAblico objetivo desde la salida inapropiada de materiales:"
       - 
         pref: AgeRestrictionMarker
-      - "E.j. introducir palabras clave objetivo dividido por | (bar) FSK|PEGI|Age| (No hay espacio blanco cerca |). Aseg\xC3\xBArese de mapear una restricci\xC3\xB3n de edad de Koha en el mapeo MARC  (e.j. 521$a). Un valor de campo MARC  FSK 12 o PEGI 12 deber\xC3\xADa siginificar: Prestatario debe ser mayor de 12 a\xC3\xB1os. Dejar vac\xC3\xADo sino aplica ninguna restricci\xC3\xB3n de edad. "
+      - "E.j. introducir palabras clave por objetivo dividido por | (bar) FSK|PEGI|Age| (No necesita espacio en blanco |). Aseg\xC3\xBArese de mapear una restricci\xC3\xB3n de edad de Koha en el mapeo MARC  (e.j. 521$a). Un valor de campo MARC  FSK 12 o PEGI 12 deber\xC3\xADa siginificar: Prestatario debe ser mayor de 12 a\xC3\xB1os. Dejar vac\xC3\xADo sino aplica ninguna restricci\xC3\xB3n de edad. "
     - 
       - 
         choices: 
@@ -433,7 +433,7 @@ circulation.pref:
           "": No requerir
           1: Requerir
         pref: ReturnBeforeExpiry
-      - "a los usuarios la devoluci\xC3\xB3n de \xC3\xADtems antes del vencimiento de su carnet (asegurando que las fechas de devoluci\xC3\xB3n sean previas a la fecha de expiraci\xC3\xB3n)."
+      - "a los usuarios la devoluci\xC3\xB3n de \xC3\xADtems antes del vencimiento de su carn\xC3\xA9 (asegurando que las fechas de devoluci\xC3\xB3n sean previas a la fecha de expiraci\xC3\xB3n)."
     - 
       - "Enviar todos los avisos como BCC a esta direcci\xC3\xB3n de email"
       - 
@@ -461,7 +461,7 @@ circulation.pref:
         pref: HomeOrHoldingBranchReturn
         type: choice
     - 
-      - "Cuando est\xC3\xA1s utilizando un \xC3\xADteem que ha sido marcado como perdido, "
+      - "Cuando est\xC3\xA1s utilizando un \xC3\xADtem que ha sido marcado como perdido, "
       - 
         choices: 
           alert: mostrar un mensaje
@@ -604,14 +604,14 @@ circulation.pref:
           "": No permitir
           1: Permitir
         pref: SuspendHoldsIntranet
-      - reservar para posponer desde la intranet.
+      - que las reservas sean suspendidas desde la intranet.
     - 
       - 
         choices: 
           "": No permitir
           1: Permitir
         pref: SuspendHoldsOpac
-      - reservar para posponer desde el OPAC.
+      - reservas sean suspendidas desde el OPAC.
     - 
       - 
         choices: 

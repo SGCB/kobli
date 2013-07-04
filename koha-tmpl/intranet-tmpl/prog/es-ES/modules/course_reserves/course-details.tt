@@ -1,9 +1,9 @@
-[% USE AuthorisedValues %] [% USE ItemTypes %] [% USE Branches %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Course reserves &rsaquo; Course details for [% course.course_name %]</title>
+[% USE AuthorisedValues %] [% USE ItemTypes %] [% USE Branches %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Colección de préstamo restringido &rsaquo; Detalle para curso/materia [% course.course_name %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function(){
         $("a.delete_item").click(function(){
-            return confirm( _("Are you sure you want to remove this item from the course?"));
+            return confirm( _("¿Está seguro de querer eliminar los registros seleccionados?"));
         });
 
         $("#delete_course").click(function(){
@@ -38,13 +38,13 @@
  <li><span class="label">Formadores</span> [% FOREACH i IN course.instructors %]<div class="instructor"><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% i.borrowernumber %]">[% i.firstname %] [% i.surname %]</a></div>[% END %]</li>
  <li><span class="label">Nota de staff</span> [% course.staff_note %]</li>
  <li><span class="label">Nota pública</span> [% course.public_note %]</li>
- <li><span class="label">Student count</span> [% course.students_count %]</li>
+ <li><span class="label">Número de estudiantes </span> [% course.students_count %]</li>
  <li><span class="label">Estado</span> [% IF course.enabled == 'yes' %]Activo[% ELSE %]Inactivo[% END %]</li>
  </ol>
  </div>
 
  [% IF course_reserves %] <table>
- <caption>Reserves</caption>
+ <caption>Reservas</caption>
  <thead>
  <tr>
  <th>Título</th>

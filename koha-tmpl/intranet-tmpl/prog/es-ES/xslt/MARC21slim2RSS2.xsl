@@ -48,19 +48,19 @@
  <!--Removed attributes 6/04 jer-->
  
  <!--<xsl:attribute name="manuscript">yes</xsl:attribute>-->
- <xsl:text>manuscrito</xsl:text>
+ <xsl:text>Manuscrito</xsl:text>
  </xsl:if>
 
  <xsl:choose>
  <xsl:when test="$leader6='a' or $leader6='t'">texto</xsl:when>
  <xsl:when test="$leader6='e' or $leader6='f'">cartográfico</xsl:when>
- <xsl:when test="$leader6='c' or $leader6='d'">música notada</xsl:when>
- <xsl:when test="$leader6='i' or $leader6='j'">grabación de sonido</xsl:when>
- <xsl:when test="$leader6='k'">imagen fija</xsl:when>
- <xsl:when test="$leader6='g'">imagen móvil</xsl:when>
+ <xsl:when test="$leader6='c' or $leader6='d'">Música anotada</xsl:when>
+ <xsl:when test="$leader6='i' or $leader6='j'">grabación sonora</xsl:when>
+ <xsl:when test="$leader6='k'">still image</xsl:when>
+ <xsl:when test="$leader6='g'">imagen en movimiento</xsl:when>
  <xsl:when test="$leader6='r'">objeto tridimensional</xsl:when>
- <xsl:when test="$leader6='m'">software, multimedia</xsl:when>
- <xsl:when test="$leader6='p'">material combinado</xsl:when>
+ <xsl:when test="$leader6='m'">software, multimedia interactivo </xsl:when>
+ <xsl:when test="$leader6='p'">Materiales mixtos</xsl:when>
  </xsl:choose>
  </dc:type>
 

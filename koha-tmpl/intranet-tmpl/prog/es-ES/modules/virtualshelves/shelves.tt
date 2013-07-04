@@ -159,7 +159,7 @@ function placeHold () {
 		var alertString2;
 
 	    if($("#shelfname").val() == ""){
-            _alertString += "- "+_("You must enter a List Name") + "\n";
+            _alertString += "- "+_("Debe indicar un nombre de lista") + "\n";
 		}
 
 		if (_alertString.length==0) {
@@ -226,7 +226,7 @@ function placeHold () {
  <div class="yui-g">[% INCLUDE 'virtualshelves-toolbar.inc' %] </div>
 [% IF ( paramsloop ) %] [% FOREACH paramsloo IN paramsloop %] <div class="yui-ge">
  <div class="yui-u first">
- [% IF ( paramsloo.already ) %]<div class="dialog alert">¡Una Lista llamada [% paramsloo.already %] ya existe!</div>[% END %] [% IF ( paramsloo.status ) %]<div class="dialog alert">[% paramsloo.string %]</div>[% END %] [% IF ( paramsloo.nobarcode ) %]<div class="dialog alert">ERROR: no se ingresó el numero de código de barras.</div>[% END %] [% IF ( paramsloo.noshelfnumber ) %]<div class="dialog alert">ERROR: no se ha suministrado shelfnumber (número de estantería)r.</div>[% END %] [% IF ( paramsloo.need_confirm ) %] <div class="dialog alert">La lista <i>[% paramsloo.need_confirm %]</i> no está vacío. <br />Tiene <b>[% paramsloo.count %]</b> entradas. <br />Use el botón "Confirmar" que aparece a continuación para confirmar la eliminación. </div>
+ [% IF ( paramsloo.already ) %]<div class="dialog alert">¡Una Lista llamada [% paramsloo.already %] ya existe!</div>[% END %] [% IF ( paramsloo.status ) %]<div class="dialog alert">[% paramsloo.string %]</div>[% END %] [% IF ( paramsloo.nobarcode ) %]<div class="dialog alert">ERROR: no se ingresó el numero de código de barras.</div>[% END %] [% IF ( paramsloo.noshelfnumber ) %]<div class="dialog alert">ERROR: No se ha suministrado shelfnumber (número de estantería).</div>[% END %] [% IF ( paramsloo.need_confirm ) %] <div class="dialog alert">La lista <i>[% paramsloo.need_confirm %]</i> no está vacío. <br />Tiene <b>[% paramsloo.count %]</b> entradas. <br />Use el botón "Confirmar" que aparece a continuación para confirmar la eliminación. </div>
  [% END %] [% IF ( paramsloo.nopermission ) %] <div class="dialog alert">ERROR: no tiene permisos para realizar esta acción en la lista [% paramsloo.nopermission %].</div>
  [% END %] [% IF ( paramsloo.failgetitem ) %] <div class="dialog alert">ERROR: no se encontró un ítem con código de barras [% paramsloo.failgetitem %].</div>
  [% END %] [% IF ( paramsloo.duplicatebiblio ) %] <div class="dialog alert">Agregar regla de coincidencia de registro para el código de barras <b>[% paramsloo.duplicatebiblio %]</b> ya ha sido ingresado</div>
@@ -247,8 +247,8 @@ function placeHold () {
 
  <span class="addto">| </span>
  &nbsp; [% IF ( CAN_user_reserveforothers && DisplayMultiPlaceHold ) %] <div class="btn-group"><button class="btn btn-mini placehold"><i class="icon-hold"></i> Hacer reserva</button></div>
- [% END %] [% IF ( allowremovingitems ) %] <div class="btn-group"><button type="submit" class="btn btn-mini list-remove"><i class="icon-remove-sign"></i> Remove selected</button></div>
- [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]<div class="btn-group"><button type="submit" class="btn btn-mini merge-items"><i class="icon-merge"></i> Merge selected</button></div>[% END %] </div>
+ [% END %] [% IF ( allowremovingitems ) %] <div class="btn-group"><button type="submit" class="btn btn-mini list-remove"><i class="icon-remove-sign"></i> Eliminar registros seleccionados</button></div>
+ [% END %] [% IF ( CAN_user_editcatalogue_edit_catalogue ) %]<div class="btn-group"><button type="submit" class="btn btn-mini merge-items"><i class="icon-merge"></i> Combinar registros seleccionados</button></div>[% END %] </div>
  [% END %] </div>
 
  <table id="searchresults">
@@ -279,11 +279,7 @@ function placeHold () {
  [% END %] </td>
  [% END %] [% UNLESS ( item_level_itypes ) %]<td>
  [% UNLESS ( noItemTypeImages || !itemsloo.imageurl ) %]<img src="[% itemsloo.imageurl %]" alt="[% itemsloo.description %]" title="[% itemsloo.description %]" />[% END %][% itemsloo.description %] </td>[% END %] <td>
- [% IF ( itemsloo.XSLTBloc ) %]
- [% itemsloo.XSLTBloc %]
- [% ELSE %]
- [% INCLUDE 'biblio-default-view.inc' biblionumber = itemsloo.biblionumber %]
- [% itemsloo.title |html %][% FOREACH subtitl IN itemsloo.subtitle %] [% subtitl.subfield %][% END %]</a>
+ [% IF ( itemsloo.XSLTBloc ) %] [% itemsloo.XSLTBloc %] [% ELSE %] [% INCLUDE 'biblio-default-view.inc' biblionumber = itemsloo.biblionumber %] [% itemsloo.title |html %][% FOREACH subtitl IN itemsloo.subtitle %] [% subtitl.subfield %][% END %]</a>
  [% END %] <p class="hold">
  [% IF ( itemsloo.notforloan ) %] <span class="noholdstext">No se permiten reservas</span>
  [% ELSE %] [% IF ( itemsloo.ITEM_RESULTS.size ) %] <a id="reserve_[% itemsloo.biblionumber %]" href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% itemsloo.biblionumber %]">Reservas</a>
@@ -296,9 +292,7 @@ function placeHold () {
  <td>[% itemsloo.dateadded %]</td>
  <td>
  <ul>
- [% FOREACH result IN itemsloo.ITEM_RESULTS %] <li>[% result.holdingbranch %] [% IF ( result.location_intranet ) %] ([% result.location_intranet %]) [% END %]
- [% IF ( result.itemcallnumber ) %]
- [<a href="/cgi-bin/koha/catalogue/search.pl?idx=callnum&amp;q=[% result.itemcallnumber |url %]">[% result.itemcallnumber %]</a>] [% END %] </li>
+ [% FOREACH result IN itemsloo.ITEM_RESULTS %] <li>[% result.holdingbranch %] [% IF ( result.location_intranet ) %] ([% result.location_intranet %]) [% END %] [% IF ( result.itemcallnumber ) %] [<a href="/cgi-bin/koha/catalogue/search.pl?idx=callnum&amp;q=[% result.itemcallnumber |url %]">[% result.itemcallnumber %]</a>] [% END %] </li>
  [% END %] </ul>
  </td>
  </tr>
@@ -330,7 +324,7 @@ function placeHold () {
 [% END %]<!-- /allowaddingitem -->
 
 [% IF ( debug ) %]
- [% IF ( edit ) %]<div>Edición habilitada ([% shelfname | html %])</div>[% END %] [% IF ( seflag ) %]<div>seflag está en ([% seflag %])</div>[% END %] [% END %] [% IF ( seflag ) %] <div class="yui-ge">
+ [% IF ( edit ) %]<div>Edición habilitada ([% shelfname | html %])</div>[% END %] [% IF ( seflag ) %]<div>seflag is on ([% seflag %])</div>[% END %] [% END %] [% IF ( seflag ) %] <div class="yui-ge">
  <div class="yui-u first">
  <form method="post" action="/cgi-bin/koha/virtualshelves/shelves.pl">
  <fieldset class="rows">

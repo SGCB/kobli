@@ -472,7 +472,7 @@
  <span class="label">; Type periodikum: </span>
  </xsl:if>
  <xsl:choose>
- <xsl:when test="$controlField008-21='a'">Årbok</xsl:when>
+ <xsl:when test="$controlField008-21='a'">libro</xsl:when>
  <xsl:when test="$controlField008-21='m'">Monografiserie</xsl:when>
  <xsl:when test="$controlField008-21='n'">Avis</xsl:when>
  <xsl:when test="$controlField008-21='p'">Tidsskrift</xsl:when>

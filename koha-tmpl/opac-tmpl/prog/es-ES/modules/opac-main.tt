@@ -13,7 +13,7 @@
  [% END %] <div id="main-search">
  [% INCLUDE 'search.inc' %] </div>
 
- [% IF ( OpacMainUserBlock ) %]<div id="opacmainuserblock" class="container">[% OpacMainUserBlock %]</div>[% END %] [% IF ( koha_news_count ) %] <div id="news" class="container">
+ [% IF ( OpacMainUserBlock ) %]<div id="opacmainuserblock" class="container">[% OpacMainUserBlock %]</div>[% END %] [% IF ( OpacMainUserBlockMobile ) %]<div id="opacmainuserblockmobile" class="container">[% OpacMainUserBlockMobile %]</div>[% END %] [% IF ( koha_news_count ) %] <div id="news" class="container">
  <table>
  [% FOREACH koha_new IN koha_news %] <tr><th>[% koha_new.title %]</th></tr>
  <tr><td><p>[% koha_new.new %]</p>
@@ -21,7 +21,7 @@
  [% END %] </table>
 </div>
 [% END %] [% IF ( display_daily_quote && daily_quote ) %] <div id="daily-quote" class="container"><h1>Cuota de día</h1><div><span id="daily-quote-text">[% daily_quote.text %]</span><span id="daily-quote-sep"> ~ </span><span id="daily-quote-source">[% daily_quote.source %]</span></div></div>
-[% END %] [% IF ( OpacMainUserBlock ) %]<div id="opacmainuserblock" class="container">[% OpacMainUserBlock %]</div>[% END %] [% IF ( OpacMainUserBlockMobile ) %]<div id="opacmainuserblockmobile" class="container">[% OpacMainUserBlockMobile %]</div>[% END %] </div>
+[% END %] </div>
 </div>
 </div>
 </div>

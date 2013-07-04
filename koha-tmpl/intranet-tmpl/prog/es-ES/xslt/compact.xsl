@@ -12,7 +12,7 @@
  <xsl:template match="/">
  <html>
  <head>
- <title>Vista tarjeta MARC</title>
+ <title>Vista ficha MARC</title>
  </head>
  <body>
  <xsl:apply-templates/>

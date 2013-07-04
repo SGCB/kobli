@@ -41,7 +41,7 @@ $(document).ready(function() {
  <div id="yui-main">
  <div class="yui-b">
  
-[% INCLUDE 'acquisitions-toolbar.inc' %] [% UNLESS ( count == 1 ) %] <h1>Usted buscó <b>proveedor [% supplier %],</b> [% count %] resultados encontrados</h1>
+[% INCLUDE 'acquisitions-toolbar.inc' %] [% UNLESS ( count == 1 ) %] <h1>Usted buscó <b>proveedor[% supplier %]</b> [% count %] resultados encontrados</h1>
 [% END %] [% IF ( loop_suppliers.size ) %] [% UNLESS (count == 1) %] <p>Elija un proveedor en la lista para saltar directamente al lugar correcto. <select id="supplierlist">
  [% FOREACH supplier1 IN loop_suppliers %] <option value="[% supplier1.booksellerid %]">[% supplier1.name %]</option>
  [% END %] </select>

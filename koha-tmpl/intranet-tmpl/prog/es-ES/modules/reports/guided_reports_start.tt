@@ -510,7 +510,7 @@ $(document).ready(function(){
  <div class="dialog alert">
  <h3>Se han encontrado errores mientras se procesaba el informe [% name %]:</h3>
  [% FOREACH problematic_authval IN problematic_authvals %] <p>
- <strong>[% problematic_authval.name %]:</strong> The authorized value category (<strong>[% problematic_authval.authval %]</strong>) que se ha seleccionado no existe.</p>
+ <strong>[% problematic_authval.name %]:</strong> Categoría de valor autorizado (<strong>[% problematic_authval.authval %]</strong>) que se ha seleccionado no existe.</p>
  [% END %]
  <!-- Save Anyway Form -->
  <form action='/cgi-bin/koha/reports/guided_reports.pl'>
@@ -542,7 +542,7 @@ $(document).ready(function(){
  <div class="dialog alert">
  <h3>Se han encontrado errores mientras se procesaba el informe [% name %]:</h3>
  [% FOREACH auth_val_error IN auth_val_errors %] <p>
- <strong>[% auth_val_error.entry %]:</strong> The authorized value category (<strong>[% auth_val_error.auth_val %]</strong>) que se ha seleccionado no existe.</p>
+ <strong>[% auth_val_error.entry %]:</strong> Categoría de valor autorizado (<strong>[% auth_val_error.auth_val %]</strong>) que se ha seleccionado no existe.</p>
  [% END %] </div>
  <fieldset class="action"><input value="Editar SQL" type="submit" /></fieldset>
  [% ELSE %] <input type='hidden' name='phase' value='Run this report' />
@@ -755,7 +755,7 @@ $("#column_submit").submit(function() {
  [% END %] [% group.name %] </option>
  [% END %] </select>
  <input type="radio" name="select_or_create_group" id="create_group" />
- <label for="create_group" style="float:none">o creado</label>
+ <label for="create_group" style="float:none">o crear</label>
  <input name="group" type="text" id="group_input" title="Coódigo de grupo" placeholder="Código" />
  <input name="groupdesc" type="text" id="groupdesc_input" title="Nombre del grupo" placeholder="Nombre" />
  </li>
@@ -772,7 +772,7 @@ $("#column_submit").submit(function() {
  [% END %] [% END %] [% END %] </select>
  <input type="radio" name="select_or_create_subgroup"
             id="create_subgroup" />
- <label for="create_subgroup" style="float:none">o creado</label>
+ <label for="create_subgroup" style="float:none">o crear</label>
  <input name="subgroup" type="text" id="subgroup_input" title="Código de subgrupo" placeholder="Código" />
  <input name="subgroupdesc" type="text" id="subgroupdesc_input" title="Nombre de subgrupo" placeholder="Nombre" />
  </li>

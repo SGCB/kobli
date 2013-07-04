@@ -93,13 +93,13 @@ cataloguing.pref:
           biblionumber: generado igual que el biblionumber.
           incremental: generado de la manera 1, 2, 3.
         pref: autoControlNumber
-      - (You should fill in a value in incrementalControlNumber preference.)
+      - (Debe introducir un valor en la preferencia incrementalControlNumber)
     - 
       - "Usar el N\xC3\xBAmero de control (001)"
       - 
         class: integer
         pref: incrementalControlNumber
-      - as incremental number. (This requires generated in the form 1, 2, 3 in autoControlNumber preference.)
+      - "como n\xC3\xBAmero incremental. (Esto requiere \"generado con la forma 1,2,3\" en la preferencia autoControlNumber)"
   Interfaz: 
     - 
       - Usar
@@ -199,13 +199,14 @@ cataloguing.pref:
       - 
         class: multi
         pref: NotesBlacklist
-      - "nota lde os campos de t\xC3\xADtulo separador de notas (OPAC detalles de registro) y en el separador de descripci\xC3\xB3n (detalles del registro del cliente de Personal ). Los campos deben aparecer separados por comas y de acuerdo con el formato MARC Koha (por ejemplo, 3 .. para UNIMARC, 5 .. por MARC21)"
+      - "campos de notas en la pesta\xC3\xB1a de t\xC3\xADtulo (OPAC detalles de registro en OPAC) y en la pesta\xC3\xB1a de descripci\xC3\xB3n(detalles del registro en Intranet). Los campos deben aparecer separados por comas y de acuerdo con el formato MARC Koha (por ejemplo, 3 .. para UNIMARC, 5 .. por MARC21)"
+    - 
       - 
         choices: 
           "": Ocultar
           1: No ocultar
         pref: DisplayPluginValueIndicators
-      - "el enlace al lado del campo del indicador abre un plugin que muestra los valores correctos para este campo. Si CheckValueIndicators est\xC3\xA1 deshabilitado y su variable est\xC3\xA1 habilitada tambi\xC3\xA9n se seleccionar\xC3\xA1 el valor, por ejemplo, si este incluye la funcionalidad  CheckValueIndicators."
+      - "el enlace al lado del campo del indicador abre un plugin que muestra los valores correctos para este campo. Si CheckValueIndicators est\xC3\xA1 deshabilitado y su variable est\xC3\xA1 habilitada tambi\xC3\xA9n se seleccionar\xC3\xA1 el valor, por ejemplo, si este incluye la funcionalidad CheckValueIndicators."
   Tejuelos: 
     - 
       - "Cuando utilice la impresi\xC3\xB3n r\xC3\xA1pida de tejuelos,"
@@ -227,5 +228,5 @@ cataloguing.pref:
           "": No mostrar
           1: Mostrar
         pref: SpineLabelShowPrintOnBibDetails
-      - "botones en la p\xC3\xA1gina de detalles de registros para imprimir en el lomo."
+      - "botones en la p\xC3\xA1gina de detalles de registros para imprimir tejuelos"
     - ~

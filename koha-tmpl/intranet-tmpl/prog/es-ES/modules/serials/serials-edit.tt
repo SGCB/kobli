@@ -87,7 +87,7 @@ $(document).ready(function() {
         if ( total_errors > 0 ) {
             var mes  = _("El formulario no fue procesado debido a los siguientes problemas");
             mes += "\n------------------------------------------------------------------------------------\n";
-            mes += "\n- "+ total_errors+_(" campos obligatorios vacíos (ver subcampos en negrita)");
+            mes += "\n- "+ total_errors+_(" campos obligatorios  vacíos (ver subcampos destacados)");
             alert(mes);
             return false;
         }
@@ -302,7 +302,7 @@ $(document).ready(function() {
 
 <div class="yui-b">
 [% INCLUDE 'serials-menu.inc' %] <ul>
- [% FOREACH subscription IN subscriptions %] <li><a href="serials-collection.pl?subscriptionid=[% subscription.subscriptionid %]" title="colección periódica para [% subscription.bibliotitle %]">Colección de publicaciones periódicas $[% subscription.subscriptionid %]</a></li>
+ [% FOREACH subscription IN subscriptions %] <li><a href="serials-collection.pl?subscriptionid=[% subscription.subscriptionid %]" title="colección de periódicas para [% subscription.bibliotitle %]">Colección de publicaciones periódicas $[% subscription.subscriptionid %]</a></li>
  <li><a href="subscription-detail.pl?subscriptionid=[% subscription.subscriptionid %]" title="detalle de la suscripción">Suscripción #[% subscription.subscriptionid %]</a></li>
  [% IF ( subscription.abouttoexpire ) %] [% UNLESS subscription.closed %] <li><a href="#" onclick="javascript:popup([% subscription.subscriptionid %])">Renovar #[% subscription.subscriptionid %]</a></li>
  [% END %] [% END %] [% END %] <li><a href="/cgi-bin/koha/catalogue/[% default_bib_view %].pl?biblionumber=[% biblionumber %]" title="ir a [% bibliotitle %]">Mostrar biblio</a></li></ul>

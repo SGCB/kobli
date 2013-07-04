@@ -83,13 +83,13 @@ opac.pref:
       - 
         class: file
         pref: OPACXSLTResultsDisplay
-      - "<br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con una interfaz de idioma habitual"
+      - "<br />Opciones<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Dejar vac\xC3\xADo</a> para \"no xslt\"</li><li>introducir \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" para la CSS predeterminada</li><li>incluir un ruta para definir un fichero xslt </li><li>incluir una URL para una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con la interfaz de idioma habitual"
     - 
       - "Mostrar detalles en OPAC utilizando la hoja de estilo XSLT en: "
       - 
         class: file
         pref: OPACXSLTDetailsDisplay
-      - "<br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con una interfaz de idioma habitual"
+      - "<br />Opciones:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Dejar vac\xC3\xADo</a> para \"no xslt\"</li><li>introduzca \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" para la CSS predeterminada</li><li>incluir una ruta para definir un fichero xslt </li><li>incluir una URL para una hoja de estilo espec\xC3\xADfica externa.</li></ul>{langcode} ser\xC3\xA1 reemplazado con la interfaz de idioma habitual"
     - 
       - 
         choices: 
@@ -135,7 +135,7 @@ opac.pref:
           1: Mostrar
         default: 0
         pref: OpacKohaUrl
-      - "el texto 'Powered by Koha' en el pi\xC3\xA9 del OPAC."
+      - el texto 'Powered by Koha' en el pie del OPAC.
     - 
       - 
         choices: 
@@ -151,7 +151,7 @@ opac.pref:
           1: Mostrar
         default: 0
         pref: OPACShowBarcode
-      - "el c\xC3\xB3digo de barras del \xC3\xADtemen la tab de reservas."
+      - "el c\xC3\xB3digo de barras del \xC3\xADtem en la pesta\xC3\xB1a de reservas."
     - 
       - 
         choices: 
@@ -219,7 +219,7 @@ opac.pref:
         pref: OPACUserCSS
         type: textarea
     - 
-      - "incluir las siguiente CSS en todas las p\xC3\xA1ginas del OPAC para la vista de m\xC3\xB3vil:"
+      - "Incluir las siguiente CSS en todas las p\xC3\xA1ginas del OPAC para la vista de m\xC3\xB3vil:"
       - 
         class: code
         pref: OPACMobileUserCSS
@@ -345,6 +345,51 @@ opac.pref:
           homebranch: biblioteca principal
         pref: OpacSeparateHoldingsBranch
       - "se ha iniciado la sesi\xC3\xB3n en la biblioteca del usuario. La segunda ficha contendr\xC3\xA1 todos los dem\xC3\xA1s elementos."
+  Auto Registro: 
+    - 
+      - 
+        choices: 
+          "": No permitir
+          1: Permitir
+        pref: PatronSelfRegistration
+      - a los usuarios de la biblioteca  registrar una cuenta desde el OPAC.
+    - 
+      - 
+        choices: 
+          "": No requerir
+          1: Requerir
+        pref: PatronSelfRegistrationVerifyByEmail
+      - "que el usuario verifique el autoregistro a trav\xC3\xA9s del correo electr\xC3\xB3nico."
+    - 
+      - "Utilizar el c\xC3\xB3digo de categor\xC3\xADa de usuario"
+      - 
+        class: short
+        pref: PatronSelfRegistrationDefaultCategory
+      - "como predeterminada la categor\xC3\xADa de usuario para los usuarios registrados desde el OPAC."
+    - 
+      - "Borrar los usuarios registrados desde el OPAC, pero que no han sido verificados todav\xC3\xADa"
+      - 
+        class: integer
+        pref: PatronSelfRegistrationExpireTemporaryAccountsDelay
+      - "d\xC3\xADas."
+    - 
+      - "Las siguientes <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a> deber\xC3\xA1 ser rellenadas en la pantalla de entrada del usuario:"
+      - 
+        class: multi
+        pref: PatronSelfRegistrationBorrowerMandatoryField
+      - (separar columnas con |)
+    - 
+      - "La siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a>no aparecer\xC3\xA1n la pantalla de entrada del usuario:"
+      - 
+        class: multi
+        pref: PatronSelfRegistrationBorrowerUnwantedField
+      - "(separar columnas con  |) "
+    - 
+      - "Mostrar las siguientes instrucciones adicionales para los usuarios que se autorregistran en el OPAC (se permite HTML):"
+      - 
+        class: html
+        pref: PatronSelfRegistrationAdditionalInstructions
+        type: textarea
   "Caracter\xC3\xADsticas": 
     - 
       - 
@@ -457,7 +502,7 @@ opac.pref:
           "": Ocultar
           1: Mostrar
         pref: ShowReviewerPhoto
-      - revisor de fotos al lado de los comentarios en el OPAC
+      - "revisi\xC3\xB3n de fotos al lado de los comentarios en el OPAC"
     - 
       - 
         choices: 
@@ -506,11 +551,11 @@ opac.pref:
     - 
       - 
         choices: 
-          "": Do not allow
-          1: Allow
+          "": No permitir
+          1: Permitir
         default: 0
         pref: OpacHoldNotes
-      - users to add a note when placing a hold.
+      - "a los usuarios a\xC3\xB1adir un nota cuando realizan una reserva"
   "Navegador de estanter\xC3\xADa": 
     - 
       - 
@@ -673,48 +718,3 @@ opac.pref:
         default: 0
         pref: TrackClicks
       - enlaces en los que han clicado los usuarios
-  opac.pref Self Registration: 
-    - 
-      - 
-        choices: 
-          "": No permitir
-          1: Permitir
-        pref: PatronSelfRegistration
-      - a los usuarios de la biblioteca  registrar una cuenta desde el OPAC.
-    - 
-      - 
-        choices: 
-          "": No requerir
-          1: Requerir
-        pref: PatronSelfRegistrationVerifyByEmail
-      - "que el usuario verifique el autoregistro a trav\xC3\xA9s del correo electr\xC3\xB3nico."
-    - 
-      - "Utilizar el c\xC3\xB3digo de categor\xC3\xADa de usuario"
-      - 
-        class: short
-        pref: PatronSelfRegistrationDefaultCategory
-      - "como predeterminada la categor\xC3\xADa de usuario para los usuarios registrados desde el OPAC."
-    - 
-      - "Borrar los usuarios registrados desde el OPAC, pero que no han sido verificados todav\xC3\xADa"
-      - 
-        class: integer
-        pref: PatronSelfRegistrationExpireTemporaryAccountsDelay
-      - "d\xC3\xADas."
-    - 
-      - "El siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a> deber\xC3\xA1 ser rellenado en la pantalla de entrada del usuario:"
-      - 
-        class: multi
-        pref: PatronSelfRegistrationBorrowerMandatoryField
-      - (separar columnas con |)
-    - 
-      - "La siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a>no aparecer\xC3\xA1n la pantalla de entrada del usuario:"
-      - 
-        class: multi
-        pref: PatronSelfRegistrationBorrowerUnwantedField
-      - "(separar columnas con  |) "
-    - 
-      - "Mostrar las siguientes instrucciones adicionales para los usuarios que se autorregistran en el OPAC (se permite HTML):"
-      - 
-        class: html
-        pref: PatronSelfRegistrationAdditionalInstructions
-        type: textarea

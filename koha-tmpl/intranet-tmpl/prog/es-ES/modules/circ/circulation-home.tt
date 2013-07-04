@@ -27,7 +27,7 @@
  <li> <a href="/cgi-bin/koha/circ/pendingreserves.pl" title="reservas para retirar de los estantes">Reservas a preparar</a></li>
  <li> <a href="/cgi-bin/koha/circ/waitingreserves.pl" title="reservas a la espera de ser retiradas">Reservas a retirar</a></li>
  <li> <a href="/cgi-bin/koha/circ/reserveratios.pl">Proporción de reservas</a></li>
- <li> <a href="/cgi-bin/koha/circ/transferstoreceive.pl" title="transferencias a recibir en su biblioteca">Transferencias a recibir</a></li>
+ <li> <a href="/cgi-bin/koha/circ/transferstoreceive.pl" title="transferido para ser recibido en su biblioteca">Transferencias a recibir</a></li>
  [% IF ( CAN_user_circulate_overdues_report ) %]<li> <a href="/cgi-bin/koha/circ/overdue.pl">Retrasos</a>
  - <b>Advertencia:</b> Este informe consume muchos recursos en sistema con gran cantidad de ejemplares retrasados.</li>[% END %] <li> <a href="/cgi-bin/koha/circ/branchoverdues.pl">Retrasos con multas</a> - Limitados a su biblioteca. Vea la ayuda del informe para más detalles.</li>
 <!-- <li> <a href="/cgi-bin/koha/circ/stats.pl?time=yesterday">Daily reconciliation</a></li> -->

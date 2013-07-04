@@ -15,20 +15,20 @@
  <li>Para editar los subcampos haga clic en 'Editar Subcampos'</li>
  <li>Para cada subcampo puede poner los siguientes valores <ul>
  <li>Texto para bibliotecario: <ul>
- <li>lo que aparece antes del subcampo en el interfaz de bibliotecario</li>
+ <li> lo que aparece antes del subcampo en el interfaz de bibliotecario</li>
 </ul>
 </li>
  <li>Texto para el OPAC: <ul>
- <li>lo que aparece antes del campo en el OPAC.</li>
+ <li> lo que aparece antes del subcampo en el interfaz del OPAC</li>
  <li>Si queda vacío, el texto para el bibliotecario es usado en su lugar</li>
 </ul>
 </li>
  <li>Repetible <ul>
- <li>el campo tendrá un signo siguiente a él permitiendo añadir multiples de esa etiqueta</li>
+ <li>Si usted marca 'Repetible' el campo tendrá un signo + al lado que al presionarlo le permitirá agregar múltiples valores de ese campo</li>
 </ul>
 </li>
  <li>Obligatorio <ul>
- <li>no se permitirá guardar el registro a menos que haya asignado un valor asignado a este campo</li>
+ <li>este registro no se podrá guardar sino tiene un valor asignado a una etiqueta</li>
 </ul>
 </li>
  <li>Administrado en campo <ul>
@@ -69,8 +69,8 @@
 <ul>
  <li>Enlace: <ul>
  <li>Si ingresa un campo/subcampo aquí (200b), un enlace aparecerá después del subcampo en la vista detallada MARC. Esta vista se presenta solo en la Intranet, no en el OPAC. Si el bibliotecario hace clic en el enlace, se hace una búsqueda en la base de datos por un campo/subcampo con el mismo valor. Puede usarse para 2 tópicos principales: <ul>
- <li>en un campo como el de autor (200f en UNIMARC), poner 200f aquí, será capaz de ver todos los libros del mismo autor.</li>
- <li>en un campo que es un enlace (4xx) para alcanzar otro registro bibliográfico. Por ejemplo, poniendo 011a en 464$x, encontrará la serie que tiene este ISSN.</li>
+ <li>en un campo tipo autor (200f en UNIMARC), pon 200f aquí, podrá visualizar todos los registros bibliográficos con el mismo autor</li>
+ <li>en un campo que es un enlace para vncular con otro registro. Por ejemplo, si pone 011a en 464$x, encontrará todas las seriedas que tienen ese ISSN</li>
 </ul>
 </li>
  <li style="color: #990000;">NOTA: si cambia algo en esta tabla, pídale a su administrador que ejecute el script misc/batchRebuildBiblioTables.pl.</li>
@@ -85,20 +85,20 @@
 </ul>
 <ul>
  <li>Valor autorizado <ul>
- <li>significa que el valor se calcula o gestiona por un plugin. Los plugins puede hacer casi cualquier cosa.</li>
+ <li>significa que el valor no puede ser introducido por el bibliotecario, debe ser elegido en un desplegable generado por una lista de valores autorizados</li>
  <li>En el ejemplo anterior, el campo 504a mostrará al catalogar los valores MARC504 autorizados</li>
 </ul>
 </li>
 </ul>
 <ul>
  <li>Tesauro <ul>
- <li>significa que el valor no es libre, pero puede ser buscado en la autoridad/tesauro de la categoría seleccionada</li>
+ <li>significa que este valor no es texto libre, debe ser buscado en autoridades / tesauro de la categoría seleccionada</li>
 </ul>
 </li>
 </ul>
 <ul>
  <li>Plugin: <ul>
- <li>significa que el valor se calcula o gestiona por un plugin. Los plugins puede hacer casi cualquier cosa.</li>
+ <li>significa el valor que es calculado o gestionado por un plugin. Los plugins pueden hacer casi todo.</li>
  <li>Por ejemplo, en UNIMARC hay plugins para cada 1xx que son campos codificados. El plugin es una ayuda enorme para el catalogador. Hay también dos plugins (unimarc_plugin_210c y unimarc_plugin_225a) que pueden de forma "mágica " encontrar el editor desde el ISBN, y la lista de la colección para el editor.</li>
 </ul>
 </li>

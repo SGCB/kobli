@@ -48,4 +48,4 @@
  </ul>
  </div>
  </div>
-[% IF ( intranetbookbag ) %]<div id="cartDetails">Su carro está vacío</div>[% END %] </div>
+[% IF ( intranetbookbag ) %]<div id="cartDetails">Su cesta está vacía</div>[% END %] </div>

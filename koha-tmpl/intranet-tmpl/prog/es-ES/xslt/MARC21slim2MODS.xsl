@@ -181,22 +181,22 @@
 
  <typeOfResource> 
  <xsl:if test="$leader7='c'">
- <xsl:attribute name="collection">si</xsl:attribute>
+ <xsl:attribute name="collection">Sí</xsl:attribute>
  </xsl:if>
  <xsl:if test="$leader6='d' or $leader6='f' or $leader6='p' or $leader6='t'">
- <xsl:attribute name="manuscript">si</xsl:attribute>
+ <xsl:attribute name="manuscript">Sí</xsl:attribute>
  </xsl:if>
 
  <xsl:choose>
  <xsl:when test="$leader6='a' or $leader6='t'">texto</xsl:when>
  <xsl:when test="$leader6='e' or $leader6='f'">cartográfico</xsl:when>
- <xsl:when test="$leader6='c' or $leader6='d'">música notada</xsl:when>
- <xsl:when test="$leader6='i' or $leader6='j'">grabación de sonido</xsl:when>
- <xsl:when test="$leader6='k'">imagen fija</xsl:when>
- <xsl:when test="$leader6='g'">imagen móvil</xsl:when>
+ <xsl:when test="$leader6='c' or $leader6='d'">Música anotada</xsl:when>
+ <xsl:when test="$leader6='i' or $leader6='j'">grabación sonora</xsl:when>
+ <xsl:when test="$leader6='k'">still image</xsl:when>
+ <xsl:when test="$leader6='g'">imagen en movimiento</xsl:when>
  <xsl:when test="$leader6='r'">objeto tridimensional</xsl:when>
- <xsl:when test="$leader6='m'">software, multimedia</xsl:when>
- <xsl:when test="$leader6='p'">material combinado</xsl:when>
+ <xsl:when test="$leader6='m'">software, multimedia interactivo </xsl:when>
+ <xsl:when test="$leader6='p'">Materiales mixtos</xsl:when>
  </xsl:choose>
  </typeOfResource>
 
@@ -205,14 +205,14 @@
  </xsl:if>
  
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='a'][substring(text(),2,1)='r']">
- <genre authority="marc">imagen de sensado remoto</genre>
+ <genre authority="marc">Imagen de sensor remoto</genre>
  </xsl:if>
 
  <xsl:if test="$typeOf008='MP'">
  <xsl:variable name="controlField008-25" select="substring($controlField008,26,1)"/>
  <xsl:choose>
  <xsl:when test="$controlField008-25='a' or $controlField008-25='b' or $controlField008-25='c' or marc:controlfield[@tag=007][substring(text(),1,1)='a'][substring(text(),2,1)='j']">
- <genre authority="marc">mapa</genre>
+ <genre authority="marc">Mapa</genre>
  </xsl:when>
  <xsl:when test="$controlField008-25='e' or marc:controlfield[@tag=007][substring(text(),1,1)='a'][substring(text(),2,1)='d']">
  <genre authority="marc">atlas</genre>
@@ -230,16 +230,16 @@
  <genre authority="marc">hojas sueltas</genre>
  </xsl:when>
  <xsl:when test="$controlField008-21='m'">
- <genre authority="marc">series</genre>
+ <genre authority="marc">series </genre>
  </xsl:when>
  <xsl:when test="$controlField008-21='n'">
  <genre authority="marc">periódico</genre> 
  </xsl:when>
  <xsl:when test="$controlField008-21='p'">
- <genre authority="marc">periódico</genre>
+ <genre authority="marc">Periódica</genre>
  </xsl:when>
  <xsl:when test="$controlField008-21='w'">
- <genre authority="marc">sitio Web</genre>
+ <genre authority="marc">Sitio Web </genre>
  </xsl:when>
  </xsl:choose>
  </xsl:if>
@@ -278,16 +278,16 @@
  <genre authority="marc">legislación</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'m')">
- <genre authority="marc">tesinas</genre>
+ <genre authority="marc">tesis</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'n')">
- <genre authority="marc">revisión de literatura</genre>
+ <genre authority="marc">estudio del arte de literatura</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'o')">
  <genre authority="marc">revisión</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'p')">
- <genre authority="marc">texto programado</genre>
+ <genre authority="marc">Textos programados</genre>
  </xsl:when> 
  <xsl:when test="contains($controlField008-24,'q')">
  <genre authority="marc">filmografía</genre>
@@ -296,19 +296,19 @@
  <genre authority="marc">directorio</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'s')">
- <genre authority="marc">estadísticas</genre>
+ <genre authority="marc">Estadísticas</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'t')">
- <genre authority="marc">informe técnico</genre>
+ <genre authority="marc">informes técnicos </genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'v')">
  <genre authority="marc">caso jurídicos y notas del caso</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'w')">
- <genre authority="marc">informe legal o digesto</genre>
+ <genre authority="marc">informe legal o resumen</genre>
  </xsl:when>
  <xsl:when test="contains($controlField008-24,'z')">
- <genre authority="marc">tratado</genre>
+ <genre authority="marc">acuerdo</genre>
  </xsl:when> 
  </xsl:choose>
  <xsl:variable name="controlField008-29" select="substring($controlField008,30,1)"/>
@@ -323,7 +323,7 @@
  <xsl:variable name="controlField008-26" select="substring($controlField008,27,1)"/>
  <xsl:choose>
  <xsl:when test="$controlField008-26='a'">
- <genre authority="marc">datos numéricos</genre>
+ <genre authority="marc">Datos numéricos</genre>
  </xsl:when>
  <xsl:when test="$controlField008-26='e'">
  <genre authority="marc">base de datos</genre>
@@ -371,10 +371,10 @@
  <genre authority="marc">carta</genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='f'">
- <genre authority="marc">novela</genre>
+ <genre authority="marc">Novelas</genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='j'">
- <genre authority="marc">historia corta</genre>
+ <genre authority="marc">cuentos</genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='s'">
  <genre authority="marc">discurso</genre>
@@ -409,16 +409,16 @@
  <genre authority="marc">humor, sátira</genre>
  </xsl:if>
  <xsl:if test="contains($controlField008-30-31,'m')">
- <genre authority="marc">memoria</genre>
+ <genre authority="marc">Memorias</genre>
  </xsl:if>
  <xsl:if test="contains($controlField008-30-31,'p')">
- <genre authority="marc">poesía</genre>
+ <genre authority="marc">Poesía</genre>
  </xsl:if>
  <xsl:if test="contains($controlField008-30-31,'r')">
- <genre authority="marc">ensayo</genre>
+ <genre authority="marc">Ensayos</genre>
  </xsl:if>
  <xsl:if test="contains($controlField008-30-31,'g')">
- <genre authority="marc">presentación de informes</genre>
+ <genre authority="marc">Presentación de informes</genre>
  </xsl:if>
  <xsl:if test="contains($controlField008-30-31,'s')">
  <genre authority="marc">sonido</genre>
@@ -456,10 +456,10 @@
  <genre authority="marc">gráfico</genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='l'">
- <genre authority="marc">dibujo técnico</genre>
+ <genre authority="marc">dibujo técnico </genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='m'">
- <genre authority="marc">película de cine</genre>
+ <genre authority="marc">Película </genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='n'">
  <genre authority="marc">mapa</genre>
@@ -468,22 +468,22 @@
  <genre authority="marc">tarjeta flash</genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='p'">
- <genre authority="marc">platina de microscopio</genre>
+ <genre authority="marc">Microdiapositiva</genre>
  </xsl:when> 
  <xsl:when test="$controlField008-33='q' or marc:controlfield[@tag=007][substring(text(),1,1)='a'][substring(text(),2,1)='q']">
- <genre authority="marc">modelo</genre>
+ <genre authority="marc">Modelo</genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='r'">
  <genre authority="marc">realia</genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='s'">
- <genre authority="marc">diapositiva</genre>
+ <genre authority="marc">diapositiva  </genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='t'">
- <genre authority="marc">transparencia</genre>
+ <genre authority="marc">diapositiva</genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='v'">
- <genre authority="marc">grabación de vídeo</genre>
+ <genre authority="marc">Grabación de vídeo</genre>
  </xsl:when>
  <xsl:when test="$controlField008-33='w'">
  <genre authority="marc">juguete</genre>
@@ -677,10 +677,10 @@
  <form><controlled>electrónico</controlled></form>
  </xsl:when>
  <xsl:when test="($check008-23 and $controlField008-23='b') or ($check008-29 and $controlField008-29='b')">
- <form><controlled>microficha</controlled></form>
+ <form><controlled>Microficha</controlled></form>
  </xsl:when>
  <xsl:when test="($check008-23 and $controlField008-23='a') or ($check008-29 and $controlField008-29='a')">
- <form><controlled>microfilm</controlled></form>
+ <form><controlled>Microfilm</controlled></form>
  </xsl:when>
  </xsl:choose>
 
@@ -755,7 +755,7 @@
  <targetAudience>juvenil</targetAudience>
  </xsl:when>
  <xsl:when test="$controlField008-22='a'">
- <targetAudience>preescolar</targetAudience>
+ <targetAudience>Preescolar</targetAudience>
  </xsl:when>
  <xsl:when test="$controlField008-22='f'">
  <targetAudience>especializado</targetAudience>
@@ -1275,10 +1275,10 @@
  <xsl:attribute name="type">
  <xsl:choose>
  <xsl:when test="@ind1=0">número de ejemplar</xsl:when>
- <xsl:when test="@ind1=1">número de matriz</xsl:when>
- <xsl:when test="@ind1=2">placa de música</xsl:when>
- <xsl:when test="@ind1=3">editor de música</xsl:when>
- <xsl:when test="@ind1=4">identificador de grabación de vídeo</xsl:when>
+ <xsl:when test="@ind1=1">Número de Carnet</xsl:when>
+ <xsl:when test="@ind1=2">plancha musical</xsl:when>
+ <xsl:when test="@ind1=3">editor musical</xsl:when>
+ <xsl:when test="@ind1=4">identificador de grabación</xsl:when>
  </xsl:choose>
  </xsl:attribute>
  <xsl:call-template name="subfieldSelect">
@@ -1639,7 +1639,7 @@
  <xsl:choose>
  <xsl:when test="@ind2=0">lcsh</xsl:when>
  <xsl:when test="@ind2=1">lcshac</xsl:when>
- <xsl:when test="@ind2=2">malla</xsl:when>
+ <xsl:when test="@ind2=2">mesh</xsl:when>
  <xsl:when test="@ind2=3">csh</xsl:when>
  <xsl:when test="@ind2=5">nal</xsl:when>
  <xsl:when test="@ind2=6">rvm</xsl:when>

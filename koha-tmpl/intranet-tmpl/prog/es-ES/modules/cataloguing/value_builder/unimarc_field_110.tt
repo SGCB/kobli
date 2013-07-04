@@ -8,12 +8,12 @@
  <td><label for="f1">Tipo de descriptor del recurso continuo</label></td>
  <td>
  <select name="f1" id="f1" size="1">
- [% IF ( f1pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f1a ) %] <option value="a" selected="selected">periódico</option>
- [% ELSE %] <option value="a">periódico</option>
- [% END %] [% IF ( f1b ) %] <option value="b" selected="selected">series monográficas</option>
- [% ELSE %] <option value="b">series monográficas</option>
+ [% IF ( f1pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
+ [% END %] [% IF ( f1a ) %] <option value="a" selected="selected">Periódica</option>
+ [% ELSE %] <option value="a">Periódica</option>
+ [% END %] [% IF ( f1b ) %] <option value="b" selected="selected">monographic series</option>
+ [% ELSE %] <option value="b">monographic series</option>
  [% END %] [% IF ( f1c ) %] <option value="c" selected="selected">periódico</option>
  [% ELSE %] <option value="c">periódico</option>
  [% END %] [% IF ( f1z ) %] <option value="z" selected="selected">otro</option>
@@ -26,42 +26,42 @@
  <td><label for="f2">Periodicidad del ejemplar</label></td>
  <td>
  <select name="f2" id="f2" size="1">
- [% IF ( f2pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f2pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f2a ) %] <option value="a" selected="selected">diariamente</option>
  [% ELSE %] <option value="a">diariamente</option>
- [% END %] [% IF ( f2b ) %] <option value="b" selected="selected">semisemanal (dos veces por semana)</option>
- [% ELSE %] <option value="b">semisemanal (dos veces por semana)</option>
- [% END %] [% IF ( f2c ) %] <option value="c" selected="selected">semanal</option>
- [% ELSE %] <option value="c">semanal</option>
+ [% END %] [% IF ( f2b ) %] <option value="b" selected="selected">semisemanal (dos veces a la semanas)</option>
+ [% ELSE %] <option value="b">semisemanal (dos veces a la semanas)</option>
+ [% END %] [% IF ( f2c ) %] <option value="c" selected="selected">semanalmente</option>
+ [% ELSE %] <option value="c">semanalmente</option>
  [% END %] [% IF ( f2d ) %] <option value="d" selected="selected">quincenal (cada dos semanas)</option>
  [% ELSE %] <option value="d">quincenal (cada dos semanas)</option>
- [% END %] [% IF ( f2e ) %] <option value="e" selected="selected">semimensual (dos veces al mes)</option>
- [% ELSE %] <option value="e">semimensual (dos veces al mes)</option>
- [% END %] [% IF ( f2f ) %] <option value="f" selected="selected">mensualmente</option>
- [% ELSE %] <option value="f">mensualmente</option>
+ [% END %] [% IF ( f2e ) %] <option value="e" selected="selected">semimensual (dosveces al mese)</option>
+ [% ELSE %] <option value="e">semimensual (dosveces al mese)</option>
+ [% END %] [% IF ( f2f ) %] <option value="f" selected="selected">monthly</option>
+ [% ELSE %] <option value="f">monthly</option>
  [% END %] [% IF ( f2g ) %] <option value="g" selected="selected">bimestral (cada dos meses)</option>
  [% ELSE %] <option value="g">bimestral (cada dos meses)</option>
- [% END %] [% IF ( f2h ) %] <option value="h" selected="selected">trimestral</option>
- [% ELSE %] <option value="h">trimestral</option>
+ [% END %] [% IF ( f2h ) %] <option value="h" selected="selected">quarterly</option>
+ [% ELSE %] <option value="h">quarterly</option>
  [% END %] [% IF ( f2i ) %] <option value="i" selected="selected">tres veces al año</option>
  [% ELSE %] <option value="i">tres veces al año</option>
- [% END %] [% IF ( f2j ) %] <option value="j" selected="selected">semianual (dos veces al año)</option>
- [% ELSE %] <option value="j">semianual (dos veces al año)</option>
+ [% END %] [% IF ( f2j ) %] <option value="j" selected="selected">semiannual (twice a year)</option>
+ [% ELSE %] <option value="j">semiannual (twice a year)</option>
  [% END %] [% IF ( f2k ) %] <option value="k" selected="selected">anual</option>
  [% ELSE %] <option value="k">anual</option>
  [% END %] [% IF ( f2l ) %] <option value="l" selected="selected">bienal (cada dos años)</option>
  [% ELSE %] <option value="l">bienal (cada dos años)</option>
- [% END %] [% IF ( f2m ) %] <option value="m" selected="selected">trianual (cada tres años)</option>
- [% ELSE %] <option value="m">trianual (cada tres años)</option>
+ [% END %] [% IF ( f2m ) %] <option value="m" selected="selected">trienal (cada tres años)</option>
+ [% ELSE %] <option value="m">trienal (cada tres años)</option>
  [% END %] [% IF ( f2n ) %] <option value="n" selected="selected">tres veces a la semana</option>
  [% ELSE %] <option value="n">tres veces a la semana</option>
  [% END %] [% IF ( f2o ) %] <option value="o" selected="selected">tres veces al mes</option>
  [% ELSE %] <option value="o">tres veces al mes</option>
- [% END %] [% IF ( f2u ) %] <option value="u" selected="selected">desconocido</option>
- [% ELSE %] <option value="u">desconocido</option>
- [% END %] [% IF ( f2y ) %] <option value="y" selected="selected">ninguna frecuencia (es decir, irregular)</option>
- [% ELSE %] <option value="y">ninguna frecuencia (es decir, irregular)</option>
+ [% END %] [% IF ( f2u ) %] <option value="u" selected="selected">Desconocido</option>
+ [% ELSE %] <option value="u">Desconocido</option>
+ [% END %] [% IF ( f2y ) %] <option value="y" selected="selected">sin frecuencia (por ej., irregular)</option>
+ [% ELSE %] <option value="y">sin frecuencia (por ej., irregular)</option>
  [% END %] [% IF ( f2i ) %] <option value="i" selected="selected">otro</option>
  [% ELSE %] <option value="i">otro</option>
  [% END %] </select>
@@ -71,14 +71,14 @@
  <td><label for="f3">Regularidad</label></td>
  <td>
  <select name="f3" id="f3" size="1">
- [% IF ( f3pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f3u ) %] <option value="u" selected="selected">desconocido</option>
- [% ELSE %] <option value="u">desconocido</option>
- [% END %] [% IF ( f3a ) %] <option value="a" selected="selected">normal</option>
- [% ELSE %] <option value="a">normal</option>
- [% END %] [% IF ( f3b ) %] <option value="b" selected="selected">normalizado irregular</option>
- [% ELSE %] <option value="b">normalizado irregular</option>
+ [% IF ( f3pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
+ [% END %] [% IF ( f3u ) %] <option value="u" selected="selected">Desconocido</option>
+ [% ELSE %] <option value="u">Desconocido</option>
+ [% END %] [% IF ( f3a ) %] <option value="a" selected="selected">regular</option>
+ [% ELSE %] <option value="a">regular</option>
+ [% END %] [% IF ( f3b ) %] <option value="b" selected="selected">normalised irregular</option>
+ [% ELSE %] <option value="b">normalised irregular</option>
  [% END %] [% IF ( f3y ) %] <option value="y" selected="selected">irregular</option>
  [% ELSE %] <option value="y">irregular</option>
  [% END %] </select>
@@ -89,10 +89,10 @@
  <td><label for="f4">Tipo de código de material</label></td>
  <td>
  <select name="f4" id="f4" size="1">
- [% IF ( f4pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f4space ) %] <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %] <option value=" ">valor no requerido</option>
+ [% IF ( f4pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
+ [% END %] [% IF ( f4space ) %] <option value=" " selected="selected">Valor no obligatorio</option>
+ [% ELSE %] <option value=" ">Valor no obligatorio</option>
  [% END %] [% IF ( f4a ) %] <option value="a" selected="selected">bibliografía</option>
  [% ELSE %] <option value="a">bibliografía</option>
 
@@ -108,14 +108,14 @@
  [% ELSE %] <option value="f">enciclopedia</option>
  [% END %] [% IF ( f4g ) %] <option value="g" selected="selected">directorio</option>
  [% ELSE %] <option value="g">directorio</option>
- [% END %] [% IF ( f4h ) %] <option value="h" selected="selected">anuario</option>
- [% ELSE %] <option value="h">anuario</option>
- [% END %] [% IF ( f4i ) %] <option value="i" selected="selected">estadísticas</option>
- [% ELSE %] <option value="i">estadísticas</option>
- [% END %] [% IF ( f4j ) %] <option value="j" selected="selected">textos programados</option>
- [% ELSE %] <option value="j">textos programados</option>
- [% END %] [% IF ( f4k ) %] <option value="k" selected="selected">revisiones</option>
- [% ELSE %] <option value="k">revisiones</option>
+ [% END %] [% IF ( f4h ) %] <option value="h" selected="selected">Anuarios</option>
+ [% ELSE %] <option value="h">Anuarios</option>
+ [% END %] [% IF ( f4i ) %] <option value="i" selected="selected">Estadísticas</option>
+ [% ELSE %] <option value="i">Estadísticas</option>
+ [% END %] [% IF ( f4j ) %] <option value="j" selected="selected">Textos programados</option>
+ [% ELSE %] <option value="j">Textos programados</option>
+ [% END %] [% IF ( f4k ) %] <option value="k" selected="selected">reviews</option>
+ [% ELSE %] <option value="k">reviews</option>
  [% END %] [% IF ( f4l ) %] <option value="l" selected="selected">leyes y legislación</option>
  [% ELSE %] <option value="l">leyes y legislación</option>
  [% END %] [% IF ( f4m ) %] <option value="m" selected="selected">informes legales o digestos</option>
@@ -130,8 +130,8 @@
  [% ELSE %] <option value="r">compendios/revisiones en literatura</option>
  [% END %] [% IF ( f4t ) %] <option value="t" selected="selected">historietas o cómics</option>
  [% ELSE %] <option value="t">historietas o cómics</option>
- [% END %] [% IF ( f4z ) %] <option value="z" selected="selected">otra clase de contenidos</option>
- [% ELSE %] <option value="z">otra clase de contenidos</option>
+ [% END %] [% IF ( f4z ) %] <option value="z" selected="selected">other kinds of contents</option>
+ [% ELSE %] <option value="z">other kinds of contents</option>
  [% END %] </select>
  </td>
 
@@ -145,10 +145,10 @@
  <td><label for="f6">Indicador de publicación de conferencia</label></td>
  <td>
  <select name="f6" id="f6" size="1">
- [% IF ( f6pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f60 ) %] <option value="0" selected="selected">no es una publicación de conferencia</option>
- [% ELSE %] <option value="0">no es una publicación de conferencia</option>
+ [% IF ( f6pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
+ [% END %] [% IF ( f60 ) %] <option value="0" selected="selected">not a conference publication</option>
+ [% ELSE %] <option value="0">not a conference publication</option>
  [% END %] [% IF ( f61 ) %] <option value="1" selected="selected">publicación de conferencia</option>
  [% ELSE %] <option value="1">publicación de conferencia</option>
  [% END %] </select>
@@ -158,8 +158,8 @@
  <td><label for="f7">Código de disponibilidad del título de la página</label></td>
  <td>
  <select name="f7" id="f7" size="1">
- [% IF ( f7pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f7pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f7a ) %] <option value="a" selected="selected">en el último ejemplar del volumen - suelto</option>
  [% ELSE %] <option value="a">en el último ejemplar del volumen - suelto</option>
  [% END %] [% IF ( f7b ) %] <option value="b" selected="selected">en el último ejemplar del volumen - adjuntado</option>
@@ -168,18 +168,18 @@
  [% ELSE %] <option value="c">en el primer ejemplar del siguiente volumen - suelto</option>
  [% END %] [% IF ( f7d ) %] <option value="d" selected="selected">en el primer ejemplar del siguiente volumen - adjuntado</option>
  [% ELSE %] <option value="d">en el primer ejemplar del siguiente volumen - adjuntado</option>
- [% END %] [% IF ( f7e ) %] <option value="e" selected="selected">publicado separadamente - libre previa solicitud</option>
- [% ELSE %] <option value="e">publicado separadamente - libre previa solicitud</option>
- [% END %] [% IF ( f7f ) %] <option value="f" selected="selected">publicado por separado - libre - enviado automáticamente</option>
- [% ELSE %] <option value="f">publicado por separado - libre - enviado automáticamente</option>
- [% END %] [% IF ( f7g ) %] <option value="g" selected="selected">publicado separadamente - solicitud de compra</option>
- [% ELSE %] <option value="g">publicado separadamente - solicitud de compra</option>
- [% END %] [% IF ( f7u ) %] <option value="u" selected="selected">desconocido en el momento de creación del registro</option>
- [% ELSE %] <option value="u">desconocido en el momento de creación del registro</option>
- [% END %] [% IF ( f7x ) %] <option value="x" selected="selected">no aplicable</option>
- [% ELSE %] <option value="x">no aplicable</option>
- [% END %] [% IF ( f7y ) %] <option value="y" selected="selected">ninguna página de título</option>
- [% ELSE %] <option value="y">ninguna página de título</option>
+ [% END %] [% IF ( f7e ) %] <option value="e" selected="selected">published separately - free upon request</option>
+ [% ELSE %] <option value="e">published separately - free upon request</option>
+ [% END %] [% IF ( f7f ) %] <option value="f" selected="selected">published separately-free - sent automatically</option>
+ [% ELSE %] <option value="f">published separately-free - sent automatically</option>
+ [% END %] [% IF ( f7g ) %] <option value="g" selected="selected">published separately - purchase-request</option>
+ [% ELSE %] <option value="g">published separately - purchase-request</option>
+ [% END %] [% IF ( f7u ) %] <option value="u" selected="selected">unknown at time of record creation</option>
+ [% ELSE %] <option value="u">unknown at time of record creation</option>
+ [% END %] [% IF ( f7x ) %] <option value="x" selected="selected">No aplicable</option>
+ [% ELSE %] <option value="x">No aplicable</option>
+ [% END %] [% IF ( f7y ) %] <option value="y" selected="selected">no title-page issued</option>
+ [% ELSE %] <option value="y">no title-page issued</option>
  [% END %] [% IF ( f7z ) %] <option value="z" selected="selected">otro</option>
  [% ELSE %] <option value="z">otro</option>
  [% END %] </select>
@@ -190,8 +190,8 @@
  <td><label for="f8">Índice de código de disponibilidad</label></td>
  <td>
  <select name="f8" id="f8" size="1">
- [% IF ( f8pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f8pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f8a ) %] <option value="a" selected="selected">cada ejemplar contiene un índice de sus propios contenidos - suelto</option>
  [% ELSE %] <option value="a">cada ejemplar contiene un índice de sus propios contenidos - suelto</option>
  [% END %] [% IF ( f8b ) %] <option value="b" selected="selected">en el último ejemplar del volumen - suelto - paginado separadamente</option>
@@ -206,22 +206,22 @@
  [% ELSE %] <option value="f">en el primer ejemplar del siguiente volumen suelto - no paginado</option>
  [% END %] [% IF ( f8g ) %] <option value="g" selected="selected">en el primer ejemplar del siguiente volumen - adjuntado</option>
  [% ELSE %] <option value="g">en el primer ejemplar del siguiente volumen - adjuntado</option>
- [% END %] [% IF ( f8h ) %] <option value="h" selected="selected">publicado separadamente libre - enviado automáticamente</option>
- [% ELSE %] <option value="h">publicado separadamente libre - enviado automáticamente</option>
- [% END %] [% IF ( f8i ) %] <option value="i" selected="selected">publicado separadamente - libre previa solicitud</option>
- [% ELSE %] <option value="i">publicado separadamente - libre previa solicitud</option>
- [% END %] [% IF ( f8j ) %] <option value="j" selected="selected"> publicado por separado - encuadernado por el editor - enviado automáticamente</option>
- [% ELSE %] <option value="j"> publicado por separado - encuadernado por el editor - enviado automáticamente</option>
- [% END %] [% IF ( f8k ) %] <option value="k" selected="selected"> publicado por separado - encuadernado por el editor - libre previa solicitud</option>
- [% ELSE %] <option value="k"> publicado por separado - encuadernado por el editor - libre previa solicitud</option>
- [% END %] [% IF ( f8l ) %] <option value="l" selected="selected"> publicado por separado - encuadernado por el editor - comprado previa solicitud</option>
- [% ELSE %] <option value="l"> publicado por separado - encuadernado por el editor - comprado previa solicitud</option>
- [% END %] [% IF ( f8m ) %] <option value="m" selected="selected"> el recurso continuo es un suplemento o una subserie indexada en el recurso continuo padre</option>
- [% ELSE %] <option value="m"> el recurso continuo es un suplemento o una subserie indexada en el recurso continuo padre</option>
- [% END %] [% IF ( f8u ) %] <option value="u" selected="selected">desconocido en el momento de creación del registro</option>
- [% ELSE %] <option value="u">desconocido en el momento de creación del registro</option>
- [% END %] [% IF ( f8x ) %] <option value="x" selected="selected">no aplicable</option>
- [% ELSE %] <option value="x">no aplicable</option>
+ [% END %] [% IF ( f8h ) %] <option value="h" selected="selected">published separately free - sent automatically</option>
+ [% ELSE %] <option value="h">published separately free - sent automatically</option>
+ [% END %] [% IF ( f8i ) %] <option value="i" selected="selected">published separately - free upon request</option>
+ [% ELSE %] <option value="i">published separately - free upon request</option>
+ [% END %] [% IF ( f8j ) %] <option value="j" selected="selected"> published separately - bound from publisher free - sent automatically</option>
+ [% ELSE %] <option value="j"> published separately - bound from publisher free - sent automatically</option>
+ [% END %] [% IF ( f8k ) %] <option value="k" selected="selected"> published separately-bound from publisher - free upon request</option>
+ [% ELSE %] <option value="k"> published separately-bound from publisher - free upon request</option>
+ [% END %] [% IF ( f8l ) %] <option value="l" selected="selected"> published separately-bound from publisher - purchase uponrequest</option>
+ [% ELSE %] <option value="l"> published separately-bound from publisher - purchase uponrequest</option>
+ [% END %] [% IF ( f8m ) %] <option value="m" selected="selected"> este recurso continuo es un suplemente o subserie indizado con su recurso continuo padre</option>
+ [% ELSE %] <option value="m"> este recurso continuo es un suplemente o subserie indizado con su recurso continuo padre</option>
+ [% END %] [% IF ( f8u ) %] <option value="u" selected="selected">unknown at time of record creation</option>
+ [% ELSE %] <option value="u">unknown at time of record creation</option>
+ [% END %] [% IF ( f8x ) %] <option value="x" selected="selected">No aplicable</option>
+ [% ELSE %] <option value="x">No aplicable</option>
  [% END %] [% IF ( f8y ) %] <option value="y" selected="selected">índice no disponible</option>
  [% ELSE %] <option value="y">índice no disponible</option>
  [% END %] [% IF ( f8z ) %] <option value="z" selected="selected">otro</option>
@@ -233,10 +233,10 @@
  <td><label for="f9">Código de disponibilidad del índice acumulativo</label></td>
  <td>
  <select name="f9" id="f9" size="1">
- [% IF ( f9pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f90 ) %] <option value="0" selected="selected">índice no acumulativo o tabla de contenidos</option>
- [% ELSE %] <option value="0">índice no acumulativo o tabla de contenidos</option>
+ [% IF ( f9pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
+ [% END %] [% IF ( f90 ) %] <option value="0" selected="selected">índice acumulativo o tabla de contenidos disponible</option>
+ [% ELSE %] <option value="0">índice acumulativo o tabla de contenidos disponible</option>
  [% END %] [% IF ( f91 ) %] <option value="1" selected="selected">índice acumulativo o tabla de contenidos disponible</option>
  [% ELSE %] <option value="1">índice acumulativo o tabla de contenidos disponible</option>
  [% END %] </select>

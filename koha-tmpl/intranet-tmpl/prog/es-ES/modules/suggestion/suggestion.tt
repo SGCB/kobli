@@ -151,29 +151,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <ol>
  <li>
  <span class="label">Estado:</span>
- [% SET status_found = 0 %]
- [% IF ( STATUS == 'ASKED' ) %]
- Pending
- [% SET status_found = 1 %]
- [% ELSIF ( STATUS == 'ACCEPTED' ) %]
- Accepted
- [% SET status_found = 1 %]
- [% ELSIF ( STATUS == 'CHECKED' ) %]
- Checked
- [% SET status_found = 1 %]
- [% ELSIF ( STATUS == 'REJECTED' ) %]
- Rejected
- [% SET status_found = 1 %]
- [% ELSE %]
- [% FOREACH s IN SuggestionStatuses %]
- [% IF STATUS == s.authorised_value %]
- [% s.lib %]
- [% SET status_found = 1 %]
- [% END %]
- [% END %]
- [% END %]
-
- </li>
+ [% SET status_found = 0 %] [% IF ( STATUS == 'ASKED' ) %] Pendiente [% SET status_found = 1 %] [% ELSIF ( STATUS == 'ACCEPTED' ) %] Aceptada [% SET status_found = 1 %] [% ELSIF ( STATUS == 'CHECKED' ) %] Comprobada [% SET status_found = 1 %] [% ELSIF ( STATUS == 'REJECTED' ) %] Rechazada [% SET status_found = 1 %] [% ELSE %] [% FOREACH s IN SuggestionStatuses %] [% IF STATUS == s.authorised_value %] [% s.lib %] [% SET status_found = 1 %] [% END %] [% END %] [% END %] </li>
  <li>
  <table>
  <thead><tr><th>&nbsp;</th><th>Fecha</th><th>Por</th></tr></thead>
@@ -314,22 +292,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  [% FOREACH suggestion IN suggestions %] [% IF ( suggestion.first ) %] <li class="ui-tabs-selected">
  [% ELSE %] <li>
  [% END %] <a href="#[% suggestion.suggestiontype %]">
- [% IF ( suggestion.suggestiontypelabel ) %]
- [% IF (suggestion.suggestiontypelabel == "Pending") %]Pending
- [% ELSIF (suggestion.suggestiontypelabel == "Accepted") %]Accepted
- [% ELSIF (suggestion.suggestiontypelabel == "Checked") %]Checked
- [% ELSIF (suggestion.suggestiontypelabel == "Rejected") %]Rejected
- [% ELSIF (suggestion.suggestiontypelabel == "Available") %]Available
- [% ELSIF (suggestion.suggestiontypelabel == "Ordered") %]Ordered
- [% ELSE %][% suggestion.suggestiontypelabel %][% END %]
- [% ELSE %]
- [% IF ( suggestion.suggestiontype ) %]
- [% KohaAuthorisedValues.GetByCode( 'SUGGEST_STATUS', suggestion.suggestiontype ) %]
- [% ELSE %]
- No name
- [% END %]
- [% END %]
- ([% suggestion.suggestions_loop.size %])</a></li>
+ [% IF ( suggestion.suggestiontypelabel ) %] [% IF (suggestion.suggestiontypelabel == "Pending") %]Pendiente [% ELSIF (suggestion.suggestiontypelabel == "Accepted") %]Aceptada [% ELSIF (suggestion.suggestiontypelabel == "Checked") %]Comprobada [% ELSIF (suggestion.suggestiontypelabel == "Rejected") %]Rechazada [% ELSIF (suggestion.suggestiontypelabel == "Available") %]Disponible [% ELSIF (suggestion.suggestiontypelabel == "Ordered") %]Pedida [% ELSE %][% suggestion.suggestiontypelabel %][% END %] [% ELSE %] [% IF ( suggestion.suggestiontype ) %] [% KohaAuthorisedValues.GetByCode( 'SUGGEST_STATUS', suggestion.suggestiontype ) %] [% ELSE %] Sin nombre [% END %] [% END %] ([% suggestion.suggestions_loop.size %])</a></li>
 
  [% END %] </ul>
 [% END %] [% FOREACH suggestion IN suggestions %] <div id="[% suggestion.suggestiontype %]">
@@ -364,22 +327,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <td>
  [% suggestions_loo.budget_name %] </td>
  <td>
- [% IF ( suggestions_loo.ASKED ) %]
- Pending
- [% ELSIF ( suggestions_loo.ACCEPTED ) %]
- Accepted
- [% ELSIF ( suggestions_loo.ORDERED ) %]
- Ordered
- [% ELSIF ( suggestions_loo.REJECTED ) %]
- Rejected
- [% ELSIF ( suggestions_loo.CHECKED ) %]
- Checked
- [% ELSIF KohaAuthorisedValues.GetByCode( 'SUGGEST_STATUS', suggestions_loo.STATUS ) %]
- [% KohaAuthorisedValues.GetByCode( 'SUGGEST_STATUS', suggestions_loo.STATUS ) %]
- [% END %]
-
- [% IF ( suggestions_loo.reason ) %]
- <br />([% suggestions_loo.reason %])[% END %]  </td>
+ [% IF ( suggestions_loo.ASKED ) %] Pendiente [% ELSIF ( suggestions_loo.ACCEPTED ) %] Aceptada [% ELSIF ( suggestions_loo.ORDERED ) %] Pedida [% ELSIF ( suggestions_loo.REJECTED ) %] Rechazada [% ELSIF ( suggestions_loo.CHECKED ) %] Comprobada [% ELSIF KohaAuthorisedValues.GetByCode( 'SUGGEST_STATUS', suggestions_loo.STATUS ) %] [% KohaAuthorisedValues.GetByCode( 'SUGGEST_STATUS', suggestions_loo.STATUS ) %] [% END %] [% IF ( suggestions_loo.reason ) %] <br />([% suggestions_loo.reason %])[% END %]  </td>
  </tr>
  [% END %]</tbody>
  </table> <fieldset>
@@ -481,7 +429,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <td><label for="suggesteddate_from">de:</label></td><td><input type="text" id="suggesteddate_from" name="suggesteddate_from" value="[% suggesteddate_from %]" style="width:76px;" /></td>
  </tr>
  <tr>
- <td><label for="suggesteddate_to">en:</label></td><td><input type="text" id="suggesteddate_to" name="suggesteddate_to" value="[% suggesteddate_to %]" style="width:76px;" /></td>
+ <td><label for="suggesteddate_to">hasta:</label></td><td><input type="text" id="suggesteddate_to" name="suggesteddate_to" value="[% suggesteddate_to %]" style="width:76px;" /></td>
  </tr>
  </table>
  </li>
@@ -493,7 +441,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <td><label for="manageddate_from">de:</label></td><td><input type="text" id="manageddate_from" name="manageddate_from" value="[% manageddate_from %]" style="width:76px;" /></td>
  </tr>
  <tr>
- <td><label for="manageddate_to">en:</label></td><td><input type="text" id="manageddate_to" name="manageddate_to" value="[% manageddate_to %]" style="width:76px;" /></td>
+ <td><label for="manageddate_to">hasta:</label></td><td><input type="text" id="manageddate_to" name="manageddate_to" value="[% manageddate_to %]" style="width:76px;" /></td>
  </tr>
  </table>
  </li>
@@ -505,7 +453,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <td><label for="accepteddate_from">de:</label></td><td><input type="text" id="accepteddate_from" name="accepteddate_from" value="[% accepteddate_from %]" style="width:76px;" /></td>
  </tr>
  <tr>
- <td><label for="accepteddate_to">en:</label></td><td><input type="text" id="accepteddate_to" name="accepteddate_to" value="[% accepteddate_to %]" style="width:76px;" /></td>
+ <td><label for="accepteddate_to">hasta:</label></td><td><input type="text" id="accepteddate_to" name="accepteddate_to" value="[% accepteddate_to %]" style="width:76px;" /></td>
  </tr>
  </table>
  </li>

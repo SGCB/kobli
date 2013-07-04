@@ -369,7 +369,7 @@ function validate1(date) {
  [% END %] [% IF ( EXPIRED ) %] <li>El carnet de socio se ha vencido.</li>
  [% END %] [% IF ( ITEMNOTSAMEBRANCH ) %] <li>Este ítem es de la biblioteca [% itemhomebranch %] y no pueden ser prestado desde esta ubicación.</li>
  [% END %] [% IF ( USERBLOCKEDREMAINING ) %] <li>El socio tiene ítems retrasados y está bloqueado por [% USERBLOCKEDREMAINING %] día(s).</li>
- [% END %] [% IF ( USERBLOCKEDOVERDUE ) %] <li>Las salidas son BLOQUEADAS porque el socio tiene retrasos en ítems</li>
+ [% END %] [% IF ( USERBLOCKEDOVERDUE ) %] <li>Los préstamos están BLOQUEADOS porque el usuario tiene ítems con el préstamo vencido</li>
  [% END %] </ul>
 
 </div></div>
@@ -441,11 +441,11 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  [% END %] <h3>[% IF ( noissues ) %] No se puede prestar! [% ELSE %]Atención:[% END %]</h3>
  <ul>
 
- [% IF ( warndeparture ) %] <li><span class="circ-hlt">Vencimiento:</span> El carnet de socio vencerá pronto. El carnet vencerá el [% expiry %] <a href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=circ&amp;reregistration=y">Renovar</a> o <a href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;categorycode=[% categorycode %]">Editar detalles</a>
+ [% IF ( warndeparture ) %] <li><span class="circ-hlt">Vencimiento:</span> El carnet de socio vencerá pronto. El carnet vencerá el [% expiry %] <a href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=circ&amp;reregistration=y">Renovar</a> o<a href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;categorycode=[% categorycode %]">Editar detalles</a>
 
  </li>
  [% END %] [% IF ( returnbeforeexpiry ) %] <li><span class="circ-hlt">Fijar la fecha de vencimiento a expirar:</span> La preferencia del sistema ReturnBeforeExpiry esta habilitada, esto significa que si la fecha de vencimiento del carnet es anterior a la fecha de vencimiento del préstamo, entonces la fecha de vencimiento del préstamo se establecerá a la fecha de vencimiento del carnet </li>
- [% END %] [% IF ( expired ) %] <li><span class="circ-hlt">Vencimiento:</span> El carnet del socio se ha vencido[% IF ( expiry ) %]. Carnet vencido el [% expiry %][% END %] <a href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=circ&amp;reregistration=y">Renovar</a> o <a href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;categorycode=[% categorycode %]">Editar detalles</a>
+ [% END %] [% IF ( expired ) %] <li><span class="circ-hlt">Vencimiento:</span> El carnet del socio se ha vencido[% IF ( expiry ) %]. Carnet vencido el [% expiry %][% END %] <a href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=circ&amp;reregistration=y">Renovar</a> o<a href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;categorycode=[% categorycode %]">Editar detalles</a>
 
  </li>
  [% END %] [% IF ( gna ) %] <li class="blocker"><span class="circ-hlt">Dirección:</span> Dirección de socio dudosa</li>
@@ -459,7 +459,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  </form>
  </li>[% END %] [% IF ( odues ) %]<li>[% IF ( nonreturns ) %]<span class="circ-hlt">Retrasos:</span> El socio tiene <span class="circ-hlt">ÍTEMS ATRASADOS</span>. Véase los ítems resaltados <a href="#checkouts">debajo</a>[% END %]</li>
  [% END %] [% IF ( charges ) %] <li>
- <span class="circ-hlt">Cuotas y cargos:</span> El socio tiene <a href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Multas y cargos pendientes [% IF ( chargesamount ) %] de [% chargesamount %][% END %]</a>. [% IF ( charges_is_blocker ) %] Préstamos son <span class="circ-hlt">BLOQUEADO</span> porque el balance de multas es <span class="circ-hlt">SOBRE EL LÍMITE</span>. [% END %] Hacer <a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrowernumber %]">Pagos</a></li>
+ <span class="circ-hlt">Cuotas y cargos:</span> El socio tiene <a href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Multas y cargos pendientes [% IF ( chargesamount ) %] de [% chargesamount %][% END %]</a>. [% IF ( charges_is_blocker ) %] Préstamos son <span class="circ-hlt">BLOQUEADOS</span> porque el balance de multas es <span class="circ-hlt">POR ENCIMA DEL LÍMITE</span>. [% END %] Hacer <a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrowernumber %]">Pagos</a></li>
  [% END %] [% IF ( credits ) %] <li>
  <span class="circ-hlt">Créditos:</span> El socio tiene crédito[% IF ( creditsamount ) %] de [% creditsamount %][% END %] </li>
  [% END %] </ul>
