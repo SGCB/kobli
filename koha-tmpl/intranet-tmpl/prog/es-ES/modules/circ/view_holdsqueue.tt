@@ -62,7 +62,7 @@ $(document).ready(function() {
  <td class="hq-enumchron">[% itemsloo.enumchron %]</td>
  <td class="hq-barcode">
  [% IF ( itemsloo.item_level_request ) %] <em>Sólo ítem:</em> <strong>[% itemsloo.barcode %]</strong>
- [% ELSE %] <strong>[% itemsloo.barcode %]</strong> <em>o cualquiera disponible</em>
+ [% ELSE %] <strong>[% itemsloo.barcode %]</strong> <em>o cualquier disponible</em>
  [% END %] </td>
  <td class="hq-patron"><p><a href="/cgi-bin/koha/circ/circulation.pl?findborrower=[% itemsloo.cardnumber %]#reserves">[% itemsloo.surname %], [% itemsloo.firstname %] ([% itemsloo.cardnumber %])</a></p> <p>[% itemsloo.phone %]</p></td>
  <td class="hq-sendto">[% itemsloo.pickbranch %]</td>

@@ -200,7 +200,7 @@
 
 
 [% UNLESS ( delete_confirm ) %][% INCLUDE 'budgets-admin-toolbar.inc' %][% END %] [% IF (error_not_authorised_to_modify) %] <div class="error">
- <p>You are not authorized to modify this fund</p>
+ <p>No está autorizado para modificar este fondo</p>
  </div>
 [% END %] [% IF ( else ) %] <h1>Fondos para '[% budget_period_description %]'</h1>
 
@@ -213,7 +213,7 @@
  <th>Nivel de la base<br />asignado</th>
  <th>Nivel de la base<br />gastado</th>
  <th>Total de subniveles<br />gastado</th>
- <th>Nivel de la base<br />restante</th>
+ <th>Nivel de la base<br />Fondo remanente</th>
  <th class="tooltipcontent">&nbsp;</th>
  <th>Acciones</th>
  </tr>

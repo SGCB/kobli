@@ -22,8 +22,8 @@
  [% ELSE %] <option value="i">i- Subdivisión geográfica indirecta</option>
  [% END %] [% IF ( f6n ) %] <option value="n" selected="selected">n- No aplicable</option>
  [% ELSE %] <option value="n">n- No aplicable</option>
- [% END %] [% IF ( f6pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f6pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -48,8 +48,8 @@
  [% ELSE %] <option value="g">g- Romanización convencional o forma convencional del nombre en el lenguaje de la agencia que cataloga</option>
  [% END %] [% IF ( f7n ) %] <option value="n" selected="selected">n- No aplicable</option>
  [% ELSE %] <option value="n">n- No aplicable</option>
- [% END %] [% IF ( f7pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f7pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -65,8 +65,8 @@
  [% ELSE %] <option value="e">e- Solo inglés</option>
  [% END %] [% IF ( f8f ) %] <option value="f" selected="selected">f- Solo Francés</option>
  [% ELSE %] <option value="f">f- Solo Francés</option>
- [% END %] [% IF ( f8pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f8pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -105,10 +105,10 @@
  [% ELSE %] <option value="d">d- cabecera compatible AACR 2</option>
  [% END %] [% IF ( f10n ) %] <option value="n" selected="selected">n- No aplicable</option>
  [% ELSE %] <option value="n">n- No aplicable</option>
- [% END %] [% IF ( f10z ) %] <option value="z" selected="selected">z- Otro</option>
- [% ELSE %] <option value="z">z- Otro</option>
- [% END %] [% IF ( f10pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f10z ) %] <option value="z" selected="selected">z-- Otro</option>
+ [% ELSE %] <option value="z">z-- Otro</option>
+ [% END %] [% IF ( f10pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -130,14 +130,14 @@
  [% ELSE %] <option value="n">n- No aplicable</option>
  [% END %] [% IF ( f11r ) %] <option value="r" selected="selected">r- Tesauro de arte y arquitectura</option>
  [% ELSE %] <option value="r">r- Tesauro de arte y arquitectura</option>
- [% END %] [% IF ( f11s ) %] <option value="s" selected="selected">s- Lista Sears de cabeceras temáticas</option>
- [% ELSE %] <option value="s">s- Lista Sears de cabeceras temáticas</option>
- [% END %] [% IF ( f11v ) %] <option value="v" selected="selected">v- Directorio de materias-destacadas</option>
- [% ELSE %] <option value="v">v- Directorio de materias-destacadas</option>
- [% END %] [% IF ( f11z ) %] <option value="z" selected="selected">z- Otro</option>
- [% ELSE %] <option value="z">z- Otro</option>
- [% END %] [% IF ( f11pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f11s ) %] <option value="s" selected="selected">s- Sears list of subject headings</option>
+ [% ELSE %] <option value="s">s- Sears List of Subject Headings</option>
+ [% END %] [% IF ( f11v ) %] <option value="v" selected="selected">v- Repertoire de vedettes-matiere</option>
+ [% ELSE %] <option value="v">v- Repertoire de vedettes-matiere</option>
+ [% END %] [% IF ( f11z ) %] <option value="z" selected="selected">z-- Otro</option>
+ [% ELSE %] <option value="z">z-- Otro</option>
+ [% END %] [% IF ( f11pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -153,10 +153,10 @@
  [% ELSE %] <option value="c">c- Frase tipo periódica</option>
  [% END %] [% IF ( f12n ) %] <option value="n" selected="selected">n- No aplicable</option>
  [% ELSE %] <option value="n">n- No aplicable</option>
- [% END %] [% IF ( f12z ) %] <option value="z" selected="selected">z- Otro</option>
- [% ELSE %] <option value="z">z- Otro</option>
- [% END %] [% IF ( f12pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f12z ) %] <option value="z" selected="selected">z-- Otro</option>
+ [% ELSE %] <option value="z">z-- Otro</option>
+ [% END %] [% IF ( f12pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -172,8 +172,8 @@
  [% ELSE %] <option value="c">c- Numeraciones varias</option>
  [% END %] [% IF ( f13n ) %] <option value="n" selected="selected">n- No aplicable</option>
  [% ELSE %] <option value="n">n- No aplicable</option>
- [% END %] [% IF ( f13pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f13pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -185,8 +185,8 @@
  [% ELSE %] <option value="a">a- Apropiado</option>
  [% END %] [% IF ( f14b ) %] <option value="b" selected="selected">b- No apropiado</option>
  [% ELSE %] <option value="b">b- No apropiado</option>
- [% END %] [% IF ( f14pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f14pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -198,8 +198,8 @@
  [% ELSE %] <option value="a">a- Apropiado</option>
  [% END %] [% IF ( f15b ) %] <option value="b" selected="selected">b- No apropiado</option>
  [% ELSE %] <option value="b">b- No apropiado</option>
- [% END %] [% IF ( f15pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f15pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -211,8 +211,8 @@
  [% ELSE %] <option value="a">a- Apropiado</option>
  [% END %] [% IF ( f16b ) %] <option value="b" selected="selected">b- No apropiado</option>
  [% ELSE %] <option value="b">b- No apropiado</option>
- [% END %] [% IF ( f16pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f16pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -232,8 +232,8 @@
  [% ELSE %] <option value="e">e- Idioma</option>
  [% END %] [% IF ( f17n ) %] <option value="n" selected="selected">n- No aplicable</option>
  [% ELSE %] <option value="n">n- No aplicable</option>
- [% END %] [% IF ( f17pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f17pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -261,16 +261,16 @@
  [% ELSE %] <option value="l">l- Local</option>
  [% END %] [% IF ( f28m ) %] <option value="m" selected="selected">m- Multiestado</option>
  [% ELSE %] <option value="m">m- Multiestado</option>
- [% END %] [% IF ( f28o ) %] <option value="o" selected="selected">o- Agencia gubernamental - tipo indeterminado</option>
- [% ELSE %] <option value="o">o- Agencia gubernamental - tipo indeterminado</option>
- [% END %] [% IF ( f28s ) %] <option value="s" selected="selected">s- Estado, provincial, territorial, dependiente, etc.</option>
- [% ELSE %] <option value="s">s- Estado, provincial, territorial, dependiente, etc.</option>
- [% END %] [% IF ( f28u ) %] <option value="u" selected="selected">u- Desconocido si el encabezamiento es una agencia del gobierno</option>
- [% ELSE %] <option value="u">u- Desconocido si el encabezamiento es una agencia del gobierno</option>
- [% END %] [% IF ( f28z ) %] <option value="z" selected="selected">z- Otro</option>
- [% ELSE %] <option value="z">z- Otro</option>
- [% END %] [% IF ( f28pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f28o ) %] <option value="o" selected="selected">o- Publicación gubernamental-nivel indeterminado</option>
+ [% ELSE %] <option value="o">o- Publicación gubernamental-nivel indeterminado</option>
+ [% END %] [% IF ( f28s ) %] <option value="s" selected="selected">s- Estado, provincia, territorio, jurisdicción dependiente, etc.</option>
+ [% ELSE %] <option value="s">s- Estado, provincia, territorio, jurisdicción dependiente, etc.</option>
+ [% END %] [% IF ( f28u ) %] <option value="u" selected="selected">u- Se desconoce si el ítem es una publicación oficial </option>
+ [% ELSE %] <option value="u">u- Se desconoce si el ítem es una publicación oficial </option>
+ [% END %] [% IF ( f28z ) %] <option value="z" selected="selected">z-- Otro</option>
+ [% ELSE %] <option value="z">z-- Otro</option>
+ [% END %] [% IF ( f28pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -284,8 +284,8 @@
  [% ELSE %] <option value="b">b- Trazados no necesariamente consistentes con la cabecera</option>
  [% END %] [% IF ( f29n ) %] <option value="n" selected="selected">n- No aplicable</option>
  [% ELSE %] <option value="n">n- No aplicable</option>
- [% END %] [% IF ( f29pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f29pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -303,8 +303,8 @@
  [% ELSE %] <option value="a">a- El registro puede ser usado</option>
  [% END %] [% IF ( f31b ) %] <option value="b" selected="selected">b- El registro está siendo actualizado</option>
  [% ELSE %] <option value="b">b- El registro está siendo actualizado</option>
- [% END %] [% IF ( f31pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f31pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -318,8 +318,8 @@
  [% ELSE %] <option value="b">b- Nombre personal indiferenciado</option>
  [% END %] [% IF ( f32n ) %] <option value="n" selected="selected">n- No aplicable</option>
  [% ELSE %] <option value="n">n- No aplicable</option>
- [% END %] [% IF ( f32pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f32pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -337,8 +337,8 @@
  [% ELSE %] <option value="d">d- Preliminar</option>
  [% END %] [% IF ( f33n ) %] <option value="n" selected="selected">n- No aplicable</option>
  [% ELSE %] <option value="n">n- No aplicable</option>
- [% END %] [% IF ( f33pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f33pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -356,10 +356,10 @@
  [% ELSE %] <option value=" ">#- No modificado</option>
  [% END %] [% IF ( f38s ) %] <option value="s" selected="selected">s- Abreviado</option>
  [% ELSE %] <option value="s">s- Abreviado</option>
- [% END %] [% IF ( f38x ) %] <option value="x" selected="selected">x- Caracteres ausentes</option>
- [% ELSE %] <option value="x">x- Caracteres ausentes</option>
- [% END %] [% IF ( f38pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f38x ) %] <option value="x" selected="selected">x- Caracteres omitidos</option>
+ [% ELSE %] <option value="x">x- Caracteres omitidos</option>
+ [% END %] [% IF ( f38pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>
@@ -375,8 +375,8 @@
  [% ELSE %] <option value="d">d- Otro</option>
  [% END %] [% IF ( f39u ) %] <option value="u" selected="selected">u- Desconocido</option>
  [% ELSE %] <option value="u">u- Desconocido</option>
- [% END %] [% IF ( f39pipe ) %] <option value="|" selected="selected">|- No se intenta codificar</option>
- [% ELSE %] <option value="|">|- No se intenta codificar</option>
+ [% END %] [% IF ( f39pipe ) %] <option value="|" selected="selected">|- No hay intención de codificar</option>
+ [% ELSE %] <option value="|">|- No hay intención de codificar</option>
  [% END %] </select>
  </td>
  </tr>

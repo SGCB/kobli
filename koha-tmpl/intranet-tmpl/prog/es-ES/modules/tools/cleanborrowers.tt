@@ -14,7 +14,7 @@
               }
               if((form.checkbox[1].checked)){
                   if(!(form.date2.value)){
-                      alert(_("por favor ingrese una fecha!"));
+                      alert(_("Por favor, introduzca una fecha válida!"));
                       return false;
                   }
               }
@@ -56,17 +56,17 @@
  <h5>Eliminar los socios que cumplan con los siguientes criterios:</h5>
  <ul>
  <li>
- <label for="date1">quien no se le ha prestado desde:</label>
+ <label for="date1">quien no </label>
  <input size="10" id="date1" name="filterdate1" type="text" class="datepicker" />
  <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
  </li>
  <li>
- <label for="borrower_dateexpiry">cuya fecha de vencimiento es antes de:</label>
+ <label for="borrower_dateexpiry">cuya fecha de vencimiento es anterior:</label>
  <input size="10" id="borrower_dateexpiry" name="borrower_dateexpiry" type="text" class="datepicker" />
  <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
  </li>
  <li>
- <label for="borrower_categorycode">categoría de socio es:</label>
+ <label for="borrower_categorycode">Cuya categoría de socio es: </label>
  <select id="borrower_categorycode" name="borrower_categorycode">
  <option value="" selected="selected">Cualquiera</option>
  [% FOREACH bc IN borrower_categorycodes %] [% UNLESS bc.categorycode == 'S' %] <option value="[% bc.categorycode %]">[% bc.description %]</option>

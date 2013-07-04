@@ -52,7 +52,7 @@ function barcode_check(){
  <a href="subscription-detail.pl?subscriptionid=[% subscriptionid %]" title="detalle de la suscripción">Detalles de la suscripción</a>
  <!-- <a href="/cgi-bin/koha/serials/serials-home.pl?biblionumber=[% biblionumber %]" class="button" title="all subscriptions on [% bibliotitle %]">Search all subscriptions</a> -->
  <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblionumber %]" title="ir a [% bibliotitle %]">Mostrar biblio</a>
- [% IF ( routing ) %] <a href="routing.pl?subscriptionid=[% subscriptionid %]" title="suscripción de la lista de enrutamiento">Lista de ruteo</a>
+ [% IF ( routing ) %] <a href="routing.pl?subscriptionid=[% subscriptionid %]" title="Suscripción de la lista de enrutamiento para">Lista de ruteo</a>
  [% END %] </div>
 
 <h2>Esperado o atrasado</h2>

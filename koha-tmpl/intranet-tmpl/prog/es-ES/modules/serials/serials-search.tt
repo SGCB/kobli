@@ -119,7 +119,7 @@
  [% FOREACH subscription IN openedsubscriptions %] <tr>
  <td>
  [% IF ( subscription.issn ) %][% subscription.issn %] [% END %] </td>
- <td><a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscription.subscriptionid %]" class="button" title="suscripción de detalles">[% subscription.title |html %]</a>
+ <td><a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscription.subscriptionid %]" class="button" title="detalles de la suscripción">[% subscription.title |html %]</a>
  </td>
  <td>[% IF ( subscription.notes ) %][% subscription.notes %][% END %] [% IF ( subscription.internalnotes ) %]([% subscription.internalnotes %])[% END %] </td>
  <td>
@@ -172,7 +172,7 @@
  <td>
  [% IF ( subscription.issn ) %] [% subscription.issn %] [% END %] </td>
  <td>
- <a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscription.subscriptionid %]" class="button" title="suscripción de detalles">[% subscription.title |html %]</a>
+ <a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscription.subscriptionid %]" class="button" title="detalles de la suscripción">[% subscription.title |html %]</a>
  </td>
  <td>
  [% IF ( subscription.notes ) %][% subscription.notes %][% END %] [% IF ( subscription.internalnotes ) %]([% subscription.internalnotes %])[% END %] </td>

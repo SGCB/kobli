@@ -2,8 +2,8 @@
  [% UNLESS ( advsearch ) %]<form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform">
  <label for="masthead_search" class="left"> Buscar [% UNLESS ( OpacAddMastheadLibraryPulldown ) %] [% IF ( mylibraryfirst ) %] (en [% mylibraryfirst %] solamente)[% END %] [% END %] </label>
  <select name="idx" id="masthead_search" class="left">
- [% IF ( ms_kw ) %] <option selected="selected" value="">Library catalog</option>
- [% ELSE %] <option value="">Library catalog</option>
+ [% IF ( ms_kw ) %] <option selected="selected" value="">Catálogo</option>
+ [% ELSE %] <option value="">Catálogo</option>
  [% END %] [% IF ( ms_ti ) %] <option selected="selected" value="ti">Título</option>
  [% ELSE %] <option value="ti">Título</option>
  [% END %] [% IF ( ms_au ) %] <option selected="selected" value="au">Autor</option>
@@ -19,14 +19,14 @@
  [% END %] [% ELSE %] [% IF ( ms_callnum ) %] <option selected="selected" value="callnum">Signatura topográfica</option>
  [% ELSE %] <option value="callnum">Signatura topográfica</option>
  [% END %] [% END %] </select>
- [% IF ( ms_value ) %] <input type="text" title="Type search term" id = "transl1" name="q" value="[% ms_value |html %]" class="left" style="width: 35%; font-size: 111%;"/><div id="translControl"></div>
- [% ELSE %] <input type="text" title="Type search term" id = "transl1" name="q" class="left" style="width: 35%; font-size: 111%;"/><div id="translControl"></div>
+ [% IF ( ms_value ) %] <input value="[% ms_value |html %]" name="q" style="width: 35%; font-size: 111%;" class="left" id="transl1" title="Introduzca los términos de búsqueda" type="text" /><div id="translControl"></div>
+ [% ELSE %] <input name="q" style="width: 35%; font-size: 111%;" type="text" title="Introduzca los términos de búsqueda" id="transl1" class="left" /><div id="translControl"></div>
  [% END %] [% IF ( OpacAddMastheadLibraryPulldown ) %] <select name="branch_group_limit" id="select_library" class="left">
  <option value="">Todas las bibliotecas</option>
- [% IF BranchCategoriesLoop %]<optgroup label="Libraries">[% END %] [% FOREACH BranchesLoo IN BranchesLoop %] [% IF ( BranchesLoo.selected ) %]<option selected="selected" value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %] </option>
+ [% IF BranchCategoriesLoop %]<optgroup label="Bibliotecas">[% END %] [% FOREACH BranchesLoo IN BranchesLoop %] [% IF ( BranchesLoo.selected ) %]<option selected="selected" value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %] </option>
  [% ELSE %]<option value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>
  [% END %] [% END %] [% IF BranchCategoriesLoop %] </optgroup>
- <optgroup label="Groups">
+ <optgroup label="Grupos">
  [% FOREACH bc IN BranchCategoriesLoop %] [% IF ( bc.selected ) %] <option selected="selected" value="multibranchlimit-[% bc.categorycode %]">[% bc.categoryname %]</option>
  [% ELSE %] <option value="multibranchlimit-[% bc.categorycode %]">[% bc.categoryname %]</option>
  [% END %] [% END %] </optgroup>

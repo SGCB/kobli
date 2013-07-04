@@ -161,7 +161,7 @@ function checkMultiHold() {
  <div id="yui-main">
  <div class="yui-b">
 [% IF ( noitems ) %] <div class="dialog alert">
-<strong>No se puede reservar:</strong> este registro no tiene ítems asociados. </div>
+<strong>No se puede reservar:</strong> este registro no tiene ítems adjuntos.</div>
 [% ELSE %] [% IF ( messagetransfert ) %] <div class="dialog message">
  <h2>Reserva encontrada para ([% nextreservtitle %]), favor de transferir</h2>
  <p>Reserva hecha por: <strong> [% nextreservsurname %] [% nextreservfirstname %]</strong> en : <strong> [% branchname %] </strong>, Por favor transfiera este ítem. </p>
@@ -195,15 +195,15 @@ function checkMultiHold() {
  [% UNLESS ( multi_hold ) %] <h3>No se puede reservar</h3>
  <ul>
  [% IF ( maxreserves ) %] <li><strong>Demasiadas reservas: </strong> <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %] </a> tiene demasiadas reservas.</li>
- [% END %] [% IF ( alreadyreserved ) %] <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a> <strong>tiene una reserva</strong> en este ítem </li>
- [% END %] [% IF ( none_available ) %] <li> <strong>No hay copias disponibles</strong> para ser reservado</li>
+ [% END %] [% IF ( alreadyreserved ) %] <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a> <strong>tiene una reserva</strong> en este ítem</li>
+ [% END %] [% IF ( none_available ) %] <li> <strong>No hay copias disponibles</strong> que se pone en reserva</li>
  [% END %] [% IF ( alreadypossession ) %] <li> <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a> <strong>está ya en posesión</strong> de un ítem</li>
  [% END %] </ul>
  [% ELSE %] <h3>No se pueden reservar algunos ítems</h3>
  [% END %] </div>
 [% END %] [% IF ( messages ) %] <div class="dialog message"><ul>
  [% IF ( expiry ) %] <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a>'s <strong>cuenta ha caducado</strong></li>
- [% END %] [% IF ( diffbranch ) %] <li> <strong>La biblioteca para retirar es diferente</strong> que <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a>biblioteca de origen ([% borrower_branchname %] / [% borrower_branchcode %] )</li>
+ [% END %] [% IF ( diffbranch ) %] <li> <strong>La biblioteca para retirar es diferente</strong> de<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a>biblioteca de origen ([% borrower_branchname %] / [% borrower_branchcode %] )</li>
  [% END %] </ul></div>
 [% END %] [% IF ( messageborrower ) %] <div class="dialog alert"><h3>Socio no encontrado:</h3> <p>No se encuentra el nombre o código de barras. Por favor, inténtelo en otra </p></div>
  [% END %] <fieldset class="rows left">
@@ -342,8 +342,8 @@ function checkMultiHold() {
  <td>
  [% IF ( biblioloo.alreadyres ) %] <ul>
  [% ELSE %] [% IF ( biblioloo.none_avail ) %] <ul>
- [% END %] [% END %] [% IF ( biblioloo.alreadyres ) %] <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a> <strong>tiene una reserva</strong> en este ítem </li>
- [% END %] [% IF ( biblioloo.none_avail ) %] <li> <strong>No hay copias disponibles</strong> para ser reservado</li>
+ [% END %] [% END %] [% IF ( biblioloo.alreadyres ) %] <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a> <strong>tiene una reserva</strong> en este ítem</li>
+ [% END %] [% IF ( biblioloo.none_avail ) %] <li> <strong>No hay copias disponibles</strong> que se pone en reserva</li>
  [% END %] [% IF ( biblioloo.alreadyres ) %] </ul>
  [% ELSE %] [% IF ( biblioloo.none_avail ) %] </ul>
  [% END %] [% END %] </td>

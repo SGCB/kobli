@@ -656,7 +656,7 @@ input.deleteshelf:active {
 
 a.tag_add {
     background-image: url("../../images/sprite.png"); /* Tag results */
-    background-position: -10px -1104px;
+    background-position: -10px -1110px;
     background-repeat: no-repeat;
     padding-left : 13px;
     text-decoration: none;
@@ -664,7 +664,7 @@ a.tag_add {
 
 #login4tags {
     background-image: url("../../images/sprite.png"); /* Tag results disabled */
-    background-position: -10px -1124px;
+    background-position: -10px -1130px;
     background-repeat: no-repeat;
     padding-left : 13px;
     text-decoration: none;
@@ -1540,12 +1540,13 @@ strong em, em strong  {
 
 div#changelanguage{
 	border:0;
-	padding:0;
-	float:right;
+	padding: 8px 0 0 40px;
+	float:left;
 	font-size:0.9em;
 	color:#d9d9d9;
 	clear:none;
 	margin-right:10px;
+
 }
  
 div#changelanguage a {
@@ -1940,13 +1941,13 @@ ul.ui-tabs-nav li.ui-tabs-selected a, ul.ui-tabs-nav li.ui-tabs-selected span.a 
 }
 
 #catalogue_detail_biblio {padding-top:30px;}
-#opac-detail #catalogue_detail_biblio {padding-top:30px;}
+#opac-detail #catalogue_detail_biblio {padding-top:0px;}
 
 #views {
 	border-bottom: 1px solid #CCCCCC;
 	margin-bottom : .5em;
 	white-space : nowrap;
-	padding : 0 2em 2px 30px;
+	padding : 30px 2em 2px 30px;
 	/*left:0px;
 	top:40px;
 	position: absolute;
@@ -2031,7 +2032,6 @@ a#MARCview, a#MARCviewPop, a#ISBDview, a#Normalview, a#Fullhistory, a#Briefhisto
 #shelfbrowser #browser_next,
 #shelfbrowser #browser_previous {
     background-image : url("../../images/sprite.png");
-    background-position : -5px -988px;
     background-repeat: no-repeat;
     width : 16px;
 }
@@ -2047,10 +2047,10 @@ a#MARCview, a#MARCviewPop, a#ISBDview, a#Normalview, a#Fullhistory, a#Briefhisto
     width: 16px;
 }
 #shelfbrowser #browser_previous {
-background-position: -9px -1001px;
+background-position: -9px -1007px;
 }
 #shelfbrowser #browser_next {
-background-position: -9px -1051px;
+background-position: -9px -1057px;
 }
 
 #comments .commentline {
@@ -2240,6 +2240,17 @@ div.ft {
 	width:100%;
 }
 
+#renewselected_link {
+    background-image : url("../../images/sprite.png");
+    background-position : -5px -986px;
+    background-repeat: no-repeat;
+}
+
+#renewall_link {
+    background-image : url("../../images/sprite.png");
+    background-position : -8px -967px;
+    background-repeat: no-repeat;
+}
 #opacmainuserblock {
 	float:left;
 	width:720px;
@@ -2335,7 +2346,7 @@ select#masthead_search {
 	z-index:100;
 }
 
-#userresults .pages {border-top:1px solid #cdcdcd; padding-top:10px;}
+#userresults .pages {border-top:1px solid #cdcdcd; padding-top:10px; margin-top: 10px;}
 #userresults .pages span.current {color: #7E7E7E; border-left: 1px solid #cdcdcd;}
 #userresults .pages a.nav {background-color:#fff; border:0px;  color: #FF8E02; float:none; text-decoration:none; border-left: 1px solid #cdcdcd;}
 
@@ -2567,7 +2578,7 @@ td.resultscontrol #tagsel_span input {padding:0px; background:none;}
 #usersuggestions fieldset.action {padding-left:132px;}
 #usersuggestions fieldset.action a {padding-left:10px;}
 
-#yui-main .ui-tabs-nav a {text-decoration:none;}
+#yui-main .ui-tabs-nav a {text-decoration:none;  border: 0;}
 #yui-main ul.ui-tabs-nav  {padding-left:0px;}
 
 #usershelves {padding-top:20px;}
@@ -2942,7 +2953,7 @@ ul.ui-tabs-nav li {
     border-bottom: 0;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-    color : #000;
+    color : #7E7E7E;
     font-weight : bold;
 }
 
@@ -2957,13 +2968,13 @@ ul.ui-tabs-nav li {
 .ui-tabs .ui-state-default a,
 .ui-tabs .ui-state-default a:link,
 .ui-tabs .ui-state-default a:visited {
-    color: #006699;
+  
 }
 
 .ui-tabs .ui-state-hover a,
 .ui-tabs .ui-state-hover a:link,
 .ui-tabs .ui-state-hover a:visited {
-    color: #990033;
+    
 }
 
 .statictabs ul {
@@ -3106,16 +3117,18 @@ div.authorizedheading {
 #hierarchies a {
     font-weight: normal;
     text-decoration: underline;
-    color: #069;
+    color: #7E7E7E;
 }
 
 #hierarchies a:hover {
-    color: #990033;
+    color: #FF8E02;
 }
 
 #top-pages {
     margin: 0 0 0.5em;
 }
+
+#results #top-pages {display:none;}
 
 /* jQuery UI Datepicker */
 .ui-datepicker table {width: 100%; font-size: .9em; border : 0; border-collapse: collapse; margin:0 0 .4em; }
@@ -3462,3 +3475,8 @@ padding: 0.1em 0;
 #opac-holds div#bd {background:none;}
 #opac-holds div#bd #opac_search {padding:20px 0px; float: left; border-bottom: 1px solid #E4E4E4; /*background:#FCFCFC;*/ width:100%;}
 opac-holds div#bd .yui-b #leftmenus {display:none;}
+
+/**/
+
+#userresults {padding-top:30px;}
+.jstree-classic.jstree-focused {padding:10px 0px;}

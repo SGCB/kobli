@@ -14,7 +14,7 @@
  <div id="yui-main">
  <div class="yui-b">
 [% END %] [% IF ( add_form ) %] <h1>Enlazar [% tablename %].[% kohafield %] a un subcampo MARC</h1>
- <p>Seleccione y valide 1 subcampo MARC para <strong>[% tablename %].[% kohafield %]</strong>. Esto se modificará <b>todas las hojas de trabajo</b> que es lo que usualmente se necesita, pero usted ha sido advertido.</p>
+ <p>Seleccione y valide 1 subcampo MARC para <strong>[% tablename %].[% kohafield %]</strong>. Esto se modificará <b>todas las hojas de trabajo</b> que es por lo general lo que necesita, pero debe estar advertido</p>
  <fieldset class="rows"><ol>
 <li><form action="[% script_name %]" method="post"> <input type="hidden" name="op" value="add_validate" />
  <input type="hidden" name="tablename" value="[% tablename %]" />

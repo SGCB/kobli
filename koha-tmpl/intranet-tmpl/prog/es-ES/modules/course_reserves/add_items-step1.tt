@@ -6,7 +6,7 @@
 
 <div id="doc" class="yui-t7">
  <div id="bd">
- [% IF ERROR_BARCODE_NOT_FOUND %] <div class="dialog alert">No item found with barcode [% ERROR_BARCODE_NOT_FOUND %]</div>
+ [% IF ERROR_BARCODE_NOT_FOUND %] <div class="dialog alert">No se encontró un ítem con código de barras [% ERROR_BARCODE_NOT_FOUND %].</div>
  [% END %] <form method="post" action="/cgi-bin/koha/course_reserves/add_items.pl">
  <input type="hidden" name="course_id" value="[% course.course_id %]" />
  <input type="hidden" name="action" value="lookup" />

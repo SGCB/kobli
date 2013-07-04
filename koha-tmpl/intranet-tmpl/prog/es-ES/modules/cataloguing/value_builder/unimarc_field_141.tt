@@ -9,18 +9,18 @@
  <td>
  <select name="f1" id="f1" size="1">
  
- [% IF ( f1 ) %] <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %] <option value=" ">valor no requerido</option>
- [% END %] [% IF ( f1a ) %] <option value="a" selected="selected">pergamino, vitela</option>
- [% ELSE %] <option value="a">pergamino, vitela</option>
+ [% IF ( f1 ) %] <option value=" " selected="selected">Valor no obligatorio</option>
+ [% ELSE %] <option value=" ">Valor no obligatorio</option>
+ [% END %] [% IF ( f1a ) %] <option value="a" selected="selected">parchment, vellum</option>
+ [% ELSE %] <option value="a">parchment, vellum</option>
  [% END %] [% IF ( f1b ) %] <option value="b" selected="selected">cuero</option>
  [% ELSE %] <option value="b">cuero</option>
  [% END %] [% IF ( f1c ) %] <option value="c" selected="selected">madera</option>
  [% ELSE %] <option value="c">madera</option>
  [% END %] [% IF ( f1d ) %] <option value="d" selected="selected">vestido</option>
  [% ELSE %] <option value="d">vestido</option>
- [% END %] [% IF ( f1e ) %] <option value="e" selected="selected">sintéticos</option>
- [% ELSE %] <option value="e">sintéticos</option>
+ [% END %] [% IF ( f1e ) %] <option value="e" selected="selected">synthetics</option>
+ [% ELSE %] <option value="e">synthetics</option>
  [% END %] [% IF ( f1f ) %] <option value="f" selected="selected">cartulina</option>
  [% ELSE %] <option value="f">cartulina</option>
  [% END %] [% IF ( f1g ) %] <option value="g" selected="selected">papel</option>
@@ -35,18 +35,18 @@
  <td>
  <select name="f2" id="f2" size="1">
  
- [% IF ( f2 ) %] <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %] <option value=" ">valor no requerido</option>
- [% END %] [% IF ( f2a ) %] <option value="a" selected="selected">pergamino, vitela</option>
- [% ELSE %] <option value="a">pergamino, vitela</option>
+ [% IF ( f2 ) %] <option value=" " selected="selected">Valor no obligatorio</option>
+ [% ELSE %] <option value=" ">Valor no obligatorio</option>
+ [% END %] [% IF ( f2a ) %] <option value="a" selected="selected">parchment, vellum</option>
+ [% ELSE %] <option value="a">parchment, vellum</option>
  [% END %] [% IF ( f2b ) %] <option value="b" selected="selected">cuero</option>
  [% ELSE %] <option value="b">cuero</option>
  [% END %] [% IF ( f2c ) %] <option value="c" selected="selected">madera</option>
  [% ELSE %] <option value="c">madera</option>
  [% END %] [% IF ( f2d ) %] <option value="d" selected="selected">vestido</option>
  [% ELSE %] <option value="d">vestido</option>
- [% END %] [% IF ( f2e ) %] <option value="e" selected="selected">sintéticos</option>
- [% ELSE %] <option value="e">sintéticos</option>
+ [% END %] [% IF ( f2e ) %] <option value="e" selected="selected">synthetics</option>
+ [% ELSE %] <option value="e">synthetics</option>
  [% END %] [% IF ( f2f ) %] <option value="f" selected="selected">cartulina</option>
  [% ELSE %] <option value="f">cartulina</option>
  [% END %] [% IF ( f2g ) %] <option value="g" selected="selected">papel</option>
@@ -61,18 +61,18 @@
  <td><label for="f3">Material de encuadernación 3:</label></td>
  <td>
  <select name="f3" id="f3" size="1">
- [% IF ( f3 ) %] <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %] <option value=" ">valor no requerido</option>
- [% END %] [% IF ( f3a ) %] <option value="a" selected="selected">pergamino, vitela</option>
- [% ELSE %] <option value="a">pergamino, vitela</option>
+ [% IF ( f3 ) %] <option value=" " selected="selected">Valor no obligatorio</option>
+ [% ELSE %] <option value=" ">Valor no obligatorio</option>
+ [% END %] [% IF ( f3a ) %] <option value="a" selected="selected">parchment, vellum</option>
+ [% ELSE %] <option value="a">parchment, vellum</option>
  [% END %] [% IF ( f3b ) %] <option value="b" selected="selected">cuero</option>
  [% ELSE %] <option value="b">cuero</option>
  [% END %] [% IF ( f3c ) %] <option value="c" selected="selected">madera</option>
  [% ELSE %] <option value="c">madera</option>
  [% END %] [% IF ( f3d ) %] <option value="d" selected="selected">vestido</option>
  [% ELSE %] <option value="d">vestido</option>
- [% END %] [% IF ( f3e ) %] <option value="e" selected="selected">sintéticos</option>
- [% ELSE %] <option value="e">sintéticos</option>
+ [% END %] [% IF ( f3e ) %] <option value="e" selected="selected">synthetics</option>
+ [% ELSE %] <option value="e">synthetics</option>
  [% END %] [% IF ( f3f ) %] <option value="f" selected="selected">cartulina</option>
  [% ELSE %] <option value="f">cartulina</option>
  [% END %] [% IF ( f3g ) %] <option value="g" selected="selected">papel</option>
@@ -88,18 +88,18 @@
  <td>
  <select name="f4" id="f4" size="1">
 
- [% IF ( f4a ) %] <option value="a" selected="selected">original, es decir primario</option>
- [% ELSE %] <option value="a">original, es decir primario</option>
- [% END %] [% IF ( f4b ) %] <option value="b" selected="selected">reencuadernado</option>
- [% ELSE %] <option value="b">reencuadernado</option>
- [% END %] [% IF ( f4c ) %] <option value="c" selected="selected">moderno</option>
- [% ELSE %] <option value="c">moderno</option>
- [% END %] [% IF ( f4d ) %] <option value="d" selected="selected">restaurado, facsímile</option>
- [% ELSE %] <option value="d">restaurado, facsímile</option>
- [% END %] [% IF ( f4e ) %] <option value="e" selected="selected">restaurado, imitación</option>
- [% ELSE %] <option value="e">restaurado, imitación</option>
- [% END %] [% IF ( f4f ) %] <option value="f" selected="selected">trabajo vinculado con otro</option>
- [% ELSE %] <option value="f">trabajo vinculado con otro</option>
+ [% IF ( f4a ) %] <option value="a" selected="selected">original, por ej. primario</option>
+ [% ELSE %] <option value="a">original, por ej. primario</option>
+ [% END %] [% IF ( f4b ) %] <option value="b" selected="selected">rebound</option>
+ [% ELSE %] <option value="b">rebound</option>
+ [% END %] [% IF ( f4c ) %] <option value="c" selected="selected">modern</option>
+ [% ELSE %] <option value="c">modern</option>
+ [% END %] [% IF ( f4d ) %] <option value="d" selected="selected">restored, facsimile</option>
+ [% ELSE %] <option value="d">restored, facsimile</option>
+ [% END %] [% IF ( f4e ) %] <option value="e" selected="selected">restored, imitation</option>
+ [% ELSE %] <option value="e">restored, imitation</option>
+ [% END %] [% IF ( f4f ) %] <option value="f" selected="selected">vinculado con uno o más de los otros </option>
+ [% ELSE %] <option value="f">vinculado con uno o más de los otros </option>
  [% END %] [% IF ( f4h ) %] <option value="h" selected="selected">sin encuadernar</option>
  [% ELSE %] <option value="h">sin encuadernar</option>
  [% END %] [% IF ( f4z ) %] <option value="z" selected="selected">otro</option>
@@ -110,8 +110,8 @@
  <td>
  <select name="f5" id="f5" size="1">
 
- [% IF ( f50 ) %] <option value="0" selected="selected">ítem individual</option>
- [% ELSE %] <option value="0">ítem individual</option>
+ [% IF ( f50 ) %] <option value="0" selected="selected">single item</option>
+ [% ELSE %] <option value="0">single item</option>
  [% END %] [% IF ( f51 ) %] <option value="1" selected="selected">vinculado con uno o más de los otros</option>
  [% ELSE %] <option value="1">vinculado con uno o más de los otros</option>
  [% END %] </select>
@@ -124,14 +124,14 @@
  [% ELSE %] <option value="a">excelente</option>
  [% END %] [% IF ( f6b ) %] <option value="b" selected="selected">bueno</option>
  [% ELSE %] <option value="b">bueno</option>
- [% END %] [% IF ( f6c ) %] <option value="c" selected="selected">usado</option>
- [% ELSE %] <option value="c">usado</option>
+ [% END %] [% IF ( f6c ) %] <option value="c" selected="selected">agotado</option>
+ [% ELSE %] <option value="c">agotado</option>
  [% END %] [% IF ( f6d ) %] <option value="d" selected="selected">dañado</option>
  [% ELSE %] <option value="d">dañado</option>
  [% END %] [% IF ( f6e ) %] <option value="e" selected="selected">espalda rota</option>
  [% ELSE %] <option value="e">espalda rota</option>
- [% END %] [% IF ( f6f ) %] <option value="f" selected="selected">faltante</option>
- [% ELSE %] <option value="f">faltante</option>
+ [% END %] [% IF ( f6f ) %] <option value="f" selected="selected">missing</option>
+ [% ELSE %] <option value="f">missing</option>
  [% END %] [% IF ( f6z ) %] <option value="z" selected="selected">otro</option>
  [% ELSE %] <option value="z">otro</option>
  [% END %] </select>
@@ -144,14 +144,14 @@
  [% ELSE %] <option value="a">excelente</option>
  [% END %] [% IF ( f7b ) %] <option value="b" selected="selected">bueno</option>
  [% ELSE %] <option value="b">bueno</option>
- [% END %] [% IF ( f7c ) %] <option value="c" selected="selected">usado</option>
- [% ELSE %] <option value="c">usado</option>
+ [% END %] [% IF ( f7c ) %] <option value="c" selected="selected">agotado</option>
+ [% ELSE %] <option value="c">agotado</option>
  [% END %] [% IF ( f7d ) %] <option value="d" selected="selected">dañado</option>
  [% ELSE %] <option value="d">dañado</option>
  [% END %] [% IF ( f7e ) %] <option value="e" selected="selected">incompleto</option>
  [% ELSE %] <option value="e">incompleto</option>
- [% END %] [% IF ( f7g ) %] <option value="g" selected="selected">restaurado</option>
- [% ELSE %] <option value="g">restaurado</option>
+ [% END %] [% IF ( f7g ) %] <option value="g" selected="selected">restored</option>
+ [% ELSE %] <option value="g">restored</option>
  [% END %] [% IF ( f7z ) %] <option value="z" selected="selected">otro</option>
  [% ELSE %] <option value="z">otro</option>
  [% END %] </select>
@@ -164,14 +164,14 @@
  [% ELSE %] <option value="a">excelente</option>
  [% END %] [% IF ( f8b ) %] <option value="b" selected="selected">bueno</option>
  [% ELSE %] <option value="b">bueno</option>
- [% END %] [% IF ( f8c ) %] <option value="c" selected="selected">usado</option>
- [% ELSE %] <option value="c">usado</option>
+ [% END %] [% IF ( f8c ) %] <option value="c" selected="selected">agotado</option>
+ [% ELSE %] <option value="c">agotado</option>
  [% END %] [% IF ( f8d ) %] <option value="d" selected="selected">dañado</option>
  [% ELSE %] <option value="d">dañado</option>
  [% END %] [% IF ( f8e ) %] <option value="e" selected="selected">incompleto</option>
  [% ELSE %] <option value="e">incompleto</option>
- [% END %] [% IF ( f8g ) %] <option value="g" selected="selected">restaurado</option>
- [% ELSE %] <option value="g">restaurado</option>
+ [% END %] [% IF ( f8g ) %] <option value="g" selected="selected">restored</option>
+ [% ELSE %] <option value="g">restored</option>
  [% END %] [% IF ( f8z ) %] <option value="z" selected="selected">otro</option>
  [% ELSE %] <option value="z">otro</option>
  [% END %] </select>

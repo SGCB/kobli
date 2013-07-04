@@ -8,10 +8,10 @@
  <td><label for="f1">Indicador de texto literario:</label></td>
  <td>
  <select name="f1" id="f1" size="1">
- [% IF ( f1space ) %] <option value=" " selected="selected">valor no requerido</option>
- [% ELSE %] <option value=" ">valor no requerido</option>
- [% END %] [% IF ( f1a ) %] <option value="a" selected="selected">poesía</option>
- [% ELSE %] <option value="a">poesía</option>
+ [% IF ( f1space ) %] <option value=" " selected="selected">Valor no obligatorio</option>
+ [% ELSE %] <option value=" ">Valor no obligatorio</option>
+ [% END %] [% IF ( f1a ) %] <option value="a" selected="selected">Poesía</option>
+ [% ELSE %] <option value="a">Poesía</option>
  [% END %] [% IF ( f1b ) %] <option value="b" selected="selected">drama</option>
  [% ELSE %] <option value="b">drama</option>
  [% END %] [% IF ( f1c ) %] <option value="c" selected="selected">ficción</option>
@@ -30,12 +30,12 @@
  [% ELSE %] <option value="i">biografía</option>
  [% END %] [% IF ( f1j ) %] <option value="j" selected="selected">ensayos</option>
  [% ELSE %] <option value="j">ensayos</option>
- [% END %] [% IF ( f1k ) %] <option value="k" selected="selected">presentación de informes</option>
- [% ELSE %] <option value="k">presentación de informes</option>
- [% END %] [% IF ( f1l ) %] <option value="l" selected="selected">memorias</option>
- [% ELSE %] <option value="l">memorias</option>
- [% END %] [% IF ( f1m ) %] <option value="m" selected="selected">ensayos</option>
- [% ELSE %] <option value="m">ensayos</option>
+ [% END %] [% IF ( f1k ) %] <option value="k" selected="selected">Presentación de informes</option>
+ [% ELSE %] <option value="k">Presentación de informes</option>
+ [% END %] [% IF ( f1l ) %] <option value="l" selected="selected">Memorias</option>
+ [% ELSE %] <option value="l">Memorias</option>
+ [% END %] [% IF ( f1m ) %] <option value="m" selected="selected">Ensayos</option>
+ [% ELSE %] <option value="m">Ensayos</option>
  [% END %] [% IF ( f1n ) %] <option value="n" selected="selected">entrevistas</option>
  [% ELSE %] <option value="n">entrevistas</option>
  [% END %] [% IF ( f1o ) %] <option value="o" selected="selected">textos publicitarios</option>
@@ -48,8 +48,8 @@
  [% ELSE %] <option value="r">comedia</option>
  [% END %] [% IF ( f1s ) %] <option value="s" selected="selected">cuentos populares</option>
  [% ELSE %] <option value="s">cuentos populares</option>
- [% END %] [% IF ( f1t ) %] <option value="t" selected="selected">textos sacros</option>
- [% ELSE %] <option value="t">textos sacros</option>
+ [% END %] [% IF ( f1t ) %] <option value="t" selected="selected">textos sagrados</option>
+ [% ELSE %] <option value="t">textos sagrados</option>
  [% END %] [% IF ( f1z ) %] <option value="z" selected="selected">otros tipos de texto literario</option>
  [% ELSE %] <option value="z">otros tipos de texto literario</option>
  [% END %] </select>

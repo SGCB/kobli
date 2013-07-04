@@ -51,9 +51,9 @@ function check(form) {
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  Pedidos de: <select name="owner">
  [% IF ( owner ) %] <option value="0">Todos</option>
- <option value="1" selected="selected">yo</option>
+ <option value="1" selected="selected">me</option>
  [% ELSE %] <option value="0" selected="selected">Todos</option>
- <option value="1">yo</option>
+ <option value="1">me</option>
  [% END %] </select>
  <input value="Filtro" type="submit" />
  </form>

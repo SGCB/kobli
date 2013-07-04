@@ -184,7 +184,7 @@ function populateHiddenCheckboxes(tab) {
  
  [% FOREACH loo IN loop %] <div class="constraints" id="sub[% loo.urisubfieldcode %]field">
 
- <h3><a href="#basic[% loo.urisubfieldcode %]">Basic constraints</a></h3>
+ <h3><a href="#basic[% loo.urisubfieldcode %]">Restricciones básicas</a></h3>
  <div id="basic[% loo.urisubfieldcode %]">
  <fieldset class="rows">
  <ol>
@@ -200,7 +200,7 @@ function populateHiddenCheckboxes(tab) {
  </div>
 
 
- <h3><a href="#adv[% loo.urisubfieldcode %]">Advanced constraints</a></h3>
+ <h3><a href="#adv[% loo.urisubfieldcode %]">Restricciones avanzadas</a></h3>
  <div id="adv[% loo.urisubfieldcode %]">
  <fieldset class="rows">
  <ol><li><label for="defaultvalue[% loo.row %]">Valore predeterminado:</label>
@@ -225,7 +225,7 @@ function populateHiddenCheckboxes(tab) {
  </ol>
  </fieldset>
  </div>
- <h3><a href="#oth[% loo.urisubfieldcode %]">Other options (choose one)</a></h3>
+ <h3><a href="#oth[% loo.urisubfieldcode %]">Otras opciones (elegir una)</a></h3>
  <div id="oth[% loo.urisubfieldcode %]">
  <fieldset class="rows">
  <ol>

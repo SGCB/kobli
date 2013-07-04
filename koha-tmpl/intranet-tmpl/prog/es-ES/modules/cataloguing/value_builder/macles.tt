@@ -49,7 +49,7 @@
  </td>
  [% END %] </tr>
  [% END %] </table>
- [% END %] [% IF ( BIGLOO.Lists ) %] <h2>selección por medio de una lista de descriptores</h2>
+ [% END %] [% IF ( BIGLOO.Lists ) %] <h2>Selección por medio de una lista de descriptores</h2>
  [% FOREACH List IN BIGLOO.Lists %] <h3>[% List.lib %]</h3>
  [% FOREACH liblis IN List.liblist %] <a href="#[% liblis.listvalue %]" onclick="check_multiple([% liblis.listvalue %])"> [% liblis.listlib |html %]</a><br />
  [% END %]
@@ -133,7 +133,7 @@ function add_macles(myvalue)
     //for (i=0;i< (mycountMACLESgen - mycountMACLESinit);i++){
     //  PluginAddField(myvalue);
     //}
-      alert(_("por favor, primero debe crear el número necesario de campos "));
+      alert(_("Antes de nada cree el número de campos necesarios"));
     } else {
     // Pour chaque valeur cochee, ajouter la valeur dans un noeud MACLES.
       for (i=0;i<tab.length;i++){

@@ -55,7 +55,7 @@ function Check(f) {
     } else {
         alertString2  = _("El formulario no fue procesado debido a los siguientes problemas");
         alertString2 += "\n------------------------------------------------------------------------------------\n";
-        alertString2 += "\n- "+ total_errors+_(" campos obligatorios vacíos (resaltados)");
+        alertString2 += "\n- "+ total_errors+_(" campos obligatorios de ítem vacíos (subrayados)");
         alert(alertString2);
         return false;
     }
@@ -158,7 +158,7 @@ $(document).ready(function() {
  <input type="hidden" name="indicator" value=" " />
  <input type="hidden" name="itemnumber" value="[% itemnumber %]" />
  [% IF ( showFilesLocalRepository ) %] [% INCLUDE 'cataloguing-attach-files.inc' %] [% END %] <fieldset class="action"> [% IF ( opisadd ) %] <input type="submit" name="phony_submit" value="phony_submit" id="phony_submit" style="display:none;" onclick="return false;" />
- <!-- Note : We use here a false submit button because we have several submit buttons and we don't want the user to believe he validated the adding of multiple copies
+ <!-- Note : We use here a false submit button because we have several submit buttons and we don't want the user to believe he validated the adding of multiple items
  when pressing the enter key, while in fact it is the first submit button that is validated, in our case the "add (single) item" button.
  It is a bit tricky, but necessary in the sake of UI correctness.
  -->

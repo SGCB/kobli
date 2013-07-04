@@ -9,8 +9,8 @@
  <td>
  <select name="f1" id="f1" size="1">
  
- [% IF ( f1r ) %] <option value="r" selected="selected">impresión normal</option>
- [% ELSE %] <option value="r">impresión normal</option>
+ [% IF ( f1r ) %] <option value="r" selected="selected">Impresión normal</option>
+ [% ELSE %] <option value="r">Impresión normal</option>
  [% END %] [% IF ( f1b ) %] <option value="d" selected="selected">impresión grande</option>
  [% ELSE %] <option value="d">impresión grande</option>
  [% END %] [% IF ( f1e ) %] <option value="e" selected="selected">formato de periódico</option>
@@ -18,17 +18,17 @@
  [% END %] [% IF ( f1f ) %] <option value="f" selected="selected">Escritura Braille o Moon</option>
  [% ELSE %] <option value="f">Escritura Braille o Moon</option>
  
- [% END %] [% IF ( f1g ) %] <option value="g" selected="selected">microimpresión</option>
- [% ELSE %] <option value="g">microimpresión</option>
+ [% END %] [% IF ( f1g ) %] <option value="g" selected="selected">microprint</option>
+ [% ELSE %] <option value="g">microprint</option>
  
  [% END %] [% IF ( f1h ) %] <option value="h" selected="selected">manuscrito</option>
  [% ELSE %] <option value="h">manuscrito</option>
  
- [% END %] [% IF ( f1i ) %] <option value="i" selected="selected">multimedia (por ejemplo, un ítem impreso y una microficha como suplemento)</option>
- [% ELSE %] <option value="i">multimedia (por ejemplo, un ítem impreso y una microficha como suplemento)</option>
+ [% END %] [% IF ( f1i ) %] <option value="i" selected="selected">multimedia (e.g. an item in regular print with a microfiche supplement)</option>
+ [% ELSE %] <option value="i">multimedia (e.g. an item in regular print with a microfiche supplement)</option>
  
- [% END %] [% IF ( f1j ) %] <option value="j" selected="selected">mini-impresión</option>
- [% ELSE %] <option value="j">mini-impresión</option>
+ [% END %] [% IF ( f1j ) %] <option value="j" selected="selected">mini-print</option>
+ [% ELSE %] <option value="j">mini-print</option>
  
  [% END %] [% IF ( f1s ) %] <option value="s" selected="selected">electrónico</option>
  [% ELSE %] <option value="s">electrónico</option>
@@ -36,8 +36,8 @@
  [% END %] [% IF ( f1t ) %] <option value="t" selected="selected">microforma</option>
  [% ELSE %] <option value="t">microforma</option>
  
- [% END %] [% IF ( f1z ) %] <option value="z" selected="selected">otra forma de material</option>
- [% ELSE %] <option value="z">otra forma de material</option>
+ [% END %] [% IF ( f1z ) %] <option value="z" selected="selected">other form of material</option>
+ [% ELSE %] <option value="z">other form of material</option>
  
  [% END %] </select>
  </td>

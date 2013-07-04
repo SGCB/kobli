@@ -106,7 +106,7 @@ function displayMoreConstraint(numlayer){
  </form></div>
 [% END %] [% IF ( else ) %] <h1>Administrar estructura de subcampos (formato) de Autoridades MARC para [% tagfield %] (autoridad: [% authtypecode %])</h1>
 <p>Esta pantalla muestra los subcampos asociados con la etiqueta seleccionada. Puede editar los subcampos o agregar uno nuevo haciendo clic en editar. </p>
-<p>La columna <b>Campo Koha</b> muestra que el subcampo está conectado a un campo Koha. Koha puede administrar una interfaz MARC, o una interfaz Koha. Este enlace asegura que ambas bases de datos están sincronizadas,</p>
+<p>La columna <b>Campo Koha</b> muestra que el subcampo está conectado a un campo Koha. Koha puede administrar una interfaz MARC yuna interfaz Koha. Este enlace asegura que ambas bases de datos están sincronizadas</p>
 
 <table>
  <tr>
@@ -136,7 +136,7 @@ function displayMoreConstraint(numlayer){
  <a class="cancel" href="auth_tag_structure.pl?searchfield=[% tagfield %]&amp;authtypecode=[% authtypecode %]">Cancelar</a></fieldset>
  </form>
 
- [% IF ( previous ) %] <input alt="anterior" src="[% interface %]/[% theme %]/images/1leftarrow.png" type="image" title="anterior" border="0" />
+ [% IF ( previous ) %] <input alt="Previo" src="[% interface %]/[% theme %]/images/1leftarrow.png" type="image" title="Previo" border="0" />
  </a>
  [% END %] [% IF ( next ) %] [% next %] <input alt="siguiente" src="[% interface %]/[% theme %]/images/1rightarrow.png" type="image" title="siguiente" border="0" />
  </a>

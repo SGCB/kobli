@@ -97,7 +97,7 @@ $(document).ready(function() {
  <ol>
  [% IF ( location ) %]<li><span class="label">Ubicación:</span> [% location %]</li>[% END %] [% IF ( callnumber ) %]<li><span class="label">Signatura:</span> [% callnumber %]</li>[% END %] [% IF ( staffdisplaycount ) %]<li><span class="label">Número de ejemplares a mostrar en interfaz administrativa:</span>[% staffdisplaycount %]</li>[% END %] [% IF ( opacdisplaycount ) %]<li><span class="label">Número de ejemplares a mostrar en OPAC:</span>[% opacdisplaycount %]</li>[% END %] [% IF ( letter ) %] <li>
  <span class="label">Notificación a socio: </span> [% letter %] (<a href="/cgi-bin/koha/serials/viewalerts.pl?subscriptionid=[% subscriptionid %]">suscriptores</a>) </li>
- [% END %] [% IF ( hasRouting ) %]<li><span class="label">Ruteo:</span> si</li>[% END %] </ol>
+ [% END %] [% IF ( hasRouting ) %]<li><span class="label">Ruteo:</span> Sí</li>[% END %] </ol>
  </div>
  </div>
 </div>

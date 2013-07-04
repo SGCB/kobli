@@ -45,7 +45,7 @@
  <div class="dialog alert">
  No se pudo encontrar una preferencia del sistema llamada <code>[% jumpfield %]</code>. </div>
  [% END %] [% IF ( search_not_found ) %] <div class="dialog alert">
- Ninguna preferencia del sistema corresponden a su búsqueda <strong>[% searchfield |html %]</strong>. Puede intentar otra búsqueda o <a href="/cgi-bin/koha/admin/preferences.pl?tab=[% last_tab %]">volver a donde estaba antes.</a>
+ Ninguna preferencia del sistema corresponden a su búsqueda <strong>[% searchfield |html %]</strong>. Puede intentar otra búsqueda o <a href="/cgi-bin/koha/admin/preferences.pl?tab=[% last_tab %]">volver donde estaba antes</a>
  </div>
  [% END %] [% FOREACH TAB IN TABS %] <div class="prefs-tab">
  <h2>[% TAB.tab_title %] preferencias</h2>

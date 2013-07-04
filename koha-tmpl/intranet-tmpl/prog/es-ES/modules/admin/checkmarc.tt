@@ -55,9 +55,9 @@
 [% IF ( itemtype ) %]
  <tr>
  <td>el tipo de ítem no está mapeado</td>
- <td>el biblioitems.itemtype DEBE :<br />
+ <td>el campo biblioitems.itemtype DEBE:<br />
  <ul><li>tiene que ser mapeado a un subcampo MARC, </li>
- <li>the corresponding subfield MUST have "Authorized value" set to "itemtype"</li></ul></td>
+ <li>El subcampo correspondiente DEBE establecer  "Authorized value" a "itemtype"</li></ul></td>
  </tr>
 [% ELSE %] <tr>
  <td>OK</td>
@@ -68,9 +68,9 @@
 [% IF ( branch ) %]
  <tr>
  <td>biblioteca central NO mapeada</td>
- <td>el items.homebranch campo DEBE:<br />
+ <td>el campo items.homebranch DEBE :<br />
  <ul><li>tiene que ser mapeado a un subcampo MARC,</li>
- <li>the corresponding subfield MUST have "Authorized value" set to "branches"</li></ul></td>
+ <li>el subcampo correspondiente DEBE establecer "Authorized value" a "branches"</li></ul></td>
  </tr>
 [% ELSE %] <tr>
  <td>OK</td>
@@ -81,9 +81,9 @@
 [% IF ( holdingbranch ) %]
  <tr>
  <td>la biblioteca NO está mapeada</td>
- <td>el items.holdingbranch campo DEBE :<br />
+ <td>el campo items.holdingbranch DEBE :<br />
  <ul><li>tiene que ser mapeado a un subcampo MARC, </li>
- <li>the corresponding subfield MUST have "Authorized value" set to "branches"</li></ul></td>
+ <li>el subcampo correspondiente DEBE establecer "Authorized value" a "branches"</li></ul></td>
  </tr>
 [% ELSE %] <tr>
  <td>OK</td>
@@ -124,17 +124,17 @@
  </tr>
 [% END %] [% IF ( frameworknull ) %] <tr>
  <td>valores de la plantilla de trabajo</td>
- <td>hay un valor nulo en un código de la hoja de trabajo. Compruebe las tablas siguientes<br />
+ <td>este es un valor nulo en el frameworkcode. Compruebe las siguientes tablas<br />
  <li>select * from marc_subfield_structure where frameworkcode is NULL</li>
  <li>select * from marc_tag_structure where frameworkcode is NULL</li>
  </td>
  </tr>
  [% ELSE %] <tr>
  <td>OK</td>
- <td>ningún valor NULO en el código de la hoja de trabajo</td>
+ <td>sin valor NULL en el frameworkcode</td>
  </tr>
  [% END %] [% IF ( inconsistent_tabs ) %] <tr>
- <td style="vertical-align:top;">subcampos que no están  en la misma pestañas</td>
+ <td style="vertical-align:top;">subcampos en distintas pestañas</td>
  <td>No todos los subcampos de los siguientes campos se encuentran en la misma pestaña (o marcados como 'ignorado'). <table>
  <tr>
  <th>Código</th>

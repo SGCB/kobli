@@ -90,15 +90,15 @@
  <xsl:for-each select="marc:datafield[@tag=101]">
  <xsl:for-each select="marc:subfield">
  <xsl:choose>
- <xsl:when test="@code='b'">del texto intermedio, </xsl:when>
- <xsl:when test="@code='c'">de trabajo original, </xsl:when>
- <xsl:when test="@code='d'">del resumen, </xsl:when>
- <xsl:when test="@code='e'">de la página de contenidos, </xsl:when>
- <xsl:when test="@code='f'">de la página de título, </xsl:when>
- <xsl:when test="@code='g'">del título propiamente, </xsl:when>
- <xsl:when test="@code='h'">del libreto, </xsl:when>
- <xsl:when test="@code='i'">del material adjunto, </xsl:when>
- <xsl:when test="@code='j'">de subtítulos, </xsl:when>n> </xsl:choose>
+ <xsl:when test="@code='b'">de texto intermedio,</xsl:when>
+ <xsl:when test="@code='c'">de trabajo original,</xsl:when>
+ <xsl:when test="@code='d'">de resumen, </xsl:when>
+ <xsl:when test="@code='e'">de página de contenidos, </xsl:when>
+ <xsl:when test="@code='f'">de página principal</xsl:when>
+ <xsl:when test="@code='g'">de siguiente título,</xsl:when>
+ <xsl:when test="@code='h'">de libreto, </xsl:when>
+ <xsl:when test="@code='i'">de material adjunto,</xsl:when>
+ <xsl:when test="@code='j'">de subtítulos</xsl:when>n> </xsl:choose>
  <xsl:value-of select="text()"/>
  <xsl:choose>
  <xsl:when test="position()=last()">

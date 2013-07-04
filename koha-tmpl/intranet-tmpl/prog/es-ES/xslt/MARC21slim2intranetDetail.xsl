@@ -220,7 +220,7 @@
  <xsl:with-param name="codes">av</xsl:with-param>
  <xsl:with-param name="class">results_summary series</xsl:with-param>
  <xsl:with-param name="label">Series </xsl:with-param>
- <xsl:with-param name="index">sí</xsl:with-param>
+ <xsl:with-param name="index">se</xsl:with-param>
  </xsl:call-template>
  </xsl:if>
  
@@ -419,7 +419,7 @@
  <xsl:call-template name="m880Select">
  <xsl:with-param name="basetags">300</xsl:with-param>
  <xsl:with-param name="codes">abceg</xsl:with-param>
- <xsl:with-param name="class">results_summary descripción</xsl:with-param>
+ <xsl:with-param name="class">results_summary description</xsl:with-param>
  <xsl:with-param name="label">Descripción: </xsl:with-param>
  </xsl:call-template>
  </xsl:if>
@@ -460,7 +460,7 @@
 
  <xsl:if test="marc:datafield[@tag=013]">
  <span class="results_summary patent_info">
- <span class="label">Información de socio:</span>
+ <span class="label">Información de patente:</span>
  <xsl:for-each select="marc:datafield[@tag=013]">
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">acdef</xsl:with-param>

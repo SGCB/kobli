@@ -61,10 +61,10 @@
             var _alertString="";
             var alertString2;
             if (f.variable.value.length==0) {
-                _alertString += "\n- " + _("variable ausente");
+                _alertString += "\n- " + _("variable que falta");
             }
             if (f.value.value.length==0) {
-                _alertString += "\n- " + _("valor ausente");
+                _alertString += "\n- " + _("valor que falta");
             }
             if (_alertString.length==0) {
                 document.Aform.submit();
@@ -146,7 +146,7 @@
  <div class="hint">Nota: no debería tener razones para cambiar los valores predeterminados</div>
  <ol>
  <li><label for="preftype">Tipo de variable:</label>
- <div class="hint"> (<span class="variabletype" id="Choice">Elección</span>, <span class="variabletype" id="YesNo">SiNo</span>, <span class="variabletype" id="Integer">Entero</span>, <span class="variabletype" id="Textarea">Área de texto</span>, <span class="variabletype" id="Float">Flotante</span>, <span class="variabletype" id="Themes">Temas</span>, <span class="variabletype" id="Languages">Idiomas</span>, <span class="variabletype" id="Upload">Subir</span> o <span class="variabletype" id="ClassSources">ClassSources</span>)</div>
+ <div class="hint"> (<span class="variabletype" id="Choice">Elección</span>, <span class="variabletype" id="YesNo">SiNo</span>, <span class="variabletype" id="Integer">Entero</span>, <span class="variabletype" id="Textarea">Área de texto</span>, <span class="variabletype" id="Float">Flotante</span>, <span class="variabletype" id="Themes">Temas</span>, <span class="variabletype" id="Languages">Idiomas</span>, <span class="variabletype" id="Upload">Subir</span> o<span class="variabletype" id="ClassSources">ClassSources</span>)</div>
  <input type="text" name="preftype" id="preftype" value="[% preftype %]" size="40" maxlength="40" /></li>
  <li><label for="prefoptions">Opciones de la variable:</label>
  <div class="hint">(lista de selección para elegir (separado por |) o columnas|filas para textarea)</div>

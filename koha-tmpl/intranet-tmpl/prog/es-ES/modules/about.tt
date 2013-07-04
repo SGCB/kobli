@@ -69,7 +69,7 @@
 
  <div id="sysinfo">
  [% IF (warnIsRootUser) %] <h2>Advertencias respecto al usuario actual</h2>
- <p>Parece que ha iniciado la sesión como usuario de base de datos administrativa. Esta opción o se recomienda porque algunas partes de Kobli no funcionarán como se esperaba cuando se utiliza esta cuenta.</p>
+ <p>Parece que ha iniciado la sesión como usuario administrador de la base de datos. Esta opción no se recomienda, ya que algunas partes de Kobli no funcionarán como se espera al utilizar esta cuenta.</p>
  <p>Por favor,  es necesario iniciar sesión con una cuenta personal de personal. Para crear una cuenta personal, crear una biblioteca, una categoría de «Personal»  y añadir un nuevo socio. A continuación, dar permisos de este socio de "Más" en la barra de herramientas.</p>
  [% END %] <h2>Advertencias respecto a la configuración del sistema</h2>
  [% IF warnPrefBiblioAddsAuthorities || warnPrefEasyAnalyticalRecords || warnPrefAnonymousPatron %] <table>
@@ -82,7 +82,52 @@
  [% END %] </div>
 
  <div id="kobliteam">
- <h2>Kobli 1.8.1, distribución desarrollada por el Ministerio de Educación, Cultura y Deporte de España, basado en Koha 3.8 </h2>
+ <h2>Kobli 1.12.1, distribución desarrollada por el Ministerio de Educación, Cultura y Deporte de España, basado en Koha 3.12.1</h2>
+ <ul>
+ <li><a href="http://kobli.bage.es/">Koha-Kobli</a>, Sistema integrado de código abierto para gestión de bibliotecas</li>
+ </ul>
+ 
+ <h2>Mejoras</h2>
+ <ul>
+ <li>Bug 4888 - pre-establecer valores de campos de indicadores</li>
+ <li>Bug 5678 - Gestor de Traducción</li>
+ <li>Repositorio local</li>
+ <li>Base de datos Kobli en español</li>
+ <li>Nueva asignación en ordenación por caracteres de Zebra</li>
+ <li>Diseño de Kobli</li>
+ <li>Nueva traducción en español</li>
+ <li>Herramienta para subir imágenes del OPAC </li>
+ <li>Soporte para importar y exportar registros con holdings embebidos</li>
+ <li>Soporte para el enlazado de registros analíticos</li>
+ <li>Añadir holdings a OAI y configurar OAI para soportar Marc21</li>
+ <li>Posibilidad de ocultar bibliotecas en las búsquedas del OPAC</li>
+ <li>Vista normalizada del campo 245$h</li>
+ <li>Error corregido en vista etiquetada MARC</li>
+ <li>Error corregido en la paginación de la herramienta 'Registros preparados MARC para importar'</li>
+ <li>Adaptación de las imágenes de portada en el repostorio local para la nueva versión de Koha</li>
+ <li>Plugins 006 y 008, cambio de la longitud permitida de caracteres a 100 en los select</li>
+ <li>Plantillas en español e inglés con las modificaciones del Marc21 rev. 13-14</li>
+ <li>Actualizacion de la base de datos de indicadores con Marc21 rev. 13-14</li>
+ <li>Actualizacion de datos del plugin XML 006 y 008 con Marc21 rev. 13-14</li>
+ <li>Script para la postactualización de Kobli</li>
+ <li>Configurar campo 003 con MARCOrgCode para OAI</li>
+ <li>Añadir plantilla ACQ por defecto</li>
+ <li>Error corregido en los indicadores en español</li>
+ <li>Error corregido en herramienta para subir imágenes del OPAC</li>
+ <li>Permitir la exportación de diacríticos en ficheros PDF</li>
+ <li>Error corregido en detalles de usuario ocultos en el OPAC</li>
+ <li>Error corregido en doble codificación a UTF8 al enviar correos</li>
+ <li>Mostrar subcampos 773 en plantillas Marc21</li>
+ <li>Incluir indicadores en todas las plantillas disponibles</li>
+ <li>Actualización de plantillas Marc21 - Añadir subcampo 952$i - Subcampo 040$c no obligatorio</li>
+ <li>Nuevos campos obligatorios al crear un socio</li>
+ <li>Adaptación del repositorio local para la catalogación de registros</li>
+ <li>Bug 9921 - Hacer posible que el 001 sea igual al biblionumber</li>
+ <li>Bug 10480: Nuevo estilo para los plugin de catalogación, sin redifiniciones</li>
+ <li>Bug 10480: Continuación para additem.pl (no redefiniciones para los plugins)</li>
+ <li>Adaptación de holdings a la herramienta de exportar/importar registros</li>
+ <li>Ficheros po en español actualizados y traducidos</li>
+ </ul>
  </div>
  <div id="team">
  <h2>Agradecimiento especial a las siguientes organizaciones</h2>
@@ -103,7 +148,7 @@
  <h2>Release team for Koha 3.14</h2>
  <ul>
  <li>Tomás Cohen Arazi (3.12.X Release Maintainer)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6618544614260">Galen Charlton</a> (Release Manager)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544614260">Galen Charlton</a> (3.2 Release Manager)</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6618544646984">Nicole C. Engard</a> (Documentation Manager)</li>
  <li>Katrin Fischer (QA Manager)</li>
  <li>Christopher Hall (3.8.X Release Maintainer)</li>
@@ -116,7 +161,7 @@
  <li>Jared Camins-Esakov (3.6 Release Maintainer, 3.12 Release Manager)</li>
  <li>Colin Campbell (3.4 QA Manager)</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6618544614260">Galen Charlton</a> (3.2 Release Manager)</li>
- <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609030">Chris Cormack</a> (1.x, 3.4, 3.6 Release Manager, 3.2 Translation Manager, 3.8, 3.10 Release Maintainer)</li>
+ <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609030">Chris Cormack</a> (1.x, 3.4, 3.6 Release Manager, 3.2 Translation Manager, 3.8 Release Maintainer)</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6620692210484">Frédéric Demians</a> (3.4, 3.6, 3.8, 3.10 Translation Manager)</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6618544646984">Nicole C. Engard</a> (3.x Documentation Manager)</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6618544609053">Joshua Ferraro</a> (3.0 Release Manager &amp; Translation Manager)</li>
@@ -362,7 +407,7 @@
  <li>PTFS Europe Ltd, Reino Unido</li>
  <li>Rijksmuseum, Amsterdam, The Netherlands</li>
  <li>SAN-Ouest Provence, France</li>
- <li>Software Coop, United Kingdom </li>
+ <li>software.coop, Reino Unido</li>
  <li>Tamil, France</li>
  <li>Xercode, Spain</li>
  </ul>
@@ -419,7 +464,7 @@
  <div id="translations">
  <h2>Traducción</h2>
  <ul>
-<li>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; (Arabic) Karam Qubsi, Kouider Bounama, Sham Bajaa, Ghofran Alshami, Chrestian Aboud and others from <a href="http://wikibrary.org/wiki/Arabic_Koha_Support_Team">el equipo de soporte Arabic Koha</a></li>
+<li>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; (Arabic) Karam Qubsi, Kouider Bounama, Sham Bajaa, Ghofran Alshami, Chrestian Aboud and others from <a href="http://wikibrary.org/wiki/Arabic_Koha_Support_Team">the Arabic Koha support team</a></li>
 <li>&#4768;&#4635;&#4653;&#4763; (Amharic) Getway II Ethiopia Co. (Yohannes Mulugeta (Team Leader), Tegene Assefa, Abiyot Bayou)</li>
 <li>Armenio Tigran Zargaryan</li>
 <li>&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080; (Búlgaro) Radoslav Kolev</li>

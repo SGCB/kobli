@@ -37,8 +37,8 @@
  [% ELSE %] <option value="j">j- documento con fecha detallada de edición</option>
  [% END %] [% IF ( f2k ) %] <option value="k" selected="selected">ki- monografía con fecha de edición y publicación</option>
  [% ELSE %] <option value="k">ki- monografía con fecha de edición y publicación</option>
- [% END %] [% IF ( f2u ) %] <option value="u" selected="selected">u- Fecha de publicación desconocida</option>
- [% ELSE %] <option value="u">u- Fecha de publicación desconocida</option>
+ [% END %] [% IF ( f2u ) %] <option value="u" selected="selected">u - Fecha de publicación desconocida</option>
+ [% ELSE %] <option value="u">u - Fecha de publicación desconocida</option>
  [% END %] </select>
  </td>
  </tr>
@@ -54,8 +54,8 @@
  <td><label for="f5">Código de audiencia objetivo</label></td>
  <td>
  <select name="f5" id="f5" size="1">
- [% IF ( f5pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f5pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f5a ) %] <option value="a" selected="selected">a- juvenil, general</option>
  [% ELSE %] <option value="a">a- juvenil, general</option>
  [% END %] [% IF ( f5b ) %] <option value="b"
@@ -84,8 +84,8 @@
  <td>
  <select name="f6" id="f6" size="1">
  
- [% IF ( f6pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f6pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f6a ) %] <option value="a" selected="selected">a- juvenil, general </option>
  [% ELSE %] <option value="a">a- juvenil, general</option>
  [% END %] [% IF ( f6b ) %] <option value="b" selected="selected">b- preescolar, edad 0-5</option>
@@ -112,8 +112,8 @@
  <td><label for="f7">Código de audiencia objetivo 3</label></td>
  <td>
  <select name="f7" id="f7" size="1">
- [% IF ( f7pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f7pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f7a ) %] <option value="a" selected="selected">a- juvenil, general </option>
  [% ELSE %] <option value="a">a- juvenil, general</option>
  [% END %] [% IF ( f7b ) %] <option value="b"
@@ -169,11 +169,11 @@
  selected="selected">u- desconocido</option>
  [% ELSE %] <option value="u">u- desconocido</option>
  [% END %] [% IF ( f8y ) %] <option value="y"
- selected="selected">y- no es una publicación gubernamental</option>
- [% ELSE %] <option value="y">y- no es una publicación gubernamental</option>
+ selected="selected">y- No es publicación oficial</option>
+ [% ELSE %] <option value="y">y- No es publicación oficial</option>
  [% END %] [% IF ( f8z ) %] <option value="z"
- selected="selected">z- Otro</option>
- [% ELSE %] <option value="z">z- Otro</option>
+ selected="selected">z-- Otro</option>
+ [% ELSE %] <option value="z">z-- Otro</option>
  [% END %] </select>
  </td>
  </tr>
@@ -209,8 +209,8 @@
  [% END %] [% IF ( f11c ) %] <option value="c"
  selected="selected">c- transliteraciones múltiples: ISO u otros esquemas</option>
  [% ELSE %] <option value="c">c- transliteraciones múltiples: ISO u otros esquemas</option>
- [% END %] [% IF ( f11y ) %] <option value="y" selected="selected">y- no se utilizó esquema de transliteración</option>
- [% ELSE %] <option value="y">y- no se utilizó esquema de transliteración</option>
+ [% END %] [% IF ( f11y ) %] <option value="y" selected="selected">y- Ningún esquema de transliteración utilizado</option>
+ [% ELSE %] <option value="y">y- Ningún esquema de transliteración utilizado</option>
  [% END %] </select>
  </td>
  </tr>
@@ -250,8 +250,8 @@
  <td>
  <select name="f13" id="f13" size="1">
  
- [% IF ( f13dblspace ) %] <option value="  " selected="selected">valor no requerido</option>
- [% ELSE %] <option value="  ">valor no requerido</option>
+ [% IF ( f13dblspace ) %] <option value="  " selected="selected">Valor no obligatorio</option>
+ [% ELSE %] <option value="  ">Valor no obligatorio</option>
  [% END %] [% IF ( f1301 ) %] <option value="01" selected="selected">01- ISO 646, versión IRV (conjunto básico de caracteres latinos)</option>
  [% ELSE %] <option value="01">01- ISO 646, versión IRV (conjunto básico de caracteres latinos)</option>
  [% END %] [% IF ( f1302 ) %] <option value="02" selected="selected">02- Registro ISO # 37 (conjunto básico de caracteres cirílicos)</option>

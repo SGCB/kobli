@@ -11,7 +11,7 @@
  <div class="yui-g">
 
  [% INCLUDE 'patron-toolbar.inc' %] [% IF ( no_add ) %]<div class="dialog alert"><h3>No se puede agregar socio</h3>
- [% IF ( no_branches ) %]<p>Hay <strong>o hay bibliotecas definidas</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/branches.pl">agregar una biblioteca</a>.[% ELSE %]Un administrador debe definir al menos una biblioteca.[% END %]</p>[% END %] [% IF ( no_categories ) %]<p>Hay <strong>no hay definidas categorías de socios</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/categorie.pl">agregar una categoría de socio</a>.[% ELSE %]Un administrador debe definir al menos una categoría de socio.[% END %]</p>[% END %]</div>
+ [% IF ( no_branches ) %]<p>Hay <strong>No hay bibliotecas definidas. </strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/branches.pl">agregar una biblioteca</a>.[% ELSE %]Un administrador debe definir al menos una biblioteca.[% END %]</p>[% END %] [% IF ( no_categories ) %]<p>Hay <strong>sin categorías de usuarios definidas</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/categorie.pl">agregar una categoría de socio</a>.[% ELSE %]Un administrador debe definir al menos una categoría de socio.[% END %]</p>[% END %]</div>
  [% END %] <div class="browse">
  Búsqueda por apellido: [% FOREACH letter IN alphabet.split(' ') %] <a href="/cgi-bin/koha/members/member.pl?quicksearch=1&amp;surname=[% letter %]">[% letter %]</a>
  [% END %] </div>

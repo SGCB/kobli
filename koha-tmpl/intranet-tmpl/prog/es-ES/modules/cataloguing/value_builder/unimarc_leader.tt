@@ -12,18 +12,18 @@
  <td><label for="f5">5- Estado del registro</label></td>
  <td>
  <select name="f5" id="f5" size="1">
- [% IF ( f5pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f5pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f5c ) %] <option value="c" selected="selected">c- Registro corregido o actualizado</option>
  [% ELSE %] <option value="c">c- Registro corregido</option>
  [% END %] [% IF ( f5d ) %] <option value="d" selected="selected">d- Registro eliminado</option>
  [% ELSE %] <option value="d">d- Registro eliminado</option>
- [% END %] [% IF ( f5n ) %] <option value="n" selected="selected">n- Nuevo registro</option>
- [% ELSE %] <option value="n">n- Nuevo registro</option>
- [% END %] [% IF ( f5o ) %] <option value="o" selected="selected">o- Registro de mayor nivel prestado previamente</option>
- [% ELSE %] <option value="o">o- Registro de mayor nivel prestado previamente</option>
- [% END %] [% IF ( f5p ) %] <option value="p" selected="selected">p- Emitido previamente como incompleto, registro de pre-publicación</option>
- [% ELSE %] <option value="p">p- Emitido previamente como incompleto, registro de pre-publicación</option>
+ [% END %] [% IF ( f5n ) %] <option value="n" selected="selected">n - New record</option>
+ [% ELSE %] <option value="n">n - New record</option>
+ [% END %] [% IF ( f5o ) %] <option value="o" selected="selected">o - Previously issued higher level record</option>
+ [% ELSE %] <option value="o">o - Previously issued higher level record</option>
+ [% END %] [% IF ( f5p ) %] <option value="p" selected="selected">p - Previously issued as an incomplete, pre-publication record</option>
+ [% ELSE %] <option value="p">p - Previously issued as an incomplete, pre-publication record</option>
  [% END %] </select>
  </td>
  </tr>
@@ -31,8 +31,8 @@
  <td><label for="f6">6- Tipo de registro</label></td>
  <td>
  <select name="f6" id="f6" size="1">
- [% IF ( f6pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f6pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f6a ) %] <option value="a" selected="selected">a- Material de idioma, impreso</option>
  [% ELSE %] <option value="a">a- Material de idioma, impreso</option>
  [% END %] [% IF ( f6b ) %] <option value="b" selected="selected">b- Material de lenguaje, manuscrito</option>
@@ -57,8 +57,8 @@
  [% ELSE %] <option value="l">l- Recursos electrónicos</option>
  [% END %] [% IF ( f6m ) %] <option value="m" selected="selected">m- Multimedia</option>
  [% ELSE %] <option value="m">m- Multimedia</option>
- [% END %] [% IF ( f6r ) %] <option value="r" selected="selected">r- Artefacto tridimensional u objeto físico</option>
- [% ELSE %] <option value="r">r- Artefacto tridimensional u objeto físico</option>
+ [% END %] [% IF ( f6r ) %] <option value="r" selected="selected">Artefactos tridimensionales u objetos naturales</option>
+ [% ELSE %] <option value="r">Artefactos tridimensionales u objetos naturales</option>
  [% END %] </select>
  </td>
  </tr>
@@ -66,8 +66,8 @@
  <td><label for="f7">7- Nivel bibliográfico</label></td>
  <td>
  <select name="f7" id="f7" size="1">
- [% IF ( f7pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f7pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f7a ) %] <option value="a" selected="selected">a- Analítica (parte componente)</option>
  [% ELSE %] <option value="a">a- Analítica (parte componente)</option>
  [% END %] [% IF ( f7i ) %] <option value="i" selected="selected">i- Recurso integrador</option>
@@ -76,8 +76,8 @@
  [% ELSE %] <option value="c">c- Colección - ítem bibliográfico que es una colección construida</option>
  [% END %] [% IF ( f7m ) %] <option value="m" selected="selected">m- Monográfico - Ítem bibliográfico</option>
  [% ELSE %] <option value="m">m- Monográfico - Ítem bibliográfico</option>
- [% END %] [% IF ( f7s ) %] <option value="s" selected="selected">s- Publicación periódicas - Ítem bibliográfico</option>
- [% ELSE %] <option value="s">s- Publicación periódicas - Ítem bibliográfico</option>
+ [% END %] [% IF ( f7s ) %] <option value="s" selected="selected">s - Serial - Bibliographic item</option>
+ [% ELSE %] <option value="s">s - Serial - Bibliographic item</option>
  [% END %] </select>
  </td>
  </tr>
@@ -86,8 +86,8 @@
  <td><label for="f8">8 - Código de nivel jerárquico</label></td>
  <td>
  <select name="f8" id="f8" size="1">
- [% IF ( f8pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f8pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f8space ) %] <option value=" " selected="selected"> - Relación jerárquica no definida</option>
  [% ELSE %] <option value=" "> - Relación jerárquica no definida</option>
  [% END %] [% IF ( f80 ) %] <option value="0" selected="selected">0- Sin relación jerárquica</option>
@@ -108,8 +108,8 @@
  <td><label for="f17">17- Nivel de codificación</label></td>
  <td>
  <select name="f17" id="f17" size="1">
- [% IF ( f17pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f17pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f17space ) %] <option value=" " selected="selected"> Nivel completo ("ítem a mano")</option>
  [% ELSE %] <option value=" "> Nivel completo ("ítem a mano")</option>
  [% END %] [% IF ( f171 ) %] <option value="1" selected="selected">1- Subnivel 1 (sin "ítem en mano")</option>
@@ -126,14 +126,14 @@
  <td><label for="f18">18 - Forma de catalogación descriptiva</label></td>
  <td>
  <select name="f18" id="f18" size="1">
- [% IF ( f18pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
+ [% IF ( f18pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
  [% END %] [% IF ( f18space ) %] <option value=" " selected="selected"> - En formato ISBD completo</option>
  [% ELSE %] <option value=" "> - En formato ISBD completo</option>
  [% END %] [% IF ( f18i ) %] <option value="i" selected="selected">i- En forma ISBD parcial o incompleta</option>
  [% ELSE %] <option value="i">i- En forma ISBD parcial o incompleta</option>
- [% END %] [% IF ( f18n ) %] <option value="n" selected="selected">n- En forma no-ISBD</option>
- [% ELSE %] <option value="n">n- En forma no-ISBD</option>
+ [% END %] [% IF ( f18n ) %] <option value="n" selected="selected">n - In non-ISBD form</option>
+ [% ELSE %] <option value="n">n - In non-ISBD form</option>
  [% END %] </select>
  </td>
  </tr>

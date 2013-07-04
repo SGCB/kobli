@@ -10,8 +10,8 @@
  <select name="f1" id="f1" size="1">
  [% IF ( f1dblpipe ) %] <option value="||" selected="selected">||- Caracteres de relleno</option>
  [% ELSE %] <option value="||">||- Caracteres de relleno</option>
- [% END %] [% IF ( f1aa ) %] <option value="aa" selected="selected">equipo de estudio</option>
- [% ELSE %] <option value="aa">equipo de estudio</option>
+ [% END %] [% IF ( f1aa ) %] <option value="aa" selected="selected">kit de estudio</option>
+ [% ELSE %] <option value="aa">kit de estudio</option>
  [% END %] [% IF ( f1ab ) %] <option value="ab" selected="selected">equipos de laboratorio o de construcción</option>
  [% ELSE %] <option value="ab">equipos de laboratorio o de construcción</option>
  [% END %] [% IF ( f1ac ) %] <option value="ac" selected="selected">especímenes (biológicos, etc.)</option>
@@ -23,17 +23,17 @@
  [% END %] [% IF ( f1ae ) %] <option value="ae" selected="selected">flora</option>
  [% ELSE %] <option value="ae">flora</option>
  
- [% END %] [% IF ( f1af ) %] <option value="af" selected="selected">minerales</option>
- [% ELSE %] <option value="af">minerales</option>
+ [% END %] [% IF ( f1af ) %] <option value="af" selected="selected">minerals</option>
+ [% ELSE %] <option value="af">minerals</option>
  
- [% END %] [% IF ( f1ag ) %] <option value="ag" selected="selected">portaobjetos de microscopio</option>
- [% ELSE %] <option value="ag">portaobjetos de microscopio</option>
+ [% END %] [% IF ( f1ag ) %] <option value="ag" selected="selected">Microdiapositiva</option>
+ [% ELSE %] <option value="ag">Microdiapositiva</option>
  
  [% END %] [% IF ( f1ah ) %] <option value="ah" selected="selected">sierras</option>
  [% ELSE %] <option value="ah">sierras</option>
  
- [% END %] [% IF ( f1ai ) %] <option value="ai" selected="selected">herramientas y equipamiento</option>
- [% ELSE %] <option value="ai">herramientas y equipamiento</option> 
+ [% END %] [% IF ( f1ai ) %] <option value="ai" selected="selected">tools and equipment</option>
+ [% ELSE %] <option value="ai">tools and equipment</option> 
  [% END %] [% IF ( f1aj ) %] <option value="aj" selected="selected">brazos</option>
  [% ELSE %] <option value="aj">brazos</option>
  
@@ -52,8 +52,8 @@
  [% END %] [% IF ( f1bg ) %] <option value="bg" selected="selected">monedas</option>
  [% ELSE %] <option value="bg">monedas</option>
  
- [% END %] [% IF ( f1bh ) %] <option value="bh" selected="selected">medallas</option>
- [% ELSE %] <option value="bh">medallas</option>
+ [% END %] [% IF ( f1bh ) %] <option value="bh" selected="selected">medals</option>
+ [% ELSE %] <option value="bh">medals</option>
  
  [% END %] [% IF ( f1bi ) %] <option value="bi" selected="selected">joyería</option>
  [% ELSE %] <option value="bi">joyería</option>
@@ -70,26 +70,26 @@
  [% END %] [% IF ( f1ap ) %] <option value="ap" selected="selected">juegos y recreación</option>
  [% ELSE %] <option value="ap">juegos y recreación</option>
  
- [% END %] [% IF ( f1aq ) %] <option value="aq" selected="selected">juguetes</option>
- [% ELSE %] <option value="aq">juguetes</option>
+ [% END %] [% IF ( f1aq ) %] <option value="aq" selected="selected">toys</option>
+ [% ELSE %] <option value="aq">toys</option>
  
  [% END %] [% IF ( f1ar ) %] <option value="ar" selected="selected">muñecas</option>
  [% ELSE %] <option value="ar">muñecas</option>
  
- [% END %] [% IF ( f1as ) %] <option value="as" selected="selected">modelos</option>
- [% ELSE %] <option value="as">modelos</option>
+ [% END %] [% IF ( f1as ) %] <option value="as" selected="selected">Modelo</option>
+ [% ELSE %] <option value="as">Modelo</option>
  
- [% END %] [% IF ( f1at ) %] <option value="at" selected="selected">modelos para armar</option>
- [% ELSE %] <option value="at">modelos para armar</option>
+ [% END %] [% IF ( f1at ) %] <option value="at" selected="selected">models for making</option>
+ [% ELSE %] <option value="at">models for making</option>
  
  [% END %] [% IF ( f1ba ) %] <option value="ba" selected="selected">dioramas</option>
  [% ELSE %] <option value="ba">dioramas</option>
  
- [% END %] [% IF ( f1bb ) %] <option value="bb" selected="selected">réplicas</option>
- [% ELSE %] <option value="bb">réplicas</option>
+ [% END %] [% IF ( f1bb ) %] <option value="bb" selected="selected">replicas</option>
+ [% ELSE %] <option value="bb">replicas</option>
  
- [% END %] [% IF ( f1bc ) %] <option value="bc" selected="selected">esculturas</option>
- [% ELSE %] <option value="bc">esculturas</option>
+ [% END %] [% IF ( f1bc ) %] <option value="bc" selected="selected">sculptures</option>
+ [% ELSE %] <option value="bc">sculptures</option>
  
  [% END %] [% IF ( f1bd ) %] <option value="bd" selected="selected">objetos diseñados</option>
  [% ELSE %] <option value="bd">objetos diseñados</option>
@@ -97,11 +97,11 @@
  [% END %] [% IF ( f1bj ) %] <option value="bj" selected="selected">artefactos</option>
  [% ELSE %] <option value="bj">artefactos</option>
  
- [% END %] [% IF ( f1uu ) %] <option value="uu" selected="selected">desconocido</option>
- [% ELSE %] <option value="uu">desconocido</option>
+ [% END %] [% IF ( f1uu ) %] <option value="uu" selected="selected">Desconocido</option>
+ [% ELSE %] <option value="uu">Desconocido</option>
  
- [% END %] [% IF ( f1vv ) %] <option value="vv" selected="selected">mixto</option>
- [% ELSE %] <option value="vv">mixto</option>
+ [% END %] [% IF ( f1vv ) %] <option value="vv" selected="selected">mixed</option>
+ [% ELSE %] <option value="vv">mixed</option>
  
  [% END %] [% IF ( f1zz ) %] <option value="zz" selected="selected">otro</option>
  [% ELSE %] <option value="zz">otro</option>
@@ -115,26 +115,26 @@
  <select name="f2" id="f2" size="1">
  [% IF ( f2dblpipe ) %] <option value="||" selected="selected">||- Caracteres de relleno</option>
  [% ELSE %] <option value="||">||- Caracteres de relleno</option>
- [% END %] [% IF ( f2dblspace ) %] <option value="  " selected="selected">valor no requerido</option>
- [% ELSE %] <option value="  ">valor no requerido</option>
- [% END %] [% IF ( f2aa ) %] <option value="aa" selected="selected">terracota</option>
- [% ELSE %] <option value="aa">terracota</option>
- [% END %] [% IF ( f2ab ) %] <option value="ab" selected="selected">lacre</option>
- [% ELSE %] <option value="ab">lacre</option>
+ [% END %] [% IF ( f2dblspace ) %] <option value="  " selected="selected">Valor no obligatorio</option>
+ [% ELSE %] <option value="  ">Valor no obligatorio</option>
+ [% END %] [% IF ( f2aa ) %] <option value="aa" selected="selected">terra-cotta</option>
+ [% ELSE %] <option value="aa">terra-cotta</option>
+ [% END %] [% IF ( f2ab ) %] <option value="ab" selected="selected">cera</option>
+ [% ELSE %] <option value="ab">cera</option>
  [% END %] [% IF ( f2ac ) %] <option value="ac" selected="selected">arcilla</option>
  [% ELSE %] <option value="ac">arcilla</option>
  
- [% END %] [% IF ( f2ad ) %] <option value="ad" selected="selected">mayólica</option>
- [% ELSE %] <option value="ad">mayólica</option>
+ [% END %] [% IF ( f2ad ) %] <option value="ad" selected="selected">majolica</option>
+ [% ELSE %] <option value="ad">majolica</option>
  
- [% END %] [% IF ( f2ae ) %] <option value="ae" selected="selected">porcelana</option>
- [% ELSE %] <option value="ae">porcelana</option>
+ [% END %] [% IF ( f2ae ) %] <option value="ae" selected="selected">porcelain</option>
+ [% ELSE %] <option value="ae">porcelain</option>
  
  [% END %] [% IF ( f2af ) %] <option value="af" selected="selected">cerámica</option>
  [% ELSE %] <option value="af">cerámica</option>
  
- [% END %] [% IF ( f2ag ) %] <option value="ag" selected="selected">yeso</option>
- [% ELSE %] <option value="ag">yeso</option>
+ [% END %] [% IF ( f2ag ) %] <option value="ag" selected="selected">plaster</option>
+ [% ELSE %] <option value="ag">plaster</option>
  
  [% END %] [% IF ( f2ah ) %] <option value="ah" selected="selected">vidrio</option>
  [% ELSE %] <option value="ah">vidrio</option>
@@ -145,20 +145,20 @@
  [% END %] [% IF ( f2ca ) %] <option value="ca" selected="selected">marfil</option>
  [% ELSE %] <option value="ca">marfil</option>
  
- [% END %] [% IF ( f2da ) %] <option value="da" selected="selected">piedra</option>
- [% ELSE %] <option value="da">piedra</option>
+ [% END %] [% IF ( f2da ) %] <option value="da" selected="selected">stone</option>
+ [% ELSE %] <option value="da">stone</option>
  
- [% END %] [% IF ( f2db ) %] <option value="db" selected="selected">piedras preciosas</option>
- [% ELSE %] <option value="db">piedras preciosas</option>
+ [% END %] [% IF ( f2db ) %] <option value="db" selected="selected">precious stones</option>
+ [% ELSE %] <option value="db">precious stones</option>
  
- [% END %] [% IF ( f2dc ) %] <option value="dc" selected="selected">mármol</option>
- [% ELSE %] <option value="dc">mármol</option>
+ [% END %] [% IF ( f2dc ) %] <option value="dc" selected="selected">fábula</option>
+ [% ELSE %] <option value="dc">fábula</option>
  
  [% END %] [% IF ( f2dd ) %] <option value="dd" selected="selected">basalto</option>
  [% ELSE %] <option value="dd">basalto</option>
  
- [% END %] [% IF ( f2df ) %] <option value="df" selected="selected">pórfido</option>
- [% ELSE %] <option value="df">pórfido</option>
+ [% END %] [% IF ( f2df ) %] <option value="df" selected="selected">porphyry</option>
+ [% ELSE %] <option value="df">porphyry</option>
  
  [% END %] [% IF ( f2ea ) %] <option value="ea" selected="selected">papel</option>
  [% ELSE %] <option value="ea">papel</option>
@@ -166,8 +166,8 @@
  [% END %] [% IF ( f2eb ) %] <option value="eb" selected="selected">cartulina</option>
  [% ELSE %] <option value="eb">cartulina</option>
  
- [% END %] [% IF ( f2fa ) %] <option value="fa" selected="selected">metales preciosos</option>
- [% ELSE %] <option value="fa">metales preciosos</option>
+ [% END %] [% IF ( f2fa ) %] <option value="fa" selected="selected">precious metals</option>
+ [% ELSE %] <option value="fa">precious metals</option>
  
  [% END %] [% IF ( f2fb ) %] <option value="fb" selected="selected">metal</option>
  [% ELSE %] <option value="fb">metal</option>
@@ -178,8 +178,8 @@
  [% END %] [% IF ( f2fd ) %] <option value="fd" selected="selected">cobre</option>
  [% ELSE %] <option value="fd">cobre</option>
  
- [% END %] [% IF ( f2ga ) %] <option value="ga" selected="selected">sintéticos</option>
- [% ELSE %] <option value="ga">sintéticos</option>
+ [% END %] [% IF ( f2ga ) %] <option value="ga" selected="selected">synthetics</option>
+ [% ELSE %] <option value="ga">synthetics</option>
  
  [% END %] [% IF ( f2ha ) %] <option value="ha" selected="selected">textil</option>
  [% ELSE %] <option value="ha">textil</option>
@@ -187,11 +187,11 @@
  [% END %] [% IF ( f2ia ) %] <option value="ia" selected="selected">plástico</option>
  [% ELSE %] <option value="ia">plástico</option>
  
- [% END %] [% IF ( f2uu ) %] <option value="uu" selected="selected">desconocido</option>
- [% ELSE %] <option value="uu">desconocido</option>
+ [% END %] [% IF ( f2uu ) %] <option value="uu" selected="selected">Desconocido</option>
+ [% ELSE %] <option value="uu">Desconocido</option>
  
- [% END %] [% IF ( f2vv ) %] <option value="vv" selected="selected">mixto</option>
- [% ELSE %] <option value="vv">mixto</option>
+ [% END %] [% IF ( f2vv ) %] <option value="vv" selected="selected">mixed</option>
+ [% ELSE %] <option value="vv">mixed</option>
  
  [% END %] [% IF ( f2zz ) %] <option value="zz" selected="selected">otro</option>
  [% ELSE %] <option value="zz">otro</option>
@@ -205,26 +205,26 @@
  <select name="f3" id="f3" size="1">
  [% IF ( f3dblpipe ) %] <option value="||" selected="selected">||- Caracteres de relleno</option>
  [% ELSE %] <option value="||">||- Caracteres de relleno</option>
- [% END %] [% IF ( f3dblspace ) %] <option value="  " selected="selected">valor no requerido</option>
- [% ELSE %] <option value="  ">valor no requerido</option>
- [% END %] [% IF ( f3aa ) %] <option value="aa" selected="selected">terracota</option>
- [% ELSE %] <option value="aa">terracota</option>
- [% END %] [% IF ( f3ab ) %] <option value="ab" selected="selected">lacre</option>
- [% ELSE %] <option value="ab">lacre</option>
+ [% END %] [% IF ( f3dblspace ) %] <option value="  " selected="selected">Valor no obligatorio</option>
+ [% ELSE %] <option value="  ">Valor no obligatorio</option>
+ [% END %] [% IF ( f3aa ) %] <option value="aa" selected="selected">terra-cotta</option>
+ [% ELSE %] <option value="aa">terra-cotta</option>
+ [% END %] [% IF ( f3ab ) %] <option value="ab" selected="selected">cera</option>
+ [% ELSE %] <option value="ab">cera</option>
  [% END %] [% IF ( f3ac ) %] <option value="ac" selected="selected">arcilla</option>
  [% ELSE %] <option value="ac">arcilla</option>
  
- [% END %] [% IF ( f3ad ) %] <option value="ad" selected="selected">mayólica</option>
- [% ELSE %] <option value="ad">mayólica</option>
+ [% END %] [% IF ( f3ad ) %] <option value="ad" selected="selected">majolica</option>
+ [% ELSE %] <option value="ad">majolica</option>
  
- [% END %] [% IF ( f3ae ) %] <option value="ae" selected="selected">porcelana</option>
- [% ELSE %] <option value="ae">porcelana</option>
+ [% END %] [% IF ( f3ae ) %] <option value="ae" selected="selected">porcelain</option>
+ [% ELSE %] <option value="ae">porcelain</option>
  
  [% END %] [% IF ( f3af ) %] <option value="af" selected="selected">cerámica</option>
  [% ELSE %] <option value="af">cerámica</option>
  
- [% END %] [% IF ( f3ag ) %] <option value="ag" selected="selected">yeso</option>
- [% ELSE %] <option value="ag">yeso</option>
+ [% END %] [% IF ( f3ag ) %] <option value="ag" selected="selected">plaster</option>
+ [% ELSE %] <option value="ag">plaster</option>
  
  [% END %] [% IF ( f3ah ) %] <option value="ah" selected="selected">vidrio</option>
  [% ELSE %] <option value="ah">vidrio</option>
@@ -235,20 +235,20 @@
  [% END %] [% IF ( f3ca ) %] <option value="ca" selected="selected">marfil</option>
  [% ELSE %] <option value="ca">marfil</option>
  
- [% END %] [% IF ( f3da ) %] <option value="da" selected="selected">piedra</option>
- [% ELSE %] <option value="da">piedra</option>
+ [% END %] [% IF ( f3da ) %] <option value="da" selected="selected">stone</option>
+ [% ELSE %] <option value="da">stone</option>
  
- [% END %] [% IF ( f3db ) %] <option value="db" selected="selected">piedras preciosas</option>
- [% ELSE %] <option value="db">piedras preciosas</option>
+ [% END %] [% IF ( f3db ) %] <option value="db" selected="selected">precious stones</option>
+ [% ELSE %] <option value="db">precious stones</option>
  
- [% END %] [% IF ( f3dc ) %] <option value="dc" selected="selected">mármol</option>
- [% ELSE %] <option value="dc">mármol</option>
+ [% END %] [% IF ( f3dc ) %] <option value="dc" selected="selected">fábula</option>
+ [% ELSE %] <option value="dc">fábula</option>
  
  [% END %] [% IF ( f3dd ) %] <option value="dd" selected="selected">basalto</option>
  [% ELSE %] <option value="dd">basalto</option>
  
- [% END %] [% IF ( f3df ) %] <option value="df" selected="selected">pórfido</option>
- [% ELSE %] <option value="df">pórfido</option>
+ [% END %] [% IF ( f3df ) %] <option value="df" selected="selected">porphyry</option>
+ [% ELSE %] <option value="df">porphyry</option>
  
  [% END %] [% IF ( f3ea ) %] <option value="ea" selected="selected">papel</option>
  [% ELSE %] <option value="ea">papel</option>
@@ -256,8 +256,8 @@
  [% END %] [% IF ( f3eb ) %] <option value="eb" selected="selected">cartulina</option>
  [% ELSE %] <option value="eb">cartulina</option>
  
- [% END %] [% IF ( f3fa ) %] <option value="fa" selected="selected">metales preciosos</option>
- [% ELSE %] <option value="fa">metales preciosos</option>
+ [% END %] [% IF ( f3fa ) %] <option value="fa" selected="selected">precious metals</option>
+ [% ELSE %] <option value="fa">precious metals</option>
  
  [% END %] [% IF ( f3fb ) %] <option value="fb" selected="selected">metal</option>
  [% ELSE %] <option value="fb">metal</option>
@@ -268,8 +268,8 @@
  [% END %] [% IF ( f3fd ) %] <option value="fd" selected="selected">cobre</option>
  [% ELSE %] <option value="fd">cobre</option>
  
- [% END %] [% IF ( f3ga ) %] <option value="ga" selected="selected">sintéticos</option>
- [% ELSE %] <option value="ga">sintéticos</option>
+ [% END %] [% IF ( f3ga ) %] <option value="ga" selected="selected">synthetics</option>
+ [% ELSE %] <option value="ga">synthetics</option>
  
  [% END %] [% IF ( f3ha ) %] <option value="ha" selected="selected">textil</option>
  [% ELSE %] <option value="ha">textil</option>
@@ -277,11 +277,11 @@
  [% END %] [% IF ( f3ia ) %] <option value="ia" selected="selected">plástico</option>
  [% ELSE %] <option value="ia">plástico</option>
  
- [% END %] [% IF ( f3uu ) %] <option value="uu" selected="selected">desconocido</option>
- [% ELSE %] <option value="uu">desconocido</option>
+ [% END %] [% IF ( f3uu ) %] <option value="uu" selected="selected">Desconocido</option>
+ [% ELSE %] <option value="uu">Desconocido</option>
  
- [% END %] [% IF ( f3vv ) %] <option value="vv" selected="selected">mixto</option>
- [% ELSE %] <option value="vv">mixto</option>
+ [% END %] [% IF ( f3vv ) %] <option value="vv" selected="selected">mixed</option>
+ [% ELSE %] <option value="vv">mixed</option>
  
  [% END %] [% IF ( f3zz ) %] <option value="zz" selected="selected">otro</option>
  [% ELSE %] <option value="zz">otro</option>
@@ -295,26 +295,26 @@
  <select name="f4" id="f4" size="1">
  [% IF ( f4dblpipe ) %] <option value="||" selected="selected">||- Caracteres de relleno</option>
  [% ELSE %] <option value="||">||- Caracteres de relleno</option>
- [% END %] [% IF ( f4dblspace ) %] <option value="  " selected="selected">valor no requerido</option>
- [% ELSE %] <option value="  ">valor no requerido</option>
- [% END %] [% IF ( f4aa ) %] <option value="aa" selected="selected">terracota</option>
- [% ELSE %] <option value="aa">terracota</option>
- [% END %] [% IF ( f4ab ) %] <option value="ab" selected="selected">lacre</option>
- [% ELSE %] <option value="ab">lacre</option>
+ [% END %] [% IF ( f4dblspace ) %] <option value="  " selected="selected">Valor no obligatorio</option>
+ [% ELSE %] <option value="  ">Valor no obligatorio</option>
+ [% END %] [% IF ( f4aa ) %] <option value="aa" selected="selected">terra-cotta</option>
+ [% ELSE %] <option value="aa">terra-cotta</option>
+ [% END %] [% IF ( f4ab ) %] <option value="ab" selected="selected">cera</option>
+ [% ELSE %] <option value="ab">cera</option>
  [% END %] [% IF ( f4ac ) %] <option value="ac" selected="selected">arcilla</option>
  [% ELSE %] <option value="ac">arcilla</option>
  
- [% END %] [% IF ( f4ad ) %] <option value="ad" selected="selected">mayólica</option>
- [% ELSE %] <option value="ad">mayólica</option>
+ [% END %] [% IF ( f4ad ) %] <option value="ad" selected="selected">majolica</option>
+ [% ELSE %] <option value="ad">majolica</option>
  
- [% END %] [% IF ( f4ae ) %] <option value="ae" selected="selected">porcelana</option>
- [% ELSE %] <option value="ae">porcelana</option>
+ [% END %] [% IF ( f4ae ) %] <option value="ae" selected="selected">porcelain</option>
+ [% ELSE %] <option value="ae">porcelain</option>
  
  [% END %] [% IF ( f4af ) %] <option value="af" selected="selected">cerámica</option>
  [% ELSE %] <option value="af">cerámica</option>
  
- [% END %] [% IF ( f4ag ) %] <option value="ag" selected="selected">yeso</option>
- [% ELSE %] <option value="ag">yeso</option>
+ [% END %] [% IF ( f4ag ) %] <option value="ag" selected="selected">plaster</option>
+ [% ELSE %] <option value="ag">plaster</option>
  
  [% END %] [% IF ( f4ah ) %] <option value="ah" selected="selected">vidrio</option>
  [% ELSE %] <option value="ah">vidrio</option>
@@ -325,20 +325,20 @@
  [% END %] [% IF ( f4ca ) %] <option value="ca" selected="selected">marfil</option>
  [% ELSE %] <option value="ca">marfil</option>
  
- [% END %] [% IF ( f4da ) %] <option value="da" selected="selected">piedra</option>
- [% ELSE %] <option value="da">piedra</option>
+ [% END %] [% IF ( f4da ) %] <option value="da" selected="selected">stone</option>
+ [% ELSE %] <option value="da">stone</option>
  
- [% END %] [% IF ( f4db ) %] <option value="db" selected="selected">piedras preciosas</option>
- [% ELSE %] <option value="db">piedras preciosas</option>
+ [% END %] [% IF ( f4db ) %] <option value="db" selected="selected">precious stones</option>
+ [% ELSE %] <option value="db">precious stones</option>
  
- [% END %] [% IF ( f4dc ) %] <option value="dc" selected="selected">mármol</option>
- [% ELSE %] <option value="dc">mármol</option>
+ [% END %] [% IF ( f4dc ) %] <option value="dc" selected="selected">fábula</option>
+ [% ELSE %] <option value="dc">fábula</option>
  
  [% END %] [% IF ( f4dd ) %] <option value="dd" selected="selected">basalto</option>
  [% ELSE %] <option value="dd">basalto</option>
  
- [% END %] [% IF ( f4df ) %] <option value="df" selected="selected">pórfido</option>
- [% ELSE %] <option value="df">pórfido</option>
+ [% END %] [% IF ( f4df ) %] <option value="df" selected="selected">porphyry</option>
+ [% ELSE %] <option value="df">porphyry</option>
  
  [% END %] [% IF ( f4ea ) %] <option value="ea" selected="selected">papel</option>
  [% ELSE %] <option value="ea">papel</option>
@@ -346,8 +346,8 @@
  [% END %] [% IF ( f4eb ) %] <option value="eb" selected="selected">cartulina</option>
  [% ELSE %] <option value="eb">cartulina</option>
  
- [% END %] [% IF ( f4fa ) %] <option value="fa" selected="selected">metales preciosos</option>
- [% ELSE %] <option value="fa">metales preciosos</option>
+ [% END %] [% IF ( f4fa ) %] <option value="fa" selected="selected">precious metals</option>
+ [% ELSE %] <option value="fa">precious metals</option>
  
  [% END %] [% IF ( f4fb ) %] <option value="fb" selected="selected">metal</option>
  [% ELSE %] <option value="fb">metal</option>
@@ -358,8 +358,8 @@
  [% END %] [% IF ( f4fd ) %] <option value="fd" selected="selected">cobre</option>
  [% ELSE %] <option value="fd">cobre</option>
  
- [% END %] [% IF ( f4ga ) %] <option value="ga" selected="selected">sintéticos</option>
- [% ELSE %] <option value="ga">sintéticos</option>
+ [% END %] [% IF ( f4ga ) %] <option value="ga" selected="selected">synthetics</option>
+ [% ELSE %] <option value="ga">synthetics</option>
  
  [% END %] [% IF ( f4ha ) %] <option value="ha" selected="selected">textil</option>
  [% ELSE %] <option value="ha">textil</option>
@@ -367,11 +367,11 @@
  [% END %] [% IF ( f4ia ) %] <option value="ia" selected="selected">plástico</option>
  [% ELSE %] <option value="ia">plástico</option>
  
- [% END %] [% IF ( f4uu ) %] <option value="uu" selected="selected">desconocido</option>
- [% ELSE %] <option value="uu">desconocido</option>
+ [% END %] [% IF ( f4uu ) %] <option value="uu" selected="selected">Desconocido</option>
+ [% ELSE %] <option value="uu">Desconocido</option>
  
- [% END %] [% IF ( f4vv ) %] <option value="vv" selected="selected">mixto</option>
- [% ELSE %] <option value="vv">mixto</option>
+ [% END %] [% IF ( f4vv ) %] <option value="vv" selected="selected">mixed</option>
+ [% ELSE %] <option value="vv">mixed</option>
  
  [% END %] [% IF ( f4zz ) %] <option value="zz" selected="selected">otro</option>
  [% ELSE %] <option value="zz">otro</option>
@@ -383,22 +383,22 @@
  <td><label for="f5">Color</label></td>
  <td>
  <select name="f5" id="f5" size="1">
- [% IF ( f5pipe ) %] <option value="|" selected="selected">|- Carácter de relleno</option>
- [% ELSE %] <option value="|">|- Carácter de relleno</option>
- [% END %] [% IF ( f5a ) %] <option value="a" selected="selected">un color, monocromático</option>
- [% ELSE %] <option value=" ">un color, monocromático</option>
+ [% IF ( f5pipe ) %] <option value="|" selected="selected">|- Caracter de relleno</option>
+ [% ELSE %] <option value="|">|- Caracter de relleno</option>
+ [% END %] [% IF ( f5a ) %] <option value="a" selected="selected">un color, monocromo</option>
+ [% ELSE %] <option value=" ">un color, monocromo</option>
  [% END %] [% IF ( f5b ) %] <option value="b" selected="selected">blanco y negro</option>
  [% ELSE %] <option value="b">blanco y negro</option>
- [% END %] [% IF ( f5c ) %] <option value="c" selected="selected">multicoloreado</option>
- [% ELSE %] <option value="c">multicoloreado</option>
+ [% END %] [% IF ( f5c ) %] <option value="c" selected="selected">multicoloured</option>
+ [% ELSE %] <option value="c">multicoloured</option>
  [% END %] [% IF ( f5d ) %] <option value="d" selected="selected">coloreado a mano</option>
  [% ELSE %] <option value="d">coloreado a mano</option>
- [% END %] [% IF ( f5u ) %] <option value="u" selected="selected">desconocido</option>
- [% ELSE %] <option value="u">desconocido</option>
- [% END %] [% IF ( f5v ) %] <option value="v" selected="selected">mixto</option>
- [% ELSE %] <option value="v">mixto</option>
- [% END %] [% IF ( f5x ) %] <option value="x" selected="selected">no aplicable</option>
- [% ELSE %] <option value="x">no aplicable</option>
+ [% END %] [% IF ( f5u ) %] <option value="u" selected="selected">Desconocido</option>
+ [% ELSE %] <option value="u">Desconocido</option>
+ [% END %] [% IF ( f5v ) %] <option value="v" selected="selected">mixed</option>
+ [% ELSE %] <option value="v">mixed</option>
+ [% END %] [% IF ( f5x ) %] <option value="x" selected="selected">No aplicable</option>
+ [% ELSE %] <option value="x">No aplicable</option>
  [% END %] [% IF ( f5z ) %] <option value="z" selected="selected">otro</option>
  [% ELSE %] <option value="z">otro</option>
  [% END %] </select>

@@ -95,10 +95,10 @@ $(document).ready(function() {
  <div class="help">
  <p>Las normas se aplicarán de la más específica a la menos específica, utilizando la primera encontrada en este orden:</p>
  <ul>
- <li>misma biblioteca, mismo tipo de socio, mismo tipo de ítem</li>
- <li>misma biblioteca, mismo tipo de socio, todos los tipos de ítem</li>
- <li>misma biblioteca, todos los tipos de socios, mismo tipo de ítem</li>
- <li>misma biblioteca, todos los tipos de socio, todos los tipos de ítem</li>
+ <li>misma biblioteca, mismo tipo de usuario, mismo tipo de ítem</li>
+ <li>misma biblioteca, mismo tipo de usuario, todos los tipos de ítem</li>
+ <li>misma biblioteca, todo tipo de usuario, mismo tipo de ítem</li>
+ <li>misma biblioteca, todo tipo de usuario, todo tipo de ítem</li>
  <li>prederterminado(todas las bibliotecas), mismo tipo de socio, mismo tipo de ítem</li>
  <li>predeterminada (todas las bibliotecas), mismo tipo de socio, todos los tipos de ítem</li>
  <li>prederteminada (todas las bibliotecas9, todos los tipos de socio, mismo tipo de ítem</li>
@@ -315,7 +315,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <li><strong>No se permiten reservas:</strong> Ningún socio puede reservar este libro.</li>
  </ul>
  <p>
- Note que si la preferencia del sistema <code>AllowHoldPolicyOverride</code> está habilitada, estas políticas pueden ser alteradas por el personal de circulación. Además, estas políticas están basadas en la sede de origen del socio, <em>no</em> la biblioteca donde se hace la reserva..</p>
+ Note que si la preferencia del sistema <code>AllowHoldPolicyOverride</code> está habilitada, estas políticas pueden ser alteradas por el personal de circulación. Además, estas políticas están basadas en la sede de origen del socio, <em>no</em> la biblioteca o sede donde la reserva es realizada</p>
 
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
  <input type="hidden" name="op" value="add-branch-item" />

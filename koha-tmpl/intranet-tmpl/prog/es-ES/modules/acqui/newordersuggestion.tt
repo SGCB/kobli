@@ -39,7 +39,7 @@
  <td>
  <p>[% suggestions_loo.title |html %] - [% suggestions_loo.author %]</p>
  <p>
- [% IF ( suggestions_loo.copyrightdate ) %]copia. año:[% suggestions_loo.copyrightdate %] [% END %] [% IF ( suggestions_loo.volumedesc ) %]volumen:<i>[% suggestions_loo.volumedesc %]</i> [% END %] [% IF ( suggestions_loo.isbn ) %]ISBN :<i>[% suggestions_loo.isbn %]</i> [% END %] [% IF ( suggestions_loo.publishercode ) %]<br />editado por:[% suggestions_loo.publishercode %] [% END %] [% IF ( suggestions_loo.publicationyear ) %] en <i>[% suggestions_loo.publicationyear %]</i> [% END %] [% IF ( suggestions_loo.place ) %] a <i>[% suggestions_loo.place %]</i> [% END %] [% IF ( suggestions_loo.note ) %]<p><i>([% suggestions_loo.note %])</i></p> [% END %] </p>
+ [% IF ( suggestions_loo.copyrightdate ) %]copia. año:[% suggestions_loo.copyrightdate %] [% END %] [% IF ( suggestions_loo.volumedesc ) %]volumen:<i>[% suggestions_loo.volumedesc %]</i> [% END %] [% IF ( suggestions_loo.isbn ) %]ISBN :<i>[% suggestions_loo.isbn %]</i> [% END %] [% IF ( suggestions_loo.publishercode ) %]<br />publicado por:[% suggestions_loo.publishercode %] [% END %] [% IF ( suggestions_loo.publicationyear ) %] en <i>[% suggestions_loo.publicationyear %]</i> [% END %] [% IF ( suggestions_loo.place ) %] a <i>[% suggestions_loo.place %]</i> [% END %] [% IF ( suggestions_loo.note ) %]<p><i>([% suggestions_loo.note %])</i></p> [% END %] </p>
  </td>
  <td>
  [% suggestions_loo.surnamesuggestedby %][% IF ( suggestions_loo.firstnamesuggestedby ) %],[% END %] [% suggestions_loo.firstnamesuggestedby %] </td>

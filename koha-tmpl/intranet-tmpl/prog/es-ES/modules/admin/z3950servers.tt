@@ -105,7 +105,7 @@
  [% END %] </li>
  <li><label for="rank">Orden (orden de aparición) </label> <input type="text" name="rank" id="rank" size="4" value="[% rank %]" onblur="isNum(this)" />
  </li> 
- <li><label for="syntax">Sintaxis (z3950 puede enviar<br /> registros en varios formatos. Elija uno): </label> 
+ <li><label for="syntax">Sintaxis (z3950 puede enviar<br /> registros en varios formatos. Elija uno):</label> 
 <select name="syntax">
 [% IF ( syntaxUNIMARC ) %] <option value="UNIMARC" selected="selected">UNIMARC</option>
 [% ELSE %] <option value="UNIMARC">UNIMARC</option>
@@ -142,7 +142,7 @@
 [% END %] </select>
 </li>
 
- <li><label for="encoding">Codificación (z3950 puede enviar<br /> registros en varias codificaciones. Elija una): </label> 
+ <li><label for="encoding">Codificación (z3950 puede enviar<br /> registros en varias codificaciones. Elija una):</label> 
 <select name="encoding">
 [% FOREACH enc IN [ 'utf8' 'EUC-KR' 'ISO_5426' 'ISO_6937' 'ISO_8859-1' 'MARC-8' ] %] [% IF ( encoding == enc ) %] <option value="[% enc %]" selected="selected">[% enc %]</option>
  [% ELSE %] <option value="[% enc %]">[% enc %]</option>

@@ -9,7 +9,7 @@ function Check(f) {
     var _alertString="";
     var alertString2;
     if (f.tagfield.value.length==0) {
-        _alertString += "\n- " + _("etiqueta de número perdido");
+        _alertString += "\n- " + _("etiqueta número perdido");
     }
     if (_alertString.length==0) {
         document.Aform.submit();

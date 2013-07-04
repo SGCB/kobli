@@ -128,20 +128,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1q ) %] \
                               <option value="q" selected="selected">' +
-                                  _("q- Modelo") +
+                                  _("q-  Modelo") +
                               '</option> \
                              [% ELSE %] \
                               <option value="q">' +
-                                  _("q- Modelo") +
+                                  _("q-  Modelo") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- Imagen de sensores remotos") +
+                                  _("Imagen de sensores remotos") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- Imagen de sensores remotos") +
+                                  _("Imagen de sensores remotos") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1s ) %] \
@@ -164,29 +164,29 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1y ) %] \
                               <option value="y" selected="selected">' +
-                                  _("y- Vista") +
+                                  _("y- vista") +
                               '</option> \
                              [% ELSE %] \
                               <option value="y">' +
-                                  _("y- Vista") +
+                                  _("y- vista") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -236,11 +236,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -344,11 +344,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f4n ) %] \
                               <option value="n" selected="selected">' +
-                                  _("n- Vitela") +
+                                  _("n- Vellum") +
                               '</option> \
                              [% ELSE %] \
                               <option value="n">' +
-                                  _("n- Vitela") +
+                                  _("n- Vellum") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4p ) %] \
@@ -380,20 +380,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4s ) %] \
                               <option value="s" selected="selected">' +
-                                  _("s- Base fotográfica no-flexible, positivo") +
+                                  _("s- Base fotográfica no flexible, positiva") +
                               '</option> \
                              [% ELSE %] \
                               <option value="s">' +
-                                  _("s- Base fotográfica no-flexible, positivo") +
+                                  _("s- Base fotográfica no flexible, positiva") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4t ) %] \
                               <option value="t" selected="selected">' +
-                                  _("t- Base fotográfica no-flexible, negativo") +
+                                  _("t- Base fotográfica no flexible, negativo") +
                               '</option> \
                              [% ELSE %] \
                               <option value="t">' +
-                                  _("t- Base fotográfica no-flexible, negativo") +
+                                  _("t- Base fotográfica no flexible, negativo") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4u ) %] \
@@ -407,47 +407,47 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f4v ) %] \
                               <option value="v" selected="selected">' +
-                                  _("v- Piel") +
+                                  _("v- Cuero") +
                               '</option> \
                              [% ELSE %] \
                               <option value="v">' +
-                                  _("v- Piel") +
+                                  _("v- Cuero") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4w ) %] \
                               <option value="w" selected="selected">' +
-                                  _("w - Pergamino") +
+                                  _("w-Pergamino") +
                               '</option> \
                              [% ELSE %] \
                               <option value="w">' +
-                                  _("w - Pergamino") +
+                                  _("w-Pergamino") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4y ) %] \
                               <option value="y" selected="selected">' +
-                                  _("y- Otro medio fotográfico") +
+                                  _("y- Otro material fotográfico") +
                               '</option> \
                              [% ELSE %] \
                               <option value="y">' +
-                                  _("y- Otro medio Fotográfico") +
+                                  _("y- Otro material fotográfico") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -488,20 +488,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -560,20 +560,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f6z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f6pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -623,11 +623,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f7pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -734,11 +734,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Disco magneto-óptico") +
+                                  _("m-  Disco magnético") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Disco magneto-óptico") +
+                                  _("m-  Disco magnético") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1o ) %] \
@@ -770,20 +770,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -851,11 +851,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f3m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% END %] \
                              [% IF ( f3n ) %] \
@@ -878,20 +878,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f3z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
                              [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -959,11 +959,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f4o ) %] \
                               <option value="o" selected="selected">' +
-                                  _("o- 5 1/4 pulgadas") +
+                                  _("o- 5 1/4 plg.") +
                               '</option> \
                              [% ELSE %] \
                               <option value="o">' +
-                                  _("o- 5 1/4 pulgadas") +
+                                  _("o- 5 1/4 plg.") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4u ) %] \
@@ -977,29 +977,29 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f4v ) %] \
                               <option value="v" selected="selected">' +
-                                  _("v- 8 pulgadas") +
+                                  _("v- 1/8 plg.") +
                               '</option> \
                              [% ELSE %] \
                               <option value="v">' +
-                                  _("v- 8 pulgadas") +
+                                  _("v- 1/8 plg.") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -1040,11 +1040,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -1088,11 +1088,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f6pipe ) %] \
                               <option value="|||" selected="selected">' +
-                                  _("|||- No se intenta codificar") +
+                                  _("||| - No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|||">' +
-                                  _("|||- No se intenta codificar") +
+                                  _("||| - No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -1115,11 +1115,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f7m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Múltiples formatos de archivo") +
+                                  _("m- Multiples formatos de ficheros") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Múltiples formatos de archivo") +
+                                  _("m- Multiples formatos de ficheros") +
                               '</option> \
                              [% END %] \
                              [% IF ( f7u ) %] \
@@ -1133,11 +1133,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f7pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -1187,11 +1187,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f8pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -1241,11 +1241,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f9m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% END %] \
                              [% IF ( f9n ) %] \
@@ -1268,11 +1268,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f9pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -1313,11 +1313,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f10m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% END %] \
                              [% IF ( f10u ) %] \
@@ -1331,11 +1331,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f10pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -1376,11 +1376,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f11r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- Reemplazo") +
+                                  _("r- reposición") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- Reemplazo") +
+                                  _("r- reposición") +
                               '</option> \
                              [% END %] \
                              [% IF ( f11u ) %] \
@@ -1394,11 +1394,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f11pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -1469,20 +1469,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -1532,11 +1532,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -1631,11 +1631,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f4n ) %] \
                               <option value="n" selected="selected">' +
-                                  _("n- Vitela") +
+                                  _("n- Vellum") +
                               '</option> \
                              [% ELSE %] \
                               <option value="n">' +
-                                  _("n- Vitela") +
+                                  _("n- Vellum") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4p ) %] \
@@ -1658,38 +1658,38 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f4v ) %] \
                               <option value="v" selected="selected">' +
-                                  _("v- Piel") +
+                                  _("v- Cuero") +
                               '</option> \
                              [% ELSE %] \
                               <option value="v">' +
-                                  _("v- Piel") +
+                                  _("v- Cuero") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4w ) %] \
                               <option value="w" selected="selected">' +
-                                  _("w - Pergamino") +
+                                  _("w-Pergamino") +
                               '</option> \
                              [% ELSE %] \
                               <option value="w">' +
-                                  _("w - Pergamino") +
+                                  _("w-Pergamino") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -1730,20 +1730,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -1814,20 +1814,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -1913,11 +1913,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Tipos Braille múltiples") +
+                                  _("m- Tipos multiple Braille") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Tipos Braille múltiples") +
+                                  _("m- Tipos multiple Braille") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3n ) %] \
@@ -1940,20 +1940,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -2020,11 +2020,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Tipos Braille múltiples") +
+                                  _("m- Tipos multiple Braille") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Tipos Braille múltiples") +
+                                  _("m- Tipos multiple Braille") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4n ) %] \
@@ -2047,20 +2047,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -2092,11 +2092,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Combinación") +
+                                  _("m-  Combinación") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Combinación") +
+                                  _("m-  Combinación") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5n ) %] \
@@ -2119,20 +2119,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -2281,20 +2281,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f6z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f6pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -2442,20 +2442,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f7z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -2603,20 +2603,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f8z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f8pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -2666,20 +2666,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f9z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -2733,29 +2733,29 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1o ) %] \
                               <option value="o" selected="selected">' +
-                                  _("o- Rollo de película") +
+                                  _("o- rollo de película") +
                               '</option> \
                              [% ELSE %] \
                               <option value="o">' +
-                                  _("o- Rollo de película") +
+                                  _("o- rollo de película") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1s ) %] \
                               <option value="s" selected="selected">' +
-                                  _("s- Diapositiva") +
+                                  _("s- diapositiva ") +
                               '</option> \
                              [% ELSE %] \
                               <option value="s">' +
-                                  _("s- Diapositiva") +
+                                  _("s- diapositiva ") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1t ) %] \
                               <option value="t" selected="selected">' +
-                                  _("t- Transparencia") +
+                                  _("t-  Diapositiva") +
                               '</option> \
                              [% ELSE %] \
                               <option value="t">' +
-                                  _("t- Transparencia") +
+                                  _("t-  Diapositiva") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1u ) %] \
@@ -2769,20 +2769,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -2850,11 +2850,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3n ) %] \
@@ -2877,20 +2877,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -2940,11 +2940,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Colección mixta") +
+                                  _("m-Collection combinada") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Colección mixta") +
+                                  _("m-Collection combinada") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4o ) %] \
@@ -2967,20 +2967,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -3030,11 +3030,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -3147,20 +3147,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f6z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f6pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -3255,56 +3255,56 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f7s ) %] \
                               <option value="s" selected="selected">' +
-                                  _("s- 4x5 plg. o 10x13 cm. transparencia") +
+                                  _("s- 4x5 plg. or 10x13 cm. transparencia") +
                               '</option> \
                              [% ELSE %] \
                               <option value="s">' +
-                                  _("s- 4x5 plg. o 10x13 cm. transparencia") +
+                                  _("s- 4x5 plg. or 10x13 cm. transparencia") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7t ) %] \
                               <option value="t" selected="selected">' +
-                                  _("t- 5x7 plg. o 13x18 cm. transparencia") +
+                                  _("t- 5x7 plg. or 13x18 cm. transparencia") +
                               '</option> \
                              [% ELSE %] \
                               <option value="t">' +
-                                  _("t- 5x7 plg. o 13x18 cm. transparencia") +
+                                  _("t- 5x7 plg. or 13x18 cm. transparencia") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7v ) %] \
                               <option value="v" selected="selected">' +
-                                  _("v- 8x10 plg. o 21x26 cm. transparencia") +
+                                  _("v- 8x10 in. or 21x26 cm") +
                               '</option> \
                              [% ELSE %] \
                               <option value="v">' +
-                                  _("v- 8x10 plg. o 21x26 cm. transparencia") +
+                                  _("v- 8x10 in. or 21x26 cm") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7w ) %] \
                               <option value="w" selected="selected">' +
-                                  _("x- 9x9 plg. o 23x23 cm. transparencia") +
+                                  _("x- 9x9 in. o  23x23 cm. diapositiva") +
                               '</option> \
                              [% ELSE %] \
                               <option value="w">' +
-                                  _("w- 9x9 plg. o 23x23 cm. transparencia") +
+                                  _("w- 9x9 in. o 23x23 cm. diapositiva") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7x ) %] \
                               <option value="x" selected="selected">' +
-                                  _("x- 10x10 in. o 26x26 cm. transparencia") +
+                                  _("x- 10x 10 in. o 26x26 cm. diapositiva") +
                               '</option> \
                              [% ELSE %] \
                               <option value="x">' +
-                                  _("x- 10x10 in. o 26x26 cm. transparencia") +
+                                  _("x- 10x 10 in. o 26x26 cm. diapositiva") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7y ) %] \
                               <option value="y" selected="selected">' +
-                                  _("y- 7x7 plg. o 18x18 cm. transparencia") +
+                                  _("y- 7x7 plg. o 18x18 cm. diapositiva") +
                               '</option> \
                              [% ELSE %] \
                               <option value="y">' +
-                                  _("y- 7x7 plg. o 18x18 cm. transparencia") +
+                                  _("y- 7x7 plg. o 18x18 cm. diapositiva") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7u ) %] \
@@ -3318,20 +3318,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f7z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -3408,11 +3408,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f8m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Colección mixta") +
+                                  _("m-Collection combinada") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Colección mixta") +
+                                  _("m-Collection combinada") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f8u ) %] \
@@ -3426,20 +3426,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f8z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f8pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -3555,20 +3555,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -3636,11 +3636,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -3708,29 +3708,29 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f4m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- 4x6 plg. o 11x15 cm. microficha, microopaco etc.") +
+                                  _("m- 4x6 in. o 11x15 cm. microficha, microopaque etc.") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- 4x6 plg. o 11x15 cm. microficha, microopaco etc.") +
+                                  _("m- 4x6 in. o 11x15 cm. microficha, microopaque etc.") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4o ) %] \
                               <option value="o" selected="selected">' +
-                                  _("o- 6x9 plg. o 16x23 cm") +
+                                  _("o - 6x9 in. or 16x23 cm.") +
                               '</option> \
                              [% ELSE %] \
                               <option value="o">' +
-                                  _("o- 6x9 plg. o 16x23 cm") +
+                                  _("o - 6x9 in. or 16x23 cm.") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4p ) %] \
                               <option value="p" selected="selected">' +
-                                  _("p- 3 1/4 x 7 3/8 plg. o 9x19 cm. tarjeta de apertura") +
+                                  _("p- 3 1/4 x 7 3/8 plg. or 9x19 cm. ") +
                               '</option> \
                              [% ELSE %] \
                               <option value="p">' +
-                                  _("p- 3 1/4 x 7 3/8 plg. o 9x19 cm. tarjeta de apertura") +
+                                  _("p- 3 1/4 x 7 3/8 plg. or 9x19 cm. ") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4u ) %] \
@@ -3744,20 +3744,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f4z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -3825,20 +3825,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f5v ) %] \
                               <option value="v" selected="selected">' +
-                                  _("v- TAsa de reducción varia") +
+                                  _("v- tasa de reducción variable") +
                               '</option> \
                              [% ELSE %] \
                               <option value="v">' +
-                                  _("v- TAsa de reducción varia") +
+                                  _("v- tasa de reducción variable") +
                               '</option> \
                              [% END %] \
                              [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -3877,11 +3877,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f7m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% END %] \
                              [% IF ( f7u ) %] \
@@ -3895,20 +3895,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f7z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
                              [% IF ( f7pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -3949,11 +3949,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f8m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Emulsión mixta") +
+                                  _("m- Emulsión combinada") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Emulsión mixta") +
+                                  _("m- Emulsión combinada") +
                               '</option> \
                              [% END %] \
                              [% IF ( f8n ) %] \
@@ -3976,20 +3976,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f8z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
                              [% IF ( f8pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -4030,11 +4030,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f9m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Generación mixta") +
+                                  _("m- Generación combinada") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Generación mixta") +
+                                  _("m- Generación combinada") +
                               '</option> \
                              [% END %] \
                              [% IF ( f9u ) %] \
@@ -4048,11 +4048,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f9pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -4102,11 +4102,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f10m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Base mixta (nitrato y de seguridad)") +
+                                  _("m- Base combinada (nitrato and safety)") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Base mixta (nitrato y de seguridad)") +
+                                  _("m- Base combinada (nitrato and safety)") +
                               '</option> \
                              [% END %] \
                              [% IF ( f10n ) %] \
@@ -4129,20 +4129,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f10r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- Base de seguridad, mixta") +
+                                  _("r- Base de seguridad, indeterminada") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- Base de seguridad, mixta") +
+                                  _("r- Base de seguridad, indeterminada") +
                               '</option> \
                              [% END %] \
                              [% IF ( f10t ) %] \
                               <option value="t" selected="selected">' +
-                                  _("t- Base de seguridad, tri-acetato") +
+                                  _("t- Base de seguridad, triacetato") +
                               '</option> \
                              [% ELSE %] \
                               <option value="t">' +
-                                  _("t- Base de seguridad, tri-acetato") +
+                                  _("t- Base de seguridad, triacetato") +
                               '</option> \
                              [% END %] \
                              [% IF ( f10u ) %] \
@@ -4156,20 +4156,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f10z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
                              [% IF ( f10pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -4294,20 +4294,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f1n ) %] \
                               <option value="n" selected="selected">' +
-                                  _("n- Mapa") +
+                                  _("n- gráfica") +
                               '</option> \
                              [% ELSE %] \
                               <option value="n">' +
-                                  _("n- Mapa") +
+                                  _("n- gráfica") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1o ) %] \
                               <option value="o" selected="selected">' +
-                                  _("o- Tarjeta flash") +
+                                  _("o- Tarjeta Flash") +
                               '</option> \
                              [% ELSE %] \
                               <option value="o">' +
-                                  _("o- Tarjeta flash") +
+                                  _("o- Tarjeta Flash") +
                               '</option> \
                              [% END %] \
                              [% IF ( f1p ) %] \
@@ -4330,20 +4330,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f1r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("a- Radiografía") +
+                                  _("r- Radiografía") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("a- Radiografía") +
+                                  _("r- Radiografía") +
                               '</option> \
                              [% END %] \
                              [% IF ( f1s ) %] \
                               <option value="s" selected="selected">' +
-                                  _("s- Boceto") +
+                                  _("s- boceto") +
                               '</option> \
                              [% ELSE %] \
                               <option value="s">' +
-                                  _("s- Boceto") +
+                                  _("s- boceto") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1u ) %] \
@@ -4357,29 +4357,29 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f1v ) %] \
                               <option value="v" selected="selected">' +
-                                  _("v- Fotografía, tipo no específicado") +
+                                  _("v- Fotografía, tipo no especificado") +
                               '</option> \
                              [% ELSE %] \
                               <option value="v">' +
-                                  _("v- Fotografía, tipo no específicado") +
+                                  _("v- Fotografía, tipo no especificado") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -4447,11 +4447,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3u ) %] \
@@ -4465,20 +4465,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -4582,20 +4582,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Colección mixta") +
+                                  _("m-Collection combinada") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Colección mixta") +
+                                  _("m-Collection combinada") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4n ) %] \
                               <option value="n" selected="selected">' +
-                                  _("n- Vitela") +
+                                  _("n- Vellum") +
                               '</option> \
                              [% ELSE %] \
                               <option value="n">' +
-                                  _("n- Vitela") +
+                                  _("n- Vellum") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4o ) %] \
@@ -4618,11 +4618,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4q ) %] \
                               <option value="q" selected="selected">' +
-                                  _("q- Cartón duro") +
+                                  _("q- Cartulina") +
                               '</option> \
                              [% ELSE %] \
                               <option value="q">' +
-                                  _("q- Cartón duro") +
+                                  _("q- Cartulina") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4r ) %] \
@@ -4645,11 +4645,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4t ) %] \
                               <option value="t" selected="selected">' +
-                                  _("t- Madera") +
+                                  _("t- madera") +
                               '</option> \
                              [% ELSE %] \
                               <option value="t">' +
-                                  _("t- Madera") +
+                                  _("t- madera") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4u ) %] \
@@ -4663,38 +4663,38 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f4v ) %] \
                               <option value="v" selected="selected">' +
-                                  _("v- Piel") +
+                                  _("v- Cuero") +
                               '</option> \
                              [% ELSE %] \
                               <option value="v">' +
-                                  _("v- Piel") +
+                                  _("v- Cuero") +
                               '</option> \
                              [% END %] \
                              [% IF ( f4w ) %] \
                               <option value="w" selected="selected">' +
-                                  _("w - Pergamino") +
+                                  _("w-Pergamino") +
                               '</option> \
                              [% ELSE %] \
                               <option value="w">' +
-                                  _("w - Pergamino") +
+                                  _("w-Pergamino") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -4807,20 +4807,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Colección mixta") +
+                                  _("m-Collection combinada") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Colección mixta") +
+                                  _("m-Collection combinada") +
                               '</option> \
                              [% END %] \
                              [% IF ( f5n ) %] \
                               <option value="n" selected="selected">' +
-                                  _("n- Vitela") +
+                                  _("n- Vellum") +
                               '</option> \
                              [% ELSE %] \
                               <option value="n">' +
-                                  _("n- Vitela") +
+                                  _("n- Vellum") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5o ) %] \
@@ -4843,11 +4843,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5q ) %] \
                               <option value="q" selected="selected">' +
-                                  _("q- Cartón duro") +
+                                  _("q- Cartulina") +
                               '</option> \
                              [% ELSE %] \
                               <option value="q">' +
-                                  _("q- Cartón duro") +
+                                  _("q- Cartulina") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5r ) %] \
@@ -4870,11 +4870,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5t ) %] \
                               <option value="t" selected="selected">' +
-                                  _("t- Madera") +
+                                  _("t- madera") +
                               '</option> \
                              [% ELSE %] \
                               <option value="t">' +
-                                  _("t- Madera") +
+                                  _("t- madera") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5u ) %] \
@@ -4888,38 +4888,38 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f5v ) %] \
                               <option value="v" selected="selected">' +
-                                  _("v- Piel") +
+                                  _("v- Cuero") +
                               '</option> \
                              [% ELSE %] \
                               <option value="v">' +
-                                  _("v- Piel") +
+                                  _("v- Cuero") +
                               '</option> \
                              [% END %] \
                               [% IF ( f5w ) %] \
                               <option value="w" selected="selected">' +
-                                  _("w - Pergamino") +
+                                  _("w-Pergamino") +
                               '</option> \
                              [% ELSE %] \
                               <option value="w">' +
-                                  _("w - Pergamino") +
+                                  _("w-Pergamino") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -4934,7 +4934,7 @@ function RedrawChoices(typ){
                                _("00 Categoría de material") +
                            '</td> \
                            <td>' +
-                               _("m- Película cinematográfica") +
+                               _("m- Película ") +
                            '</td> \
                           </tr> \
  	                  <tr> \
@@ -4963,20 +4963,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f1o ) %] \
                               <option value="o" selected="selected">' +
-                                  _("o- Rollo de película ") +
+                                  _("o- Rollo de microfilm") +
                               '</option> \
                              [% ELSE %] \
                               <option value="o">' +
-                                  _("o- Rollo de película ") +
+                                  _("o- Rollo de microfilm") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- Rollo de película") +
+                                  _("r- bobina de película") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- Rollo de película") +
+                                  _("r- bobina de película") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1u ) %] \
@@ -4990,20 +4990,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -5062,11 +5062,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3n ) %] \
@@ -5089,20 +5089,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -5179,20 +5179,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -5242,11 +5242,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -5359,20 +5359,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f6z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f6pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -5458,20 +5458,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f7z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -5512,11 +5512,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f8q ) %] \
                               <option value="q" selected="selected">' +
-                                  _("q- Cuadrafónico, multicanal, o envolvente") +
+                                  _("q- Cuadrafónico, multicanal o "surround"") +
                               '</option> \
                              [% ELSE %] \
                               <option value="q">' +
-                                  _("q- Cuadrafónico, multicanal, o envolvente") +
+                                  _("q- Cuadrafónico, multicanal o "surround"") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f8s ) %] \
@@ -5539,20 +5539,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f8z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f8pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -5638,20 +5638,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f9z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -5701,20 +5701,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f10z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f10pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -5755,11 +5755,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f11r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- Copia de referencia/copia para visualización") +
+                                  _("r- Copia de referencia / copia de visualización") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- Copia de referencia/copia para visualización") +
+                                  _("r- Copia de referencia / copia de visualización") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f11u ) %] \
@@ -5773,20 +5773,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f11z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f11pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -5836,11 +5836,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f12m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Base mixta (nitrato y de seguridad)") +
+                                  _("m- Base combinada (nitrato and safety)") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Base mixta (nitrato y de seguridad)") +
+                                  _("m- Base combinada (nitrato and safety)") +
                               '</option> \
                              [% END %] \
                              [% IF ( f12n ) %] \
@@ -5863,20 +5863,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f12r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- Base de seguridad, mixta") +
+                                  _("r- Base de seguridad, indeterminada") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- Base de seguridad, mixta") +
+                                  _("r- Base de seguridad, indeterminada") +
                               '</option> \
                              [% END %] \
                              [% IF ( f12t ) %] \
                               <option value="t" selected="selected">' +
-                                  _("t- Base de seguridad, tri-acetato") +
+                                  _("t- Base de seguridad, triacetato") +
                               '</option> \
                              [% ELSE %] \
                               <option value="t">' +
-                                  _("t- Base de seguridad, tri-acetato") +
+                                  _("t- Base de seguridad, triacetato") +
                               '</option> \
                              [% END %] \
                              [% IF ( f12u ) %] \
@@ -5890,20 +5890,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f12z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
                              [% IF ( f12pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -6070,11 +6070,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f13s ) %] \
                               <option value="s" selected="selected">' +
-                                  _("s- Teñido y entonado") +
+                                  _("s- Con tinte y tono") +
                               '</option> \
                              [% ELSE %] \
                               <option value="s">' +
-                                  _("s- Teñido y entonado") +
+                                  _("s- Con tinte y tono") +
                               '</option> \
                              [% END %] \
                              [% IF ( f13t ) %] \
@@ -6106,20 +6106,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f13z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
                              [% IF ( f13pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                              </select> \
@@ -6187,20 +6187,20 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f14z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f14pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -6303,20 +6303,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f15m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- No-nitrato: desastre") +
+                                  _("m- No-nitrato: siniestro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- No-nitrato: desastre") +
+                                  _("m- No-nitrato: siniestro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f15pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -6365,11 +6365,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f16pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -6391,7 +6391,7 @@ function RedrawChoices(typ){
                                _("00 Categoría de material") +
                            '</td> \
                            <td>' +
-                               _("o- Conjunto") +
+                               _("o- Kit") +
                            '</td> \
 	                  </tr> \
 	                  <tr> \
@@ -6411,11 +6411,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -6430,7 +6430,7 @@ function RedrawChoices(typ){
                                _("00 Categoría de material") +
                            '</td> \
                            <td>' +
-                               _("q- Música con notación") +
+                               _("q- Música notada") +
                            '</td> \
 	                  </tr> \
 	                  <tr> \
@@ -6450,11 +6450,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -6469,7 +6469,7 @@ function RedrawChoices(typ){
                                _("00 Categoría de material") +
                            '</td> \
                            <td>' +
-                               _("r- Imagen de sensores remotos") +
+                               _("Imagen de sensores remotos") +
                            '</td> \
                           </tr> \
  	                  <tr> \
@@ -6489,11 +6489,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -6570,20 +6570,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -6642,11 +6642,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -6768,11 +6768,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -6885,20 +6885,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f6z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f6pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -6939,11 +6939,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f7m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Usos mixtos") +
+                                  _("m- Usesos combinado") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Usos mixtos") +
+                                  _("m- Usesos combinado") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7n ) %] \
@@ -6966,20 +6966,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f7z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -7020,20 +7020,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f8z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f8pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -7254,11 +7254,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f9x ) %] \
                               <option value="ma" selected="selected">' +
-                                  _("ma- Multiespectral, datos múltiples") +
+                                  _("ma- multiespectral, datos múltiples") +
                               '</option> \
                              [% ELSE %] \
                               <option value="ma">' +
-                                  _("ma- Multiespectral, datos múltiples") +
+                                  _("ma- multiespectral, datos múltiples") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9y ) %] \
@@ -7344,56 +7344,56 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f9a8 ) %] \
                               <option value="ra" selected="selected">' +
-                                  _("ra- Anomalías gravitatorias (general)") +
+                                  _("ra- Anomalías de la gravitación (general)") +
                               '</option> \
                              [% ELSE %] \
                               <option value="ra">' +
-                                  _("ra- Anomalías gravitatorias (general)") +
+                                  _("ra- Anomalías de la gravitación (general)") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9a9 ) %] \
                               <option value="rb" selected="selected">' +
-                                  _("rb- Free-air") +
+                                  _("rb- "Free-air"") +
                               '</option> \
                              [% ELSE %] \
                               <option value="rb">' +
-                                  _("rb- Free-air") +
+                                  _("rb- "Free-air"") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9a10 ) %] \
                               <option value="rc" selected="selected">' +
-                                  _("rc- Bouger") +
+                                  _("rc- "Bouger"") +
                               '</option> \
                              [% ELSE %] \
                               <option value="rc">' +
-                                  _("rc- Bouger") +
+                                  _("rc- "Bouger"") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9a11 ) %] \
                               <option value="rd" selected="selected">' +
-                                  _("rd- Isostática") +
+                                  _("rd- Isostático") +
                               '</option> \
                              [% ELSE %] \
                               <option value="rd">' +
-                                  _("rd- Isostática") +
+                                  _("rd- Isostático") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9a12 ) %] \
                               <option value="sa" selected="selected">' +
-                                  _("sa- Campo magnético") +
+                                  _("sa- Disco magnético") +
                               '</option> \
                              [% ELSE %] \
                               <option value="sa">' +
-                                  _("sa- Campo magnético") +
+                                  _("sa- Disco magnético") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9a13 ) %] \
                               <option value="ta" selected="selected">' +
-                                  _("ta- Mediciones radimétricas") +
+                                  _("ta- Mediciones radiométricas") +
                               '</option> \
                              [% ELSE %] \
                               <option value="ta">' +
-                                  _("ta- Mediciones radimétricas") +
+                                  _("ta- Mediciones radiométricas") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9a14 ) %] \
@@ -7416,11 +7416,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f9a16 ) %] \
                               <option value="||" selected="selected">' +
-                                  _("||- No se intenta codificar") +
+                                  _("||- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="||">' +
-                                  _("||- No se intenta codificar") +
+                                  _("||- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -7435,7 +7435,7 @@ function RedrawChoices(typ){
                                _("00 Categoría de material") +
                            '</td> \
                            <td>' +
-                               _("s- Grabación de sonido") +
+                               _("s- Grabación sonora") +
                            '</td> \
                           </tr> \
  	                  <tr> \
@@ -7491,20 +7491,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1s ) %] \
                               <option value="s" selected="selected">' +
-                                  _("s- Casete de sonido") +
+                                  _("s- Cartucho de sonido") +
                               '</option> \
                              [% ELSE %] \
                               <option value="s">' +
-                                  _("s- Casete de sonido") +
+                                  _("s- Cartucho de sonido") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1t ) %] \
                               <option value="t" selected="selected">' +
-                                  _("t- Bobina de cinta sonora") +
+                                  _("t- Carrete de cinta") +
                               '</option> \
                              [% ELSE %] \
                               <option value="t">' +
-                                  _("t- Bobina de cinta sonora") +
+                                  _("t- Carrete de cinta") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1u ) %] \
@@ -7518,29 +7518,29 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1w ) %] \
                               <option value="w" selected="selected">' +
-                                  _("w- Grabación en cable") +
+                                  _("w-Grabación de vídeo") +
                               '</option> \
                              [% ELSE %] \
                               <option value="w">' +
-                                  _("w- Grabación en cable") +
+                                  _("w-Grabación de vídeo") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -7666,34 +7666,34 @@ function RedrawChoices(typ){
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- 3/34 ips (tapes)") +
+                                  _("m- 3 3/4 ips (cintas)") +
                               '</option> \
                              [% END %] \
                              [% IF ( f3o ) %] \
                               <option value="o" selected="selected">' +
-                                  _("o- 7 1/2 ips (cintas)") +
+                                  _("o- 7 1/2 pps.") +
                               '</option> \
                              [% ELSE %] \
                               <option value="o">' +
-                                  _("o- 7 1/2 ips (cintas)") +
+                                  _("o- 7 1/2 pps.") +
                               '</option> \
                              [% END %] \
                              [% IF ( f3p ) %] \
                               <option value="p" selected="selected">' +
-                                  _("p- 15 ips (cintas)") +
+                                  _("p- 15 pps") +
                               '</option> \
                              [% ELSE %] \
                               <option value="p">' +
-                                  _("p- 15 ips (cintas)") +
+                                  _("p- 15 pps") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- 30 ips (cintas)") +
+                                  _("r- 30 pps") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- 30 ips (cintas)") +
+                                  _("r- 30 pps") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3u ) %] \
@@ -7707,20 +7707,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -7770,20 +7770,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -7797,11 +7797,11 @@ function RedrawChoices(typ){
                             <select name="f5" id="f5" size="1"> \
                              [% IF ( f5m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Microsurco/fino") +
+                                  _("m- Microsurco/multa") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Microsurco/fino") +
+                                  _("m- Microsurco/multa") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5n ) %] \
@@ -7815,11 +7815,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f5s ) %] \
                               <option value="s" selected="selected">' +
-                                  _("s- Común/Estándar") +
+                                  _("s- Común / estándar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="s">' +
-                                  _("s- Común/Estándar") +
+                                  _("s- Común / estándar") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5u ) %] \
@@ -7833,20 +7833,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -7941,20 +7941,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f6o ) %] \
                               <option value="o" selected="selected">' +
-                                  _("o- 5 1/4 x 3 7/8 plg.") +
+                                  _("o- 1 1/8 x 2 3/8 plg.") +
                               '</option> \
                              [% ELSE %] \
                               <option value="o">' +
-                                  _("o- 5 1/4 x 3 7/8 plg.") +
+                                  _("o- 1 1/8 x 2 3/8 plg.") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f6s ) %] \
                               <option value="s" selected="selected">' +
-                                  _("s- 2 3/4 x 4 pulgadas.") +
+                                  _("s- 2 3/4 x 4 plg.") +
                               '</option> \
                              [% ELSE %] \
                               <option value="s">' +
-                                  _("s- 2 3/4 x 4 pulgadas.") +
+                                  _("s- 2 3/4 x 4 plg.") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f6u ) %] \
@@ -7968,20 +7968,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f6z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f6pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -8049,20 +8049,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f7z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -8148,20 +8148,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f8z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f8pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -8229,29 +8229,29 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f9r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- Matriz (positivo)") +
+                                  _("r- Matriz (positiva)") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- Matriz (positivo)") +
+                                  _("r- Matriz (positiva)") +
                               '</option> \
                              [% END %] \
                              [% IF ( f9s ) %] \
                               <option value="s" selected="selected">' +
-                                  _("s- Estampador (negativo)") +
+                                  _("s- disco maestro (negativo)") +
                               '</option> \
                              [% ELSE %] \
                               <option value="s">' +
-                                  _("s- Estampador (negativo)") +
+                                  _("s- disco maestro (negativo)") +
                               '</option> \
                              [% END %] \
                              [% IF ( f9t ) %] \
                               <option value="t" selected="selected">' +
-                                  _("t- Impresión de prueba") +
+                                  _("t- Prensado de prueba") +
                               '</option> \
                              [% ELSE %] \
                               <option value="t">' +
-                                  _("t- Impresión de prueba") +
+                                  _("t- Prensado de prueba") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9u ) %] \
@@ -8265,20 +8265,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f9z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f9pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -8364,11 +8364,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f10r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- Papel con laca u oxido ferroso") +
+                                  _("r- Papel con laca o con óxido ferroso") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- Papel con laca u oxido ferroso") +
+                                  _("r- Papel con laca o con óxido ferroso") +
                               '</option> \
                              [% END %] \
                              [% IF ( f10s ) %] \
@@ -8382,11 +8382,11 @@ function RedrawChoices(typ){
                              [% END %] \
                              [% IF ( f10w ) %] \
                               <option value="w" selected="selected">' +
-                                  _("w- Lacre") +
+                                  _("w- Cera") +
                               '</option> \
                              [% ELSE %] \
                               <option value="w">' +
-                                  _("w- Lacre") +
+                                  _("w- Cera") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f10u ) %] \
@@ -8400,20 +8400,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f10z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f10pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -8463,11 +8463,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f11pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -8571,20 +8571,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f12z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f12pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -8643,20 +8643,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f13pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -8727,20 +8727,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -8755,7 +8755,7 @@ function RedrawChoices(typ){
                                _("00 Categoría de material") +
                            '</td> \
                            <td>' +
-                               _("v- Videograbación") +
+                               _("v- Grabación de vídeo") +
                            '</td> \
                           </tr> \
  	                  <tr> \
@@ -8793,11 +8793,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- Videocarrete") +
+                                  _("r- Videocinta") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- Videocarrete") +
+                                  _("r- Videocinta") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1u ) %] \
@@ -8811,20 +8811,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -8883,11 +8883,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Mixto") +
+                                  _("m-Mixta") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3n ) %] \
@@ -8910,20 +8910,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f3z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f3pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -9036,20 +9036,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- M-II (1/2 pulgada, videocasete)") +
+                                  _("m- M-II (1/2 in., videocassete)") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- M-II (1/2 pulgada, videocasete)") +
+                                  _("m- M-II (1/2 in., videocassete)") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4o ) %] \
                               <option value="o" selected="selected">' +
-                                  _("o- D-2 (3/4 pulgadas, videocasete)") +
+                                  _("o- D-2 (3/4 plg., videocassette)") +
                               '</option> \
                              [% ELSE %] \
                               <option value="o">' +
-                                  _("o- D-2 (3/4 pulgadas, videocasete)") +
+                                  _("o- D-2 (3/4 plg., videocassette)") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4p ) %] \
@@ -9063,20 +9063,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4q ) %] \
                               <option value="q" selected="selected">' +
-                                  _("q- Hi-8 mm.") +
+                                  _("a- 8 mm.") +
                               '</option> \
                              [% ELSE %] \
                               <option value="q">' +
-                                  _("q- Hi-8 mm.") +
+                                  _("a- 8 mm.") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4s ) %] \
                               <option value="s" selected="selected">' +
-                                  _("s- Disco Blue-ray") +
+                                  _("s- Disco Blu-ray") +
                               '</option> \
                              [% ELSE %] \
                               <option value="s">' +
-                                  _("s- Disco Blue-ray") +
+                                  _("s- Disco Blu-ray") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4u ) %] \
@@ -9099,20 +9099,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f4z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f4pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -9162,11 +9162,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f5pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -9279,20 +9279,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f6z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f6pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -9351,11 +9351,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f7r ) %] \
                               <option value="r" selected="selected">' +
-                                  _("r- 3/4 pulgada.") +
+                                  _("r- 3/4 plg.") +
                               '</option> \
                              [% ELSE %] \
                               <option value="r">' +
-                                  _("r- 3/4 pulgada.") +
+                                  _("r- 3/4 plg.") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7u ) %] \
@@ -9369,20 +9369,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f7z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f7pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -9423,11 +9423,11 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f8q ) %] \
                               <option value="q" selected="selected">' +
-                                  _("q- Cuadrafónico, multicanal, o envolvente") +
+                                  _("q- Cuadrafónico, multicanal o "surround"") +
                               '</option> \
                              [% ELSE %] \
                               <option value="q">' +
-                                  _("q- Cuadrafónico, multicanal, o envolvente") +
+                                  _("q- Cuadrafónico, multicanal o "surround"") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f8s ) %] \
@@ -9450,20 +9450,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f8z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f8pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \
@@ -9489,11 +9489,11 @@ function RedrawChoices(typ){
                             <select id="f1" name="f1" size="1"> \
                              [% IF ( f1m ) %] \
                               <option value="m" selected="selected">' +
-                                  _("m- Múltiples formas físicas") +
+                                  _("m- Multiples formas físicas") +
                               '</option> \
                              [% ELSE %] \
                               <option value="m">' +
-                                  _("m- Múltiples formas físicas") +
+                                  _("m- Multiples formas físicas") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1u ) %] \
@@ -9507,20 +9507,20 @@ function RedrawChoices(typ){
                              [% END %] \
 			     [% IF ( f1z ) %] \
                               <option value="z" selected="selected">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% ELSE %] \
                               <option value="z">' +
-                                  _("z- Otro") +
+                                  _("z-- Otro") +
                               '</option> \
                              [% END %] \
 			     [% IF ( f1pipe ) %] \
                               <option value="|" selected="selected">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% ELSE %] \
                               <option value="|">' +
-                                  _("|- No se intenta codificar") +
+                                  _("|- No hay intención de codificar") +
                               '</option> \
                              [% END %] \
                             </select> \

@@ -339,7 +339,7 @@ function verify_images() {
 [% END %] </table></div>[% END %] [% END %] [% IF ( LocalCoverImages ) %] <div id="images">
 [% IF ( localimages.0 ) %] <p>Haga clic en una imagen para verla en el visor de imágenes </p>
 [% FOREACH image IN localimages %] [% IF image %] <a class="localimage" href="/cgi-bin/koha/catalogue/imageviewer.pl?biblionumber=[% biblionumber %]&amp;imagenumber=[% image %]"><img alt="" src="/cgi-bin/koha/catalogue/image.pl?thumbnail=1&amp;imagenumber=[% image %]" /></a>
-[% END %] [% END %] [% ELSE %] [% IF ( CAN_user_tools_upload_local_cover_images ) %] <p>Nu se han cargado imágenes aun para este regsitro bibliográfico. Por favor<a href='/cgi-bin/koha/tools/upload-cover-image.pl?biblionumber=[% biblionumber %]&amp;filetype=image'>subir</a> uno.</p>
+[% END %] [% END %] [% ELSE %] [% IF ( CAN_user_tools_upload_local_cover_images ) %] <p>Nu se han cargado imágenes aun para este regsitro bibliográfico. Por favor<a href='/cgi-bin/koha/tools/upload-cover-image.pl?biblionumber=[% biblionumber %]&amp;filetype=image'>Subir</a> un</p>
 [% END %] [% END %] </div>
 [% END %] [% IF ( HTML5MediaEnabled ) %] <div id="html5media">
  <p>

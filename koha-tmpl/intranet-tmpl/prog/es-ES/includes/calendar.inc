@@ -35,7 +35,7 @@ jQuery(function($){
         _("Jul"), _("Agosto"), _("Set"), _("Oct"), _("Nov"), _("Dic")],
         dayNames: [_("Domingo"), _("Lunes"), _("Martes"), _("Miércoles"), _("Jueves"), _("Viernes"), _("Sábado")],
         dayNamesShort: [_("Dom"), _("Lun"), _("Mar"), _("Mie"), _("Jue"), _("Vie"), _("Sab")],
-        dayNamesMin: [_("Dom "),_("Lun "),_("Jue "),_("Nosotros"),_("Jue "),_("Fr"),_("Sab ")],
+        dayNamesMin: [_("Dom "),_("Lun "),_("Mar "),_("Mie"),_("Jue "),_("Fr"),_("Sab ")],
         weekHeader: _("Semana "),
         dateFormat: "[% IF ( dateformat == "us" ) %]mm/dd/yy[% ELSIF ( dateformat == "metric" ) %]dd/mm/yy[% ELSE %]yy-mm-dd[% END %]",
         firstDay: [% CalendarFirstDayOfWeek %],

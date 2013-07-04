@@ -89,7 +89,7 @@ function RemoveInstructor( cardnumber ) {
  [% FOREACH d IN departments %] [% IF d.authorised_value == department %] <option value="[% d.authorised_value %]" selected="selected">[% d.lib %]</option>
  [% ELSE %] <option value="[% d.authorised_value %]">[% d.lib %]</option>
  [% END %] [% END %] </select>
- [% ELSE %] <span id="department">No DEPARTMENT authorized values found! Please create one or more authorized values with the category DEPARTMENT.</span>
+ [% ELSE %] <span id="department">¡No hay valores autorizados para DEPARTAMENTO! Por favor, cree uno o más valores autorizados para la categoría DEPARTAMENTO.</span>
  [% END %] </li>
 
  <li>
@@ -115,7 +115,7 @@ function RemoveInstructor( cardnumber ) {
  [% FOREACH t IN terms %] [% IF t.authorised_value == term %] <option value="[% t.authorised_value %]" selected="selected">[% t.lib %]</option>
  [% ELSE %] <option value="[% t.authorised_value %]">[% t.lib %]</option>
  [% END %] [% END %] </select>
- [% ELSE %] <span id="term">No TERM authorized values found! Please create one or more authorized values with the category TERM.</span>
+ [% ELSE %] <span id="term">¡No hay valores autorizados para TERM! Por favor, cree uno o más valores autorizados para la categoría TERM.</span>
  [% END %] </li>
 
  <li>

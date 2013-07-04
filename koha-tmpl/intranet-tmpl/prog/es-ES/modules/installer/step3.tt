@@ -158,10 +158,10 @@
  <p> Haga clic en 'Siguiente' para continuar <input value="Siguiente >>" type="submit" /></p>
  </form>
 [% END %] [% IF ( default ) %] [% IF ( upgrading ) %] <p>
- Estamos actualizando desde Koha [% dbversion %] a [% kohaversion %], usted debe <a href="install.pl?step=3&amp;op=updatestructure" class="button">actualizar su base de datos</a>
+ Estamos actualizando desde Koha [% dbversion %] a [% kohaversion %], usted debe <a href="install.pl?step=3&amp;op=updatestructure" class="button">Actualizando la base de datos</a>
  </p>
  [% ELSE %] <p>Estamos preparados para hacer algunas configuraciones básicas. Por favor, <a href="install.pl?step=3&amp;op=choosemarc" class="button">instalar los ajustes de configuración básica</a>
- para continuar la instalación. </p>
+ para continuar la instalación</p>
  [% END %] [% END %] [% IF ( updatestructure ) %] <div><h2 align="center">Actualizando la estructura de la base de datos</h2>
  [% IF ( has_update_succeeds ) %] <p>Actualizar informe:</p>
  <ul>

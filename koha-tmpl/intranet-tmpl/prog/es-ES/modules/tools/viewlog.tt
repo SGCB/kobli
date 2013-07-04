@@ -107,7 +107,7 @@
  <td>[% loopro.module %]</td>
  <td>[% loopro.action %]</td>
  <td>
- [% IF ( module == 'MEMBERS' ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% loopro.object %]" title="Mostrar detalles del socio"> socio [% loopro.object %] </a>
+ [% IF ( module == 'MEMBERS' ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% loopro.object %]" title="Mostrar detalles del socio"> usuario [% loopro.object %] </a>
  [% ELSE %] [% IF ( module == 'CIRCULATION' ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% loopro.object %]" title="Mostrar detalles del socio">
  [% IF ( loopro.object ) %] socio [% loopro.object %] [% END %] </a>
  [% ELSE %] [% IF ( module == 'CATALOGUING' ) %] [% IF ( info == 'item' ) %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?item=[% loopro.object %]&amp;biblionumber=[% loopro.biblionumber %]&amp;bi=[% loopro.biblioitemnumber %]#item[% loopro.object %]">Ítem [% loopro.object %]</a>

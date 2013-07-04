@@ -80,8 +80,7 @@ $(document).ready(function() {
  [% FOREACH branch IN branches_loop %] [% IF ( branch.selected ) %] <option selected="selected" value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% ELSE %] <option value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% END %] [% END %] </select>
- <span>Select All if this authorized value must to be displayed all the time. Otherwise select libraries you want to associate with this value.
- </span>
+ <span>Seleccionar 'Todo' si este valor autorizado debe visualizarse en todos los casos. De lo contrario, seleccione las bibliotecas que desea asociar con este valor.</span>
  </li>
 
  </ol>

@@ -8,12 +8,12 @@
  <td><label for="f1">Caracter de imagen:</label></td>
  <td>
  <select name="f1" id="f1" size="1">
- [% IF ( f1a ) %] <option value="a" selected="selected">imagen no fotográfica</option>
- [% ELSE %] <option value="a">imagen no fotográfica</option>
- [% END %] [% IF ( f1b ) %] <option value="b" selected="selected">imagen fotográfica</option>
- [% ELSE %] <option value="b">imagen fotográfica</option>
- [% END %] [% IF ( f1c ) %] <option value="c" selected="selected">imagen de sensado remoto</option>
- [% ELSE %] <option value="c">imagen de sensado remoto</option>
+ [% IF ( f1a ) %] <option value="a" selected="selected">non-photographic image</option>
+ [% ELSE %] <option value="a">non-photographic image</option>
+ [% END %] [% IF ( f1b ) %] <option value="b" selected="selected">, fotógrafo</option>
+ [% ELSE %] <option value="b">, fotógrafo</option>
+ [% END %] [% IF ( f1c ) %] <option value="c" selected="selected">Imagen de sensor remoto</option>
+ [% ELSE %] <option value="c">Imagen de sensor remoto</option>
  [% END %] </select>
  </td></tr>
 </table>

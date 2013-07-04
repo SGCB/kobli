@@ -56,42 +56,9 @@
  </div>
 [% END %] <div class="yui-u">
  <div id="ulactioncontainer" class="container">
- <ul id="action">
 
- [% UNLESS ( norequests ) %] [% IF ( opacuserlogin ) %] [% IF ( RequestOnOpac ) %] [% IF ( AllowOnShelfHolds ) %] <li><a class="reserve" href="/cgi-bin/koha/opac-reserve.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>
- [% ELSE %] [% IF ( ItemsIssued ) %] <li><a class="reserve" href="/cgi-bin/koha/opac-reserve.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>
- [% END %] [% END %] [% END %] [% END %] [% END %] <li><a class="print" href="javascript:window.print();">Imprimir</a></li>
- [% IF ( virtualshelves ) %] [% IF ( opacuserlogin ) %][% IF ( loggedinusername ) %] <li><a class="addtoshelf" href="/cgi-bin/koha/opac-addbybiblionumber.pl?biblionumber=[% biblionumber %]" onclick="Dopop('opac-addbybiblionumber.pl?biblionumber=[% biblionumber %]'); return false;">
- Guardar en sus listas </a></li>
- [% END %][% END %] [% END %] [% IF ( opacbookbag ) %]<li><a class="addtocart" href="#" onclick="addRecord('[% biblionumber %]'); return false;">Agregar a su cesta</a></li>[% END %] <li style="display:none;"><a href="#" id="furthersearches">Más búsquedas</a></li>
- </ul>
-
- [% IF ( OPACSearchForTitleIn ) %] <div id="furtherm" class="yuimenu">
- <div class="bd">
- <h4>Buscar este título en:</h4>
- <ul class="first-of-type">
-
- [% OPACSearchForTitleIn %] </ul>
- </div>
- </div>
- [% END %] <div id="export" class="detailtagcell">
- <form method="get" action="/cgi-bin/koha/opac-export.pl">
- <label for="format">Guardar registro:</label>
- <select name="format" id="format">
- <option value="">-- Escoge formato --</option>
- <option value="bibtex">BIBTEX</option>
- <option value="dc">Dublin Core (XML)</option>
- <option value="marcxml">MARCXML</option>
- <option value="marc8">MARC (no-Unicode/MARC-8)</option>
- <option value="utf8">MARC (Unicode/UTF-8)</option> 
- <option value="mods">MODS (XML)</option>
- <option value="ris">RIS</option>
- </select><input type="hidden" name="op" value="export" /><input type="hidden" name="bib" value="[% biblionumber %]" />
- <input value="Ir" name="save" type="submit" /></form>
- </div>
-
- </div>
- </div>
+[% INCLUDE 'opac-detail-sidebar.inc' %] </div>
+</div>
 </div>
  <div id="yui-main">
  <div id="list_detail">
@@ -110,11 +77,6 @@
  </div>
  </div>
  </div>
- <div class="yui-u">
- <div id="ulactioncontainer" class="container">
-
-[% INCLUDE 'opac-detail-sidebar.inc' %] </div>
-</div>
 </div>
 
 </div>

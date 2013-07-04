@@ -57,7 +57,7 @@
 </form>
 
 [% IF ( subscriptions_loop ) %] <p>
- <b>[% numsubscription %]</b> suscripción(es) [% IF ( title ) %] con título que coincide <span class="title">[% title %]</class>
+ <b>[% numsubscription %]</b> suscripción(es) [% IF ( title ) %] con título coincidente<span class="title">[% title %]</class>
  [% IF ( issn ) %]y [% END %] [% END %] [% IF ( issn ) %] con ISSN coincidente <b>[% issn %]</b>
  [% END %] expirará antes de <b>[% date %]</b>
 </p>

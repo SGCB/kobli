@@ -624,7 +624,7 @@ function irregularity_check(){
 			//  and a regular daily pub, where irregularity should be per year.
             errortext += _("Por favor, indique en qué días de la semana NO esperan recibir ejemplares.")+"<br \/>";
         } else {
-            errortext +=expected+_(" ejemplares esperados, ")+rollover+_(" fue introducido.")+"<br \/>"+_("Por favor, indique la o las fechas en las que no se espera un ejemplar")+"<br \/>";
+            errortext +=expected+_(" ejemplares esperados, ")+rollover+_(" se introdujeron.")+"<br \/>"+_("Por favor, indique la o las fechas en las que no se espera un ejemplar")+"<br \/>";
             irregular_issues.numskipped = expected - rollover;
 		}
         errortext +="<select multiple id=\"irregularity_select\" name=\"irregularity_select\" onchange=\"irregular_issues.update();\">\n";
@@ -633,7 +633,7 @@ function irregularity_check(){
         error=errortext;
     }
     if(toobig){
-        errortext +=expectedover+_(" ejemplares esperados, ")+rollover+_(" fue introducido")+"<p class=\"warning\">"+_("Parece que ha indicado más ejemplares por año de lo esperado.<\\/p>");
+        errortext +=expectedover+_(" ejemplares esperados, ")+rollover+_(" se introdujeron")+"<p class=\"warning\">"+_("Parece que ha indicado más ejemplares por año de lo esperado.<\\/p>");
         error=errortext;
     }
     if(error.length ==0){
