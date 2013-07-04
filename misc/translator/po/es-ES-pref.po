@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Koha 3.12\n"
 "POT-Creation-Date: 2013-05-27 12:22+0200\n"
-"PO-Revision-Date: 2013-06-12 17:10+0100\n"
+"PO-Revision-Date: 2013-07-24 09:02+0100\n"
 "Last-Translator: MASmedios <isabel@masmedios.com>\n"
 "Language-Team: Koha Translation Team <koha-translate@lists.koha.org>\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr "en sistema, a pesar del propietario."
 
 # Acquisitions > Policy
 msgid "acquisitions.pref#BasketConfirmations# When closing or reopening a basket,"
-msgstr "Cuando cierras o reabres una cesta,"
+msgstr "Cuando cierres o reabra una cesta,"
 
 # Acquisitions > Policy
 msgid "acquisitions.pref#BasketConfirmations# always ask for confirmation."
@@ -139,7 +139,7 @@ msgstr "campo para el certificado de autenticación de cliente SSL"
 
 # Administration > CAS Authentication
 msgid "admin.pref#AllowPkiAuth# no"
-msgstr "no"
+msgstr "ningún"
 
 # Administration > CAS Authentication
 msgid "admin.pref#AllowPkiAuth# the Common Name"
@@ -211,7 +211,7 @@ msgstr "No permitir"
 
 # Administration > Mozilla Persona
 msgid "admin.pref#Persona# Mozilla persona for login"
-msgstr "Mozilla persona para acceder"
+msgstr "Mozilla persona acceder"
 
 # Administration > Search Engine
 msgid "admin.pref#SearchEngine# Solr"
@@ -323,7 +323,7 @@ msgstr "Cerrar sesión automáticamente después de"
 
 # Administration > Login options
 msgid "admin.pref#timeout# seconds of inactivity. Adding d will specify it in days, e.g. 1d is timeout of one day."
-msgstr "segundos de inactividad. Añadir d cuando especifiquemos días, e.j. 1d siginifica caduca en un día."
+msgstr "segundos de inactividad. Añadir \"d\" cuando especifiquemos días, e.j., 1d siginifica que caduca en un día."
 
 # Administration > Interface options
 msgid "admin.pref#virtualshelves# Allow"
@@ -407,11 +407,11 @@ msgstr "automáticamente reenlazar encabezamientos que previamente hayan sido en
 
 # Authorities > Linker
 msgid "authorities.pref#LinkerKeepStale# Do"
-msgstr "Hacer"
+msgstr "sí"
 
 # Authorities > Linker
 msgid "authorities.pref#LinkerKeepStale# Do not"
-msgstr "No hacer"
+msgstr "No"
 
 # Authorities > Linker
 msgid "authorities.pref#LinkerKeepStale# keep existing links to authority records for headings where the linker is unable to find a match."
@@ -447,11 +447,11 @@ msgstr "Asignar las siguientes opciones para la autoridad enlazada"
 
 # Authorities > Linker
 msgid "authorities.pref#LinkerRelink# Do"
-msgstr "Hacer"
+msgstr "Sí"
 
 # Authorities > Linker
 msgid "authorities.pref#LinkerRelink# Do not"
-msgstr "No hacer"
+msgstr "No"
 
 # Authorities > Linker
 msgid "authorities.pref#LinkerRelink# relink headings that have previously been linked to authority records."
@@ -479,11 +479,11 @@ msgstr "números de registros de autoridad en vez de cadenas de texto para búsq
 
 # Authorities > General
 msgid "authorities.pref#dontmerge# Do"
-msgstr "Hacer"
+msgstr "Sí"
 
 # Authorities > General
 msgid "authorities.pref#dontmerge# Don't"
-msgstr "No hacer"
+msgstr "No"
 
 # Authorities > General
 msgid "authorities.pref#dontmerge# automatically update attached biblios when changing an authority record. If this is off, please ask your administrator to enable the merge_authority.pl cronjob."
@@ -536,6 +536,18 @@ msgstr "Por defecto vacío para eng."
 # Cataloging > Record Structure
 msgid "cataloguing.pref#DefaultLanguageField008# Fill in the default language for field 008 Range 35-37 (e.g. eng, nor, ger, see <a href=\"http://www.loc.gov/marc/languages/language_code.html\">MARC Code List for Languages</a>)"
 msgstr "Rellenar en el idioma por defecto para el campo 008 Rango 35-37 (e.g. eng, nor, ger, see <a href=\"http://www.loc.gov/marc/languages/language_code.html\">MARC Code List for Languages</a>)"
+
+# Cataloging > Display
+msgid "cataloguing.pref#DisplayPluginValueIndicators# Don't hide"
+msgstr "No ocultar"
+
+# Cataloging > Display
+msgid "cataloguing.pref#DisplayPluginValueIndicators# Hide"
+msgstr "Ocultar"
+
+# Cataloging > Display
+msgid "cataloguing.pref#DisplayPluginValueIndicators# the link next to the indicator field to open a plugin to show the correct values of the indicator for this field and framework. If CheckValueIndicators is disabled and this variable is enabled it will check the values as well, i.e., it includes the CheckValueIndicators functionality."
+msgstr "el enlace al lado del campo del indicador abre un plugin que muestra los valores correctos para este campo. Si CheckValueIndicators está deshabilitado y su variable está habilitada también se seleccionará el valor, por ejemplo, si este incluye la funcionalidad CheckValueIndicators."
 
 # Cataloging > Interface
 msgid "cataloguing.pref#EasyAnalyticalRecords# Display"
@@ -602,24 +614,12 @@ msgid "cataloguing.pref#NewItemsDefaultLocation# When items are created, give th
 msgstr "Cuando se crean los ítems, asignarles ubicación temporal en"
 
 # Cataloging > Display
-msgid "cataloguing.pref#NotesBlacklist# Don't hide"
-msgstr "No ocultar"
-
-# Cataloging > Display
 msgid "cataloguing.pref#NotesBlacklist# Don't show these"
 msgstr "No mostrar este"
 
 # Cataloging > Display
-msgid "cataloguing.pref#NotesBlacklist# Hide"
-msgstr "Ocultar"
-
-# Cataloging > Display
 msgid "cataloguing.pref#NotesBlacklist# note fields in title notes separator (OPAC record details) and in the description separator (Staff client record details). The fields should appear separated with commas and according with the Koha MARC format (eg 3.. for UNIMARC, 5.. for MARC21)"
-msgstr "nota lde os campos de título separador de notas (OPAC detalles de registro) y en el separador de descripción (detalles del registro del cliente de Personal ). Los campos deben aparecer separados por comas y de acuerdo con el formato MARC Koha (por ejemplo, 3 .. para UNIMARC, 5 .. por MARC21)"
-
-# Cataloging > Display
-msgid "cataloguing.pref#NotesBlacklist# the link next to the indicator field to open a plugin to show the correct values of the indicator for this field and framework. If CheckValueIndicators is disabled and this variable is enabled it will check the values as well, i.e., it includes the CheckValueIndicators functionality."
-msgstr "el enlace al lado del campo del indicador abre un plugin que muestra los valores correctos para este campo. Si CheckValueIndicators está deshabilitado y su variable está habilitada también se seleccionará el valor, por ejemplo, si este incluye la funcionalidad  CheckValueIndicators."
+msgstr "campos de notas en la pestaña de título (OPAC detalles de registro en OPAC) y en la pestaña de descripción(detalles del registro en Intranet). Los campos deben aparecer separados por comas y de acuerdo con el formato MARC Koha (por ejemplo, 3 .. para UNIMARC, 5 .. por MARC21)"
 
 # Cataloging > Display
 msgid "cataloguing.pref#OpacSuppression# (Leave blank if not used. Define a range like <code>192.168.</code>.)"
@@ -711,7 +711,7 @@ msgstr "No mostrar"
 
 # Cataloging > Spine Labels
 msgid "cataloguing.pref#SpineLabelShowPrintOnBibDetails# buttons on the bib details page to print item spine labels."
-msgstr "botones en la página de detalles de registros para imprimir en el lomo."
+msgstr "botones en la página de detalles de registros para imprimir tejuelos"
 
 # Cataloging > Record Structure
 msgid "cataloguing.pref#SubfieldsToUseWhenPrefill# Define a list of subfields to use when prefilling items (separated by space)"
@@ -791,7 +791,7 @@ msgstr "no son generados automáticamente."
 
 # Cataloging > Record Structure
 msgid "cataloguing.pref#autoControlNumber# (You should fill in a value in incrementalControlNumber preference.)"
-msgstr ""
+msgstr "(Debe introducir un valor en la preferencia incrementalControlNumber)"
 
 # Cataloging > Record Structure
 msgid "cataloguing.pref#autoControlNumber# Control Number (001) is"
@@ -827,7 +827,7 @@ msgstr "Usar el Número de control (001)"
 
 # Cataloging > Record Structure
 msgid "cataloguing.pref#incrementalControlNumber# as incremental number. (This requires generated in the form 1, 2, 3 in autoControlNumber preference.)"
-msgstr ""
+msgstr "como número incremental. (Esto requiere \"generado con la forma 1,2,3\" en la preferencia autoControlNumber)"
 
 # Cataloging > Record Structure
 msgid "cataloguing.pref#item-level_itypes# Use the item type of the"
@@ -923,7 +923,7 @@ msgstr "Auto préstamo"
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#AgeRestrictionMarker# E.g. enter target audience keyword(s) split by | (bar) FSK|PEGI|Age| (No white space near |). Be sure to map agerestriction in Koha to MARC mapping (e.g. 521$a). A MARC field value of FSK 12 or PEGI 12 would mean: Borrower must be 12 years old. Leave empty to not apply an age restriction."
-msgstr "E.j. introducir palabras clave objetivo dividido por | (bar) FSK|PEGI|Age| (No hay espacio blanco cerca |). Asegúrese de mapear una restricción de edad de Koha en el mapeo MARC  (e.j. 521$a). Un valor de campo MARC  FSK 12 o PEGI 12 debería siginificar: Prestatario debe ser mayor de 12 años. Dejar vacío sino aplica ninguna restricción de edad. "
+msgstr "E.j. introducir palabras clave por objetivo dividido por | (bar) FSK|PEGI|Age| (No necesita espacio en blanco |). Asegúrese de mapear una restricción de edad de Koha en el mapeo MARC  (e.j. 521$a). Un valor de campo MARC  FSK 12 o PEGI 12 debería siginificar: Prestatario debe ser mayor de 12 años. Dejar vacío sino aplica ninguna restricción de edad. "
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#AgeRestrictionMarker# Restrict patrons with the following target audience values from checking out inappropriate materials:"
@@ -1035,7 +1035,7 @@ msgstr "No permitir"
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#AllowItemsOnHoldCheckout# checkouts of items reserved to someone else. If allowed do not generate RESERVE_WAITING and RESERVED warning. This allows self checkouts for those items."
-msgstr "préstamos de ítems reservados a cualquier persona. Si se permite que no genere RESERVE_WAITING y RESERVED advertir. Esto permite auto préstamos para esos ítems."
+msgstr "préstamos de ítems reservados a cualquier persona. Si se permite que se genera aviso de RESERVE_WAITING y RESERVED. Esto permite auto préstamos para esos ítems."
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#AllowNotForLoanOverride# Allow"
@@ -1367,7 +1367,7 @@ msgstr "."
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#IssueLostItem# When issuing an item that has been marked as lost, "
-msgstr "Cuando estás utilizando un íteem que ha sido marcado como perdido, "
+msgstr "Cuando estás utilizando un ítem que ha sido marcado como perdido, "
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#IssueLostItem# display a message"
@@ -1383,11 +1383,11 @@ msgstr "require confirmación"
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#IssuingInProcess# Don't prevent"
-msgstr "No impidir"
+msgstr "No impedir"
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#IssuingInProcess# Prevent"
-msgstr "Impidir"
+msgstr "Impedir"
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#IssuingInProcess# patrons from checking out an item whose rental charge would take them over the limit."
@@ -1571,7 +1571,7 @@ msgstr "Requerir"
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#ReturnBeforeExpiry# patrons to return books before their accounts expire (by restricting due dates to before the patron's expiration date)."
-msgstr "a los usuarios la devolución de ítems antes del vencimiento de su carnet (asegurando que las fechas de devolución sean previas a la fecha de expiración)."
+msgstr "a los usuarios la devolución de ítems antes del vencimiento de su carné (asegurando que las fechas de devolución sean previas a la fecha de expiración)."
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#ReturnToShelvingCart# Don't move"
@@ -1667,7 +1667,7 @@ msgstr "No permitir"
 
 # Circulation > Holds Policy
 msgid "circulation.pref#SuspendHoldsIntranet# holds to be suspended from the intranet."
-msgstr "reservar para posponer desde la intranet."
+msgstr "que las reservas sean suspendidas desde la intranet."
 
 # Circulation > Holds Policy
 msgid "circulation.pref#SuspendHoldsOpac# Allow"
@@ -1679,7 +1679,7 @@ msgstr "No permitir"
 
 # Circulation > Holds Policy
 msgid "circulation.pref#SuspendHoldsOpac# holds to be suspended from the OPAC."
-msgstr "reservar para posponer desde el OPAC."
+msgstr "reservas sean suspendidas desde el OPAC."
 
 # Circulation > Holds Policy
 msgid "circulation.pref#TransferWhenCancelAllWaitingHolds# Don't transfer"
@@ -1703,15 +1703,15 @@ msgstr "días después de su envío."
 
 # Circulation > Interface
 msgid "circulation.pref#UpdateTotalIssuesOnCirc# Do"
-msgstr "Hacer"
+msgstr "Sí"
 
 # Circulation > Interface
 msgid "circulation.pref#UpdateTotalIssuesOnCirc# Do not"
-msgstr "No hacer"
+msgstr "No"
 
 # Circulation > Interface
 msgid "circulation.pref#UpdateTotalIssuesOnCirc# update a bibliographic record's total issues count whenever an item is issued (WARNING! This increases server load significantly; if performance is a concern, use the update_totalissues.pl cron job to update the total issues count)."
-msgstr "update a bibliographic record's total issues count whenever an item is issued (WARNING! This increases server load significantly; if performance is a concern, use the update_totalissues.pl cron job to update the total issues count)."
+msgstr "actualizar el total de préstamo de un registro bibliográfico cuando sea prestado (¡CUIDADO! Esto aumenta significativamente la carga del servidor; si el rendimiento es un problema, use el cron job update_totalissues.pl para actualizar el conteo total de préstamos)."
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#UseBranchTransferLimits# ."
@@ -1767,7 +1767,7 @@ msgstr "No utilizar"
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#UseTransportCostMatrix# Transport Cost Matrix for calculating optimal holds filling between branches."
-msgstr "Transporte Matriz de Coste para el cálculo óptimo de reservas solicitadas entre bibliotecas."
+msgstr "la matriz de coste de transporte para el cálculo óptimo de reservas solicitadas entre bibliotecas."
 
 # Circulation > Checkout Policy
 msgid "circulation.pref#UseTransportCostMatrix# Use"
@@ -1927,7 +1927,7 @@ msgstr "Mostrar los"
 
 # Circulation > Interface
 msgid "circulation.pref#numReturnedItemsToShow# last returned items on the checkin screen."
-msgstr "últimos íems devueltos en la pantalla de comprobación"
+msgstr "últimos ítems devueltos en la pantalla de circulación"
 
 # Circulation > Interface
 msgid "circulation.pref#previousIssuesDefaultSortOrder# Sort previous checkouts on the circulation page from"
@@ -2475,7 +2475,7 @@ msgstr "Mostrar"
 
 # Enhanced Content > Syndetics
 msgid "enhanced_content.pref#SyndeticsCoverImages# cover images from Syndetics on search results and item detail pages on the OPAC in a"
-msgstr "cubiertas de libros desde Syndetics en los resultados de búsqueda y paginas de detalles de ítem en el OAPC con un tamaño"
+msgstr "cubiertas de libros desde Syndetics en los resultados de búsqueda y paginas de detalles de ítem en el OPAC con un tamaño"
 
 # Enhanced Content > Syndetics
 msgid "enhanced_content.pref#SyndeticsCoverImages# large"
@@ -2907,7 +2907,7 @@ msgstr "Privacidad"
 
 # OPAC > Self Registration
 msgid "opac.pref Self Registration"
-msgstr "opac.pref Self Registration"
+msgstr "Auto Registro"
 
 # OPAC > Shelf Browser
 msgid "opac.pref Shelf Browser"
@@ -3107,7 +3107,7 @@ msgstr "a los usuarios hacer reservas sobre ítems específicos en el OPAC. Si n
 
 # OPAC > Appearance
 msgid "opac.pref#OPACMobileUserCSS# Include the following CSS for the mobile view on all pages in the OPAC:"
-msgstr "incluir las siguiente CSS en todas las páginas del OPAC para la vista de móvil:"
+msgstr "Incluir las siguiente CSS en todas las páginas del OPAC para la vista de móvil:"
 
 # OPAC > Appearance
 msgid "opac.pref#OPACMySummaryHTML# <br />Note: The placeholders {BIBLIONUMBER}, {TITLE}, {ISBN} and {AUTHOR} will be replaced with information from the displayed record."
@@ -3195,7 +3195,7 @@ msgstr "Mostrar"
 
 # OPAC > Appearance
 msgid "opac.pref#OPACShowBarcode# the item's barcode on the holdings tab."
-msgstr "el código de barras del ítemen la tab de reservas."
+msgstr "el código de barras del ítem en la pestaña de reservas."
 
 # OPAC > Appearance
 msgid "opac.pref#OPACShowCheckoutName# Don't show"
@@ -3275,7 +3275,7 @@ msgstr "sugerencias de compra de otros usuarios en el OPAC."
 
 # OPAC > Appearance
 msgid "opac.pref#OPACXSLTDetailsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
-msgstr "<br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li>pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo específica externa.</li></ul>{langcode} será reemplazado con una interfaz de idioma habitual"
+msgstr "<br />Opciones:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"\">Dejar vacío</a> para \"no xslt\"</li><li>introduzca \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTDetailsDisplay\" data-value=\"default\">default</a>\" para la CSS predeterminada</li><li>incluir una ruta para definir un fichero xslt </li><li>incluir una URL para una hoja de estilo específica externa.</li></ul>{langcode} será reemplazado con la interfaz de idioma habitual"
 
 # OPAC > Appearance
 msgid "opac.pref#OPACXSLTDetailsDisplay# Display OPAC details using XSLT stylesheet at: "
@@ -3283,7 +3283,7 @@ msgstr "Mostrar detalles en OPAC utilizando la hoja de estilo XSLT en: "
 
 # OPAC > Appearance
 msgid "opac.pref#OPACXSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
-msgstr "<br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> pon un path para definir un fichero xslt </li><li>pon una URL fpara una hoja de estilo específica externa.</li></ul>{langcode} será reemplazado con una interfaz de idioma habitual"
+msgstr "<br />Opciones<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"\">Dejar vacío</a> para \"no xslt\"</li><li>introducir \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"OPACXSLTResultsDisplay\" data-value=\"default\">default</a>\" para la CSS predeterminada</li><li>incluir un ruta para definir un fichero xslt </li><li>incluir una URL para una hoja de estilo específica externa.</li></ul>{langcode} será reemplazado con la interfaz de idioma habitual"
 
 # OPAC > Appearance
 msgid "opac.pref#OPACXSLTResultsDisplay# Display OPAC results using XSLT stylesheet at: "
@@ -3427,15 +3427,15 @@ msgstr "palabras buscadas por el usuario para su página de resultados y detalle
 
 # OPAC > Features
 msgid "opac.pref#OpacHoldNotes# Allow"
-msgstr ""
+msgstr "Permitir"
 
 # OPAC > Features
 msgid "opac.pref#OpacHoldNotes# Do not allow"
-msgstr ""
+msgstr "No permitir"
 
 # OPAC > Features
 msgid "opac.pref#OpacHoldNotes# users to add a note when placing a hold."
-msgstr ""
+msgstr "a los usuarios añadir un nota cuando realizan una reserva"
 
 # OPAC > Features
 msgid "opac.pref#OpacItemLocation# Show"
@@ -3459,7 +3459,7 @@ msgstr "localización."
 
 # OPAC > Appearance
 msgid "opac.pref#OpacKohaUrl# 'Powered by Koha' text on OPAC footer."
-msgstr "el texto 'Powered by Koha' en el pié del OPAC."
+msgstr "el texto 'Powered by Koha' en el pie del OPAC."
 
 # OPAC > Appearance
 msgid "opac.pref#OpacKohaUrl# Don't show"
@@ -3679,7 +3679,7 @@ msgstr "(separar columnas con |)"
 
 # OPAC > Self Registration
 msgid "opac.pref#PatronSelfRegistrationBorrowerMandatoryField# The following <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>database columns</a> must be filled in on the patron entry screen:"
-msgstr "El siguiente <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a> deberá ser rellenado en la pantalla de entrada del usuario:"
+msgstr "Las siguientes <a href='http://schema.koha-community.org/tables/borrowers.html' target='blank'>columnas de base de datos</a> deberá ser rellenadas en la pantalla de entrada del usuario:"
 
 # OPAC > Self Registration
 msgid "opac.pref#PatronSelfRegistrationBorrowerUnwantedField# (separate columns with |)"
@@ -3831,7 +3831,7 @@ msgstr "Mostrar"
 
 # OPAC > Features
 msgid "opac.pref#ShowReviewerPhoto# reviewer's photo beside comments in OPAC."
-msgstr "revisor de fotos al lado de los comentarios en el OPAC"
+msgstr "revisión de fotos al lado de los comentarios en el OPAC"
 
 # OPAC > Features
 msgid "opac.pref#SocialNetworks# Disable"
@@ -4043,7 +4043,7 @@ msgstr "categorías específicas"
 
 # Patrons
 msgid "patrons.pref#AddPatronLists# under the new patron menu."
-msgstr "en el menú nuevo usuario."
+msgstr "en el menú de nuevo usuario."
 
 # Patrons
 msgid "patrons.pref#AutoEmailOpacUser# Don't send"
@@ -4079,7 +4079,7 @@ msgstr "Inicio"
 
 # Patrons
 msgid "patrons.pref#AutoEmailPrimaryAddress# patron email address for sending out emails."
-msgstr "direccicón de correo electrónico del usuario para enviar emails"
+msgstr "dirección de correo electrónico del usuario para enviar emails"
 
 # Patrons
 msgid "patrons.pref#AutoEmailPrimaryAddress# work"
@@ -4123,11 +4123,11 @@ msgstr "Los usuarios pueden tener los siguientes títulos:"
 
 # Patrons
 msgid "patrons.pref#EnableBorrowerFiles# Do"
-msgstr "Hacer"
+msgstr "Sí"
 
 # Patrons
 msgid "patrons.pref#EnableBorrowerFiles# Don't"
-msgstr "No hacer"
+msgstr "No"
 
 # Patrons
 msgid "patrons.pref#EnableBorrowerFiles# enable the ability to upload and attach arbitrary files to a borrower record."
@@ -4163,7 +4163,7 @@ msgstr "Valor vacío significa no límite. El tope del ítem se especifica en la
 
 # Patrons
 msgid "patrons.pref#MaxFine# The late fine for all checkouts will only go up to"
-msgstr "The late fine for all checkouts will only go up to"
+msgstr "La última multa para todos los préstamos ascenderá a "
 
 # Patrons
 msgid "patrons.pref#MaxFine# [% local_currency %]."
@@ -4199,7 +4199,7 @@ msgstr "(separa campos com |)"
 
 # Patrons
 msgid "patrons.pref#StatisticsFields# Show the following fields from the items database table as columns on the statistics tab on the patron record: "
-msgstr "los siguientes campos de las tablas de la base de datos de los ítems como columnas en la pestaña dee estadísticas sobre el registro de usuario: "
+msgstr "Los siguientes campos de las tablas de la base de datos de los ítems como columnas en la pestaña de estadísticas en el registro de usuario: "
 
 # Patrons
 msgid "patrons.pref#TalkingTechItivaPhoneNotification# Disable"
@@ -4227,7 +4227,7 @@ msgstr "configurar por defecto el siguiente número de usuario disponible (por e
 
 # Patrons
 msgid "patrons.pref#borrowerRelationship# (input multiple choices separated by |). Leave empty to deactivate"
-msgstr "(múltiples opciones de entrada separadas por |).Cuando esté desactivado salir vacío"
+msgstr "(múltiples opciones de entrada separadas por |). Dejar vacío para desactivar."
 
 # Patrons
 msgid "patrons.pref#borrowerRelationship# Guarantors can be the following of those they guarantee:"
@@ -4907,7 +4907,7 @@ msgstr " <br />Opciones:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref
 
 # Staff Client > Appearance
 msgid "staff_client.pref#XSLTDetailsDisplay# Display details in the staff client using XSLT stylesheet at: "
-msgstr "Mostrar detalles en el clietne administrador utilizando la hoja de estilo XSLT en:"
+msgstr "Mostrar detalles en el cliente administrador utilizando la hoja de estilo XSLT en:"
 
 # Staff Client > Appearance
 msgid "staff_client.pref#XSLTResultsDisplay# <br />Options:<ul><li><a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"\">Leave empty</a> for \"no xslt\"</li><li>enter \"<a href=\"#\" class=\"set_syspref\" data-syspref=\"XSLTResultsDisplay\" data-value=\"default\">default</a>\" for the default one</li><li> put a path to define a xslt file</li><li>put an URL for an external specific stylesheet.</li></ul>{langcode} will be replaced with current interface language"
