@@ -876,11 +876,7 @@ foreach my $tag ( keys %{$tagslib}){
         next if any { /^$tag$subtag$/ }  @fields;
 
         my @values = (undef);
-<<<<<<< HEAD:cataloguing/additem.pl
         @values = $itemrecord->field($tag)->subfield($subtag) if ($itemrecord && defined($itemrecord->field($tag)) && defined($itemrecord->field($tag)->subfield($subtag)));
-=======
-        @values = $itemrecord->field($tag)->subfield($subtag) if ($itemrecord && defined($itemrecord->field($tag) && $itemrecord->field($tag)->subfield($subtag)));
->>>>>>> Local repository:cataloguing/additem.pl
         for my $value (@values){
             my $subfield_data = generate_subfield_form($tag, $subtag, $value, $tagslib, $tagslib->{$tag}->{$subtag}, $branches, $today_iso, $biblionumber, $temp, \@loop_data, $i); 
             push (@loop_data, $subfield_data);
