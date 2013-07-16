@@ -954,13 +954,13 @@ Idioma principal para la indexación de Zebra);
 
         $msg = q(
 Koha-Kobli puede usar dos formas para indexar los 
-registros bibliogr�ficos:
+registros bibliográficos:
 
 grs1 - usa el filtro GRS-1 de Zebra, para mantener compatiblidad
        anterior.
 dom  - usa el filtro DOM XML; ofrece funcionalidad mejorada.
 
-Modo de indexaci�n de bibliogr�ficos);
+Modo de indexación de bibliográficos);
         $msg .= _add_valid_values_disp('BIB_INDEX_MODE', $valid_values);
         $config{'BIB_INDEX_MODE'} = _get_value('BIB_INDEX_MODE', $msg, $defaults->{'BIB_INDEX_MODE'}, $valid_values, $install_log_values);
 
