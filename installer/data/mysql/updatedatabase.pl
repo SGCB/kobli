@@ -6913,13 +6913,13 @@ if ( CheckVersion($DBversion) ) {
     SetVersion ($DBversion);
 }
 
-$DBversion = '3.13.00.000';
+$DBversion = '3.12.00.000';
 if ( CheckVersion($DBversion) ) {
     print "Upgrade to $DBversion done (start the journey to Koha Pi)\n";
     SetVersion ($DBversion);
 }
 
-$DBversion = "3.13.00.001";
+$DBversion = "3.12.00.001";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("INSERT INTO `systempreferences` (`variable`, `value`, `options`, `explanation`, `type`) VALUES ('UseCourseReserves', '0', NULL, 'Enable the course reserves feature.', 'YesNo')");
     $dbh->do("INSERT INTO userflags (bit,flag,flagdesc,defaulton) VALUES ('18','coursereserves','Course Reserves','0')");
@@ -7009,21 +7009,21 @@ INSERT INTO permissions (module_bit, code, description) VALUES
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.002";
+$DBversion = "3.12.00.002";
 if ( CheckVersion($DBversion) ) {
    $dbh->do("UPDATE systempreferences SET variable = 'IndependentBranches' WHERE variable = 'IndependantBranches'");
    print "Upgrade to $DBversion done (Bug 10080 - Change system pref IndependantBranches to IndependentBranches)\n";
    SetVersion ($DBversion);
 }
 
-$DBversion = '3.13.00.003';
+$DBversion = '3.12.00.003';
 if ( CheckVersion($DBversion) ) {
     $dbh->do("ALTER TABLE serial DROP itemnumber");
     print "Upgrade to $DBversion done (Bug 7718 - Remove itemnumber column from serials table)\n";
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.004";
+$DBversion = "3.12.00.004";
 if(CheckVersion($DBversion)) {
     $dbh->do(
 "INSERT IGNORE INTO systempreferences (variable,value,explanation,options,type) VALUES('OpacShowHoldNotes',0,'Show hold notes on OPAC','','YesNo')"
@@ -7032,7 +7032,7 @@ if(CheckVersion($DBversion)) {
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.005";
+$DBversion = "3.12.00.005";
 if(CheckVersion($DBversion)) {
     my $intra= C4::Context->preference("intranetstylesheet");
     #if this pref is not blank or starting with http, https or / [root], then
@@ -7046,7 +7046,7 @@ if(CheckVersion($DBversion)) {
     SetVersion ($DBversion);
 }
 
-$DBversion = "3.13.00.006";
+$DBversion = "3.12.00.006";
 if ( CheckVersion($DBversion) ) {
     $dbh->do(
         q{
@@ -7058,14 +7058,14 @@ INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES (
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.007";
+$DBversion = "3.12.00.007";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("UPDATE systempreferences SET variable='OpacHoldNotes' WHERE variable='OpacShowHoldNotes'");
     print "Upgrade to $DBversion done (Bug 10343: Rename OpacShowHoldNotes to OpacHoldNotes)\n";
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.008";
+$DBversion = "3.12.00.008";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("
 CREATE TABLE IF NOT EXISTS borrower_files (
@@ -7085,7 +7085,7 @@ CREATE TABLE IF NOT EXISTS borrower_files (
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.009";
+$DBversion = "3.12.00.009";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("ALTER TABLE aqorders DROP COLUMN biblioitemnumber");
     print "Upgrade to $DBversion done (Bug 9987 - Drop column aqorders.biblioitemnumber)\n";

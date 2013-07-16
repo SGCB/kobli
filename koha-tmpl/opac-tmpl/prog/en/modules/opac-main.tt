@@ -28,7 +28,7 @@
   </div>
 
     [% IF ( OpacMainUserBlock ) %]<div id="opacmainuserblock" class="container">[% OpacMainUserBlock %]</div>[% END %]
-
+    [% IF ( OpacMainUserBlockMobile ) %]<div id="opacmainuserblockmobile" class="container">[% OpacMainUserBlockMobile %]</div>[% END %]
   [% IF ( koha_news_count ) %]
     <div id="news" class="container">
     <table>

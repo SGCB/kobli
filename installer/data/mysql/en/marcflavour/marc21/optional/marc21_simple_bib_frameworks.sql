@@ -6236,7 +6236,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
 		('856', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 1, 'CF', '', '', NULL),
 		('856', 'y', 'Link text', 'Link text', 1, 0, '', 8, '', '', '', 0, -1, 'CF', '', '', NULL),
 		('856', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, -1, 'CF', '', '', NULL),
-<<<<<<< HEAD:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('859', 'b', 'Operator\'s initials, OID (RLIN)', 'Operator\'s initials, OID (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'CF', '', '', NULL),
 		('859', 'c', 'Cataloger\'s initials, CIN (RLIN)', 'Cataloger\'s initials, CIN (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'CF', '', '', NULL),
 		('859', 'd', 'TDC (RLIN)', 'TDC (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'CF', '', '', NULL),
@@ -6320,8 +6319,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
                 ('865', 'w', 'Break indicator', 'Break indicator', 0, 0, '', 8, '', '', '', 0, 5, 'CF', '', '', NULL),
                 ('865', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 5, 'CF', '', '', NULL),
                 ('865', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, 5, 'CF', '', '', NULL),
-=======
->>>>>>> Frameworks en ingles con las modificaciones del MARC 13 y 14:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('866', '6', 'Linkage', 'Linkage', 0, 0, '', 8, '', '', '', NULL, 5, 'CF', '', '', NULL),
 		('866', '8', 'Field link and sequence number', 'Field link and sequence number', 1, 0, '', 8, '', '', '', NULL, 5, 'CF', '', '', NULL),
 		('866', 'a', 'Textual holdings', 'Textual holdings', 0, 0, '', 8, '', '', '', 0, 5, 'CF', '', '', NULL),
@@ -9833,7 +9830,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
 		('856', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 1, 'SR', '', '', NULL),
 		('856', 'y', 'Link text', 'Link text', 1, 0, '', 8, '', '', '', 0, -1, 'SR', '', '', NULL),
 		('856', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, -1, 'SR', '', '', NULL),
-<<<<<<< HEAD:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('859', 'b', 'Operator\'s initials, OID (RLIN)', 'Operator\'s initials, OID (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'SR', '', '', NULL),
 		('859', 'c', 'Cataloger\'s initials, CIN (RLIN)', 'Cataloger\'s initials, CIN (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'SR', '', '', NULL),
 		('859', 'd', 'TDC (RLIN)', 'TDC (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'SR', '', '', NULL),
@@ -9917,8 +9913,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
                 ('865', 'w', 'Break indicator', 'Break indicator', 0, 0, '', 8, '', '', '', 0, 5, 'SR', '', '', NULL),
                 ('865', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 5, 'SR', '', '', NULL),
                 ('865', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, 5, 'SR', '', '', NULL),
-=======
->>>>>>> Frameworks en ingles con las modificaciones del MARC 13 y 14:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('866', '6', 'Linkage', 'Linkage', 0, 0, '', 8, '', '', '', NULL, 5, 'SR', '', '', NULL),
 		('866', '8', 'Field link and sequence number', 'Field link and sequence number', 1, 0, '', 8, '', '', '', NULL, 5, 'SR', '', '', NULL),
 		('866', 'a', 'Textual holdings', 'Textual holdings', 0, 0, '', 8, '', '', '', 0, 5, 'SR', '', '', NULL),
@@ -13430,7 +13424,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
 		('856', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 1, 'VR', '', '', NULL),
 		('856', 'y', 'Link text', 'Link text', 1, 0, '', 8, '', '', '', 0, -1, 'VR', '', '', NULL),
 		('856', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, -1, 'VR', '', '', NULL),
-<<<<<<< HEAD:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('859', 'b', 'Operator\'s initials, OID (RLIN)', 'Operator\'s initials, OID (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'VR', '', '', NULL),
 		('859', 'c', 'Cataloger\'s initials, CIN (RLIN)', 'Cataloger\'s initials, CIN (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'VR', '', '', NULL),
 		('859', 'd', 'TDC (RLIN)', 'TDC (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'VR', '', '', NULL),
@@ -13514,8 +13507,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
                 ('865', 'w', 'Break indicator', 'Break indicator', 0, 0, '', 8, '', '', '', 0, 5, 'VR', '', '', NULL),
                 ('865', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 5, 'VR', '', '', NULL),
                 ('865', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, 5, 'VR', '', '', NULL),
-=======
->>>>>>> Frameworks en ingles con las modificaciones del MARC 13 y 14:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('866', '6', 'Linkage', 'Linkage', 0, 0, '', 8, '', '', '', NULL, 5, 'VR', '', '', NULL),
 		('866', '8', 'Field link and sequence number', 'Field link and sequence number', 1, 0, '', 8, '', '', '', NULL, 5, 'VR', '', '', NULL),
 		('866', 'a', 'Textual holdings', 'Textual holdings', 0, 0, '', 8, '', '', '', 0, 5, 'VR', '', '', NULL),
@@ -17025,7 +17016,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
 		('856', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 1, 'AR', '', '', NULL),
 		('856', 'y', 'Link text', 'Link text', 1, 0, '', 8, '', '', '', 0, -1, 'AR', '', '', NULL),
 		('856', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, -1, 'AR', '', '', NULL),
-<<<<<<< HEAD:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('859', 'b', 'Operator\'s initials, OID (RLIN)', 'Operator\'s initials, OID (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'AR', '', '', NULL),
 		('859', 'c', 'Cataloger\'s initials, CIN (RLIN)', 'Cataloger\'s initials, CIN (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'AR', '', '', NULL),
 		('859', 'd', 'TDC (RLIN)', 'TDC (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'AR', '', '', NULL),
@@ -17109,8 +17099,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
                 ('865', 'w', 'Break indicator', 'Break indicator', 0, 0, '', 8, '', '', '', 0, 5, 'AR', '', '', NULL),
                 ('865', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 5, 'AR', '', '', NULL),
                 ('865', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, 5, 'AR', '', '', NULL),
-=======
->>>>>>> Frameworks en ingles con las modificaciones del MARC 13 y 14:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('866', '6', 'Linkage', 'Linkage', 0, 0, '', 8, '', '', '', NULL, 5, 'AR', '', '', NULL),
 		('866', '8', 'Field link and sequence number', 'Field link and sequence number', 1, 0, '', 8, '', '', '', NULL, 5, 'AR', '', '', NULL),
 		('866', 'a', 'Textual holdings', 'Textual holdings', 0, 0, '', 8, '', '', '', 0, 5, 'AR', '', '', NULL),
@@ -20620,7 +20608,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
 		('856', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 1, 'KT', '', '', NULL),
 		('856', 'y', 'Link text', 'Link text', 1, 0, '', 8, '', '', '', 0, -1, 'KT', '', '', NULL),
 		('856', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, -1, 'KT', '', '', NULL),
-<<<<<<< HEAD:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('859', 'b', 'Operator\'s initials, OID (RLIN)', 'Operator\'s initials, OID (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'KT', '', '', NULL),
 		('859', 'c', 'Cataloger\'s initials, CIN (RLIN)', 'Cataloger\'s initials, CIN (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'KT', '', '', NULL),
 		('859', 'd', 'TDC (RLIN)', 'TDC (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'KT', '', '', NULL),
@@ -20704,8 +20691,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
                 ('865', 'w', 'Break indicator', 'Break indicator', 0, 0, '', 8, '', '', '', 0, 5, 'KT', '', '', NULL),
                 ('865', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 5, 'KT', '', '', NULL),
                 ('865', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, 5, 'KT', '', '', NULL),
-=======
->>>>>>> Frameworks en ingles con las modificaciones del MARC 13 y 14:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('866', '6', 'Linkage', 'Linkage', 0, 0, '', 8, '', '', '', NULL, 5, 'KT', '', '', NULL),
 		('866', '8', 'Field link and sequence number', 'Field link and sequence number', 1, 0, '', 8, '', '', '', NULL, 5, 'KT', '', '', NULL),
 		('866', 'a', 'Textual holdings', 'Textual holdings', 0, 0, '', 8, '', '', '', 0, 5, 'KT', '', '', NULL),
@@ -24216,7 +24201,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
 		('856', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 1, 'IR', '', '', NULL),
 		('856', 'y', 'Link text', 'Link text', 1, 0, '', 8, '', '', '', 0, -1, 'IR', '', '', NULL),
 		('856', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, -1, 'IR', '', '', NULL),
-<<<<<<< HEAD:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('859', 'b', 'Operator\'s initials, OID (RLIN)', 'Operator\'s initials, OID (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'IR', '', '', NULL),
 		('859', 'c', 'Cataloger\'s initials, CIN (RLIN)', 'Cataloger\'s initials, CIN (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'IR', '', '', NULL),
 		('859', 'd', 'TDC (RLIN)', 'TDC (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'IR', '', '', NULL),
@@ -24300,8 +24284,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
                 ('865', 'w', 'Break indicator', 'Break indicator', 0, 0, '', 8, '', '', '', 0, 5, 'IR', '', '', NULL),
                 ('865', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 5, 'IR', '', '', NULL),
                 ('865', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, 5, 'IR', '', '', NULL),
-=======
->>>>>>> Frameworks en ingles con las modificaciones del MARC 13 y 14:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('866', '6', 'Linkage', 'Linkage', 0, 0, '', 8, '', '', '', NULL, 5, 'IR', '', '', NULL),
 		('866', '8', 'Field link and sequence number', 'Field link and sequence number', 1, 0, '', 8, '', '', '', NULL, 5, 'IR', '', '', NULL),
 		('866', 'a', 'Textual holdings', 'Textual holdings', 0, 0, '', 8, '', '', '', 0, 5, 'IR', '', '', NULL),
@@ -27808,7 +27790,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
 		('856', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 1, 'SER', '', '', NULL),
 		('856', 'y', 'Link text', 'Link text', 1, 0, '', 8, '', '', '', 0, -1, 'SER', '', '', NULL),
 		('856', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, -1, 'SER', '', '', NULL),
-<<<<<<< HEAD:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('859', 'b', 'Operator\'s initials, OID (RLIN)', 'Operator\'s initials, OID (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'SER', '', '', NULL),
 		('859', 'c', 'Cataloger\'s initials, CIN (RLIN)', 'Cataloger\'s initials, CIN (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'SER', '', '', NULL),
 		('859', 'd', 'TDC (RLIN)', 'TDC (RLIN)', 0, 0, '', 8, '', '', '', 0, 5, 'SER', '', '', NULL),
@@ -27892,8 +27873,6 @@ INSERT INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`
                 ('865', 'w', 'Break indicator', 'Break indicator', 0, 0, '', 8, '', '', '', 0, 5, 'SER', '', '', NULL),
                 ('865', 'x', 'Nonpublic note', 'Nonpublic note', 1, 0, '', 8, '', '', '', 0, 5, 'SER', '', '', NULL),
                 ('865', 'z', 'Public note', 'Public note', 1, 0, '', 8, '', '', '', 0, 5, 'SER', '', '', NULL),
-=======
->>>>>>> Frameworks en ingles con las modificaciones del MARC 13 y 14:installer/data/mysql/en/marcflavour/marc21/optional/marc21_simple_bib_frameworks.sql
 		('866', '6', 'Linkage', 'Linkage', 0, 0, '', 8, '', '', '', NULL, 5, 'SER', '', '', NULL),
 		('866', '8', 'Field link and sequence number', 'Field link and sequence number', 1, 0, '', 8, '', '', '', NULL, 5, 'SER', '', '', NULL),
 		('866', 'a', 'Textual holdings', 'Textual holdings', 0, 0, '', 8, '', '', '', 0, 5, 'SER', '', '', NULL),

@@ -38,7 +38,10 @@ INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('IndependentBranches',0,'If ON, increases security between libraries',NULL,'YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('IntranetBiblioDefaultView','normal','Choose the default detail view in the staff interface; choose between normal, labeled_marc, marc or isbd','normal|marc|isbd|labeled_marc','Choice');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('intranetcolorstylesheet','','Define the color stylesheet to use in the Staff Client','50','free');
-INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('IntranetmainUserblock','','Add a block of HTML that will display on the intranet home page','70|10','Textarea');
+INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('IntranetmainUserblock','<H3> - Manual de Koha 3.12 en español: 
+<a href=\"http://es.koha-community.org/manual/3.12/es/\" target=\"_blank\">HTML</a> | <a href=\"http://es.koha-community.org/manual/3.12/es/manual.html.zip\">HTML</a> (ZIP 53 MB) | <a href=\"http://es.koha-community.org/manual/3.12/es/manual.pdf\">PDF</a> (42 MB) |</H3>
+<H3> - Lea y participe en las listas de soporte: <a href=\"http://kobli.bage.es/soporte/lista-de-soporte-kobli/\" target=\"_blank\">KOBLI y KOBLI-SYSADMIN
+</a></h3>','Add a block of HTML that will display on the intranet home page','70|10','Textarea');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('IntranetNav','','Use HTML tabs to add navigational links to the top-hand navigational bar in the Staff Client','70|10','Textarea');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('intranetreadinghistory',1,'If ON, Reading History is enabled for all patrons','','YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('intranetstylesheet','','Enter a complete URL to use an alternate layout stylesheet in Intranet','50','free');
@@ -72,7 +75,7 @@ INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OpacBrowser',1,'If ON, enables subject authorities browser on OPAC (needs to set misc/cronjob/sbuild_browser_and_cloud.pl)',NULL,'YesNo');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('OpacCloud',0,'Si ON, habilita nube de temas en el OPAC',NULL,'YesNo');
 INSERT INTO `systempreferences`(`variable`,`value`,`options`,`explanation`,`type`) VALUES ('opaccolorstylesheet','color1.css','','Define the color stylesheet to use in the OPAC','free');
-INSERT INTO `systempreferences`(`variable`,`value`,`options`,`explanation`,`type`) VALUES ('opaccredits','Koha. Kobli, Ministerio de Educación, Cultura y Deporte Espa&ntilde;a, 2012','70|10','Define HTML Credits at the bottom of the OPAC page','Textarea');
+INSERT INTO `systempreferences`(`variable`,`value`,`options`,`explanation`,`type`) VALUES ('opaccredits','Koha. Kobli, Ministerio de Educación, Cultura y Deporte Espa&ntilde;a, 2013','70|10','Define HTML Credits at the bottom of the OPAC page','Textarea');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opacSerialDefaultTab', 'subscriptions', 'Define the default tab for serials in OPAC.', 'holdings|serialcollection|subscriptions', 'Choice');
 INSERT INTO `systempreferences`(`variable`,`value`,`options`,`explanation`,`type`) VALUES ('opacheader','<div class=\"kobli\"> <strong>Kobli</strong> Koha para las Bibliotecas de la Administraci&oacute;n General del Estado</div>','70|10','Add HTML to be included as a custom header in the OPAC','Textarea');
 INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('opaclayoutstylesheet','opac.css','Enter the name of the layout CSS stylesheet to use in the OPAC','','free');
