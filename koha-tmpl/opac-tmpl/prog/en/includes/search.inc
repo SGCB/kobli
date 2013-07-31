@@ -99,5 +99,5 @@
 <div style="width:80%;*margin-bottom:-30px;">
 [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink">Lists</a>[% END %][% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %]
 </div>
-[% END %]
+[% END %]</div>
 [% END %]
