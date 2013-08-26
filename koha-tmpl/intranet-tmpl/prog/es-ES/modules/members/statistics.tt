@@ -28,7 +28,7 @@
  <thead>
  <tr>
  [% FOREACH cn IN column_names %] <th>
- [% SWITCH cn %][% CASE 'itype' %]Tipo de ítem [% CASE 'ccode' %]Código Colección [% CASE 'location' %]Ubicación en estante [% CASE 'homebranch' %] Biblioteca Origen [% CASE 'holdingbranch' %] Biblioteca propietaria [% CASE %] [% cn %] [% END %] </th>
+ [% SWITCH cn %][% CASE 'itype' %]Tipo de ítem [% CASE 'ccode' %]Código de la colección [% CASE 'location' %]Ubicación en estantería [% CASE 'homebranch' %] Biblioteca Origen [% CASE 'holdingbranch' %] Biblioteca propietaria [% CASE %] [% cn %] [% END %] </th>
  [% END %] <th>Total de préstamos a fecha de ayer</th>
  <th>Préstamos de hoy</th>
  <th>Notificaciones de hoy </th>

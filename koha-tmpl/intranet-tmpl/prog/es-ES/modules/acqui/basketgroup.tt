@@ -1,7 +1,7 @@
 [% USE KohaBranchName %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Agrupación de bolsas para [% booksellername |html %]</title>
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript" src="[% yuipath %]/utilities/utilities.js"></script>
 <script type="text/javascript" src="[% yuipath %]/button/button-min.js"></script>
 <script type="text/javascript" src="[% yuipath %]/container/container_core-min.js"></script>
@@ -90,6 +90,12 @@ fieldset.various li {
 //<![CDATA[
 	YAHOO.util.Event.onDOMReady(DDApp.init, DDApp, true);
 
+var MSG_CONFIRM_CLOSE_BASKETGROUP = _("¿Está seguro de querer cerrar esta cesta?");
+var MSG_CLOSE_EMPTY_BASKET = _("¿Por qué cerrar una cesta vacía? ");
+var MSG_SAVE_BEFORE_PRINTING = _(" Necesitará guardar la página antes de imprimir ");
+var MSG_REOPEN_BASKETGROUP = _("Abrir de nuevo grupo de cestas ");
+var MSG_FILE_DOWNLOAD_ERROR = _("Error al descargar el archivo ");
+
 function submitForm(form) {
     if (form.close.checked == true) {
 	var input = document.createElement("input");
@@ -137,7 +143,7 @@ function submitForm(form) {
  <ul id="ungrouped" class="draglist_alt">
  [% IF ( baskets ) %] [% FOREACH basket IN baskets %] <li class="ungrouped" id="b-[% basket.basketno %]" >
  <a href="basket.pl?basketno=[% basket.basketno %]">
- [% IF ( basket.basketname ) %] [% basket.basketname %] [% ELSE %] Sin nombre, número de bolsa: [% basket.basketno %] [% END %] </a>, <br />
+ [% IF ( basket.basketname ) %] [% basket.basketname %] [% ELSE %] Sin nombre, número de cesta: [% basket.basketno %] [% END %] </a>, <br />
  Total: [% basket.total %] <input type="hidden" class="basket" name="basket" value="[% basket.basketno %]" />
  </li>
  [% END %] [% END %] </ul>
@@ -174,7 +180,7 @@ function submitForm(form) {
  <ul class="draglist" id="bg">
  [% FOREACH selectedbasket IN selectedbaskets %] <li class="grouped" id="b-[% selectedbasket.basketno %]" >
  <a href="basket.pl?basketno=[% selectedbasket.basketno %]">
- [% IF ( selectedbasket.basketname ) %] [% selectedbasket.basketname %] [% ELSE %] Sin nombre, número de bolsa: [% selectedbasket.basketno %] [% END %] </a>, <br />
+ [% IF ( selectedbasket.basketname ) %] [% selectedbasket.basketname %] [% ELSE %] Sin nombre, número de cesta: [% selectedbasket.basketno %] [% END %] </a>, <br />
  Total: [% selectedbasket.total %] <input type="hidden" class="basket" name="basket" value="[% selectedbasket.basketno %]" />
  </li>
  [% END %] </ul>
@@ -215,7 +221,7 @@ function submitForm(form) {
  </thead>
  <tbody>
  [% FOREACH basketgroup IN basketgroups %] [% UNLESS ( basketgroup.closed ) %] <tr>
- <td>[% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de bolsas nº. [% basketgroup.id %] [% END %]</td>
+ <td>[% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de cestas nº. [% basketgroup.id %] [% END %]</td>
  <td>[% basketgroup.id %]</td>
  <td>[% basketgroup.billingplace | $KohaBranchName %]</td>
  <td>[% IF (basketgroup.freedeliveryplace) %]Lugar de entrega[% ELSE %][% basketgroup.deliveryplace | $KohaBranchName %][% END %]</td>
@@ -244,7 +250,7 @@ function submitForm(form) {
  <tbody>
  [% FOREACH basketgroup IN basketgroups %] [% IF ( basketgroup.closed ) %] <tr>
  <td>
- [% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de bolsas nº. [% basketgroup.id %] [% END %]</td>
+ [% IF ( basketgroup.name ) %] [% basketgroup.name %] [% ELSE %] Grupo de cestas nº. [% basketgroup.id %] [% END %]</td>
  <td>[% basketgroup.id %]</td>
  <td>[% basketgroup.billingplace | $KohaBranchName %]</td>
  <td>[% IF (basketgroup.freedeliveryplace) %]Lugar de entrega[% ELSE %][% basketgroup.deliveryplace | $KohaBranchName %][% END %]</td>

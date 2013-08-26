@@ -115,7 +115,7 @@
  <input id="trash" type="radio" name="radio" value="trash" />
  <input type="hidden" name="do_delete" value="[% totalToDelete %]" /></fieldset>
 
- [% END %] [% IF ( totalToAnonymize ) %] El historial de préstamos de [% totalToAnonymize %] socios se anonimizará  <input type="hidden" name="do_anonym" value="[% totalToAnonymize %]" />
+ [% END %] [% IF ( totalToAnonymize ) %] El historial de préstamos de [% totalToAnonymize %] usuarios serán anónimos <input type="hidden" name="do_anonym" value="[% totalToAnonymize %]" />
  [% END %] <input type="hidden" name="step3" value="1" />
  <input type="hidden" name="filterdate1" value="[% filterdate1 %]" />
  <input type="hidden" name="filterdate2" value="[% filterdate2 %]" />

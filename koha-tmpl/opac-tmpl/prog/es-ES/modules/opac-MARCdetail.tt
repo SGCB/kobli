@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Detalles MARC del registro n.º [% biblionumber %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
+[% USE Koha %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; detalles MARC del registro nº  [% biblionumber %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
     YAHOO.util.Event.onContentReady("furtherm", function () {
         $("#furtherm").css("display","block").css("visibility","hidden");

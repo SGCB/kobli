@@ -48,3 +48,10 @@ acquisitions.pref:
       - 
         pref: gist
       - "(introducir en forma num\xC3\xA9rica, 0.12 para 12%. Primero por defecto.Si quieres m\xC3\xA1s de 1 valor, por favor separar con |)"
+    - 
+      - 
+        choices: 
+          "": adquisiciones.pref#AcqWarnOnDuplicateInvoice# No avisar
+          1: adquisiciones.pref#AcqWarnOnDuplicateInvoice# Avisar
+        pref: AcqWarnOnDuplicateInvoice
+      - "adquisiciones.pref#AcqWarnOnDuplicateInvoice# cuando el bibliotecario tratar de crear una factura con un n\xC3\xBAmero duplicado. "

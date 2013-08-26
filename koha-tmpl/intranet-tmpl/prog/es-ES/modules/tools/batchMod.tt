@@ -33,10 +33,23 @@
  </ol>
  </fieldset>
  <input type="hidden" name="op" value="show" />
+
+ <fieldset class="rows">
+ <legend>Usar valores por defecto </legend>
+ <ol class="radio">
+ <li>
+ <label>
+ <input type="checkbox" name="use_default_values" id="use_default_values" />
+ Rellenar campos con los valores por defecto desde marco predeterminado </label>
+ </li>
+ </ol>
+ </fieldset>
+
  [% IF ( del ) %]<input type="hidden" name="del" value="1" />[% END %] <fieldset class="action">
  <input value="Continúe" type="submit" class="button" />
  <a class="cancel" href="/cgi-bin/koha/tools/tools-home.pl">Cancelar</a>
  </fieldset>
+
  </form>
  </div>
  </div>

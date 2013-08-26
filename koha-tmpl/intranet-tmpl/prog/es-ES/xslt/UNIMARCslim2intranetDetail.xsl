@@ -414,7 +414,7 @@
 
  <xsl:variable name="f780">
  <xsl:call-template name="subfieldSelect">
- <xsl:with-param name="codes">en</xsl:with-param>
+ <xsl:with-param name="codes">a_t</xsl:with-param>
  </xsl:call-template>
  </xsl:variable>
  <a><xsl:attribute name="href">/cgi-bin/koha/catalogue/search.pl?q=<xsl:value-of select="translate($f780, '()', '')"/></xsl:attribute>
@@ -466,7 +466,7 @@
  </xsl:choose>
  <xsl:variable name="f785">
  <xsl:call-template name="subfieldSelect">
- <xsl:with-param name="codes">en</xsl:with-param>
+ <xsl:with-param name="codes">a_t</xsl:with-param>
  </xsl:call-template>
  </xsl:variable>
 

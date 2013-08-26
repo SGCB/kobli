@@ -51,8 +51,9 @@ $(document).ready(function(){
         'iDisplayLength': 20,
         'aaSorting': [[ 1, "asc" ]],
         'aoColumnDefs': [
-            { 'bSortable': false, 'bSearchable':false, 'aTargets': [-1, -2, -3, -4] },
-            { 'bSearchable': false, 'aTargets': [3, 4] }
+            { 'bSortable': false, 'bSearchable':false, 'aTargets': [0, -1, -2, -3, -4] },
+            { 'bSearchable': false, 'aTargets': [3, 4] },
+            { "aTargets": [ 1, 2 ], "sType": "natural"  }
         ],
         'oLanguage': {
             'sZeroRecords': _("No se encontraron registros coincidentes")
@@ -66,16 +67,16 @@ $(document).ready(function(){
                 $(this).remove();
             }
         });
-        rtable.fnFilter('', 3);
         rtable.fnFilter('', 4);
-        rtable.fnSetColumnVis(3, true);
+        rtable.fnFilter('', 5);
         rtable.fnSetColumnVis(4, true);
+        rtable.fnSetColumnVis(5, true);
 
         var g_id = $(ui.tab).attr('id')
         var g_name = $(ui.tab).text();
         if (g_id && g_id.length > 0) {
-            rtable.fnFilter('^' + g_name + '$', 3, true, true, true, false);
-            rtable.fnSetColumnVis(3, false);
+            rtable.fnFilter('^' + g_name + '$', 4, true, true, true, false);
+            rtable.fnSetColumnVis(4, false);
             for(var i in group_subgroups[g_id]) {
                 $("#subgroup_filter").append(
                     '<option value="' + group_subgroups[g_id][i][0] + '">'
@@ -101,6 +102,21 @@ $(document).ready(function(){
             rtable.fnSetColumnVis(4, true);
         }
     });
+
+    $("#reports_form").submit(function(){
+        var checkedItems = $("input[name=ids]:checked");
+        if ($(checkedItems).size() == 0) {
+            alert(_("Seleccione una o más informes para eliminar "));
+            return false;
+        }
+        $(checkedItems).parents('tr').addClass("warn");
+        if( confirm(_("¿Está seguro de querer eliminar los informes seleccionados?")) ) {
+            return true;
+        } else {
+            $(checkedItems).parents('tr').removeClass("warn");
+            return false;
+        }
+    });
 [% END %]
 
 [% IF ( showsql ) %]
@@ -111,7 +127,7 @@ $(document).ready(function(){
 [% IF ( saved1 ) %]
     $(".confirmdelete").click(function(){
         $(this).parents('tr').attr("class","warn");
-        if(confirm("Are you sure you want to "+$(this).attr("title")+"?")){
+        if(confirm(_("¿Está seguro de querer borrar este informe guardado? "))){
             return true;
         } else {
             $(this).parents('tr').attr("class","");
@@ -219,9 +235,12 @@ $(document).ready(function(){
  <option value="">Todo</option>
  </select>
  </div>
+<form action="/cgi-bin/koha/reports/guided_reports.pl" id="reports_form" method="post">
+<input type="hidden" name="phase" value="Delete Multiple" />
  <table id="table_reports">
  <thead>
  <tr>
+ <th>&nbsp;</th>
  <th>ID</th>
  <th>Nombre de informe</th>
  <th>Tipo</th>
@@ -232,14 +251,14 @@ $(document).ready(function(){
  <th>Fecha de creación</th>
  <th>Público</th>
  [% IF (usecache) %] <th>Caché expira (sergundos)</th> [% END %] <th>Resultados guardados</th>
- <th>SQL guardado</th>
  <th>&nbsp;</th>
- [% IF ( CAN_user_reports_create_reports ) %] <th>&nbsp;</th>
- [% END %] </tr>
+ </tr>
  </thead>
  <tbody>
- [% FOREACH savedreport IN savedreports %] [% UNLESS ( loop.odd ) %]<tr class="odd">[% ELSE %]<tr>[% END %] <td>[% savedreport.id %]</td>
- <td>[% savedreport.report_name %]</td>
+ [% FOREACH savedreport IN savedreports %] [% UNLESS ( loop.odd ) %]<tr class="odd">[% ELSE %]<tr>[% END %] <td><input type="checkbox" name="ids" value="[% savedreport.id %]" /></td>
+ <td><label for="ids">[% savedreport.id %]</label></td>
+ <td>
+ [% IF ( savedreport.report_name ) %] [% savedreport.report_name %] [% ELSE %] [ sin nombre ] [% END %] </td>
  <td>[% savedreport.type %]</td>
  <td>[% savedreport.groupname %]</td>
  <td>[% savedreport.subgroupname %]</td>
@@ -250,18 +269,27 @@ $(document).ready(function(){
  [% ELSE %] <td>No</td>
  [% END %] [% IF (usecache) %] <td>[% savedreport.cache_expiry %]</td> [% END %] <td>[% IF ( savedreport.date_run ) %]<a href="/cgi-bin/koha/reports/guided_reports.pl?phase=retrieve%20results&amp;id=[% savedreport.id %]">[% savedreport.date_run %]</a>[% END %] </td>
  <td>
- <a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Show%20SQL">Mostrar</a>
- [% IF ( CAN_user_reports_create_reports ) %] <a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Edit%20SQL">Editar</a>
- <a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Create report from SQL&sql=[% savedreport.savedsql |uri %]&reportname=[% savedreport.report_name |uri %]&notes=[% savedreport.notes |uri %]" title="Duplicar este informe guardado">Duplicado</a>
- [% END %] </td>
- <td>
- <a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Run%20this%20report">Ejecutar</a>
- <a href="/cgi-bin/koha/tools/scheduler.pl?id=[% savedreport.id %]">Planificación</a>
+ <div class="dropdown">
+ <a class="btn btn-mini dropdown-toggle" id="reportactions[% savedreport.id %]" role="button" data-toggle="dropdown" href="#">
+ Acciones<b class="caret"></b>
+ </a>
+ <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="reportactions[% savedreport.id %]">
+ <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Show%20SQL"><i class="icon-search"></i> Mostrar</a></li>
+ [% IF ( CAN_user_reports_create_reports ) %] <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Edit%20SQL"><i class="icon-pencil"></i> Editar</a></li>
+ <li><a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Create report from SQL&sql=[% savedreport.savedsql |uri %]&reportname=[% savedreport.report_name |uri %]&notes=[% savedreport.notes |uri %]" title="Duplicar este informe guardado"><i class="icon-copy"></i> Duplicado</a></li>
+ [% END %] <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&amp;phase=Run%20this%20report"><i class="icon-play"></i> Ejecutar</a></li>
+ <li><a href="/cgi-bin/koha/tools/scheduler.pl?id=[% savedreport.id %]"><i class="icon-time"></i> Planificación</a></li>
+ [% IF ( CAN_user_reports_create_reports ) %] <li><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&phase=Delete%20Saved" class="confirmdelete" title="Borrar este informe guardado"><i class="icon-remove"></i> Eliminar</a></li>
+ [% END %] </ul>
+ </div>
  </td>
- [% IF ( CAN_user_reports_create_reports ) %] <td><a href="/cgi-bin/koha/reports/guided_reports.pl?reports=[% savedreport.id %]&phase=Delete%20Saved" class="confirmdelete" title="Borrar este informe guardado">Eliminar</a></td>
- [% END %] </tr>
+ </tr>
  [% END %] </tbody>
  </table>
+ <fieldset class="action">
+ <input value="Eliminar seleccionados" type="submit" />
+ </fieldset>
+ </form>
  </div>
 </div>
 [% ELSE %]<div class="dialog message">

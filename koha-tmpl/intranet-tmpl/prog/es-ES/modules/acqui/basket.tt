@@ -24,6 +24,11 @@
 
         $("#show_all_details").attr('checked', false);
         updateColumnsVisibility(false);
+        [% UNLESS ( closedate ) %]
+            $('#addtoBasket').on('show', function () {
+               $(this).find(".modal-body").html($("#acqui_basket_add")[0].outerHTML);
+            });
+        [% END %]
     });
 //]]>
 </script>
@@ -121,6 +126,7 @@
  <div id="yui-main">
  <div class="yui-b">
  [% UNLESS ( confirm_close ) %] [% UNLESS ( selectbasketg ) %] [% UNLESS ( closedate ) %] <div id="toolbar" class="btn-toolbar">
+ <div class="btn-group"><a href="#addtoBasket" role="button" class="btn btn-small" data-toggle="modal"><i class="icon-plus"></i> Agregar a la cesta</a></div>
  <div class="btn-group"><a href="basketheader.pl?booksellerid=[% booksellerid %]&amp;basketno=[% basketno %]&amp;op=add_form" class="btn btn-small" id="basketheadbutton"><i class="icon-pencil"></i> Editar cesta</a></div>
  <div class="btn-group"><a href="#" class="btn btn-small" id="delbasketbutton"><i class="icon-remove"></i> Eliminar esta bolsa</a></div>
  [% IF ( unclosable ) %] [% ELSIF ( uncertainprices ) %] <div class="btn-group"><a href="/cgi-bin/koha/acqui/uncertainprice.pl?booksellerid=[% booksellerid %]&amp;owner=1" class="btn btn-small" id="uncertpricesbutton">Precios inciertos</a></div>
@@ -158,13 +164,11 @@
  [% END %] [% IF ( deliveryplace ) %]<li><span class="label">Lugar de entrega:</span> [% deliveryplace %]</li>[% END %] [% IF ( billingplace ) %]<li><span class="label">Lugar de facturación:</span> [% billingplace %]</li>[% END %] [% IF ( authorisedbyname ) %]<li><span class="label">Administrado por:</span> [% authorisedbyname %]</li>[% END %] [% IF ( creationdate ) %]<li><span class="label">Abierto en:</span> [% creationdate | $KohaDates %]</li>[% END %] [% IF ( closedate ) %]<li><span class="label">Cerrada en:</span> [% closedate | $KohaDates %]</li>[% END %] [% IF ( estimateddeliverydate ) %]<li><span class="label">Fecha estimada de entrega: </span> [% estimateddeliverydate | $KohaDates  %]</li>[% END %] </ol>
  </div>
  [% IF ( closedate ) %] <div class="yui-u">
- <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="post">
- <ol>
+ [% IF ( CAN_user_acquisition_group_manage ) %] <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="post">
+ [% END %] <ol>
  <li>
  <span class="label">Bolsa de grupo:</span>
- [% IF basketgroup.closed %] [% basketgroup.name %] (cerrrado) [% ELSE %] </li>
- <li>
- <select id="basketgroupid" name="basketgroupid">
+ [% IF basketgroup.closed %] [% basketgroup.name %] (cerrado)  [% ELSIF ( ! CAN_user_acquisition_group_manage ) %] [%- IF basketgroup.name -%] [% basketgroup.name %] [%- ELSE -%]  Sin grupo [%- END -%] [% ELSE %] <select id="basketgroupid" name="basketgroupid">
  <option value="new">Agregar nuevo grupo</option>
  [% FOREACH bg IN basketgroups %] [% IF ( bg.default ) %] <option value="[% bg.id %]" selected="selected">[% bg.name %]</option>
  [% ELSE %] [% UNLESS bg.closed %] <option value="[% bg.id %]">[% bg.name %]</option>
@@ -175,9 +179,9 @@
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  <input value="Cambiar grupo de bolsas" type="submit" />
  [% END %] </li>
- [% IF ( basketgroupdeliveryplace ) %]<li><span class="label">Lugar de entrega del grupo de cestas:</span> [% basketgroupdeliveryplace %]</li>[% END %] [% IF ( basketgroupbillingplace ) %]<li><span class="label">Lugar de facturación del grupo de cestas:</span> [% basketgroupbillingplace %]</li>[% END %] </ol>
- </form>
- </div>
+ [% IF ( basketgroup.deliveryplacename ) %]<li><span class="label">Lugar de entrega del grupo de cestas: </span> [% basketgroup.deliveryplacename %]</li>[% END %] [% IF ( basketgroup.billingplacename ) %]<li><span class="label">Lugar de facturación del grupo de cestas:</span> [% basketgroup.billingplacename %]</li>[% END %] </ol>
+ [% IF ( CAN_user_acquisition_group_manage ) %] </form>
+ [% END %] </div>
  [% END %] </div>
  </div>
  [% END %] [% UNLESS ( delete_confirm ) %] <div id="acqui_basket_content" class="yui-g">
@@ -312,6 +316,15 @@
  </div>
  [% END %] <br />
  [% UNLESS ( closedate ) %]
+
+ <!-- Modal -->
+ <div id="addtoBasket" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="addtoBasketLabel" aria-hidden="true">
+ <div class="modal-body"></div>
+ <div class="modal-footer">
+ <a href="#" class="cancel" data-dismiss="modal" aria-hidden="true">Cancelar</a>
+ </div>
+ </div>
+
  [% INCLUDE 'acquisitions-add-to-basket.inc' %]
  [% END %]
  [% END %]
@@ -323,11 +336,11 @@
 
  <form action="/cgi-bin/koha/acqui/basket.pl" class="confirm">
  <h1>¿Está seguro de querer cerrar la cesta [% basketname|html %]?</h1>
- <p>
+ [% IF ( CAN_user_acquisition_group_manage ) %] <p>
  <label for="createbasketgroup">Adjunte esta cesta a una nueva cesta de grupo con el mismo nombre</label>
  <input type="checkbox" id="createbasketgroup" name="createbasketgroup"/>
  </p>
- <input type="hidden" id="basketno" value="[% basketno %]" name="basketno" />
+ [% END %] <input type="hidden" id="basketno" value="[% basketno %]" name="basketno" />
  <input type="hidden" value="close" name="op" />
  <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
  <input type="hidden" name="confirm" value="1" />

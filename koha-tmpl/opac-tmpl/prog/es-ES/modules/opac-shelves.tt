@@ -1,8 +1,8 @@
-[% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnList ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnList ) %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; [% IF ( viewshelf ) %]Contenidos de [% shelfname |html %][% ELSE %]Sus listas[% END %][% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
+[% USE Koha %] [% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnList ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnList ) %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; [% IF ( viewshelf ) %]Contenidos de [% shelfname |html %][% ELSE %]Sus listas[% END %][% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 <script type="text/javascript">
 //<![CDATA[
 var MSG_REMOVE_FROM_LIST = _("¿Está seguro de que quiere borrar estos ítems de la lista?");
+var MSG_REMOVE_ONE_FROM_LIST = _("¿Está seguro de que quiere borrar estos ítems de la lista?");
 var MSG_CONFIRM_DELETE_LIST = _("¿Está seguro de que quiere eliminar esta lista?");
 
 [% IF ( opacuserlogin ) %][% IF ( RequestOnOpac ) %]
@@ -148,10 +148,24 @@ $(function() {
         });
 [% END %]
   [% IF ( loggedinusername && allowremovingitems ) %]
+  var removeFromListLinks = $(".removefromlist");
+  removeFromListLinks.show();
+  // "remove from list" appearing on each line of the list output
+  removeFromListLinks.on("click",function(){
+      $(".checkboxed").unCheckCheckboxes();
+      var listitem = $("input[name="+this.id+"]");
+      listitem.prop("checked",true);
+      $("#myform").submit();
+  });
   $("#myform").submit(function(){
     var checkedBoxes = $(".checkboxed input:checkbox:checked");
-    if ($(checkedBoxes).size()) {
-      return confirmDelete(MSG_REMOVE_FROM_LIST);
+    var numchecked = $(checkedBoxes).size();
+    if (numchecked) {
+        if( numchecked > 1 ){
+            return confirmDelete(MSG_REMOVE_FROM_LIST);
+        } else {
+            return confirmDelete(MSG_REMOVE_ONE_FROM_LIST);
+        }
     } else {
       alert(MSG_NO_RECORD_SELECTED);
       return false;
@@ -346,7 +360,8 @@ $(document).ready(function() {
  [% END %]
 
  [% IF ( opacuserlogin ) %][% IF ( loggedinusername ) %][% IF ( virtualshelves ) %]<a class="addtoshelf" href="/cgi-bin/koha/opac-addbybiblionumber.pl?biblionumber=[% itemsloo.biblionumber %]" onclick="Dopop('opac-addbybiblionumber.pl?biblionumber=[% itemsloo.biblionumber %]'); return false;">Guardar en otra lista</a>
- [% END %] [% END %][% END %] [% IF ( opacbookbag ) %] [% IF ( itemsloo.incart ) %] <a class="addtocart cart[% itemsloo.biblionumber %]" href="#" onclick="addRecord('[% itemsloo.biblionumber %]'); return false;">En su cesta</a> <a class="cartRemove cartR[% itemsloo.biblionumber %]" href="#" onclick="delSingleRecord('[% itemsloo.biblionumber %]'); return false;">(Borrar)</a>
+ [% END %][% END %][% END %] [% IF ( allowremovingitems ) %] <a class="removefromlist" id="REM-[% itemsloo.biblionumber %]" href="#">Eliminar de la lista</a>
+ [% END %] [% IF ( opacbookbag ) %] [% IF ( itemsloo.incart ) %] <a class="addtocart cart[% itemsloo.biblionumber %]" href="#" onclick="addRecord('[% itemsloo.biblionumber %]'); return false;">En su cesta</a> <a class="cartRemove cartR[% itemsloo.biblionumber %]" href="#" onclick="delSingleRecord('[% itemsloo.biblionumber %]'); return false;">(Borrar)</a>
  [% ELSE %] <a class="addtocart cart[% itemsloo.biblionumber %]" href="#" onclick="addRecord('[% itemsloo.biblionumber %]'); return false;">Agregar a la cesta</a> <a style="display:none;" class="cartRemove cartR[% itemsloo.biblionumber %]" href="#" onclick="delSingleRecord('[% itemsloo.biblionumber %]'); return false;">(Borrar)</a>
  [% END %] [% END %] </span>
 

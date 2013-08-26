@@ -400,7 +400,7 @@
  </span>
  <xsl:variable name="f773">
  <xsl:call-template name="chopPunctuation"><xsl:with-param name="chopString"><xsl:call-template name="subfieldSelect">
- <xsl:with-param name="codes">en</xsl:with-param>
+ <xsl:with-param name="codes">a_t</xsl:with-param>
  </xsl:call-template></xsl:with-param></xsl:call-template>
  </xsl:variable>
  <xsl:choose>

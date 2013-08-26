@@ -117,7 +117,7 @@
  [% END %] [% IF ( ERROR_dateexpiry ) %] <li id="ERROR_dateexpiry">Fecha de cese inválida.</li>
  [% END %] [% IF ( ERROR_short_password ) %] <li id="ERROR_short_password">La contraseña debe tener al menos [% minPasswordLength %] caracteres.</li>
  [% END %] [% IF ( ERROR_password_mismatch ) %] <li id="ERROR_password_mismatch">Las contraseñas no coinciden.</li>
- [% END %] [% IF ( ERROR_extended_unique_id_failed ) %] <li id="ERROR_extended_unique_id_failed">El valor del atributo [% ERROR_extended_unique_id_failed %] ya está en uso en otro registro de socio.</li>
+ [% END %] [% IF ( ERROR_extended_unique_id_failed ) %] <li id="ERROR_extended_unique_id_failed">El valor del atributo [% ERROR_extended_unique_id_failed_value %] ya está en uso por otro registro de usuario.</li>
  [% END %] </ul>
  </div>
  [% END %] [% UNLESS ( check_member ) %]<form name="form" id="entryform"  action="/cgi-bin/koha/members/memberentry.pl" method="post" autocomplete="off">
@@ -492,7 +492,7 @@
  <legend id="library_management_lgd">Administración de biblioteca</legend><ol>
  [% UNLESS nocardnumber %] <li> [% IF ( mandatorycardnumber ) %] <label for="cardnumber" class="required">
  [% ELSE %] <label for="cardnumber">
- [% END %] Número de socio: </label>
+ [% END %] Número de registro: </label>
  <input type="text" id="cardnumber" name="cardnumber" size="20" value="[% cardnumber %]" />
  [% IF ( mandatorycardnumber ) %]<span class="required">Requerido</span>[% END %]</li>
  [% END %] [% UNLESS nobranchcode %] <li>

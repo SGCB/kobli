@@ -1,5 +1,13 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Fondos[% IF ( add_form ) %] &rsaquo; [% IF ( budget_id ) %]Modificar fondo[% IF ( budget_name ) %] '[% budget_name %]'[% END %][% ELSE %]Agregar fondo [% END %][% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
+//<![CDATA[
+var MSG_BUDGET_PARENT_ALLOCATION = "- " + _("El presupuesto hijo excede el presupuesto asignado ") + "\n";
+var MSG_BUDGET_PERIOD_ALLOCATION = "- " + _("Cantidad del fondo supera el período asignado ") + "\n";
+var MSG_PARENT_BENEATH_BUDGET = "- " + _("Nuevo presupuesto-hijo  esta por debajo del presupuesto ") + "\n";
+//]]>
+</script>
+
+<script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
 
 [% IF ( add_form ) %] <script type="text/javascript">
 //<![CDATA[

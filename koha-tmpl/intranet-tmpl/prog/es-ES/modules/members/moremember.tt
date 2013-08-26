@@ -198,7 +198,7 @@ function validate1(date) {
  <fieldset class="brief">
  [% IF ( picture ) %] <legend>Administrar imágenes de socios</legend>
  <div class="hint">Para actualizar la imagen de [% title %] [% surname %], seleccione un nuevo archivo de imagen y haga clic en 'Cargar'. <br />Para eliminar la imagen actual haga clic en 'Borrar'. [% ELSE %] <legend>Subir imagen de socio</legend>
- <div class="hint">[% title %] [% firstname %] [% surname %] no tiene una imagen disponible. Para importar una imagen para [% title %] [% surname %], ingrese el nombre del archivo a subir. [% END %] <br />Sólo son soportados los formatos PNG, GIF, JPEG, XPM. </div>
+ <div class="hint">[% title %] [% firstname %] [% surname %] actualmente no tiene una imagen disponible. Para importar una imagen para [% title %] [% surname %], ingrese el nombre de la imagen a subir. [% END %] <br />Sólo son soportados los formatos PNG, GIF, JPEG, XPM. </div>
  <input type="hidden" id="image" name="filetype" value="image" />
  <input type="hidden" id="cardnumber" name="cardnumber" value="[% cardnumber %]" />
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
@@ -324,7 +324,7 @@ function validate1(date) {
  [% IF ( issueloo.itemlost ) %] <span class="lost">[% issueloo.itemlost %]</span>
  [% END %] [% IF ( issueloo.damaged ) %] <span class="dmg">[% issueloo.itemdamaged %]</span>
  [% END %] </td>
- <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% issueloo.biblionumber %]"><strong>[% issueloo.title |html %]</strong></a>[% IF ( issueloo.author ) %], por [% issueloo.author %][% END %] [% IF ( issueloo.publishercode ) %]; [% issueloo.publishercode %] [% END %] [% IF ( issueloo.publicationyear ) %], [% issueloo.publicationyear %][% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% issueloo.biblionumber %]&amp;itemnumber=[% issueloo.itemnumber %]#item[% issueloo.itemnumber %]">[% issueloo.barcode %]</a></td>
+ <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% issueloo.biblionumber %]"><strong>[% issueloo.title |html %][% FOREACH subtitl IN issueloo.subtitle %] [% subtitl.subfield %][% END %]</strong></a>[% IF ( issueloo.author ) %], por [% issueloo.author %][% END %] [% IF ( issueloo.publishercode ) %]; [% issueloo.publishercode %] [% END %] [% IF ( issueloo.publicationyear ) %], [% issueloo.publicationyear %][% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% issueloo.biblionumber %]&amp;itemnumber=[% issueloo.itemnumber %]#item[% issueloo.itemnumber %]">[% issueloo.barcode %]</a></td>
 <td>[% UNLESS ( noItemTypeImages ) %] [% IF ( issueloo.itemtype_image ) %]<img src="[% issueloo.itemtype_image %]" alt="" />[% END %][% END %][% issueloo.itemtype_description %]</td>
  <td><span title="[% issueloo.issuedate %]">[% issueloo.issuedate | $KohaDates%]</span></td>
  <td>[% issueloo.issuingbranchname %]</td>
@@ -387,7 +387,7 @@ function validate1(date) {
  [% IF ( relissueloo.itemlost ) %] <span class="lost">[% relissueloo.itemlost %]</span>
  [% END %] [% IF ( relissueloo.damaged ) %] <span class="dmg">[% relissueloo.itemdamaged %]</span>
  [% END %] </td>
- <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% relissueloo.biblionumber %]"><strong>[% relissueloo.title |html %]</strong></a>[% IF relissueloo.author %], por [% relissueloo.author %][% END %] [% IF relissueloo.publishercode %]; [% relissueloo.publishercode %] [% END %] [% IF relissueloo.publicationyear %], [% relissueloo.publicationyear %][% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% relissueloo.biblionumber %]&amp;itemnumber=[% relissueloo.itemnumber %]#item[% relissueloo.itemnumber %]">[% relissueloo.barcode %]</a></td>
+ <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% relissueloo.biblionumber %]"><strong>[% relissueloo.title |html %][% FOREACH subtitl IN relissueloo.subtitle %] [% subtitl.subfield %][% END %]</strong></a>[% IF relissueloo.author %], por [% relissueloo.author %][% END %] [% IF relissueloo.publishercode %]; [% relissueloo.publishercode %] [% END %] [% IF relissueloo.publicationyear %], [% relissueloo.publicationyear %][% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% relissueloo.biblionumber %]&amp;itemnumber=[% relissueloo.itemnumber %]#item[% relissueloo.itemnumber %]">[% relissueloo.barcode %]</a></td>
 <td>[% UNLESS ( noItemTypeImages ) %] [% IF ( relissueloo.itemtype_image ) %]<img src="[% relissueloo.itemtype_image %]" alt="" />[% END %][% END %][% relissueloo.itemtype_description %]</td>
  <td><span title="[% relissueloo.issuedate %]">[% relissueloo.issuedate | $KohaDates %]</span></td>
  <td>[% relissueloo.issuingbranchname %]</td>
@@ -423,7 +423,7 @@ function validate1(date) {
  <tbody>[% FOREACH reservloo IN reservloop %] <tr class="[% reservloo.color %]">
  <td><span title="[% reservloo.reservedate %]">[% reservloo.reservedate | $KohaDates %]</span></td>
  <td>
- <a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% reservloo.biblionumber %]">[% reservloo.title |html %]</a>[% IF ( reservloo.author ) %], por [% reservloo.author %][% END %] </td>
+ <a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% reservloo.biblionumber %]">[% reservloo.title |html %][% FOREACH subtitl IN reservloo.subtitle %] [% subtitl.subfield %][% END %]</a>[% IF ( reservloo.author ) %], por [% reservloo.author %][% END %] </td>
  <td>[% reservloo.itemcallnumber %]</td>
  <td>[% IF ( reservloo.waiting ) %] <em>Ítem es <strong>esperando</strong></em>
  [% END %] [% IF ( reservloo.transfered ) %] <em>Ítem <strong>en tránsito</strong> de [% reservloo.frombranch %] desde [% reservloo.datesent %] </em>
@@ -438,6 +438,7 @@ function validate1(date) {
  </select>
  <input type="hidden" name="biblionumber" value="[% reservloo.biblionumber %]" />
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
+ <input type="hidden" name="reserve_id" value="[% reservloo.reserve_id %]" />
  </td>
  <td>[% IF ( reservloo.suspend ) %]Suspendida [% IF ( reservloo.suspend_until ) %] hasta [% reservloo.suspend_until | $KohaDates %][% END %][% END %] </td>
  </tr>

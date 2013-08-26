@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Gestión de la privacidad para [% INCLUDE 'doc-head-close.inc' %] </head>
+[% USE Koha %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Su gestión de la privacidad [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-privacy">
 <div id="doc3" class="yui-t1">
  <div id="bd">
@@ -10,11 +10,10 @@
  [% IF ( deleted ) %] <div class="dialog message">Su historial de lectura ha sido eliminado.</div>
  [% ELSIF ( err_history_not_deleted ) %] <div class="dialog alert">El historial de lectura no puedo ser borrado por un problema con la configuración. Se puede ayudar a solucionar este problema informando al bibliotecario.</div>
  [% END %] [% IF ( privacy_updated ) %] <div class="dialog message">Sus reglas de privacidad han sido actualizadas</div>
- [% END %] <h2>Reglamento de privacidad</h2>
+ [% END %] <div id="userprivacyrules" class="container">
+ <h2>Reglamento de privacidad</h2>
  [% IF ( Ask_data ) %] <p>Nos preocupa proteger tu privacidad. En esta pantalla, puedes especificar durante cuánto tiempo quieres que guardemos tu historial de lectura.</p>
  <p>Sus opciones son: <p>
- <form action="/cgi-bin/koha/opac-privacy.pl" method="post" id="opac-privacy-update-form">
- <input type="hidden" name="op" value="update_privacy" />
  <ul id="opac-privacy-options-list">
  <li class="privacy0">Para siempre: almacenar mi historial de lecturas sin límite. Ésta es la opción para aquellos usuarios que desean mantener un registro de lo que están leyendo.</li>
  <li class="privacy1">Predeterminado: guardar mi historial de lectura según la legislación local. Esta es la opción predeterminada: la biblioteca almacenará tu historial de lectura durante el tiempo permitido por la legislación local.</li>
@@ -22,6 +21,9 @@
  </ul>
  <p id="note1">Por favor, observe que la información sobre cualquier libro prestado debe ser almacenada por la biblioteca independiente de qué opción de privacidad elijas.</p>
  <p id="note2">Por favor, observe que el personal de la biblioteca no puede actualizar estos valores por ti: ¡es tu privacidad!</p>
+ </div>
+ <form action="/cgi-bin/koha/opac-privacy.pl" method="post" id="opac-privacy-update-form">
+ <input type="hidden" name="op" value="update_privacy" />
  <label for:"privacy">Por favor, elige su reglamento de privacidad:</label>
  <select name="privacy">
  [% IF ( privacy0 ) %] <option value="0" selected="1" class="privacy0">Para siempre</option>

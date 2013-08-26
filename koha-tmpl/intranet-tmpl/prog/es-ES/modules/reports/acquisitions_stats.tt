@@ -45,7 +45,7 @@
 [% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Estadística de adquisiciones </h1>
  [% IF ( mainloo.loopfilter.size ) %] <p><b>Filtrado en:</b></p>
  [% FOREACH loopfilte IN mainloo.loopfilter %] <p>
- [% SWITCH loopfilte.crit %] [% CASE '0' %] Aplazado (desde) [% CASE '1' %] Aplazado (hasta) [% CASE '2' %] Recibido (desde) [% CASE '3' %] Recibido (hasta) [% CASE '4' %] Proveedor [% CASE '5' %] Biblioteca de origen [% CASE '6' %] Colección [% CASE '7' %] Tipo de ítem [% CASE '8' %] Fondo [% CASE '9' %] Ordenación1 [% CASE '10' %] Ordenación2 [% CASE %] Filtro desconocido [% END %] : [% loopfilte.filter %] </p>
+ [% SWITCH loopfilte.crit %] [% CASE '0' %] Aplazado (desde) [% CASE '1' %] Aplazado (hasta) [% CASE '2' %] Recibido (desde) [% CASE '3' %] Recibido (hasta) [% CASE '4' %] Proveedor [% CASE '5' %] Biblioteca de origen [% CASE '6' %] Colección [% CASE '7' %] Tipo de ítem [% CASE '8' %] Fondo [% CASE '9' %] Tipo1 [% CASE '10' %] Tipo2 [% CASE %] Filtro desconocido [% END %] : [% loopfilte.filter %] </p>
  [% END %] [% END %] <table>
  <tr >
  <th>[% mainloo.line %] / [% mainloo.column %]</th>

@@ -1,7 +1,15 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; [% title |html %] [% IF ( author ) %] por [% author %][% END %] (Registro nro.[% biblionumber %]) &rsaquo; Ítems</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/cataloging.js"></script>
+[% INCLUDE 'browser-strings.inc' %]
+<!--[if lt IE 9]>
+<script type="text/javascript" src="[% interface %]/lib/shims/json2.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="[% interface %]/js/browser.js"></script>
 <script type="text/javascript">
 //<![CDATA[
+    var browser = KOHA.browser('[% searchid %]', parseInt('[% biblionumber %]', 10));
+    browser.show();
+
 $(document).ready(function(){
     [% IF (popup) %]
         [% IF (opisadd) %]
@@ -38,27 +46,15 @@ function active(numlayer)
     }
 }
 function Check(f) {
-    var total_errors=0;
-    $("input[name='mandatory'],select[name='mandatory']").each(function(i){
-        if($(this).val() == 1){
-            var mandatory_field = $("input[name='field_value'],select[name='field_value']").eq(i);
-            if(mandatory_field.val() == ''){
-                mandatory_field.addClass("missing");
-                total_errors++;
-            }
-        }
-    });
-
-    var alertString2;
-    if (total_errors==0) {
-        return true;
-    } else {
-        alertString2  = _("El formulario no fue procesado debido a los siguientes problemas");
+    var total_errors = CheckMandatorySubfields(f);
+    if (total_errors > 0) {
+        var alertString2 = _("El formulario no fue procesado debido a los siguientes problemas");
         alertString2 += "\n------------------------------------------------------------------------------------\n";
-        alertString2 += "\n- "+ total_errors+_(" campos obligatorios de ítem vacíos (subrayados)");
+        alertString2 += "\n- "+ total_errors + _(" campos obligatorios de ítem vacíos (subrayados)");
         alert(alertString2);
         return false;
     }
+    return true;
 }
 function CheckMultipleAdd(f) {
 

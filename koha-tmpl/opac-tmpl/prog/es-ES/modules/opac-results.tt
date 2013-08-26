@@ -1,6 +1,7 @@
-[% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnList ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnList ) %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; [% IF ( searchdesc ) %] Resultados de la búsqueda [% IF ( query_desc ) %]para '[% query_desc | html%]'[% END %][% IF ( limit_desc ) %]&nbsp;with limit(s):&nbsp;'[% limit_desc | html %]'[% END %] [% ELSE %] s No ha especificado ningún criterio de búsqueda. [% END %] [% INCLUDE 'doc-head-close.inc' %] <link rel="alternate" href="[% OPACBaseURL %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&count=[% countrss |html %]&sort_by=acqdate_dsc&format=rss2" type="application/rss+xml" title="[% PREVIOUS_SHELF_BROWS.biblionumber |url %]" />
-[% IF ( OpacStarRatings == 'all' ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.rating.js"></script>
-<link rel="stylesheet" type="text/css" href="[% themelang %]/css/jquery.rating.css" />[% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
+[% USE Koha %] [% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnList ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnList ) %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; [% IF ( searchdesc ) %] Resultados de la búsqueda [% IF ( query_desc ) %]para '[% query_desc | html%]'[% END %][% IF ( limit_desc ) %]&nbsp;con límite(s):&nbsp;'[% limit_desc | html %]'[% END %] [% ELSE %] No ha especificado ningún criterio de búsqueda. [% END %] [% INCLUDE 'doc-head-close.inc' %] <link rel="alternate" href="[% OPACBaseURL %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&count=[% countrss |html %]&sort_by=acqdate_dsc&format=rss2" type="application/rss+xml" title="[% PREVIOUS_SHELF_BROWS.biblionumber |url %]" />
+[% IF OpacStarRatings == 'all' || Koha.Preference('Babeltheque') %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.rating.js"></script>
+ <link rel="stylesheet" type="text/css" href="[% themelang %]/css/jquery.rating.css" />
+[% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 [% IF ( OpacHighlightedWords ) %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.highlight-3.js"></script>
 [% END %]<script type="text/javascript">
 //<![CDATA[
@@ -82,6 +83,7 @@ function highlightOff() {
 function highlightOn() {
     var x;
     for (x in q_array) {
+        q_array[x] = q_array[x].replace(/\w*:([\w])/, "$1");
         if ( q_array[x].length > 0 ) {
             $(".title").highlight(q_array[x]);
             $(".author").highlight(q_array[x]);
@@ -461,13 +463,16 @@ $(document).ready(function(){
  [% END %] [% END %] <span class="unavailable">
  [% IF ( SEARCH_RESULT.onloancount ) %] Prestados ([% SEARCH_RESULT.onloancount %]), [% END %] [% IF ( SEARCH_RESULT.wthdrawncount ) %] Retirados ([% SEARCH_RESULT.wthdrawncount %]), [% END %] [% UNLESS ( SEARCH_RESULT.hidelostitems ) %][% IF ( SEARCH_RESULT.itemlostcount ) %] Perdidos ([% SEARCH_RESULT.itemlostcount %]),[% END %][% END %] [% IF ( SEARCH_RESULT.damagedcount ) %] Dañados ([% SEARCH_RESULT.damagedcount %]),[% END %] [% IF ( SEARCH_RESULT.orderedcount ) %] Pedidos ([% SEARCH_RESULT.orderedcount %]),[% END %] [% IF ( SEARCH_RESULT.onholdcount ) %] Reservados ([% SEARCH_RESULT.onholdcount %]),[% END %] [% IF ( SEARCH_RESULT.intransitcount ) %] En ruta ([% SEARCH_RESULT.intransitcount %]),[% END %] </span>
  </span>
- [% END %] [% IF ( SEARCH_RESULT.score_avg ) %] <span class="result_summary">
- <img src="[% themelang %]/../images/Star[% SEARCH_RESULT.score_int %].gif" title="" style="max-height: 15px;"/> <span style="font-size: 85%;">[% SEARCH_RESULT.score_avg %] / 5 (en [% SEARCH_RESULT.num_scores %] valoraciones)</span>
+ [% END %] [% IF ( SEARCH_RESULT.score_avg ) %] <div class="results_summary">
+ [% FOREACH i  IN [ 1 2 3 4 5  ] %] [% IF ( SEARCH_RESULT.score_int >= i ) %] <div class="star-rating rater-[% i %] star star-rating-applied star-rating-readonly star-rating-on"><a title="[% i %]">[% i %]</a></div>
+ [% ELSE   %] <div class="star-rating rater-[% i %] star star-rating-applied star-rating-readonly"><a title="[% i %]">[% i %]</a></div>
+ [% END %] [% END %] <span id="babeltheque-rating_total_[% SEARCH_RESULT.biblionumber %]">[% SEARCH_RESULT.score_avg %] / 5 (en [% SEARCH_RESULT.num_scores %] valoraciones) </span>
+
  [% IF ( SEARCH_RESULT.num_critics ) %] <span class="social_data">[% SEARCH_RESULT.num_critics %] Críticas de usuarios de Internet </span>
  [% END %] [% IF ( SEARCH_RESULT.num_critics_pro ) %] <span class="social_data">[% SEARCH_RESULT.num_critics_pro %] Críticos profesionales </span>
  [% END %] [% IF ( SEARCH_RESULT.num_videos ) %] <span class="social_data">[% SEARCH_RESULT.num_videos %] Extractos de vídeo </span>
  [% END %] [% IF ( SEARCH_RESULT.num_quotations ) %] <span class="social_data">[% SEARCH_RESULT.num_quotations %] Citas</span>
- [% END %] </span>
+ [% END %] </div>
  [% END %] [% IF ( LibraryThingForLibrariesID ) %]<div class="ltfl_reviews"></div>[% END %] [% IF ( TagsShowEnabled ) %] [% IF ( SEARCH_RESULT.TagLoop.size ) %] <div class="results_summary tags"><span class="label">Etiquetas:</span>
  <ul style="display: inline; list-style: none;">[% FOREACH TagLoo IN SEARCH_RESULT.TagLoop %]<li style="display: inline; list-style: none;"><a href="/cgi-bin/koha/opac-search.pl?tag=[% TagLoo.term |url %]&amp;q=[% TagLoo.term |url %]">[% TagLoo.term %]</a> <span class="weight">([% TagLoo.weight_total %])</span></li>
  [% END %] </ul>

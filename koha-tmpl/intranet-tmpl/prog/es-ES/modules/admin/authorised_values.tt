@@ -177,7 +177,7 @@ $(document).ready(function() {
  <td>[% IF ( loo.imageurl ) %]<img src="[% loo.imageurl %]" alt=""/>[% ELSE %]&nbsp;[% END %]</td>
  <td>
  [% IF loo.branches.size > 0 %] [% branches_str = "" %] [% FOREACH branch IN loo.branches %] [% branches_str = branches_str _ " " _ branch.branchname _ "(" _ branch.branchcode _ ")" %] [% END %] <span href="#" title="[% branches_str %]">
- [% IF loo.branches.size > 1 %] [% loo.branches.size %] limitaciones sede [% ELSE %] [% loo.branches.size %] limitacion sede [% END %] [% ELSE %] No limitatción [% END %] </td>
+ [% IF loo.branches.size > 1 %] [% loo.branches.size %] limitaciones de sede [% ELSE %] [% loo.branches.size %] limitacion de sede [% END %] [% ELSE %] No limitación [% END %] </td>
  <td><a href="[% loo.edit %]">Editar</a></td>
  <td><a href="[% loo.delete %]">Eliminar</a></td>
 </tr>

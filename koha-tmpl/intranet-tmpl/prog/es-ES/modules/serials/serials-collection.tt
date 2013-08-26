@@ -1,7 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Información de colección para [% bibliotitle %]</title>
+[% USE Branches %] [% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Información de colección para [% bibliotitle %]</title>
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+[% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
 
 <script type="text/javascript">
@@ -64,6 +64,7 @@ $(document).ready(function() {
     $(".subscription-year-table").dataTable($.extend(true, {}, dataTablesDefaults, {
         "aoColumnDefs": [
             { "aTargets": [ 0 ], "bSortable": false, "bSearchable": false },
+            { "sType": "title-string", "aTargets" : [ "title-string" ] }
         ],
         "aaSorting": [[0, 'desc']],
         "sDom": 't',
@@ -105,6 +106,11 @@ $(document).ready(function() {
  <td> [% IF ( subscription.periodicity1 ) %] 1/día [% END %] [% IF ( subscription.periodicity2 ) %] 1/semana [% END %] [% IF ( subscription.periodicity3 ) %] 1/2 semanas [% END %] [% IF ( subscription.periodicity4 ) %] 1/3 semanas [% END %] [% IF ( subscription.periodicity5 ) %] 1/mes [% END %] [% IF ( subscription.periodicity6 ) %] 1/2 mes (6/año) [% END %] [% IF ( subscription.periodicity7 ) %] 1/trimestre [% END %] [% IF ( subscription.periodicity8 ) %] 1/trimestre [% END %] [% IF ( subscription.periodicity9 ) %] 2/año [% END %] [% IF ( subscription.periodicity10 ) %] 1/año [% END %] [% IF ( subscription.periodicity11 ) %] 1/2 años [% END %]</td>
  <td>
  [% IF ( subscription.numberpattern1 ) %] Número [% END %] [% IF ( subscription.numberpattern2 ) %] Volumen, número, ejemplar [% END %] [% IF ( subscription.numberpattern3 ) %] Volumen, número [% END %] [% IF ( subscription.numberpattern4 ) %] Volumen, ejemplar [% END %] [% IF ( subscription.numberpattern5 ) %] Número, ejemplar [% END %] [% IF ( subscription.numberpattern6 ) %] Estacional solamente [% END %] [% IF ( subscription.numberpattern7 ) %] Ninguno de los anteriores [% END %]</td>
+ <td>[% Branches.GetName( subscription.branchcode ) %]</td>
+ <td> [% subscription.callnumber %]</td>
+ <td><a href="subscription-detail.pl?subscriptionid=[% subscription.subscriptionid %]"># [% subscription.subscriptionid %]</a> </td>
+ <td>[% subscription.frequency.description %]</td>
+ <td>[% subscription.numberpattern.label %]</td>
  <td> [% subscription.branchcode %]</td>
  <td> [% subscription.callnumber %]</td>
  <td> [% subscription.notes %] [% UNLESS subscription.closed %] [% IF ( subscription.subscriptionexpired ) %] <br /><span class="problem"> Suscripción expirada</span>
@@ -139,8 +145,8 @@ $(document).ready(function() {
  <thead>
  <tr>
  [% IF ( CAN_user_serials_receive_serials ) %]<th>Editar</th>[% END %] [% IF ( subscriptions.size > 1 ) %] <th># Subs</th>
-[% END %] <th>Fecha de publicación </th>
- <th>Fecha de recepción </th>
+[% END %] <th class="title-string">Fecha de publicación </th>
+ <th class="title-string">Fecha de recepción </th>
  <th>Número </th>
  <th>Estado : </th>
  <th>Notas </th>
@@ -155,9 +161,11 @@ $(document).ready(function() {
  [% END %] [% END %] [% END %] </td>
  [% END %] [% IF ( subscriptions.size > 1 ) %] <td><a href="serials-collection.pl?subscriptionid=[% serial.subscriptionid %]">[% serial.subscriptionid %]</a></td>
 [% END %] <td>
- [% serial.publisheddate %] </td>
+ <span title="[% serial.publisheddate %]">[% serial.publisheddate | $KohaDates %]</span>
+ </td>
  <td>
- [% serial.planneddate %] </td>
+ <span title="[% serial.planneddate %]">[% serial.planneddate | $KohaDates %]</span>
+ </td>
  <td>
  [% serial.serialseq %] </td>
  <td>
@@ -165,7 +173,7 @@ $(document).ready(function() {
  <td>
  [% serial.notes %] </td>
  <td>
- [% serial.branchcode %] </td>
+ [% Branches.GetName( serial.branchcode ) %] </td>
  [% IF ( routing ) %] <td>
  <a href="" onclick="print_slip([% serial.subscriptionid |html %], '[% serial.serialseq |html %] ([% serial.planneddate %])'); return false" >Imprimir lista</a>
  </td>

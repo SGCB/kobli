@@ -64,7 +64,8 @@
  </fieldset>
  <fieldset class="action">
  <input value="Guardar" type="submit" />
- </fieldset>
+ [% UNLESS orders_loop.size %] <a href="invoice.pl?op=delete&invoiceid=[% invoiceid %]">Eliminar</a>
+ [% END %] </fieldset>
  </form>
  <p>
  <a href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% invoiceid %]">Ir a la página de recibo</a>

@@ -240,7 +240,7 @@ $(document).ready(function () {
  <input type="hidden" name="dropboxmode" value="[% dropboxmode %]" />
  </form>
  </div>
- [% END %] [% ELSE %] [% IF ( errmsgloop ) %] <div class="dialog alert">
+ [% END %] [% END %] [% IF ( errmsgloop ) %] <div class="dialog alert">
  <h3>Mensaje de devolución</h3>
  [% FOREACH errmsgloo IN errmsgloop %] [% IF ( errmsgloo.badbarcode ) %] <p class="problem">No hay un ítem con código de barras: [% errmsgloo.msg %]</p>
  [% END %] [% IF ( errmsgloo.ispermanent ) %] <p class="problem">Por favor, devolver a [% errmsgloo.msg %]</p>
@@ -256,7 +256,8 @@ $(document).ready(function () {
  [% END %] [% END %] [% IF ( soundon ) %] <audio src="[% interface %]/[% theme %]/sound/critical.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
 [% END %] [% ELSE %] [% IF ( soundon ) %] <audio src="[% interface %]/[% theme %]/sound/beep.ogg" autoplay="autoplay" autobuffer="autobuffer"></audio>
 [% END %] [% END %] </div>
-[% END %] <div id="exemptfines" class="dialog message" style="display:none;">
+
+ <div id="exemptfines" class="dialog message" style="display:none;">
  <p>Se perdonan las multas por ítems devueltos.</p>
  </div>
  <div id="dropboxmode" class="dialog message" style="display:none;">
@@ -302,7 +303,7 @@ $(document).ready(function () {
  <tr><th>Fecha de devolución</th><th>Título</th> <th>Autor</th> <th>Código de barras</th><th>Biblioteca de origen</th><th>Biblioteca de existencia</th><th>Ubicación en estantería</th><th>Signatura</th><th>Tipo</th> <th>Socio</th><th>Nota</th></tr>
 
  [% FOREACH riloo IN riloop %] <tr>
- <td>[% IF ( riloo.duedate ) %] [% IF ( riloo.return_overdue ) %] <span class="overdue">[% riloo.duedate %] (retraso)</span>
+ <td>[% IF ( riloo.duedate ) %] [% IF ( riloo.return_overdue ) %] <span class="overdue">[% riloo.duedate %] (vencido)</span>
  [% ELSE %][% riloo.duedate %] [% END %] [% ELSE %]No prestado [% END %] </td>
  <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% riloo.itembiblionumber %]">
  [% riloo.itemtitle |html %]</a></td>

@@ -1,28 +1,25 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Su biblioteca [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.metadata.min.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/JavaScript">
+[% USE Koha %] [% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Su biblioteca [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] [% INCLUDE 'datatables.inc' %] <script type="text/JavaScript">
 //<![CDATA[
 var MSG_CONFIRM_DELETE_HOLD   = _("¿Está seguro de que quiere cancelar esta reserva?");
 var MSG_CONFIRM_SUSPEND_HOLDS = _("¿Está seguro de que quiere cancelar todas las reservas?");
 var MSG_CONFIRM_RESUME_HOLDS  = _("¿Está seguro de que quiere cancelar esta reserva?");
 
-$.tablesorter.addParser({
-    id: 'articles', 
-    is: function(s) {return false;  }, 
-    format: function(s) { return s.toLowerCase().replace(/^(the|an|a) /,''); }, 
-    type: 'text' 
-});
             $(function() {
             $('#opac-user-views').tabs();
-            $.tablesorter.defaults.widgets = ['zebra'];
-            [% IF ( dateformat == 'metric' ) %]$.tablesorter.defaults.dateFormat = ['uk'];[% END %]
-			$("#holdst").tablesorter({
-				sortList: [[0,0]]
-			}); 
-			$("#checkoutst").tablesorter({
-                [% IF ( JacketImages ) %]sortList: [[2,0]][% ELSE %]sortList: [[1,0]][% END %]
-            }); 
-			$("#overduest").tablesorter();
+
+        var dTables = $("#checkoutst,#holdst,#overduest");
+        dTables.each(function(){
+            var thIndex = $(this).find("th.psort").index();
+            $(this).dataTable($.extend(true, {}, dataTablesDefaults, {
+                "aaSorting" : [[ thIndex, 'asc' ]],
+                "aoColumnDefs": [
+                    { "aTargets": [ "nosort" ],"bSortable": false,"bSearchable": false },
+                    { "sType": "anti-the", "aTargets" : [ "anti-the" ] },
+                    { "sType": "title-string", "aTargets" : [ "title-string" ] }
+                ]
+            }));
+        });
+
 [% IF ( GoogleJackets ) %]KOHA.Google.GetCoverFromIsbn();[% END %]
         [% IF ( OpacRenewalAllowed && canrenew && !userdebarred ) %]$("#renewselected").submit(function(){
             valid = false;
@@ -89,12 +86,12 @@ $.tablesorter.addParser({
  <table id="checkoutst">
  <caption>[% issues_count %] Ítem(s) prestado(s)</caption>
  <thead><tr>
- [% IF ( JacketImages ) %]<th class="{sorter: false}">&nbsp;</th>[% END %] <th class="{sorter:'articles'}">Título</th>
- <th>Devolución</th>
+ [% IF ( JacketImages ) %]<th class="nosort">&nbsp;</th>[% END %] <th class="anti-the">Título</th>
+ <th class="title-string psort">Devolución</th>
  [% UNLESS ( item_level_itypes ) %]<th>Tipo de ítem:</th> [% END %] [% IF ( show_barcode ) %]<th>Código de barras</th>[% END %] <th>Signatura topo.</th>
- [% IF ( OpacRenewalAllowed ) %] <th class="{sorter: false}">Renovar</th>
+ [% IF ( OpacRenewalAllowed ) %] <th class="nosort">Renovar</th>
  [% END %] [% IF ( OPACFinesTab ) %] <th>Multas</th>
-[% END %] [% IF ( OPACMySummaryHTML ) %] <th class="{sorter: false}">Enlaces</th>
+[% END %] [% IF ( OPACMySummaryHTML ) %] <th class="nosort">Enlaces</th>
  [% END %] </tr></thead>
  <tbody>
  <!-- FIXME: the styling for highlight overrides the overdue red background,
@@ -114,8 +111,8 @@ $.tablesorter.addParser({
 <img src="https://secure.syndetics.com/index.aspx?isbn=[% ISSUE.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% ISSUE.normalized_upc %]&amp;oclc=[% ISSUE.normalized_oclc %]" alt="" class="thumbnail" />
 [% ELSE %] <img src="http://www.syndetics.com/index.aspx?isbn=[% ISSUE.normalized_isbn %]/SC.GIF&amp;client=[% SyndeticsClientCode %]&amp;type=xw10&amp;upc=[% ISSUE.normalized_upc %]&amp;oclc=[% ISSUE.normalized_oclc %]" alt="" class="thumbnail" />[% END %][% END %][% END %] </td>[% END %] <td class="title"><a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% ISSUE.biblionumber %]">[% ISSUE.title |html %]</a><span class="item-details">
  [% ISSUE.author %] </span></td>
- [% IF ( ISSUE.overdue ) %] <td class="date_due overdue">[% ISSUE.date_due | $KohaDates %]</td>
- [% ELSE %] <td class="date_due">[% ISSUE.date_due | $KohaDates %]</td>
+ [% IF ( ISSUE.overdue ) %] <td class="date_due overdue"><span title="[% ISSUE.date_due %]">[% ISSUE.date_due | $KohaDates %]</span></td>
+ [% ELSE %] <td class="date_due"><span title="[% ISSUE.date_due %]">[% ISSUE.date_due | $KohaDates %]</span></td>
  [% END %] [% UNLESS ( item_level_itypes ) %]<td class="itype">[% IF ( ISSUE.imageurl ) %]<img src="[% ISSUE.imageurl %]" title="[% ISSUE.description %]" alt="[% ISSUE.description %]" />[% END %] [% ISSUE.description %]</td>[% END %] [% IF ( show_barcode ) %]<td class="barcode">[% ISSUE.barcode %]</td>[% END %] <td class="call_no">[% ISSUE.itemcallnumber %]</td>
  [% IF ( OpacRenewalAllowed ) %] <td class="renew">[% IF ( ISSUE.status ) %][% IF ( canrenew ) %]<input type="checkbox" name="item" value="[% ISSUE.itemnumber %]"/> <a href="/cgi-bin/koha/opac-renew.pl?from=opac_user&amp;item=[% ISSUE.itemnumber %]&amp;borrowernumber=[% ISSUE.borrowernumber %]">Renovar</a>[% END %] <span class="renewals">([% ISSUE.renewsleft %] de [% ISSUE.renewsallowed %] renovaciones restantes)</span>
  [% ELSE %] No renovable[% IF ( ISSUE.too_many ) %] <span class="renewals">([% ISSUE.renewsleft %] de [% ISSUE.renewsallowed %] renovaciones restantes)</span>[% ELSE %][% IF ( ISSUE.on_reserve ) %] <span class="renewals">(Reservado)</span>[% END %][% END %] [% END %]</td>
@@ -163,7 +160,7 @@ $.tablesorter.addParser({
  <table id="waitingt">
  <caption>Reservas en espera</caption>
  <thead> <tr>
- <th colspan="2" class="{sorter:'articles'}">Título</th>
+ <th>Título</th>
  <th>Fecha de la reserva</th>
  <th>Biblioteca de recogida</th>
  </tr></thead>
@@ -181,10 +178,10 @@ $.tablesorter.addParser({
 <caption>Retrasos <span class="count">([% overdues_count %] total)</span></caption>
 <!-- OVERDUES TABLE ROWS -->
 <thead><tr>
-[% IF ( JacketImages ) %]<th class="{sorter: false}">&nbsp;</th>[% END %] <th class="{sorter:'articles'}">Título</th>
+[% IF ( JacketImages ) %]<th class="nosort">&nbsp;</th>[% END %] <th>Título</th>
 [% UNLESS ( item_level_itypes ) %]<th>Tipo de ítem:</th> [% END %] [% IF ( show_barcode ) %]<th>Código de barras</th>[% END %] <th>Signatura topo.</th>
-<th>Devolución</th>
-[% IF ( OpacRenewalAllowed ) %] <th class="{sorter: false}">Renovar</th>
+<th class="psort">Devolución</th>
+[% IF ( OpacRenewalAllowed ) %] <th class="nosort">Renovar</th>
 [% END %] [% IF ( OPACFinesTab ) %] <th>Multas</th>
 [% END %] </tr></thead>
 
@@ -196,7 +193,7 @@ $.tablesorter.addParser({
 [% END %] [% END %] </td>[% END %] <td><a href="/cgi-bin/koha/opac-detail.pl?bib=[% OVERDUE.biblionumber %]">[% OVERDUE.title |html %]</a> <span class="item-details">[% OVERDUE.author %]</span></td>
 
 [% UNLESS ( item_level_itypes ) %]<td>[% IF ( OVERDUE.imageurl ) %]<img src="[% OVERDUE.imageurl %]" title="[% OVERDUE.description %]" alt="[% OVERDUE.description %]" />[% END %] [% OVERDUE.description %]</td>[% END %] [% IF ( show_barcode ) %]<td>[% OVERDUE.barcode %]</td>[% END %] <td>[% OVERDUE.itemcallnumber %]</td>
-<td>[% OVERDUE.date_due | $KohaDates %]</td>
+<td><span title="[% OVERDUE.date_due %]">[% OVERDUE.date_due | $KohaDates %]</span></td>
  [% IF ( OpacRenewalAllowed ) %] <td>
 [% IF ( OVERDUE.debarred ) %]Cuenta bloqueada [% ELSIF ( OVERDUE.status ) %] [% IF ( canrenew ) %]<a href="/cgi-bin/koha/opac-renew.pl?from=opac_user&amp;item=[% OVERDUE.itemnumber %]&amp;bornum=[% OVERDUE.borrowernumber %]">Renovar</a>[% END %] <span class="renewals">([% OVERDUE.renewsleft %] de [% OVERDUE.renewsallowed %] renovaciones restantes)</span>
 [% ELSIF ( OVERDUE.onreserve ) %]En reserva [% ELSE %]No se permiten más renovaciones [% END %] </td>[% END %] [% IF ( OPACFinesTab ) %] <td>[% IF ( OVERDUE.charges ) %]Sí[% ELSE %]No[% END %]</td>
@@ -208,13 +205,13 @@ $.tablesorter.addParser({
  <caption>Reservas <span class="count">([% reserves_count %] total)</span></caption>
  <!-- RESERVES TABLE ROWS -->
  <thead><tr>
- <th class="{sorter:'articles'}">Título</th>
- <th>Puesto en</th>
+ <th>Título</th>
+ <th class="psort">Puesto en</th>
  [% IF OpacHoldNotes %]<th>Notas</th>[% END %] <th>Expira en</th>
  <th>Lugar de recogida</th>
  [% IF ( showpriority ) %] <th>Prioridad</th>
  [% END %] <th>Estado</th>
- <th class="{sorter: false}">Modificar</th>
+ <th class="nosort">Modificar</th>
  </tr></thead>
  <tbody>
  [% FOREACH RESERVE IN RESERVES %] [% IF ( RESERVE.wait ) %] [% IF ( RESERVE.atdestination ) %] [% IF ( RESERVE.found ) %] <tr class="reserved">
@@ -223,8 +220,10 @@ $.tablesorter.addParser({
  [% END %] [% ELSE %] <tr>
  [% END %] <td class="title"><a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% RESERVE.biblionumber %]">[% RESERVE.reserves_title %]</a>
  [% RESERVE.author %] </td>
- <td class="reservedate">[% RESERVE.reservedate | $KohaDates %]</td>
- [% IF OpacHoldNotes %]<td class="reservenotes">[% RESERVE.reservenotes %]</td>[% END %] <td class="expirationdate">[% IF ( RESERVE.expirationdate ) %][% RESERVE.expirationdate | $KohaDates %][% ELSE %]Nunca expira[% END %]</td>
+ <td class="reservedate"><span title="[% RESERVE.reservedate %]">[% RESERVE.reservedate | $KohaDates %]</span></td>
+ [% IF OpacHoldNotes %]<td class="reservenotes">[% RESERVE.reservenotes %]</td>[% END %] <td class="expirationdate">
+ [% IF ( RESERVE.expirationdate ) %] <span title="[% RESERVE.expirationdate %]">[% RESERVE.expirationdate | $KohaDates %]</span>
+ [% ELSE %] Nunca expira [% END %] </td>
  <td class="branch">[% RESERVE.branch %]</td>
  [% IF ( showpriority ) %] <td class="priority">[% RESERVE.priority %] </td>
  [% END %] <td class="status">
@@ -235,7 +234,7 @@ $.tablesorter.addParser({
  <td class="modify">
  [% IF ( RESERVE.cancelable ) %] <form action="/cgi-bin/koha/opac-modrequest.pl" method="post">
  <input type="hidden" name="biblionumber" value="[% RESERVE.biblionumber %]" />
- <input type="hidden" name="reservenumber" value="[% RESERVE.reservenumber %]" />
+ <input type="hidden" name="reserve_id" value="[% RESERVE.reserve_id %]" />
  <input value="Cancelar" name="submit" type="submit" class="icon delete cancel" onclick="return confirmDelete(MSG_CONFIRM_DELETE_HOLD);" /></form>
  [% ELSE %] [% END %] </td>
 

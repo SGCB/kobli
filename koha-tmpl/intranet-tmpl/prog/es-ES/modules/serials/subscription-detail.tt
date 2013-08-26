@@ -6,21 +6,6 @@ var text = new Array(_("Número"),_("Volumen"),_("Ítem"),_("Mes"),_("Semana"),_
 "Autumn"),_("Invierno"),_("Primavera"),_("Verano"),_("Otoño"),_("Estación"),_("Año"));
 
 
-// to display the options section
-function options(x,y,z){
-var textbox = '';
-    // alert("X: "+x+"Y: "+y+"Z: "+z);
-    if(x){
-        document.f.xfield.value = x;
-        if(y){
-            document.f.yfield.value = y;
-            if(z){
-                document.f.zfield.value = z;
-            }
-        }
-    }
-}
-
 function confirm_deletion() {
     var is_confirmed = confirm(_("¿Está seguro de querer borrar esta suscripción?"));
     if (is_confirmed) {
@@ -88,7 +73,10 @@ $(document).ready(function() {
  <li><span class="label">Registro:</span> <a href="/cgi-bin/koha/catalogue/[% default_bib_view %].pl?biblionumber=[% bibnum %]">[% bibliotitle %]</a> <i>([% bibnum %])</i></li>
 [% IF ( branchcode ) %]<li><span class="label">Biblioteca:</span> [% branchcode | $KohaBranchName %]</li>[% END %] [% IF ( serialsadditems ) %] <li><span class="label">Ítems:</span> La recepción de una publicaciones periódica crea un registro de ítem.</li>
  [% ELSE %] <li><span class="label">Ítems:</span> La recepción de una publicaciones periódica no crea un registro de ítem.</li>
- [% END %] <li><span class="label">Período de gracia:</span> [% graceperiod %]</li>
+ [% END %] <li>
+ <span class="label">Numeración de la publicación periódica:</span>
+ [% IF skip_serialseq %] Número de publicaciones periódicas se omite cuando se observe una irregularidad. [% ELSE %] Número de publicaciones periódicas se mantiene cuando se observe una irregularidad. [% END %] </li>
+ <li><span class="label">Período de gracia:</span> [% graceperiod %]</li>
  </ol>
  </div>
  </div>
@@ -108,24 +96,26 @@ $(document).ready(function() {
  <div class="rows">
  <ol>
  <li><span class="label">Fecha de comienzo:</span> [% startdate %] </li>
- <li><span class="label">Frecuencia (*)</span>
- [% IF ( periodicity16 ) %] Sin regularidad [% END %] [% IF ( periodicity32 ) %] Irregular [% END %] [% IF ( periodicity0 ) %] Desconocida [% END %] [% IF ( periodicity12 ) %] 2/día [% END %] [% IF ( periodicity1 ) %] 1/día [% END %] [% IF ( periodicity13 ) %] 1/4 meses (3/año) [% END %] [% IF ( periodicity2 ) %] 1/semana [% END %] [% IF ( periodicity3 ) %] 1/2 semanas [% END %] [% IF ( periodicity4 ) %] 1/3 semanas [% END %] [% IF ( periodicity5 ) %] 1/mes [% END %] [% IF ( periodicity6 ) %] 1/2 meses (6/año) [% END %] [% IF ( periodicity7 ) %] 1/trimestre [% END %] [% IF ( periodicity8 ) %] 1/trimestre [% END %] [% IF ( periodicity9 ) %] 2/año [% END %] [% IF ( periodicity10 ) %] 1/año [% END %] [% IF ( periodicity11 ) %] 1/2 años [% END %] </li>
+ <li><span class="label">Frecuencia:</span>
+ [% frequency.description %] </li>
  <li>
  <span class="label">Historial manual: </span>
- [% IF ( manualhistory ) %] Habilitado [% ELSE %] Deshabilitado [% END %] </li>
+ [% IF ( manualhistory ) %] Activar<a href="/cgi-bin/koha/serials/subscription-history.pl?subscriptionid=[% subscriptionid %]">Editar historial</a>
+ [% ELSE %] Desactivar [% END %] </li>
  <li><span class="label">Patrón numérico:</span>
- [% IF ( numberpattern1 ) %] Número solamente [% END %] [% IF ( numberpattern2 ) %] Volumen, número, ejemplar [% END %] [% IF ( numberpattern3 ) %] Volumen, número [% END %] [% IF ( numberpattern4 ) %] Volumen, ejemplar [% END %] [% IF ( numberpattern5 ) %] Número, ejemplar [% END %] [% IF ( numberpattern8 ) %] Año/Número [% END %] [% IF ( numberpattern6 ) %] Estacional solamente [% END %] [% IF ( numberpattern7 ) %] Ninguno de los anteriores [% END %] </li>
+ [% numberpattern.label %] </li>
  <li><table>
- <tr><td>Comenzando con:</td>
- <td align="center">[% lastvalue1 %]</td>
- [% IF ( lastvalue2 ) %] <td align="center">&nbsp; [% lastvalue2 %] </td>
- [% END %] [% IF ( lastvalue3 ) %] <td align="center">&nbsp; [% lastvalue3 %] </td>
+ <tr>
+ <td>Comenzando con:</td>
+ [% IF (has_X) %] <td align="center">[% lastvalue1 %]</td>
+ [% END %] [% IF (has_Y) %] <td align="center">[% lastvalue2 %]</td>
+ [% END %] [% IF (has_Z) %] <td align="center">[% lastvalue3 %]</td>
  [% END %] </tr>
- <tr><td>Reinicia:</td>
- <td align="center">
- [% IF ( whenmorethan1 < 9999999 ) %][% whenmorethan1 %][% ELSE %]Nunca[% END %] </td>
- [% IF ( whenmorethan2 ) %] <td align="center">&nbsp; [% IF ( whenmorethan2 < 9999999 ) %][% whenmorethan2 %][% ELSE %]Nunca[% END %] </td>
- [% END %] [% IF ( whenmorethan3 ) %] <td align="center">&nbsp; [% IF ( whenmorethan3 < 9999999 ) %][% whenmorethan3 %][% ELSE %]Nunca[% END %] </td>
+ <tr>
+ <td>Reinicia:</td>
+ [% IF (has_X) %] <td align="center">[% numberpattern.whenmorethan1 %]</td>
+ [% END %] [% IF (has_Y) %] <td align="center">[% numberpattern.whenmorethan2 %]</td>
+ [% END %] [% IF (has_Z) %] <td align="center">[% numberpattern.whenmorethan3 %]</td>
  [% END %] </tr>
  </table></li>
  [% IF ( irregular_issues ) %] <li><span class="label">Irregularidad:</span> [% irregular_issues %] ejemplares </li>

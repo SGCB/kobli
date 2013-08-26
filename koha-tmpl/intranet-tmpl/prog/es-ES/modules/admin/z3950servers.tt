@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; [% IF ( else ) %]Servidores Z39.50[% END %] [% IF ( add_form ) %] Servidores Z39.50 &rsaquo; [% IF ( searchfield ) %]Modificar servidor Z39.50 [% searchfield %][% ELSE %]Nuevo servidor Z39.50[% END %][% END %] [% IF ( delete_confirm ) %]Servidores Z39.50 &rsaquo; Confirmar eliminación[% END %] [% IF ( add_validate ) %]Servidores Z39.50 &rsaquo; Servidor Z39.50 agregado[% END %] [% IF ( delete_confirmed ) %]Servidores Z39.50 &rsaquo; Servidor Z39.50 eliminado[% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; [% IF ( else ) %]Z39.50 servers[% END %] [% IF ( add_form ) %] Z39.50 servers &rsaquo; [% IF ( searchfield ) %]Modificar servidor Z39.50  [% searchfield %][% ELSE %]Nuevo servidor Z39.50[% END %][% END %] [% IF ( delete_confirm ) %]Z39.50 servers &rsaquo; Confirmar eliminación[% END %] [% IF ( confirm_add ) %] Z39.50 servers &rsaquo; añadir servidores Z39.50[% END %] [% IF ( confirm_update ) %] Z39.50 servers &rsaquo; actualización servidoresZ39.50[% END %] [% IF ( delete_confirmed ) %]Z39.50 servers &rsaquo; eliminar servidor Z39.50 [% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] [% IF ( else ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
@@ -74,7 +74,7 @@
     </script>
 [% END %] </head>
 <body id="admin_z3950servers" class="admin">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'z3950-admin-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( else ) %]Servidores Z39.50[% END %] [% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; [% IF ( searchfield ) %]Modificar servidor Z39.50 [% searchfield %][% ELSE %]Nuevo servidor Z39.50[% END %][% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; Confirmar eliminación[% END %] [% IF ( add_validate ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; Servidor Z39.50 agregado[% END %] [% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; Servidor Z39.50 eliminado[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'z3950-admin-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( else ) %]Servidores Z39.50[% END %] [% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; [% IF ( searchfield ) %]Modificar servidor Z39.50 [% searchfield %][% ELSE %]Nuevo servidor Z39.50[% END %][% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; Confirmar eliminación[% END %] [% IF ( confirm_add ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; Servidor Z39.50 agregado[% END %] [% IF ( confirm_update ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; Servidor Z39.50 agregado[% END %] [% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/z3950servers.pl">Servidores Z39.50</a> &rsaquo; Servidor Z39.50 eliminado[% END %]</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -155,7 +155,11 @@
  
  <fieldset class="action"><input value="Guardar" type="button" onclick="Check(this.form)" /> <a class="cancel" href="/cgi-bin/koha/admin/z3950servers.pl">Cancelar</a></fieldset>
  </form>
-[% END %] [% IF ( add_validate ) %] <h3>Servidor Z39.50 agregado</h3>
+[% END %] [% IF ( confirm_add ) %] <h3>Servidor Z39.50 agregado</h3>
+<form action="[% script_name %]" method="post">
+ <input type="submit" value="OK" />
+ </form>
+[% END %] [% IF ( confirm_update ) %] <h3>Servidor Z39.50 actualizado</h3>
 <form action="[% script_name %]" method="post">
  <input type="submit" value="OK" />
  </form>
@@ -172,7 +176,7 @@
  <li><strong>Sintaxis: </strong>[% syntax %]</li>
  <li><strong>Codificación: </strong>[% encoding %]</li>
  <li><strong>Timeout: </strong>[% timeout %]</li>
- </ul> <form action="[% script_name %]" method="post"><input type="hidden" name="op" value="delete_confirmed" /><input type="hidden" name="searchfield" value="[% searchfield %]" /><input value="Eliminar este servidor" type="submit" /></form> <form action="[% script_name %]" method="post"><input value="No borrar" type="submit" /></form>
+ </ul> <form action="[% script_name %]" method="post"><input type="hidden" name="op" value="delete_confirmed" /><input type="hidden" name="searchfield" value="[% searchfield %]" /><input value="Eliminar este servidor " type="submit" /></form> <form action="[% script_name %]" method="post"><input value="No eliminar" type="submit" /></form>
 
 
 

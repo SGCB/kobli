@@ -158,9 +158,9 @@
 [% END %] <div class="btn-group"><a id="printbiblio" class="btn btn-small"><i class="icon-print"></i> Imprimir</a></div>
 
 [% IF ( CAN_user_reserveforothers ) %] [% UNLESS ( norequests ) %] [% IF ( holdfor ) %] <div class="btn-group">
- <button class="btn btn-small"><i class="icon-hold"></i> Hacer reserva</button>
  <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
- <span class="caret"></span>
+ <i class="icon-hold"></i>
+ Reservar <span class="caret"></span>
  </button>
  <ul class="dropdown-menu">
  <li><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>

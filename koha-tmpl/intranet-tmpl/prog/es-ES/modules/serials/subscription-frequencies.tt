@@ -1,0 +1,173 @@
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Frecuencia</title>
+[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
+//<![CDATA[
+function confirmDelete() {
+  return confirm(_("¿Está seguro que desea eliminar esta frecuencia de suscripción? "));
+}
+
+function check_form() {
+    var description = $("#description").val();
+    var unit = $("#unit").val();
+    var issuesperunit = $("#issuesperunit").val();
+    var unitsperissue = $("#unitsperissue").val();
+    var alert_msg = _("Algunos campos no son válidos: ") + "\n";
+    var errors = 0;
+
+    if(description.length == 0) {
+        alert_msg += "\t - " + _("Se requiere descripción");
+        errors ++;
+    }
+    if(unit.length > 0) {
+        if(isNaN(issuesperunit) || issuesperunit == 0) {
+            alert_msg += "\n\t - " + _("Número por unidades es requerido ")
+                + " " + _("(debe ser un múmero mayor que 0)");
+            errors ++;
+        }
+        if(isNaN(unitsperissue) || unitsperissue == 0) {
+            alert_msg += "\n\t - " + _("Se requiere unidades por ejemplares ")
+                + " " + _("(debe ser un múmero mayor que 0)");
+            errors ++;
+        }
+        if(issuesperunit > 1 && unitsperissue > 1) {
+            alert_msg += "\n\t - " + _("Uno de los "ejemplares por unidad" y "unidades por ejemplares' debe ser igual a 1");
+            errors ++;
+        }
+    }
+
+    if(errors == 0) {
+        return true;
+    }
+
+    alert(alert_msg);
+    return false;
+}
+
+function show_blocking_subs() {
+    $("#blocking_subs").show();
+}
+
+$(document).ready(function() {
+    $("#issuesperunit").change(function() {
+        var value = $(this).val();
+        if(!isNaN(value) && value > 1) {
+            $("#unitsperissue").val(1);
+        }
+    });
+    $("#unitsperissue").change(function() {
+        var value = $(this).val();
+        if(!isNaN(value) && value > 1) {
+            $("#issuesperunit").val(1);
+        }
+    });
+});
+//]]>
+</script>
+</head>
+
+<body>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs">
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; <a href="/cgi-bin/koha/serials/subscription-frequencies.pl">Frecuencias</a>
+</div>
+
+<div id="doc3" class="yui-t2">
+
+<div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+ [% IF (new or modify) %] [% IF (new) %] <h1>Nueva frecuencia</h1>
+ [% ELSE %] <h1>Modificar frecuencia: [% description %]</h1>
+ [% END %] <form action="/cgi-bin/koha/serials/subscription-frequencies.pl" method="post" onsubmit="return check_form();">
+ [% IF (modify) %] <input type="hidden" name="id" value="[% id %]" />
+ <input type="hidden" name="op" value="savemod" />
+ [% ELSE %] <input type="hidden" name="op" value="savenew" />
+ [% END %] <fieldset class="rows">
+ <ol>
+ <li>
+ <label for="description">Descripción:</label>
+ <input type="text" id="description" name="description" value="[% description %]" />
+ </li>
+ <li>
+ <label for="unit">Unidad</label>
+ <select id="unit" name="unit">
+ <option value="">Ninguno</option>
+ [% FOREACH unit IN units_loop %] [% IF (unit.selected) %] <option selected="selected" value="[% unit.val %]">
+ [% ELSE %] <option value="[% unit.val %]">
+ [% END %] [% unit.val %] </option>
+ [% END %] </select>
+ </li>
+ <li><span class="hint">Nota: uno de los dos siguientes campos debe ser igual a 1 </span></li>
+ <li>
+ <label for="issuesperunit">Fásciculos por unidades </label>
+ [% IF (new) %] <input type="text" id="issuesperunit" name="issuesperunit" value="1" size="3" />
+ [% ELSE %] <input type="text" id="issuesperunit" name="issuesperunit" value="[% issuesperunit %]" size="3" />
+ [% END %] </li>
+ <li>
+ <label for="unitsperissue">Unidades por ejemplares</label>
+ [% IF (new) %] <input type="text" id="unitsperissue" name="unitsperissue" value="1" size="3" />
+ [% ELSE %] <input type="text" id="unitsperissue" name="unitsperissue" value="[% unitsperissue %]" size="3" />
+ [% END %] </li>
+ <li>
+ <label for="displayorder">Mostrar orden: </label>
+ <input type="text" id="displayorder" name="displayorder" value="[% displayorder %]" size="3" />
+ </li>
+ </ol>
+ </fieldset>
+ <fieldset class="action">
+ <input value="Guardar" type="submit" />
+ <input value="Cancelar" type="button" onclick="window.location='/cgi-bin/koha/serials/subscription-frequencies.pl'" />
+ </fieldset>
+ </form>
+ [% ELSE %] <h1>Frecuencias</h1>
+ [% IF still_used %] <div class="dialog">
+ <p>
+ Esta frecuencia se sigue utilizando por [% subscriptions.size %] suscripción(s). ¿Todavía quiere eliminarla?</p>
+ <p><a href="#" onclick="show_blocking_subs(); return false;">Mostrar suscripciones</a></p>
+ <ul id="blocking_subs" style="display:none">
+ [% FOREACH sub IN subscriptions %] <li style="list-style-type:none">
+ <a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% sub.subscriptionid %]">[% sub.title %]</a>
+ </li>
+ [% END %] </ul>
+
+ <form action="" method="get">
+ <input type="hidden" name="op" value="del" />
+ <input type="hidden" name="confirm" value="1" />
+ <input type="hidden" name="frequencyid" value="[% frequencyid %]" />
+ <input value="Sí, eliminar" type="submit" class="approve" />
+ </form>
+ <form action="" method="get">
+ <input value="No, no eliminar" type="submit" class="deny" />
+ </form>
+ </div>
+ [% END %] <a href="/cgi-bin/koha/serials/subscription-frequencies.pl?op=new">Nueva frecuencia</a>
+
+ [% IF (frequencies_loop.size) %] <table id="frequenciest">
+ <thead>
+ <tr>
+ <th>Descripción</th>
+ <th>Unidad</th>
+ <th>Fásciculos por unidades </th>
+ <th>Unidades por ejemplares</th>
+ <th>Mostrar orden: </th>
+ <th>&nbsp;</th>
+ </tr>
+ </thead>
+ <tbody>
+ [% FOREACH frequency IN frequencies_loop %] <tr>
+ <td>[% frequency.description %]</td>
+ <td>[% frequency.unit %]</td>
+ <td>[% frequency.issuesperunit %]</td>
+ <td>[% frequency.unitsperissue %]</td>
+ <td>[% frequency.displayorder %]</td>
+ <td>
+ <a href="/cgi-bin/koha/serials/subscription-frequencies.pl?op=modify&frequencyid=[% frequency.id %]">Modificar</a> | <a href="/cgi-bin/koha/serials/subscription-frequencies.pl?op=del&frequencyid=[% frequency.id %]">Eliminar</a>
+ </td>
+ </tr>
+ [% END %] </tbody>
+ </table>
+ [% ELSE %] <p>No hay frecuencia definida.</p>
+ [% END %] [% END %] </div>
+ </div>
+ <div class="yui-b">
+ [% INCLUDE 'serials-menu.inc' %] </div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %] 

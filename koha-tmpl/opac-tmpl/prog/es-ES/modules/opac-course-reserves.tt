@@ -1,18 +1,20 @@
-[% USE AuthorisedValues %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo [% INCLUDE 'doc-head-close.inc' %]</head>
+[% USE Koha %] [% USE AuthorisedValues %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Cursos [% INCLUDE 'doc-head-close.inc' %]</head>
 <body id="opac-main">
 [% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %] <div id="bd">
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
  [% INCLUDE 'search.inc' %] <div class="yui-b">
  <div class="yui-g">
 
- <div id="search-toolbar">
- <form id="search_courses_form">
- <input type="text" name="search_on" id="search_on" />
- <input value="Buscar" type="submit" />
- </form>
- </div><!-- /toolbar -->
-
  <h1>Cursos / Materias</h1>
+ <div id="search-toolbar">
+ <form action="/cgi-bin/koha/opac-course-reserves.pl" method="get" id="search_courses_form">
+ <fieldset>
+ <label for="search_on">Buscar cursos:</label> <input type="text" name="search_on" id="search_on" />
+ <input value="Buscar" type="submit" />
+ </fieldset>
+ </form>
+ </div><!-- /search-toolbar -->
+
  <table id="course_reserves_table">
  <thead>
  <tr>

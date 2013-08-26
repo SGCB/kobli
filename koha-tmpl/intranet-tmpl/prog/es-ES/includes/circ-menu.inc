@@ -3,22 +3,22 @@
 <style type="tex/css">img { width: expression(this.width > 140 ? 140: true);
 }</style>
 <![endif]-->
-<ul>
+<ul class="patronbriefinfo">
 [% IF ( patronimages ) %] [% IF ( picture ) %] <li><img src="/cgi-bin/koha/members/patronimage.pl?crdnum=[% cardnumber | uri %]" id="patronimage" alt="[% firstname %] [% surname %] ([% cardnumber %])" border="0" style="max-width : 140px; margin: .3em 0 .3em .3em; padding: .2em; border: 1px solid #CCCCCC; width:auto !important; width:130px;" /></li>
-[% ELSE %] <li><img src="[% interface %]/[% theme %]/img/patron-blank.png" alt="[% firstname %] [% surname %] ([% cardnumber %])" border="0" style="margin: .3em 0 .3em .3em; padding: .2em; border: 1px solid #CCCCCC;" /></li>
-[% END %] [% END %] [% IF ( address or address2 ) %] [% IF ( address ) %] <li>[% address %]</li>
- [% END %] [% IF ( address2 ) %] <li>[% address2 %]</li>
+[% ELSE %] <li id="patronbasics"><img src="[% interface %]/[% theme %]/img/patron-blank.png" alt="[% firstname %] [% surname %] ([% cardnumber %])" border="0" style="margin: .3em 0 .3em .3em; padding: .2em; border: 1px solid #CCCCCC;" /></li>
+[% END %] [% END %] [% IF ( address or address2 ) %] [% IF ( address ) %] <li class="patronaddress1">[% address %]</li>
+ [% END %] [% IF ( address2 ) %] <li class="patronaddress2">[% address2 %]</li>
  [% END %] [% ELSE %] <li><span class="empty" id="noadressstored">Ninguna dirección guardada.</span></li>
- [% END %] <li>[% IF ( city ) %] [% city %][% IF ( state ) %], [% state %][% END %] [% zipcode %][% IF ( country ) %], [% country %][% END %] [% ELSE %] <span class="empty" id="nocitystored">Ninguna ciudad almacenada.</span>
+ [% END %] <li class="patroncity">[% IF ( city ) %] [% city %][% IF ( state ) %], [% state %][% END %] [% zipcode %][% IF ( country ) %], [% country %][% END %] [% ELSE %] <span class="empty" id="nocitystored">Ninguna ciudad almacenada.</span>
  [% END %]</li>
- <li>[% IF ( phone ) %] [% phone %] [% ELSE %] [% IF ( mobile ) %] [% mobile %] [% ELSE %] [% IF ( phonepro ) %] [% phonepro %] [% ELSE %] <span class="empty" id="nophonestored">Ningún teléfono guardado.</span>
+ <li class="patronphone">[% IF ( phone ) %] [% phone %] [% ELSE %] [% IF ( mobile ) %] [% mobile %] [% ELSE %] [% IF ( phonepro ) %] [% phonepro %] [% ELSE %] <span class="empty" id="nophonestored">Ningún teléfono guardado.</span>
  [% END %] [% END %] [% END %]</li>
  [% IF ( email ) %] <li class="email"> <a href="mailto:[% email %]" title="[% email %]">[% email %]</a></li>
  [% ELSE %] [% IF ( emailpro ) %] <li class="email"> <a href="mailto:[% emailpro %]" title="[% emailpro %]">[% emailpro %]</a></li>
  [% ELSE %] <li> <span class="empty">No hay email almacenado.</span> </li>
- [% END %] [% END %] [% IF ( ExtendedPatronAttributes ) %][% FOREACH extendedattribute IN extendedattributes %] [% IF ( extendedattribute.display_checkout ) %] [% IF ( extendedattribute.value ) %] <li>[% extendedattribute.description %] : [% IF ( extendedattribute.value_description ) %][% extendedattribute.value_description %][% ELSE %][% extendedattribute.value %][% END %]</li>
- [% END %] [% END %] [% END %][% END %] <li>Categoría: [% categoryname %] ([% categorycode %])</li>
- <li>Biblioteca de origen: [% IF ( branchname ) %][% branchname %][% ELSE %][% branch %][% END %]</li>
+ [% END %] [% END %] [% IF ( ExtendedPatronAttributes ) %][% FOREACH extendedattribute IN extendedattributes %] [% IF ( extendedattribute.display_checkout ) %] [% IF ( extendedattribute.value ) %] <li class="patronattribute"><span class="patronattributelabel">[% extendedattribute.description %]</span> : [% IF ( extendedattribute.value_description ) %][% extendedattribute.value_description %][% ELSE %][% extendedattribute.value %][% END %]</li>
+ [% END %] [% END %] [% END %][% END %] <li class="patroncategory">Categoría: [% categoryname %] ([% categorycode %])</li>
+ <li class="patronlibrary">Biblioteca de origen: [% IF ( branchname ) %][% branchname %][% ELSE %][% branch %][% END %]</li>
 </ul></div>
 <div id="menu">
 <ul>

@@ -1,5 +1,5 @@
 function addItem( node, unique_item_fields ) {
-    var index = $(node).parent().attr('id');
+    var index = $(node).closest("div").attr('id');
     var current_qty = parseInt($("#quantity").val());
     var max_qty;
     if($("#quantity_to_receive").length != 0){
@@ -12,7 +12,7 @@ function addItem( node, unique_item_fields ) {
             if ( current_qty < max_qty - 1 )
                 cloneItemBlock(index, unique_item_fields);
             addItemInList(index, unique_item_fields);
-            $("#" + index).find("a[name='buttonPlus']").text("Update");
+            $("#" + index).find("input[name='buttonPlus']").val( (window.MSG_ADDITEM_JS_UPDATEITEM || "Update item") );
             $("#quantity").val(current_qty + 1).change();
         } else if ( current_qty >= max_qty ) {
             alert(window.MSG_ADDITEM_JS_CANT_RECEIVE_MORE_ITEMS
@@ -134,13 +134,15 @@ function cloneItemBlock(index, unique_item_fields) {
                 $(this).val(random);
             });
             /* Add buttons + and Clear */
-            var buttonPlus = '<a name="buttonPlus" style="cursor:pointer; margin:0 1em;" onclick="addItem(this,\'' + unique_item_fields + '\')">Add</a>';
-            var buttonClear = '<a name="buttonClear" style="cursor:pointer;" onclick="clearItemBlock(this)">' + (window.MSG_ADDITEM_JS_CLEAR || 'Clear') + '</a>';
-            $(clone).append(buttonPlus).append(buttonClear);
+            var buttonPlus = "<fieldset class=\"action\">";
+                buttonPlus += '<input type="button" class="addItemControl" name="buttonPlus" style="cursor:pointer; margin:0 1em;" onclick="addItem(this,\'' + unique_item_fields + '\')" value="' + (window.MSG_ADDITEM_JS_ADDITEM || 'Add item')+ '" />';
+                buttonPlus += '<a class="addItemControl cancel" name="buttonClear" style="cursor:pointer;" onclick="clearItemBlock(this)">' + (window.MSG_ADDITEM_JS_CLEAR || 'Clear') + '</a>';
+                buttonPlus += "</fieldset>";
+            $(clone).append(buttonPlus);
             /* Copy values from the original block (input) */
             $(original).find("input[name='field_value']").each(function(){
                 var kohafield = $(this).siblings("input[name='kohafield']").val();
-                if($(this).val() && dont_copy_fields.indexOf(kohafield) == -1) {
+                if($(this).val() && $.inArray(kohafield,dont_copy_fields) == -1) {
                     $(this).parent("div").attr("id").match(/^(subfield.)/);
                     var id = RegExp.$1;
                     var value = $(this).val();
@@ -150,7 +152,7 @@ function cloneItemBlock(index, unique_item_fields) {
             /* Copy values from the original block (select) */
             $(original).find("select[name='field_value']").each(function(){
                 var kohafield = $(this).siblings("input[name='kohafield']").val();
-                if($(this).val() && dont_copy_fields.indexOf(kohafield) == -1) {
+                if($(this).val() && $.inArray(kohafield,dont_copy_fields) == -1) {
                     $(this).parent("div").attr("id").match(/^(subfield.)/);
                     var id = RegExp.$1;
                     var value = $(this).val();
@@ -164,7 +166,7 @@ function cloneItemBlock(index, unique_item_fields) {
 }
 
 function clearItemBlock(node) {
-    var index = $(node).parent().attr('id');
+    var index = $(node).closest("div").attr('id');
     var block = $("#"+index);
     $(block).find("input[type='text']").each(function(){
         $(this).val("");

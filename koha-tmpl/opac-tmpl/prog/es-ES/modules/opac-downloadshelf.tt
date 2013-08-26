@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Descargar lista[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">//<![CDATA[
+[% USE Koha %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Descargar lista[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">//<![CDATA[
 	$(document).ready(function(){
 		$(".close").html(_("Cerrar esta ventana"));
 	});

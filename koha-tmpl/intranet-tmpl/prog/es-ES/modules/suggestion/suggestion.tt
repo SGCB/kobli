@@ -151,7 +151,7 @@ $(document).ready(function() { calcNewsuggTotal(); });
  <ol>
  <li>
  <span class="label">Estado:</span>
- [% SET status_found = 0 %] [% IF ( STATUS == 'ASKED' ) %] Pendiente [% SET status_found = 1 %] [% ELSIF ( STATUS == 'ACCEPTED' ) %] Aceptada [% SET status_found = 1 %] [% ELSIF ( STATUS == 'CHECKED' ) %] Comprobada [% SET status_found = 1 %] [% ELSIF ( STATUS == 'REJECTED' ) %] Rechazada [% SET status_found = 1 %] [% ELSE %] [% FOREACH s IN SuggestionStatuses %] [% IF STATUS == s.authorised_value %] [% s.lib %] [% SET status_found = 1 %] [% END %] [% END %] [% END %] </li>
+ [% SET status_found = 0 %] [% IF ( STATUS == 'ASKED' ) %] Pendiente [% SET status_found = 1 %] [% ELSIF ( STATUS == 'ACCEPTED' ) %] Aceptado [% SET status_found = 1 %] [% ELSIF ( STATUS == 'CHECKED' ) %] Comprobado [% SET status_found = 1 %] [% ELSIF ( STATUS == 'REJECTED' ) %] Rechazado [% SET status_found = 1 %] [% ELSE %] [% FOREACH s IN SuggestionStatuses %] [% IF STATUS == s.authorised_value %] [% s.lib %] [% SET status_found = 1 %] [% END %] [% END %] [% END %] </li>
  <li>
  <table>
  <thead><tr><th>&nbsp;</th><th>Fecha</th><th>Por</th></tr></thead>
@@ -384,12 +384,17 @@ $(document).ready(function() { calcNewsuggTotal(); });
 <form name="suggestionfilter" action="suggestion.pl" method="get">
 <fieldset class="brief"><ol style="display:block;"><li><label for="displayby">Organizar por: </label>
  <select name="displayby" id="displayby" style="width:auto;">
- <option value="STATUS">Estado</option>
- <option value="branchcode">Biblioteca</option>
- <option value="itemtype">Tipo de ítem</option>
- <option value="managedby">Administrado por</option>
- <option value="acceptedby">Aceptado por</option>
- </select> <input value="Ir" type="submit" /></li></ol></fieldset>
+ [% IF ( displayby == "STATUS" ) %] <option value="STATUS" selected="selected">Estado</option>
+ [% ELSE %] <option value="STATUS">Estado</option>
+ [% END %] [% IF ( displayby == "branchcode" ) %] <option value="branchcode" selected="selected">Biblioteca</option>
+ [% ELSE %] <option value="branchcode">Biblioteca</option>
+ [% END %] [% IF ( displayby == "itemtype" ) %] <option value="itemtype" selected="selected">Tipo de ítem</option>
+ [% ELSE %] <option value="itemtype">Tipo de ítem</option>
+ [% END %] [% IF ( displayby == "managedby" ) %] <option value="managedby" selected="selected">Administrado por</option>
+ [% ELSE %] <option value="managedby">Administrado por</option>
+ [% END %] [% IF ( displayby == "acceptedby" ) %] <option value="acceptedby" selected="selected">Aceptado por</option>
+ [% ELSE %] <option value="acceptedby">Aceptado por</option>
+ [% END %] </select> <input value="Ir" type="submit" /></li></ol></fieldset>
 <h4>Filtrar por: <a style="font-size:80%;font-weight:normal;" href="/cgi-bin/koha/suggestion/suggestion.pl">[limpiar]</a></h4>
  <div style="display:block;" id="limits">
 

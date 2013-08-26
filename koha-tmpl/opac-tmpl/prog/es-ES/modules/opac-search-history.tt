@@ -1,16 +1,18 @@
-[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Su historial de búsqueda [% INCLUDE 'doc-head-close.inc' %]<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<script type="text/javascript">
+[% USE Koha %] [% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Su historial de búsqueda [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'datatables.inc' %] <script type="text/javascript">
 //<![CDATA[
 	var MSG_CONFIRM_DELETE_HISTORY = _("¿Está seguro de que quiere borrar su historial de búsqueda?");
          $(document).ready(function() {
 		// We show table ordered by descending dates by default
 		// (so that the more recent query is shown first)
-		$.tablesorter.defaults.sortList = [[0,1]];
-                $(".historyt").tablesorter({
-						widgets : ['zebra'],[% IF ( dateformat == 'metric' ) %]
-                        dateFormat: 'uk'[% END %]
-                });
-            });
+            $(".historyt").dataTable($.extend(true, {}, dataTablesDefaults, {
+                "aaSorting": [[ 0, "desc" ]],
+                "aoColumns": [
+                    { "sType": "title-string" },
+                    null,
+                    null
+                ]
+            }));
+        });
 //]]>
 
 </script>
@@ -31,7 +33,7 @@
  </thead>
  <tbody>
  [% FOREACH recentSearche IN recentSearches %] <tr>
- <td>[% recentSearche.time %]</td>
+ <td><span title="[% recentSearche.time %]">[% recentSearche.time |$KohaDates with_hours => 1 %]</span></td>
  <td><a href="/cgi-bin/koha/opac-search.pl?[% recentSearche.query_cgi |html %]">[% recentSearche.query_desc |html %]</a></td>
  <td>[% recentSearche.total %]</td>
  </tr>
@@ -44,7 +46,7 @@
  </thead>
  <tbody>
  [% FOREACH previousSearche IN previousSearches %] <tr>
- <td>[% previousSearche.time %]</td>
+ <td><span title="[% previousSearche.time %]">[% previousSearche.time |$KohaDates with_hours => 1 %]</span></td>
  <td><a href="/cgi-bin/koha/opac-search.pl?[% previousSearche.query_cgi |html %]">[% previousSearche.query_desc |html %]</a></td>
  <td>[% previousSearche.total %]</td>
  </tr>

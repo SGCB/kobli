@@ -1,0 +1,19 @@
+[% INCLUDE 'help-top.inc' %] <h1>Colección de préstamo restringido</h1>
+
+<p>El módulo de curso de reservas en Koha le permite temporalmente desplazar ítems  desde "reserva" y asignarlos a reglas de circulación diferentes para esos ítems mientras que están siendo utilizados para un curso específico.  </p>
+
+<h2>Configuración curso de reservas </h2>
+
+<p>Antes de usar el Curso de Reservas tendrá que realizar la instalación. </p>
+
+<p>En primer lugar, tendrá que habilitar el curso de reservas estableciendo la preferencia UseCourseReserves para la «utilización».</p>
+
+<p>A continuación, tendrá que tener todos los instructores del curso agregados como clientes.</p>
+
+<p>A continuación, tendrá que añadir una pareja de valores autorizados para Departamentos y Condiciones </p>
+
+<p>También puede crear nuevos tipos de elementos, códigos de colección y / o ubicaciones de estanterías para dejar claro que los artículos están en reserva para sus clientes. Usted también querrá estar seguro de confirmar que su circulación y las reglas finas son adecuadas para sus nuevos tipos de elementos (ya se trate de préstamos por hora o por día).</p>
+
+<p><strong>Ver la documentación completa de Curso de Reserva en el <a href="http://manual.koha-community.org/3.14/en/coursereserves.html">manual</a> (en línea).</strong></p>
+
+[% INCLUDE 'help-bottom.inc' %] 

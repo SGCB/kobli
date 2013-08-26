@@ -1,15 +1,18 @@
 [% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha [% END %] &rsaquo; Autopréstamo</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Koha [% Version %]" /> <!-- leave this for stats -->
-<link rel="shortcut icon" href="[% themelang %]/includes/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="[% interface %]/[% theme %]/images/favicon.ico" type="image/x-icon" />
 <!-- yui js -->
 <script type="text/javascript" src="[% yuipath %]/utilities/utilities.js"></script>
 <script type="text/javascript" src="[% yuipath %]/container/container-min.js"></script>
 <script type="text/javascript" src="[% yuipath %]/menu/menu-min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/jquery-ui.js"></script>
-<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
 <script type="text/javascript">//<![CDATA[
+    function _(s) { return s } // dummy function for gettext
+//]]>
+</script>
+[% INCLUDE 'datatables.inc' %] <script type="text/javascript">//<![CDATA[
 function sco_init() {
     setTimeout("location.href='/cgi-bin/koha/sco/sco-main.pl?op=logout';",[% SelfCheckTimeout %]);
 }
@@ -63,31 +66,17 @@ YAHOO.util.Event.onContentReady("changelanguage", function () {
   });
 });
 
-$.tablesorter.addParser({
-    id: 'articles',
-    is: function(s) {return false;  },
-    format: function(s) { return s.toLowerCase().replace(/^(the|an|a) /,''); },
-    type: 'text'
-});
-
 $(document).ready(function() {
     dofocus();
     [% IF ( patronid ) %]sco_init();[% END %]
-    $("#loanTable").tablesorter({
-        [% IF ( dateformat == "metric" ) %]
-            dateFormat: 'uk',
-        [% END %]
-        widgets:   ['zebra'],
-        sortList:  [[2, 1], [0, 0]],
-        headers: {
-            0: { sorter: 'articles' },
-            3: { sorter: false }
-            [% UNLESS ( nofines ) %], 4: { sorter: false }[% END %]
-        }
-    });
-});
-//]]>
-$(document).ready(function(){
+    $("#loanTable").dataTable($.extend(true, {}, dataTablesDefaults, {
+        "aaSorting": [ [2, "desc"], [0, "asc"] ],
+        "aoColumnDefs": [
+            { "aTargets": [ "nosort" ],"bSortable": false,"bSearchable": false },
+            { "sType": "anti-the", "aTargets" : [ "anti-the" ] },
+            { "sType": "title-string", "aTargets" : [ "title-string" ] }
+        ]
+    }));
     $("#logout_form").submit(function(){
         if(confirm("Would you like to print a receipt?")){
             window.open("/cgi-bin/koha/sco/printslip.pl?borrowernumber=[% borrowernumber %]&amp;print=qslip");
@@ -95,6 +84,7 @@ $(document).ready(function(){
         return true;
     });
 });
+//]]>
 </script>
 [% IF ( opacuserjs ) %]<script type="text/javascript">[% opacuserjs %]</script>[% END %] [% IF ( SCOUserJS ) %]<script type="text/javascript">[% SCOUserJS %]</script>[% END %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/sco.css" />
 [% IF ( OPACUserCSS ) %]<style type="text/css">[% OPACUserCSS %]</style>[% END %] [% IF ( SCOUserCSS ) %]<style type="text/css">[% SCOUserCSS %]</style>[% END %] </head>
@@ -195,7 +185,7 @@ Lo sentimos, esta máquina de autopréstamo ha perdido la identificación. Por f
  [% IF ( issues_count ) %] <table id="loanTable"><caption>Préstamos de [% borrowername %] <span class="count">([% issues_count %] total)</span></caption>
  <!-- ISSUES TABLE ROWS -->
  <thead>
- <tr><th>Título</th><th>Signatura topo.</th><th>Devolución</th><th>Renovar</th>[% UNLESS ( nofines ) %]<th>Multas</th>[% END %]</tr>
+ <tr><th class="anti-the">Título</th><th>Signatura topo.</th><th class="title-string">Devolución</th><th class="nosort">Renovar</th>[% UNLESS ( nofines ) %]<th class="nosort">Multas</th>[% END %]</tr>
  </thead>
 
  <tbody>
@@ -204,7 +194,7 @@ Lo sentimos, esta máquina de autopréstamo ha perdido la identificación. Por f
  <td>[% UNLESS ( noitemlinks ) %]<a href="/cgi-bin/koha/opac-detail.pl?bib=[% ISSUE.biblionumber %]">[% ISSUE.title |html %]</a>[% ELSE %]<strong>[% ISSUE.title |html %]</strong>[% END %]<span class="item-details">
  [% ISSUE.author %]</span> ([% ISSUE.barcode %])</td>
  <td>[% ISSUE.itemcallnumber %]</td>
- [% IF ( ISSUE.overdue ) %]<td class="overdue">[% ISSUE.date_due | $KohaDates %]</td>[% ELSE %]<td>[% ISSUE.date_due | $KohaDates %]</td>[% END %] <td>
+ [% IF ( ISSUE.overdue ) %]<td class="overdue"><span title="[% ISSUE.date_due %]">[% ISSUE.date_due | $KohaDates %]</span></td>[% ELSE %]<td><span title="[% ISSUE.date_due %]">[% ISSUE.date_due | $KohaDates %]</span></td>[% END %] <td>
  <form action="/cgi-bin/koha/sco/sco-main.pl" method="post">
  <input type="hidden" name="patronid" value="[% patronid %]" />
  <input type="hidden" name="barcode" value="[% ISSUE.barcode %]" />

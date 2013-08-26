@@ -1,6 +1,6 @@
-[% IF ( opaccredits ) %] <div class="ft">
+<div class="ft">
  [% opaccredits %] </div>
-[% END %] </div>
+</div>
 
 <div class="clear"></div>
 </div>
@@ -10,14 +10,7 @@
 </div>
 </div>
 
-[%# Sticking the div for the top bar here; since the
- top bar is positioned absolutely in this theme, it
- it makes the positioning of the rest of the elements
- easier to keep it out of the doc3 div.
-%]
-[% INCLUDE 'top-bar.inc' %]
-
-<div id="main_footer">
+[%# Cumplir el div de esta barra superior, ya que la barra superior se sitúa absolutamente en este tema, lo que hace que el posicionamiento del resto de los elementos sean más fáciles de mantener fuera del doc3 div. %] [% INCLUDE 'top-bar.inc' %] <div id="main_footer">
  <div class="colleft">
  </div>
  [% IF ( OpacKohaUrl ) %] <div class="colright">
@@ -43,8 +36,10 @@
  [% END %] [% END %] [% END %] [% END %] [% END %] </ul>
  </div>
  [% END %] [% END %] [% END %] <script type="text/javascript" src="/opac-tmpl/lib/jquery/plugins/jquery.jqtransform_select.js"></script>
+<script id="region-opacuserjs" type="text/javascript">
+    [% opacuserjs %]
+</script>
 <script type="text/javascript">
-[% IF ( opacuserjs ) %][% opacuserjs %][% END %]
 $(function() {
     //find all form with class jqtransform and apply the plugin
     $("form#searchform").jqTransform();

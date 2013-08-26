@@ -1,5 +1,4 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Etiquetas [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-<style type="text/css">
+[% USE Koha %] [% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Etiquetas [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'datatables.inc' %]<style type="text/css">
 	fieldset { padding : .3em;margin:.3em 0;}
 	#tagcloud    {background-color: #F3F3F3; text-align: justify;padding:7px;}
 	.tag a       {text-decoration: none;}
@@ -17,12 +16,20 @@
 </style>
 <script type="text/javascript">
 //<![CDATA[
-		$("#mytagst").tablesorter({[% IF ( dateformat == 'metric' ) %]
-    dateFormat: 'uk',[% END %]
-            widgets : ['zebra'],
-			headers: { 3: { sorter: false }},
-            sortList: [[2,0]]
-        });
+    $(document).ready(function(){
+        $("#mytagst").dataTable($.extend(true, {}, dataTablesDefaults, {
+            "aaSorting": [[ 2, "asc" ]],
+            "aoColumnDefs": [
+              { "aTargets": [ -1 ], "bSortable": false, "bSearchable": false }
+            ],
+            "aoColumns": [
+                null,
+                { "sType": "anti-the" },
+                { "sType": "title-string" },
+                null
+            ]
+        }));
+    });
 //]]>
 </script>
 </head>
@@ -58,7 +65,7 @@
  </td>
  <td><a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% MY_TAG.biblionumber %]">
  [% MY_TAG.bib_summary |html %]</a></td>
- <td>[% MY_TAG.date_created | $KohaDates %]</td>
+ <td><span title="[% MY_TAG.date_created %]">[% MY_TAG.date_created | $KohaDates %]</span></td>
  <td><input value="Borrar" name="del[% MY_TAG.tag_id %]" type="submit" /></td>
  </tr>
  [% END %]</tbody>

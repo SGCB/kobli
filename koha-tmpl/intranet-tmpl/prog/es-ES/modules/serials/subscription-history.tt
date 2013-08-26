@@ -1,0 +1,52 @@
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Historial de suscripción </title>
+[% INCLUDE 'doc-head-close.inc' %] </head>
+
+<body>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Historial de suscripción</div>
+
+<div id="doc3" class="yui-t2">
+
+<div id="bd">
+ <div id="yui-main">
+ <div class="yui-b">
+ <h1>Historial de suscripción para [% title %]</h1>
+ <div id="subscription_form_history">
+ <form method="post" action="/cgi-bin/koha/serials/subscription-history.pl">
+ <input type="hidden" name="op" value="mod" />
+ <input type="hidden" name="subscriptionid" value="[% subscriptionid %]" />
+ <p>Sugerencia: se puede actualizar el historial de la publicación periódica de forma manual. Esto puede ser útil para una suscripción antigua o para limpiar el historial existente. Modifique estos campos con cuidado, ya que  lo que se reciba en el futuro actualizará el historial de forma automática.</p>
+ <table>
+ <tr>
+ <td>Comienzo de la suscripción:</td>
+ <td><input type="text" name="histstartdate" value="[% histstartdate | $KohaDates %]" /> (fecha inicial de la 1er suscripción)</td>
+ </tr>
+ <tr>
+ <td>Fecha de finalización de la suscripción:</td>
+ <td><input type="text" name="histenddate" value="[% histenddate | $KohaDates %]" />(si está vacío, la suscripción está todavía activa)</td>
+ </tr>
+ <tr>
+ <td>Ejemplares recibidos</td>
+ <td><textarea name="receivedlist" cols="60" rows="5">[% receivedlist %]</textarea></td>
+ </tr>
+ <tr>
+ <td>Ejemplares faltantes</td>
+ <td><textarea name="missinglist" cols="60" rows="5">[% missinglist %]</textarea></td>
+ </tr>
+ <tr>
+ <td>Nota para el OPAC</td>
+ <td><textarea name="opacnote" cols="60" rows="5">[% opacnote %]</textarea></td>
+ </tr>
+ <tr>
+ <td>Nota para el personal</td>
+ <td><textarea name="librariannote" cols="60" rows="5">[% librariannote %]</textarea></td>
+ </tr>
+ </table>
+ <input value="Guardar historial de suscripción" type="submit" />
+ </form>
+ </div>
+ </div>
+ </div>
+ <div class="yui-b">
+ [% INCLUDE 'serials-menu.inc' %] </div>
+</div>
+[% INCLUDE 'intranet-bottom.inc' %] 
