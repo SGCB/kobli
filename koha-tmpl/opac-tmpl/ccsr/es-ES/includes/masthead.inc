@@ -15,7 +15,7 @@
 <div id="fluid">
 
 [% IF ( OpacPublic ) %] <div id="fluid-offset">
-[% UNLESS ( advsearch ) %] [% IF ( OpacAddMastheadLibraryPulldown ) %] [% IF ( OpacShowFiltersPulldownMobile and not OpacShowLibrariesPulldownMobile ) or ( not OpacShowFiltersPulldownMobile and OpacShowLibrariesPulldownMobile ) %] <form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform" class="multi-libraries single-field-mobile">
+[% UNLESS ( advsearch ) %] [% IF Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %] [% IF ( OpacShowFiltersPulldownMobile and not OpacShowLibrariesPulldownMobile ) or ( not OpacShowFiltersPulldownMobile and OpacShowLibrariesPulldownMobile ) %] <form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform" class="multi-libraries single-field-mobile">
  [% ELSE %] <form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform" class="multi-libraries">
  [% END %] [% ELSE %] <form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform" class="single-library">
 [% END %] <label for="masthead_search" class="left"> Buscar [% UNLESS ( OpacAddMastheadLibraryPulldown ) %] [% IF ( mylibraryfirst ) %] (solo en [% mylibraryfirst %])[% END %] [% END %] </label>
@@ -44,7 +44,7 @@
 [% ELSE %] <input type="text" id = "transl1" name="q" class="left" style="width: 35%; font-size: 111%;"/><div id="translControl"></div>
 [% END %] </div>
 
- [% IF ( OpacAddMastheadLibraryPulldown ) %] [% IF ( OpacShowLibrariesPulldownMobile ) %] <div id="libraries">
+ [% IF Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %] [% IF ( OpacShowLibrariesPulldownMobile ) %] <div id="libraries">
  [% ELSE %] <div id="libraries" class="mobile-hidden">
  [% END %] <select name="branch_group_limit" id="select_library" class="left">
  <option value="">Todas las bibliotecas</option>
@@ -66,7 +66,7 @@
 
  </form>
 [% ELSE %] <!--advsearch -->
- [% IF ( OpacAddMastheadLibraryPulldown ) %]
+ [% IF Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %]
  [% IF ( OpacShowFiltersPulldownMobile and not OpacShowLibrariesPulldownMobile ) or ( not OpacShowFiltersPulldownMobile and OpacShowLibrariesPulldownMobile ) %]
  <form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform" class="multi-libraries single-field-mobile">
  [% ELSE %] <form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform" class="multi-libraries">
@@ -83,7 +83,7 @@
  <input type="text" id = "transl1" name="q" class="left transparent" style="width: 35%; font-size: 111%;" disabled="disabled"/><div id="translControl"></div>
 </div>
 
- [% IF ( OpacAddMastheadLibraryPulldown ) %] [% IF ( OpacShowLibrariesPulldownMobile ) %] <div id="libraries">
+ [% IF Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %] [% IF ( OpacShowLibrariesPulldownMobile ) %] <div id="libraries">
  [% ELSE %] <div id="libraries" class="mobile-hidden">
  [% END %] <select name="limit" id="select_library" class="left transparent">
  <option value="">Todas las bibliotecas</option>
@@ -96,7 +96,7 @@
  </form>
 [% END %] <div id="moresearches">
 <a href="/cgi-bin/koha/opac-search.pl">Búsqueda avanzada</a>
-[% IF ( UseCourseReserves ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-course-reserves.pl">Colección de préstamo restringido</a>[% END %] [% IF ( OpacBrowser ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-browser.pl">Explorar por jerarquía</a>[% END %] [% IF ( OpacAuthorities ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-authorities-home.pl">Búsqueda de autoridades</a>[% END %] [% IF ( opacuserlogin && reviewson && OpacShowRecentComments ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-showreviews.pl">Comentarios recientes</a>[% END %] [% IF ( TagsEnabled ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-tags.pl">Nube de etiquetas</a>[% END %] [% IF ( OpacCloud ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-tags_subject.pl">Nube de temas</a>[% END %] [% IF ( OpacTopissue ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-topissues.pl">Más populares</a>[% END %] [% IF ( suggestion ) %] [% IF ( AnonSuggestions ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-suggestions.pl">Sugerencias de compra</a>
+[% IF Koha.Preference( 'UseCourseReserves' ) == 1 %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-course-reserves.pl">Curso de reservas</a>[% END %] [% IF ( OpacBrowser ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-browser.pl">Explorar por jerarquía</a>[% END %] [% IF ( OpacAuthorities ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-authorities-home.pl">Búsqueda de autoridades</a>[% END %] [% IF ( opacuserlogin && ( Koha.Preference( 'reviewson' ) == 1 ) && ( Koha.Preference( 'OpacShowRecentComments' ) == 1 ) ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-showreviews.pl">Comentarios recientes</a>[% END %] [% IF ( TagsEnabled ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-tags.pl">Nube de etiquetas</a>[% END %] [% IF ( OpacCloud ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-tags_subject.pl">Nube de temas</a>[% END %] [% IF ( OpacTopissue ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-topissues.pl">Más populares</a>[% END %] [% IF ( suggestion ) %] [% IF ( AnonSuggestions ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-suggestions.pl">Sugerencias de compra</a>
  [% ELSIF ( OPACViewOthersSuggestions ) %]<span class="pipe"> | </span><a href="/cgi-bin/koha/opac-suggestions.pl">Sugerencias de compra</a>
  [% END %] [% END %] </div>
  </div>
@@ -127,9 +127,10 @@
 <p>
  [% IF ( searchdesc ) %] Sin resultados para ello en el catálogo [% LibraryName %]. <a href="[% OPACBaseURL %]/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %]&amp;format=rss2" class="rsssearchlink"><img alt="Suscribirse a esta búsqueda" src="/opac-tmpl/ccsr/images/feed-icon-16x16.png" title="Suscribirse a esta búsqueda" class="rsssearchicon" border="0" /></a>
  [% ELSE %] Usted no especificó ningún criterio de búsqueda. [% END %] </p>
-[% IF ( OPACNoResultsFound ) %] <div id="noresultsfound">
+<div id="noresultsfound">
 [% OPACNoResultsFound %] </div>
-[% END %] </div>
+
+</div>
 [% END %]</p>[% END %]</div>
 
 <div class="ctn_in">

@@ -1,9 +1,17 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catalogación &rsaquo; [% IF ( biblionumber ) %]Editar [% title |html %] (Registro número [% biblionumber %])[% ELSE %]Agregar registro MARC[% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.fixFloat.js"></script>
 <script type="text/javascript" src="[% themelang %]/js/cataloging.js"></script>
+[% INCLUDE 'browser-strings.inc' %]
+<!--[if lt IE 9]>
+<script type="text/javascript" src="[% interface %]/lib/shims/json2.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="[% interface %]/js/browser.js"></script>
 [% IF ( CheckValueIndicators ) %] <script type="text/javascript" src='[% themelang %]/js/indicators.js'></script>
 [% END %] <script type="text/javascript">
 //<![CDATA[
+    var browser = KOHA.browser('[% searchid %]', parseInt('[% biblionumber %]', 10));
+    browser.show();
+
     $(window).load(function(){
         $("#loading").hide();
     });
@@ -408,7 +416,9 @@ function GetZ3950Terms(){
 
 function Changefwk(FwkList) {
     var f = document.f;
-    f.op.value = "";
+    f.op.value = "[% op %]";
+    f.biblionumber.value = "[% biblionumberdata %]";
+    f.changed_framework.value = "changed";
     f.submit();
 }
 
@@ -512,6 +522,7 @@ function Changefwk(FwkList) {
  <input type="hidden" name="frameworkcode" value="[% frameworkcode %]" />
  <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
  <input type="hidden" name="breedingid" value="[% breedingid %]" />
+ <input type="hidden" name="changed_framework" value="" />
 
 <div id="addbibliotabs" class="toptabs numbered">
  <ul>

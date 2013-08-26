@@ -3,7 +3,7 @@
  <div class="pluginname">
  [% IF plugin.enabled %]<input type="checkbox" checked="checked" id="checkbox_[% type %][% plugin.name %]">[% ELSE %]<input type="checkbox" id="checkbox_[% type %][% plugin.name %]">[% END %] <label class='pluginlabel' for="checkbox_[% type %][% plugin.name %]">[% plugin.name %]</label></div>
  <div class="plugindesc">
- [% SWITCH plugin.name %] [% CASE 'AuthorityFile' %] Sugerir autoridades que son relevantes para el término que el usuario buscado.  [% CASE 'ExplodedTerms' %] Sugiera a los clientes expandir sus búsquedas para incluir términos más amplio / específicos / relacionados. [% END %] </div>
+ [% SWITCH plugin.name %] [% CASE 'AuthorityFile' %] Sugerir autoridades que son relevantes para el término que el usuario buscaba  [% CASE 'ExplodedTerms' %] Sugiera a los clientes expandir sus búsquedas para incluir términos más amplios / específicos / relacionados. [% END %] </div>
  </div>
 [% END %] </div>
 [% END %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administration &rsaquo; ¿Ha querido decir?</title>

@@ -6,4 +6,12 @@
 [% END %] <ul>
  [% IF ( CAN_user_serials_claim_serials ) %] <li><a href="/cgi-bin/koha/serials/claims.pl">Reclamos</a></li>
  [% END %] [% IF ( CAN_user_serials_check_expiration ) %] <li><a href="/cgi-bin/koha/serials/checkexpiration.pl">Controlar vencimiento</a></li>
- [% END %] </ul>
+ [% END %] <li>
+ <a href="/cgi-bin/koha/serials/subscription-frequencies.pl">
+ Gestione Frecuencias</a>
+ </li>
+ <li>
+ <a href="/cgi-bin/koha/serials/subscription-numberpatterns.pl">
+ Manege patrones numéricos</a>
+ </li>
+</ul>

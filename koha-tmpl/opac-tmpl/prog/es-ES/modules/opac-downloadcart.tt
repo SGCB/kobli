@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Descargar cesta[% INCLUDE 'doc-head-close.inc' %] </head>
+[% USE Koha %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Descargar cesta[% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-downloadcart" class="popup">
 <div id="userdownloadcart" class="container">[% IF ( format ) %] <p>La descarga debería comenzar automáticamente.</p>
 [% ELSE %] <form method="post" action="/cgi-bin/koha/opac-downloadcart.pl">

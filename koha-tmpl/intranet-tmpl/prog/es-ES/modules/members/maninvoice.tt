@@ -28,7 +28,7 @@ $(document).ready(function(){
 </ul>
 <div class="tabs-container">
 
-[% IF ( ERROR ) %] [% IF ( ITEMNUMBER ) %] ERROR se ingresó un numero de ítem no válido. Por favor vuelva a la pantalla anterior e intente otra vez. [% END %] [% ELSE %] <form action="/cgi-bin/koha/members/maninvoice.pl" method="post" id="maninvoice"><input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" />
+[% IF ( ERROR ) %] [% IF ( ITEMNUMBER ) %] ERROR se ingresó un numero de ítem no válido, por favor vuelva a la pantalla anterior e intentelo de nuevo. [% END %] [% ELSE %] <form action="/cgi-bin/koha/members/maninvoice.pl" method="post" id="maninvoice"><input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" />
  <fieldset class="rows">
  <legend>Factura Manual</legend>
  <ol>

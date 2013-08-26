@@ -180,7 +180,7 @@
  <li><label for="order">Ordenar por:</label> <select name="order" id="order">
 [% FOREACH ORDER_LOO IN ORDER_LOOP %] [% IF ( ORDER_LOO.selected ) %] <option value="[% ORDER_LOO.ordervalue %]" selected="selected">
  [% ELSE %] <option value="[% ORDER_LOO.ordervalue %]">
- [% END %] [% IF ( ORDER_LOO.order_date_due ) %]Fecha de devolución [% ELSIF ( ORDER_LOO.order_borrower ) %]Socio [% ELSIF ( ORDER_LOO.order_barcode ) %]Código de barras [% ELSIF ( ORDER_LOO.order_title ) %]Título [% ELSIF ( ORDER_LOO.order_date_due_desc ) %]Fecha de devolución desc [% ELSIF ( ORDER_LOO.order_borrower_desc ) %]Socio desc [% ELSIF ( ORDER_LOO.order_barcode_desc ) %]Código de barras desc [% ELSIF ( ORDER_LOO.order_title_desc ) %]Título desc [% ELSE %][% ORDER_LOO.label %] [% IF ( ORDER_LOO.desc ) %]desc[% END %] [% END %] </option>
+ [% END %] [% IF ( ORDER_LOO.order_date_due ) %]Fecha de devolución [% ELSIF ( ORDER_LOO.order_borrower ) %]Usuario [% ELSIF ( ORDER_LOO.order_barcode ) %]Código de barras [% ELSIF ( ORDER_LOO.order_title ) %]Título [% ELSIF ( ORDER_LOO.order_date_due_desc ) %]Fecha de devolución desc [% ELSIF ( ORDER_LOO.order_borrower_desc ) %]Usuario desc [% ELSIF ( ORDER_LOO.order_barcode_desc ) %]Código de barras desc [% ELSIF ( ORDER_LOO.order_title_desc ) %]Título desc [% ELSE %][% ORDER_LOO.label %] [% IF ( ORDER_LOO.desc ) %]desc[% END %] [% END %] </option>
 [% END %] [% FOREACH patron_attr_order_loo IN patron_attr_order_loop %] [% IF ( patron_attr_order_loo.selected ) %]<option value="[% patron_attr_order_loo.value |html %]" selected="selected">[% patron_attr_order_loo.label %]</option>
  [% ELSE %]<option value="[% patron_attr_order_loo.value |html %]">[% patron_attr_order_loo.label %]</option>[% END %] [% END %] </select></li>
 

@@ -1,6 +1,7 @@
-[% IF ( OpacPublic ) %] <div id="opac_search">
- [% UNLESS ( advsearch ) %]<form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform">
- <label for="masthead_search" class="left"> Buscar [% UNLESS ( OpacAddMastheadLibraryPulldown ) %] [% IF ( mylibraryfirst ) %] (en [% mylibraryfirst %] solamente)[% END %] [% END %] </label>
+[% IF ( OpacPublic ) %] <div id="fluid-offset">
+[% UNLESS ( advsearch ) %]<form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform">
+ <label for="masthead_search" class="left"> Buscar [% UNLESS Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %] [% IF ( mylibraryfirst ) %] (en [% mylibraryfirst %] solamente)[% END %] [% END %] </label>
+
  <select name="idx" id="masthead_search" class="left">
  [% IF ( ms_kw ) %] <option selected="selected" value="">Catálogo</option>
  [% ELSE %] <option value="">Catálogo</option>
@@ -18,24 +19,23 @@
  [% ELSE %] <option value="callnum,phr">Signatura topográfica</option>
  [% END %] [% ELSE %] [% IF ( ms_callnum ) %] <option selected="selected" value="callnum">Signatura topográfica</option>
  [% ELSE %] <option value="callnum">Signatura topográfica</option>
- [% END %] [% END %] </select>
- [% IF ( ms_value ) %] <input value="[% ms_value |html %]" name="q" style="width: 35%; font-size: 111%;" class="left" id="transl1" title="Introduzca los términos de búsqueda" type="text" /><div id="translControl"></div>
- [% ELSE %] <input name="q" style="width: 35%; font-size: 111%;" type="text" title="Introduzca los términos de búsqueda" id="transl1" class="left" /><div id="translControl"></div>
- [% END %] [% IF ( OpacAddMastheadLibraryPulldown ) %] <select name="branch_group_limit" id="select_library" class="left">
+ [% END %] [% END %]</select>
+[% IF ( ms_value ) %] <input value="[% ms_value |html %]" name="q" style="width: 35%; font-size: 111%;" class="left" id="transl1" title="Introduzca los términos de búsqueda" type="text" /><div id="translControl"></div>
+[% ELSE %] <input name="q" style="width: 35%; font-size: 111%;" type="text" title="Introduzca los términos de búsqueda" id="transl1" class="left" /><div id="translControl"></div>
+[% END %] [% IF Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %] <select name="branch_group_limit" id="select_library" class="left">
  <option value="">Todas las bibliotecas</option>
- [% IF BranchCategoriesLoop %]<optgroup label="Bibliotecas">[% END %] [% FOREACH BranchesLoo IN BranchesLoop %] [% IF ( BranchesLoo.selected ) %]<option selected="selected" value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %] </option>
- [% ELSE %]<option value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>
- [% END %] [% END %] [% IF BranchCategoriesLoop %] </optgroup>
+ [% IF BranchCategoriesLoop %]<optgroup label="Bibliotecas">[% END %] [% FOREACH BranchesLoo IN BranchesLoop %] [% IF ( BranchesLoo.selected ) %]<option selected="selected" value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>
+ [% ELSE %]<option value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>[% END %] [% END %] [% IF BranchCategoriesLoop %] </optgroup>
  <optgroup label="Grupos">
  [% FOREACH bc IN BranchCategoriesLoop %] [% IF ( bc.selected ) %] <option selected="selected" value="multibranchlimit-[% bc.categorycode %]">[% bc.categoryname %]</option>
  [% ELSE %] <option value="multibranchlimit-[% bc.categorycode %]">[% bc.categoryname %]</option>
  [% END %] [% END %] </optgroup>
- </select>
- [% END %] [% ELSE %] [% IF ( opac_limit_override ) %] [% IF ( opac_search_limit ) %] <input name="limit" value="[% opac_search_limit %]" type="hidden" />
+ [% END %] </select>
+ [% ELSE %] [% IF ( opac_limit_override ) %] [% IF ( opac_search_limit ) %] <input name="limit" value="[% opac_search_limit %]" type="hidden" />
  [% END %] [% ELSE %] [% IF ( mylibraryfirst ) %] <input name="limit" value="branch:[% mylibraryfirst %]" type="hidden" />
  [% END %] [% END %] [% END %] <input value="Ir" type="submit" id="searchsubmit" class="left" />
- [% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %] [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink">Listas</a>[% END %] </form>
- [% ELSE %] <div style="width:80%;*margin-bottom:-30px;">
- [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink">Listas</a>[% END %] [% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %] </div>
- [% END %] </div>
+[% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %] [% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink">Listas</a>[% END %] </form>
+[% ELSE %] <div style="width:80%;*margin-bottom:-30px;">
+[% IF ( virtualshelves ) %]<a href="/cgi-bin/koha/opac-shelves.pl" id="listsmenulink">Listas</a>[% END %][% IF ( opacbookbag ) %]<span id="cmspan"></span>[% END %] </div>
+[% END %]</div>
 [% END %]

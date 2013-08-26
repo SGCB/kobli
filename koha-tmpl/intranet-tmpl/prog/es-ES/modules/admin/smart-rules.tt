@@ -91,7 +91,7 @@ $(document).ready(function() {
  <div id="yui-main">
  <div class="yui-b">
  <h1 class="parameters">
- [% IF ( humanbranch ) %] Definiendo reglas circulación y multas para "[% humanbranch %]" [% ELSE %] todas la bibliotecas [% END %] </h1>
+ [% IF ( humanbranch ) %] Definiendo reglas de circulación y multas para "[% humanbranch %]" [% ELSE %] Definiendo reglas de circulación y multas para todas la bibliotecas [% END %] </h1>
  <div class="help">
  <p>Las normas se aplicarán de la más específica a la menos específica, utilizando la primera encontrada en este orden:</p>
  <ul>
@@ -252,13 +252,13 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <select name="returnbranch">
  [% IF ( default_returnbranch == 'homebranch' ) %] <option value="homebranch" selected="selected">
  [% ELSE %] <option value="homebranch">
- [% END %] Ítem regresa a sede origen </option>
+ [% END %] Item regresa a sede origen </option>
  [% IF ( default_returnbranch == 'holdingbranch' ) %] <option value="holdingbranch" selected="selected">
  [% ELSE %] <option value="holdingbranch">
- [% END %] Ítem regresa a sede de préstamo  </option>
+ [% END %] Item regresa a sede de préstamo  </option>
  [% IF ( default_returnbranch == 'noreturn' ) %] <option value="noreturn" selected="selected">
  [% ELSE %] <option value="noreturn">
- [% END %] Ítem permanece en sede de retorno </option>
+ [% END %] Sugerir item </option>
  </select>
  </td>
  <td><input value="Guardar" type="submit" class="submit" /></td>
@@ -332,7 +332,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  [% END %] <td>[% IF ( branch_item_rule_loo.default_humanitemtype ) %] <em>Predeterminado</em>
  [% ELSE %] [% branch_item_rule_loo.humanitemtype %] [% END %] </td>
  <td>[% IF ( branch_item_rule_loo.holdallowed_any ) %] Desde cualquier biblioteca [% ELSIF ( branch_item_rule_loo.holdallowed_same ) %] Desde la biblioteca de origen [% ELSE %] No se permiten reservas [% END %] </td>
- <td>[% IF ( branch_item_rule_loo.returnbranch == 'homebranch' ) %] Ítem regresa sede origen [% ELSIF ( branch_item_rule_loo.returnbranch == 'holdingbranch' ) %] Ítem regresa a sede de préstamo [% ELSIF ( branch_item_rule_loo.returnbranch == 'noreturn' ) %] Ítem permanece en sede de retorno [% ELSE %] Error - opción desconocida [% END %] </td>
+ <td>[% IF ( branch_item_rule_loo.returnbranch == 'homebranch' ) %] Item regresa sede origen [% ELSIF ( branch_item_rule_loo.returnbranch == 'holdingbranch' ) %] Item regresa a sede de préstamo [% ELSIF ( branch_item_rule_loo.returnbranch == 'noreturn' ) %] Item permanece en sede de retorno [% ELSE %] Error - opción desconocida [% END %] </td>
  <td>
  <a class="button" href="/cgi-bin/koha/admin/smart-rules.pl?op=delete-branch-item&amp;itemtype=[% branch_item_rule_loo.itemtype %]&amp;branch=[% current_branch %]">Eliminar</a>
  </td>

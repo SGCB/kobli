@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; Recibir entrega del proveedor [% name %]</title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; Recibir entrega del proveedor [% name %]</title>
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
@@ -27,7 +27,29 @@
  </div>
 [% END %] <h1>Recibir envío del proveedor <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% name %]</a></h1>
 
-[% IF ( count ) %] <p> [% count %] envíos</p>
+ [% IF duplicate_invoices %] <div id="parcels_duplicate_invoice" class="dialog alert">
+ <p>Este número de la factura ya ha sido utilizado. ¿Le gustaría recibir en una factura existente? </p>
+ <table>
+ <thead><tr><th>Factura Nro.:  </th><th>Fecha del envío</th><th></th></tr></thead>
+ <tbody>
+ [% FOREACH invoice IN duplicate_invoices %] <tr>
+ <td>[% invoice.invoicenumber %]</td>
+ <td>[% invoice.shipmentdate | $KohaDates %]</td>
+ <td><a href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% invoice.invoiceid %]">Recibir</a></td>
+ </tr>
+ [% END %] </tbody>
+ </table>
+ <form method="get" action="parcels.pl">
+ <input type="hidden" name="booksellerid" value="[% booksellerid %]" />
+ <input type="hidden" name="op" value="confirm" />
+ <input type="hidden" name="invoice" value="[% invoicenumber %]" />
+ <input type="hidden" name="shipmentdate" value="[% shipmentdate %]" />
+ <input type="hidden" name="shipmentcost" value="[% shipmentcost %]" />
+ <input type="hidden" name="shipmentcost_budgetid" value="[% shipmentcost_budgetid %]" />
+ <input value="Crear nueva factura de todas formas " type="submit" class="button" />
+ </form>
+ </div>
+ [% END %] [% IF ( count ) %] <p> [% count %] envíos</p>
 <div id="resultlist">
 <!-- Search Results Table -->
 

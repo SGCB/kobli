@@ -1,96 +1,91 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Colección de préstamo restringido &rsaquo; [% IF course_name %] Editar [% course_name %] [% ELSE %] Nuevo curso / materia [% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
-//<![CDATA[
+[% INCLUDE 'doc-head-close.inc' %] [% IF ( departments ) %] <script type="text/javascript">
+    //<![CDATA[
 
-    function Check(f) {
-        var _alertString = "";
+        function Check(f) {
+            var _alertString = "";
 
-        if( ! $("#department").val() ) {
-            _alertString += _("- Debe elegir un departamento") + "\n";
+            if( ! $("#department").val() ) {
+                _alertString += _("- Debe elegir un departamento") + "\n";
+            }
+
+            if( ! $("#course_number").val() ) {
+                _alertString += _("- Debe elegir un número de curso / materia") + "\n";
+            }
+
+            if( ! $("#course_name").val() ) {
+                _alertString += _("- Debe indicar un nombre de curso / materia") + "\n";
+            }
+
+            if ( _alertString.length ) {
+                var alertHeader;
+                alertHeader = _("El formulario no fue procesado debido a los siguientes problemas");
+                alertHeader += "\n------------------------------------------------------------------------------------\n\n";
+
+                alert( alertHeader + _alertString );
+            } else {
+                f.submit();
+            }
         }
 
-        if( ! $("#course_number").val() ) {
-            _alertString += _("- Debe elegir un número de curso / materia") + "\n";
-        }
+    //]]>
+    </script>
 
-        if( ! $("#course_name").val() ) {
-            _alertString += _("- Debe indicar un nombre de curso / materia") + "\n";
-        }
+ <script type="text/javascript">
+    //<![CDATA[
+    $(document).ready(function(){
+        $( "#find_instructor" ).autocomplete({
+            source: "/cgi-bin/koha/circ/ysearch.pl",
+            minLength: 3,
+            select: function( event, ui ) {
+                AddInstructor( ui.item.firstname + " " + ui.item.surname, ui.item.cardnumber );
+                return false;
+            }
+        })
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+            return $( "<li></li>" )
+            .data( "item.autocomplete", item )
+            .append( "<a>" + item.surname + ", " + item.firstname + " (" + item.cardnumber + ") <small>" + item.address + " " + item.city + " " + item.zipcode + " " + item.country + "</small></a>" )
+            .appendTo( ul );
+        };
 
-        if ( _alertString.length ) {
-            var alertHeader;
-            alertHeader = _("El formulario no fue procesado debido a los siguientes problemas");
-            alertHeader += "\n------------------------------------------------------------------------------------\n\n";
+    });
 
-            alert( alertHeader + _alertString );
-        } else {
-            f.submit();
-        }
+    function AddInstructor( name, cardnumber ) {
+        div = "<div id='borrower_" + cardnumber + "'>" + name + " ( <a href='#' onclick='RemoveInstructor(" + cardnumber + ");return false;'> Remove </a> ) <input type='hidden' name='instructors' value='" + cardnumber + "' /></div>";
+        $('#instructors').append( div );
+
+        $('#find_instructor').val('').focus();
     }
 
-//]]>
-</script>
+    function RemoveInstructor( cardnumber ) {
+        $( '#borrower_' + cardnumber ).remove();
+    }
 
-<script type="text/javascript">
-//<![CDATA[
-$(document).ready(function(){
-    $( "#find_instructor" ).autocomplete({
-        source: "/cgi-bin/koha/circ/ysearch.pl",
-        minLength: 3,
-        select: function( event, ui ) {
-            AddInstructor( ui.item.firstname + " " + ui.item.surname, ui.item.cardnumber );
-            return false;
-        }
-    })
-    .data( "autocomplete" )._renderItem = function( ul, item ) {
-        return $( "<li></li>" )
-        .data( "item.autocomplete", item )
-        .append( "<a>" + item.surname + ", " + item.firstname + " (" + item.cardnumber + ") <small>" + item.address + " " + item.city + " " + item.zipcode + " " + item.country + "</small></a>" )
-        .appendTo( ul );
-    };
+    //]]>
+    </script>
 
-});
-
-function AddInstructor( name, cardnumber ) {
-    div = "<div id='borrower_" + cardnumber + "'>" + name + " ( <a href='#' onclick='RemoveInstructor(" + cardnumber + ");return false;'> Remove </a> ) <input type='hidden' name='instructors' value='" + cardnumber + "' /></div>";
-    $('#instructors').append( div );
-
-    $('#find_instructor').val('').focus();
-}
-
-function RemoveInstructor( cardnumber ) {
-    $( '#borrower_' + cardnumber ).remove();
-}
-
-//]]>
-</script>
-
-</head>
+[% END %] </head>
 
 <body>
 
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/course_reserves/course-reserves.pl">Colección de préstamo restringido</a> &rsaquo; [% IF course_name %] Editar<i>[% course_name %]</i> [% ELSE %] Nuevo curso / materia [% END %] </div>
 
-<div id="doc2" class="yui-t7">
+[% IF ( departments ) %] <div id="doc" class="yui-t7">
  <div id="bd">
- <div id="yui-main">
- <div class="yui-b">
- <div class="yui-g">
- <div class="yui-u first">
  <form method="post" action="/cgi-bin/koha/course_reserves/mod_course.pl">
  [% IF course_id %]<input type="hidden" name="course_id" value="[% course_id %]" />[% END %] <fieldset class="rows">
- <legend>[% IF course_id %]Editar[% ELSE %]Crear[% END %] curso / materia</legend>
+ <legend>[% IF course_id %]Editar curso[% ELSE %]Crear curso[% END %]</legend>
  <ol>
  <li>
  <label class="required" for="department">Departamento:</label>
- [% IF departments %] <select id="department" name="department">
- <option value="">Seleccionar un departamento</option>
+ <select id="department" name="department">
+ <option value="">Seleccionar un departamento </option>
 
  [% FOREACH d IN departments %] [% IF d.authorised_value == department %] <option value="[% d.authorised_value %]" selected="selected">[% d.lib %]</option>
  [% ELSE %] <option value="[% d.authorised_value %]">[% d.lib %]</option>
  [% END %] [% END %] </select>
- [% ELSE %] <span id="department">¡No hay valores autorizados para DEPARTAMENTO! Por favor, cree uno o más valores autorizados para la categoría DEPARTAMENTO.</span>
- [% END %] </li>
+ </li>
 
  <li>
  <label class="required" for="course_number">Número de curso / materia:</label>
@@ -108,18 +103,19 @@ function RemoveInstructor( cardnumber ) {
  </li>
 
  <li>
- <label for="term">Término</label>
- [% IF terms %] <select id="term" name="term">
+ [% IF terms %] <label for="term">Término</label>
+ <select id="term" name="term">
  <option value=""></option>
 
  [% FOREACH t IN terms %] [% IF t.authorised_value == term %] <option value="[% t.authorised_value %]" selected="selected">[% t.lib %]</option>
  [% ELSE %] <option value="[% t.authorised_value %]">[% t.lib %]</option>
  [% END %] [% END %] </select>
- [% ELSE %] <span id="term">¡No hay valores autorizados para TERM! Por favor, cree uno o más valores autorizados para la categoría TERM.</span>
+ [% ELSE %] <span class="label">Término:</span>
+ <span id="term">Ningún TÉRMINO autorizado para  valores encontrados! Por favor, cree uno o más valores autorizados para la categoría TÉRMINO. </span>
  [% END %] </li>
 
  <li>
- <label for="instructors">Formadores:</label>
+ <span class="label">Formadores:</span>
 
  <fieldset>
  <div id="instructors">
@@ -127,7 +123,6 @@ function RemoveInstructor( cardnumber ) {
  [% i.surname %], [% i.firstname %] ( <a href='#' onclick='RemoveInstructor( [% i.cardnumber %] );'> Eliminar</a> ) <input type='hidden' name='instructors' value='[% i.cardnumber %]' />
  </div>
  [% END %] </div>
-
  </fieldset>
 
  <fieldset>
@@ -163,13 +158,12 @@ function RemoveInstructor( cardnumber ) {
 
  <a href="/cgi-bin/koha/course_reserves/course-reserves.pl" class="cancel">Cancelar</a>
  </fieldset>
+ </form>
+ </div>
 
- </div>
- </div>
- </div>
- </div>
- </div>
+[% ELSE %] <div class="dialog alert">
+ <p>
+ Ningún DEPARTAMENTO autorizó valores encontrados[% IF ( CAN_user_parameters ) %] Por favor<a href="/cgi-bin/koha/admin/authorised_values.pl?searchfield=DEPARTMENT">Crear uno o más valores autorizados </a> con la categoría DEPARTAMENTO. [% ELSE %] El adiministrador debe crear uno o más valores autorizados con la categoría DEPARTAMENTO. [% END %]</p>
 </div>
 
-
-[% INCLUDE 'intranet-bottom.inc' %] 
+[% END %] [% INCLUDE 'intranet-bottom.inc' %] 

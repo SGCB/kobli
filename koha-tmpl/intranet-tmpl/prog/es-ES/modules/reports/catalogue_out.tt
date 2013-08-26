@@ -37,7 +37,7 @@
  <th>Código de barras</th>
  <th>Detalles del ítem</th>
  </tr>
- [% IF ( looptable.looprow ) %] [% FOREACH loopro IN looptable.looprow %] [% DEFAULT loopro.itemcallnumber="Sin signatura" loopro.barcode="Sin inventario" loopro.title="SIN TITULO" loopro.author="" %] [% UNLESS ( loop.odd ) %]<tr class="highlight">
+ [% IF ( looptable.looprow ) %] [% FOREACH loopro IN looptable.looprow %] [% DEFAULT loopro.itemcallnumber="Sin signatura topográfica" loopro.barcode="Sin código de barras" loopro.title="SIN TITULO" loopro.author="" %] [% UNLESS ( loop.odd ) %]<tr class="highlight">
  [% ELSE %]<tr>[% END %] <td>[% loop.count %]</td>
  <td>[% loopro.itemcallnumber %]</td>
  <td>[% loopro.barcode %]</td>

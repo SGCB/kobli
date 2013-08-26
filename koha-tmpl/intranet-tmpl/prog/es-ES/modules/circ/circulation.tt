@@ -1,4 +1,4 @@
-[% USE KohaDates %] [% IF ( export_remove_fields OR export_with_csv_profile ) %] [% SET exports_enabled = 1 %] [% END %] [% USE KohaAuthorisedValues %] [% INCLUDE 'doc-head-open.inc' %] [% SET destination = "circ" %] <title>Koha &rsaquo; Circulación [% IF borrowernumber %] &rsaquo; Prestando a [% INCLUDE 'patron-title.inc' invert_name = 1 %] [% END %]</title>
+[% USE KohaBranchName %] [% USE KohaDates %] [% IF ( export_remove_fields OR export_with_csv_profile ) %] [% SET exports_enabled = 1 %] [% END %] [% USE KohaAuthorisedValues %] [% INCLUDE 'doc-head-open.inc' %] [% SET destination = "circ" %] <title>Koha &rsaquo; Circulación [% IF borrowernumber %] &rsaquo; Prestando a [% INCLUDE 'patron-title.inc' invert_name = 1 %] [% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] [% IF ( UseTablesortForCirc ) %]<link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>[% END %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.checkboxes.min.js"></script>
@@ -297,7 +297,7 @@ function validate1(date) {
 [% END %] [% IF ( BORRNOTSAMEBRANCH ) %] <li>Estos socios son de una biblioteca diferente ([% BORRNOTSAMEBRANCH %])</li>
 [% END %] [% IF ( PATRON_CANT ) %] <li>Este socio no puede retirar este ítem debido a las políticas de circulación de la biblioteca</li>
 [% END %] [% IF ( NOT_FOR_LOAN_FORCING ) %] <li>
- [% IF ( itemtype_notforloan ) %] Los ítems de este tipo no están disponibles para préstamo. [% ELSIF ( item_notforloan ) %] [% item_notforloan_lib = KohaAuthorisedValues.GetByCode( authvalcode_notforloan, item_notforloan, 0 ) %] Este ítem no está disponible para préstamo [% IF (item_notforloan_lib) %]([% item_notforloan_lib %])[% END %]. [% END %] ¿Prestar igualmente?</li>
+ [% IF ( itemtype_notforloan ) %] Los items de este tipo no están disponibles para préstamo. [% ELSIF ( item_notforloan ) %] [% item_notforloan_lib = KohaAuthorisedValues.GetByCode( authvalcode_notforloan, item_notforloan, 0 ) %] Este ítem no está disponible para préstamo [% IF (item_notforloan_lib) %]([% item_notforloan_lib %])[% END %]. [% END %] ¿Prestar igualmente?</li>
 [% END %] [% IF ( USERBLOCKEDOVERDUE ) %] <li>El socio tiene [% USERBLOCKEDOVERDUE %] ítem(s) retrasados. Prestar de todos modos?</li>
 [% END %] [% IF ( ITEM_LOST ) %] <li>Este ítem se ha perdido con estado de "[% ITEM_LOST %]". Lo presta igualmente?</li>
 [% END %] [% IF  HIGHHOLDS %] <li>Artículo de gran demanda. Tiempo de préstamo reducido a [% HIGHHOLDS.duration %] días (debido [% HIGHHOLDS.returndate %]). ¿todos modos desea revisar?</li>
@@ -355,9 +355,18 @@ function validate1(date) {
  <ul>
  [% IF ( STATS ) %] <li>Uso local almacenado</li>
  [% END %] [% IF ( INVALID_DATE ) %] <li>La fecha de devolución &quot;[% INVALID_DATE %]&quot; es inválida</li>
- [% END %] [% IF ( UNKNOWN_BARCODE ) %] <li>El código de barras [% barcode |html %] no se ha encontrado</li>
- [% IF ( fast_cataloging ) %] [% IF ( CAN_user_editcatalogue_fast_cataloging ) %] <a href="/cgi-bin/koha/cataloguing/addbiblio.pl?frameworkcode=FA&amp;barcode=[% barcode |uri %]&amp;circborrowernumber=[% borrowernumber %]&amp;branch=[% branch %]&amp;duedatespec=[% duedatespec %]&amp;stickyduedate=[% stickyduedate %]">Catalogación rápida</a>
- [% END %] [% END %] [% END %] [% IF ( NOT_FOR_LOAN ) %] <li>
+ [% END %] [% IF ( UNKNOWN_BARCODE ) %] <li>El código de barras no se ha encontrado [% barcode |html %] [% IF ( fast_cataloging ) %] [% IF ( CAN_user_editcatalogue_fast_cataloging ) %] <a href="/cgi-bin/koha/cataloguing/addbiblio.pl?frameworkcode=FA&amp;barcode=[% barcode |uri %]&amp;circborrowernumber=[% borrowernumber %]&amp;branch=[% branch %]&amp;duedatespec=[% duedatespec %]&amp;stickyduedate=[% stickyduedate %]">Catalogación rápida</a>
+ [% END %] [% END %] [% IF ( FALLBACK ) %] [% IF options %] <br />Los siguientes items fueron encontrados por la búsqueda: [% FOREACH book IN options %]<br />
+ <form method="post" action="/cgi-bin/koha/circ/circulation.pl" autocomplete="off">
+ <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
+ <input type="hidden" name="duedatespec" value="[% duedatespec %]" />
+ <input type="hidden" name="stickyduedate" value="[% stickyduedate %]" />
+ <input type="hidden" name="branch" value="[% branch %]" />
+ <input type="hidden" name="barcode" value="[% book.barcode %]" />
+ <input value="Prestar  [% book.barcode %]: [% book.title %]" name="x" type="submit" />
+ </form>
+ [% END %] [% ELSE %] <br />Ningunos items hallados por búsqueda. [% END %] [% END %]</li>
+ [% END %] [% IF ( NOT_FOR_LOAN ) %] <li>
  [% IF ( itemtype_notforloan ) %] Tipo de ítem no disponible para el préstamo. [% ELSIF ( item_notforloan ) %] [% item_notforloan_lib = KohaAuthorisedValues.GetByCode( authvalcode_notforloan, item_notforloan, 0 ) %] Item no disponible para préstamo [% IF (item_notforloan_lib) %]([% item_notforloan_lib %])[% END %]. [% END %] </li>
  [% END %] [% IF ( WTHDRAWN ) %] <li>Ítem ha sido retirado</li>
  [% END %] [% IF ( RESTRICTED ) %] <li>El ítem está restringido</li>
@@ -367,7 +376,8 @@ function validate1(date) {
  [% END %] [% IF ( NO_MORE_RENEWALS ) %] <li>No es posible una nueva renovación</li>
  [% END %] [%IF ( AGE_RESTRICTION ) %] <li>Restricción de edad [% AGE_RESTRICTION %].</li>
  [% END %] [% IF ( EXPIRED ) %] <li>El carnet de socio se ha vencido.</li>
- [% END %] [% IF ( ITEMNOTSAMEBRANCH ) %] <li>Este ítem es de la biblioteca [% itemhomebranch %] y no pueden ser prestado desde esta ubicación.</li>
+ [% END %] [% IF ( TOO_MANY ) %] <li>Demasiados préstamos. [% current_loan_count %] prestados, solo [% max_loans_allowed %] permitidos.</li>
+ [% END %] [% IF ( ITEMNOTSAMEBRANCH ) %] <li>Este ítem pertenece a [% itemhomebranch | $KohaBranchName %] y no pueden ser prestado desde esta ubicación.</li>
  [% END %] [% IF ( USERBLOCKEDREMAINING ) %] <li>El socio tiene ítems retrasados y está bloqueado por [% USERBLOCKEDREMAINING %] día(s).</li>
  [% END %] [% IF ( USERBLOCKEDOVERDUE ) %] <li>Los préstamos están BLOQUEADOS porque el usuario tiene ítems con el préstamo vencido</li>
  [% END %] </ul>
@@ -548,7 +558,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  [% IF ( todayissue.itemlost ) %] <span class="lost">[% KohaAuthorisedValues.GetByCode( 'LOST', todayissue.itemlost ) %]</span>
  [% END %] [% IF ( todayissue.damaged ) %] <span class="dmg">[% KohaAuthorisedValues.GetByCode( 'DAMAGED', todayissue.damaged ) %]</span>
  [% END %] </td>
- <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% todayissue.biblionumber %]&amp;type=intra"><strong>[% todayissue.title |html %]</strong></a>[% IF ( todayissue.author ) %], por [% todayissue.author %][% END %][% IF ( todayissue.itemnotes ) %]- <span class="circ-hlt">[% todayissue.itemnotes %]</span>[% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% todayissue.biblionumber %]&amp;itemnumber=[% todayissue.itemnumber %]#item[% todayissue.itemnumber %]">[% todayissue.barcode %]</a></td>
+ <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% todayissue.biblionumber %]&amp;type=intra"><strong>[% todayissue.title |html %][% FOREACH subtitl IN todayissue.subtitle %] [% subtitl.subfield %][% END %]</strong></a>[% IF ( todayissue.author ) %], por [% todayissue.author %][% END %][% IF ( todayissue.itemnotes ) %]- <span class="circ-hlt">[% todayissue.itemnotes %]</span>[% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% todayissue.biblionumber %]&amp;itemnumber=[% todayissue.itemnumber %]#item[% todayissue.itemnumber %]">[% todayissue.barcode %]</a></td>
  <td>[% UNLESS ( noItemTypeImages ) %] [% IF ( todayissue.itemtype_image ) %]<img src="[% todayissue.itemtype_image %]" alt="" />[% END %][% END %][% todayissue.itemtype %]</td>
  <td><span title="[% todayissue.displaydate_sort %]">[% todayissue.checkoutdate %]</span></td>
  [% IF ( todayissue.multiple_borrowers ) %]<td>[% todayissue.firstname %] [% todayissue.surname %]</td>[% END %] <td>[% todayissue.issuingbranchname %]</td>
@@ -595,7 +605,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  [% IF ( previssue.itemlost ) %] <span class="lost">[% KohaAuthorisedValues.GetByCode( 'LOST', previssue.itemlost ) %]</span>
  [% END %] [% IF ( previssue.damaged ) %] <span class="dmg">[% KohaAuthorisedValues.GetByCode( 'DAMAGED', previssue.damaged ) %]</span>
  [% END %] </td>
- <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% previssue.biblionumber %]&amp;type=intra"><strong>[% previssue.title |html %]</strong></a>[% IF ( previssue.author ) %], por [% previssue.author %][% END %] [% IF ( previssue.itemnotes ) %]- [% previssue.itemnotes %][% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% previssue.biblionumber %]&amp;itemnumber=[% previssue.itemnumber %]#item[% previssue.itemnumber %]">[% previssue.barcode %]</a></td>
+ <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% previssue.biblionumber %]&amp;type=intra"><strong>[% previssue.title |html %][% FOREACH subtitl IN previssue.subtitle %] [% subtitl.subfield %][% END %]</strong></a>[% IF ( previssue.author ) %], por [% previssue.author %][% END %] [% IF ( previssue.itemnotes ) %]- [% previssue.itemnotes %][% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% previssue.biblionumber %]&amp;itemnumber=[% previssue.itemnumber %]#item[% previssue.itemnumber %]">[% previssue.barcode %]</a></td>
  <td>
  [% previssue.itemtype %] </td>
  <td><span title="[% previssue.displaydate_sort %]">[% previssue.displaydate %]</span></td>
@@ -682,7 +692,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  [% IF ( relissue.itemlost ) %] <span class="lost">[% KohaAuthorisedValues.GetByCode( 'LOST', relissue.itemlost ) %]</span>
  [% END %] [% IF ( relissue.damaged ) %] <span class="dmg">[% KohaAuthorisedValues.GetByCode( 'DAMAGED', relissue.damaged ) %]</span>
  [% END %] </td>
- <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% relissue.biblionumber %]&amp;type=intra"><strong>[% relissue.title |html %]</strong></a>[% IF ( relissue.author ) %], por [% relissue.author %][% END %][% IF ( relissue.itemnotes ) %]- <span class="circ-hlt">[% relissue.itemnotes %]</span>[% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% relissue.biblionumber %]&amp;itemnumber=[% relissue.itemnumber %]#item[% relissue.itemnumber %]">[% relissue.barcode %]</a></td>
+ <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% relissue.biblionumber %]&amp;type=intra"><strong>[% relissue.title |html %][% FOREACH subtitl IN relissue.subtitle %] [% subtitl.subfield %][% END %]</strong></a>[% IF ( relissue.author ) %], por [% relissue.author %][% END %][% IF ( relissue.itemnotes ) %]- <span class="circ-hlt">[% relissue.itemnotes %]</span>[% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% relissue.biblionumber %]&amp;itemnumber=[% relissue.itemnumber %]#item[% relissue.itemnumber %]">[% relissue.barcode %]</a></td>
  <td>[% UNLESS ( noItemTypeImages ) %] [% IF ( relissue.itemtype_image ) %]<img src="[% relissue.itemtype_image %]" alt="" />[% END %][% END %][% relissue.itemtype %]</td>
  <td><span title="[% relissue.displaydate_sort %]">[% relissue.displaydate %]</span></td>
  <td>[% relissue.issuingbranchname %]</td>
@@ -697,7 +707,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  [% ELSE %] <tr class="highlight">
  [% END %] [% IF ( relprevissue.overdue ) %]<td class="od">[% ELSE %]<td>[% END %] <span title="[% relprevissue.dd_sort %]">[% relprevissue.dd %]</span>
  </td>
- <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% relprevissue.biblionumber %]&amp;type=intra"><strong>[% relprevissue.title |html %]</strong></a>[% IF ( relprevissue.author ) %], por [% relprevissue.author %][% END %] [% IF ( relprevissue.itemnotes ) %]- [% relprevissue.itemnotes %][% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% relprevissue.biblionumber %]&amp;itemnumber=[% relprevissue.itemnumber %]#item[% relprevissue.itemnumber %]">[% relprevissue.barcode %]</a></td>
+ <td><a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% relprevissue.biblionumber %]&amp;type=intra"><strong>[% relprevissue.title |html %][% FOREACH subtitl IN relprevissue.subtitle %] [% subtitl.subfield %][% END %]</strong></a>[% IF ( relprevissue.author ) %], por [% relprevissue.author %][% END %] [% IF ( relprevissue.itemnotes ) %]- [% relprevissue.itemnotes %][% END %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?biblionumber=[% relprevissue.biblionumber %]&amp;itemnumber=[% relprevissue.itemnumber %]#item[% relprevissue.itemnumber %]">[% relprevissue.barcode %]</a></td>
  <td>[% UNLESS noItemTypeImages %][% IF relprevissue.itemtype_image %]<img src="[% relprevissue.itemtype_image %]" alt="" />[% END %][% END %][% relprevissue.itemtype %]</td>
  <td><span title="[% relprevissue.displaydate_sort %]">[% relprevissue.displaydate %]</span></td>
  <td>[% relprevissue.issuingbranchname %]</td>
@@ -733,7 +743,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  <tbody>
  [% FOREACH reservloo IN reservloop %] <tr class="[% reservloo.color %]">
  <td>[% reservloo.reservedate %]</td>
- <td><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% reservloo.biblionumber %]"><strong>[% reservloo.title |html %]</strong></a>[% IF ( reservloo.author ) %], por [% reservloo.author %][% END %]</td>
+ <td><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% reservloo.biblionumber %]"><strong>[% reservloo.title |html %][% FOREACH subtitl IN reservloo.subtitle %] [% subtitl.subfield %][% END %]</strong></a>[% IF ( reservloo.author ) %], por [% reservloo.author %][% END %]</td>
  <td>[% reservloo.itemcallnumber %]</td>
  <td><em>[% IF ( reservloo.barcodereserv ) %]Ítem [% reservloo.barcodereserv %] [% END %][% IF ( reservloo.waiting ) %] <strong>esperando en [% reservloo.waitingat %]</strong>
  [% END %] [% IF ( reservloo.transfered ) %] <strong>en tránsito</strong> de [% reservloo.frombranch %] desde [% reservloo.datesent %] [% END %] [% IF ( reservloo.nottransfered ) %] ha sido transferido aun desde [% reservloo.nottransferedby %]</i>
@@ -747,7 +757,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  </select>
  <input type="hidden" name="biblionumber" value="[% reservloo.biblionumber %]" />
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
- <input type="hidden" name="reservenumber" value="[% reservloo.reservenumber %]" />
+ <input type="hidden" name="reserve_id" value="[% reservloo.reserve_id %]" />
  </td>
  <td>[% IF ( reservloo.suspend ) %]Suspendida [% IF ( reservloo.suspend_until ) %] hasta [% reservloo.suspend_until | $KohaDates %][% END %][% END %] </td>
  </tr>

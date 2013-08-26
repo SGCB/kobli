@@ -1,7 +1,7 @@
 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Koha [% Version %]" /> <!-- leave this for stats -->
-<link rel="shortcut icon" href="[% IF ( OpacFavicon ) %][% OpacFavicon %][% ELSE %][% themelang %]/includes/favicon.ico[% END %]" type="image/x-icon" />
+<link rel="shortcut icon" href="[% IF ( OpacFavicon ) %][% OpacFavicon %][% ELSE %][% interface %]/[% theme %]/images/favicon.ico[% END %]" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="[% themelang %]/lib/jquery/jquery-ui.css" />
 [% SET opaclayoutstylesheet='opac.css' UNLESS opaclayoutstylesheet %] [% IF (opaclayoutstylesheet.match('^https?:|^\/')) %] <link rel="stylesheet" type="text/css" href="[% opaclayoutstylesheet %]" />
 [% ELSE %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/[% opaclayoutstylesheet %]" />
@@ -10,8 +10,9 @@
  [% END %] [% END %] [% IF ( opac_css_override ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/[% opac_css_override %]" />
 [% END %] <link rel="stylesheet" type="text/css" media="print" href="[% themelang %]/css/print.css" />
 [% IF persona %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/persona-buttons.css" />
-[% END %] [% IF ( OPACMobileUserCSS ) %]<style type="text/css" media="screen and (max-width:700px)">[% OPACMobileUserCSS %]</style>[% END %] [% IF ( bidi ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/right-to-left.css" />
-[% END %] [% IF ( OPACUserCSS ) %]<style type="text/css">[% OPACUserCSS %]</style>[% END %]
+[% END %] <style id="region-opacmobileusercss" type="text/css" media="screen and (max-width:700px)">[% OPACMobileUserCSS %]</style>
+[% IF ( bidi ) %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/right-to-left.css" />
+[% END %] <style id="region-opacusercss" type="text/css">[% OPACUserCSS %]</style>
 <!-- yui js --> 
 <script type="text/javascript" src="[% yuipath %]/utilities/utilities.js"></script> 
 <script type="text/javascript" src="[% yuipath %]/container/container-min.js"></script> 
@@ -73,8 +74,12 @@
 	[% IF ( SyndeticsCoverImages ) %]$(window).load(function() {
             verify_images();
          });[% END %]
-	[% IF ( opacuserjs ) %][% opacuserjs %][% END %]
-	//]]>
+    //]]>
+</script>
+<script id="region-opacuserjs" type="text/javascript">
+    [% opacuserjs %]
+</script>
+<script type="text/javascript">
 [% IF ( opacbookbag ) %]</script><script type="text/javascript" src="[% themelang %]/js/basket.js">
 [% ELSIF ( virtualshelves ) %]</script><script type="text/javascript" src="[% themelang %]/js/basket.js">
 [% ELSE %]</script><script type="text/javascript">var readCookie;[% END %]</script>

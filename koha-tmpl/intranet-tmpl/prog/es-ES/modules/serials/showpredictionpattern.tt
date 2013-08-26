@@ -1,0 +1,55 @@
+[% USE KohaDates %] <h2>Test de patrón de predicción </h1>
+[% IF (not_consistent_end_date) %] <p><em>Fecha de finalización no es coincidente con la longitud de suscripción.</em></p>
+[% END %] [% IF (ask_for_irregularities) %] <p><em>Por favor, comprobar ejemplares que NO se publican (irregularidades)</em></p>
+ [% IF (daily_options) %] <script type="text/javascript">
+        //<![CDATA[
+        function Check_boxes(dow) {
+            if($(":checkbox[data-dow='"+dow+"']:first").attr("checked") == 'checked') {
+                $("#predictionst :checkbox[data-dow='"+dow+"']").each(function(){
+                    $(this).attr('checked', true);
+                });
+            } else {
+                $("#predictionst :checkbox[data-dow='"+dow+"']").each(function(){
+                    $(this).attr('checked', false);
+                });
+            }
+        }
+        //]]>
+        </script>
+ <p><em>
+ Si hay un día (o más) en la semana donde los ejemplares no se publican, se puede comprobar las casillas correspondientes a continuación.</em></p>
+ <input type="checkbox" id="monday" data-dow="1" onchange="Check_boxes(1);" />
+ <label for="monday">Lunes</label>
+ <input type="checkbox" id="tuesday" data-dow="2" onchange="Check_boxes(2);" />
+ <label for="tuesday">Martes</label>
+ <input type="checkbox" id="wednesday" data-dow="3" onchange="Check_boxes(3);" />
+ <label for="wednesday">Miércoles</label>
+ <input type="checkbox" id="thursday" data-dow="4" onchange="Check_boxes(4);" />
+ <label for="thursday">Jueves</label>
+ <input type="checkbox" id="friday" data-dow="5" onchange="Check_boxes(5);" />
+ <label for="friday">Viernes</label>
+ <input type="checkbox" id="saturday" data-dow="6" onchange="Check_boxes(6);" />
+ <label for="saturday">Sábado</label>
+ <input type="checkbox" id="sunday" data-dow="7" onchange="Check_boxes(7);" />
+ <label for="sunday">Domingo</label>
+ [% END %] [% END %] [% IF (predictions_loop) %] <table id="predictionst">
+ <thead>
+ <tr>
+ <th>Número</th>
+ <th>Fecha de Publicación</th>
+ [% IF (ask_for_irregularities) %] <th>No publicado</th>
+ [% END %] </tr>
+ </thead>
+ <tbody>
+ [% FOREACH prediction IN predictions_loop %] <tr>
+ <td>[% prediction.number %]</td>
+ <td>
+ [% IF (prediction.publicationdate) %] [% prediction.publicationdate | $KohaDates %] [% ELSE %] desconocido [% END %] </td>
+ [% IF (ask_for_irregularities) %] <td style="text-align:center">
+ [% UNLESS (loop.first) %] [% IF (prediction.not_published) %] <input type="checkbox" name="irregularity" value="[% prediction.issuenumber %]" data-dow="[% prediction.dow %]" checked="checked" />
+ [% ELSE %] <input type="checkbox" name="irregularity" value="[% prediction.issuenumber %]" data-dow="[% prediction.dow %]" />
+ [% END %] </td>
+ [% END %] [% END %] </tr>
+ [% END %] </tbody>
+</table>
+[% END %] 

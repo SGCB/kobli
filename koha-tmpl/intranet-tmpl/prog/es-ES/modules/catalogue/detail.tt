@@ -28,9 +28,11 @@ function verify_images() {
         }
         });
 }
+
      $(document).ready(function() {
         $('#bibliodetails').tabs();
         $('#search-form').focus();
+
      });
      [% IF ( AmazonCoverImages ) %]$(window).load(function() {
         verify_images();
@@ -40,9 +42,17 @@ function verify_images() {
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.columnFilter.js"></script>
+[% INCLUDE 'browser-strings.inc' %]
+<!--[if lt IE 9]>
+<script type="text/javascript" src="[% interface %]/lib/shims/json2.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="[% interface %]/js/browser.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript">
 //<![CDATA[
+    var browser = KOHA.browser('[% searchid %]', parseInt('[% biblionumber %]', 10));
+    browser.show();
+
     function activate_filters(id) {
         table = $("#" + id + " table");
         if (table.length == 1) {
@@ -248,7 +258,7 @@ function verify_images() {
  [% IF ( item.datedue ) %] <span class="datedue">Ha sido prestado [% UNLESS ( item.NOTSAMEBRANCH ) %] a <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% item.borrowernumber %]">
  [% IF ( item.hidepatronname ) %] [% item.cardnumber %] [% ELSE %] [% item.firstname %] [% item.surname %] [% END %] </a>
  [% END %] : vencimiento [% item.datedue %] </span>
- [% ELSIF ( item.transfertwhen ) %] <span class="intransit">En cuarso desde [% itemloo.transfertfrom %] a [% itemloo.transfertto %] hasta [% itemloo.transfertwhen %]</span>
+ [% ELSIF ( item.transfertwhen ) %] <span class="intransit">En cuarso desde [% item.transfertfrom %] a [% item.transfertto %] hasta [% item.transfertwhen %]</span>
  [% END %] [% IF ( item.itemlost ) %] [% IF ( item.itemlostloop ) %] [% FOREACH itemlostloo IN item.itemlostloop %] [% IF ( itemlostloo.selected ) %] <span class="lost">[% itemlostloo.lib %]</span>
  [% END %] [% END %] [% ELSE %] <span class="lost">No disponible (perdido o faltante)</span>
  [% END %] [% END %] [% IF ( item.wthdrawn ) %] <span class="wdn">Retirado</span>
@@ -298,7 +308,7 @@ function verify_images() {
  [% END %] [% END %] </div>
 
 [% IF (SeparateHoldings) %] <div id="otherholdings">
- [% IF (otheritemloop.size) %] [% PROCESS items_table items=otheritemloop %] [% ELSE %] No otros ítems. [% END %] </div>
+ [% IF (otheritemloop.size) %] [% PROCESS items_table items=otheritemloop %] [% ELSE %] Sin otros ítems. [% END %] </div>
 [% END %] <div id="description">
 <div class="content_set">
 
@@ -316,13 +326,15 @@ function verify_images() {
  <table>
  <tr>
  <th>Préstamo #</th>
- <th>Fecha</th>
+ <th>Fecha de recepción</th>
+ <th>Fecha de publicación  </th>
  <th>Estado</th>
  <th>Nota</th>
  </tr>
  [% FOREACH latestserial IN subscription.latestserials %] <tr>
  <td>[% latestserial.serialseq %]</td>
  <td>[% latestserial.planneddate %]</td>
+ <td>[% latestserial.publisheddate%]</td>
  <td>
  [% IF ( latestserial.status1 ) %]Esperado [% END %] [% IF ( latestserial.status2 ) %]recibido [% END %] [% IF ( latestserial.status3 ) %]Demorado [% END %] [% IF ( latestserial.status4 ) %]Perdido [% END %] [% IF ( latestserial.status5 ) %]No prestado [% END %] [% IF ( latestserial.status6 ) %]Borrado[% END %] [% IF ( latestserial.status7 ) %]Reclamado[% END %] [% IF ( latestserial.status8 ) %]Parado[% END %] </td>
  <td>[% latestserial.notes %]</td>

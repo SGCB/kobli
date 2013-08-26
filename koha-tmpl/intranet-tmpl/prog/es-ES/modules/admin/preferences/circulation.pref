@@ -95,6 +95,13 @@ circulation.pref:
         pref: itemBarcodeInputFilter
       - "los c\xC3\xB3digos de barra de \xC3\xADtems escaneados."
     - 
+      - 
+        choices: 
+          "": "circulaci\xC3\xB3n.pref#itemBarcodeFallbackSearch# No permitido"
+          1: "circulaci\xC3\xB3n.pref#itemBarcodeFallbackSearch# Permitido"
+        pref: itemBarcodeFallbackSearch
+      - "circulaci\xC3\xB3n.pref#itemBarcodeFallbackSearch# el uso autom\xC3\xA1tico de una b\xC3\xBAsqueda en el cat\xC3\xA1logo de palabras clave si la frase entr\xC3\xB3 como un c\xC3\xB3digo de barras en la p\xC3\xA1gina de pago no aparece ning\xC3\xBAn resultado durante una b\xC3\xBAsqueda de c\xC3\xB3digo de barras del art\xC3\xADculo. "
+    - 
       - "Ordenar pr\xC3\xA9stamos anteriores en la p\xC3\xA1gina de la circulaci\xC3\xB3n por"
       - 
         choices: 
@@ -251,6 +258,13 @@ circulation.pref:
         pref: FinesIncludeGracePeriod
       - "el periodo de gracia cuando se calcula la multa para un \xC3\xADtem retrasado"
   "Pol\xC3\xADtica de pr\xC3\xA9stamo": 
+    - 
+      - 
+        choices: 
+          "": "circulaci\xC3\xB3n.pref#AllowTooManyOverride# No permitir"
+          1: "circulaci\xC3\xB3n.pref#AllowTooManyOverride# Permitir"
+        pref: AllowTooManyOverride
+      - "circulaci\xC3\xB3n.pref#AllowTooManyOverride# plantilla para anular y prestar los items cuando el usuario ha alcanzado el l\xC3\xADmite m\xC3\xA1ximo de pr\xC3\xA9stamos permitidos."
     - 
       - 
         choices: 

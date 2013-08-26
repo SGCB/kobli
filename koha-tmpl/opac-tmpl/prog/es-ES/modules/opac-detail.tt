@@ -1,5 +1,4 @@
-[% USE KohaDates %] [% USE AuthorisedValues %] [% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnDetail ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnDetail ) %] [% ShowCourseReservesHeader = 0 %] [% IF UseCourseReserves %] [% FOREACH ITEM_RESULT IN itemloop %] [% IF ITEM_RESULT.course_reserves %] [% FOREACH r IN ITEM_RESULT.course_reserves %] [% IF r.course.enabled == 'yes' %] [% ShowCourseReservesHeader = 1 %] [% END %] [% END %] [% END %] [% END %] [% END %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Detalles para: [% title |html %][% FOREACH subtitl IN subtitle %], [% subtitl.subfield |html %][% END %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.tablesorter.min.js"></script>
-[% IF ( SocialNetworks ) %] <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+[% USE Koha %] [% USE KohaDates %] [% USE AuthorisedValues %] [% SET TagsShowEnabled = ( TagsEnabled && TagsShowOnDetail ) %] [% SET TagsInputEnabled = ( opacuserlogin && TagsEnabled && TagsInputOnDetail ) %] [% ShowCourseReservesHeader = 0 %] [% IF Koha.Preference( 'UseCourseReserves' ) == 1 %] [% FOREACH ITEM_RESULT IN itemloop %] [% IF ITEM_RESULT.course_reserves %] [% FOREACH r IN ITEM_RESULT.course_reserves %] [% IF r.course.enabled == 'yes' %] [% ShowCourseReservesHeader = 1 %] [% END %] [% END %] [% END %] [% END %] [% END %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Detalles para: [% title |html %][% FOREACH subtitl IN subtitle %], [% subtitl.subfield |html %][% END %] [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'datatables.inc' %] [% IF ( SocialNetworks ) %] <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
     //<![CDATA[
       {lang: '[% lang %]'}
     //]]>
@@ -30,6 +29,7 @@
         function highlightOn() {
             var x;
             for (x in q_array) {
+                q_array[x] = q_array[x].replace(/\w*:([\w])/, "$1");
                 $(".title").highlight(q_array[x]);
                 $(".author").highlight(q_array[x]);
                 $(".results_summary").highlight(q_array[x]);
@@ -80,11 +80,28 @@
         });
 [% END %]
 
-        $(".holdingst").tablesorter({[% IF ( dateformat == 'metric' ) %]
-    dateFormat: 'uk',[% END %]
-            widgets : ['zebra'],
-            sortList: [[0,0]]
-        });
+            $(".holdingst").dataTable($.extend(true, {}, dataTablesDefaults, {
+                "aoColumns": [
+                    [% IF ( item_level_itypes ) %]null,[% END %]
+                    null,
+                    [% IF ( itemdata_ccode ) %]null,[% END %]
+                    null,
+                    [% IF ( itemdata_enumchron ) %]null,[% END %]
+                    [% IF ( itemdata_uri ) %]null,[% END %]
+                    [% IF ( itemdata_copynumber ) %]null,[% END %]
+                    null,
+                    [% IF ( itemdata_itemnotes ) %]null,[% END %]
+                    { "sType": "title-string" },
+                    [% IF ( OPACShowBarcode ) %]null,[% END %]
+                    [% IF holds_count.defined %]
+                        null,
+                    [% ELSIF show_priority %]
+                        null,
+                    [% END %]
+                    [% IF ( ShowCourseReservesHeader ) %]null,[% END %]
+                ]
+            }));
+
         [% IF ( query_desc ) %][% IF ( OpacHighlightedWords ) %]var query_desc = "[% query_desc |replace("'", "\'") |replace('\n', '\\n') |replace('\r', '\\r') |html %]";
             q_array = query_desc.split(" ");
             highlightOn();
@@ -783,7 +800,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  <li id="tab_LTFLTagBrowse"> <a href="#LTFLTagBrowse">Navegador de etiquetas</a></li>
 [% END %] [% END %] [% IF ( subscriptionsnumber ) %] [% IF ( defaulttab == 'subscriptions' ) %]<li id="tab_subscriptions" class="ui-tabs-selected">[% ELSE %]<li id="tab_subscriptions">[% END %] <a href="#subscriptions">Suscripciones</a>
  </li>
-[% END %] [% IF ( reviewson ) %] <li id="tab_comments"><a href="#comments">Comentarios ( [% reviews.size || 0 %] )</a></li>
+[% END %] [% IF ( Koha.Preference( 'reviewson' ) == 1 ) %] <li id="tab_comments"><a href="#comments">Comentarios ( [% reviews.size || 0 %] )</a></li>
 [% END %] [% IF ( NovelistSelectProfile ) %] [% IF ( NovelistSelectView == 'tab') %] <li id="tab_NovelistSelect"> <a href="#NovelistSelect">Novelist Select</a></li>
  [% END %] [% END %] [% IF ( OPACFRBRizeEditions ) %][% IF ( XISBNS ) %] <li id="tab_editions"><a href="#editions">Ediciones</a></li>
 [% END %][% END %] [% IF ( serialcollection ) %] [% IF ( defaulttab == 'serialcollection' ) %]<li id="tab_serialcollection" class="ui-tabs-selected">[% ELSE %]<li id="tab_serialcollection">[% END %] <a href="#serialcollection">Colección de publicaciones periódicas</a>
@@ -914,7 +931,7 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
 <!-- /Library Thing for Libraries Content -->
 
 
-[% IF ( reviewson ) %]
+[% IF ( Koha.Preference( 'reviewson' ) == 1 ) %]
 <div id="comments">
  <div id="newcomment"></div>
  [% IF ( reviews ) %] [% FOREACH review IN reviews %] [% IF ( review.your_comment ) %] <div class="commentline yours" id="c[% review.reviewid %]">
@@ -1009,8 +1026,12 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  [% IF ( itemdata_itemnotes ) %]<th id="item_notes" class="notes">Notas</th>[% END %] <th id="item_datedue" class="date_due">Fecha de devolución</th>
  [% IF ( OPACShowBarcode ) %]<th id="item_barcode" class="barcode">Código de barras</th>[% END %] [% IF holds_count.defined %] <th>Ítem reservado</th>
  [% ELSIF show_priority %] <th>Cola de prioridades de ítem reservado</th>
- [% END %] [% IF ( ShowCourseReservesHeader ) %]<th id="item_coursereserves">Colección de préstamo restringido</th>[% END %] </tr></thead>
- <tbody>[% FOREACH ITEM_RESULT IN items %] [% IF ITEM_RESULT.this_branch %]<tr class="highlight-row-detail">[% ELSE %]<tr>[% END %] [% IF ( item_level_itypes ) %]<td class="itype">[% UNLESS ( noItemTypeImages ) %][% IF ( ITEM_RESULT.imageurl ) %]<img src="[% ITEM_RESULT.imageurl %]" title="[% ITEM_RESULT.description %]" alt="[% ITEM_RESULT.description %]" />[% END %][% END %] [% ITEM_RESULT.description %]</td>[% END %] <td class="location">
+ [% END %] [% IF ( ShowCourseReservesHeader ) %]<th id="item_coursereserves">Curso de reservas </th>[% END %] </tr></thead>
+ <tbody>[% FOREACH ITEM_RESULT IN items %] [% IF ITEM_RESULT.this_branch %] <tr class="highlight-row-detail" vocab="http://schema.org/" typeof="Offer">
+ [% ELSE %] <tr vocab="http://schema.org/" typeof="Offer">
+ [% END %] [% IF ( item_level_itypes ) %]<td class="itype">[% UNLESS ( noItemTypeImages ) %][% IF ( ITEM_RESULT.imageurl ) %]<img src="[% ITEM_RESULT.imageurl %]" title="[% ITEM_RESULT.description %]" alt="[% ITEM_RESULT.description %]" />[% END %][% END %] [% ITEM_RESULT.description %]</td>[% END %] <td class="location" property="seller">
+ <link property="itemOffered" href="#record" />
+ <link property="businessFunction" href="http://purl.org/goodrelations/v1#LeaseOut">
  [% UNLESS ( singleBranchMode ) %] <div class="[% ITEM_RESULT.branch_opac_info ? 'branch-info-tooltip-trigger' : '' %]">
  [% IF ( ITEM_RESULT.branchurl ) %] <a href="[% ITEM_RESULT.branchurl %]" title="">[% ITEM_RESULT.branchname %]</a>
  [% ELSE %] <span title="">[% ITEM_RESULT.branchname %]</span>
@@ -1018,14 +1039,14 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  </div>
  [% END %] <span class="shelvingloc">[% ITEM_RESULT.location_description %]</span>
  </td>
- [% IF ( itemdata_ccode ) %]<td class="collection">[% ITEM_RESULT.ccode %]</td>[% END %] <td class="call_no">[% IF ( ITEM_RESULT.itemcallnumber ) %] [% ITEM_RESULT.itemcallnumber %][% IF ( OPACShelfBrowser ) %] (<a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% ITEM_RESULT.biblionumber %]&amp;shelfbrowse_itemnumber=[% ITEM_RESULT.itemnumber %]#[% tab %]">Buscar estantería</a>)[% END %][% END %]</td>
+ [% IF ( itemdata_ccode ) %]<td class="collection">[% ITEM_RESULT.ccode %]</td>[% END %] <td class="call_no" property="sku">[% IF ( ITEM_RESULT.itemcallnumber ) %] [% ITEM_RESULT.itemcallnumber %][% IF ( OPACShelfBrowser ) %] (<a href="/cgi-bin/koha/opac-detail.pl?biblionumber=[% ITEM_RESULT.biblionumber %]&amp;shelfbrowse_itemnumber=[% ITEM_RESULT.itemnumber %]#[% tab %]">Buscar estantería</a>)[% END %][% END %]</td>
  [% IF ( itemdata_enumchron ) %]<td class="vol_info">[% ITEM_RESULT.enumchron %]</td>[% END %] [% IF ( itemdata_uri ) %]<td class="url">
- [% IF ITEM_RESULT.uri %] [% IF trackclicks == 'track' || trackclicks == 'anonymous' %] <a href="/cgi-bin/koha/tracklinks.pl?uri=[% ITEM_RESULT.uri | url %]&biblionumber=[% biblionumber |url %]&itemnumber=[% ITEM_RESULT.itemnumber | url %]"> Enlace al recurso</a>
- [% ELSE %] <a href="[% ITEM_RESULT.uri %]">[% ITEM_RESULT.uri %]</a>
+ [% IF ITEM_RESULT.uri %] [% IF trackclicks == 'track' || trackclicks == 'anonymous' %] <a href="/cgi-bin/koha/tracklinks.pl?uri=[% ITEM_RESULT.uri | url %]&biblionumber=[% biblionumber |url %]&itemnumber=[% ITEM_RESULT.itemnumber | url %]" property="url"> Enlace al recurso</a>
+ [% ELSE %] <a href="[% ITEM_RESULT.uri %]" property="url">[% ITEM_RESULT.uri %]</a>
  [% END %] [% END %] </td>
- [% END %] [% IF ( itemdata_copynumber ) %]<td class="copynumber">[% ITEM_RESULT.copynumber %]</td>[% END %] <td class="status">[% INCLUDE 'item-status.inc' item = ITEM_RESULT %]</td>
- [% IF ( itemdata_itemnotes ) %]<td class="notes">[% ITEM_RESULT.itemnotes %]</td>[% END %] <td class="date_due">[% ITEM_RESULT.datedue | $KohaDates %]</td>
- [% IF ( OPACShowBarcode ) %]<td class="barcode">[% ITEM_RESULT.barcode %]</td>[% END %] [% IF holds_count.defined || show_priority %] <td class="holds_count">
+ [% END %] [% IF ( itemdata_copynumber ) %]<td class="copynumber">[% ITEM_RESULT.copynumber %]</td>[% END %] <td class="status">[% INCLUDE 'item-status-schema-org.inc' item = ITEM_RESULT %][% INCLUDE 'item-status.inc' item = ITEM_RESULT %]</td>
+ [% IF ( itemdata_itemnotes ) %]<td class="notes" property="description">[% ITEM_RESULT.itemnotes %]</td>[% END %] <td class="date_due"><span title="[% ITEM_RESULT.datedue %]">[% ITEM_RESULT.datedue | $KohaDates %]</span></td>
+ [% IF ( OPACShowBarcode ) %]<td class="barcode" property="serialNumber">[% ITEM_RESULT.barcode %]</td>[% END %] [% IF holds_count.defined || show_priority %] <td class="holds_count">
  [% IF holds_count.defined %] [% ITEM_RESULT.holds_count %] [% END %] [% IF ITEM_RESULT.priority %] [% IF holds_count.defined %] (prioridad [% ITEM_RESULT.priority %]) [% ELSE %] [% ITEM_RESULT.priority %] [% END %] [% END %] </td>
  [% END %] [% IF ShowCourseReservesHeader %] <td>
  [% IF ITEM_RESULT.course_reserves %] [% FOREACH r IN ITEM_RESULT.course_reserves %] <p>

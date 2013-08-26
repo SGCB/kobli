@@ -76,21 +76,19 @@ function changeDate2(adate) {
 }
 
 $(document).ready(function() {
-	$("form#serials_edit").submit(function() {
-	    var total_errors = 0;
-        $(".subfield_line:visible", this).each(function() {
-            if ($("*[name=field_value]", this).val().length == 0 &&
-                $("*[name=mandatory]", this).val() == 1) {
-                total_errors++;
-            }
+    $("form#serials_edit").submit(function() {
+        var total_errors = 0;
+        $(this).find(".cataloguing_additem_itemlist:visible").each(function(){
+            total_errors = total_errors + CheckMandatorySubfields(this);
         });
         if ( total_errors > 0 ) {
             var mes  = _("El formulario no fue procesado debido a los siguientes problemas");
             mes += "\n------------------------------------------------------------------------------------\n";
-            mes += "\n- "+ total_errors+_(" campos obligatorios  vacíos (ver subcampos destacados)");
+            mes += "\n- " + total_errors + _(" campos obligatorios de ítem vacíos (subrayados)");
             alert(mes);
             return false;
         }
+        return true;
     });
 });
 //]]>

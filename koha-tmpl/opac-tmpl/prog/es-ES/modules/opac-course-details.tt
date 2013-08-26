@@ -1,18 +1,20 @@
-[% USE KohaDates %] [% USE AuthorisedValues %] [% USE ItemTypes %] [% USE Branches %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo [% INCLUDE 'doc-head-close.inc' %]</head>
+[% USE Koha %] [% USE KohaDates %] [% USE AuthorisedValues %] [% USE ItemTypes %] [% USE Branches %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Curso de reservas para [% course.course_name %] [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="opac-main">
 [% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %] <div id="bd">
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
- [% INCLUDE 'search.inc' %] <table>
- <tr><th>Nombre de curso / materia</th><td>[% course.course_name %]</td></tr>
- <tr><th>Término</th><td>[% AuthorisedValues.GetByCode( 'TERM', course.term ) %]</td></tr>
- <tr><th>Departamento</th><td>[% AuthorisedValues.GetByCode( 'DEPARTMENT', course.department ) %]</td></tr>
- <tr><th>Número de curso / materia:</th><td>[% course.course_number %]</td></tr>
- <tr><th>Sección </th><td>[% course.section %]</td></tr>
- <tr><th>Profesores</th><td>[% FOREACH i IN course.instructors %]<div class="instructor">[% i.firstname %] [% i.surname %]</div>[% END %]</td></tr>
- <tr><th>Notas</th><td>[% course.public_note %]</td></tr>
- </table>
+ <h2><a href="/cgi-bin/koha/opac-course-reserves.pl">Curso de reservas </a> &#8674; Curso de reservas para<i>[% course.course_name %]</i></h2>
+ <div class="rows clearfix">
+ <ol>
+ [% IF ( course.term ) %]<li><span class="label">Término:</span> [% AuthorisedValues.GetByCode( 'TERM', course.term ) %]</li>[% END %] <li><span class="label">Departamento:</span> [% AuthorisedValues.GetByCode( 'DEPARTMENT', course.department ) %]</li>
+ [% IF ( course.course_number ) %]<li><span class="label">Número de curso:</span> [% course.course_number %]</li>[% END %] [% IF ( course.section ) %]<li><span class="label">Sección:</span> [% course.section %]</li>[% END %] [% IF ( course.instructors ) %] <li><span class="label">Profesores:</span>
+ <ul>
+ [% FOREACH i IN course.instructors %] <li><div class="instructor">[% i.firstname %] [% i.surname %]</div></li>
+ [% END %] </ul>
+ </li>
+ [% END %] [% IF ( course.public_note ) %]<li><span class="label">Notas:</span> [% course.public_note %]</li>[% END %] </ol>
+ </div>
 
- <table>
+ [% IF ( course_reserves ) %] <table>
  <thead>
  <tr>
  <th>Título</th>
@@ -21,8 +23,8 @@
  <th>Colección</th>
  <th>Signatura topográfica</th>
  <th>Copia</th>
- <th>Estado</td>
- <th>Fecha de devolución</td>
+ <th>Estado</th>
+ <th>Fecha de devolución</th>
  <th>Notas</th>
  </tr>
  </thead>
@@ -41,8 +43,12 @@
  </tr>
  [% END %] </tbody>
  </table>
-
+ [% ELSE %] <br style="clear:both;" />
+ <div class="dialog message">
+ <p>No hay reservas seleccionadas para este curso.</p>
  </div>
+ [% END %] </div>
+</div>
 
 [% IF ( OpacNav ) %] <div class="yui-b">
 <div id="leftmenus" class="container">

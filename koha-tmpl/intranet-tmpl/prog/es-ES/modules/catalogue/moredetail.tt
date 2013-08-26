@@ -1,5 +1,16 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catálogo &rsaquo; Detalles del ítem [% title %] [% FOREACH subtitl IN subtitle %] [% subtitl.subfield %][% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <style type="text/css">h3{padding-top: 1em; border-top: 2px solid #CCCCCC;}</style>
+[% INCLUDE 'browser-strings.inc' %]
+<!--[if lt IE 9]>
+<script type="text/javascript" src="[% interface %]/lib/shims/json2.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="[% interface %]/js/browser.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+    var browser = KOHA.browser('[% searchid %]', parseInt('[% biblionumber %]', 10));
+    browser.show();
+//]]>
+</script>
 </head>
 <body id="catalog_moredetail" class="catalog">
 [% USE KohaDates %] [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/catalogue/search.pl">Catálogo</a> &rsaquo; Detalles de ítem para <i>[% title |html %] [% FOREACH subtitl IN subtitle %] [% subtitl.subfield|html %][% END %]</i></div>

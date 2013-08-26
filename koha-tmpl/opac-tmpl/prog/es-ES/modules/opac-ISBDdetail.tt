@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Vista ISBD [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
+[% USE Koha %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Vista ISBD [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
     YAHOO.util.Event.onContentReady("furtherm", function () {
         $("#furtherm").css("display","block").css("visibility","hidden");

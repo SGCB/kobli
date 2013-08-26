@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Sus preferencias para los mensajes [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">//<![CDATA[
+[% USE Koha %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Sus ajustes para mensajes [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">//<![CDATA[
 	$(document).ready(function(){
 		$(".none").click(function(){
 			if($(this).attr("checked")){

@@ -1,5 +1,7 @@
 <script type="text/javascript">
 //<![CDATA[
+var MSG_ADDITEM_JS_ADDITEM = _("Agregar ítem");
+var MSG_ADDITEM_JS_UPDATEITEM = _("Actualizar item");
 var MSG_ADDITEM_JS_EDIT = _("Editar");
 var MSG_ADDITEM_JS_DELETE = _("Eliminar");
 var MSG_ADDITEM_JS_CLEAR = _("Limpiar");

@@ -1,6 +1,7 @@
 [% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; Bolsa[% basketno %] &rsaquo; [% IF ( ordernumber ) %]Modificar detalles del pedido (linea nro.[% ordernumber %])[% ELSE %]Nuevo pedido[% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
 [% INCLUDE 'additem.js.inc' %] <script type="text/javascript" src="[% themelang %]/js/additem.js"></script>
+<script type="text/javascript" src="[% themelang %]/js/cataloging.js"></script>
 <script type="text/javascript" src="[% themelang %]/js/prevent_submit.js"></script>
 <script type="text/javascript">
 //<![CDATA[
@@ -34,7 +35,7 @@ function Check(ff) {
     
     if(isNull(ff.budget_id,1)){
 		ok=1;
-					_alertString += "\n- "+ _("Usted debe seleccionar un presupuesto");
+        _alertString += "\n- "+ _("Usted debe seleccionar un presupuesto");
     }
 
     if (!(isNum(ff.quantity,0)) || ff.quantity.value == 0){
@@ -59,13 +60,7 @@ function Check(ff) {
     }
 
     if ( ff.field_value ) {
-        var empty_item_mandatory = 0;
-        for (i = 0; i < ff.field_value.length; i++) {
-            //alert("i = " + i + " => " + ff.kohafield[i] );
-            if (ff.field_value[i].value.length == 0 && ff.mandatory[i].value == 1) {
-                empty_item_mandatory++;
-            }
-        }
+        var empty_item_mandatory = CheckMandatorySubfields(ff);
         if (empty_item_mandatory > 0) {
             ok = 1;
             _alertString +=
@@ -201,46 +196,45 @@ $(document).ready(function()
  [% FOREACH loop_currencie IN loop_currencies %] <input type="hidden" id="currency_rate_[% loop_currencie.currcode %]"  name="[% loop_currencie.currcode %]" value="[% loop_currencie.rate %]" />
  [% END %] <ol><li>
  [% IF ( biblionumber ) %] <span class="label">Título</span>
- <input type="hidden" size="50" name="title" value="[% title |html %]" /> <span class="title">[% title |html %]</span>
+ <input type="hidden" name="title" value="[% title |html %]" /> <span class="title">[% title |html %]</span>
  [% ELSE %] <label for="entertitle" class="required">Título: </label>
  <input type="text" id="entertitle" size="50" name="title" value="[% title |html %]" />
  [% END %] </li>
  <li>
  [% IF ( biblionumber ) %] <span class="label">Autor: </span>
- <input type="hidden" size="50" name="author" id="author" value="[% author %]" />[% author %] [% ELSE %] <label for="author">Autor: </label>
+ <input type="hidden" name="author" id="author" value="[% author %]" />[% author %] [% ELSE %] <label for="author">Autor: </label>
  <input type="text" size="50" name="author" id="author" value="[% author %]" />
  [% END %] </li>
  <li>
  [% IF ( biblionumber ) %] <span class="label">Editor: </span>
- <input type="hidden" size="50" name="publishercode" id="publishercode" value="[% publishercode %]" />[% publishercode %] [% ELSE %] <label for="publishercode"> Editor: </label>
+ <input type="hidden" name="publishercode" id="publishercode" value="[% publishercode %]" />[% publishercode %] [% ELSE %] <label for="publishercode"> Editor: </label>
  <input type="text" size="50" name="publishercode" id="publishercode" value="[% publishercode %]" />
  [% END %] </li>
  <li>
  [% IF ( biblionumber ) %] <span class="label">Edición: </span>
- <input type="hidden" size="20" name="editionstatement" id="editionstatement" value="[% editionstatement %]" />[% editionstatement %] [% ELSE %] <label for="editionstatement">Edición: </label>
+ <input type="hidden" name="editionstatement" id="editionstatement" value="[% editionstatement %]" />[% editionstatement %] [% ELSE %] <label for="editionstatement">Edición: </label>
  <input type="text" size="20" name="editionstatement" id="editionstatement" value="[% editionstatement %]" />
  [% END %] </li>
  <li>
  [% IF ( biblionumber ) %] <span class="label">Año de publicación: </span>
- <input type="hidden" size="10" name="publicationyear" id="publicationyear" value="[% publicationyear %]" />[% publicationyear %] [% ELSE %] <label for="publicationyear">Año de publicación: </label>
+ <input type="hidden" name="publicationyear" id="publicationyear" value="[% publicationyear %]" />[% publicationyear %] [% ELSE %] <label for="publicationyear">Año de publicación: </label>
  <input type="text" size="10" name="publicationyear" id="publicationyear" value="[% publicationyear %]" />
  [% END %] </li>
  <li>
  [% IF ( biblionumber ) %] <span class="label">ISBN: </span>
- <input type="hidden" size="50" name="isbn" id="ISBN" value="[% isbn %]" />[% isbn %] [% ELSE %] <label for="ISBN">ISBN: </label>
+ <input type="hidden" name="isbn" id="ISBN" value="[% isbn %]" />[% isbn %] [% ELSE %] <label for="ISBN">ISBN: </label>
  <input type="text" size="50" name="isbn" id="ISBN" value="[% isbn %]" />
  [% END %] </li>
  [% IF (UNIMARC) %] <li>
  [% IF ( biblionumber ) %] <span class="label">EAN: </span>
- <input type="hidden" size="20" name="ean" id="EAN" value="[% ean %]" />[% ean %] [% ELSE %] <label for="EAN">EAN: </label>
+ <input type="hidden" name="ean" id="EAN" value="[% ean %]" />[% ean %] [% ELSE %] <label for="EAN">EAN: </label>
  <input type="text" size="20" name="ean" id="EAN" value="[% ean %]" />
  [% END %] </li>
  [% END %] <li>
  [% IF ( biblionumber ) %] <span class="label">Series </span>
- <input type="hidden" size="50" name="series" id="series" value="[% seriestitle %]" />[% seriestitle %] [% ELSE %] <label for="series">Series </label>
+ <input type="hidden" name="series" id="series" value="[% seriestitle %]" />[% seriestitle %] [% ELSE %] <label for="series">Series </label>
  <input type="text" size="50" name="series" id="series" value="[% seriestitle %]" />
  [% END %] </li>
- </li>
  [% UNLESS ( biblionumber ) %] [% IF ( itemtypeloop ) %] <li>
  <span class="label">Tipo de ítem:</span>
  <select name="itemtype" style="width:12em;">
@@ -299,7 +293,7 @@ $(document).ready(function()
  <ol>
  <li>
  [% IF ( close ) %] <span class="label required">Cantidad: </span>
- <input type="hidden" size="20" name="quantity" value="[% quantity %]" />[% quantity %] [% ELSE %] <label class="required" for="quantity">Cantidad: </label>
+ <input type="hidden" name="quantity" value="[% quantity %]" />[% quantity %] [% ELSE %] <label class="required" for="quantity">Cantidad: </label>
  [% IF (AcqCreateItemOrdering) %] [% IF subscriptionid %] <input type="text" readonly="readonly" size="20" id="quantity" name="quantity" value="1" />
  [% ELSE %] <input type="text" readonly="readonly" size="20" id="quantity" name="quantity" value="0" />
  [% END %] [% ELSE %] [% IF subscriptionid %] <input type="text" readonly="readonly" size="20" id="quantity" name="quantity" value="1" />
@@ -312,7 +306,7 @@ $(document).ready(function()
  </li>
  <li>
  [% IF ( close ) %] <span class="label required">Fondo: </span>
- <input type="hidden" size="20" name="budget_id" id="budget_id" value="[% budget_id %]" />[% Budget_name %] [% ELSE %] <label class="required" for="budget_id">Fondo: </label>
+ <input type="hidden" name="budget_id" id="budget_id" value="[% budget_id %]" />[% Budget_name %] [% ELSE %] <label class="required" for="budget_id">Fondo: </label>
  <select id="budget_id" onchange="fetchSortDropbox(this.form)" size="1" name="budget_id">
  <option value="">Seleccione un presupuesto</option>
  [% FOREACH budget_loo IN budget_loop %] [% IF ( budget_loo.b_sel ) %] <option value="[% budget_loo.b_id %]" selected="selected">[% budget_loo.b_txt %]</option>
@@ -324,13 +318,13 @@ $(document).ready(function()
  [% END %] </li>
  <li>
  [% IF ( close ) %] <span class="label">Moneda: </span>
- <input type="hidden" size="10" name="currency" id="currency" value="[% currency %]" />[% currency %] [% ELSE %] <label for="currency">Moneda:</label>
+ <input type="hidden" name="currency" id="currency" value="[% currency %]" />[% currency %] [% ELSE %] <label for="currency">Moneda:</label>
  <select name="currency" id="currency" onchange="updateCosts();">
  [% FOREACH loop_currencie IN loop_currencies %] [% IF ( loop_currencie.selected ) %]<option value="[% loop_currencie.currcode %]" selected="selected">[% loop_currencie.currcode %]</option>[% ELSE %]<option value="[% loop_currencie.currcode %]">[% loop_currencie.currcode %]</option>[% END %][% END %] </select>
  [% END %] </li>
  <li>
  [% IF ( close ) %] <span class="label">Precio provisto por el proveedor: </span>
- <input type="hidden" size="20" name="listprice" id="listprice" value="[% listprice %]" />[% listprice %] [% ELSE %] <label for="listprice">Precio provisto por el proveedor: </label>
+ <input type="hidden" name="listprice" id="listprice" value="[% listprice %]" />[% listprice %] [% ELSE %] <label for="listprice">Precio provisto por el proveedor: </label>
  <input type="text" size="20" name="listprice" id="listprice" value="[% listprice %]" onchange="updateCosts()" />
  [% END %] </li>
  [% UNLESS ( close ) %] <li>
@@ -340,7 +334,7 @@ $(document).ready(function()
  [% END %] </li>
  [% END %] [% IF ( gst_values ) %] <li>
  [% IF ( close ) %] <span class="label">Tasa de impuesto: </span>
- <input type="hidden" size="20" name="gstrate" id="gstrate" value="[% gstrate %]" />[% gstrate %]% [% ELSE %] <label for="gst">Tasa de impuesto: </label>
+ <input type="hidden" name="gstrate" id="gstrate" value="[% gstrate %]" />[% gstrate %]% [% ELSE %] <label for="gstrate">Tasa de impuesto: </label>
  <select name="gstrate" id="gstrate" onchange="updateCosts();">
  [% FOREACH gst IN gst_values %] [% IF ( gst.option == gstrate ) %] <option value="[% gst.option %]" selected="selected">[% gst.option * 100 | format("%.1f") %]%</option>
  [% ELSE %] <option value="[% gst.option %]">[% gst.option * 100 | format("%.1f") %]%</option>
@@ -352,7 +346,7 @@ $(document).ready(function()
  [% IF ( close ) %] [% IF ( orderdiscount ) %] <input type="hidden" name="discount" id="discount" value="[% orderdiscount %]" />[% orderdiscount_2dp %]% [% ELSE %] <input type="hidden" name="discount" id="discount" value="[% discount %]" />[% discount_2dp %]% [% END %] [% ELSE %] [% IF ( orderdiscount ) %] <input type="text" size="6" name="discount" id="discount" value="[% orderdiscount %]" onchange="updateCosts();" />% [% ELSE %] <input type="text" size="6" name="discount" id="discount" value="[% discount %]" onchange="updateCosts();" />% [% END %] [% END %] </li>
  <li>
  [% IF ( close ) %] <span class="label">Costo de reposición: </span>
- <input type="hidden" size="20" name="rrp" id="rrp" value="[% rrp %]" />[% rrp %] [% ELSE %] <label for="rrp">Costo de reposición: </label>
+ <input type="hidden" name="rrp" id="rrp" value="[% rrp %]" />[% rrp %] [% ELSE %] <label for="rrp">Costo de reposición: </label>
  <input type="text" size="20" name="rrp" id="rrp" value="[% rrp %]" /> (ajustado por [% cur_active %]) [% END %] </li>
  <li>
  [% IF ( close ) %] <label for="ecost">Costo presupuestado: </label>

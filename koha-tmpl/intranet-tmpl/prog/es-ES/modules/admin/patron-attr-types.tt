@@ -36,7 +36,7 @@ function CheckAttributeTypeForm(f) {
 </script>
 </head>
 <body id="admin_patron-attr-types" class="admin">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( display_list ) %]Tipo de atributo de socio[% ELSE %]<a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a>[% END %] [% IF ( attribute_type_form ) %] [% IF ( edit_attribute_type ) %] &rsaquo; Modificar tipo de atributo del socio [% ELSE %] &rsaquo; Agregar tipo de atributo del socio [% END %] [% END %] [% IF ( delete_attribute_type_form ) %] &rsaquo; Confirmar eliminación del tipo de atributo del socio &quot;[% code |html %]&quot; [% END %] </div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( display_list ) %]Tipo de atributo de socio[% ELSE %]<a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a>[% END %] [% IF ( attribute_type_form ) %] [% IF ( edit_attribute_type ) %] &rsaquo; Modificar tipo de atributo del usuario [% ELSE %] &rsaquo; Agregar tipo de atributo del usuario [% END %] [% END %] [% IF ( delete_attribute_type_form ) %] &rsaquo; Confirmar eliminación del tipo de atributo del usuario &quot;[% code |html %]&quot; [% END %] </div>
 
 <div id="doc3" class="yui-t2">
 

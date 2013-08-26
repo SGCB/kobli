@@ -1,6 +1,14 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catálogo &rsaquo; [% IF ( unknownbiblionumber ) %] Registro desconocido [% ELSE %] Detalles MARC para [% bibliotitle %] [% END %] </title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
+[% INCLUDE 'doc-head-close.inc' %]
+[% INCLUDE 'browser-strings.inc' %]
+<!--[if lt IE 9]>
+<script type="text/javascript" src="[% interface %]/lib/shims/json2.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="[% interface %]/js/browser.js"></script>
+<script type="text/javascript">
 //<![CDATA[
+    var browser = KOHA.browser('[% searchid %]', parseInt('[% biblionumber %]', 10));
+    browser.show();
 
 	 $(document).ready(function() {
         $('#bibliotabs').tabs();

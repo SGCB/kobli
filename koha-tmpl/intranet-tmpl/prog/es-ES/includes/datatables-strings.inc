@@ -13,5 +13,6 @@
     var MSG_DT_PROCESSING = _("Procesando... ");
     var MSG_DT_SEARCH = _("Buscar:");
     var MSG_DT_ZERO_RECORDS = _("No se encontraron registros coincidentes");
+    var CONFIG_EXCLUDE_ARTICLES_FROM_SORT = _("a una de  ");
 //]]>
 </script>

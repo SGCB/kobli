@@ -9,6 +9,7 @@
     dt_overwrite_html_sorting_localeCompare();
 
     $(document).ready(function(){
+      if ( $("#pendingt").length ) {
         var pendingt = $("#pendingt").dataTable($.extend(true, {}, dataTablesDefaults, {
             "bStateSave": true,
             "iCookieDuration": 60*60*24*1000, // 1000 days
@@ -30,6 +31,8 @@
             ],
             "sPaginationType": "four_button"
         } ) );
+      }
+      if ( $("#receivedt").length ) {
         var receivedt = $("#receivedt").dataTable($.extend(true, {}, dataTablesDefaults, {
             "bStateSave": true,
             "iCookieDuration": 60*60*24*1000, // 1000 days
@@ -50,11 +53,7 @@
             ],
             "sPaginationType": "four_button"
         } ) );
-/*
-    $("#pendingt").tablesorter({
-		headers: { 2: { sorter: 'articles' },3: { sorter: false },8:{sorter:false}}
-    });
-*/
+      }
 
     });
 
@@ -112,7 +111,7 @@
  [% IF ( success_delorder ) %] <div class="dialog message">El pedido ha sido cancelado con éxito.</div>
  [% ELSE %] [% IF ( error_delitem ) %] <div class="dialog alert">El pedido ha sido cancelado, aunque uno o más ítems no podrían haber sido eliminados.</div>
  [% END %] [% IF ( error_delbiblio ) %] <div class="dialog alert">El pedido ha sido cancelado, aunque el registro no se ha eliminado.</div>
- [% END %] [% END %] [% IF (error_cancelling_receipt) %] <div class="error">
+ [% END %] [% END %] [% IF (error_cancelling_receipt) %] <div class="dialog error">
  No se puede cancelar el recibo. Posibles razones:<ul>
  <li>
  La línea de orden que tratar de cancelar se creó a partir de una recepción parcial de otra línea de pedido que ya recibió. Trate de cancelar este primero y vuelva a intentarlo.</li>
@@ -120,7 +119,9 @@
  La línea de orden que trata de cancelar se creó a partir de una recepción parcial de otra línea de la orden que se ha suprimido. La cancelación no es posible.</li>
  </ul>
  </div>
- [% END %] <div id="acqui_receive_summary">
+ [% END %] [% IF error_invoice_not_known %] <div class="dialog error">
+ La factura referida para este identificador no existe.</div>
+ [% END %] [% UNLESS no_orders_to_display %] <div id="acqui_receive_summary">
 <p><strong>Número de factura:</strong> [% invoice %] <strong>Recibido por:</strong> [% loggedinusername %] <strong>En:</strong> [% formatteddatereceived %]</p>
 </div>
 [% UNLESS (invoiceclosedate) %] <div id="acqui_receive_search">
@@ -149,8 +150,8 @@
  <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% loop_order.biblionumber %]">[% loop_order.title |html %]</a>
  [% IF ( loop_order.author ) %] por [% loop_order.author %][% END %] [% IF ( loop_order.isbn ) %] &ndash; [% loop_order.isbn %][% END %] [% IF ( loop_order.publishercode ) %]<br />Editor: [% loop_order.publishercode %][% END %] [% IF ( loop_order.suggestionid ) %] <br/>
  Sugerido por: [% loop_order.surnamesuggestedby %][% IF ( loop_order.firstnamesuggestedby ) %], [% loop_order.firstnamesuggestedby %] [% END %] (<a href="/cgi-bin/koha/suggestion/suggestion.pl?suggestionid=[% loop_order.suggestionid %]&amp;op=show">Sugerencias #[% loop_order.suggestionid %]</a>) [% END %] <br />
- [% IF ( loop_order.notes ) %] <p class="ordernote"><strong>Nota: </strong>[% loop_order.notes|html %] [ <a href="/cgi-bin/koha/acqui/modordernotes.pl?ordernumber=[% loop_order.ordernumber %]&amp;referrer=/cgi-bin/koha/acqui/parcel.pl%3Fbooksellerid=[% loop_order.booksellerid %]&amp;datereceived=[% loop_order.invoicedatereceived %]&amp;invoice=[% loop_order.invoice %]">Cambiar nota</a>]</p>
- [% ELSE %] [ <a href="/cgi-bin/koha/acqui/modordernotes.pl?ordernumber=[% loop_order.ordernumber %]&amp;referrer=/cgi-bin/koha/acqui/parcel.pl%3Fbooksellerid=[% loop_order.booksellerid %]&amp;datereceived=[% loop_order.invoicedatereceived %]&amp;invoice=[% loop_order.invoice %]">Agregar nota </a>] [% END %] </td>
+ [% IF ( loop_order.notes ) %] <p class="ordernote"><strong>Nota: </strong>[% loop_order.notes|html %] [ <a href="/cgi-bin/koha/acqui/modordernotes.pl?ordernumber=[% loop_order.ordernumber %]&amp;referrer=/cgi-bin/koha/acqui/parcel.pl%3Finvoiceid=[% invoiceid %]">Cambiar nota</a>]</p>
+ [% ELSE %] [ <a href="/cgi-bin/koha/acqui/modordernotes.pl?ordernumber=[% loop_order.ordernumber %]&amp;referrer=/cgi-bin/koha/acqui/parcel.pl%3Finvoiceid=[% invoiceid %]">Agregar nota </a>] [% END %] </td>
  <td><a href="/cgi-bin/koha/catalogue/showmarc.pl?id=[% loop_order.biblionumber %]" title="MARC" rel="gb_page_center[600,500]">MARC</a> | <a href="/cgi-bin/koha/catalogue/showmarc.pl?viewas=card&amp;id=[% loop_order.biblionumber %]" title="MARC" rel="gb_page_center[600,500]">Carnet</a></td>
  <td>[% loop_order.quantity %]</td>
  <td>[% loop_order.ecost %]</td>
@@ -224,7 +225,7 @@
  <td>[% loop_receive.unitprice %]</td>
  <td>[% loop_receive.total %]</td>
  <td>
- [% IF (loop_receive.cannot_cancel) %] [% span_title = BLOCK %] No se puede cancelar la recepción de esta orden de  línea  porque fue creado a partir de una recepción parcial de la línea de no. de la orden [% loop_receive.parent_ordernumber %], que está ya recibido. Intentar cancelar este una primera vez y reintentar. [% END %] <span title="[% span_title | collapse %]">
+ [% IF (loop_receive.cannot_cancel) %] [% span_title = BLOCK %] No se puede cancelar la recepción de esta orden de  línea  porque fue creado a partir de una recepción parcial del número de orden de línea[% loop_receive.parent_ordernumber %], que está ya recibido. Intentar cancelar este una primera vez y reintentar. [% END %] <span title="[% span_title | collapse %]">
  No se puede cancelar recibo</span>
  [% ELSE %] <a href="/cgi-bin/koha/acqui/parcel.pl?invoiceid=[% invoiceid %]&op=cancelreceipt&ordernumber=[% loop_receive.ordernumber %]">Recibo cancelado</a>
  [% END %] </td>
@@ -234,17 +235,17 @@
  </form>
  [% ELSE %]No hay órdenes recibidas.[% END %] </div>
 
-<!--<form action="/cgi-bin/koha/acqui/parcels.pl?booksellerid=[% booksellerid %]" method="post">-->
-[% IF (invoiceclosedate) %]
- <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoiceid %]">Ver factura</a>
+[% IF (invoiceclosedate) %] <a href="/cgi-bin/koha/acqui/invoice.pl?invoiceid=[% invoiceid %]">Ver factura</a>
 [% ELSE %] <form action="/cgi-bin/koha/acqui/invoice.pl" method="get">
  <input type="hidden" name="invoiceid" value="[% invoiceid %]" />
  <fieldset class="action">
  <input value="Completar recepción" type="submit" />
  </fieldset>
  </form>
-[% END %] </div>
+[% END %] [% END %] </div>
 </div>
+
+
 <div class="yui-b">
 <form action="/cgi-bin/koha/acqui/parcel.pl" id="filterform" method="post">
  <fieldset class="brief">

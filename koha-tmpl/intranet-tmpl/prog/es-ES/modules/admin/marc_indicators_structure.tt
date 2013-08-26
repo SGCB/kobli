@@ -25,7 +25,7 @@
 </head>
 <body>
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
- <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( type == 'biblio' ) %]<a href="/cgi-bin/koha/admin/biblio_framework.pl">Plantillas MARC</a> &rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% code %]&amp;searchfield=[% tagfield %]">[% frameworkcode %] Estructura de la plantilla de catalogación</a>[% ELSE %]<a href="/cgi-bin/koha/admin/authtypes.pl">Plantilla de catalogación de Autoridades MARC</a> &rsaquo; <a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% code %]&amp;searchfield=[% tagfield %]">[% frameworkcode %] Estructura de la plantilla de catalogación</a>[% END %] &rsaquo; Estructura Indicadores - Etiqueta [% tagfield %]</div>
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( type == 'biblio' ) %]<a href="/cgi-bin/koha/admin/biblio_framework.pl">Plantillas MARC</a> &rsaquo; <a href="/cgi-bin/koha/admin/marctagstructure.pl?frameworkcode=[% code %]&amp;searchfield=[% tagfield %]">[% frameworkcode %] Estructura de la plantilla de catalogación</a>[% ELSE %]<a href="/cgi-bin/koha/admin/authtypes.pl">Plantilla de catalogación de Autoridades MARC</a> &rsaquo; <a href="/cgi-bin/koha/admin/auth_tag_structure.pl?authtypecode=[% code %]&amp;searchfield=[% tagfield %]">[% frameworkcode %] Estructura de la plantilla de catalogación</a>[% END %] &rsaquo;  Indicadores de estructura - Etiqueta [% tagfield %]</div>
 
 <div id="doc" class="yui-t7">
  <div id="bd">

@@ -1,5 +1,5 @@
-[% PROCESS 'opac-authorities.inc' %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha En línea[% END %] catálogo &rsaquo; Entrada [% INCLUDE 'doc-head-close.inc' %] [% IF ( displayhierarchy ) %]  <script language="javascript" type="text/javascript" src="/opac-tmpl/lib/jquery/plugins/jquery.jstree.js"></script>
-[% END %] <script language="javascript" type="text/javascript">
+[% USE Koha %] [% PROCESS 'opac-authorities.inc' %] [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Entrada [% INCLUDE 'doc-head-close.inc' %] [% IF ( displayhierarchy ) %] <script type="text/javascript" src="/opac-tmpl/lib/jquery/plugins/jquery.jstree.js"></script>
+[% END %] <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function() {
     $('#authdescriptions').tabs();
@@ -26,7 +26,7 @@ $(document).ready(function() {
 [% INCLUDE 'masthead.inc' %] <div id="yui-main">
  [% INCLUDE 'search.inc' %] <div class="yui-b"><div class="yui-g">
 
- <div id="views"><span class="view"><span id="Normalview">Vista normal</span></span> <span class="view"><a id="MARCview" href="/cgi-bin/koha/opac-authoritiesdetail.pl?authid=[% authid %]&marc=1">Vista MARC</a></span></div>
+ <div id="views"><span class="view"><span id="Normalview">Vista normal</span></span> <span class="view"><a id="MARCview" href="/cgi-bin/koha/opac-authoritiesdetail.pl?authid=[% authid %]&amp;marc=1">Vista MARC</a></span></div>
 
 <div id="userauthdetails" class="container">
 
@@ -43,7 +43,8 @@ $(document).ready(function() {
  [% FOREACH seefro IN summary.seefrom %] <li class="heading seefrom auth[% seefro.field %]">
  [% IF seefro.type && seefro.type != 'seefrom' %]<span class="label">[% PROCESS authtypelabel type=seefro.type | trim %]:</span>[% END %] <span class="seefrom">[% PROCESS authheadingdisplay heading=seefro.heading search=seefrosearch authid=seefro.authid %]</span>
  </li>
- [% END %] [% PROCESS otherscript headings=summary.otherscript wantcategory='seefrom' %] </div>
+ [% END %] </ul>
+ [% PROCESS otherscript headings=summary.otherscript wantcategory='seefrom' %] </div>
 [% END %] [% IF summary.seealso.size %] <div class="authstanza seealso">
  <div class="authstanzaheading">Ver también:</div>
  <ul class="seelso">
@@ -77,5 +78,5 @@ $(document).ready(function() {
 <div id="leftmenus" class="container">
 [% INCLUDE 'navigation.inc' %] </div>
 </div>[% END %] </div>
-</div>
+
 [% INCLUDE 'opac-bottom.inc' %] 

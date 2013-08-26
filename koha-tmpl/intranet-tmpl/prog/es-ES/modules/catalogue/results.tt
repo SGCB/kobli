@@ -1,5 +1,11 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catálogo &rsaquo; [% IF ( searchdesc ) %]Resultados de búsqueda [% IF ( query_desc ) %]para '[% query_desc | html %]'[% END %][% IF ( limit_desc ) %]&nbsp;con límite(s):&nbsp;'[% limit_desc | html %]'[% END %][% ELSE %] no especificó un criterio de búsqueda[% END %]</title>
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
+[% INCLUDE 'doc-head-close.inc' %]
+[% INCLUDE 'browser-strings.inc' %]
+<!--[if lt IE 9]>
+<script type="text/javascript" src="[% interface %]/lib/shims/json2.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="[% interface %]/js/browser.js"></script>
+<script type="text/javascript">
 //<![CDATA[
 var MSG_NO_ITEM_SELECTED = _("No se ha seleccionado nada");
 var MSG_NON_RESERVES_SELECTED = _("Uno o más ítems seleccionados no se pueden reservar.");
@@ -123,6 +129,23 @@ $('#sort_by').change(function() {
         highlightOn();
         $("#highlight_toggle_on" ).hide().click(function() {highlightOn() ;});
         $("#highlight_toggle_off").show().click(function() {highlightOff();});
+    [% END %]
+
+    [% IF (SEARCH_RESULTS) %]
+        var newresults = [
+            [%- FOREACH result IN SEARCH_RESULTS -%]
+                [%- result.biblionumber %],
+            [%- END -%]
+        ];
+        var browser = KOHA.browser('[% searchid %]', parseInt('[% biblionumber %]', 10));
+        browser.create([% SEARCH_RESULTS.first.result_number %], '[% query_cgi | uri %]', '[% limit_cgi | uri %]', '[% sort_cgi | uri %]', newresults);
+    [% END %]
+    [% IF (gotoPage && gotoNumber) %]
+        [% IF (gotoNumber == 'first') %]
+            window.location = '/cgi-bin/koha/catalogue/[% gotoPage %]?biblionumber=' + [% SEARCH_RESULTS.first.biblionumber %] + '&searchid=[% searchid %]';
+        [% ELSIF (gotoNumber == 'last') %]
+            window.location = '/cgi-bin/koha/catalogue/[% gotoPage %]?biblionumber=' + [% SEARCH_RESULTS.last.biblionumber %] + '&searchid=[% searchid %]';
+        [% END %]
     [% END %]
 });
 

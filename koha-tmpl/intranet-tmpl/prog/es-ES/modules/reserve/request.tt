@@ -190,7 +190,7 @@ function checkMultiHold() {
  [% END %] [% IF ( multi_hold ) %] <input type="hidden" name="multi_hold" value="[% multi_hold %]"/>
  <input type="hidden" name="biblionumbers" value="[% biblionumbers %]"/>
  [% END %] </form>
- [% ELSE %] [% IF ( warnings ) %] <div class="dialog alert">
+ [% ELSE %] [% IF ( maxreserves || alreadyreserved || none_available || alreadypossession ) %] <div class="dialog alert">
 
  [% UNLESS ( multi_hold ) %] <h3>No se puede reservar</h3>
  <ul>
@@ -201,7 +201,7 @@ function checkMultiHold() {
  [% END %] </ul>
  [% ELSE %] <h3>No se pueden reservar algunos ítems</h3>
  [% END %] </div>
-[% END %] [% IF ( messages ) %] <div class="dialog message"><ul>
+[% END %] [% IF ( expiry || diffbranch ) %] <div class="dialog message"><ul>
  [% IF ( expiry ) %] <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a>'s <strong>cuenta ha caducado</strong></li>
  [% END %] [% IF ( diffbranch ) %] <li> <strong>La biblioteca para retirar es diferente</strong> de<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a>biblioteca de origen ([% borrower_branchname %] / [% borrower_branchcode %] )</li>
  [% END %] </ul></div>
@@ -382,6 +382,7 @@ function checkMultiHold() {
  [% IF SuspendHoldsIntranet %]<th>&nbsp;</th><!-- Suspend Holds Column Header -->[% END %]
  </tr>
  [% FOREACH reserveloo IN biblioloo.reserveloop %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td>
+ <input type="hidden" name="reserve_id" value="[% reserveloo.reserve_id %]" />
  <input type="hidden" name="borrowernumber" value="[% reserveloo.borrowernumber %]" />
  <input type="hidden" name="biblionumber" value="[% reserveloo.biblionumber %]" />
  <select name="rank-request">
@@ -392,19 +393,19 @@ function checkMultiHold() {
  </td>
 
  [% IF ( CAN_user_reserveforothers_modify_holds_priority ) %] <td style="white-space:nowrap;">
- <a href="request.pl?action=move&where=up&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&date=[% reserveloo.date %]" title="Subir reserva">
+ <a href="request.pl?action=move&where=up&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&reserve_id=[% reserveloo.reserve_id %]&date=[% reserveloo.date %]" title="Subir reserva">
  <img alt="Subir" src="/intranet-tmpl/[% theme %]/img/go-up.png" border="0" />
  </a>
 
- <a href="request.pl?action=move&where=top&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&date=[% reserveloo.date %]" title="Mover reserva al tope ">
+ <a href="request.pl?action=move&where=top&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&reserve_id=[% reserveloo.reserve_id %]&date=[% reserveloo.date %]" title="Mover reserva hasta el tope ">
  <img alt="Ir arriba" src="/intranet-tmpl/[% theme %]/img/go-top.png" border="0" />
  </a>
 
- <a href="request.pl?action=move&where=bottom&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&date=[% reserveloo.date %]" title="Mover reserva a fondo">
+ <a href="request.pl?action=move&where=bottom&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&reserve_id=[% reserveloo.reserve_id %]&date=[% reserveloo.date %]" title="Mover reserva a fondo ">
  <img alt="Ir abajo" src="/intranet-tmpl/[% theme %]/img/go-bottom.png" border="0" />
  </a>
 
- <a href="request.pl?action=move&where=down&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&date=[% reserveloo.date %]" title="Bajar reserva">
+ <a href="request.pl?action=move&where=down&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&reserve_id=[% reserveloo.reserve_id %]&date=[% reserveloo.date %]" title="Bajar reserva">
  <img alt="Bajar" src="/intranet-tmpl/[% theme %]/img/go-down.png" border="0" />
  </a>
  </td>
@@ -439,23 +440,23 @@ function checkMultiHold() {
  [% END %] [% END %] [% END %] </td>
 
  [% IF ( CAN_user_reserveforothers_modify_holds_priority ) %] <td>
- <a href="request.pl?action=setLowestPriority&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&date=[% reserveloo.date %]" title="Activar prioridad más baja">
+ <a href="request.pl?action=setLowestPriority&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&reserve_id=[% reserveloo.reserve_id %]&date=[% reserveloo.date %]" title="Alternar prioridad más baja">
  [% IF ( reserveloo.lowestPriority ) %] <img alt="Anular prioridad más baja" src="/intranet-tmpl/[% theme %]/img/go-bottom.png" border="0" />
  [% ELSE %] <img alt="Ajustar a menor prioridad" src="/intranet-tmpl/[% theme %]/img/go-down.png" border="0" />
  [% END %] </a>
  </td> 
  [% END %] <td>
- <a href="request.pl?action=cancel&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&date=[% reserveloo.date %]" title="Cancelar reserva">
+ <a href="request.pl?action=cancel&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&reserve_id=[% reserveloo.reserve_id %]&date=[% reserveloo.date %]" title="Cancelar reserva ">
  <img alt="Cancelar" src="/intranet-tmpl/[% theme %]/img/x.png" border="0" />
  </a>
  </td>
 
  [% IF SuspendHoldsIntranet %] <td>
- [% UNLESS ( reserveloo.wait ) %] <input value="[% IF ( reserveloo.suspend ) %]No suspendido[% ELSE %]Suspendido[% END %]" type="button" onclick="window.location.href='request.pl?action=toggleSuspend&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&date=[% reserveloo.date %]&suspend_until=' + $('#suspend_until_[% reserveloo.borrowernumber %]').val()" />
+ [% UNLESS ( reserveloo.wait ) %] <input value="[% IF ( reserveloo.suspend ) %]No suspendido[% ELSE %]Suspendido[% END %]" type="button" onclick="window.location.href='request.pl?action=toggleSuspend&reserve_id=[% reserveloo.reserve_id %]&borrowernumber=[% reserveloo.borrowernumber %]&biblionumber=[% reserveloo.biblionumber %]&date=[% reserveloo.date %]&suspend_until=' + $('#suspend_until_[% reserveloo.reserve_id %]').val()" />
 
- [% IF AutoResumeSuspendedHolds %] <label for="suspend_until_[% reserveloo.borrowernumber %]">[% IF ( reserveloo.suspend ) %] en [% ELSE %] hasta [% END %] </label>
- <input name="suspend_until" id="suspend_until_[% reserveloo.borrowernumber %]" size="10" readonly="readonly" value="[% reserveloo.suspend_until | $KohaDates %]" class="datepicker" />
- <a href='#' onclick="document.getElementById('suspend_until_[% reserveloo.borrowernumber %]').value='';">Limpiar fecha</a>
+ [% IF AutoResumeSuspendedHolds %] <label for="suspend_until_[% reserveloo.reserve_id %]">[% IF ( reserveloo.suspend ) %] en [% ELSE %] hasta [% END %] </label>
+ <input name="suspend_until" id="suspend_until_[% reserveloo.reserve_id %]" size="10" readonly="readonly" value="[% reserveloo.suspend_until | $KohaDates %]" class="datepicker" />
+ <a href='#' onclick="document.getElementById('suspend_until_[% reserveloo.reserve_id %]').value='';">Limpiar fecha</a>
  [% END %] [% ELSE %] <input type="hidden" name="suspend_until" value="" />
  [% END %] </td>
  [% END # IF SuspendHoldsIntranet %] </tr>

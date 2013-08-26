@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación &rsaquo; Cola de reservas</title>
+[% USE ItemTypes %] [% USE KohaAuthorisedValues %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Circulación &rsaquo; Cola de reservas</title>
 [% INCLUDE 'doc-head-close.inc' %] <style type="text/css"> p { margin-top: 0; }</style>
 </head>
 <body id="circ_view_holdsqueue" class="circ">
@@ -8,7 +8,7 @@
 <script type="text/javascript">//<![CDATA[
 $(document).ready(function() {
     $("#holdst").dataTable({
-        "aaSorting": [[ 2, "asc" ]],
+        "aaSorting": [[ 3, "asc" ]],
         "bPaginate": false,
         "bLengthChange": false,
         "bFilter": false,
@@ -40,6 +40,7 @@ $(document).ready(function() {
  <tr>
  <th class="hq-title">Título</th>
  <th class="hq-collection">Colección</th>
+ <th class="hq-itemtype">Tipo de ítem</th>
  <th class="hq-callnumber">Signatura</th>
  <th class="hq-copynumber">Copia número </th>
  <th class="hq-enumchron">Enumeración</th>
@@ -56,7 +57,8 @@ $(document).ready(function() {
  <div class="hq-pubdata"> [% IF ( itemsloo.publishercode ) %][% itemsloo.publishercode %][% END %] [% IF ( itemsloo.publicationyear ) %], [% itemsloo.publicationyear %] [% ELSIF ( itemsloo.copyrightdate ) %], [% itemsloo.copyrightdate %][% END %] [% IF ( itemsloo.pages ) %]: [% itemsloo.pages %] [% END %] [% IF ( itemsloo.size ) %][% itemsloo.size %][% END %] [% IF ( itemsloo.isbn ) %]ISBN: [% itemsloo.isbn %][% END %]</p>
  </div>
  </td>
- <td class="hq-collection">[% itemsloo.ccode %]</td>
+ <td class="hq-collection">[% KohaAuthorisedValues.GetByCode( 'CCODE', itemsloo.ccode ) %]</td>
+ <td class="hq-itemtype">[% ItemTypes.GetDescription( itemsloo.itype ) %]</td>
  <td class="hq-callnumber">[% itemsloo.location %] [% itemsloo.itemcallnumber %]</td>
  <td class="hq-copynumber">[% itemsloo.copynumber %]</td>
  <td class="hq-enumchron">[% itemsloo.enumchron %]</td>

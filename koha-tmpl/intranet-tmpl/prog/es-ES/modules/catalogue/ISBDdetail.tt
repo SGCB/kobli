@@ -1,5 +1,17 @@
 [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Catálogo &rsaquo; [% IF ( unknownbiblionumber ) %] Registro desconocido [% ELSE %] Detalles ISBD para [% title %] [% END %] </title>
-[% INCLUDE 'doc-head-close.inc' %] </head>
+[% INCLUDE 'doc-head-close.inc' %]
+[% INCLUDE 'browser-strings.inc' %]
+<!--[if lt IE 9]>
+<script type="text/javascript" src="[% interface %]/lib/shims/json2.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="[% interface %]/js/browser.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+    var browser = KOHA.browser('[% searchid %]', parseInt('[% biblionumber %]', 10));
+    browser.show();
+//]]>
+</script>
+</head>
 <body id="catalog_ISBDdetail" class="catalog">
 
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/catalogue/search.pl">Catálogo</a> &rsaquo; [% IF ( unknownbiblionumber ) %] Registro desconocido [% ELSE %] Detalles ISBD para <i>[% biblionumber %]</i>

@@ -76,14 +76,23 @@ $(document).ready(function(){
  [% ELSE %] <option value="[% available_matcher.matcher_id %]">
  [% available_matcher.code %] ([% available_matcher.description %]) </option>
  [% END %] [% END %] </select> <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_new_matcher_id">Reiniciar</a></span>[% ELSE %]<span class="label">Regla de coincidencia aplicada</span>[% IF ( current_matcher_id ) %] [% current_matcher_code %] ([% current_matcher_description %]) [% ELSE %] No hay reglas de coincidencia en vigor [% END %][% END %] </li>
- <li>[% IF ( can_commit ) %] <label for="overlay_action">Acción en caso de registro coincidente encontrado:</label>
- [% INCLUDE 'tools-overlay-action.inc' %] <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_overlay_action">Reiniciar</a></span>[% ELSE %]<span class="label">Acción en caso de registro coincidente encontrado:</span>[% overlay_action %][% END %]</li>
+ <li>
+ [% IF ( can_commit ) %] <label for="overlay_action">Acción en caso de registro coincidente encontrado:</label>
+ [% INCLUDE 'tools-overlay-action.inc' %] <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_overlay_action">Reiniciar</a></span>
+ [% ELSE %] <span class="label">Acción en caso de registro coincidente encontrado:</span>
+ [% IF ( overlay_action == 'replace' ) %]c Reemplazar registro existente con registro de entrada [% ELSIF ( overlay_action == 'create_new' ) %] Añadir registro de entrada [% ELSIF ( overlay_action == 'ignore' ) %] Ignorar registro de entrada (sus items todavía pueden ser procesados) [% ELSE %] [% overlay_action %] [% END %] [% END %] </li>
  
- <li>[% IF ( can_commit ) %]<label for="nomatch_action">Acción si no se encontró coincidencia:</label>
- [% INCLUDE 'tools-nomatch-action.inc' %] <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_nomatch_action">Reiniciar</a></span>[% ELSE %]<span class="label">Acción si no se encontró coincidencia:</span>[% nomatch_action %][% END %]</li>
+ <li>
+ [% IF ( can_commit ) %] <label for="nomatch_action">Acción si no se encontró coincidencia:</label>
+ [% INCLUDE 'tools-nomatch-action.inc' %] <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_nomatch_action">Reiniciar</a></span>
+ [% ELSE %] <span class="label">Acción si no se encontró coincidencia:</span>
+ [% IF ( nomatch_action == 'create_new' ) %] Añadir registro de entrada [% ELSIF ( nomatch_action == 'ignore' ) %] Ignorar registro de entrada (sus items todavía pueden ser procesados) [% ELSE %] [% nomatch_action %] [% END %] [% END %] </li>
  
- <li>[% IF ( can_commit ) %]<label for="item_action">Procesamiento del ítem:</label>
- [% INCLUDE 'tools-item-action.inc' %] <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_item_action">Reiniciar</a></span>[% ELSE %]<span class="label">Procesamiento del ítem:</span>[% item_action %][% END %]</li>
+ <li>
+ [% IF ( can_commit ) %] <label for="item_action">Procesamiento del ítem:</label>
+ [% INCLUDE 'tools-item-action.inc' %] <span class="change-status">Cambiado. <a href="#" class="reset" id="reset_item_action">Reiniciar</a></span>
+ [% ELSE %] <span class="label">Procesamiento del ítem:</span>
+ [% IF ( item_action == 'always_add' ) %] Añadir siempre items [% ELSIF ( item_action == 'add_only_for_matches' ) %] Añadir items solo si se encontraron coincidencias bibliográficas [% ELSIF ( item_action == 'add_only_for_new' ) %] Añadir items solo si se econtraron coincidencias bibliográficas [% ELSIF ( item_action == 'ignore' ) %] Ignorar items [% ELSE %] [% item_action %] [% END %] [% END %] </li>
  </ol>
 [% IF ( can_commit ) %]<fieldset class="action"><input value="Aplicar una regla de coincidencia diferente" type="submit" class="button" /></fieldset></form>[% END %] </fieldset>
 
@@ -187,8 +196,10 @@ Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %] <span class="
  </tr>
  [% FOREACH record_lis IN record_list %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td>[% record_lis.record_sequence %]</td>
  <td><a href="/cgi-bin/koha/catalogue/showmarc.pl?importid=[% record_lis.import_record_id %]" rel="gb_page_center[600,500]">[% record_lis.citation %]</a></td>
- <td>[% record_lis.status %]</td>
- <td>[% record_lis.overlay_status %]</td>
+ <td>
+ [% IF ( record_lis.status == 'imported' ) %] Importado [% ELSIF ( record_lis.status == 'ignored' ) %] Ignorado [% ELSIF ( record_lis.status == 'reverted' ) %] Revertido  [% ELSIF ( record_lis.status == 'staged' ) %] Guardados [% ELSIF ( record_lis.status == 'error' ) %] Error [% ELSE %] [% record_lis.status %] [% END %] </td>
+ <td>
+ [% IF ( record_lis.overlay_status == 'no_match' ) %] No coincidencia [% ELSIF ( record_lis.overlay_status == 'match_applied' ) %] Coincidencia aplicada [% ELSIF ( record_lis.overlay_status == 'auto_match' ) %] Coincidencia encontrada [% ELSE %] [% record_lis.overlay_status %] [% END %] </td>
  <td>[% IF ( record_lis.final_match_id ) %] [% PROCESS final_match_link record=record_lis %] [% END %] </td>
  </tr>
  [% PROCESS match_link record=record_lis %] [% END %] </table>

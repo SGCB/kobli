@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha Online[% END %] Catálogo &rsaquo; Búsqueda avanzada [% INCLUDE 'doc-head-close.inc' %]<script type="text/javascript" language="javascript">//<![CDATA[
+[% USE Koha %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Búsqueda avanzada [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" language="javascript">//<![CDATA[
             $(document).ready(function() {
             $('#advsearches').tabs();
 });
@@ -39,7 +39,9 @@
  <option value="or">o</option>
  <option value="not">no</option>
  </select>
- [% END %] [% END %] [% IF ( expanded_options ) %][% left_content %][% END %] <select name="idx">
+ [% END %] [% ELSE %] <label for="search-field_[% loop.index %]">
+ [% IF loop.index == 0 %] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [% ELSE %] y [% END %] </label>
+ [% END %] [% IF ( expanded_options ) %][% left_content %][% END %] <select name="idx" id="search-field_[% loop.index %]">
  <option value="kw">Palabra clave</option>
  <option value="su,wrdl">Tema</option>
 [% IF ( expanded_options ) %] <option value="su,phr">&nbsp;&nbsp;&nbsp;&nbsp; Frase de materia</option>

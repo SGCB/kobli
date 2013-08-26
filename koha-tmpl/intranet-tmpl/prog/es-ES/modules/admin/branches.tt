@@ -57,7 +57,7 @@ tinyMCE.init({
  [% END %] <ol><li>
  [% IF ( heading_branches_add_branch_p ) %] <label for="branchcode" class="required">Código de biblioteca:</label>
  <input type="text" name="branchcode" id="branchcode" size="10" maxlength="10" value="[% branchcode |html %]" class="required" required="required" /> <span class="required">Requerido</span>
- [% ELSE %] <label for="branchcode" class="required">Código de biblioteca:</label>
+ [% ELSE %] <span class="label">Código de biblioteca:</span>
  <input type="hidden" name="branchcode" value="[% branchcode |html %]" />
  [% branchcode %] [% END %] </li>
  <li>
@@ -69,26 +69,26 @@ tinyMCE.init({
  [% IF ( categoryloop ) %]<fieldset class="rows"><legend>Grupo(s):</legend>
  <ol>
  [% FOREACH categoryloo IN categoryloop %] <li><label for="[% categoryloo.categorycode %]">[% categoryloo.categoryname %]: </label>
- [% IF ( categoryloo.checked ) %] <input type="checkbox" id="[% categoryloo.categorycode %]" name="[% categoryloo.categorycode %]" checked="checked" />
+ [% IF categoryloo.selected %] <input type="checkbox" id="[% categoryloo.categorycode %]" name="[% categoryloo.categorycode %]" checked="checked" />
  [% ELSE %] <input type="checkbox" id="[% categoryloo.categorycode %]" name="[% categoryloo.categorycode %]" />
  [% END %] <span class="hint">[% categoryloo.codedescription %]</span>
  </li>
  [% END %] </ol>
 </fieldset>[% END %] <fieldset class="rows">
  <ol>
- <li><label for="branchaddress1">Dirección línea 1:</label><input type="text" name="branchaddress1" id="branchaddress1" value="[% branchaddress1 |html %]" /></li>
- <li><label for="branchaddress2">Dirección línea 2:</label><input type="text" name="branchaddress2" id="branchaddress2" value="[% branchaddress2 |html %]" /></li>
- <li><label for="branchaddress3">Dirección línea 3:</label><input type="text" name="branchaddress3" id="branchaddress3" value="[% branchaddress3 |html %]" /></li>
- <li><label for="branchcity">Ciudad: </label><input type="text" name="branchcity" id="branchcity" value="[% branchcity |html %]" /></li>
- <li><label for="branchstate">Estado: </label><input type="text" name="branchstate" id="branchstate" value="[% branchstate |html %]" /></li>
- <li><label for="branchzip">Código Postal: </label><input type="text" name="branchzip" id="branchzip" value="[% branchzip |html %]" /></li>
- <li><label for="branchcountry">País: </label><input type="text" name="branchcountry" id="branchcountry" value="[% branchcountry |html %]" /></li>
- <li><label for="branchphone">Teléfono: </label><input type="text" name="branchphone" id="branchphone" value="[% branchphone |html %]" /></li>
- <li><label for="branchfax">Fax: </label><input type="text" name="branchfax" id="branchfax" value="[% branchfax |html %]" /></li>
- <li><label for="branchemail">EMail: </label><input type="text" name="branchemail" id="branchemail" class="email" value="[% branchemail |html %]" /></li>
- <li><label for="branchurl">URL: </label><input type="text" name="branchurl" id="branchurl" value="[% branchurl |html %]" class="url" /></li>
+ <li><label for="branchaddress1">Dirección línea 1:</label><input type="text" name="branchaddress1" id="branchaddress1" size="60" value="[% branchaddress1 |html %]" /></li>
+ <li><label for="branchaddress2">Dirección línea 2:</label><input type="text" name="branchaddress2" id="branchaddress2" size="60" value="[% branchaddress2 |html %]" /></li>
+ <li><label for="branchaddress3">Dirección línea 3:</label><input type="text" name="branchaddress3" id="branchaddress3" size="60" value="[% branchaddress3 |html %]" /></li>
+ <li><label for="branchcity">Ciudad: </label><input type="text" name="branchcity" id="branchcity" size="60" value="[% branchcity |html %]" /></li>
+ <li><label for="branchstate">Estado: </label><input type="text" name="branchstate" id="branchstate" size="60" value="[% branchstate |html %]" /></li>
+ <li><label for="branchzip">Código Postal: </label><input type="text" name="branchzip" id="branchzip"  size="25" maxlength="25" value="[% branchzip |html %]" /></li>
+ <li><label for="branchcountry">País: </label><input type="text" name="branchcountry" id="branchcountry" size="60" value="[% branchcountry |html %]" /></li>
+ <li><label for="branchphone">Teléfono: </label><input type="text" name="branchphone" id="branchphone" size="60" value="[% branchphone |html %]" /></li>
+ <li><label for="branchfax">Fax: </label><input type="text" name="branchfax" id="branchfax" size="60" value="[% branchfax |html %]" /></li>
+ <li><label for="branchemail">EMail: </label><input type="text" name="branchemail" id="branchemail" class="email"  size="80" value="[% branchemail |html %]" /></li>
+ <li><label for="branchurl">URL: </label><input type="text" name="branchurl" id="branchurl"  size="80" value="[% branchurl |html %]" class="url" /></li>
  <li><label for="opac_info">Infromación de OPAC:</label><textarea name="opac_info" id="opac_info">[% opac_info |html %]</textarea></li>
- <li><label for="branchip">IP:</label><input type="text" name="branchip" id="branchip" value="[% branchip |html %]" /> <span class="hint">Puede ingresarse como IP específica, o subred tal como 192.168.1.*</span></li>
+ <li><label for="branchip">IP:</label><input type="text" name="branchip" id="branchip"  size="15" maxlength="15" value="[% branchip |html %]" /> <span class="hint">Puede ingresarse como IP específica, o subred tal como 192.168.1.*</span></li>
  <!--
  <li><label for="branchprinter">Library Printer: </label>
  <select id="branchprinter" name="branchprinter">
@@ -102,7 +102,7 @@ tinyMCE.init({
  [% END %]
  </select></li>
  -->
- <li><label for="branchnotes">Notas: </label><input type="text" name="branchnotes" id="branchnotes" value="[% branchnotes |html %]" /></li>
+ <li><label for="branchnotes">Notas: </label><input type="text" name="branchnotes" id="branchnotes" size="80" value="[% branchnotes |html %]" /></li>
  <li>
  <label for="notforloan">No mostrar en OPAC</label> [% IF ( notforopac ) %] <input type="checkbox" id="notforopac" name="notforopac" checked="checked" value="1" />
  [% ELSE %] <input type="checkbox" id="notforopac" name="notforopac" value="1" />
