@@ -1156,7 +1156,7 @@
                 </xsl:choose>
                 <xsl:choose>
                     <xsl:when test="@tag=100 or @tag=700"><xsl:call-template name="nameABCQ"/></xsl:when>
-                    <xsl:when test="@tag=110 or @tag=710"><xsl:call-template name="nameABCDN"/></xsl:when>
+                    <xsl:when test="@tag=110 or @tag=710"><xsl:call-template name="nameABCDNT"/></xsl:when>
                     <xsl:when test="@tag=111 or @tag=711"><xsl:call-template name="nameACDEQ"/></xsl:when>
                 </xsl:choose>
                 <!-- add relator code too between brackets-->
@@ -1194,7 +1194,7 @@
             </xsl:call-template>
     </xsl:template>
 
-    <xsl:template name="nameABCDN">
+    <xsl:template name="nameABCDNT">
         <xsl:for-each select="marc:subfield[@code='a']">
                 <xsl:call-template name="chopPunctuation">
                     <xsl:with-param name="chopString" select="."/>
@@ -1208,9 +1208,9 @@
                 </xsl:when>
             </xsl:choose>
         </xsl:for-each>
-        <xsl:if test="marc:subfield[@code='c'] or marc:subfield[@code='d'] or marc:subfield[@code='n']">
+        <xsl:if test="marc:subfield[@code='c'] or marc:subfield[@code='d'] or marc:subfield[@code='n'] or marc:subfield[@code='t']">
                 <xsl:call-template name="subfieldSelect">
-                    <xsl:with-param name="codes">cdn</xsl:with-param>
+                    <xsl:with-param name="codes">cdnt</xsl:with-param>
                 </xsl:call-template>
         </xsl:if>
     </xsl:template>
