@@ -37,6 +37,7 @@ my $branch       = $query->param('branch_filter');
 my $routing      = $query->param('routing') || C4::Context->preference("RoutingSerials");
 my $searched     = $query->param('searched');
 my $biblionumber = $query->param('biblionumber');
+my $location      = $query->param('location_filter') || '';
 
 my $basketno     = $query->param('basketno');
 my $booksellerid = $query->param('booksellerid');
@@ -102,5 +103,6 @@ $template->param(
     basketno         => $basket->{basketno},
     basketname       => $basket->{basketname},
     booksellername   => $bookseller->{name},
+    locations     => C4::Koha::GetAuthorisedValues('LOC', $location),
 );
 output_html_with_http_headers $query, $cookie, $template->output;
