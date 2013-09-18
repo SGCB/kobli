@@ -38,6 +38,8 @@ use C4::Serials;
 
 my $query   = new CGI;
 my $routing = $query->param('routing') || C4::Context->preference("RoutingSerials");
+my $branch  = $query->param('branch_filter');
+my $location      = $query->param('location_filter') || '';
 
 my ( $template, $loggedinuser, $cookie ) = get_template_and_user(
     {
@@ -50,8 +52,23 @@ my ( $template, $loggedinuser, $cookie ) = get_template_and_user(
     }
 );
 
+my $branches = GetBranches();
+my @branches_loop;
+foreach (sort keys %$branches){
+    my $selected = 0;
+    $selected = 1 if( defined $branch and $branch eq $_ );
+    push @branches_loop, {
+        branchcode  => $_,
+        branchname  => $branches->{$_}->{'branchname'},
+        selected    => $selected,
+    };
+}
+
 $template->param(
     routing       => $routing,
+    branch_filter => $branch,
+    branches_loop => \@branches_loop,
+    locations     => C4::Koha::GetAuthorisedValues('LOC', $location),
     (uc(C4::Context->preference("marcflavour"))) => 1
 );
 
