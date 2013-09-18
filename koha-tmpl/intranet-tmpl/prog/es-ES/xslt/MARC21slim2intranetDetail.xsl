@@ -1020,9 +1020,9 @@
  </xsl:if>
  </xsl:template>
 
- <xsl:template name="nameACDEQ">
+ <xsl:template name="nameACDENQ">
  <xsl:call-template name="subfieldSelect">
- <xsl:with-param name="codes">acdeq</xsl:with-param>
+ <xsl:with-param name="codes">acdenq</xsl:with-param>
  </xsl:call-template>
  </xsl:template>
 
@@ -1092,7 +1092,7 @@
  <xsl:choose>
  <xsl:when test="@tag=100 or @tag=700"><xsl:call-template name="nameABCQ"/></xsl:when>
  <xsl:when test="@tag=110 or @tag=710"><xsl:call-template name="nameABCDN"/></xsl:when>
- <xsl:when test="@tag=111 or @tag=711"><xsl:call-template name="nameACDEQ"/></xsl:when>
+ <xsl:when test="@tag=111 or @tag=711"><xsl:call-template name="nameACDENQ"/></xsl:when>
  </xsl:choose>
  <!-- add relator code too between brackets-->
  <xsl:if test="marc:subfield[@code='4' or @code='e']">
