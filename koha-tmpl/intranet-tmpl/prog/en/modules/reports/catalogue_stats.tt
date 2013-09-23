@@ -275,31 +275,6 @@
                     <td colspan="4"><input type="hidden" name="Filter" /></td>
                 </tr>
             [% END %]
-            [% IF (statisticvalue) %]
-                <tr>
-                    <td>[% statisticvalue_label %]</td>
-                    <td><input type="radio" name="Line"   value="items.statisticvalue" /></td>
-                    <td><input type="radio" name="Column" value="items.statisticvalue" /></td>
-                    <td>
-                        [% IF (statisticvalue_avlist) %]
-                            <select name="Filter" id="statisticvalue">
-                                <option value="">&nbsp;</option>
-                                [% FOREACH av IN statisticvalue_avlist %]
-                                    <option value="[% av.authorised_value %]">
-                                        [% av.lib %]
-                                    </option>
-                                [% END %]
-                            </select>
-                        [% ELSE %]
-                            <input type="text" name="Filter" id="statisticvalue" />
-                        [% END %]
-                    </td>
-                </tr>
-            [% ELSE %]
-                <tr style="display:none">
-                    <td colspan="4"><input type="hidden" name="Filter" /></td>
-                </tr>
-            [% END %]
             <tr>
                 <td colspan="3">Filter barcode</td>
                 <td>
