@@ -160,7 +160,7 @@ if ($do_it) {
         push @locations, { code => $_, description => "$_ - " . $locations->{$_} };
     }
 
-    foreach my $kohafield (qw(items.notforloan items.materials items.statisticvalue)) {
+    foreach my $kohafield (qw(items.notforloan items.materials)) {
         my $subfield_structure = GetMarcSubfieldStructureFromKohaField($kohafield);
         if($subfield_structure) {
             my $avlist;
@@ -191,7 +191,6 @@ if ($do_it) {
         CGIextChoice => \@mime,
         CGIsepChoice => GetDelimiterChoices,
         item_itype   => $item_itype,
-        DHTMLcalendar_dateformat => C4::Dates->DHTMLcalendar(),
     );
 
 }
@@ -255,13 +254,12 @@ sub calculate {
               : ( $i == 12 ) ? "Collection Code"
               : ( $i == 13 ) ? "Status"
               : ( $i == 14 ) ? "Materials"
-              : ( $i == 15 ) ? "Statistic value"
-              : ( $i == 17 and $filters->[16] == 0 ) ? "Barcode (not like)"
-              : ( $i == 17 and $filters->[16] == 1 ) ? "Barcode (like)"
-              : ( $i == 18 ) ? "Acquired date from"
-              : ( $i == 19 ) ? "Acquired date to"
-              : ( $i == 20 ) ? "Removed date from"
-              : ( $i == 21 ) ? "Removed date to"
+              : ( $i == 16 and $filters->[15] == 0 ) ? "Barcode (not like)"
+              : ( $i == 16 and $filters->[15] == 1 ) ? "Barcode (like)"
+              : ( $i == 17 ) ? "Acquired date from"
+              : ( $i == 18 ) ? "Acquired date to"
+              : ( $i == 19 ) ? "Removed date from"
+              : ( $i == 20 ) ? "Removed date to"
               :                '';
 
             push @loopfilter, \%cell;
