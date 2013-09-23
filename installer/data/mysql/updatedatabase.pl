@@ -7140,9 +7140,37 @@ if ( CheckVersion($DBversion) ) {
     );
     print "Upgrade to $DBversion done (Bug 7494: Add itemBarcodeFallbackSearch syspref)\n";
     SetVersion($DBversion);
-}
-$DBversion = "XXX";
-if ( C4::Context->preference("Version") < TransformToNum($DBversion) ) {
+
+    $dbh->do(
+        q{INSERT INTO systempreferences (variable, value, options, explanation, type) VALUES ('autoControlNumber','OFF','incremental|biblionumber|OFF',
+        'Used to autogenerate a Control Number: incremental will be of the form 1, 2, 3; biblionumber will be as biblionumber;','Choice');}
+    );
+    $dbh->do(
+        q{INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('incrementalControlNumber', '1', 'Set the number
+        (controlnumber) of the next bibliographic record.',NULL,'');}
+    );
+    if (C4::Context->preference("marcflavour") eq 'MARC21') {
+        my $sth = $dbh->prepare(
+            q{SELECT * FROM marc_subfield_structure WHERE tagfield = '001' AND tagsubfield = '@' 
+            AND (value_builder IS NOT NULL AND value_builder != '') LIMIT 1;}
+        );
+        $sth->execute;
+        unless($sth->fetchrow){
+            $dbh->do(
+                q{UPDATE marc_subfield_structure SET value_builder = 'marc21_field_001.pl' WHERE tagfield = '001' AND tagsubfield = '@';}
+            );
+            print "WARNING: Your frameworks have been updated, field 001 will filled in through marc21_field_001.pl plugin.\n";
+        }
+    }
+    print "Upgrade to $DBversion done (Bug 9921 - Make it possible to force 001 = biblionumber)\n";
+    
+    $dbh->do(q{ALTER TABLE `z3950servers` ADD COLUMN `recordtype` VARCHAR(45) NOT NULL DEFAULT 'biblio';});
+    print "Upgrade to $DBversion done (Bug 10096 - Add a Z39.50 interface for authority searching)\n";
+
+    $dbh->do(
+"INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES('BiblioItemtypeImage', 'Control','Control what biblio level itemtype image displays','Control|Koha','Choice')"
+    );
+    print "Upgrade to $DBversion done (Add new BiblioItemtypeImage to system preferences)";
     $dbh->do(qq|
         DROP TABLE IF EXISTS subscription_frequencies
     |);
@@ -7357,52 +7385,8 @@ if ( C4::Context->preference("Version") < TransformToNum($DBversion) ) {
         ADD CONSTRAINT subscription_ibfk_1 FOREIGN KEY (periodicity) REFERENCES subscription_frequencies (id) ON DELETE SET NULL ON UPDATE CASCADE,
         ADD CONSTRAINT subscription_ibfk_2 FOREIGN KEY (numberpattern) REFERENCES subscription_numberpatterns (id) ON DELETE SET NULL ON UPDATE CASCADE
     |);
-
+    
     print "Upgrade to $DBversion done (Add subscription_frequencies and subscription_numberpatterns tables)\n";
-    SetVersion($DBversion);
-}
-
-$DBversion = "3.13.00.XXX";
-if ( CheckVersion($DBversion) ) {
-    $dbh->do(
-        q{INSERT INTO systempreferences (variable, value, options, explanation, type) VALUES ('autoControlNumber','OFF','incremental|biblionumber|OFF',
-        'Used to autogenerate a Control Number: incremental will be of the form 1, 2, 3; biblionumber will be as biblionumber;','Choice');}
-    );
-    $dbh->do(
-        q{INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('incrementalControlNumber', '1', 'Set the number
-        (controlnumber) of the next bibliographic record.',NULL,'');}
-    );
-    if (C4::Context->preference("marcflavour") eq 'MARC21') {
-        my $sth = $dbh->prepare(
-            q{SELECT * FROM marc_subfield_structure WHERE tagfield = '001' AND tagsubfield = '@' 
-            AND (value_builder IS NOT NULL AND value_builder != '') LIMIT 1;}
-        );
-        $sth->execute;
-        unless($sth->fetchrow){
-            $dbh->do(
-                q{UPDATE marc_subfield_structure SET value_builder = 'marc21_field_001.pl' WHERE tagfield = '001' AND tagsubfield = '@';}
-            );
-            print "WARNING: Your frameworks have been updated, field 001 will filled in through marc21_field_001.pl plugin.\n";
-        }
-    }
-    print "Upgrade to $DBversion done (Bug 9921 - Make it possible to force 001 = biblionumber)\n";
-    SetVersion($DBversion);
-}
-
-$DBversion = "3.13.00.XXX";
-if ( CheckVersion($DBversion) ) {
-    $dbh->do(q{ALTER TABLE `z3950servers` ADD COLUMN `recordtype` VARCHAR(45) NOT NULL DEFAULT 'biblio';});
-    print "Upgrade to $DBversion done (Bug 10096 - Add a Z39.50 interface for authority searching)\n";
-    SetVersion ($DBversion);
-}
-
-$DBversion = "3.13.00.XXX";
-if ( CheckVersion($DBversion) ) {
-    $dbh->do(
-"INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES('BiblioItemtypeImage', 'Control','Control what biblio level itemtype image displays','Control|Koha','Choice')"
-    );
-    print
-"Upgrade to $DBversion done (Add new BiblioItemtypeImage to system preferences)";
     SetVersion($DBversion);
 }
 
