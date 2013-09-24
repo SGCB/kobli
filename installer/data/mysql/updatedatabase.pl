@@ -7384,9 +7384,26 @@ if ( CheckVersion($DBversion) ) {
         ADD COLUMN locale VARCHAR(80) DEFAULT NULL AFTER numberpattern,
         ADD CONSTRAINT subscription_ibfk_1 FOREIGN KEY (periodicity) REFERENCES subscription_frequencies (id) ON DELETE SET NULL ON UPDATE CASCADE,
         ADD CONSTRAINT subscription_ibfk_2 FOREIGN KEY (numberpattern) REFERENCES subscription_numberpatterns (id) ON DELETE SET NULL ON UPDATE CASCADE
-    |);
-    
+    |);  
     print "Upgrade to $DBversion done (Add subscription_frequencies and subscription_numberpatterns tables)\n";
+    
+    $dbh->do(qq|
+        INSERT INTO `letter` (`module`,`code`,`branchcode`,`name`,`is_html`,`title`,`content`) VALUES (
+        'members',  'OPAC_NEW_PASS',  '',  'Nueva contraseña de usuario ',  '0',  'Envío de nueva contraseña',  'Hola, 
+
+        Los detalles de tu cuenta en Kobli son
+
+        Usuario: <<userid>>
+        Contraseña: <<password>>
+
+        Si tiene cualquier problema o cuestión en cuanto a su cuenta, por favor, contacta con el Adminsitrador de Kobli.
+
+        Gracias,
+        Administrador de Kobli 
+        <<admin_mail>>
+        '
+    |);
+    print "Upgrade to $DBversion done (Add OPAC_NEW_PASS to letter table)\n";
     SetVersion($DBversion);
 }
 

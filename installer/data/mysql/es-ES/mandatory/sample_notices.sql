@@ -99,3 +99,19 @@ http://<<OPACBaseURL>>/cgi-bin/koha/opac-registration-verify.pl?token=<<borrower
 
 Si no esperaba este mensaje, puede ignorarlo. La solicitud espirará dentro de poco.'
 );
+INSERT INTO `letter` (`module`,`code`,`branchcode`,`name`,`is_html`,`title`,`content`)
+VALUES (
+'members',  'OPAC_NEW_PASS',  '',  'Nueva contraseña de usuario ',  '1',  'Envío de nueva contraseña',  'Hola, 
+
+Los detalles de tu cuenta en Kobli son
+
+Usuario: <<userid>>
+Contraseña: <<password>>
+
+Si tiene cualquier problema o cuestión en cuanto a su cuenta, por favor, contacta con el Adminsitrador de Kobli.
+
+Gracias,
+Administrador de Kobli 
+<<admin_mail>>
+'
+);
