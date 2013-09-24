@@ -117,3 +117,16 @@ http://<<OPACBaseURL>>/cgi-bin/koha/opac-registration-verify.pl?token=<<borrower
 
 If you did not initiate this request, you may safely ignore this one-time message. The request will expire shortly.'
 );
+INSERT INTO `letter` (`module`,`code`,`branchcode`,`name`,`is_html`,`title`,`content`)
+VALUES (
+'members',  'OPAC_NEW_PASS',  '',  'New user password ',  '0',  'Send new password',  'Hello, 
+
+Your details Kobli account
+
+User: <<userid>>
+Password: <<password>>
+
+Thanks,
+<<admin_mail>>
+'
+);
