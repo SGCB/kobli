@@ -5,6 +5,12 @@
             confirm_deletion();
             return false;
         });
+
+        $("#z3950submit").click(function(){
+            window.open("/cgi-bin/koha/cataloguing/z3950_auth_search.pl","z3950search",'width=740,height=450,location=yes,toolbar=no,scrollbars=yes,resize=yes');
+            return false;
+        });
+
     });
 
 //]]>
@@ -13,7 +19,9 @@
 
 [% IF ( authid ) %] <div class="btn-group"><a class="btn btn-small" id="editAuth" href="authorities.pl?authid=[% authid %]"><i class="icon-pencil"></i> Editar</a></div>
  [% UNLESS ( count ) %] <div class="btn-group"><a href="#" class="btn btn-small" id="delAuth"><i class="icon-remove"></i> Eliminar</a></div>
- [% END %] <div class="btn-group">
+ [% END %] <div class="btn-group"><a class="btn btn-small" id="dupAuth" href="authorities.pl?authid=[% authid %]&op=duplicate"><i class="icon-copy"></i> Duplicado</a></div>
+
+ <div class="btn-group">
  <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-download-alt"></i> Guardar<span class="caret"></span>
  </a>
  <ul class="dropdown-menu">
@@ -29,5 +37,8 @@
  <ul class="dropdown-menu">
  [% FOREACH authtypesloo IN authtypesloop %] <li><a href="/cgi-bin/koha/authorities/authorities.pl?authtypecode=[% authtypesloo.value %]">[% authtypesloo.authtypetext %]</a></li>
  [% END %] </ul>
+ </div>
+ <div class="btn-group">
+ <a class="btn btn-small" id="z3950submit" href="#"><i class="icon-search"></i> Búsqueda Z39.50</a>
  </div>
 </div>

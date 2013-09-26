@@ -1,4 +1,4 @@
-[% IF ( OpacPublic ) %] <div id="fluid-offset">
+[% IF ( OpacPublic ) %] <div id="opac_search">
 [% UNLESS ( advsearch ) %]<form name="searchform" method="get" action="/cgi-bin/koha/opac-search.pl" id="searchform">
  <label for="masthead_search" class="left"> Buscar [% UNLESS Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %] [% IF ( mylibraryfirst ) %] (en [% mylibraryfirst %] solamente)[% END %] [% END %] </label>
 
