@@ -154,8 +154,11 @@ function verify_images() {
  [% FOREACH TagLoo IN TagLoop %] [% IF ( CAN_user_tools_moderate_tags ) %] <a href="/cgi-bin/koha/tags/list.pl?tag=[% TagLoo.term |url %]">[% TagLoo.term |html %]</a>
  [% ELSE %] [% TagLoo.term |html %] [% END %] <span class="weight">([% TagLoo.weight_total %])</span>[% IF ( loop.last ) %][% ELSE %], [% END %] [% END %] </span>
  [% END %] <span id="catalogue_detail_marc_preview" class="results_summary"><span class="label">Vista MARC:</span> <a href="/cgi-bin/koha/catalogue/showmarc.pl?id=[% biblionumber %]" title="MARC" rel="gb_page_center[600,500]">Mostrar</a></span>
- [% IF ( holdcount ) %]<span class="results_summary"><span class="label">Reservas:</span> <span class="holdcount"><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">[% holdcount %]</a></span></span>[% ELSE %][% END %] [% IF ( AmazonCoverImages ) %]</div><div class="yui-u" id="bookcoverimg">
- <a href="http://www.amazon[% AmazonTld %]/gp/reader/[% normalized_isbn %]/ref=sib_dp_pt/002-7879865-0184864#reader-link"><img border="0" src="http://images.amazon.com/images/P/[% normalized_isbn %].01.MZZZZZZZ.jpg" alt="" /></a>[% END %] [% ELSE %] <h3>[% title |html %]</h3>
+ [% IF !item_level_itypes ||  BiblioItemtypeImage == 'Koha' %] <span class="results_summary itemtype"><span class="label">Tipo de ítem:</span>
+ [% IF ( description ) %] [% description %] [% ELSE %] [% itemtype %] [% END %] </span>
+ [% END %] [% IF ( holdcount ) %]<span class="results_summary"><span class="label">Reservas:</span> <span class="holdcount"><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">[% holdcount %]</a></span></span>[% ELSE %][% END %] [% IF ( AmazonCoverImages ) %]</div><div class="yui-u" id="bookcoverimg">
+ <a href="http://www.amazon[% AmazonTld %]/gp/reader/[% normalized_isbn %]/ref=sib_dp_pt/002-7879865-0184864#reader-link"><img border="0" src="http://images.amazon.com/images/P/[% normalized_isbn %].01.MZZZZZZZ.jpg" alt="" /></a>
+ [% END %] [% ELSE %] <h3>[% title |html %]</h3>
  [% FOREACH subtitl IN subtitle %] <h4>[% subtitl.subfield %]</h4>
  [% END %] [% UNLESS ( item_level_itypes ) %]<img src="[% imageurl %]" alt="[% description %]" title="[% description %]">[% END %] [% IF ( unititle ) %]<p>[% unititle |html %]</p>[% END %] [% IF ( author ) %]<p>Por <a href="/cgi-bin/koha/catalogue/search.pl?q=au:[% author |url %]">[% author %]</a></p>[% END %] <ul>
  [% IF ( MARCAUTHORS ) %] <li><strong>Autores adicionales:</strong><ul>
@@ -222,7 +225,9 @@ function verify_images() {
  [% IF ( CAN_user_tools_moderate_tags ) %] <a href="/cgi-bin/koha/tags/list.pl?tag=[% TagLoo.term |url %]">[% TagLoo.term |html %]</a>
  [% ELSE %] [% TagLoo.term |html %] [% END %] <span class="weight">([% TagLoo.weight_total %])</span>[% IF ( loop.last ) %][% ELSE %], [% END %]</li>
  [% END %] </ul></li>
- [% END %] [% IF ( holdcount ) %]<li><strong>Reservas:</strong> <span class="holdcount"><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">[% holdcount %]</a></span></li>[% ELSE %][% END %] </ul>
+ [% END %] [% IF ( holdcount ) %]<li><strong>Reservas:</strong> <span class="holdcount"><a href="/cgi-bin/koha/reserve/request.pl?biblionumber=[% biblionumber %]">[% holdcount %]</a></span></li>[% ELSE %][% END %] [% IF !item_level_itypes ||  BiblioItemtypeImage == 'Koha' %] <li><strong>Tipo de ítem: </strong>
+ [% IF ( description ) %] [% description %] [% ELSE %] [% itemtype %] [% END %] </li>
+ [% END %] </ul>
  [% END %] </div>
 </div>
 <div id="bibliodetails" class="toptabs">

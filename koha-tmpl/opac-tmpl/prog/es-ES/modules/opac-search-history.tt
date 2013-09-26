@@ -1,9 +1,9 @@
 [% USE Koha %] [% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catálogo &rsaquo; Su historial de búsqueda [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'datatables.inc' %] <script type="text/javascript">
 //<![CDATA[
-	var MSG_CONFIRM_DELETE_HISTORY = _("¿Está seguro de que quiere borrar su historial de búsqueda?");
+        var MSG_CONFIRM_DELETE_HISTORY = _("¿Está seguro de que quiere borrar su historial de búsqueda?");
          $(document).ready(function() {
-		// We show table ordered by descending dates by default
-		// (so that the more recent query is shown first)
+                // We show table ordered by descending dates by default
+                // (so that the more recent query is shown first)
             $(".historyt").dataTable($.extend(true, {}, dataTablesDefaults, {
                 "aaSorting": [[ 0, "desc" ]],
                 "aoColumns": [

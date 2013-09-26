@@ -2,7 +2,7 @@
  [% CASE 'narrower' %] <span class="NT">NT: [% heading | html %]</span>
  [% CASE 'seefrom' %] <span class="UF">UF:  [% heading | html %]</span>
  [% CASE 'seealso' %] <span class="RT">RT:  [% heading | html %]</span>
- [% END %] [% ELSE %] [% IF ( label ) %]<span class="label">[% label | html %]</span>[% END %] <span class="heading">
+ [% END %] [% ELSE %] [% IF ( label ) %]<span class="label">[% SWITCH label %] [% CASE 'see also:' %]véase también: [% CASE 'used for/see from:' %]usado por/ver desde: [% END %]</span>[% END %] <span class="heading">
  [% IF ( linkpath && search ) %]<a href="[% link | url %][% search | url %]">[% heading | html %]</a>
  [% ELSE %][% heading | html %][% END %] </span>
  [% UNLESS ( type=='seefrom' || type=='seealso' ) %]<span class="type">[% SWITCH type %] [% CASE 'earlier' %](Encabezamiento anteior) [% CASE 'later' %](Encabezacmiento Posterior) [% CASE 'acronym' %](Acrónimo) [% CASE 'musical' %](Composición Musical) [% CASE 'broader' %](Encabezamiento genérico) [% CASE 'narrower' %](Encabezamiento específico) [% CASE 'parent' %](Órgano principal directo) [% CASE %][% IF type %]([% type | html %])[% END %] [% END %]</span>[% END %] [% END %] [% END %] [% BLOCK authresult %] [% IF ( summary.summary ) %][% summary.summary | html %]:[% END %] [% UNLESS ( summary.summaryonly ) %] <div class="authorizedheading">

@@ -29,6 +29,7 @@
  <xsl:variable name="Show856uAsImage" select="marc:sysprefs/marc:syspref[@name='OPACDisplay856uAsImage']"/>
  <xsl:variable name="OPACTrackClicks" select="marc:sysprefs/marc:syspref[@name='TrackClicks']"/>
  <xsl:variable name="biblionumber" select="marc:datafield[@tag=999]/marc:subfield[@code='c']"/>
+ <xsl:variable name="BiblioItemtypeImage" select="marc:sysprefs/marc:syspref[@name='BiblioItemtypeImage']"/>
  <xsl:variable name="TracingQuotesLeft">
  <xsl:choose>
  <xsl:when test="marc:sysprefs/marc:syspref[@name='UseICU']='1'">{</xsl:when>
@@ -169,11 +170,13 @@
  </xsl:choose>
 
  <xsl:if test="$DisplayOPACiconsXSLT!='0'">
+ <xsl:if test="$BiblioItemtypeImage='Control'">
  <xsl:if test="$materialTypeCode!=''">
  <span class="results_summary type"><span class="label">Tipo: </span>
  <xsl:element name="img"><xsl:attribute name="src">/opac-tmpl/lib/famfamfam/<xsl:value-of select="$materialTypeCode"/>.png</xsl:attribute><xsl:attribute name="alt">materialTypeLabel</xsl:attribute><xsl:attribute name="class">materialtype</xsl:attribute></xsl:element>
  <xsl:value-of select="$materialTypeLabel"/>
  </span>
+ </xsl:if>
  </xsl:if>
  </xsl:if>
 
@@ -1153,7 +1156,7 @@
  </xsl:choose>
  <xsl:choose>
  <xsl:when test="@tag=100 or @tag=700"><xsl:call-template name="nameABCQ"/></xsl:when>
- <xsl:when test="@tag=110 or @tag=710"><xsl:call-template name="nameABCDN"/></xsl:when>
+ <xsl:when test="@tag=110 or @tag=710"><xsl:call-template name="nameABCDNT"/></xsl:when>
  <xsl:when test="@tag=111 or @tag=711"><xsl:call-template name="nameACDENQ"/></xsl:when>
  </xsl:choose>
  <!-- add relator code too between brackets-->
@@ -1191,7 +1194,7 @@
  </xsl:call-template>
  </xsl:template>
 
- <xsl:template name="nameABCDN">
+ <xsl:template name="nameABCDNT">
  <xsl:for-each select="marc:subfield[@code='a']">
  <xsl:call-template name="chopPunctuation">
  <xsl:with-param name="chopString" select="."/>
@@ -1205,9 +1208,9 @@
  </xsl:when>
  </xsl:choose>
  </xsl:for-each>
- <xsl:if test="marc:subfield[@code='c'] or marc:subfield[@code='d'] or marc:subfield[@code='n']">
+ <xsl:if test="marc:subfield[@code='c'] or marc:subfield[@code='d'] or marc:subfield[@code='n'] or marc:subfield[@code='t']">
  <xsl:call-template name="subfieldSelect">
- <xsl:with-param name="codes">cdn</xsl:with-param>
+ <xsl:with-param name="codes">cdnt</xsl:with-param>
  </xsl:call-template>
  </xsl:if>
  </xsl:template>

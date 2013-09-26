@@ -586,7 +586,8 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  <span class="Z3988" title="[% ocoins %]"></span>
  [% END %] <div id="views"><span class="view"><span id="Normalview">Vista normal</span></span> <span class="view"><a id="MARCview" href="/cgi-bin/koha/opac-MARCdetail.pl?biblionumber=[% biblionumber %]">Vista MARC</a></span> [% IF ( ISBD ) %]<span class="view"><a id="ISBDview" href="/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber=[% biblionumber %]">Vista ISBD</a></span>[% END %] </div>
  [% IF ( OPACXSLTDetailsDisplay ) %] [% XSLTBloc %] [% ELSE %] <h1 class="title">[% title |html %][% IF ( subtitle ) %] <span class="subtitle">[% FOREACH subtitl IN subtitle %][% subtitl.subfield |html %] [% END %]</span>[% END %]</h1>
- [% IF ( author ) %]<h5 class="author">por <a href="/cgi-bin/koha/opac-search.pl?q=au:[% author |url %]">[% author |html %]</a></h5>[% END %] <span class="results_summary">[% UNLESS ( item_level_itypes ) %] [ [% IF ( description ) %] [% description %] [% ELSE %] [% itemtype %] [% END %] ] [% END %] [% IF ( unititle ) %], [% unititle %][% END %] </span>
+ [% IF ( author ) %]<h5 class="author">por <a href="/cgi-bin/koha/opac-search.pl?q=au:[% author |url %]">[% author |html %]</a></h5>[% END %] <span class="results_summary">
+ [% IF !item_level_itypes ||  BiblioItemtypeImage == 'Koha' %] [% IF ( description ) %] [% description %] [% ELSE %] [% itemtype %] [% END %] [% END %] [% IF ( unititle ) %], [% unititle %][% END %] </span>
 
  [% IF ( MARCAUTHORS ) %] <span class="results_summary"><span class="label">Autores adicionales:</span>
  [% IF OPACPopupAuthorsSearch %] <div class="authorSearch" id="authorSearch">
@@ -682,7 +683,8 @@ YAHOO.util.Event.onContentReady("furtherm", function () {
  [% END %] [% END %] [% IF ( AuthorisedValueImages ) %] [% IF ( authorised_value_images ) %] <div class="authorised_value_images">
  [% FOREACH authorised_value_image IN authorised_value_images %] <img src="[% authorised_value_image.imageurl %]" alt="[% authorised_value_image.label %]" title="[% authorised_value_image.label %]" />
  [% END %] </div>
- [% END %]
+ [% END %] [% END %] [% IF !item_level_itypes ||  BiblioItemtypeImage == 'Koha' %] <div class="results_summary"><span class="label">Tipo de ítem:</span>
+ [% IF ( description ) %] [% description %] [% ELSE %] [% itemtype %] [% END %] </div>
  [% END %]
 
 <!-- This puts the LTFL reviews in, and if TabbedView is not set, puts the remaining content above the Tabs instead of in them -->

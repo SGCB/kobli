@@ -1,6 +1,6 @@
-[% INCLUDE 'doc-head-open.inc' %] [% USE KohaDates %] <title>Koha &rsaquo; Publicaciones periódicas [% biblionumber %]</title>
+[% INCLUDE 'doc-head-open.inc' %] [% USE KohaDates %] [% USE KohaAuthorisedValues %] <title>Koha &rsaquo; Publicaciones periódicas [% biblionumber %]</title>
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
-[% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
 <script type="text/javascript">
 //<![CDATA[
@@ -60,6 +60,10 @@
  <input type="text" id="ean" name="EAN_filter" value="[% EAN_filter %]" />
  </li>
  [% END %] <li>
+ <label for="callnumber">Signatura:</label>
+ <input type="text" id="callnumber" name="callnumber_filter" value="[% callnumber_filter %]" />
+ </li>
+ <li>
  <label for="publisher">Editor:</label>
  <input type="text" id="publisher" name="publisher_filter" value="[% publisher_filter %]" />
  </li>
@@ -74,6 +78,18 @@
  [% FOREACH branch IN branches_loop %] [% IF ( branch.selected ) %] <option selected="selected" value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% ELSE %] <option value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% END %] [% END %] </select>
+ </li>
+ [% IF locations %] <li>
+ <label for="location">Ubicación:</label>
+ <select name="location_filter">
+ <option value="">Todo</option>
+ [% FOR loc IN locations %] [% IF loc.selected %] <option value="[% loc.authorised_value %]" selected="selected">[% loc.lib %]</option>
+ [% ELSE %] <option value="[% loc.authorised_value %]">[% loc.lib %]</option>
+ [% END %] [% END %] </select>
+ </li>
+ [% END %] <li>
+ <label for="to">Fecha de vencimiento: </label>
+ <input type="text" id="to" name="expiration_date_filter" value="[% expiration_date_filter | $KohaDates %]" size="10" maxlength="10" class="datepickerto" />
  </li>
  </ol>
  <input type="hidden" name="searched" value="1" />
@@ -96,6 +112,7 @@
  <th>Título</th>
  <th> Notas </th>
  <th>Biblioteca</th>
+ <th>Ubicación</th>
  <th>Signatura</th>
  <th>Fecha de vencimiento</th>
  [% IF ( routing && CAN_user_serials_routing ) %] <th>Lista de ruteo</th>
@@ -109,8 +126,9 @@
  <td><input type="text" class="filter" data-column_num="1" placeholder="Buscar título" /></td>
  <td><input type="text" class="filter" data-column_num="2" placeholder="Buscar avisos " /></td>
  <td><input type="text" class="filter" data-column_num="3" placeholder="Seleccionar Biblioteca " /></td>
- <td><input type="text" class="filter" data-column_num="4" placeholder="Buscar signatura " /></td>
- <td><input type="text" class="filter" data-column_num="5" placeholder="Buscar fecha de vencimiento " /></td>
+ <td><input type="text" class="filter" data-column_num="4" placeholder="Buscar localización" /></td>
+ <td><input type="text" class="filter" data-column_num="5" placeholder="Buscar signatura " /></td>
+ <td><input type="text" class="filter" data-column_num="6" placeholder="Buscar fecha de vencimiento " /></td>
  [% IF ( routing && CAN_user_serials_routing ) %]<td></td>[% END %] <td></td>
  <td></td>
  </tr>
@@ -124,6 +142,8 @@
  <td>[% IF ( subscription.notes ) %][% subscription.notes %][% END %] [% IF ( subscription.internalnotes ) %]([% subscription.internalnotes %])[% END %] </td>
  <td>
  [% IF ( subscription.branchname ) %][% subscription.branchname %][% END %] </td>
+ <td>
+ [% IF ( subscription.location ) %][% KohaAuthorisedValues.GetByCode( 'LOC', subscription.location ) %][% END %] </td>
  <td>
  [% IF ( subscription.callnumber ) %][% subscription.callnumber %][% END %] </td>
  <td>
@@ -151,6 +171,7 @@
  <th>Título</th>
  <th> Notas </th>
  <th>Biblioteca</th>
+ <th>Ubicación</th>
  <th>Signatura</th>
  <th>&nbsp;</th>
  <th>&nbsp;</th>
@@ -162,7 +183,8 @@
  <td><input type="text" class="filter" data-column_num="1" placeholder="Buscar título" /></td>
  <td><input type="text" class="filter" data-column_num="2" placeholder="Buscar avisos " /></td>
  <td><input type="text" class="filter" data-column_num="3" placeholder="Seleccionar Biblioteca " /></td>
- <td><input type="text" class="filter" data-column_num="4" placeholder="Buscar signatura " /></td>
+ <td><input type="text" class="filter" data-column_num="4" placeholder="Buscar localización" /></td>
+ <td><input type="text" class="filter" data-column_num="5" placeholder="Buscar signatura " /></td>
  <td></td>
  <td></td>
  </tr>
@@ -178,6 +200,8 @@
  [% IF ( subscription.notes ) %][% subscription.notes %][% END %] [% IF ( subscription.internalnotes ) %]([% subscription.internalnotes %])[% END %] </td>
  <td>
  [% IF ( subscription.branchname ) %][% subscription.branchname %][% END %] </td>
+ <td>
+ [% IF ( subscription.location ) %][% KohaAuthorisedValues.GetByCode( 'LOC', subscription.location ) %][% END %] </td>
  <td>
  [% IF ( subscription.callnumber ) %][% subscription.callnumber %][% END %] </td>
  <td>
@@ -219,6 +243,10 @@
  <input type="text" id="ean" name="EAN_filter" value="[% EAN_filter %]" />
  </li>
  [% END %] <li>
+ <label for="callnumber">Signatura:</label>
+ <input type="text" id="callnumber" name="callnumber_filter" value="[% callnumber_filter %]" />
+ </li>
+ <li>
  <label for="publisher">Editor:</label>
  <input type="text" id="publisher" name="publisher_filter" value="[% publisher_filter %]" />
  </li>
@@ -234,6 +262,19 @@
  [% ELSE %] <option value="[% branch.branchcode %]">[% branch.branchname %]</option>
  [% END %] [% END %] </select>
  </li>
+ [% IF locations %] <li>
+ <label for="location">Ubicación:</label>
+ <select name="location_filter">
+ <option value="">Todo</option>
+ [% FOR loc IN locations %] [% IF loc.selected %] <option value="[% loc.authorised_value %]" selected="selected">[% loc.lib %]</option>
+ [% ELSE %] <option value="[% loc.authorised_value %]">[% loc.lib %]</option>
+ [% END %] [% END %] </select>
+ </li>
+ [% END %] <li>
+ <label for="to">Fecha de vencimiento: </label>
+ <input type="text" id="to" name="expiration_date_filter" value="[% expiration_date_filter | $KohaDates %]" size="10" maxlength="10" class="datepickerto" />
+ </li>
+
  </ol>
  <input type="hidden" name="searched" value="1" />
  <fieldset class="action">

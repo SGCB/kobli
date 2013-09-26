@@ -17,21 +17,29 @@
  [% ELSE %] <option value="nb">ISBN</option>
  [% END %] [% IF ( ms_se ) %] <option selected="selected" value="se">Series</option>
  [% ELSE %] <option value="se">Series</option>
- [% END %] [% IF ( ms_callnum ) %] <option selected="selected" value="callnum">Signatura topográfica</option>
+ [% END %] [% IF ( numbersphr ) %] [% IF ( ms_callnum ) %] <option selected="selected" value="callnum,phr">Signatura topográfica</option>
+ [% ELSE %] <option value="callnum,phr">Signatura topográfica</option>
+ [% END %] [% ELSE %] [% IF ( ms_callnum ) %] <option selected="selected" value="callnum">Signatura topográfica</option>
  [% ELSE %] <option value="callnum">Signatura topográfica</option>
- [% END %]</select>
-[% IF ( ms_value ) %] <input type="text" id = "transl1" name="q" value="[% ms_value |html %]" class="left"/><div id="translControl"></div>
-[% ELSE %] <input type="text" id = "transl1" name="q" class="left"/><div id="translControl"></div>
-[% END %] [% IF ( OpacAddMastheadLibraryPulldown ) %] <select name="limit" id="masthead_search" class="left">
+ [% END %] [% END %]</select>
+[% IF ( ms_value ) %] <input value="[% ms_value |html %]" name="q" style="width: 35%; font-size: 111%;" class="left" id="transl1" title="Introduzca los términos de búsqueda" type="text" /><div id="translControl"></div>
+[% ELSE %] <input name="q" style="width: 35%; font-size: 111%;" type="text" title="Introduzca los términos de búsqueda" id="transl1" class="left" /><div id="translControl"></div>
+[% END %] [% IF Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %] <select name="branch_group_limit" id="select_library" class="left">
  <option value="">Todas las bibliotecas</option>
- [% FOREACH BranchesLoo IN BranchesLoopOpac %] <option [% IF ( BranchesLoo.selected ) %]SELECTED[% END %] value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>
+ [% IF BranchCategoriesLoop %]<optgroup label="Bibliotecas">[% END %] [% FOREACH BranchesLoo IN BranchesLoop %] [% IF ( BranchesLoo.selected ) %]<option selected="selected" value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>
+ [% ELSE %]<option value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>[% END %] [% END %] [% IF BranchCategoriesLoop %] </optgroup>
+ <optgroup label="Grupos">
+ [% FOREACH bc IN BranchCategoriesLoop %] [% IF ( bc.selected ) %] <option selected="selected" value="multibranchlimit-[% bc.categorycode %]">[% bc.categoryname %]</option>
+ [% ELSE %] <option value="multibranchlimit-[% bc.categorycode %]">[% bc.categoryname %]</option>
+ [% END %] [% END %] </optgroup>
  [% END %] </select>
  [% ELSE %] [% IF ( opac_limit_override ) %] [% IF ( opac_search_limit ) %] <input name="limit" value="[% opac_search_limit %]" type="hidden" />
  [% END %] [% ELSE %] [% IF ( mylibraryfirst ) %] <input name="limit" value="branch:[% mylibraryfirst %]" type="hidden" />
  [% END %] [% END %] [% END %] <input value="Ir" type="submit" id="searchsubmit" class="left" />
  </form>
- </div>
-[% END %] <div id="search-facets">
+ [% END %] </div>
+[% END %] </div>
+<div id="search-facets">
 <h4>Refina su búsqueda</h4>
 <ul>
  <li id="availability_facet">Disponibilidad<ul><li>[% IF ( available ) %]Mostrando sólo <strong>disponible</strong> ítems<a href="/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi_not_availablity %][% IF ( sort_by ) %]&amp;sort_by=[% sort_by |html%][% END %]">Mostrar todos los ítems</a>[% ELSE %]Limitar a <a href="/cgi-bin/koha/opac-search.pl?[% query_cgi |html %][% limit_cgi |html %][% IF ( sort_by ) %]&amp;sort_by=[% sort_by |html%][% END %]&amp;limit=available">ítems disponibles actualmente.</a>[% END %]</li></ul>

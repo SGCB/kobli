@@ -121,10 +121,13 @@ function finderjumpfull(page)
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
  <select name="operator" id="mainmainentry">
- <option value="contains">contiene</option>
- <option value="start">comienza con</option>
- <option value="is">es exactamente</option>
- </select>
+ [% IF ( operator_mainstr == 'contains' ) %] <option value="contains" selected="selected">contiene</option>
+ [% ELSE %] <option value="contains">contiene</option>
+ [% END %] [% IF ( operator_mainstr == 'start' ) %] <option value="start" selected="selected">comienza con</option>
+ [% ELSE %] <option value="start">comienza con</option>
+ [% END %] [% IF ( operator_mainstr == 'is' ) %] <option value="is" selected="selected">es exactamente</option>
+ [% ELSE %] <option value="is">es exactamente</option>
+ [% END %] </select>
  <input id="value_mainstr" style="width:400px;" type="text" name="value_mainstr" value="[% value_mainstr |html %]" />
  <div id="yvaluecontainermainmainentry"></div>
  </li>
@@ -135,10 +138,13 @@ function finderjumpfull(page)
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
  <select name="operator" id="mainentry">
- <option value="contains">contiene</option>
- <option value="start">comienza con</option>
- <option value="is">es exactamente</option>
- </select>
+ [% IF ( operator_main == 'contains' ) %] <option value="contains" selected="selected">contiene</option>
+ [% ELSE %] <option value="contains">contiene</option>
+ [% END %] [% IF ( operator_main == 'start' ) %] <option value="start" selected="selected">comienza con</option>
+ [% ELSE %] <option value="start">comienza con</option>
+ [% END %] [% IF ( operator_main == 'is' ) %] <option value="is" selected="selected">es exactamente</option>
+ [% ELSE %] <option value="is">es exactamente</option>
+ [% END %] </select>
  <input id="value_main" style="width:400px;" type="text" name="value_main" value="[% value_main |html %]" />
  <div id="yvaluecontainermainentry"></div>
  </li>
@@ -149,10 +155,13 @@ function finderjumpfull(page)
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
  <select name="operator" id="marclistanywhere">
- <option value="contains">contiene</option>
- <option value="start">comienza con</option>
- <option value="is">es exactamente</option>
- </select>
+ [% IF ( operator_any == 'contains' ) %] <option value="contains" selected="selected">contiene</option>
+ [% ELSE %] <option value="contains">contiene</option>
+ [% END %] [% IF ( operator_any == 'start' ) %] <option value="start" selected="selected">comienza con</option>
+ [% ELSE %] <option value="start">comienza con</option>
+ [% END %] [% IF ( operator_any == 'is' ) %] <option value="is" selected="selected">es exactamente</option>
+ [% ELSE %] <option value="is">es exactamente</option>
+ [% END %] </select>
  <input id="value_any" style="width:400px;" type="text" name="value_any" value="[% value_any |html %]" />
  <div id="yvaluecontainermarclist"></div>
  </li>
@@ -162,19 +171,25 @@ function finderjumpfull(page)
  <input type="hidden" name="and_or" value="and" />
  <input type="hidden" name="excluding" value="" />
  <select name="operator" id="marclistheading">
- <option value="contains">contiene</option>
- <option value="start">comienza con</option>
- <option value="is">es exactamente</option>
- </select>
+ [% IF ( operator_match == 'contains' ) %] <option value="contains" selected="selected">contiene</option>
+ [% ELSE %] <option value="contains">contiene</option>
+ [% END %] [% IF ( operator_match == 'start' ) %] <option value="start" selected="selected">comienza con</option>
+ [% ELSE %] <option value="start">comienza con</option>
+ [% END %] [% IF ( operator_match == 'is' ) %] <option value="is" selected="selected">es exactamente</option>
+ [% ELSE %] <option value="is">es exactamente</option>
+ [% END %] </select>
  <input type="text" name="value_match" value="[% value_match |html %]" />
  </li>
  <li>
  <label for="orderby">Ordenar por : </label>
  <select name="orderby" id="orderby">
- <option value="">No hay pedido</option>
- <option value="HeadingAsc" selected="selected">Ascendente por cabecera</option>
- <option value="HeadingDsc">Descendente por cabecera</option>
- </select>
+ [% IF ( orderby == 'HeadingAsc' ) %] <option value="HeadingAsc" selected="selected">Encabezamiento A-Z</option>
+ [% ELSE %] <option value="HeadingAsc">Encabezamiento A-Z</option>
+ [% END %] [% IF ( orderby == 'HeadingDsc' ) %] <option value="HeadingDsc" selected="selected">Encabezamiento Z-A</option>
+ [% ELSE %] <option value="HeadingDsc">Encabezamiento Z-A</option>
+ [% END %] [% IF ( orderby == '' && op ) %] <option value="" selected="selected">Ninguno</option>
+ [% ELSE %] <option value="">Ninguno</option>
+ [% END %] </select>
  </li></ol></fieldset>
  [% IF source == 'auth' %] <fieldset class="rows"><legend>Información relacionada</legend>
  <ol>
