@@ -36,5 +36,6 @@ function confirm_deletion() {
             [% END %]
         [% ELSE %]
             <div class="btn-group"><a class="btn btn-small" href="/cgi-bin/koha/acqui/supplier.pl?op=enter"><i class="icon-plus"></i> New vendor</a></div>
+            <div class="btn-group"><a class="btn btn-small" id="exportbutton" href="/cgi-bin/koha/acqui/acqui-history.pl"><i class="icon-list"></i> Acquisitions History</a></div>
         [% END %]
 </div>

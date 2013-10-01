@@ -21,4 +21,5 @@ function confirm_deletion() {
  [% UNLESS ( basketcount OR subscriptioncount ) %] <div class="btn-group"><a class="btn btn-small" id="deletesupplier" href="javascript:confirm_deletion()"><i class="icon-remove"></i> Eliminar proveedor</a></div>
  [% END %] [% END %] [% IF ( CAN_user_acquisition_order_receive && basketcount ) %] <div class="btn-group"><a class="btn btn-small" id="receive" href="/cgi-bin/koha/acqui/parcels.pl?booksellerid=[% booksellerid %]"><i class="icon-inbox"></i> Recibir envíos</a></div>
  [% END %] [% ELSE %] <div class="btn-group"><a class="btn btn-small" href="/cgi-bin/koha/acqui/supplier.pl?op=enter"><i class="icon-plus"></i> Nuevo proveedor</a></div>
+ <div class="btn-group"><a class="btn btn-small" id="exportbutton" href="/cgi-bin/koha/acqui/acqui-history.pl"><i class="icon-list"></i> Acquisitions History</a></div>
  [% END %] </div>
