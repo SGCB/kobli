@@ -1,0 +1,66 @@
+[% USE KohaDates %]
+[% INCLUDE 'doc-head-open.inc' %]
+<link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
+[% INCLUDE 'doc-head-close.inc' %]
+[% INCLUDE 'calendar.inc' %]
+<script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
+[% INCLUDE 'datatables-strings.inc' %]
+<script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
+<script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
+
+<title>
+    Library &rsaquo; Acquisitions &rsaquo; History
+
+</title>
+
+
+</head>
+
+<body id="acqui_history" class="acqui">
+
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'budgets-admin-search.inc' %]
+
+<!-- ################################################################################# -->
+<!-- BREADCRUMBS -->
+<!-- ################################################################################# -->
+
+<div id="breadcrumbs">
+    <a href="/cgi-bin/koha/mainpage.pl">Home</a> &rsaquo;
+    <a href="/cgi-bin/koha/acqui/acqui-home.pl">Acquisitions</a> &rsaquo;
+        Library acqusitions history
+</div>
+
+<div id="doc3" class="yui-t2">
+    <div id="bd">
+        <div id="yui-main">
+            <div class="yui-b">
+
+                <h2>Library acquisitions history</h2>
+
+                    [% IF ( library ) %] 
+                        <p>Total number of acquisitions in [% library %] library is [% unlimited_total %].</p>
+                    [% ELSE %]
+                        <p>Total number of acquisitions in this library is [% unlimited_total %].</p>
+                    [% END %]
+
+                    [% IF ( unlimited_total ) %]                    
+                    <div class="pages">[% pagination_bar %]</div>
+                    <table>
+                        <tr>[% FOREACH header_ro IN header_row %]<th>[% header_ro.cell %]</th>[% END %]</tr>
+                        [% FOREACH result IN results %]
+                        <tr>
+                            [% FOREACH cell IN result.cells %]<td>[% cell.cell %]</td>[% END %]
+                        </tr>
+                        [% END %]
+                    </table> 
+                    [% END %]
+
+            </div>
+        </div>
+        <div class="yui-b">
+        [% INCLUDE 'acquisitions-menu.inc' %]
+        </div>
+    </div>
+
+[% INCLUDE 'intranet-bottom.inc' %]
