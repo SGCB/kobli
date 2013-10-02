@@ -29,7 +29,8 @@ use C4::Biblio;
 use C4::Items;
 use C4::Auth;
 use C4::Output;
-use C4::Biblio;
+use C4::Ris;
+use C4::Members;
 
 my $query = new CGI;
 
@@ -50,11 +51,17 @@ my $email_sender = $query->param('email_sender');
 my $dbh          = C4::Context->dbh;
 
 if ( $email_add ) {
+    my $user = GetMember(borrowernumber => $borrowernumber);
+    my $user_email = GetFirstValidEmailAddress($borrowernumber)
+    || C4::Context->preference('KohaAdminEmailAddress');
+    
     my $email_from = C4::Context->preference('KohaAdminEmailAddress');
+    my $email_replyto = "$user->{firstname} $user->{surname} <$user_email>";
     my $comment    = $query->param('comment');
     my %mail = (
         To   => $email_add,
-        From => $email_from
+        From => $email_from,
+        'Reply-To' => $email_replyto
     );
 
     my ( $template2, $borrowernumber, $cookie ) = get_template_and_user(
@@ -66,10 +73,13 @@ if ( $email_add ) {
             flagsrequired   => { borrow => 1 },
         }
     );
-
+    
+    $template2->param( OPACBaseURL => C4::Context->preference('OPACBaseURL') );
+     
     my @bibs = split( /\//, $bib_list );
     my @results;
-    my $iso2709;
+    # my $iso2709;
+    my $ris;
     my $marcflavour = C4::Context->preference('marcflavour');
     foreach my $biblionumber (@bibs) {
         $template2->param( biblionumber => $biblionumber );
@@ -86,25 +96,51 @@ if ( $email_add ) {
         if($dat->{'author'} || @$marcauthorsarray) {
           $hasauthors = 1;
         }
-	
-
+    
+        foreach my $dato (keys %{$dat}) {     
+            $dat->{$dato} = encode("iso-8859-1", $dat->{$dato});
+        }
+        
+        for(my $i=0; $marcnotesarray->[$i]; $i++){
+            for(my $j=0; $marcnotesarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]; $j++){
+                $marcnotesarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value} = encode("iso-8859-1", $marcnotesarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value});
+            }
+        }
         $dat->{MARCNOTES}      = $marcnotesarray;
+        
+        for(my $i=0; $marcsubjctsarray->[$i]; $i++){
+            for(my $j=0; $marcsubjctsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]; $j++){
+                $marcsubjctsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value} = encode("iso-8859-1", $marcsubjctsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value});
+            }
+        }
         $dat->{MARCSUBJCTS}    = $marcsubjctsarray;
+        
+        for(my $i=0; $marcauthorsarray->[$i]; $i++){
+            for(my $j=0; $marcauthorsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]; $j++){
+                $marcauthorsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value} = encode("iso-8859-1", $marcauthorsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value});
+            }
+        }
         $dat->{MARCAUTHORS}    = $marcauthorsarray;
+        
         $dat->{HASAUTHORS}     = $hasauthors;
         $dat->{'biblionumber'} = $biblionumber;
         $dat->{ITEM_RESULTS}   = \@items;
 
-        $iso2709 .= $record->as_usmarc();
-
+        # $iso2709 .= $record->as_usmarc();
+        my $ris_record = marc2ris($record);
+        # $iso2709 .= $record->as_formatted();
+        $ris .= "\n".$ris_record."\n";
+        
         push( @results, $dat );
     }
-
+    
     my $resultsarray = \@results;
     $template2->param(
         BIBLIO_RESULTS => $resultsarray,
         email_sender   => $email_sender,
-        comment        => $comment
+        comment        => $comment,
+        firstname      => $user->{firstname},
+        surname        => $user->{surname}
     );
 
     # Getting template result
@@ -140,21 +176,22 @@ if ( $email_add ) {
     #     # Writing mail
     #     $mail{body} =
     $mail{'content-type'} = "multipart/mixed; boundary=\"$boundary\"";
-    my $isofile = encode_base64(encode("UTF-8", $iso2709));
+    # my $isofile = encode_base64(encode("utf8", $iso2709));
+    my $risfile = encode_base64(encode("utf8", $ris));
     $boundary = '--' . $boundary;
     $mail{body} = <<END_OF_BODY;
 $boundary
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 $email_header
 $body
 $boundary
-Content-Type: application/octet-stream; name="basket.iso2709"
+Content-Type: application/octet-stream; name="basket.txt"
 Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="basket.iso2709"
+Content-Disposition: attachment; filename="basket.txt"
 
-$isofile
+$risfile
 $boundary--
 END_OF_BODY
 
