@@ -1,15 +1,22 @@
 <SUBJECT>
-Su cesta <END_SUBJECT>
+Su cesta 
+<END_SUBJECT>
 
 [% USE HtmlToText %] [% myhtml FILTER html2text(leftmargin => 0, rightmargin => 0) %] [% myhtmltext | html2text %] <HEADER>
 
 [% FILTER html2text %] <p>Hola,  </p>
 
- <p>[% firstname %] [% surname %] enviar tu carrito desde nuestro catálogo online.</p>
+ <p>[% firstname %] [% surname %], le enviamos el listado de registros que ha seleccionado de nuestra bibioteca.</p>
 
- <p>Por favor, comprueba que el fichero adjunto es un archivo de registros bibliográficos MARC que puede ser importado en un software bibliográfico personal como EndNote, Reference Manager o ProCite. </p>
+ <p>Tenga en cuenta que el archivo adjunto es un archivo de registros en formato RIS, que se 
+    puede visualizar en cualquier editor de texto y le permite importarlos en los principales 
+    softwares que gestionan referencias como Zotero. 
+
+    Si tiene cualquier problema, no dude en ponerse en contacto con la biblioteca. Estaremos encantados de ayudarle. </p>
  <hr/>
-[% END %] <END_HEADER>
+[% END %] 
+
+<END_HEADER>
 
 <MESSAGE>
 [% FILTER html2text %] [% IF comment %] <p>[% comment %]</p>
@@ -26,21 +33,21 @@ Su cesta <END_SUBJECT>
  [% END %] [% IF BIBLIO_RESULT.publishercode %] <span>
  Publicado por: [% BIBLIO_RESULT.publishercode %] [% IF ( BIBLIO_RESULT.publicationyear ) %] in [% BIBLIO_RESULT.publicationyear %] [% END %] [% IF ( BIBLIO_RESULT.pages ) %] , [% BIBLIO_RESULT.pages %] [% END %] [% IF BIBLIO_RESULT.size %] , [% BIBLIO_RESULT.size %] [% END %] </span><br/>
  [% END %] [% IF BIBLIO_RESULT.collection %] <span>
- Colección: [% BIBLIO_RESULT.seriestitle %] </span><br/>
+ Colecci�n: [% BIBLIO_RESULT.seriestitle %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.subject ) %] <span>
  Tema: [% BIBLIO_RESULT.subject %] <span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.copyrightdate ) %] <span>
- Fecha de publicación:[% BIBLIO_RESULT.copyrightdate %] </span><br/>
+ Fecha de publicaci�n:[% BIBLIO_RESULT.copyrightdate %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.notes ) %] <span>
  Notas: [% BIBLIO_RESULT.notes %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.unititle ) %] <span>
- Título uniforme: [% BIBLIO_RESULT.unititle %] </span><br/>
+ T�tulo uniforme: [% BIBLIO_RESULT.unititle %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.serial ) %] <span>
  Serie: [% BIBLIO_RESULT.serial %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.dewey ) %] <span>
  Dewey: [% BIBLIO_RESULT.dewey %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.classification ) %] <span>
- Clasificación: [% BIBLIO_RESULT.classification %] </span><br/>
+ Clasificaci�n: [% BIBLIO_RESULT.classification %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.lccn ) %] <span>
  LCCN: [% BIBLIO_RESULT.lccn %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.url ) %] <span>
@@ -48,8 +55,8 @@ Su cesta <END_SUBJECT>
  [% END %] </p>
 
  [% IF ( OPACBaseURL ) %] <p>
- En el catálogo en línea: [% OPACBaseURL %]/cgi-bin/koha/opac-detail.pl?biblionumber=[% BIBLIO_RESULT.biblionumber %] </p>
- [% END %] [% IF ( BIBLIO_RESULT.ITEM_RESULTS.size ) %] <p>Ítems:<ul>
+ En el cat�logo en l�nea: [% OPACBaseURL %]/cgi-bin/koha/opac-detail.pl?biblionumber=[% BIBLIO_RESULT.biblionumber %] </p>
+ [% END %] [% IF ( BIBLIO_RESULT.ITEM_RESULTS.size ) %] <p>�tems:<ul>
  [% FOREACH ITEM_RESULT IN BIBLIO_RESULT.ITEM_RESULTS %]<li>
  [% ITEM_RESULT.branchname %] [% ITEM_RESULT.location %] [% IF ITEM_RESULT.itemcallnumber %]([% ITEM_RESULT.itemcallnumber %])[% END %] [% ITEM_RESULT.barcode %] </li>[% END %] </ul>
  </p>
@@ -57,4 +64,6 @@ Su cesta <END_SUBJECT>
  </li>
  [% END %] </ol>
 
-[% END %] <END_MESSAGE>
+[% END %] 
+
+<END_MESSAGE>
