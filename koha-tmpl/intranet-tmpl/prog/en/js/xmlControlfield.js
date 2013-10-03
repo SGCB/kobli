@@ -153,20 +153,8 @@ function renderResult(tr_result, result)
 
 
 // Change displaying of result in the page
-function changeH4Result(form, h4_result, tr_result, pos, value, select)
+function changeH4Result(form, h4_result, tr_result, pos, value)
 {
-    if (select != null) {
-        if (!/^[^- ]+ - .+/.test(select.options[select.selectedIndex].text)) {
-            var num = select.selectedIndex;
-            select.options[num].selected = false;
-            for (var j = num; j >= 0; j--) {
-                if (/^[^- ]+ - .+/.test(select.options[j].text)) {
-                    select.options[j].selected = true;
-                    break;
-                }
-            }
-        }
-    }
     var resultStr = form.result.value;
     var result = changePosResult(pos, value, resultStr);
     renderResult(tr_result, result, pos);
@@ -325,9 +313,9 @@ function changeH4Result(form, h4_result, tr_result, pos, value, select)
                                 var ini = parseInt(pos.substring(0, index) ,10);
                                 var end = parseInt(pos.substr(index + 1) ,10);
                                 value = value.replace(/ /g, "#");
-                                strInnerHTML = "<input type='text' name='f" + pos + "' id='f" + pos + "' value='" + value + "' size='" + (1 + end - ini) + "' maxlength='" + (1 + end - ini) + "' onkeyup='this.value = this.value.replace(/ /g, \"#\"); changeH4Result(document.getElementById(\"" + this.form_id + "\"), document.getElementById(\"" + this.h4_result + "\"), document.getElementById(\"" + this.tr_result + "\"), \"" + pos + "\", this.value, null)' onfocus='changeH4Result(document.getElementById(\"" + this.form_id + "\"), document.getElementById(\"" + this.h4_result + "\"), document.getElementById(\"" + this.tr_result + "\"), \"" + pos + "\", this.value, null)' />";
+                                strInnerHTML = "<input type='text' name='f" + pos + "' id='f" + pos + "' value='" + value + "' size='" + (1 + end - ini) + "' maxlength='" + (1 + end - ini) + "' onkeyup='this.value = this.value.replace(/ /g, \"#\"); changeH4Result(document.getElementById(\"" + this.form_id + "\"), document.getElementById(\"" + this.h4_result + "\"), document.getElementById(\"" + this.tr_result + "\"), \"" + pos + "\", this.value)' onfocus='changeH4Result(document.getElementById(\"" + this.form_id + "\"), document.getElementById(\"" + this.h4_result + "\"), document.getElementById(\"" + this.tr_result + "\"), \"" + pos + "\", this.value)' />";
                             } else {
-                                strInnerHTML = "<select name='f" + pos + "' id='f" + pos + "' style='width:400px' onchange='changeH4Result(document.getElementById(\"" + this.form_id + "\"), document.getElementById(\"" + this.h4_result + "\"), document.getElementById(\"" + this.tr_result + "\"), \"" + pos + "\", this.options[this.selectedIndex].value, this)' onfocus='changeH4Result(document.getElementById(\"" + this.form_id + "\"), document.getElementById(\"" + this.h4_result + "\"), document.getElementById(\"" + this.tr_result + "\"), \"" + pos + "\", this.options[this.selectedIndex].value, this)'>";
+                                strInnerHTML = "<select name='f" + pos + "' id='f" + pos + "' style='width:400px' onchange='changeH4Result(document.getElementById(\"" + this.form_id + "\"), document.getElementById(\"" + this.h4_result + "\"), document.getElementById(\"" + this.tr_result + "\"), \"" + pos + "\", this.options[this.selectedIndex].value)' onfocus='changeH4Result(document.getElementById(\"" + this.form_id + "\"), document.getElementById(\"" + this.h4_result + "\"), document.getElementById(\"" + this.tr_result + "\"), \"" + pos + "\", this.options[this.selectedIndex].value)'>";
                                 value = value.replace("#", " ");
                                 if (nodePos.getElementsByTagName("Value").length != 0) {
                                     var nodeValue = nodePos.firstChild;
@@ -339,23 +327,6 @@ function changeH4Result(form, h4_result, tr_result, pos, value, select)
                                             valNode = valNode.replace("#", " ");
                                             selected = (value == valNode)?"selected='selected'":"";
                                             strInnerHTML += "<option value='"  + valNode + "' " + selected + ">" + code + " - " + description +  "</option>";
-                                            var description = nodeValue.attributes.getNamedItem("description").nodeValue;
-                                            if (description.length > 100) {
-                                                var i = 0;
-                                                var arrWords = description.split(/ +/);
-                                                var strDescriptionAux = "";
-                                                for (var j=0; j < arrWords.length; j++) {
-                                                    strDescriptionAux += arrWords[j] + " ";
-                                                    if (strDescriptionAux.length > 100) {
-                                                        strInnerHTML += (i == 0)?"<option value='"  + valNode + "' " + selected + ">" + nodeValue.firstChild.nodeValue + " - " + strDescriptionAux +  "</option>":"<option value='"  + valNode + "' " + ">&nbsp;&nbsp;&nbsp;&nbsp;" + strDescriptionAux +  "</option>";
-                                                        i++;
-                                                        strDescriptionAux = "";
-                                                    }
-                                                }
-                                                if (strDescriptionAux) strInnerHTML += "<option value='"  + valNode + "' " + ">&nbsp;&nbsp;&nbsp;&nbsp;" + strDescriptionAux +  "</option>";
-                                            } else {
-                                                strInnerHTML += "<option value='"  + valNode + "' " + selected + ">" + nodeValue.firstChild.nodeValue + " - " + description +  "</option>";
-                                            }
                                         }
                                         nodeValue = nodeValue.nextSibling;
                                     }
