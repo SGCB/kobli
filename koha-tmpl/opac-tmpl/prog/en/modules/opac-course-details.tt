@@ -72,13 +72,13 @@
             </div>
         [% END %]
     </div>
-</div>
 
-[% IF ( OpacNav ) %]
-<div class="yui-b">
-<div id="leftmenus" class="container">
-[% INCLUDE 'navigation.inc' %]
+    [% IF ( OpacNav ) %]
+    <div class="yui-b">
+    <div id="leftmenus" class="container">
+    [% INCLUDE 'navigation.inc' %]
+    </div>
+    </div>[% END %]
 </div>
-</div>[% END %]
 
 [% INCLUDE 'opac-bottom.inc' %]
