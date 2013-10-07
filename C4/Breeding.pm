@@ -499,7 +499,9 @@ sub ImportBreedingAuth {
             $heading_authtype_code = GuessAuthTypeCode($marcrecord);
 
             my $controlnumber;
-            $controlnumber = $marcrecord->field('001')->data;
+            if($marcrecord->field('001')){
+                $controlnumber = $marcrecord->field('001')->data;
+            }
 
             #Check if the authority record already exists in the database...
             my ($duplicateauthid,$duplicateauthvalue);
