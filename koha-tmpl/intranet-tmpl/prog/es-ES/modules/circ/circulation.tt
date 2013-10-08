@@ -277,7 +277,7 @@ function validate1(date) {
 </form>
 </div>
 
-[% IF ( was_renewed ) %]<div class="dialog message">La cuenta del socio se ha renovado hasta [% expiry %]</div>[% END %] [% IF additional_materials %] <div id="materials" class="dialog message">Nota sobre los materiales adjuntos: <br />
+[% IF ( was_renewed ) %]<div class="dialog message">La cuenta del usuario se ha renovado hasta [% expiry %]</div>[% END %] [% IF additional_materials %] <div id="materials" class="dialog message">Nota sobre los materiales adjuntos: <br />
  [% additional_materials %] </div>
 [% END %] [% IF ( alert.ITEM_LOST ) %] <div class="dialog message">Este ítem se ha perdido con estado de "[% alert.ITEM_LOST %]". </div>
 [% END %] [% IF ( alert.OTHER_CHARGES ) %] <div class="dialog message">El patrono tiene cargos pendientes de pago para las reservas, alquileres, etc de [% alert.OTHER_CHARGES %]</div>
@@ -288,17 +288,17 @@ function validate1(date) {
 
 <ul>
 [%IF ( AGE_RESTRICTION ) %] <li>Restricción de edad [% AGE_RESTRICTION %]. ¿Prestar de todas maneras?</li>
-[% END %] [% IF ( DEBT ) %] <li>El socio tiene una deuda de [% DEBT %]</li>
-[% END %] [% IF ( RENEW_ISSUE ) %] <li>Ítem <i>[% getTitleMessageIteminfo %]</i> ([% getBarcodeMessageIteminfo %]) está prestado actualmente a este socio. ¿Renovar?</li>
+[% END %] [% IF ( DEBT ) %] <li>El usuario tiene una deuda de [% DEBT %]</li>
+[% END %] [% IF ( RENEW_ISSUE ) %] <li>Ítem <i>[% getTitleMessageIteminfo %]</i> ([% getBarcodeMessageIteminfo %]) está prestado actualmente a este usuario. ¿Renovar?</li>
 [% END %] [% IF ( RESERVE_WAITING ) %] <li>Ítem <i>[% getTitleMessageIteminfo %]</i> ([% getBarcodeMessageIteminfo %]) lo esta esperando <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% resborrowernumber %]">[% resfirstname %] [% ressurname %]</a> ([% rescardnumber %]) de [% resbranchname %] desde [% reswaitingdate %]</li>
 [% END %] [% IF ( RESERVED ) %] <li>Ítem <i>[% getTitleMessageIteminfo %]</i> ([% getBarcodeMessageIteminfo %]) ha sido reservado por <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% resborrowernumber %]">[% resfirstname %] [% ressurname %]</a> ([% rescardnumber %]) de [% resbranchname %] desde [% resreservedate %]</li>
 [% END %] [% IF ( ISSUED_TO_ANOTHER ) %] <li>Ítem <i>[% getTitleMessageIteminfo %]</i> ([% getBarcodeMessageIteminfo %]) está prestado a <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% issued_borrowernumber %]">[% issued_firstname %] [% issued_surname %]</a> ([% issued_cardnumber %]). ¿Devolver y prestar?</li>
 [% END %] [% IF ( TOO_MANY ) %] <li>Demasiados préstamos. [% current_loan_count %] prestados, solo [% max_loans_allowed %] permitidos.</li>
-[% END %] [% IF ( BORRNOTSAMEBRANCH ) %] <li>Estos socios son de una biblioteca diferente ([% BORRNOTSAMEBRANCH %])</li>
-[% END %] [% IF ( PATRON_CANT ) %] <li>Este socio no puede retirar este ítem debido a las políticas de circulación de la biblioteca</li>
+[% END %] [% IF ( BORRNOTSAMEBRANCH ) %] <li>Estos usuarios son de una biblioteca diferente ([% BORRNOTSAMEBRANCH %])</li>
+[% END %] [% IF ( PATRON_CANT ) %] <li>Este usuario no puede retirar este ítem debido a las políticas de circulación de la biblioteca</li>
 [% END %] [% IF ( NOT_FOR_LOAN_FORCING ) %] <li>
  [% IF ( itemtype_notforloan ) %] Los items de este tipo no están disponibles para préstamo. [% ELSIF ( item_notforloan ) %] [% item_notforloan_lib = KohaAuthorisedValues.GetByCode( authvalcode_notforloan, item_notforloan, 0 ) %] Este ítem no está disponible para préstamo [% IF (item_notforloan_lib) %]([% item_notforloan_lib %])[% END %]. [% END %] ¿Prestar igualmente?</li>
-[% END %] [% IF ( USERBLOCKEDOVERDUE ) %] <li>El socio tiene [% USERBLOCKEDOVERDUE %] ítem(s) retrasados. Prestar de todos modos?</li>
+[% END %] [% IF ( USERBLOCKEDOVERDUE ) %] <li>El usuario tiene [% USERBLOCKEDOVERDUE %] ítem(s) retrasados. Prestar de todos modos?</li>
 [% END %] [% IF ( ITEM_LOST ) %] <li>Este ítem se ha perdido con estado de "[% ITEM_LOST %]". Lo presta igualmente?</li>
 [% END %] [% IF  HIGHHOLDS %] <li>Artículo de gran demanda. Tiempo de préstamo reducido a [% HIGHHOLDS.duration %] días (debido [% HIGHHOLDS.returndate %]). ¿todos modos desea revisar?</li>
 [% END %] </ul>
@@ -370,15 +370,15 @@ function validate1(date) {
  [% IF ( itemtype_notforloan ) %] Tipo de ítem no disponible para el préstamo. [% ELSIF ( item_notforloan ) %] [% item_notforloan_lib = KohaAuthorisedValues.GetByCode( authvalcode_notforloan, item_notforloan, 0 ) %] Item no disponible para préstamo [% IF (item_notforloan_lib) %]([% item_notforloan_lib %])[% END %]. [% END %] </li>
  [% END %] [% IF ( WTHDRAWN ) %] <li>Ítem ha sido retirado</li>
  [% END %] [% IF ( RESTRICTED ) %] <li>El ítem está restringido</li>
- [% END %] [% IF ( GNA ) %] <li>Dirección de socio dudosa</li>
- [% END %] [% IF ( CARD_LOST ) %] <li>El carnet de de socio se ha perdido</li>
- [% END %] [% IF ( DEBARRED ) %] <li>El socio está excluido.</li>
+ [% END %] [% IF ( GNA ) %] <li>Dirección de usuario es dudosa</li>
+ [% END %] [% IF ( CARD_LOST ) %] <li>El carnet de de usuario se ha perdido</li>
+ [% END %] [% IF ( DEBARRED ) %] <li>El usuario está excluido.</li>
  [% END %] [% IF ( NO_MORE_RENEWALS ) %] <li>No es posible una nueva renovación</li>
  [% END %] [%IF ( AGE_RESTRICTION ) %] <li>Restricción de edad [% AGE_RESTRICTION %].</li>
- [% END %] [% IF ( EXPIRED ) %] <li>El carnet de socio se ha vencido.</li>
+ [% END %] [% IF ( EXPIRED ) %] <li>El carnet de usuario se ha vencido.</li>
  [% END %] [% IF ( TOO_MANY ) %] <li>Demasiados préstamos. [% current_loan_count %] prestados, solo [% max_loans_allowed %] permitidos.</li>
  [% END %] [% IF ( ITEMNOTSAMEBRANCH ) %] <li>Este ítem pertenece a [% itemhomebranch | $KohaBranchName %] y no pueden ser prestado desde esta ubicación.</li>
- [% END %] [% IF ( USERBLOCKEDREMAINING ) %] <li>El socio tiene ítems retrasados y está bloqueado por [% USERBLOCKEDREMAINING %] día(s).</li>
+ [% END %] [% IF ( USERBLOCKEDREMAINING ) %] <li>El usuario tiene ítems retrasados y está bloqueado por [% USERBLOCKEDREMAINING %] día(s).</li>
  [% END %] [% IF ( USERBLOCKEDOVERDUE ) %] <li>Los préstamos están BLOQUEADOS porque el usuario tiene ítems con el préstamo vencido</li>
  [% END %] </ul>
 
@@ -390,11 +390,11 @@ function validate1(date) {
 [% IF ( issued ) %]
 <p>Ítem prestado</p>
 [% END %] [% IF ( message ) %] [% INCLUDE 'patron-toolbar.inc' %] <h4>
-No hay socio que coincida <span class="ex">[% message %]</span>
+No hay usuario que coincida <span class="ex">[% message %]</span>
 </h4>
 [% END %] [% IF ( CGIselectborrower ) %] [% INCLUDE 'patron-toolbar.inc' %] <form method="post" action="/cgi-bin/koha/circ/circulation.pl" id="mainform" name="mainform" autocomplete="off">
 <fieldset id="circ_circulation_selectborrower" class="brief">
- <legend>Selección de socio</legend>
+ <legend>Selección de usuario</legend>
 
  <input type="hidden" name="branch" value="[% branch %]" />
  <input type="hidden" name="printer" value="[% printer %]" />
@@ -402,7 +402,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  <input type="hidden" name="stickyduedate" value="[% stickyduedate %]" />
 
 <ol> <li>
- <label for="borrowernumber">Seleccionar un socio: </label>
+ <label for="borrowernumber">Seleccionar un usuario: </label>
  [% CGIselectborrower %] </li>
 </ol>
 <p><input value="Seleccionar" type="submit" /></p>
@@ -422,7 +422,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  [% IF ( DisplayClearScreenButton ) %] <span id="clearscreen"><a href="/cgi-bin/koha/circ/circulation.pl" title="Limpiar pantalla">x</a></span>
  [% END %] <label for="barcode">Prestando a [% INCLUDE 'patron-title.inc' %]</label>
 
- <div class="hint">Ingrese código de barras del ítem:</div>
+ <div class="hint">Introduzca el código de barras del ítem:</div>
 
  [% IF ( NEEDSCONFIRMATION ) %] <input type="text" name="barcode" id="barcode" class="barcode focus" size="14" disabled="disabled" />
  [% ELSE %] <input type="text" name="barcode" id="barcode" class="barcode focus" size="14" />
@@ -451,27 +451,27 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  [% END %] <h3>[% IF ( noissues ) %] No se puede prestar! [% ELSE %]Atención:[% END %]</h3>
  <ul>
 
- [% IF ( warndeparture ) %] <li><span class="circ-hlt">Vencimiento:</span> El carnet de socio vencerá pronto. El carnet vencerá el [% expiry %] <a href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=circ&amp;reregistration=y">Renovar</a> o<a href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;categorycode=[% categorycode %]">Editar detalles</a>
+ [% IF ( warndeparture ) %] <li><span class="circ-hlt">Vencimiento:</span> El carnet de usuario vencerá pronto. El carnet vencerá el [% expiry %] <a href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=circ&amp;reregistration=y">Renovar</a> o<a href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;categorycode=[% categorycode %]">Editar detalles</a>
 
  </li>
  [% END %] [% IF ( returnbeforeexpiry ) %] <li><span class="circ-hlt">Fijar la fecha de vencimiento a expirar:</span> La preferencia del sistema ReturnBeforeExpiry esta habilitada, esto significa que si la fecha de vencimiento del carnet es anterior a la fecha de vencimiento del préstamo, entonces la fecha de vencimiento del préstamo se establecerá a la fecha de vencimiento del carnet </li>
- [% END %] [% IF ( expired ) %] <li><span class="circ-hlt">Vencimiento:</span> El carnet del socio se ha vencido[% IF ( expiry ) %]. Carnet vencido el [% expiry %][% END %] <a href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=circ&amp;reregistration=y">Renovar</a> o<a href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;categorycode=[% categorycode %]">Editar detalles</a>
+ [% END %] [% IF ( expired ) %] <li><span class="circ-hlt">Vencimiento:</span> El carnet del usuario se ha vencido[% IF ( expiry ) %]. Carnet vencido el [% expiry %][% END %] <a href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=circ&amp;reregistration=y">Renovar</a> o<a href="/cgi-bin/koha/members/memberentry.pl?op=modify&amp;destination=circ&amp;borrowernumber=[% borrowernumber %]&amp;categorycode=[% categorycode %]">Editar detalles</a>
 
  </li>
- [% END %] [% IF ( gna ) %] <li class="blocker"><span class="circ-hlt">Dirección:</span> Dirección de socio dudosa</li>
- [% END %] [% IF ( lost ) %] <li class="blocker"><span class="circ-hlt">Perdido: </span>El carnet de de socio se ha perdido</li>
+ [% END %] [% IF ( gna ) %] <li class="blocker"><span class="circ-hlt">Dirección:</span> Dirección de usuario es dudosa</li>
+ [% END %] [% IF ( lost ) %] <li class="blocker"><span class="circ-hlt">Perdido: </span>El carnet de de usuario se ha perdido</li>
  [% END %] [% IF ( userdebarred ) %] <li class="blocker">
- <span class="circ-hlt"> Restringido:</span> La cuenta del socio está restringida [% IF (userdebarreddate ) %] hasta [% userdebarreddate %] [% END %] [% IF (debarredcomment ) %] con comentario "[% debarredcomment %]"[% END %] <form class="inline compact" action="/cgi-bin/koha/members/setstatus.pl" method="post">
+ <span class="circ-hlt"> Restringido:</span> La cuenta del usuario está restringida [% IF (userdebarreddate ) %] hasta [% userdebarreddate %] [% END %] [% IF (debarredcomment ) %] con comentario "[% debarredcomment %]"[% END %] <form class="inline compact" action="/cgi-bin/koha/members/setstatus.pl" method="post">
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
  <input type="hidden" name="destination" value="circ" />
  <input type="hidden" name="cardnumber" value="[% cardnumber %]" />
  <input value="Levantar restricción" type="submit" />
  </form>
- </li>[% END %] [% IF ( odues ) %]<li>[% IF ( nonreturns ) %]<span class="circ-hlt">Retrasos:</span> El socio tiene <span class="circ-hlt">ÍTEMS ATRASADOS</span>. Véase los ítems resaltados <a href="#checkouts">debajo</a>[% END %]</li>
+ </li>[% END %] [% IF ( odues ) %]<li>[% IF ( nonreturns ) %]<span class="circ-hlt">Retrasos:</span> El usuario tiene <span class="circ-hlt">ÍTEMS ATRASADOS</span>. Véase los ítems resaltados <a href="#checkouts">debajo</a>[% END %]</li>
  [% END %] [% IF ( charges ) %] <li>
- <span class="circ-hlt">Cuotas y cargos:</span> El socio tiene <a href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Multas y cargos pendientes [% IF ( chargesamount ) %] de [% chargesamount %][% END %]</a>. [% IF ( charges_is_blocker ) %] Préstamos son <span class="circ-hlt">BLOQUEADOS</span> porque el balance de multas es <span class="circ-hlt">POR ENCIMA DEL LÍMITE</span>. [% END %] Hacer <a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrowernumber %]">Pagos</a></li>
+ <span class="circ-hlt">Cuotas y cargos:</span> El usuario tiene <a href="/cgi-bin/koha/members/boraccount.pl?borrowernumber=[% borrowernumber %]">Multas y cargos pendientes [% IF ( chargesamount ) %] de [% chargesamount %][% END %]</a>. [% IF ( charges_is_blocker ) %] Préstamos son <span class="circ-hlt">BLOQUEADOS</span> porque el balance de multas es <span class="circ-hlt">POR ENCIMA DEL LÍMITE</span>. [% END %] Hacer <a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrowernumber %]">Pagos</a></li>
  [% END %] [% IF ( credits ) %] <li>
- <span class="circ-hlt">Créditos:</span> El socio tiene crédito[% IF ( creditsamount ) %] de [% creditsamount %][% END %] </li>
+ <span class="circ-hlt">Créditos:</span> El usuario tiene crédito[% IF ( creditsamount ) %] de [% creditsamount %][% END %] </li>
  [% END %] </ul>
  </div>
 
@@ -646,7 +646,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  [% IF ( issuecount ) %] <fieldset class="action">
  [% IF ( CAN_user_circulate_override_renewals ) %] [% IF ( AllowRenewalLimitOverride ) %] <label for="override_limit">Anular límite de renovaciones:</label>
  <input type="checkbox" name="override_limit" id="override_limit" value="1" />
- [% END %] [% END %] <input value="Renovar o regresar ítems seleccionados" name="renew_checked" type="submit" />
+ [% END %] [% END %] <input value="Renovar o devolver ítems seleccionados" name="renew_checked" type="submit" />
  <input value="Renovar todos" name="renew_all" type="submit" id="renew_all" />
  </fieldset>
  [% IF ( exports_enabled ) %] <fieldset>
@@ -664,7 +664,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  <input value="Exportar" type="button" id="export_submit" />
  </fieldset>
  [% END %] [% END %] </form>
-[% ELSE %] <p>El socio no tiene nada prestado.</p>
+[% ELSE %] <p>El usuario no tiene nada prestado.</p>
 [% END %] </div>
 
 
@@ -680,7 +680,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  <th scope="col">Signatura</th>
  <th scope="col">Cargo</th>
  <th scope="col">Precio</th>
- <th scope="col">Socio</th>
+ <th scope="col">Usuario</th>
  </tr>
  </thead>
 [% IF ( relissues ) %] <tbody>
@@ -786,7 +786,7 @@ No hay socio que coincida <span class="ex">[% message %]</span>
  <input value="Reanudar todas las reservas suspendidas" type="submit" />
  </form>
  </fieldset>
- [% END # IF SuspendHoldsIntranet %] [% ELSE %] <p>El socio no tiene nada en reserva.</p>
+ [% END # IF SuspendHoldsIntranet %] [% ELSE %] <p>El usuario no tiene nada en reserva.</p>
 [% END %] </div> <!-- reservesloop -->
 
 [% END %] <!-- borrowernumber -->

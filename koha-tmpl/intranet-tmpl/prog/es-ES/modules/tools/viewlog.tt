@@ -25,7 +25,7 @@
  <option value="" selected="selected">Todo</option>
  <option value ="CATALOGUING">Catálogo</option>
  <option value ="AUTHORITIES">Autoridades</option>
- <option value ="MEMBERS">Socios</option>
+ <option value ="MEMBERS">Usuarios</option>
  <option value ="ACQUISITION">Adquisiciones</option>
  <option value ="SERIAL">Publicaciones periódicas</option>
  <option value="CIRCULATION">Circulación</option>
@@ -107,9 +107,9 @@
  <td>[% loopro.module %]</td>
  <td>[% loopro.action %]</td>
  <td>
- [% IF ( module == 'MEMBERS' ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% loopro.object %]" title="Mostrar detalles del socio"> usuario [% loopro.object %] </a>
- [% ELSE %] [% IF ( module == 'CIRCULATION' ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% loopro.object %]" title="Mostrar detalles del socio">
- [% IF ( loopro.object ) %] socio [% loopro.object %] [% END %] </a>
+ [% IF ( module == 'MEMBERS' ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% loopro.object %]" title="Mostrar detalles del usuario"> usuario [% loopro.object %] </a>
+ [% ELSE %] [% IF ( module == 'CIRCULATION' ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% loopro.object %]" title="Mostrar detalles del usuario">
+ [% IF ( loopro.object ) %] usuario [% loopro.object %] [% END %] </a>
  [% ELSE %] [% IF ( module == 'CATALOGUING' ) %] [% IF ( info == 'item' ) %] <a href="/cgi-bin/koha/catalogue/moredetail.pl?item=[% loopro.object %]&amp;biblionumber=[% loopro.biblionumber %]&amp;bi=[% loopro.biblioitemnumber %]#item[% loopro.object %]">Ítem [% loopro.object %]</a>
  [% ELSE %] <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% loopro.object %]" title="Mostrar detalles de este registro">biblio [% loopro.object %]</a>
  [% END %] [% ELSE %] [% IF ( module == 'SERIAL' ) %] <a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% loopro.object %]"> [% loopro.object %] </a>

@@ -70,24 +70,25 @@
  <div id="sysinfo">
  [% IF (warnIsRootUser) %] <h2>Advertencias respecto al usuario actual</h2>
  <p>Parece que ha iniciado la sesión como usuario administrador de la base de datos. Esta opción no se recomienda, ya que algunas partes de Kobli no funcionarán como se espera al utilizar esta cuenta.</p>
- <p>Por favor,  es necesario iniciar sesión con una cuenta personal de personal. Para crear una cuenta personal, crear una biblioteca, una categoría de «Personal»  y añadir un nuevo socio. A continuación, dar permisos de este socio de "Más" en la barra de herramientas.</p>
+ <p>Por favor,  es necesario iniciar sesión con una cuenta personal de personal. Para crear una cuenta personal, crear una biblioteca, una categoría de «Personal»  y añadir un nuevo usuario. A continuación, dar permisos de este usuario de "Más" en la barra de herramientas.</p>
  [% END %] <h2>Advertencias respecto a la configuración del sistema</h2>
  [% IF warnPrefBiblioAddsAuthorities || warnPrefEasyAnalyticalRecords || warnPrefAnonymousPatron %] <table>
  <caption>Preferencias</caption>
  [% IF (warnPrefBiblioAddsAuthorities) %] <tr><th scope="row"><b>Advertencia</b> </th><td>Configuración de la preferencia de Sistema  'AutoCreateAuthorities', pero es necesario configurar también  'BiblioAddsAuthorities'.</td></tr>
  [% END %] [% IF (warnPrefEasyAnalyticalRecords) %] <tr><th scope="row"><b>Advertencia</b> </th><td>Configuración preferencias del Sistema, pero la preferencia  'EasyAnalyticalRecords' se configura en 'Use'. Configurelo en 'Don't use' o lo contrario los enlaces  'Show analytics'  en el usuario personal y el OPAC se roperán.</td></tr>
- [% END %] [% IF warnPrefAnonymousPatron %] <tr><th scope="row"><b>Advertencia</b> </th><td>La preferencia del sistema  'OPACPrivacy' está activada pero la preferencia del sistema AnonymousPatron contiene un '0'. Se debe asignar un número de socio válido se si se desea que esta funcionalidad funcione prefectamente.</td></tr>
+ [% END %] [% IF warnPrefAnonymousPatron %] <tr><th scope="row"><b>Advertencia</b> </th><td>La preferencia del sistema  'OPACPrivacy' está activada pero la preferencia del sistema AnonymousPatron contiene un '0'. Se debe asignar un número de usuario válido se si se desea que esta funcionalidad funcione prefectamente.</td></tr>
  [% END %] </table>
  [% ELSE %] <p>Ninguna advertencia</p>
  [% END %] </div>
 
  <div id="kobliteam">
- <h2>Kobli 1.12.1, distribución desarrollada por el Ministerio de Educación, Cultura y Deporte de España, basado en Koha 3.12.1</h2>
+ <h2>Kobli 1.12.4, distribución desarrollada por el Ministerio de Educación, Cultura y Deporte de España, basado en Koha 3.12.4</h2>
  <ul>
  <li><a href="http://kobli.bage.es/">Koha-Kobli</a>, Sistema integrado de código abierto para gestión de bibliotecas</li>
  </ul>
  
  <h2>Mejoras</h2>
+ <h3>Kobli 1.4</h3>
  <ul>
  <li>Bug 4888 - pre-establecer valores de campos de indicadores</li>
  <li>Bug 5678 - Gestor de Traducción</li>
@@ -96,6 +97,9 @@
  <li>Nueva asignación en ordenación por caracteres de Zebra</li>
  <li>Diseño de Kobli</li>
  <li>Nueva traducción en español</li>
+ </ul>
+ <h3>Kobli 1.8.1</h3>
+ <ul>
  <li>Herramienta para subir imágenes del OPAC </li>
  <li>Soporte para importar y exportar registros con holdings embebidos</li>
  <li>Soporte para el enlazado de registros analíticos</li>
@@ -110,6 +114,9 @@
  <li>Actualizacion de la base de datos de indicadores con Marc21 rev. 13-14</li>
  <li>Actualizacion de datos del plugin XML 006 y 008 con Marc21 rev. 13-14</li>
  <li>Script para la postactualización de Kobli</li>
+ </ul>
+ <h3>Kobli 1.12.1</h3>
+ <ul>
  <li>Configurar campo 003 con MARCOrgCode para OAI</li>
  <li>Añadir plantilla ACQ por defecto</li>
  <li>Error corregido en los indicadores en español</li>
@@ -120,13 +127,63 @@
  <li>Mostrar subcampos 773 en plantillas Marc21</li>
  <li>Incluir indicadores en todas las plantillas disponibles</li>
  <li>Actualización de plantillas Marc21 - Añadir subcampo 952$i - Subcampo 040$c no obligatorio</li>
- <li>Nuevos campos obligatorios al crear un socio</li>
+ <li>Nuevos campos obligatorios al crear un usuario</li>
  <li>Adaptación del repositorio local para la catalogación de registros</li>
  <li>Bug 9921 - Hacer posible que el 001 sea igual al biblionumber</li>
+ <li>Adaptación de holdings a la herramienta de exportar/importar registros</li>
+ </ul>
+ <h4>Desarrollos adaptados desde la Comunidad Koha</h4>
+ <ul>
  <li>Bug 10480: Nuevo estilo para los plugin de catalogación, sin redifiniciones</li>
  <li>Bug 10480: Continuación para additem.pl (no redefiniciones para los plugins)</li>
- <li>Adaptación de holdings a la herramienta de exportar/importar registros</li>
- <li>Ficheros po en español actualizados y traducidos</li>
+ </ul>
+ <h3>Kobli 1.12.4</h3>
+ <ul>
+ <li>Adaptación de barra de búsquedas del OPAC a Kobli 1.12.4</li>
+ <li>Traducción a español de nueva interfaz para subscripciones</li>
+ <li>Añadir campo 787 en la vista detalle del OPAC e intranet</li>
+ <li>Preferencias del sistema actualizadas con el estilo de la última versión de Koha</li>
+ <li>Mejora en indexación Zebra Marc21 para búsqueda avanzada por autor personal</li>
+ <li>Añadir subcampo $b a campos 110 y 710 en vista XSLT</li>
+ <li>Añadir subcampo $b a campos 111 y 711 en vista XSLT</li>
+ <li>Reemplazar tabulaciones por espacios en opac-search-history.tt</li>
+ <li>Enlaces al manual de Koha en español para las páginas de ayuda</li>
+ <li>Corrección de diseño en búsqueda de OPAC</li>
+ <li>Versión de Koha-Kobli actualizada en base de datos</li>
+ <li>Tabla letter actualizada en la base de datos en español de Koha</li>
+ <li>Establecer contraseña de usuario en OPAC mediante envío de email</li>
+ <li>Histórico de adquisiciones por biblioteca</li>
+ <li>Mejora en el envío de cestas al usuario en OPAC e intranet</li>
+ <li>Adaptación de plantillas HTML en español para el envío de cestas</li>
+ <li>Corrección de error en plugins 006 y 008 de Marc21 en Kobli 1.12.1</li>
+ <li>Corrección de error en la vista detalle de cursos para OPAC</li>
+ <li>Corregido error al recoger el campo 001 de autoridades al buscar en servidor Z39.50</li>
+ <li>Mejora de plantillas de catalogación Marc21 en español para bibliográficos</li>
+ <li>Corregido error en gestor de traducciones </li>
+ <li>Preferencias del sistema actualizadas para Kobli 1.12.4</li>
+ <li>Ficheros po en español actualizados y traducidos para Kobli 1.12.4</li>
+ <h4>Desarrollos adaptados desde la Comunidad Koha</h4>
+ <ul>
+ <li>Bug 7688: Cambiar patrón de numeración y frecuencias en suscripciones</li>
+ <li>Bug 10096: Añadir interfaz para búsquedas de autoridad en servidores Z39.50</li>
+ <li> Bug 10600: Duplicar una autoridad</li>
+ <li>Bug 10852: Mejoras en búsqueda de de publicaciones seriadas</li>
+ <li>Bug 8732: Permitir mostrar tipo de ítem de Koha en vez del tipo de ítem MARC</li>
+ <li>Bug 9368: Comportamiento específico en los índices de yr y acqdate</li>
+ <li>Bug 10808: Formulario de búsqueda de teausuro no corresponde con la búsqueda actual</li>
+ <li>Bug 7679: Mejoras en el asistente de estadísticas de circulación</li>
+ <li>Bug 7683: Mejoras en asistente de estadísticas de catalogación</li>
+ <li>Bug 10948: Hacer etiquetas de traza traducibles en resultados de autoridades del OPAC</li>
+ <li>Bug 10602: Establecer un valor por defecto para autoridades</li>
+ </ul>
+ </ul>
+ <h2>Equipo de publicación y desarrollo Kobli 1.12.4</h2>
+ <ul>
+ <li>Domingo Arroyo Fernández</li>
+ <li>Ana Isabel González Sáez</li>
+ <li>Alicia Sellés Carot</li>
+ <li>Isabel García Soler</li>
+ <li>Nuño López Ansótegui</li>
  </ul>
  </div>
  <div id="team">
@@ -136,7 +193,7 @@
  <li>Los <a href="http://myacpl.org">Biblioteca Pública Nelsonville</a>, Ohio, USA (Patrocinio de MARC, documentación, mantenimiento de plantilla)</li>
  <li><a href="http://www.emn.fr">EMN (Ecole des Mines de Nantes)</a>, Francia (Sugerencias, Estadística de informes y patrocinio mejorado del LDAP)</li>
  <li><a href="http://www.mines-paristech.fr">Mines Paristech (previamente Ecole Nationale Supérieure des Mines de Paris)</a>, Francia (plantilla de catalogación bibliográficas, autoridades MARC, cesta de libros del OPAC, patrocinios a seriadas)</li>
- <li><a href="http://www.mediathequeouestprovence.fr/">SAN-Oeste Provenza</a>, Francia (Mejoras en los módulos de socios y existencias de Koha 3.0)</li>
+ <li><a href="http://www.mediathequeouestprovence.fr/">SAN-Oeste Provenza</a>, Francia (Mejoras en los módulos de usuarios y existencias de Koha 3.0)</li>
  <li>Los <a href="http://ccfls.org">Crawford County Federated Library System</a>, PA, USA (Patrocinio de integración de Zebra para Koha 3.0)</li>
  <li>Los <a href="http://www.geauga.lib.oh.us/">Geauga County Public Library</a>, OH, USA (Koha 3.0 beta testing)</li>
  <li>Los <a href="http://library.neu.edu.tr">Universidad del Cercano Oriente</a>, Chipre</li>
@@ -145,7 +202,7 @@
  <li><a href="http://www.ashs.school.nz/">Albany Senior High School</a>, Auckland, New Zealand (OPAC 'star-ratings' patrocinio)</li>
  </ul>
 
- <h2>Release team for Koha 3.14</h2>
+ <h2>Equipo de publicación Koha 3.12</h2>
  <ul>
  <li>Tomás Cohen Arazi (3.12.X Release Maintainer)</li>
  <li><a href="https://www.ohloh.net/p/koha/contributors/6618544614260">Galen Charlton</a> (3.2 Release Manager)</li>
@@ -155,7 +212,7 @@
  <li>Bernardo Gonzalez Kriegel (Translation Manager, 3.10.X Release Maintainer)</li>
  </ul>
 
- <h2>Equipo de publicación Koha </h2>
+ <h2>Equipo de publicación Koha</h2>
  <ul>
  <li>D Ruth Bavousett (3.12 Translation Manager)</li>
  <li>Jared Camins-Esakov (3.6 Release Maintainer, 3.12 Release Manager)</li>
@@ -457,7 +514,7 @@
  <ul>
  <li>Todas las imágenes vienen desde<a href="http://thenounproject.com/">El Nombre del Proyecto</a> colección</li>
  <li>
- Símbolo de Circulación ("fair-trade") por Edward Boatman ; Símbolo de socio ("children's library") por Edward Boatman, Saul Tannenbaum, Stephen Kennedy, Nikki Snow, Brooke Hamilton ; Símbolo de Búsqueda("magnifying glass") por Philipp Suess ; Símbolo de Listas("folder")  por Jack Biesek, Gladys Brenner, Margaret Faye, Healther Merrifield, Kate Keating, Wendy Olmstead, Todd Pierce, Jamie Cowgill, Jim Bolek ; Símbolo de Catalogación ("price tag") por the Noun Project ; Símbolo de Autoridades ("link") por Matthew Exton ; Símbolo de Sreiadas ("newspaper") por John Caserta ; Símbolo de Adquisiciones ("present") por David Goodger ;Símbolo de Informes ("pie chart") por Scott Lewis ; Símbolo Administración ("gears") por Jeremy Minnick ; Símbolo de Herramientas ("wrench") por National Park Service </li>
+ Símbolo de Circulación ("fair-trade") por Edward Boatman ; Símbolo de usuario ("children's library") por Edward Boatman, Saul Tannenbaum, Stephen Kennedy, Nikki Snow, Brooke Hamilton ; Símbolo de Búsqueda("magnifying glass") por Philipp Suess ; Símbolo de Listas("folder")  por Jack Biesek, Gladys Brenner, Margaret Faye, Healther Merrifield, Kate Keating, Wendy Olmstead, Todd Pierce, Jamie Cowgill, Jim Bolek ; Símbolo de Catalogación ("price tag") por the Noun Project ; Símbolo de Autoridades ("link") por Matthew Exton ; Símbolo de Seriadas ("newspaper") por John Caserta ; Símbolo de Adquisiciones ("present") por David Goodger ;Símbolo de Informes ("pie chart") por Scott Lewis ; Símbolo Administración ("gears") por Jeremy Minnick ; Símbolo de Herramientas ("wrench") por National Park Service </li>
  </ul>
 
  <h2>jQuery Star Rating Plugin</h2>
@@ -507,7 +564,7 @@
 <li>&#2835;&#2908;&#2879;&#2822; (&#x014D;&#7771;iy&#257;)</li>
 <li>Polski (polaco)</li>
 <li>Portugués (Portugués)</li>
-<li>Română (Rumano)</li>
+<li>Româna (Rumano)</li>
 <li>&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; (Ruso) Victor Titarchuk and Serhij Dubyk</li>
 <li>Español (Spanish) Alejandro Tiraboschi (UNC), Bernardo González Kriegel (UNC) and Martín Longo, con la ayuda de la comunidad koha-es.</li>
 <li>Espa&ntilde;ol (Spanish, Venezuela) Ailé Filippi </li>

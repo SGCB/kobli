@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Verificar socio duplicado</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Verificar usuario duplicado</title>
 [% INCLUDE 'doc-head-close.inc' %] <style type="text/css">
 		#custom-doc { width:44.23em;*width:43.12em;min-width:491px; margin:auto; text-align:left; } 
 	</style>
@@ -32,7 +32,7 @@
  <div class="rows">
  <ol>
  <li><span class="label">Número de carnet: </span>[% cardnumber %]</li>
- <li><span class="label">Número de socio: </span> [% borrowernumber %]</li>
+ <li><span class="label">Número de usuario: </span> [% borrowernumber %]</li>
  <li><span class="label">Categoría: </span>[% description %] ([% categorycode %])</li>
  <li><span class="label">Fecha de registro: </span>[% dateenrolled %]</li>
  <li><span class="label">Fecha de vencimiento: </span>

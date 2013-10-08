@@ -1,4 +1,4 @@
- [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Carnet de socios &rsaquo; Imprimir/exportar carnet de socio</title>
+ [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Carnet de usuarios &rsaquo; Imprimir/exportar carnet de usuario</title>
  [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
         //<![CDATA[
             function Done() {
@@ -14,11 +14,11 @@
  [% IF ( batches ) %] <form>
  <h3>Para descargar el lote exportado haga clic en el siguiente enlace.</h3>
  <fieldset>
- [% FOREACH batche IN batches %] [% IF ( batche.label_ids ) %] <legend>[% batche.card_count %] Carnets individuales de socios</legend>
+ [% FOREACH batche IN batches %] [% IF ( batche.label_ids ) %] <legend>[% batche.card_count %] Carnés individuales de usuario</legend>
  <p>
  <a class="document pdf" href="/cgi-bin/koha/patroncards/[% batche.create_script %]?batch_id=[% batche.batch_id %]&amp;template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %]&amp;start_card=[% batche.start_card %][% batche.label_ids %]">label_single_ [% batche.card_count %].pdf</a>
  </p>
- [% ELSIF ( batche.borrower_numbers ) %] <legend>[% batche.card_count %] Carnets individuales de socios</legend>
+ [% ELSIF ( batche.borrower_numbers ) %] <legend>[% batche.card_count %] Carnets individuales de usuarios</legend>
  <p>
  <a class="document pdf" href="/cgi-bin/koha/patroncards/[% batche.create_script %]?template_id=[% batche.template_id %]&amp;layout_id=[% batche.layout_id %]&amp;start_card=[% batche.start_card %][% batche.borrower_numbers %]">label_single_ [% batche.card_count %].pdf</a>
  </p>

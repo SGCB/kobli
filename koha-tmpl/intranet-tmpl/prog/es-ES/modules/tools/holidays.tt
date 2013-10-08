@@ -56,16 +56,16 @@
 
         if (holidayType == 'exception') {
             $("#showOperationDelLabel").html(_("Eliminar esta excepción."));
-            $("#holtype").attr("class","key exception").html(_("Excepción por feriado"));
+            $("#holtype").attr("class","key exception").html(_("Excepción por festivo"));
         } else if(holidayType == 'weekday') {
-            $("#showOperationDelLabel").html(_("Eliminar este feriado."));
-            $("#holtype").attr("class","key repeatableweekly").html(_("Feriado de repetición semanal"));
+            $("#showOperationDelLabel").html(_("Eliminar este festivo."));
+            $("#holtype").attr("class","key repeatableweekly").html(_("Festivo de repetición semanal"));
         } else if(holidayType == 'daymonth') {
-            $("#showOperationDelLabel").html(_("Eliminar este feriado."));
-            $("#holtype").attr("class","key repeatableyearly").html(_("Feriado de repetición anual"));
+            $("#showOperationDelLabel").html(_("Eliminar este festivo."));
+            $("#holtype").attr("class","key repeatableyearly").html(_("Festivo de repetición anual"));
         } else {
-            $("#showOperationDelLabel").html(_("Eliminar este feriado."));
-            $("#holtype").attr("class","key holiday").html(_("Feriado único"));
+            $("#showOperationDelLabel").html(_("Eliminar este festivo."));
+            $("#holtype").attr("class","key holiday").html(_("Festivo único"));
         }
         
         if (exceptionPosibility == 1) {
@@ -221,7 +221,7 @@ td.repeatableyearly a.ui-state-default {  background:  #FFFF99 none; color :  Bl
  <h2>[% branchname %] Calendario</h2>
  <div class="yui-g">
  <div class="yui-u first">
- <label for="branch">Definir los feriados para:</label>
+ <label for="branch">Definir los festivoss para:</label>
  <select id="branch" name="branch">
  [% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value %]" selected="selected">[% branchloo.branchname %]</option>
  [% ELSE %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>
@@ -236,7 +236,7 @@ td.repeatableyearly a.ui-state-default {  background:  #FFFF99 none; color :  Bl
  <form action="/cgi-bin/koha/tools/exceptionHolidays.pl" method="post">
  <input type="hidden" id="showHolidayType" name="showHolidayType" value="" />
  <fieldset class="brief">
- <h3>Editar este feriado</h3>
+ <h3>Editar este festivo</h3>
  <span id="holtype"></span>
  <ol>
  <li>
@@ -261,30 +261,30 @@ td.repeatableyearly a.ui-state-default {  background:  #FFFF99 none; color :  Bl
  <textarea rows="2" cols="40" id="showDescription" name="showDescription"></textarea> 
  </li>
  <li class="radio"><div id="exceptionPosibility" style="position:static">
- <input type="radio" name="showOperation" id="showOperationExc" value="exception" /> <label for="showOperationExc">Generar una excepción para este feriado repetible.</label>
+ <input type="radio" name="showOperation" id="showOperationExc" value="exception" /> <label for="showOperationExc">Generar una excepción para este festivo repetible.</label>
  <a href="#" class="helptext">[?]</a>
- <div class="hint">Usted puede hacer una excepción para esta regla de feriado. Esto significa que usted será capaz de decir que para un feriado repetible hay un día que va a ser una excepción.</div>
+ <div class="hint">Usted puede hacer una excepción para esta regla de festivo. Esto significa que usted será capaz de decir que para un festivo repetible hay un día que va a ser una excepción.</div>
  </div></li>
  <li class="radio"><input type="radio" name="showOperation" id="showOperationExcRange" value="exceptionrange" />
- <label for="newOperationFieldException">Generar una excepción para este feriado repetible. </label>
+ <label for="newOperationFieldException">Generar una excepción para este festivo repetible. </label>
  <a href="#" class="helptext">[?]</a>
- <div class="hint">Generar una excepción para este feriado repetible. </div>
+ <div class="hint">Generar una excepción para este festivo repetible. </div>
  </li>
- <li class="radio"><input type="radio" name="showOperation" id="showOperationDel" value="delete" /> <label for="showOperationDel" id="showOperationDelLabel">Eliminar este feriado</label>
+ <li class="radio"><input type="radio" name="showOperation" id="showOperationDel" value="delete" /> <label for="showOperationDel" id="showOperationDelLabel">Eliminar este festivo</label>
  <a href="#" class="helptext">[?]</a>
- <div class="hint">Este eliminará esta regla de feriado. Si es un feriado repetible, esta opción revisa  posibles excepciones. Si existe una excepción, esta opción eliminará la excepción y establecerá la fecha a un feriado normal.</div></li>
- <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRange" value="deleterange" /> <label for="showOperationDelRange" id="showOperationDelLabelRange">Eliminar este feriado en un rango</label>. <a href="#" class="helptext">[?]</a>
+ <div class="hint">Este eliminará esta regla de festivo. Si es un festivo repetible, esta opción revisa  posibles excepciones. Si existe una excepción, esta opción eliminará la excepción y establecerá la fecha a un festivo normal.</div></li>
+ <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRange" value="deleterange" /> <label for="showOperationDelRange" id="showOperationDelLabelRange">Eliminar este festivo en un rango</label>. <a href="#" class="helptext">[?]</a>
  <div class="hint">esto borrará solamente las reglas festivos individuales. Las vacaciones repetibles y excepciones no se eliminarán.</div>
  </li>
- <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRangeRepeat" value="deleterangerepeat" /> <label for="showOperationDelRangeRepeat" id="showOperationDelLabelRangeRepeat">Eliminar feriados de repetición anual en un rango</label>. <a href="#" class="helptext">[?]</a>
+ <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRangeRepeat" value="deleterangerepeat" /> <label for="showOperationDelRangeRepeat" id="showOperationDelLabelRangeRepeat">Eliminar festivoss de repetición anual en un rango</label>. <a href="#" class="helptext">[?]</a>
  <div class="hint">Esto eliminará las reglas vacaciones repetidas solamente. Las vacaciones repetibles serán borrados pero no las excepciones.</div>
  </li>
  <li class="radio"><input type="radio" name="showOperation" id="showOperationDelRangeRepeatExcept" value="deleterangerepeatexcept" /> <label for="showOperationDelRangeRepeatExcept" id="showOperationDelLabelRangeRepeatExcept">Eliminar esta excepción en un rango</label>. <a href="#" class="helptext">[?]</a>
  <div class="hint">Esto eliminará las excepciones dentro de un rango dado. Tenga cuidado con su rango de alcance, si es de gran tamaño se puede ralentizar Koha.</div>
  </li>
- <li class="radio"><input type="radio" name="showOperation" id="showOperationEdit" value="edit" checked="checked" /> <label for="showOperationEdit">Editar este feriado</label>
+ <li class="radio"><input type="radio" name="showOperation" id="showOperationEdit" value="edit" checked="checked" /> <label for="showOperationEdit">Editar este festivo</label>
  <a href="#" class="helptext">[?]</a>
- <div class="hint">Esto guardará los cambios del título y descripción del feriado. Si se modifica la información para un feriado repetible, afectará todas las fechas en las que este feriado es repetido.</div></li>
+ <div class="hint">Esto guardará los cambios del título y descripción del festivo. Si se modifica la información para un festivo repetible, afectará todas las fechas en las que este festivo es repetido.</div></li>
  </ol>
  <fieldset class="action">
  <input value="Guardar" name="submit" type="submit" />
@@ -299,7 +299,7 @@ td.repeatableyearly a.ui-state-default {  background:  #FFFF99 none; color :  Bl
  <form action="/cgi-bin/koha/tools/newHolidays.pl" method="post">
  <input type="hidden" name="branchCodes" id="branchCodes" value="[% branchcodes %]" /> 
  <fieldset class="brief">
- <h3>Agregar nuevo feriado</h3>
+ <h3>Agregar nuevo festivo</h3>
  <ol>
  <li>
  <strong>Biblioteca:</strong>
@@ -323,29 +323,29 @@ td.repeatableyearly a.ui-state-default {  background:  #FFFF99 none; color :  Bl
  <textarea rows="2" cols="40" id="newDescription" name="newDescription"></textarea>
  </li>
  <li class="radio"><input type="radio" name="newOperation" id="newOperationOnce" value="holiday" checked="checked" />
- <label for="newOperationOnce">Feriado sólo en este día</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">Defina un feriado único. Por ejemplo, seleccionando el 1ro de Agosto de 2012 lo hará un feriado, pero no afectará al 1ro de Agosto en otros años.</div>
+ <label for="newOperationOnce">Festivo sólo en este día</label>. <a href="#" class="helptext">[?]</a>
+ <div class="hint">Defina un festivo único. Por ejemplo, seleccionando el 1ro de Agosto de 2012 lo hará un festivo, pero no afectará al 1ro de Agosto en otros años.</div>
  </li>
  <li class="radio"><input type="radio" name="newOperation" id="newOperationDay" value="weekday" />
- <label for="newOperationDay">El feriado se repite todas las semanas</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">Defina este fin de semana como feriado, cada semana. Por ejemplo, si su biblioteca está cerrada los Sábados, utilice esta opción para hacer cada Sábado un feriado.</div>
+ <label for="newOperationDay">El festivo se repite todas las semanas</label>. <a href="#" class="helptext">[?]</a>
+ <div class="hint">Defina este fin de semana como festivo, cada semana. Por ejemplo, si su biblioteca está cerrada los Sábados, utilice esta opción para hacer cada Sábado un festivo.</div>
  </li>
  <li class="radio"><input type="radio" name="newOperation" id="newOperationYear" value="repeatable" />
- <label for="newOperationYear">El feriado se repite todos los años</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">Se tomará este día y fecha como referencia para hacerlo un feriado. Usando esta opción, puede repetir esta regla para cada año. Por ejemplo, si selecciona el 1ro de Agosto, hará al 1ro de Agosto feriado cada año.</div>
+ <label for="newOperationYear">El festivo se repite todos los años</label>. <a href="#" class="helptext">[?]</a>
+ <div class="hint">Se tomará este día y fecha como referencia para hacerlo un festivo. Usando esta opción, puede repetir esta regla para cada año. Por ejemplo, si selecciona el 1ro de Agosto, hará al 1ro de Agosto festivo cada año.</div>
  </li>
  <li class="radio"><input type="radio" name="newOperation" id="newOperationField" value="holidayrange" />
- <label for="newOperationField">Feriados en un rango</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">Definir un feriado único en un rango. Por ejemplo, seleccionando el 1ro de Agosto, 2012 y 10 de Agosto, 2012 hará todos los días entre el 1ro y el 10 feriados, pero no afectarán a 1-10 de Agosto en otros años. </div>
+ <label for="newOperationField">Festivos en un rango</label>. <a href="#" class="helptext">[?]</a>
+ <div class="hint">Definir un festivo único en un rango. Por ejemplo, seleccionando el 1ro de Agosto, 2012 y 10 de Agosto, 2012 hará todos los días entre el 1ro y el 10 festivos, pero no afectarán a 1-10 de Agosto en otros años. </div>
  </li>
  <li class="radio"><input type="radio" name="newOperation" id="newOperationFieldyear" value="holidayrangerepeat" />
- <label for="newOperationFieldyear">Feriados de repetición anual en un rango</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">Definir un feriado único en un rango repetido anualmente. Por ejemplo, seleccionando el 1ro de Agosto, 2012 y 10 de Agosto, 2012 hará todos los días entre el 1ro y el 10 feriados, y afectará a 1-10 de Agosto en otros años. </div>
+ <label for="newOperationFieldyear">Festivos de repetición anual en un rango</label>. <a href="#" class="helptext">[?]</a>
+ <div class="hint">Definir un festivo único en un rango repetido anualmente. Por ejemplo, seleccionando el 1ro de Agosto, 2012 y 10 de Agosto, 2012 hará todos los días entre el 1ro y el 10 festivos, y afectará a 1-10 de Agosto en otros años. </div>
  </li>
  <li class="radio">
  <input type="checkbox" name="allBranches" id="allBranches" />
  <label for="allBranches">Copiar a todas las bibliotecas</label>. <a href="#" class="helptext">[?]</a>
- <div class="hint">Si se selecciona, este feriado se copiará a todas la bibliotecas. Si el feriado ya existe para una biblioteca, no se realizarán cambios.</div>
+ <div class="hint">Si se selecciona, este festivo se copiará a todas la bibliotecas. Si el festivo ya existe para una biblioteca, no se realizarán cambios.</div>
  </li></ol>
  <fieldset class="action">
  <input value="Guardar" name="submit" type="submit" />
@@ -368,7 +368,7 @@ td.repeatableyearly a.ui-state-default {  background:  #FFFF99 none; color :  Bl
 <div style="margin-top: 2em;">
 <form action="copy-holidays.pl" method="post">
  <input type="hidden" name="from_branchcode" value="[% branch %]" />
- <label for="branchcode">Copiar feriado a:</label>
+ <label for="branchcode">Copiar festivo a:</label>
  <select id="branchcode" name="branchcode">
  <option value=""></option>
  [% FOREACH branchloo IN branchloop %] <option value="[% branchloo.value %]">[% branchloo.branchname %]</option>
@@ -382,19 +382,19 @@ td.repeatableyearly a.ui-state-default {  background:  #FFFF99 none; color :  Bl
 <div class="help">
 <h4>Consejos</h4>
  <ul>
- <li>Buscar en el calendario el día que va a establecer como día feriado.</li>
- <li>Haga clic en el feriado a agregar o editar.</li>
- <li>Ingrese un título y descripción para el feriado.</li>
- <li>Especifique como se debe repetir el feriado.</li>
- <li>Para finalizar haga clic en Guardar</li>
+ <li>Buscar en el calendario el día que va a establecer como día festivo.</li>
+ <li>Haga clic en el festivo a agregar o editar.</li>
+ <li>Introduzca un título y descripción para el festivo.</li>
+ <li>Especifique como se debe repetir el festivo.</li>
+ <li>Para finalizar haga clic en Guardar.</li>
  </ul>
 <h4>Clave</h4>
  <p>
  <span class="key normalday">Día laborable</span>
- <span class="key holiday">Feriado único</span>
- <span class="key repeatableweekly">Feriado de repetición semanal</span>
- <span class="key repeatableyearly">Feriado de repetición anual</span>
- <span class="key exception">Excepción por feriado</span>
+ <span class="key holiday">Festivo único</span>
+ <span class="key repeatableweekly">Festivo de repetición semanal</span>
+ <span class="key repeatableyearly">Festivo de repetición anual</span>
+ <span class="key exception">Excepción por festivo</span>
  </p>
 </div>
 <div id="holiday-list">
@@ -417,7 +417,7 @@ td.repeatableyearly a.ui-state-default {  background:  #FFFF99 none; color :  Bl
  </tr>
  [% END %] </tbody>
 </table>
-[% END %] [% IF ( WEEK_DAYS_LOOP ) %] <h3>Semanal - Feriado repetible</h3>
+[% END %] [% IF ( WEEK_DAYS_LOOP ) %] <h3>Semanal - Festivo repetible</h3>
 <table id="holidayweeklyrepeatable">
 <thead>
 <tr>
@@ -438,7 +438,7 @@ td.repeatableyearly a.ui-state-default {  background:  #FFFF99 none; color :  Bl
  </tr>
  [% END %] </tbody>
 </table>
-[% END %] [% IF ( DAY_MONTH_HOLIDAYS_LOOP ) %] <h3>Anualmente - Feriado repetible</h3>
+[% END %] [% IF ( DAY_MONTH_HOLIDAYS_LOOP ) %] <h3>Anualmente - Festivo repetible</h3>
 <table id="holidaysyearlyrepeatable">
 <thead>
 <tr>
@@ -456,7 +456,7 @@ td.repeatableyearly a.ui-state-default {  background:  #FFFF99 none; color :  Bl
  </tr>
  [% END %] </tbody>
 </table>
-[% END %] [% IF ( HOLIDAYS_LOOP ) %] <h3>Feriados únicos</h3>
+[% END %] [% IF ( HOLIDAYS_LOOP ) %] <h3>Festivos únicos</h3>
 <table id="holidaysunique">
 <thead>
 <tr>

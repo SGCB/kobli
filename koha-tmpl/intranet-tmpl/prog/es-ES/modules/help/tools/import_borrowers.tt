@@ -1,14 +1,14 @@
-[% INCLUDE 'help-top.inc' %] <h1>Importar socio</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Importar usuario</h1>
 
-<p>La herramienta de importación de socios puede ser utilizada en cualquier momento para agregar socios en masa. Se utiliza comúnmente en universidades y escuelas cuando se registra un nuevo grupo de estudiantes.</p>
+<p>La herramienta de importación de usuarios puede ser utilizada en cualquier momento para agregar usuarios en masa. Se utiliza comúnmente en universidades y escuelas cuando se registra un nuevo grupo de estudiantes.</p>
 
-<h2>Creando archivo de socio</h2>
+<h2>Creando archivo de usuario</h2>
 
-<p>Su instalación de Koha viene con un archivo CSV en blanco que pude utilizar como plantilla para sus registros de socios. Si desea crear el archivo por su cuenta, asegúrese que el mismo tiene los siguientes campos en este orden como linea cabecera:</p>
+<p>Su instalación de Koha viene con un archivo CSV en blanco que pude utilizar como plantilla para sus registros de usuarios. Si desea crear el archivo por su cuenta, asegúrese que el mismo tiene los siguientes campos en este orden como linea cabecera:</p>
 
 <blockquote>borrowernumber, cardnumber, surname, firstname, title, othernames, initials, streetnumber, streettype, address, address2, city, zipcode, country, email, phone, mobile, fax, emailpro, phonepro, B_streetnumber, B_streettype, B_address, B_address2, B_city, B_zipcode, B_country, B_email, B_phone, dateofbirth, branchcode, categorycode, dateenrolled, dateexpiry, gonenoaddress, lost, debarred, contactname, contactfirstname, contacttitle, guarantorid, borrowernotes, relationship, ethnicity, ethnotes, sex, password, flags, userid, opacnote, contactnote, sort1, sort2, altcontactfirstname, altcontactsurname, altcontactaddress1, altcontactaddress2, altcontactaddress3, altcontactzipcode, altcontactcountry, altcontactphone, smsalertnumber, patron_attributes</blockquote>
 
-<p style="color: #990000;">Importante: La 'contraseña' debe ingresarse como texto plano, y será convertida a un hash MD5 (la cual es la versión cifrada de la contraseña).</p>
+<p style="color: #990000;">Importante: La 'contraseña' debe introducirse como texto plano, y será convertida a un hash MD5 (la cual es la versión cifrada de la contraseña).</p>
 
 <ul>
  <li>Si sus contraseñas ya están cifradas, hable con su administrador del sistema acerca de sus opciones</li>
@@ -18,12 +18,12 @@
 
 <p style="color: #990000;">Importante: Los campos 'branchcode' y 'categorycode' son requeridos y deben coincidir con entradas válidas en su base de datos.</p>
 
-<p style="background-color: #ffe599">Sugerencia: Si se cargan atributos de socio, el campo 'patron_attributes' debe contener una lista separada por comas de los tipos de atributos y valores.</p>
+<p style="background-color: #ffe599">Sugerencia: Si se cargan atributos de usuario, el campo 'patron_attributes' debe contener una lista separada por comas de los tipos de atributos y valores.</p>
 
 <ul>
  <li>El código de tipo de atributo y dos puntos deben preceder a cada valor. <ul>
  <li>Por ejemplo: INSTID:12345,LANG:fr o STARTDATE:January 1 2010,TRACK:Day</li>
- <li>Si un registro importado tiene más de un atributo, los campos deberían ser ingresados como una cadena sin comillas (ejemplos anteriores), o con cada campo entre comillas dobles y delimitado por coma: <ul>
+ <li>Si un registro importado tiene más de un atributo, los campos deberían ser introducidos como una cadena sin comillas (ejemplos anteriores), o con cada campo entre comillas dobles y delimitado por coma: <ul>
  <li>STARTDATE:Enero 1 2010,TRACK:Día"</li>
  <li>Esta sintaxis será requerida si los datos pueden tener una coma en ellos, como una fecha.</li>
 </ul>
@@ -32,23 +32,23 @@
 </li>
 </ul>
 
-<h2>Importando socios</h2>
+<h2>Importando usuarios</h2>
 
-<p>Una vez haya creado su archivo, puede utilizar la Herramienta de importación de socios para cargar los datos en Koha.</p>
+<p>Una vez haya creado su archivo, puede utilizar la Herramienta de importación de usuarios para cargar los datos en Koha.</p>
 
 <ul>
- <li>Seleccione su archivo CSV y elija coincidir en 'Número de socio' para prevenir incorporar números duplicados al sistema</li>
- <li>A continuación puede elegir valores predeterminados a aplicar a todos los socios que esté importando <ul>
- <li>ej. si está importando socios de una biblioteca específica puede utilizar el campo del formulario de importación para asignar el código de biblioteca a aquellos que esté importando.</li>
+ <li>Seleccione su archivo CSV y elija coincidir en 'Número de usuario' para prevenir incorporar números duplicados al sistema</li>
+ <li>A continuación puede elegir valores predeterminados a aplicar a todos los usuarios que esté importando <ul>
+ <li>ej. si está importando usuarios de una biblioteca específica puede utilizar el campo del formulario de importación para asignar el código de biblioteca a aquellos que esté importando.</li>
 </ul>
 </li>
  <li>Finalmente necesita decidir sobre que datos desea reemplazar si hay duplicados. <ul>
  <li>Un registro repetido se encuentra usando el campo que Usted seleccionó como criterio de chequeo para evitar duplicaciones</li>
- <li>Si ha incluido atributos de socio en su archivo puede decidir si agrega sus valores a los existentes o los elimina e ingresa solo los nuevos.</li>
+ <li>Si ha incluido atributos de usuario en su archivo puede decidir si agrega sus valores a los existentes o los elimina e introduzca sólo los nuevos.</li>
 </ul>
 </li>
 </ul>
 
-<p><strong>Vea la documentación completa para Importación de socios en la <a href="http://es.koha-community.org/manual/3.12/es/tools.html#patronimport">manual</a> (en línea).</strong></p>
+<p><strong>Vea la documentación completa para Importación de Usuarios en la <a href="http://es.koha-community.org/manual/3.12/es/tools.html#patronimport">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

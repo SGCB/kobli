@@ -170,7 +170,7 @@
  </td>
  </tr>
  <tr>
- <td>Categoría de socio</td>
+ <td>Categoría de usuario</td>
  <td><input type="radio" name="Line" value="borrowers.categorycode" /></td>
  <td><input type="radio" name="Column" value="borrowers.categorycode" /></td>
  <td><select name="filter_categorycode" id="borcat">
@@ -197,7 +197,7 @@
  </td> 
  </tr>
  <tr class="highlight">
- <td>Biblioteca de existencia</td>
+ <td>Biblioteca actual</td>
  <td><input type="radio" name="Line" value="items.holdingbranch" /></td>
  <td><input type="radio" name="Column" value="items.holdingbranch" /></td>
  <td><select name="filter_items.holdingbranch" id="holdingbranch">
@@ -238,7 +238,7 @@
  <td></td>
  <td>Desde <input type="text" name="filter_items.itemcallnumber_begin" size="10" /> (inclusivo) a <input type="text" name="filter_items.itemcallnumber_endex" size="10" /> (inclusivo) </td>
  </tr>
- [% IF ( hassort1 ) %] <tr><td>Socio orden 1</td>
+ [% IF ( hassort1 ) %] <tr><td>Usuario orden 1</td>
  <td><input type="radio" name="Line" value="borrowers.sort1" /></td>
  <td><input type="radio" name="Column" value="borrowers.sort1" /></td>
  <td><select name="filter_borrowers.sort1" id="sort1">
@@ -246,7 +246,7 @@
  [% FOREACH Bsort IN Bsort1 %] [% IF ( Bsort.selected ) %]<option value="[% Bsort.authorised_value %]" selected="selected">[% Bsort.lib %]</option>[% ELSE %]<option value="[% Bsort.authorised_value %]" >[% Bsort.lib %]</option>[% END %] [% END %] </select>
  </td> 
  </tr>
- [% END %] [% IF ( hassort2 ) %] <tr class="highlight"><td>Socio orden 2</td>
+ [% END %] [% IF ( hassort2 ) %] <tr class="highlight"><td>Usuario orden 2</td>
  <td><input type="radio" name="Line" value="borrowers.sort2" /></td>
  <td><input type="radio" name="Column" value="borrowers.sort2" /></td>
  <td><select name="filter_borrowers.sort2" id="sort2">
@@ -258,7 +258,7 @@
  </table><br /></fieldset>
 
 <fieldset class="rows"><legend>Valores de la celda </legend><ol><li><label for="cellvalue1">Contar reserva</label> <input type="radio" name="Cellvalue" value="1" id="cellvalue1" checked="checked" /> </li>
- <li><label for="cellvalue2">Contar socios únicos</label> <input type="radio" name="Cellvalue" value="2" id="cellvalue2" /> </li><li><label for="cellvalue3">Cantidad de ítems únicos</label> <input type="radio" name="Cellvalue" id="cellvalue3" value="3" /> </li><li><label for="cellvalue4">Contar registros únicos</label> <input type="radio" name="Cellvalue" id="cellvalue4" value="4" /> </li></ol></fieldset>
+ <li><label for="cellvalue2">Contar usuarios únicos</label> <input type="radio" name="Cellvalue" value="2" id="cellvalue2" /> </li><li><label for="cellvalue3">Cantidad de ítems únicos</label> <input type="radio" name="Cellvalue" id="cellvalue3" value="3" /> </li><li><label for="cellvalue4">Contar registros únicos</label> <input type="radio" name="Cellvalue" id="cellvalue4" value="4" /> </li></ol></fieldset>
  
  <fieldset class="rows">
  <legend>Salida</legend>

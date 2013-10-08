@@ -1,12 +1,12 @@
 [% INCLUDE 'help-top.inc' %] <h1>Avisos y  recibos</h1>
 
-<p>Todas los avisos y recibos de circulacióngenerados por Koha pueden ser personalizados usando la herramienta de Notices &amp; Slips Tool. El sistema viene con varias plantillaspredefinidas que aparecerán cuando visite por primera vez esta la herramienta.</p>
+<p>Todas los avisos y recibos de circulación generados por Koha pueden ser personalizados usando la herramienta de Avisos. El sistema viene con varias plantillas predefinidas que aparecerán cuando visite por primera vez esta herramienta.</p>
 
 <p>Cada aviso puede ser editado, pero solo unos pocos pueden ser eliminados, esto es para evitar errores en el sistema, debe enviar un mensaje sin utilizar una plantilla. Cada aviso y recibo puede ser editado por la biblioteca de origen, por defecto verá los avisos de todas las bibliotecas.</p>
 
 <p>Si usted tiene un estilo que le gustaría que se aplicara a todos los recibos,  puede indicar la preferencia SlipCSS a una hoja de estilos. Lo mismo es posible para los avisos, utilizando la preferencia NoticeCSS para definir una hoja de estilo.</p>
 
-<h3>Añadir Noticias y recibos</h3>
+<h3>Añadir avisos y recibos</h3>
 
 <p>Para añadir un nuevo aviso o recibo<ul>
  <li>Seleccionar 'Nuevo aviso'</li>
@@ -17,7 +17,7 @@
  <li>Si usted planea la escritura del aviso y del recibo en HTML marque la casilla 'Mensaje HTML , de lo contrario el contenido se genera como texto sin formato</li>
  <li>El asunto de mensaje es lo que aparece en el asunto del email</li>
  <li>En el cuerpo del mensaje escriba cualquier mensaje que considere apropiado, utilice los campos a la izquierda para incorporar datos individualizados desde la base de datos. <ul>
- <li style="color: #990000;">Importante: En avisos de retrasopuede utilizar &lt;&lt;items.content&gt;&gt;  etiquetas por sí mismos, o utilizar &lt;item&gt;&lt;/item&gt; para abarcar todas las etiquetas. Aprender más sobre Marcas de Aviso de Retraso</li>
+ <li style="color: #990000;">Importante: En avisos de retraso puede utilizar &lt;&lt;items.content&gt;&gt;  etiquetas por sí mismos, o utilizar &lt;item&gt;&lt;/item&gt; para abarcar todas las etiquetas. Aprender más sobre Marcas de Aviso de Retraso</li>
 <ul>
  <li>En avisos de retraso asegúrese de utilizar &lt;&lt;items.content&gt;&gt; etiquetas para imprimir los datos relacionados con todos los  ítems que están atrasados.</li>
 </ul>
@@ -43,7 +43,7 @@
 </li>
 </ul>
 
-<p>Un ejemplo del uso de estas dos etiquetas en una plantilla de noticias podría ser como: </p>
+<p>Un ejemplo del uso de estas dos etiquetas en una plantilla de aviso podría ser como: </p>
 
 <pre>Los siguientes ítems tienen actualmente multas por retraso :&lt;item&gt;"&lt;&lt;biblio.title&gt;&gt;" by &lt;&lt;biblio.author&gt;&gt;, &lt;&lt;items.itemcallnumber&gt;&gt;, Código de barras: &lt;&lt;items.barcode&gt;&gt; Multa: &lt;&lt;items.fine&gt;&gt; &lt;/item&gt;</pre>
 
@@ -57,7 +57,7 @@
 
 <ul>
  <li>Detalles de la cuenta <ul>
- <li>Enviada a los socios cuando se crea su cuenta si la preferencia AutoEmailOPACUser se establece en 'Enviar'</li>
+ <li>Enviada a los usuarios cuando se crea su cuenta si la preferencia AutoEmailOPACUser se establece en 'Enviar'</li>
 </ul>
 </li>
  <li>ACQCLAIM (Reclamación de adquisición) <ul>
@@ -68,7 +68,7 @@
  <li>RESERVA (Reserva disponible para retiro) <ul>
  <li>Este aviso se utiliza si se cumplen dos criterios: <ol>
  <li>EnhancedMessagingPreferences esta configurado para 'Permitir'</li>
- <li>El socio a requerido recibir este aviso <ul>
+ <li>El usuario ha requerido recibir este aviso <ul>
  <li><em>Hay que llegar:</em>OPAC &gt; Login &gt; mi mensaje</li>
  <li><em>Hay que llegar:</em>Staff Client &gt; Patron Record &gt; Notices</li>
 </ul>
@@ -89,18 +89,18 @@
 </ul>
 </li>
  <li>ODUE (Aviso de retraso) <ul>
- <li>Este aviso se utiliza para enviar Avisos de retrasos a socios</li>
+ <li>Este aviso se utiliza para enviar Avisos de Retrasos a Usuarios</li>
  <li>Vea un ejemplo de aviso de retraso</li>
  <li>Requiere que establezca Disparadores de estado/aviso de retrasos</li>
 </ul>
 </li>
- <li>RLIST (Lista de ruteo) <ul>
- <li>Usado en el módulo de publicaciones periódicas para notificar a socios/personal de nuevos ejemplares <ul>
+ <li>RLIST (Lista de circulación) <ul>
+ <li>Usado en el módulo de publicaciones periódicas para notificar a usuarios/personal de nuevos ejemplares <ul>
  <li><em>Llegar:</em> Más &gt; Series &gt; NUeva subscripción</li>
 </ul>
 </li>
- <li>Tiene la opción de seleccionar al aviso de 'Lista de ruteo' cuando crea una suscripción (Seleccione desde el desplegable 'Avisos a socios').</li>
- <li style="background-color: #ffe599;">Sugerencia: Note que si desea notificar a socios de nuevos ejemplares, puede hacer clic en 'definir un aviso' el cual lo llevará a la herramienta 'Avisos'</li>
+ <li>Tiene la opción de seleccionar al aviso de 'Lista de circulación' cuando crea una suscripción (Seleccione desde el desplegable 'Avisos a usuarios').</li>
+ <li style="background-color: #ffe599;">Sugerencia: Note que si desea notificar a usuarios de nuevos ejemplares, puede hacer clic en 'definir un aviso' el cual lo llevará a la herramienta 'Avisos'</li>
 </ul>
 </li>
 </ul>
@@ -126,7 +126,7 @@
 </ul>
 </li>
  <li>TRANSFERSLIP <ul>
- <li>Utilizar para imprimir un recibo de transfernecia</li>
+ <li>Utilizar para imprimir un recibo de transferencia</li>
  <li>El recibo de transferencia se imprime cuando se confirmala transferencia desde una biblioteca a otra en el sistema </li>
 </ul>
 </li>

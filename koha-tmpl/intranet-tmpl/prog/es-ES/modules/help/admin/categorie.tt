@@ -1,76 +1,76 @@
-[% INCLUDE 'help-top.inc' %] <h1>Categorías de socio </h1>
+[% INCLUDE 'help-top.inc' %] <h1>Categorías de usuario </h1>
 
-<p>Las categorías de socios le permiten organizar sus socios según diferentes roles, grupos de edad y los tipos de socio.</p>
+<p>Las categorías de usuarios le permiten organizar sus usuarios según diferentes roles, grupos de edad y los tipos de usuario.</p>
 
-<p>Los socios son asignados a una de las siguientes categorías principales:</p>
+<p>Los usuarios son asignados a una de las siguientes categorías principales:</p>
 
 <ul>
  <li>Adulto <ul>
- <li>El tipo de usuario más común, usualmente se usa para una categoría llamada 'Socio'</li>
+ <li>El tipo de usuario más común, usualmente se usa para una categoría llamada 'Usuario'</li>
 </ul>
 </li>
  <li>Niño <ul>
- <li>Los socios infantiles pueden tener tutor al cual estar asociados.</li>
+ <li>Los usuarios infantiles pueden tener tutor al cual estar asociados.</li>
 </ul>
 </li>
  <li>Administrativo <ul>
- <li>Los socios dentro de la categoría del personal tendrán acceso a la interfaz del personal.</li>
+ <li>Los usuarios dentro de la categoría del personal tendrán acceso a la interfaz del personal.</li>
 </ul>
 </li>
  <li>Institucional <ul>
- <li>Un socio institucional es una institución. Las instituciones pueden ser utilizadas como garantes para los socios profesionales.</li>
+ <li>Un usuario institucional es una institución. Las instituciones pueden ser utilizadas como garantes para los usuarios profesionales.</li>
 </ul>
 </li>
  <li>Profesional <ul>
- <li>Profesional = un socio que puede tener una institución como garante.</li>
+ <li>Profesional = un usuario que puede tener una institución como garante.</li>
 </ul>
 </li>
  <li>Estadístico <ul>
- <li>Este tipo de el socio se utiliza estrictamente para fines estadísticos, como en el caso de uso de los ítems en la biblioteca.</li>
+ <li>Este tipo de el usuario se utiliza estrictamente para fines estadísticos, como en el caso de uso de los ítems en la biblioteca.</li>
 </ul>
 </li>
 </ul>
 
-<h2>Agregando una categoría de socio</h2>
+<h2>Agregando una categoría de usuario</h2>
 
-<p>Para agregar una nueva categoría de socio, seleccionar en 'Nueva categoría' en la parte superior de la página</p>
+<p>Para agregar una nueva categoría de usuario, seleccionar en 'Nueva categoría' en la parte superior de la página</p>
 
 <ul>
  <li>'Category Code' es un identificador para su nuevo código. <ul>
  <li style="color: #990000;">Importante: El código de la categoría se limita a 10 caracteres (números y letras)</li>
 </ul>
 </li>
- <li>Ingrese una versión de texto de la categoría en el campo 'Descripción'.</li>
+ <li>Introduzca una versión de texto de la categoría en el campo 'Descripción'.</li>
  <li>El periodo de inscripción (en meses) debe ser llenado si hay un periodo limitado asociación (Ej. matrícula de estudiante vence luego de 9 meses o hasta una fecha específica) <ul>
  <li style="color: #990000;">Importante: No se puede introducir tanto en un plazo de un mes y una fecha hasta. Elija entre una o la otra.</li>
 </ul>
 </li>
- <li>Algunas categorías de socio pueden tener una edad mínima (en años) como requisito asociado a ellas, ingrese esa edad en 'Edad requerida' <ul>
+ <li>Algunas categorías de usuario pueden tener una edad mínima (en años) como requisito asociado a ellas, introduzca esa edad en 'Edad requerida' <ul>
  <li style="color: #990000;">Importante: Este valor sólo se verificará si BorrowerMandatoryField define el DateOfBirth como un campo obligatorio en el registro de usuario</li>
 </ul>
 </li>
- <li>Las categorías de socios también pueden tener una edad máxima (en años) asociadas con ellas (como los niños), entrar esta edad en 'Edad máxima' <ul>
+ <li>Las categorías de usuarios también pueden tener una edad máxima (en años) asociadas con ellas (como los niños), entrar esta edad en 'Edad máxima' <ul>
  <li style="color: #990000;">Importante: Este valor sólo se verificará si BorrowerMandatoryField define el DateOfBirth como un campo obligatorio en el registro de usuario</li>
 </ul>
 </li>
- <li>Si cobra por la afiliación a la biblioteca ingrese la cantidad correspondiente en el campo 'Costo por asociación' <ul>
- <li style="color: #990000;">Importante: Ingrese solo números y puntos decimales.</li>
+ <li>Si cobra por la afiliación a la biblioteca introduzca la cantidad correspondiente en el campo 'Costo por asociación' <ul>
+ <li style="color: #990000;">Importante: Introduzca sólo números y puntos decimales.</li>
 </ul>
 </li>
- <li>Si desea que el socio reciba avisos por vencimientos, ponga 'Aviso de vencimiento requerido en 'Sí''</li>
- <li>Si cobra un valor por reservar ítems, ingrese dicha la cantidad en el campo 'Costo por reserva' <ul>
- <li style="color: #990000;">Importante: Ingrese solo números y puntos decimales.</li>
+ <li>Si desea que el usuario reciba avisos por vencimientos, ponga 'Aviso de vencimiento requerido en 'Sí''</li>
+ <li>Si cobra un valor por reservar ítems, introduzca dicha la cantidad en el campo 'Costo por reserva' <ul>
+ <li style="color: #990000;">Importante: Introduzca sólo números y puntos decimales.</li>
 </ul>
 </li>
  <li>En el campo "Tipo de categoría", elija uno de los seis principales categorías superiores</li>
- <li>Las limitaciones de las bibliotecas permiten limitar estas categorías de socio a algunas bibliotecas en el sistema. Se debe seleccionar "Todas las bibliotecas" si se se desea que cualquiera de ellas esté disponible para esta categoría.</li>
- <li>Finalmente puede asignar preferencias avanzadas de mensajería de forma predeterminada a una categoría de socio <ul>
+ <li>Las limitaciones de las bibliotecas permiten limitar estas categorías de usuario a algunas bibliotecas en el sistema. Se debe seleccionar "Todas las bibliotecas" si se se desea que cualquiera de ellas esté disponible para esta categoría.</li>
+ <li>Finalmente puede asignar preferencias avanzadas de mensajería de forma predeterminada a una categoría de usuario <ul>
  <li style="color: #990000;">Importante: Requiere que esté habilitado EnhancedMessagingPreferences</li>
- <li style="color: #990000;">Importante: Estos pueden ser cambiados por los socios individuales, esta opción es simplemente una forma predeterminada para que sea más fácil de configurar mensajes para toda una categoría</li>
+ <li style="color: #990000;">Importante: Estos pueden ser cambiados por los usuarios individuales, esta opción es simplemente una forma predeterminada para que sea más fácil de configurar mensajes para toda una categoría</li>
 </ul>
 </li>
 </ul>
 
-<p><strong>Ver la documentación completa para Categorías de Socios en la <a href="http://es.koha-community.org/manual/3.12/es/patscirc.html#patcats">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para Categorías de Usuarios en la <a href="http://es.koha-community.org/manual/3.12/es/patscirc.html#patcats">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

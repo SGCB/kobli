@@ -4,9 +4,7 @@
 <script type="text/javascript" src="[% themelang %]/js/acq.js"></script>
 
 <title>
- Library &rsaquo; Acquisitions &rsaquo; History
-
-</title>
+ Histórico &rsaquo; de adquisiones &rsaquo; por biblioteca</title>
 
 
 </head>
@@ -21,23 +19,23 @@
 <!-- ################################################################################# -->
 
 <div id="breadcrumbs">
- <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo;
- Library acqusitions history
-</div>
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; Histórico de adquisiciones por biblioteca</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
 
- <h2>Library acqusitions history</h2>
+ <h2>Histórico de adquisiciones por biblioteca</h2>
 
- [% IF ( unlimited_total ) %]<p>En número total de filas que coinciden con la búsqueda (no limitada) es [% unlimited_total %].</p>[% END %] <div class="pages">[% pagination_bar %]</div>
+ [% IF ( library ) %] <p>El número total de adquisiciones en la biblioteca [% library %] es [% unlimited_total %]</p>
+ [% ELSE %] <p>El número total de adquisiciones en esta biblioteca es [% unlimited_total %]</p>
+ [% END %] [% IF ( unlimited_total ) %] <div class="pages">[% pagination_bar %]</div>
  <table>
  <tr>[% FOREACH header_ro IN header_row %]<th>[% header_ro.cell %]</th>[% END %]</tr>
  [% FOREACH result IN results %] <tr>
  [% FOREACH cell IN result.cells %]<td>[% cell.cell %]</td>[% END %] </tr>
- </table>
+ [% END %] </table> 
  [% END %] </div>
  </div>
  <div class="yui-b">

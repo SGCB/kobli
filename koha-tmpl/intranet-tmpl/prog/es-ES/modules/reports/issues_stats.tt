@@ -17,7 +17,7 @@
  <ul>
  [% FOREACH loopfilte IN mainloo.loopfilter %] [% IF ( loopfilte.err ) %] <li class="error">Error: [% ELSIF ( loopfilte.sql ) %]<li class="sql">
  [% ELSE %] <li>
- [% END %] [% SWITCH loopfilte.crit %] [% CASE 0 %]Periodo Desde [% CASE 1 %]Periodo a [% CASE 2 %]Categoría de Socio = [% CASE 3 %]Tipo de Ítem = [% CASE 4 %]Biblioteca = [% CASE 5 %]Colección = [% CASE 6 %]Localización = [% CASE 7 %]Signatura &gt;= [% CASE 8 %]Signatura &lt; [% CASE 9 %]sort1 = [% CASE 10 %]sort2 = [% CASE 11 %]Biblioteca residente = [% CASE 12 %]Biblioteca propietaria = [% CASE 13 %]Biblioteca de socio = [% CASE 14 %]Biblioteca emisora = [% CASE %][% loopfilte.crit %] = [% END %] [% loopfilte.filter %] </li>
+ [% END %] [% SWITCH loopfilte.crit %] [% CASE 0 %]Periodo Desde [% CASE 1 %]Periodo a [% CASE 2 %]Categoría de Usuario = [% CASE 3 %]Tipo de Ítem = [% CASE 4 %]Biblioteca = [% CASE 5 %]Colección = [% CASE 6 %]Localización = [% CASE 7 %]Signatura &gt;= [% CASE 8 %]Signatura &lt; [% CASE 9 %]sort1 = [% CASE 10 %]sort2 = [% CASE 11 %]Biblioteca residente = [% CASE 12 %]Biblioteca propietaria = [% CASE 13 %]Biblioteca de usuario = [% CASE 14 %]Biblioteca emisora = [% CASE %][% loopfilte.crit %] = [% END %] [% loopfilte.filter %] </li>
  [% END %] </ul>
  [% END %] <table> 
  <tr>
@@ -102,7 +102,7 @@
  </td>
  </tr>
  <tr>
- <td>Categoría de socio</td>
+ <td>Categoría de usuario</td>
  <td><input type="radio" name="Line" value="borrowers.categorycode" /></td>
  <td><input type="radio" name="Column" value="borrowers.categorycode" /></td>
  <td><select name="Filter" id="borcat">
@@ -152,7 +152,7 @@
  <td></td>
  <td>Desde <input type="text" name="Filter" size="10" /> (inclusivo) a <input type="text" name="Filter" size="10" /> (inclusivo) </td>
  </tr>
- [% IF ( hassort1 ) %] <tr><td>Socio orden 1</td>
+ [% IF ( hassort1 ) %] <tr><td>Usuario orden 1</td>
  <td><input type="radio" name="Line" value="borrowers.sort1" /></td>
  <td><input type="radio" name="Column" value="borrowers.sort1" /></td>
  <td><select name="Filter" id="sort1">
@@ -160,7 +160,7 @@
  [% FOREACH Bsort IN Bsort1 %] [% IF ( Bsort.selected ) %]<option value="[% Bsort.authorised_value %]" selected="selected">[% Bsort.lib %]</option>[% ELSE %]<option value="[% Bsort.authorised_value %]" >[% Bsort.lib %]</option>[% END %] [% END %] </select>
  </td> 
  </tr>
- [% END %] [% IF ( hassort2 ) %] <tr class="highlight"><td>Socio orden 2</td>
+ [% END %] [% IF ( hassort2 ) %] <tr class="highlight"><td>Usuario orden 2</td>
  <td><input type="radio" name="Line" value="borrowers.sort2" /></td>
  <td><input type="radio" name="Column" value="borrowers.sort2" /></td>
  <td><select name="Filter" id="sort2">
@@ -177,7 +177,7 @@
  </td>
  </tr>
 
- <tr><td>Biblioteca de existencia</td>
+ <tr><td>Biblioteca actual</td>
  <td><input type="radio" name="Line" value="items.holdingbranch" /></td>
  <td><input type="radio" name="Column" value="items.holdingbranch" /></td>
  <td><select name="Filter" id="holdingbranch">
@@ -186,7 +186,7 @@
  </td>
  </tr>
  <tr>
- <td>Biblioteca de socio</td>
+ <td>Biblioteca de usuario</td>
  <td><input type="radio" name="Line" value="borrowers.branchcode" /></td>
  <td><input type="radio" name="Column" value="borrowers.branchcode" /></td>
  <td>
@@ -198,7 +198,7 @@
  </td>
  </tr>
  [% IF (attribute_types_by_class.keys.size) %] <tr>
- <th colspan="4">Atributos de socios </th>
+ <th colspan="4">Atributos de usuarios </th>
  </tr>
  [% FOREACH class IN attribute_types_by_class.keys.sort %] [% IF (class) %] <tr>
  <th>[% class %]</th>

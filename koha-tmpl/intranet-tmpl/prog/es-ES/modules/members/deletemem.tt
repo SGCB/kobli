@@ -1,17 +1,17 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; No puede eliminar el socio</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; No puede eliminar el usuario</title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="pat_deletemem" class="pat">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; No puede eliminar el socio </div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; No puede eliminar el usuario </div>
 <div id="doc3" class="yui-t2">
  
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
  [% INCLUDE 'members-toolbar.inc' %] <div class="dialog alert">
- <h3>No se puede eliminar socio</h3>
- <ul>[% IF ( ItemsOnIssues ) %] <li>El socio tiene [% ItemsOnIssues %] ítem(s) prestados.</li>
- [% END %] [% IF ( charges ) %] <li>El socio tiene [% charges %] en multas.</li>
- [% END %] [% IF ( guarantees ) %] <li>La cuenta del socio tiene cuentas garantes asociadas.</li>
+ <h3>No se puede eliminar usuario</h3>
+ <ul>[% IF ( ItemsOnIssues ) %] <li>El usuario tiene [% ItemsOnIssues %] ítem(s) prestados.</li>
+ [% END %] [% IF ( charges ) %] <li>El usuario tiene [% charges %] en multas.</li>
+ [% END %] [% IF ( guarantees ) %] <li>La cuenta del usuario tiene cuentas garantes asociadas.</li>
  [% END %]</ul>
  </div>
 </div>

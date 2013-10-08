@@ -56,7 +56,7 @@ function placeHold () {
 	        return false;
 	    });
         $(".holdsep").text("| ");
-        $(".hold").text(_("Ingrese reserva"));
+        $(".hold").text(_("Introduzca reserva"));
         $("#downloadcartc").empty();
         yuiToolbar();
         $("#itemst").tablesorter({
@@ -81,7 +81,7 @@ function placeHold () {
  [% FOREACH csv_profile IN csv_profiles %] <li><a href="/cgi-bin/koha/basket/downloadcart.pl?format=[% csv_profile.export_format_id %]&amp;bib_list=[% bib_list %]">CSV - [% csv_profile.profile %]</a></li>
  [% END %] </ul>
  </div>
- <a class="btn btn-small" href="basket.pl" onclick="printBasket(); return false;"><i class="icon-print"></i> Imprimir</a>
+ <a class="btn btn-small" href="basket.pl" onclick="printBasket(); return false;"><i class="icon-print"></i> Impreso</a>
  <a class="btn btn-small" href="basket.pl" onclick="delBasket('popup'); return false;"><i class="icon-trash"></i> Vaciar y cerrar</a>
  <a class="btn btn-small close" href="basket.pl"><i class="icon-remove-sign"></i> Ocultar ventana</a>
 </div>

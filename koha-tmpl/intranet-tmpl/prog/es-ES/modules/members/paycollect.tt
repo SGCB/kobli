@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Recaudar pago de multas para [% borrower.firstname %] [% borrower.surname %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Usuarios &rsaquo; Recaudar pago de multas para [% borrower.firstname %] [% borrower.surname %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type= "text/javascript">
 //<![CDATA[
 $(document).ready(function() {
@@ -60,7 +60,7 @@ function moneyFormat(textObj) {
 </script>
 </head>
 <body id="pat_paycollect" class="pat">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; <a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrower.borrowernumber %]">Pagar multas para [% borrower.firstname %] [% borrower.surname %]</a> &rsaquo; [% IF ( pay_individual ) %]Pagar una multa individual[% ELSIF ( writeoff_individual ) %]Elimine una multa individual[% ELSE %][% IF ( selected_accts ) %]Pague una cantidad sobre multas seleccionadas[% ELSE %]Pague una cantidad sobre todas las multas[% END %][% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; <a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% borrower.borrowernumber %]">Pagar multas para [% borrower.firstname %] [% borrower.surname %]</a> &rsaquo; [% IF ( pay_individual ) %]Pagar una multa individual[% ELSIF ( writeoff_individual ) %]Elimine una multa individual[% ELSE %][% IF ( selected_accts ) %]Pague una cantidad sobre multas seleccionadas[% ELSE %]Pague una cantidad sobre todas las multas[% END %][% END %]</div>
 
 <div id="doc3" class="yui-t2">
 
@@ -132,7 +132,7 @@ function moneyFormat(textObj) {
 <ol>
 
  <li>
- <label for="paid">Cobrar a socio: </label>
+ <label for="paid">Cobrar a usuario: </label>
  <!-- default to paying all -->
  <input name="paid" id="paid" value="[% amountoutstanding | format('%.2f') %]" onchange="moneyFormat(document.payindivfine.paid)"/>
  </li>
@@ -193,7 +193,7 @@ function moneyFormat(textObj) {
  <span class="debit">[% total | format('%.2f') %]</span>
  </li>
  <li>
- <label for="paid">Cobrar a socio: </label>
+ <label for="paid">Cobrar a usuario: </label>
  <!-- default to paying all -->
  <input name="paid" id="paid" value="[% total | format('%.2f') %]" onchange="moneyFormat(document.payfine.paid)"/>
  </li>

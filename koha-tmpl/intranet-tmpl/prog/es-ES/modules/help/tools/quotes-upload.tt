@@ -1,43 +1,43 @@
-[% INCLUDE 'help-top.inc' %] <h1>Frase del día del informador</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Actualizar Cita del día</h1>
 
-<p>Quote of the Day (QOTD) uploader permite cargar volumen de quotes en grupos de quotes que sirven de fuente de la Quote-Of-The-Day (QOTD) característica en OPAC.</p>
+<p>El actualizador de QOTD (Cita del día) permite cargar un gran volumen de citas que sirven de fuente de la funcionalidad QOTD (Cita del Día) en el OPAC.</p>
 
 <p>Existen cuatro funciones básicas en la carga: </p>
 
 <ol>
  <li><b>Subida fichero CSV</b></li>
  <ol>
- <li>Esta función permite para la seleción y carga de un fichero CVS que contenga quotes.</li>
+ <li>Esta función permite seleccionar y cargar un fichero CSV que contiene citas.</li>
  <li>Seleccionar botón 'Cambiar Fichero' debajo de las instrucciones.</li>
  <li>Se le presentará con un explorador de archivos que le permite seleccionar el archivo CSV que desea cargar.</li>
  <li>Después de seleccionar el fichero CSV, seleccionar el botón 'Abrir' y el fichero se cargará en una tabla de edición temporalmente.</li>
  <li>El fichero CSV deberá tener dos columnas en el formulario:"source","text" sin fila de encabezado.</li>
- <li><b>Nota: </b> Se le presentará un mensaje de confirmación para descargas de archivos superiores a 512kb</li>
+ <li><b>Nota:</b> Se le presentará un mensaje de confirmación para descargas de archivos superiores a 512kb</li>
  </ol>
  <li><b>Pre-salvar Edición</b></li>
  <ol>
- <li>Una vez el fichero CVS ha sido descargado en la tabla temporal de edición, debe ser editada las quotes  antes de ser guardadas.</li>
+ <li>Una vez el fichero CSV ha sido cargado en la tabla temporal de edición, debe ser editada las citas antes de ser guardadas.</li>
  <li>Editar  campos de  'Fuente' o 'Texto'  seleccionando en el campo deseado.</li>
  <li>Cuando haya terminado de editar un campo, presione la tecla  &lt;Enter&gt; para guardar los cambios.</li>
  <li>La lista será actualizada y las ediciones ahora debería ser visibles. </li>
  </ol>
- <li><b>Eliminar Comilla(s)</b></li>
+ <li><b>Eliminar Cita(s)</b></li>
  <ol>
- <li>Esta opción permite para la eliminación uno o más quotes al mismo tiempo.</li>
- <li>Seleccionar la quote(s) que dese borrar seleccionando en la correspondiente id quote.</li>
- <li>Una vez la selección de quote ha terminado, simplemente seleccione la tecla  'Delete quote(s)' .</li>
+ <li>Esta opción permite la eliminación de una o más citas a la vez.</li>
+ <li>Seleccionar la(s) cita(s) que desee borrar seleccionando la ID de la cita correspondiente.</li>
+ <li>Una vez haya seleccionado la cita, simplemente seleccione la tecla  'Borrar cita(s)'.</li>
  <li>Se le presentará un mensaje de confirmación de borrado.</li>
- <li>Después de confirmar la eleminaió, la lista se actualizará y las quote(s) no aparecerán más.</li>
+ <li>Después de confirmar la eliminación, la lista se actualizará y las cita(s) no aparecerán más.</li>
  </ol>
- <li><b>Salvar comillas</b></li>
+ <li><b>Guardar citas</b></li>
  <ol>
- <li>Esta opción permite guardar todas las quotes en una tabla de edición temporal para el conjunto de quotes.</li>
- <li>Una vez haya hecho sus cambios con las quotes, seleccione el botón 'Guardar quotes'  en la barra de herramientas y las quotes serán guardadas.</li>
- <li><b>Nota: </b>El proceso de guardar quotes es "asincrónico" significa que tiene que navegar por otras secciones del usuario personal mientras las quotes son guardadas.</li>
- <li>Si eliges permanecer en la página de garga de QOTD, podrás recibir un mensaje de confirmación una vez las quotes se hayan guardado satisfactoriamente.</li>
+ <li>Esta opción permite guardar todas las citas en una tabla de edición temporal para el conjunto de citas.</li>
+ <li>Una vez haya hecho sus cambios con las citas, seleccione el botón 'Guardar citas' en la barra de herramientas y las citas serán guardadas.</li>
+ <li><b>Nota:</b>El proceso de guardar citas es "asincrónico" significa que puede navegar por otras secciones del usuario personal mientras las citas son guardadas.</li>
+ <li>Si eliges permanecer en la página de carga de QOTD (cita del día), recibirá un mensaje de confirmación una vez  que las citas se hayan guardado satisfactoriamente.</li>
  </ol>
 </ol>
 
-<p><strong>Ver la documentación completa para el QOTD Uploader en la <a href="http://es.koha-community.org/manual/3.12/es/additionaltools.html#importquote">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa para el Actualizador de Cita del Día en la <a href="http://es.koha-community.org/manual/3.12/es/additionaltools.html#importquote">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

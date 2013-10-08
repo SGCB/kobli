@@ -30,7 +30,7 @@
 </script>
 </head>
 <body id="pat_readingrec" class="pat">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Historial de circulación de [% INCLUDE 'patron-title.inc' %] </div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; Historial de circulación de [% INCLUDE 'patron-title.inc' %] </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -78,7 +78,7 @@
  [% END %] </td>
 </tr>
 [% END %] </table>
-[% ELSE %] <div class="dialog message">Este socio no tiene historial de circulación.</div>
+[% ELSE %] <div class="dialog message">Este usuario no tiene historial de circulación.</div>
 [% END %] </div>
 </div>
 

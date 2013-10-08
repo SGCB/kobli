@@ -48,7 +48,7 @@ function check() {
     }
 
     if (alreadyreserved > "0"){
-		msg += (_("- Este socio ya ha realizado una reserva en este ítem") + "\n" + _("Por favor cancele primero la reserva previa") + "\n");
+		msg += (_("- Este usuario ya ha realizado una reserva en este ítem") + "\n" + _("Por favor cancele primero la reserva previa") + "\n");
     }
 
 	if (msg == "") return(true);
@@ -91,7 +91,7 @@ function checkMultiHold() {
 
         switch (override_items[itemnumber].holdallowed) {
             case 0: msg = _("Este ítem no puede normalmente se reservado."); break;
-            case 1: msg = _("Este ítem no puede normalmente ser reservado excepto para socios de ") + override_items[itemnumber].homebranch + "."; break;
+            case 1: msg = _("Este ítem no puede normalmente ser reservado excepto para usuarios de ") + override_items[itemnumber].homebranch + "."; break;
         }
 
         msg += "\n\n" + _("¿Reservar este ítem?");
@@ -99,7 +99,7 @@ function checkMultiHold() {
         return confirm(msg);
     });
     $("input.warning").click(function() {
-        return confirm( _("Ninguno de estos ítems pueden normalmente ser reservados por este socio.") + "\n\n" + _("¿Reservar?") );
+        return confirm( _("Ninguno de estos ítems pueden normalmente ser reservados por este usuario.") + "\n\n" + _("¿Reservar?") );
     });
  	$("#requestany").click(function() {
 		if(this.checked){
@@ -171,11 +171,11 @@ function checkMultiHold() {
  </div>
  [% END %] [% UNLESS ( multi_hold ) %] <h1>Reservar en [% INCLUDE 'biblio-default-view.inc' %][% title |html %]</a></h1>
  [% ELSE %] <h1>Confirmar reservas</h1>
- [% END %] [% UNLESS ( borrowernumber ) %] [% IF ( messageborrower ) %] <div class="dialog alert"><h3>Socio no encontrado</h3><p>No hay un socio con este nombre, por favor, pruebe con otro </p> </div>
+ [% END %] [% UNLESS ( borrowernumber ) %] [% IF ( messageborrower ) %] <div class="dialog alert"><h3>Usuario no encontrado</h3><p>No hay un usuario con este nombre, por favor, pruebe con otro </p> </div>
  [% END %] <form  id="holds_patronsearch" action="request.pl?biblionumber=[% biblionumber %]" method="post">
  [% UNLESS borrower_list %] <fieldset class="brief">
- <label for="patron">Socio: </label>
- <div class="hint">Inserte el número de carnet del socio o parte de su apellido</div>
+ <label for="patron">Usuario: </label>
+ <div class="hint">Inserte el número de carnet del usuario o parte de su apellido</div>
  <input type="text" size="40" id="patron" class="focus" name="findborrower" />
  <input value="Buscar" type="submit" />
  <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
@@ -205,7 +205,7 @@ function checkMultiHold() {
  [% IF ( expiry ) %] <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a>'s <strong>cuenta ha caducado</strong></li>
  [% END %] [% IF ( diffbranch ) %] <li> <strong>La biblioteca para retirar es diferente</strong> de<a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %]</a>biblioteca de origen ([% borrower_branchname %] / [% borrower_branchcode %] )</li>
  [% END %] </ul></div>
-[% END %] [% IF ( messageborrower ) %] <div class="dialog alert"><h3>Socio no encontrado:</h3> <p>No se encuentra el nombre o código de barras. Por favor, inténtelo en otra </p></div>
+[% END %] [% IF ( messageborrower ) %] <div class="dialog alert"><h3>Usuario no encontrado:</h3> <p>No se encuentra el nombre o código de barras. Por favor, inténtelo en otra </p></div>
  [% END %] <fieldset class="rows left">
  <legend>Detalles de la reserva</legend>
  [% UNLESS ( multi_hold ) %] <form action="placerequest.pl" method="post" onsubmit="return check();" name="form" id="hold-request-form">
@@ -222,7 +222,7 @@ function checkMultiHold() {
  [% END %] [% ELSE %] <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
  <input type="hidden" name="title" value="[% title |html %]" />
  <input type="hidden" name="rank-request" value="[% fixedRank %]" />
- [% END %] <ol> <li><span class="label">Socio:</span>
+ [% END %] <ol> <li><span class="label">Usuario:</span>
  [% IF ( borrowernumber ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borrowerfirstname %] [% borrowersurname %] ([% cardnumber %])</a>
  [% ELSE %] No definido aún [% END %] </li>
  [% UNLESS ( multi_hold ) %] <li>
@@ -252,7 +252,7 @@ function checkMultiHold() {
  <a href='#' onclick="document.getElementById('expiration_date').value='';">Limpiar fecha</a>
  </li>
 
- [% UNLESS ( multi_hold ) %] <li> <label for="requestany">Ingrese una reserva en la próxima copia disponible </label>
+ [% UNLESS ( multi_hold ) %] <li> <label for="requestany">Introduzca una reserva en la próxima copia disponible </label>
  <input type="checkbox" id="requestany" name="request" checked="checked" value="Any" />
  <input type="hidden" name="biblioitem" value="[% biblioitemnumber %]" />
  <input type="hidden" name="alreadyreserved" value="[% alreadyreserved %]" />
@@ -268,7 +268,7 @@ function checkMultiHold() {
  [% END %] [% IF ( bibitemloo.publicationyear ) %]<li><span class="label">Año de publicación:</span> [% bibitemloo.publicationyear %]</li>[% END %] </ol>
 
  <table id="requestspecific">
- <caption>Ingrese una reserva en una copia específica</caption>
+ <caption>Introduzca una reserva en una copia específica</caption>
  <tr>
  <th>Reserva</th>
  [% IF ( item_level_itypes ) %] <th>Tipo de ítem</th>
@@ -371,7 +371,7 @@ function checkMultiHold() {
  [% IF ( CAN_user_reserveforothers_modify_holds_priority ) %] <th>Prioridad</th>
  <th>&nbsp;</th>
  [% ELSE %] <th>¿Eliminar?</th>
- [% END %] <th>Socio</th>
+ [% END %] <th>Usuario</th>
  <th>Notas</th>
  <th>Fecha</th>
  <th>Vencimiento</th>
@@ -429,10 +429,10 @@ function checkMultiHold() {
  <td>
  [% IF ( reserveloo.wait ) %] <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% reserveloo.biblionumber %]">
  [% IF ( reserveloo.barcodenumber ) %] [% reserveloo.barcodenumber %] <input type="hidden" name="itemnumber" value="[% reserveloo.itemnumber %]" />
- [% ELSE %] No código de barras [% END %] </a>
+ [% ELSE %] No hay código de barras [% END %] </a>
  [% ELSE %] [% IF ( reserveloo.constrainttypea ) %] [% IF ( reserveloo.item_level_hold ) %] <i>Sólo ítem <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% reserveloo.biblionumber %]">
  [% IF ( reserveloo.barcodenumber ) %] [% reserveloo.barcodenumber %] <input type="hidden" name="itemnumber" value="[% reserveloo.itemnumber %]" />
- [% ELSE %] No código de barras [% END %] </a>
+ [% ELSE %] No hay código de barras [% END %] </a>
  </i>
  [% ELSE %] <i>Próximo disponible</i>
  <input type="hidden" name="itemnumber" value="" />

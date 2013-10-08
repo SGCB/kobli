@@ -1,11 +1,11 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes [% IF ( do_it ) %]&rsaquo; Estadísticas de socios &rsaquo; Resultados[% ELSE %]&rsaquo; Estadísticas de socios[% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes [% IF ( do_it ) %]&rsaquo; Estadísticas de usuarios &rsaquo; Resultados[% ELSE %]&rsaquo; Estadísticas de usuarios[% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <style type="text/css">
 	.sql {display:none;}
 	.debug {display:none;}
 </style>
 </head>
 <body id="rep_borrowers_stats" class="rep">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a> &rsaquo; <a href="/cgi-bin/koha/reports/borrowers_stats.pl">Estadísticas de socios</a>[% IF ( do_it ) %] &rsaquo; Resultados[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a> &rsaquo; <a href="/cgi-bin/koha/reports/borrowers_stats.pl">Estadísticas de usuarios</a>[% IF ( do_it ) %] &rsaquo; Resultados[% END %]</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -13,7 +13,7 @@
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Estadísticas de socios</h1>
+[% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Estadísticas de usuarios</h1>
  [% IF ( mainloo.loopfilter ) %] <p>Filtrado en:</p>
  [% FOREACH loopfilte IN mainloo.loopfilter %] <p>
  [% loopfilte.crit %] = [% loopfilte.filter %] </p>
@@ -35,7 +35,7 @@
  </tr>
  </table>
  [% END %] [% ELSE %] <form method="post" action="/cgi-bin/koha/reports/borrowers_stats.pl">
- <fieldset class="rows"><legend>Estadísticas de socios</legend>
+ <fieldset class="rows"><legend>Estadísticas de usuarios</legend>
  <table>
  <thead>
  <tr>
@@ -47,7 +47,7 @@
  </thead>
  <tbody>
  <tr class="highlight">
- <td>Categoría de socio</td>
+ <td>Categoría de usuario</td>
  <td><input type="radio" name="Line" value="categorycode" /></td>
  <td><input type="radio" name="Column" value="categorycode" /></td>
  <td><select name="Filter"  size="1" id="catcode">
@@ -57,12 +57,12 @@
  </td>
  </tr>
  <tr>
- <td>Socio, estado</td>
+ <td>Usuario, estado</td>
  <td colspan="2"></td>
  <td ><select name="status"><option value=""> </option><option value="debarred">Suspendido:</option><option value="gonenoadress">a ninguna dirección</option><option value="lost">perdido</option></select></td>
  </tr>
  <tr class="highlight">
- <td>Socios, actividad.</td>
+ <td>Usuarios, actividad.</td>
  <td colspan="2"><select name="period" id="period">
  <option value="1">1</option>
  <option value="2">2</option>
@@ -158,7 +158,7 @@
  </tr>
  [% ELSE %] <input type="hidden" name="Filter" />
  [% END %] [% IF ( ExtendedPatronAttributes ) %] <tr>
- <th colspan="4">Atributos de socios </th>
+ <th colspan="4">Atributos de usuarios </th>
  </tr>
  [% FOREACH pa_loo IN patron_attributes %] [% IF (pa_loo.class) %] <tr>
  <th>[% pa_loo.class %] ([% pa_loo.lib %])</th>

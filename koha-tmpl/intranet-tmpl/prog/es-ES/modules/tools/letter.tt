@@ -151,7 +151,7 @@ $(document).ready(function() {
  <th>Módulo</th>
  <th>Código</th>
  <th>Nombre</th>
- <th>Copiar noticia</th>
+ <th>Copiar aviso</th>
  <th>&nbsp;</th>
  <th>&nbsp;</th>
  </tr></thead>
@@ -182,8 +182,8 @@ $(document).ready(function() {
  [% END %] </tbody>
  </table>
 [% ELSE %] <div class="dialog message">
- [% IF ( branchcode ) %] <p>No hay noticias en esta biblioteca.</p>
- [% ELSE %] <p>No hay noticias.</p>
+ [% IF ( branchcode ) %] <p>No hay avisos en esta biblioteca.</p>
+ [% ELSE %] <p>No hay avisos.</p>
  [% END %] </div>
 [% END %] [% END %] [% IF ( add_form ) %] <h1>[% IF ( modify ) %]Modificar aviso[% ELSE %]Agregar aviso[% END %]</h1>
  <form action="?" name="Aform" method="post">
@@ -216,8 +216,8 @@ $(document).ready(function() {
  [% ELSE %] <option value="reserves">Reservas</option>
  [% END %] [% IF ( members ) %] <option value="members" selected="selected">Miembros</option>
  [% ELSE %] <option value="members">Miembros</option>
- [% END %] [% IF ( serial ) %] <option value="serial" selected="selected">Publicaciones periódicas (lista de ruteo)</option>
- [% ELSE %] <option value="serial">Publicaciones periódicas (lista de ruteo)</option>
+ [% END %] [% IF ( serial ) %] <option value="serial" selected="selected">Publicaciones periódicas (lista de circulación)</option>
+ [% ELSE %] <option value="serial">Publicaciones periódicas (lista de circulación)</option>
  [% END %] [% IF ( suggestions ) %] <option value="suggestions" selected="selected">Sugerencias</option>
  [% ELSE %] <option value="suggestions">Sugerencias</option>
  [% END %] </select>
@@ -246,7 +246,7 @@ $(document).ready(function() {
 
  </li>
  </ol>
- [% IF code.search('DGST') %] <span class="overdue">Advertencia, esta es una plantilla para Digest, como tal, cualquier referencia a los datos (ej. los nombres de bibliotecas) se refiere a la biblioteca cas del prestatario.</span> [% END %] </fieldset>
+ [% IF code.search('DGST') %] <span class="overdue">Advertencia, esta es una plantilla para Digest, como tal, cualquier referencia a los datos (ej. los nombres de bibliotecas) se refiere a la biblioteca del usuario.</span> [% END %] </fieldset>
  <fieldset class="action"><input value="Enviar" type="button" onclick="Check(this.form)" class="button" /> <a class="cancel" href="/cgi-bin/koha/tools/letter.pl">Cancelar</a></fieldset>
  <input type="hidden" name="searchfield" value="[% searchfield %]" />
  </form>

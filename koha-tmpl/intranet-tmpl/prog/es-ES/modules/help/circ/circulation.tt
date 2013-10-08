@@ -1,6 +1,6 @@
 [% INCLUDE 'help-top.inc' %] <h1>Prestando</h1>
 
-<p>Para prestar un ítem a un socio, primero busque el socio utilizando una de varias opciones.</p>
+<p>Para prestar un ítem a un usuario, primero busque el usuario utilizando una de varias opciones.</p>
 
 <p>En la parte superior de la pantalla de Préstamos hay una caja de texto para introducir o escanear el código de barras de cada ítem.<ul>
  <li style="color: #990000">Importante: Muchos lectores de código de barras modernos envían una 'devolución' al navegador, de tal forma que el botón de 'Prestar' se activa automáticamente</li>
@@ -13,60 +13,60 @@
  <li>Esta opción sólo aparecerá si ha configurado la preferencia del sistema SpecifyDueDate para permitir al personal sobreescribir la fecha de vencimiento</li>
 </ul>
 
-<p>En la parte inferior de la página hay un resumen de los préstamos actuales del socio junto con la fecha de vencimiento (y el tiempo si el ítem es un préstamo por hora), los préstamos del día aparecen al principio.</p>
+<p>En la parte inferior de la página hay un resumen de los préstamos actuales del usuario junto con la fecha de vencimiento (y el tiempo si el ítem es un préstamo por hora), los préstamos del día aparecen al principio.</p>
 
 <p style="background-color: #ffe599"><strong>Consejo</strong> Si el tiempo de préstamo está registrado como 00:00, entonces el elemento es un elemento de préstamo al día.  La hora de vencimiento para las salidas diarias se mostrará 23:59, que es el último minuto del día.</p>
 
-<p>Si ha configurado su preferencia ExportWithCsvProfile, también verá la opción de exportar la información del socio con un perfil en formato CSV o ISO2709 (MARC21).</p>
+<p>Si ha configurado su preferencia ExportWithCsvProfile, también verá la opción de exportar la información del usuario con un perfil en formato CSV o ISO2709 (MARC21).</p>
 
-<p>También aparece al final de la página está la lista de ítems que el socio tiene en reserva </p>
+<p>También aparece al final de la página está la lista de ítems que el usuario tiene en reserva </p>
 
-<p>Desde la página Listado de Reservas puede suspender o resumir las reservas utilizadas de los socios,  las opciones en la parte inferior de la lista. </p>
+<p>Desde la página Listado de Reservas puede suspender o resumir las reservas utilizadas de los usuarios,  las opciones en la parte inferior de la lista. </p>
 
 <p>Nota: Si usted tiene su preferencia AutoResumeSuspendedHolds configurada en "No permitir ", entonces usted no tendrá la opción de poner una fecha de finalización de la suspensión de reserva</p>
 
-<p>Si hay algunas notas en el expediente del socio éstas aparecerán a la derecha de la caja de préstamo</p>
+<p>Si hay algunas notas en el expediente del usuario éstas aparecerán a la derecha de la caja de préstamo</p>
 
-<p>Si el socio tiene una reserva en espera en la biblioteca que aparece a la derecha de la caja de préstamo le será fácil al personal de circulación si hay otro ítem para darle al socio</p>
+<p>Si el usuario tiene una reserva en espera en la biblioteca que aparece a la derecha de la caja de préstamo le será fácil al personal de circulación si hay otro ítem para darle al usuario</p>
 
 <h3>Imprimir Recibo </h3>
 
-<p>Una vez haya prestado todos los ítems al socio puede imprimirle un recibo seleccionando uno de dos métodos.</p>
+<p>Una vez haya prestado todos los ítems al usuario puede imprimirle un recibo seleccionando uno de dos métodos.</p>
 
 <p>Si tiene configurada  la preferencia  CircAutoPrintQuickSlip para 'abrir una ventana  de una impresión de recibo rápido'  simplemente presione enter en su teclado o escanee un papel en blanco con su lector de código de barras. La idea es que está "prestando" un código en blanco lo cual fuerza a Koha a imprimir el 'Recibo rápido'.</p>
 
 <p>También puede seleccionar en el botón Imprimir en la parte superior de la pantalla y elegir 'Imprimir comprobante' o ' Imprimir comprobante rápido'.</p>
 
-<p>Si elige 'Imprimir recibo' se imprimirán todos los ítems que el socio tiene prestado, incluidos los que han sido prestados en una fecha anterior. Eligiendo 'Imprimir recibo rápida' imprimirá sólo los ítems que se han prestado el día de la fecha.</p>
+<p>Si elige 'Imprimir recibo' se imprimirán todos los ítems que el usuario tiene prestado, incluidos los que han sido prestados en una fecha anterior. Eligiendo 'Imprimir recibo rápida' imprimirá sólo los ítems que se han prestado el día de la fecha.</p>
 
 <p>Las impresiones de recibos pueden ser personalizado por la modificación de las plantilllas debajo de la herramienta Avisos & Recibos. </p>
 
-<h3>Limpiar Información de Socio</h3>
+<h3>Limpiar Información de Usuario</h3>
 
-<p>Cuando termine de prestar un ítem si tienela preferencia DisplayClearScreenButton en 'Mostrar,' puede limpiar el socio actual haciendo clic en la 'X' en la parte superior derecha de la información del soci,  para eliminar el socio actual de la pantalla y comenzar nuevamente.</p>
+<p>Cuando termine de prestar un ítem si tiene la preferencia DisplayClearScreenButton en 'Mostrar,' puede limpiar el usuario actual haciendo clic en la 'X' en la parte superior derecha de la información del usuario,  para eliminar el usuario actual de la pantalla y comenzar nuevamente.</p>
 
-<p>Si usted tiene la preferencia CircAutoPrintQuickSlip configurada como 'limpiar la pantalla' sólo tendrá que pulsar enter o escanear un código de barras en blanco y la pantalla se borrará del socio actual.</p>
+<p>Si usted tiene la preferencia CircAutoPrintQuickSlip configurada como 'limpiar la pantalla' sólo tendrá que pulsar enter o escanear un código de barras en blanco y la pantalla se borrará del usuario actual.</p>
 
 <h2>Mensajes de Préstamo</h2>
 
 <p>Si prestamos un ítem que tieen múltiples partes y ha sido catalogada esa información en el subcampo 3 en el registro del ítem (en Marc 21), aparecerá un mensaje cuando realiace el préstamos indicando cuántas piezas debe haber.</p>
 
-<p>Hay momentos en que Koha evitará que el bibliotecario pueda prestar ítem a un socio. Cuando esto suceda aparecerá una advertencia que notificará al bibliotecario por qué el socio no puede tener préstamos.</p>
+<p>Hay momentos en que Koha evitará que el bibliotecario pueda prestar ítem a un usuario. Cuando esto suceda aparecerá una advertencia que notificará al bibliotecario por qué el usuario no puede tener préstamos.</p>
 
 <ul>
- <li>El socio debe demasiado en concepto de multas <ul>
- <li>Puede establecer la cantidad para la cual se bloquean los préstamos del socio con preferencia del sistema noissuescharge</li>
+ <li>El usuario debe demasiado en concepto de multas <ul>
+ <li>Puede establecer la cantidad para la cual se bloquean los préstamos del usuario con preferencia del sistema noissuescharge</li>
 </ul>
 </li>
- <li>El socio ha sido suspendido en la biblioteca <ul>
- <li>Esto se puede configurar por el bibliotecario editando el registro de socio y agregando un marcadoror a través de Retrasado/Estado de Aviso Activo</li>
+ <li>El usuario ha sido suspendido en la biblioteca <ul>
+ <li>Esto se puede configurar por el bibliotecario editando el registro de usuario y agregando un marcador o a través de Retrasado/Estado de Aviso Activo</li>
 </ul>
 </li>
- <li>El socio debe confirmar su dirección <ul>
+ <li>El usuario debe confirmar su dirección <ul>
  <li>Esto se puede establecer por un bibliotecario editando un registro de usuario y adicionando una bandera</li>
 </ul>
 </li>
- <li>Socios que han perdido su carnet de la biblioteca <ul>
+ <li>Usuarios que han perdido su carnet de la biblioteca <ul>
  <li>Esto se puede establecer por un bibliotecario editando un registro de usuario y adicionando una bandera</li>
 </ul>
 </li>
@@ -77,13 +77,13 @@
 <p>A veces, los préstamos harán que aparezcan mensajes de advertencia con un recuadro amarillo sobre el campo. Estas advertencias deben ser atendidas antes de seguir prestando ítems.</p>
 
 <ul>
- <li>El socio tiene multas pendientes</li>
- <li>El ítem está reservado a otro socio</li>
- <li>El ítem debería estar en la estantería de reserva esperando por un socio</li>
- <li>El ítem está prestado actualmente a este socio</li>
- <li>El artículo está prestado a otro socio</li>
+ <li>El usuario tiene multas pendientes</li>
+ <li>El ítem está reservado a otro usuario</li>
+ <li>El ítem debería estar en la estantería de reserva esperando por un usuario</li>
+ <li>El ítem está prestado actualmente a este usuario</li>
+ <li>El artículo está prestado a otro usuario</li>
  <li>El ítem no puede prestarse</li>
- <li>El socio tiene demasiados préstamos</li>
+ <li>El usuario tiene demasiados préstamos</li>
  <li>El título no puede renovarse <ul>
  <li>Esto puede ser anulado con la preferencia del sistema AllowRenewalLimitOverride</li>
 </ul>
@@ -96,7 +96,7 @@
  <li>En función del valor de su preferencia IssueLostItem, sólo puede ver una advertencia o un cuadro de confirmación</li>
 </ul>
 </li>
- <li>El ejemplar está prestado no se recomienda a socios de esta edad</li>
+ <li>El ejemplar está prestado no se recomienda a usuarios de esta edad</li>
  <li>Punto pendiente comprobado cumple con los criterios del sistema de preferencias decreaseLoanHighHolds</li>
 </ul>
 
@@ -114,11 +114,11 @@
 
 <p>Después de seleccionar "Guardar" se  llevará al registro del ítem en el código de barras que ya se completa con el código de barras que está tratando prestar.</p>
 
-<p>Después de seleccionar el botón 'Añadir ítem' automáticamente el ítem será prestado al socio que tú originalmente estás intetando realizar el préstamo del libro.</p>
+<p>Después de seleccionar el botón 'Añadir ítem' automáticamente el ítem será prestado al usuario que tú originalmente estás intetando realizar el préstamo del libro.</p>
 
 <h2>Mensajes de circulación</h2>
 
-<p>Los mensajes de Circulación son mensajes cortos que los bibliotecarios pueden enviar a sus socios o colegas, estos aparecerán en el momento de circulación.</p>
+<p>Los mensajes de circulación son mensajes cortos que los bibliotecarios pueden enviar a sus usuarios o colegas, estos aparecerán en el momento de circulación.</p>
 
 <h3>Sistema de Mensajes</h3>
 
@@ -126,15 +126,15 @@
 
 <h3>Añadir un mensaje</h3>
 
-<p>Cuando hay algunas notas en el expediente de préstamos del socio, podrás visualizar un enlace a 'Añadir un nuevo mensaje' a la derecha de la caja de préstamo.</p>
+<p>Cuando hay algunas notas en el expediente de préstamos del usuario, podrás visualizar un enlace a 'Añadir un nuevo mensaje' a la derecha de la caja de préstamo.</p>
 
-<p>Cuando se selecciona ' Añadir un nuevo mensaje' podrá seleccionar si el mensaje esta´dirigido para los bibliotecarios  o los socios y si el mensaje debería de salir.</p>
+<p>Cuando se selecciona ' Añadir un nuevo mensaje' podrá seleccionar si el mensaje esta´dirigido para los bibliotecarios  o los usuarios y si el mensaje debería de salir.</p>
 
 <h3>Viendo Mensajes</h3>
 
-<p>Los mensajes de circulación destinados al personal aparecerá en la pantalla de préstamo del socio.  </p>
+<p>Los mensajes de circulación destinados al personal aparecerá en la pantalla de préstamo del usuario.  </p>
 
-<p>Los mensajes de Circulación dirigidos a los socios aparecerán cuando ellos se registren en el OPAC.</p>
+<p>Los mensajes de Circulación dirigidos a los usuarios aparecerán cuando ellos se registren en el OPAC.</p>
 
 <p><strong>Ver la documentación completa para Préstamo en la <a href="http://es.koha-community.org/manual/3.12/es/circulation.html#checkingout">manual</a> (en línea).</strong></p>
 

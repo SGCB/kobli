@@ -59,13 +59,13 @@
 </ul>
 </li>
  <li>Ejemplos:<ul>
- <li>SELECT surname,firstname FROM borrowers WHERE branchcode=&lt;&lt;Introducir usuarios o bibliotecas&gt;&gt; AND apellido igual a &lt;&lt;Introducir un filtro para el apellido del socio (% if none)&gt;&gt;</li>
+ <li>SELECT surname,firstname FROM borrowers WHERE branchcode=&lt;&lt;Introducir usuarios o bibliotecas&gt;&gt; AND apellido igual a &lt;&lt;Introducir un filtro para el apellido del usuario (% if none)&gt;&gt;</li>
  <li>SELECT * FROM items WHERE homebranch = &lt;&lt;coge de la biblioteca o bibliotecass&gt;&gt; y el código de barras igual a &lt;&lt;Introducir parte del código de barras aquí&gt;&gt;</li>
 </ul>
 </li>
  <li style="background-color: #ffe599;">Consejo: Para generar un selector de fechas en el calendario a la derecha del campo cuando se ejecuta el informe, se puede utilizar la palabra clave 'fecha' como en este ejemplo: &lt;&lt;Introduzca Fecha|date&gt;&gt;</li>
  <li style="background-color: #ffe599;">Consejo: Tienes que poner "% " en un cuadro de texto para 'dejarlo en blanco'. De lo contrario, literalmente, busca "" (empty string) como el valor para el campo.</li>
- <li style="color: #990000;">Importante: Además de usar cualquier código de valores autorizado para generar una lista desplegable, puede utilizar los siguientes valores así: Bibliotecas (branches),Tipos de ítem (itemtypes) y tipos de socio(categorycode). Por ejemplo, una biblioteca desctivada debería ser generada como &lt;&lt;Branch|branches&gt;&gt;</li>
+ <li style="color: #990000;">Importante: Además de usar cualquier código de valores autorizado para generar una lista desplegable, puede utilizar los siguientes valores así: Bibliotecas (branches),Tipos de ítem (itemtypes) y tipos de usuario(categorycode). Por ejemplo, una biblioteca desctivada debería ser generada como &lt;&lt;Branch|branches&gt;&gt;</li>
 </ul>
 
 <p><strong>Nota</strong>: Hay un límite de 10.000 registros en la configuración del SQL introducida en Koha. Para solucionar esto se puede añadir 'LIMIT 100000' al final de la consulta SQL (o cualquier otro número por debano de 10.000)</p>
@@ -122,7 +122,7 @@
 
 <ul>
  <li>uso local<ul>
- <li>Registra si un ítem ha sido prestado en las estadísticas de socio (categoría = 'X') es devuelto. </li>
+ <li>Registra si un ítem ha sido prestado en las estadísticas de usuario (categoría = 'X') es devuelto. </li>
 </ul>
 </li>
  <li>ítem</li>
@@ -141,7 +141,7 @@
 <p><strong>Respuesta</strong>:</p>
 
 <ul>
- <li>NULL: significa que el socio ha buscado el primero disponible y no hemos elegido este ítem.</li>
+ <li>NULL: significa que el usuario ha buscado el primero disponible y no hemos elegido este ítem.</li>
  <li>T = Transferencia: la reserva se enlaza a un ítem pero en transferencia con la biblioteca que la recibe.</li>
  <li>W: Esperando: la reserva de un ítem está disponible para ser recogido en su correspondiente biblioteca.</li>
  <li>F = Terminado: la reserva ha sido completada y es efectiva.</li>
@@ -154,7 +154,7 @@
 <ul>
  <li>1 = Circulación</li>
  <li>2 = Catálogo</li>
- <li>3 = Socios</li>
+ <li>3 = Usuarios</li>
  <li>4 = Adquisiciones</li>
  <li>5 = Cuentas</li>
 </ul>
@@ -165,7 +165,7 @@
 
 <ul>
  <li>L = Para bibliotecarios</li>
- <li>B = Para socios</li>
+ <li>B = Para usuarios</li>
 </ul>
 
 <p><strong>Pregunta</strong>: ¿Cuáles son los códigos posibles para el campo de estado en la tabla de seriadas?</p>

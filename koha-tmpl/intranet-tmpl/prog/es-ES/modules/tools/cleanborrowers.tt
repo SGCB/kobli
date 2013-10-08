@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Limpiar registros de socios [% IF ( step2 ) %]&rsaquo; Confirmar[% END %][% IF ( step3 ) %]&rsaquo; Finalizado[% END %] </title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Limpiar registros de usuarios [% IF ( step2 ) %]&rsaquo; Confirmar[% END %][% IF ( step3 ) %]&rsaquo; Finalizado[% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
 // <![CDATA[
         /**
@@ -33,7 +33,7 @@
 
 </head>
 <body id="tools_cleanborrowers" class="tools">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; [% IF ( step1 ) %]Limpiar registros de socios[% ELSE %]<a href="/cgi-bin/koha/tools/cleanborrowers.pl">Limpiar registros de socio</a> &rsaquo; [% END %][% IF ( step2 ) %]Confirmar[% END %][% IF ( step3 ) %]Terminado[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; [% IF ( step1 ) %]Limpiar registros de usuarips[% ELSE %]<a href="/cgi-bin/koha/tools/cleanborrowers.pl">Limpiar registros de usuario</a> &rsaquo; [% END %][% IF ( step2 ) %]Confirmar[% END %][% IF ( step3 ) %]Terminado[% END %]</div>
 
 <div id="doc3" class="yui-t2">
 
@@ -41,19 +41,19 @@
  <div id="yui-main">
  <div class="yui-b">
 
-<h1>Lote  socio texto borrado/anonimato</h1>
+<h1>Lote usuario texto borrado/anonimato</h1>
 <div class="help">
- <p>Esta herramienta le permite borrar los socios  y anominizar el historial de pago y envío. Para eliminar usuarios, cualquier combinación de límites pueden ser utilizados.</p>
+ <p>Esta herramienta le permite borrar los usuarios  y anominizar el historial de pago y envío. Para eliminar usuarios, cualquier combinación de límites pueden ser utilizados.</p>
 </div>
 [% IF ( step1 ) %]
 <!-- step 1 START -->
 <div id="step1">
  <form name="f1" onsubmit="return checkForm(this);" action="/cgi-bin/koha/tools/cleanborrowers.pl" method="post">
  <fieldset>
- <legend>Borrar socios</legend>
- <h3><input id="checkborrower" type="checkbox" name="checkbox" value="borrower" /><label for="checkborrower"> Confirmar que quiere borrar los socios</label></h3>
+ <legend>Borrar usuarios</legend>
+ <h3><input id="checkborrower" type="checkbox" name="checkbox" value="borrower" /><label for="checkborrower"> Confirmar que quiere borrar los usuarios</label></h3>
  <br />
- <h5>Eliminar los socios que cumplan con los siguientes criterios:</h5>
+ <h5>Eliminar los usuarios que cumplan con los siguientes criterios:</h5>
  <ul>
  <li>
  <label for="date1">quien no </label>
@@ -66,7 +66,7 @@
  <span class="hint">[% INCLUDE 'date-format.inc' %]</span>
  </li>
  <li>
- <label for="borrower_categorycode">Cuya categoría de socio es: </label>
+ <label for="borrower_categorycode">Cuya categoría de usuario es: </label>
  <select id="borrower_categorycode" name="borrower_categorycode">
  <option value="" selected="selected">Cualquiera</option>
  [% FOREACH bc IN borrower_categorycodes %] [% UNLESS bc.categorycode == 'S' %] <option value="[% bc.categorycode %]">[% bc.description %]</option>
@@ -76,7 +76,7 @@
  </fieldset>
  <fieldset>
  <legend>Hacer anónimo el historial de préstamo</legend>
- <h3><input id="checkissue" type="checkbox" name="checkbox" value="issue" /><label for="checkissue"> Verifique que deseas anonimizar historia de salidas de socio</label></h3>
+ <h3><input id="checkissue" type="checkbox" name="checkbox" value="issue" /><label for="checkissue"> Verifique que deseas anonimizar historia de salidas de usuario</label></h3>
  <br />
  <ul>
  <li>
@@ -102,16 +102,16 @@
  <fieldset>
  <legend>Advertencias</legend>
  <ul>
- <li>[% IF ( totalToDelete ) %][% totalToDelete %] [% ELSE %]0 [% END %] los socios serán eliminados</li>
+ <li>[% IF ( totalToDelete ) %][% totalToDelete %] [% ELSE %]0 [% END %] los usuarios serán eliminados</li>
  <li>[% IF ( totalToAnonymize ) %][% totalToAnonymize %] [% ELSE %]0 [% END %] el historial de préstamos será anonimizado </li>
  </ul>
 
  <br />
- [% IF ( totalToDelete ) %] <fieldset><legend>¿Qué quiere hacer con los socios suprimidos?</legend>
- <label for="delete">Eliminar definitivamente estos socios.</label>
+ [% IF ( totalToDelete ) %] <fieldset><legend>¿Qué quiere hacer con los usuarios suprimidos?</legend>
+ <label for="delete">Eliminar definitivamente estos usuarios.</label>
  <input id="delete" type="radio" name="radio" value="delete" checked="checked" />
 
- <label for="trash">Mover estos socios a la papelera</label>
+ <label for="trash">Mover estos usuarios a la papelera</label>
  <input id="trash" type="radio" name="radio" value="trash" />
  <input type="hidden" name="do_delete" value="[% totalToDelete %]" /></fieldset>
 
@@ -133,11 +133,11 @@
 
  <div id="step3">
 
- [% IF ( do_delete ) %] [% IF ( trash ) %] <h4>[% TotalDel %] socios movidos exitosamente al basurero</h4>
- [% ELSE %] <h4>[% TotalDel %] socios han sido borrados con éxito</h4>
- [% END %] [% ELSE %] <h4>No se han removido registros de socios</h4>
- [% END %] [% IF ( do_anonym ) %] <h4>Todos los socios con préstamos posteriores al [% filterdate1 %] se hicieron anónimos</h4>
- [% ELSE %] <h4>No se han anonimizado registros de socios</h4>
+ [% IF ( do_delete ) %] [% IF ( trash ) %] <h4>[% TotalDel %] usuarios movidos exitosamente al basurero</h4>
+ [% ELSE %] <h4>[% TotalDel %] usuarios han sido borrados con éxito</h4>
+ [% END %] [% ELSE %] <h4>No se han removido registros de usuarios</h4>
+ [% END %] [% IF ( do_anonym ) %] <h4>Todos los usuarios con préstamos posteriores al [% filterdate1 %] se hicieron anónimos</h4>
+ [% ELSE %] <h4>No se han anonimizado registros de usuarios</h4>
  [% END %] </div>
 <!-- Step 3 END -->
 [% END %]

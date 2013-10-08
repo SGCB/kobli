@@ -32,7 +32,7 @@
  </li>
  <li><a accesskey="r" href="/cgi-bin/koha/circ/returns.pl">Devolución</a></li>
  <li><a href="/cgi-bin/koha/circ/branchtransfers.pl">Transferencias</a></li></ul>
- [% END %] [% IF ( CAN_user_borrowers ) %] <h3><a href="/cgi-bin/koha/members/members-home.pl">Socios</a></h3>
+ [% END %] [% IF ( CAN_user_borrowers ) %] <h3><a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a></h3>
  <ul style="margin-bottom: 1em; padding-bottom: 1em; border-bottom: 1px solid #CCC;">
  <li><form action="/cgi-bin/koha/members/member.pl" method="post">
  <label for="navmember">Buscar:&nbsp;</label>

@@ -1,11 +1,11 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; [% IF ( nopermission ) %]Acceso denegado[% END %] [% IF ( timed_out ) %]Sesión expirada[% END %] [% IF ( different_ip ) %]Cambio de dirección IP[% END %] [% IF ( invalid_username_or_password ) %]Usuario o contraseña inválido[% END %] [% IF ( loginprompt ) %]Ingresar a Koha[% END %] </title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; [% IF ( nopermission ) %]Acceso denegado[% END %] [% IF ( timed_out ) %]Sesión expirada[% END %] [% IF ( different_ip ) %]Cambio de dirección IP[% END %] [% IF ( invalid_username_or_password ) %]Usuario o contraseña inválido[% END %] [% IF ( loginprompt ) %]Acceder a Koha[% END %] </title>
 
 [% INCLUDE 'installer-doc-head-close.inc' %] <div id="login">
 <h1><a>Instalador Koha 3.0</a></h1>
 [% IF ( nopermission ) %] <div id="login_error"><strong>Error: </strong>Usuario no autorizado <a href="/cgi-bin/koha/mainpage.pl?logout.x=1">haga clic para salir</a></div>
-[% END %] [% IF ( timed_out ) %] <div id="login_error"><strong>Error: </strong>La sesión ha expirado, por favor ingrese nuevamente</div>
-[% END %] [% IF ( different_ip ) %] <div id="login_error"><strong>Error: </strong>La dirección IP ha cambiado, por favor ingrese nuevamente </div>
-[% END %] [% IF ( invalid_username_or_password ) %] <div id="login_error"><strong>Error: </strong>Nombre de socio o contraseña inválido</div>
+[% END %] [% IF ( timed_out ) %] <div id="login_error"><strong>Error: </strong>La sesión ha expirado, por favor acceda de nuevo</div>
+[% END %] [% IF ( different_ip ) %] <div id="login_error"><strong>Error: </strong>La dirección IP ha cambiado, por favor acceda de nuevo </div>
+[% END %] [% IF ( invalid_username_or_password ) %] <div id="login_error"><strong>Error: </strong>Nombre de usuario o contraseña inválido</div>
 [% END %]
 
 [% IF ( loginprompt ) %]
@@ -13,7 +13,7 @@
 <form action="[% url %]" method="post" name="mainform" id="mainform">
 [% FOREACH INPUT IN INPUTS %] <input type="hidden" name="[% INPUT.name |html %]" value="[% INPUT.value |html %]" />
 [% END %] <h3>Bienvenido al instalador Web de Koha</h3>
-<p>Antes de comenzar, verifique si posee la autorización necesaria para poder continuar. Por favor ingrese con el nombre de usuario y la contraseña otorgada por su administrador del sistema y localizada en su <code>koha-conf.xml</code> archivo de configuración</p>
+<p>Antes de comenzar, verifique si posee la autorización necesaria para poder continuar. Por favor introduzca con el nombre de usuario y la contraseña otorgada por su administrador del sistema y localizada en su <code>koha-conf.xml</code> archivo de configuración</p>
 <p>Por favor, introduzca su ID de usuario y contraseña:</p>
 <p><label>Nombre de usuario:<br />
 <input type="text" name="userid" id="userid" class="input" value="[% userid %]" size="20" tabindex="1" /></label>

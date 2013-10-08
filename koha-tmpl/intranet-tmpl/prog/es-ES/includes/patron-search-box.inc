@@ -20,7 +20,7 @@ $(document).ready(function(){
 });
 //]]>
 </script>[% END %] <div id="circ_search" class="residentsearch">
- <p class="tip">Inserte el número de carnet del socio o parte de su apellido</p>
+ <p class="tip">Inserte el número de carnet del usuario o parte de su apellido</p>
  <form action="/cgi-bin/koha/circ/circulation.pl" id="patronsearch" method="post">
  [% IF ( CircAutocompl ) %] <div class="autocomplete">
  <input autocomplete="off" id="findborrower" name="findborrower" size="40" class="focus" type="text" /> <input value="Enviar" id="autocsubmit" type="submit" class="submit" />

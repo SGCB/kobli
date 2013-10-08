@@ -52,7 +52,7 @@ function Clear(id) {
 
 function Check_page1() {
     if ( $("#aqbooksellerid").val().length == 0) {
-        input_box = confirm(_("Si desea reclamar un ejemplar retrasado o perdido debe enlazar esta suscripción a un proveedor. Haga clic en OK para ignorar o Cancelar para regresar e ingresar un proveedor."));
+        input_box = confirm(_("Si desea reclamar un ejemplar retrasado o perdido debe enlazar esta suscripción a un proveedor. Haga clic en OK para ignorar o Cancelar para volver e introducir un proveedor."));
         if (input_box==false) {
             return false;
         }
@@ -68,7 +68,7 @@ function Check_page1() {
 function Check_page2(){
     [% UNLESS (more_than_one_serial) %]
       if($("#acqui_date").val().length == 0){
-          alert(_("Debe elegir fecha publicación del primer número "));
+          alert(_("Debe elegir fecha publicación del primer número"));
           return false;
       }
     [% END %]
@@ -77,11 +77,11 @@ function Check_page2(){
         return false;
     }
     if($("input[name='startdate']").val().length == 0){
-        alert(_("Debe elegir fecha de comienzo "));
+        alert(_("Debe elegir fecha de comienzo"));
         return false;
     }
     if($("#sublength").val().length == 0 && $("input[name='enddate']").val().length == 0){
-        alert(_("Debe elegir la duración de la suscripción o una fecha de finalización. "));
+        alert(_("Debe elegir la duración de la suscripción o una fecha de finalización."));
         return false;
     }
     if($("#numberpattern").val().length == 0){
@@ -93,7 +93,7 @@ function Check_page2(){
         return false;
     }
     if(patternneedtobetested){
-        alert(_("Por favor, haga clic en "Test de patrón de predicción" antes de guardar la suscripción. "));
+        alert(_("Por favor, haga clic en 'Test de patrón de predicción' antes de guardar la suscripción."));
         return false;
     }
 
@@ -262,13 +262,13 @@ function testPredictionPattern() {
     [% IF (more_than_one_serial) %]
       var nextacquidate = $("#nextacquidate").val();
       if(nextacquidate == undefined || nextacquidate == ""){
-        error_msg += _("- Siguiente cuestión, no se define fecha de publicación \\n");
+        error_msg += _("- Siguiente ejemplar, no se define fecha de publicación\\n");
         error ++;
       }
     [% END %]
 
     if(error){
-        alert(_("No se puede probar el test de patrón de predicción por el siguiente motivo(s):\\nNo se puede probar el test del patrón de predicción por el siguiente motivo(s):\\n\\n")
+        alert(_("No se puede probar el test del patrón de predicción por el siguiente motivo(s):\\n\\n")
             + error_msg);
         return false;
     }
@@ -329,9 +329,9 @@ function saveAdvancedPattern() {
     });
     var cnfrm = 1;
     if(found){
-        var msg = _("Este nombre de patrón ya existe. ¿Desea modificarlo? ")
-            + "\n" + _("Adventencia: se va a modificar el patrón para todas las suscripciones ")
-            + _("que se están utilizando. ");
+        var msg = _("Este nombre de patrón ya existe. ¿Desea modificarlo?")
+            + "\n" + _("Adventencia: se va a modificar el patrón para todas las suscripciones")
+            + _("que se están utilizando.");
         cnfrm = confirm(msg);
     }
 
@@ -361,7 +361,7 @@ function saveAdvancedPattern() {
                     $("#numberpattern").val(data.numberpatternid);
                     numberpatternload();
                 } else {
-                    alert(_("Algo salió mal. No se puede crear un nuevo patrón de numeración "));
+                    alert(_("Algo salió mal. No se puede crear un nuevo patrón de numeración."));
                 }
             }
         );
@@ -537,19 +537,19 @@ $(document).ready(function() {
  <textarea name="notes" id="notes" cols="30" rows="2">[% notes %]</textarea>
  </li>
  <li>
- <label for="internalnotes">Nota no pública</label>
+ <label for="internalnotes">Nota no pública:</label>
  <textarea name="internalnotes" id="internalnotes" cols="30" rows="2">[% internalnotes %]</textarea>
  </li>
  <li>
- [% IF ( letterloop ) %] <label for="letter">Notificación a socio: </label>
+ [% IF ( letterloop ) %] <label for="letter">Notificación a usuario: </label>
  <select name="letter" id="letter">
  <option value="">Ninguno</option>
  [% FOREACH letterloo IN letterloop %] [% IF ( letterloo.selected ) %] <option value="[% letterloo.value %]" selected="selected">[% letterloo.lettername %]</option>
  [% ELSE %] <option value="[% letterloo.value %]">[% letterloo.lettername %]</option>
  [% END %] [% END %] </select>
  <div class="hint">Seleccionar un aviso y los suscriptores serán notificados cuando se reciban los nuevos ejemplares.</div>
- [% ELSE %] <span class="label">Notificación a socio: </span>
- <div class="hint">Para notificar a los socios de los nuevos ejemplares recibidos, Usted debe <a href="/cgi-bin/koha/tools/letter.pl">defina un aviso</a>.</div>
+ [% ELSE %] <span class="label">Notificación a usuario: </span>
+ <div class="hint">Para notificar a los usuarios de los nuevos ejemplares recibidos, Usted debe <a href="/cgi-bin/koha/tools/letter.pl">definir un aviso</a>.</div>
  [% END %] </li>
  <li>
  <label for="location">Ubicación:</label>
@@ -563,11 +563,11 @@ $(document).ready(function() {
  <label for="graceperiod">Período de gracia:</label>
  <input type="text" name="graceperiod" id="graceperiod" value="[% graceperiod %]" size="5"/> día(s) </li>
  <li>
- <label class="widelabel" for="staffdisplaycount">Número de ejemplares para mostrar en la interfaz del personal: </label>
+ <label class="widelabel" for="staffdisplaycount">Número de ejemplares para mostrar en la intranet: </label>
  <input type="text" name="staffdisplaycount" id="staffdisplaycount" value="[% staffdisplaycount %]" size="4"/>
  </li>
  <li>
- <label class="widelabel" for="opacdisplaycount">Número de ejemplares para mostrar en la interfaz del personal: </label>
+ <label class="widelabel" for="opacdisplaycount">Número de ejemplares para mostrar en el OPAC: </label>
  <input type="text" name="opacdisplaycount" id="opacdisplaycount" value="[% opacdisplaycount %]" size="4"/>
  </li>
  </ol>
@@ -603,13 +603,13 @@ $(document).ready(function() {
  [% END %] </select>
  </li>
  <li>
- <label for="subtype">Duración de la suscripción :</label>
+ <label for="subtype">Duración de la suscripción:</label>
  <select name="subtype" id="subtype">
  [% FOREACH subt IN subtype %] [% IF (subt.selected) %] <option value="[% subt.name %]" selected="selected">
  [% ELSE %] <option value="[% subt.name %]">
  [% END %] [% subt.name %] </option>
  [% END %] </select>
- <input type="text" name="sublength" id="sublength" value="[% sublength %]" size="3" /> (ingrese cantidad en cifras) <input type="hidden" name="issuelengthcount">
+ <input type="text" name="sublength" id="sublength" value="[% sublength %]" size="3" /> (introduzca una cantidad en cifras) <input type="hidden" name="issuelengthcount">
  </li>
  <li>
  <label for="startdate"> Comienzo de la suscripción: (*)</label>
@@ -635,7 +635,7 @@ $(document).ready(function() {
  [% FOREACH locale IN locales %] <option value="[% locale %]">
  [% locale %] </option>
  [% END %] </select>
- <span class="hint">Si esta vacío, utilize la configuración local del sistema </span>
+ <span class="hint">Si esta vacío, utiliza la configuración local del sistema</span>
  </li>
  <li id="more_options">
  <table id="moreoptionst">
@@ -656,7 +656,7 @@ $(document).ready(function() {
  <td id="beginsZ"><input type="text" id="lastvaluetemp3" name="lastvaluetemp3" value="[% lastvalue3 %]" /></td>
  </tr>
  <tr>
- <td>Contador interno </td>
+ <td>Contador interno</td>
  <td id="innerX"><input type="text" id="innerlooptemp1" name="innerlooptemp1" value="[% innerloop1 %]" /></td>
  <td id="innerY"><input type="text" id="innerlooptemp2" name="innerlooptemp2" value="[% innerloop2 %]" /></td>
  <td id="innerZ"><input type="text" id="innerlooptemp3" name="innerlooptemp3" value="[% innerloop3 %]" /></td>
@@ -667,7 +667,7 @@ $(document).ready(function() {
  <li><a style="cursor:pointer" onclick="toggleAdvancedPattern();">Mostrar/ocultar patrón avanzado</a></li>
  <div id="advancedpredictionpattern" style="display:none">
  <li>
- <label for="patternname">Nombre de socio: (*)</label>
+ <label for="patternname">Nombre de usuario: (*)</label>
  <input id="patternname" name="patternname" type="text" readonly="readonly" />
  </li>
  <li>
@@ -724,7 +724,7 @@ $(document).ready(function() {
  <td><input type="text" readonly="readonly" id="whenmorethan3" name="whenmorethan3" /></td>
  </tr>
  <tr>
- <td>Contador interno </td>
+ <td>Contador interno</td>
  <td><input type="text" readonly="readonly" id="innerloop1" name="innerloop1" /></td>
  <td><input type="text" readonly="readonly" id="innerloop2" name="innerloop2" /></td>
  <td><input type="text" readonly="readonly" id="innerloop3" name="innerloop3" /></td>
@@ -732,7 +732,7 @@ $(document).ready(function() {
  <tr>
  [% BLOCK numbering_select %] <select disabled="disabled" id="[% name %]" name="[% name %]" />
  <option value=""></option>
- <option value="dayname">Nombre del día </option>
+ <option value="dayname">Nombre del día</option>
  <option value="monthname">Nombre de meses</option>
  <option value="season">Nombre de la estación</option>
  </select>
@@ -751,7 +751,7 @@ $(document).ready(function() {
  </fieldset>
  <fieldset class="action">
  <input value="<< Anterior" style="float:left;" type="button" onclick="show_page_1();" />
- <input value="Test de patrón de predicción " id="testpatternbutton" type="button" onclick="testPredictionPattern();" />
+ <input value="Test de patrón de predicción" id="testpatternbutton" type="button" onclick="testPredictionPattern();" />
  <input accesskey="w" value="Guardar suscripción" style="float:right;" type="button" onclick="if (Check_page2()) submit();" />
  </fieldset>
  </div>

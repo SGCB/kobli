@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; [% title |html %] &rsaquo; [% IF ( op ) %]Crear lista de ruteo[% ELSE %]Editar lista de ruteo[% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; [% title |html %] &rsaquo; [% IF ( op ) %]Crear lista de circulación[% ELSE %]Editar lista de circulación[% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 <!--
 
@@ -15,7 +15,7 @@ function search_member(subscriptionid){
 </script>
 </head>
 <body id="ser_routing" class="ser">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; <a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptionid %]"><i>[% title |html %]</i></a> &rsaquo; [% IF ( op ) %]Crear lista de ruteo[% ELSE %]Editar lista de ruteo[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; <a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptionid %]"><i>[% title |html %]</i></a> &rsaquo; [% IF ( op ) %]Crear lista de circulación [% ELSE %]Editar lista de circulación [% END %]</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -24,8 +24,8 @@ function search_member(subscriptionid){
  <div class="yui-b">
 
 
-[% IF ( op ) %] <h1>Crear lista de ruteo para <i>[% title |html %]</i></h1>
-[% ELSE %] <h1>Editar lista de enrutamiento para <i>[% title |html %]</i></h1>
+[% IF ( op ) %] <h1>Crear lista de circulación para <i>[% title |html %]</i></h1>
+[% ELSE %] <h1>Editar lista de circulación para <i>[% title |html %]</i></h1>
 [% END %] <form method="post" action="routing.pl">
 <input type="hidden" name="op" value="save" />
 <input type="hidden" name="subscriptionid" value="[% subscriptionid %]" />

@@ -428,7 +428,7 @@
  </xsl:if>
  <xsl:if test="$typeOf008='CF'">
  <xsl:if test="$controlField008-26='a' or $controlField008-26='e' or $controlField008-26='f' or $controlField008-26='g'">
- <span class="label">; Tipo de archivo de computadora: </span>
+ <span class="label">; Tipo de archivo de ordenador: </span>
  </xsl:if>
  <xsl:choose>
  <xsl:when test="$controlField008-26='a'">

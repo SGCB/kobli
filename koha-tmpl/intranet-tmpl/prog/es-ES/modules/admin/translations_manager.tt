@@ -97,8 +97,8 @@ function loading_formul8(){
  <ul class="ui-tabs-nav">
  [% IF (createpo) %] <li id="createpo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createpo" title="Permitir crear los archivos de traducción PO para el nuevo idioma">Crear Po de Archivos</a></li>
  [% ELSE %] <li id="createpo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createpo" title="Permitir crear los archivos de traducción PO para el nuevo idioma">Crear Po de Archivos</a></li>
- [% END %] [% IF (editpo) %] <li id="editpo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=editpo" title="Permitir editar los archivos de traducción PO">Editar archivs de PO</a></li>
- [% ELSE %] <li id="editpo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=editpo" title="Permitir editar los archivos de traducción PO">Editar archivs de PO</a></li>
+ [% END %] [% IF (editpo) %] <li id="editpo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=editpo" title="Permitir editar los archivos de traducción PO">Editar archivos de PO</a></li>
+ [% ELSE %] <li id="editpo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=editpo" title="Permitir editar los archivos de traducción PO">Editar archivos de PO</a></li>
  [% END %] [% IF (deletepo) %] <li id="deletepo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=deletepo" title="Permitir borrar los archivos de traducción POpara un idioma">Eliminar PO archivos</a></li>
  [% ELSE %] <li id="deletepo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=deletepo" title="Permitir borrar los archivos de traducción POpara un idioma">Eliminar PO archivos</a></li>
  [% END %] [% IF (createtranslation) %] <li id="createtranslation_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createtranslation" title="Permitir instalar un nuevo idioma">Instalar idioma</a></li>

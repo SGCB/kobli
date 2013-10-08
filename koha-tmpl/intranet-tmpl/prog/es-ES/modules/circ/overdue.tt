@@ -84,7 +84,7 @@
 <table id="overduest">
 <thead><tr>
  <th>Fecha de devolución</th>
- <th>Socio</th>
+ <th>Usuario</th>
  <th>Biblioteca</th>
  <th>Título</th>
  <th>Código de barras</th>
@@ -126,10 +126,10 @@
  </ol></fieldset>
  <ol>
  <li><label>Nombre o número de carnet:</label><input type="text" name="borname" value="[% borname |html %]" /></li>
- <li><label>Categoría de socio:</label><select name="borcat" id="borcat"><option value="">Cualquiera</option>
+ <li><label>Categoría de usuario:</label><select name="borcat" id="borcat"><option value="">Cualquiera</option>
  [% FOREACH borcatloo IN borcatloop %] [% IF ( borcatloo.selected ) %]<option value="[% borcatloo.value |html %]" selected="selected">[% borcatloo.catname %]</option>[% ELSE %]<option value="[% borcatloo.value |html %]">[% borcatloo.catname %]</option>[% END %] [% END %] </select>
  </li>
- <li><label>Socio, banderas:</label>
+ <li><label> cuenta de Usuario:</label>
  <select name="borflag" size="1" id="borflag">
  <option value="">Ninguno</option>
  [% IF ( borflag_gonenoaddress ) %]<option value="gonenoaddress" selected="selected">Dirección Línea 1</option>
@@ -172,7 +172,7 @@
  </li>
 
  <li>
- <label>Biblioteca del socio:</label><select name="branch" id="branch">
+ <label>Biblioteca del usuario:</label><select name="branch" id="branch">
  <option value="">Cualquiera</option>
  [% FOREACH branchloo IN branchloop %] [% IF ( branchloo.selected ) %] <option value="[% branchloo.value |html %]" selected="selected">[% branchloo.branchname %]</option>[% ELSE %] <option value="[% branchloo.value |html %]">[% branchloo.branchname %]</option>[% END %] [% END %] </select>
  </li>

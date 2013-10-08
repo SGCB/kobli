@@ -6,7 +6,7 @@
  <div id="bd">
 
 <h1>Búsqueda en el catálogo</h1>
-[% IF ( no_query ) %] <div class="warning">Debe ingresar un término para buscar </div>
+[% IF ( no_query ) %] <div class="warning">Debe introducir un término para buscar </div>
 [% END %] <form name="f" action="/cgi-bin/koha/serials/subscription-bib-search.pl" method="get">
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="intranet" />

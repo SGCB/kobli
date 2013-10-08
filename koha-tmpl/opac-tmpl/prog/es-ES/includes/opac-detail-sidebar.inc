@@ -1,7 +1,7 @@
 <ul id="action">
  [% UNLESS ( norequests ) %] [% IF ( opacuserlogin ) %] [% IF ( RequestOnOpac ) %] [% IF ( AllowOnShelfHolds ) %] <li><a class="reserve" href="/cgi-bin/koha/opac-reserve.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>
  [% ELSE %] [% IF ( ItemsIssued ) %] <li><a class="reserve" href="/cgi-bin/koha/opac-reserve.pl?biblionumber=[% biblionumber %]">Hacer reserva</a></li>
- [% END %] [% END %] [% END %] [% END %] [% END %] <li><a class="print" href="#" onclick="window.print();">Imprimir</a></li>
+ [% END %] [% END %] [% END %] [% END %] [% END %] <li><a class="print" href="#" onclick="window.print();">Impreso</a></li>
  [% IF ( virtualshelves ) %] [% IF ( opacuserlogin ) %][% IF ( loggedinusername ) %] <li><a class="addtoshelf" href="/cgi-bin/koha/opac-addbybiblionumber.pl?biblionumber=[% biblionumber %]" onclick="Dopop('opac-addbybiblionumber.pl?biblionumber=[% biblionumber %]'); return false;">
  Guardar en tus listas </a></li>
  [% END %][% END %] [% END %] [% IF ( opacbookbag ) %] [% IF ( incart ) %] <li><a class="incart cart[% biblionumber %]" href="#" onclick="addRecord('[% biblionumber %]'); return false;">En su cesta</a> <a class="cartRemove cartR[% biblionumber %]" href="#" onclick="delSingleRecord('[% biblionumber %]'); return false;">(Borrar)</a></li>

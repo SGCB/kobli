@@ -60,7 +60,7 @@ $(document).ready(function () {
 <!-- Patron has fines -->
 [% IF ( fines ) %]
  <div class="dialog alert">
- <h3>El socio tiene multas pendientes de [% fines %]</h3>
+ <h3>El usuario tiene multas pendientes de [% fines %]</h3>
  <p><a href="/cgi-bin/koha/members/pay.pl?borrowernumber=[% fineborrowernumber %]">Realizar pago</a>.</p>
  </div>
 [% END %]
@@ -69,7 +69,7 @@ $(document).ready(function () {
 [% IF ( waiting_holds ) %]
  <div id="awaiting-pickup" class="dialog message">
  <h3>[% holdsfirstname %] [% holdssurname %] tiene [% waiting_holds %] reserva(s) a la espera de ser retirada(s).</h3>
- <p><a href="/cgi-bin/koha/circ/circulation.pl?borrowernumber=[% holdsborrowernumber %]">Prestado a este socio</a>.</p>
+ <p><a href="/cgi-bin/koha/circ/circulation.pl?borrowernumber=[% holdsborrowernumber %]">Prestado a este usuario</a>.</p>
  </div>
 [% END %] [% IF ( wrongbranch ) %] <div class="dialog alert"><h3>No se puede devolver </h3><p>Este ítem debe ser devuelto en la biblioteca de origen. <strong>NO DEVUELTO</strong></p>
 </div>
@@ -108,7 +108,7 @@ $(document).ready(function () {
  <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borsurname %], [% borfirstname %]</a> ([% borcnum %])</li>
  <li>[% boraddress %]<br />
  [% IF ( boraddress2 ) %][% boraddress2 %]<br />[% END %] [% borcity %] [% borzip %]</li>
- [% IF ( borphone ) %]<li> [% borphone %]</li>[% END %] [% IF ( boremail ) %]<li><a id="boremail" href="mailto:[% boremail %]">[% boremail %]</a></li>[% END %] [% IF ( debarred ) %]<li class="error">El socio está RESTRINGIDO</li>[% END %] [% IF ( gonenoaddress ) %]<li class="error">Dirección de socio dudosa</li>[% END %]</ul>
+ [% IF ( borphone ) %]<li> [% borphone %]</li>[% END %] [% IF ( boremail ) %]<li><a id="boremail" href="mailto:[% boremail %]">[% boremail %]</a></li>[% END %] [% IF ( debarred ) %]<li class="error">El usuario está RESTRINGIDO</li>[% END %] [% IF ( gonenoaddress ) %]<li class="error">Dirección de usuario es dudosa</li>[% END %]</ul>
  [% IF ( transfertodo ) %] <h4><strong>Transferir a:</strong> [% destbranchname %]</h4>
  [% ELSE %] <h4><strong>Reservar el</strong> [% destbranchname %]</h4>
  [% END %] <form method="post" action="returns.pl" class="confirm">
@@ -139,7 +139,7 @@ $(document).ready(function () {
  <li><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% borsurname %], [% borfirstname %]</a> ([% borcnum %])</li>
  <li>[% boraddress %]<br />
  [% IF ( boraddress2 ) %][% boraddress2 %]<br />[% END %] [% borcity %] [% borzip %]</li>
- [% IF ( borphone ) %]<li>[% borphone %]</li>[% END %] [% IF ( boremail ) %]<li>[% IF ( transfertodo ) %][% boremail %][% ELSE %]<a id="boremail" href="mailto:[% boremail %]">[% boremail %]</a>[% END %]</li>[% END %] [% IF ( debarred ) %]<li class="error">El socio está RESTRINGIDO</li>[% END %] [% IF ( gonenoaddress ) %]<li class="error">Dirección de socio dudosa</li>[% END %] </ul>
+ [% IF ( borphone ) %]<li>[% borphone %]</li>[% END %] [% IF ( boremail ) %]<li>[% IF ( transfertodo ) %][% boremail %][% ELSE %]<a id="boremail" href="mailto:[% boremail %]">[% boremail %]</a>[% END %]</li>[% END %] [% IF ( debarred ) %]<li class="error">El usuario está RESTRINGIDO</li>[% END %] [% IF ( gonenoaddress ) %]<li class="error">Dirección de usuario es dudosa</li>[% END %] </ul>
  [% IF ( transfertodo ) %] <h4><strong>Transferir a:</strong> [% destbranchname %]</h4>
  [% ELSE %] <h4><strong>Reservar el</strong> [% destbranchname %]</h4>
  [% END %] <form method="post" action="returns.pl" class="confirm">
@@ -221,7 +221,7 @@ $(document).ready(function () {
  [% borsurname %], [% borfirstname %] </a> ([% borcnum %])</li>
  <li>[% boraddress %]<br />
  [% IF ( boraddress2 ) %][% boraddress2 %]<br />[% END %] [% borcity %] [% borzip %]</li>
- [% IF ( borphone ) %]<li>[% borphone %]</li>[% END %] [% IF ( boremail ) %]<li>[% IF ( transfertodo ) %][% boremail %][% ELSE %]<a id="boremail" href="mailto:[% boremail %]">[% boremail %]</a>[% END %]</li>[% END %] [% IF ( debarred ) %]<li class="error">El socio está RESTRINGIDO</li>[% END %] [% IF ( gonenoaddress ) %]<li class="error">Dirección de socio dudosa</li>[% END %] </ul>
+ [% IF ( borphone ) %]<li>[% borphone %]</li>[% END %] [% IF ( boremail ) %]<li>[% IF ( transfertodo ) %][% boremail %][% ELSE %]<a id="boremail" href="mailto:[% boremail %]">[% boremail %]</a>[% END %]</li>[% END %] [% IF ( debarred ) %]<li class="error">El usuario está RESTRINGIDO</li>[% END %] [% IF ( gonenoaddress ) %]<li class="error">Dirección de usuario es dudosa</li>[% END %] </ul>
  [% IF ( transfertodo ) %] <h4><strong>Transferir a:</strong> [% destbranchname %]</h4>
  [% ELSE %] <h4><strong>Reservar el</strong> [% destbranchname %]</h4>
  [% END %] <form method="post" action="returns.pl" class="confirm">
@@ -247,8 +247,8 @@ $(document).ready(function () {
  [% END %] [% IF ( errmsgloo.notissued ) %] <p class="problem">No prestado.</p>
  [% END %] [% IF ( errmsgloo.localuse) %] <p class="problem">Uso local almacenado</p>
  [% END %] [% IF ( errmsgloo.waslost ) %] <p class="problem">El ítem estaba perdido, se ha encontrado.</p>
- [% IF ( LostItemFeeRefunded ) %] <p class="problem">Un reembolso se ha aplicado a la cuenta del socio prestatario.</p>
- [% ELSE %] <p class="problem">Los cargos de ítem perdido para este ítem se recordarán en la cuenta del socio </p>
+ [% IF ( LostItemFeeRefunded ) %] <p class="problem">Un reembolso se ha aplicado a la cuenta del usuario.</p>
+ [% ELSE %] <p class="problem">Los cargos de ítem perdido para este ítem se recordarán en la cuenta del usuario </p>
  [% END %] [% END %] [% IF ( errmsgloo.withdrawn ) %] [% IF BlockReturnOfWithdrawnItems %] <h5>No se puede devolver </h5>
  <p class="problem">Ítem retirado. <strong>NO DEVUELTO</strong></p>
  [% ELSE %] <p class="problem">Ítem retirado.</p>
@@ -269,7 +269,7 @@ $(document).ready(function () {
  <div class="yui-u first">
  <fieldset>
  <legend>Devolución</legend>
- <label for="barcode">Ingrese código de barras del ítem: </label>
+ <label for="barcode">Introduzca el código de barras del ítem: </label>
  [% IF ( exemptfine ) %] <input name="barcode" id="barcode" size="14" class="focus alert"/>
  [% ELSIF ( dropboxmode ) %] <input name="barcode" id="barcode" size="14" class="focus alert"/>
  [% ELSE %] <input name="barcode" id="barcode" size="14" class="focus"/>
@@ -300,7 +300,7 @@ $(document).ready(function () {
 
 [% IF ( riloop ) %] <h2>Ítems devueltos</h2>
  <table>
- <tr><th>Fecha de devolución</th><th>Título</th> <th>Autor</th> <th>Código de barras</th><th>Biblioteca de origen</th><th>Biblioteca de existencia</th><th>Ubicación en estantería</th><th>Signatura</th><th>Tipo</th> <th>Socio</th><th>Nota</th></tr>
+ <tr><th>Fecha de devolución</th><th>Título</th> <th>Autor</th> <th>Código de barras</th><th>Biblioteca de origen</th><th>Biblioteca actual</th><th>Ubicación en estantería</th><th>Signatura</th><th>Tipo</th> <th>Usuario</th><th>Nota</th></tr>
 
  [% FOREACH riloo IN riloop %] <tr>
  <td>[% IF ( riloo.duedate ) %] [% IF ( riloo.return_overdue ) %] <span class="overdue">[% riloo.duedate %] (vencido)</span>

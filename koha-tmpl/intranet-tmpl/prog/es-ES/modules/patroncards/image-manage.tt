@@ -1,4 +1,4 @@
- [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Creador de carnets de socio &rsaquo; Administrar imágenes</title>
+ [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Creador de carnets de usuario &rsaquo; Administrar imágenes</title>
  [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
         //<![CDATA[
             function DeleteConfirm() {
@@ -43,7 +43,7 @@
 </head>
 <body id="pcard_image-manage" class="tools pcard">
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs">
- <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/patroncards/home.pl">Creador de carnet de socio</a> &rsaquo; Administrar imágenes </div>
+ <a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/patroncards/home.pl">Creador de carnet de usuario</a> &rsaquo; Administrar imágenes </div>
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
@@ -59,7 +59,7 @@
  [% END %] <form name="upload_images" method="post" action="/cgi-bin/koha/patroncards/image-manage.pl" enctype="multipart/form-data">
  <fieldset class="brief">
  <div class="hint">
- <b>NOTA:</b> Sólo son soportados los formatos PNG, GIF, JPEG, XPM <b>Ud. debe </b> ser menos de 500KB. </div>
+ <b>NOTA:</b> Sólo son soportados los formatos PNG, GIF, JPEG, XPM <b>Ud. debe</b> ser menos de 500KB. </div>
  <ol>
  <li>
  <label for="uploadfile">Seleccione el archivo a subir: </label>
@@ -69,7 +69,7 @@
  <li>
  <label for="image_name">Nombre de la imagen: </label>
  <div class="hint">
- Este será el nombre con el que se hará referencia a esta imagen en el editor de diseño de carnet de socio. </div>
+ Este será el nombre con el que se hará referencia a esta imagen en el editor de diseño de carnet de usuario. </div>
  <input type="text" id="image_name" name="image_name" size="20" />
  </li>
  </ol>

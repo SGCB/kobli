@@ -257,7 +257,7 @@ function submitForm(form) {
  <td>[% basketgroup.basketsqty %]</td>
  <td>
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="reopen" /><input type="hidden" name="booksellerid" value="[% basketgroup.booksellerid %]" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Reabrir" type="submit" /></form>
- <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="print" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Imprimir" type="submit" /></form>
+ <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="print" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Impreso" type="submit" /></form>
  <form action="/cgi-bin/koha/acqui/basketgroup.pl" method="get"><input type="hidden" name="op" value="export" /><input type="hidden" name="basketgroupid" value="[% basketgroup.id %]" /><input value="Exportar como CSV" type="submit" /></form>
  </td>
  </tr>

@@ -56,7 +56,7 @@ $(document).ready(function() {
  <div class="yui-b">
 
 [% INCLUDE 'acquisitions-toolbar.inc' %] <h1>Adquisiciones</h1>
- [% UNLESS ( loop_budget ) %] [% IF ( CAN_user_acquisition_period_manage ) %] <div class="dialog alert">Ud. debe <a href="/cgi-bin/koha/admin/aqbudgetperiods.pl">defina un presupuesto</a> en Administración</div>
+ [% UNLESS ( loop_budget ) %] [% IF ( CAN_user_acquisition_period_manage ) %] <div class="dialog alert">Ud. debe <a href="/cgi-bin/koha/admin/aqbudgetperiods.pl">definir un presupuesto</a> en Administración</div>
  [% ELSE %] <div class="dialog alert">Su administrador debe definir un presupuesto en Administración</div>
  [% END %] [% END %] <div class="yui-g">
 <div class="yui-u first">

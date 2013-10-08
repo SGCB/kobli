@@ -910,7 +910,7 @@ Added Log Comment
  <form authority="smd">cartucho de chip</form>
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='c']">
- <form authority="smd">cartucho de discos ópticos de computadora</form>
+ <form authority="smd">cartucho de discos ópticos de ordenador</form>
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='c'][substring(text(),2,1)='j']">
  <form authority="smd">disco magnético </form>

@@ -11,7 +11,7 @@
 [% IF ( local_use ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/admin/systempreferences.pl">Uso local</a></li>
 [% IF ( logs ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/admin/preferences.pl?tab=logs" title="Registros de transacción">Logs</a></li>
 [% IF ( opac ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/admin/preferences.pl?tab=opac" title="Acceso público del catálogo en línea">OPAC</a></li>
-[% IF ( patrons ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/admin/preferences.pl?tab=patrons" title="Socios">Socios</a></li>
+[% IF ( patrons ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/admin/preferences.pl?tab=patrons" title="Usuarios">Usuarios</a></li>
 [% IF ( searching ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/admin/preferences.pl?tab=searching" title="Buscar">Buscar</a></li>
 [% IF ( serials ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/admin/preferences.pl?tab=serials" title="Publicaciones periódicas">Publicaciones periódicas</a></li>
 [% IF ( staff_client ) %]<li class="active">[% ELSE %]<li>[% END %]<a href="/cgi-bin/koha/admin/preferences.pl?tab=staff_client" title="Cliente administrativo">Cliente administrativo</a></li>

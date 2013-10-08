@@ -1,19 +1,19 @@
-[% INCLUDE 'help-top.inc' %] <h2>Permisos del socio</h2>
+[% INCLUDE 'help-top.inc' %] <h2>Permisos del usuario</h2>
 
-<p>Lo permisos de socios se usan para permitir al personal acceder al cliente administrativo.</p>
+<p>Lo permisos de usuarios se usan para permitir al personal acceder al cliente administrativo.</p>
 
-<p style="color: #990000">Importante: De manera de permitir al personal ingresar a la interfaz administrativa deberán tener (por lo menos) permisos de 'catalogo' para permitirle ver la interfaz administrativa.</p>
+<p style="color: #990000">Importante: Con el fin de permitir al personal acceder a la interfaz administrativa deberán tener (por lo menos) permisos de 'catálogo' para permitirle ver la interfaz administrativa.</p>
 
-<h3>Confirgurar Permisos de Socios</h3>
+<h3>Confirgurar Permisos de Usuarios</h3>
 
-<p>Para establecer permisos de socios, deberá primero tener un socio de tipo 'Staff' abierto</p>
+<p>Para establecer permisos de usuarios, deberá primero tener un usuario de tipo 'Staff' abierto</p>
 
 <ul>
- <li>En el registro del socio haga clic en Más y seleccione Establecer permisos para cambiar los permisos del socio</li>
+ <li>En el registro del usuario haga clic en Más y seleccione Establecer permisos para cambiar los permisos del usuario</li>
  <li>Se le presentará una lista de preferencias, algunas de la cuales pueden ser expandidas haciendo clic en el signo más a la izquierda del título de sección.</li>
 </ul>
 
-<h3>Permisos de socios definidos</h3>
+<h3>Permisos de usuarios definidos</h3>
 
 <ul>
  <li>super bibliotecario<ul>
@@ -40,8 +40,8 @@
  <li>Esta sección se puede ampliar </li>
 </ul>
 </li>
- <li>socios <ul>
- <li>Añadir y modificar socios</li>
+ <li>usuarios <ul>
+ <li>Añadir y modificar usuarios</li>
 </ul>
 </li>
  <li>permisos<ul>
@@ -63,7 +63,7 @@
 </ul>
 </li>
  <li>updatecharges <ul>
- <li>Gestionar socios. multas y deudas</li>
+ <li>Gestionar usuarios. multas y deudas</li>
 </ul>
 </li>
  <li>adquisición <ul>
@@ -100,7 +100,7 @@
 </li>
  <li>staffaccess <ul>
  <li>Permitir al personal modificar los permisos de otros miembros del equipo</li>
- <li style="color: #990000">Importante: a la tabla de préstamos: Requiere supervisión del  permiso de los prestatarios</li>
+ <li style="color: #990000">Importante: a la tabla de préstamos: Requiere supervisión del permiso de los usuarios</li>
 </ul>
 </li>
 </ul>
@@ -151,11 +151,11 @@
 <ul>
  <li>modify_holds_priority <ul>
  <li>Modificar la prioridad de las reservas</li>
- <li>Permitir al personal alterar las prioridades de reservas (moviendo socios arriba y abajo de la cola)</li>
+ <li>Permitir al personal alterar las prioridades de reservas (moviendo usuarios arriba y abajo de la cola)</li>
 </ul>
 </li>
  <li>place_holds <ul>
- <li>Realizar reserva para los socios</li>
+ <li>Realizar reserva para los usuarios</li>
 </ul>
 </li>
 </ul>
@@ -268,26 +268,26 @@
  <li>Renovar una suscripción</li>
 </ul>
 </li>
- <li>routing <ul>
- <li>Ruteo</li>
- <li>Administrar hojas de ruta</li>
+ <li>circulación <ul>
+ <li>Circulación</li>
+ <li>Administrar hojas de circulación</li>
 </ul>
 </li>
 </ul>
 
 <h4>Permisos granulares de herramientas</h4>
 
-<p>Si un miembro del personal tiene permisos 'tools' tienen la capacidad para llevar a cabo todas estas acciones. Si desea controlar los permisos para herramientas en un nivel más granular, elija entre estas opciones:</p>
+<p>Si un miembro del personal tiene permisos 'Tools' tienen la capacidad para llevar a cabo todas estas acciones. Si desea controlar los permisos para herramientas en un nivel más granular, elija entre estas opciones:</p>
 
 <ul>
  <li>batch_upload_patron_images <ul>
- <li>Subir imágenes de socios en lote o una a la vez</li>
+ <li>Subir imágenes de usuarios en lote o una a la vez</li>
  <li>Acceso a la herramienta de carga de imágenes</li>
 </ul>
 </li>
  <li>delete_anonymize_patrons <ul>
- <li>Eliminar socios antiguos y anonimizar historial de préstamos (borra historial de lectura del socio)</li>
- <li>Acceso a la Herramienta para hacer socios anónimos</li>
+ <li>Eliminar usuarios antiguos y anonimizar historial de préstamos (borra historial de lectura del usuario)</li>
+ <li>Acceso a la Herramienta para hacer usuarios anónimos</li>
 </ul>
 </li>
  <li>edit_calendar <ul>
@@ -306,8 +306,8 @@
 </ul>
 </li>
  <li>edit_notices <ul>
- <li>Definir noticias</li>
- <li>Accesi a la herramienta de noticias</li>
+ <li>Definir avisos</li>
+ <li>Acceso a la herramienta de avisos</li>
 </ul>
 </li>
  <li>export_catalog <ul>
@@ -316,8 +316,8 @@
 </ul>
 </li>
  <li>import_patrons <ul>
- <li>Importar datos de socio</li>
- <li>Acceso a la herramienta de importación de socios</li>
+ <li>Importar datos de usuario</li>
+ <li>Acceso a la herramienta de importación de usuarios</li>
 </ul>
 </li>
  <li>inventario <ul>
@@ -337,7 +337,7 @@
 </li>
  <li>label_creator <ul>
  <li>Crear etiquetas y códigos de barras para imprimir a partir de los datos del catálogo</li>
- <li>Acceso al Creador de etiquetas y a la herramienta Creador de Marbetes</li>
+ <li>Acceso al Creador de etiquetas y a la herramienta Creador de tejuelos</li>
 </ul>
 </li>
  <li>gestion_csv_perfil<ul>
@@ -351,12 +351,12 @@
 </ul>
 </li>
  <li>moderate_comments <ul>
- <li>Moderar comentarios de socios</li>
+ <li>Moderar comentarios de usuarios</li>
  <li>Acceso a la herramienta de comentarios</li>
 </ul>
 </li>
  <li>moderate_tags <ul>
- <li>Moderar pestañas de socio</li>
+ <li>Moderar pestañas de usuario</li>
  <li>Acceso a la Herramienta de etiquetas</li>
 </ul>
 </li>
@@ -382,7 +382,7 @@
 </li>
 </ul>
 
-<h4>Permisos granulares de reportes</h4>
+<h4>Permisos granulares de informes</h4>
 
 <p>Si un miembro del personal tiene permisos de 'reports' tienen la capacidad para llevar a cabo todas estas acciones. Si desea controlar los permisos de informes en un nivel más granular, elija entre estas opciones:</p>
 
@@ -399,6 +399,6 @@
 </li>
 </ul>
 
-<p><strong>Vea la documentación completa de Permisos de socios en la <a href="http://es.koha-community.org/manual/3.12/es/patronpermissions.html">manual</a> (en línea).</strong></p>
+<p><strong>Vea la documentación completa de Permisos de Usuarios en la <a href="http://es.koha-community.org/manual/3.12/es/patronpermissions.html">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

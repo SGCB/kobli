@@ -504,7 +504,7 @@
  <span class="label">Combinado con ... para formar ...</span>
  </xsl:when>
  <xsl:when test="@ind2=8">
- <span class="label">Cambió nuevamente a:</span>
+ <span class="label">Cambió de nuevo a:</span>
  </xsl:when>
 
  </xsl:choose>

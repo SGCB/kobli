@@ -15,7 +15,7 @@
  [% IF ( checkdatabasecreated ) %] <p>Base de Datos <code>[% dbname %]</code> existe.</p>
  [% IF ( checkgrantaccess ) %] <p>Usuario <code>[% user %]</code> tiene todos los privilegios en la base de datos <code>[% dbname %]</code>.</p>
  [% ELSE %] <p class="error">user <code>[% user %]</code> no tiene suficientes privilegios sobre la base de datos <code>[% dbname %]</code> </p>
- <p class="tip"> Solicitar o realizar una modificación en los privilegios del socio. ¿Necesita ayuda? Vea [% IF ( mysql ) %]<a href=http://dev.mysql.com/doc/refman/4.1/en/grant.html>[% ELSE %]http://www.postgresql.org/docs/8.2/interactive/sql-createrole.html[% END %]esta página</a>. Usuario <code>[% user %]</code> debe tener privilegios de USAGE, INSERT, UPDATE, DELETE, DROP y CREATE<code>[% dbname %]</code></p>
+ <p class="tip"> Solicitar o realizar una modificación en los privilegios del usuario. ¿Necesita ayuda? Vea [% IF ( mysql ) %]<a href=http://dev.mysql.com/doc/refman/4.1/en/grant.html>[% ELSE %]http://www.postgresql.org/docs/8.2/interactive/sql-createrole.html[% END %]esta página</a>. Usuario <code>[% user %]</code> debe tener privilegios de USAGE, INSERT, UPDATE, DELETE, DROP y CREATE<code>[% dbname %]</code></p>
  [% END %] [% ELSE %] <p class="error">No se ha dado nombre a ninguna base de datos <code>[% dbname %]</code> detectado.</p>
  <p class="tip">Por favor, cree la base de datos antes de continuar.</p>
  [% END %] [% ELSE %] <div class="error">[% error %] : [% message %] </div>

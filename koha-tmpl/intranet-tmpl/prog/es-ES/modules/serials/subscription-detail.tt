@@ -84,8 +84,8 @@ $(document).ready(function() {
  <div class="rows">
  <ol>
  [% IF ( location ) %]<li><span class="label">Ubicación:</span> [% location %]</li>[% END %] [% IF ( callnumber ) %]<li><span class="label">Signatura:</span> [% callnumber %]</li>[% END %] [% IF ( staffdisplaycount ) %]<li><span class="label">Número de ejemplares a mostrar en interfaz administrativa:</span>[% staffdisplaycount %]</li>[% END %] [% IF ( opacdisplaycount ) %]<li><span class="label">Número de ejemplares a mostrar en OPAC:</span>[% opacdisplaycount %]</li>[% END %] [% IF ( letter ) %] <li>
- <span class="label">Notificación a socio: </span> [% letter %] (<a href="/cgi-bin/koha/serials/viewalerts.pl?subscriptionid=[% subscriptionid %]">suscriptores</a>) </li>
- [% END %] [% IF ( hasRouting ) %]<li><span class="label">Ruteo:</span> Sí</li>[% END %] </ol>
+ <span class="label">Notificación a usuario: </span> [% letter %] (<a href="/cgi-bin/koha/serials/viewalerts.pl?subscriptionid=[% subscriptionid %]">suscriptores</a>) </li>
+ [% END %] [% IF ( hasRouting ) %]<li><span class="label">Circulación:</span> Sí</li>[% END %] </ol>
  </div>
  </div>
 </div>
@@ -120,7 +120,7 @@ $(document).ready(function() {
  </table></li>
  [% IF ( irregular_issues ) %] <li><span class="label">Irregularidad:</span> [% irregular_issues %] ejemplares </li>
  [% END %] <li><span class="label">Primera llegada:</span> [% firstacquidate %] </li>
- [% IF ( numberlength ) %]<li><span class="label">Número de préstamos:</span> [% numberlength %]</li>[% END %] [% IF ( weeklength ) %]<li><span class="label">Número de semanas:</span> [% weeklength %]</li>[% END %] [% IF ( monthlength ) %]<li><span class="label">Número de meses:</span> [% monthlength %]</li>[% END %] </ol>
+ [% IF ( numberlength ) %]<li><span class="label">Número de ejemplares:</span> [% numberlength %]</li>[% END %] [% IF ( weeklength ) %]<li><span class="label">Número de semanas:</span> [% weeklength %]</li>[% END %] [% IF ( monthlength ) %]<li><span class="label">Número de meses:</span> [% monthlength %]</li>[% END %] </ol>
  </div>
  </div>
  </div>
@@ -210,7 +210,7 @@ $(document).ready(function() {
  <li><span class="label">Fecha final del historial:</span> [% histenddate %]</li>
  <li><span class="label">Ejemplares recibidos:</span>[% recievedlist %]</li>
  <li><span class="label">Ejemplares faltantes:</span>[% missinglist %]</li>
- <li><span class="label">Nota no pública</span>[% internalnotes FILTER html_line_break %]</li>
+ <li><span class="label">Nota no pública:</span>[% internalnotes FILTER html_line_break %]</li>
  <li><span class="label">Nota pública:</span>[% notes FILTER html_line_break %]</li>
  <li><span class="label">Nota administrativa del historial:</span>[% librariannote FILTER html_line_break %]</li>
  <li><span class="label">Historia de nota de OPAC:</span>[% opacnote FILTER html_line_break %]</li>

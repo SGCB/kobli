@@ -18,13 +18,13 @@
  [% ELSE %] [% IF ( missingparameter ) %] <form method="post" action="/cgi-bin/koha/cataloguing/linkitem.pl">
  [% IF ( missingbiblionumber ) %] <fieldset id="biblionumber_fieldset">
  <label for="biblionumber_fieldset">Seleccione el biblionumber al cual asignar el ítem</label>
- <div class="hint">Ingrese biblionumber:</div>
+ <div class="hint">Introduzca biblionumber:</div>
  <input type="text" name="biblionumber" id="biblionumber" class="focus" size="14" /> 
  </fieldset>
  [% ELSE %] <input type="hidden" name="biblionumber" id="biblionumber" value="[% biblionumber %]" />
  [% END %] [% IF ( missingbarcode ) %] <fieldset id="barcode_fieldset">
  <label for="barcode_fieldset">Seleccione el ítem para enlazar [% IF ( bibliotitle ) %] a <i>[% bibliotitle |html %]</i>[% END %]</label>
- <div class="hint">Ingrese código de barras del ítem:</div>
+ <div class="hint">Introduzca el código de barras del ítem:</div>
  <input type="text" name="barcode" id="barcode" class="barcode focus" size="14" /> 
  </fieldset>
  [% ELSE %] <input type="hidden" name="barcode" id="barcode" value="[% barcode %]" />
