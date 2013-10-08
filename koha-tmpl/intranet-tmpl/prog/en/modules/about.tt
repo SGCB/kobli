@@ -125,12 +125,13 @@
         </div>
 
         <div id="kobliteam">
-	    <h2>Kobli 1.12.1, distro developed by Ministerio de Cultura based on Koha 3.12.1</h2>
+	    <h2>Kobli 1.12.4, distro developed by Ministerio Educación Cultura y Deporte based on Koha 3.12.4</h2>
 		    <ul>
                 <li><a href="http://kobli.bage.es/">Koha-Kobli</a>, Integrated system library management open source</li>
             </ul>
             
             <h2>Improvements</h2>
+            <h3>Kobli 1.4</h3>
             <ul>
                 <li>Bug 4888 - pre-set of field indicators value</li>
                 <li>Bug 5678 - Translations Manager</li>
@@ -139,6 +140,9 @@
                 <li>New map on char sorting for Zebra</li>
                 <li>Kobli design</li>
                 <li>New translating in spanish</li>
+            </ul>
+            <h3>Kobli 1.8.1</h3>
+            <ul>
                 <li>Tool for uploading images of the OPAC</li>
                 <li>Support for importing and exporting records with embedded holdings</li>
                 <li>Support for linking analytical records</li>
@@ -153,6 +157,9 @@
                 <li>Indicators database with update Marc21 rev. 13-14</li>
                 <li>Xml plugin data 006 and 008 update with Marc21 rev. 13-14</li>
                 <li>Kobli Postupgrade script</li>
+            </ul>
+            <h3>Kobli 1.12.1</h3>
+            <ul>
                 <li>Set field 003 with MARCOrgCode at OAI</li>
                 <li>Add ACQ framework by default</li>
                 <li>Fixed bug in spanish indicators</li>
@@ -166,10 +173,60 @@
                 <li>New mandatory fields to create a patron</li>
                 <li>Adaptation of local repository to cataloging</li>
                 <li>Bug 9921 - Make it possible to force 001 = biblionumber</li>
+                <li>Adaptation of holdings to export/import records tool</li>
+            </ul>
+            <h4>Adaptations from Koha Community developments</h4>
+            <ul>
                 <li>Bug 10480: New cataloging plugin style without redefining</li>
                 <li>Bug 10480: Followup for additem.pl (no redefines for plugins)</li>
-                <li>Adaptation of holdings to export/import records tool</li>
-                <li>Spanish po files updated and translated</li>
+            </ul>
+            <h3>Kobli 1.12.4</h3>
+            <ul>
+                <li>Adaptation of OPAC search to Kobli 1.12.4</li>
+                <li>Spanish translation of subscription tables for new interface</li>
+                <li>Add field 787 in detail view of OPAC and intranet</li>
+                <li>System preferences updated with Koha master style</li>
+                <li>Improved Zebra indexing for Advanced search by personal author using Marc21</li>
+                <li>Add subfield $b at fields 110 and 710 in XSLT view</li>
+                <li>Add subfield $b at fields 111 and 711 in XSLT view</li>
+                <li>Replace tabs with spaces in opac-search-history.tt</li>
+                <li>Spanish Koha user manual in help pop-ups</li>
+                <li>Fixed OPAC search design</li>
+                <li>Koha-Kobli version updated on database</li>
+                <li>Letter table updated in spanish Koha database</li>
+                <li>Set user password in OPAC through sending email</li>
+                <li>Available library acquisition history</li>
+                <li>Improvement in send basket to user from OPAC and intranet</li>
+                <li>Adaptation of spanish templates for sending baskets</li>
+                <li>Fixed bug in plugins for 006 and 008 in Marc21 in Kobli 1.12.1</li>
+                <li>Fixed bug in visualization of OPAC course details</li>
+                <li>Fixed bug to fetch field 001 in Z39.50 searching for authorities</li>
+                <li>Improvement of spanish frameworks Marc21 for bibliographics</li>
+                <li>Fixed bug in translations manager</li>
+                <li>Updated system preferences for Kobli 1.12.4</li>
+                <li>Spanish po files updated and translated for Kobli 1.12.4</li>
+                <h4>Adaptations from Koha Community developments</h4>
+                <ul>
+                    <li>Bug 7688: Change subscription numbering pattern and frequencies</li>
+                    <li>Bug 10096: Add a Z39.50 interface for authority searching</li>
+                    <li> Bug 10600: Duplicate an authority</li>
+                    <li>Bug 10852: serials search improvements</li>
+                    <li>Bug 8732: Allowing biblio level itemtypes to display instead of MARC ones</li>
+                    <li>Bug 9368: specific behavior of yr and acqdate indexes</li>
+                    <li>Bug 10808: Thesaurus search form does not correspond to current search query</li>
+                    <li>Bug 7679: circulation statistics wizard improvements</li>
+                    <li>Bug 7683: Cataloguing statistics wizard improvements</li>
+                    <li>Bug 10948: make reference labels translatable in OPAC auth results</li>
+                    <li>Bug 10602: Set a default value for authorities</li>
+                </ul>
+            </ul>
+            <h2>Release and development team for Kobli 1.12.4</h2>
+            <ul>
+                <li>Domingo Arroyo Fernández</li>
+                <li>Ana Isabel González Sáez</li>
+                <li>Alicia Sellés Carot</li>
+                <li>Isabel García Soler</li>
+                <li>Nuño López Ansótegui</li>
             </ul>
         </div>
         <div id="team">
@@ -188,7 +245,7 @@
                 <li><a href="http://www.ashs.school.nz/">Albany Senior High School</a>, Auckland, New Zealand (OPAC 'star-ratings' sponsorship)</li>
             </ul>
 
-            <h2>Release team for Koha 3.14</h2>
+            <h2>Release team for Koha 3.12</h2>
             <ul>
                <li>Tomás Cohen Arazi (3.12.X Release Maintainer)</li>
                <li><a href="https://www.ohloh.net/p/koha/contributors/6618544614260">Galen Charlton</a> (Release Manager)</li>

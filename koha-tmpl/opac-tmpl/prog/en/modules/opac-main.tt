@@ -39,14 +39,13 @@
     [% END %]
     </table>
 </div>
+    [% IF ( display_daily_quote && daily_quote ) %]
+        <div id="news" class="container">
+            <div id="daily-quote" class="container"><h1>Quote of the Day</h1><div><span id="daily-quote-text">[% daily_quote.text %]</span><span id="daily-quote-sep"> ~ </span><span id="daily-quote-source">[% daily_quote.source %]</span></div></div>
+        </div>
+    [% END %]
 [% END %]
 
-      [% IF ( display_daily_quote && daily_quote ) %]
-    <div id="daily-quote" class="container"><h1>Quote of the Day</h1><div><span id="daily-quote-text">[% daily_quote.text %]</span><span id="daily-quote-sep"> ~ </span><span id="daily-quote-source">[% daily_quote.source %]</span></div></div>
-[% END %]
-
-<div id="opacmainuserblock" class="container">[% OpacMainUserBlock %]</div>
-<div id="opacmainuserblockmobile" class="container">[% OpacMainUserBlockMobile %]</div>
 
 </div>
 </div>
