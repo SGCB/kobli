@@ -5284,7 +5284,7 @@ if ( C4::Context->preference("Version") < TransformToNum($DBversion) ) {
     $dbh->do("UPDATE systempreferences SET value=1 WHERE variable='AllowHoldDateInFuture' OR variable='OPACAllowHoldDateInFuture'");
     $dbh->do("UPDATE systempreferences SET value='Biblioteca de la AGE' WHERE variable='LibraryName'");
     $dbh->do("UPDATE systempreferences SET value='Monday' WHERE variable='CalendarFirstDayOfWeek'");
-    $dbh->do("UPDATE systempreferences SET value='Los Frameworks se cargan a trav  del instalador web' WHERE variable='FrameworksLoaded'");
+    $dbh->do("UPDATE systempreferences SET value='Los Frameworks se cargan a través del instalador web' WHERE variable='FrameworksLoaded'");
     $dbh->do("UPDATE systempreferences SET value='Koha. Kobli, Ministerio de Educaci&oacute;n, Cultura y Deporte Espa&ntilde;a, 2012' WHERE variable='opaccredits'");
     $dbh->do("UPDATE systempreferences SET value='/opac-tmpl/prog/imgs/opacsmallimage.gif' WHERE variable='opacsmallimage'");
     $dbh->do("UPDATE systempreferences SET value='/opac-tmpl/prog/imgs/opacsmallimageright.jpg' WHERE variable='opacsmallimageright'");
@@ -6919,7 +6919,7 @@ if ( CheckVersion($DBversion) ) {
     SetVersion ($DBversion);
 }
 
-$DBversion = "3.12.00.001";
+$DBversion = "3.12.03.001";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("INSERT INTO `systempreferences` (`variable`, `value`, `options`, `explanation`, `type`) VALUES ('UseCourseReserves', '0', NULL, 'Enable the course reserves feature.', 'YesNo')");
     $dbh->do("INSERT INTO userflags (bit,flag,flagdesc,defaulton) VALUES ('18','coursereserves','Course Reserves','0')");
@@ -7009,21 +7009,21 @@ INSERT INTO permissions (module_bit, code, description) VALUES
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.00.002";
+$DBversion = "3.12.03.002";
 if ( CheckVersion($DBversion) ) {
    $dbh->do("UPDATE systempreferences SET variable = 'IndependentBranches' WHERE variable = 'IndependantBranches'");
    print "Upgrade to $DBversion done (Bug 10080 - Change system pref IndependantBranches to IndependentBranches)\n";
    SetVersion ($DBversion);
 }
 
-$DBversion = '3.12.00.003';
+$DBversion = '3.12.03.003';
 if ( CheckVersion($DBversion) ) {
     $dbh->do("ALTER TABLE serial DROP itemnumber");
     print "Upgrade to $DBversion done (Bug 7718 - Remove itemnumber column from serials table)\n";
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.00.004";
+$DBversion = "3.12.03.004";
 if(CheckVersion($DBversion)) {
     $dbh->do(
 "INSERT IGNORE INTO systempreferences (variable,value,explanation,options,type) VALUES('OpacShowHoldNotes',0,'Show hold notes on OPAC','','YesNo')"
@@ -7032,7 +7032,7 @@ if(CheckVersion($DBversion)) {
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.00.005";
+$DBversion = "3.12.03.005";
 if(CheckVersion($DBversion)) {
     my $intra= C4::Context->preference("intranetstylesheet");
     #if this pref is not blank or starting with http, https or / [root], then
@@ -7046,7 +7046,7 @@ if(CheckVersion($DBversion)) {
     SetVersion ($DBversion);
 }
 
-$DBversion = "3.12.00.006";
+$DBversion = "3.12.03.006";
 if ( CheckVersion($DBversion) ) {
     $dbh->do(
         q{
@@ -7058,14 +7058,14 @@ INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES (
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.00.007";
+$DBversion = "3.12.03.007";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("UPDATE systempreferences SET variable='OpacHoldNotes' WHERE variable='OpacShowHoldNotes'");
     print "Upgrade to $DBversion done (Bug 10343: Rename OpacShowHoldNotes to OpacHoldNotes)\n";
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.00.008";
+$DBversion = "3.12.03.008";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("
 CREATE TABLE IF NOT EXISTS borrower_files (
@@ -7085,14 +7085,14 @@ CREATE TABLE IF NOT EXISTS borrower_files (
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.00.009";
+$DBversion = "3.12.03.009";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("ALTER TABLE aqorders DROP COLUMN biblioitemnumber");
     print "Upgrade to $DBversion done (Bug 9987 - Drop column aqorders.biblioitemnumber)\n";
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.010";
+$DBversion = "3.12.03.010";
 if ( CheckVersion($DBversion) ) {
     $dbh->do(
         q{
@@ -7104,28 +7104,28 @@ INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES (
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.011";
+$DBversion = "3.12.03.011";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("UPDATE language_rfc4646_to_iso639 SET iso639_2_code='ita' WHERE rfc4646_subtag='it'");
     print "Upgrade to $DBversion done (Bug 9519: Wrong language code for Italian in the advanced search language limitations)\n";
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.012";
+$DBversion = "3.12.03.012";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("ALTER TABLE issuingrules MODIFY COLUMN overduefinescap decimal(28,6) DEFAULT NULL;");
     print "Upgrade to $DBversion done (Bug 10490: Correct datatype for overduefinescap in issuingrules)\n";
     SetVersion($DBversion);
 }
 
-$DBversion ="3.13.00.013";
+$DBversion ="3.12.03.013";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("INSERT IGNORE INTO systempreferences (variable,value,explanation,options,type) VALUES ('AllowTooManyOverride', '1', 'If on, allow staff to override and check out items when the patron has reached the maximum number of allowed checkouts', '', 'YesNo');");
     print "Upgrade to $DBversion done (Bug 9576: add AllowTooManyOverride syspref to enable or disable issue limit confirmation)\n";
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.014";
+$DBversion = "3.12.03.014";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("ALTER TABLE courses MODIFY COLUMN department varchar(80) DEFAULT NULL;");
     $dbh->do("ALTER TABLE courses MODIFY COLUMN term       varchar(80) DEFAULT NULL;");
@@ -7133,7 +7133,7 @@ if ( CheckVersion($DBversion) ) {
     SetVersion($DBversion);
 }
 
-$DBversion = "3.13.00.015";
+$DBversion = "3.12.04.000";
 if ( CheckVersion($DBversion) ) {
     $dbh->do(
 "INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('itemBarcodeFallbackSearch','','If set, enables the automatic use of a keyword catalog search if the phrase entered as a barcode on the checkout page does not turn up any results during an item barcode search',NULL,'YesNo')"
@@ -7387,9 +7387,8 @@ if ( CheckVersion($DBversion) ) {
     |);  
     print "Upgrade to $DBversion done (Add subscription_frequencies and subscription_numberpatterns tables)\n";
     
-    $dbh->do(qq|
-        INSERT INTO `letter` (`module`,`code`,`branchcode`,`name`,`is_html`,`title`,`content`) VALUES (
-        'members',  'OPAC_NEW_PASS',  '',  'Nueva contraseña de usuario ',  '0',  'Envío de nueva contraseña',  'Hola, 
+    $dbh->do(qq|INSERT INTO `letter` (`module`,`code`,`branchcode`,`name`,`is_html`,`title`,`content`) VALUES (
+        'members',  'OPAC_NEW_PASS',  '',  'Nueva contraseña de usuario ',  '0',  'Envío de nueva contraseña',  "Hola, 
 
         Los detalles de tu cuenta en Kobli son
 
@@ -7401,9 +7400,14 @@ if ( CheckVersion($DBversion) ) {
         Gracias,
         Administrador de Kobli 
         <<admin_mail>>
-        '
-    |);
+        ")|);
     print "Upgrade to $DBversion done (Add OPAC_NEW_PASS to letter table)\n";
+    
+    $dbh->do(q|
+        ALTER TABLE auth_subfield_structure ADD COLUMN defaultvalue TEXT DEFAULT NULL AFTER frameworkcode
+    |);
+    print "Upgrade to $DBversion done (Bug 10602: Add the column auth_subfield_structure.defaultvalue)\n";
+    $dbh->do("UPDATE systempreferences SET value='Koha. Kobli, Ministerio de Educaci&oacute;n, Cultura y Deporte Espa&ntilde;a, 2012' WHERE variable='opaccredits'");
     SetVersion($DBversion);
 }
 
@@ -7531,7 +7535,7 @@ sub SetVersionKobli {
       my $finish=$dbh->prepare("UPDATE systempreferences SET value=? WHERE variable='VersionKobli'");
       $finish->execute($kobliversion);
     } else {
-      my $finish=$dbh->prepare("INSERT into systempreferences (variable,value,explanation) values ('VersionKobli',?,'Versión de la base de datos de Koha. ATENCIÓN: No cambies este valor manualmente, éste es mantenido por el instalador web')");
+      my $finish=$dbh->prepare("INSERT into systempreferences (variable,value,explanation) values ('VersionKobli',?,'Versión de la base de datos de Kobli. ATENCIÓN: No cambies este valor manualmente, éste es mantenido por el instalador web')");
       $finish->execute($kobliversion);
     }
 }

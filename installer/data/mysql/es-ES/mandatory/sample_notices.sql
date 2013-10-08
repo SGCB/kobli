@@ -101,7 +101,7 @@ Si no esperaba este mensaje, puede ignorarlo. La solicitud espirará dentro de p
 );
 INSERT INTO `letter` (`module`,`code`,`branchcode`,`name`,`is_html`,`title`,`content`)
 VALUES (
-'members',  'OPAC_NEW_PASS',  '',  'Nueva contraseña de usuario ',  '1',  'Envío de nueva contraseña',  'Hola, 
+'members',  'OPAC_NEW_PASS',  '',  'Nueva contraseña de usuario ',  '1',  'Envío de nueva contraseña',  "Hola, 
 
 Los detalles de tu cuenta en Kobli son
 
@@ -113,5 +113,5 @@ Si tiene cualquier problema o cuestión en cuanto a su cuenta, por favor, contac
 Gracias,
 Administrador de Kobli 
 <<admin_mail>>
-'
+"
 );
