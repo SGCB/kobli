@@ -88,7 +88,7 @@ tinyMCE.init({
  <li><label for="branchemail">EMail: </label><input type="text" name="branchemail" id="branchemail" class="email"  size="80" value="[% branchemail |html %]" /></li>
  <li><label for="branchurl">URL: </label><input type="text" name="branchurl" id="branchurl"  size="80" value="[% branchurl |html %]" class="url" /></li>
  <li><label for="opac_info">Infromación de OPAC:</label><textarea name="opac_info" id="opac_info">[% opac_info |html %]</textarea></li>
- <li><label for="branchip">IP:</label><input type="text" name="branchip" id="branchip"  size="15" maxlength="15" value="[% branchip |html %]" /> <span class="hint">Puede ingresarse como IP específica, o subred tal como 192.168.1.*</span></li>
+ <li><label for="branchip">IP:</label><input type="text" name="branchip" id="branchip"  size="15" maxlength="15" value="[% branchip |html %]" /> <span class="hint">Puede introducirse como IP específica, o subred tal como 192.168.1.*</span></li>
  <!--
  <li><label for="branchprinter">Library Printer: </label>
  <select id="branchprinter" name="branchprinter">
@@ -106,7 +106,7 @@ tinyMCE.init({
  <li>
  <label for="notforloan">No mostrar en OPAC</label> [% IF ( notforopac ) %] <input type="checkbox" id="notforopac" name="notforopac" checked="checked" value="1" />
  [% ELSE %] <input type="checkbox" id="notforopac" name="notforopac" value="1" />
- [% END %] (La biblioteca no muestra en el OPAC) </li>
+ [% END %] (La biblioteca no aparece en el OPAC) </li>
  </ol>
  </fieldset>
  <fieldset class="action"><input value="Enviar" type="submit" /> <a class="cancel" href="/cgi-bin/koha/admin/branches.pl">Cancelar</a></fieldset>
@@ -119,7 +119,7 @@ tinyMCE.init({
 </fieldset></form>
 [% END %] [% IF ( else ) %] <h3>Bibliotecas</h3>
  [% IF ( message ) %]<div class="dialog message">
- [% message %]</div>[% END %] [% IF ( MESSAGE1 ) %]<div class="dialog message">Biblioteca no guardada &mdash; falta el código y/o el nombre</div>[% END %] [% IF ( MESSAGE2 ) %]<div class="dialog message">Biblioteca grabada</div>[% END %] [% IF ( MESSAGE3 ) %]<div class="dialog message">Biblioteca eliminada</div>[% END %] [% IF ( MESSAGE4 ) %]<div class="dialog message">Categoría de biblioteca añadida</div>[% END %] [% IF ( MESSAGE5 ) %]<div class="dialog message">Categoría de biblioteca modificada</div>[% END %] [% IF ( MESSAGE6 ) %]<div class="dialog message">La categoría de biblioteca ha sido eliminada</div>[% END %] [% IF ( MESSAGE7 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen socios e ítems en esa sede</div>[% END %] [% IF ( MESSAGE8 ) %]<div class="dialog message">Esta categoría no puede ser eliminada debido a que hay bibliotecas que la tienen en uso</div>[% END %] [% IF ( MESSAGE9 ) %]<div class="dialog message">La categoría no se puede agregar, el código de la categoría ya existe</div>[% END %] [% IF ( MESSAGE10 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen ítems en esa sede</div>[% END %] [% IF ( MESSAGE11 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen socios registrados en esa sede</div>[% END %] [% IF ( branches ) %] <table id="branchest">
+ [% message %]</div>[% END %] [% IF ( MESSAGE1 ) %]<div class="dialog message">Biblioteca no guardada &mdash; falta el código y/o el nombre</div>[% END %] [% IF ( MESSAGE2 ) %]<div class="dialog message">Biblioteca grabada</div>[% END %] [% IF ( MESSAGE3 ) %]<div class="dialog message">Biblioteca eliminada</div>[% END %] [% IF ( MESSAGE4 ) %]<div class="dialog message">Categoría de biblioteca añadida</div>[% END %] [% IF ( MESSAGE5 ) %]<div class="dialog message">Categoría de biblioteca modificada</div>[% END %] [% IF ( MESSAGE6 ) %]<div class="dialog message">La categoría de biblioteca ha sido eliminada</div>[% END %] [% IF ( MESSAGE7 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen usuarios e ítems en esa sede</div>[% END %] [% IF ( MESSAGE8 ) %]<div class="dialog message">Esta categoría no puede ser eliminada debido a que hay bibliotecas que la tienen en uso</div>[% END %] [% IF ( MESSAGE9 ) %]<div class="dialog message">La categoría no se puede agregar, el código de la categoría ya existe</div>[% END %] [% IF ( MESSAGE10 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen ítems en esa sede</div>[% END %] [% IF ( MESSAGE11 ) %]<div class="dialog message">La biblioteca no puede borrarse ya que existen usuarios registrados en esa sede</div>[% END %] [% IF ( branches ) %] <table id="branchest">
 <thead><tr>
  <th>Nombre</th>
  <th>Código</th>
@@ -154,7 +154,7 @@ tinyMCE.init({
  [% END %]</tbody>
  </table>
  [% ELSE %] <div class="dialog message">No hay bibliotecas definidas. <a href="/cgi-bin/koha/admin/branches.pl?op=add">Comenzar definiendo bibliotecas</a>.</div>
- [% END %] [% IF ( branchcategories ) %] [% FOREACH branchcategorie IN branchcategories %] <h3>Grupo(s): [% IF ( branchcategorie.properties ) %]Propiedades[% ELSE %][% IF ( branchcategorie.searchdomain ) %]Dominio de búsqueda[% END %][% END %]</h3>
+ [% END %] [% IF ( branchcategories ) %] [% FOREACH branchcategorie IN branchcategories %] <h3>Grupo(s): [% IF ( branchcategorie.properties ) %]Propiedades[% ELSE %][% IF ( branchcategorie.searchdomain ) %]de Dominio de búsqueda[% END %][% END %]</h3>
  [% IF ( branchcategorie.catloop ) %] <table>
  <thead>
  <tr>
@@ -179,7 +179,7 @@ tinyMCE.init({
  </tr>
  [% END %] </tbody>
  </table>
- [% ELSE %] No [% IF ( branchcategorie.properties ) %]propiedades[% ELSIF ( branchcategorie.searchdomain ) %]sdominio de búsqueda[% END %] definedo. <a href="/cgi-bin/koha/admin/branches.pl?op=editcategory">Agregar nuevo grupo </a>. [% END %] [% END %] [% ELSE %] <p>No hay grupos definidos.</p>
+ [% ELSE %] No se han definido [% IF ( branchcategorie.properties ) %]propiedades[% ELSIF ( branchcategorie.searchdomain ) %] de dominio de búsqueda[% END %]. <a href="/cgi-bin/koha/admin/branches.pl?op=editcategory">Agregar nuevo grupo </a>. [% END %] [% END %] [% ELSE %] <p>No hay grupos definidos.</p>
  [% END %] <!-- NAME="branchcategories" -->
 [% END %]
 

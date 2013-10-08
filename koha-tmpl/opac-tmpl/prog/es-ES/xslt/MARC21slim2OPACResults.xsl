@@ -88,7 +88,7 @@ exclude-result-prefixes="marc items">
  <xsl:when test="($check008-23 and $controlField008-23='f') or ($check008-29 and $controlField008-29='f')">
  braille </xsl:when>
  <xsl:when test="($controlField008-23=' ' and ($leader6='c' or $leader6='d')) or (($typeOf008='BK' or $typeOf008='CR') and ($controlField008-23=' ' or $controlField008='r'))">
- imprimir </xsl:when>
+ impreso</xsl:when>
  <xsl:when test="$leader6 = 'm' or ($check008-23 and $controlField008-23='s') or ($check008-29 and $controlField008-29='s')">
  electrónico </xsl:when>
  <xsl:when test="($check008-23 and $controlField008-23='b') or ($check008-29 and $controlField008-29='b')">
@@ -255,7 +255,7 @@ exclude-result-prefixes="marc items">
  <img alt="imagen" src="/opac-tmpl/lib/famfamfam/silk/picture.png" title="imagen" class="format" />
  </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='k'][substring(text(),2,1)='j']">
- imprimir </xsl:if>
+ impreso</xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='k'][substring(text(),2,1)='l']">
  dibujo técnico </xsl:if>
  <xsl:if test="marc:controlfield[@tag=007][substring(text(),1,1)='q'][substring(text(),2,1)='q']">

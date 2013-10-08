@@ -7,6 +7,6 @@
 </ul>
 <h5>Recursos útiles</h5>
 <ul>
-<li><a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library" target="blank">Biblioteca de reportes Koha</a></li>
+<li><a href="http://wiki.koha-community.org/wiki/SQL_Reports_Library" target="blank">Biblioteca de informes Koha</a></li>
 <li><a href="http://schema.koha-community.org/" target="blank">Esquema de base de datos de Koha</a></li>
 </ul>

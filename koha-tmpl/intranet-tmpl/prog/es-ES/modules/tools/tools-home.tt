@@ -8,26 +8,26 @@
  <div class="yui-gb">
 
 <div class="yui-u first">
-<h3>Socios y circulación</h3>
+<h3>Usuarios y circulación</h3>
 <dl>
  [% IF ( CAN_user_tools_moderate_comments ) %] <dt><a href="/cgi-bin/koha/reviews/reviewswaiting.pl">Comentarios</a> [% IF ( pendingcomments ) %]<span class="holdcount"><a href="/cgi-bin/koha/reviews/reviewswaiting.pl">[% pendingcomments %]</a></span>[% END %]</dt>
- <dd>Moderar comentarios de socios. </dd>
- [% END %] [% IF ( CAN_user_tools_import_patrons ) %] <dt><a href="/cgi-bin/koha/tools/import_borrowers.pl">Importar socios</a></dt>
- <dd>Importar datos de socio</dd>
+ <dd>Moderar comentarios de usuarios. </dd>
+ [% END %] [% IF ( CAN_user_tools_import_patrons ) %] <dt><a href="/cgi-bin/koha/tools/import_borrowers.pl">Importar usuarios</a></dt>
+ <dd>Importar datos de usuario</dd>
  [% END %] [% IF ( CAN_user_tools_edit_notices ) %] <dt><a href="/cgi-bin/koha/tools/letter.pl">Avisos &amp; Recibos</a></dt>
  <dd>Defina avisos (notificaciones impresas y por e-mail para reclamos, etc.)</dd>
  [% END %] [% IF ( CAN_user_tools_edit_notice_status_triggers ) %] <dt><a href="/cgi-bin/koha/tools/overduerules.pl">Disparadores de avisos de retraso/estado</a></dt>
  <dd>Establecer aviso o disparadores para ítem atrasados</dd>
- [% END %] [% IF ( CAN_user_tools_label_creator ) %] <dt><a href="/cgi-bin/koha/patroncards/home.pl">Creador de carnet de socio</a></dt>
- <dd>Crear carnets de socios para imprimir</dd>
- [% END %] [% IF ( CAN_user_tools_delete_anonymize_patrons ) %] <dt><a href="/cgi-bin/koha/tools/cleanborrowers.pl">Lote  socio texto borrado/anonimato</a></dt>
- <dd>Borrar lote socios y  historial de circulación de socio.</dd>
- [% END %] [% IF ( CAN_user_tools_edit_patrons ) %] <dt><a href="/cgi-bin/koha/tools/modborrowers.pl">Lote modificaciones de socio</a></dt>
- <dd>Modificar socios en un lote</dd>
+ [% END %] [% IF ( CAN_user_tools_label_creator ) %] <dt><a href="/cgi-bin/koha/patroncards/home.pl">Creador de carnet de usuario</a></dt>
+ <dd>Crear carnets de usuarios para imprimir</dd>
+ [% END %] [% IF ( CAN_user_tools_delete_anonymize_patrons ) %] <dt><a href="/cgi-bin/koha/tools/cleanborrowers.pl">Lote usuario texto borrado/anonimato</a></dt>
+ <dd>Borrar lote usuarios y  historial de circulación de usuario.</dd>
+ [% END %] [% IF ( CAN_user_tools_edit_patrons ) %] <dt><a href="/cgi-bin/koha/tools/modborrowers.pl">Lote modificaciones de usuario</a></dt>
+ <dd>Modificar usuarios en un lote</dd>
  [% END %] [% IF ( CAN_user_tools_moderate_tags ) %] <dt><a href="/cgi-bin/koha/tags/review.pl">Etiquetas</a> [% IF ( pendingtags ) %]<span class="holdcount"><a href="/cgi-bin/koha/tags/review.pl">[% pendingtags %]</a></span>[% END %]</dt>
- <dd>Moderar pestañas de socio</dd>
- [% END %] [% IF ( CAN_user_tools_batch_upload_patron_images ) %] <dt><a href="/cgi-bin/koha/tools/picture-upload.pl">Subir imágenes de socios</a></dt>
- <dd>Subir imágenes de socios en lote o una a la vez</dd>
+ <dd>Moderar pestañas de usuario</dd>
+ [% END %] [% IF ( CAN_user_tools_batch_upload_patron_images ) %] <dt><a href="/cgi-bin/koha/tools/picture-upload.pl">Subir imágenes de usuarios</a></dt>
+ <dd>Subir imágenes de usuarios en lote o una a la vez</dd>
  [% END %] </dl>
 </div>
 <div class="yui-u">
@@ -43,8 +43,8 @@
  <dd>Escriba novedades para el OPAC y la interfaz administrativa</dd>
  [% END %] [% IF ( CAN_user_tools_schedule_tasks ) %] <dt><a href="/cgi-bin/koha/tools/scheduler.pl">Planificador de tareas</a></dt>
  <dd>Tareas programadas para ser ejecutadas</dd>
- [% END %] [% IF ( CAN_user_tools_edit_quotes ) %] <dt><a href="/cgi-bin/koha/tools/quotes.pl">Editar quotes para QOTD característica</a></dt>
- <dd>Editor QUote para Quote-de-el-día característico en OPAC</dd>
+ [% END %] [% IF ( CAN_user_tools_edit_quotes ) %] <dt><a href="/cgi-bin/koha/tools/quotes.pl">Editar citas para la funcionalidad QOTD (Cita del día)</a></dt>
+ <dd>Editor de citas para la funcionalidad "Cita del Día" en el OPAC</dd>
  [% END %] [% IF ( CAN_user_tools_upload_prefs_images ) %] <dt><a href="/cgi-bin/koha/tools/prefs-images-upload.pl">Subir imágenes del OPAC</a></dt>
  <dd>Subir imágenes opcionales del OPAC </dd>
  [% END %] [% IF ( UseKohaPlugins && CAN_user_plugins_tool ) %] <dt><a href="/cgi-bin/koha/plugins/plugins-home.pl?method=tool">Plugins de herramientas:</a></dt>
@@ -64,8 +64,8 @@
  <dd>Realizar un balance (inventario) de su catálogo</dd>
  [% END %] [% IF ( CAN_user_tools_label_creator ) %] <dt><a href="/cgi-bin/koha/labels/label-home.pl">Creador de etiquetas</a></dt>
  <dd>Crear etiquetas y códigos de barras para imprimir a partir de los datos del catálogo</dd>
- [% END %] [% IF ( CAN_user_tools_label_creator ) %] <dt><a href="/cgi-bin/koha/labels/spinelabel-home.pl">Creador rápido de etiquetas en columnas</a></dt>
- <dd>Introduzca un código de barras para generar un marbete para imprimir. Se utilizará en impresoras de etiquetas dedicadas</dd>
+ [% END %] [% IF ( CAN_user_tools_label_creator ) %] <dt><a href="/cgi-bin/koha/labels/spinelabel-home.pl">Creador rápido de tejuelos</a></dt>
+ <dd>Introduzca un código de barras para generar un tejuelo para imprimir. Se utilizará en impresoras de etiquetas dedicadas</dd>
  [% END %]
 
 <!--

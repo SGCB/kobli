@@ -44,7 +44,7 @@ $(document).ready(function(){
     })
 });
 function confirm_deletion() {
-    var is_confirmed = window.confirm(_("¿Está seguro de querer borrar este socio? Esto no puede deshacerse."));
+    var is_confirmed = window.confirm(_("¿Está seguro de querer borrar este usuario? Esto no puede deshacerse."));
     if (is_confirmed) {
         window.location='/cgi-bin/koha/members/deletemem.pl?member=[% borrowernumber %]';
     }
@@ -67,7 +67,7 @@ function update_child() {
 [% END %]
 
 function confirm_reregistration() {
-    var is_confirmed = window.confirm(_("¿Está seguro de querer renovar el registro de este socio? "));
+    var is_confirmed = window.confirm(_("¿Está seguro de querer renovar el registro de este usuario? "));
     if (is_confirmed) {
     window.location = '/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;desintation=[% destination %]&amp;reregistration=y';
     }
@@ -103,7 +103,7 @@ function searchToHold(){
  [% END %] [% IF ( CAN_user_borrowers ) %] <a id="changepassword" class="btn btn-small" href="/cgi-bin/koha/members/member-password.pl?member=[% borrowernumber %]"><i class="icon-lock"></i> Cambiar contraseña</a>
  [% END %] [% END %] <a id="duplicate" class="btn btn-small" href="/cgi-bin/koha/members/memberentry.pl?op=duplicate&amp;borrowernumber=[% borrowernumber %]&amp;category_type=[% category_type %]"><i class="icon-copy"></i>Duplicado</a>
  <div class="btn-group">
- <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><i class="icon-print"></i> Imprimir<span class="caret"></span></button>
+ <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><i class="icon-print"></i> Impreso<span class="caret"></span></button>
  <ul class="dropdown-menu">
  [% IF ( CAN_user_borrowers ) %]<li><a id="printsummary" href="#">Imprimir resumen</a></li>[% END %] <li><a id="printslip" href="#">Imprimir recibo</a></li>
  <li><a id="printquickslip" href="#">Imprimir recibo</a></li>
@@ -113,14 +113,14 @@ function searchToHold(){
  <div class="btn-group">
  <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">Más<span class="caret"></span></button>
  <ul class="dropdown-menu">
- [% IF ( CAN_user_borrowers ) %] <li><a id="renewpatron" href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=[% destination %]&amp;reregistration=y">Renovar socio</a></li>
- [% ELSE %] <li class="disabled"><a id="renewpatron" href="#">Renovar socio</a></li>
+ [% IF ( CAN_user_borrowers ) %] <li><a id="renewpatron" href="/cgi-bin/koha/members/setstatus.pl?borrowernumber=[% borrowernumber %]&amp;cardnumber=[% cardnumber %]&amp;destination=[% destination %]&amp;reregistration=y">Renovar usuario</a></li>
+ [% ELSE %] <li class="disabled"><a id="renewpatron" href="#">Renovar usuario</a></li>
  [% END %] [% IF ( CAN_user_permissions ) %] <li><a id="patronflags" href="/cgi-bin/koha/members/member-flags.pl?member=[% borrowernumber %]">Establecer permisos</a></li>
  [% ELSE %] <li class="disabled"><a id="patronflags" href="#">Establecer permisos</a></li>
  [% END %] [% IF ( CAN_user_borrowers ) %] <li><a id="deletepatron" href="#">Eliminar</a></li>
  [% ELSE %] <li class="disabled"><a id="deletepatron" href="#">Eliminar</a></li>
- [% END %] [% IF ( is_child ) %] <li><a id="updatechild" href="#">Actualizar socio niño a adulto</a></li>
- [% ELSE %] <li class="disabled"><a id="updatechild" href="#">Actualizar socio niño a adulto</a></li></li>
+ [% END %] [% IF ( is_child ) %] <li><a id="updatechild" href="#">Actualizar usuario niño a adulto</a></li>
+ [% ELSE %] <li class="disabled"><a id="updatechild" href="#">Actualizar usuario niño a adulto</a></li></li>
  [% END %] <li><a id="exportcheckins" href="#">Exportar los préstamos del día en códigos de barras </a></li>
  </ul>
  </div>

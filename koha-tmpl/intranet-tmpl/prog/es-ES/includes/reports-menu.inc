@@ -6,7 +6,7 @@
 <h5>Estadísticas Compuestas</h5>
  <ul>
  <li><a href="/cgi-bin/koha/reports/acquisitions_stats.pl">Adquisiciones</a></li>
- <li><a href="/cgi-bin/koha/reports/borrowers_stats.pl">Socios</a></li>
+ <li><a href="/cgi-bin/koha/reports/borrowers_stats.pl">Usuarios</a></li>
  <li><a href="/cgi-bin/koha/reports/catalogue_stats.pl">Catálogo</a></li>
  <li><a href="/cgi-bin/koha/reports/issues_stats.pl">Circulación</a></li>
  <li><a href="/cgi-bin/koha/reports/serials_stats.pl">Publicaciones periódicas</a></li>
@@ -16,13 +16,13 @@
 
  <h5>Listas principales</h5>
  <ul>
- <li><a href="/cgi-bin/koha/reports/bor_issues_top.pl">Socios con más préstamos</a></li>
+ <li><a href="/cgi-bin/koha/reports/bor_issues_top.pl">Usuarios con más préstamos</a></li>
  <li><a href="/cgi-bin/koha/reports/cat_issues_top.pl">Ítems más prestados</a></li>
  </ul>
  
  <h5>Inactivo</h5>
  <ul>
- <li><a href="/cgi-bin/koha/reports/borrowers_out.pl">Socios que no han pedido prestado</a></li>
+ <li><a href="/cgi-bin/koha/reports/borrowers_out.pl">Usuarios que no han pedido prestado</a></li>
  <li><a href="/cgi-bin/koha/reports/catalogue_out.pl">Ítems nunca prestados</a></li>
  </ul>
 

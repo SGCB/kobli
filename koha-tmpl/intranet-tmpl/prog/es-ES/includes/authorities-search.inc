@@ -19,7 +19,7 @@
 </script>
 <div id="header_search" class="residentsearch">
  <div id="main_heading" class="residentsearch">
- <p class="tip">Ingrese encabezamiento autorizado:</p>
+ <p class="tip">Introduzca un encabezamiento autorizado:</p>
  <form action="/cgi-bin/koha/authorities/authorities-home.pl" method="get">
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="intranet" />
@@ -51,7 +51,7 @@
  </form>
  </div>
  <div id="matchheading_search" class="residentsearch">
- <p class="tip">Ingrese algún encabezamiento:</p>
+ <p class="tip">Introduzca cualquier encabezamiento:</p>
  <form action="/cgi-bin/koha/authorities/authorities-home.pl" method="get">
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="intranet" />
@@ -81,7 +81,7 @@
  </form>
  </div>
  <div id="all_headings" class="residentsearch">
- <p class="tip">Ingrese campo de autoridad:</p>
+ <p class="tip">Introduzca cualquier campo de autoridad:</p>
  <form action="/cgi-bin/koha/authorities/authorities-home.pl" method="get">
  <input type="hidden" name="op" value="do_search" />
  <input type="hidden" name="type" value="intranet" />

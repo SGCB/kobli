@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Actualización registros de socios</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Usuarios &rsaquo; Actualización registros de usuarios</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
     $(function() {
         $( "#pending_updates" ).accordion();
@@ -6,14 +6,14 @@
 </script>
 </head>
 <body id="pat_update" class="pat">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] [% SET field_display_names = { surname => "Apellido" firstname => "Nombre " title => "Tratamiento" othernames => "Otros nombres" initials => "Iniciales" streetnumber => "Número" streettype => "Tipo de vía" address => "Dirección 1" address2 => "Dirección 2" city => "Ciudad" state => "Estado" zipcode => "Código postal" country => "País" email => "Email" phone => "Teléfono" mobile => "Teléfono móvil" fax => "Fax" emailpro => "Email 2" phonepro => "Teléfono 2" B_streetnumber => "Dirección alternativa - Número" B_streettype => "Dirección alternativa – Tipo de vía" B_address => "Dirección alternativa " B_address2 => "Dirección alternativa 2" B_city => "Dirección alternativa - Ciudad" B_state => " Dirección alternativa - Estado" B_zipcode => " Dirección alternativa – Código postal" B_email => " Dirección alternativa - Email" B_phone => " Dirección alternativa - Teléfono" dateofbirth => "Fecha de nacimiento" contactname => "Contacto - Apellido" contactfirstname=> "Contacto - Nombre" contacttitle => "Contacto - Tratamiento" relationship => "Contacto - Relación" ethnicity => "Etnia" ethnotes => "Etnia" sex => "Sexo" altcontactfirstname => "Contacto alternativo - nombres" altcontactsurname => "Contacto alternativo - apellido" altcontactaddress1 => " Contacto alternativo – Dirección 1" altcontactaddress2 => " Contacto alternativo – Dirección 2" altcontactaddress3 => " Contacto alternativo - Ciudad" altcontactstate => " Contacto alternativo - Estado" altcontactzipcode => " Contacto alternativo – Código postal" altcontactcountry => " Contacto alternativo - País" altcontactphone => " Contacto alternativo - Teléfono" smsalertnumber => "Teléfono para alertas por SMS" } %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Actualización registros de socio</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] [% SET field_display_names = { surname => "Apellido" firstname => "Nombre " title => "Tratamiento" othernames => "Otros nombres" initials => "Iniciales" streetnumber => "Número" streettype => "Tipo de vía" address => "Dirección 1" address2 => "Dirección 2" city => "Ciudad" state => "Estado" zipcode => "Código postal" country => "País" email => "Email" phone => "Teléfono" mobile => "Teléfono móvil" fax => "Fax" emailpro => "Email 2" phonepro => "Teléfono 2" B_streetnumber => "Dirección alternativa - Número" B_streettype => "Dirección alternativa – Tipo de vía" B_address => "Dirección alternativa " B_address2 => "Dirección alternativa 2" B_city => "Dirección alternativa - Ciudad" B_state => " Dirección alternativa - Estado" B_zipcode => " Dirección alternativa – Código postal" B_email => " Dirección alternativa - Email" B_phone => " Dirección alternativa - Teléfono" dateofbirth => "Fecha de nacimiento" contactname => "Contacto - Apellido" contactfirstname=> "Contacto - Nombre" contacttitle => "Contacto - Tratamiento" relationship => "Contacto - Relación" ethnicity => "Etnia" ethnotes => "Etnia" sex => "Sexo" altcontactfirstname => "Contacto alternativo - nombres" altcontactsurname => "Contacto alternativo - apellido" altcontactaddress1 => " Contacto alternativo – Dirección 1" altcontactaddress2 => " Contacto alternativo – Dirección 2" altcontactaddress3 => " Contacto alternativo - Ciudad" altcontactstate => " Contacto alternativo - Estado" altcontactzipcode => " Contacto alternativo – Código postal" altcontactcountry => " Contacto alternativo - País" altcontactphone => " Contacto alternativo - Teléfono" smsalertnumber => "Teléfono para alertas por SMS" } %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; Actualización registros de usuario</div>
 
 <div id="doc2" class="yui-t7">
 
  <div id="bd">
  <div id="yui-main">
 
- [% IF PendingModifications %] <h2>Actualizando registros de socios</h2>
+ [% IF PendingModifications %] <h2>Actualizando registros de usuarios</h2>
  <form method="post" action="members-update-do.pl">
  <div id="pending_updates">
  [% FOREACH pm IN PendingModifications %] [% SET borrowernumber = pm.borrowernumber %] <h3><a href="#panel_modify_[% pm.borrowernumber %]">[% borrowers.$borrowernumber.surname %], [% borrowers.$borrowernumber.firstname %]</a></h3>
@@ -48,7 +48,7 @@
 
  </form>
  [% ELSE %] <div class="dialog message">
- <p>No hay modificaciones de socios pendientes.</p>
+ <p>No hay modificaciones de usuarios pendientes.</p>
  </div>
  [% END %] </div>
  </div>

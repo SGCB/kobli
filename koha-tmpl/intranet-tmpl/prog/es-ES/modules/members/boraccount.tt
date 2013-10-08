@@ -1,7 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Cuenta de [% INCLUDE 'patron-title.inc' %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Usuarios &rsaquo; Cuenta de [% INCLUDE 'patron-title.inc' %]</title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="pat_borraccount" class="pat">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Cuenta de [% INCLUDE 'patron-title.inc' %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; Cuenta de [% INCLUDE 'patron-title.inc' %]</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -28,7 +28,7 @@
  <th>Monto</th>
  <th>Excepcional</th>
  [% IF ( reverse_col ) %] <th>&nbsp;</th>
- [% END %] <th>Imprimir</th>
+ [% END %] <th>Impreso</th>
  </tr>
 
  <!-- FIXME: Shouldn't hardcode dollar signs, since Euro or Pound might be needed -->
@@ -43,8 +43,8 @@
  [% IF ( account.payment ) %] <a href="boraccount.pl?action=reverse&amp;accountlines_id=[% account.accountlines_id %]&amp;borrowernumber=[% account.borrowernumber %]">Reverso</a>
  [% ELSE %] &nbsp; [% END %] </td>
  [% END %] <td>
- [% IF ( account.payment ) %] <a target="_blank" href="printfeercpt.pl?action=print&amp;accountlines_id=[% account.accountlines_id %]&amp;borrowernumber=[% account.borrowernumber %]">Imprimir</a>
- [% ELSE %] <a target="_blank" href="printinvoice.pl?action=print&amp;accountlines_id=[% account.accountlines_id %]&amp;borrowernumber=[% account.borrowernumber %]">Imprimir</a>
+ [% IF ( account.payment ) %] <a target="_blank" href="printfeercpt.pl?action=print&amp;accountlines_id=[% account.accountlines_id %]&amp;borrowernumber=[% account.borrowernumber %]">Impreso</a>
+ [% ELSE %] <a target="_blank" href="printinvoice.pl?action=print&amp;accountlines_id=[% account.accountlines_id %]&amp;borrowernumber=[% account.borrowernumber %]">Impreso</a>
  [% END %] </td>
  </tr>
 

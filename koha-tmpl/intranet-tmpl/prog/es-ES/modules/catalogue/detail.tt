@@ -233,9 +233,9 @@ function verify_images() {
 <div id="bibliodetails" class="toptabs">
 
 <ul>
- [% IF (SeparateHoldings) %] <li><a href="#holdings">[% LoginBranchname %] reservas</a></li>
- <li><a href="#otherholdings">Otras reservas</a></li>
- [% ELSE %] <li><a href="#holdings">Reservas</a></li>
+ [% IF (SeparateHoldings) %] <li><a href="#holdings">[% LoginBranchname %] ejemplares</a></li>
+ <li><a href="#otherholdings">Otros ejemplares</a></li>
+ [% ELSE %] <li><a href="#holdings">Ejemplares</a></li>
  [% END %] <li><a href="#description">Descripciones</a></li>
 [% IF ( subscriptionsnumber ) %]<li><a href="#subscriptions">Suscripciones</a></li>[% END %] [% IF ( FRBRizeEditions ) %][% IF ( XISBNS ) %]<li><a href="#editions">Ediciones</a></li>[% END %][% END %] [% IF ( LocalCoverImages ) %][% IF ( localimages || CAN_user_tools_upload_local_cover_images ) %]<li><a href="#images">Imágenes</a></li>[% END %][% END %] [% IF ( HTML5MediaEnabled ) %][% IF ( HTML5MediaSets ) %]<li><a href="#html5media">Multimedia</a></li>[% END %][% END %] </ul>
 
@@ -248,7 +248,7 @@ function verify_images() {
  <th>Estado</th>
  <th>Última vez visto</th>
  <th>Código de barras</th>
- [% IF ( volinfo ) %]<th>Detalles de publicación</th>[% END %] [% IF ( itemdata_uri ) %]<th>url</th>[% END %] [% IF ( itemdata_copynumber ) %]<th>Copia Nro.</th>[% END %] [% IF materials %]<th>Materiales especificados</th>[% END %] [% IF ( itemdata_itemnotes ) %]<th>Notas públicas</th>[% END %] [% IF ( SpineLabelShowPrintOnBibDetails ) %]<th>Etiqueta de lomo</th>[% END %] [% IF ( hostrecords ) %]<th>Registros locales</th>[% END %] [% IF ( analyze ) %]<th>Usado en</th><th></th>[% END %] [% IF ( ShowCourseReserves ) %]<th>Colección de préstamo restringido</th>[% END %] </tr>
+ [% IF ( volinfo ) %]<th>Detalles de publicación</th>[% END %] [% IF ( itemdata_uri ) %]<th>url</th>[% END %] [% IF ( itemdata_copynumber ) %]<th>Copia Nro.</th>[% END %] [% IF materials %]<th>Materiales especificados</th>[% END %] [% IF ( itemdata_itemnotes ) %]<th>Notas públicas</th>[% END %] [% IF ( SpineLabelShowPrintOnBibDetails ) %]<th>Tejuelo</th>[% END %] [% IF ( hostrecords ) %]<th>Registros locales</th>[% END %] [% IF ( analyze ) %]<th>Usado en</th><th></th>[% END %] [% IF ( ShowCourseReserves ) %]<th>Colección de préstamo restringido</th>[% END %] </tr>
  </thead>
  <tbody>
  [% FOREACH item IN items %] <tr>
@@ -263,7 +263,7 @@ function verify_images() {
  [% IF ( item.datedue ) %] <span class="datedue">Ha sido prestado [% UNLESS ( item.NOTSAMEBRANCH ) %] a <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% item.borrowernumber %]">
  [% IF ( item.hidepatronname ) %] [% item.cardnumber %] [% ELSE %] [% item.firstname %] [% item.surname %] [% END %] </a>
  [% END %] : vencimiento [% item.datedue %] </span>
- [% ELSIF ( item.transfertwhen ) %] <span class="intransit">En cuarso desde [% item.transfertfrom %] a [% item.transfertto %] hasta [% item.transfertwhen %]</span>
+ [% ELSIF ( item.transfertwhen ) %] <span class="intransit">En curso desde [% item.transfertfrom %] a [% item.transfertto %] hasta [% item.transfertwhen %]</span>
  [% END %] [% IF ( item.itemlost ) %] [% IF ( item.itemlostloop ) %] [% FOREACH itemlostloo IN item.itemlostloop %] [% IF ( itemlostloo.selected ) %] <span class="lost">[% itemlostloo.lib %]</span>
  [% END %] [% END %] [% ELSE %] <span class="lost">No disponible (perdido o faltante)</span>
  [% END %] [% END %] [% IF ( item.wthdrawn ) %] <span class="wdn">Retirado</span>
@@ -308,7 +308,7 @@ function verify_images() {
  <tr><td>itemdata_copynumber</td><td>[% itemdata_copynumber %]</td></tr>
  <tr><td>publicación periódica</td><td>[% serial %]</td></tr>
  </table>
- [% END %] [% ELSE %] [% IF ( ALTERNATEHOLDINGS ) %] [% FOREACH ALTERNATEHOLDING IN ALTERNATEHOLDINGS %] <div id="alternateholdings"><span class="holdings_label">Reservas:</span> [% ALTERNATEHOLDING.holding %]</div>
+ [% END %] [% ELSE %] [% IF ( ALTERNATEHOLDINGS ) %] [% FOREACH ALTERNATEHOLDING IN ALTERNATEHOLDINGS %] <div id="alternateholdings"><span class="holdings_label">Ejemplares:</span> [% ALTERNATEHOLDING.holding %]</div>
  [% END %] [% ELSE %] <div id="noitems">No hay ítems correspondientes a este registro</div>
  [% END %] [% END %] </div>
 

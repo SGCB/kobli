@@ -143,7 +143,7 @@ $(document).ready(function(){
     param1 += "<optgroup label=\""+_("Sus Listas:")+"\">";[% FOREACH addbarshelvesloo IN addbarshelvesloop %]
     param1 += "<option id=\"s[% addbarshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addbarshelvesloo.shelfname |html %]<\/option>";[% END %]
     param1 += "<\/optgroup>";[% END %]
-    [% IF ( addpubshelves ) %]param1 += "<optgroup label=\""+_("Listas públicas")+"\">"[% FOREACH addpubshelvesloo IN addpubshelvesloop %]+"<option id=\"s[% addpubshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addpubshelvesloo.shelfname |html %]<\/option>"[% END %];
+    [% IF ( addpubshelves ) %]param1 += "<optgroup label=\""+_("Listas públicas:")+"\">"[% FOREACH addpubshelvesloo IN addpubshelvesloop %]+"<option id=\"s[% addpubshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addpubshelvesloo.shelfname |html %]<\/option>"[% END %];
     param1 += "<\/optgroup>";[% END %]
     [% IF (( addbarshelvesloop && addbarshelvesloop.size>9) || (addpubshelvesloop && addpubshelvesloop.size>9 )) %]
         param1 += "<option value=\"morelists\">[ "+_("Más Listas")+" ]<\/option>";
@@ -161,7 +161,7 @@ $(document).ready(function(){
     param1 += "<optgroup label=\""+_("Sus Listas:")+"\">";[% FOREACH addbarshelvesloo IN addbarshelvesloop %]
     param1 += "<option id=\"s[% addbarshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addbarshelvesloo.shelfname |html %]<\/option>";[% END %]
     param1 += "<\/optgroup>";[% END %]
-    [% IF ( addpubshelves ) %]param1 += "<optgroup label=\""+_("Listas públicas")+"\">"[% FOREACH addpubshelvesloo IN addpubshelvesloop %]+"<option id=\"s[% addpubshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addpubshelvesloo.shelfname |html %]<\/option>"[% END %][% END %]
+    [% IF ( addpubshelves ) %]param1 += "<optgroup label=\""+_("Listas públicas:")+"\">"[% FOREACH addpubshelvesloo IN addpubshelvesloop %]+"<option id=\"s[% addpubshelvesloo.shelfnumber %]\" value=\"addtolist\">[% addpubshelvesloo.shelfname |html %]<\/option>"[% END %][% END %]
     param1 +="<\/optgroup><option value=\"newlist\">[ "+_("Nueva Lista")+" ]<\/option>"
     [% END %]
     [% END %]

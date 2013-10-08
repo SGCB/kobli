@@ -24,11 +24,11 @@
  <li><a href="/cgi-bin/koha/admin/authorised_values.pl">Valores autorizados</a></li>
 </ul>
 
-<h5>Socios y circulación</h5>
+<h5>Usuarios y circulación</h5>
 <ul>
- <li><a href="/cgi-bin/koha/admin/categorie.pl">Tipos y categorías de socio</a></li>
+ <li><a href="/cgi-bin/koha/admin/categorie.pl">Tipos y categorías de usuario</a></li>
  <li><a href="/cgi-bin/koha/admin/smart-rules.pl">Reglas de circulación y multas</a></li>
- <li><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a></li>
+ <li><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de usuario</a></li>
  <li><a href="/cgi-bin/koha/admin/branch_transfer_limits.pl">Límites de transferencia de la biblioteca</a></li>
  <li><a href="/cgi-bin/koha/admin/transport-cost-matrix.pl">Transporte matriz de costos</a></li>
  <li><a href="/cgi-bin/koha/admin/item_circulation_alerts.pl">Alertas de circulación de ítems</a></li>

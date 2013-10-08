@@ -48,9 +48,10 @@
  <p>No hay reservas seleccionadas para este curso.</p>
  </div>
  [% END %] </div>
-</div>
 
-[% IF ( OpacNav ) %] <div class="yui-b">
-<div id="leftmenus" class="container">
-[% INCLUDE 'navigation.inc' %] </div>
-</div>[% END %] [% INCLUDE 'opac-bottom.inc' %] 
+ [% IF ( OpacNav ) %] <div class="yui-b">
+ <div id="leftmenus" class="container">
+ [% INCLUDE 'navigation.inc' %] </div>
+ </div>[% END %] </div>
+
+[% INCLUDE 'opac-bottom.inc' %] 

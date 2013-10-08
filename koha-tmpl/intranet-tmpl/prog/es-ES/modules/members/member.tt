@@ -1,7 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios [% IF ( searching ) %]&rsaquo; Resultados de búsqueda[% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Usuarios [% IF ( searching ) %]&rsaquo; Resultados de búsqueda[% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="pat_member" class="pat">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; [% IF ( searching ) %]<a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Resultados de búsqueda[% ELSE %]Socios[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; [% IF ( searching ) %]<a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; Resultados de búsqueda[% ELSE %]Usuarios[% END %]</div>
 
 <div id="doc2" class="yui-t7">
 
@@ -10,8 +10,8 @@
  <div class="yui-b">
  <div class="yui-g">
 
- [% INCLUDE 'patron-toolbar.inc' %] [% IF ( no_add ) %]<div class="dialog alert"><h3>No se puede agregar socio</h3>
- [% IF ( no_branches ) %]<p>Hay <strong>No hay bibliotecas definidas. </strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/branches.pl">agregar una biblioteca</a>.[% ELSE %]Un administrador debe definir al menos una biblioteca.[% END %]</p>[% END %] [% IF ( no_categories ) %]<p>Hay <strong>sin categorías de usuarios definidas</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/categorie.pl">agregar una categoría de socio</a>.[% ELSE %]Un administrador debe definir al menos una categoría de socio.[% END %]</p>[% END %]</div>
+ [% INCLUDE 'patron-toolbar.inc' %] [% IF ( no_add ) %]<div class="dialog alert"><h3>No se puede agregar usuario</h3>
+ [% IF ( no_branches ) %]<p>Hay <strong>No hay bibliotecas definidas. </strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/branches.pl">agregar una biblioteca</a>.[% ELSE %]Un administrador debe definir al menos una biblioteca.[% END %]</p>[% END %] [% IF ( no_categories ) %]<p>Hay <strong>sin categorías de usuarios definidas</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/categorie.pl">agregar una categoría de usuario</a>.[% ELSE %]Un administrador debe definir al menos una categoría de usuario.[% END %]</p>[% END %]</div>
  [% END %] <div class="browse">
  Búsqueda por apellido: [% FOREACH letter IN alphabet.split(' ') %] <a href="/cgi-bin/koha/members/member.pl?quicksearch=1&amp;surname=[% letter %]">[% letter %]</a>
  [% END %] </div>

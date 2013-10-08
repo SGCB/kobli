@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; Crear factura manual</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Usuarios &rsaquo; Crear factura manual</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
@@ -9,7 +9,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body id="pat_maninvoice" class="pat">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Factura manual</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; Factura manual</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -28,7 +28,7 @@ $(document).ready(function(){
 </ul>
 <div class="tabs-container">
 
-[% IF ( ERROR ) %] [% IF ( ITEMNUMBER ) %] ERROR se ingresó un numero de ítem no válido, por favor vuelva a la pantalla anterior e intentelo de nuevo. [% END %] [% ELSE %] <form action="/cgi-bin/koha/members/maninvoice.pl" method="post" id="maninvoice"><input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" />
+[% IF ( ERROR ) %] [% IF ( ITEMNUMBER ) %] ERROR se introdujo un itemnumber no válido, por favor vuelva a la pantalla anterior e inténtelo de nuevo. [% END %] [% ELSE %] <form action="/cgi-bin/koha/members/maninvoice.pl" method="post" id="maninvoice"><input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" />
  <fieldset class="rows">
  <legend>Factura Manual</legend>
  <ol>

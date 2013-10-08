@@ -1,26 +1,26 @@
-[% INCLUDE 'help-top.inc' %] <h1>Agregar socios</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Agregar usuarios</h1>
 
-<p>Las categorías de socios pertenecen a una de las seis categorías extralimitadas en Koha.</p>
+<p>Las categorías de usuarios pertenecen a una de las seis categorías extralimitadas en Koha.</p>
 
 <ul>
- <li>Persona o administrativo = un socio que puede ser habilitado para realizar funciones con el la interfaz del personal o administrativa.</li>
- <li>Adulto = Un socio normal (puede tener socios niños asociados)</li>
- <li>Niño= Un socio que puede corresponder a un socio adulto</li>
- <li>Institución = Una organización que pueden tener socios profesionales asociados a ella.</li>
- <li>Profesional = un socio que puede tener una institución como garante.</li>
- <li>Estadístico = un tipo de socio usado solamente para seguir los préstamos en sala <ul>
+ <li>Persona o administrativo = un usuario que puede ser habilitado para realizar funciones con el la interfaz del personal o administrativa.</li>
+ <li>Adulto = Un usuario normal (puede tener usuarios niños asociados)</li>
+ <li>Niño= Un usuario que puede corresponder a un usuario adulto</li>
+ <li>Institución = Una organización que pueden tener usuarios profesionales asociados a ella.</li>
+ <li>Profesional = un usuario que puede tener una institución como garante.</li>
+ <li>Estadístico = un tipo de usuario usado solamente para seguir los préstamos en sala <ul>
  <li><span style="background-color: #ffe599;">CONSEJO: esto puede ser utilizado para registrar las estadísticas de los ítem que se utilizan, pero que no se prestan, como ser referencias, revistas, etc. A continuación, puede generar un informe para reunir las estadísticas de esta tarjeta</span></li>
 </ul>
 </li>
 </ul>
 
-<h2>Agregar un nuevo socio</h2>
+<h2>Agregar un nuevo usuario</h2>
 
-<p>Socios que están añadisos por el módulo de 'Socios'</p>
+<p>Usuarios que están añadisos por el módulo de 'Usuarios'</p>
 
 <ul>
  <li>Haga clic en 'Nuevo'</li>
- <li>Primero introducir la información de identificación correspondiente a su socio <ul>
+ <li>Primero introducir la información de identificación correspondiente a su usuario <ul>
  <li>Los campos obligatorios están definidos en la preferencia del sistema BorrowerMandatoryField</li>
  <li>El saludo se llena por la preferencia del sistema BorrowersTitles</li>
 </ul>
@@ -29,52 +29,52 @@
  <li>Para información de contacto, tenga en cuenta que el teléfono principal y direcciones de correo electrónico son los que aparecen en avisos impresos y formularios en circulación (recibos, recibos de transferencia y recibos de reservas). El  correo electrónico principal  es al que notificarán los avisos de vencimiento y otros mensajes.</li>
 </ul>
 </li>
- <li>Si el socio es un niño, se le pedirá que el socio niño dependa de un socio adulto <ul>
- <li>Haga clic en 'Asignar a socio' para buscar un socio existente</li>
+ <li>Si el usuario es un niño, se le pedirá que el usuario niño dependa de un usuario adulto <ul>
+ <li>Haga clic en 'Asignar a usuario' para buscar un usuario existente</li>
  <li>Si el Garante no está en el sistema, puede introducir el nombre y apellido en los campos disponibles</li>
  <li>Las relaciones se fijan utilizando la preferencia del sistema borrowerRelationship</li>
 </ul>
 </li>
- <li>Si el socio es un profesional, se le pedirá que el socio dependa de un socio institucional <ul>
- <li>Seleccionar 'Permitir a los socios buscar en su sistema a socios existentes'</li>
+ <li>Si el usuario es un profesional, se le pedirá que el usuario dependa de un usuario institucional <ul>
+ <li>Seleccionar 'Permitir a los usuarios buscar en su sistema a usuarios existentes'</li>
 </ul>
 </li>
- <li>Cada socio puede tener un contacto alternativo <ul>
- <li>Un contacto alternativo puede ser un padre o tutor. Esto puede usarse para almacenar la dirección personal del socio.</li>
+ <li>Cada usuario puede tener un contacto alternativo <ul>
+ <li>Un contacto alternativo puede ser un padre o tutor. Esto puede usarse para almacenar la dirección personal del usuario.</li>
 </ul>
 </li>
  <li>El sección de administración de la biblioteca incluye los valores que son utilizados dentro de la biblioteca <ul>
- <li>El campo de número del carnet de socio se calcula automáticamente si usted tiene la preferencia del sistema autoMemberNum establecida de esa manera</li>
- <li><strong>Nota: </strong> Para que un sistema recién instalado active esta preferencia empezará en 1 e incrementará en 1 cada vez. Para que empiece con el número de inicio de los código de barras, introduzca el código de barras por primera vez a mano en el registro de socio y guardar el socio. Después  el campo se incrementará en ese número por 1.</li>
- <li>Si usted accidentalmente elije al comienzo una categoría de socio equivocada puede arreglarla aquí</li>
+ <li>El campo de número del carnet de usuario se calcula automáticamente si usted tiene la preferencia del sistema autoMemberNum establecida de esa manera</li>
+ <li><strong>Nota:</strong> Para que un sistema recién instalado active esta preferencia empezará en 1 e incrementará en 1 cada vez. Para que empiece con el número de inicio de los código de barras, introduzca el código de barras por primera vez a mano en el registro de usuario y guardar el usuario. Después  el campo se incrementará en ese número por 1.</li>
+ <li>Si usted accidentalmente elije al comienzo una categoría de usuario equivocada puede arreglarla aquí</li>
  <li>Sort 1 and 2 son utilizados con propósitos estadísticos</li>
 </ul>
 </li>
  <li>A continuación, la sección Configuración de biblioteca incluye la colección de ajustes adicionales <ul>
  <li>El fecha de registro automáticamente se rellena con la fecha de hoy</li>
- <li>Si el carnet de socio vence (basado en la configuración de la categoría de socio) la fecha de vencimiento se calculará automáticamente</li>
- <li>La Nota OPAC es una nota para el socio - que aparecerá en el OPAC en el registro del socio</li>
- <li>La Nota de Circulación es únicamente para el personal de la biblioteca y aparecerá cuando el personal de circulación va a prestar un ítem a un socio</li>
- <li>Para registrarse en la cuenta de socio y en la cuenta de  personal como cliente Administrador en el OPAC, el Cliente Administrador/OPAC pedirá el apellido y contraseña </li>
+ <li>Si el carnet de usuario vence (basado en la configuración de la categoría de usuario) la fecha de vencimiento se calculará automáticamente</li>
+ <li>La Nota OPAC es una nota para el usuario - que aparecerá en el OPAC en el registro del usuario</li>
+ <li>La Nota de Circulación es únicamente para el personal de la biblioteca y aparecerá cuando el personal de circulación va a prestar un ítem a un usuario</li>
+ <li>Para registrarse en la cuenta de usuario y en la cuenta de  personal como cliente Administrador en el OPAC, el Cliente Administrador/OPAC pedirá el apellido y contraseña </li>
 </ul>
 </li>
- <li>Si ha configurado atributos adicionales para el socio, estos aparecerán a continuación</li>
- <li>Finalmente, si tiene habilitado EnhancedMessagingPreferences, puede seleccionar las preferencias de mensajería para este socio. <ul>
- <li style="color: #990000">Importante: Estas preferencias sobreescribirán cualquiera establecida a través de las categorías del socio</li>
- <li style="color: #990000">Importante: Estas preferencias pueden ser modificadas por el socio a través del OPAC</li>
+ <li>Si ha configurado atributos adicionales para el usuario, estos aparecerán a continuación</li>
+ <li>Finalmente, si tiene habilitado EnhancedMessagingPreferences, puede seleccionar las preferencias de mensajería para este usuario. <ul>
+ <li style="color: #990000">Importante: Estas preferencias sobreescribirán cualquiera establecida a través de las categorías del usuario</li>
+ <li style="color: #990000">Importante: Estas preferencias pueden ser modificadas por el usuario a través del OPAC</li>
 </ul>
 </li>
  <li>Cuando haya finalizado, haga clic en 'Guardar'</li>
 </ul>
 
-<p>En este punto si el sistema le advertirá si sospecha que el socio es un duplicado de otro.</p>
+<p>En este punto si el sistema le advertirá si sospecha que el usuario es un duplicado de otro.</p>
 
 <h2>Agregar un usuario administrativo</h2>
 
-<p>Todos los miembros del personal deben ser ingresados en Koha como socios del tipo 'Personal'. Siga los pasos en Agregar un Socio para incorporar un miembro del personal. Para darle al personal permisos para acceder a la interfaz administrativa, siga los pasos en Permisos de Socios</p>
+<p>Todos los miembros del personal deben ser dados de alta en Koha como usuarios del tipo 'Personal'. Siga los pasos en Agregar un Usuario para incorporar un miembro del personal. Para darle al personal permisos para acceder a la interfaz administrativa, siga los pasos en Permisos de Usuarios</p>
 
 <p style="color: #990000">Recuerde que debe crear nombres de usuario y contraseñas seguras, ya que estos serán utilizados para iniciar la sesión del personal.</p>
 
-<p><strong>Vea la documentación completa para Agregado de socios en la <a href="http://es.koha-community.org/manual/3.12/es/patrons.html#addnewpatron">manual</a> (en línea).</strong></p>
+<p><strong>Vea la documentación completa para Agregado de usuarios en la <a href="http://es.koha-community.org/manual/3.12/es/patrons.html#addnewpatron">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %] 

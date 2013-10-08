@@ -15,7 +15,7 @@
 
 <p> Haga clic en 'Siguiente' para continuar <input value="Siguiente >>" type="submit" /></p>
 </form>
-[% END %] [% IF ( language ) %] [% UNLESS ( checkmodule ) %] [% IF ( missing_modules ) %] <p>Faltan algunos módulos de Perl. Los módulos en rojo <b>Ud. debe </b> será instalado antes de que continúe.<br />
+[% END %] [% IF ( language ) %] [% UNLESS ( checkmodule ) %] [% IF ( missing_modules ) %] <p>Faltan algunos módulos de Perl. Los módulos en rojo <b>Ud. debe</b> será instalado antes de que continúe.<br />
  <ul>
  [% FOREACH missing_module IN missing_modules %] [% IF ( missing_module.require ) %] <li style="color:#FF0000;font-weight:bold;">[% missing_module.name %] [% ELSE %] <li>[% missing_module.name %] [% END %] <br /> Versión: [% missing_module.version %] <br /> Uso: [% missing_module.usage %] </li>
  [% END %] [% END %] [% IF ( problems ) %] <p>He tropezado con algunos problemas.</p>

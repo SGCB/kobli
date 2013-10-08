@@ -16,13 +16,13 @@
 
 [% IF ( alertloop ) %] <table>
  <tr>
- <th>Nombre de socio</th>
+ <th>Nombre de usuario</th>
  </tr>
  [% FOREACH alertloo IN alertloop %] <tr>
  <td><a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% alertloo.borrowernumber %]">[% alertloo.name %]</a></td>
  </tr>
  [% END %] </table>
-[% ELSE %] <p>No hay socios suscritos a esta alerta de suscripción periódica.</p>
+[% ELSE %] <p>No hay usuarios suscritos a esta alerta de suscripción periódica.</p>
 [% END %] </div>
 </div>
 

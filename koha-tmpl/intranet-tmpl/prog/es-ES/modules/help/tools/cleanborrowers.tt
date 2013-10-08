@@ -1,24 +1,24 @@
-[% INCLUDE 'help-top.inc' %] <h1>Socios (anonimizar, borrar en bloque)</h1>
+[% INCLUDE 'help-top.inc' %] <h1>Usuarios (anonimizar, borrar en bloque)</h1>
 
-<p>Esta herramienta permite anonimizar historiales de circulación en bloque (lo cual significa que puede preservar cuantas veces se prestó un ítem - pero no a cual socio) o eliminar socios en bloque (removerlos completamente del sistema).</p>
+<p>Esta herramienta permite anonimizar historiales de circulación en bloque (lo cual significa que puede preservar cuantas veces se prestó un ítem - pero no a cual usuario) o eliminar usuarios en bloque (removerlos completamente del sistema).</p>
 
-<p style="color: #990000;">Importante: Los socios con multas pendientes o ítems prestados no se guardan. No son borrados  completamente del sistema (se mueven a la tabla deleted_borrowers), pero esta herramienta no provee tantas comprobaciones como sería deseable.</p>
+<p style="color: #990000;">Importante: Los usuarios con multas pendientes o ítems prestados no se guardan. No son borrados  completamente del sistema (se mueven a la tabla deleted_borrowers), pero esta herramienta no provee tantas comprobaciones como sería deseable.</p>
 
 <p style="color: #990000;">Importante: Antes de utilizar esta herramienta es recomendable hacer una copia de seguridad de la base de datos. Los cambios serán permanentes-</p>
 
 <p style="color: #990000;">Importante: La anonimización fracasará si la preferencia AnonymousPatron no contiene un valor válido.</p>
 
-<p>Para eliminar o anonimizar socios</p>
+<p>Para eliminar o anonimizar usuarios</p>
 
 <ul>
  <li>Seleccione la opción "Verificar" en la tarea que desea completar (Eliminar o Anonimizar)</li>
- <li>Ingrese una fecha antes de la cual desea alterar los datos</li>
- <li>Para eliminar socios se puede buscar por fecha de vencimiento o categoría.</li>
+ <li>Introduzca una fecha antes de la cual desea alterar los datos</li>
+ <li>Para eliminar usuarios se puede buscar por fecha de vencimiento o categoría.</li>
  <li>Haga clic en 'Siguiente'</li>
  <li>Una confirmación aparecerá preguntándole si está seguro que esto es lo que Usted quiere que suceda</li>
  <li>Haciendo clic en 'Terminar' borrará o anonimizará sus datos</li>
 </ul>
 
-<p><strong>Vea la documentación completa para Anonimizar socios en la <a href="http://es.koha-community.org/manual/3.12/es/tools.html#anonpatrons">manual</a> (en línea).</strong></p>
+<p><strong>Vea la documentación completa para Anonimizar usuarios en la <a href="http://es.koha-community.org/manual/3.12/es/tools.html#anonpatrons">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

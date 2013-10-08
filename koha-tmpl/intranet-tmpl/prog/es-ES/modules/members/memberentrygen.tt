@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; [% IF ( opadd ) %]Agregar[% ELSIF ( opduplicate ) %]Duplicar[% ELSE %] Modificar[% END %] [% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio del personal[% END %][% END %][% UNLESS ( opadd ) %] [% surname %], [% firstname %][% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Usuarios &rsaquo; [% IF ( opadd ) %]Agregar[% ELSIF ( opduplicate ) %]Duplicar[% ELSE %] Modificar[% END %] [% IF ( categoryname ) %] [% categoryname %] usuario[% ELSE %][% IF ( I ) %] Usuario institucional[% END %][% IF ( A ) %] Usuario adulto[% END %][% IF ( C ) %] Usuario niño[% END %][% IF ( P ) %] Usuario profesional[% END %][% IF ( S ) %] Usuario del personal[% END %][% END %][% UNLESS ( opadd ) %] [% surname %], [% firstname %][% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function() {
@@ -69,35 +69,35 @@
     }
 
 		var MSG_SEPARATOR = _("El separador debe ser / en el campo ");
-        var MSG_INCORRECT_DAY = _("Día inválido ingresado en el campo ");
-        var MSG_INCORRECT_MONTH = _("Mes inválido ingresado en el campo ");
-        var MSG_INCORRECT_YEAR = _("Año inválido ingresado en el campo ");
-        var MSG_DUPLICATE_PATRON = _("Atención: Socio duplicado");
+        var MSG_INCORRECT_DAY = _("Día inválido introducido en el campo ");
+        var MSG_INCORRECT_MONTH = _("Mes inválido introducido en el campo ");
+        var MSG_INCORRECT_YEAR = _("Año inválido introducido en el campo ");
+        var MSG_DUPLICATE_PATRON = _("Atención: Usuario duplicado");
         var MSG_DUPLICATE_ORGANIZATION = _("Advertencia: Organización duplicada");
         var MSG_LATE_EXPIRY = _("Advertencia: La fecha de expiración es posterior a la fecha de membresía");
         var MSG_MISSING_MANDATORY = _("Los siguientes campos son obligatorios:");
-        var MSG_DUPLICATE_SUSPICION = _("Por favor confirme si este es un socio duplicado");
-        var MSG_PASSWORD_MISMATCH = _("Las contraseñas ingresadas no coinciden");
+        var MSG_DUPLICATE_SUSPICION = _("Por favor confirme si este es un usuario duplicado");
+        var MSG_PASSWORD_MISMATCH = _("Las contraseñas introducidas no coinciden");
 //]]>
 </script>
 <script type="text/javascript" src="[% themelang %]/js/members.js"></script>
 </head>
 <body id="pat_memberentrygen" class="pat">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; [% IF ( opadd ) %] Agregar[% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional [% END %][% IF ( S ) %] Socio del personal[% END %][% END %] [% surname %] [% firstname %] [% ELSE %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% firstname %] [% surname %]</a> &rsaquo; <strong>[% IF ( opduplicate ) %]Duplicado[% ELSE %]Modificado[% END %][% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio del personal[% END %][% END %] </strong>[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; [% IF ( opadd ) %] Agregar[% IF ( categoryname ) %] [% categoryname %] usuario[% ELSE %][% IF ( I ) %] Usuario institucional[% END %][% IF ( A ) %] usuario adulto[% END %][% IF ( C ) %] Usuario niño[% END %][% IF ( P ) %] Usuario profesional [% END %][% IF ( S ) %] Usuario del personal[% END %][% END %] [% surname %] [% firstname %] [% ELSE %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% borrowernumber %]">[% firstname %] [% surname %]</a> &rsaquo; <strong>[% IF ( opduplicate ) %]Duplicado[% ELSE %]Modificado[% END %][% IF ( categoryname ) %] [% categoryname %] usuario[% ELSE %][% IF ( I ) %] Usuario institucional[% END %][% IF ( A ) %] Usuario adulto[% END %][% IF ( C ) %] Usuario niño[% END %][% IF ( P ) %] Usuario profesional[% END %][% IF ( S ) %] Usuario del personal[% END %][% END %] </strong>[% END %]</div>
 [% IF ( opadd ) %]<div id="doc" class="yui-t7">[% ELSE %]<div id="doc3" class="yui-t2">[% END %] <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
 
- [% IF error_alert %] [% IF ( error_alert == "no_email" ) %] <div class="error">Este socio no tiene email</div>
+ [% IF error_alert %] [% IF ( error_alert == "no_email" ) %] <div class="error">Este usuario no tiene email</div>
  [% ELSE %] <div class="error">[% error_alert %]</div>
  [% END %] [% END %] [% IF info_alert %] <div class="dialog message">Email ha sido enviado.</div>
- [% END %] [% IF ( no_add ) %]<div class="dialog alert"><h3>No se puede agregar socio</h3>
- [% IF ( no_branches ) %]<p>Hay <strong>No hay bibliotecas definidas. </strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/branches.pl">agregar una biblioteca</a>.[% ELSE %]Un administrador debe definir al menos una biblioteca.[% END %]</p>[% END %] [% IF ( no_categories ) %]<p>Hay <strong>sin categorías de usuarios definidas</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/categorie.pl">agregar una categoría de socio</a>.[% ELSE %]Un administrador debe definir al menos una categoría de socio.</p>[% END %][% END %]</div>[% END %] [% UNLESS ( no_add ) %] [% IF ( opadd ) %] <h1>
- Agregar[% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio del personal[% END %][% END %] [% firstname %] [% surname %] </h1>
+ [% END %] [% IF ( no_add ) %]<div class="dialog alert"><h3>No se puede agregar usuario</h3>
+ [% IF ( no_branches ) %]<p>Hay <strong>No hay bibliotecas definidas. </strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/branches.pl">agregar una biblioteca</a>.[% ELSE %]Un administrador debe definir al menos una biblioteca.[% END %]</p>[% END %] [% IF ( no_categories ) %]<p>Hay <strong>sin categorías de usuarios definidas</strong>. [% IF ( CAN_user_parameters ) %]Por favor <a href="/cgi-bin/koha/admin/categorie.pl">agregar una categoría de usuario</a>.[% ELSE %]Un administrador debe definir al menos una categoría de usuario.</p>[% END %][% END %]</div>[% END %] [% UNLESS ( no_add ) %] [% IF ( opadd ) %] <h1>
+ Agregar[% IF ( categoryname ) %] [% categoryname %] usuario[% ELSE %][% IF ( I ) %] Usuario institucional[% END %][% IF ( A ) %] Usuario adulto[% END %][% IF ( C ) %] Usuarioo niño[% END %][% IF ( P ) %] Usuario profesional[% END %][% IF ( S ) %] Usuarioo del personal[% END %][% END %] [% firstname %] [% surname %] </h1>
  [% ELSE %] <h1>
- [% IF ( opduplicate ) %]Duplicar[% ELSE %]Modificar[% END %][% IF ( categoryname ) %] [% categoryname %] socio[% ELSE %][% IF ( I ) %] Socio institucional[% END %][% IF ( A ) %] Socio adulto[% END %][% IF ( C ) %] Socio niño[% END %][% IF ( P ) %] Socio profesional[% END %][% IF ( S ) %] Socio del personal[% END %][% END %] [% firstname %] [% surname %] </h1>
+ [% IF ( opduplicate ) %]Duplicar[% ELSE %]Modificar[% END %][% IF ( categoryname ) %] [% categoryname %] usuario[% ELSE %][% IF ( I ) %] Usuario institucional[% END %][% IF ( A ) %] Usuario adulto[% END %][% IF ( C ) %] Usuario niño[% END %][% IF ( P ) %] Usuario profesional[% END %][% IF ( S ) %] Usuario del personal[% END %][% END %] [% firstname %] [% surname %] </h1>
  [% END %] [% IF ( check_member ) %] <div class="dialog alert">
- <h3>¿Duplicar el registro de socio?</h3>
+ <h3>¿Duplicar el registro de usuario?</h3>
  <p><a class="popup" href="javascript:Dopop('moremember.pl?print=brief&amp;borrowernumber=[% check_member %]');" >Ver un registro existente</a></p>
  <form action="/cgi-bin/koha/members/memberentry.pl" method="get"><input type="hidden" name="op" value="modify" /><input type="hidden" name="borrowernumber" value="[% check_member %]" /><input type="hidden" name="category_type" value="[% check_categorytype %]" /><input value="Es un duplicado. Editar el registro existente" class="edit" type="submit" /></form>
 
@@ -110,7 +110,7 @@
  <ul>
  [% IF ( ERROR_login_exist ) %] <li id="ERROR_login_exist">Cuenta/contraseña ya existe.</li>
  [% END %] [% IF ( ERROR_cardnumber ) %] <li id="ERROR_cardnumber">Este número de carnet ya ha sido asignado.</li>
- [% END %] [% IF ( ERROR_age_limitations ) %] <li id="ERROR_age_limitations">La edad del socio es incorrecta para esta categoría. Las edades permitidas son [% age_low %]-[% age_high %].</li>
+ [% END %] [% IF ( ERROR_age_limitations ) %] <li id="ERROR_age_limitations">La edad del usuario es incorrecta para esta categoría. Las edades permitidas son [% age_low %]-[% age_high %].</li>
  [% END %] [% IF ( ERROR_branch ) %] <li id="ERROR_branch">La biblioteca no es válida.</li>
  [% END %] [% IF ( ERROR_dateofbirth ) %] <li id="ERROR_dateofbirth">Fecha de nacimiento no válida</li>
  [% END %] [% IF ( ERROR_dateenrolled ) %] <li id="ERROR_dateenrolled">Fecha de inscripción no válida.</li>
@@ -136,7 +136,7 @@
 [% ELSE %] <input type="hidden" name="op" value="save" />
 [% IF step == 4 || step == 5 || step == 6 || step == 2 || step == 1 %] [%# Only put the cardnumber if we arent showing it in the form later %] [% IF cardnumber %] <input type="hidden" name="cardnumber" value="[% cardnumber %]" />
 [% END %] [% END %] [% END %] [% IF ( step_1 ) %] [%UNLESS notitle && nosurname && nofirstname && nodateofbirth && noinitials && noothernames &&nosex %] <fieldset class="rows" id="memberentry_identity">
- <legend id="identity_lgd">[% IF ( I ) %]Institución [% ELSE %]Socio [% END %]identidad</legend>
+ <legend id="identity_lgd">[% IF ( I ) %]Institución [% ELSE %]Usuario [% END %]identidad</legend>
  <ol>
  [% UNLESS ( I ) %] [% UNLESS notitle %] [% IF ( title_cgipopup ) %] <li>
  [% IF ( mandatorytitle ) %] <label for="btitle" class="required">
@@ -208,7 +208,7 @@
  [% END %] [% END %] </li>
 [% ELSE %] [% IF ( C ) %] [% IF ( guarantorid ) %] <li id="contact-details">
  [% ELSE %] <li id="contact-details" style="display: none">
- [% END %] <span class="label">Socio #:</span> [% IF ( guarantorid ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% guarantorid %]" target="blank">[% guarantorid %]</a>[% END %] </li>
+ [% END %] <span class="label">Usuario #:</span> [% IF ( guarantorid ) %] <a href="/cgi-bin/koha/members/moremember.pl?borrowernumber=[% guarantorid %]" target="blank">[% guarantorid %]</a>[% END %] </li>
  [% UNLESS nocontactname %] <li>
  <label for="contactname">Apellido: </label>
  [% IF ( guarantorid ) %] <span>[% contactname %]</span>
@@ -233,7 +233,7 @@
  [% END %] [% END %] [% END %] <li>
  <span class="label">&nbsp;</span>
  [% IF ( guarantorid ) %] <input value="Cambiar" id="guarantorsearch" type="button" onclick="Dopopguarantor('guarantor_search.pl?category_type=[% category_type %]');" />
- [% ELSE %] <input value="Establecer al socio" id="guarantorsearch" type="button" onclick="Dopopguarantor('guarantor_search.pl?category_type=[% category_type %]');" />
+ [% ELSE %] <input value="Establecer al usuario" id="guarantorsearch" type="button" onclick="Dopopguarantor('guarantor_search.pl?category_type=[% category_type %]');" />
  [% END %] <input value="Eliminar" id="guarantordelete" type="button" />
  </li>
  </ol>
@@ -554,14 +554,14 @@
  [% ELSE %] <label for="opacnote">
  [% END %] Nota de OPAC: </label>
  <textarea id="opacnote" name="opacnote" cols="55" rows="5">[% opacnote %]</textarea>
- <div class="hint">Es mensaje se muestra en la página del socio en el OPAC.</div>
+ <div class="hint">Es mensaje se muestra en la página del usuario en el OPAC.</div>
  [% IF ( mandatoryopacnote ) %]<span class="required">Requerido</span>[% END %] </li>
  [% END %] [% UNLESS noborrowernotes %] <li>
  [% IF ( mandatoryborrowernotes ) %] <label for="borrowernotes" class="required">
  [% ELSE %] <label for="borrowernotes">
  [% END %] Nota de circulación: </label>
  <textarea id="borrowernotes" name="borrowernotes" cols="55" rows="5">[% borrowernotes %]</textarea>
- <div class="hint">Este mensaje se muestra cuando se presta a este socio</div>
+ <div class="hint">Este mensaje se muestra cuando se presta a este usuario</div>
  [% IF ( mandatoryborrowernotes ) %]<span class="required">Requerido</span>[% END %] </li>
  [% END %] </ol>
  </fieldset>
@@ -611,7 +611,7 @@
  <!--this zones are not necessary in modif mode -->
  [% UNLESS ( opadd ) %]
  <fieldset class="rows">
- <legend>Indicadores de cuenta de socio</legend>
+ <legend>Indicadores de cuenta de usuario</legend>
  <ol class="radio">
  [% FOREACH flagloo IN flagloop %] <li><label class="radio" for="yes[% flagloo.name %]">
  [% IF ( flagloo.key == 'gonenoaddress' ) %]Desaparecido sin dirección:[% END %] [% IF ( flagloo.key == 'debarred' ) %]Restringido:[% END %] [% IF ( flagloo.key == 'lost' ) %]Carnet perdido:[% END %] </label>
@@ -717,7 +717,7 @@
     //]]>
     </script>
  [% END %] <input type="hidden" name="setting_messaging_prefs" value="1" />
- <legend id="patron_messaging_prefs_lgd">Preferencias de mensajes de socios</legend>
+ <legend id="patron_messaging_prefs_lgd">Preferencias de mensajes de usuarios</legend>
  [% IF type_only %] <p>Si no se selecciona ninguna preferencia, al guardar se aplicarán las preferencias por defecto de la categoría elegida, de lo contrario se guardará lo que seleccione</p>
  [% END %] [% INCLUDE 'messaging-preference-form.inc' %] [% IF ( SMSSendDriver ) %] <p><label for="SMSnumber">Número SMS:</label>
  [% IF ( opduplicate ) %] <input type="text" id="SMSnumber" name="SMSnumber" value="[% SMSnumber %]" onclick="this.value=''" />

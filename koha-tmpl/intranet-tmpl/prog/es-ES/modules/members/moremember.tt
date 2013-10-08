@@ -1,4 +1,4 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Socios &rsaquo; [% IF ( unknowuser ) %] El socio no existe [% ELSE %] Detalles de socio para [% INCLUDE 'patron-title.inc' %] [% END %] </title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Usuarios &rsaquo; [% IF ( unknowuser ) %] El usuario no existe [% ELSE %] Detalles de usuario para [% INCLUDE 'patron-title.inc' %] [% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <link rel="stylesheet" type="text/css" href="[% interface %]/[% theme %]/en/css/datatables.css" />
 <script type="text/javascript" src="[% interface %]/[% theme %]/en/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% interface %]/[% theme %]/en/js/datatables.js"></script>
@@ -47,14 +47,14 @@ $(document).ready(function() {
     [% IF ( picture ) %]
     // new YAHOO.widget.Button("delpicture");   // FIXME: formatting mismatch between YUI and normal button
 	$('#delpicture').click(function(){
-		 return confirm(_("¿Está seguro de querer borrar esta imagen de socio? Esto no puede deshacerse."));
+		 return confirm(_("¿Está seguro de querer borrar esta imagen de usuario? Esto no puede deshacerse."));
 	});
 	$('#manage-patron-image').find("input[value*=Upload]").click(function(){
         if($("#uploadfile").val() == ""){
             alert(_("Seleccione el archivo a subir"));
             return false;
         }
-        return confirm(_("¿Está seguro de querer reemplazar la imagen actual del socio? Esto no puede deshacerse."));
+        return confirm(_("¿Está seguro de querer reemplazar la imagen actual del usuario? Esto no puede deshacerse."));
 	});[% END %]
 	$("#renew_all"      ).click(function(){ $(".checkboxed").checkCheckboxes(":input[name*=items]"   ); $(".checkboxed").unCheckCheckboxes(":input[name*=barcodes]"); });
 	$("#CheckAllitems"  ).click(function(){ $(".checkboxed").checkCheckboxes(":input[name*=items]"   ); $(".checkboxed").unCheckCheckboxes(":input[name*=barcodes]"); return false; });
@@ -137,8 +137,8 @@ function validate1(date) {
 <body id="pat_moremember" class="pat">
 [% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs">
  <a href="/cgi-bin/koha/mainpage.pl">Inicio</a>
-&rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a>
-&rsaquo; [% IF ( unknowuser ) %]El socio no existe[% ELSE %]Detalles de socio para [% INCLUDE 'patron-title.inc' %][% END %] </div>
+&rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a>
+&rsaquo; [% IF ( unknowuser ) %]El usuario no existe[% ELSE %]Detalles de usuario para [% INCLUDE 'patron-title.inc' %][% END %] </div>
 
 <div id="doc3" class="yui-t1">
  
@@ -151,22 +151,22 @@ function validate1(date) {
  <p>Otros campos actualizados.</p>
  [% END %] [% IF ( CANT_DELETE_STAFF ) %] <h3>Imposible eliminar el usuario administrativo</h3>
  <p>Insuficientes permisos.</p>
- [% END %] [% IF ( CANT_DELETE_OTHERLIBRARY ) %] <h3>Imposible eliminar socios de otras bibliotecas con la configuración actual</h3>
+ [% END %] [% IF ( CANT_DELETE_OTHERLIBRARY ) %] <h3>Imposible eliminar usuarios de otras bibliotecas con la configuración actual</h3>
  <p>Insuficientes permisos.</p>
- [% END %] [% IF ( CANT_DELETE ) %] <h3>Imposible eliminar socio</h3>
+ [% END %] [% IF ( CANT_DELETE ) %] <h3>Imposible eliminar usuario</h3>
  <p>Insuficientes permisos.</p>
  [% END %] </div>
 [% END %] <div class="yui-g">
 
-[% IF ( unknowuser ) %] <div class="dialog message">Este socio no existe.</div>
-[% ELSE %] [% IF ( was_renewed ) %]<div class="dialog message">La cuenta del socio se ha renovado hasta [% dateexpiry %]</div>[% END %] [% IF ( flagged ) %] <div id="circmessages" class="circmessage attention">
+[% IF ( unknowuser ) %] <div class="dialog message">Este usuario no existe.</div>
+[% ELSE %] [% IF ( was_renewed ) %]<div class="dialog message">La cuenta del usuario se ha renovado hasta [% dateexpiry %]</div>[% END %] [% IF ( flagged ) %] <div id="circmessages" class="circmessage attention">
  <ul>
- [% IF ( userdebarred ) %] <li class="blocker">El socio está restringido[% IF ( userdebarreddate ) %] hasta [% userdebarreddate%] [% IF (debarredcomment ) %]([% debarredcomment %])[% END %][% END %]<form class="inline compact" action="/cgi-bin/koha/members/setdebar.pl" method="post">
+ [% IF ( userdebarred ) %] <li class="blocker">El usuario está restringido[% IF ( userdebarreddate ) %] hasta [% userdebarreddate%] [% IF (debarredcomment ) %]([% debarredcomment %])[% END %][% END %]<form class="inline compact" action="/cgi-bin/koha/members/setdebar.pl" method="post">
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
  <input value="Levantar restricción" type="submit" />
  </form>
  </li>
- [% END %] [% IF ( gonenoaddress ) %]<li class="blocker">Dirección de socio dudosa</li>[% END %] [% IF ( lost ) %]<li class="blocker">El carné del socio ha sido reportado como perdido.</li>[% END %] </ul>
+ [% END %] [% IF ( gonenoaddress ) %]<li class="blocker">Dirección de usuario es dudosa.</li>[% END %] [% IF ( lost ) %]<li class="blocker">El carné del usuario ha sido reportado como perdido.</li>[% END %] </ul>
  </div>
  [% END %] <h3>[% UNLESS ( I ) %] [% title %] [% firstname %] [% END %] [% surname %] ([% cardnumber %])</h3>
  <div class="yui-u first">
@@ -196,9 +196,9 @@ function validate1(date) {
 <div id="manage-patron-image">
 [% IF ( patronimages ) %] [% IF ( CAN_user_tools_batch_upload_patron_images ) %] <form method="post" action="/cgi-bin/koha/tools/picture-upload.pl" enctype="multipart/form-data">
  <fieldset class="brief">
- [% IF ( picture ) %] <legend>Administrar imágenes de socios</legend>
- <div class="hint">Para actualizar la imagen de [% title %] [% surname %], seleccione un nuevo archivo de imagen y haga clic en 'Cargar'. <br />Para eliminar la imagen actual haga clic en 'Borrar'. [% ELSE %] <legend>Subir imagen de socio</legend>
- <div class="hint">[% title %] [% firstname %] [% surname %] actualmente no tiene una imagen disponible. Para importar una imagen para [% title %] [% surname %], ingrese el nombre de la imagen a subir. [% END %] <br />Sólo son soportados los formatos PNG, GIF, JPEG, XPM. </div>
+ [% IF ( picture ) %] <legend>Administrar imágenes de usuarios</legend>
+ <div class="hint">Para actualizar la imagen de [% title %] [% surname %], seleccione un nuevo archivo de imagen y haga clic en 'Cargar'. <br />Para eliminar la imagen actual haga clic en 'Borrar'. [% ELSE %] <legend>Subir imagen de usuario</legend>
+ <div class="hint">[% title %] [% firstname %] [% surname %] actualmente no tiene una imagen disponible. Para importar una imagen para [% title %] [% surname %], introduzca el nombre de la imagen a subir. [% END %] <br />Sólo son soportados los formatos PNG, GIF, JPEG, XPM. </div>
  <input type="hidden" id="image" name="filetype" value="image" />
  <input type="hidden" id="cardnumber" name="cardnumber" value="[% cardnumber %]" />
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
@@ -233,7 +233,7 @@ function validate1(date) {
 [% END %] </div>
 <div class="action"><a href="memberentry.pl?op=modify&amp;borrowernumber=[% borrowernumber %]&amp;step=4">Editar</a></div>
 [% END %] [% END %] [% IF ( EnhancedMessagingPreferences ) %] <div id="patron-messaging-prefs" style="padding-top: 1em;">
-<h3>Preferencias de mensajes de socios</h3>
+<h3>Preferencias de mensajes de usuarios</h3>
 [% INCLUDE 'messaging-preference-form.inc' %] [% IF ( SMSSendDriver ) %] <div class="rows"> <ol><li><span class="label">Número SMS:</span>[% SMSnumber %] </li></ol></div>
  [% END %] </div>
 <div class="action"><a href="memberentry.pl?op=modify&amp;borrowernumber=[% borrowernumber %]&amp;step=5">Editar</a></div>
@@ -244,7 +244,7 @@ function validate1(date) {
 <div class="rows"> 
 <ol>
  <li><span class="label">Número de carnet: </span>[% cardnumber %]</li>
- <li><span class="label">Número de socio: </span> [% borrowernumber %]</li>
+ <li><span class="label">Número de usuario: </span> [% borrowernumber %]</li>
  <li><span class="label">Categoría: </span>[% description %] ([% categorycode %])</li>
  <li><span class="label">Fecha de registro: </span>[% dateenrolled %]</li>
  
@@ -356,10 +356,10 @@ function validate1(date) {
  <fieldset class="action">
  [% IF ( CAN_user_circulate_override_renewals ) %] [% IF ( AllowRenewalLimitOverride ) %] <label for="override_limit">Anular límite de renovaciones:</label>
  <input type="checkbox" name="override_limit" id="override_limit" value="1" />
- [% END %] [% END %] <input value="Renovar o regresar ítems seleccionados" name="renew_checked" type="submit" />
+ [% END %] [% END %] <input value="Renovar o devolver ítems seleccionados" name="renew_checked" type="submit" />
  <input value="Renovar todos" name="renew_all" type="submit" id="renew_all" />
  </fieldset>
- [% ELSE %]<p>El socio no tiene nada prestado.</p>
+ [% ELSE %]<p>El usuario no tiene nada prestado.</p>
 [% END %] </div>
 
 
@@ -375,7 +375,7 @@ function validate1(date) {
  <th scope="col">Signatura</th>
  <th scope="col">Cargo</th>
  <th scope="col">Precio</th>
- <th scope="col">Socio</th>
+ <th scope="col">Usuario</th>
  </tr>
  </thead>
  <tbody>
@@ -468,7 +468,7 @@ function validate1(date) {
  <input value="Reanudar todas las reservas suspendidas" type="submit" />
  </form>
  </fieldset>
- [% END # IF SuspendHoldsIntranet %] [% ELSE %]<p>El socio no tiene nada en reserva.</p>[% END %] </div>
+ [% END # IF SuspendHoldsIntranet %] [% ELSE %]<p>El usuario no tiene nada en reserva.</p>[% END %] </div>
 
 </div>
 [% END %] <!-- unknowuser -->

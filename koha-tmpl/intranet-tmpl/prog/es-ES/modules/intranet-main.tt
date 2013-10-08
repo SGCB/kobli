@@ -13,7 +13,7 @@
  <div class="yui-b"><div class="yui-g">
  [% IF adminWarning %] <div id="adminwarning" class="dialog alert">
  <p><strong>Advertencia:</strong> Has accedido al sistema con una cuenta de administrador. Esto es una mala idea, y es probable que encuentre problemas.</p>
- <p>Debería <a href="/cgi-bin/koha/members/members-home.pl">crear un socio</a> para usar cuando se administra Koha y darle permisos de superbibliotecario</p>
+ <p>Debería <a href="/cgi-bin/koha/members/members-home.pl">crear un usuario</a> para usar cuando se administra Koha y darle permisos de superbibliotecario</p>
  </div>
  [% END %] <div class="yui-u first">
 
@@ -23,7 +23,7 @@
  <a class="icon_general icon_circulation" href="/cgi-bin/koha/circ/circulation-home.pl">Circulación</a>
  </li>
  [% END %] [% IF ( CAN_user_borrowers ) %] <li>
- <a class="icon_general icon_patrons" href="/cgi-bin/koha/members/members-home.pl">Socios</a>
+ <a class="icon_general icon_patrons" href="/cgi-bin/koha/members/members-home.pl">Usuarios</a>
  </li>
  [% END %] [% IF ( CAN_user_catalogue ) %] <li>
  <a class="icon_general icon_search" href="/cgi-bin/koha/catalogue/search.pl">Búsqueda avanzada</a>

@@ -99,12 +99,12 @@ $(document).ready(function() {
  <li>misma biblioteca, mismo tipo de usuario, todos los tipos de ítem</li>
  <li>misma biblioteca, todo tipo de usuario, mismo tipo de ítem</li>
  <li>misma biblioteca, todo tipo de usuario, todo tipo de ítem</li>
- <li>prederterminado(todas las bibliotecas), mismo tipo de socio, mismo tipo de ítem</li>
- <li>predeterminada (todas las bibliotecas), mismo tipo de socio, todos los tipos de ítem</li>
- <li>prederteminada (todas las bibliotecas9, todos los tipos de socio, mismo tipo de ítem</li>
- <li>predeterminada (todas las bibliotecas), todos los tipos de socio, todos los tipos de ítem</li>
+ <li>prederterminado (todas las bibliotecas), mismo tipo de usuario, mismo tipo de ítem</li>
+ <li>predeterminada (todas las bibliotecas), mismo tipo de usuario, todos los tipos de ítem</li>
+ <li>prederteminada (todas las bibliotecas), todos los tipos de usuario, mismo tipo de ítem</li>
+ <li>predeterminada (todas las bibliotecas), todos los tipos de usuario, todos los tipos de ítem</li>
  </ul>
- <p>Para modificar una regla, cree una nueva con el mismo tipo de socio y tipo de ítem.</p>
+ <p>Para modificar una regla, cree una nueva con el mismo tipo de usuario y tipo de ítem.</p>
  </div>
  <div>
  <form method="get" action="/cgi-bin/koha/admin/smart-rules.pl" id="selectlibrary">
@@ -120,7 +120,7 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  <table id="default-circulation-rules">
  <thead>
  <tr>
- <th>Categoría de socio</th>
+ <th>Categoría de usuario</th>
  <th>Tipo de ítem</th>
  <th>Préstamos permitidos actualmente </th>
  <th>Período de préstamo</th>
@@ -270,15 +270,15 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  </form>
  </div>
  [% IF ( show_branch_cat_rule_form ) %] <div id="holds-policy-by-patron-category" class="container">
- <h3>[% IF humanbranch %]Límite de préstamos por categoría de socio para [% humanbranch %][% ELSE %]Predeterminado el limite de préstamo por categoría de socio[% END %]</h3>
- <p>Para esta biblioteca, puede especificar el número máximo de préstamos que un socio de una determinada categoría puede recibir, independientemente del tipo de ítem. </p>
- <p>Si la cantidad total de préstamos a una dada categoría de socio se deja en blanco, no tendrá límites, a menos que defina un límite específico para un dado tipo de ítem. </p>
+ <h3>[% IF humanbranch %]Límite de préstamos por categoría de usuario para [% humanbranch %][% ELSE %]Predeterminado el limite de préstamo por categoría de usuario[% END %]</h3>
+ <p>Para esta biblioteca, puede especificar el número máximo de préstamos que un usuario de una determinada categoría puede recibir, independientemente del tipo de ítem. </p>
+ <p>Si la cantidad total de préstamos a una dada categoría de usuario se deja en blanco, no tendrá límites, a menos que defina un límite específico para un dado tipo de ítem. </p>
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
  <input type="hidden" name="op" value="add-branch-cat" />
  <input type="hidden" name="branch" value="[% current_branch %]"/>
  <table>
  <tr>
- <th>Categoría de socio</th>
+ <th>Categoría de usuario</th>
  <th>Total de préstamos actuales permitidos</th>
  <th>&nbsp;</th>
  </tr>
@@ -306,16 +306,16 @@ for="tobranch"><strong>Clonar estas reglas a:</strong></label> <input type="hidd
  [% END %] <div id="holds-policy-by-item-type" class="container">
  <h3>[% IF humanbranch %]Política de reservas por tipo de ítem para [% humanbranch %][% ELSE %]Predeterminada política de reserva por tipo de ejemplar[% END %]</h3>
  <p>
- Para esta biblioteca, podrá editar las reglas para los tipos de ítem, independientemente de las categorías de socios. </p>
+ Para esta biblioteca, podrá editar las reglas para los tipos de ítem, independientemente de las categorías de usuarios. </p>
  <p>
  Actualmente, esto significa políticas de reservas. Las diferentes políticas tienen los siguientes efectos: </p>
  <ul>
- <li><strong>De cualquier biblioteca:</strong> Los socios de cualquier biblioteca pueden reservar este ítem. <cite>(por defecto si no se define ninguno)</cite></li>
- <li><strong>De la biblioteca de origen:</strong> Solo socios de la misma sede que el ítem pueden reservar este libro.</li>
- <li><strong>No se permiten reservas:</strong> Ningún socio puede reservar este libro.</li>
+ <li><strong>De cualquier biblioteca:</strong> Los usuarios de cualquier biblioteca pueden reservar este ítem. <cite>(por defecto si no se define ninguno)</cite></li>
+ <li><strong>De la biblioteca de origen:</strong> Solo usuarios de la misma sede que el ítem pueden reservar este libro.</li>
+ <li><strong>No se permiten reservas:</strong> Ningún usuario puede reservar este libro.</li>
  </ul>
  <p>
- Note que si la preferencia del sistema <code>AllowHoldPolicyOverride</code> está habilitada, estas políticas pueden ser alteradas por el personal de circulación. Además, estas políticas están basadas en la sede de origen del socio, <em>no</em> la biblioteca o sede donde la reserva es realizada</p>
+ Note que si la preferencia del sistema <code>AllowHoldPolicyOverride</code> está habilitada, estas políticas pueden ser alteradas por el personal de circulación. Además, estas políticas están basadas en la sede de origen del usuario, <em>no</em> la biblioteca o sede donde la reserva es realizada</p>
 
  <form method="post" action="/cgi-bin/koha/admin/smart-rules.pl">
  <input type="hidden" name="op" value="add-branch-item" />

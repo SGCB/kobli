@@ -46,7 +46,7 @@ function hideDialogBox() {
  <div class="yui-b">
  [% IF ( mappings_saved ) %] <div class="dialog message">
  <h4>Se han grabado correspondencias</h4>
- <p><a href="/cgi-bin/koha/admin/oai_sets.pl">Regresar a administración de conjuntos</a></p>
+ <p><a href="/cgi-bin/koha/admin/oai_sets.pl">Volver a administración de sets</a></p>
  </div>
  [% END %] <h1>Correspondencias para el conjunto '[% setName %]' ([% setSpec %])</h1>
  [% UNLESS ( mappings ) %] <div class="dialog alert"><p><strong>Advertencia:</strong> No hay correspondencias definidas para este conjunto</p></div>

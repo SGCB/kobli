@@ -15,7 +15,7 @@
  </select>
  </p>
  <p>
- <label>Imprimir</label>
+ <label>Impreso</label>
  <select name="limit" class="subtype">
  <option value="" selected="selected" >Cualquier</option>
  <option value="Material-type:r">impresión regular</option>
@@ -182,7 +182,7 @@
  <option value="Graphics-type:e">negativo fotográfico</option>
  <option value="Graphics-type:f">fotoimpresión</option>
  <option value="Graphics-type:h">imagen</option>
- <option value="Graphics-type:i">imprimir</option>
+ <option value="Graphics-type:i">impreso</option>
  <option value="Graphics-type:k">dibujo técnico</option>
  <option value="Graphics-type:z">otro tipo de gráfico no proyectado</option>
  </select>

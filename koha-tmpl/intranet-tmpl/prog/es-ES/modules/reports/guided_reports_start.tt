@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes &rsaquo; Asistente de informes guiados [% IF ( saved1 ) %]&rsaquo; Informes guardados [% ELSIF ( create ) %]&rsaquo; Crear desde SQL [% ELSIF ( showsql ) %]&rsaquo; Informes guardados &rsaquo; Vista SQL [% ELSIF ( execute ) %]&rsaquo; Informes guardados &rsaquo; [% name %] Informe [% ELSIF ( buildx ) %]&rsaquo; Hacer un informe, paso [% buildx %] de 6: [% IF ( build1 ) %]Elegir un módulo [% ELSIF ( build2 ) %]Elegir un tipo de reporte [% ELSIF ( build3 ) %]Elegir columnas a mostrar [% ELSIF ( build4 ) %]Elegir criterios para limitar en [% ELSIF ( build5 ) %]Elegir columnas para hacer totales [% ELSIF ( build6 ) %]Elegir como ordenará el informe [% END %] [% END %] </title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes &rsaquo; Asistente de informes guiados [% IF ( saved1 ) %]&rsaquo; Informes guardados [% ELSIF ( create ) %]&rsaquo; Crear desde SQL [% ELSIF ( showsql ) %]&rsaquo; Informes guardados &rsaquo; Vista SQL [% ELSIF ( execute ) %]&rsaquo; Informes guardados &rsaquo; [% name %] Informe [% ELSIF ( buildx ) %]&rsaquo; Hacer un informe, paso [% buildx %] de 6: [% IF ( build1 ) %]Elegir un módulo [% ELSIF ( build2 ) %]Elegir un tipo de informe [% ELSIF ( build3 ) %]Elegir columnas a mostrar [% ELSIF ( build4 ) %]Elegir criterios para limitar en [% ELSIF ( build5 ) %]Elegir columnas para hacer totales [% ELSIF ( build6 ) %]Elegir como ordenará el informe [% END %] [% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <style type="text/css">
     #sql { width: 90%; height: 9em;}
 </style>
@@ -249,7 +249,7 @@ $(document).ready(function(){
  <th>Notas</th>
  <th>Autor</th>
  <th>Fecha de creación</th>
- <th>Público</th>
+ <th>pública</th>
  [% IF (usecache) %] <th>Caché expira (sergundos)</th> [% END %] <th>Resultados guardados</th>
  <th>&nbsp;</th>
  </tr>
@@ -293,7 +293,7 @@ $(document).ready(function(){
  </div>
 </div>
 [% ELSE %]<div class="dialog message">
- [% IF (filter_set) %] <h4>Ningún reporte guardado coincide con su criterio. </h4>
+ [% IF (filter_set) %] <h4>Ningún informe guardado coincide con su criterio. </h4>
  [% IF ( CAN_user_reports_create_reports ) %] <form action="/cgi-bin/koha/reports/guided_reports.pl" method="get">
  <input type="hidden" name="phase" value="Build new" />
  <input accesskey="y" value="Crear o generar un nuevo informe" type="submit" class="edit" />
@@ -307,7 +307,7 @@ $(document).ready(function(){
  </form>
 
  [% END %] [% ELSE %] <h4>No hay informes guardados. </h4>
- [% IF ( CAN_user_reports_create_reports ) %] <a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Build%20new">¿Crear o generar un nuevo reporte?</a>
+ [% IF ( CAN_user_reports_create_reports ) %] <a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Build%20new">¿Crear o generar un nuevo informe?</a>
  [% END %] [% END %] </div>
 [% END %] [% END %] [% IF ( build1 ) %] [% IF ( cache_error) %] <div class="dialog alert">
 <b> Por favor cambiar una caché_caducidad inferior a 30 días</b>
@@ -521,7 +521,7 @@ $(document).ready(function(){
  [% PROCESS group_and_subgroup_selection %] <li><label for="notes">Notas:</label> <textarea name="notes" id="notes"></textarea></li>
 </ol></fieldset>
 <fieldset class="action"><input type="hidden" name="phase" value="Save Report" />
-<input value="Guardar reporte" name="submit" type="submit" /></fieldset>
+<input value="Guardar informe" name="submit" type="submit" /></fieldset>
 </form>
 [% END %] [% IF ( warn_authval_problem ) %] <form action='/cgi-bin/koha/reports/guided_reports.pl'>
  <!--Every parameter the user issued is provided as a hidden field for recovery-->
@@ -660,7 +660,7 @@ $(document).ready(function() {
 </fieldset>
 
 <fieldset class="action"><input type="hidden" name="phase" value="Save Report" />
-<input value="Guardar reporte" name="submit" type="submit" /> <a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Use%20saved" class="cancel">Cancelar</a>
+<input value="Guardar informe" name="submit" type="submit" /> <a href="/cgi-bin/koha/reports/guided_reports.pl?phase=Use%20saved" class="cancel">Cancelar</a>
 </fieldset>
 </form>
 [% END %] [% IF ( compound ) %] <form action="/cgi-bin/koha/reports/guided_reports.pl" method="post">
@@ -725,7 +725,7 @@ Master: <select name="master">
 [% END %] [% END %] [% IF ( errors ) %] <form action="/cgi-bin/koha/reports/guided_reports.pl" method="post">
 <div class="dialog alert">
 <b>Se encontró el siguiente error:</b><br />
-[% FOREACH error IN errors %] [% IF ( error.sqlerr ) %]Este informe contiene la palabra clave SQL <b>[% error.sqlerr %]</b>. <br />El uso de esta palabra clave no está permitido en los informes de Koha debido a riesgos de seguridad e integridad de los datos. Solo se permiten consultas SELECT <br />Por favor, regrese a la pantalla de "Informes guardados" y borre este informe o trate de crear otro.[% ELSIF ( error.queryerr ) %]La base de datos devolvió el siguiente error: <br />[% error.queryerr %]<br />Por favor compruebe el registro para más detalles. [% ELSIF ( error.cache_expiry ) %]Por favor seleccionar una cache que aspire en menos de 30 días. [% ELSE %] [% END %] [% END %] </div>
+[% FOREACH error IN errors %] [% IF ( error.sqlerr ) %]Este informe contiene la palabra clave SQL <b>[% error.sqlerr %]</b>. <br />El uso de esta palabra clave no está permitido en los informes de Koha debido a riesgos de seguridad e integridad de los datos. Solo se permiten consultas SELECT <br />Por favor, vuelva a la pantalla de "Informes guardados" y borre este informe o trate de crear otro.[% ELSIF ( error.queryerr ) %]La base de datos devolvió el siguiente error: <br />[% error.queryerr %]<br />Por favor compruebe el registro para más detalles. [% ELSIF ( error.cache_expiry ) %]Por favor seleccionar una cache que aspire en menos de 30 días. [% ELSE %] [% END %] [% END %] </div>
 <fieldset class="action"><input type="hidden" name="phase" value="Use saved" />
 <input value="Informes guardados" name="submit" type="submit" /></fieldset>
 </form>

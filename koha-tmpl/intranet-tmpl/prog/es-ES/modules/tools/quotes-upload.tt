@@ -1,4 +1,4 @@
- [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Tools &rsaquo; Quote uploader</title>
+ [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Actualizar citas</title>
  [% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/uploader.css" />
  <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
  <link rel="stylesheet" type="text/css" href="[% themelang %]/css/quotes.css" />
@@ -182,7 +182,7 @@
                 var quoteNum = $('td', nRow)[0].innerHTML;
                 $(nRow).attr("id", quoteNum); /* set row ids to quote number */
                 $('td:eq(0)', nRow).click(function() {$(this.parentNode).toggleClass('selected',this.clicked);}); /* add row selectors */
-                $('td:eq(0)', nRow).attr("title", _("Clicar ID para seleccionar/deseleccionar quote"));
+                $('td:eq(0)', nRow).attr("title", _("Clicar ID para seleccionar/deseleccionar cita"));
                 /* apply no_edit id to noEditFields */
                 noEditFields = [0]; /* number */
                 for (i=0; i<noEditFields.length; i++) {
@@ -238,7 +238,7 @@
         var fileSizeInK = Math.round(evt.target.files[0].size/1024);
 
         if (!fileType.match(/comma-separated-values|csv|excel/i)) {
-            alert(_("Cargar limitada para cvs. Tipo de fichero incorrecto:")+fileType);
+            alert(_("Cargas limitadas para csv. Tipo de fichero incorrecto:")+fileType);
             parent.location='quotes-upload.pl';
             return;
         }
@@ -269,11 +269,11 @@
             success     : function(){
                             var response = JSON.parse(jqXHR.responseText);
                             if (response.success) {
-                                alert(response.records+_(" consejos guardados"));
+                                alert(response.records+_(" citas guardadas."));
                                 window.location.reload(true);   // is this the best route?
                             }
                             else {
-                                alert(response.records+_(" consejos guardados, pero ha ocurrido un error. Por favor, pida a su administrador de sistema que compruebe el servidor de logs para más detalles."));
+                                alert(response.records+_(" citas guardadas, pero ha ocurrido un error. Por favor, pida a su administrador de sistema que compruebe el servidor de logs para más detalles."));
                                 window.location.reload(true);   // is this the best route?
                             }
                           },
@@ -285,9 +285,9 @@
               return this.id;
         }).get().join(', ');
         if (!idsToDelete) {
-            alert(_("Por favor, seleccione un quote(s) haciendo clic en quote (s) que desea eliminar."));
+            alert(_("Por favor, seleccione un cita(s) haciendo clic en el Id de la cita(s) que desea eliminar."));
         }
-        else if (confirm(_("¿Está seguro de desea borrar este pedido(s)?")+idsToDelete+"?")) {
+        else if (confirm(_("¿Está seguro de desea borrar esta(s) cita(s) ")+idsToDelete+"?")) {
             oTable.$('.selected').each(function(){
                 oTable.fnDeleteRow(this);
             });
@@ -298,34 +298,34 @@
     </script>
 </head>
 <body id="tools_quotes" class="tools">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/tools/quotes.pl">Editor de presupuesto</a> &rsaquo; Cita del cargador</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; <a href="/cgi-bin/koha/tools/quotes.pl">Editor de citas</a> &rsaquo; Actualizador de citas</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
- [% INCLUDE 'quotes-upload-toolbar.inc' %] <h2>Subir presupuesto</h2>
+ [% INCLUDE 'quotes-upload-toolbar.inc' %] <h2>Actualizar cita</h2>
  <div id="instructions">
  <fieldset id="file_uploader_help" class="rows">
- <legend>instrucciones </legend>
+ <legend>instrucciones</legend>
  <div id="file_uploader_inst">
  <ul>
- <li>La carga de quote acepta estándar fichero cvs con dos columnas:  "source","text"</li>
+ <li>El actualizador de cita acepta ficheros estándar CSV con dos columnas: "source","text"</li>
  <li>Seleccionar el botón "Elige fichero"  y seleccionar el fichero csv para cargarlo.</li>
  <li>El fichero será importada dentro de la tabla editable para su revisión antes de guardar.</li>
  </ul>
  </div>
  <div id="file_editor_inst">
  <ul>
- <li>Seleccionar en algún campo para editar contenidos; presionar  &lt;Enter&gt; tecla para salvar edición.</li>
- <li>Seleccionar uno o más quote de números para seleccionar quotes enteras para eliminación; selecciona el botón  'Delete Quote(s)' para borrar quotes seleccionadas.</li>
- <li>Seleccionar en el botón 'Save Quotes' enal inic la barra de herramientas para salvar el lote entero de valores.</li>
+ <li>Seleccionar en algún campo para editar contenidos; Presionar la tecla &lt;Enter&gt; para salvar edición.</li>
+ <li>Seleccionar uno o más citas para eliminarlas; selecciona el botón 'Borrar cita(s)' para borrar citas seleccionadas.</li>
+ <li>Seleccione en el botón 'Guardar citas' en la barra de herramientas para guardar el lote entero de citas.</li>
  </ul>
  </div>
  </fieldset>
  </div>
  <fieldset id="file_uploader" class="rows">
- <legend>Subir cuota</legend>
+ <legend>Subir cita</legend>
  <div id="file_upload">
  <input type="file" name="file" />
  <button id="cancel_upload" style="visibility:hidden;" onclick="fnAbortRead();">Cancelar Subida</button>

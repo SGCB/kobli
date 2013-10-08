@@ -88,7 +88,7 @@
  [% END %] </select>
  </li>
  <li> 
- <label for="patroncategory">Categoría de socio: </label><select name="Filter" id="patroncategory"><option value="" > Cualquier código de categoría</option>
+ <label for="patroncategory">Categoría de usuario: </label><select name="Filter" id="patroncategory"><option value="" > Cualquier código de categoría</option>
  [% FOREACH borcatloo IN borcatloop %] <option value="[% borcatloo.value %]" >[% borcatloo.description %] </option> 
  [% END %] </select>
  </li>

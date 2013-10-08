@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes &rsaquo; Socios sin préstamos</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Informes &rsaquo; Usuarios sin préstamos</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
@@ -8,7 +8,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body id="rep_borrowers_out" class="rep">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a> &rsaquo; Socios sin prestamos </div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a> &rsaquo; Usuarios sin prestamos </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -16,12 +16,12 @@ $(document).ready(function(){
  <div id="yui-main">
  <div class="yui-b">
 
-[% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Socios sin préstamos</h1>
+[% IF ( do_it ) %] [% FOREACH mainloo IN mainloop %] <h1>Usuarios sin préstamos</h1>
  [% IF ( mainloo.loopfilter ) %] <p>Filtrado en:</p>
  [% FOREACH loopfilte IN mainloo.loopfilter %] <p>[% IF ( loopfilte.err ) %] [% END %] [% loopfilte.crit %] =[% loopfilte.filter %][% IF ( loopfilte.err ) %] [% END %]</p>
  [% END %] [% END %] <table>
  <tr>
- <th>Número/Socios</th>
+ <th>Número/Usuarios</th>
  [% FOREACH loopco IN mainloo.loopcol %] <th>[% loopco.coltitle %]</th>
  [% END %] </tr>
  [% FOREACH loopro IN mainloo.looprow %] [% UNLESS ( loop.odd ) %] <tr class="highlight">
@@ -30,11 +30,11 @@ $(document).ready(function(){
  [% FOREACH loopcel IN loopro.loopcell %] <td>[% IF ( loopcel.value ) %][% loopcel.value %][% END %] </td>
  [% END %] </tr>
  [% END %] </table>
- [% END %] [% ELSE %] <h1>Socios sin préstamos</h1>
+ [% END %] [% ELSE %] <h1>Usuarios sin préstamos</h1>
  <form method="post" action="/cgi-bin/koha/reports/borrowers_out.pl">
  <fieldset class="rows">
  <ol>
- <li><label for="patroncategory">Categoría de socio: </label> <select name="Filter" id="patroncategory"><option value="" > Cualquier código de categoría</option>
+ <li><label for="patroncategory">Categoría de usuario: </label> <select name="Filter" id="patroncategory"><option value="" > Cualquier código de categoría</option>
  [% FOREACH borcatloo IN borcatloop %] <option value="[% borcatloo.value %]" >[% borcatloo.description %] </option> 
  [% END %] </select>
 </li>
@@ -59,7 +59,7 @@ $(document).ready(function(){
  </select></li>
  <li><label for="criteria">Por: </label><select name="Criteria" id="criteria">
  <option value ="" selected="selected">Ninguno</option>
- <option value ="categorycode">Categoría de socio</option>
+ <option value ="categorycode">Categoría de usuario</option>
  <option value ="branchcode">Biblioteca</option>
  </select></li>
  </ol>

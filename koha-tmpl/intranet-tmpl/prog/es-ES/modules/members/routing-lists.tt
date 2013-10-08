@@ -1,7 +1,7 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Suscripción de la lista de enrutamiento para [% INCLUDE 'patron-title.inc' %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Suscripción de la lista de circulación para [% INCLUDE 'patron-title.inc' %]</title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body>
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Las listas de suscripción de enrutamiento para [% INCLUDE 'patron-title.inc' %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; Suscripción de listas de circulación para [% INCLUDE 'patron-title.inc' %]</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
@@ -16,14 +16,14 @@
 <!-- Search Bar End -->
 
 <h1>
-[% IF ( countSubscrip ) %] [% countSubscrip %] Suscripción originando lista(s) [% ELSE %] 0 Suscripción originando listas [% END %] </h1>
+[% IF ( countSubscrip ) %] [% countSubscrip %] Suscripción a lista(s) de circulación [% ELSE %] 0 Suscripción a listas de circulación [% END %] </h1>
 
 <div id="subscriptions">
 [% IF ( subscripLoop ) %] <table id="subscriptiont">
  <thead>
  <tr>
  <th>Subscripción de título</th>
- <th>Lista de ruteo</th>
+ <th>Lista de circulación</th>
  </tr>
  </thead>
  <tbody>
@@ -35,7 +35,7 @@
  </td>
  <td>
  <a href="/cgi-bin/koha/serials/routing.pl?subscriptionid=[% subscripLoop.subscriptionid %]"><strong>
- Editar lista de enrutamiento </strong>
+ Editar lista de circulación </strong>
  </a>
  <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
@@ -44,7 +44,7 @@
  [% END %] </tbody>
  </table>
  </form>
- [% ELSE %] <p> El socio no pertenece a ninguna lista de suscripción de enrutamiento.</p>
+ [% ELSE %] <p>El usuario no pertenece a ninguna lista de circulación.</p>
  <input type="hidden" name="biblionumber" value="[% biblionumber %]" />
  <input type="hidden" name="borrowernumber" value="[% borrowernumber %]" />
  [% END %] </div>

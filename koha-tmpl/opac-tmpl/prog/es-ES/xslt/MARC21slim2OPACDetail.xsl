@@ -892,7 +892,7 @@
 
  <!-- 866 textual holdings -->
  <xsl:if test="marc:datafield[@tag=866]">
- <span class="results_summary holdings_note"><span class="label">Nota de reservas:</span>
+ <span class="results_summary holdings_note"><span class="label">Nota de ejemplaress:</span>
  <xsl:for-each select="marc:datafield[@tag=866]">
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">az</xsl:with-param>
@@ -1028,7 +1028,7 @@
  <span class="label">Combinado con ... para formar ...</span>
  </xsl:when>
  <xsl:when test="@ind2=8">
- <span class="label">Cambió nuevamente a:</span>
+ <span class="label">Cambió de nuevo a:</span>
  </xsl:when>
  </xsl:choose>
  <xsl:text> </xsl:text>

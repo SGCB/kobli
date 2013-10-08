@@ -44,7 +44,7 @@ function CheckForm(f) {
  [% IF ( error == 'UZIPFAIL' ) %]<p><b>Falló al descomprimir archivo.<br />Por favor verifique que está cargando un archivo zip válido e intente nuevamente.</b></p>
  [% ELSIF ( error == 'OPNLINK' ) %]<p><b>No se puede abrir el índice de carpeta (idlink.txt o datalink.txt) para lectura.<br />Por favor, verifique que existe</b></p>
  [% ELSIF ( error == 'OPNIMG' ) %]<p><b>No se puede procesar el archivo como una imágen.<br />Asegúrese de cargar solamente imágenes GIF, JPEG, o XPM.</b></p>
- [% ELSIF ( error == 'DELERR' ) %]<p><b>Delimitador de campo no reconocido o ausente.<br />Por favor, verifique que está usando ya sea una única oferta o etiqueta.</b></p>
+ [% ELSIF ( error == 'DELERR' ) %]<p><b>Delimitador de campo no reconocido o ausente.<br />Por favor, verifique que está usando una comilla simple o una tabulación.</b></p>
  [% ELSIF ( error == 'DBERR' ) %]<p><b>Imposible guardar la imagen en la base de datos.</b></p>
  [% ELSE %]<p><b>Ha ocurrido un error desconocido.<br />Por favor, revise el registro de errores para obtener más detalles.</b></p>[% END %] </div>
  </li>
@@ -88,7 +88,7 @@ function CheckForm(f) {
  [% IF (filetype == 'image' ) %]<input type="radio" id="image" name="filetype" value="image" checked="checked" />[% ELSE %]<input type="radio" id="image" name="filetype" value="image" />[% END %] <label for="imagefile">Archivo imagen</label>
  </li>
  <li class="radio">
- [% IF ( filetype == 'image' ) %]<span id="bibnum">[% ELSE %]<span id="bibnum" style="display: none">[% END %]<label for="biblionumber">Ingrese biblionumber de cubierta: </label><input type="text" id="biblionumber" name="biblionumber" value="[% biblionumber %]" size="15" /></span>
+ [% IF ( filetype == 'image' ) %]<span id="bibnum">[% ELSE %]<span id="bibnum" style="display: none">[% END %]<label for="biblionumber">Introduzca cubierta del biblionumber: </label><input type="text" id="biblionumber" name="biblionumber" value="[% biblionumber %]" size="15" /></span>
  </li>
  </ol>
  </fieldset>

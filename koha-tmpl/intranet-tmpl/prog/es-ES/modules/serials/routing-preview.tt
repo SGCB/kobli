@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Vista previa de lista de ruteo</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Vista previa de lista de circulación</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 <!--
 
@@ -11,7 +11,7 @@ function print_slip(subscriptionid,issue){
 </script>
 </head>
 <body id="ser_routing-preview" class="ser">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; <a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptionid %]"><i>[% title |html %]</i></a> &rsaquo; Vista previa de hoja de ruta</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; <a href="/cgi-bin/koha/serials/subscription-detail.pl?subscriptionid=[% subscriptionid %]"><i>[% title |html %]</i></a> &rsaquo; Vista previa de hoja de circulación</div>
 
 <div id="doc3" class="yui-t2">
  
@@ -19,7 +19,7 @@ function print_slip(subscriptionid,issue){
  <div id="yui-main">
  <div class="yui-b">
 
-<h2>Vista previa de la hoja de ruta para <i>[% title |html %]</i></h2>
+<h2>Vista previa de la hoja de circulación para <i>[% title |html %]</i></h2>
 
 <form method="post" action="routing-preview.pl">
 <input type="hidden" name="subscriptionid" value="[% subscriptionid %]" />
@@ -35,7 +35,7 @@ function print_slip(subscriptionid,issue){
 </fieldset>
 
 <fieldset class="action">
-<input value="Guardar y ver vista preliminar de comprobante de ruta" name="ok" type="submit" class="button" onclick="print_slip([% subscriptionid %],'[% issue_escaped %]'); return false" />
+<input value="Guardar y ver vista preliminar de lista de circulación" name="ok" type="submit" class="button" onclick="print_slip([% subscriptionid %],'[% issue_escaped %]'); return false" />
 <input value="Editar" name="edit" type="submit" class="button" />
 <input value="Eliminar" name="delete" type="submit" class="button" /></fieldset>
 </form>

@@ -100,7 +100,7 @@ $(document).ready(function() {
  <th>Biblioteca</th>
  <th>Signatura</th>
  <th>Notas</th>
- [% IF ( routing && CAN_user_serials_routing ) %]<th>Ruteo</th>[% END %] <th>Renovar</th>
+ [% IF ( routing && CAN_user_serials_routing ) %]<th>Circulación</th>[% END %] <th>Renovar</th>
 </tr>
 [% FOREACH subscription IN subscriptions %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] <td><a href="subscription-detail.pl?subscriptionid=[% subscription.subscriptionid %]"># [% subscription.subscriptionid %]</a> </td>
  <td> [% IF ( subscription.periodicity1 ) %] 1/día [% END %] [% IF ( subscription.periodicity2 ) %] 1/semana [% END %] [% IF ( subscription.periodicity3 ) %] 1/2 semanas [% END %] [% IF ( subscription.periodicity4 ) %] 1/3 semanas [% END %] [% IF ( subscription.periodicity5 ) %] 1/mes [% END %] [% IF ( subscription.periodicity6 ) %] 1/2 mes (6/año) [% END %] [% IF ( subscription.periodicity7 ) %] 1/trimestre [% END %] [% IF ( subscription.periodicity8 ) %] 1/trimestre [% END %] [% IF ( subscription.periodicity9 ) %] 2/año [% END %] [% IF ( subscription.periodicity10 ) %] 1/año [% END %] [% IF ( subscription.periodicity11 ) %] 1/2 años [% END %]</td>
@@ -116,7 +116,7 @@ $(document).ready(function() {
  <td> [% subscription.notes %] [% UNLESS subscription.closed %] [% IF ( subscription.subscriptionexpired ) %] <br /><span class="problem"> Suscripción expirada</span>
  [% END %] [% ELSE %] <br /> Suscripción cerrada [% END %] </td>
  [% IF ( routing && CAN_user_serials_routing ) %] <td>
- [% UNLESS subscription.closed %] <a href="/cgi-bin/koha/serials/routing.pl?subscriptionid=[% subscription.subscriptionid %]">Editar lista de enrutamiento</a>
+ [% UNLESS subscription.closed %] <a href="/cgi-bin/koha/serials/routing.pl?subscriptionid=[% subscription.subscriptionid %]">Editar lista de circulación</a>
  [% END %] </td>
  [% END %] [% UNLESS subscription.closed %] [% IF ( subscription.abouttoexpire ) %]<td class="problem"> <a href="/cgi-bin/koha/serials/subscription-renew.pl?subscriptionid=[% subscription.subscriptionid %]" onclick="popup([% subscription.subscriptionid %]); return false;">Renovar</a></td>
  [% ELSE %] [% IF ( subscription.subscriptionexpired ) %]<td class="problem"> <a href="/cgi-bin/koha/serials/subscription-renew.pl?subscriptionid=[% subscription.subscriptionid %]" onclick="popup([% subscription.subscriptionid %]); return false;">Renovar</a></td>
@@ -151,7 +151,7 @@ $(document).ready(function() {
  <th>Estado : </th>
  <th>Notas </th>
  <th>Biblioteca</th>
- [% IF ( routing ) %]<th>Ruteo</th>[% END %] </tr>
+ [% IF ( routing ) %]<th>Circulación</th>[% END %] </tr>
  </thead>
  <tbody>
  [% FOREACH serial IN year.serials %] [% UNLESS ( loop.odd ) %]<tr class="highlight">[% ELSE %]<tr>[% END %] [% IF ( CAN_user_serials_receive_serials ) %] <td>

@@ -143,15 +143,15 @@ $(document).ready(function() {
 
 [% IF ( duplicate_category ) %] <div class="dialog alert">No se pudo agregar dato &quot;[% duplicate_value %]&quot; en Categoría &quot;[% duplicate_category %]&quot; &mdash;, el dato ya esta cargado. </div>
 [% END %] <form action="/cgi-bin/koha/admin/authorised_values.pl" method="post" id="category"><label for="searchfield">Mostrar categoría: </label>[% tab_list %] <input value="Enviar" type="submit" /></form>
-[% IF ( category == 'Bsort1' ) %] <p>Un valor autorizado adjunto a los socios, que puede ser utilizado con fines estadísticos</p>
-[% END %] [% IF ( category == 'Bsort2' ) %] <p>Un valor autorizado adjunto a los socios, que puede ser utilizado con fines estadísticos</p>
+[% IF ( category == 'Bsort1' ) %] <p>Un valor autorizado adjunto a los usuarios, que puede ser utilizado con fines estadísticos</p>
+[% END %] [% IF ( category == 'Bsort2' ) %] <p>Un valor autorizado adjunto a los usuarios, que puede ser utilizado con fines estadísticos</p>
 [% END %] [% IF ( category == 'Asort1' ) %] <p>Un valor autorizado adjunto a las adquisiciones, que puede ser utilizado con fines estadísticos</p>
 [% END %] [% IF ( category == 'Asort2' ) %] <p>Un valor autorizado adjunto a las adquisiciones, que puede ser utilizado con fines estadísticos</p>
-[% END %] [% IF ( category == 'SUGGEST' ) %] <p>Razones para rechazar o aceptar sugerencias de socios</p>
+[% END %] [% IF ( category == 'SUGGEST' ) %] <p>Razones para rechazar o aceptar sugerencias de usuarios</p>
 [% END %] [% IF ( category == 'DAMAGED' ) %] <p>La lista de estados para describir a un ítem dañado</p>
 [% END %] [% IF ( category == 'LOST' ) %] <p>La lista de estados para describir un ítem perdido</p>
 [% END %] [% IF ( category == 'MANUAL_INV' ) %] <p>Valores adicionales para los tipos de factura manual</p>
-[% END %] [% IF ( category == 'BOR_NOTES' ) %] <p>Valores para las notas socios personalizadas</p>
+[% END %] [% IF ( category == 'BOR_NOTES' ) %] <p>Valores para las notas usuarios personalizadas</p>
 [% END %] [% IF ( category == 'LOC' ) %] <p>Valores para ubicaciones de estanterías</p>
 [% END %] [% IF ( category == 'CCODE' ) %] <p>Valores de los códigos de colección</p>
  [% END %] [% IF ( category == 'NOT_LOAN' ) %] <p>Razones por las que un ítem no es para préstamo</p>

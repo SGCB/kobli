@@ -34,20 +34,20 @@
  <dd>Defina categorías y valores autorizados para ellas.</dd>
 </dl>
 
-<h3>Socios y circulación</h3>
+<h3>Usuarios y circulación</h3>
 <dl>
- <dt><a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a></dt>
- <dd>Defina las categorías de socios.</dd>
+ <dt><a href="/cgi-bin/koha/admin/categorie.pl">Categorías de usuario</a></dt>
+ <dd>Defina las categorías de usuarios.</dd>
 [% IF CAN_user_parameters_manage_circ_rules %] <dt><a href="/cgi-bin/koha/admin/smart-rules.pl">Reglas de circulación y multas</a></dt>
- <dd>Defina reglas de circulación y multas para conjuntos de bibliotecas, categorías de socios y tipos de ítem</dd>
-[% END %] <dt><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de socio</a></dt>
- <dd>Definir los atributos extendidos (identificadores y categorías estadística) para los registros de socios</dd>
+ <dd>Defina reglas de circulación y multas para conjuntos de bibliotecas, categorías de usuarios y tipos de ítem</dd>
+[% END %] <dt><a href="/cgi-bin/koha/admin/patron-attr-types.pl">Tipos de atributo de usuario</a></dt>
+ <dd>Definir los atributos extendidos (identificadores y categorías estadística) para los registros de usuarios</dd>
  <dt><a href="/cgi-bin/koha/admin/branch_transfer_limits.pl">Límites de transferencia de la biblioteca</a></dt>
  <dd>Limitar la capacidad de transferir ítems entre bibliotecas basado en la biblioteca de origen, la biblioteca receptora y el tipo de ítem en cuestión. Estas normas sólo entrarán en vigor si la preferencia UseBranchTransferLimits está ON.</dd>
  <dt><a href="/cgi-bin/koha/admin/transport-cost-matrix.pl">Transporte matriz de costos</a></dt>
  <dd>Definir los costos de transporte entre las bibliotecas</dd>
  <dt><a href="/cgi-bin/koha/admin/item_circulation_alerts.pl">Alertas de circulación de ítems</a></dt>
- <dd>Defina reglas para notificaciones de préstamos y devoluciones para combinaciones de bibliotecas, categorías de socio, y los tipos de ítems</dd>
+ <dd>Defina reglas para notificaciones de préstamos y devoluciones para combinaciones de bibliotecas, categorías de usuario, y los tipos de ítems</dd>
  <dt><a href="/cgi-bin/koha/admin/cities.pl">Ciudades y pueblos</a></dt>
  <dd>Defina localidades y ciudades de sus usuarios.</dd>
  <dt><a href="/cgi-bin/koha/admin/roadtype.pl" >Tipos de camino</a>

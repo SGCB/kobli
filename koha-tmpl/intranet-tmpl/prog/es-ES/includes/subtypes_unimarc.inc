@@ -18,7 +18,7 @@
  </select>
  </p>
  <p>
- <label>Imprimir</label>
+ <label>Impreso</label>
  <select name="limit" class="subtype">
  <option value="" selected="selected" >Cualquiera</option>
  <option value="Material-type:r">Impresión normal</option>

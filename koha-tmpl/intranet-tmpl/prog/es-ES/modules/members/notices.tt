@@ -1,4 +1,4 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Enviar noticias para [% INCLUDE 'patron-title.inc' %]</title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Enviar avisos para [% INCLUDE 'patron-title.inc' %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
@@ -28,13 +28,13 @@
 </style>
 </head>
 <body id="pat_notices" class="pat">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Enviar avisos a [% INCLUDE 'patron-title.inc' %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; Enviar avisos a [% INCLUDE 'patron-title.inc' %]</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
  <div id="yui-main">
  <div class="yui-b">
-[% INCLUDE 'members-toolbar.inc' %] <h1>Enviar noticias para [% INCLUDE 'patron-title.inc' %]</h1>
+[% INCLUDE 'members-toolbar.inc' %] <h1>Enviar avisos para [% INCLUDE 'patron-title.inc' %]</h1>
 
 [% IF ( QUEUED_MESSAGES ) %] <table id="noticestable">
  <thead>
@@ -53,14 +53,14 @@
  [% QUEUED_MESSAGE.content FILTER html_line_break %] </p>
  </td>
  <td>
- [% IF ( QUEUED_MESSAGE.message_transport_type == 'email' ) %]email [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'print' ) %]Impresión[% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'feed' ) %]feed [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'sms' ) %]sms [% ELSE %][% QUEUED_MESSAGE.message_transport_type %][% END %] </td>
+ [% IF ( QUEUED_MESSAGE.message_transport_type == 'email' ) %]email [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'print' ) %]Impreso[% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'feed' ) %]feed [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'sms' ) %]sms [% ELSE %][% QUEUED_MESSAGE.message_transport_type %][% END %] </td>
  <td>
  [% IF ( QUEUED_MESSAGE.status == 'sent' ) %]enviado [% ELSIF ( QUEUED_MESSAGE.status == 'pending' ) %]pendiente [% ELSIF ( QUEUED_MESSAGE.status == 'failed' ) %]fallado [% ELSIF ( QUEUED_MESSAGE.status == 'deleted' ) %]borrado [% ELSE %][% QUEUED_MESSAGE.status %][% END %] </td>
  <td><span title="[% QUEUED_MESSAGE.time_queued %]">[% QUEUED_MESSAGE.time_queued | $KohaDates with_hours => 1 %]</span></td>
  </tr>
  [% END %] </tbody>
  </table>
-[% ELSE %] <div class="dialog message">No hay registro de los mensajes que han sido enviados a este socio.</div>
+[% ELSE %] <div class="dialog message">No hay registro de los mensajes que han sido enviados a este usuario.</div>
 [% END %] </div>
 </div>
 

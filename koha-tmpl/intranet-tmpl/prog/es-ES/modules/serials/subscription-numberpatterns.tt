@@ -17,7 +17,7 @@
       }
 
       if(error){
-          alert(_("No se puede probar el test de patrón de predicción por el siguiente motivo(s):\\nNo se puede probar el test del patrón de predicción por el siguiente motivo(s):\\n\\n")
+          alert(_("No se puede probar el test del patrón de predicción por el siguiente motivo(s):\\n\\n")
               + error_msg);
           return false;
       }
@@ -145,8 +145,8 @@ function show_blocking_subs() {
  <tr>
  [% BLOCK numbering_select %] <select id="[% name %]" name="[% name %]" />
  <option value=""></option>
- [% IF (value == "dayname") %] <option selected="selected" value="dayname">Nombre del día </option>
- [% ELSE %] <option value="dayname">Nombre del día </option>
+ [% IF (value == "dayname") %] <option selected="selected" value="dayname">Nombre del día</option>
+ [% ELSE %] <option value="dayname">Nombre del día</option>
  [% END %] [% IF (value == "monthname") %] <option selected="selected" value="monthname">Nombre de meses</option>
  [% ELSE %] <option value="monthname">Nombre de meses</option>
  [% END %] [% IF (value == "season") %] <option selected="selected" value="season">Nombre de la estación</option>
@@ -170,7 +170,7 @@ function show_blocking_subs() {
  <div class="yui-g">
  <form>
  <fieldset class="rows">
- <legend>Test de patrón de predicción </legend>
+ <legend>Test de patrón de predicción</legend>
  <ol>
  <li>
  <label for="frequency">Frecuencia:</label>
@@ -183,7 +183,7 @@ function show_blocking_subs() {
  <input type="text" id="firstacquidate" class="datepicker" size="10" />
  </li>
  <li>
- <label for="sublength">Duración de la suscripción :</label>
+ <label for="sublength">Duración de la suscripción:</label>
  <select id="subtype">
  [% FOREACH subtype IN subtypes_loop %] <option value="[% subtype.value %]">[% subtype.value %]</option>
  [% END %] </select>
@@ -195,7 +195,7 @@ function show_blocking_subs() {
  <option value=""></option>
  [% FOREACH locale IN locales %] <option value="[% locale %]">[% locale %]</option>
  [% END %] </select>
- <span class="hint">Si esta vacío, utilize la configuración local del sistema </span>
+ <span class="hint">Si esta vacío, utiliza la configuración local del sistema</span>
  </li>
  </ol>
  <table>
@@ -215,7 +215,7 @@ function show_blocking_subs() {
  <td><input type="text" id="lastvalue3" name="lastvalue3" value="[% lastvalue3 %]" /></td>
  </tr>
  <tr>
- <td>Contador interno </td>
+ <td>Contador interno</td>
  <td><input type="text" id="innerloop1" name="innerloop1" value="[% innerloop1 %]" /></td>
  <td><input type="text" id="innerloop2" name="innerloop2" value="[% innerloop2 %]" /></td>
  <td><input type="text" id="innerloop3" name="innerloop3" value="[% innerloop3 %]" /></td>

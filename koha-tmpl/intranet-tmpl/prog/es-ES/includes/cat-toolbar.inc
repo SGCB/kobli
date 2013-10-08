@@ -155,7 +155,7 @@
  </div>
 [% ELSIF ( virtualshelves ) %] <div class="btn-group"><a id="addtoshelf" class="btn btn-small" href="/cgi-bin/koha/virtualshelves/addbybiblionumber.pl?biblionumber=[% biblionumber %]"><i class="icon-list"></i> Agregar a una lista</a> </div>
 [% ELSIF ( intranetbookbag ) %] <div class="btn-group"><a id="addtocart" class="btn btn-small"><i class="icon-shopping-cart"></i> Agregar a un carrito</a> </div>
-[% END %] <div class="btn-group"><a id="printbiblio" class="btn btn-small"><i class="icon-print"></i> Imprimir</a></div>
+[% END %] <div class="btn-group"><a id="printbiblio" class="btn btn-small"><i class="icon-print"></i> Impreso</a></div>
 
 [% IF ( CAN_user_reserveforothers ) %] [% UNLESS ( norequests ) %] [% IF ( holdfor ) %] <div class="btn-group">
  <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">

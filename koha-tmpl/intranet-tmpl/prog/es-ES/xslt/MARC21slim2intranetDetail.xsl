@@ -145,7 +145,6 @@
  <xsl:call-template name="showAuthor"><xsl:with-param name="authorfield" select="marc:datafield[@tag=100 or @tag=110 or @tag=111]"/><xsl:with-param name="UseAuthoritiesForTracings" select="$UseAuthoritiesForTracings"/></xsl:call-template>
  <xsl:call-template name="showAuthor"><xsl:with-param name="authorfield" select="marc:datafield[@tag=700 or @tag=710 or @tag=711]"/><xsl:with-param name="UseAuthoritiesForTracings" select="$UseAuthoritiesForTracings"/></xsl:call-template>
 
- <xsl:if test="$DisplayIconsXSLT!='0' and $materialTypeCode!=''">
  <xsl:if test="$BiblioItemtypeImage='Control'">
  <xsl:if test="$materialTypeCode!=''">
  <span class="results_summary type"><span class="label">Tipo: </span>
@@ -153,8 +152,9 @@
  <xsl:text> </xsl:text>
  <xsl:value-of select="$materialTypeLabel"/>
  </span>
- </xsl:if>
  
+ </xsl:if>
+ </xsl:if>
  <!-- 024 -->
  <xsl:if test="$display880">
  <span class="results_summary">
@@ -215,9 +215,7 @@
  </xsl:for-each>
  </span>
  </xsl:if>
-
- </xsl:if>
- </xsl:if>
+ 
  <!--Series: Alternate Graphic Representation (MARC 880) -->
  <xsl:if test="$display880">
  <xsl:call-template name="m880Select">
@@ -751,7 +749,7 @@
 
  <!-- 866 textual holdings -->
  <xsl:if test="marc:datafield[@tag=866]">
- <span class="results_summary holdings_note"><span class="label">Nota de existencias: </span>
+ <span class="results_summary holdings_note"><span class="label">Nota de ejemplares: </span>
  <xsl:for-each select="marc:datafield[@tag=866]">
  <xsl:call-template name="subfieldSelect">
  <xsl:with-param name="codes">axz</xsl:with-param>

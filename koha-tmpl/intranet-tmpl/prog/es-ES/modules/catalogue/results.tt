@@ -430,7 +430,7 @@ var holdForPatron = function () {
  [% ELSE %] <li>
  [% END %] [% IF ( other_items_loo.branchname ) %][% other_items_loo.branchname %][% END %] [% IF ( other_items_loo.location ) %][% other_items_loo.location %][% END %] [% IF ( other_items_loo.itemcallnumber ) %][<a href="/cgi-bin/koha/catalogue/search.pl?idx=callnum&amp;q=[% other_items_loo.itemcallnumber |url %]">[% other_items_loo.itemcallnumber %]</a>][% END %] [% IF ( other_items_loo.wthdrawn ) %](Retirado)[% END %] [% IF ( other_items_loo.itemlost ) %](Perdido)[% END %] [% IF ( other_items_loo.damaged ) %](Dañado)[% END %] [% IF ( other_items_loo.intransit ) %](En tránsito)[% END %] [% IF ( other_items_loo.onhold ) %](Reservado)[% END %] [% IF ( other_items_loo.notforloan ) %][% other_items_loo.notforloan %][% END %] ([% other_items_loo.count %]) [% IF item_level_itypes && other_items_loo.description %]<br/>[% other_items_loo.description %] [% END %] </li>
  [% END %] </ul>
- [% END %] [% ELSE %] [% IF ( SEARCH_RESULT.ALTERNATEHOLDINGS.count ) %] <strong id="altholdings_heading">Otras reservas:</strong>
+ [% END %] [% ELSE %] [% IF ( SEARCH_RESULT.ALTERNATEHOLDINGS.count ) %] <strong id="altholdings_heading">Otras ejemplares:</strong>
  <ul>
  [% FOREACH ALTERNATEHOLDING IN SEARCH_RESULT.ALTERNATEHOLDINGS %] <li id="alternateholdings">[% ALTERNATEHOLDING.holding %]</li>
  [% END %] </li>

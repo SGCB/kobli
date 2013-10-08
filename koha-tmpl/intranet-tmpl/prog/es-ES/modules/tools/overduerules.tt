@@ -24,7 +24,7 @@ $(document).ready(function() {
  <h1>Definir [% IF ( branch ) %]acciones por retrasos para [% branch %][% ELSE %]acciones por retrasos por defecto[% END %]</h1>
  <div class="help">
  <p>La demora es el número de días luego del vencimiento del préstamo antes que se inicie una acción. </p>
- <p>Si desea que Koha desencadene una acción (enviar una carta o deshabilitar un socio), se requiere un valor de retardo.</p>
+ <p>Si desea que Koha desencadene una acción (enviar una carta o deshabilitar un usuario), se requiere un valor de retardo.</p>
  <p>Las columnas deben llenarse de izquierda a derecha: si la primer columna está en blanco, las demás serán ignoradas </p>
  </div>
  <form method="post" action="/cgi-bin/koha/tools/overduerules.pl" id="selectlibrary">
@@ -40,9 +40,9 @@ $(document).ready(function() {
  <h3>Error de datos</h3>
  <p>Se han encontrado los siguientes errores. Por favor, corríjalos y envíe nuevamente:</p>
  <ul>
- [% IF ( ERRORDELAY ) %] <li>La demora [% ERRORDELAY %] para categoría de socio [% BORERR %] tiene algunos caracteres no soportados. Debería incluir solamente caracteres numéricos. </li>
- [% END %] [% IF ( ERRORUSELESSDELAY ) %] <li>No hay carta o suspensión especificadas para demoras [% ERRORUSELESSDELAY %] para la categoría de socio [% BORERR %]. Si se especifica una demora, ya sea una carta, una suspensión, o ambas deberían ser especificadas.</li>
- [% END %] [% IF ( ERRORORDER ) %] <li>La demora del primer aviso debe ser menor que el segundo, que debe ser inferior a el tercera para el <strong>[% BORERR %]</strong> Categoría de socio</li>
+ [% IF ( ERRORDELAY ) %] <li>La demora [% ERRORDELAY %] para categoría de usuario [% BORERR %] tiene algunos caracteres no soportados. Debería incluir solamente caracteres numéricos. </li>
+ [% END %] [% IF ( ERRORUSELESSDELAY ) %] <li>No hay carta o suspensión especificadas para demoras [% ERRORUSELESSDELAY %] para la categoría de usuario [% BORERR %]. Si se especifica una demora, ya sea una carta, una suspensión, o ambas deberían ser especificadas.</li>
+ [% END %] [% IF ( ERRORORDER ) %] <li>La demora del primer aviso debe ser menor que el segundo, que debe ser inferior a el tercera para el <strong>[% BORERR %]</strong> Categoría de usuario</li>
  [% END %] </ul>
  </div>
  [% END %] [% IF ( table ) %] <form method="post" action="/cgi-bin/koha/tools/overduerules.pl">
@@ -131,8 +131,8 @@ $(document).ready(function() {
 
  <fieldset class="action"><input value="Guardar cambios" type="submit" /></fieldset>
  </form>
- [% ELSE %] <div class="warning">Usted no tiene categorías de socio definidas, o las categorías de socio no están configuradas para recibir avisos de retraso.</div>
- <div class="warning">Si esto no es lo que esperaba, vaya a <a href="../admin/categorie.pl">Categorías de socio</p></div>
+ [% ELSE %] <div class="warning">Usted no tiene categorías de usuario definidas, o las categorías de usuario no están configuradas para recibir avisos de retraso.</div>
+ <div class="warning">Si esto no es lo que esperaba, vaya a <a href="../admin/categorie.pl">Categorías de usuario</p></div>
  [% END %] </div>
  </div>
  <div class="yui-b noprint">

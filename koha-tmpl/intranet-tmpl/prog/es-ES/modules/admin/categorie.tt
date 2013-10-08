@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Categorías de socios &rsaquo; [% IF ( add_form ) %][% IF ( categorycode ) %]Modificar categoría '[% categorycode |html %]'[% ELSE %]Nueva categoría[% END %][% END %] [% IF ( add_validate ) %]Datos guardados[% END %] [% IF ( delete_confirm ) %][% IF ( totalgtzero ) %]No es posible borrar: categoría [% categorycode |html %] en uso[% ELSE %]Confirmar eliminación de categoría '[% categorycode |html %]'[% END %][% END %] [% IF ( delete_confirmed ) %]Categoría eliminada[% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Categorías de usuarios &rsaquo; [% IF ( add_form ) %][% IF ( categorycode ) %]Modificar categoría '[% categorycode |html %]'[% ELSE %]Nueva categoría[% END %][% END %] [% IF ( add_validate ) %]Datos guardados[% END %] [% IF ( delete_confirm ) %][% IF ( totalgtzero ) %]No es posible borrar: categoría [% categorycode |html %] en uso[% ELSE %]Confirmar eliminación de categoría '[% categorycode |html %]'[% END %][% END %] [% IF ( delete_confirmed ) %]Categoría eliminada[% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
@@ -103,7 +103,7 @@
 <style type="text/css">#enrolmentmessage.hint { display : none; }</style>
 </head>
 <body id="admin_categorie" class="admin">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patrons-admin-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; [% IF ( categorycode ) %]Modificar categoría '[% categorycode |html %]'[% ELSE %]Nueva categoría[% END %][% END %] [% IF ( add_validate ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; Datos grabados[% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; [% IF ( totalgtzero ) %]No se puede eliminar: Categoría [% categorycode |html %] en uso[% ELSE %]Confirmar eliminación de la categoría '[% categorycode |html %]'[% END %][% END %] [% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de socio</a> &rsaquo; Categoría eliminada[% END %] [% IF ( else ) %]Categorías de socios[% END %] </div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patrons-admin-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; [% IF ( add_form ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de usuario</a> &rsaquo; [% IF ( categorycode ) %]Modificar categoría '[% categorycode |html %]'[% ELSE %]Nueva categoría[% END %][% END %] [% IF ( add_validate ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de usuario</a> &rsaquo; Datos grabados[% END %] [% IF ( delete_confirm ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de usuario</a> &rsaquo; [% IF ( totalgtzero ) %]No se puede eliminar: Categoría [% categorycode |html %] en uso[% ELSE %]Confirmar eliminación de la categoría '[% categorycode |html %]'[% END %][% END %] [% IF ( delete_confirmed ) %] <a href="/cgi-bin/koha/admin/categorie.pl">Categorías de usuario</a> &rsaquo; Categoría eliminada[% END %] [% IF ( else ) %]Categorías de usuarios[% END %] </div>
 
 <div id="doc3" class="yui-t2">
  
@@ -164,7 +164,7 @@
 </fieldset>
 
  [% IF ( EnhancedMessagingPreferences ) %] <fieldset class="rows">
- <h4>Las preferencias predeterminadas de mensajería para esta categoría de socio</h4>
+ <h4>Las preferencias predeterminadas de mensajería para esta categoría de usuario</h4>
  [% INCLUDE 'messaging-preference-form.inc' %] </fieldset>
  [% END %] <fieldset class="action"><input value="Guardar" type="button" onclick="Check(this.form);" /> </fieldset>
  </form>
@@ -205,7 +205,7 @@
  <a class="btn btn-small" id="newcategory" href="/cgi-bin/koha/admin/categorie.pl?op=add_form"><i class="icon-plus"></i> Nueva categoría</a>
 </div>
 
-<h2>Administración de categoría de socio</h2>
+<h2>Administración de categoría de usuario</h2>
 [% IF ( searchfield ) %] Usted buscó [% searchfield %]</span>
  [% END %] [% IF ( loop ) %] <div id="pagertable_categorie">
 </div>

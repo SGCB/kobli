@@ -1,7 +1,7 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Ficheroe por [% INCLUDE 'patron-title.inc' %]</title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Ficheros por [% INCLUDE 'patron-title.inc' %]</title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body>
-[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Socios</a> &rsaquo; Imágenes para  [% INCLUDE 'patron-title.inc' %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'patron-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/members/members-home.pl">Usuarios</a> &rsaquo; Imágenes para  [% INCLUDE 'patron-title.inc' %]</div>
 
 <div id="doc3" class="yui-t2">
  <div id="bd">
@@ -31,7 +31,7 @@
  [% END %] </tbody>
  </table>
  [% ELSE %] <div class="dialog message">
- <p>Este socio no tiene ficheros asociados. </p>
+ <p>Este usuario no tiene ficheros asociados. </p>
  </div>
  [% END %] <form method="post" action="/cgi-bin/koha/members/files.pl" enctype="multipart/form-data">
  <fieldset class="rows">

@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Ingreso de suscripción para [% bibliotitle %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Publicaciones periódicas &rsaquo; Crear suscripción para [% bibliotitle %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script language="JavaScript" type="text/javascript">
 //<![CDATA[
 function popup() {
@@ -39,7 +39,7 @@ function barcode_check(){
 </script>
 </head>
 <body id="ser_serials-recieve" class="ser">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Ingreso de suscripción para <i>[% bibliotitle %]</i></div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'serials-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/serials/serials-home.pl">Publicaciones periódicas</a> &rsaquo; Crear suscripción para <i>[% bibliotitle %]</i></div>
 
 <div id="doc3" class="yui-t2">
  
@@ -47,12 +47,12 @@ function barcode_check(){
  <div id="yui-main">
  <div class="yui-b">
 
-<h1>Ingresa suscripción de <i>[% bibliotitle %]</i></h1>
+<h1>Introduzca suscripción de <i>[% bibliotitle %]</i></h1>
 <div id="action">
  <a href="subscription-detail.pl?subscriptionid=[% subscriptionid %]" title="detalle de la suscripción">Detalles de la suscripción</a>
  <!-- <a href="/cgi-bin/koha/serials/serials-home.pl?biblionumber=[% biblionumber %]" class="button" title="all subscriptions on [% bibliotitle %]">Search all subscriptions</a> -->
  <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% biblionumber %]" title="ir a [% bibliotitle %]">Mostrar biblio</a>
- [% IF ( routing ) %] <a href="routing.pl?subscriptionid=[% subscriptionid %]" title="Suscripción de la lista de enrutamiento para">Lista de ruteo</a>
+ [% IF ( routing ) %] <a href="routing.pl?subscriptionid=[% subscriptionid %]" title="Suscripción de la lista de circulación para">Lista de circulación</a>
  [% END %] </div>
 
 <h2>Esperado o atrasado</h2>

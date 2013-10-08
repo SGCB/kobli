@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; [% IF ( nopermission ) %]Acceso denegado[% END %] [% IF ( timed_out ) %]Sesión expirada[% END %] [% IF ( different_ip ) %]Cambio de dirección IP[% END %] [% IF ( invalid_username_or_password ) %]Usuario o contraseña inválido[% END %] [% IF ( loginprompt ) %]Ingresar a Koha[% END %] </title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; [% IF ( nopermission ) %]Acceso denegado[% END %] [% IF ( timed_out ) %]Sesión expirada[% END %] [% IF ( different_ip ) %]Cambio de dirección IP[% END %] [% IF ( invalid_username_or_password ) %]Usuario o contraseña inválido[% END %] [% IF ( loginprompt ) %]Acceder a Koha[% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="main_auth" class="main">
 
@@ -7,11 +7,11 @@
 
 <div id="login">
 <h1><a href="http://koha-community.org">Koha</a></h1>
-[% IF ( nopermission ) %] <div id="login_error"><strong>Error:</strong> Usted no tiene permiso para ingresar a esta página. <a href="/cgi-bin/koha/mainpage.pl?logout.x=1">Haga clic para salir</a></div>
-[% END %] [% IF ( timed_out ) %] <div id="login_error"><strong>Error: </strong>La sesión ha expirado<br /> La sesión ha expirado, por favor ingrese nuevamente</div>
-[% END %] [% IF ( different_ip ) %] <div id="login_error"><strong>Error: </strong>La dirección IP ha cambiado, por favor ingrese nuevamente </div>
-[% END %] [% IF ( wrongip ) %] <div id="login_error"><strong>Error: </strong>IndependentBranches y Autolocation están habilitadas y usted está ingresando con una dirección IP que no coincide con su sede. </div>
-[% END %] [% IF ( invalid_username_or_password ) %] <div id="login_error"><strong>Error: </strong>Nombre de socio o contraseña inválido</div>
+[% IF ( nopermission ) %] <div id="login_error"><strong>Error:</strong> Usted no tiene permiso para acceder a esta página. <a href="/cgi-bin/koha/mainpage.pl?logout.x=1">Haga clic para salir</a></div>
+[% END %] [% IF ( timed_out ) %] <div id="login_error"><strong>Error: </strong>La sesión ha expirado<br /> La sesión ha expirado, por favor acceda de nuevo</div>
+[% END %] [% IF ( different_ip ) %] <div id="login_error"><strong>Error: </strong>La dirección IP ha cambiado, por favor acceda de nuevo </div>
+[% END %] [% IF ( wrongip ) %] <div id="login_error"><strong>Error: </strong>IndependentBranches y Autolocation están habilitadas y usted está accediendo con una dirección IP que no coincide con su sede. </div>
+[% END %] [% IF ( invalid_username_or_password ) %] <div id="login_error"><strong>Error: </strong>Nombre de usuario o contraseña inválido</div>
 [% END %]
 
 <!-- login prompt time-->

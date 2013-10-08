@@ -294,7 +294,7 @@
  [% IF mandatory.defined('contactnote') %]<span class="required">Requerido</span>[% END %] </li>
  [% END %] </ol>
  </fieldset>
- [% END %] [% UNLESS hidden.defined('altcontactsurname') && hidden.defined('altcontactfirstname') && hidden.defined('altcontactaddress1') && hidden.defined('altcontactaddress2') && hidden.defined('altcontactaddress3') && hidden.defined('altcontactstate') && hidden.defined <fieldset class="rows" id="memberentry_alternatecontact">
+ [% END %] [% UNLESS hidden.defined('altcontactsurname') && hidden.defined('altcontactfirstname') && hidden.defined('altcontactaddress1') && hidden.defined('altcontactaddress2') && hidden.defined('altcontactaddress3') && hidden.defined('altcontactstate') && hidden.defined('altcontactzipcode') && hidden.defined('altcontactcountry') && hidden.defined('altcontactphone') %]<fieldset class="rows" id="memberentry_alternatecontact">
  <legend id="alternatecontact_legend">Contacto alternativo</legend>
 
  <ol>

@@ -54,7 +54,7 @@
  <option value="or">o</option>
  <option value="not">no</option>
  </select>
- [% END %] [% END %] [% INCLUDE 'search_indexes.inc' %] <input value="" name="q" type="text" title="Ingrese términos de búsqueda" size="30" />
+ [% END %] [% END %] [% INCLUDE 'search_indexes.inc' %] <input value="" name="q" type="text" title="Introduzca términos de búsqueda" size="30" />
  [% IF ( expanded_options ) %] [% IF ( search_box.add_field ) %] <a href="JavaScript:add_field();" id="ButtonPlus" title="Agregar otro campo">[+]</a>
  [% END %] [% IF ( search_box.scan_index ) %] <label for="scan">Explorar índices</label> <input type="checkbox" name="scan" id="scan" value="1" />
  [% END %] [% END %] </div>

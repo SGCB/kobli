@@ -3,16 +3,16 @@
 <div id="header_search">
 
 [% INCLUDE 'patron-search-box.inc' %] [% IF ( CAN_user_circulate ) %] <div id="checkin_search" class="residentsearch">
- <p class="tip">Ingrese código de barras para devolución:</p>
+ <p class="tip">Introduzca el código de barras para devolución:</p>
  <form method="post" action="/cgi-bin/koha/circ/returns.pl" autocomplete="off">
  <input name="barcode" id="ret_barcode" size="40" />
  <input value="Enviar" class="submit" type="submit" />
  </form>
 </div>
  [% END %] [% IF ( CAN_user_catalogue ) %] <div id="catalog_search" class="residentsearch">
- <p class="tip">Ingrese palabras clave para la búsqueda:</p>
+ <p class="tip">Introduzca palabras clave para la búsqueda:</p>
  <form action="/cgi-bin/koha/catalogue/search.pl"  method="get" id="cat-search-block">
- <input value="" name="q" type="text" id="search-form" title="Ingrese los términos de búsqueda." class="form-text" size="40" />
+ <input value="" name="q" type="text" id="search-form" title="Introduzca los términos de búsqueda." class="form-text" size="40" />
  <input value="Enviar" type="submit" class="submit" />
  </form>
  </div>

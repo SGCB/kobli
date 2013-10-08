@@ -1,37 +1,37 @@
-[% INCLUDE 'help-top.inc' %] <h1>Tipos de atributo de socio </h1>
+[% INCLUDE 'help-top.inc' %] <h1>Tipos de atributo de usuario </h1>
 
-<p>Los atributos de los socios se pueden utilizar para definir los campos personalizados asociados con los registros de sus socios. Para poder definir campos personalizados es necesario establecer la preferencia del sistema ExtendedPatronAttributes.</p>
+<p>Los atributos de los usuarios se pueden utilizar para definir los campos personalizados asociados con los registros de sus usuarios. Para poder definir campos personalizados es necesario establecer la preferencia del sistema ExtendedPatronAttributes.</p>
 
 <ul>
  <li><em>Llegar:</em> More &gt; Administration &gt; Patrons &amp; Circulation &gt; Patron attribute types</li>
 </ul>
 
-<p>Un uso común para este campo sería el de contener el número de documento de un socio o el número de su licencia de conducir.</p>
+<p>Un uso común para este campo sería el de contener el número de documento de un usuario o el número de su licencia de conducir.</p>
 
-<h3>Añadir Atributos de Socio</h3>
+<h3>Añadir Atributos de usuario</h3>
 
-<p>Para agregar un nuevo tipo de atributo de socio, seleccionar en 'Nuevo tipo de atributo de socio' en la parte superior de la página</p>
+<p>Para agregar un nuevo tipo de atributo de usuario, seleccionar en 'Nuevo tipo de atributo de usuario' en la parte superior de la página</p>
 
 <ul>
- <li>En el ''Código de tipo de atributo de socio', introduzca un código corto para identificar este campo <ul>
+ <li>En el ''Código de tipo de atributo de usuario', introduzca un código corto para identificar este campo <ul>
  <li style="color: #990000;">Importante: Este campo se limita a 10 caracteres (sólamente letras y números)</li>
  <li style="color: #990000;">Importante: Este ajuste no se puede cambiar después de que un atributo es definido.</li>
 </ul>
 </li>
  <li>En el campo 'Descripción', escriba una explicación (en texto) de lo que este campo contendrá</li>
- <li>Marque la casilla al lado de 'Repetible' para permitir que el socio tenga múltiples valores de este atributo. <ul>
+ <li>Marque la casilla al lado de 'Repetible' para permitir que el usuario tenga múltiples valores de este atributo. <ul>
  <li style="color: #990000;">Importante: Este ajuste no se puede cambiar después de que un atributo es definido.</li>
 </ul>
 </li>
- <li>Si está seleccionado 'Identificador único', el atributo será un identificador único. Esto significa que si se le da un valor a un registro de socio, el mismo valor no puede ser asignado a un registro diferente. <ul>
+ <li>Si está seleccionado 'Identificador único', el atributo será un identificador único. Esto significa que si se le da un valor a un registro de usuario, el mismo valor no puede ser asignado a un registro diferente. <ul>
  <li style="color: #990000;">Importante: Este ajuste no se puede cambiar después de que un atributo es definido.</li>
 </ul>
 </li>
  <li>Marcar 'Permitir contraseña' para que sea posible asociar una contraseña a este atributo.</li>
- <li>Marcar 'Mostrar en el OPAC' para mostrar este atributo en la página de detalles del socio del OPAC.</li>
- <li>Marque 'Buscable' para que este atributo sea buscable en la búsqueda de socios de la interfaz administrativa.</li>
+ <li>Marcar 'Mostrar en el OPAC' para mostrar este atributo en la página de detalles del usuario del OPAC.</li>
+ <li>Marque 'Buscable' para que este atributo sea buscable en la búsqueda de usuarios de la interfaz administrativa.</li>
  <li>Marque 'Mostrar al prestar' para hacer que este atributo esté visible en la pantalla corta de muestra de detalles del usuario a la izquierda de la pantalla de préstamo y otras páginas de usuarios</li>
- <li>Categoría de valor autorizado; si se selecciona alguno, la página de ingreso de socios sólo permitirá seleccionar valores de la lista de valores autorizados. <ul>
+ <li>Categoría de valor autorizado; si se selecciona alguno, la página de acceso de usuarios sólo permitirá seleccionar valores de la lista de valores autorizados. <ul>
  <li>En primer lugar, tendrá que añadir una lista de valores autorizados para que aparezca en este menú <ul>
  <li><em>Hay que llegar:</em>More &gt; Administration &gt; Basic Parameters &gt; Authorized Values</li>
 </ul>
@@ -40,29 +40,29 @@
 </ul>
 </li>
  <li>Si se quiere utilizar este atributo sólo en sedes específicas, se pueden elegir éstas desde la lista de 'Limitación de Sedes'. Se debe elegir 'Todas las bibliotecas' para que se muestren en todas ellas.</li>
- <li>Si quisiera mostrar sólo este atributo en un tipo de socios elegirá que tipo de socio desde el desplegable 'Category'</li>
+ <li>Si quisiera mostrar sólo este atributo en un tipo de usuarios elegirá que tipo de usuario desde el desplegable 'Category'</li>
  <li>Si t¡enes muchos atributos podría ser útil agruparlas para poder encontrarlas fácilmente para editar. Si creas un  Valor Autorizado ara PA_CLASS este se mostrará en 'Class? tirar hacia abajo y después podrás cambiar la página de atributos a tener secciones de atributos.</li>
  <li>Haga clic en Guardar para guardar su nuevo atributo</li>
 </ul>
 
-<p>Una vez añadido el atributo aparecerá en la lista de atributos y también en el formulario de agregar o modificar socios</o>
+<p>Una vez añadido el atributo aparecerá en la lista de atributos y también en el formulario de agregar o modificar usuarios</o>
 
-<p>Si tiene configuración de clases para la organización de atributos estos podrán aparecer en el formularios de socio de añadir/editar</p>
+<p>Si tiene configuración de clases para la organización de atributos estos podrán aparecer en el formularios de usuario de añadir/editar</p>
 
-<h3>Editar/Eliminar Atributos de Socios</h3>
+<h3>Editar/Eliminar Atributos de Usuarios</h3>
 
-<p>Cada atributo de socio tiene a su lado un enlace editar o eliminar en la lista de atributos.</p>
+<p>Cada atributo de usuario tiene a su lado un enlace editar o eliminar en la lista de atributos.</p>
 
 <p>Algunos de los campos en el atributo no se puede editar una vez creados:</p>
 
 <ul>
- <li>Código de tipo de atributo de socio:</li>
+ <li>Código de tipo de atributo de usuario:</li>
  <li>Repetible</li>
  <li>Identificador único</li>
 </ul>
 
 <p>Usted no podrá eliminar un atributo si está en uso.</p>
 
-<p><strong>Ver la documentación completa de Tipos de Atributos de Socio en la <a href="http://es.koha-community.org/manual/3.12/es/patscirc.html#patronattributetypes">manual</a> (en línea).</strong></p>
+<p><strong>Ver la documentación completa de Tipos de Atributos de Usuario en la <a href="http://es.koha-community.org/manual/3.12/es/patscirc.html#patronattributetypes">manual</a> (en línea).</strong></p>
 
 [% INCLUDE 'help-bottom.inc' %]

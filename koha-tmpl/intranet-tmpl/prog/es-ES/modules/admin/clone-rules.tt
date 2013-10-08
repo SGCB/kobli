@@ -12,7 +12,7 @@
 
  [% IF ( result ) %] [% IF ( error ) %] <div class="dialog alert">¡Falló la clonación de las reglas de préstamo!</div>
  [% ELSE %] <div class="dialog message"><p>Las reglas han sido duplicadas.</p></div>
- [% END %] <a href="/cgi-bin/koha/admin/smart-rules.pl">Regresar a reglas de circulación</a>
+ [% END %] <a href="/cgi-bin/koha/admin/smart-rules.pl">Volver a reglas de circulación</a>
  [% ELSE %] <p class="help">Usar con cuidado! Si la biblioteca de destino ya tiene reglas de préstamo, serán borrados sin previo aviso!</p> 
  <form action="/cgi-bin/koha/admin/clone-rules.pl" method="post">
  [% UNLESS ( frombranch ) %] <fieldset>

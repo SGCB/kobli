@@ -11,9 +11,9 @@
  </div>
 
  [% INCLUDE 'patron-search-box.inc' %] [% IF ( CAN_user_catalogue ) %] <div id="catalog_search" class="residentsearch">
- <p class="tip">Ingrese palabras clave para la búsqueda:</p>
+ <p class="tip">Introduzca palabras clave para la búsqueda:</p>
  <form action="/cgi-bin/koha/catalogue/search.pl"  method="get" id="cat-search-block">
- <input value="" name="q" type="text" id="search-form" title="Ingrese los términos de búsqueda." class="form-text" size="40" />
+ <input value="" name="q" type="text" id="search-form" title="Introduzca los términos de búsqueda." class="form-text" size="40" />
  <input value="Enviar" type="submit" class="submit" />
  </form>
  </div>[% END %] <ul>

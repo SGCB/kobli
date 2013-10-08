@@ -236,7 +236,7 @@
  <li>
  <!-- LOCK -->
  <!-- ############################## -->
- <label for="budget_period_locked">Bloquear presupuesto:</label>
+ <label for="budget_period_locked">Bloquear presupuesto: </label>
  [% IF ( budget_period_locked ) %]<input type="checkbox" checked="checked" id="budget_period_locked" name="budget_period_locked" value="1" />[% ELSE %] <input type="checkbox" id="budget_period_locked" name="budget_period_locked" value="1"/> [% END %] </li>
  </ol>
  </fieldset>
@@ -320,7 +320,7 @@
  </tr>
  [% END %] </tbody>
  </table>
- [% ELSE %] No activo presupuesto [% END %] <div class="paginationBar">[% active_pagination_bar %]</div>
+ [% ELSE %] No hay presupuestos activos [% END %] <div class="paginationBar">[% active_pagination_bar %]</div>
  </div>
  <div id="inactive">
  [% IF ( period_inactive_loop ) %] <table id="inactiveperiodst">

@@ -16,4 +16,4 @@
  <li><a href="/cgi-bin/koha/acqui/z3950_search.pl?booksellerid=[% booksellerid %]&amp;basketno=[% basketno %]">De una fuente externa</a></li>
  <li><a href="/cgi-bin/koha/acqui/addorderiso2709.pl?booksellerid=[% booksellerid %]&amp;basketno=[% basketno %]"> De un archivo preparado</a></li>
  </ul>
- [% ELSE %] Usted no puede crear ordenes a menos que primero <a href="/cgi-bin/koha/admin/aqbudgetperiods.pl">defina un presupuesto y un fondo</a>. [% END %] </fieldset>
+ [% ELSE %] Usted no puede crear ordenes a menos que primero <a href="/cgi-bin/koha/admin/aqbudgetperiods.pl">definir un presupuesto y un fondo</a>. [% END %] </fieldset>

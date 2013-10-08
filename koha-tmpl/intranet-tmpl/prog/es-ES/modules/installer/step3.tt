@@ -172,7 +172,7 @@
  [% FOREACH update_error IN update_errors %] <li class="update_error">[% update_error.line |html %]</li>
  [% END %] </ul>
  [% END %] [% UNLESS ( has_update_errors ) %] <p>Todo funcionó bien, actualización terminada.</p>
- [% END %] <a href="install.pl?step=3&amp;op=finished" class="button">Continúe ingresando a Koha</a>
+ [% END %] <a href="install.pl?step=3&amp;op=finished" class="button">Continúe para acceder a Koha</a>
  </div>
 [% END %] </body>
 </html>
