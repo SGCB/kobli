@@ -138,8 +138,8 @@ sub GetPOfilenames
         $Bin = $routeLangInstaller; # $Bin happens to have the path to LangInstaller.pm
         my $installer = LangInstaller->new($selectedlang);
         my $POfile_pref = $installer->po_filename();
-        my $POfile_opac = $installer->{path_po} . '/' . $selectedlang . $installer->{'interface'}->{'opac'}->{'suffix'};
-        my $POfile_intranet = $installer->{path_po} . '/' . $selectedlang . $installer->{'interface'}->{'intranet'}->{'suffix'};
+        my $POfile_opac = $installer->{path_po} . '/' . $selectedlang . $installer->{'interface'}[0]->{'suffix'};
+        my $POfile_intranet = $installer->{path_po} . '/' . $selectedlang . $installer->{'interface'}[1]->{'suffix'};
         my %filenames = ('POfile_pref'=>$POfile_pref, 'POfile_opac'=>$POfile_opac, 'POfile_intranet'=>$POfile_intranet);
         return \%filenames;
 }
@@ -490,7 +490,7 @@ sub GetPOLanguages
                                        }
                                        if (!$found) {
                                                # It verifies that there are no established their target directories
-                                               while (my ($interface, $tmpl) = each %{$installer->{interface}}) {
+                                               foreach my $tmpl (@{$installer->{interface}}) {
                                                        my $lang_dir = "$tmpl->{dir}/$ln";
                                                        if (-d $lang_dir){
                                                                $found = 1;
@@ -512,7 +512,7 @@ sub GetPOLanguages
                                if ($ln =~ /\S+/) {
                                        my $found = 0;
                                        # It verifies that there are established their target directories
-                                       while (my ($interface, $tmpl) = each %{$installer->{interface}}) {
+                                       foreach my $tmpl (@{$installer->{interface}}) {
                                                my $lang_dir = "$tmpl->{dir}/$ln";
                                                if (-d $lang_dir){
                                                        $found = 1;
