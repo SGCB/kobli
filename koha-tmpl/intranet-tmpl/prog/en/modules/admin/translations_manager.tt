@@ -98,8 +98,8 @@ function loading_formul8(){
         <a name="inicio"></a>
         <div class="yui-g" style="width:800px;">
           <h1>Translations Manager</h1>
-          <div class="toptabs">
-            <ul class="ui-tabs-nav">
+          <div class="toptabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
             [% IF (createpo) %]
                 <li id="createpo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createpo" title="Allows you to create the PO translation files for a new language">Create PO Files</a></li>
             [% ELSE %]
