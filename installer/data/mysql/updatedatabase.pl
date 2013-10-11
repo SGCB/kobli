@@ -4480,11 +4480,25 @@ if (C4::Context->preference("Version") < TransformToNum($DBversion)) {
         $error = qx($strcmd -f $filename 2>&1 1>/dev/null);
     }
     unless ($error) {
-        print "Upgrade to $DBversion done (New tables and data from $path for indicators functionality)\n";
-        $dbh->do("INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('CheckValueIndicators','0','Check the values of the indicators in cataloguing','','YesNo');");
-        print "Upgrade to $DBversion done (Add syspref to check the values of the indicators)\n";
-        $dbh->do("INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('DisplayPluginValueIndicators','0','Display a plugin with the correct values of indicators for fields in cataloguing','','YesNo');");
-        print "Upgrade to $DBversion done (Add syspref to display a plugin with the allowed values of indicators)\n";
+        my $sth = $dbh->prepare(q|
+        SELECT variable FROM systempreferences where variable="CheckValueIndicators"
+        |);
+        $sth->execute;
+        my $already_exists = $sth->fetchrow;
+        unless($already_exists){
+            print "Upgrade to $DBversion done (New tables and data from $path for indicators functionality)\n";
+            $dbh->do("INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('CheckValueIndicators','0','Check the values of the indicators in cataloguing','','YesNo');");
+        }
+         my $sth = $dbh->prepare(q|
+        SELECT variable FROM systempreferences where variable="DisplayPluginValueIndicators"
+        |);
+        $sth->execute;
+        my $already_exists = $sth->fetchrow;
+        unless($already_exists){
+            print "Upgrade to $DBversion done (Add syspref to check the values of the indicators)\n";
+            $dbh->do("INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('DisplayPluginValueIndicators','0','Display a plugin with the correct values of indicators for fields in cataloguing','','YesNo');");
+            print "Upgrade to $DBversion done (Add syspref to display a plugin with the allowed values of indicators)\n";
+        }
         SetVersion ($DBversion);
     } else {
         print "Error executing: $strcmd upon $filename $error";
