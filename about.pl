@@ -150,40 +150,52 @@ $template->param( table => $table );
 ## Koha time line code
 
 #get file location
-my $docdir = C4::Context->config('docdir');
-open( my $file, "<", "$docdir" . "/history.txt" );
-my $i = 0;
+my $docdir;
+if ( defined C4::Context->config('docdir') ) {
+    $docdir = C4::Context->config('docdir');
+} else {
+    # if no <docdir> is defined in koha-conf.xml, use the default location
+    # this is a work-around to stop breakage on upgraded Kohas, bug 8911
+    $docdir = C4::Context->config('intranetdir') . '/docs';
+}
 
-my @rows2 = ();
-my $row2  = [];
+if ( open( my $file, "<", "$docdir" . "/history.txt" ) ) {
 
-my @lines = <$file>;
-close($file);
+    my $i = 0;
 
-shift @lines; #remove header row
+    my @rows2 = ();
+    my $row2  = [];
 
-foreach (@lines) {
-    my ( $date, $desc, $tag ) = split(/\t/);
-    if(!$desc && $date=~ /(?<=\d{4})\s+/) {
-        ($date, $desc)= ($`, $');
-    }
-    push(
-        @rows2,
-        {
-            date => $date,
-            desc => $desc,
+    my @lines = <$file>;
+    close($file);
+
+    shift @lines; #remove header row
+
+    foreach (@lines) {
+        my ( $date, $desc, $tag ) = split(/\t/);
+        if(!$desc && $date=~ /(?<=\d{4})\s+/) {
+            ($date, $desc)= ($`, $');
         }
-    );
-}
+        push(
+            @rows2,
+            {
+                date => $date,
+                desc => $desc,
+            }
+        );
+    }
 
-my $table2 = [];
-#foreach my $row2 (@rows2) {
-foreach  (@rows2) {
-    push (@$row2, $_);
-    push( @$table2, { row2 => $row2 } );
-    $row2 = [];
-}
+    my $table2 = [];
+    #foreach my $row2 (@rows2) {
+    foreach  (@rows2) {
+        push (@$row2, $_);
+        push( @$table2, { row2 => $row2 } );
+        $row2 = [];
+    }
 
-$template->param( table2 => $table2 );
+    $template->param( table2 => $table2 );
+} else {
+    $template->param( timeline_read_error => 1 );
+}
 
 output_html_with_http_headers $query, $cookie, $template->output;

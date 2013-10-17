@@ -1,5 +1,5 @@
 [% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration</title>
+<title>Koha-Kobli &rsaquo; Administration</title>
 [% INCLUDE 'doc-head-close.inc' %]
 </head>
 <body id="admin_admin-home" class="admin">
@@ -81,7 +81,7 @@
     <dd>Manage rules for automatically matching MARC records during record imports.</dd>
     <dt><a href="/cgi-bin/koha/admin/oai_sets.pl">OAI sets configuration</a></dt>
     <dd>Manage OAI Sets</dd>
-    [% IF ( SearchEngine != 'Zebra' ) %]
+    [% IF ( SearchEngine == 'Solr' ) %]
       <dt><a href="/cgi-bin/koha/admin/searchengine/solr/indexes.pl">Search engine configuration</a></dt>
       <dd>Manage indexes, facets, and their mappings to MARC fields and subfields.</dd>
     [% END %]

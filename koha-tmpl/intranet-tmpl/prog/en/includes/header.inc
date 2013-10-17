@@ -36,7 +36,7 @@
                             [% IF ( CAN_user_parameters ) %]
                             <li><a href="/cgi-bin/koha/admin/admin-home.pl">Administration</a></li>
                             [% END %]
-                            <li><a href="/cgi-bin/koha/about.pl">About Koha</a></li>
+                            <li><a href="/cgi-bin/koha/about.pl">About Koha-Kobli</a></li>
                             </ul>
                 </li>
             </ul>

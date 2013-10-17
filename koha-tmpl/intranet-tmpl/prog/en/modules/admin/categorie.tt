@@ -1,5 +1,5 @@
 [% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; Administration &rsaquo; Patron categories &rsaquo; [% IF ( add_form ) %][% IF ( categorycode ) %]Modify category '[% categorycode |html %]'[% ELSE %]New category[% END %][% END %]
+<title>Koha-Kobli &rsaquo; Administration &rsaquo; Patron categories &rsaquo; [% IF ( add_form ) %][% IF ( categorycode ) %]Modify category '[% categorycode |html %]'[% ELSE %]New category[% END %][% END %]
 [% IF ( add_validate ) %]Data recorded[% END %]
 [% IF ( delete_confirm ) %][% IF ( totalgtzero ) %]Cannot delete: category [% categorycode |html %] in use[% ELSE %]Confirm deletion of category '[% categorycode |html %]'[% END %][% END %]
 [% IF ( delete_confirmed ) %]Category deleted[% END %]</title>
