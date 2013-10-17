@@ -1,5 +1,5 @@
 [% INCLUDE 'doc-head-open.inc' %]
-<title>Koha &rsaquo; About Koha</title>
+<title>Koha-Kobli &rsaquo; About Koha-Kobli</title>
 [% INCLUDE 'doc-head-close.inc' %]
 <script type="text/javascript">
 //<![CDATA[
@@ -13,14 +13,14 @@
 <body id="about_about" class="about">
 [% INCLUDE 'header.inc' %]
 
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Home</a> &rsaquo; About Koha</div>
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Home</a> &rsaquo; About Koha-Kobli</div>
 
 <div id="doc3" class="yui-t7">
 
    <div id="bd">
     <div id="yui-main">
     <div class="yui-g">
-            <h1>About Koha</h1>
+            <h1>About Koha-Kobli</h1>
 
     <div id="abouttabs" class="toptabs numbered">
         <ul>
@@ -635,6 +635,7 @@
 
         <div id="history">
         <h2>Koha history timeline</h2>
+    [% IF ! timeline_read_error %]
         <table style="cursor:pointer">
         <thead>
         <tr>
@@ -651,6 +652,11 @@
             </tr>
         [% END %]
         </table>
+    [% ELSE %]
+        <div class="dialog alert">
+            Could not read the history.txt file. Please make sure &lt;docdir&gt; is correctly defined in koha-conf.xml.
+        </div>
+    [% END %]
         </div>
 
     </div>
