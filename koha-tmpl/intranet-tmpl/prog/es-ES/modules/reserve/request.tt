@@ -1,5 +1,5 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] [% UNLESS ( multi_hold ) %] <title>Koha &rsaquo; Circulación &rsaquo; Reservas &rsaquo; Colocar una reserva sobre [% title |html %]</title>
-[% ELSE %] <title>Koha &rsaquo; Circulación &rsaquo; Reservas &rsaquo; Confirmar Reservas</title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] [% UNLESS ( multi_hold ) %] <title>Koha-Kobli &rsaquo; Circulación &rsaquo; Reservas &rsaquo; Colocar una reserva sobre [% title |html %]</title>
+[% ELSE %] <title>Koha-Kobli &rsaquo; Circulación &rsaquo; Reservas &rsaquo; Confirmar Reservas</title>
 [% END %] [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
     // <![CDATA[
 var patron_homebranch = "[% borrower_branchname |replace("'", "\'") |replace('"', '\"') |replace('\n', '\\n') |replace('\r', '\\r') %]";

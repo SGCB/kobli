@@ -1,4 +1,4 @@
-[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Adquisiciones &rsaquo; [% UNLESS ( basketno ) %]Nuevo [% END %][% IF ( delete_confirm ) %]Borrar [% END %]Bolsa [% basketname|html %] ([% basketno %]) para [% name|html %]</title>
+[% USE KohaDates %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Adquisiciones &rsaquo; [% UNLESS ( basketno ) %]Nuevo [% END %][% IF ( delete_confirm ) %]Borrar [% END %]Bolsa [% basketname|html %] ([% basketno %]) para [% name|html %]</title>
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>

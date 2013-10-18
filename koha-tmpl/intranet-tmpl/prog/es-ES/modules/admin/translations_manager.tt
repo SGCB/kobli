@@ -1,4 +1,4 @@
-[% INCLUDE "doc-head-open.inc" %] <title>Koha &rsaquo; Administración &rsaquo; Gestor de Traducción</title>
+[% INCLUDE "doc-head-open.inc" %] <title>Koha-Kobli &rsaquo; Administración &rsaquo; Gestor de Traducción</title>
 [% INCLUDE "doc-head-close.inc" %] <script>
 if (document.images)
 {
@@ -93,8 +93,8 @@ function loading_formul8(){
  <a name="inicio"></a>
  <div class="yui-g" style="width:800px;">
  <h1>Gestor de Traducción</h1>
- <div class="toptabs">
- <ul class="ui-tabs-nav">
+ <div class="toptabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+ <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
  [% IF (createpo) %] <li id="createpo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createpo" title="Permitir crear los archivos de traducción PO para el nuevo idioma">Crear Po de Archivos</a></li>
  [% ELSE %] <li id="createpo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createpo" title="Permitir crear los archivos de traducción PO para el nuevo idioma">Crear Po de Archivos</a></li>
  [% END %] [% IF (editpo) %] <li id="editpo_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=editpo" title="Permitir editar los archivos de traducción PO">Editar archivos de PO</a></li>
@@ -103,8 +103,8 @@ function loading_formul8(){
  [% ELSE %] <li id="deletepo_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=deletepo" title="Permitir borrar los archivos de traducción POpara un idioma">Eliminar PO archivos</a></li>
  [% END %] [% IF (createtranslation) %] <li id="createtranslation_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createtranslation" title="Permitir instalar un nuevo idioma">Instalar idioma</a></li>
  [% ELSE %] <li id="createtranslation_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=createtranslation" title="Permitir instalar un nuevo idioma">Instalar idioma</a></li>
- [% END %] [% IF (updatetranslation) %] <li id="updatetranslation_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=updatetranslation" title="Permitir actualizar un idioma instalado">Cargar Idiomas</a></li>
- [% ELSE %] <li id="updatetranslation_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=updatetranslation" title="Permitir actualizar un idioma instalado">Cargar Idiomas</a></li>
+ [% END %] [% IF (updatetranslation) %] <li id="updatetranslation_tab" class="ui-tabs-selected"><a href="/cgi-bin/koha/admin/translations_manager.pl?display=updatetranslation" title="Permitir actualizar un idioma instalado">Actualizar idiomas</a></li>
+ [% ELSE %] <li id="updatetranslation_tab" class=""><a href="/cgi-bin/koha/admin/translations_manager.pl?display=updatetranslation" title="Permitir actualizar un idioma instalado">Actualizar idiomas</a></li>
  [% END %] </ul>
  
  

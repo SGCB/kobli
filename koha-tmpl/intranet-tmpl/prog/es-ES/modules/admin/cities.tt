@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; [% IF ( add_form ) %]Ciudades &rsaquo; [% IF ( cityid ) %] Modificar ciudad[% ELSE %] Nueva ciudad[% END %][% ELSE %][% IF ( delete_confirm ) %]Ciudades &rsaquo; Confirmar eliminación de ciudad[% ELSE %] Ciudades[% END %][% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Administración &rsaquo; [% IF ( add_form ) %]Ciudades &rsaquo; [% IF ( cityid ) %] Modificar ciudad[% ELSE %] Nueva ciudad[% END %][% ELSE %][% IF ( delete_confirm ) %]Ciudades &rsaquo; Confirmar eliminación de ciudad[% ELSE %] Ciudades[% END %][% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>

@@ -5,7 +5,7 @@
  [% IF ( record.record_type == 'biblio' ) %] <td class="highlight" colspan="4">Coincide con registro [% record_lis.match_id %] (puntaje= [% record_lis.match_score %]): <a href="/cgi-bin/koha/catalogue/detail.pl?biblionumber=[% record_lis.match_id %]">[% record_lis.match_citation %]</a></td>
  [% ELSIF ( record.record_type == 'auth' ) %] <td class="highlight" colspan="4">Coincide ccon autoridad [% record_lis.match_id %] (puntaje= [% record_lis.match_score %]): <a href="/cgi-bin/koha/authorities/detail.pl?authid=[% record_lis.match_id %]">[% record_lis.match_citation %]</a></td>
  [% END %] </tr>
- [% END %] [% END %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Herramientas &rsaquo; Administrar registros MARC preparados[% IF ( import_batch_id ) %] &rsaquo; Lote [% import_batch_id %] [% END %] </title>
+ [% END %] [% END %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Herramientas &rsaquo; Administrar registros MARC preparados[% IF ( import_batch_id ) %] &rsaquo; Lote [% import_batch_id %] [% END %] </title>
 [% INCLUDE 'greybox.inc' %] [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/js/background-job-progressbar.js"></script>
 <script type="text/JavaScript" language="JavaScript">
 //<![CDATA[

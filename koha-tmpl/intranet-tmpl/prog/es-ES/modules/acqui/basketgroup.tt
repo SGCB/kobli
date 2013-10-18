@@ -1,4 +1,4 @@
-[% USE KohaBranchName %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Agrupación de bolsas para [% booksellername |html %]</title>
+[% USE KohaBranchName %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Agrupación de bolsas para [% booksellername |html %]</title>
 <link rel="stylesheet" type="text/css" href="[% themelang %]/css/datatables.css" />
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript" src="[% themelang %]/lib/jquery/plugins/jquery.dataTables.min.js"></script>
 [% INCLUDE 'datatables-strings.inc' %] <script type="text/javascript" src="[% themelang %]/js/datatables.js"></script>
@@ -124,7 +124,7 @@ function submitForm(form) {
 </script>
 </head>
 <body id="acq_basketgroup" class="acq">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; [% IF ( grouping ) %] <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername |html %]</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basketgroup.pl?booksellerid=[% booksellerid %]">Grupo de bolsas</a> Koha &rsaquo; Añadir grupo de bolsas para [% booksellername |html %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'acquisitions-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/acqui/acqui-home.pl">Adquisiciones</a> &rsaquo; [% IF ( grouping ) %] <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername |html %]</a> &rsaquo; <a href="/cgi-bin/koha/acqui/basketgroup.pl?booksellerid=[% booksellerid %]">Grupo de bolsas</a> &rsaquo; Añadir grupo de bolsas para [% booksellername |html %]</div>
 [% ELSE %] <a href="/cgi-bin/koha/acqui/supplier.pl?booksellerid=[% booksellerid %]">[% booksellername |html %]</a> &rsaquo; Agrupamiento de cestas</div>
 [% END %] <div id="doc3" class="yui-t2">
  <div id="bd">

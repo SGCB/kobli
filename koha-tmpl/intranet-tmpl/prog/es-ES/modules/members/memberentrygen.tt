@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Usuarios &rsaquo; [% IF ( opadd ) %]Agregar[% ELSIF ( opduplicate ) %]Duplicar[% ELSE %] Modificar[% END %] [% IF ( categoryname ) %] [% categoryname %] usuario[% ELSE %][% IF ( I ) %] Usuario institucional[% END %][% IF ( A ) %] Usuario adulto[% END %][% IF ( C ) %] Usuario niño[% END %][% IF ( P ) %] Usuario profesional[% END %][% IF ( S ) %] Usuario del personal[% END %][% END %][% UNLESS ( opadd ) %] [% surname %], [% firstname %][% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Usuarios &rsaquo; [% IF ( opadd ) %]Agregar[% ELSIF ( opduplicate ) %]Duplicar[% ELSE %] Modificar[% END %] [% IF ( categoryname ) %] [% categoryname %] usuario[% ELSE %][% IF ( I ) %] Usuario institucional[% END %][% IF ( A ) %] Usuario adulto[% END %][% IF ( C ) %] Usuario niño[% END %][% IF ( P ) %] Usuario profesional[% END %][% IF ( S ) %] Usuario del personal[% END %][% END %][% UNLESS ( opadd ) %] [% surname %], [% firstname %][% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function() {

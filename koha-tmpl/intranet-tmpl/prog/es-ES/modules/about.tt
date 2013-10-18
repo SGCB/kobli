@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Acerca de Koha</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Acerca de Koha</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 
@@ -9,14 +9,14 @@
 </script>
 </head>
 <body id="about_about" class="about">
-[% INCLUDE 'header.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Acerca de Koha</div>
+[% INCLUDE 'header.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Acerca de Koha-Kobli</div>
 
 <div id="doc3" class="yui-t7">
 
  <div id="bd">
  <div id="yui-main">
  <div class="yui-g">
- <h1>Acerca de Koha</h1>
+ <h1>Acerca de Koha-Kobli</h1>
 
  <div id="abouttabs" class="toptabs numbered">
  <ul>
@@ -580,7 +580,7 @@
 
  <div id="history">
  <h2>Línea de tiempo histórica de Koha</h2>
- <table style="cursor:pointer">
+ [% IF ! timeline_read_error %] <table style="cursor:pointer">
  <thead>
  <tr>
  <td  style="font-weight:bold;" >Fecha</td>
@@ -592,7 +592,9 @@
  <td>[% ro.desc|html %]</td>
  [% END %] </tr>
  [% END %] </table>
- </div>
+ [% ELSE %] <div class="dialog alert">
+ No se pudo ller el fichero history.txt file. Por favor asegúrese de que &lt;docdir&gt; está correctamente definido en koha-conf.xml. </div>
+ [% END %] </div>
 
  </div>
 </div></div></div>
