@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Verificación MARC [% IF ( total ) %] :[% total %] errores encontrados[% ELSE %] : Configuración OK![% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Administración &rsaquo; Verificación MARC [% IF ( total ) %] :[% total %] errores encontrados[% ELSE %] : Configuración OK![% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="admin_checkmarc" class="admin">
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a> &rsaquo; Verificación MARC [% IF ( total ) %]: [% total %] errores encontrados[% ELSE %] : Configuración OK![% END %]</div>

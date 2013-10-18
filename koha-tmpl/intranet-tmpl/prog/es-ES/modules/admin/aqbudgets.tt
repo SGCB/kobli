@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración &rsaquo; Fondos[% IF ( add_form ) %] &rsaquo; [% IF ( budget_id ) %]Modificar fondo[% IF ( budget_name ) %] '[% budget_name %]'[% END %][% ELSE %]Agregar fondo [% END %][% END %]</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Administración &rsaquo; Fondos[% IF ( add_form ) %] &rsaquo; [% IF ( budget_id ) %]Modificar fondo[% IF ( budget_name ) %] '[% budget_name %]'[% END %][% ELSE %]Agregar fondo [% END %][% END %]</title>
 [% INCLUDE 'doc-head-close.inc' %] <script type="text/javascript">
 //<![CDATA[
 var MSG_BUDGET_PARENT_ALLOCATION = "- " + _("El presupuesto hijo excede el presupuesto asignado ") + "\n";

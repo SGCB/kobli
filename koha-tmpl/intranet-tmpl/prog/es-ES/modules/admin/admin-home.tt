@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administración</title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Administración</title>
 [% INCLUDE 'doc-head-close.inc' %] </head>
 <body id="admin_admin-home" class="admin">
 [% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; Administración</div>
@@ -74,7 +74,7 @@
  <dd>Administra reglas para buscar coincidencias automáticas en registros MARC durante la importación.</dd>
  <dt><a href="/cgi-bin/koha/admin/oai_sets.pl">Configuración de conjunto OAI</a></dt>
  <dd>Administrar conjuntos OAI </dd>
- [% IF ( SearchEngine != 'Zebra' ) %] <dt><a href="/cgi-bin/koha/admin/searchengine/solr/indexes.pl">Buscar motor de configuración</a></dt>
+ [% IF ( SearchEngine == 'Solr' ) %] <dt><a href="/cgi-bin/koha/admin/searchengine/solr/indexes.pl">Buscar motor de configuración</a></dt>
  <dd>Gestión de índices, facetas, y sus correspondencias con los campos y subcampos MARC.</dd>
  [% END %] </dl>
 

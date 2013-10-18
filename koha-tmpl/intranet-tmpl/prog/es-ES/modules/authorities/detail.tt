@@ -1,4 +1,4 @@
-[% PROCESS 'authorities.inc' %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Autoridades &rsaquo; [% IF ( unknownauthid ) %] Registro de autoridad desconocido [% ELSE %] Detalles para autoridad #[% authid %] ([% authtypetext %]) [% END %] </title>
+[% PROCESS 'authorities.inc' %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Autoridades &rsaquo; [% IF ( unknownauthid ) %] Registro de autoridad desconocido [% ELSE %] Detalles para autoridad #[% authid %] ([% authtypetext %]) [% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %] [% IF ( displayhierarchy ) %] <script type="text/javascript" src="/intranet-tmpl/lib/jquery/plugins/jquery.jstree.js"></script>
 [% END %] <script type="text/javascript">
 

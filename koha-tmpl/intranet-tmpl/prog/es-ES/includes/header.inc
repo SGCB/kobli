@@ -14,7 +14,7 @@
  [% END %] [% IF ( CAN_user_reports ) %] <li><a href="/cgi-bin/koha/reports/reports-home.pl">Informes</a></li>
  [% END %] [% IF ( CAN_user_tools ) %] <li><a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a></li>
  [% END %] [% IF ( CAN_user_parameters ) %] <li><a href="/cgi-bin/koha/admin/admin-home.pl">Administración</a></li>
- [% END %] <li><a href="/cgi-bin/koha/about.pl">Acerca de Koha</a></li>
+ [% END %] <li><a href="/cgi-bin/koha/about.pl">Acerca de Koha-Kobli</a></li>
  </ul>
  </li>
  </ul>

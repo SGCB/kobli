@@ -6,7 +6,7 @@
  [% SWITCH plugin.name %] [% CASE 'AuthorityFile' %] Sugerir autoridades que son relevantes para el término que el usuario buscaba  [% CASE 'ExplodedTerms' %] Sugiera a los clientes expandir sus búsquedas para incluir términos más amplios / específicos / relacionados. [% END %] </div>
  </div>
 [% END %] </div>
-[% END %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha &rsaquo; Administration &rsaquo; ¿Ha querido decir?</title>
+[% END %] [% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Administration &rsaquo; ¿Ha querido decir?</title>
 [% INCLUDE 'doc-head-close.inc' %] <script>
     $(document).ready(function() {
         $( ".pluginlist" ).sortable();
