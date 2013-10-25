@@ -1005,13 +1005,14 @@
             </xsl:call-template>
     </xsl:template>
 
-    <xsl:template name="nameABCDNT">
+    <xsl:template name="nameABTNDC">
         <xsl:for-each select="marc:subfield[@code='a']">
                 <xsl:call-template name="chopPunctuation">
                     <xsl:with-param name="chopString" select="."/>
                 </xsl:call-template>
         </xsl:for-each>
         <xsl:for-each select="marc:subfield[@code='b']">
+            <xsl:text>. </xsl:text>
             <xsl:value-of select="."/>
             <xsl:choose>
                 <xsl:when test="position() != last()">
@@ -1019,9 +1020,28 @@
                 </xsl:when>
             </xsl:choose>
         </xsl:for-each>
-        <xsl:if test="marc:subfield[@code='c'] or marc:subfield[@code='d'] or marc:subfield[@code='n'] or marc:subfield[@code='t']">
+        <xsl:if test="marc:subfield[@code='t']">
+                <xsl:text>. </xsl:text>
                 <xsl:call-template name="subfieldSelect">
-                    <xsl:with-param name="codes">cdnt</xsl:with-param>
+                    <xsl:with-param name="codes">t</xsl:with-param>
+                </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='n']">
+                <xsl:text>. </xsl:text>
+                <xsl:call-template name="subfieldSelect">
+                    <xsl:with-param name="codes">n</xsl:with-param>
+                </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='d']">
+                <xsl:text>. </xsl:text>
+                <xsl:call-template name="subfieldSelect">
+                    <xsl:with-param name="codes">d</xsl:with-param>
+                </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='c']">
+                <xsl:text>. </xsl:text>
+                <xsl:call-template name="subfieldSelect">
+                    <xsl:with-param name="codes">c</xsl:with-param>
                 </xsl:call-template>
         </xsl:if>
     </xsl:template>
@@ -1097,7 +1117,7 @@
         </xsl:choose>
 	<xsl:choose>
           <xsl:when test="@tag=100 or @tag=700"><xsl:call-template name="nameABCQ"/></xsl:when>
-          <xsl:when test="@tag=110 or @tag=710"><xsl:call-template name="nameABCDNT"/></xsl:when>
+          <xsl:when test="@tag=110 or @tag=710"><xsl:call-template name="nameABTNDC"/></xsl:when>
           <xsl:when test="@tag=111 or @tag=711"><xsl:call-template name="nameACDENQ"/></xsl:when>
 	</xsl:choose>
 	<!-- add relator code too between brackets-->
@@ -1113,7 +1133,7 @@
 	</xsl:if>
 	</a>
         <xsl:choose>
-          <xsl:when test="position()=last()"><xsl:text>.</xsl:text></xsl:when><xsl:otherwise><xsl:text>; </xsl:text></xsl:otherwise>
+          <xsl:when test="position()=last()"><xsl:text></xsl:text></xsl:when><xsl:otherwise><xsl:text>; </xsl:text></xsl:otherwise>
         </xsl:choose>
         </xsl:for-each>
         </h5>
