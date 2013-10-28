@@ -9,8 +9,8 @@
 <listen id="authorityserver" >unix:__ZEBRA_RUN_DIR__/authoritysocket</listen>
 -->
 
-<listen id="biblioserver" >tcp:@:9998</listen>
-<listen id="authorityserver" >tcp:@:9999</listen>
+<listen id="biblioserver" >tcp:@:__ZEBRA_SRU_BIBLIOS_PORT__</listen>
+<listen id="authorityserver" >tcp:@:__ZEBRA_SRU_AUTHORITIES_PORT__</listen>
 
 <!-- Uncomment the following entry if you want to run the public Z39.50 server.
     Also uncomment the <server> and <serverinfo> sections for id 'publicserver' 
