@@ -297,7 +297,7 @@
         </xsl:if>
 
         <!-- Analytics -->
-        <xsl:if test="$leader7='s' or $leader7='m'">
+        <xsl:if test="($leader7='s' or $leader7='m') and marc:datafield[@tag=973]">
         <span class="results_summary analytics"><span class="label">Analytics: </span>
             <a>
             <xsl:choose>
