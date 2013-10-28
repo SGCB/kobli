@@ -108,11 +108,13 @@ BEGIN {
       &ModZebra
       &UpdateTotalIssues
       &RemoveAllNsb
+      &UpdateBiblio
     );
 
     # To delete something
     push @EXPORT, qw(
       &DelBiblio
+      &DelHostField
     );
 
     # To link headings in a bib record
@@ -136,7 +138,8 @@ BEGIN {
       &TransformHtmlToMarc2
       &TransformHtmlToMarc
       &TransformHtmlToXml
-      prepare_host_field
+      &prepare_host_field
+      &SetRecordWithAnalytics
     );
 }
 
@@ -255,9 +258,12 @@ sub AddBiblio {
     if ( defined $options and exists $options->{'defer_marc_save'} and $options->{'defer_marc_save'} ) {
         $defer_marc_save = 1;
     }
+    
+    SetRecordWithAnalytics($record);
 
     my ( $biblionumber, $biblioitemnumber, $error );
     my $dbh = C4::Context->dbh;
+    
 
     # transform the data into koha-table style data
     SetUTF8Flag($record);
@@ -342,6 +348,8 @@ sub ModBiblio {
             }
         }
     }
+    
+    SetRecordWithAnalytics($record);
 
     SetUTF8Flag($record);
     my $dbh = C4::Context->dbh;
@@ -489,11 +497,20 @@ sub DelBiblio {
     #   and we would have no way to remove it (except manually in zebra, but I bet it would be very hard to handle the problem)
     ModZebra( $biblionumber, "recordDelete", "biblioserver" );
 
+    #Delete field 973 in host biblio
+    my $old_record = GetMarcBiblio($biblionumber);
+    if(my @fields_773 = $old_record->field(773)){
+        foreach my $field_773 (@fields_773){
+            if( my $old_control_number = $field_773->subfield('w')){
+                DelHostField($old_control_number);
+            }
+        }
+    }
+
     # delete biblioitems and items from Koha tables and save in deletedbiblioitems,deleteditems
     $sth = $dbh->prepare("SELECT biblioitemnumber FROM biblioitems WHERE biblionumber=?");
     $sth->execute($biblionumber);
     while ( my $biblioitemnumber = $sth->fetchrow ) {
-
         # delete this biblioitem
         $error = _koha_delete_biblioitems( $dbh, $biblioitemnumber );
         return $error if $error;
@@ -506,7 +523,7 @@ sub DelBiblio {
     $error = _koha_delete_biblio( $dbh, $biblionumber );
 
     logaction( "CATALOGUING", "DELETE", $biblionumber, "" ) if C4::Context->preference("CataloguingLog");
-
+    
     return;
 }
 
@@ -3701,8 +3718,106 @@ sub RemoveAllNsb {
     return $record;
 }
 
+=head2 SetRecordWithAnalytics
+
+    &SetRecordWithAnalytics($record);
+
+Set a $record as a source with analytics
+
+=cut
+
+sub SetRecordWithAnalytics{
+    my $analytic = shift;
+    my @old_control_numbers;
+    my $update;
+    #Si ya existe el registro recojo los campos 773 con $w ya existentes
+    if($analytic->subfield(999,"c")){
+        my $old_analytic = GetMarcBiblio($analytic->subfield(999,"c"));
+        if(my @olds_fields_773 = $old_analytic->field(773)){
+            foreach my $old_field_773 (@olds_fields_773){
+                 if(my $old_control_number = $old_field_773->subfield('w')){
+                    $old_control_number =~ s/^\(.+\)//;
+                    push(@old_control_numbers, $old_control_number);
+                }
+            }
+        }
+    }
+    if(my @fields_773 = $analytic->field(773)){
+        foreach my $field_773 (@fields_773){
+            if(my $control_number = $field_773->subfield('w')){
+                $control_number =~ s/^\(.+\)//;
+                $update = 1;
+                #Si el enlace ya existía no actualizo y no elimino el enlace anterior
+                foreach my $old_control_number (@old_control_numbers){
+                    if($control_number eq $old_control_number){
+                        $update = undef;
+                        $old_control_number = undef;
+                    }
+                }
+                #Añado el campo 973 o incremento su valor en el registro fuente
+                if($update){
+                    my ($error, $results, $total_hits) = C4::Search::SimpleSearch("Control-number:".$control_number);
+                    foreach my $bib (@$results) {
+                        my $record = MARC::Record->new_from_usmarc($bib);
+                        unless($record->subfield(973, 'w')){
+                            $record->insert_fields_ordered(MARC::Field->new('973', '', '', 'w' => '1'));
+                        }else{
+                            $record->field('973')->update('w' => $record->subfield(973, 'w')+1);
+                        }
+                        UpdateBiblio($record);
+                    }
+                }
+            }
+        }
+    }
+    #Invoco a DelHostField por cada registro fuente no referenciado
+    foreach my $old_control_number (@old_control_numbers){
+        DelHostField($old_control_number);
+    }
+}
+
+=head2 UpdateBiblio
+
+    &UpdateBiblio($record);
+
+Update marc data in biblioitem table for a $record
+
+=cut
+
+sub UpdateBiblio{
+    my $record = shift;
+    my $dbh = C4::Context->dbh;
+    my $sth = $dbh->prepare("UPDATE biblioitems SET marc = ?, marcxml = ? WHERE biblionumber = ?");
+    $sth->execute($record->as_usmarc(), $record->as_xml_record('USMARC'), $record->subfield(999,"c"));
+    $sth->finish;
+}
+
 1;
 
+=head2 DelHostField
+
+    &DelHostField($record);
+
+Delete marc field 973 if host record don't have analytics
+
+=cut
+
+sub DelHostField{
+    my $old_control_number = shift;
+    $old_control_number =~ s/^\(.+\)//;
+    my ($error, $results, $total_hits) = C4::Search::SimpleSearch("Control-number:".$old_control_number);
+    foreach my $bib (@$results) {
+        my $record = MARC::Record->new_from_usmarc($bib);
+        if($record->subfield(973, 'w')){
+            if($record->subfield(973, 'w') eq 1){
+                $record->delete_field($record->field(973));
+            }else{
+                $record->field('973')->update('w' => $record->subfield(973, 'w')-1);
+            }
+        }
+        UpdateBiblio($record);
+    }
+}
 
 __END__
 
