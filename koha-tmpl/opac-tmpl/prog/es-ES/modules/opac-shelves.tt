@@ -78,7 +78,7 @@ function enableCheckboxActions(){
 
 $(function() {
     [% IF ( opacbookbag ) %]$(".addtocart").show();[% END %]
-    $("span.clearall").html("<a id=\"CheckNone\" href=\"#\">"+_("Limpiar todo")+"<\/a>");
+    $("span.clearall").html("<a id=\"CheckNone\" href=\"#\">"+_("Borrar todo")+"<\/a>");
     $("span.checkall").html("<a id=\"CheckAll\" href=\"#\">"+_("Seleccionar todo")+"<\/a>");
   $("a.print").show();
 

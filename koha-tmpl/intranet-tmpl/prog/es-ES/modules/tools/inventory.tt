@@ -127,7 +127,7 @@ $(document).ready(function(){
  <input type="hidden" name="datelastseen" value="[% datelastseen %]" />
  <input type="hidden" name="pagesize" value="[% pagesize %]" />
  <input type="hidden" name="offset" value="[% offset %]" />
- <div style="padding : .3em 0"><a href="#" class="checkall">[Seleccionar todo]</a> <a href="#" class="clearall">[Limpiar todo]</a></div>
+ <div style="padding : .3em 0"><a href="#" class="checkall">[Seleccionar todo]</a> <a href="#" class="clearall">[Borrar todo]</a></div>
  <table>
  <tr>
  <th>Visto</th>
@@ -156,7 +156,7 @@ $(document).ready(function(){
  [% END %] </td>
  </tr>
  [% END %] </table>
- <div style="padding : .3em 0"><a href="#" class="checkall">[Seleccionar todo]</a> <a href="#" class="clearall">[Limpiar todo]</a></div>
+ <div style="padding : .3em 0"><a href="#" class="checkall">[Seleccionar todo]</a> <a href="#" class="clearall">[Borrar todo]</a></div>
  <input value="Marcar como visto" type="submit" id="markseen" />
  </form>
  [% IF ( offset ) %] <form method="post" action="/cgi-bin/koha/tools/inventory.pl">

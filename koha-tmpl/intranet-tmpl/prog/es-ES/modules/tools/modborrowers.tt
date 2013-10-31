@@ -157,7 +157,7 @@
  </div>
  [% END %] [% END %] [% IF ( op == 'show' ) %] <form name="f" action="modborrowers.pl" method="post">
  <input type="hidden" name="op" value="do" />
- [% IF ( borrowers ) %] <div id="toolbar"><a id="selectallbutton" href="#">Seleccionar todo</a> | <a id="clearallbutton" href="#">Limpiar todos los campos</a></div>
+ [% IF ( borrowers ) %] <div id="toolbar"><a id="selectallbutton" href="#">Seleccionar todo</a> | <a id="clearallbutton" href="#">Borrar todos los campos</a></div>
  [% END %] [% END %] [% IF borrowers %] <div id="cataloguing_additem_itemlist">
  <div style="overflow:auto">
  <table id="borrowerst">
@@ -210,7 +210,7 @@
  [% FOREACH opt IN field.option %] <option value="[% opt.value %]">[% opt.lib %]</option>
  [% END %] </select>
  [% ELSE %]  No hay valores definidos para  [% field.name %] [% END %] [% END %] [% IF ( field.type == 'date' ) %] <input type="text" name="[% field.name %]" id="[% field.name %]" value="" size="10" maxlength="10" readonly="readonly" class="datepicker" />
- <a href="#" class="clear-field" onclick="clearDate('[% field.name %]');return false;">Limpiar</a>
+ <a href="#" class="clear-field" onclick="clearDate('[% field.name %]');return false;">Borrar</a>
  [% END %] </li>
  [% END %] [% IF ( patron_attributes_codes ) %] <li class="attributes">
  <label style="width:auto;">Atributo:<select name="patron_attributes">

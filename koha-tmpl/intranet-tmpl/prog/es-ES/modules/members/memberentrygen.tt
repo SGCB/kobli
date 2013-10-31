@@ -665,7 +665,7 @@
  [% ELSE %] [% IF ( opduplicate ) %] <textarea rows="2" cols="30" id="[% patron_attribute.form_id %]" name="[% patron_attribute.form_id %]" onclick="this.value=''" >[% patron_attribute.value %]</textarea>
  [% ELSE %] <textarea rows="2" cols="30" id="[% patron_attribute.form_id %]" name="[% patron_attribute.form_id %]">[% patron_attribute.value %]</textarea>
  [% END %] [% END %] [% IF ( patron_attribute.password_allowed ) %] (<label class="yesno" for="[% patron_attribute.form_id %]_password">Contraseña:</label> <input type="password" maxlength="64" value="[% patron_attribute.password %]"
-                                   id="[% patron_attribute.form_id %]_password" name="[% patron_attribute.form_id %]_password" />) [% END %] <a href="#" class="clear-field" onclick="clear_entry(this); return false;">Limpiar</a>
+                                   id="[% patron_attribute.form_id %]_password" name="[% patron_attribute.form_id %]_password" />) [% END %] <a href="#" class="clear-field" onclick="clear_entry(this); return false;">Borrar</a>
  [% IF ( patron_attribute.repeatable ) %] <a href="#" class="clone-field" onclick="clone_entry(this); return false;">Nuevo</a>
  [% END %] </li>
  [% END %] </ol>

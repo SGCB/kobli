@@ -360,7 +360,7 @@ function verify_images() {
 [% END %] [% END %] </div>
 [% END %] [% IF ( HTML5MediaEnabled ) %] <div id="html5media">
  <p>
- <[% HTML5MediaParent %] controls preload=none> [% FOREACH HTML5MediaSet IN HTML5MediaSets %] <[% HTML5MediaSet.child  %] src="[% HTML5MediaSet.srcblock %]"[% HTML5MediaSet.typeblock %] /> [% END %] [[% HTML5MediaParent %] tag not supported by your browser.] </[% HTML5MediaParent %]>
+ <[% HTML5MediaParent %] controls preload=none> [% FOREACH HTML5MediaSet IN HTML5MediaSets %] <[% HTML5MediaSet.child  %] src="[% HTML5MediaSet.srcblock %]"[% HTML5MediaSet.typeblock %] /> [% END %] [[% HTML5MediaParent %] etiqueta no soportada por su navegador.] </[% HTML5MediaParent %]>
  </p>
 </div>
 [% END %] </div><!-- /bibliodetails -->

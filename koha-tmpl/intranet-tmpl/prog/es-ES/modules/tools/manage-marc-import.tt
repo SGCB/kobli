@@ -64,7 +64,7 @@ $(document).ready(function(){
  <ol>
  <li><span class="label">Nombre de archivo:</span> [% file_name %]</li>
  <li><span class="label">Comentarios:</span> [% IF ( comments ) %][% comments %][% ELSE %](ninguno)[% END %]</li>
- <li><span class="label">Tipo:</span> [% IF ( record_type == 'auth' ) %]Registros autoridad[% ELSE %]BRegistros bibliográficos[% END %]</li>
+ <li><span class="label">Tipo:</span> [% IF ( record_type == 'auth' ) %]Registros autoridad[% ELSE %]Registros bibliográficos[% END %]</li>
  <li><span class="label">Preparado:</span> [% upload_timestamp %]</li>
  <li><span class="label">Estado:</span>
  [% IF ( import_status == 'cleaned' ) %] Limpio [% ELSIF ( import_status == 'imported' ) %] Importado [% ELSIF ( import_status == 'importing' ) %] Importando [% ELSIF ( import_status == 'reverted' ) %] Revertido [% ELSIF ( import_status == 'reverting' ) %] Revirtiendo [% ELSIF ( import_status == 'staged' ) %] Manipulado [% ELSE %] [% import_status %] [% END %] </li>
@@ -104,7 +104,7 @@ $(document).ready(function(){
  <input type="hidden" name="completedJobID" value="" />
  <input type="hidden" name="import_batch_id" value="[% import_batch_id %]" />
  <fieldset class="action">
- <input value="Importar este lote en el catálogo" name="mainformsubmit" type="submit" class="button" onclick="return submitBackgroundJob(this.form);" />
+ <input value="Importar este lote al catálogo" name="mainformsubmit" type="submit" class="button" onclick="return submitBackgroundJob(this.form);" />
  <br/>
  [% IF ( record_type != 'auth' ) %] Agregar un nuevo registro bibliográfico con esta plantilla de catalogación:<select name="framework" id="frameworks">
  <option value="">Predeterminado</option>
@@ -172,7 +172,7 @@ Página [% FOREACH page IN pages %] [% IF ( page.current_page ) %] <span class="
  <td>[% IF ( batch_lis.can_clean ) %] <form method="post" action="[% batch_lis.script_name %]" name="clean_batch_[% batch_lis.import_batch_id %]" id="clean_batch_[% batch_lis.import_batch_id %]" >
  <input type="hidden" name="import_batch_id" value="[% batch_lis.import_batch_id %]" />
  <input type="hidden" name="op" value="clean-batch" />
- <input value="Limpiar" type="submit" class="button" onclick="return confirm(MSG_CONFIRM_CLEAN);" />
+ <input value="Borrar" type="submit" class="button" onclick="return confirm(MSG_CONFIRM_CLEAN);" />
  </form>
  [% END %] </td>
  </tr>

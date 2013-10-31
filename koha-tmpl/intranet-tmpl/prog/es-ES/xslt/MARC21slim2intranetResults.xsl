@@ -442,7 +442,7 @@
  <xsl:if test="substring($controlField008,25,1)='j'">
  patente</xsl:if>
  <xsl:if test="substring($controlField008,31,1)='1'">
- festschrift</xsl:if>
+ homenaje</xsl:if>
 
  <xsl:if test="$controlField008-33 and $controlField008-33!='|' and $controlField008-33!='u' and $controlField008-33!=' '">
  <span class="label">; Forma literaria: </span>

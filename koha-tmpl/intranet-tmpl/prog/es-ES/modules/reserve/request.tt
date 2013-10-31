@@ -244,12 +244,12 @@ function checkMultiHold() {
  [% IF ( reserve_in_future ) %] <li>
  <label for="from">La reserva comienza el día:</label>
  <input name="reserve_date" id="from" size="10" readonly="readonly" class="datepickerfrom">
- <a href='#' onclick="document.getElementById('reserve_date').value='';">Limpiar fecha</a>
+ <a href='#' onclick="document.getElementById('reserve_date').value='';">Borrar fecha</a>
  </li>
  [% END %] <li>
  <label for="to">La reserva expira el día:</label>
  <input name="expiration_date" id="to" size="10" readonly="readonly" class="datepickerto" />
- <a href='#' onclick="document.getElementById('expiration_date').value='';">Limpiar fecha</a>
+ <a href='#' onclick="document.getElementById('expiration_date').value='';">Borrar fecha</a>
  </li>
 
  [% UNLESS ( multi_hold ) %] <li> <label for="requestany">Introduzca una reserva en la próxima copia disponible </label>
@@ -456,7 +456,7 @@ function checkMultiHold() {
 
  [% IF AutoResumeSuspendedHolds %] <label for="suspend_until_[% reserveloo.reserve_id %]">[% IF ( reserveloo.suspend ) %] en [% ELSE %] hasta [% END %] </label>
  <input name="suspend_until" id="suspend_until_[% reserveloo.reserve_id %]" size="10" readonly="readonly" value="[% reserveloo.suspend_until | $KohaDates %]" class="datepicker" />
- <a href='#' onclick="document.getElementById('suspend_until_[% reserveloo.reserve_id %]').value='';">Limpiar fecha</a>
+ <a href='#' onclick="document.getElementById('suspend_until_[% reserveloo.reserve_id %]').value='';">Borrar fecha</a>
  [% END %] [% ELSE %] <input type="hidden" name="suspend_until" value="" />
  [% END %] </td>
  [% END # IF SuspendHoldsIntranet %] </tr>

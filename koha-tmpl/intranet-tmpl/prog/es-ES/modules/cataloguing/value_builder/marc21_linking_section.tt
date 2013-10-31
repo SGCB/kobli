@@ -153,7 +153,7 @@
 
  <td>
  [% IF ( resul.biblionumber ) %] <a href="javascript:jumpfull('/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=marc21_linking_section.pl&amp;index=[% index %]&amp;biblionumber=[% resul.biblionumber %]&amp;type=intranet&amp;op=fillinput')">Elegir</a>
- [% ELSE %] <a href="javascript:jumpfull('/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=marc21_linking_section.pl&amp;index=[% index %]&amp;type=intranet&amp;op=fillinput')">Limpiar campo</a>
+ [% ELSE %] <a href="javascript:jumpfull('/cgi-bin/koha/cataloguing/plugin_launcher.pl?plugin_name=marc21_linking_section.pl&amp;index=[% index %]&amp;type=intranet&amp;op=fillinput')">Borrar campo</a>
  [% END %] </td>
  </tr>
  [% END %] [% END %] </table>

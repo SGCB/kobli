@@ -38,7 +38,7 @@
 
 <h5>Catálogo</h5>
 <ul>
- <li><a href="/cgi-bin/koha/admin/biblio_framework.pl">Plantilla bibliográfico MARC</a></li>
+ <li><a href="/cgi-bin/koha/admin/biblio_framework.pl">Plantilla bibliográfica MARC</a></li>
  <li><a href="/cgi-bin/koha/admin/koha2marclinks.pl">Correspondencia Koha - MARC</a></li>
  <li><a href="/cgi-bin/koha/admin/fieldmapping.pl">Palabras claves para correspondencia MARC</a></li>
  <li><a href="/cgi-bin/koha/admin/checkmarc.pl">Verificación de hoja de trabajo bibliográfica MARC</a></li>

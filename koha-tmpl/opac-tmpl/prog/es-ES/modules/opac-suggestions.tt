@@ -28,7 +28,7 @@
                     null
                 ]
             }));
-            [% IF ( loggedinusername ) %]$("span.clearall").html("<a id=\"CheckNone\" href=\"#\">"+_("Limpiar todo")+"<\/a>");
+            [% IF ( loggedinusername ) %]$("span.clearall").html("<a id=\"CheckNone\" href=\"#\">"+_("Borrar todo")+"<\/a>");
             $("span.checkall").html("<a id=\"CheckAll\" href=\"#\">"+_("Seleccionar todo")+"<\/a>");
             $("#CheckAll").click(function(){
                 $(".checkboxed").checkCheckboxes();

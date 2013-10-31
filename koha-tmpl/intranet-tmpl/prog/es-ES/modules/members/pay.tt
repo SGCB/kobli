@@ -38,7 +38,7 @@
 
 [% IF ( accounts ) %] <form action="/cgi-bin/koha/members/pay.pl" method="post" id="pay-fines-form">
  <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrower.borrowernumber %]" />
-<p><span class="checkall"><a id="CheckAll" href="#">Seleccionar todo</a></span> | <span class="clearall"><a id="CheckNone" href="#">Limpiar todo</a></span></p>
+<p><span class="checkall"><a id="CheckAll" href="#">Seleccionar todo</a></span> | <span class="clearall"><a id="CheckNone" href="#">Borrar todo</a></span></p>
 <table id="finest">
 <thead>
 <tr>

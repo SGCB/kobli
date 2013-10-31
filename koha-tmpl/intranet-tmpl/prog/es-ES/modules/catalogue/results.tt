@@ -102,7 +102,7 @@ $('#sort_by').change(function() {
         [% END %]
         param1 += "<\/select> <input id=\"cartsubmit\" type=\"submit\" class=\"submit\" value=\""+_("Guardar")+"\" />";
  $('#sortsubmit').hide();
-        $("span.clearall").html("<a id=\"CheckNone\" href=\"#\">"+_("Limpiar todo")+"<\/a>");
+        $("span.clearall").html("<a id=\"CheckNone\" href=\"#\">"+_("Borrar todo")+"<\/a>");
         $("span.checkall").html("<a id=\"CheckAll\" href=\"#\">"+_("Seleccionar todo")+"<\/a>");
         $("span.addto").html(param1);
         $("#addto").change(function(){
@@ -281,7 +281,7 @@ var holdForPatron = function () {
  </h3>
  <div id="selection_ops" class="cartlist" style="display:none">
  <a href="#" onclick="selectAll(); return false;">Seleccionar todo</a>
- | <a href="#" onclick="clearAll(); return false;">Limpiar todo</a>
+ | <a href="#" onclick="clearAll(); return false;">Borrar todo</a>
  | <a href="#" class="highlight_toggle" id="highlight_toggle_off">De-resaltar</a>
  <a href="#" class="highlight_toggle" id="highlight_toggle_on">Resaltar</a>
  | <span class="addto"></span>

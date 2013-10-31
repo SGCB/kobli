@@ -1,4 +1,4 @@
-[% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Herramientas &rsaquo; Limpiar registros de usuarios [% IF ( step2 ) %]&rsaquo; Confirmar[% END %][% IF ( step3 ) %]&rsaquo; Finalizado[% END %] </title>
+[% INCLUDE 'doc-head-open.inc' %] <title>Koha-Kobli &rsaquo; Herramientas &rsaquo; borrar registros de usuarios [% IF ( step2 ) %]&rsaquo; Confirmar[% END %][% IF ( step3 ) %]&rsaquo; Finalizado[% END %] </title>
 [% INCLUDE 'doc-head-close.inc' %] [% INCLUDE 'calendar.inc' %] <script type="text/javascript">
 // <![CDATA[
         /**
@@ -33,7 +33,7 @@
 
 </head>
 <body id="tools_cleanborrowers" class="tools">
-[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; [% IF ( step1 ) %]Limpiar registros de usuarips[% ELSE %]<a href="/cgi-bin/koha/tools/cleanborrowers.pl">Limpiar registros de usuario</a> &rsaquo; [% END %][% IF ( step2 ) %]Confirmar[% END %][% IF ( step3 ) %]Terminado[% END %]</div>
+[% INCLUDE 'header.inc' %] [% INCLUDE 'cat-search.inc' %] <div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Inicio</a> &rsaquo; <a href="/cgi-bin/koha/tools/tools-home.pl">Herramientas</a> &rsaquo; [% IF ( step1 ) %]Borrar registros de usuarios[% ELSE %]<a href="/cgi-bin/koha/tools/cleanborrowers.pl">Borrar registros de usuario</a> &rsaquo; [% END %][% IF ( step2 ) %]Confirmar[% END %][% IF ( step3 ) %]Terminado[% END %]</div>
 
 <div id="doc3" class="yui-t2">
 
