@@ -1,6 +1,7 @@
 @import url("/opac-tmpl/lib/yui/reset-fonts-grids.css");
 @import url("/opac-tmpl/lib/yui/skin.css");
 
+
 a {
 	font-weight : bold;
 }
@@ -237,7 +238,7 @@ h1#libraryname a {
 }
 
 h1#libraryname img {float:left; border-right:1px solid #E5E5E5; padding-right:15px; margin-right:15px; vertical-align: middle;}
-h1#libraryname span {padding-top: 12px; float:left; font-weight:normal; display:block; line-height: 1; width: 200px; vertical-align: middle;}
+h1#libraryname span {padding-top: 12px; float:left; font-weight:normal; display:block; line-height: 1; vertical-align: middle; font-size: 1.5em;}
 
 h1#librarylogo {
 	float:right;
@@ -246,14 +247,14 @@ h1#librarylogo {
 }
 
 h1,h2,h3,h4,h5,h6 {
-	font-weight : bold;
+
 	margin : 0;
 	padding-bottom:0.5em;
 	clear:both;
 }
 
 h1 {
-	font-size : 1.5em;
+
 }
 
 h2 {
@@ -581,9 +582,10 @@ vertical-align:middle;
 }
 
 #selections-toolbar a.hold.disabled {
-    background-image: url("../../images/sprite.png"); /* Place hold disabled */
+    background-image: url(../../images/sprite.png); /* Place hold disabled */
     background-position : -5px -621px;
     background-repeat: no-repeat;
+	padding-left: 25px;
 }
 
 #selections-toolbar a.removeitems,
@@ -593,6 +595,10 @@ vertical-align:middle;
     background-repeat: no-repeat;
 	text-decoration : none;
 	padding-left : 25px;
+}
+
+table#itemst.dataTable {
+	width: 100%;
 }
 
 
@@ -865,7 +871,8 @@ body#advsearch #listsmenulink {
 
 #members {
 	float:right;
-	font-size:0.9em;
+	font-size:.9em;
+	width: 400px;
 }
 
 #members a {
@@ -902,7 +909,7 @@ body#advsearch #listsmenulink {
 #opac-main-search {
 	float:left;
 	width:100%;
-	border-top:1px solid #ccc;
+	border-top:1px solid #ededed;
 	margin-top:10px;
 	padding-top:10px;
 }
@@ -1091,7 +1098,8 @@ table#marc div.results_summary ul li {
 #bookcover #bs-thumbnail-preview {float:left;}
 
 fieldset.brief {
-	border : 0;
+	border: 0;
+	margin-bottom: 10px;
 }
 
 fieldset.brief legend {
@@ -1520,16 +1528,10 @@ div.alert strong {
 }
 
 div.message {
-	background: #ffffff; /* Old browsers */
-	background: -moz-linear-gradient(top, #ffffff 0%, #f4f6fa 2%, #eaeef5 23%, #e8edf6 94%, #cddbf2 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(2%,#f4f6fa), color-stop(23%,#eaeef5), color-stop(94%,#e8edf6), color-stop(100%,#cddbf2)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* Opera11.10+ */
-	background: -ms-linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeef5', endColorstr='#cddbf2',GradientType=0 ); /* IE6-9 */
-	background: linear-gradient(top, #ffffff 0%,#f4f6fa 2%,#eaeef5 23%,#e8edf6 94%,#cddbf2 100%); /* W3C */
-	border : 1px solid #bcbcbc;
-	width : 55%;
+	background: none repeat scroll 0 0 #fff;
+    border: 4px solid #ffcc00;
+    margin-bottom: 20px;
+    width: 94%;
 }
 
 #moresearches {
@@ -1557,6 +1559,25 @@ div.message {
 strong em, em strong  {
     font-weight: bold;
     font-style: italic;
+}
+
+#basket #doc.yui-t7 {
+    min-width: inherit;
+    padding: 2%;
+    width: 96%;
+}
+
+#userdownloadcart .action input[type="submit"] {
+	position: absolute;
+	top: 20px;
+	left: 310px;
+}
+
+#userdownloadcart .rows label {
+	line-height: 1.8;
+	text-align: left;
+	width: inherit;
+	float: none;
 }
 
 #opac-main-search #listsmenu a, #opac-main-search #listsmenu h4 {
@@ -1936,8 +1957,7 @@ span.starMT {
 	margin : 0 0 0 .5em;
 	position : relative;
 	right : 0;
-	padding:0px 4px;
-	background: #dfdfdf;
+	padding:0 8px;
 }
 
 a#listsmenulink, a#listsmenulink:hover, a#cartmenulink, a#cartmenulink:hover {
@@ -2221,7 +2241,7 @@ div.ft {
 	padding:20px;
 	clear:both;
 	background:#fff;
-	width: 960px;
+	width: 96%;
 	margin:0 auto;
 }
 
@@ -2374,9 +2394,9 @@ a.title {
 	width:100%;
 }
 
-#yui-main #searchform {float: right; padding: 20px 0 20px 29px; margin-left:-29px;}
+#yui-main #searchform {float: right; padding: 20px 0 20px 29px; margin-left:-29px; margin-bottom: 10px;}
 
-#searchform label { width: 100%; padding-left: 20px; background:transparent url("../../images/lupamas.gif") no-repeat scroll 0 0; font-weight: bold; padding-bottom:10px; }
+#searchform label { width: 90%; padding-left: 20px; background:transparent url("../../images/lupamas.gif") no-repeat scroll 0 0; font-weight: bold; padding-bottom:10px; }
 
 #left_search {
 	float:left;
@@ -2395,7 +2415,7 @@ a.title {
 #left_search label {display:none;} /*ocultar el doble título*/
 select#masthead_search {
 	clear:both;
-	width:140px;
+	width:130px;
 }
 
 #list_detail, #breadcrumbs {
@@ -2484,7 +2504,6 @@ div#bd {
 /*enlaces lateral*/
 .yui-b .enlaces {
 	padding:23px 13px 23px 13px;
-	float:left;
 }
 
 .yui-b .enlaces h2 {background: url("../../images/enlaces.gif") no-repeat scroll 0 0 transparent; padding-left: 20px; font-size:1em; padding-bottom:15px;}
@@ -2651,7 +2670,7 @@ td.resultscontrol #tagsel_span input {padding:0px; background:none;}
 
 /*menu usuarios*/
 .yui-b #menu ul li {width: 185px; padding:4px 0px; background: url("../../images/li-square.gif") no-repeat scroll 0 5px transparent; padding: 0 15px 6px 14px; }
-.yui-b #menu ul li {float: left; padding-right: 10px; }
+.yui-b #menu ul li {padding-right: 10px; }
 .yui-b #menu ul li input {border: 1px solid #E4E4E4; }
 
 
@@ -3562,3 +3581,623 @@ opac-holds div#bd .yui-b #leftmenus {display:none;}
 
 #userresults {padding-top:30px;}
 .jstree-classic.jstree-focused {padding:10px 0px;}
+
+
+
+
+/* Maximum width of 1000 pixels. */
+@media screen and (max-width: 1000px) {
+
+	#doc3 {
+		width: 98%;
+		min-width: inherit;
+		overflow: hidden;
+	}
+	
+	.yui-t1 .yui-b {
+		width: 24%;
+	}
+
+	.yui-t7 #yui-main, .yui-t1 #yui-main, .yui-t2 #yui-main, .yui-t3 #yui-main, #main-search #searchform {
+		border-left: 1px solid #E4E4E4;
+		padding-left: 2%;
+		padding-right: 2%;
+		width: 68%;
+	}
+	
+	div#bd {
+		background: 0 none;
+	}
+	
+	#header-wrapper {
+		width: 100%;
+	}
+	
+	h1#libraryname {
+		padding: 10px 0 10px 10px;
+		width: 330px;
+	}
+	
+	h1#libraryname img {
+		margin-right: 10px;
+		padding-right: 1px;
+		width: 35%;
+	}
+	
+	#opacmainuserblock, #news {
+		width: inherit;
+	}
+	
+	div.ft {
+		margin: 0;
+		padding: 20px 2%;
+		width: 96%;
+	}
+	
+	#main-search #searchform {
+		border-left: 0 none;
+		margin-left: 0;
+		padding-left: 0;
+		width: 98%;
+		background: 0 none;
+		height: 80px;
+	}
+	
+	.yui-b #login {
+		width: 90%;
+	}
+	
+	.yui-b #login #userid, .yui-b #login #password {
+		width: 100%;
+	}
+	
+	#fluid-offset {
+		padding-left: 0;
+	}
+	
+	#fluid-offset {
+		padding-left: 0;
+	}	
+	
+	#opac_search #searchsubmit {
+		float: none;
+		margin-right: 100px;
+	}
+	
+	#opac_search span#cmspan {
+		display: block;
+		position: absolute;
+		top: 85px;
+	}
+	
+	#opac_search span#cmspan a {
+		margin: 0;
+	}
+	
+	#opac_search a#listsmenulink {
+		float: left;
+		left: 135px;
+		margin: 0;
+		position: absolute;
+		top: 85px;
+	}
+	
+	#searchform {
+		background: 0 none;
+		height: 80px;
+		width: 97%;
+	}
+	
+	#userauthhome fieldset.rows ol {
+		width: 94%;
+	}
+	
+	#userauthhome fieldset.rows ol > li > label {
+		float: none;
+		display: block;
+		width: 100%;
+		text-align: left;
+		height: 20px;
+	}
+	
+	#userauthhome fieldset.rows ol > li > * {
+		margin-bottom: 5px;
+	}
+	
+	#usertags fieldset, #usertags #tagcloud, #topissues fieldset.rows ol {
+		width: 94%;
+	}
+	
+	#advsearch #yui-main {
+		margin: 0;
+		width: 100%;
+		border-left: 0 none;
+		float: left;
+	}
+	
+	#advsearch #yui-main form .yui-g #booleansearch {
+		border-top: none;
+	}
+	
+	.yui-b #menu ul li {
+		width: inherit;
+	}
+	
+	.yui-b #menu ul li a, .yui-b #menu ul li a:hover {
+		background: none;
+	}
+		
+	#header-wrapper .kobli {
+		display: none;
+	}
+	
+	div#changelanguage {
+		background: 0 none;
+		left: 10px;
+		padding-left: 0;
+		position: absolute;
+		top: -2px;
+		width: 200px;
+	}
+	
+	#left-detail {
+		float: left;
+		padding: 0 10px 0 0;
+		width: 26%;
+	}
+	
+	#left_search {
+		width: 100%;
+		padding-bottom: 10px;
+		padding-top: 10px;
+	}
+	
+	#searchhistory table.historyt {
+		width: 100%;
+	}
+	
+	table#marc tr {
+		border-bottom: 1px solid #eee;
+	}
+	
+	table#marc td:first-child {
+		text-indent: 0;
+	}
+	
+	table th, table td {
+		padding: 4px 4px 4px 2px;
+	}
+	
+	#userpasswd ol {
+		width: inherit;
+	}
+	
+	#userauth #opac-auth {
+		margin-left: 20px;
+		padding-top: 0;
+		padding-bottom: 10px;
+	}
+	
+}
+
+
+
+
+/* Maximum width of 710 pixels. */
+@media screen and (max-width: 710px) {
+
+	h1#librarylogo {
+		overflow: hidden;
+		position: absolute;
+		right: -70px;
+	}
+	
+	h1#librarylogo img {
+		width: 80%;
+	}
+	
+	h1#libraryname img {
+		margin-right: 8px;
+		padding-right: 3px;
+		width: 25%;
+	}
+	
+	h1#libraryname span {
+		font-size: 1.3em;
+	}
+	
+	#searchform {
+		width: 96%;
+	}
+	
+	#fluid-offset #moresearches, #fluid-offset #searchform {
+		padding-left: 0;
+		text-align: center;
+	}
+	
+	#opac_search #searchsubmit {
+		float: none;
+		margin-right: 0;
+	}
+	
+	#left-detail #ulactioncontainer {
+		float: none;
+	}
+	
+	#left-detail ul#action {
+		width: inherit;
+	}
+	
+	#left_search #transl1, #left_search #masthead_search  {
+		width: 100%;
+	}
+	
+	#left-detail #export select {
+		width: 70%;
+	}
+		
+	#left-detail #export label {
+		clear: left;
+	}
+	
+	#advsearch #booleansearch input {
+		width: inherit;
+	}
+	
+	fieldset.rows legend {
+		margin-left: 0;
+	}
+
+}
+
+
+
+/* Maximum width of 580 pixels. */
+@media screen and (max-width: 580px) {
+
+	
+	#doc3 {
+		width: 96%;
+		margin-top: 10px;
+	}
+	
+	h1#librarylogo {
+		right: 0;
+		padding-top: 0;
+	}
+	
+	h1#librarylogo img {
+		width: 65%;
+	}
+	
+	h1#libraryname {
+		padding: 0;
+		min-height: 60px;
+	}
+	
+	h1#libraryname span {
+		font-size: 1.2em;
+		width: 23%;
+	}
+	
+	#breadcrumbs {
+		padding: 0;
+		width: 100%;
+	}
+	
+	.yui-t7 #yui-main, .yui-t1 #yui-main, .yui-t2 #yui-main, .yui-t3 #yui-main, #main-search #searchform {
+		width: 100%;
+		border-left: 0 none;
+	}
+	
+	.yui-t7 #yui-main, .yui-t1 #yui-main, .yui-t2 #yui-main, .yui-t3 #yui-main, #main-search #searchform {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	
+	#yui-main {
+		padding-bottom: 5px;
+	}
+	
+	#left-detail {
+		float: left;
+		padding: 0;
+		width: 100%;
+	}
+	
+	#members {
+		float: none;
+		width: 100%;
+		padding-top: 6px;
+		border-top: 1px solid #ededed;
+		margin-top: 11px;
+	}
+	
+	#members ul {
+		text-align: left;
+	}
+	
+	#members ul li {
+		padding: 0 4px 0 0;
+	}
+	
+	#opac-main-search {
+		margin-top: 6px;
+	}
+	
+	#fluid {
+		background: 0 none!important;
+		border-bottom: 0 none!important;
+		border-top: 0 none!important;
+		margin-top: 10px;
+	}
+	
+	#moresearches .pipe {
+		display: none;
+	}
+	
+	#moresearches a:link, #moresearches a:visited {
+		background-color: #ffcc00;
+		display: inline-block;
+		line-height: 1.5;
+		font-size: .9em;
+		margin: 0 1px 4px 0;
+		padding: 4px 8px;
+		border-radius: 2px;
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+	}
+	
+	#moresearches a:hover {
+		background-color: #ff8e02;
+		color: #fff;
+	}
+	
+	#yui-main .yui-b {
+		min-height: inherit;
+	}
+	
+	.yui-t1 .yui-b {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	
+	.yui-b .enlaces {
+		display: none;
+	}
+	
+	div#menu {
+		padding: 20px 0;
+		width: 100%;
+	}
+	
+	#advsearch #branchloop, #advsearch #sort_by {
+		width: inherit;
+	}
+	.yui-g .yui-u, .yui-g .yui-g, .yui-g .yui-gb, .yui-g .yui-gc, .yui-g .yui-gd, .yui-g .yui-ge, .yui-g .yui-gf, .yui-gc .yui-u, .yui-gd .yui-g, .yui-g .yui-gc .yui-u, .yui-ge .yui-u, .yui-ge .yui-g, .yui-gf .yui-g, .yui-gf .yui-u {
+		float: none;
+	}
+	
+	.yui-g .yui-u, .yui-g .yui-g, .yui-g .yui-gb, .yui-g .yui-gc, .yui-g .yui-gd, .yui-g .yui-ge, .yui-g .yui-gf {
+		width: 100%;
+	}
+	
+	#advsearch .yui-g .container {
+		padding: 10px 0;
+	}
+	
+	#advsearch #booleansearch select {
+		width: inherit;
+	}
+	
+	#advsearch #advsearch-itemtypes td {
+		font-size: .8em;
+		padding: 5px;
+	}
+	
+	#advsearch #advsearch-itemtypes td img {
+		border: 0 none;
+		margin-left: 0;
+	}
+	
+	table#mytagst, table#suggestt {
+		width: 100%;
+	}
+	
+	.yui-b #menu ul {
+		padding-left: 0;
+	}
+	
+	.yui-b #menu ul li {
+		background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+		display: inline-block;
+		margin: 0 1px 4px 0;
+		width: inherit;
+		padding: 0;
+		text-align: left;
+		vertical-align: top;
+	}
+	
+	.yui-b #menu ul li a {
+		padding: 4px 8px;
+		background-color: #eee;
+		line-height: 1.5;
+		border-radius: 2px;
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		font-weight: normal;
+		font-size: .9em;
+	}
+	
+	.yui-b #menu ul li a:hover {
+		background-color: #ddd;
+		color: inherit;
+	}
+	
+	.yui-b #menu ul li.active a {
+		background-color: #FF8E02;
+		color: #fff!important;
+	}
+	
+	#left-detail #export {
+		width: inherit;
+	}
+	
+	#userauthhome fieldset.rows ol, #usertags fieldset, #usertags #tagcloud, #topissues fieldset.rows ol {
+		width: 93%;
+	}
+	
+	#left_search #searchsubmit {
+		float: none;
+	}
+	
+	#left-detail ul#action li {
+		float: left;
+		margin: 3px 1% 3px 0;
+		width: 46%;
+	}
+	
+	#opac_search a#listsmenulink {
+		top: 70px;
+	}
+	
+	#opac_search span#cmspan {
+		top: 70px;
+	}
+	
+	.yui-b #login {
+		background-color: #ffcc00;
+		width: 93%;
+		padding-top: 13px;
+	}
+	
+	.yui-b #login #auth {
+		float: none;
+	}
+	
+	.yui-b #login ol li {
+		float: left;
+		width: 45%;
+		margin-right: 10px;
+	}
+	
+	#login legend {
+		background: 0 none;
+		padding-left: 0;
+		color: #666;
+		font-size: 1.2em;
+	}
+	
+	#login input[type="submit"] {
+		background: #555;
+	}
+	
+	.yui-b #login #userid, .yui-b #login #password {
+		background-color: #fff;
+	}
+	
+	form#searchform {
+		border: 1px solid #E4E4E4 !important;
+		padding: 3% !important;
+		width: 93% !important;
+	}
+	
+	#left_search form#searchform {
+		border: 0 none !important;
+	}
+	
+	#daily-quote {
+		width: 98%;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border: 1px solid #ddd;
+	}
+	
+	#daily-quote h1 {
+		padding-bottom: 0;
+	}
+	
+	div.ft {
+		padding: 12px 2%;
+		border-top: 3px solid #ccc;
+		font-size: .9em;
+	}
+
+}
+
+
+
+/* Maximum width of 390 pixels. */
+@media screen and (max-width: 390px) {
+
+	
+	h1#libraryname {
+		width: 100%;
+	}
+		
+	h1#libraryname span {
+		display: none;
+	}	
+	h1#libraryname img {
+		width: 40%;
+		margin-left: 0;
+		border-right: none;
+	}
+	
+	h1#librarylogo {
+		position: absolute;
+		padding-top: 30px;
+		width: 60%;
+		right: 0;
+		padding-bottom: 1em;
+	}
+	
+	h1#librarylogo img {
+		width: 100%;
+		margin-left: 0;
+	}
+	
+	#advsearch #booleansearch input {
+		width: 40%;
+	}
+	
+	#opac_search a#listsmenulink {
+		left: 111px;
+	}
+	
+	#fluid-offset #moresearches, #fluid-offset #searchform {
+		padding-left: 8px;
+		text-align: left;
+	}
+	
+	#list_detail {
+		float: none;
+		margin-top: 40px;
+		padding: 0;
+	}
+		
+	#userresults {
+		padding-top: 0;
+	}
+	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
