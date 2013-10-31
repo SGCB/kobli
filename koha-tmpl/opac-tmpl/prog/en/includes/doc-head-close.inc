@@ -150,3 +150,4 @@ var NO_LOCAL_JACKET = _("No cover image available");
 <!--[if IE 7]>
 <link rel="stylesheet" href="[% themelang %]/css/ie7.css" type="text/css" />
 <![endif]-->
+<meta content="width=device-width, initial-scale=1" name="viewport">
