@@ -47,7 +47,7 @@ for( x=0; x<allColumns.length; x++ ){
  <input type="hidden" name="uploadedfileid" id="uploadedfileid" value="" />
  <input type="hidden" name="completedJobID" id="completedJobID" value="" />
 
-[% IF ( item_loop ) %] [% IF ( show ) %]<div id="toolbar"><a id="selectallbutton" href="#">Seleccionar todo</a> | <a id="clearallbutton" href="#">Limpiar todos los campos</a></div>[% END %] <div id="cataloguing_additem_itemlist">
+[% IF ( item_loop ) %] [% IF ( show ) %]<div id="toolbar"><a id="selectallbutton" href="#">Seleccionar todo</a> | <a id="clearallbutton" href="#">Borrar todos los campos</a></div>[% END %] <div id="cataloguing_additem_itemlist">
 
  <p id="selections"><strong>Mostrar/ocultar columnas</strong> <span class="selected"><input type="checkbox" checked="checked" id="showall"/><label for="showall">Mostrar todas las columnas:</label></span> <span><input type="checkbox" id="hideall"/><label for="hideall">Ocultar toda las columnas</label></span>
  [% FOREACH item_header_loo IN item_header_loop %] <span class="selected"><input id="checkheader[% loop.count %]" type="checkbox" checked="checked" /> <label for="checkheader[% loop.count %]">[% item_header_loo.header_value %]</label> </span>

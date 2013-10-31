@@ -103,7 +103,7 @@ function searchToHold(){
  [% END %] [% IF ( CAN_user_borrowers ) %] <a id="changepassword" class="btn btn-small" href="/cgi-bin/koha/members/member-password.pl?member=[% borrowernumber %]"><i class="icon-lock"></i> Cambiar contraseña</a>
  [% END %] [% END %] <a id="duplicate" class="btn btn-small" href="/cgi-bin/koha/members/memberentry.pl?op=duplicate&amp;borrowernumber=[% borrowernumber %]&amp;category_type=[% category_type %]"><i class="icon-copy"></i>Duplicado</a>
  <div class="btn-group">
- <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><i class="icon-print"></i> Impreso<span class="caret"></span></button>
+ <button class="btn btn-small dropdown-toggle" data-toggle="dropdown"><i class="icon-print"></i> Imprimir<span class="caret"></span></button>
  <ul class="dropdown-menu">
  [% IF ( CAN_user_borrowers ) %]<li><a id="printsummary" href="#">Imprimir resumen</a></li>[% END %] <li><a id="printslip" href="#">Imprimir recibo</a></li>
  <li><a id="printquickslip" href="#">Imprimir recibo</a></li>

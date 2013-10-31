@@ -85,7 +85,7 @@
 
  <input type="text" id="borrower_dateofbirth" name="borrower_dateofbirth" value="[% borrower.dateofbirth | $KohaDates %]" size="10" />
 
- [% UNLESS action == 'edit' && !OPACPatronDetails %] <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('borrower_dateofbirth').value='';return false;">Limpiar fecha</a><p></p>
+ [% UNLESS action == 'edit' && !OPACPatronDetails %] <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('borrower_dateofbirth').value='';return false;">Borrar fecha</a><p></p>
  [% END %] [% IF mandatory.defined('dateofbirth') %]<span class="required">Requerido</span>[% END %] </li>
  [% END %] [% UNLESS hidden.defined('initials') %] <li>
  [% IF mandatory.defined('initials') %] <label for="borrower_initials" class="required">

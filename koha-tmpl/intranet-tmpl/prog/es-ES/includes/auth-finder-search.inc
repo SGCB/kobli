@@ -102,7 +102,7 @@ function finderjumpfull(page)
 </script>
 
 <div id="toolbar" class="btn-toolbar">
- <div class="btn-group"><a href="#" id="clear" class="btn btn-small"><i class="icon-remove-sign"></i> Limpiar campo</a></div>
+ <div class="btn-group"><a href="#" id="clear" class="btn btn-small"><i class="icon-remove-sign"></i> Borrar campo</a></div>
  <div class="btn-group"><a href="#" id="createnew" class="btn btn-small"><i class="icon-plus"></i> Crear una nueva autoridad</a></div>
 </div>
 <form name="f" method="get" action="auth_finder.pl">

@@ -61,7 +61,7 @@ function add_item(borrowernum,batch_id,type_id){
 
 [% IF ( resultsloop ) %] <div id="searchheader"> <h3>Resultados [% from %] a [% to %] de [% numresults %] encontrados para [% IF ( member ) %]nombre: '<span class="ex">[% member %][% ELSIF ( category_type ) %]código de categoría: '<span class="ex">[% category_type %][% END %]</span>'</h3></div>
 [% IF ( paginationbar ) %]<div id="pagination_top" class="pages">[% paginationbar %]</div>[% END %] <form name="resultform" action="/cgi-bin/koha/patroncards/members-search.pl" method="get" class="checkboxed"><div style="float: right; margin-top: .5em;"><input value="Agregar seleccionado" type="submit" class="icon addchecked" onclick="add_item('checked',[% batch_id %]); return false" /> <input value="Hecho" type="button" class="close" /></div>
-<div style="line-height: 2em; margin-left: .7em;"><a id="CheckAll" href="/cgi-bin/koha/patroncards/members-search.pl">Seleccionar todo</a><a id="CheckNone" href="/cgi-bin/koha/patroncards/members-search.pl">Limpiar todos los campos</a></div>
+<div style="line-height: 2em; margin-left: .7em;"><a id="CheckAll" href="/cgi-bin/koha/patroncards/members-search.pl">Seleccionar todo</a><a id="CheckNone" href="/cgi-bin/koha/patroncards/members-search.pl">Borrar todos los campos</a></div>
 <div class="searchresults">
 
  <table style="float: left; margin: .5em 0;">

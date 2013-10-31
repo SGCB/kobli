@@ -53,7 +53,7 @@
  [% ELSE %] No se encuentran resultados [% END %] </div>
 
  <form name="resultform" class="checkboxed" action="">
- <p><a id="CheckAll" href="#">Seleccionar todo</a> <a id="CheckNone" href="#">Limpiar todo</a> | <input value="Agregar seleccionado" type="button" onclick="add_item('checked',[% batch_id %],'[% type %]'); return false;" />
+ <p><a id="CheckAll" href="#">Seleccionar todo</a> <a id="CheckNone" href="#">Borrar todo</a> | <input value="Agregar seleccionado" type="button" onclick="add_item('checked',[% batch_id %],'[% type %]'); return false;" />
  <input value="Hecho" type="button" class="close" /></p>
 
  <div id="label-search-results">

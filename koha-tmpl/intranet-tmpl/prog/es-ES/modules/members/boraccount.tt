@@ -28,7 +28,7 @@
  <th>Monto</th>
  <th>Excepcional</th>
  [% IF ( reverse_col ) %] <th>&nbsp;</th>
- [% END %] <th>Impreso</th>
+ [% END %] <th>Imprimir</th>
  </tr>
 
  <!-- FIXME: Shouldn't hardcode dollar signs, since Euro or Pound might be needed -->
@@ -43,8 +43,8 @@
  [% IF ( account.payment ) %] <a href="boraccount.pl?action=reverse&amp;accountlines_id=[% account.accountlines_id %]&amp;borrowernumber=[% account.borrowernumber %]">Reverso</a>
  [% ELSE %] &nbsp; [% END %] </td>
  [% END %] <td>
- [% IF ( account.payment ) %] <a target="_blank" href="printfeercpt.pl?action=print&amp;accountlines_id=[% account.accountlines_id %]&amp;borrowernumber=[% account.borrowernumber %]">Impreso</a>
- [% ELSE %] <a target="_blank" href="printinvoice.pl?action=print&amp;accountlines_id=[% account.accountlines_id %]&amp;borrowernumber=[% account.borrowernumber %]">Impreso</a>
+ [% IF ( account.payment ) %] <a target="_blank" href="printfeercpt.pl?action=print&amp;accountlines_id=[% account.accountlines_id %]&amp;borrowernumber=[% account.borrowernumber %]">Imprimir</a>
+ [% ELSE %] <a target="_blank" href="printinvoice.pl?action=print&amp;accountlines_id=[% account.accountlines_id %]&amp;borrowernumber=[% account.borrowernumber %]">Imprimir</a>
  [% END %] </td>
  </tr>
 

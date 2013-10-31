@@ -259,11 +259,11 @@
               //]]>
               </script>
  <p style="margin:.3em 2em;">
- <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('reserve_date_[% bibitemloo.biblionumber %]').value='';return false;">Limpiar fecha</a></p>
+ <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('reserve_date_[% bibitemloo.biblionumber %]').value='';return false;">Borrar fecha</a></p>
  </td>[% END %] [% END %] [% IF ( bibitemloo.holdable ) %]<td class="expiration_date">
  <input name="expiration_date_[% bibitemloo.biblionumber %]" id="to" size="10" readonly="readonly" class="datepickerto" />
  <p style="margin:.3em 2em;">
- <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('expiration_date_[% bibitemloo.biblionumber %]').value='';return false;">Limpiar fecha</a></p>
+ <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('expiration_date_[% bibitemloo.biblionumber %]').value='';return false;">Borrar fecha</a></p>
  </td>[% END %] [% IF ( OpacHoldNotes ) %][% IF ( bibitemloo.holdable ) %]<td><input value="Editar notas" type="button" id="shownotes_[% bibitemloo.biblionumber %]" class="shownotes" /></td>[% END %][% END %]
 
  [% IF ( bibitemloo.holdable ) %]

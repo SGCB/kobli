@@ -15,7 +15,7 @@
  [% END %] [% IF ( CAN_user_tools_import_patrons ) %] <dt><a href="/cgi-bin/koha/tools/import_borrowers.pl">Importar usuarios</a></dt>
  <dd>Importar datos de usuario</dd>
  [% END %] [% IF ( CAN_user_tools_edit_notices ) %] <dt><a href="/cgi-bin/koha/tools/letter.pl">Avisos &amp; Recibos</a></dt>
- <dd>Defina avisos (notificaciones impresas y por e-mail para reclamos, etc.)</dd>
+ <dd>Definir avisos (notificaciones impresas y por e-mail para reclamos, etc.)</dd>
  [% END %] [% IF ( CAN_user_tools_edit_notice_status_triggers ) %] <dt><a href="/cgi-bin/koha/tools/overduerules.pl">Disparadores de avisos de retraso/estado</a></dt>
  <dd>Establecer aviso o disparadores para ítem atrasados</dd>
  [% END %] [% IF ( CAN_user_tools_label_creator ) %] <dt><a href="/cgi-bin/koha/patroncards/home.pl">Creador de carnet de usuario</a></dt>
@@ -34,7 +34,7 @@
 <h3>Herramientas adicionales</h3>
 <dl>
  [% IF ( CAN_user_tools_edit_calendar ) %] <dt><a href="/cgi-bin/koha/tools/holidays.pl">Calendario</a></dt>
- <dd>Defina los días en los que la biblioteca permanece cerrada.</dd>
+ <dd>Definir los días en los que la biblioteca permanece cerrada.</dd>
  [% END %] [% IF ( CAN_user_tools_manage_csv_profiles ) %] <dt><a href="/cgi-bin/koha/tools/csv-profiles.pl">Perfiles CSV</a></dt>
  <dd>Administrar perfiles de exportación CSV</dd>
  [% END %] [% IF ( CAN_user_tools_view_system_logs ) %] <dt><a href="/cgi-bin/koha/tools/viewlog.pl">Visor del log</a></dt>

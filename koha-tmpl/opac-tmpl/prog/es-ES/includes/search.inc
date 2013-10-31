@@ -20,9 +20,9 @@
  [% END %] [% ELSE %] [% IF ( ms_callnum ) %] <option selected="selected" value="callnum">Signatura topográfica</option>
  [% ELSE %] <option value="callnum">Signatura topográfica</option>
  [% END %] [% END %]</select>
-[% IF ( ms_value ) %] <input value="[% ms_value |html %]" name="q" style="width: 35%; font-size: 111%;" class="left" id="transl1" title="Introduzca los términos de búsqueda" type="text" /><div id="translControl"></div>
-[% ELSE %] <input name="q" style="width: 35%; font-size: 111%;" type="text" title="Introduzca los términos de búsqueda" id="transl1" class="left" /><div id="translControl"></div>
-[% END %] [% IF Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %] <select name="branch_group_limit" id="select_library" class="left">
+[% IF ( ms_value ) %] <input type="text" id = "transl1" name="q" value="[% ms_value |html %]" class="left"/><div id="translControl"></div>
+[% ELSE %] <input type="text" id = "transl1" name="q" class="left"/><div id="translControl"></div>
+[% END %] [% IF Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %] <select name="branch_group_limit" id="masthead_search" class="left">
  <option value="">Todas las bibliotecas</option>
  [% IF BranchCategoriesLoop %]<optgroup label="Bibliotecas">[% END %] [% FOREACH BranchesLoo IN BranchesLoop %] [% IF ( BranchesLoo.selected ) %]<option selected="selected" value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>
  [% ELSE %]<option value="branch:[% BranchesLoo.value %]">[% BranchesLoo.branchname %]</option>[% END %] [% END %] [% IF BranchCategoriesLoop %] </optgroup>

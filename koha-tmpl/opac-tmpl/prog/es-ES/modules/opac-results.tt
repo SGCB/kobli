@@ -172,7 +172,7 @@ $(document).ready(function(){
     $('#sort_by').change(function() {
         $('#bookbag_form').submit();
     });
-    $("span.clearall").html("<a id=\"CheckNone\" href=\"#\">"+_("Limpiar todo")+"<\/a>");
+    $("span.clearall").html("<a id=\"CheckNone\" href=\"#\">"+_("Borrar todo")+"<\/a>");
     $("span.checkall").html("<a id=\"CheckAll\" href=\"#\">"+_("Seleccionar todo")+"<\/a>");
 [% IF ( opacbookbag ) %]$("span.addto").html(param1);[% ELSE %][% IF ( virtualshelves ) %][% IF ( loggedinusername ) %]$("span.addto").html(param1);[% END %][% END %][% END %]
 [% IF ( opacbookbag || virtualshelves ) %]

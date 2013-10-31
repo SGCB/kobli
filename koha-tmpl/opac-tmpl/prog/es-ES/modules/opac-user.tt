@@ -250,7 +250,7 @@ var MSG_CONFIRM_RESUME_HOLDS  = _("¿Está seguro de que quiere cancelar esta re
 
  [% IF AutoResumeSuspendedHolds %] <label for="suspend_until"> hasta</label>
  <input name="suspend_until" id="suspend_until" readonly="readonly" size="10" />
- <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('suspend_until').value='';return false;">Limpiar fecha</a></p>
+ <a href="#" style="font-size:85%;text-decoration:none;" onclick="document.getElementById('suspend_until').value='';return false;">Borrar fecha</a></p>
  [% END %] </form>
  </div>
  <div>

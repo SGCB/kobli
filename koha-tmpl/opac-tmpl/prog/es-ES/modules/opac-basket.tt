@@ -123,14 +123,14 @@ function enableCheckboxActions(){
 <ul>
  <li>[% IF ( verbose ) %]<a href="opac-basket.pl" class="brief" onclick="showLess(); return false;">Vista breve</a>[% ELSE %]<a href="opac-basket.pl" class="detail" onclick="showMore(); return false;">Más detalles</a>[% END %]</li>
  [% IF ( opacuserlogin ) %]<li><a class="send" href="opac-basket.pl" onclick="sendBasket(); return false;">Enviar</a></li>[% END %] <li><a class="download" href="opac-basket.pl" onclick="downloadBasket(); return false;">Descargar</a></li>
- <li><a class="print" href="opac-basket.pl" onclick="printBasket(); return false;">Impreso</a></li>
+ <li><a class="print" href="opac-basket.pl" onclick="printBasket(); return false;">Imprimir</a></li>
  <li><a class="empty" href="opac-basket.pl" onclick="delBasket(); return false;">Vaciar y cerrar</a></li>
  <li><a class="hide close" href="opac-basket.pl">Ocultar Ventana</a></li>
 </ul>
 </div>
 [% END %] [% UNLESS ( print_basket ) %] <div id="selections-toolbar">
  <a id="CheckAll" href="#">Seleccionar todo</a>
- <a id="CheckNone" href="#">Limpiar todo</a>
+ <a id="CheckNone" href="#">Borrar todo</a>
  <span class="sep">|</span>
  <span class="links" id="tag_hides">
  <span id="selections">Títulos seleccionados para:</span>

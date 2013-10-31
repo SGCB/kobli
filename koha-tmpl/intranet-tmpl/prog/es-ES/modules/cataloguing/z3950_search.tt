@@ -121,7 +121,7 @@ tr.selected { background-color : #FFFFCC; } tr.selected td { background-color : 
  </div>
 </div>
 <div class="yui-g">
-<h2>Servidores de búsqueda <span style="display: inline; font-size: 70%; padding-left: 1em;"><span class="checkall"><a id="CheckAll" href="#">Seleccionar todo</a></span><span class="clearall"><a id="CheckNone" href="#">Limpiar todo</a></span></span></h2>
+<h2>Servidores de búsqueda <span style="display: inline; font-size: 70%; padding-left: 1em;"><span class="checkall"><a id="CheckAll" href="#">Seleccionar todo</a></span><span class="clearall"><a id="CheckNone" href="#">Borrar todo</a></span></span></h2>
 
  [% FOREACH serverloo IN serverloop %] <p> 
  [% IF ( serverloo.checked ) %] <input type="checkbox" name="id" id="z3950_[% serverloo.id %]" value="[% serverloo.id %]" checked="checked" />

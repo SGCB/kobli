@@ -53,7 +53,7 @@
  [% QUEUED_MESSAGE.content FILTER html_line_break %] </p>
  </td>
  <td>
- [% IF ( QUEUED_MESSAGE.message_transport_type == 'email' ) %]email [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'print' ) %]Impreso[% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'feed' ) %]feed [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'sms' ) %]sms [% ELSE %][% QUEUED_MESSAGE.message_transport_type %][% END %] </td>
+ [% IF ( QUEUED_MESSAGE.message_transport_type == 'email' ) %]email [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'print' ) %]print[% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'feed' ) %]feed [% ELSIF ( QUEUED_MESSAGE.message_transport_type == 'sms' ) %]sms [% ELSE %][% QUEUED_MESSAGE.message_transport_type %][% END %] </td>
  <td>
  [% IF ( QUEUED_MESSAGE.status == 'sent' ) %]enviado [% ELSIF ( QUEUED_MESSAGE.status == 'pending' ) %]pendiente [% ELSIF ( QUEUED_MESSAGE.status == 'failed' ) %]fallado [% ELSIF ( QUEUED_MESSAGE.status == 'deleted' ) %]borrado [% ELSE %][% QUEUED_MESSAGE.status %][% END %] </td>
  <td><span title="[% QUEUED_MESSAGE.time_queued %]">[% QUEUED_MESSAGE.time_queued | $KohaDates with_hours => 1 %]</span></td>

@@ -342,7 +342,7 @@
  <genre authority="marc">patente</genre>
  </xsl:if>
  <xsl:if test="substring($controlField008,31,1)='1'">
- <genre authority="marc">festschrift</genre>
+ <genre authority="marc">homenaje</genre>
  </xsl:if>
 
  <xsl:variable name="controlField008-34" select="substring($controlField008,35,1)"/>

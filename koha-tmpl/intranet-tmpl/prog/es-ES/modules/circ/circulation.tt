@@ -419,7 +419,7 @@ No hay usuario que coincida <span class="ex">[% message %]</span>
 
 [% END %] <form method="post" action="/cgi-bin/koha/circ/circulation.pl" id="mainform" name="mainform" autocomplete="off">
 <fieldset id="circ_circulation_issue">
- [% IF ( DisplayClearScreenButton ) %] <span id="clearscreen"><a href="/cgi-bin/koha/circ/circulation.pl" title="Limpiar pantalla">x</a></span>
+ [% IF ( DisplayClearScreenButton ) %] <span id="clearscreen"><a href="/cgi-bin/koha/circ/circulation.pl" title="Borrar pantalla">x</a></span>
  [% END %] <label for="barcode">Prestando a [% INCLUDE 'patron-title.inc' %]</label>
 
  <div class="hint">Introduzca el código de barras del ítem:</div>
@@ -434,7 +434,7 @@ No hay usuario que coincida <span class="ex">[% message %]</span>
 [% END %] <label for="stickyduedate"> Recordar por la sesión:</label>
 [% IF ( stickyduedate ) %] <input type="checkbox" id="stickyduedate" onclick="this.form.barcode.focus();" name="stickyduedate" checked="checked" />
 [% ELSE %] <input type="checkbox" id="stickyduedate" onclick="this.form.barcode.focus();" name="stickyduedate" />
-[% END %] <input value="Limpiar" name="cleardate" type="button" class="action" id="cleardate" onclick="this.checked = false; this.form.duedatespec.value = ''; this.form.stickyduedate.checked = false; this.form.barcode.focus(); return false;" />
+[% END %] <input value="Borrar" name="cleardate" type="button" class="action" id="cleardate" onclick="this.checked = false; this.form.duedatespec.value = ''; this.form.stickyduedate.checked = false; this.form.barcode.focus(); return false;" />
 </div>[% END %] <input type="hidden" name="borrowernumber" id="borrowernumber" value="[% borrowernumber %]" />
  <input type="hidden" name="branch" value="[% branch %]" />
  <input type="hidden" name="printer" value="[% printer %]" />

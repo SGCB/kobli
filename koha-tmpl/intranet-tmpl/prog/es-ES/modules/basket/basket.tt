@@ -81,11 +81,11 @@ function placeHold () {
  [% FOREACH csv_profile IN csv_profiles %] <li><a href="/cgi-bin/koha/basket/downloadcart.pl?format=[% csv_profile.export_format_id %]&amp;bib_list=[% bib_list %]">CSV - [% csv_profile.profile %]</a></li>
  [% END %] </ul>
  </div>
- <a class="btn btn-small" href="basket.pl" onclick="printBasket(); return false;"><i class="icon-print"></i> Impreso</a>
+ <a class="btn btn-small" href="basket.pl" onclick="printBasket(); return false;"><i class="icon-print"></i> Imprimir</a>
  <a class="btn btn-small" href="basket.pl" onclick="delBasket('popup'); return false;"><i class="icon-trash"></i> Vaciar y cerrar</a>
  <a class="btn btn-small close" href="basket.pl"><i class="icon-remove-sign"></i> Ocultar ventana</a>
 </div>
- [% END %] [% IF ( verbose ) %] [% UNLESS ( print_basket ) %]<p style="padding: 7px 0; border-top : 1px solid #E8E8E8;"><a id="CheckAll" href="#">Seleccionar todo</a> <a id="CheckNone" href="#">Limpiar todo</a> | <b>Artículos seleccionados:</b>
+ [% END %] [% IF ( verbose ) %] [% UNLESS ( print_basket ) %]<p style="padding: 7px 0; border-top : 1px solid #E8E8E8;"><a id="CheckAll" href="#">Seleccionar todo</a> <a id="CheckNone" href="#">Borrar todo</a> | <b>Artículos seleccionados:</b>
 
  <a href="#" onclick="delSelRecords(); return false;">Eliminar</a>
 
@@ -171,7 +171,7 @@ function placeHold () {
 [% ELSE %] [% UNLESS ( print_basket ) %] <p style="border-top : 1px solid #E8E8E8;">
  <form action="/cgi-bin/koha/basket/basket.pl" method="get" name="bookbag_form" id="bookbag_form">
  <a id="CheckAll" href="#">Seleccionar todo</a>
- <a id="CheckNone" href="#">Limpiar todo</a>
+ <a id="CheckNone" href="#">Borrar todo</a>
  | <b>Artículos seleccionados:</b>
 <a href="#" onclick="delSelRecords(); return false;">Eliminar</a>
 
