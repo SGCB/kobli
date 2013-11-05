@@ -52,12 +52,12 @@
                 [% END %]
                 [% END %]</select>
 [% IF ( ms_value ) %]
-        <input type="text" title="Type search term" id = "transl1" name="q" value="[% ms_value |html %]" class="left" style="width: 35%; font-size: 111%;"/><div id="translControl"></div>
+        <input type="text" id = "transl1" name="q" value="[% ms_value |html %]" class="left"/><div id="translControl"></div>
 [% ELSE %]
-        <input type="text" title="Type search term" id = "transl1" name="q" class="left" style="width: 35%; font-size: 111%;"/><div id="translControl"></div>
+        <input type="text" id = "transl1" name="q" class="left"/><div id="translControl"></div>
 [% END %]
    [% IF Koha.Preference( 'OpacAddMastheadLibraryPulldown' ) == 1 %]
-      <select name="branch_group_limit" id="select_library" class="left">
+      <select name="branch_group_limit" id="masthead_search" class="left">
          <option value="">All libraries</option>
          [% IF BranchCategoriesLoop %]<optgroup label="Libraries">[% END %]
              [% FOREACH BranchesLoo IN BranchesLoop %]

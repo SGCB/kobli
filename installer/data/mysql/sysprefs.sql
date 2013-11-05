@@ -159,112 +159,7 @@ INSERT INTO systempreferences ( `variable`, `value`, `options`, `explanation`, `
 ('IntranetUserCSS','',NULL,'Add CSS to be included in the intranet in an embedded <style> tag.','free'),
 ('intranetuserjs','','70|10','Custom javascript for inclusion in Intranet','Textarea'),
 ('intranet_includes','includes',NULL,'The includes directory you want for specific look of Koha (includes or includes_npl for example)','Free'),
-('ISBD','<b>#100|| { 100a }{ 100b }{ 100c }{ 100d }|</b> <br/><br/>
-#110|| { 110a. }{ 110b }{ 110c }{ 110t. }{ 110d }{ 110e }{ 110f }{ 110g}{110k}{110l}{110n}{110p}|</b> <br/><br/>
-#111|| { 111a } ({ 111n.}{ 111d. }{ 111c })|</b> <br/><br/>
-#130||{ 130a}{ 130d }{ 130f }{ 130g }{ 130h }{ 130k }{. 130l }{ 130m }{ 130n }{ 130o }{ 130p }{ 130r }{ 130s }{ 130t }|</b> <br/><br/>
-#245||{ 245a }{ :245b }/{ 245c }{245f }{ 245g }{ 245k }{ 245n }{ 245p }{ 245s }{ 245h }|
-#246||{ : 246i }{ 246a }{ 246b }{ 246f }{ 246g }{ 246n }{ 246p }{ 246h }|
-#242||{ = 242a }{ 242b }{ 242n }{ 242p }{ 242h }|
-#242||{ = 242c }|
-#250| .--|{ 250a }{ 250b }|
-#254|, |{ 254a }|
-#255|, |{ 255a }{ 255b }{ 255c }{ 255d }{ 255e }{ 255f }{ 255g }|
-#256|, |{ 256a }|
-#257|, |{ 257a }|
-#258|, |{ 258a }{ 258b }|
-#260| .-- |{ 260a }:{ 260b },{ 260c }| </b> <br/><br/>
-#300| |{ 300a }{ : 300b }{; 300c }{+ 300d }{ 300e }{ 300f }{ 300g }|
-#306| |{ 306a }|
-#307| |{ 307a }{ 307b }|
-#310| |{ 310a }{ 310b }|
-#321| |{ 321a }{ 321b }|
-#340| |{ 3403 }{ 340a }{ 340b }{ 340c }{ 340d }{ 340e }{ 340f }{ 340h }{ 340i }|
-#342| |{ 342a }{ 342b }{ 342c }{ 342d }{ 342e }{ 342f }{ 342g }{ 342h }{ 342i }{ 342j }{ 342k }{ 342l }{ 342m }{ 342n }{ 342o }{ 342p }{ 342q }{ 342r }{ 342s }{ 342t }{ 342u }{ 342v }{ 342w }|
-#343| |{ 343a }{ 343b }{ 343c }{ 343d }{ 343e }{ 343f }{ 343g }{ 343h }{ 343i }|
-#351| |{ 3513 }{ 351a }{ 351b }{ 351c }|
-#352| |{ 352a }{ 352b }{ 352c }{ 352d }{ 352e }{ 352f }{ 352g }{ 352i }{ 352q }|
-#362| |{ 362a }{ 351z }|
-#490| .-- |({ 490a }{ ;490v }{ ;490x })|.
-#440| .-- |({440a }{. 440n }{ , 440p }{ ; 440v }{ 440x})|.</b> <br/><br/>
-#500--586|<label>NOTAS</label>|
-#500|<br/><br/><label>Notas:</label>|{\n5003 }{ 500a }|
-#501|<br/><br/>|{ 501a }|
-#502|<br/><br/>|{ 502a }|
-#504|<br/><br/>|{ 504a }|
-#505|<br/><br/><label>Contiene:</label>|{ 505a }{ 505t }{ 505r }{ 505g }{ 505u }|
-#506|<br/><br/>|{ 5063 }{ 506a }{ 506b }{ 506c }{ 506d }{ 506u }|
-#507|<br/><br/>|{ 507a }{ 507b }|
-#508|<br/><br/>|{ 508a }{ 508a }|
-#510|<br/><br/>|{ 5103 }{ 510a }{ 510x }{ 510c }{ 510b }|
-#511|<br/><br/>|{ 511a }|
-#513|<br/><br/>|{ 513a }{513b }|
-#514|<br/><br/>|{ 514z }{ 514a }{ 514b }{ 514c }{ 514d }{ 514e }{ 514f }{ 514g }{ 514h }{ 514i }{ 514j }{ 514k }{ 514m }{ 514u }|
-#515|<br/><br/>|{ 515a }|
-#516|<br/><br/>|{ 516a }|
-#518|<br/><br/>|{ 5183 }{ 518a }|
-#520|<br/><br/>|{ 5203 }{ 520a }{ 520b }{ 520u }|
-#521|<br/><br/>|{ 5213 }{ 521a }{ 521b }|
-#522|<br/><br/>|{ 522a }|
-#524|<br/><br/>|{ 524a }|
-#525|<br/><br/>|{ 525a }|
-#526|<br/><br/>|{\n510i }{\n510a }{ 510b }{ 510c }{ 510d }{\n510x }|
-#530|<br/><br/>|{\n5063 }{\n506a }{ 506b }{ 506c }{ 506d }{\n506u }|
-#533|<br/><br/>|{\n5333 }{\n533a }{\n533b }{\n533c }{\n533d }{\n533e }{\n533f }{\n533m }{\n533n }|
-#534|<br/><br/>|{\n533p }{\n533a }{\n533b }{\n533c }{\n533d }{\n533e }{\n533f }{\n533m }{\n533n }{\n533t }{\n533x }{\n533z }|
-#535|<br/><br/>|{\n5353 }{\n535a }{\n535b }{\n535c }{\n535d }|
-#538|<br/><br/>|{\n5383 }{\n538a }{\n538i }{\n538u }|
-#540|<br/><br/>|{\n5403 }{\n540a }{ 540b }{ 540c }{ 540d }{\n520u }|
-#544|<br/><br/>|{\n5443 }{\n544a }{\n544b }{\n544c }{\n544d }{\n544e }{\n544n }|
-#545|<br/><br/>|{\n545a }{ 545b }{\n545u }|
-#546|<br/><br/>|{\n5463 }{\n546a }{ 546b }|
-#547|<br/><br/>|{\n547a }|
-#550|<br/><br/>|{ 550a }|
-#552|<br/><br/>|{ 552z }{ 552a }{ 552b }{ 552c }{ 552d }{ 552e }{ 552f }{ 552g }{ 552h }{ 552i }{ 552j }{ 552k }{ 552l }{ 552m }{ 552n }{ 562o }{ 552p }{ 552u }|
-#555|<br/><br/>|{ 5553 }{ 555a }{ 555b }{ 555c }{ 555d }{ 555u }|
-#556|<br/><br/>|{ 556a }{ 506z }|
-#563|<br/><br/>|{ 5633 }{ 563a }{ 563u }|
-#565|<br/><br/>|{ 5653 }{ 565a }{ 565b }{ 565c }{ 565d }{ 565e }|
-#567|<br/><br/>|{ 567a }|
-#580|<br/><br/>|{ 580a }|
-#581|<br/><br/>|{ 5633 }{ 581a }{ 581z }|
-#584|<br/><br/>|{ 5843 }{ 584a }{ 584b }|
-#585|<br/><br/>|{ 5853 }{ 585a }|
-#586|<br/><br/>|{ 5863 }{ 586a }|
-#594|<br/><br/>|{ 5863 }{ 594a }|
-#773|<br/><br/><label>En </label>|{ 773t }.- { 773d }.- { 773g }|
-#020|<br/><br/><label>ISBN: </label>|{ 020a }{ 020c }|
-#022|<br/><br/><label>ISSN: </label>|{ 022a }|
-#222| = |{ 222a }{ 222b }|
-#210| = |{ 210a }{ 210b }|
-#024|<br/><br/><label>Núm. Standard: </label>|{ 024a }{ 024c }{ 024d }{ 0242 }|
-#037|<br/><br/><label>Fuente: </label>|{ 037a }{ 037b }{ 037c }{ 037f }{ 037g }{ 037n }|
-#015|<br/><br/><label>Nat. Bib. No.: </label>|{ 015a }{ 0152 }|
-#016|<br/><br/><label>Nat. Bib. Agency Control No.: </label>|{ 016a }{ 0162 }|
-#080|<br/><br/><label>C.D:U.: </label>|{ 080a }{ 080x }{ / 080b }|
-#600|<br/><br/><label>Materia--Nombre Personal: </label>|{\n6003 }{\n600a}{ 600b }{ 600c }{ 600d }{ 600e }{ 600f }{ 600g }{ 600h }{--600k}{ 600l }{ 600m }{ 600n }{ 600o }{--600p}{ 600r }{ 600s }{ 600t }{ 600u }{--600x}{--600z}{--600y}{--600v}|
-#610|<br/><br/><label>Materia--Nombre corporativo: </label>|{\n6103 }{\n610a}{ 610b }{ 610c }{ 610t }{ 610g }{ 610d }{ 610e }{ 610f }{ 610h }{--610k}{ 610l }{ 610m }{ 610n }{ 610o }{--610p}{ 610r }{ 610s }{ 610u }{--610x}{--610z}{--610y}{--610v}|
-#611|<br/><br/><label>Materia-Nombre de Congreso: </label>|{\n6113 }{\n611a}{ 611b }{ 611c }{ 611d }{ 611e }{ 611f }{ 611g }{ 611h }{--611k}{ 611l }{ 611m }{ 611n }{ 611o }{--611p}{ 611r }{ 611s }{ 611t }{ 611u }{--611x}{--611z}{--611y}{--611v}|
-#630|<br/><br/><label>Materia--Título Uniforme: </label>|{\n630a}{ 630b }{ 630c }{ 630d }{ 630e }{ 630f }{ 630g }{ 630h }{--630k }{ 630l }{ 630m }{ 630n }{ 630o }{--630p}{ 630r }{ 630s }{ 630t }{--630x}{--630z}{--630y}{--630v}|
-#648|<br/><br/><label>Materia--Término cronológico: </label>|{\n6483 }{\n648a }{--648x}{--648z}{--648y}{--648v}|
-#650|<br/><br/><label>Materias:</label>|{\n6503 }{\n650a}{ 650b }{ 650c }{ 650d }{ 650e }{--650x}{--650z}{--650y}{--650v}|
-#651|<br/><br/><label>Términos geográficos</label>|{\n6513 }{\n651a}{ 651b }{ 651c }{ 651d }{ 651e }{--651x}{--651z}{--651y}{--651v}|
-#653|<br/><br/><label>Términos de indización - No controlado: </label>|{ 653a }|
-#654|<br/><br/><label>Términos temáticos facetados: </label>|{\n6543 }{\n654a}{--654b}{--654x}{--654z}{--654y}{--654v}|
-#655|<br/><br/><label>Términos de indización--Género/Forma: </label>|{\n6553 }{\n655a}{--655b}{--655x }{--655z}{--655y}{--655v}|
-#656|<br/><br/><label>Términos de indización--Ocupación: </label>|{\n6563 }{\n656a}{--656k}{--656x}{--656z}{--656y}{--656v}|
-#657|<br/><br/><label>Términos de indización--Función: </label>|{\n6573 }{\n657a}{--657x}{--657z}{--657y}{--657v}|
-#658|<br/><br/><label>Términos de indizacíón--Objetivo del currículo: </label>|{\n658a}{--658b}{--658c}{--658d}{--658v}|
-#700-730|<br/><br/><label>Encabezamientos secundarios:</label>|
-#700|<br/><br/><label><b>Encabezamiento secundario--Nombre personal:</b> </label>|{\n7003 }{\n700a}{ 700b }{ 700c }{ 700d }{, 700e }{ 700f }{ 700g }{ 700h }{--700k}{ 700l }{ 700m }{ 700n }{ 700o }{--700p}{ 700r }{ 700s }{ 700t }{ 700u }{--700x}{--700z}{--700y}{--700v}|</b>
-#710|<br/><br/><label>Encabezamiento secundario--Nombre de entidad: </label>|{\n7103 }{\n710a}{ 710b }{ 710c }{ 710d }{ 710e }{ 710f }{ 710g }{ 710h }{--710k}{ 710l }{ 710m }{ 710n }{ 710o }{--710p}{ 710r }{ 710s }{ 710t }{ 710u }{--710x}{--710z}{--710y}{--710v}|</b>
-#711|<br/><br/><label>Encabezamiento secundario--Nombre de Congreso: </label>|{\n7113 }{\n711a}{ 711b }{ 711c }{ 711d }{ 711e }{ 711f }{ 711g }{ 711h }{--711k}{ 711l }{ 711m }{ 711n }{ 711o }{--711p}{ 711r }{ 711s }{ 711t }{ 711u }{--711x}{--711z}{--711y}{--711v}|</b>
-#730|<br/><br/><label>Encabezamiento secundario--Título Uniforme: </label>|{\n730a}{ 730b }{ 730c }{ 730d }{ 730e }{ 730f }{ 730g }{ 730h }{--730k }{ 730l }{ 730m }{ 730n }{ 730o }{--730p}{ 730r }{ 730s }{ 730t }{--730x}{--730z}{--730y}{--730v}|</b>
-#800|<br/><br/><label>Encabezamiento secundario de serie--Nombre de persona: </label>|{ 800a }{ 800b }{ 800c }{ 800d }{ 800e }{ 800f }{ 800g }{ 800h }{ 800j }{ 800k }{ 800l }{ 800m }{ 800n }{ 800o }{ 800p }{ 800q }{ 800r }{ 800s }{ 800t }{ 800u }{ 800v }|.</b>
-#810|<br/><br/><label>Encabezamiento secundario de serie--Nombre de entidad: </label>|{ 810a }{ 810b }{ 810c }{ 810d }{ 810e }{ 810f }{ 810g }{ 810h }{ 810k }{ 810l }{ 810m }{ 810n }{ 810o }{ 810p }{ 810r }{ 810s }{ 810t }{ 810u }{ 810v }|.</b>
-#811|<br/><br/><label>Encabezamiento secundario de serie--Nombre de congreso:</label>|{ 811a }{ 811c }{ 811d }{ 811e }{ 811f }{ 811g }{ 811h }{ 811k }{ 811l }{ 811n }{ 811p }{ 811q }{ 811s }{ 811t }{ 811u }{ 811v }|.</b>
-#830|<br/><br/><label>Encabezamiento secundario de serie--Título Uniforme:</label>|{ 830a }{ 830d }{ 830f }{ 830g }{ 830h }{ 830k }{ 830l }{ 830m }{ 830n }{ 830o }{ 830p }{ 830r }{ 830s }{ 830t }{ 830v }|.</b> 
-#866|<br/><br/><label>Mención textual de fondos -- Unidad bibliográfica básica:</label>|{ 866a }.{ 866z }.|','ISBD','Textarea'),
+('ISBD','<br/>\r\n<b>#100|| { 100a }{ 100b }{ 100c }{ 100d }|</b> <br/><br/>\r\n#110|| { 110a. }{ 110b }{ 110c }{ 110t. }{ 110d }{ 110e }{ 110f }{ 110g}{110k}{110l}{110n}{110p}|</b> <br/><br/>\r\n#111|| { 111a } ({ 111n.}{ 111d. }{ 111c })|</b> <br/><br/>\r\n#130||{ 130a}{ 130d }{ 130f }{ 130g }{ 130h }{ 130k }{. 130l }{ 130m }{ 130n }{ 130o }{ 130p }{ 130r }{ 130s }{ 130t }|</b> <br/><br/>\r\n#245||{ 245a }{ :245b }/{ 245c }{245f }{ 245g }{ 245k }{ 245n }{ 245p }{ 245s }{ 245h }|\r\n#246||{ : 246i }{ 246a }{ 246b }{ 246f }{ 246g }{ 246n }{ 246p }{ 246h }|\r\n#242||{ = 242a }{ 242b }{ 242n }{ 242p }{ 242h }|\r\n#242||{ = 242c }|\r\n#250| .--|{ 250a }{ 250b }|\r\n#254|, |{ 254a }|\r\n#255|, |{ 255a }{ 255b }{ 255c }{ 255d }{ 255e }{ 255f }{ 255g }|\r\n#256|, |{ 256a }|\r\n#257|, |{ 257a }|\r\n#258|, |{ 258a }{ 258b }|\r\n#260| .-- |{ 260a }:{ 260b },{ 260c }| </b> <br/><br/>\r\n#300| |{ 300a }{ : 300b }{; 300c }{+ 300d }{ 300e }{ 300f }{ 300g }|\r\n#306| |{ 306a }|\r\n#307| |{ 307a }{ 307b }|\r\n#310| |{ 310a }{ 310b }|\r\n#321| |{ 321a }{ 321b }|\r\n#340| |{ 3403 }{ 340a }{ 340b }{ 340c }{ 340d }{ 340e }{ 340f }{ 340h }{ 340i }|\r\n#342| |{ 342a }{ 342b }{ 342c }{ 342d }{ 342e }{ 342f }{ 342g }{ 342h }{ 342i }{ 342j }{ 342k }{ 342l }{ 342m }{ 342n }{ 342o }{ 342p }{ 342q }{ 342r }{ 342s }{ 342t }{ 342u }{ 342v }{ 342w }|\r\n#343| |{ 343a }{ 343b }{ 343c }{ 343d }{ 343e }{ 343f }{ 343g }{ 343h }{ 343i }|\r\n#351| |{ 3513 }{ 351a }{ 351b }{ 351c }|\r\n#352| |{ 352a }{ 352b }{ 352c }{ 352d }{ 352e }{ 352f }{ 352g }{ 352i }{ 352q }|\r\n#362| |{ 362a }{ 351z }|\r\n#490| .-- |({ 490a }{ ;490v }{ ;490x })|.\r\n#440| .-- |({440a }{. 440n }{ , 440p }{ ; 440v }{ 440x})|.</b> <br/><br/>\r\n#500--586|<label>NOTAS</label>|\r\n#500|<br/><br/><label>Notas:</label>|{\\n5003 }{ 500a }|\r\n#501|<br/><br/>|{ 501a }|\r\n#502|<br/><br/>|{ 502a }|\r\n#504|<br/><br/>|{ 504a }|\r\n#505|<br/><br/><label>Contiene:</label>|{ 505a }{ 505t }{ 505r }{ 505g }{ 505u }|\r\n#506|<br/><br/>|{ 5063 }{ 506a }{ 506b }{ 506c }{ 506d }{ 506u }|\r\n#507|<br/><br/>|{ 507a }{ 507b }|\r\n#508|<br/><br/>|{ 508a }{ 508a }|\r\n#510|<br/><br/>|{ 5103 }{ 510a }{ 510x }{ 510c }{ 510b }|\r\n#511|<br/><br/>|{ 511a }|\r\n#513|<br/><br/>|{ 513a }{513b }|\r\n#514|<br/><br/>|{ 514z }{ 514a }{ 514b }{ 514c }{ 514d }{ 514e }{ 514f }{ 514g }{ 514h }{ 514i }{ 514j }{ 514k }{ 514m }{ 514u }|\r\n#515|<br/><br/>|{ 515a }|\r\n#516|<br/><br/>|{ 516a }|\r\n#518|<br/><br/>|{ 5183 }{ 518a }|\r\n#520|<br/><br/>|{ 5203 }{ 520a }{ 520b }{ 520u }|\r\n#521|<br/><br/>|{ 5213 }{ 521a }{ 521b }|\r\n#522|<br/><br/>|{ 522a }|\r\n#524|<br/><br/>|{ 524a }|\r\n#525|<br/><br/>|{ 525a }|\r\n#526|<br/><br/>|{\\n510i }{\\n510a }{ 510b }{ 510c }{ 510d }{\\n510x }|\r\n#530|<br/><br/>|{\\n5063 }{\\n506a }{ 506b }{ 506c }{ 506d }{\\n506u }|\r\n#533|<br/><br/>|{\\n5333 }{\\n533a }{\\n533b }{\\n533c }{\\n533d }{\\n533e }{\\n533f }{\\n533m }{\\n533n }|\r\n#534|<br/><br/>|{\\n533p }{\\n533a }{\\n533b }{\\n533c }{\\n533d }{\\n533e }{\\n533f }{\\n533m }{\\n533n }{\\n533t }{\\n533x }{\\n533z }|\r\n#535|<br/><br/>|{\\n5353 }{\\n535a }{\\n535b }{\\n535c }{\\n535d }|\r\n#538|<br/><br/>|{\\n5383 }{\\n538a }{\\n538i }{\\n538u }|\r\n#540|<br/><br/>|{\\n5403 }{\\n540a }{ 540b }{ 540c }{ 540d }{\\n520u }|\r\n#544|<br/><br/>|{\\n5443 }{\\n544a }{\\n544b }{\\n544c }{\\n544d }{\\n544e }{\\n544n }|\r\n#545|<br/><br/>|{\\n545a }{ 545b }{\\n545u }|\r\n#546|<br/><br/>|{\\n5463 }{\\n546a }{ 546b }|\r\n#547|<br/><br/>|{\\n547a }|\r\n#550|<br/><br/>|{ 550a }|\r\n#552|<br/><br/>|{ 552z }{ 552a }{ 552b }{ 552c }{ 552d }{ 552e }{ 552f }{ 552g }{ 552h }{ 552i }{ 552j }{ 552k }{ 552l }{ 552m }{ 552n }{ 562o }{ 552p }{ 552u }|\r\n#555|<br/><br/>|{ 5553 }{ 555a }{ 555b }{ 555c }{ 555d }{ 555u }|\r\n#556|<br/><br/>|{ 556a }{ 506z }|\r\n#563|<br/><br/>|{ 5633 }{ 563a }{ 563u }|\r\n#565|<br/><br/>|{ 5653 }{ 565a }{ 565b }{ 565c }{ 565d }{ 565e }|\r\n#567|<br/><br/>|{ 567a }|\r\n#580|<br/><br/>|{ 580a }|\r\n#581|<br/><br/>|{ 5633 }{ 581a }{ 581z }|\r\n#584|<br/><br/>|{ 5843 }{ 584a }{ 584b }|\r\n#585|<br/><br/>|{ 5853 }{ 585a }|\r\n#586|<br/><br/>|{ 5863 }{ 586a }|\r\n#594|<br/><br/>|{ 5863 }{ 594a }|\r\n#773|<br/><br/><label>En </label>|{ 773t }.- { 773d }.- { 773g }|\r\n#020|<br/><br/><label>ISBN: </label>|{ 020a }{ 020c }|\r\n#022|<br/><br/><label>ISSN: </label>|{ 022a }|\r\n#222| = |{ 222a }{ 222b }|\r\n#210| = |{ 210a }{ 210b }|\r\n#024|<br/><br/><label>Núm. Standard: </label>|{ 024a }{ 024c }{ 024d }{ 0242 }|\r\n#037|<br/><br/><label>Fuente: </label>|{ 037a }{ 037b }{ 037c }{ 037f }{ 037g }{ 037n }|\r\n#015|<br/><br/><label>Nat. Bib. No.: </label>|{ 015a }{ 0152 }|\r\n#016|<br/><br/><label>Nat. Bib. Agency Control No.: </label>|{ 016a }{ 0162 }|\r\n#080|<br/><br/><label>C.D:U.: </label>|{ 080a }{ 080x }{ / 080b }|\r\n#600|<br/><br/><label>Materia--Nombre Personal: </label>|{\\n6003 }{\\n600a}{ 600b }{ 600c }{ 600d }{ 600e }{ 600f }{ 600g }{ 600h }{--600k}{ 600l }{ 600m }{ 600n }{ 600o }{--600p}{ 600r }{ 600s }{ 600t }{ 600u }{--600x}{--600z}{--600y}{--600v}|\r\n#610|<br/><br/><label>Materia--Nombre corporativo: </label>|{\\n6103 }{\\n610a}{ 610b }{ 610c }{ 610t }{ 610g }{ 610d }{ 610e }{ 610f }{ 610h }{--610k}{ 610l }{ 610m }{ 610n }{ 610o }{--610p}{ 610r }{ 610s }{ 610u }{--610x}{--610z}{--610y}{--610v}|\r\n#611|<br/><br/><label>Materia-Nombre de Congreso: </label>|{\\n6113 }{\\n611a}{ 611b }{ 611c }{ 611d }{ 611e }{ 611f }{ 611g }{ 611h }{--611k}{ 611l }{ 611m }{ 611n }{ 611o }{--611p}{ 611r }{ 611s }{ 611t }{ 611u }{--611x}{--611z}{--611y}{--611v}|\r\n#630|<br/><br/><label>Materia--Título Uniforme: </label>|{\\n630a}{ 630b }{ 630c }{ 630d }{ 630e }{ 630f }{ 630g }{ 630h }{--630k }{ 630l }{ 630m }{ 630n }{ 630o }{--630p}{ 630r }{ 630s }{ 630t }{--630x}{--630z}{--630y}{--630v}|\r\n#648|<br/><br/><label>Materia--Término cronológico: </label>|{\\n6483 }{\\n648a }{--648x}{--648z}{--648y}{--648v}|\r\n#650|<br/><br/><label>Materias:</label>|{\\n6503 }{\\n650a}{ 650b }{ 650c }{ 650d }{ 650e }{--650x}{--650z}{--650y}{--650v}|\r\n#651|<br/><br/><label>Términos geográficos</label>|{\\n6513 }{\\n651a}{ 651b }{ 651c }{ 651d }{ 651e }{--651x}{--651z}{--651y}{--651v}|\r\n#653|<br/><br/><label>Términos de indización - No controlado: </label>|{ 653a }|\r\n#654|<br/><br/><label>Términos temáticos facetados: </label>|{\\n6543 }{\\n654a}{--654b}{--654x}{--654z}{--654y}{--654v}|\r\n#655|<br/><br/><label>Términos de indización--Género/Forma: </label>|{\\n6553 }{\\n655a}{--655b}{--655x }{--655z}{--655y}{--655v}|\r\n#656|<br/><br/><label>Términos de indización--Ocupación: </label>|{\\n6563 }{\\n656a}{--656k}{--656x}{--656z}{--656y}{--656v}|\r\n#657|<br/><br/><label>Términos de indización--Función: </label>|{\\n6573 }{\\n657a}{--657x}{--657z}{--657y}{--657v}|\r\n#658|<br/><br/><label>Términos de indizacíón--Objetivo del currículo: </label>|{\\n658a}{--658b}{--658c}{--658d}{--658v}|\r\n#700-730|<br/><br/><label>Encabezamientos secundarios:</label>|\r\n#700|<br/><br/><label><b>Encabezamiento secundario--Nombre personal:</b> </label>|{\\n7003 }{\\n700a}{ 700b }{ 700c }{ 700d }{, 700e }{ 700f }{ 700g }{ 700h }{--700k}{ 700l }{ 700m }{ 700n }{ 700o }{--700p}{ 700r }{ 700s }{ 700t }{ 700u }{--700x}{--700z}{--700y}{--700v}|</b>\r\n#710|<br/><br/><label>Encabezamiento secundario--Nombre de entidad: </label>|{\\n7103 }{\\n710a}{ 710b }{ 710c }{ 710d }{ 710e }{ 710f }{ 710g }{ 710h }{--710k}{ 710l }{ 710m }{ 710n }{ 710o }{--710p}{ 710r }{ 710s }{ 710t }{ 710u }{--710x}{--710z}{--710y}{--710v}|</b>\r\n#711|<br/><br/><label>Encabezamiento secundario--Nombre de Congreso: </label>|{\\n7113 }{\\n711a}{ 711b }{ 711c }{ 711d }{ 711e }{ 711f }{ 711g }{ 711h }{--711k}{ 711l }{ 711m }{ 711n }{ 711o }{--711p}{ 711r }{ 711s }{ 711t }{ 711u }{--711x}{--711z}{--711y}{--711v}|</b>\r\n#730|<br/><br/><label>Encabezamiento secundario--Título Uniforme: </label>|{\\n730a}{ 730b }{ 730c }{ 730d }{ 730e }{ 730f }{ 730g }{ 730h }{--730k }{ 730l }{ 730m }{ 730n }{ 730o }{--730p}{ 730r }{ 730s }{ 730t }{--730x}{--730z}{--730y}{--730v}|</b>\r\n#800|<br/><br/><label>Encabezamiento secundario de serie--Nombre de persona: </label>|{ 800a }{ 800b }{ 800c }{ 800d }{ 800e }{ 800f }{ 800g }{ 800h }{ 800j }{ 800k }{ 800l }{ 800m }{ 800n }{ 800o }{ 800p }{ 800q }{ 800r }{ 800s }{ 800t }{ 800u }{ 800v }|.</b>\r\n#810|<br/><br/><label>Encabezamiento secundario de serie--Nombre de entidad: </label>|{ 810a }{ 810b }{ 810c }{ 810d }{ 810e }{ 810f }{ 810g }{ 810h }{ 810k }{ 810l }{ 810m }{ 810n }{ 810o }{ 810p }{ 810r }{ 810s }{ 810t }{ 810u }{ 810v }|.</b>\r\n#811|<br/><br/><label>Encabezamiento secundario de serie--Nombre de congreso:</label>|{ 811a }{ 811c }{ 811d }{ 811e }{ 811f }{ 811g }{ 811h }{ 811k }{ 811l }{ 811n }{ 811p }{ 811q }{ 811s }{ 811t }{ 811u }{ 811v }|.</b>\r\n#830|<br/><br/><label>Encabezamiento secundario de serie--Título Uniforme:</label>|{ 830a }{ 830d }{ 830f }{ 830g }{ 830h }{ 830k }{ 830l }{ 830m }{ 830n }{ 830o }{ 830p }{ 830r }{ 830s }{ 830t }{ 830v }|.</b> \r\n#866|<br/><br/><label>Mención textual de fondos -- Unidad bibliográfica básica:</label>|{ 866a }.{ 866z }.|','70|10','ISBD','Textarea'),
 ('IssueLog','1',NULL,'If ON, log checkout activity','YesNo'),
 ('IssueLostItem','alert','Defines what should be done when an attempt is made to issue an item that has been marked as lost.','alert|confirm|nothing','Choice'),
 ('IssuingInProcess','0',NULL,'If ON, disables fines if the patron is issuing item that accumulate debt','YesNo'),
@@ -330,7 +225,7 @@ INSERT INTO systempreferences ( `variable`, `value`, `options`, `explanation`, `
 ('OpacBrowseResults','1',NULL,'Disable/enable browsing and paging search results from the OPAC detail page.','YesNo'),
 ('OpacCloud','0',NULL,'Si ON, habilita nube de temas en el OPAC','YesNo'),
 ('opaccolorstylesheet','color1.css','','Define the color stylesheet to use in the OPAC','free'),
-('opaccredits','Koha. Kobli, Ministerio de Educación, Cultura y Deporte Espa&ntilde;a, 2013','70|10','Define HTML Credits at the bottom of the OPAC page','Textarea'),
+('opaccredits','Koha-Kobli, © Ministerio de Educación, Cultura y Deporte España, 2013','70|10','Define HTML Credits at the bottom of the OPAC page','Textarea'),
 ('OPACdefaultSortField','relevance','relevance|popularity|call_number|pubdate|acqdate|title|author','Specify the default field used for sorting','Choice'),
 ('OPACdefaultSortOrder','dsc','asc|dsc|za|az','Specify the default sort order','Choice'),
 ('OPACdidyoumean',NULL,NULL,'Did you mean? configuration for the OPAC. Do not change, as this is controlled by /cgi-bin/koha/admin/didyoumean.pl.','Free'),
@@ -445,6 +340,7 @@ INSERT INTO systempreferences ( `variable`, `value`, `options`, `explanation`, `
 ('RoutingSerials','1',NULL,'If ON, serials routing is enabled','YesNo'),
 ('SCOUserCSS','',NULL,'Add CSS to be included in the SCO module in an embedded <style> tag.','free'),
 ('SCOUserJS','',NULL,'Define custom javascript for inclusion in the SCO module','free'),
+('searchengine','Zebra',NULL,NULL,NULL),
 ('SearchMyLibraryFirst','0',NULL,'If ON, OPAC searches return results limited by the user\'s library by default if they are logged in','YesNo'),
 ('SelfCheckHelpMessage','','70|10','Enter HTML to include under the basic Web-based Self Checkout instructions on the Help page','Textarea'),
 ('SelfCheckTimeout','120','','Define the number of seconds before the Web-based Self Checkout times out a patron','Integer'),

@@ -4343,6 +4343,62 @@ if (C4::Context->preference("Version") < TransformToNum($DBversion)) {
     SetVersion ($DBversion);
 }
 
+$DBversion = '3.04.00.001';
+if (C4::Context->preference("Version") < TransformToNum($DBversion)) {
+    my %info;
+    $info{'dbname'} = C4::Context->config("database");
+    $info{'dbms'} = (   C4::Context->config("db_scheme") ? C4::Context->config("db_scheme") : "mysql" );
+    $info{'hostname'} = C4::Context->config("hostname");
+    $info{'port'}     = C4::Context->config("port");
+    $info{'user'}     = C4::Context->config("user");
+    $info{'password'} = C4::Context->config("pass");
+
+    my $intranetdir = C4::Context->intranetdir;
+    my $path = ($intranetdir =~ /^(.+?)\/intranet\/cgi-bin/)?$1:$intranetdir;
+    $path .= "/installer/data/$info{dbms}/en/marcflavour/marc21/";
+    my $filename;
+    my $error;
+    my $strcmd;
+    if ( $info{'dbms'} eq 'mysql' ) {
+        my $cmd = qx(which mysql 2>/dev/null || whereis mysql 2>/dev/null);
+        chomp($cmd);
+        $cmd = $1 if ($cmd && $cmd =~ /^(.+)[\r\n]+$/);
+        $cmd = 'mysql' if (!$cmd || !-x $cmd);
+        $strcmd = "$cmd "
+            . ( $info{'hostname'} ? " -h $info{hostname} " : "" )
+            . ( $info{'port'}     ? " -P $info{port} "     : "" )
+            . ( $info{'user'}     ? " -u $info{user} "     : "" )
+            . ( $info{'password'} ? " -p'$info{password}'"   : "" )
+            . ' ' . $info{dbname} . ' ';
+        $filename = $path . 'mandatory/marc21_indicators.sql';
+        $error = qx($strcmd --default-character-set=utf8 <$filename 2>&1 1>/dev/null) if (-r $filename);
+    }
+    unless ($error) {
+        my $sth = $dbh->prepare(q|
+        SELECT variable FROM systempreferences where variable="CheckValueIndicators"
+        |);
+        $sth->execute;
+        my $already_exists = $sth->fetchrow;
+        unless($already_exists){
+            print "Upgrade to $DBversion done (New tables and data from $path for indicators functionality)\n";
+            $dbh->do("INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('CheckValueIndicators','0','Check the values of the indicators in cataloguing','','YesNo');");
+        }
+        $sth = $dbh->prepare(q|
+        SELECT variable FROM systempreferences where variable="DisplayPluginValueIndicators"
+        |);
+        $sth->execute;
+        $already_exists = $sth->fetchrow;
+        unless($already_exists){
+            print "Upgrade to $DBversion done (Add syspref to check the values of the indicators)\n";
+            $dbh->do("INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('DisplayPluginValueIndicators','0','Display a plugin with the correct values of indicators for fields in cataloguing','','YesNo');");
+            print "Upgrade to $DBversion done (Add syspref to display a plugin with the allowed values of indicators)\n";
+        }
+        SetVersion ($DBversion);
+    } else {
+        print "Error executing: $strcmd upon $filename $error";
+    }
+}
+
 $DBversion = "3.05.00.001";
 if ( C4::Context->preference("Version") < TransformToNum($DBversion) ) {
     $dbh->do(qq{
@@ -4437,75 +4493,6 @@ if (C4::Context->preference("Version") < TransformToNum($DBversion)) {
     print "Upgrade to $DBversion done (issues referential integrity)\n";
     SetVersion ($DBversion);
 }
-$DBversion = '3.05.00.XXX'; #FIXME
-if (C4::Context->preference("Version") < TransformToNum($DBversion)) {
-    my %info;
-    $info{'dbname'} = C4::Context->config("database");
-    $info{'dbms'} = (   C4::Context->config("db_scheme") ? C4::Context->config("db_scheme") : "mysql" );
-    $info{'hostname'} = C4::Context->config("hostname");
-    $info{'port'}     = C4::Context->config("port");
-    $info{'user'}     = C4::Context->config("user");
-    $info{'password'} = C4::Context->config("pass");
-
-    my $intranetdir = C4::Context->intranetdir;
-    my $path = ($intranetdir =~ /^(.+?)\/intranet\/cgi-bin/)?$1:$intranetdir;
-    $path .= "/installer/data/$info{dbms}/en/marcflavour/marc21/";
-    my $filename;
-    my $error;
-    my $strcmd;
-    if ( $info{'dbms'} eq 'mysql' ) {
-        my $cmd = qx(which mysql 2>/dev/null || whereis mysql 2>/dev/null);
-        chomp($cmd);
-        $cmd = $1 if ($cmd && $cmd =~ /^(.+)[\r\n]+$/);
-        $cmd = 'mysql' if (!$cmd || !-x $cmd);
-        $strcmd = "$cmd "
-            . ( $info{'hostname'} ? " -h $info{hostname} " : "" )
-            . ( $info{'port'}     ? " -P $info{port} "     : "" )
-            . ( $info{'user'}     ? " -u $info{user} "     : "" )
-            . ( $info{'password'} ? " -p'$info{password}'"   : "" )
-            . ' ' . $info{dbname} . ' ';
-        $filename = $path . 'mandatory/marc21_indicators.sql';
-        $error = qx($strcmd --default-character-set=utf8 <$filename 2>&1 1>/dev/null) if (-r $filename);
-    } elsif ( $info{'dbms'} eq 'Pg' ) {
-        my $cmd = qx(which psql 2>/dev/null || whereis psql 2>/dev/null);
-        chomp($cmd);
-        $cmd = $1 if ($cmd && $cmd =~ /^(.+)[\r\n]+$/);
-        $cmd = 'psql' if (!$cmd || !-x $cmd);
-        $strcmd = "$cmd "
-            . ( $info{'hostname'} ? " -h $info{hostname} " : "" )
-            . ( $info{'port'}     ? " -p $info{port} "     : "" )
-            . ( $info{'user'}     ? " -U $info{user} "     : "" )
-            . ' ' . $info{dbname} . ' ';
-        $filename = $path . 'mandatory/marc21_indicators.sql';
-        $error = qx($strcmd -f $filename 2>&1 1>/dev/null);
-    }
-    unless ($error) {
-        my $sth = $dbh->prepare(q|
-        SELECT variable FROM systempreferences where variable="CheckValueIndicators"
-        |);
-        $sth->execute;
-        my $already_exists = $sth->fetchrow;
-        unless($already_exists){
-            print "Upgrade to $DBversion done (New tables and data from $path for indicators functionality)\n";
-            $dbh->do("INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('CheckValueIndicators','0','Check the values of the indicators in cataloguing','','YesNo');");
-        }
-         my $sth = $dbh->prepare(q|
-        SELECT variable FROM systempreferences where variable="DisplayPluginValueIndicators"
-        |);
-        $sth->execute;
-        my $already_exists = $sth->fetchrow;
-        unless($already_exists){
-            print "Upgrade to $DBversion done (Add syspref to check the values of the indicators)\n";
-            $dbh->do("INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES ('DisplayPluginValueIndicators','0','Display a plugin with the correct values of indicators for fields in cataloguing','','YesNo');");
-            print "Upgrade to $DBversion done (Add syspref to display a plugin with the allowed values of indicators)\n";
-        }
-        SetVersion ($DBversion);
-    } else {
-        print "Error executing: $strcmd upon $filename $error";
-    }
-}
-
-
 
 $DBversion = "3.05.00.010";
 if (C4::Context->preference("Version") < TransformToNum($DBversion)) {
@@ -6933,7 +6920,7 @@ if ( CheckVersion($DBversion) ) {
     SetVersion ($DBversion);
 }
 
-$DBversion = "3.12.03.001";
+$DBversion = "3.12.00.001";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("INSERT INTO `systempreferences` (`variable`, `value`, `options`, `explanation`, `type`) VALUES ('UseCourseReserves', '0', NULL, 'Enable the course reserves feature.', 'YesNo')");
     $dbh->do("INSERT INTO userflags (bit,flag,flagdesc,defaulton) VALUES ('18','coursereserves','Course Reserves','0')");
@@ -7023,21 +7010,21 @@ INSERT INTO permissions (module_bit, code, description) VALUES
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.03.002";
+$DBversion = "3.12.00.002";
 if ( CheckVersion($DBversion) ) {
    $dbh->do("UPDATE systempreferences SET variable = 'IndependentBranches' WHERE variable = 'IndependantBranches'");
    print "Upgrade to $DBversion done (Bug 10080 - Change system pref IndependantBranches to IndependentBranches)\n";
    SetVersion ($DBversion);
 }
 
-$DBversion = '3.12.03.003';
+$DBversion = '3.12.00.003';
 if ( CheckVersion($DBversion) ) {
     $dbh->do("ALTER TABLE serial DROP itemnumber");
     print "Upgrade to $DBversion done (Bug 7718 - Remove itemnumber column from serials table)\n";
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.03.004";
+$DBversion = "3.12.00.004";
 if(CheckVersion($DBversion)) {
     $dbh->do(
 "INSERT IGNORE INTO systempreferences (variable,value,explanation,options,type) VALUES('OpacShowHoldNotes',0,'Show hold notes on OPAC','','YesNo')"
@@ -7046,7 +7033,7 @@ if(CheckVersion($DBversion)) {
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.03.005";
+$DBversion = "3.12.00.005";
 if(CheckVersion($DBversion)) {
     my $intra= C4::Context->preference("intranetstylesheet");
     #if this pref is not blank or starting with http, https or / [root], then
@@ -7060,7 +7047,7 @@ if(CheckVersion($DBversion)) {
     SetVersion ($DBversion);
 }
 
-$DBversion = "3.12.03.006";
+$DBversion = "3.12.00.006";
 if ( CheckVersion($DBversion) ) {
     $dbh->do(
         q{
@@ -7072,14 +7059,14 @@ INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES (
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.03.007";
+$DBversion = "3.12.00.007";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("UPDATE systempreferences SET variable='OpacHoldNotes' WHERE variable='OpacShowHoldNotes'");
     print "Upgrade to $DBversion done (Bug 10343: Rename OpacShowHoldNotes to OpacHoldNotes)\n";
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.03.008";
+$DBversion = "3.12.00.008";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("
 CREATE TABLE IF NOT EXISTS borrower_files (
@@ -7099,62 +7086,15 @@ CREATE TABLE IF NOT EXISTS borrower_files (
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.03.009";
+$DBversion = "3.12.00.009";
 if ( CheckVersion($DBversion) ) {
     $dbh->do("ALTER TABLE aqorders DROP COLUMN biblioitemnumber");
     print "Upgrade to $DBversion done (Bug 9987 - Drop column aqorders.biblioitemnumber)\n";
     SetVersion($DBversion);
 }
 
-$DBversion = "3.12.03.010";
+$DBversion = "3.12.01.000";
 if ( CheckVersion($DBversion) ) {
-    $dbh->do(
-        q{
-INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('AcqWarnOnDuplicateInvoice','0','Warn librarians when they try to create a duplicate invoice', '', 'YesNo');
-}
-    );
-    print
-"Upgrade to $DBversion done (Bug 10366 - Add system preference to enabling warning librarian when invoice is duplicated)\n";
-    SetVersion($DBversion);
-}
-
-$DBversion = "3.12.03.011";
-if ( CheckVersion($DBversion) ) {
-    $dbh->do("UPDATE language_rfc4646_to_iso639 SET iso639_2_code='ita' WHERE rfc4646_subtag='it'");
-    print "Upgrade to $DBversion done (Bug 9519: Wrong language code for Italian in the advanced search language limitations)\n";
-    SetVersion($DBversion);
-}
-
-$DBversion = "3.12.03.012";
-if ( CheckVersion($DBversion) ) {
-    $dbh->do("ALTER TABLE issuingrules MODIFY COLUMN overduefinescap decimal(28,6) DEFAULT NULL;");
-    print "Upgrade to $DBversion done (Bug 10490: Correct datatype for overduefinescap in issuingrules)\n";
-    SetVersion($DBversion);
-}
-
-$DBversion ="3.12.03.013";
-if ( CheckVersion($DBversion) ) {
-    $dbh->do("INSERT IGNORE INTO systempreferences (variable,value,explanation,options,type) VALUES ('AllowTooManyOverride', '1', 'If on, allow staff to override and check out items when the patron has reached the maximum number of allowed checkouts', '', 'YesNo');");
-    print "Upgrade to $DBversion done (Bug 9576: add AllowTooManyOverride syspref to enable or disable issue limit confirmation)\n";
-    SetVersion($DBversion);
-}
-
-$DBversion = "3.12.03.014";
-if ( CheckVersion($DBversion) ) {
-    $dbh->do("ALTER TABLE courses MODIFY COLUMN department varchar(80) DEFAULT NULL;");
-    $dbh->do("ALTER TABLE courses MODIFY COLUMN term       varchar(80) DEFAULT NULL;");
-    print "Upgrade to $DBversion done (Bug 10604: correct width of courses.department and courses.term)\n";
-    SetVersion($DBversion);
-}
-
-$DBversion = "3.12.04.000";
-if ( CheckVersion($DBversion) ) {
-    $dbh->do(
-"INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('itemBarcodeFallbackSearch','','If set, enables the automatic use of a keyword catalog search if the phrase entered as a barcode on the checkout page does not turn up any results during an item barcode search',NULL,'YesNo')"
-    );
-    print "Upgrade to $DBversion done (Bug 7494: Add itemBarcodeFallbackSearch syspref)\n";
-    SetVersion($DBversion);
-
     $dbh->do(
         q{INSERT INTO systempreferences (variable, value, options, explanation, type) VALUES ('autoControlNumber','OFF','incremental|biblionumber|OFF',
         'Used to autogenerate a Control Number: incremental will be of the form 1, 2, 3; biblionumber will be as biblionumber;','Choice');}
@@ -7177,6 +7117,57 @@ if ( CheckVersion($DBversion) ) {
         }
     }
     print "Upgrade to $DBversion done (Bug 9921 - Make it possible to force 001 = biblionumber)\n";
+    SetVersion($DBversion);
+}
+
+$DBversion = "3.12.03.001";
+if ( CheckVersion($DBversion) ) {
+    $dbh->do(
+        q{
+INSERT INTO systempreferences (variable,value,explanation,options,type) VALUES ('AcqWarnOnDuplicateInvoice','0','Warn librarians when they try to create a duplicate invoice', '', 'YesNo');
+}
+    );
+    print
+"Upgrade to $DBversion done (Bug 10366 - Add system preference to enabling warning librarian when invoice is duplicated)\n";
+    SetVersion($DBversion);
+}
+
+$DBversion = "3.12.03.002";
+if ( CheckVersion($DBversion) ) {
+    $dbh->do("UPDATE language_rfc4646_to_iso639 SET iso639_2_code='ita' WHERE rfc4646_subtag='it'");
+    print "Upgrade to $DBversion done (Bug 9519: Wrong language code for Italian in the advanced search language limitations)\n";
+    SetVersion($DBversion);
+}
+
+$DBversion = "3.12.03.003";
+if ( CheckVersion($DBversion) ) {
+    $dbh->do("ALTER TABLE issuingrules MODIFY COLUMN overduefinescap decimal(28,6) DEFAULT NULL;");
+    print "Upgrade to $DBversion done (Bug 10490: Correct datatype for overduefinescap in issuingrules)\n";
+    SetVersion($DBversion);
+}
+
+$DBversion ="3.12.03.004";
+if ( CheckVersion($DBversion) ) {
+    $dbh->do("INSERT IGNORE INTO systempreferences (variable,value,explanation,options,type) VALUES ('AllowTooManyOverride', '1', 'If on, allow staff to override and check out items when the patron has reached the maximum number of allowed checkouts', '', 'YesNo');");
+    print "Upgrade to $DBversion done (Bug 9576: add AllowTooManyOverride syspref to enable or disable issue limit confirmation)\n";
+    SetVersion($DBversion);
+}
+
+$DBversion = "3.12.03.005";
+if ( CheckVersion($DBversion) ) {
+    $dbh->do("ALTER TABLE courses MODIFY COLUMN department varchar(80) DEFAULT NULL;");
+    $dbh->do("ALTER TABLE courses MODIFY COLUMN term       varchar(80) DEFAULT NULL;");
+    print "Upgrade to $DBversion done (Bug 10604: correct width of courses.department and courses.term)\n";
+    SetVersion($DBversion);
+}
+
+$DBversion = "3.12.04.000";
+if ( CheckVersion($DBversion) ) {
+    $dbh->do(
+"INSERT INTO `systempreferences` (variable,value,explanation,options,type) VALUES('itemBarcodeFallbackSearch','','If set, enables the automatic use of a keyword catalog search if the phrase entered as a barcode on the checkout page does not turn up any results during an item barcode search',NULL,'YesNo')"
+    );
+    print "Upgrade to $DBversion done (Bug 7494: Add itemBarcodeFallbackSearch syspref)\n";
+    SetVersion($DBversion);
     
     $dbh->do(q{ALTER TABLE `z3950servers` ADD COLUMN `recordtype` VARCHAR(45) NOT NULL DEFAULT 'biblio';});
     print "Upgrade to $DBversion done (Bug 10096 - Add a Z39.50 interface for authority searching)\n";
@@ -7421,19 +7412,10 @@ if ( CheckVersion($DBversion) ) {
         ALTER TABLE auth_subfield_structure ADD COLUMN defaultvalue TEXT DEFAULT NULL AFTER frameworkcode
     |);
     print "Upgrade to $DBversion done (Bug 10602: Add the column auth_subfield_structure.defaultvalue)\n";
-    $dbh->do("UPDATE systempreferences SET value='Koha. Kobli, Ministerio de Educaci&oacute;n, Cultura y Deporte Espa&ntilde;a, 2012' WHERE variable='opaccredits'");
+    $dbh->do("UPDATE systempreferences SET value='Koha-Kobli, © Ministerio de Educación, Cultura y Deporte España, 2013' WHERE variable='opaccredits'");
     SetVersion($DBversion);
 }
 
-
-$DBversion = "3.13.00.XXX";
-if ( CheckVersion($DBversion) ) {
-    $dbh->do(q|
-        ALTER TABLE auth_subfield_structure ADD COLUMN defaultvalue TEXT DEFAULT NULL AFTER frameworkcode
-    |);
-    print "Upgrade to $DBversion done (Bug 10602: Add the column auth_subfield_structure.defaultvalue)\n";
-    SetVersion($DBversion);
-}
 
 =head1 FUNCTIONS
 
