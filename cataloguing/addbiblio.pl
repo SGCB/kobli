@@ -140,19 +140,31 @@ sub MARCfindbreeding {
                     my $title     = $record->field($fieldtag)->subfield('c');
                     my $number    = $record->field($fieldtag)->subfield('d');
                     if ($title) {
-
-#                         $field->add_subfields("$subfield"=>"[ ".ucfirst($title).ucfirst($firstname)." ".$number." ]");
-                        $field->add_subfields(
-                                "$subfield" => ucfirst($title) . " "
-                              . ucfirst($firstname) . " "
-                              . $number );
+                        if ($field) {
+                            $field->add_subfields(
+                                    "$subfield" => ucfirst($title) . " "
+                                  . ucfirst($firstname) . " "
+                                  . $number );
+                        }else{
+                            $field =
+                              MARC::Field->new( $tag, "", "",
+                                    $subfield => ucfirst($title) . " "
+                                  . ucfirst($firstname) . " "
+                                  . $number );
+                        }
                     }
                     else {
 
-#                       $field->add_subfields("$subfield"=>"[ ".ucfirst($firstname).", ".ucfirst($lastname)." ]");
-                        $field->add_subfields(
-                            "$subfield" => ucfirst($firstname) . ", "
-                              . ucfirst($lastname) );
+                        if ($field) {
+                            $field->add_subfields(
+                                "$subfield" => ucfirst($firstname) . ", "
+                                  . ucfirst($lastname) );
+                        }else{
+                            $field =
+                              MARC::Field->new( $tag, "", "",
+                                    $subfield => ucfirst($firstname) . ", "
+                                  . ucfirst($lastname) );
+                        }
                     }
                 }
                 $record->insert_fields_ordered($field);
