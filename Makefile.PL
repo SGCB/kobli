@@ -850,7 +850,12 @@ Como está usando la instalación 'standard', debe ejecutar
 'make install' como el usuario root. Sin embargo, se recomienda
 que un usuario diferente a root sea el propietario de los archivos
 instalados de Koha-Kobli, incluyendo los índices de Zebra si se puede.
+);
 
+
+    }
+
+$msg .= q(
 Especificar una cuenta de usuario. No es necesario que exista
 ahora pero en el momento de ejecutar 'make install' sí.
 Por motivos de seguridad no debería ser la misma cuenta que la
@@ -866,7 +871,6 @@ pero sí en el momento de ejecutar 'make install'.
 
 Grupo);
         $config{'KOHA_GROUP'} = _get_value('KOHA_GROUP', $msg, $defaults->{'KOHA_GROUP'}, $valid_values, $install_log_values);
-    }
 
     $msg = q(
 Especificar que motor de base de datos relacional usar
