@@ -20,6 +20,7 @@ use warnings;
 
 use CGI;
 use Encode qw(encode);
+use Encode qw(decode);
 use Carp;
 
 use Mail::Sendmail;
@@ -58,6 +59,7 @@ if ( $email_add ) {
     my $email_from = C4::Context->preference('KohaAdminEmailAddress');
     my $email_replyto = "$user->{firstname} $user->{surname} <$user_email>";
     my $comment    = $query->param('comment');
+    $comment = encode("iso-8859-1", decode("UTF-8", $comment));
     my %mail = (
         To   => $email_add,
         From => $email_from,
@@ -148,22 +150,24 @@ if ( $email_add ) {
     my $body;
 
     # Analysing information and getting mail properties
-    if ( $template_res =~ /<SUBJECT>\n(.*)\n<END_SUBJECT>/s ) {
+    if ( $template_res =~ /<SUBJECT>\n(.*)\n?<END_SUBJECT>/s ) {
         $mail{'subject'} = $1;
     }
     else { $mail{'subject'} = "no subject"; }
 
     my $email_header = "";
-    if ( $template_res =~ /<HEADER>\n(.*)\n<END_HEADER>/s ) {
-        $email_header = $1;
+    if ( $template_res =~ /<HEADER>\n(.*)\n?<END_HEADER>/s ) {
+        $email_header = encode_qp($1);
     }
 
     my $email_file = "basket.txt";
-    if ( $template_res =~ /<FILENAME>\n(.*)\n<END_FILENAME>/s ) {
+    if ( $template_res =~ /<FILENAME>\n(.*)\n?<END_FILENAME>/s ) {
         $email_file = $1;
     }
 
-    if ( $template_res =~ /<MESSAGE>\n(.*)\n<END_MESSAGE>/s ) { $body = encode_qp($1); }
+    if ( $template_res =~ /<MESSAGE>\n(.*)\n?<END_MESSAGE>/s ) {
+        $body = encode_qp($1);
+    }
 
     my $boundary = "====" . time() . "====";
 
