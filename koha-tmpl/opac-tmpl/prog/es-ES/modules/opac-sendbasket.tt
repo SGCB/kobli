@@ -26,30 +26,30 @@ Su cesta <END_SUBJECT>
  [% END %] [% IF BIBLIO_RESULT.publishercode %] <span>
  Publicado por: [% BIBLIO_RESULT.publishercode %] [% IF ( BIBLIO_RESULT.publicationyear ) %] in [% BIBLIO_RESULT.publicationyear %] [% END %] [% IF ( BIBLIO_RESULT.pages ) %] , [% BIBLIO_RESULT.pages %] [% END %] [% IF BIBLIO_RESULT.size %] , [% BIBLIO_RESULT.size %] [% END %] </span><br/>
  [% END %] [% IF BIBLIO_RESULT.collection %] <span>
- ColecciÃ³n: [% BIBLIO_RESULT.seriestitle %] </span><br/>
+ Colección: [% BIBLIO_RESULT.seriestitle %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.subject ) %] <span>
  Tema: [% BIBLIO_RESULT.subject %] <span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.copyrightdate ) %] <span>
- Fecha de publicaciÃ³n:[% BIBLIO_RESULT.copyrightdate %] </span><br/>
+ Fecha de publicación:[% BIBLIO_RESULT.copyrightdate %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.notes ) %] <span>
  Notas: [% BIBLIO_RESULT.notes %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.unititle ) %] <span>
- TÃ­tulo uniforme: [% BIBLIO_RESULT.unititle %] </span><br/>
+ Título uniforme: [% BIBLIO_RESULT.unititle %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.serial ) %] <span>
  Serie: [% BIBLIO_RESULT.serial %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.dewey ) %] <span>
  Dewey: [% BIBLIO_RESULT.dewey %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.classification ) %] <span>
- ClasificaciÃ³n: [% BIBLIO_RESULT.classification %] </span><br/>
+ Clasificación: [% BIBLIO_RESULT.classification %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.lccn ) %] <span>
  LCCN: [% BIBLIO_RESULT.lccn %] </span><br/>
  [% END %] [% IF ( BIBLIO_RESULT.url ) %] <span>
- URL :  [% BIBLIO_RESULT.url |url %] </span>
+ URL: [% BIBLIO_RESULT.url |url %] </span>
  [% END %] </p>
 
  [% IF ( OPACBaseURL ) %] <p>
- En el catÃ¡logo en lÃ­nea: [% OPACBaseURL %]/cgi-bin/koha/opac-detail.pl?biblionumber=[% BIBLIO_RESULT.biblionumber %] </p>
- [% END %] [% IF ( BIBLIO_RESULT.ITEM_RESULTS.size ) %] <p>Ãtems:<ul>
+ En el catálogo en línea: [% OPACBaseURL %]/cgi-bin/koha/opac-detail.pl?biblionumber=[% BIBLIO_RESULT.biblionumber %]</p>
+ [% END %] [% IF ( BIBLIO_RESULT.ITEM_RESULTS.size ) %] <p>Ítems:<ul>
  [% FOREACH ITEM_RESULT IN BIBLIO_RESULT.ITEM_RESULTS %]<li>
  [% ITEM_RESULT.branchname %] [% ITEM_RESULT.location %] [% IF ITEM_RESULT.itemcallnumber %]([% ITEM_RESULT.itemcallnumber %])[% END %] [% ITEM_RESULT.barcode %] </li>[% END %] </ul>
  </p>

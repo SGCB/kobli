@@ -623,7 +623,7 @@ $(document).ready(function() {
  <label for="numberpattern">Patrón de numeración:</label>
  <select name="numbering_pattern" size="1" id="numberpattern">
  <option value="">-- por favor elija --</option>
- [% FOREACH numberpattern IN numberpatterns %] [% IF (numberpattern.selected) %] <option value="[% numberpattern.id %]">
+ [% FOREACH numberpattern IN numberpatterns %] [% IF (numberpattern.selected) %] <option value="[% numberpattern.id %]" selected="selected">
  [% ELSE %] <option value="[% numberpattern.id %]">
  [% END %] [% numberpattern.label %] </option>
  [% END %] </select>
