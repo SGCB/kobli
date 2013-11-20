@@ -1160,7 +1160,7 @@
                 <xsl:choose>
                     <xsl:when test="@tag=100 or @tag=700"><xsl:call-template name="nameABCQ"/></xsl:when>
                     <xsl:when test="@tag=110 or @tag=710"><xsl:call-template name="nameABTNDC"/></xsl:when>
-                    <xsl:when test="@tag=111 or @tag=711"><xsl:call-template name="nameACDENQ"/></xsl:when>
+                    <xsl:when test="@tag=111 or @tag=711"><xsl:call-template name="nameANQDCE"/></xsl:when>
                 </xsl:choose>
                 <!-- add relator code too between brackets-->
                 <xsl:if test="marc:subfield[@code='4' or @code='e']">
@@ -1238,10 +1238,45 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template name="nameACDENQ">
-            <xsl:call-template name="subfieldSelect">
-                <xsl:with-param name="codes">acdenq</xsl:with-param>
-            </xsl:call-template>
+    <xsl:template name="nameANQDCE">
+        <xsl:if test="marc:subfield[@code='a']">
+                <xsl:call-template name="subfieldSelect">
+                    <xsl:with-param name="codes">a</xsl:with-param>
+                </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='n']">
+                <xsl:text> ( </xsl:text>
+                <xsl:call-template name="subfieldSelect">
+                    <xsl:with-param name="codes">n</xsl:with-param>
+                </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='q']">
+                <xsl:text>. </xsl:text>
+                <xsl:call-template name="subfieldSelect">
+                    <xsl:with-param name="codes">q</xsl:with-param>
+                </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='d']">
+                <xsl:text>. </xsl:text>
+                <xsl:call-template name="subfieldSelect">
+                    <xsl:with-param name="codes">d</xsl:with-param>
+                </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='c']">
+                <xsl:text>. </xsl:text>
+                <xsl:call-template name="subfieldSelect">
+                    <xsl:with-param name="codes">c</xsl:with-param>
+                </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='e']">
+                <xsl:text>. </xsl:text>
+                <xsl:call-template name="subfieldSelect">
+                    <xsl:with-param name="codes">e</xsl:with-param>
+                </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='n' or @code='q' or @code='d' or @code='c' or @code='e']">
+            <xsl:text> )</xsl:text>
+        </xsl:if>    
     </xsl:template>
 
     <xsl:template name="part">
