@@ -12,6 +12,6 @@
  </li>
  <li>
  <a href="/cgi-bin/koha/serials/subscription-numberpatterns.pl">
- Manege patrones numéricos</a>
+ Gestione patrones numéricos</a>
  </li>
 </ul>
