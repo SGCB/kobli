@@ -22,6 +22,8 @@ use warnings;
 
 use CGI;
 use Encode qw(encode);
+use Encode qw(decode);
+use utf8;
 use Carp;
 
 use Mail::Sendmail;
@@ -31,7 +33,6 @@ use C4::Biblio;
 use C4::Items;
 use C4::Auth;
 use C4::Output;
-use C4::Biblio;
 use C4::Members;
 use C4::Ris;
 
@@ -61,6 +62,8 @@ if ( $email_add ) {
     my $email_from = C4::Context->preference('KohaAdminEmailAddress');
     my $email_replyto = "$user->{firstname} $user->{surname} <$user_email>";
     my $comment    = $query->param('comment');
+    $comment = encode("iso-8859-1", decode("UTF-8", $comment));
+    
     my %mail = (
         To   => $email_add,
         From => $email_from,
