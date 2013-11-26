@@ -7226,18 +7226,18 @@ if ( CheckVersion($DBversion) ) {
     $dbh->do(qq|
         INSERT INTO subscription_frequencies (description, unit, unitsperissue, issuesperunit, displayorder)
         VALUES
-            ('2/día', 'día', 1, 2, 1),
-            ('1/día', 'día', 1, 1, 2),
-            ('3/semana', 'semana', 1, 3, 3),
-            ('1/semana', 'semana', 1, 1, 4),
-            ('1/2 semanas', 'semana', 2, 1, 5),
-            ('1/3 semanas', 'semana', 3, 1, 6),
-            ('1/mes', 'mes', 1, 1, 7),
-            ('1/2 meses', 'mes', 2, 1, 8),
-            ('1/3 meses', 'mes', 3, 1, 9),
-            ('2/año', 'mes', 6, 1, 10),
-            ('1/año', 'año', 1, 1, 11),
-            ('1/2 año', 'año', 2, 1, 12),
+            ('2/día', 'day', 1, 2, 1),
+            ('1/día', 'day', 1, 1, 2),
+            ('3/semana', 'week', 1, 3, 3),
+            ('1/semana', 'week', 1, 1, 4),
+            ('1/2 semanas', 'week', 2, 1, 5),
+            ('1/3 semanas', 'week', 3, 1, 6),
+            ('1/mes', 'month', 1, 1, 7),
+            ('1/2 meses', 'month', 2, 1, 8),
+            ('1/3 meses', 'month', 3, 1, 9),
+            ('2/año', 'month', 6, 1, 10),
+            ('1/año', 'year', 1, 1, 11),
+            ('1/2 año', 'year', 2, 1, 12),
             ('Irregular', NULL, 1, 1, 13);
     |);
 
@@ -7317,11 +7317,13 @@ if ( CheckVersion($DBversion) ) {
     |);
     my $check_numberpatterns_sth = $dbh->prepare(qq|
         SELECT * FROM subscription_numberpatterns
-        WHERE add1 = ? AND add2 = ? AND add3 = ?
-          AND every1 = ? AND every2 = ? AND every3 = ?
-          AND whenmorethan1 = ? AND whenmorethan2 = ? AND whenmorethan3 = ?
-          AND setto1 = ? AND setto2 = ? AND setto3 = ?
-          AND numberingmethod = ?
+        WHERE (add1 = ? OR (add1 IS NULL AND ? IS NULL)) AND (add2 = ? OR (add2 IS NULL AND ? IS NULL)) 
+        AND (add3 = ? OR (add3 IS NULL AND ? IS NULL)) AND (every1 = ? OR (every1 IS NULL AND ? IS NULL)) 
+        AND (every2 = ? OR (every2 IS NULL AND ? IS NULL)) AND (every3 = ? OR (every3 IS NULL AND ? IS NULL))
+        AND (whenmorethan1 = ? OR (whenmorethan1 IS NULL AND ? IS NULL)) AND (whenmorethan2 = ? OR (whenmorethan2 IS NULL AND ? IS NULL)) 
+        AND (whenmorethan3 = ? OR (whenmorethan3 IS NULL AND ? IS NULL)) AND (setto1 = ? OR (setto1 IS NULL AND ? IS NULL)) 
+        AND (setto2 = ? OR (setto2 IS NULL AND ? IS NULL)) AND (setto3 = ? OR (setto3 IS NULL AND ? IS NULL))
+        AND (numberingmethod = ? OR (numberingmethod IS NULL AND ? IS NULL))
         LIMIT 1
     |);
     my $update_subscription_sth = $dbh->prepare(qq|
@@ -7334,11 +7336,11 @@ if ( CheckVersion($DBversion) ) {
     my $i = 1;
     while(my $sub = $sth->fetchrow_hashref) {
         $check_numberpatterns_sth->execute(
-            $sub->{add1}, $sub->{add2}, $sub->{add3},
-            $sub->{every1}, $sub->{every2}, $sub->{every3},
-            $sub->{whenmorethan1}, $sub->{whenmorethan2}, $sub->{whenmorethan3},
-            $sub->{setto1}, $sub->{setto2}, $sub->{setto3},
-            $sub->{numberingmethod}
+            $sub->{add1}, $sub->{add1}, $sub->{add2}, $sub->{add2}, $sub->{add3}, $sub->{add3},
+            $sub->{every1}, $sub->{every1}, $sub->{every2}, $sub->{every2}, $sub->{every3}, $sub->{every3},
+            $sub->{whenmorethan1}, $sub->{whenmorethan1}, $sub->{whenmorethan2}, $sub->{whenmorethan2}, 
+            $sub->{whenmorethan3}, $sub->{whenmorethan3}, $sub->{setto1}, $sub->{setto1}, $sub->{setto2}, 
+            $sub->{setto2}, $sub->{setto3}, $sub->{setto3}, $sub->{numberingmethod}, $sub->{numberingmethod}
         );
         my $p = $check_numberpatterns_sth->fetchrow_hashref;
         if (defined $p) {
