@@ -59,7 +59,9 @@ if ( $email_add ) {
     my $email_from = C4::Context->preference('KohaAdminEmailAddress');
     my $email_replyto = "$user->{firstname} $user->{surname} <$user_email>";
     my $comment    = $query->param('comment');
-    $comment = encode("iso-8859-1", decode("UTF-8", $comment));
+    if(C4::Templates::getlanguage($query, "opac") eq "es-ES"){
+        $comment = encode("iso-8859-1", decode("UTF-8", $comment));
+    }
     my %mail = (
         To   => $email_add,
         From => $email_from,
@@ -100,26 +102,34 @@ if ( $email_add ) {
         }
     
         foreach my $dato (keys %{$dat}) {     
-            $dat->{$dato} = encode("iso-8859-1", $dat->{$dato});
+            if(C4::Templates::getlanguage($query, "opac") eq "es-ES"){
+                $dat->{$dato} = encode("iso-8859-1", $dat->{$dato});
+            }
         }
         
         for(my $i=0; $marcnotesarray->[$i]; $i++){
             for(my $j=0; $marcnotesarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]; $j++){
-                $marcnotesarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value} = encode("iso-8859-1", $marcnotesarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value});
+                if(C4::Templates::getlanguage($query, "opac") eq "es-ES"){
+                    $marcnotesarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value} = encode("iso-8859-1", $marcnotesarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value});
+                }
             }
         }
         $dat->{MARCNOTES}      = $marcnotesarray;
         
         for(my $i=0; $marcsubjctsarray->[$i]; $i++){
             for(my $j=0; $marcsubjctsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]; $j++){
-                $marcsubjctsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value} = encode("iso-8859-1", $marcsubjctsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value});
+                if(C4::Templates::getlanguage($query, "opac") eq "es-ES"){
+                    $marcsubjctsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value} = encode("iso-8859-1", $marcsubjctsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value});
+                }
             }
         }
         $dat->{MARCSUBJCTS}    = $marcsubjctsarray;
         
         for(my $i=0; $marcauthorsarray->[$i]; $i++){
             for(my $j=0; $marcauthorsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]; $j++){
-                $marcauthorsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value} = encode("iso-8859-1", $marcauthorsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value});
+                if(C4::Templates::getlanguage($query, "opac") eq "es-ES"){
+                    $marcauthorsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value} = encode("iso-8859-1", $marcauthorsarray->[$i]{MARCAUTHOR_SUBFIELDS_LOOP}[$j]{value});
+                }
             }
         }
         $dat->{MARCAUTHORS}    = $marcauthorsarray;
