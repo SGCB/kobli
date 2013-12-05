@@ -57,6 +57,7 @@ the 3 scripts are inserted after the <input> in the html code
 
 sub plugin_javascript {
 	my ($dbh,$record,$tagslib,$field_number,$tabloop) = @_;
+    $dbh = C4::Context->dbh;
 	my $function_name= "barcode".(int(rand(100000))+1);
     my %args;
 
