@@ -57,7 +57,7 @@ for my $s (@{$supplierlist} ) {
     }
 }
 
-my $letters = GetLetters('claimissues');
+my $letters = GetLetters('claimacquisition');
 my @letters;
 foreach (keys %{$letters}){
     push @letters ,{code=>$_,name=> $letters->{$_}};

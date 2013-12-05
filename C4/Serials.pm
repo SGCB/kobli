@@ -102,7 +102,6 @@ sub GetSuppliersWithLateIssues {
             (planneddate < now() AND serial.status=1)
             OR serial.STATUS = 3 OR serial.STATUS = 4
         )
-        AND subscription.closed = 0
     ORDER BY name|;
     return $dbh->selectall_arrayref($query, { Slice => {} });
 }
