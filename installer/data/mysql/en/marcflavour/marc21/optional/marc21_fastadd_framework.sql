@@ -16,6 +16,7 @@ INSERT IGNORE INTO `marc_tag_structure` (`tagfield`, `liblibrarian`, `libopac`, 
                 ('500', 'GENERAL NOTE', 'GENERAL NOTE', 1, 0, NULL, 'FA'),
                 ('942', 'ADDED ENTRY ELEMENTS (KOHA)', 'ADDED ENTRY ELEMENTS (KOHA)', 0, 0, '', 'FA'),
                 ('952', 'LOCATION AND ITEM INFORMATION (KOHA)', 'LOCATION AND ITEM INFORMATION (KOHA)', 1, 0, '', 'FA'),
+				('973','HOST BIBLIO CONTROL (KOBLI)','HOST BIBLIO CONTROL (KOBLI)',0,0,'','FA'),
                 ('999', 'SYSTEM CONTROL NUMBERS (KOHA)', 'SYSTEM CONTROL NUMBERS (KOHA)', 1, 0, '', 'FA');
 
 INSERT IGNORE INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblibrarian`, `libopac`, `repeatable`, `mandatory`, `kohafield`, `tab`, `authorised_value`, `authtypecode`, `value_builder`, `isurl`, `hidden`, `frameworkcode`, `seealso`, `link`, `defaultvalue`) VALUES
@@ -128,5 +129,6 @@ INSERT IGNORE INTO `marc_subfield_structure` (`tagfield`, `tagsubfield`, `liblib
 		('952','x','Nonpublic note (lost item payment)','Nonpublic note (lost item payment)',1,0,'items.paidfor',10,'','','',NULL,0,'FA','',NULL,NULL),
 		('952','y','Koha item type','Koha item type',0,0,'items.itype',10,'itemtypes','','',NULL,0,'FA','',NULL,NULL),
 		('952','z','Public note','Public note',0,0,'items.itemnotes',10,'','','',NULL,0,'FA','',NULL,NULL),
+		('973','w','ANALYTICAL COUNTER','ANALYTICAL COUNTER',0,0,'',9,'','','',0,-5,'','FA','','',9999),
                 ('999', 'c', 'Koha biblionumber', 'Koha biblionumber', 0, 0, 'biblio.biblionumber', -1, NULL, NULL, '', NULL, -5, 'FA', '', '', NULL),
                 ('999', 'd', 'Koha biblioitemnumber', 'Koha biblioitemnumber', 0, 0, 'biblioitems.biblioitemnumber', -1, NULL, NULL, '', NULL, -5, 'FA', '', '', NULL);
